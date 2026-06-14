@@ -2,7 +2,7 @@
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
-Generated: 2026-06-06T19:48:34.675Z
+Generated: 2026-06-12T23:59:12.352Z
 
 ## Guardrail
 
@@ -12,21 +12,22 @@ Prize Pack product-family rows are accepted only for stamped remaining gaps. Exp
 
 | Metric | Value |
 | --- | --- |
-| target_facts | 50 |
+| target_facts | 18 |
 | prize_pack_products_parsed | 723 |
-| records_generated | 7 |
-| fixture_files_written | 5 |
-| by_status | {"no_exact_prize_pack_match":43,"validated":7} |
-| validated_by_set | {"sv06.5\|Shrouded Fable":1,"sv08.5\|Prismatic Evolutions":1,"swsh1\|Sword & Shield":2,"swsh10\|Astral Radiance":1,"swsh7\|Evolving Skies":2} |
+| records_generated | 8 |
+| fixture_files_written | 1 |
+| by_status | {"no_exact_prize_pack_match":10,"validated":8} |
+| validated_by_set | {"sv03\|Obsidian Flames":8} |
 
 ## Validated Rows
 
 | set | number | card | finish | source | evidence |
 | --- | --- | --- | --- | --- | --- |
-| sv06.5 | 37 | Munkidori ex | stamped | https://www.tcgplayer.com/product/619144/pokemon-prize-pack-series-cards-munkidori-ex-037-064 | TCGCSV/TCGplayer Prize Pack product 619144: Munkidori ex - 037/064 (037/064) |
-| sv08.5 | 129 | Sparkling Crystal | stamped | https://www.tcgplayer.com/product/677397/pokemon-prize-pack-series-cards-sparkling-crystal-129-131 | TCGCSV/TCGplayer Prize Pack product 677397: Sparkling Crystal - 129/131 (129/131) |
-| swsh1 | 139 | Zamazenta V | stamped | https://www.tcgplayer.com/product/476065/pokemon-prize-pack-series-cards-zamazenta-v-139-202 | TCGCSV/TCGplayer Prize Pack product 476065: Zamazenta V - 139/202 (139/202) |
-| swsh1 | 180 | Rare Candy | stamped | https://www.tcgplayer.com/product/476115/pokemon-prize-pack-series-cards-rare-candy-180-202 | TCGCSV/TCGplayer Prize Pack product 476115: Rare Candy - 180/202 (180/202) |
-| swsh10 | 51 | Regieleki | stamped | https://www.tcgplayer.com/product/515444/pokemon-prize-pack-series-cards-regieleki-051-189 | TCGCSV/TCGplayer Prize Pack product 515444: Regieleki - 051/189 (051/189) |
-| swsh7 | 60 | Regieleki | stamped | https://www.tcgplayer.com/product/489899/pokemon-prize-pack-series-cards-regieleki-060-203 | TCGCSV/TCGplayer Prize Pack product 489899: Regieleki - 060/203 (060/203) |
-| swsh7 | 83 | Medicham V | stamped | https://www.tcgplayer.com/product/490485/pokemon-prize-pack-series-cards-medicham-v-083-203 | TCGCSV/TCGplayer Prize Pack product 490485: Medicham V - 083/203 (083/203) |
+| sv03 | 22 | Toedscruel ex | stamped | https://www.tcgplayer.com/product/538743/pokemon-prize-pack-series-cards-toedscruel-ex | TCGCSV/TCGplayer Prize Pack product 538743: Toedscruel ex (022/197) |
+| sv03 | 66 | Tyranitar ex | stamped | https://www.tcgplayer.com/product/538744/pokemon-prize-pack-series-cards-tyranitar-ex | TCGCSV/TCGplayer Prize Pack product 538744: Tyranitar ex (066/197) |
+| sv03 | 92 | Lunatone | stamped | https://www.tcgplayer.com/product/538732/pokemon-prize-pack-series-cards-lunatone-092-197 | TCGCSV/TCGplayer Prize Pack product 538732: Lunatone - 092/197 (092/197) |
+| sv03 | 95 | Claydol | stamped | https://www.tcgplayer.com/product/538720/pokemon-prize-pack-series-cards-claydol | TCGCSV/TCGplayer Prize Pack product 538720: Claydol (095/197) |
+| sv03 | 125 | Charizard ex | stamped | https://www.tcgplayer.com/product/538708/pokemon-prize-pack-series-cards-charizard-ex | TCGCSV/TCGplayer Prize Pack product 538708: Charizard ex (125/197) |
+| sv03 | 164 | Pidgeot ex | stamped | https://www.tcgplayer.com/product/538737/pokemon-prize-pack-series-cards-pidgeot-ex | TCGCSV/TCGplayer Prize Pack product 538737: Pidgeot ex (164/197) |
+| sv03 | 189 | Letter of Encouragement | stamped | https://www.tcgplayer.com/product/538762/pokemon-prize-pack-series-cards-letter-of-encouragement | TCGCSV/TCGplayer Prize Pack product 538762: Letter of Encouragement (189/197) |
+| sv03 | 196 | Town Store | stamped | https://www.tcgplayer.com/product/619172/pokemon-prize-pack-series-cards-town-store | TCGCSV/TCGplayer Prize Pack product 619172: Town Store (196/197) |

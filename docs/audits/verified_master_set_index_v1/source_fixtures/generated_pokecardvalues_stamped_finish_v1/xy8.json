@@ -1,0 +1,49 @@
+{
+  "source_key": "pokecardvalues_stamped_finish_xy8",
+  "source_kind": "collector_reference",
+  "source_url": "https://pokecardvalues.co.uk/cards/flabebe-101-162-reverse-holo-league-promo-breakthrough/xy8-101-3-41/",
+  "source_status": "available_generated_fixture",
+  "generated_at": "2026-06-13T00:02:20.623Z",
+  "retrieved_at": "2026-06-13T00:02:20.623Z",
+  "raw_snapshot_ref": "generated_fixture:pokecardvalues_stamped_finish:xy8:2026-06-13T00:02:20.623Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "generation_note": "Generated from Poke Card Values structured set/card titles for remaining stamped finish blockers only.",
+  "records": [
+    {
+      "source_key": "pokecardvalues_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokecardvalues.co.uk/cards/flabebe-101-162-reverse-holo-league-promo-breakthrough/xy8-101-3-41/",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "101",
+      "card_name": "Flabébé",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Poke Card Values exact stamped finish: Flabebe - 101/162 - Reverse Holo - League Promo - Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-13T00:02:20.623Z",
+      "raw_snapshot_ref": "pokecardvalues:xy8:101:league_stamp:reverse",
+      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
+    },
+    {
+      "source_key": "pokecardvalues_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokecardvalues.co.uk/cards/floette-102-162-reverse-holo-league-promo-breakthrough/xy8-102-3-41/",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "102",
+      "card_name": "Floette",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Poke Card Values exact stamped finish: Floette - 102/162 - Reverse Holo - League Promo - Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-13T00:02:20.623Z",
+      "raw_snapshot_ref": "pokecardvalues:xy8:102:league_stamp:reverse",
+      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
+    }
+  ]
+}

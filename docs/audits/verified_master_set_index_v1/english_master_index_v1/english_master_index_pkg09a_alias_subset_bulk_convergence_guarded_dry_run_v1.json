@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-06-10T19:24:54.197Z",
+  "version": "english_master_index_pkg09a_alias_subset_bulk_convergence_guarded_dry_run_v1",
+  "package_id": "PKG-09A-ALIAS-SUBSET-BULK-CONVERGENCE",
+  "package_fingerprint_sha256": "d66cc542f4f348f2cd137c03e2c13949da5ac22391eda5388a8d7d8ab1f7976a",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "transaction_ended_with_rollback": true,
+  "output_sql": "docs/sql/english_master_index_pkg09a_alias_subset_bulk_convergence_guarded_dry_run_transaction_v1.sql",
+  "scope": {
+    "package_id": "PKG-09A-ALIAS-SUBSET-BULK-CONVERGENCE",
+    "source_readiness_fingerprint": "d66cc542f4f348f2cd137c03e2c13949da5ac22391eda5388a8d7d8ab1f7976a",
+    "candidate_rows": 155,
+    "parent_set_code_update_rows": 105,
+    "parent_insert_rows": 48,
+    "child_insert_rows": 53,
+    "external_mapping_insert_rows": 48,
+    "blocked_rows_excluded": 36,
+    "target_sets": [
+      "cel25c",
+      "mep",
+      "swsh12pt5gg",
+      "xya"
+    ]
+  },
+  "summary": {
+    "by_set": {
+      "cel25c": 25,
+      "mep": 54,
+      "swsh12pt5gg": 70,
+      "xya": 6
+    },
+    "by_readiness_lane": {
+      "existing_set_parent_child_insert_candidate": 48,
+      "host_parent_relocation_candidate": 92,
+      "planned_parent_extra_child_insert_candidate": 2,
+      "target_orphan_parent_set_code_backfill_candidate": 10,
+      "target_orphan_parent_set_code_backfill_plus_child_insert_candidate": 3
+    },
+    "by_finish": {
+      "cosmos": 2,
+      "holo": 147,
+      "normal": 6
+    }
+  },
+  "dry_run": {
+    "status": "pkg09a_alias_subset_bulk_convergence_completed_rolled_back_no_durable_change",
+    "proof_row": {
+      "package_id": "PKG-09A-ALIAS-SUBSET-BULK-CONVERGENCE",
+      "package_fingerprint": "d66cc542f4f348f2cd137c03e2c13949da5ac22391eda5388a8d7d8ab1f7976a",
+      "parent_updates": 105,
+      "parent_inserts": 48,
+      "child_inserts": 53,
+      "mapping_inserts": 48,
+      "verified_parent_updates": 105
+    },
+    "proof_hash_sha256": "a92b17da81d0e9166238cdd7a62750385a89b5d1044c1caf5b788de83680906f"
+  }
+}

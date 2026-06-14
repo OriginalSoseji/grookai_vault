@@ -1,0 +1,121 @@
+{
+  "generated_at": "2026-06-09T21:18:22.347Z",
+  "version": "english_master_index_pkg04a_chaos_rising_ingestion_readiness_v1",
+  "package_id": "PKG-04A-CHAOS-RISING-INGESTION-READINESS",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "report_status": "pkg04a_chaos_rising_completed_live_matches_master_index_no_write",
+  "write_ready_now": 0,
+  "package_scope": {
+    "set_key": "me04",
+    "set_name": "Chaos Rising",
+    "source_aliases": [
+      "me04",
+      "me4"
+    ],
+    "master_index_cards": 122,
+    "master_index_printings": 247,
+    "master_index_printings_by_finish": {
+      "normal": 113,
+      "reverse": 76,
+      "holo": 58
+    },
+    "live_set_rows": 1,
+    "live_card_print_rows": 122,
+    "live_card_printing_rows": 247,
+    "tcgdex_raw_import_rows": 123,
+    "chaos_rising_missing_printings": 0
+  },
+  "source_probes": {
+    "set": {
+      "command": "node backend\\sets\\tcgdex_import_sets_worker.mjs --set me04 --dry-run",
+      "command_scoped_tls_retry_used": true,
+      "command_scoped_tls_retry_reason": "Local Windows certificate chain failed with UNABLE_TO_VERIFY_LEAF_SIGNATURE.",
+      "observed_fetched_sets": 1,
+      "observed_would_upsert_sets": 1,
+      "observed_created": 0,
+      "observed_updated": 0,
+      "observed_skipped_missing_id": 0,
+      "db_writes_performed": false,
+      "note": "Do not make NODE_TLS_REJECT_UNAUTHORIZED=0 a default. Use only as a temporary local operator workaround if certificate trust is not fixed."
+    },
+    "cards": {
+      "command": "node backend\\pokemon\\tcgdex_import_cards_worker.mjs --set me04 --detail --dry-run",
+      "command_scoped_tls_retry_used": true,
+      "command_scoped_tls_retry_reason": "Local Windows certificate chain failed with UNABLE_TO_VERIFY_LEAF_SIGNATURE.",
+      "observed_fetched_cards": 122,
+      "observed_would_upsert_cards": 122,
+      "observed_created": 0,
+      "observed_updated": 0,
+      "observed_skipped_missing_id": 0,
+      "db_writes_performed": false,
+      "note": "Do not make NODE_TLS_REJECT_UNAUTHORIZED=0 a default. Use only as a temporary local operator workaround if certificate trust is not fixed."
+    }
+  },
+  "current_blockers": [],
+  "required_operator_sequence": [
+    {
+      "step": "raw_set_import",
+      "command": "node backend\\sets\\tcgdex_import_sets_worker.mjs --set me04",
+      "write_scope": "raw_imports set row for me04 only",
+      "safety_requirement": "Operator approval required. Confirm dry-run fetched=1 and wouldUpsert=1 immediately before real import.",
+      "durable_write": true,
+      "canonical_write": false
+    },
+    {
+      "step": "raw_card_import",
+      "command": "node backend\\pokemon\\tcgdex_import_cards_worker.mjs --set me04 --detail",
+      "write_scope": "raw_imports card rows for me04 only",
+      "safety_requirement": "Operator approval required. Confirm dry-run fetched=122 and wouldUpsert=122 immediately before real import.",
+      "durable_write": true,
+      "canonical_write": false
+    },
+    {
+      "step": "scoped_normalize_dry_run",
+      "command": "node backend\\pokemon\\tcgdex_normalize_worker.mjs --set me04 --dry-run",
+      "write_scope": "none",
+      "safety_requirement": "Must show 122 parent card_print insert simulations and no unrelated set/card processing.",
+      "durable_write": false,
+      "canonical_write": false
+    },
+    {
+      "step": "scoped_normalize_apply",
+      "command": "node backend\\pokemon\\tcgdex_normalize_worker.mjs --set me04",
+      "write_scope": "sets/card_prints/card_printings/external_mappings/traits for me04 only",
+      "safety_requirement": "Requires explicit approval after dry-run artifact, rollback plan, and post-apply verification gates.",
+      "durable_write": true,
+      "canonical_write": true
+    },
+    {
+      "step": "post_apply_master_index_verification",
+      "command": "node scripts\\audits\\english_master_index_chaos_rising_completion_package_v1.mjs",
+      "write_scope": "none",
+      "safety_requirement": "Must reach 122 live parents, 247 live child printings, 247/247 verified_by_index, and 0 unsupported/name mismatch.",
+      "durable_write": false,
+      "canonical_write": false
+    }
+  ],
+  "safety_gaps_closed_this_step": [
+    {
+      "gap": "tcgdex_normalize_worker_unscoped_pending_processing",
+      "closure": "Added --set filtering for pending set and card raw_import rows.",
+      "default_behavior_changed": false
+    },
+    {
+      "gap": "tcgdex_import_sets_worker_broad_only_execution",
+      "closure": "Added --set support so Chaos Rising raw set import can be bounded to me04.",
+      "default_behavior_changed": false
+    }
+  ],
+  "stop_rules": [
+    "Do not run scoped_normalize_apply until raw imports exist and scoped_normalize_dry_run passes.",
+    "Do not run broad normalization for Chaos Rising.",
+    "Do not use direct SQL inserts for Chaos Rising unless standard ingestion is proven unusable and a separate approval exists.",
+    "Do not make insecure TLS behavior the default.",
+    "Do not create migrations for this package."
+  ]
+}

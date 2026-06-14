@@ -1,0 +1,52 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pkg17e_stamped_active_finish_web_evidence_sv06.5",
+  "source_kind": "marketplace_checklist",
+  "source_url": "multiple_urls_in_records",
+  "source_status": "available_generated",
+  "set_key": "sv06.5",
+  "set_name": "Shrouded Fable",
+  "retrieved_at": "2026-06-12T21:09:12.610Z",
+  "raw_snapshot_ref": "generated_fixture:PKG-17E-STAMPED-ACTIVE-FINISH-WEB-EVIDENCE:sv06.5:2026-06-12T21:09:12.610Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "records": [
+    {
+      "source_key": "pricecharting",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-Shrouded-Fable/Galvantula-002",
+      "set_key": "sv06.5",
+      "set_name": "Shrouded Fable",
+      "card_number": "2",
+      "card_name": "Galvantula",
+      "finish_key": "cosmos",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting search result identifies Galvantula #002 Prize Pack Cosmos Holo.",
+      "language": "en",
+      "retrieved_at": "2026-06-12T21:09:12.610Z",
+      "raw_snapshot_ref": "pkg17e_web_evidence:pricecharting:sv06.5:2:galvantula:prize_pack_stamp",
+      "notes": "Audit-only exact active-finish evidence for stamped parent readiness. This fixture does not write to the database."
+    },
+    {
+      "source_key": "ebay",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.ebay.com/itm/335837500784",
+      "set_key": "sv06.5",
+      "set_name": "Shrouded Fable",
+      "card_number": "2",
+      "card_name": "Galvantula",
+      "finish_key": "cosmos",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "eBay listing title identifies Galvantula #002 Prize Pack 6 as Cosmo Holo.",
+      "language": "en",
+      "retrieved_at": "2026-06-12T21:09:12.610Z",
+      "raw_snapshot_ref": "pkg17e_web_evidence:ebay:sv06.5:2:galvantula:prize_pack_stamp",
+      "notes": "Audit-only exact active-finish evidence for stamped parent readiness. This fixture does not write to the database."
+    }
+  ]
+}

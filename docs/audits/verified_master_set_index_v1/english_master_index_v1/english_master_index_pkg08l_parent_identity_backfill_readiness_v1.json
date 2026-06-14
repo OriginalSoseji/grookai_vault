@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-06-10T16:29:11.950Z",
+  "version": "english_master_index_pkg08l_parent_identity_backfill_readiness_v1",
+  "package_id": "PKG-08L-PARENT-IDENTITY-BACKFILL-READINESS",
+  "source_package": "PKG-08H-EXTERNAL-MAPPING-COLLISION-ADJUDICATION",
+  "source_strategy_fingerprint_sha256": "c56ab03a1e50b1e38d7046d7f8c906c89cad41eeefbbf27e4d29117f54472ae8",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "live_read": {
+    "available": true,
+    "reason": null,
+    "source_rows": 0,
+    "live_rows_read": 0
+  },
+  "summary": {
+    "source_rows": 0,
+    "audited_rows": 0,
+    "by_readiness_lane": {},
+    "top_sets_by_readiness_lane": {},
+    "parent_field_backfill_candidates": 0,
+    "parent_field_backfill_fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "rows_with_vault_dependencies": 0
+  },
+  "recommended_next_packages": [
+    {
+      "package_id": "PKG-08N",
+      "scope": "parent_field_backfill_candidate",
+      "candidate_rows": 0,
+      "allowed_write_shape": "parent set_id/set_code/number/printed_identity_modifier update only; generated number_plain readback required; no child writes; no deletes; no merges; no unsupported cleanup",
+      "status": "blocked_no_candidates"
+    }
+  ],
+  "rows": []
+}

@@ -1,0 +1,465 @@
+{
+  "generated_at": "2026-06-11T12:55:02.945Z",
+  "version": "english_master_index_pkg15a_stamped_explicit_finish_guarded_dry_run_v1",
+  "package_id": "PKG-15A-STAMPED-EXPLICIT-FINISH-PARENT-INSERTS",
+  "package_fingerprint_sha256": "d469bf7b2c0b7cbd53196091ab5c94d7fc53b1f867efb5f0113d5f7ac0df99a6",
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg15_stamped_explicit_finish_readiness_v1.json",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "target_count": 5,
+    "targets": [
+      {
+        "target_parent_id": "4e007c58-5b91-4110-af5b-c274eaa694c0",
+        "target_child_id": "28d5104c-f752-4e2a-9360-e4ee8f473a27",
+        "base_parent_id": "85a386f5-9d71-47b3-8d0a-253d16fc3b51",
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "card_number": "58",
+        "card_name": "Prinplup",
+        "target_finish_key": "holo",
+        "target_variant_key": "diamond_pearl_stamp",
+        "stamp_label": "Diamond & Pearl Stamp",
+        "target_number_plain": "58",
+        "evidence": {
+          "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+          "preserved_evidence_sources": [
+            "doubleholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_urls": [
+            "https://doubleholo.com/sets/pokemon-diamond-and-pearl",
+            "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+          ],
+          "preserved_evidence_labels": [
+            "Double Holo checklist row Prinplup [Diamond & Pearl Stamp] #58",
+            "ThePriceDex preserved finish evidence from last promoted Master Index"
+          ],
+          "preserved_evidence_notes": [
+            "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+            "Generated only from explicit bracketed Double Holo finish labels."
+          ],
+          "finish_claims": [
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "Double Holo checklist row Prinplup [Diamond & Pearl Stamp] #58"
+            },
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+            }
+          ],
+          "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS"
+        }
+      },
+      {
+        "target_parent_id": "1bad5ef7-48d8-4bf5-b40b-bb8303304d35",
+        "target_child_id": "26f516b6-bf18-4be1-9b17-abc5accf7629",
+        "base_parent_id": "791e7043-c7f7-493e-a97f-b8b8664d8690",
+        "set_key": "swsh7",
+        "set_name": "Evolving Skies",
+        "card_number": "43",
+        "card_name": "Cryogonal",
+        "target_finish_key": "holo",
+        "target_variant_key": "snowflake_stamp",
+        "stamp_label": "Snowflake Stamp",
+        "target_number_plain": "43",
+        "evidence": {
+          "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+          "preserved_evidence_sources": [
+            "doubleholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_urls": [
+            "https://doubleholo.com/sets/pokemon-evolving-skies",
+            "https://www.thepricedex.com/set/swsh7/evolving-skies/price-list"
+          ],
+          "preserved_evidence_labels": [
+            "Double Holo checklist row Cryogonal [Snowflake Stamp] #43",
+            "ThePriceDex preserved finish evidence from last promoted Master Index"
+          ],
+          "preserved_evidence_notes": [
+            "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+            "Generated only from explicit bracketed Double Holo finish labels."
+          ],
+          "finish_claims": [
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "Double Holo checklist row Cryogonal [Snowflake Stamp] #43"
+            },
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+            }
+          ],
+          "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS"
+        }
+      },
+      {
+        "target_parent_id": "b5ee7e14-1d09-4865-8c17-43b3eab7d1c7",
+        "target_child_id": "f5121a69-6522-4fa5-b189-31d3f0c92529",
+        "base_parent_id": "90c66d8f-6e73-44d3-a0d3-09c57940ab4c",
+        "set_key": "swsh8",
+        "set_name": "Fusion Strike",
+        "card_number": "84",
+        "card_name": "Snom",
+        "target_finish_key": "holo",
+        "target_variant_key": "snowflake_stamp",
+        "stamp_label": "Snowflake Stamp",
+        "target_number_plain": "84",
+        "evidence": {
+          "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+          "preserved_evidence_sources": [
+            "doubleholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_urls": [
+            "https://doubleholo.com/sets/pokemon-fusion-strike",
+            "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+          ],
+          "preserved_evidence_labels": [
+            "Double Holo checklist row Snom [Snowflake Stamp] #84",
+            "ThePriceDex preserved finish evidence from last promoted Master Index"
+          ],
+          "preserved_evidence_notes": [
+            "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+            "Generated only from explicit bracketed Double Holo finish labels."
+          ],
+          "finish_claims": [
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "Double Holo checklist row Snom [Snowflake Stamp] #84"
+            },
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+            }
+          ],
+          "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS"
+        }
+      },
+      {
+        "target_parent_id": "8af838c6-56ca-43bf-b121-ff1905c4b6d6",
+        "target_child_id": "2e10064e-9f1e-4b9b-8864-250b9a6a67c8",
+        "base_parent_id": "bcafc2bf-c9ff-4b24-b57c-c7f27fd1b4ed",
+        "set_key": "sv02",
+        "set_name": "Paldea Evolved",
+        "card_number": "53",
+        "card_name": "Cetoddle",
+        "target_finish_key": "holo",
+        "target_variant_key": "snowflake_stamp",
+        "stamp_label": "Snowflake Stamp",
+        "target_number_plain": "53",
+        "evidence": {
+          "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+          "preserved_evidence_sources": [
+            "doubleholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_urls": [
+            "https://doubleholo.com/sets/pokemon-paldea-evolved",
+            "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+          ],
+          "preserved_evidence_labels": [
+            "Double Holo checklist row Cetoddle [Snowflake Stamp] #53",
+            "ThePriceDex preserved finish evidence from last promoted Master Index"
+          ],
+          "preserved_evidence_notes": [
+            "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+            "Generated only from explicit bracketed Double Holo finish labels."
+          ],
+          "finish_claims": [
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "Double Holo checklist row Cetoddle [Snowflake Stamp] #53"
+            },
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+            }
+          ],
+          "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS"
+        }
+      },
+      {
+        "target_parent_id": "c829ffb5-f87b-4d5a-93ee-6a274909ecd9",
+        "target_child_id": "339deaa9-566b-48ee-83e8-2fd40e54db35",
+        "base_parent_id": "9aeabf89-7517-4105-a589-d5dfc7fd1bc5",
+        "set_key": "sv02",
+        "set_name": "Paldea Evolved",
+        "card_number": "58",
+        "card_name": "Frigibax",
+        "target_finish_key": "holo",
+        "target_variant_key": "snowflake_stamp",
+        "stamp_label": "Snowflake Stamp",
+        "target_number_plain": "58",
+        "evidence": {
+          "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+          "preserved_evidence_sources": [
+            "doubleholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_urls": [
+            "https://doubleholo.com/sets/pokemon-paldea-evolved",
+            "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+          ],
+          "preserved_evidence_labels": [
+            "Double Holo checklist row Frigibax [Snowflake Stamp] #58",
+            "ThePriceDex preserved finish evidence from last promoted Master Index"
+          ],
+          "preserved_evidence_notes": [
+            "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+            "Generated only from explicit bracketed Double Holo finish labels."
+          ],
+          "finish_claims": [
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "Double Holo checklist row Frigibax [Snowflake Stamp] #58"
+            },
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+            }
+          ],
+          "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS"
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "pkg15a_stamped_explicit_finish_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 5,
+      "target_parent_count": 5,
+      "target_child_count": 5,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 5,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "PKG-15A-STAMPED-EXPLICIT-FINISH-PARENT-INSERTS",
+      "package_fingerprint": "d469bf7b2c0b7cbd53196091ab5c94d7fc53b1f867efb5f0113d5f7ac0df99a6",
+      "target_rows": 5,
+      "inserted_parent_rows": 5,
+      "inserted_identity_rows": 5,
+      "inserted_child_rows": 5
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 5,
+      "identity_inserts": 5,
+      "child_inserts": 5,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-11T12:55:01.444Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "counts": {}
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-11T12:55:02.706Z",
+      "rows": [
+        {
+          "row_type": "target_child",
+          "row_id": "28d5104c-f752-4e2a-9360-e4ee8f473a27",
+          "set_code": "dp1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Prinplup",
+          "variant_key": "diamond_pearl_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "2e10064e-9f1e-4b9b-8864-250b9a6a67c8",
+          "set_code": "sv02",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Cetoddle",
+          "variant_key": "snowflake_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "339deaa9-566b-48ee-83e8-2fd40e54db35",
+          "set_code": "sv02",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Frigibax",
+          "variant_key": "snowflake_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "26f516b6-bf18-4be1-9b17-abc5accf7629",
+          "set_code": "swsh7",
+          "number": "43",
+          "number_plain": "43",
+          "name": "Cryogonal",
+          "variant_key": "snowflake_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "f5121a69-6522-4fa5-b189-31d3f0c92529",
+          "set_code": "swsh8",
+          "number": "84",
+          "number_plain": "84",
+          "name": "Snom",
+          "variant_key": "snowflake_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "0f09cc62-51a0-47ab-acc3-146f0e963c6b",
+          "set_code": "dp1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Prinplup",
+          "variant_key": "diamond_pearl_stamp",
+          "finish_key": null,
+          "identity_key_hash": "a89adc85acb04c0eec03fb7a2f895b3fc98243a78e4af56d382e1ac0d02d56e0"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "b74c2c90-0c89-4483-ac59-0876a3de30e2",
+          "set_code": "sv02",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Cetoddle",
+          "variant_key": "snowflake_stamp",
+          "finish_key": null,
+          "identity_key_hash": "0205d6a06c00fa2a7180c19865e0ded46714355cba91143ff491d41d76b5f79f"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "8027ea72-dfee-4fde-917d-fa6c95a5668c",
+          "set_code": "sv02",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Frigibax",
+          "variant_key": "snowflake_stamp",
+          "finish_key": null,
+          "identity_key_hash": "d2a3d942c2387451b5dcf740a6c25c014f4c3ed1573449f9c1368d03d2c0be70"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "cf9f3cf0-7e83-4e5d-a8a0-36796eee0a68",
+          "set_code": "swsh7",
+          "number": "43",
+          "number_plain": "43",
+          "name": "Cryogonal",
+          "variant_key": "snowflake_stamp",
+          "finish_key": null,
+          "identity_key_hash": "2d488ffce6828e1e86e44b0e94f7ec5c6fa6ee7d9dfefa8c2929f699f6b9d2ad"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "9c8dbc1e-7c13-46fd-ae09-220b874bacd0",
+          "set_code": "swsh8",
+          "number": "84",
+          "number_plain": "84",
+          "name": "Snom",
+          "variant_key": "snowflake_stamp",
+          "finish_key": null,
+          "identity_key_hash": "e07950edebddb9e75c3d7fd8c4cd81ecf034ff0978d5aa56bb1f57dc5a6fe3cc"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "4e007c58-5b91-4110-af5b-c274eaa694c0",
+          "set_code": "dp1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Prinplup",
+          "variant_key": "diamond_pearl_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "8af838c6-56ca-43bf-b121-ff1905c4b6d6",
+          "set_code": "sv02",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Cetoddle",
+          "variant_key": "snowflake_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "c829ffb5-f87b-4d5a-93ee-6a274909ecd9",
+          "set_code": "sv02",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Frigibax",
+          "variant_key": "snowflake_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "1bad5ef7-48d8-4bf5-b40b-bb8303304d35",
+          "set_code": "swsh7",
+          "number": "43",
+          "number_plain": "43",
+          "name": "Cryogonal",
+          "variant_key": "snowflake_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "b5ee7e14-1d09-4865-8c17-43b3eab7d1c7",
+          "set_code": "swsh8",
+          "number": "84",
+          "number_plain": "84",
+          "name": "Snom",
+          "variant_key": "snowflake_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "f4a9ccde108295d5e7cc173ce416d44e448d525d53f16fbdb3dfbe5966c2dba5",
+      "counts": {
+        "target_child": 5,
+        "target_identity": 5,
+        "target_parent": 5
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-11T12:55:02.865Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "counts": {}
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "5338d0d956f619ffe427ffa29adfbda7975d63e411c8493375eeaa89c1a07415",
+    "stop_findings": []
+  }
+}

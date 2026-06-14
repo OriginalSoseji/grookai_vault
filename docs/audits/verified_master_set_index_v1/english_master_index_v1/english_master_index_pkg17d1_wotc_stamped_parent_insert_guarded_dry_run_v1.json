@@ -1,0 +1,1272 @@
+{
+  "generated_at": "2026-06-12T20:12:06.251Z",
+  "version": "english_master_index_pkg17d1_wotc_stamped_parent_insert_guarded_dry_run_v1",
+  "package_id": "PKG-17D1-WOTC-STAMPED-PARENT-INSERTS",
+  "package_fingerprint_sha256": "070aebb1c6799b5691b3fa4597f41503fb8db839ee3577e4732a26fba34f7997",
+  "dry_run_proof_sha256": "94255ea5d9243448e63a21b679e0d2f1d3e4b677630fa64fd196c2d8c37d259e",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17d_stamped_base_parent_resolution_readiness_v1.json",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "target_count": 10,
+    "by_set": {
+      "base1": 1,
+      "base2": 2,
+      "base3": 1,
+      "base5": 3,
+      "gym1": 2,
+      "gym2": 1
+    },
+    "by_finish": {
+      "holo": 3,
+      "normal": 7
+    },
+    "targets": [
+      {
+        "target_parent_id": "9dfec0a3-7f9f-4a9f-a443-6582508cf539",
+        "target_child_id": "ca40265d-ba87-4cc0-af0f-e85d32d8f4e7",
+        "base_parent_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+        "set_key": "base1",
+        "set_name": "Base",
+        "card_number": "58",
+        "card_name": "Pikachu",
+        "target_finish_key": "normal",
+        "target_variant_key": "e3_stamp",
+        "target_printed_identity_modifier": "e3_stamp",
+        "stamp_label": "E3 Stamp",
+        "source_readiness_status": "stale_unstamped_base_parent_now_exists",
+        "evidence": {
+          "source_package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
+          "source_fingerprint_sha256": "1ac2c5c777805c5e985c5808650f7a0ae060edc3ab53d071f5bfa52facc5ec43",
+          "source_status": "stale_unstamped_base_parent_now_exists",
+          "source_queue_status": "base_parent_ambiguous",
+          "source_blockers": [
+            "base_parent_count_2"
+          ],
+          "selected_base_parent_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "selected_base_parent": {
+            "card_print_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+            "set_code": "base1",
+            "number": "58",
+            "number_plain": "58",
+            "name": "Pikachu",
+            "rarity": "Common",
+            "variant_key": null,
+            "printed_identity_modifier": null,
+            "child_finishes": [
+              "normal"
+            ],
+            "external_mapping_count": 4,
+            "vault_item_count": 0,
+            "vault_instance_parent_count": 0,
+            "pricing_watch_count": 0,
+            "card_feed_event_count": 0
+          },
+          "stamped_variant_key": "e3_stamp",
+          "stamp_label": "E3 Stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "864849e7-1e4d-4bc9-a147-0f250b2dcf1d",
+        "target_child_id": "5536c422-f768-4b88-8de1-4b3d44cb37d8",
+        "base_parent_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "1",
+        "card_name": "Clefable",
+        "target_finish_key": "holo",
+        "target_variant_key": "prerelease_stamp",
+        "target_printed_identity_modifier": "prerelease_stamp",
+        "stamp_label": "Prerelease Stamp",
+        "source_readiness_status": "stale_unstamped_base_parent_now_exists",
+        "evidence": {
+          "source_package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
+          "source_fingerprint_sha256": "1ac2c5c777805c5e985c5808650f7a0ae060edc3ab53d071f5bfa52facc5ec43",
+          "source_status": "stale_unstamped_base_parent_now_exists",
+          "source_queue_status": "base_parent_ambiguous",
+          "source_blockers": [
+            "base_parent_count_2"
+          ],
+          "selected_base_parent_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+          "selected_base_parent": {
+            "card_print_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+            "set_code": "base2",
+            "number": "1",
+            "number_plain": "1",
+            "name": "Clefable",
+            "rarity": "Rare Holo",
+            "variant_key": null,
+            "printed_identity_modifier": null,
+            "child_finishes": [
+              "holo"
+            ],
+            "external_mapping_count": 4,
+            "vault_item_count": 0,
+            "vault_instance_parent_count": 0,
+            "pricing_watch_count": 0,
+            "card_feed_event_count": 0
+          },
+          "stamped_variant_key": "prerelease_stamp",
+          "stamp_label": "Prerelease Stamp",
+          "active_child_finish_key": "holo"
+        }
+      },
+      {
+        "target_parent_id": "dc7a6594-c436-4737-9d0a-d42dbd4c0a4a",
+        "target_child_id": "4378d141-f3d2-4849-a0c1-770852f4e3b4",
+        "base_parent_id": "4738ca2e-3071-4e80-90a7-0e615e132482",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "60",
+        "card_name": "Pikachu",
+        "target_finish_key": "normal",
+        "target_variant_key": "wotc_stamp",
+        "target_printed_identity_modifier": "wotc_stamp",
+        "stamp_label": "WOTC Stamp",
+        "source_readiness_status": "stale_unstamped_base_parent_now_exists",
+        "evidence": {
+          "source_package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
+          "source_fingerprint_sha256": "1ac2c5c777805c5e985c5808650f7a0ae060edc3ab53d071f5bfa52facc5ec43",
+          "source_status": "stale_unstamped_base_parent_now_exists",
+          "source_queue_status": "base_parent_ambiguous",
+          "source_blockers": [
+            "base_parent_count_2"
+          ],
+          "selected_base_parent_id": "4738ca2e-3071-4e80-90a7-0e615e132482",
+          "selected_base_parent": {
+            "card_print_id": "4738ca2e-3071-4e80-90a7-0e615e132482",
+            "set_code": "base2",
+            "number": "60",
+            "number_plain": "60",
+            "name": "Pikachu",
+            "rarity": "Common",
+            "variant_key": null,
+            "printed_identity_modifier": null,
+            "child_finishes": [
+              "normal"
+            ],
+            "external_mapping_count": 4,
+            "vault_item_count": 0,
+            "vault_instance_parent_count": 0,
+            "pricing_watch_count": 0,
+            "card_feed_event_count": 0
+          },
+          "stamped_variant_key": "wotc_stamp",
+          "stamp_label": "WOTC Stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "e4a4fd41-4c5e-4659-8066-01439111c443",
+        "target_child_id": "551453a7-4515-4a14-917a-a0fcbf70cbac",
+        "base_parent_id": "840e29d7-57d5-4108-8f63-54666f5f6de1",
+        "set_key": "base3",
+        "set_name": "Fossil",
+        "card_number": "50",
+        "card_name": "Kabuto",
+        "target_finish_key": "normal",
+        "target_variant_key": "wotc_stamp",
+        "target_printed_identity_modifier": "wotc_stamp",
+        "stamp_label": "WOTC Stamp",
+        "source_readiness_status": "stale_unstamped_base_parent_now_exists",
+        "evidence": {
+          "source_package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
+          "source_fingerprint_sha256": "1ac2c5c777805c5e985c5808650f7a0ae060edc3ab53d071f5bfa52facc5ec43",
+          "source_status": "stale_unstamped_base_parent_now_exists",
+          "source_queue_status": "base_parent_ambiguous",
+          "source_blockers": [
+            "base_parent_count_2"
+          ],
+          "selected_base_parent_id": "840e29d7-57d5-4108-8f63-54666f5f6de1",
+          "selected_base_parent": {
+            "card_print_id": "840e29d7-57d5-4108-8f63-54666f5f6de1",
+            "set_code": "base3",
+            "number": "50",
+            "number_plain": "50",
+            "name": "Kabuto",
+            "rarity": "Common",
+            "variant_key": null,
+            "printed_identity_modifier": null,
+            "child_finishes": [
+              "normal"
+            ],
+            "external_mapping_count": 4,
+            "vault_item_count": 0,
+            "vault_instance_parent_count": 0,
+            "pricing_watch_count": 0,
+            "card_feed_event_count": 0
+          },
+          "stamped_variant_key": "wotc_stamp",
+          "stamp_label": "WOTC Stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "f6efb409-a6b9-4ed5-bc24-e600d6b363a5",
+        "target_child_id": "a23bc1b1-4d85-4fa6-880a-1f1fca9d914d",
+        "base_parent_id": "e798beaa-8fc3-4348-87d1-36c947580ebb",
+        "set_key": "base5",
+        "set_name": "Team Rocket",
+        "card_number": "8",
+        "card_name": "Dark Gyarados",
+        "target_finish_key": "holo",
+        "target_variant_key": "prerelease_stamp",
+        "target_printed_identity_modifier": "prerelease_stamp",
+        "stamp_label": "Prerelease Stamp",
+        "source_readiness_status": "stale_unstamped_base_parent_now_exists",
+        "evidence": {
+          "source_package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
+          "source_fingerprint_sha256": "1ac2c5c777805c5e985c5808650f7a0ae060edc3ab53d071f5bfa52facc5ec43",
+          "source_status": "stale_unstamped_base_parent_now_exists",
+          "source_queue_status": "base_parent_ambiguous",
+          "source_blockers": [
+            "base_parent_count_2"
+          ],
+          "selected_base_parent_id": "e798beaa-8fc3-4348-87d1-36c947580ebb",
+          "selected_base_parent": {
+            "card_print_id": "e798beaa-8fc3-4348-87d1-36c947580ebb",
+            "set_code": "base5",
+            "number": "8",
+            "number_plain": "8",
+            "name": "Dark Gyarados",
+            "rarity": "Rare Holo",
+            "variant_key": null,
+            "printed_identity_modifier": null,
+            "child_finishes": [
+              "holo"
+            ],
+            "external_mapping_count": 4,
+            "vault_item_count": 0,
+            "vault_instance_parent_count": 0,
+            "pricing_watch_count": 0,
+            "card_feed_event_count": 0
+          },
+          "stamped_variant_key": "prerelease_stamp",
+          "stamp_label": "Prerelease Stamp",
+          "active_child_finish_key": "holo"
+        }
+      },
+      {
+        "target_parent_id": "d05d1001-bb2f-42dd-bfad-7dae94a09c76",
+        "target_child_id": "d34246ba-8a0a-4533-a23e-236c51101e59",
+        "base_parent_id": "8fe22ec2-dde8-47fc-a13f-fd1925b68e08",
+        "set_key": "base5",
+        "set_name": "Team Rocket",
+        "card_number": "19",
+        "card_name": "Dark Arbok",
+        "target_finish_key": "normal",
+        "target_variant_key": "wotc_stamp",
+        "target_printed_identity_modifier": "wotc_stamp",
+        "stamp_label": "WOTC Stamp",
+        "source_readiness_status": "stale_unstamped_base_parent_now_exists",
+        "evidence": {
+          "source_package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
+          "source_fingerprint_sha256": "1ac2c5c777805c5e985c5808650f7a0ae060edc3ab53d071f5bfa52facc5ec43",
+          "source_status": "stale_unstamped_base_parent_now_exists",
+          "source_queue_status": "base_parent_ambiguous",
+          "source_blockers": [
+            "base_parent_count_2"
+          ],
+          "selected_base_parent_id": "8fe22ec2-dde8-47fc-a13f-fd1925b68e08",
+          "selected_base_parent": {
+            "card_print_id": "8fe22ec2-dde8-47fc-a13f-fd1925b68e08",
+            "set_code": "base5",
+            "number": "19",
+            "number_plain": "19",
+            "name": "Dark Arbok",
+            "rarity": "Rare",
+            "variant_key": null,
+            "printed_identity_modifier": null,
+            "child_finishes": [
+              "normal"
+            ],
+            "external_mapping_count": 4,
+            "vault_item_count": 0,
+            "vault_instance_parent_count": 0,
+            "pricing_watch_count": 0,
+            "card_feed_event_count": 0
+          },
+          "stamped_variant_key": "wotc_stamp",
+          "stamp_label": "WOTC Stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "20ef43c3-51e5-42cf-b9e8-d908ad9252b3",
+        "target_child_id": "639e9784-3bfa-48dd-93e0-ddd5166a8539",
+        "base_parent_id": "30aa59b0-31b5-4185-90a8-35e4912d70f2",
+        "set_key": "base5",
+        "set_name": "Team Rocket",
+        "card_number": "32",
+        "card_name": "Dark Charmeleon",
+        "target_finish_key": "normal",
+        "target_variant_key": "wotc_stamp",
+        "target_printed_identity_modifier": "wotc_stamp",
+        "stamp_label": "WOTC Stamp",
+        "source_readiness_status": "stale_unstamped_base_parent_now_exists",
+        "evidence": {
+          "source_package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
+          "source_fingerprint_sha256": "1ac2c5c777805c5e985c5808650f7a0ae060edc3ab53d071f5bfa52facc5ec43",
+          "source_status": "stale_unstamped_base_parent_now_exists",
+          "source_queue_status": "base_parent_ambiguous",
+          "source_blockers": [
+            "base_parent_count_2"
+          ],
+          "selected_base_parent_id": "30aa59b0-31b5-4185-90a8-35e4912d70f2",
+          "selected_base_parent": {
+            "card_print_id": "30aa59b0-31b5-4185-90a8-35e4912d70f2",
+            "set_code": "base5",
+            "number": "32",
+            "number_plain": "32",
+            "name": "Dark Charmeleon",
+            "rarity": "Uncommon",
+            "variant_key": null,
+            "printed_identity_modifier": null,
+            "child_finishes": [
+              "normal"
+            ],
+            "external_mapping_count": 4,
+            "vault_item_count": 0,
+            "vault_instance_parent_count": 0,
+            "pricing_watch_count": 0,
+            "card_feed_event_count": 0
+          },
+          "stamped_variant_key": "wotc_stamp",
+          "stamp_label": "WOTC Stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "4a7b2c38-581c-4389-8aed-9d925e50cb45",
+        "target_child_id": "03eac1d9-3a71-43d1-8399-b5b6af1d37ec",
+        "base_parent_id": "9cf99345-1b4e-47cd-9424-26f937104271",
+        "set_key": "gym1",
+        "set_name": "Gym Heroes",
+        "card_number": "9",
+        "card_name": "Misty's Seadra",
+        "target_finish_key": "holo",
+        "target_variant_key": "prerelease_stamp",
+        "target_printed_identity_modifier": "prerelease_stamp",
+        "stamp_label": "Prerelease Stamp",
+        "source_readiness_status": "stale_unstamped_base_parent_now_exists",
+        "evidence": {
+          "source_package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
+          "source_fingerprint_sha256": "1ac2c5c777805c5e985c5808650f7a0ae060edc3ab53d071f5bfa52facc5ec43",
+          "source_status": "stale_unstamped_base_parent_now_exists",
+          "source_queue_status": "base_parent_ambiguous",
+          "source_blockers": [
+            "base_parent_count_2"
+          ],
+          "selected_base_parent_id": "9cf99345-1b4e-47cd-9424-26f937104271",
+          "selected_base_parent": {
+            "card_print_id": "9cf99345-1b4e-47cd-9424-26f937104271",
+            "set_code": "gym1",
+            "number": "9",
+            "number_plain": "9",
+            "name": "Misty's Seadra",
+            "rarity": "Rare Holo",
+            "variant_key": null,
+            "printed_identity_modifier": null,
+            "child_finishes": [
+              "holo"
+            ],
+            "external_mapping_count": 4,
+            "vault_item_count": 0,
+            "vault_instance_parent_count": 0,
+            "pricing_watch_count": 0,
+            "card_feed_event_count": 0
+          },
+          "stamped_variant_key": "prerelease_stamp",
+          "stamp_label": "Prerelease Stamp",
+          "active_child_finish_key": "holo"
+        }
+      },
+      {
+        "target_parent_id": "3df1ffc0-6533-4dcb-b2ed-0856d13014d0",
+        "target_child_id": "a3de2d13-6da1-4ed4-aa9e-a76cd1c3fbaa",
+        "base_parent_id": "d6360704-8d05-4ecb-abdf-0ac33a3eb81d",
+        "set_key": "gym1",
+        "set_name": "Gym Heroes",
+        "card_number": "54",
+        "card_name": "Misty's Psyduck",
+        "target_finish_key": "normal",
+        "target_variant_key": "wotc_stamp",
+        "target_printed_identity_modifier": "wotc_stamp",
+        "stamp_label": "WOTC Stamp",
+        "source_readiness_status": "stale_unstamped_base_parent_now_exists",
+        "evidence": {
+          "source_package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
+          "source_fingerprint_sha256": "1ac2c5c777805c5e985c5808650f7a0ae060edc3ab53d071f5bfa52facc5ec43",
+          "source_status": "stale_unstamped_base_parent_now_exists",
+          "source_queue_status": "base_parent_ambiguous",
+          "source_blockers": [
+            "base_parent_count_2"
+          ],
+          "selected_base_parent_id": "d6360704-8d05-4ecb-abdf-0ac33a3eb81d",
+          "selected_base_parent": {
+            "card_print_id": "d6360704-8d05-4ecb-abdf-0ac33a3eb81d",
+            "set_code": "gym1",
+            "number": "54",
+            "number_plain": "54",
+            "name": "Misty's Psyduck",
+            "rarity": "Uncommon",
+            "variant_key": null,
+            "printed_identity_modifier": null,
+            "child_finishes": [
+              "normal"
+            ],
+            "external_mapping_count": 4,
+            "vault_item_count": 0,
+            "vault_instance_parent_count": 0,
+            "pricing_watch_count": 0,
+            "card_feed_event_count": 0
+          },
+          "stamped_variant_key": "wotc_stamp",
+          "stamp_label": "WOTC Stamp",
+          "active_child_finish_key": "normal"
+        }
+      },
+      {
+        "target_parent_id": "775754c8-8302-4c88-921e-70d1db645d63",
+        "target_child_id": "fdeabdee-0718-4c41-955c-e1dff6e5e99e",
+        "base_parent_id": "66a60e67-e91a-41ef-8ade-3135e757a471",
+        "set_key": "gym2",
+        "set_name": "Gym Challenge",
+        "card_number": "37",
+        "card_name": "Brock's Vulpix",
+        "target_finish_key": "normal",
+        "target_variant_key": "wotc_stamp",
+        "target_printed_identity_modifier": "wotc_stamp",
+        "stamp_label": "WOTC Stamp",
+        "source_readiness_status": "stale_unstamped_base_parent_now_exists",
+        "evidence": {
+          "source_package_id": "PKG-17D-STAMPED-BASE-PARENT-RESOLUTION-READINESS",
+          "source_fingerprint_sha256": "1ac2c5c777805c5e985c5808650f7a0ae060edc3ab53d071f5bfa52facc5ec43",
+          "source_status": "stale_unstamped_base_parent_now_exists",
+          "source_queue_status": "base_parent_ambiguous",
+          "source_blockers": [
+            "base_parent_count_2"
+          ],
+          "selected_base_parent_id": "66a60e67-e91a-41ef-8ade-3135e757a471",
+          "selected_base_parent": {
+            "card_print_id": "66a60e67-e91a-41ef-8ade-3135e757a471",
+            "set_code": "gym2",
+            "number": "37",
+            "number_plain": "37",
+            "name": "Brock's Vulpix",
+            "rarity": "Uncommon",
+            "variant_key": null,
+            "printed_identity_modifier": null,
+            "child_finishes": [
+              "normal"
+            ],
+            "external_mapping_count": 3,
+            "vault_item_count": 0,
+            "vault_instance_parent_count": 0,
+            "pricing_watch_count": 0,
+            "card_feed_event_count": 0
+          },
+          "stamped_variant_key": "wotc_stamp",
+          "stamp_label": "WOTC Stamp",
+          "active_child_finish_key": "normal"
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "pkg17d1_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 10,
+      "target_parent_count": 10,
+      "target_child_count": 10,
+      "unsafe_variant_count": 0,
+      "modifier_mismatch_count": 0,
+      "missing_base_count": 0,
+      "base_parent_not_unstamped_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 10,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "PKG-17D1-WOTC-STAMPED-PARENT-INSERTS",
+      "package_fingerprint": "070aebb1c6799b5691b3fa4597f41503fb8db839ee3577e4732a26fba34f7997",
+      "target_rows": 10,
+      "inserted_parent_rows": 10,
+      "inserted_parent_modifier_rows": 10,
+      "inserted_identity_rows": 10,
+      "inserted_child_rows": 10,
+      "forbidden_stamped_child_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 10,
+      "identity_inserts": 10,
+      "child_inserts": 10,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-12T20:12:05.006Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+          "set_code": "base2",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Clefable",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "4738ca2e-3071-4e80-90a7-0e615e132482",
+          "set_code": "base2",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "840e29d7-57d5-4108-8f63-54666f5f6de1",
+          "set_code": "base3",
+          "number": "50",
+          "number_plain": "50",
+          "name": "Kabuto",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8fe22ec2-dde8-47fc-a13f-fd1925b68e08",
+          "set_code": "base5",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dark Arbok",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "30aa59b0-31b5-4185-90a8-35e4912d70f2",
+          "set_code": "base5",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Dark Charmeleon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e798beaa-8fc3-4348-87d1-36c947580ebb",
+          "set_code": "base5",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Dark Gyarados",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d6360704-8d05-4ecb-abdf-0ac33a3eb81d",
+          "set_code": "gym1",
+          "number": "54",
+          "number_plain": "54",
+          "name": "Misty's Psyduck",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "9cf99345-1b4e-47cd-9424-26f937104271",
+          "set_code": "gym1",
+          "number": "9",
+          "number_plain": "9",
+          "name": "Misty's Seadra",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "66a60e67-e91a-41ef-8ade-3135e757a471",
+          "set_code": "gym2",
+          "number": "37",
+          "number_plain": "37",
+          "name": "Brock's Vulpix",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "1430dfd5635d077ed5536744a5f6f0b47317f63faad3969a9359c193a5cfe908",
+      "counts": {
+        "base_parent": 10
+      }
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-12T20:12:06.016Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+          "set_code": "base2",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Clefable",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "4738ca2e-3071-4e80-90a7-0e615e132482",
+          "set_code": "base2",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "840e29d7-57d5-4108-8f63-54666f5f6de1",
+          "set_code": "base3",
+          "number": "50",
+          "number_plain": "50",
+          "name": "Kabuto",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8fe22ec2-dde8-47fc-a13f-fd1925b68e08",
+          "set_code": "base5",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dark Arbok",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "30aa59b0-31b5-4185-90a8-35e4912d70f2",
+          "set_code": "base5",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Dark Charmeleon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e798beaa-8fc3-4348-87d1-36c947580ebb",
+          "set_code": "base5",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Dark Gyarados",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d6360704-8d05-4ecb-abdf-0ac33a3eb81d",
+          "set_code": "gym1",
+          "number": "54",
+          "number_plain": "54",
+          "name": "Misty's Psyduck",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "9cf99345-1b4e-47cd-9424-26f937104271",
+          "set_code": "gym1",
+          "number": "9",
+          "number_plain": "9",
+          "name": "Misty's Seadra",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "66a60e67-e91a-41ef-8ade-3135e757a471",
+          "set_code": "gym2",
+          "number": "37",
+          "number_plain": "37",
+          "name": "Brock's Vulpix",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "ca40265d-ba87-4cc0-af0f-e85d32d8f4e7",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "e3_stamp",
+          "printed_identity_modifier": "e3_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "5536c422-f768-4b88-8de1-4b3d44cb37d8",
+          "set_code": "base2",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Clefable",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": "prerelease_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "4378d141-f3d2-4849-a0c1-770852f4e3b4",
+          "set_code": "base2",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Pikachu",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "551453a7-4515-4a14-917a-a0fcbf70cbac",
+          "set_code": "base3",
+          "number": "50",
+          "number_plain": "50",
+          "name": "Kabuto",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "d34246ba-8a0a-4533-a23e-236c51101e59",
+          "set_code": "base5",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dark Arbok",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "639e9784-3bfa-48dd-93e0-ddd5166a8539",
+          "set_code": "base5",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Dark Charmeleon",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "a23bc1b1-4d85-4fa6-880a-1f1fca9d914d",
+          "set_code": "base5",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Dark Gyarados",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": "prerelease_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "a3de2d13-6da1-4ed4-aa9e-a76cd1c3fbaa",
+          "set_code": "gym1",
+          "number": "54",
+          "number_plain": "54",
+          "name": "Misty's Psyduck",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "03eac1d9-3a71-43d1-8399-b5b6af1d37ec",
+          "set_code": "gym1",
+          "number": "9",
+          "number_plain": "9",
+          "name": "Misty's Seadra",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": "prerelease_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "fdeabdee-0718-4c41-955c-e1dff6e5e99e",
+          "set_code": "gym2",
+          "number": "37",
+          "number_plain": "37",
+          "name": "Brock's Vulpix",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "b8d54492-aef8-4e81-8506-1f335ce61809",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "e3_stamp",
+          "printed_identity_modifier": "e3_stamp",
+          "finish_key": null,
+          "identity_key_hash": "23e8e0eadca540091eddc57dace4bcfd8b1e00f6059df613db0cd26dd07feaed"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "9b42ced2-ab70-4ff4-b032-1e4227f9b736",
+          "set_code": "base2",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Clefable",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": "prerelease_stamp",
+          "finish_key": null,
+          "identity_key_hash": "63fe1c355890b666bcc2201e75aa36d339de53339de7bda2f25b1638126a6a70"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "6a32c7cf-8dd6-450e-818f-8f8bd5884589",
+          "set_code": "base2",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Pikachu",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": null,
+          "identity_key_hash": "7635d56d43468d91af8589416e55144fdc0d5207285c965f6b95851b76f67ffd"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "fdf9c7fd-e1ee-4f79-8b68-afaf9e67050f",
+          "set_code": "base3",
+          "number": "50",
+          "number_plain": "50",
+          "name": "Kabuto",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": null,
+          "identity_key_hash": "ec286bc13f46e9fb7f637aeb42724c44076022c90854c36d774b740255ad592a"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "d4e7c046-2738-43f9-b87e-84c08b05f107",
+          "set_code": "base5",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dark Arbok",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": null,
+          "identity_key_hash": "f984dd7b303508dedc3cc3b21807aba469f0586215d527d9495698e48e86fdfa"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "73d6e627-bc96-40f3-a1db-e6220174c0c5",
+          "set_code": "base5",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Dark Charmeleon",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": null,
+          "identity_key_hash": "6a59efb80b51be006eb0ae768f6e9aac54ce003d05b15dd075a8e5a2df5fbab9"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "a30b0119-c87e-46a5-907d-9d91a4f3ebe4",
+          "set_code": "base5",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Dark Gyarados",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": "prerelease_stamp",
+          "finish_key": null,
+          "identity_key_hash": "ff5a6f41b0d4f1578dd78e9c24b9e1c8d4646d4ad5d1fa89138f1e8d2c66533e"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "0480830f-48f7-4132-bf35-041bef93a15f",
+          "set_code": "gym1",
+          "number": "54",
+          "number_plain": "54",
+          "name": "Misty's Psyduck",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": null,
+          "identity_key_hash": "40b7a8e04f9f8c210b87d7180b25bca4eae7948057cfb997b47f56f5b8b08177"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "403fa3c3-ea47-400c-9da4-997a786992d7",
+          "set_code": "gym1",
+          "number": "9",
+          "number_plain": "9",
+          "name": "Misty's Seadra",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": "prerelease_stamp",
+          "finish_key": null,
+          "identity_key_hash": "856e84b47377c4bcb5b7482412ddd6a3ffe90e6176931c95ff4dda8c7c2385fc"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "b1c8b3e5-3fd5-4bb3-b2a9-f09ca9ad9101",
+          "set_code": "gym2",
+          "number": "37",
+          "number_plain": "37",
+          "name": "Brock's Vulpix",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": null,
+          "identity_key_hash": "fe8baddb64fe09e7a85139f626d53b6bcd6745c577b1153d864311d885c5e9d0"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "9dfec0a3-7f9f-4a9f-a443-6582508cf539",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "e3_stamp",
+          "printed_identity_modifier": "e3_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "864849e7-1e4d-4bc9-a147-0f250b2dcf1d",
+          "set_code": "base2",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Clefable",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": "prerelease_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "dc7a6594-c436-4737-9d0a-d42dbd4c0a4a",
+          "set_code": "base2",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Pikachu",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "e4a4fd41-4c5e-4659-8066-01439111c443",
+          "set_code": "base3",
+          "number": "50",
+          "number_plain": "50",
+          "name": "Kabuto",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d05d1001-bb2f-42dd-bfad-7dae94a09c76",
+          "set_code": "base5",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dark Arbok",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "20ef43c3-51e5-42cf-b9e8-d908ad9252b3",
+          "set_code": "base5",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Dark Charmeleon",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "f6efb409-a6b9-4ed5-bc24-e600d6b363a5",
+          "set_code": "base5",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Dark Gyarados",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": "prerelease_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "3df1ffc0-6533-4dcb-b2ed-0856d13014d0",
+          "set_code": "gym1",
+          "number": "54",
+          "number_plain": "54",
+          "name": "Misty's Psyduck",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "4a7b2c38-581c-4389-8aed-9d925e50cb45",
+          "set_code": "gym1",
+          "number": "9",
+          "number_plain": "9",
+          "name": "Misty's Seadra",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": "prerelease_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "775754c8-8302-4c88-921e-70d1db645d63",
+          "set_code": "gym2",
+          "number": "37",
+          "number_plain": "37",
+          "name": "Brock's Vulpix",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "eb8ba0fbd2c343c2f33d09a1d655619a8d67dccb8f41579156f70c6be424f7ec",
+      "counts": {
+        "base_parent": 10,
+        "target_child": 10,
+        "target_identity": 10,
+        "target_parent": 10
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-12T20:12:06.167Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+          "set_code": "base2",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Clefable",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "4738ca2e-3071-4e80-90a7-0e615e132482",
+          "set_code": "base2",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "840e29d7-57d5-4108-8f63-54666f5f6de1",
+          "set_code": "base3",
+          "number": "50",
+          "number_plain": "50",
+          "name": "Kabuto",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8fe22ec2-dde8-47fc-a13f-fd1925b68e08",
+          "set_code": "base5",
+          "number": "19",
+          "number_plain": "19",
+          "name": "Dark Arbok",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "30aa59b0-31b5-4185-90a8-35e4912d70f2",
+          "set_code": "base5",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Dark Charmeleon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e798beaa-8fc3-4348-87d1-36c947580ebb",
+          "set_code": "base5",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Dark Gyarados",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d6360704-8d05-4ecb-abdf-0ac33a3eb81d",
+          "set_code": "gym1",
+          "number": "54",
+          "number_plain": "54",
+          "name": "Misty's Psyduck",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "9cf99345-1b4e-47cd-9424-26f937104271",
+          "set_code": "gym1",
+          "number": "9",
+          "number_plain": "9",
+          "name": "Misty's Seadra",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "66a60e67-e91a-41ef-8ade-3135e757a471",
+          "set_code": "gym2",
+          "number": "37",
+          "number_plain": "37",
+          "name": "Brock's Vulpix",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "1430dfd5635d077ed5536744a5f6f0b47317f63faad3969a9359c193a5cfe908",
+      "counts": {
+        "base_parent": 10
+      }
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "94255ea5d9243448e63a21b679e0d2f1d3e4b677630fa64fd196c2d8c37d259e",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real PKG-17D1-WOTC-STAMPED-PARENT-INSERTS apply only. Fingerprint: 070aebb1c6799b5691b3fa4597f41503fb8db839ee3577e4732a26fba34f7997. Scope: 10 WOTC stamped parent inserts, 10 identity inserts, 10 child printing inserts; finishes holo=3, normal=7; sets base1=1, base2=2, base3=1, base5=3, gym1=2, gym2=1. Dry-run proof: 1430dfd5635d077ed5536744a5f6f0b47317f63faad3969a9359c193a5cfe908 == 1430dfd5635d077ed5536744a5f6f0b47317f63faad3969a9359c193a5cfe908. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}

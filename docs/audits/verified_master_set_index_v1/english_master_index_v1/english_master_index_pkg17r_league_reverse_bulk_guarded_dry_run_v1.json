@@ -1,0 +1,1647 @@
+{
+  "generated_at": "2026-06-12T23:23:30.722Z",
+  "version": "english_master_index_pkg17r_league_reverse_bulk_guarded_dry_run_v1",
+  "package_id": "PKG-17R-LEAGUE-REVERSE-BULK-PARENT-INSERTS",
+  "package_fingerprint_sha256": "a1a1f102c7576b94a86cc30e9851e58a7032f3c0feaa5f2ee2e10f59e15f9fba",
+  "dry_run_proof_sha256": "9e318aac9d54ab56bd38140f371154302909e04b7efa308b72d7f39fd9bee9f3",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17q_league_reverse_bulk_readiness_v1.json",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "target_count": 14,
+    "by_set": {
+      "bw1": 3,
+      "pl4": 2,
+      "xy8": 2,
+      "bw11": 1,
+      "bw2": 1,
+      "bw3": 1,
+      "bw8": 1,
+      "hgss1": 1,
+      "pl1": 1,
+      "pl3": 1
+    },
+    "by_finish": {
+      "reverse": 14
+    },
+    "by_stamp_label": {
+      "League Stamp": 14
+    },
+    "targets": [
+      {
+        "target_parent_id": "46c3ad1f-90ed-45e2-8997-ee2bcc7fe8ec",
+        "target_child_id": "9322c0ae-f7ea-443b-bdd6-9a71fd33623f",
+        "base_parent_id": "68600d39-7fbd-4d1e-97ae-684955e53e05",
+        "set_key": "bw1",
+        "set_name": "Black & White",
+        "card_number": "53",
+        "card_name": "Whirlipede",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/whirlipede-53-114-reverse-holo-league-promo-black-white/bw1-53-3-41/",
+          "https://pokemonflashfire.com/product/whirlipede-53114-reverse-holo-pokemon-league-promo/"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/whirlipede-53-114-reverse-holo-league-promo-black-white/bw1-53-3-41/",
+            "https://pokemonflashfire.com/product/whirlipede-53114-reverse-holo-pokemon-league-promo/"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:bw1:53:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      },
+      {
+        "target_parent_id": "1583719c-b09d-43e4-b806-e5ef906d1511",
+        "target_child_id": "23ee632d-b666-4550-ad38-937358035c4c",
+        "base_parent_id": "e67ff8fa-b1c0-4be4-9989-3783e8d3d7e8",
+        "set_key": "bw1",
+        "set_name": "Black & White",
+        "card_number": "79",
+        "card_name": "Watchog",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/watchog-79-114-reverse-holo-league-promo-black-white/bw1-79-3-41/",
+          "https://pokemonflashfire.com/product/watchog-79114-reverse-holo-pokemon-league-promo/"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/watchog-79-114-reverse-holo-league-promo-black-white/bw1-79-3-41/",
+            "https://pokemonflashfire.com/product/watchog-79114-reverse-holo-pokemon-league-promo/"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:bw1:79:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      },
+      {
+        "target_parent_id": "9df3e0aa-cfb3-449d-92d5-a7a3c5f8cbcf",
+        "target_child_id": "a9c9e5f3-fccb-4d7f-9182-e2ebdb78d4ea",
+        "base_parent_id": "23f77e4a-186b-46f5-bdee-e832ca467f12",
+        "set_key": "bw1",
+        "set_name": "Black & White",
+        "card_number": "81",
+        "card_name": "Lillipup",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/lillipup-81-114-reverse-holo-league-promo-black-white/bw1-81-3-41/",
+          "https://pokemonflashfire.com/product/lillipup-81114-reverse-holo-pokemon-league-promo/"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/lillipup-81-114-reverse-holo-league-promo-black-white/bw1-81-3-41/",
+            "https://pokemonflashfire.com/product/lillipup-81114-reverse-holo-pokemon-league-promo/"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:bw1:81:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      },
+      {
+        "target_parent_id": "3e4a40eb-4766-4165-ac96-ae9620297553",
+        "target_child_id": "db133e2a-5a3f-4d4b-9e13-99d603f2dd1a",
+        "base_parent_id": "f5517ff1-034f-4388-89d2-0bc1f4ca5944",
+        "set_key": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "109",
+        "card_name": "Bianca",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/bianca-109-113-reverse-holo-league-promo-legendary-treasures/bw11-109-3-41/",
+          "https://pokemonflashfire.com/product/bianca-109113-reverse-holo-pokemon-league-promo/"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/bianca-109-113-reverse-holo-league-promo-legendary-treasures/bw11-109-3-41/",
+            "https://pokemonflashfire.com/product/bianca-109113-reverse-holo-pokemon-league-promo/"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:bw11:109:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      },
+      {
+        "target_parent_id": "6f4c117e-30b4-4ed4-996e-3f29131b24e6",
+        "target_child_id": "650350c0-3e46-4ecb-b4bb-3708a6d02159",
+        "base_parent_id": "d5e557e6-186e-4c57-95f6-85373517711b",
+        "set_key": "bw2",
+        "set_name": "Emerging Powers",
+        "card_number": "82",
+        "card_name": "Unfezant",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/unfezant-82-98-reverse-holo-league-promo-emerging-powers/bw2-82-3-41/",
+          "https://pokemonflashfire.com/product/unfezant-8298-reverse-holo-pokemon-league-promo/"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/unfezant-82-98-reverse-holo-league-promo-emerging-powers/bw2-82-3-41/",
+            "https://pokemonflashfire.com/product/unfezant-8298-reverse-holo-pokemon-league-promo/"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:bw2:82:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      },
+      {
+        "target_parent_id": "642b428d-8a06-4bcb-a4bd-edd9a33b83fe",
+        "target_child_id": "513053a5-40b1-4041-b2a4-9b28117d4e0a",
+        "base_parent_id": "e6a84ebc-2184-42db-ad04-f19c762133f6",
+        "set_key": "bw3",
+        "set_name": "Noble Victories",
+        "card_number": "32",
+        "card_name": "Cryogonal",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/cryogonal-32-101-reverse-holo-league-promo-noble-victories/bw3-32-3-41/",
+          "https://pokemonflashfire.com/product/cryogonal-32101-reverse-holo-pokemon-league-promo/"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/cryogonal-32-101-reverse-holo-league-promo-noble-victories/bw3-32-3-41/",
+            "https://pokemonflashfire.com/product/cryogonal-32101-reverse-holo-pokemon-league-promo/"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:bw3:32:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      },
+      {
+        "target_parent_id": "d478d467-1c23-4826-86e4-983ff6a26fd4",
+        "target_child_id": "8e7fbe9a-7067-4d28-88b8-6950127fd201",
+        "base_parent_id": "9563479b-7524-48ef-a1cb-612e4afeed08",
+        "set_key": "bw8",
+        "set_name": "Plasma Storm",
+        "card_number": "120",
+        "card_name": "Escape Rope",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/escape-rope-120-135-reverse-holo-league-promo-plasma-storm/bw8-120-3-41/",
+          "https://pokemonflashfire.com/product/escape-rope-120135-reverse-holo-pokemon-league-promo/"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/escape-rope-120-135-reverse-holo-league-promo-plasma-storm/bw8-120-3-41/",
+            "https://pokemonflashfire.com/product/escape-rope-120135-reverse-holo-pokemon-league-promo/"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:bw8:120:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      },
+      {
+        "target_parent_id": "c2d8b50a-f752-4d7f-9362-f212b3d10b98",
+        "target_child_id": "ea9a149c-2580-4ff5-b0b4-b1a6df557518",
+        "base_parent_id": "5fb7382a-f366-42ed-bd64-6a9c91e98a32",
+        "set_key": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "card_number": "39",
+        "card_name": "Delibird",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/delibird-39-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-39-3-41/",
+          "https://pokemonflashfire.com/product/delibird-39123-reverse-holo-pokemon-league-promo/"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/delibird-39-123-reverse-holo-league-promo-heartgold-soulsilver/hgss1-39-3-41/",
+            "https://pokemonflashfire.com/product/delibird-39123-reverse-holo-pokemon-league-promo/"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:hgss1:39:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      },
+      {
+        "target_parent_id": "7cfcd5c7-b1ba-47a4-9264-7732222cdd3e",
+        "target_child_id": "ae26ebbf-2288-483a-a277-add5067f5500",
+        "base_parent_id": "db232ebe-fb95-44df-b0fe-3e38794e4c14",
+        "set_key": "pl1",
+        "set_name": "Platinum",
+        "card_number": "104",
+        "card_name": "Broken Time-Space",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/broken-time-space-104-127-reverse-holo-league-promo-platinum/pl1-104-3-41/",
+          "https://pokemonflashfire.com/product/broken-time-space-104127-reverse-holo-pokemon-league-promo/"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/broken-time-space-104-127-reverse-holo-league-promo-platinum/pl1-104-3-41/",
+            "https://pokemonflashfire.com/product/broken-time-space-104127-reverse-holo-pokemon-league-promo/"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:pl1:104:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      },
+      {
+        "target_parent_id": "45904b78-30bf-415f-910d-508b7b1131a6",
+        "target_child_id": "382aca18-593b-400e-b573-c4531e7e18e6",
+        "base_parent_id": "899905ba-d076-4021-b408-85c210ecd4ac",
+        "set_key": "pl3",
+        "set_name": "Supreme Victors",
+        "card_number": "26",
+        "card_name": "Dusknoir FB",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/dusknoir-fb-26-147-reverse-holo-league-promo-supreme-victors/pl3-26-3-41/",
+          "https://pokemonflashfire.com/product/dusknoir-fb-26147-reverse-holo-pokemon-league-promo/",
+          "https://www.pricecharting.com/game/pokemon-supreme-victors/dusknoir-fb-crosshatch-holo-26"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/dusknoir-fb-26-147-reverse-holo-league-promo-supreme-victors/pl3-26-3-41/",
+            "https://pokemonflashfire.com/product/dusknoir-fb-26147-reverse-holo-pokemon-league-promo/",
+            "https://www.pricecharting.com/game/pokemon-supreme-victors/dusknoir-fb-crosshatch-holo-26"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:pl3:26:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      },
+      {
+        "target_parent_id": "86198900-6863-4cc8-abac-db4955354bf2",
+        "target_child_id": "35f4f03b-713b-4b26-9f64-88f0102044c8",
+        "base_parent_id": "f9b8c712-2eec-44a6-9741-b6620b72b19f",
+        "set_key": "pl4",
+        "set_name": "Arceus",
+        "card_number": "32",
+        "card_name": "Spiritomb",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/spiritomb-32-99-reverse-holo-league-promo-arceus/pl4-32-3-41/",
+          "https://pokemonflashfire.com/product/spiritomb-3299-reverse-holo-pokemon-league-promo/"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/spiritomb-32-99-reverse-holo-league-promo-arceus/pl4-32-3-41/",
+            "https://pokemonflashfire.com/product/spiritomb-3299-reverse-holo-pokemon-league-promo/"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:pl4:32:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      },
+      {
+        "target_parent_id": "922b57b4-b728-4cd1-badb-4b55c6572fe0",
+        "target_child_id": "1d2e1d4b-f5ad-45e1-920f-1540a513a1b5",
+        "base_parent_id": "379e8680-8572-456b-b818-1610544a188a",
+        "set_key": "pl4",
+        "set_name": "Arceus",
+        "card_number": "87",
+        "card_name": "Expert Belt",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/expert-belt-87-99-reverse-holo-league-promo-arceus/pl4-87-3-41/",
+          "https://pokemonflashfire.com/product/expert-belt-8799-reverse-holo-pokemon-league-promo/"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/expert-belt-87-99-reverse-holo-league-promo-arceus/pl4-87-3-41/",
+            "https://pokemonflashfire.com/product/expert-belt-8799-reverse-holo-pokemon-league-promo/"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:pl4:87:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      },
+      {
+        "target_parent_id": "d992dd6f-a0bd-4053-a564-094dbd2b8697",
+        "target_child_id": "9995b2a1-b3e5-4c8b-92e7-8b90a180f4e7",
+        "base_parent_id": "4f5f59ea-417a-443b-beaf-5d13bf1223e5",
+        "set_key": "xy8",
+        "set_name": "BREAKthrough",
+        "card_number": "101",
+        "card_name": "Flabébé",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/flabebe-101-162-reverse-holo-league-promo-breakthrough/xy8-101-3-41/",
+          "https://pokemonflashfire.com/product/flabebe-101162-reverse-holo-pokemon-league-promo/"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/flabebe-101-162-reverse-holo-league-promo-breakthrough/xy8-101-3-41/",
+            "https://pokemonflashfire.com/product/flabebe-101162-reverse-holo-pokemon-league-promo/"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:xy8:101:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      },
+      {
+        "target_parent_id": "5f82ad60-1a1e-4eaa-99fe-5ba9ba6d5b7b",
+        "target_child_id": "4f17d9de-2415-44c8-8c0b-28ea83c462e1",
+        "base_parent_id": "d65a9c23-da54-4eb5-995f-071fb8c24c67",
+        "set_key": "xy8",
+        "set_name": "BREAKthrough",
+        "card_number": "102",
+        "card_name": "Floette",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_urls": [
+          "https://pokecardvalues.co.uk/cards/floette-102-162-reverse-holo-league-promo-breakthrough/xy8-102-3-41/",
+          "https://pokemonflashfire.com/product/floette-102162-reverse-holo-pokemon-league-promo/"
+        ],
+        "source_families": [
+          "pokecardvalues",
+          "pokemonflashfire_league_reverse_exact"
+        ],
+        "evidence": {
+          "readiness_package_id": "PKG-17Q-LEAGUE-REVERSE-BULK-READINESS",
+          "readiness_fingerprint_sha256": "42b73fad7e23a3699b59d2066b2bb49571078a39d9d85b825f8e1284bfa9542d",
+          "source_families": [
+            "pokecardvalues",
+            "pokemonflashfire_league_reverse_exact"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/floette-102-162-reverse-holo-league-promo-breakthrough/xy8-102-3-41/",
+            "https://pokemonflashfire.com/product/floette-102162-reverse-holo-pokemon-league-promo/"
+          ],
+          "evidence_label": "Two independent exact sources support League Stamp reverse active finish",
+          "raw_snapshot_ref": "pkg17q:xy8:102:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "pkg17r_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 14,
+      "target_parent_count": 14,
+      "target_child_count": 14,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 14,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "PKG-17R-LEAGUE-REVERSE-BULK-PARENT-INSERTS",
+      "package_fingerprint": "a1a1f102c7576b94a86cc30e9851e58a7032f3c0feaa5f2ee2e10f59e15f9fba",
+      "target_rows": 14,
+      "inserted_parent_rows": 14,
+      "inserted_parent_modifier_rows": 14,
+      "inserted_identity_rows": 14,
+      "inserted_child_rows": 14,
+      "forbidden_stamped_child_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 14,
+      "identity_inserts": 14,
+      "child_inserts": 14,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-12T23:23:29.490Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "68600d39-7fbd-4d1e-97ae-684955e53e05",
+          "set_code": "bw1",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Whirlipede",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e67ff8fa-b1c0-4be4-9989-3783e8d3d7e8",
+          "set_code": "bw1",
+          "number": "79",
+          "number_plain": "79",
+          "name": "Watchog",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "23f77e4a-186b-46f5-bdee-e832ca467f12",
+          "set_code": "bw1",
+          "number": "81",
+          "number_plain": "81",
+          "name": "Lillipup",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f5517ff1-034f-4388-89d2-0bc1f4ca5944",
+          "set_code": "bw11",
+          "number": "109",
+          "number_plain": "109",
+          "name": "Bianca",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d5e557e6-186e-4c57-95f6-85373517711b",
+          "set_code": "bw2",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Unfezant",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e6a84ebc-2184-42db-ad04-f19c762133f6",
+          "set_code": "bw3",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Cryogonal",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "9563479b-7524-48ef-a1cb-612e4afeed08",
+          "set_code": "bw8",
+          "number": "120",
+          "number_plain": "120",
+          "name": "Escape Rope",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "5fb7382a-f366-42ed-bd64-6a9c91e98a32",
+          "set_code": "hgss1",
+          "number": "39",
+          "number_plain": "39",
+          "name": "Delibird",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "db232ebe-fb95-44df-b0fe-3e38794e4c14",
+          "set_code": "pl1",
+          "number": "104",
+          "number_plain": "104",
+          "name": "Broken Time-Space",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "899905ba-d076-4021-b408-85c210ecd4ac",
+          "set_code": "pl3",
+          "number": "26",
+          "number_plain": "26",
+          "name": "Dusknoir FB",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f9b8c712-2eec-44a6-9741-b6620b72b19f",
+          "set_code": "pl4",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Spiritomb",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "379e8680-8572-456b-b818-1610544a188a",
+          "set_code": "pl4",
+          "number": "87",
+          "number_plain": "87",
+          "name": "Expert Belt",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "4f5f59ea-417a-443b-beaf-5d13bf1223e5",
+          "set_code": "xy8",
+          "number": "101",
+          "number_plain": "101",
+          "name": "Flabébé",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d65a9c23-da54-4eb5-995f-071fb8c24c67",
+          "set_code": "xy8",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Floette",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "0270d48129a894fb25b0ed7668f78cc6e8b8fae443733f22c2bb05067dc6042e",
+      "counts": {
+        "base_parent": 14
+      }
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-12T23:23:30.489Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "68600d39-7fbd-4d1e-97ae-684955e53e05",
+          "set_code": "bw1",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Whirlipede",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e67ff8fa-b1c0-4be4-9989-3783e8d3d7e8",
+          "set_code": "bw1",
+          "number": "79",
+          "number_plain": "79",
+          "name": "Watchog",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "23f77e4a-186b-46f5-bdee-e832ca467f12",
+          "set_code": "bw1",
+          "number": "81",
+          "number_plain": "81",
+          "name": "Lillipup",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f5517ff1-034f-4388-89d2-0bc1f4ca5944",
+          "set_code": "bw11",
+          "number": "109",
+          "number_plain": "109",
+          "name": "Bianca",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d5e557e6-186e-4c57-95f6-85373517711b",
+          "set_code": "bw2",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Unfezant",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e6a84ebc-2184-42db-ad04-f19c762133f6",
+          "set_code": "bw3",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Cryogonal",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "9563479b-7524-48ef-a1cb-612e4afeed08",
+          "set_code": "bw8",
+          "number": "120",
+          "number_plain": "120",
+          "name": "Escape Rope",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "5fb7382a-f366-42ed-bd64-6a9c91e98a32",
+          "set_code": "hgss1",
+          "number": "39",
+          "number_plain": "39",
+          "name": "Delibird",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "db232ebe-fb95-44df-b0fe-3e38794e4c14",
+          "set_code": "pl1",
+          "number": "104",
+          "number_plain": "104",
+          "name": "Broken Time-Space",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "899905ba-d076-4021-b408-85c210ecd4ac",
+          "set_code": "pl3",
+          "number": "26",
+          "number_plain": "26",
+          "name": "Dusknoir FB",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f9b8c712-2eec-44a6-9741-b6620b72b19f",
+          "set_code": "pl4",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Spiritomb",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "379e8680-8572-456b-b818-1610544a188a",
+          "set_code": "pl4",
+          "number": "87",
+          "number_plain": "87",
+          "name": "Expert Belt",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "4f5f59ea-417a-443b-beaf-5d13bf1223e5",
+          "set_code": "xy8",
+          "number": "101",
+          "number_plain": "101",
+          "name": "Flabébé",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d65a9c23-da54-4eb5-995f-071fb8c24c67",
+          "set_code": "xy8",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Floette",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "9322c0ae-f7ea-443b-bdd6-9a71fd33623f",
+          "set_code": "bw1",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Whirlipede",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "23ee632d-b666-4550-ad38-937358035c4c",
+          "set_code": "bw1",
+          "number": "79",
+          "number_plain": "79",
+          "name": "Watchog",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "a9c9e5f3-fccb-4d7f-9182-e2ebdb78d4ea",
+          "set_code": "bw1",
+          "number": "81",
+          "number_plain": "81",
+          "name": "Lillipup",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "db133e2a-5a3f-4d4b-9e13-99d603f2dd1a",
+          "set_code": "bw11",
+          "number": "109",
+          "number_plain": "109",
+          "name": "Bianca",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "650350c0-3e46-4ecb-b4bb-3708a6d02159",
+          "set_code": "bw2",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Unfezant",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "513053a5-40b1-4041-b2a4-9b28117d4e0a",
+          "set_code": "bw3",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Cryogonal",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "8e7fbe9a-7067-4d28-88b8-6950127fd201",
+          "set_code": "bw8",
+          "number": "120",
+          "number_plain": "120",
+          "name": "Escape Rope",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "ea9a149c-2580-4ff5-b0b4-b1a6df557518",
+          "set_code": "hgss1",
+          "number": "39",
+          "number_plain": "39",
+          "name": "Delibird",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "ae26ebbf-2288-483a-a277-add5067f5500",
+          "set_code": "pl1",
+          "number": "104",
+          "number_plain": "104",
+          "name": "Broken Time-Space",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "382aca18-593b-400e-b573-c4531e7e18e6",
+          "set_code": "pl3",
+          "number": "26",
+          "number_plain": "26",
+          "name": "Dusknoir FB",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "35f4f03b-713b-4b26-9f64-88f0102044c8",
+          "set_code": "pl4",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Spiritomb",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "1d2e1d4b-f5ad-45e1-920f-1540a513a1b5",
+          "set_code": "pl4",
+          "number": "87",
+          "number_plain": "87",
+          "name": "Expert Belt",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "9995b2a1-b3e5-4c8b-92e7-8b90a180f4e7",
+          "set_code": "xy8",
+          "number": "101",
+          "number_plain": "101",
+          "name": "Flabébé",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "4f17d9de-2415-44c8-8c0b-28ea83c462e1",
+          "set_code": "xy8",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Floette",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "36938c6f-2586-4ff1-893a-241226c6a5b1",
+          "set_code": "bw1",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Whirlipede",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "17870822fd3f71dfd224ef51d6c9b2a60cfa2504380df4a2f9da11958bd35c43"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "d2e7b07a-ef8a-4cba-ab8a-f4397d677015",
+          "set_code": "bw1",
+          "number": "79",
+          "number_plain": "79",
+          "name": "Watchog",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "8c8675fdf3e4264092bcd891a75185bef2920c7126ebc1cdbd97e10a73443a53"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2fe7ead6-74bb-49cd-ac0b-1bd72e370dfb",
+          "set_code": "bw1",
+          "number": "81",
+          "number_plain": "81",
+          "name": "Lillipup",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "3e0add9793951fb21dc431f16d808f842a40db1e5f9112aac70666b795bdaa73"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "13ec8ea0-1716-4b2f-8849-74c97b120b41",
+          "set_code": "bw11",
+          "number": "109",
+          "number_plain": "109",
+          "name": "Bianca",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "82f24ef1219e3475e80d6e0dcad381a13cba04e0fb4e930163c4c20069f39413"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "401aad6b-0fdd-48bd-a5ae-a869d763612f",
+          "set_code": "bw2",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Unfezant",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "b91d549c8c587783476f5df1836f7423be41a51a36b3f80261d800cf402d90a3"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "9cdd65d0-622a-4b83-af1c-fb223ab59135",
+          "set_code": "bw3",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Cryogonal",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "1aaa4af9c8e3b3dee7af1df7010f56e94614477e999d3ceb1954551677006160"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "015b25bc-8285-4e9c-8034-5f5595ac0f59",
+          "set_code": "bw8",
+          "number": "120",
+          "number_plain": "120",
+          "name": "Escape Rope",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "252b46be7a36c67cd0d888fffdd36cf2cf7debc73cf2061ead06daf1116b65ea"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "108c5c12-e583-48f8-9202-c73b4115d7a0",
+          "set_code": "hgss1",
+          "number": "39",
+          "number_plain": "39",
+          "name": "Delibird",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "a0c80960cb22b7d7e48081703fde930933d824852623985f42902c947e4a0461"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "ebeae739-7031-419d-8b99-267ed8f33bb4",
+          "set_code": "pl1",
+          "number": "104",
+          "number_plain": "104",
+          "name": "Broken Time-Space",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "c2d519c5f40f1457c5b110b12c1029c9ebd7133117d7ccf1f0097ad740d1f813"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "baa5f390-1ee2-4ded-9684-a774bc1ebef3",
+          "set_code": "pl3",
+          "number": "26",
+          "number_plain": "26",
+          "name": "Dusknoir FB",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "74352446f3d858026fdc3bb324c03ab147af90fa2c94c9ae008b58c05f20c779"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "758d93da-4f6c-4fe7-8ebd-f30af4faeb27",
+          "set_code": "pl4",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Spiritomb",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "41e19b894a80fffae6d636a9132ec5f8867f235f920de73d56b592aa26f5a4b1"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "ece5b0ed-b8a1-45f5-90da-0cd9a56bc048",
+          "set_code": "pl4",
+          "number": "87",
+          "number_plain": "87",
+          "name": "Expert Belt",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "be17f5f45f08167cdb712e7b566ccd0b9603a87e1b1c6146a26c2a0e5974f75b"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "3a336fed-1910-4fdf-845c-e7bca84098c6",
+          "set_code": "xy8",
+          "number": "101",
+          "number_plain": "101",
+          "name": "Flabébé",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "1e229c456865fa78bd70728a7fd655680526bb9d3f57e4a638eb7ea333a417ea"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "6519b057-7212-4ac9-bdd5-85491a618c2e",
+          "set_code": "xy8",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Floette",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "4e428b7dcbea14eb720072fea9c9ba63c9a914bf38dd8a3adce6de332c2f65b3"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "46c3ad1f-90ed-45e2-8997-ee2bcc7fe8ec",
+          "set_code": "bw1",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Whirlipede",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "1583719c-b09d-43e4-b806-e5ef906d1511",
+          "set_code": "bw1",
+          "number": "79",
+          "number_plain": "79",
+          "name": "Watchog",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "9df3e0aa-cfb3-449d-92d5-a7a3c5f8cbcf",
+          "set_code": "bw1",
+          "number": "81",
+          "number_plain": "81",
+          "name": "Lillipup",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "3e4a40eb-4766-4165-ac96-ae9620297553",
+          "set_code": "bw11",
+          "number": "109",
+          "number_plain": "109",
+          "name": "Bianca",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "6f4c117e-30b4-4ed4-996e-3f29131b24e6",
+          "set_code": "bw2",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Unfezant",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "642b428d-8a06-4bcb-a4bd-edd9a33b83fe",
+          "set_code": "bw3",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Cryogonal",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d478d467-1c23-4826-86e4-983ff6a26fd4",
+          "set_code": "bw8",
+          "number": "120",
+          "number_plain": "120",
+          "name": "Escape Rope",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "c2d8b50a-f752-4d7f-9362-f212b3d10b98",
+          "set_code": "hgss1",
+          "number": "39",
+          "number_plain": "39",
+          "name": "Delibird",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "7cfcd5c7-b1ba-47a4-9264-7732222cdd3e",
+          "set_code": "pl1",
+          "number": "104",
+          "number_plain": "104",
+          "name": "Broken Time-Space",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "45904b78-30bf-415f-910d-508b7b1131a6",
+          "set_code": "pl3",
+          "number": "26",
+          "number_plain": "26",
+          "name": "Dusknoir FB",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "86198900-6863-4cc8-abac-db4955354bf2",
+          "set_code": "pl4",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Spiritomb",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "922b57b4-b728-4cd1-badb-4b55c6572fe0",
+          "set_code": "pl4",
+          "number": "87",
+          "number_plain": "87",
+          "name": "Expert Belt",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d992dd6f-a0bd-4053-a564-094dbd2b8697",
+          "set_code": "xy8",
+          "number": "101",
+          "number_plain": "101",
+          "name": "Flabébé",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "5f82ad60-1a1e-4eaa-99fe-5ba9ba6d5b7b",
+          "set_code": "xy8",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Floette",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "ca81453676b5f30e60b0447bc463d711358296c0939afa73a814f41994f497e0",
+      "counts": {
+        "base_parent": 14,
+        "target_child": 14,
+        "target_identity": 14,
+        "target_parent": 14
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-12T23:23:30.642Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "68600d39-7fbd-4d1e-97ae-684955e53e05",
+          "set_code": "bw1",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Whirlipede",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e67ff8fa-b1c0-4be4-9989-3783e8d3d7e8",
+          "set_code": "bw1",
+          "number": "79",
+          "number_plain": "79",
+          "name": "Watchog",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "23f77e4a-186b-46f5-bdee-e832ca467f12",
+          "set_code": "bw1",
+          "number": "81",
+          "number_plain": "81",
+          "name": "Lillipup",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f5517ff1-034f-4388-89d2-0bc1f4ca5944",
+          "set_code": "bw11",
+          "number": "109",
+          "number_plain": "109",
+          "name": "Bianca",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d5e557e6-186e-4c57-95f6-85373517711b",
+          "set_code": "bw2",
+          "number": "82",
+          "number_plain": "82",
+          "name": "Unfezant",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "e6a84ebc-2184-42db-ad04-f19c762133f6",
+          "set_code": "bw3",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Cryogonal",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "9563479b-7524-48ef-a1cb-612e4afeed08",
+          "set_code": "bw8",
+          "number": "120",
+          "number_plain": "120",
+          "name": "Escape Rope",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "5fb7382a-f366-42ed-bd64-6a9c91e98a32",
+          "set_code": "hgss1",
+          "number": "39",
+          "number_plain": "39",
+          "name": "Delibird",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "db232ebe-fb95-44df-b0fe-3e38794e4c14",
+          "set_code": "pl1",
+          "number": "104",
+          "number_plain": "104",
+          "name": "Broken Time-Space",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "899905ba-d076-4021-b408-85c210ecd4ac",
+          "set_code": "pl3",
+          "number": "26",
+          "number_plain": "26",
+          "name": "Dusknoir FB",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f9b8c712-2eec-44a6-9741-b6620b72b19f",
+          "set_code": "pl4",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Spiritomb",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "379e8680-8572-456b-b818-1610544a188a",
+          "set_code": "pl4",
+          "number": "87",
+          "number_plain": "87",
+          "name": "Expert Belt",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "4f5f59ea-417a-443b-beaf-5d13bf1223e5",
+          "set_code": "xy8",
+          "number": "101",
+          "number_plain": "101",
+          "name": "Flabébé",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d65a9c23-da54-4eb5-995f-071fb8c24c67",
+          "set_code": "xy8",
+          "number": "102",
+          "number_plain": "102",
+          "name": "Floette",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "0270d48129a894fb25b0ed7668f78cc6e8b8fae443733f22c2bb05067dc6042e",
+      "counts": {
+        "base_parent": 14
+      }
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "9e318aac9d54ab56bd38140f371154302909e04b7efa308b72d7f39fd9bee9f3",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real PKG-17R-LEAGUE-REVERSE-BULK-PARENT-INSERTS apply only. Fingerprint: a1a1f102c7576b94a86cc30e9851e58a7032f3c0feaa5f2ee2e10f59e15f9fba. Scope: 14 stamped parent inserts, 14 identity inserts, 14 child printing inserts; finishes reverse=14; stamp labels League Stamp=14; sets bw1=3, pl4=2, xy8=2, bw11=1, bw2=1, bw3=1, bw8=1, hgss1=1, pl1=1, pl3=1. Dry-run proof: 0270d48129a894fb25b0ed7668f78cc6e8b8fae443733f22c2bb05067dc6042e == 0270d48129a894fb25b0ed7668f78cc6e8b8fae443733f22c2bb05067dc6042e. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}

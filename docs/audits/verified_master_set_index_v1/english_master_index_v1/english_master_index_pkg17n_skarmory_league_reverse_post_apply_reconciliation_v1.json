@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-06-12T23:01:31.150Z",
+  "version": "english_master_index_pkg17n_skarmory_league_reverse_post_apply_reconciliation_v1",
+  "package_id": "PKG-17N-SKARMORY-LEAGUE-REVERSE-PARENT-INSERT",
+  "package_fingerprint_sha256": "031c6b4ea104ee30b207bf2790501de68e199e22feaac9633cd4d7b1f5ccf993",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17n_skarmory_league_reverse_real_apply_v1.json",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "fingerprint_sha256": "4f7c23b648900fb70ee2708dd1476e82b2e29d73ee016a39390d3ced81776bc5",
+  "summary": {
+    "target_rows": 1,
+    "verified_applied_rows": 1,
+    "not_verified_rows": 0,
+    "forbidden_stamped_child_rows": 0,
+    "by_status": {
+      "verified_applied": 1
+    },
+    "by_finish": {
+      "reverse": 1
+    },
+    "by_set": {
+      "pl3": 1
+    },
+    "by_stamp_label": {
+      "League Stamp": 1
+    }
+  },
+  "rows": [
+    {
+      "set_key": "pl3",
+      "card_number": "83",
+      "card_name": "Skarmory FB",
+      "stamp_label": "League Stamp",
+      "target_variant_key": "league_stamp",
+      "target_printed_identity_modifier": "league_stamp",
+      "target_finish_key": "reverse",
+      "target_parent_id": "ce541d42-01ae-49ec-b37f-fded2d7cfea9",
+      "target_child_id": "f046a0e2-8153-4842-9433-11a221cc2102",
+      "base_parent_id": "e155c180-ac03-461e-ab3e-a7024f268713",
+      "parent_exists": true,
+      "actual_variant_key": "league_stamp",
+      "actual_printed_identity_modifier": "league_stamp",
+      "child_exists": true,
+      "actual_finish_key": "reverse",
+      "active_identity_exists": true,
+      "identity_key_hash": "fd18a7f7d8dc1283a3024299d8f15e99c14424f4b79585a426f40b3b514b7bc7",
+      "forbidden_stamped_child_count": 0,
+      "reconciliation_status": "verified_applied",
+      "blockers": []
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "package_id": "PKG-29B-BASE-COSMOS-OVERFINISH-CHILD-DELETE",
+  "generated_at": "2026-06-13T18:39:56.592Z",
+  "fingerprint": "141eb3c42c6c0218db926e01ff72105bd6b200c839f3cd1d092bbfbb6683ef74",
+  "source_readiness_fingerprint": "ac2e57bfd287e020be1cde9c9536ba7d0dc6173c812a7f21cbabedb69cc0e76b",
+  "sql_hash": "15d12abbe17df4fe7e1c0849c576fb5543fbd93fa7837c3102e9dca014ac257d",
+  "sql_path": "docs\\sql\\english_master_index_pkg29b_base_cosmos_overfinish_child_delete_guarded_dry_run_transaction_v1.sql",
+  "safety": {
+    "db_writes_committed": false,
+    "migrations_created": false,
+    "real_apply_authorized": false,
+    "sql_ends_with_rollback": true
+  },
+  "summary": {
+    "target_rows": 4,
+    "child_deletes_in_dry_run": 4
+  },
+  "rows": [
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "dd251220-bc75-49f5-b80b-146ec6a839c0",
+      "set_code": "sv06.5",
+      "card_number": "002",
+      "number": "002",
+      "number_plain": "002",
+      "card_name": "Galvantula",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "7236391b-6297-4946-96f3-dc85e69e9cc1",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv06.5",
+      "child_identity_key": "sv06 5|2|galvantula|cosmos||",
+      "live_number_candidates": [
+        "2"
+      ],
+      "child_dependency_total": 0,
+      "classification": "base_cosmos_overfinish_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_delete",
+      "reason": "base cosmos child has no dependencies and current Master Index does not support cosmos for this card"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "d1455a62-d371-4ae7-b24c-4411b61c19e0",
+      "set_code": "swsh12.5",
+      "card_number": "135",
+      "number": "135",
+      "number_plain": "135",
+      "card_name": "Lost Vacuum",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "ed3fdf71-5b1c-4fa1-b31b-eb97e86a7ba0",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh12.5",
+      "child_identity_key": "swsh12 5|135|lost vacuum|cosmos||",
+      "live_number_candidates": [
+        "135"
+      ],
+      "child_dependency_total": 0,
+      "classification": "base_cosmos_overfinish_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_delete",
+      "reason": "base cosmos child has no dependencies and current Master Index does not support cosmos for this card"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "947dbf04-4e65-4206-bc80-d702e7b93109",
+      "set_code": "swsh12.5",
+      "card_number": "145",
+      "number": "145",
+      "number_plain": "145",
+      "card_name": "Trekking Shoes",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "a1283a03-9ccf-4916-80e0-f9b4c7121936",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh12.5",
+      "child_identity_key": "swsh12 5|145|trekking shoes|cosmos||",
+      "live_number_candidates": [
+        "145"
+      ],
+      "child_dependency_total": 0,
+      "classification": "base_cosmos_overfinish_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_delete",
+      "reason": "base cosmos child has no dependencies and current Master Index does not support cosmos for this card"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "6ec60f4d-c8ae-42f5-8941-47ab73aab6f1",
+      "set_code": "swsh12.5",
+      "card_number": "146",
+      "number": "146",
+      "number_plain": "146",
+      "card_name": "Ultra Ball",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "3a4ca694-58a2-4a9a-a184-207e0261f9fd",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh12.5",
+      "child_identity_key": "swsh12 5|146|ultra ball|cosmos||",
+      "live_number_candidates": [
+        "146"
+      ],
+      "child_dependency_total": 0,
+      "classification": "base_cosmos_overfinish_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_delete",
+      "reason": "base cosmos child has no dependencies and current Master Index does not support cosmos for this card"
+    }
+  ]
+}

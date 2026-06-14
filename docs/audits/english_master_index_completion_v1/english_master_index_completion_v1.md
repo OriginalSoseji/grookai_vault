@@ -14,22 +14,23 @@ Completion-first Master Index report. This is not a Grookai reconciliation repor
 ## Summary
 
 - sets_in_registry: 201
-- complete_master_index_sets: 199
-- incomplete_sets: 2
+- complete_master_index_sets: 189
+- incomplete_sets: 12
 - working_card_identity_facts: 21520
 - master_admissible_card_identity_facts: 21520
 - printing_derived_card_identity_facts: 0
-- working_printing_facts: 38841
-- master_admissible_printing_facts: 38841
+- working_printing_facts: 38927
+- master_admissible_printing_facts: 38893
 - finish_blocker_boundary_facts: 0
 - adjudicated_excluded_printing_facts: 5
-- source_gap_queue_items: 0
+- source_gap_queue_items: 10
 
 ## Completion Status
 
 | status | sets |
 | --- | --- |
-| complete_master_index_set | 199 |
+| complete_master_index_set | 189 |
+| card_identity_complete_finish_incomplete | 10 |
 | non_standard_single_source_reference | 2 |
 
 ## Card Fact Status
@@ -43,4 +44,5 @@ Completion-first Master Index report. This is not a Grookai reconciliation repor
 
 | status | facts |
 | --- | --- |
-| master_verified | 38841 |
+| master_verified | 38893 |
+| human_source_verified | 34 |

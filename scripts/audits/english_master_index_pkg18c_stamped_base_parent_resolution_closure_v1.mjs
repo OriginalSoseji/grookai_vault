@@ -1,0 +1,192 @@
+import crypto from 'node:crypto';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+
+import { DEFAULT_OUTPUT_DIR, markdownTable } from './verified_master_set_index_v1/shared.mjs';
+
+const ROOT = process.cwd();
+const AUDIT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
+const PKG17D_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg17d_stamped_base_parent_resolution_readiness_v1.json');
+const OUTPUT_JSON = path.join(AUDIT_DIR, 'english_master_index_pkg18c_stamped_base_parent_resolution_closure_v1.json');
+const OUTPUT_MD = path.join(AUDIT_DIR, 'english_master_index_pkg18c_stamped_base_parent_resolution_closure_v1.md');
+
+const PACKAGE_ID = 'PKG-18C-STAMPED-BASE-PARENT-RESOLUTION-CLOSURE';
+
+async function readJson(filePath) {
+  return JSON.parse(await fs.readFile(filePath, 'utf8'));
+}
+
+async function writeJson(filePath, value) {
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
+}
+
+async function writeText(filePath, value) {
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.writeFile(filePath, value);
+}
+
+function stableJson(value) {
+  if (Array.isArray(value)) return `[${value.map(stableJson).join(',')}]`;
+  if (value && typeof value === 'object') {
+    return `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${stableJson(value[key])}`).join(',')}}`;
+  }
+  return JSON.stringify(value);
+}
+
+function sha256(value) {
+  return crypto.createHash('sha256').update(value).digest('hex');
+}
+
+function rel(filePath) {
+  return path.relative(ROOT, filePath).replaceAll('\\', '/');
+}
+
+function countBy(rows, keyFn) {
+  const counts = {};
+  for (const row of rows) {
+    const key = keyFn(row) || 'unknown';
+    counts[key] = (counts[key] ?? 0) + 1;
+  }
+  return Object.fromEntries(Object.entries(counts).sort((left, right) => (
+    Number(right[1]) - Number(left[1]) || String(left[0]).localeCompare(String(right[0]))
+  )));
+}
+
+function closureStatus(row) {
+  if (row.readiness_status === 'base_parent_insert_dry_run_candidate') return 'ready_for_separate_guarded_dry_run';
+  if (String(row.readiness_status).startsWith('stale_')) return 'closed_as_stale_return_to_stamped_flow';
+  if (row.readiness_status === 'blocked_missing_or_inactive_base_finish') return 'blocked_active_finish_required';
+  if (row.readiness_status === 'blocked_multiple_base_parent_candidates') return 'blocked_parent_collision_resolution_required';
+  if (row.readiness_status === 'blocked_same_number_different_name') return 'blocked_identity_collision_resolution_required';
+  return 'blocked_manual_review';
+}
+
+function nextAction(row) {
+  switch (closureStatus(row)) {
+    case 'ready_for_separate_guarded_dry_run':
+      return 'Prepare a separate guarded dry-run package before any write.';
+    case 'closed_as_stale_return_to_stamped_flow':
+      return 'Do not build a base-parent insert. Re-run stamped active-finish/readiness closure against the now-existing parent.';
+    case 'blocked_active_finish_required':
+      return 'Acquire exact active finish evidence before considering a parent/child package.';
+    case 'blocked_parent_collision_resolution_required':
+      return 'Resolve duplicate/colliding base parent identities before stamped work.';
+    case 'blocked_identity_collision_resolution_required':
+      return 'Resolve same-number identity mismatch before base-parent work.';
+    default:
+      return 'Manual review required.';
+  }
+}
+
+function renderMarkdown(report) {
+  return `# PKG-18C Stamped Base Parent Resolution Closure V1
+
+Audit-only closure for the base-parent resolution bucket after a fresh read-only DB resolver pass.
+
+## Safety
+
+- audit_only: ${report.audit_only}
+- db_reads_performed: ${report.db_reads_performed}
+- db_writes_performed: ${report.db_writes_performed}
+- durable_db_writes_performed: ${report.durable_db_writes_performed}
+- migrations_created: ${report.migrations_created}
+- cleanup_performed: ${report.cleanup_performed}
+- quarantine_performed: ${report.quarantine_performed}
+- write_ready_now: ${report.write_ready_now}
+
+## Summary
+
+${markdownTable(['metric', 'value'], [
+    ['source_artifact', report.source_artifact],
+    ['target_rows', report.summary.target_rows],
+    ['ready_for_separate_guarded_dry_run', report.summary.ready_for_separate_guarded_dry_run],
+    ['closed_as_stale_return_to_stamped_flow', report.summary.closed_as_stale_return_to_stamped_flow],
+    ['blocked_rows', report.summary.blocked_rows],
+    ['fingerprint_sha256', `\`${report.fingerprint_sha256}\``],
+  ])}
+
+## Closure Status Counts
+
+${markdownTable(['closure_status', 'rows'], Object.entries(report.summary.by_closure_status))}
+
+## Blocker Counts
+
+${markdownTable(['readiness_status', 'rows'], Object.entries(report.summary.by_readiness_status))}
+
+No base-parent insert package is generated by this report.
+`;
+}
+
+async function main() {
+  const pkg17d = await readJson(PKG17D_JSON);
+  const rows = (pkg17d.rows ?? []).map((row) => ({
+    set_key: row.set_key,
+    set_name: row.set_name,
+    card_number: row.card_number,
+    card_name: row.card_name,
+    stamped_variant_key: row.stamped_variant_key,
+    stamp_label: row.stamp_label,
+    target_base_finish_key: row.target_base_finish_key,
+    source_queue_status: row.source_queue_status,
+    readiness_status: row.readiness_status,
+    closure_status: closureStatus(row),
+    selected_base_parent_id: row.selected_base_parent_id,
+    target_base_parent_id: row.target_base_parent_id,
+    target_base_child_id: row.target_base_child_id,
+    same_number_parent_count: row.same_number_parent_count,
+    same_name_parent_count: row.same_name_parent_count,
+    unstamped_parent_count: row.unstamped_parent_count,
+    stamped_variant_parent_count: row.stamped_variant_parent_count,
+    blockers: row.blockers ?? [],
+    recommended_next_action: nextAction(row),
+  }));
+  const payload = {
+    pkg17d_fingerprint: pkg17d.fingerprint_sha256,
+    rows,
+  };
+  const readyRows = rows.filter((row) => row.closure_status === 'ready_for_separate_guarded_dry_run');
+  const staleRows = rows.filter((row) => row.closure_status === 'closed_as_stale_return_to_stamped_flow');
+  const report = {
+    generated_at: new Date().toISOString(),
+    version: 'english_master_index_pkg18c_stamped_base_parent_resolution_closure_v1',
+    package_id: PACKAGE_ID,
+    audit_only: true,
+    db_reads_performed: Boolean(pkg17d.db_reads_performed),
+    db_writes_performed: false,
+    durable_db_writes_performed: false,
+    migrations_created: false,
+    cleanup_performed: false,
+    quarantine_performed: false,
+    global_apply_performed: false,
+    write_ready_now: 0,
+    source_artifact: rel(PKG17D_JSON),
+    fingerprint_sha256: sha256(stableJson(payload)),
+    summary: {
+      target_rows: rows.length,
+      ready_for_separate_guarded_dry_run: readyRows.length,
+      closed_as_stale_return_to_stamped_flow: staleRows.length,
+      blocked_rows: rows.length - readyRows.length - staleRows.length,
+      by_closure_status: countBy(rows, (row) => row.closure_status),
+      by_readiness_status: countBy(rows, (row) => row.readiness_status),
+      by_set: countBy(rows, (row) => row.set_key),
+    },
+    rows,
+  };
+
+  await writeJson(OUTPUT_JSON, report);
+  await writeText(OUTPUT_MD, renderMarkdown(report));
+  console.log(JSON.stringify({
+    package_id: PACKAGE_ID,
+    output_json: rel(OUTPUT_JSON),
+    output_md: rel(OUTPUT_MD),
+    fingerprint_sha256: report.fingerprint_sha256,
+    write_ready_now: report.write_ready_now,
+    summary: report.summary,
+  }, null, 2));
+}
+
+main().catch((error) => {
+  console.error(error?.stack || error?.message || error);
+  process.exitCode = 1;
+});

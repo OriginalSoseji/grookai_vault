@@ -1,0 +1,21 @@
+{
+  "version": "english_master_index_preserve_source_from_index_v1",
+  "generated_at": "2026-06-12T03:50:22.244Z",
+  "source_index_generated_at": "2026-06-09T12:23:15.511Z",
+  "source_key": "pricecharting_svp_winner_variant",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pricecharting_svp_winner_preservation_v1",
+  "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pricecharting_svp_winner_preservation_v1\\pricecharting_svp_winner_preservation_v1.json",
+  "summary": {
+    "records_generated": 1,
+    "card_identity_records": 0,
+    "finish_presence_records": 1,
+    "source_key_preserved_as": "pricecharting_svp_winner_variant",
+    "source_authority_preserved_as": "pricecharting.com"
+  }
+}

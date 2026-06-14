@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-06-10T21:51:17.290Z",
+  "version": "english_master_index_pkg10ba_first_edition_parent_identity_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-10B-A-FIRST-EDITION-PARENT-IDENTITY-DRY-RUN-PILOT",
+    "package_fingerprint_sha256": "e8fd374f201c0a18dd971fa2889f32883a2cc620565088f4926b59f8268707f1",
+    "source_readiness_fingerprint_sha256": "7b7c9692e664b5a9b026b3d78b51b1ff8849421667ba427e2bd7f688c9ebb81b",
+    "sql_hash_sha256": "504dad2f4bc525f36f586788b066c0b480d9ab4122df52cd6bc0b9e7f8bf1eae",
+    "target_set_key": "base2",
+    "target_set_name": "Jungle",
+    "target_parent_rows": 64,
+    "target_child_rows": 64,
+    "external_mapping_rows": 0,
+    "by_finish": {
+      "normal": 48,
+      "holo": 16
+    },
+    "by_source_finish": {
+      "first_edition_normal": 48,
+      "first_edition_holo": 16
+    },
+    "parent_identity_modifier": "edition:first_edition",
+    "finish_key_activation_allowed": false,
+    "external_mapping_inserts_allowed": false,
+    "set_inserts_allowed": false,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false,
+    "global_apply_allowed": false,
+    "migrations_allowed": false
+  },
+  "dry_run_proof": {
+    "sql_artifact_ref": "docs/sql/english_master_index_pkg10ba_first_edition_parent_identity_guarded_dry_run_transaction_v1.sql",
+    "sql_hash_sha256": "504dad2f4bc525f36f586788b066c0b480d9ab4122df52cd6bc0b9e7f8bf1eae",
+    "sql_inspection": {
+      "contains_begin_statement": true,
+      "contains_rollback_statement": true,
+      "contains_commit_statement": false,
+      "contains_card_prints_insert": true,
+      "contains_card_printings_insert": true,
+      "contains_external_mapping_insert": false,
+      "contains_sets_insert": false,
+      "contains_delete_statement": false,
+      "contains_update_statement": false,
+      "contains_finish_key_insert": false,
+      "contains_finish_key_update": false
+    },
+    "before_hash_sha256": "9d9a0307e87357cd79110c51345866bf41890704c602813b87f20b00be3e8df7",
+    "after_hash_sha256": "9d9a0307e87357cd79110c51345866bf41890704c602813b87f20b00be3e8df7",
+    "rollback_proof_equal": true,
+    "dry_run_ok": true,
+    "dry_run_guard": {
+      "target_count": 64,
+      "set_count": 1,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0
+    },
+    "dry_run_inserted_counts": {
+      "inserted_parent_count": 64,
+      "inserted_child_count": 64
+    }
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-10B-A-FIRST-EDITION-PARENT-IDENTITY-DRY-RUN-PILOT apply only. Fingerprint: e8fd374f201c0a18dd971fa2889f32883a2cc620565088f4926b59f8268707f1. SQL hash: 504dad2f4bc525f36f586788b066c0b480d9ab4122df52cd6bc0b9e7f8bf1eae. Scope: 64 first-edition parent identity inserts and 64 child card_printing inserts for base2/Jungle; child finishes normal=48 and holo=16; source finishes first_edition_normal=48 and first_edition_holo=16; external mappings=0. Dry-run proof: 9d9a0307e87357cd79110c51345866bf41890704c602813b87f20b00be3e8df7 == 9d9a0307e87357cd79110c51345866bf41890704c602813b87f20b00be3e8df7. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No quarantine. No finish-key activation.",
+    "approval_effect": "This would authorize preparing and running the durable PKG-10BA base2/Jungle first-edition parent+child apply only. It does not authorize global apply, migrations, deletes, merges, unsupported cleanup, quarantine, finish-key activation, set inserts, or external mapping inserts."
+  },
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg10ba_first_edition_parent_identity_guarded_dry_run_v1.json",
+    "rollback_sql_artifact": "docs/sql/english_master_index_pkg10ba_first_edition_parent_identity_guarded_dry_run_transaction_v1.sql"
+  },
+  "stop_findings": [],
+  "pass": true
+}

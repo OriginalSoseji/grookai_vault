@@ -1005,13 +1005,34 @@ function buildArtifacts(inputs) {
     truth_readiness: inputs.readiness.summary ?? {},
     repair_priority: inputs.repairPriority.summary ?? {},
   };
+  const generatedPackages = summary.generated_dry_run_packages ?? {};
+  const reviewGateSummary = summary.physical_recovery_review_gate ?? {};
+  const applyDesignSummary = summary.physical_recovery_apply_design ?? {};
+  const packageStopFindings = Number(reviewGateSummary.package_stop_findings ?? applyDesignSummary.stop_findings ?? 0);
+  const packageCount = Number(generatedPackages.package_count ?? 0);
+  const packageCardPrints = Number(generatedPackages.candidate_card_prints ?? 0);
+  const packagePrintings = Number(generatedPackages.candidate_printing_rows ?? 0);
+  const vaultRefCount = Number(reviewGateSummary.vault_items_referencing_targets ?? applyDesignSummary.vault_items_referencing_targets ?? 0);
+  const currentReadinessConclusion = packageStopFindings > 0
+    ? `No catalog writes are authorized yet. The Master Index is complete, FUT2020 has completed its proof/apply/reconciliation loop, and ${packageCount} refreshed dry-run packages now cover ${packageCardPrints} candidate card_print rows / ${packagePrintings} verified child printings. The next apply boundary is blocked by ${packageStopFindings} review finding(s), including ${vaultRefCount} vault item reference(s); write_ready_now remains 0.`
+    : `No catalog writes are authorized yet. The Master Index is complete, FUT2020 has completed its proof/apply/reconciliation loop, and ${packageCount} refreshed dry-run packages now cover ${packageCardPrints} candidate card_print rows / ${packagePrintings} verified child printings. The next boundary is operator review plus fresh snapshot and guarded transaction artifact preparation; write_ready_now remains 0.`;
+  const currentAuditReason = packageStopFindings > 0
+    ? `The completed Master Index has refreshed DB-vs-index planning after FUT2020. The current physical-recovery package set is blocked from apply design readiness because ${packageStopFindings} package review finding(s) remain, including ${vaultRefCount} vault item reference(s).`
+    : 'The completed Master Index has refreshed DB-vs-index planning after FUT2020. The current physical-recovery package set has no package stop findings, but writes still require explicit operator approval, a final fresh snapshot, a guarded execution artifact, rollback proof, and transactional verification.';
+  const currentStrongestFinding = `FUT2020 is reconciled as verified_by_index after apply, and the refreshed recovery queue excludes FUT2020 while preserving ${packageCount} dry-run package(s) for future review.`;
+  const currentMainBlocker = packageStopFindings > 0
+    ? `Resolve or split out package stop findings before apply design can proceed: ${packageStopFindings} finding(s), ${vaultRefCount} vault item reference(s).`
+    : 'Operator approval is not recorded and no fresh snapshot or guarded execution artifact exists for the refreshed package set.';
+  const currentImmediateNextWork = packageStopFindings > 0
+    ? 'Split the refreshed dry-run package set into a no-vault-reference safe subset and a vault-reference blocked subset; only the safe subset may move toward final snapshot and guarded dry-run artifact preparation.'
+    : 'Human-review the refreshed dry-run package snapshots, then prepare a fresh snapshot and guarded dry-run artifact only after explicit operator approval.';
 
   const writeReadiness = {
     generated_at: new Date().toISOString(),
     version: 'english_master_index_write_readiness_v1',
     ...safety,
     rule: 'This report determines whether Grookai is ready to write. It does not execute writes.',
-    conclusion: 'No catalog writes are authorized yet. The Master Index is complete, and PKG-01 has been split into one-set pilot PKG-01A plus blocked remainder PKG-01B. PKG-01A is prepared for review, but approval is not recorded and write_ready_now remains 0.',
+    conclusion: currentReadinessConclusion,
     summary,
     global_buckets: globalBuckets,
     write_packages: writePackages,
@@ -1136,9 +1157,11 @@ function buildArtifacts(inputs) {
       entire_audit_completed_to_current_evidence_boundary: true,
       master_index_complete: (inputs.completion.summary?.source_gap_queue_items ?? 1) === 0,
       ready_for_db_writes: false,
-      reason: 'The completed Master Index now has PKG-01 split into one-set pilot PKG-01A and blocked remainder PKG-01B. The pilot package is ready for explicit operator decision, but writes still need recorded pilot approval, a final fresh snapshot, an actual guarded execution artifact, and transactional verification.',
-      strongest_positive_finding: 'PKG-01A isolates one low-blast-radius fut2020 row / one child printing from the 106-row PKG-01 package; PKG-01B keeps the remaining 105 rows blocked until pilot verification.',
-      main_blocker: inputs.physicalRecoveryPkg01SplitOneSetPilot?.split_status === 'pkg01_split_into_one_set_pilot_apply_blocked_no_write'
+      reason: currentAuditReason,
+      strongest_positive_finding: currentStrongestFinding,
+      main_blocker: packageStopFindings > 0
+        ? currentMainBlocker
+        : inputs.physicalRecoveryPkg01SplitOneSetPilot?.split_status === 'pkg01_split_into_one_set_pilot_apply_blocked_no_write'
         ? 'PKG-01A is ready for explicit operator decision, but approval is not recorded and no executable guarded transaction artifact exists for the one-set pilot.'
         : inputs.physicalRecoveryPkg01OperatorApprovalGate?.approval_gate_status === 'ready_for_operator_decision_apply_blocked_no_write'
         ? 'PKG-01 is ready for explicit operator decision, but approval is not recorded and no executable guarded transaction artifact exists.'
@@ -1163,7 +1186,9 @@ function buildArtifacts(inputs) {
     },
     summary,
     immediate_next_non_write_work: [
-      inputs.physicalRecoveryPkg01SplitOneSetPilot?.split_status === 'pkg01_split_into_one_set_pilot_apply_blocked_no_write'
+      packageStopFindings > 0
+        ? currentImmediateNextWork
+        : inputs.physicalRecoveryPkg01SplitOneSetPilot?.split_status === 'pkg01_split_into_one_set_pilot_apply_blocked_no_write'
         ? 'Operator decision is now scoped to PKG-01A only: approve the fut2020 one-set pilot for final snapshot/execution-artifact preparation, reject it, or request changes. PKG-01B remains blocked.'
         : inputs.physicalRecoveryPkg01OperatorApprovalGate?.approval_gate_status === 'ready_for_operator_decision_apply_blocked_no_write'
         ? 'Operator decision is the next boundary: approve PKG-01 for final snapshot/execution-artifact preparation, reject PKG-01, or request changes. No write is authorized until approval is explicitly recorded.'

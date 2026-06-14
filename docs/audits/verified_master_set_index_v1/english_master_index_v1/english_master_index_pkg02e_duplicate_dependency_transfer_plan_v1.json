@@ -1,0 +1,2597 @@
+{
+  "generated_at": "2026-06-09T18:13:53.249Z",
+  "version": "english_master_index_pkg02e_duplicate_dependency_transfer_plan_v1",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "merge_performed": false,
+  "delete_performed": false,
+  "apply_paths_executed": false,
+  "audit_status": "pkg02e_duplicate_dependency_transfer_plan_complete_no_write",
+  "source_artifacts": {
+    "pkg02d_collision_adjudication": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg02d_collision_adjudication_v1.json"
+  },
+  "reference_surface": {
+    "parent_foreign_keys": 45,
+    "child_foreign_keys": 3,
+    "database_available": true
+  },
+  "summary": {
+    "total_duplicate_dependency_rows": 21,
+    "by_readiness": {
+      "dry_run_candidate_after_dependency_transfer_mapping": 21
+    },
+    "by_set": [
+      {
+        "set_key": "ex10",
+        "set_name": "Unseen Forces",
+        "total_rows": 3,
+        "dry_run_candidate_after_dependency_transfer_mapping": 3,
+        "dry_run_candidate_simple_duplicate_delete": 0,
+        "blocked_dependency_transfer_plan_required": 0,
+        "blocked_ownership_or_market_dependency_review_required": 0
+      },
+      {
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "total_rows": 10,
+        "dry_run_candidate_after_dependency_transfer_mapping": 10,
+        "dry_run_candidate_simple_duplicate_delete": 0,
+        "blocked_dependency_transfer_plan_required": 0,
+        "blocked_ownership_or_market_dependency_review_required": 0
+      },
+      {
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "total_rows": 2,
+        "dry_run_candidate_after_dependency_transfer_mapping": 2,
+        "dry_run_candidate_simple_duplicate_delete": 0,
+        "blocked_dependency_transfer_plan_required": 0,
+        "blocked_ownership_or_market_dependency_review_required": 0
+      },
+      {
+        "set_key": "pl4",
+        "set_name": "Arceus",
+        "total_rows": 6,
+        "dry_run_candidate_after_dependency_transfer_mapping": 6,
+        "dry_run_candidate_simple_duplicate_delete": 0,
+        "blocked_dependency_transfer_plan_required": 0,
+        "blocked_ownership_or_market_dependency_review_required": 0
+      }
+    ]
+  },
+  "transfer_plans": [
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "blocked_card_print_id": "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+      "survivor_card_print_id": "96794036-5dd7-42e5-a90f-516d90eeb3b9",
+      "target_number": "113",
+      "target_name": "Entei ★",
+      "blocked_current": {
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "name": "Entei Star",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": "ex10",
+        "number": "113",
+        "number_plain": "113",
+        "name": "Entei ★",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 489,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 3,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "justtcg_variant_price_snapshots",
+              "column": "card_print_id",
+              "refs": 473,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "justtcg_variant_prices_latest",
+              "column": "card_print_id",
+              "refs": 5,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "justtcg_variants",
+              "column": "card_print_id",
+              "refs": 5,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "597aa8d8-7e4d-4f0a-b4ce-ebb96ed800e8",
+          "survivor_card_printing_id": "8a688e28-242a-42b4-8ff7-99c0596e8c46",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "blocked_card_print_id": "043dbc47-0815-4ef4-b31d-2027f70f2338",
+      "survivor_card_print_id": "64269238-e6e3-4fd2-9c14-b9fb6367c0d5",
+      "target_number": "114",
+      "target_name": "Raikou ★",
+      "blocked_current": {
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "name": "Raikou Star",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": "ex10",
+        "number": "114",
+        "number_plain": "114",
+        "name": "Raikou ★",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 496,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 3,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "justtcg_variant_price_snapshots",
+              "column": "card_print_id",
+              "refs": 480,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "justtcg_variant_prices_latest",
+              "column": "card_print_id",
+              "refs": 5,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "justtcg_variants",
+              "column": "card_print_id",
+              "refs": 5,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "90eb803f-345c-46f0-b5f3-6fd62af386d5",
+          "survivor_card_printing_id": "f60ef6d8-25e4-491d-bea8-3ef02e4a5f64",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "blocked_card_print_id": "584c31ad-d7ac-4356-b9cc-4de3152511b2",
+      "survivor_card_print_id": "0aa71fae-b6ec-4a12-ac8d-35dbc3c769bf",
+      "target_number": "115",
+      "target_name": "Suicune ★",
+      "blocked_current": {
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "name": "Suicune Star",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": "ex10",
+        "number": "115",
+        "number_plain": "115",
+        "name": "Suicune ★",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 497,
+          "by_table": [
+            {
+              "table": "card_print_price_curves",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "ebay_active_price_snapshots",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "ebay_active_prices_latest",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 3,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "justtcg_variant_price_snapshots",
+              "column": "card_print_id",
+              "refs": 477,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "justtcg_variant_prices_latest",
+              "column": "card_print_id",
+              "refs": 5,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "justtcg_variants",
+              "column": "card_print_id",
+              "refs": 5,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "pricing_jobs",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "4d6df833-3363-46a8-ad80-12ad715d9aec",
+          "survivor_card_printing_id": "f0d6e039-67d0-4aa0-a284-499107fd5a56",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "blocked_card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+      "survivor_card_print_id": "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+      "target_number": "001",
+      "target_name": "Meganium",
+      "blocked_current": {
+        "set_code": null,
+        "number": "1",
+        "number_plain": "1",
+        "name": "Meganium",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": null,
+        "number": "001",
+        "number_plain": "001",
+        "name": "Meganium",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 2,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "2e4cadb9-44b8-490a-94af-3ea6f45f021f",
+          "survivor_card_printing_id": "fe043f63-7cd6-4095-a64b-5da01d4f48c0",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "blocked_card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+      "survivor_card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+      "target_number": "002",
+      "target_name": "Inteleon",
+      "blocked_current": {
+        "set_code": null,
+        "number": "2",
+        "number_plain": "2",
+        "name": "Inteleon",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": null,
+        "number": "002",
+        "number_plain": "002",
+        "name": "Inteleon",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 2,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "1d168cec-7194-42e4-9e62-691e5f1f8698",
+          "survivor_card_printing_id": "42918a6d-7aeb-42fe-9163-9489ea3070c5",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "blocked_card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+      "survivor_card_print_id": "718508f6-7825-43e8-98e1-a57b58dd490f",
+      "target_number": "003",
+      "target_name": "Alakazam",
+      "blocked_current": {
+        "set_code": null,
+        "number": "3",
+        "number_plain": "3",
+        "name": "Alakazam",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": null,
+        "number": "003",
+        "number_plain": "003",
+        "name": "Alakazam",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 2,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "7357533d-7e4b-430c-b8ce-f73c6d08cb55",
+          "survivor_card_printing_id": "c3fa605e-3e7f-419a-b09e-c5131e73664a",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "blocked_card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+      "survivor_card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+      "target_number": "004",
+      "target_name": "Lunatone",
+      "blocked_current": {
+        "set_code": null,
+        "number": "4",
+        "number_plain": "4",
+        "name": "Lunatone",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": null,
+        "number": "004",
+        "number_plain": "004",
+        "name": "Lunatone",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 2,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "cab49274-d396-43b7-a09a-9e43bd310abf",
+          "survivor_card_printing_id": "6f650737-4528-4b75-9b85-3037ce800dc2",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "blocked_card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+      "survivor_card_print_id": "c5b19da0-1f2d-4b86-844f-90284539099d",
+      "target_number": "005",
+      "target_name": "Drifloon",
+      "blocked_current": {
+        "set_code": null,
+        "number": "5",
+        "number_plain": "5",
+        "name": "Drifloon",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": null,
+        "number": "005",
+        "number_plain": "005",
+        "name": "Drifloon",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 2,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "52313084-cf51-490b-9b7d-ed4e00d30735",
+          "survivor_card_printing_id": "119ea6b4-8e8c-4f06-b5a1-a882fc9ddd23",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "blocked_card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+      "survivor_card_print_id": "69572cf4-a580-49cc-90d2-36c053f510a9",
+      "target_number": "006",
+      "target_name": "Drifblim",
+      "blocked_current": {
+        "set_code": null,
+        "number": "6",
+        "number_plain": "6",
+        "name": "Drifblim",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": null,
+        "number": "006",
+        "number_plain": "006",
+        "name": "Drifblim",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 2,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "e7102e38-efbc-4e3b-bf6f-fe4770b78b0d",
+          "survivor_card_printing_id": "09b92739-e605-4e7b-9e2f-78af37b9c744",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "blocked_card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+      "survivor_card_print_id": "a683bb41-182d-440b-9e6c-d82ebfd38f1d",
+      "target_number": "007",
+      "target_name": "Psyduck",
+      "blocked_current": {
+        "set_code": null,
+        "number": "7",
+        "number_plain": "7",
+        "name": "Psyduck",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": null,
+        "number": "007",
+        "number_plain": "007",
+        "name": "Psyduck",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 2,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "e54ac5bb-df1a-4fc0-8298-668e4f4f42f9",
+          "survivor_card_printing_id": "40163317-cb48-4a16-859e-ed40e9a52253",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "blocked_card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+      "survivor_card_print_id": "5dd278a1-ccaa-48e6-84c2-7190ee63c9d8",
+      "target_number": "008",
+      "target_name": "Golduck",
+      "blocked_current": {
+        "set_code": null,
+        "number": "8",
+        "number_plain": "8",
+        "name": "Golduck",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": null,
+        "number": "008",
+        "number_plain": "008",
+        "name": "Golduck",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 2,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "7c71fdbc-98d3-4e80-a8b3-2e8c89cb4d30",
+          "survivor_card_printing_id": "5cf6846f-dd2d-4701-9fec-08fc1456d58c",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "blocked_card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+      "survivor_card_print_id": "26726d70-a78d-4210-9ccc-d79abd215099",
+      "target_number": "009",
+      "target_name": "Alakazam",
+      "blocked_current": {
+        "set_code": null,
+        "number": "9",
+        "number_plain": "9",
+        "name": "Alakazam",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": null,
+        "number": "009",
+        "number_plain": "009",
+        "name": "Alakazam",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 2,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "b2cb6ae1-c137-4013-b9b1-ccdbd58c9549",
+          "survivor_card_printing_id": "7a730508-9c9b-4b2e-8ddc-2eb75bb81990",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "blocked_card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+      "survivor_card_print_id": "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+      "target_number": "010",
+      "target_name": "Riolu",
+      "blocked_current": {
+        "set_code": null,
+        "number": "10",
+        "number_plain": "10",
+        "name": "Riolu",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": null,
+        "number": "010",
+        "number_plain": "010",
+        "name": "Riolu",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 2,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "def4cbb4-1cc1-4ea4-86ed-e7d73c5dc5e0",
+          "survivor_card_printing_id": "10f0ed13-c908-4ac2-b03c-8c5db021f95b",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "blocked_card_print_id": "8c817161-627f-4ff5-aa27-127757b88213",
+      "survivor_card_print_id": "dd5bea69-e103-425d-9d45-adc5ff62d372",
+      "target_number": "71",
+      "target_name": "Nidoran ♀",
+      "blocked_current": {
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "name": "Nidoran♀",
+        "finishes": [
+          "normal",
+          "reverse"
+        ]
+      },
+      "survivor_current": {
+        "set_code": "pl2",
+        "number": "71",
+        "number_plain": "71",
+        "name": "Nidoran ♀",
+        "finishes": [
+          "normal",
+          "reverse"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 6,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 2,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 3,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 2,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "9845afbb-0b55-4f96-9022-4083c6ed71f0",
+          "survivor_card_printing_id": "41dd323a-cbda-43a0-8a5e-fa6235d54d1f",
+          "finish_key": "normal",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        },
+        {
+          "blocked_card_printing_id": "964e7f55-9290-4080-b26b-9e4188904654",
+          "survivor_card_printing_id": "07a5dd10-702a-41bb-96d8-a8cf0081ba1d",
+          "finish_key": "reverse",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "blocked_card_print_id": "bc120b0e-4aad-47c1-989b-a733435a2000",
+      "survivor_card_print_id": "0104fc59-640f-4470-8f46-17a8fea55b9a",
+      "target_number": "72",
+      "target_name": "Nidoran ♂",
+      "blocked_current": {
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "name": "Nidoran♂",
+        "finishes": [
+          "normal",
+          "reverse"
+        ]
+      },
+      "survivor_current": {
+        "set_code": "pl2",
+        "number": "72",
+        "number_plain": "72",
+        "name": "Nidoran ♂",
+        "finishes": [
+          "normal",
+          "reverse"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 6,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 2,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 7,
+          "by_table": [
+            {
+              "table": "card_print_price_curves",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 2,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "ebay_active_price_snapshots",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "ebay_active_prices_latest",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "pricing_jobs",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "65b6be37-a970-4308-8eec-82071cac0ba6",
+          "survivor_card_printing_id": "7bbc940e-a956-4b13-a88a-2f8bcc100b8c",
+          "finish_key": "normal",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        },
+        {
+          "blocked_card_printing_id": "784a887f-4b92-4cc9-9d5d-4e7ebd2e67f0",
+          "survivor_card_printing_id": "491361c0-ce32-4567-9d00-bd765b39328e",
+          "finish_key": "reverse",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "blocked_card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+      "survivor_card_print_id": "1c2cef32-b323-4e64-b9ae-51439d5cd9b0",
+      "target_number": "94",
+      "target_name": "Arceus LV.X",
+      "blocked_current": {
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "name": "Arceus LV. X",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": "pl4",
+        "number": "94",
+        "number_plain": "94",
+        "name": "Arceus LV.X",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 2,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "99c5947d-6376-4954-98cc-2534b0e1eb4d",
+          "survivor_card_printing_id": "ae5bd188-0613-422b-906c-414a45adcbac",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "blocked_card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+      "survivor_card_print_id": "7e583fc5-66d0-4142-bea2-ec1f927a1bdc",
+      "target_number": "95",
+      "target_name": "Arceus LV.X",
+      "blocked_current": {
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "name": "Arceus LV. X",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": "pl4",
+        "number": "95",
+        "number_plain": "95",
+        "name": "Arceus LV.X",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 2,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "e4a86716-ad79-4747-a09d-b7bd7b0b4f71",
+          "survivor_card_printing_id": "b609bfb9-c417-4108-bd23-809b1400f6bd",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "blocked_card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+      "survivor_card_print_id": "4196309e-77f4-4bc6-93ac-5a5583a99a8e",
+      "target_number": "96",
+      "target_name": "Arceus LV.X",
+      "blocked_current": {
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "name": "Arceus LV. X",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": "pl4",
+        "number": "96",
+        "number_plain": "96",
+        "name": "Arceus LV.X",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 2,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "e06a2a7a-b1e6-49a1-9fcf-105732fa7230",
+          "survivor_card_printing_id": "a403b284-475d-4047-94e7-991b9b80e865",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "blocked_card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+      "survivor_card_print_id": "c2c128a7-8b1b-4e15-a857-723292b1a1a3",
+      "target_number": "97",
+      "target_name": "Gengar LV.X",
+      "blocked_current": {
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "name": "Gengar LV. X",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": "pl4",
+        "number": "97",
+        "number_plain": "97",
+        "name": "Gengar LV.X",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 484,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_discovery_candidates",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "justtcg_variant_price_snapshots",
+              "column": "card_print_id",
+              "refs": 470,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "justtcg_variant_prices_latest",
+              "column": "card_print_id",
+              "refs": 5,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "justtcg_variants",
+              "column": "card_print_id",
+              "refs": 5,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "53bc5d29-3a55-4797-93dd-819ca5cbc923",
+          "survivor_card_printing_id": "90d31b85-ca12-4045-a952-2abc8c7aebe2",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "blocked_card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+      "survivor_card_print_id": "71d24e24-10ee-4047-93b1-14ab71bdaa1a",
+      "target_number": "98",
+      "target_name": "Salamence LV.X",
+      "blocked_current": {
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "name": "Salamence LV. X",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": "pl4",
+        "number": "98",
+        "number_plain": "98",
+        "name": "Salamence LV.X",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 489,
+          "by_table": [
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_discovery_candidates",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "justtcg_variant_price_snapshots",
+              "column": "card_print_id",
+              "refs": 475,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "justtcg_variant_prices_latest",
+              "column": "card_print_id",
+              "refs": 5,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "justtcg_variants",
+              "column": "card_print_id",
+              "refs": 5,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "e66af8cf-cc16-4ff8-93eb-c5c4f13bb75b",
+          "survivor_card_printing_id": "bf2b56a9-fc25-4d3b-96ba-400be1b902b2",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    },
+    {
+      "readiness": "dry_run_candidate_after_dependency_transfer_mapping",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "blocked_card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+      "survivor_card_print_id": "0b036f80-3ee6-47c4-8a08-fd128e273358",
+      "target_number": "99",
+      "target_name": "Tangrowth LV.X",
+      "blocked_current": {
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "name": "Tangrowth LV. X",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "survivor_current": {
+        "set_code": "pl4",
+        "number": "99",
+        "number_plain": "99",
+        "name": "Tangrowth LV.X",
+        "finishes": [
+          "holo"
+        ]
+      },
+      "parent_dependency_plan": {
+        "blocked_parent_refs": {
+          "total_refs": 5,
+          "by_table": [
+            {
+              "table": "card_print_identity",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_traits",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "survivor_parent_refs": {
+          "total_refs": 494,
+          "by_table": [
+            {
+              "table": "card_print_price_curves",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_print_species",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "card_printings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+            },
+            {
+              "table": "ebay_active_price_snapshots",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "ebay_active_prices_latest",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "external_discovery_candidates",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+            },
+            {
+              "table": "external_mappings",
+              "column": "card_print_id",
+              "refs": 1,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            },
+            {
+              "table": "justtcg_variant_price_snapshots",
+              "column": "card_print_id",
+              "refs": 475,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "justtcg_variant_prices_latest",
+              "column": "card_print_id",
+              "refs": 5,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "justtcg_variants",
+              "column": "card_print_id",
+              "refs": 5,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+            },
+            {
+              "table": "pricing_jobs",
+              "column": "card_print_id",
+              "refs": 2,
+              "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+            }
+          ]
+        },
+        "action_class": "transfer_or_dedupe_parent_dependencies_before_deleting_blocked_parent"
+      },
+      "child_dependency_plan": [
+        {
+          "blocked_card_printing_id": "aefe2eb1-ad38-418a-b814-320048008924",
+          "survivor_card_printing_id": "b5d81327-3537-4fa4-9407-79a0abec6d48",
+          "finish_key": "holo",
+          "duplicate_finish_exists_on_survivor": true,
+          "blocked_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "survivor_child_refs": {
+            "total_refs": 0,
+            "by_table": []
+          },
+          "action_class": "transfer_child_dependencies_then_delete_duplicate_child"
+        }
+      ],
+      "risk_flags": {
+        "all_children_have_survivor_duplicate": true,
+        "blocked_parent_has_dependencies": true,
+        "blocked_child_dependency_refs": 0,
+        "has_vault_or_ownership_refs": false
+      },
+      "allowed_next_step": "prepare_dependency_transfer_dry_run_artifact_only"
+    }
+  ],
+  "next_steps": [
+    "Do not run a merge/delete apply from this report.",
+    "Prepare a rollback-only dry-run artifact only for rows classified as dry-run candidates.",
+    "Rows with ownership, market, listing, slab, interaction, vault, or intent dependencies need manual review before any package.",
+    "The 58 number-key collision rows remain outside this lane."
+  ],
+  "safety": [
+    "No DB writes were performed.",
+    "No migrations were created.",
+    "No cleanup, quarantine, merge, delete, or apply path was executed.",
+    "This report does not authorize dependency transfer.",
+    "This report does not authorize deleting duplicate parents or child printings."
+  ],
+  "stop_findings": [],
+  "report_hash_sha256": "fc9fb5f1e91f7cf191f082ebaa386b8cebc7801518bdee87b528d5cd1235cef2",
+  "pass": true
+}

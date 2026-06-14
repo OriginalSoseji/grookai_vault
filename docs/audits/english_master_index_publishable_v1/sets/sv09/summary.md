@@ -6,7 +6,7 @@ Status: publishable_complete
 
 - set_key: sv09
 - cards: 190/190
-- printings: 368/368
+- printings: 369/369
 - completion_score: 100
 
 ## Finish Counts
@@ -15,6 +15,6 @@ Status: publishable_complete
 | --- | --- |
 | cosmos | 6 |
 | holo | 63 |
-| normal | 129 |
+| normal | 130 |
 | reverse | 143 |
 | stamped | 27 |

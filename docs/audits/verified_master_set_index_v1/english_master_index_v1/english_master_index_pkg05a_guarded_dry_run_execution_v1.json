@@ -1,0 +1,98 @@
+{
+  "generated_at": "2026-06-10T06:01:04.560Z",
+  "version": "english_master_index_pkg05a_guarded_dry_run_execution_v1",
+  "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+  "approval": {
+    "approval_text": "Approve PKG-05A preparation lifecycle through rollback-only dry-run execution and proof generation only. Fingerprint: da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1. Scope: 4 missing fully master-verified sets, 72 parent inserts, 80 child printings, 72 external mappings. No real apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+    "approved_readiness_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1",
+    "approved_scope": "rollback_only_dry_run_execution_and_proof_generation"
+  },
+  "source_artifact": {
+    "json_path": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg05a_final_snapshot_transaction_artifact_v1.json",
+    "sql_path": "C:\\grookai_vault\\docs\\sql\\english_master_index_pkg05a_missing_set_inserts_guarded_dry_run_transaction_v1.sql",
+    "source_readiness_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1",
+    "artifact_fingerprint_sha256": "df4c9dcae0a19731d4b96f9efd0322f5fde78722c0c08786e4d97a8a2d395dc9",
+    "sql_hash_sha256": "004b8d3399c6b889a7632928e0364438176a284f32ba8976e3a58cedc69eae03"
+  },
+  "package_scope": {
+    "selected_sets": [
+      {
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "expected_parent_rows": 15,
+        "expected_child_printings": 15
+      },
+      {
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "expected_parent_rows": 15,
+        "expected_child_printings": 15
+      },
+      {
+        "set_key": "mee",
+        "set_name": "Mega Evolution Energy",
+        "expected_parent_rows": 8,
+        "expected_child_printings": 16
+      },
+      {
+        "set_key": "mfb",
+        "set_name": "My First Battle",
+        "expected_parent_rows": 34,
+        "expected_child_printings": 34
+      }
+    ],
+    "counts": {
+      "planned_set_inserts": 4,
+      "planned_parent_inserts": 72,
+      "planned_child_printing_inserts": 80,
+      "planned_external_mapping_inserts": 72
+    }
+  },
+  "dry_run_execution_status": "guarded_dry_run_transaction_completed_and_rolled_back",
+  "error_message": null,
+  "transaction_artifact_executed": true,
+  "dry_run_insert_executed_inside_rolled_back_transaction": true,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_authorized": false,
+  "write_ready_now": 0,
+  "before_snapshot": {
+    "captured_at": "2026-06-10T06:01:03.567Z",
+    "rows": [],
+    "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "counts": {
+      "set_rows": 0,
+      "parent_rows": 0,
+      "child_printing_rows": 0,
+      "external_mapping_rows": 0,
+      "total_rows": 0
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-10T06:01:04.476Z",
+    "rows": [],
+    "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "counts": {
+      "set_rows": 0,
+      "parent_rows": 0,
+      "child_printing_rows": 0,
+      "external_mapping_rows": 0,
+      "total_rows": 0
+    }
+  },
+  "rollback_proof_rows": [
+    {
+      "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+      "readiness_fingerprint": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1",
+      "artifact_fingerprint": "df4c9dcae0a19731d4b96f9efd0322f5fde78722c0c08786e4d97a8a2d395dc9",
+      "planned_sets": 4,
+      "planned_parent_rows": 72,
+      "planned_child_rows": 80
+    }
+  ],
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "stop_findings": [],
+  "next_allowed_step": "Prepare real-apply gate only if separately requested. Real apply remains unauthorized."
+}

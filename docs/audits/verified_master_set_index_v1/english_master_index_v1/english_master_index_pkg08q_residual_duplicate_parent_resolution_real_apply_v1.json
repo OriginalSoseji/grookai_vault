@@ -1,0 +1,3661 @@
+{
+  "generated_at": "2026-06-10T21:14:20.008Z",
+  "version": "english_master_index_pkg08q_residual_duplicate_parent_resolution_real_apply_v1",
+  "package_id": "PKG-08Q-RESIDUAL-DUPLICATE-PARENT-RESOLUTION",
+  "package_fingerprint_sha256": "a0d03986b2871b4cb8b42a637bfbd695e54dc9cd4691760a16870eb14d283839",
+  "approval_text": "Approve real PKG-08Q-RESIDUAL-DUPLICATE-PARENT-RESOLUTION apply only. Fingerprint: a0d03986b2871b4cb8b42a637bfbd695e54dc9cd4691760a16870eb14d283839. Scope: 2 duplicate-parent groups, 3 child inserts, 2 empty duplicate parent deletes, 2 external mapping transfers, 0 discovery candidate transfers, 0 vault reference transfers, 0 vault instance transfers, 0 pricing watch transfers, 0 duplicate pricing watch deletes across 2 sets; 1 append-only feed row across 1 set excluded for separate non-delete strategy. Dry-run proof: 63f0beb47a99229eb7d53a0523fe3160ab78e497a27cefa6f7bb07860f26d704 == 63f0beb47a99229eb7d53a0523fe3160ab78e497a27cefa6f7bb07860f26d704. No global apply. No migrations. No unsupported cleanup. No quarantine.",
+  "apply_status": "pkg08q_residual_duplicate_parent_resolution_committed",
+  "db_write_committed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "unsupported_cleanup_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "groups": 2,
+    "child_inserts": 3,
+    "duplicate_parent_deletes": 2,
+    "mapping_transfers": 2,
+    "discovery_candidate_transfers": 0,
+    "vault_reference_transfers": 0,
+    "vault_instance_transfers": 0,
+    "pricing_watch_transfers": 0,
+    "pricing_watch_dedupe_deletes": 0,
+    "blocked_append_only_rows": 1,
+    "by_set": {
+      "swsh12.5": 1,
+      "swsh6": 2
+    },
+    "by_finish": {
+      "cosmos": 1,
+      "holo": 1,
+      "reverse": 1
+    },
+    "group_targets": [
+      {
+        "group_key": "swsh6|108|Single Strike Urshifu",
+        "set_key": "swsh6",
+        "card_number": "108",
+        "card_name": "Single Strike Urshifu",
+        "survivor_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+        "duplicate_card_print_ids": [
+          "32508efa-1201-4993-8511-ce6db3327e10"
+        ],
+        "strategy": "empty_duplicate_to_best_empty_survivor",
+        "survivor_existing_finishes": [],
+        "sources": [
+          "pokemontcg_api",
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/swsh6-108",
+          "https://www.tcgplayer.com/product/241783/pokemon-swsh06-chilling-reign-single-strike-urshifu",
+          "https://www.thepricedex.com/set/swsh6/chilling-reign/price-list"
+        ],
+        "child_targets": [
+          {
+            "group_key": "swsh6|108|Single Strike Urshifu",
+            "set_key": "swsh6",
+            "card_number": "108",
+            "card_name": "Single Strike Urshifu",
+            "finish_key": "holo",
+            "survivor_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+            "card_printing_id": "aaa0b94d-2bd3-4d0e-9153-df9c01329876",
+            "provenance_source": "verified_master_set_index_v1",
+            "provenance_ref": "swsh6:108:holo",
+            "created_by": "pkg08q_residual_duplicate_parent_resolution_guarded_dry_run_v1"
+          },
+          {
+            "group_key": "swsh6|108|Single Strike Urshifu",
+            "set_key": "swsh6",
+            "card_number": "108",
+            "card_name": "Single Strike Urshifu",
+            "finish_key": "reverse",
+            "survivor_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+            "card_printing_id": "c2644665-2c82-47dd-90e7-55dbd835bc33",
+            "provenance_source": "verified_master_set_index_v1",
+            "provenance_ref": "swsh6:108:reverse",
+            "created_by": "pkg08q_residual_duplicate_parent_resolution_guarded_dry_run_v1"
+          }
+        ]
+      },
+      {
+        "group_key": "swsh12.5|36|Kyogre",
+        "set_key": "swsh12.5",
+        "card_number": "36",
+        "card_name": "Kyogre",
+        "survivor_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+        "duplicate_card_print_ids": [
+          "0628ad3b-d2e4-459d-a635-f846016c0b72"
+        ],
+        "strategy": "empty_duplicate_to_populated_survivor",
+        "survivor_existing_finishes": [
+          "holo",
+          "reverse"
+        ],
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/39884/kyogre-crown-zenith-036-159",
+          "https://www.thepricedex.com/set/swsh12pt5/crown-zenith/price-list"
+        ],
+        "child_targets": [
+          {
+            "group_key": "swsh12.5|36|Kyogre",
+            "set_key": "swsh12.5",
+            "card_number": "36",
+            "card_name": "Kyogre",
+            "finish_key": "cosmos",
+            "survivor_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+            "card_printing_id": "5230f5af-350e-4b6c-bf60-753953ba7b29",
+            "provenance_source": "verified_master_set_index_v1",
+            "provenance_ref": "swsh12.5:36:cosmos",
+            "created_by": "pkg08q_residual_duplicate_parent_resolution_guarded_dry_run_v1"
+          }
+        ]
+      }
+    ],
+    "child_targets": [
+      {
+        "group_key": "swsh6|108|Single Strike Urshifu",
+        "set_key": "swsh6",
+        "card_number": "108",
+        "card_name": "Single Strike Urshifu",
+        "finish_key": "holo",
+        "survivor_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+        "card_printing_id": "aaa0b94d-2bd3-4d0e-9153-df9c01329876",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh6:108:holo",
+        "created_by": "pkg08q_residual_duplicate_parent_resolution_guarded_dry_run_v1"
+      },
+      {
+        "group_key": "swsh6|108|Single Strike Urshifu",
+        "set_key": "swsh6",
+        "card_number": "108",
+        "card_name": "Single Strike Urshifu",
+        "finish_key": "reverse",
+        "survivor_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+        "card_printing_id": "c2644665-2c82-47dd-90e7-55dbd835bc33",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh6:108:reverse",
+        "created_by": "pkg08q_residual_duplicate_parent_resolution_guarded_dry_run_v1"
+      },
+      {
+        "group_key": "swsh12.5|36|Kyogre",
+        "set_key": "swsh12.5",
+        "card_number": "36",
+        "card_name": "Kyogre",
+        "finish_key": "cosmos",
+        "survivor_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+        "card_printing_id": "5230f5af-350e-4b6c-bf60-753953ba7b29",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh12.5:36:cosmos",
+        "created_by": "pkg08q_residual_duplicate_parent_resolution_guarded_dry_run_v1"
+      }
+    ],
+    "blocked_rows_detail": [
+      {
+        "adjudication_lane": "duplicate_exact_parent",
+        "recommended_next_action": "Prepare duplicate-parent dependency transfer plan; do not insert new parent.",
+        "set_key": "sv03.5",
+        "set_name": "151",
+        "card_number": "25",
+        "card_name": "Pikachu",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "exact_parent_match_count": 2,
+        "same_number_candidate_count": 2,
+        "same_number_candidates": [
+          {
+            "card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d",
+            "set_code": "sv03.5",
+            "number": "025",
+            "number_plain": "025",
+            "name": "Pikachu",
+            "rarity": "Common",
+            "finishes": [
+              "normal",
+              "reverse"
+            ],
+            "child_count": 2,
+            "external_mapping_count": 2,
+            "vault_item_count": 1
+          },
+          {
+            "card_print_id": "a058c87e-0779-4e90-b60e-81d8c90b0b50",
+            "set_code": "sv03.5",
+            "number": "025",
+            "number_plain": "025",
+            "name": "Pikachu",
+            "rarity": null,
+            "finishes": [],
+            "child_count": 0,
+            "external_mapping_count": 2,
+            "vault_item_count": 1
+          }
+        ],
+        "sources": [
+          "bulbapedia_card_page_release_info",
+          "bulbapedia_set_list",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(151_25)",
+          "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+        ],
+        "blocked_reason": "duplicate_parent_has_append_only_card_feed_events_requires_non_delete_strategy"
+      }
+    ]
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-10T21:14:17.506Z",
+    "rows": [
+      {
+        "card_print_id": "0628ad3b-d2e4-459d-a635-f846016c0b72",
+        "set_code": "swsh12.5",
+        "card_number": "036",
+        "number": "036",
+        "number_plain": "036",
+        "name": "Kyogre",
+        "rarity": "Rare",
+        "target_role": "duplicate_parent",
+        "card_printings": [],
+        "external_mappings": [
+          {
+            "id": 121251,
+            "meta": {
+              "gv_id": "GV-PK-CRZ-036-PLAY-POKEMON-STAMP",
+              "batch_index": 10,
+              "promoted_by": "promote_source_backed_justtcg_mapping_v1",
+              "stamp_label": "Play! Pokémon Stamp",
+              "variant_key": "play_pokemon_stamp",
+              "mapping_mode": "source_backed_batch_input",
+              "source_family": "prize-pack-series-cards-pokemon",
+              "source_reason": "promoted_stamped_row_with_exact_source_backed_identity",
+              "batch_input_path": "C:\\grookai_vault\\docs\\checkpoints\\warehouse\\prize_pack_ready_batch_v3_23.json",
+              "effective_set_code": "swsh12.5",
+              "source_external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+              "source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-04-19T05:02:46.783+00:00",
+            "external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+            "card_print_id": "0628ad3b-d2e4-459d-a635-f846016c0b72"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "31f83a95-52b3-4984-8971-416a307ad3ed",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Kyogre",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "kyogre"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "52fb8669-9cbd-4da6-92b9-a62e898e1cf9",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "0628ad3b-d2e4-459d-a635-f846016c0b72",
+            "counts_for_completion": true
+          }
+        ],
+        "canon_warehouse_candidates": [
+          {
+            "id": "94409071-c486-4965-88bf-ae54c5601da2",
+            "notes": "External discovery bridge v1 candidate for Crown Zenith: Kyogre 036/159. Source candidate 3568e461-5b2a-408f-ae06-fc6c48566172 from external_discovery_candidates (prize-pack-series-cards-pokemon). Original discovery classification: set_mapping_missing.",
+            "state": "PROMOTED",
+            "created_at": "2026-04-19T04:54:27.124111+00:00",
+            "updated_at": "2026-04-19T05:01:38.342991+00:00",
+            "archived_at": null,
+            "promoted_at": "2026-04-19T05:01:37.231+00:00",
+            "rejected_at": null,
+            "tcgplayer_id": "538731",
+            "archive_notes": null,
+            "intake_channel": "MANUAL",
+            "promotion_notes": null,
+            "rejection_notes": null,
+            "submission_type": "EXTERNAL_DISCOVERY_BRIDGE_V1",
+            "submission_intent": "MISSING_CARD",
+            "current_staging_id": "7f979c41-8f10-413b-9d14-c516eeb5997c",
+            "archived_by_user_id": null,
+            "founder_approved_at": "2026-04-19T04:59:21.119+00:00",
+            "identity_resolution": "PROMOTE_VARIANT",
+            "promoted_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+            "rejected_by_user_id": null,
+            "interpreter_decision": "ROW",
+            "proposed_action_type": "CREATE_CARD_PRINT",
+            "submitted_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+            "identity_audit_status": "VARIANT_IDENTITY",
+            "promotion_result_type": "CARD_PRINT_CREATED",
+            "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+            "needs_promotion_review": false,
+            "promoted_card_print_id": "0628ad3b-d2e4-459d-a635-f846016c0b72",
+            "interpreter_explanation": "Identity slot audit classified swsh12.5 #036/159 Kyogre as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+            "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+            "reference_hints_payload": {
+              "name": "Kyogre",
+              "number": "036/159",
+              "rarity": "Rare",
+              "set_code": "swsh12.5",
+              "set_hint": "swsh12.5",
+              "set_name": "Crown Zenith",
+              "card_name": "Kyogre",
+              "provenance": {
+                "source_table": "external_discovery_candidates",
+                "bridge_source": "external_discovery_bridge_v1",
+                "source_set_id": "prize-pack-series-cards-pokemon",
+                "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+                "source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+                "source_raw_import_id": "41568"
+              },
+              "rarity_hint": "Rare",
+              "stamp_label": "Play! Pokémon Stamp",
+              "upstream_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+              "variant_key": "play_pokemon_stamp",
+              "match_status": "AMBIGUOUS",
+              "number_plain": "36",
+              "source_table": "external_discovery_candidates",
+              "tcgplayer_id": "538731",
+              "bridge_source": "external_discovery_bridge_v1",
+              "source_set_id": "prize-pack-series-cards-pokemon",
+              "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+              "printed_number": "036/159",
+              "external_source": "justtcg",
+              "normalized_name": "Kyogre",
+              "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+              "has_slash_number": true,
+              "variant_identity": {
+                "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+                "status": "RESOLVED_STAMPED_IDENTITY",
+                "applies": true,
+                "stamp_label": "Play! Pokémon Stamp",
+                "variant_key": "play_pokemon_stamp",
+                "source_evidence": {
+                  "batch_index": 10,
+                  "source_set_id": "prize-pack-series-cards-pokemon",
+                  "pre_intake_audit": {
+                    "blocker_class": null,
+                    "evidence_tier": "TIER_2",
+                    "live_base_gv_id": "GV-PK-CRZ-036",
+                    "current_live_state": "READY_TO_BRIDGE",
+                    "live_raw_import_id": "41568",
+                    "exact_variant_absent": true,
+                    "live_warehouse_state": null,
+                    "exact_base_row_exists": true,
+                    "supported_series_list": [
+                      4
+                    ],
+                    "exact_source_row_exists": true,
+                    "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+                    "live_source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+                    "confirmed_series_coverage": [
+                      4
+                    ],
+                    "live_warehouse_hold_reason": null,
+                    "live_existing_variant_gv_id": null,
+                    "live_promoted_card_print_id": null,
+                    "live_warehouse_candidate_id": null,
+                    "live_existing_variant_card_print_id": null
+                  },
+                  "source_external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+                  "canonical_queue_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+                  "underlying_base_proof_summary": {
+                    "base_gv_id": "GV-PK-CRZ-036",
+                    "evidence_tier": "TIER_2",
+                    "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+                    "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+                    "supported_series_list": [
+                      4
+                    ],
+                    "underlying_base_state": "PROVEN",
+                    "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420"
+                  }
+                },
+                "collision_group_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+                "illustration_category": null,
+                "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch"
+              },
+              "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+              "collision_group_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+              "source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+              "source_card_snapshot": {
+                "name": "Kyogre",
+                "number": "036/159",
+                "rarity": "Rare",
+                "set_name": "Prize Pack Series Cards",
+                "external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+                "tcgplayer_id": "538731",
+                "set_external_id": "prize-pack-series-cards-pokemon",
+                "variant_summary": {
+                  "variant_count": 5,
+                  "language_labels": [
+                    "English"
+                  ],
+                  "printing_labels": [
+                    "Holofoil",
+                    "Normal"
+                  ],
+                  "condition_labels": [
+                    "Lightly Played",
+                    "Moderately Played",
+                    "Near Mint"
+                  ]
+                }
+              },
+              "source_raw_import_id": "41568",
+              "illustration_category": null,
+              "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+              "normalized_number_left": "036",
+              "has_alpha_suffix_number": false,
+              "normalized_number_plain": "36",
+              "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+              "normalized_printed_total": "159",
+              "stamped_identity_evidence": {
+                "batch_index": 10,
+                "pre_intake_audit": {
+                  "blocker_class": null,
+                  "evidence_tier": "TIER_2",
+                  "live_base_gv_id": "GV-PK-CRZ-036",
+                  "current_live_state": "READY_TO_BRIDGE",
+                  "live_raw_import_id": "41568",
+                  "exact_variant_absent": true,
+                  "live_warehouse_state": null,
+                  "exact_base_row_exists": true,
+                  "supported_series_list": [
+                    4
+                  ],
+                  "exact_source_row_exists": true,
+                  "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+                  "live_source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+                  "confirmed_series_coverage": [
+                    4
+                  ],
+                  "live_warehouse_hold_reason": null,
+                  "live_existing_variant_gv_id": null,
+                  "live_promoted_card_print_id": null,
+                  "live_warehouse_candidate_id": null,
+                  "live_existing_variant_card_print_id": null
+                },
+                "canonical_queue_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+                "underlying_base_proof_summary": {
+                  "base_gv_id": "GV-PK-CRZ-036",
+                  "evidence_tier": "TIER_2",
+                  "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+                  "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+                  "supported_series_list": [
+                    4
+                  ],
+                  "underlying_base_state": "PROVEN",
+                  "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420"
+                }
+              },
+              "has_parenthetical_modifier": false,
+              "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+              "original_classification_reason": "set_mapping_missing"
+            },
+            "claimed_identity_payload": {
+              "name": "Kyogre",
+              "number": "036/159",
+              "rarity": "Rare",
+              "set_code": "swsh12.5",
+              "set_hint": "swsh12.5",
+              "set_name": "Crown Zenith",
+              "card_name": "Kyogre",
+              "rarity_hint": "Rare",
+              "upstream_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+              "variant_key": "play_pokemon_stamp",
+              "number_plain": "36",
+              "source_table": "external_discovery_candidates",
+              "bridge_source": "external_discovery_bridge_v1",
+              "source_set_id": "prize-pack-series-cards-pokemon",
+              "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+              "printed_number": "036/159",
+              "external_source": "justtcg",
+              "source_evidence": {
+                "stamp_label": "Play! Pokémon Stamp",
+                "normalized_name": "Kyogre",
+                "classification_reason": "set_mapping_missing",
+                "normalized_number_plain": "36"
+              },
+              "variant_identity": {
+                "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+                "status": "RESOLVED_STAMPED_IDENTITY",
+                "applies": true,
+                "stamp_label": "Play! Pokémon Stamp",
+                "variant_key": "play_pokemon_stamp",
+                "source_evidence": {
+                  "batch_index": 10,
+                  "source_set_id": "prize-pack-series-cards-pokemon",
+                  "pre_intake_audit": {
+                    "blocker_class": null,
+                    "evidence_tier": "TIER_2",
+                    "live_base_gv_id": "GV-PK-CRZ-036",
+                    "current_live_state": "READY_TO_BRIDGE",
+                    "live_raw_import_id": "41568",
+                    "exact_variant_absent": true,
+                    "live_warehouse_state": null,
+                    "exact_base_row_exists": true,
+                    "supported_series_list": [
+                      4
+                    ],
+                    "exact_source_row_exists": true,
+                    "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+                    "live_source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+                    "confirmed_series_coverage": [
+                      4
+                    ],
+                    "live_warehouse_hold_reason": null,
+                    "live_existing_variant_gv_id": null,
+                    "live_promoted_card_print_id": null,
+                    "live_warehouse_candidate_id": null,
+                    "live_existing_variant_card_print_id": null
+                  },
+                  "source_external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+                  "canonical_queue_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+                  "underlying_base_proof_summary": {
+                    "base_gv_id": "GV-PK-CRZ-036",
+                    "evidence_tier": "TIER_2",
+                    "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+                    "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+                    "supported_series_list": [
+                      4
+                    ],
+                    "underlying_base_state": "PROVEN",
+                    "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420"
+                  }
+                },
+                "collision_group_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+                "illustration_category": null,
+                "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch"
+              },
+              "collision_group_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+              "source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+              "source_raw_import_id": "41568",
+              "illustration_category": null,
+              "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+              "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+              "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch"
+            },
+            "promoted_image_target_id": null,
+            "promoted_card_printing_id": null,
+            "current_review_hold_reason": null,
+            "identity_audit_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+            "promoted_image_target_type": null,
+            "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+            "interpreter_resolved_finish_key": null
+          }
+        ],
+        "external_discovery_candidates": [],
+        "justtcg_variant_count": 10,
+        "justtcg_latest_count": 10,
+        "justtcg_snapshot_count": 970,
+        "pricing_watch": [],
+        "vault_item_instances": [],
+        "vault_items": []
+      },
+      {
+        "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+        "set_code": "swsh12.5",
+        "card_number": "036",
+        "number": "036",
+        "number_plain": "036",
+        "name": "Kyogre",
+        "rarity": "Holo Rare",
+        "target_role": "survivor_parent",
+        "card_printings": [
+          {
+            "id": "58da3a2f-a0ff-4b00-ac44-c532c51bc6c2",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-CRZ-036-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "47722c7d-f526-4409-a88a-653e341e3555",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-CRZ-036-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 90886,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "036/159",
+              "justtcg_set_name": "Crown Zenith",
+              "tcgplayer_external_id": "478135"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:24:33.32+00:00",
+            "external_id": "pokemon-crown-zenith-kyogre-holo-rare",
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420"
+          },
+          {
+            "id": 58855,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-22T22:11:30.495833+00:00",
+            "external_id": "swsh12.5-036",
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420"
+          },
+          {
+            "id": 64101,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "swsh12.5-036",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.holofoil.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:05:38.032+00:00",
+            "external_id": "478135",
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "bafa1a78-221b-4bd3-890f-43edfd97993b",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Kyogre",
+              "supertype": "Pokemon",
+              "card_category": "Basic",
+              "matched_token": "kyogre"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "52fb8669-9cbd-4da6-92b9-a62e898e1cf9",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+            "counts_for_completion": true
+          }
+        ],
+        "canon_warehouse_candidates": [],
+        "external_discovery_candidates": [
+          {
+            "id": "77030309-7c1a-48d8-ba42-32ca82ee8055",
+            "set_id": "crown-zenith-pokemon",
+            "source": "justtcg",
+            "payload": {
+              "id": "pokemon-crown-zenith-kyogre-holo-rare",
+              "set": "crown-zenith-pokemon",
+              "game": "Pokemon",
+              "name": "Kyogre",
+              "_kind": "card",
+              "number": "036/159",
+              "rarity": "Holo Rare",
+              "details": null,
+              "set_name": "Crown Zenith",
+              "variants": [
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_near-mint_reverse-holofoil",
+                  "price": 0.38,
+                  "avgPrice": 0.39,
+                  "language": "English",
+                  "printing": "Reverse Holofoil",
+                  "condition": "Near Mint",
+                  "covPrice7d": 0.015810276679841896,
+                  "iqrPrice7d": 0,
+                  "maxPrice1y": 0.63,
+                  "maxPrice7d": 0.4,
+                  "minPrice1y": 0.16,
+                  "minPrice7d": 0.38,
+                  "avgPrice30d": 0.41,
+                  "avgPrice90d": 0.37,
+                  "covPrice30d": 0.06320197537241598,
+                  "covPrice90d": 0.11585442860411421,
+                  "iqrPrice30d": 0.05,
+                  "iqrPrice90d": 0.07,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.45,
+                  "maxPrice90d": 0.45,
+                  "minPrice30d": 0.37,
+                  "minPrice90d": 0.26,
+                  "priceHistory": [
+                    {
+                      "p": 0.39,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.4,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.39,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.39,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.38,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.39,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": -0.00202847631722538,
+                  "priceChange7d": -5,
+                  "trendSlope30d": -0.00198379114715169,
+                  "trendSlope90d": 0.00103690576668883,
+                  "priceChange30d": -9.52,
+                  "priceChange90d": 15.15,
+                  "tcgplayerSkuId": "6927075",
+                  "maxPriceAllTime": 0.63,
+                  "minPriceAllTime": 0.16,
+                  "priceChange24hr": 0,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.39,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.4,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.39,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.39,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.38,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.39,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0.01,
+                  "stddevPopPrice30d": 0.03,
+                  "stddevPopPrice90d": 0.04,
+                  "maxPriceAllTimeDate": "2025-06-17T02:28:52.426Z",
+                  "minPriceAllTimeDate": "2025-11-06T20:34:37.927Z",
+                  "priceChangesCount7d": 6,
+                  "priceChangesCount30d": 20,
+                  "priceChangesCount90d": 66,
+                  "priceRelativeTo30dRange": 0.125,
+                  "priceRelativeTo90dRange": 0.631578947368421
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_lightly-played_reverse-holofoil",
+                  "price": 0.37,
+                  "avgPrice": 0.37,
+                  "language": "English",
+                  "printing": "Reverse Holofoil",
+                  "condition": "Lightly Played",
+                  "covPrice7d": 0,
+                  "iqrPrice7d": 0,
+                  "maxPrice1y": 0.46,
+                  "maxPrice7d": 0.37,
+                  "minPrice1y": 0.32,
+                  "minPrice7d": 0.37,
+                  "avgPrice30d": 0.36,
+                  "avgPrice90d": 0.35,
+                  "covPrice30d": 0.020693601122121402,
+                  "covPrice90d": 0.0425446686848623,
+                  "iqrPrice30d": 0.01,
+                  "iqrPrice90d": 0.02,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.37,
+                  "maxPrice90d": 0.37,
+                  "minPrice30d": 0.35,
+                  "minPrice90d": 0.32,
+                  "priceHistory": [
+                    {
+                      "p": 0.37,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": 0,
+                  "priceChange7d": 0,
+                  "trendSlope30d": 0.00067131368873142,
+                  "trendSlope90d": 0.00048614076224600696,
+                  "priceChange30d": 5.71,
+                  "priceChange90d": 8.82,
+                  "tcgplayerSkuId": "6927076",
+                  "maxPriceAllTime": 0.46,
+                  "minPriceAllTime": 0.32,
+                  "priceChange24hr": 0,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.37,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0,
+                  "stddevPopPrice30d": 0.01,
+                  "stddevPopPrice90d": 0.01,
+                  "maxPriceAllTimeDate": "2025-08-14T16:17:53.872Z",
+                  "minPriceAllTimeDate": "2026-01-29T15:47:30.399Z",
+                  "priceChangesCount7d": 0,
+                  "priceChangesCount30d": 13,
+                  "priceChangesCount90d": 23,
+                  "priceRelativeTo30dRange": 1,
+                  "priceRelativeTo90dRange": 1
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_lightly-played_holofoil",
+                  "price": 0.36,
+                  "avgPrice": 0.36,
+                  "language": "English",
+                  "printing": "Holofoil",
+                  "condition": "Lightly Played",
+                  "covPrice7d": 0.02213164312302289,
+                  "iqrPrice7d": 0.01,
+                  "maxPrice1y": 0.37,
+                  "maxPrice7d": 0.37,
+                  "minPrice1y": 0.22,
+                  "minPrice7d": 0.35,
+                  "avgPrice30d": 0.35,
+                  "avgPrice90d": 0.33,
+                  "covPrice30d": 0.03397693530858822,
+                  "covPrice90d": 0.09076279063117583,
+                  "iqrPrice30d": 0.01,
+                  "iqrPrice90d": 0.05,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.37,
+                  "maxPrice90d": 0.37,
+                  "minPrice30d": 0.33,
+                  "minPrice90d": 0.28,
+                  "priceHistory": [
+                    {
+                      "p": 0.36,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.36,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": -0.0030499257576166398,
+                  "priceChange7d": -2.7,
+                  "trendSlope30d": 0.000508671430977336,
+                  "trendSlope90d": 0.000985292661895469,
+                  "priceChange30d": 2.86,
+                  "priceChange90d": 20,
+                  "tcgplayerSkuId": "6927071",
+                  "maxPriceAllTime": 0.37,
+                  "minPriceAllTime": 0.22,
+                  "priceChange24hr": 2.86,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.36,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.36,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0.01,
+                  "stddevPopPrice30d": 0.01,
+                  "stddevPopPrice90d": 0.03,
+                  "maxPriceAllTimeDate": "2026-03-25T12:02:52.390Z",
+                  "minPriceAllTimeDate": "2025-08-26T18:09:53.028Z",
+                  "priceChangesCount7d": 3,
+                  "priceChangesCount30d": 13,
+                  "priceChangesCount90d": 25,
+                  "priceRelativeTo30dRange": 0.75,
+                  "priceRelativeTo90dRange": 0.8888888888888888
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_heavily-played_reverse-holofoil",
+                  "price": 0.3,
+                  "avgPrice": 0.3,
+                  "language": "English",
+                  "printing": "Reverse Holofoil",
+                  "condition": "Heavily Played",
+                  "covPrice7d": 0,
+                  "iqrPrice7d": 0,
+                  "maxPrice1y": 0.3,
+                  "maxPrice7d": 0.3,
+                  "minPrice1y": 0.3,
+                  "minPrice7d": 0.3,
+                  "avgPrice30d": 0.3,
+                  "avgPrice90d": 0.3,
+                  "covPrice30d": 0,
+                  "covPrice90d": 0,
+                  "iqrPrice30d": 0,
+                  "iqrPrice90d": 0,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.3,
+                  "maxPrice90d": 0.3,
+                  "minPrice30d": 0.3,
+                  "minPrice90d": 0.3,
+                  "priceHistory": [
+                    {
+                      "p": 0.3,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": 0,
+                  "priceChange7d": 0,
+                  "trendSlope30d": 0,
+                  "trendSlope90d": 0,
+                  "priceChange30d": 0,
+                  "priceChange90d": 0,
+                  "tcgplayerSkuId": null,
+                  "maxPriceAllTime": 0.3,
+                  "minPriceAllTime": 0.3,
+                  "priceChange24hr": 0,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.3,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0,
+                  "stddevPopPrice30d": 0,
+                  "stddevPopPrice90d": 0,
+                  "maxPriceAllTimeDate": "2026-03-31T03:52:37.364Z",
+                  "minPriceAllTimeDate": "2026-03-31T03:52:37.364Z",
+                  "priceChangesCount7d": 0,
+                  "priceChangesCount30d": 1,
+                  "priceChangesCount90d": 1,
+                  "priceRelativeTo30dRange": null,
+                  "priceRelativeTo90dRange": null
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_moderately-played_reverse-holofoil",
+                  "price": 0.27,
+                  "avgPrice": 0.27,
+                  "language": "English",
+                  "printing": "Reverse Holofoil",
+                  "condition": "Moderately Played",
+                  "covPrice7d": 0,
+                  "iqrPrice7d": 0,
+                  "maxPrice1y": 0.4,
+                  "maxPrice7d": 0.27,
+                  "minPrice1y": 0.26,
+                  "minPrice7d": 0.27,
+                  "avgPrice30d": 0.26,
+                  "avgPrice90d": 0.28,
+                  "covPrice30d": 0.017607226182639605,
+                  "covPrice90d": 0.08496515428037822,
+                  "iqrPrice30d": 0.01,
+                  "iqrPrice90d": 0.02,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.27,
+                  "maxPrice90d": 0.36,
+                  "minPrice30d": 0.26,
+                  "minPrice90d": 0.26,
+                  "priceHistory": [
+                    {
+                      "p": 0.27,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": 0,
+                  "priceChange7d": 0,
+                  "trendSlope30d": 0.00043056106788287704,
+                  "trendSlope90d": -0.0006043351412298461,
+                  "priceChange30d": 3.85,
+                  "priceChange90d": -25,
+                  "tcgplayerSkuId": "6927077",
+                  "maxPriceAllTime": 0.4,
+                  "minPriceAllTime": 0.26,
+                  "priceChange24hr": 0,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.27,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0,
+                  "stddevPopPrice30d": 0,
+                  "stddevPopPrice90d": 0.02,
+                  "maxPriceAllTimeDate": "2025-05-18T21:49:24.569Z",
+                  "minPriceAllTimeDate": "2026-03-21T15:03:33.602Z",
+                  "priceChangesCount7d": 0,
+                  "priceChangesCount30d": 1,
+                  "priceChangesCount90d": 3,
+                  "priceRelativeTo30dRange": 1,
+                  "priceRelativeTo90dRange": 0.1
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_moderately-played_holofoil",
+                  "price": 0.24,
+                  "avgPrice": 0.24,
+                  "language": "English",
+                  "printing": "Holofoil",
+                  "condition": "Moderately Played",
+                  "covPrice7d": 0,
+                  "iqrPrice7d": 0,
+                  "maxPrice1y": 0.28,
+                  "maxPrice7d": 0.24,
+                  "minPrice1y": 0.15,
+                  "minPrice7d": 0.24,
+                  "avgPrice30d": 0.25,
+                  "avgPrice90d": 0.26,
+                  "covPrice30d": 0.03562865321457797,
+                  "covPrice90d": 0.04807999191612574,
+                  "iqrPrice30d": 0.02,
+                  "iqrPrice90d": 0.01,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.26,
+                  "maxPrice90d": 0.28,
+                  "minPrice30d": 0.24,
+                  "minPrice90d": 0.24,
+                  "priceHistory": [
+                    {
+                      "p": 0.24,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": 0,
+                  "priceChange7d": 0,
+                  "trendSlope30d": -0.000940773401575149,
+                  "trendSlope90d": -0.00015624948854014702,
+                  "priceChange30d": -7.69,
+                  "priceChange90d": -4,
+                  "tcgplayerSkuId": "6927072",
+                  "maxPriceAllTime": 0.28,
+                  "minPriceAllTime": 0.15,
+                  "priceChange24hr": 0,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.24,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0,
+                  "stddevPopPrice30d": 0.01,
+                  "stddevPopPrice90d": 0.01,
+                  "maxPriceAllTimeDate": "2026-02-04T23:29:30.859Z",
+                  "minPriceAllTimeDate": "2025-08-08T09:51:44.759Z",
+                  "priceChangesCount7d": 0,
+                  "priceChangesCount30d": 2,
+                  "priceChangesCount90d": 5,
+                  "priceRelativeTo30dRange": 0,
+                  "priceRelativeTo90dRange": 0
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_near-mint_holofoil",
+                  "price": 0.24,
+                  "avgPrice": 0.26,
+                  "language": "English",
+                  "printing": "Holofoil",
+                  "condition": "Near Mint",
+                  "covPrice7d": 0.05939307662687791,
+                  "iqrPrice7d": 0.02,
+                  "maxPrice1y": 0.34,
+                  "maxPrice7d": 0.28,
+                  "minPrice1y": 0.14,
+                  "minPrice7d": 0.23,
+                  "avgPrice30d": 0.26,
+                  "avgPrice90d": 0.24,
+                  "covPrice30d": 0.08753796371715696,
+                  "covPrice90d": 0.1450907066097117,
+                  "iqrPrice30d": 0.03,
+                  "iqrPrice90d": 0.05,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.31,
+                  "maxPrice90d": 0.31,
+                  "minPrice30d": 0.21,
+                  "minPrice90d": 0.15,
+                  "priceHistory": [
+                    {
+                      "p": 0.27,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.26,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.26,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.26,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.25,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": -0.00655556013887316,
+                  "priceChange7d": -14.29,
+                  "trendSlope30d": 0.00104946718987822,
+                  "trendSlope90d": 0.0008248897664196459,
+                  "priceChange30d": 14.29,
+                  "priceChange90d": -7.69,
+                  "tcgplayerSkuId": "6927070",
+                  "maxPriceAllTime": 0.34,
+                  "minPriceAllTime": 0.14,
+                  "priceChange24hr": 4.35,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.27,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.26,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.26,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.26,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.25,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0.02,
+                  "stddevPopPrice30d": 0.02,
+                  "stddevPopPrice90d": 0.04,
+                  "maxPriceAllTimeDate": "2025-10-09T20:13:28.919Z",
+                  "minPriceAllTimeDate": "2025-11-16T09:16:07.174Z",
+                  "priceChangesCount7d": 16,
+                  "priceChangesCount30d": 41,
+                  "priceChangesCount90d": 105,
+                  "priceRelativeTo30dRange": 0.3,
+                  "priceRelativeTo90dRange": 0.5625
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_damaged_holofoil",
+                  "price": 0.14,
+                  "avgPrice": 0.13,
+                  "language": "English",
+                  "printing": "Holofoil",
+                  "condition": "Damaged",
+                  "covPrice7d": 0.03468208092485549,
+                  "iqrPrice7d": 0.01,
+                  "maxPrice1y": 0.14,
+                  "maxPrice7d": 0.14,
+                  "minPrice1y": 0.1,
+                  "minPrice7d": 0.13,
+                  "avgPrice30d": 0.12,
+                  "avgPrice90d": 0.11,
+                  "covPrice30d": 0.10354465527555079,
+                  "covPrice90d": 0.12773921504331542,
+                  "iqrPrice30d": 0,
+                  "iqrPrice90d": 0.03,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.14,
+                  "maxPrice90d": 0.14,
+                  "minPrice30d": 0.1,
+                  "minPrice90d": 0.1,
+                  "priceHistory": [
+                    {
+                      "p": 0.13,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.13,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.13,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.13,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.14,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.14,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": 0.0018179494229589,
+                  "priceChange7d": 7.69,
+                  "trendSlope30d": 0.00111983692983873,
+                  "trendSlope90d": 0.00041855006077354403,
+                  "priceChange30d": 40,
+                  "priceChange90d": 40,
+                  "tcgplayerSkuId": "6927074",
+                  "maxPriceAllTime": 0.14,
+                  "minPriceAllTime": 0.1,
+                  "priceChange24hr": 0,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.13,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.13,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.13,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.13,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.14,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.14,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0,
+                  "stddevPopPrice30d": 0.01,
+                  "stddevPopPrice90d": 0.01,
+                  "maxPriceAllTimeDate": "2026-03-31T03:52:37.364Z",
+                  "minPriceAllTimeDate": "2026-03-07T11:39:22.006Z",
+                  "priceChangesCount7d": 1,
+                  "priceChangesCount30d": 2,
+                  "priceChangesCount90d": 2,
+                  "priceRelativeTo30dRange": 1,
+                  "priceRelativeTo90dRange": 1
+                }
+              ],
+              "mtgjsonId": null,
+              "scryfallId": null,
+              "_fetched_at": "2026-03-31T05:39:21.868Z",
+              "tcgplayerId": "478135",
+              "_external_id": "pokemon-crown-zenith-kyogre-holo-rare",
+              "_set_external_id": "crown-zenith-pokemon",
+              "_grookai_ingestion_v1": {
+                "matched_via": "justtcg_external_mapping",
+                "source_phase": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+                "classification": "MATCHED",
+                "worker_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+                "confidence_score": 1,
+                "normalized_number": "036",
+                "normalized_name_key": "kyogre",
+                "inferred_variant_key": "",
+                "candidate_set_mapping": [
+                  "swsh12.5"
+                ],
+                "classification_reason": "active_justtcg_external_mapping",
+                "extracted_number_plain": "36",
+                "candidate_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+                "candidate_card_print_ids": [
+                  "1b93ccb8-ed56-4ae3-941f-40d039582420"
+                ]
+              }
+            },
+            "name_raw": "Kyogre",
+            "created_at": "2026-04-13T03:02:06.020149+00:00",
+            "number_raw": "036/159",
+            "upstream_id": "pokemon-crown-zenith-kyogre-holo-rare",
+            "match_status": "RESOLVED",
+            "tcgplayer_id": "478135",
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+            "raw_import_id": 32432,
+            "normalized_name": "Kyogre",
+            "candidate_bucket": "CLEAN_CANON_CANDIDATE",
+            "has_slash_number": true,
+            "resolved_set_code": "swsh12.5",
+            "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+            "normalized_number_left": "036",
+            "has_alpha_suffix_number": false,
+            "normalized_number_plain": "36",
+            "normalized_printed_total": "159",
+            "has_parenthetical_modifier": false
+          }
+        ],
+        "justtcg_variant_count": 8,
+        "justtcg_latest_count": 8,
+        "justtcg_snapshot_count": 24,
+        "pricing_watch": [],
+        "vault_item_instances": [],
+        "vault_items": []
+      },
+      {
+        "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+        "set_code": "swsh6",
+        "card_number": "108",
+        "number": "108",
+        "number_plain": "108",
+        "name": "Single Strike Urshifu",
+        "rarity": "Rare Holo",
+        "target_role": "survivor_parent",
+        "card_printings": [],
+        "external_mappings": [
+          {
+            "id": 87324,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "108/198",
+              "justtcg_set_name": "SWSH06: Chilling Reign",
+              "tcgplayer_external_id": "241783"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:09:38.808+00:00",
+            "external_id": "pokemon-swsh06-chilling-reign-single-strike-urshifu-holo-rare",
+            "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+          },
+          {
+            "id": 5396,
+            "meta": null,
+            "active": true,
+            "source": "pokemonapi",
+            "synced_at": "2025-11-18T07:20:57.230181+00:00",
+            "external_id": "swsh6-108",
+            "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+          },
+          {
+            "id": 39940,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-08T18:52:39.835193+00:00",
+            "external_id": "swsh6-108",
+            "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+          },
+          {
+            "id": 66943,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "swsh6-108",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.holofoil.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:24:48.289+00:00",
+            "external_id": "241783",
+            "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "40787757-b8a1-4d71-a026-71245b578164",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Single Strike Urshifu",
+              "supertype": "Pokemon",
+              "card_category": "Stage1",
+              "matched_token": "urshifu"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "0001b179-ff94-4974-9a1a-bccc3e328a48",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+            "counts_for_completion": true
+          }
+        ],
+        "canon_warehouse_candidates": [],
+        "external_discovery_candidates": [],
+        "justtcg_variant_count": 10,
+        "justtcg_latest_count": 10,
+        "justtcg_snapshot_count": 991,
+        "pricing_watch": [],
+        "vault_item_instances": [],
+        "vault_items": []
+      },
+      {
+        "card_print_id": "32508efa-1201-4993-8511-ce6db3327e10",
+        "set_code": "swsh6",
+        "card_number": "108",
+        "number": "108",
+        "number_plain": "108",
+        "name": "Single Strike Urshifu",
+        "rarity": "Rare",
+        "target_role": "duplicate_parent",
+        "card_printings": [],
+        "external_mappings": [
+          {
+            "id": 121429,
+            "meta": {
+              "gv_id": "GV-PK-CRE-108-PLAY-POKEMON-STAMP",
+              "batch_index": 16,
+              "promoted_by": "promote_source_backed_justtcg_mapping_v1",
+              "stamp_label": "Play! Pokémon Stamp",
+              "variant_key": "play_pokemon_stamp",
+              "mapping_mode": "source_backed_batch_input",
+              "source_family": "prize-pack-series-cards-pokemon",
+              "source_reason": "promoted_stamped_row_with_exact_source_backed_identity",
+              "batch_input_path": "C:\\grookai_vault\\docs\\checkpoints\\warehouse\\prize_pack_ready_batch_v6_source_upgrade_series_1.json",
+              "effective_set_code": "swsh6",
+              "source_external_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+              "source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-04-21T04:14:26.604+00:00",
+            "external_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+            "card_print_id": "32508efa-1201-4993-8511-ce6db3327e10"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "19abc735-d262-4b8c-84cd-132ef7d605c6",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Single Strike Urshifu",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "urshifu"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "0001b179-ff94-4974-9a1a-bccc3e328a48",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "32508efa-1201-4993-8511-ce6db3327e10",
+            "counts_for_completion": true
+          }
+        ],
+        "canon_warehouse_candidates": [
+          {
+            "id": "f3054a9f-0e58-4605-a776-fb2cc8ce5c99",
+            "notes": "External discovery bridge v1 candidate for Chilling Reign: Single Strike Urshifu 108/198. Source candidate 1a3d7883-77c2-4868-8c5d-78060c78055c from external_discovery_candidates (prize-pack-series-cards-pokemon). Original discovery classification: set_mapping_missing.",
+            "state": "PROMOTED",
+            "created_at": "2026-04-21T04:11:23.144751+00:00",
+            "updated_at": "2026-04-21T04:14:10.80198+00:00",
+            "archived_at": null,
+            "promoted_at": "2026-04-21T04:14:09.586+00:00",
+            "rejected_at": null,
+            "tcgplayer_id": "476059",
+            "archive_notes": null,
+            "intake_channel": "MANUAL",
+            "promotion_notes": null,
+            "rejection_notes": null,
+            "submission_type": "EXTERNAL_DISCOVERY_BRIDGE_V1",
+            "submission_intent": "MISSING_CARD",
+            "current_staging_id": "cabf3053-360d-47e4-9ed8-b93c7a7a50bc",
+            "archived_by_user_id": null,
+            "founder_approved_at": "2026-04-21T04:12:08.517+00:00",
+            "identity_resolution": "PROMOTE_VARIANT",
+            "promoted_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+            "rejected_by_user_id": null,
+            "interpreter_decision": "ROW",
+            "proposed_action_type": "CREATE_CARD_PRINT",
+            "submitted_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+            "identity_audit_status": "VARIANT_IDENTITY",
+            "promotion_result_type": "CARD_PRINT_CREATED",
+            "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V6_SOURCE_UPGRADE_SERIES_1 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+            "needs_promotion_review": false,
+            "promoted_card_print_id": "32508efa-1201-4993-8511-ce6db3327e10",
+            "interpreter_explanation": "Identity slot audit classified swsh6 #108/198 Single Strike Urshifu as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+            "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+            "reference_hints_payload": {
+              "name": "Single Strike Urshifu",
+              "number": "108/198",
+              "rarity": "Rare",
+              "set_code": "swsh6",
+              "set_hint": "swsh6",
+              "set_name": "Chilling Reign",
+              "card_name": "Single Strike Urshifu",
+              "provenance": {
+                "source_table": "external_discovery_candidates",
+                "bridge_source": "external_discovery_bridge_v1",
+                "source_set_id": "prize-pack-series-cards-pokemon",
+                "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+                "source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c",
+                "source_raw_import_id": "41609"
+              },
+              "rarity_hint": "Rare",
+              "stamp_label": "Play! Pokémon Stamp",
+              "upstream_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+              "variant_key": "play_pokemon_stamp",
+              "match_status": "AMBIGUOUS",
+              "number_plain": "108",
+              "source_table": "external_discovery_candidates",
+              "tcgplayer_id": "476059",
+              "bridge_source": "external_discovery_bridge_v1",
+              "source_set_id": "prize-pack-series-cards-pokemon",
+              "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+              "printed_number": "108/198",
+              "external_source": "justtcg",
+              "normalized_name": "Single Strike Urshifu",
+              "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+              "has_slash_number": true,
+              "variant_identity": {
+                "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+                "status": "RESOLVED_STAMPED_IDENTITY",
+                "applies": true,
+                "stamp_label": "Play! Pokémon Stamp",
+                "variant_key": "play_pokemon_stamp",
+                "source_evidence": {
+                  "batch_index": 16,
+                  "source_set_id": "prize-pack-series-cards-pokemon",
+                  "pre_intake_audit": {
+                    "blocker_class": null,
+                    "live_base_gv_id": "GV-PK-CRE-108",
+                    "current_live_state": "READY_TO_BRIDGE",
+                    "live_raw_import_id": "41609",
+                    "exact_variant_absent": true,
+                    "live_warehouse_state": null,
+                    "exact_base_row_exists": true,
+                    "exact_source_row_exists": true,
+                    "live_base_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+                    "live_source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c",
+                    "live_warehouse_hold_reason": null,
+                    "live_existing_variant_gv_id": null,
+                    "live_promoted_card_print_id": null,
+                    "live_warehouse_candidate_id": null,
+                    "live_existing_variant_card_print_id": null
+                  },
+                  "source_external_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+                  "canonical_queue_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+                  "underlying_base_proof_summary": {
+                    "base_gv_id": "GV-PK-CRE-108",
+                    "live_base_set_code": "swsh6",
+                    "live_base_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+                  }
+                },
+                "collision_group_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+                "illustration_category": null,
+                "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch"
+              },
+              "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+              "collision_group_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+              "source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c",
+              "source_card_snapshot": {
+                "name": "Single Strike Urshifu",
+                "number": "108/198",
+                "rarity": "Rare",
+                "set_name": "Prize Pack Series Cards",
+                "external_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+                "tcgplayer_id": "476059",
+                "set_external_id": "prize-pack-series-cards-pokemon",
+                "variant_summary": {
+                  "variant_count": 4,
+                  "language_labels": [
+                    "English"
+                  ],
+                  "printing_labels": [
+                    "Normal"
+                  ],
+                  "condition_labels": [
+                    "Damaged",
+                    "Lightly Played",
+                    "Moderately Played",
+                    "Near Mint"
+                  ]
+                }
+              },
+              "source_raw_import_id": "41609",
+              "illustration_category": null,
+              "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+              "normalized_number_left": "108",
+              "has_alpha_suffix_number": false,
+              "normalized_number_plain": "108",
+              "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+              "normalized_printed_total": "198",
+              "stamped_identity_evidence": {
+                "batch_index": 16,
+                "pre_intake_audit": {
+                  "blocker_class": null,
+                  "live_base_gv_id": "GV-PK-CRE-108",
+                  "current_live_state": "READY_TO_BRIDGE",
+                  "live_raw_import_id": "41609",
+                  "exact_variant_absent": true,
+                  "live_warehouse_state": null,
+                  "exact_base_row_exists": true,
+                  "exact_source_row_exists": true,
+                  "live_base_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+                  "live_source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c",
+                  "live_warehouse_hold_reason": null,
+                  "live_existing_variant_gv_id": null,
+                  "live_promoted_card_print_id": null,
+                  "live_warehouse_candidate_id": null,
+                  "live_existing_variant_card_print_id": null
+                },
+                "canonical_queue_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+                "underlying_base_proof_summary": {
+                  "base_gv_id": "GV-PK-CRE-108",
+                  "live_base_set_code": "swsh6",
+                  "live_base_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+                }
+              },
+              "has_parenthetical_modifier": false,
+              "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+              "original_classification_reason": "set_mapping_missing"
+            },
+            "claimed_identity_payload": {
+              "name": "Single Strike Urshifu",
+              "number": "108/198",
+              "rarity": "Rare",
+              "set_code": "swsh6",
+              "set_hint": "swsh6",
+              "set_name": "Chilling Reign",
+              "card_name": "Single Strike Urshifu",
+              "rarity_hint": "Rare",
+              "upstream_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+              "variant_key": "play_pokemon_stamp",
+              "number_plain": "108",
+              "source_table": "external_discovery_candidates",
+              "bridge_source": "external_discovery_bridge_v1",
+              "source_set_id": "prize-pack-series-cards-pokemon",
+              "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+              "printed_number": "108/198",
+              "external_source": "justtcg",
+              "source_evidence": {
+                "stamp_label": "Play! Pokémon Stamp",
+                "normalized_name": "Single Strike Urshifu",
+                "classification_reason": "set_mapping_missing",
+                "normalized_number_plain": "108"
+              },
+              "variant_identity": {
+                "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+                "status": "RESOLVED_STAMPED_IDENTITY",
+                "applies": true,
+                "stamp_label": "Play! Pokémon Stamp",
+                "variant_key": "play_pokemon_stamp",
+                "source_evidence": {
+                  "batch_index": 16,
+                  "source_set_id": "prize-pack-series-cards-pokemon",
+                  "pre_intake_audit": {
+                    "blocker_class": null,
+                    "live_base_gv_id": "GV-PK-CRE-108",
+                    "current_live_state": "READY_TO_BRIDGE",
+                    "live_raw_import_id": "41609",
+                    "exact_variant_absent": true,
+                    "live_warehouse_state": null,
+                    "exact_base_row_exists": true,
+                    "exact_source_row_exists": true,
+                    "live_base_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+                    "live_source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c",
+                    "live_warehouse_hold_reason": null,
+                    "live_existing_variant_gv_id": null,
+                    "live_promoted_card_print_id": null,
+                    "live_warehouse_candidate_id": null,
+                    "live_existing_variant_card_print_id": null
+                  },
+                  "source_external_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+                  "canonical_queue_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+                  "underlying_base_proof_summary": {
+                    "base_gv_id": "GV-PK-CRE-108",
+                    "live_base_set_code": "swsh6",
+                    "live_base_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+                  }
+                },
+                "collision_group_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+                "illustration_category": null,
+                "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch"
+              },
+              "collision_group_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+              "source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c",
+              "source_raw_import_id": "41609",
+              "illustration_category": null,
+              "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+              "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+              "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch"
+            },
+            "promoted_image_target_id": null,
+            "promoted_card_printing_id": null,
+            "current_review_hold_reason": null,
+            "identity_audit_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+            "promoted_image_target_type": null,
+            "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+            "interpreter_resolved_finish_key": null
+          }
+        ],
+        "external_discovery_candidates": [],
+        "justtcg_variant_count": 5,
+        "justtcg_latest_count": 5,
+        "justtcg_snapshot_count": 485,
+        "pricing_watch": [],
+        "vault_item_instances": [],
+        "vault_items": []
+      }
+    ],
+    "hash_sha256": "63f0beb47a99229eb7d53a0523fe3160ab78e497a27cefa6f7bb07860f26d704",
+    "impact_counts": {
+      "duplicate_parent_rows": 2,
+      "survivor_parent_rows": 2,
+      "duplicate_child_rows": 0,
+      "survivor_target_child_rows": 0,
+      "duplicate_external_mapping_rows": 2,
+      "survivor_external_mapping_rows": 7,
+      "duplicate_species_rows": 2,
+      "duplicate_warehouse_candidate_rows": 2,
+      "duplicate_external_discovery_candidate_rows": 0,
+      "duplicate_justtcg_variant_rows": 15,
+      "duplicate_justtcg_latest_rows": 15,
+      "duplicate_justtcg_snapshot_rows": 1455,
+      "duplicate_pricing_watch_rows": 0,
+      "duplicate_vault_instance_rows": 0,
+      "duplicate_vault_rows": 0,
+      "duplicate_card_feed_event_rows": 0
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-10T21:14:19.923Z",
+    "rows": [
+      {
+        "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+        "set_code": "swsh12.5",
+        "card_number": "036",
+        "number": "036",
+        "number_plain": "036",
+        "name": "Kyogre",
+        "rarity": "Holo Rare",
+        "target_role": "survivor_parent",
+        "card_printings": [
+          {
+            "id": "5230f5af-350e-4b6c-bf60-753953ba7b29",
+            "image_url": null,
+            "created_at": "2026-06-10T21:14:18.170002+00:00",
+            "created_by": "pkg08q_residual_duplicate_parent_resolution_guarded_dry_run_v1",
+            "finish_key": "cosmos",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "swsh12.5:36:cosmos",
+            "provenance_source": "verified_master_set_index_v1"
+          },
+          {
+            "id": "58da3a2f-a0ff-4b00-ac44-c532c51bc6c2",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-CRZ-036-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "47722c7d-f526-4409-a88a-653e341e3555",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-CRZ-036-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 90886,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "036/159",
+              "justtcg_set_name": "Crown Zenith",
+              "tcgplayer_external_id": "478135"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:24:33.32+00:00",
+            "external_id": "pokemon-crown-zenith-kyogre-holo-rare",
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420"
+          },
+          {
+            "id": 121251,
+            "meta": {
+              "gv_id": "GV-PK-CRZ-036-PLAY-POKEMON-STAMP",
+              "batch_index": 10,
+              "promoted_by": "promote_source_backed_justtcg_mapping_v1",
+              "stamp_label": "Play! Pokémon Stamp",
+              "variant_key": "play_pokemon_stamp",
+              "mapping_mode": "source_backed_batch_input",
+              "source_family": "prize-pack-series-cards-pokemon",
+              "source_reason": "promoted_stamped_row_with_exact_source_backed_identity",
+              "batch_input_path": "C:\\grookai_vault\\docs\\checkpoints\\warehouse\\prize_pack_ready_batch_v3_23.json",
+              "effective_set_code": "swsh12.5",
+              "source_external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+              "source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-04-19T05:02:46.783+00:00",
+            "external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420"
+          },
+          {
+            "id": 58855,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-22T22:11:30.495833+00:00",
+            "external_id": "swsh12.5-036",
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420"
+          },
+          {
+            "id": 64101,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "swsh12.5-036",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.holofoil.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:05:38.032+00:00",
+            "external_id": "478135",
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "bafa1a78-221b-4bd3-890f-43edfd97993b",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Kyogre",
+              "supertype": "Pokemon",
+              "card_category": "Basic",
+              "matched_token": "kyogre"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "52fb8669-9cbd-4da6-92b9-a62e898e1cf9",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+            "counts_for_completion": true
+          }
+        ],
+        "canon_warehouse_candidates": [
+          {
+            "id": "94409071-c486-4965-88bf-ae54c5601da2",
+            "notes": "External discovery bridge v1 candidate for Crown Zenith: Kyogre 036/159. Source candidate 3568e461-5b2a-408f-ae06-fc6c48566172 from external_discovery_candidates (prize-pack-series-cards-pokemon). Original discovery classification: set_mapping_missing.",
+            "state": "PROMOTED",
+            "created_at": "2026-04-19T04:54:27.124111+00:00",
+            "updated_at": "2026-06-10T21:14:18.170002+00:00",
+            "archived_at": null,
+            "promoted_at": "2026-04-19T05:01:37.231+00:00",
+            "rejected_at": null,
+            "tcgplayer_id": "538731",
+            "archive_notes": null,
+            "intake_channel": "MANUAL",
+            "promotion_notes": null,
+            "rejection_notes": null,
+            "submission_type": "EXTERNAL_DISCOVERY_BRIDGE_V1",
+            "submission_intent": "MISSING_CARD",
+            "current_staging_id": "7f979c41-8f10-413b-9d14-c516eeb5997c",
+            "archived_by_user_id": null,
+            "founder_approved_at": "2026-04-19T04:59:21.119+00:00",
+            "identity_resolution": "PROMOTE_VARIANT",
+            "promoted_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+            "rejected_by_user_id": null,
+            "interpreter_decision": "ROW",
+            "proposed_action_type": "CREATE_CARD_PRINT",
+            "submitted_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+            "identity_audit_status": "VARIANT_IDENTITY",
+            "promotion_result_type": "CARD_PRINT_CREATED",
+            "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+            "needs_promotion_review": false,
+            "promoted_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+            "interpreter_explanation": "Identity slot audit classified swsh12.5 #036/159 Kyogre as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+            "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+            "reference_hints_payload": {
+              "name": "Kyogre",
+              "number": "036/159",
+              "rarity": "Rare",
+              "set_code": "swsh12.5",
+              "set_hint": "swsh12.5",
+              "set_name": "Crown Zenith",
+              "card_name": "Kyogre",
+              "provenance": {
+                "source_table": "external_discovery_candidates",
+                "bridge_source": "external_discovery_bridge_v1",
+                "source_set_id": "prize-pack-series-cards-pokemon",
+                "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+                "source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+                "source_raw_import_id": "41568"
+              },
+              "rarity_hint": "Rare",
+              "stamp_label": "Play! Pokémon Stamp",
+              "upstream_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+              "variant_key": "play_pokemon_stamp",
+              "match_status": "AMBIGUOUS",
+              "number_plain": "36",
+              "source_table": "external_discovery_candidates",
+              "tcgplayer_id": "538731",
+              "bridge_source": "external_discovery_bridge_v1",
+              "source_set_id": "prize-pack-series-cards-pokemon",
+              "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+              "printed_number": "036/159",
+              "external_source": "justtcg",
+              "normalized_name": "Kyogre",
+              "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+              "has_slash_number": true,
+              "variant_identity": {
+                "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+                "status": "RESOLVED_STAMPED_IDENTITY",
+                "applies": true,
+                "stamp_label": "Play! Pokémon Stamp",
+                "variant_key": "play_pokemon_stamp",
+                "source_evidence": {
+                  "batch_index": 10,
+                  "source_set_id": "prize-pack-series-cards-pokemon",
+                  "pre_intake_audit": {
+                    "blocker_class": null,
+                    "evidence_tier": "TIER_2",
+                    "live_base_gv_id": "GV-PK-CRZ-036",
+                    "current_live_state": "READY_TO_BRIDGE",
+                    "live_raw_import_id": "41568",
+                    "exact_variant_absent": true,
+                    "live_warehouse_state": null,
+                    "exact_base_row_exists": true,
+                    "supported_series_list": [
+                      4
+                    ],
+                    "exact_source_row_exists": true,
+                    "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+                    "live_source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+                    "confirmed_series_coverage": [
+                      4
+                    ],
+                    "live_warehouse_hold_reason": null,
+                    "live_existing_variant_gv_id": null,
+                    "live_promoted_card_print_id": null,
+                    "live_warehouse_candidate_id": null,
+                    "live_existing_variant_card_print_id": null
+                  },
+                  "source_external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+                  "canonical_queue_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+                  "underlying_base_proof_summary": {
+                    "base_gv_id": "GV-PK-CRZ-036",
+                    "evidence_tier": "TIER_2",
+                    "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+                    "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+                    "supported_series_list": [
+                      4
+                    ],
+                    "underlying_base_state": "PROVEN",
+                    "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420"
+                  }
+                },
+                "collision_group_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+                "illustration_category": null,
+                "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch"
+              },
+              "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+              "collision_group_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+              "source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+              "source_card_snapshot": {
+                "name": "Kyogre",
+                "number": "036/159",
+                "rarity": "Rare",
+                "set_name": "Prize Pack Series Cards",
+                "external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+                "tcgplayer_id": "538731",
+                "set_external_id": "prize-pack-series-cards-pokemon",
+                "variant_summary": {
+                  "variant_count": 5,
+                  "language_labels": [
+                    "English"
+                  ],
+                  "printing_labels": [
+                    "Holofoil",
+                    "Normal"
+                  ],
+                  "condition_labels": [
+                    "Lightly Played",
+                    "Moderately Played",
+                    "Near Mint"
+                  ]
+                }
+              },
+              "source_raw_import_id": "41568",
+              "illustration_category": null,
+              "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+              "normalized_number_left": "036",
+              "has_alpha_suffix_number": false,
+              "normalized_number_plain": "36",
+              "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+              "normalized_printed_total": "159",
+              "stamped_identity_evidence": {
+                "batch_index": 10,
+                "pre_intake_audit": {
+                  "blocker_class": null,
+                  "evidence_tier": "TIER_2",
+                  "live_base_gv_id": "GV-PK-CRZ-036",
+                  "current_live_state": "READY_TO_BRIDGE",
+                  "live_raw_import_id": "41568",
+                  "exact_variant_absent": true,
+                  "live_warehouse_state": null,
+                  "exact_base_row_exists": true,
+                  "supported_series_list": [
+                    4
+                  ],
+                  "exact_source_row_exists": true,
+                  "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+                  "live_source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+                  "confirmed_series_coverage": [
+                    4
+                  ],
+                  "live_warehouse_hold_reason": null,
+                  "live_existing_variant_gv_id": null,
+                  "live_promoted_card_print_id": null,
+                  "live_warehouse_candidate_id": null,
+                  "live_existing_variant_card_print_id": null
+                },
+                "canonical_queue_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+                "underlying_base_proof_summary": {
+                  "base_gv_id": "GV-PK-CRZ-036",
+                  "evidence_tier": "TIER_2",
+                  "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+                  "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+                  "supported_series_list": [
+                    4
+                  ],
+                  "underlying_base_state": "PROVEN",
+                  "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420"
+                }
+              },
+              "has_parenthetical_modifier": false,
+              "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+              "original_classification_reason": "set_mapping_missing"
+            },
+            "claimed_identity_payload": {
+              "name": "Kyogre",
+              "number": "036/159",
+              "rarity": "Rare",
+              "set_code": "swsh12.5",
+              "set_hint": "swsh12.5",
+              "set_name": "Crown Zenith",
+              "card_name": "Kyogre",
+              "rarity_hint": "Rare",
+              "upstream_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+              "variant_key": "play_pokemon_stamp",
+              "number_plain": "36",
+              "source_table": "external_discovery_candidates",
+              "bridge_source": "external_discovery_bridge_v1",
+              "source_set_id": "prize-pack-series-cards-pokemon",
+              "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+              "printed_number": "036/159",
+              "external_source": "justtcg",
+              "source_evidence": {
+                "stamp_label": "Play! Pokémon Stamp",
+                "normalized_name": "Kyogre",
+                "classification_reason": "set_mapping_missing",
+                "normalized_number_plain": "36"
+              },
+              "variant_identity": {
+                "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+                "status": "RESOLVED_STAMPED_IDENTITY",
+                "applies": true,
+                "stamp_label": "Play! Pokémon Stamp",
+                "variant_key": "play_pokemon_stamp",
+                "source_evidence": {
+                  "batch_index": 10,
+                  "source_set_id": "prize-pack-series-cards-pokemon",
+                  "pre_intake_audit": {
+                    "blocker_class": null,
+                    "evidence_tier": "TIER_2",
+                    "live_base_gv_id": "GV-PK-CRZ-036",
+                    "current_live_state": "READY_TO_BRIDGE",
+                    "live_raw_import_id": "41568",
+                    "exact_variant_absent": true,
+                    "live_warehouse_state": null,
+                    "exact_base_row_exists": true,
+                    "supported_series_list": [
+                      4
+                    ],
+                    "exact_source_row_exists": true,
+                    "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+                    "live_source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+                    "confirmed_series_coverage": [
+                      4
+                    ],
+                    "live_warehouse_hold_reason": null,
+                    "live_existing_variant_gv_id": null,
+                    "live_promoted_card_print_id": null,
+                    "live_warehouse_candidate_id": null,
+                    "live_existing_variant_card_print_id": null
+                  },
+                  "source_external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+                  "canonical_queue_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+                  "underlying_base_proof_summary": {
+                    "base_gv_id": "GV-PK-CRZ-036",
+                    "evidence_tier": "TIER_2",
+                    "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+                    "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+                    "supported_series_list": [
+                      4
+                    ],
+                    "underlying_base_state": "PROVEN",
+                    "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420"
+                  }
+                },
+                "collision_group_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+                "illustration_category": null,
+                "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch"
+              },
+              "collision_group_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+              "source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+              "source_raw_import_id": "41568",
+              "illustration_category": null,
+              "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+              "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+              "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch"
+            },
+            "promoted_image_target_id": null,
+            "promoted_card_printing_id": null,
+            "current_review_hold_reason": null,
+            "identity_audit_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+            "promoted_image_target_type": null,
+            "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+            "interpreter_resolved_finish_key": null
+          }
+        ],
+        "external_discovery_candidates": [
+          {
+            "id": "77030309-7c1a-48d8-ba42-32ca82ee8055",
+            "set_id": "crown-zenith-pokemon",
+            "source": "justtcg",
+            "payload": {
+              "id": "pokemon-crown-zenith-kyogre-holo-rare",
+              "set": "crown-zenith-pokemon",
+              "game": "Pokemon",
+              "name": "Kyogre",
+              "_kind": "card",
+              "number": "036/159",
+              "rarity": "Holo Rare",
+              "details": null,
+              "set_name": "Crown Zenith",
+              "variants": [
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_near-mint_reverse-holofoil",
+                  "price": 0.38,
+                  "avgPrice": 0.39,
+                  "language": "English",
+                  "printing": "Reverse Holofoil",
+                  "condition": "Near Mint",
+                  "covPrice7d": 0.015810276679841896,
+                  "iqrPrice7d": 0,
+                  "maxPrice1y": 0.63,
+                  "maxPrice7d": 0.4,
+                  "minPrice1y": 0.16,
+                  "minPrice7d": 0.38,
+                  "avgPrice30d": 0.41,
+                  "avgPrice90d": 0.37,
+                  "covPrice30d": 0.06320197537241598,
+                  "covPrice90d": 0.11585442860411421,
+                  "iqrPrice30d": 0.05,
+                  "iqrPrice90d": 0.07,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.45,
+                  "maxPrice90d": 0.45,
+                  "minPrice30d": 0.37,
+                  "minPrice90d": 0.26,
+                  "priceHistory": [
+                    {
+                      "p": 0.39,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.4,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.39,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.39,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.38,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.39,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": -0.00202847631722538,
+                  "priceChange7d": -5,
+                  "trendSlope30d": -0.00198379114715169,
+                  "trendSlope90d": 0.00103690576668883,
+                  "priceChange30d": -9.52,
+                  "priceChange90d": 15.15,
+                  "tcgplayerSkuId": "6927075",
+                  "maxPriceAllTime": 0.63,
+                  "minPriceAllTime": 0.16,
+                  "priceChange24hr": 0,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.39,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.4,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.39,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.39,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.38,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.39,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0.01,
+                  "stddevPopPrice30d": 0.03,
+                  "stddevPopPrice90d": 0.04,
+                  "maxPriceAllTimeDate": "2025-06-17T02:28:52.426Z",
+                  "minPriceAllTimeDate": "2025-11-06T20:34:37.927Z",
+                  "priceChangesCount7d": 6,
+                  "priceChangesCount30d": 20,
+                  "priceChangesCount90d": 66,
+                  "priceRelativeTo30dRange": 0.125,
+                  "priceRelativeTo90dRange": 0.631578947368421
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_lightly-played_reverse-holofoil",
+                  "price": 0.37,
+                  "avgPrice": 0.37,
+                  "language": "English",
+                  "printing": "Reverse Holofoil",
+                  "condition": "Lightly Played",
+                  "covPrice7d": 0,
+                  "iqrPrice7d": 0,
+                  "maxPrice1y": 0.46,
+                  "maxPrice7d": 0.37,
+                  "minPrice1y": 0.32,
+                  "minPrice7d": 0.37,
+                  "avgPrice30d": 0.36,
+                  "avgPrice90d": 0.35,
+                  "covPrice30d": 0.020693601122121402,
+                  "covPrice90d": 0.0425446686848623,
+                  "iqrPrice30d": 0.01,
+                  "iqrPrice90d": 0.02,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.37,
+                  "maxPrice90d": 0.37,
+                  "minPrice30d": 0.35,
+                  "minPrice90d": 0.32,
+                  "priceHistory": [
+                    {
+                      "p": 0.37,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": 0,
+                  "priceChange7d": 0,
+                  "trendSlope30d": 0.00067131368873142,
+                  "trendSlope90d": 0.00048614076224600696,
+                  "priceChange30d": 5.71,
+                  "priceChange90d": 8.82,
+                  "tcgplayerSkuId": "6927076",
+                  "maxPriceAllTime": 0.46,
+                  "minPriceAllTime": 0.32,
+                  "priceChange24hr": 0,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.37,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.37,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0,
+                  "stddevPopPrice30d": 0.01,
+                  "stddevPopPrice90d": 0.01,
+                  "maxPriceAllTimeDate": "2025-08-14T16:17:53.872Z",
+                  "minPriceAllTimeDate": "2026-01-29T15:47:30.399Z",
+                  "priceChangesCount7d": 0,
+                  "priceChangesCount30d": 13,
+                  "priceChangesCount90d": 23,
+                  "priceRelativeTo30dRange": 1,
+                  "priceRelativeTo90dRange": 1
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_lightly-played_holofoil",
+                  "price": 0.36,
+                  "avgPrice": 0.36,
+                  "language": "English",
+                  "printing": "Holofoil",
+                  "condition": "Lightly Played",
+                  "covPrice7d": 0.02213164312302289,
+                  "iqrPrice7d": 0.01,
+                  "maxPrice1y": 0.37,
+                  "maxPrice7d": 0.37,
+                  "minPrice1y": 0.22,
+                  "minPrice7d": 0.35,
+                  "avgPrice30d": 0.35,
+                  "avgPrice90d": 0.33,
+                  "covPrice30d": 0.03397693530858822,
+                  "covPrice90d": 0.09076279063117583,
+                  "iqrPrice30d": 0.01,
+                  "iqrPrice90d": 0.05,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.37,
+                  "maxPrice90d": 0.37,
+                  "minPrice30d": 0.33,
+                  "minPrice90d": 0.28,
+                  "priceHistory": [
+                    {
+                      "p": 0.36,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.36,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": -0.0030499257576166398,
+                  "priceChange7d": -2.7,
+                  "trendSlope30d": 0.000508671430977336,
+                  "trendSlope90d": 0.000985292661895469,
+                  "priceChange30d": 2.86,
+                  "priceChange90d": 20,
+                  "tcgplayerSkuId": "6927071",
+                  "maxPriceAllTime": 0.37,
+                  "minPriceAllTime": 0.22,
+                  "priceChange24hr": 2.86,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.36,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.36,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.35,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0.01,
+                  "stddevPopPrice30d": 0.01,
+                  "stddevPopPrice90d": 0.03,
+                  "maxPriceAllTimeDate": "2026-03-25T12:02:52.390Z",
+                  "minPriceAllTimeDate": "2025-08-26T18:09:53.028Z",
+                  "priceChangesCount7d": 3,
+                  "priceChangesCount30d": 13,
+                  "priceChangesCount90d": 25,
+                  "priceRelativeTo30dRange": 0.75,
+                  "priceRelativeTo90dRange": 0.8888888888888888
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_heavily-played_reverse-holofoil",
+                  "price": 0.3,
+                  "avgPrice": 0.3,
+                  "language": "English",
+                  "printing": "Reverse Holofoil",
+                  "condition": "Heavily Played",
+                  "covPrice7d": 0,
+                  "iqrPrice7d": 0,
+                  "maxPrice1y": 0.3,
+                  "maxPrice7d": 0.3,
+                  "minPrice1y": 0.3,
+                  "minPrice7d": 0.3,
+                  "avgPrice30d": 0.3,
+                  "avgPrice90d": 0.3,
+                  "covPrice30d": 0,
+                  "covPrice90d": 0,
+                  "iqrPrice30d": 0,
+                  "iqrPrice90d": 0,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.3,
+                  "maxPrice90d": 0.3,
+                  "minPrice30d": 0.3,
+                  "minPrice90d": 0.3,
+                  "priceHistory": [
+                    {
+                      "p": 0.3,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": 0,
+                  "priceChange7d": 0,
+                  "trendSlope30d": 0,
+                  "trendSlope90d": 0,
+                  "priceChange30d": 0,
+                  "priceChange90d": 0,
+                  "tcgplayerSkuId": null,
+                  "maxPriceAllTime": 0.3,
+                  "minPriceAllTime": 0.3,
+                  "priceChange24hr": 0,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.3,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.3,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0,
+                  "stddevPopPrice30d": 0,
+                  "stddevPopPrice90d": 0,
+                  "maxPriceAllTimeDate": "2026-03-31T03:52:37.364Z",
+                  "minPriceAllTimeDate": "2026-03-31T03:52:37.364Z",
+                  "priceChangesCount7d": 0,
+                  "priceChangesCount30d": 1,
+                  "priceChangesCount90d": 1,
+                  "priceRelativeTo30dRange": null,
+                  "priceRelativeTo90dRange": null
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_moderately-played_reverse-holofoil",
+                  "price": 0.27,
+                  "avgPrice": 0.27,
+                  "language": "English",
+                  "printing": "Reverse Holofoil",
+                  "condition": "Moderately Played",
+                  "covPrice7d": 0,
+                  "iqrPrice7d": 0,
+                  "maxPrice1y": 0.4,
+                  "maxPrice7d": 0.27,
+                  "minPrice1y": 0.26,
+                  "minPrice7d": 0.27,
+                  "avgPrice30d": 0.26,
+                  "avgPrice90d": 0.28,
+                  "covPrice30d": 0.017607226182639605,
+                  "covPrice90d": 0.08496515428037822,
+                  "iqrPrice30d": 0.01,
+                  "iqrPrice90d": 0.02,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.27,
+                  "maxPrice90d": 0.36,
+                  "minPrice30d": 0.26,
+                  "minPrice90d": 0.26,
+                  "priceHistory": [
+                    {
+                      "p": 0.27,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": 0,
+                  "priceChange7d": 0,
+                  "trendSlope30d": 0.00043056106788287704,
+                  "trendSlope90d": -0.0006043351412298461,
+                  "priceChange30d": 3.85,
+                  "priceChange90d": -25,
+                  "tcgplayerSkuId": "6927077",
+                  "maxPriceAllTime": 0.4,
+                  "minPriceAllTime": 0.26,
+                  "priceChange24hr": 0,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.27,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.27,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0,
+                  "stddevPopPrice30d": 0,
+                  "stddevPopPrice90d": 0.02,
+                  "maxPriceAllTimeDate": "2025-05-18T21:49:24.569Z",
+                  "minPriceAllTimeDate": "2026-03-21T15:03:33.602Z",
+                  "priceChangesCount7d": 0,
+                  "priceChangesCount30d": 1,
+                  "priceChangesCount90d": 3,
+                  "priceRelativeTo30dRange": 1,
+                  "priceRelativeTo90dRange": 0.1
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_moderately-played_holofoil",
+                  "price": 0.24,
+                  "avgPrice": 0.24,
+                  "language": "English",
+                  "printing": "Holofoil",
+                  "condition": "Moderately Played",
+                  "covPrice7d": 0,
+                  "iqrPrice7d": 0,
+                  "maxPrice1y": 0.28,
+                  "maxPrice7d": 0.24,
+                  "minPrice1y": 0.15,
+                  "minPrice7d": 0.24,
+                  "avgPrice30d": 0.25,
+                  "avgPrice90d": 0.26,
+                  "covPrice30d": 0.03562865321457797,
+                  "covPrice90d": 0.04807999191612574,
+                  "iqrPrice30d": 0.02,
+                  "iqrPrice90d": 0.01,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.26,
+                  "maxPrice90d": 0.28,
+                  "minPrice30d": 0.24,
+                  "minPrice90d": 0.24,
+                  "priceHistory": [
+                    {
+                      "p": 0.24,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": 0,
+                  "priceChange7d": 0,
+                  "trendSlope30d": -0.000940773401575149,
+                  "trendSlope90d": -0.00015624948854014702,
+                  "priceChange30d": -7.69,
+                  "priceChange90d": -4,
+                  "tcgplayerSkuId": "6927072",
+                  "maxPriceAllTime": 0.28,
+                  "minPriceAllTime": 0.15,
+                  "priceChange24hr": 0,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.24,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0,
+                  "stddevPopPrice30d": 0.01,
+                  "stddevPopPrice90d": 0.01,
+                  "maxPriceAllTimeDate": "2026-02-04T23:29:30.859Z",
+                  "minPriceAllTimeDate": "2025-08-08T09:51:44.759Z",
+                  "priceChangesCount7d": 0,
+                  "priceChangesCount30d": 2,
+                  "priceChangesCount90d": 5,
+                  "priceRelativeTo30dRange": 0,
+                  "priceRelativeTo90dRange": 0
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_near-mint_holofoil",
+                  "price": 0.24,
+                  "avgPrice": 0.26,
+                  "language": "English",
+                  "printing": "Holofoil",
+                  "condition": "Near Mint",
+                  "covPrice7d": 0.05939307662687791,
+                  "iqrPrice7d": 0.02,
+                  "maxPrice1y": 0.34,
+                  "maxPrice7d": 0.28,
+                  "minPrice1y": 0.14,
+                  "minPrice7d": 0.23,
+                  "avgPrice30d": 0.26,
+                  "avgPrice90d": 0.24,
+                  "covPrice30d": 0.08753796371715696,
+                  "covPrice90d": 0.1450907066097117,
+                  "iqrPrice30d": 0.03,
+                  "iqrPrice90d": 0.05,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.31,
+                  "maxPrice90d": 0.31,
+                  "minPrice30d": 0.21,
+                  "minPrice90d": 0.15,
+                  "priceHistory": [
+                    {
+                      "p": 0.27,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.26,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.26,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.26,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.25,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": -0.00655556013887316,
+                  "priceChange7d": -14.29,
+                  "trendSlope30d": 0.00104946718987822,
+                  "trendSlope90d": 0.0008248897664196459,
+                  "priceChange30d": 14.29,
+                  "priceChange90d": -7.69,
+                  "tcgplayerSkuId": "6927070",
+                  "maxPriceAllTime": 0.34,
+                  "minPriceAllTime": 0.14,
+                  "priceChange24hr": 4.35,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.27,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.26,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.26,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.26,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.24,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.25,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0.02,
+                  "stddevPopPrice30d": 0.02,
+                  "stddevPopPrice90d": 0.04,
+                  "maxPriceAllTimeDate": "2025-10-09T20:13:28.919Z",
+                  "minPriceAllTimeDate": "2025-11-16T09:16:07.174Z",
+                  "priceChangesCount7d": 16,
+                  "priceChangesCount30d": 41,
+                  "priceChangesCount90d": 105,
+                  "priceRelativeTo30dRange": 0.3,
+                  "priceRelativeTo90dRange": 0.5625
+                },
+                {
+                  "id": "pokemon-crown-zenith-kyogre-holo-rare_damaged_holofoil",
+                  "price": 0.14,
+                  "avgPrice": 0.13,
+                  "language": "English",
+                  "printing": "Holofoil",
+                  "condition": "Damaged",
+                  "covPrice7d": 0.03468208092485549,
+                  "iqrPrice7d": 0.01,
+                  "maxPrice1y": 0.14,
+                  "maxPrice7d": 0.14,
+                  "minPrice1y": 0.1,
+                  "minPrice7d": 0.13,
+                  "avgPrice30d": 0.12,
+                  "avgPrice90d": 0.11,
+                  "covPrice30d": 0.10354465527555079,
+                  "covPrice90d": 0.12773921504331542,
+                  "iqrPrice30d": 0,
+                  "iqrPrice90d": 0.03,
+                  "lastUpdated": 1774929157,
+                  "maxPrice30d": 0.14,
+                  "maxPrice90d": 0.14,
+                  "minPrice30d": 0.1,
+                  "minPrice90d": 0.1,
+                  "priceHistory": [
+                    {
+                      "p": 0.13,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.13,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.13,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.13,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.14,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.14,
+                      "t": 1774828800
+                    }
+                  ],
+                  "trendSlope7d": 0.0018179494229589,
+                  "priceChange7d": 7.69,
+                  "trendSlope30d": 0.00111983692983873,
+                  "trendSlope90d": 0.00041855006077354403,
+                  "priceChange30d": 40,
+                  "priceChange90d": 40,
+                  "tcgplayerSkuId": "6927074",
+                  "maxPriceAllTime": 0.14,
+                  "minPriceAllTime": 0.1,
+                  "priceChange24hr": 0,
+                  "priceHistory30d": [
+                    {
+                      "p": 0.13,
+                      "t": 1774396800
+                    },
+                    {
+                      "p": 0.13,
+                      "t": 1774483200
+                    },
+                    {
+                      "p": 0.13,
+                      "t": 1774569600
+                    },
+                    {
+                      "p": 0.13,
+                      "t": 1774656000
+                    },
+                    {
+                      "p": 0.14,
+                      "t": 1774742400
+                    },
+                    {
+                      "p": 0.14,
+                      "t": 1774828800
+                    }
+                  ],
+                  "stddevPopPrice7d": 0,
+                  "stddevPopPrice30d": 0.01,
+                  "stddevPopPrice90d": 0.01,
+                  "maxPriceAllTimeDate": "2026-03-31T03:52:37.364Z",
+                  "minPriceAllTimeDate": "2026-03-07T11:39:22.006Z",
+                  "priceChangesCount7d": 1,
+                  "priceChangesCount30d": 2,
+                  "priceChangesCount90d": 2,
+                  "priceRelativeTo30dRange": 1,
+                  "priceRelativeTo90dRange": 1
+                }
+              ],
+              "mtgjsonId": null,
+              "scryfallId": null,
+              "_fetched_at": "2026-03-31T05:39:21.868Z",
+              "tcgplayerId": "478135",
+              "_external_id": "pokemon-crown-zenith-kyogre-holo-rare",
+              "_set_external_id": "crown-zenith-pokemon",
+              "_grookai_ingestion_v1": {
+                "matched_via": "justtcg_external_mapping",
+                "source_phase": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+                "classification": "MATCHED",
+                "worker_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+                "confidence_score": 1,
+                "normalized_number": "036",
+                "normalized_name_key": "kyogre",
+                "inferred_variant_key": "",
+                "candidate_set_mapping": [
+                  "swsh12.5"
+                ],
+                "classification_reason": "active_justtcg_external_mapping",
+                "extracted_number_plain": "36",
+                "candidate_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+                "candidate_card_print_ids": [
+                  "1b93ccb8-ed56-4ae3-941f-40d039582420"
+                ]
+              }
+            },
+            "name_raw": "Kyogre",
+            "created_at": "2026-04-13T03:02:06.020149+00:00",
+            "number_raw": "036/159",
+            "upstream_id": "pokemon-crown-zenith-kyogre-holo-rare",
+            "match_status": "RESOLVED",
+            "tcgplayer_id": "478135",
+            "card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+            "raw_import_id": 32432,
+            "normalized_name": "Kyogre",
+            "candidate_bucket": "CLEAN_CANON_CANDIDATE",
+            "has_slash_number": true,
+            "resolved_set_code": "swsh12.5",
+            "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+            "normalized_number_left": "036",
+            "has_alpha_suffix_number": false,
+            "normalized_number_plain": "36",
+            "normalized_printed_total": "159",
+            "has_parenthetical_modifier": false
+          }
+        ],
+        "justtcg_variant_count": 18,
+        "justtcg_latest_count": 18,
+        "justtcg_snapshot_count": 994,
+        "pricing_watch": [],
+        "vault_item_instances": [],
+        "vault_items": []
+      },
+      {
+        "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+        "set_code": "swsh6",
+        "card_number": "108",
+        "number": "108",
+        "number_plain": "108",
+        "name": "Single Strike Urshifu",
+        "rarity": "Rare Holo",
+        "target_role": "survivor_parent",
+        "card_printings": [
+          {
+            "id": "aaa0b94d-2bd3-4d0e-9153-df9c01329876",
+            "image_url": null,
+            "created_at": "2026-06-10T21:14:18.170002+00:00",
+            "created_by": "pkg08q_residual_duplicate_parent_resolution_guarded_dry_run_v1",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "swsh6:108:holo",
+            "provenance_source": "verified_master_set_index_v1"
+          },
+          {
+            "id": "c2644665-2c82-47dd-90e7-55dbd835bc33",
+            "image_url": null,
+            "created_at": "2026-06-10T21:14:18.170002+00:00",
+            "created_by": "pkg08q_residual_duplicate_parent_resolution_guarded_dry_run_v1",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "swsh6:108:reverse",
+            "provenance_source": "verified_master_set_index_v1"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 121429,
+            "meta": {
+              "gv_id": "GV-PK-CRE-108-PLAY-POKEMON-STAMP",
+              "batch_index": 16,
+              "promoted_by": "promote_source_backed_justtcg_mapping_v1",
+              "stamp_label": "Play! Pokémon Stamp",
+              "variant_key": "play_pokemon_stamp",
+              "mapping_mode": "source_backed_batch_input",
+              "source_family": "prize-pack-series-cards-pokemon",
+              "source_reason": "promoted_stamped_row_with_exact_source_backed_identity",
+              "batch_input_path": "C:\\grookai_vault\\docs\\checkpoints\\warehouse\\prize_pack_ready_batch_v6_source_upgrade_series_1.json",
+              "effective_set_code": "swsh6",
+              "source_external_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+              "source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-04-21T04:14:26.604+00:00",
+            "external_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+            "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+          },
+          {
+            "id": 87324,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "108/198",
+              "justtcg_set_name": "SWSH06: Chilling Reign",
+              "tcgplayer_external_id": "241783"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:09:38.808+00:00",
+            "external_id": "pokemon-swsh06-chilling-reign-single-strike-urshifu-holo-rare",
+            "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+          },
+          {
+            "id": 5396,
+            "meta": null,
+            "active": true,
+            "source": "pokemonapi",
+            "synced_at": "2025-11-18T07:20:57.230181+00:00",
+            "external_id": "swsh6-108",
+            "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+          },
+          {
+            "id": 39940,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-08T18:52:39.835193+00:00",
+            "external_id": "swsh6-108",
+            "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+          },
+          {
+            "id": 66943,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "swsh6-108",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.holofoil.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:24:48.289+00:00",
+            "external_id": "241783",
+            "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "40787757-b8a1-4d71-a026-71245b578164",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Single Strike Urshifu",
+              "supertype": "Pokemon",
+              "card_category": "Stage1",
+              "matched_token": "urshifu"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "0001b179-ff94-4974-9a1a-bccc3e328a48",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+            "counts_for_completion": true
+          }
+        ],
+        "canon_warehouse_candidates": [
+          {
+            "id": "f3054a9f-0e58-4605-a776-fb2cc8ce5c99",
+            "notes": "External discovery bridge v1 candidate for Chilling Reign: Single Strike Urshifu 108/198. Source candidate 1a3d7883-77c2-4868-8c5d-78060c78055c from external_discovery_candidates (prize-pack-series-cards-pokemon). Original discovery classification: set_mapping_missing.",
+            "state": "PROMOTED",
+            "created_at": "2026-04-21T04:11:23.144751+00:00",
+            "updated_at": "2026-06-10T21:14:18.170002+00:00",
+            "archived_at": null,
+            "promoted_at": "2026-04-21T04:14:09.586+00:00",
+            "rejected_at": null,
+            "tcgplayer_id": "476059",
+            "archive_notes": null,
+            "intake_channel": "MANUAL",
+            "promotion_notes": null,
+            "rejection_notes": null,
+            "submission_type": "EXTERNAL_DISCOVERY_BRIDGE_V1",
+            "submission_intent": "MISSING_CARD",
+            "current_staging_id": "cabf3053-360d-47e4-9ed8-b93c7a7a50bc",
+            "archived_by_user_id": null,
+            "founder_approved_at": "2026-04-21T04:12:08.517+00:00",
+            "identity_resolution": "PROMOTE_VARIANT",
+            "promoted_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+            "rejected_by_user_id": null,
+            "interpreter_decision": "ROW",
+            "proposed_action_type": "CREATE_CARD_PRINT",
+            "submitted_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+            "identity_audit_status": "VARIANT_IDENTITY",
+            "promotion_result_type": "CARD_PRINT_CREATED",
+            "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V6_SOURCE_UPGRADE_SERIES_1 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+            "needs_promotion_review": false,
+            "promoted_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+            "interpreter_explanation": "Identity slot audit classified swsh6 #108/198 Single Strike Urshifu as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+            "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+            "reference_hints_payload": {
+              "name": "Single Strike Urshifu",
+              "number": "108/198",
+              "rarity": "Rare",
+              "set_code": "swsh6",
+              "set_hint": "swsh6",
+              "set_name": "Chilling Reign",
+              "card_name": "Single Strike Urshifu",
+              "provenance": {
+                "source_table": "external_discovery_candidates",
+                "bridge_source": "external_discovery_bridge_v1",
+                "source_set_id": "prize-pack-series-cards-pokemon",
+                "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+                "source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c",
+                "source_raw_import_id": "41609"
+              },
+              "rarity_hint": "Rare",
+              "stamp_label": "Play! Pokémon Stamp",
+              "upstream_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+              "variant_key": "play_pokemon_stamp",
+              "match_status": "AMBIGUOUS",
+              "number_plain": "108",
+              "source_table": "external_discovery_candidates",
+              "tcgplayer_id": "476059",
+              "bridge_source": "external_discovery_bridge_v1",
+              "source_set_id": "prize-pack-series-cards-pokemon",
+              "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+              "printed_number": "108/198",
+              "external_source": "justtcg",
+              "normalized_name": "Single Strike Urshifu",
+              "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+              "has_slash_number": true,
+              "variant_identity": {
+                "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+                "status": "RESOLVED_STAMPED_IDENTITY",
+                "applies": true,
+                "stamp_label": "Play! Pokémon Stamp",
+                "variant_key": "play_pokemon_stamp",
+                "source_evidence": {
+                  "batch_index": 16,
+                  "source_set_id": "prize-pack-series-cards-pokemon",
+                  "pre_intake_audit": {
+                    "blocker_class": null,
+                    "live_base_gv_id": "GV-PK-CRE-108",
+                    "current_live_state": "READY_TO_BRIDGE",
+                    "live_raw_import_id": "41609",
+                    "exact_variant_absent": true,
+                    "live_warehouse_state": null,
+                    "exact_base_row_exists": true,
+                    "exact_source_row_exists": true,
+                    "live_base_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+                    "live_source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c",
+                    "live_warehouse_hold_reason": null,
+                    "live_existing_variant_gv_id": null,
+                    "live_promoted_card_print_id": null,
+                    "live_warehouse_candidate_id": null,
+                    "live_existing_variant_card_print_id": null
+                  },
+                  "source_external_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+                  "canonical_queue_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+                  "underlying_base_proof_summary": {
+                    "base_gv_id": "GV-PK-CRE-108",
+                    "live_base_set_code": "swsh6",
+                    "live_base_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+                  }
+                },
+                "collision_group_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+                "illustration_category": null,
+                "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch"
+              },
+              "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+              "collision_group_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+              "source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c",
+              "source_card_snapshot": {
+                "name": "Single Strike Urshifu",
+                "number": "108/198",
+                "rarity": "Rare",
+                "set_name": "Prize Pack Series Cards",
+                "external_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+                "tcgplayer_id": "476059",
+                "set_external_id": "prize-pack-series-cards-pokemon",
+                "variant_summary": {
+                  "variant_count": 4,
+                  "language_labels": [
+                    "English"
+                  ],
+                  "printing_labels": [
+                    "Normal"
+                  ],
+                  "condition_labels": [
+                    "Damaged",
+                    "Lightly Played",
+                    "Moderately Played",
+                    "Near Mint"
+                  ]
+                }
+              },
+              "source_raw_import_id": "41609",
+              "illustration_category": null,
+              "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+              "normalized_number_left": "108",
+              "has_alpha_suffix_number": false,
+              "normalized_number_plain": "108",
+              "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+              "normalized_printed_total": "198",
+              "stamped_identity_evidence": {
+                "batch_index": 16,
+                "pre_intake_audit": {
+                  "blocker_class": null,
+                  "live_base_gv_id": "GV-PK-CRE-108",
+                  "current_live_state": "READY_TO_BRIDGE",
+                  "live_raw_import_id": "41609",
+                  "exact_variant_absent": true,
+                  "live_warehouse_state": null,
+                  "exact_base_row_exists": true,
+                  "exact_source_row_exists": true,
+                  "live_base_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+                  "live_source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c",
+                  "live_warehouse_hold_reason": null,
+                  "live_existing_variant_gv_id": null,
+                  "live_promoted_card_print_id": null,
+                  "live_warehouse_candidate_id": null,
+                  "live_existing_variant_card_print_id": null
+                },
+                "canonical_queue_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+                "underlying_base_proof_summary": {
+                  "base_gv_id": "GV-PK-CRE-108",
+                  "live_base_set_code": "swsh6",
+                  "live_base_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+                }
+              },
+              "has_parenthetical_modifier": false,
+              "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+              "original_classification_reason": "set_mapping_missing"
+            },
+            "claimed_identity_payload": {
+              "name": "Single Strike Urshifu",
+              "number": "108/198",
+              "rarity": "Rare",
+              "set_code": "swsh6",
+              "set_hint": "swsh6",
+              "set_name": "Chilling Reign",
+              "card_name": "Single Strike Urshifu",
+              "rarity_hint": "Rare",
+              "upstream_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+              "variant_key": "play_pokemon_stamp",
+              "number_plain": "108",
+              "source_table": "external_discovery_candidates",
+              "bridge_source": "external_discovery_bridge_v1",
+              "source_set_id": "prize-pack-series-cards-pokemon",
+              "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+              "printed_number": "108/198",
+              "external_source": "justtcg",
+              "source_evidence": {
+                "stamp_label": "Play! Pokémon Stamp",
+                "normalized_name": "Single Strike Urshifu",
+                "classification_reason": "set_mapping_missing",
+                "normalized_number_plain": "108"
+              },
+              "variant_identity": {
+                "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+                "status": "RESOLVED_STAMPED_IDENTITY",
+                "applies": true,
+                "stamp_label": "Play! Pokémon Stamp",
+                "variant_key": "play_pokemon_stamp",
+                "source_evidence": {
+                  "batch_index": 16,
+                  "source_set_id": "prize-pack-series-cards-pokemon",
+                  "pre_intake_audit": {
+                    "blocker_class": null,
+                    "live_base_gv_id": "GV-PK-CRE-108",
+                    "current_live_state": "READY_TO_BRIDGE",
+                    "live_raw_import_id": "41609",
+                    "exact_variant_absent": true,
+                    "live_warehouse_state": null,
+                    "exact_base_row_exists": true,
+                    "exact_source_row_exists": true,
+                    "live_base_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0",
+                    "live_source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c",
+                    "live_warehouse_hold_reason": null,
+                    "live_existing_variant_gv_id": null,
+                    "live_promoted_card_print_id": null,
+                    "live_warehouse_candidate_id": null,
+                    "live_existing_variant_card_print_id": null
+                  },
+                  "source_external_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+                  "canonical_queue_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+                  "underlying_base_proof_summary": {
+                    "base_gv_id": "GV-PK-CRE-108",
+                    "live_base_set_code": "swsh6",
+                    "live_base_card_print_id": "0bf9be46-09e1-4d7b-ac28-664b7b7c4da0"
+                  }
+                },
+                "collision_group_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+                "illustration_category": null,
+                "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch"
+              },
+              "collision_group_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+              "source_candidate_id": "1a3d7883-77c2-4868-8c5d-78060c78055c",
+              "source_raw_import_id": "41609",
+              "illustration_category": null,
+              "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+              "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+              "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch"
+            },
+            "promoted_image_target_id": null,
+            "promoted_card_printing_id": null,
+            "current_review_hold_reason": null,
+            "identity_audit_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+            "promoted_image_target_type": null,
+            "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+            "interpreter_resolved_finish_key": null
+          }
+        ],
+        "external_discovery_candidates": [],
+        "justtcg_variant_count": 15,
+        "justtcg_latest_count": 15,
+        "justtcg_snapshot_count": 1476,
+        "pricing_watch": [],
+        "vault_item_instances": [],
+        "vault_items": []
+      }
+    ],
+    "hash_sha256": "3f83d094d210c6a925f3a421e0d70f000aefa0d96cbaa9b8e0bdc5e58cc1772a",
+    "impact_counts": {
+      "duplicate_parent_rows": 0,
+      "survivor_parent_rows": 2,
+      "duplicate_child_rows": 0,
+      "survivor_target_child_rows": 3,
+      "duplicate_external_mapping_rows": 0,
+      "survivor_external_mapping_rows": 9,
+      "duplicate_species_rows": 0,
+      "duplicate_warehouse_candidate_rows": 0,
+      "duplicate_external_discovery_candidate_rows": 0,
+      "duplicate_justtcg_variant_rows": 0,
+      "duplicate_justtcg_latest_rows": 0,
+      "duplicate_justtcg_snapshot_rows": 0,
+      "duplicate_pricing_watch_rows": 0,
+      "duplicate_vault_instance_rows": 0,
+      "duplicate_vault_rows": 0,
+      "duplicate_card_feed_event_rows": 0
+    }
+  },
+  "proof_rows": [
+    {
+      "package_id": "PKG-08Q-RESIDUAL-DUPLICATE-PARENT-RESOLUTION",
+      "package_fingerprint": "a0d03986b2871b4cb8b42a637bfbd695e54dc9cd4691760a16870eb14d283839",
+      "groups": 2,
+      "duplicate_parent_deletes": 2,
+      "child_inserts": 3,
+      "mapping_updates": 2,
+      "vault_updates": 0,
+      "species_updates": 0,
+      "species_dedupe_deletes": 2,
+      "warehouse_updates": 2,
+      "justtcg_variant_updates": 15,
+      "justtcg_latest_updates": 15,
+      "justtcg_snapshot_updates": 1455,
+      "pricing_watch_updates": 0,
+      "pricing_watch_dedupe_deletes": 0,
+      "vault_instance_updates": 0,
+      "external_discovery_candidate_updates": 0
+    }
+  ],
+  "stop_findings": [],
+  "pass": true
+}

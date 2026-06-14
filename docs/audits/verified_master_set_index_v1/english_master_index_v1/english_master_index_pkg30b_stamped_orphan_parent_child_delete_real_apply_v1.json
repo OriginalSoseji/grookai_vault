@@ -1,0 +1,37 @@
+{
+  "package_id": "PKG-30B-STAMPED-ORPHAN-PARENT-CHILD-DELETE",
+  "generated_at": "2026-06-13T19:14:02.697Z",
+  "fingerprint": "fed84a447d3b571213e3f3a2b600f56f4f2f60f37203a7c763d489cef1133d9f",
+  "artifact_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg30b_stamped_orphan_parent_child_delete_dry_run_artifact_v1.json",
+  "safety": {
+    "no_global_apply": true,
+    "migrations_created": false,
+    "merges": false,
+    "quarantine": false
+  },
+  "summary": {
+    "child_deletes": 62,
+    "parent_deletes": 62
+  },
+  "execution": {
+    "apply_status": "pkg30b_real_apply_committed",
+    "committed": true,
+    "dry_run_sql_hash": "25aa20505da034121867cc5ffdc7a20143cce02361496702e75da230f0fc7738",
+    "real_apply_sql_hash": "bee7d08fcf891020fcbc8ef590d3de0f2532978f5ff9d2c20c055ff9bec745fa",
+    "result_count": 5,
+    "notices": [
+      "PKG-30B-STAMPED-ORPHAN-PARENT-CHILD-DELETE dry-run passed: children deleted 62, parents deleted 62, fingerprint fed84a447d3b571213e3f3a2b600f56f4f2f60f37203a7c763d489cef1133d9f"
+    ],
+    "post_apply_proof": {
+      "target_parents_remaining": 0,
+      "target_children_remaining": 0,
+      "external_mappings_remaining": 0,
+      "external_printing_mappings_remaining": 0,
+      "active_identity_rows_remaining": 0,
+      "species_refs_remaining": 0,
+      "warehouse_parent_refs_remaining": 0,
+      "warehouse_child_refs_remaining": 0,
+      "active_vault_refs_remaining": 0
+    }
+  }
+}

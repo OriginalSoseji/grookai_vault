@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_finish_basep",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://tcgcsv.com/docs",
+  "source_status": "available_generated",
+  "set_key": "basep",
+  "set_name": "Wizards Black Star Promos",
+  "retrieved_at": "2026-06-12T04:47:46.693Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv:basep:2026-06-12T04:47:46.693Z",
+  "generation_note": "Generated from TCGCSV TCGplayer catalog product and price subtype data. Exact finish evidence only.",
+  "records": [
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/618732/pokemon-wotc-promo-eevee-jr-east-stamp-rally",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "11",
+      "card_name": "Eevee",
+      "finish_key": "normal",
+      "rarity": "Promo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer product 618732 price subtype Normal",
+      "language": "en",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
+      "raw_snapshot_ref": "tcgcsv:1418:618732:Normal",
+      "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
+    }
+  ]
+}

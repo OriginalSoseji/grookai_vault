@@ -15,19 +15,19 @@ It does not infer set identity, does not create aliases, and does not authorize 
 
 ## Summary
 
-- missing_set_code_printing_rows: 5733
-- unique_card_prints: 2163
-- rows_with_card_number: 741
+- missing_set_code_printing_rows: 5720
+- unique_card_prints: 2158
+- rows_with_card_number: 728
 - rows_with_set_code: 0
 - db_enrichment_executed: true
-- db_card_print_rows_loaded: 5733
-- db_external_mapping_rows_loaded: 2185
+- db_card_print_rows_loaded: 5720
+- db_external_mapping_rows_loaded: 2180
 
 ## Recovery Classification
 
 | classification | unique card prints |
 | --- | --- |
-| external_mapping_recoverable | 1411 |
+| external_mapping_recoverable | 1406 |
 | possible_pocket_provenance_lead | 742 |
 | provenance_field_recoverable | 10 |
 
@@ -35,17 +35,17 @@ It does not infer set identity, does not create aliases, and does not authorize 
 
 | field | unique card prints |
 | --- | --- |
-| printing_provenance | 2163 |
-| external_mappings | 2153 |
-| ai_metadata | 2135 |
-| external_ids | 2135 |
-| image_fields | 2122 |
+| printing_provenance | 2158 |
+| external_mappings | 2148 |
+| ai_metadata | 2130 |
+| external_ids | 2130 |
+| image_fields | 2117 |
 
 ## External Mapping Sources
 
 | source | unique card prints |
 | --- | --- |
-| tcgdex | 2148 |
+| tcgdex | 2143 |
 | justtcg | 19 |
 | tcgplayer | 18 |
 | none | 10 |
@@ -54,7 +54,7 @@ It does not infer set identity, does not create aliases, and does not authorize 
 
 | pattern | unique card prints |
 | --- | --- |
-| physical_tcg_set_dash_number | 808 |
+| physical_tcg_set_dash_number | 803 |
 | possible_pocket_a_series | 642 |
 | other_external_id | 616 |
 | possible_pocket_promo_a | 100 |
@@ -65,9 +65,9 @@ It does not infer set identity, does not create aliases, and does not authorize 
 
 | finish | printing rows |
 | --- | --- |
-| holo | 1998 |
-| reverse | 1923 |
-| normal | 1812 |
+| holo | 1993 |
+| reverse | 1919 |
+| normal | 1808 |
 
 ## Guardrails
 

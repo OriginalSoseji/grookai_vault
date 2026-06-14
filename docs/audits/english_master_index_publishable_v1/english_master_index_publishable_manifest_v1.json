@@ -1,6 +1,6 @@
 {
   "version": "english_master_index_publishable_manifest_v1",
-  "generated_at": "2026-06-08T19:44:37.102Z",
+  "generated_at": "2026-06-12T08:59:00.440Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -11,16 +11,298 @@
   "rule": "Only publishable_complete sets may be displayed as complete public Master Index lists.",
   "summary": {
     "total_sets": 201,
-    "publishable_complete_sets": 199,
-    "not_publishable_sets": 2,
-    "publishable_card_facts": 21520,
-    "publishable_printing_facts": 38841,
+    "publishable_complete_sets": 189,
+    "not_publishable_sets": 12,
+    "publishable_card_facts": 19254,
+    "publishable_printing_facts": 34732,
     "by_publishability_status": {
       "non_standard_not_double_verified": 2,
-      "publishable_complete": 199
+      "not_publishable_finish_gaps": 10,
+      "publishable_complete": 189
     }
   },
   "sets": [
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.91,
+      "cards": {
+        "master_admissible": 244,
+        "total": 244,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 457,
+        "total": 458,
+        "gap_count": 1
+      },
+      "finish_counts": {
+        "normal": 153,
+        "reverse": 165,
+        "holo": 97,
+        "stamped": 32,
+        "cosmos": 11
+      },
+      "verification_level": "normal_double_source_required",
+      "non_standard_policy": null,
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.91,
+      "cards": {
+        "master_admissible": 247,
+        "total": 247,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 445,
+        "total": 446,
+        "gap_count": 1
+      },
+      "finish_counts": {
+        "normal": 132,
+        "reverse": 149,
+        "holo": 120,
+        "stamped": 40,
+        "cosmos": 5
+      },
+      "verification_level": "normal_double_source_required",
+      "non_standard_policy": null,
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.9,
+      "cards": {
+        "master_admissible": 218,
+        "total": 218,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 421,
+        "total": 422,
+        "gap_count": 1
+      },
+      "finish_counts": {
+        "normal": 134,
+        "reverse": 140,
+        "holo": 93,
+        "stamped": 37,
+        "cosmos": 18
+      },
+      "verification_level": "normal_double_source_required",
+      "non_standard_policy": null,
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.9,
+      "cards": {
+        "master_admissible": 212,
+        "total": 212,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 394,
+        "total": 395,
+        "gap_count": 1
+      },
+      "finish_counts": {
+        "normal": 141,
+        "reverse": 152,
+        "holo": 79,
+        "stamped": 17,
+        "cosmos": 5,
+        "cracked_ice": 1
+      },
+      "verification_level": "normal_double_source_required",
+      "non_standard_policy": null,
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.9,
+      "cards": {
+        "master_admissible": 216,
+        "total": 216,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 400,
+        "total": 401,
+        "gap_count": 1
+      },
+      "finish_counts": {
+        "normal": 122,
+        "reverse": 124,
+        "holo": 102,
+        "stamped": 46,
+        "cosmos": 7
+      },
+      "verification_level": "normal_double_source_required",
+      "non_standard_policy": null,
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.88,
+      "cards": {
+        "master_admissible": 183,
+        "total": 183,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 349,
+        "total": 350,
+        "gap_count": 1
+      },
+      "finish_counts": {
+        "normal": 113,
+        "reverse": 123,
+        "holo": 76,
+        "stamped": 35,
+        "cosmos": 3
+      },
+      "verification_level": "normal_double_source_required",
+      "non_standard_policy": null,
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.72,
+      "cards": {
+        "master_admissible": 246,
+        "total": 246,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 426,
+        "total": 429,
+        "gap_count": 3
+      },
+      "finish_counts": {
+        "holo": 138,
+        "normal": 118,
+        "reverse": 128,
+        "cosmos": 9,
+        "stamped": 36
+      },
+      "verification_level": "normal_double_source_required",
+      "non_standard_policy": null,
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.72,
+      "cards": {
+        "master_admissible": 233,
+        "total": 233,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 419,
+        "total": 422,
+        "gap_count": 3
+      },
+      "finish_counts": {
+        "normal": 122,
+        "reverse": 136,
+        "holo": 121,
+        "stamped": 39,
+        "cosmos": 4
+      },
+      "verification_level": "normal_double_source_required",
+      "non_standard_policy": null,
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.62,
+      "cards": {
+        "master_admissible": 237,
+        "total": 237,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 422,
+        "total": 426,
+        "gap_count": 4
+      },
+      "finish_counts": {
+        "normal": 122,
+        "reverse": 132,
+        "holo": 125,
+        "stamped": 45,
+        "cosmos": 2
+      },
+      "verification_level": "normal_double_source_required",
+      "non_standard_policy": null,
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.38,
+      "cards": {
+        "master_admissible": 230,
+        "total": 230,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 428,
+        "total": 446,
+        "gap_count": 18
+      },
+      "finish_counts": {
+        "normal": 169,
+        "reverse": 176,
+        "holo": 66,
+        "cosmos": 15,
+        "stamped": 20
+      },
+      "verification_level": "normal_double_source_required",
+      "non_standard_policy": null,
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
     {
       "set_key": "2011bw",
       "set_name": "McDonald's Collection 2011",
@@ -523,12 +805,12 @@
         "gap_count": 0
       },
       "printings": {
-        "master_admissible": 58,
-        "total": 58,
+        "master_admissible": 59,
+        "total": 59,
         "gap_count": 0
       },
       "finish_counts": {
-        "normal": 44,
+        "normal": 45,
         "holo": 7,
         "reverse": 3,
         "first_edition_normal": 1,
@@ -587,13 +869,13 @@
         "gap_count": 0
       },
       "printings": {
-        "master_admissible": 261,
-        "total": 261,
+        "master_admissible": 262,
+        "total": 262,
         "gap_count": 0
       },
       "finish_counts": {
         "normal": 107,
-        "reverse": 105,
+        "reverse": 106,
         "holo": 15,
         "cosmos": 3,
         "stamped": 18,
@@ -1951,12 +2233,12 @@
         "gap_count": 0
       },
       "printings": {
-        "master_admissible": 212,
-        "total": 212,
+        "master_admissible": 213,
+        "total": 213,
         "gap_count": 0
       },
       "finish_counts": {
-        "holo": 32,
+        "holo": 33,
         "normal": 83,
         "reverse": 95,
         "cosmos": 1,
@@ -2016,12 +2298,12 @@
         "gap_count": 0
       },
       "printings": {
-        "master_admissible": 208,
-        "total": 208,
+        "master_admissible": 209,
+        "total": 209,
         "gap_count": 0
       },
       "finish_counts": {
-        "holo": 30,
+        "holo": 31,
         "normal": 82,
         "reverse": 89,
         "stamped": 7
@@ -2209,12 +2491,12 @@
         "gap_count": 0
       },
       "printings": {
-        "master_admissible": 198,
-        "total": 198,
+        "master_admissible": 199,
+        "total": 199,
         "gap_count": 0
       },
       "finish_counts": {
-        "holo": 26,
+        "holo": 27,
         "reverse": 83,
         "normal": 74,
         "cracked_ice": 5,
@@ -2370,12 +2652,12 @@
         "gap_count": 0
       },
       "printings": {
-        "master_admissible": 350,
-        "total": 350,
+        "master_admissible": 351,
+        "total": 351,
         "gap_count": 0
       },
       "finish_counts": {
-        "normal": 113,
+        "normal": 114,
         "reverse": 122,
         "holo": 79,
         "stamped": 31,
@@ -3171,10 +3453,10 @@
       "finish_counts": {
         "normal": 160,
         "reverse": 126,
-        "holo": 53,
         "cosmos": 14,
         "cracked_ice": 3,
-        "stamped": 15
+        "stamped": 15,
+        "holo": 53
       },
       "verification_level": "normal_double_source_required",
       "non_standard_policy": null,
@@ -3206,9 +3488,9 @@
         "holo": 83,
         "normal": 216,
         "reverse": 176,
+        "stamped": 2,
         "cosmos": 3,
-        "cracked_ice": 1,
-        "stamped": 2
+        "cracked_ice": 1
       },
       "verification_level": "normal_double_source_required",
       "non_standard_policy": null,
@@ -3760,16 +4042,16 @@
         "gap_count": 0
       },
       "printings": {
-        "master_admissible": 517,
-        "total": 517,
+        "master_admissible": 519,
+        "total": 519,
         "gap_count": 0
       },
       "finish_counts": {
-        "normal": 156,
+        "normal": 157,
         "reverse": 176,
         "holo": 131,
         "stamped": 42,
-        "cosmos": 12
+        "cosmos": 13
       },
       "verification_level": "normal_double_source_required",
       "non_standard_policy": null,
@@ -3779,37 +4061,6 @@
         "printings": "sets/sv02/printings.json",
         "evidence": "sets/sv02/evidence.json",
         "summary": "sets/sv02/summary.md"
-      }
-    },
-    {
-      "set_key": "sv03",
-      "set_name": "Obsidian Flames",
-      "publishability_status": "publishable_complete",
-      "completion_status": "complete_master_index_set",
-      "completion_score": 100,
-      "cards": {
-        "master_admissible": 230,
-        "total": 230,
-        "gap_count": 0
-      },
-      "printings": {
-        "master_admissible": 409,
-        "total": 409,
-        "gap_count": 0
-      },
-      "finish_counts": {
-        "normal": 167,
-        "reverse": 176,
-        "holo": 66
-      },
-      "verification_level": "normal_double_source_required",
-      "non_standard_policy": null,
-      "blocker_summary": "No current completion blocker.",
-      "shard_refs": {
-        "cards": "sets/sv03/cards.json",
-        "printings": "sets/sv03/printings.json",
-        "evidence": "sets/sv03/evidence.json",
-        "summary": "sets/sv03/summary.md"
       }
     },
     {
@@ -3908,39 +4159,6 @@
       }
     },
     {
-      "set_key": "sv05",
-      "set_name": "Temporal Forces",
-      "publishability_status": "publishable_complete",
-      "completion_status": "complete_master_index_set",
-      "completion_score": 100,
-      "cards": {
-        "master_admissible": 218,
-        "total": 218,
-        "gap_count": 0
-      },
-      "printings": {
-        "master_admissible": 414,
-        "total": 414,
-        "gap_count": 0
-      },
-      "finish_counts": {
-        "normal": 133,
-        "reverse": 140,
-        "holo": 93,
-        "stamped": 37,
-        "cosmos": 11
-      },
-      "verification_level": "normal_double_source_required",
-      "non_standard_policy": null,
-      "blocker_summary": "No current completion blocker.",
-      "shard_refs": {
-        "cards": "sets/sv05/cards.json",
-        "printings": "sets/sv05/printings.json",
-        "evidence": "sets/sv05/evidence.json",
-        "summary": "sets/sv05/summary.md"
-      }
-    },
-    {
       "set_key": "sv06",
       "set_name": "Twilight Masquerade",
       "publishability_status": "publishable_complete",
@@ -4015,8 +4233,8 @@
         "gap_count": 0
       },
       "printings": {
-        "master_admissible": 328,
-        "total": 328,
+        "master_admissible": 330,
+        "total": 330,
         "gap_count": 0
       },
       "finish_counts": {
@@ -4024,7 +4242,7 @@
         "normal": 114,
         "reverse": 125,
         "stamped": 21,
-        "cosmos": 3
+        "cosmos": 5
       },
       "verification_level": "normal_double_source_required",
       "non_standard_policy": null,
@@ -4112,12 +4330,12 @@
         "gap_count": 0
       },
       "printings": {
-        "master_admissible": 368,
-        "total": 368,
+        "master_admissible": 369,
+        "total": 369,
         "gap_count": 0
       },
       "finish_counts": {
-        "normal": 129,
+        "normal": 130,
         "reverse": 143,
         "holo": 63,
         "stamped": 27,
@@ -4131,39 +4349,6 @@
         "printings": "sets/sv09/printings.json",
         "evidence": "sets/sv09/evidence.json",
         "summary": "sets/sv09/summary.md"
-      }
-    },
-    {
-      "set_key": "sv10",
-      "set_name": "Destined Rivals",
-      "publishability_status": "publishable_complete",
-      "completion_status": "complete_master_index_set",
-      "completion_score": 100,
-      "cards": {
-        "master_admissible": 244,
-        "total": 244,
-        "gap_count": 0
-      },
-      "printings": {
-        "master_admissible": 457,
-        "total": 457,
-        "gap_count": 0
-      },
-      "finish_counts": {
-        "normal": 152,
-        "reverse": 165,
-        "holo": 97,
-        "stamped": 32,
-        "cosmos": 11
-      },
-      "verification_level": "normal_double_source_required",
-      "non_standard_policy": null,
-      "blocker_summary": "No current completion blocker.",
-      "shard_refs": {
-        "cards": "sets/sv10/cards.json",
-        "printings": "sets/sv10/printings.json",
-        "evidence": "sets/sv10/evidence.json",
-        "summary": "sets/sv10/summary.md"
       }
     },
     {
@@ -4331,39 +4516,6 @@
       }
     },
     {
-      "set_key": "swsh10",
-      "set_name": "Astral Radiance",
-      "publishability_status": "publishable_complete",
-      "completion_status": "complete_master_index_set",
-      "completion_score": 100,
-      "cards": {
-        "master_admissible": 246,
-        "total": 246,
-        "gap_count": 0
-      },
-      "printings": {
-        "master_admissible": 421,
-        "total": 421,
-        "gap_count": 0
-      },
-      "finish_counts": {
-        "holo": 138,
-        "normal": 115,
-        "reverse": 128,
-        "cosmos": 4,
-        "stamped": 36
-      },
-      "verification_level": "normal_double_source_required",
-      "non_standard_policy": null,
-      "blocker_summary": "No current completion blocker.",
-      "shard_refs": {
-        "cards": "sets/swsh10/cards.json",
-        "printings": "sets/swsh10/printings.json",
-        "evidence": "sets/swsh10/evidence.json",
-        "summary": "sets/swsh10/summary.md"
-      }
-    },
-    {
       "set_key": "swsh10.5",
       "set_name": "Pokémon GO",
       "publishability_status": "publishable_complete",
@@ -4426,38 +4578,6 @@
       }
     },
     {
-      "set_key": "swsh11",
-      "set_name": "Lost Origin",
-      "publishability_status": "publishable_complete",
-      "completion_status": "complete_master_index_set",
-      "completion_score": 100,
-      "cards": {
-        "master_admissible": 247,
-        "total": 247,
-        "gap_count": 0
-      },
-      "printings": {
-        "master_admissible": 440,
-        "total": 440,
-        "gap_count": 0
-      },
-      "finish_counts": {
-        "normal": 131,
-        "reverse": 149,
-        "holo": 120,
-        "stamped": 40
-      },
-      "verification_level": "normal_double_source_required",
-      "non_standard_policy": null,
-      "blocker_summary": "No current completion blocker.",
-      "shard_refs": {
-        "cards": "sets/swsh11/cards.json",
-        "printings": "sets/swsh11/printings.json",
-        "evidence": "sets/swsh11/evidence.json",
-        "summary": "sets/swsh11/summary.md"
-      }
-    },
-    {
       "set_key": "swsh11tg",
       "set_name": "Lost Origin Trainer Gallery",
       "publishability_status": "publishable_complete",
@@ -4498,8 +4618,8 @@
         "gap_count": 0
       },
       "printings": {
-        "master_admissible": 419,
-        "total": 419,
+        "master_admissible": 420,
+        "total": 420,
         "gap_count": 0
       },
       "finish_counts": {
@@ -4507,7 +4627,7 @@
         "reverse": 142,
         "holo": 115,
         "stamped": 28,
-        "cosmos": 1
+        "cosmos": 2
       },
       "verification_level": "normal_double_source_required",
       "non_standard_policy": null,
@@ -4608,40 +4728,6 @@
         "printings": "sets/swsh12tg/printings.json",
         "evidence": "sets/swsh12tg/evidence.json",
         "summary": "sets/swsh12tg/summary.md"
-      }
-    },
-    {
-      "set_key": "swsh2",
-      "set_name": "Rebel Clash",
-      "publishability_status": "publishable_complete",
-      "completion_status": "complete_master_index_set",
-      "completion_score": 100,
-      "cards": {
-        "master_admissible": 212,
-        "total": 212,
-        "gap_count": 0
-      },
-      "printings": {
-        "master_admissible": 394,
-        "total": 394,
-        "gap_count": 0
-      },
-      "finish_counts": {
-        "normal": 140,
-        "reverse": 152,
-        "holo": 79,
-        "stamped": 17,
-        "cosmos": 5,
-        "cracked_ice": 1
-      },
-      "verification_level": "normal_double_source_required",
-      "non_standard_policy": null,
-      "blocker_summary": "No current completion blocker.",
-      "shard_refs": {
-        "cards": "sets/swsh2/cards.json",
-        "printings": "sets/swsh2/printings.json",
-        "evidence": "sets/swsh2/evidence.json",
-        "summary": "sets/swsh2/summary.md"
       }
     },
     {
@@ -4807,105 +4893,6 @@
       }
     },
     {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "publishability_status": "publishable_complete",
-      "completion_status": "complete_master_index_set",
-      "completion_score": 100,
-      "cards": {
-        "master_admissible": 183,
-        "total": 183,
-        "gap_count": 0
-      },
-      "printings": {
-        "master_admissible": 348,
-        "total": 348,
-        "gap_count": 0
-      },
-      "finish_counts": {
-        "normal": 111,
-        "reverse": 123,
-        "holo": 76,
-        "stamped": 35,
-        "cosmos": 3
-      },
-      "verification_level": "normal_double_source_required",
-      "non_standard_policy": null,
-      "blocker_summary": "No current completion blocker.",
-      "shard_refs": {
-        "cards": "sets/swsh5/cards.json",
-        "printings": "sets/swsh5/printings.json",
-        "evidence": "sets/swsh5/evidence.json",
-        "summary": "sets/swsh5/summary.md"
-      }
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "publishability_status": "publishable_complete",
-      "completion_status": "complete_master_index_set",
-      "completion_score": 100,
-      "cards": {
-        "master_admissible": 233,
-        "total": 233,
-        "gap_count": 0
-      },
-      "printings": {
-        "master_admissible": 419,
-        "total": 419,
-        "gap_count": 0
-      },
-      "finish_counts": {
-        "normal": 119,
-        "reverse": 136,
-        "holo": 121,
-        "stamped": 39,
-        "cosmos": 4
-      },
-      "verification_level": "normal_double_source_required",
-      "non_standard_policy": null,
-      "blocker_summary": "No current completion blocker.",
-      "shard_refs": {
-        "cards": "sets/swsh6/cards.json",
-        "printings": "sets/swsh6/printings.json",
-        "evidence": "sets/swsh6/evidence.json",
-        "summary": "sets/swsh6/summary.md"
-      }
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "publishability_status": "publishable_complete",
-      "completion_status": "complete_master_index_set",
-      "completion_score": 100,
-      "cards": {
-        "master_admissible": 237,
-        "total": 237,
-        "gap_count": 0
-      },
-      "printings": {
-        "master_admissible": 422,
-        "total": 422,
-        "gap_count": 0
-      },
-      "finish_counts": {
-        "normal": 118,
-        "reverse": 132,
-        "holo": 125,
-        "stamped": 45,
-        "cosmos": 2
-      },
-      "verification_level": "normal_double_source_required",
-      "non_standard_policy": null,
-      "blocker_summary": "No current completion blocker.",
-      "shard_refs": {
-        "cards": "sets/swsh7/cards.json",
-        "printings": "sets/swsh7/printings.json",
-        "evidence": "sets/swsh7/evidence.json",
-        "summary": "sets/swsh7/summary.md"
-      }
-    },
-    {
       "set_key": "swsh8",
       "set_name": "Fusion Strike",
       "publishability_status": "publishable_complete",
@@ -4936,39 +4923,6 @@
         "printings": "sets/swsh8/printings.json",
         "evidence": "sets/swsh8/evidence.json",
         "summary": "sets/swsh8/summary.md"
-      }
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "publishability_status": "publishable_complete",
-      "completion_status": "complete_master_index_set",
-      "completion_score": 100,
-      "cards": {
-        "master_admissible": 216,
-        "total": 216,
-        "gap_count": 0
-      },
-      "printings": {
-        "master_admissible": 397,
-        "total": 397,
-        "gap_count": 0
-      },
-      "finish_counts": {
-        "normal": 121,
-        "reverse": 124,
-        "holo": 102,
-        "stamped": 46,
-        "cosmos": 4
-      },
-      "verification_level": "normal_double_source_required",
-      "non_standard_policy": null,
-      "blocker_summary": "No current completion blocker.",
-      "shard_refs": {
-        "cards": "sets/swsh9/cards.json",
-        "printings": "sets/swsh9/printings.json",
-        "evidence": "sets/swsh9/evidence.json",
-        "summary": "sets/swsh9/summary.md"
       }
     },
     {

@@ -1,0 +1,31 @@
+{
+  "package_id": "PKG-28A-DEPENDENCY-BLOCKED-MAPPING-READINESS",
+  "generated_at": "2026-06-14T02:23:45.570Z",
+  "source_inputs": {
+    "lanes_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_current_unsupported_reconciliation_lanes_v1.json",
+    "printings_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_printings_v1.json"
+  },
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "real_apply_authorized": false
+  },
+  "live_snapshot": {
+    "available": true,
+    "reason": null,
+    "mappings_read": 0,
+    "live_parent_rows_read": 0
+  },
+  "summary": {
+    "target_rows": 0,
+    "external_mapping_refs": 0,
+    "by_classification": {},
+    "by_set": {},
+    "by_finish": {},
+    "blocked_rows": 0
+  },
+  "rows": [],
+  "fingerprint": "dbc1c8b1a2c9c64c6c0729979a99aec1d844626c35b4e3f92430f29c2f75eeff"
+}

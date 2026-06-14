@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-06-10T22:27:37.479Z",
+  "version": "english_master_index_pkg08c_exu_parent_relocation_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "merge_performed": false,
+  "delete_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-08C-EXU-PARENT-RELOCATION",
+    "package_fingerprint_sha256": "89c340ab1b663ba736f85fe8b5715eb1ba95b61b2a0e26b8f81323bf26f00a62",
+    "target_parent_updates": 28,
+    "from_set_code": "ex10",
+    "to_set_code": "exu",
+    "child_printings_preserved": 28,
+    "mapping_inserts": 1,
+    "global_apply_included": false
+  },
+  "dry_run_proof": {
+    "dry_run_status": "pkg08c_exu_parent_relocation_completed_rolled_back_no_durable_change",
+    "before_hash_sha256": "ca62890133468355372a35aef9ead4379649e87ccaa274706784a862dbb39a1b",
+    "after_hash_sha256": "ca62890133468355372a35aef9ead4379649e87ccaa274706784a862dbb39a1b",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "stop_findings": []
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-08C-EXU-PARENT-RELOCATION apply only. Fingerprint: 89c340ab1b663ba736f85fe8b5715eb1ba95b61b2a0e26b8f81323bf26f00a62. Scope: 28 parent relocations from ex10 to exu, 28 child printings preserved, 1 TCGdex mapping insert for the question-mark Unown. Dry-run proof: ca62890133468355372a35aef9ead4379649e87ccaa274706784a862dbb39a1b == ca62890133468355372a35aef9ead4379649e87ccaa274706784a862dbb39a1b. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+    "approval_effect": "This would authorize a durable PKG-08C apply only, scoped to relocating 28 Unown Collection parents from ex10 to exu and inserting one missing TCGdex external mapping after one more final fresh snapshot.",
+    "approval_must_reference": {
+      "package_id": "PKG-08C-EXU-PARENT-RELOCATION",
+      "package_fingerprint_sha256": "89c340ab1b663ba736f85fe8b5715eb1ba95b61b2a0e26b8f81323bf26f00a62",
+      "target_parent_updates": 28,
+      "child_printings_preserved": 28,
+      "mapping_inserts": 1,
+      "dry_run_before_hash_sha256": "ca62890133468355372a35aef9ead4379649e87ccaa274706784a862dbb39a1b",
+      "dry_run_after_hash_sha256": "ca62890133468355372a35aef9ead4379649e87ccaa274706784a862dbb39a1b"
+    }
+  },
+  "next_step_if_approved_later": [
+    "Capture one more final fresh DB snapshot immediately before durable apply.",
+    "Verify the same 28 parents still belong to ex10 and have the expected holo child printing.",
+    "Verify no exu duplicate parent exists for the same number/name.",
+    "Execute durable transaction with COMMIT only after exact real-apply approval is present.",
+    "Capture post-apply readback and rerun remaining missing lane classification."
+  ],
+  "explicit_non_authorizations": [
+    "This gate is not a real apply.",
+    "This gate does not record approval.",
+    "This gate does not write to the database.",
+    "This gate does not create a migration.",
+    "This gate does not delete or merge rows.",
+    "This gate does not authorize global apply."
+  ],
+  "source_artifacts": {
+    "guarded_dry_run": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg08c_exu_parent_relocation_guarded_dry_run_v1.json"
+  },
+  "stop_findings": [],
+  "pass": true
+}

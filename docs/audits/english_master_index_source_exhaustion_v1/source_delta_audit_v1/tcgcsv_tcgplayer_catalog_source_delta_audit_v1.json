@@ -1,6 +1,6 @@
 {
   "version": "english_master_index_source_delta_audit_v1",
-  "generated_at": "2026-06-08T12:46:55.921Z",
+  "generated_at": "2026-06-12T05:38:08.040Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -20,16 +20,16 @@
   "promotion_rule": "Delta evidence may reduce a gap only after source independence and exact fact matching are confirmed; this report does not promote truth by itself.",
   "no_global_rebuild_required_for_discovery": true,
   "summary": {
-    "current_gap_facts": 1678,
-    "candidate_records_loaded": 1359,
+    "current_gap_facts": 1658,
+    "candidate_records_loaded": 1360,
     "matched_gap_facts": 0,
     "useful_candidate_matches": 0,
-    "already_in_current_index": 1034,
+    "already_in_current_index": 1035,
     "unmatched_candidate_records": 325,
     "by_delta_status": {},
     "by_gap_type": {},
     "by_unmatched_reason": {
-      "already_in_current_index_master_verified": 1034,
+      "already_in_current_index_master_verified": 1035,
       "not_in_remaining_gaps_or_current_index": 325
     },
     "top_sets": {},
@@ -471,6 +471,20 @@
       "candidate_authority": "tcgplayer.com",
       "candidate_url": "https://www.tcgplayer.com/product/42552/pokemon-base-set-2-imposter-professor-oak",
       "evidence_label": "TCGCSV/TCGplayer product 42552 price subtype Normal"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "11",
+      "card_name": "Eevee",
+      "finish_key": "normal",
+      "candidate_source_key": "tcgcsv_tcgplayer_catalog",
+      "candidate_source_kind": "marketplace_checklist",
+      "candidate_authority": "tcgplayer.com",
+      "candidate_url": "https://www.tcgplayer.com/product/618732/pokemon-wotc-promo-eevee-jr-east-stamp-rally",
+      "evidence_label": "TCGCSV/TCGplayer product 618732 price subtype Normal"
     },
     {
       "unmatched_reason": "already_in_current_index_master_verified",

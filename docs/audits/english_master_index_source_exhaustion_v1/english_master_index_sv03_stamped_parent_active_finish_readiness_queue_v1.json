@@ -1,0 +1,699 @@
+{
+  "version": "english_master_index_sv03_stamped_parent_active_finish_readiness_queue_v1",
+  "generated_at": "2026-06-12T17:04:22.469Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "additional_cards_review": "docs/audits/english_master_index_source_exhaustion_v1/sv03_bulbapedia_additional_stamped_active_finish_v1/sv03_bulbapedia_additional_stamped_active_finish_v1.json",
+    "product_family_review": "docs/audits/english_master_index_source_exhaustion_v1/sv03_product_family_stamped_finish_review_v1/sv03_product_family_stamped_finish_review_v1.json"
+  },
+  "fingerprint_sha256": "c1ceb0441c1c0e19136f1ae4b51fe068964f9acdd2ccddf518f5cb6672f59eca",
+  "summary": {
+    "target_rows": 23,
+    "review_ready_rows": 10,
+    "blocked_rows": 13,
+    "conflict_rows": 1,
+    "write_ready_now": 0,
+    "by_readiness_status": {
+      "blocked_active_finish_not_proven": 12,
+      "review_ready_product_family_only": 7,
+      "review_ready_same_row_source_only": 2,
+      "blocked_conflicting_active_finish_candidates": 1,
+      "review_ready_multi_lane_active_finish": 1
+    },
+    "by_proposed_finish": {
+      "holo": 6,
+      "cosmos": 2,
+      "normal": 2,
+      "reverse": 2
+    }
+  },
+  "rows": [
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "22",
+      "card_name": "Toedscruel ex",
+      "stamp_identity_keys": [
+        "play_pokemon_stamp",
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "target_variant_key": "play_pokemon_stamp",
+      "candidate_variant_keys": [
+        "play_pokemon_stamp"
+      ],
+      "proposed_finish_keys": [
+        "holo"
+      ],
+      "proposed_finish_key": "holo",
+      "readiness_status": "review_ready_product_family_only",
+      "blockers": [],
+      "write_ready_now": 0,
+      "evidence": [
+        {
+          "source_lane": "bulbapedia_ex_regular_card_page",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Toedscruel_ex_(Obsidian_Flames_22)",
+          "proposed_finish_key": "holo",
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "Bulbapedia card page identifies the Obsidian Flames regular print as Double Rare and categorizes the card as holographic; Prize Pack page says Pokemon ex retain regular foil patterns.",
+          "evidence_strength": "product-family-active-finish-review-candidate"
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "22",
+      "card_name": "Toedscruel ex",
+      "stamp_identity_keys": [
+        "play_pokemon_stamp",
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "target_variant_key": "pokemon_tcg_gym_present_pack_stamp",
+      "candidate_variant_keys": [
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "proposed_finish_keys": [],
+      "proposed_finish_key": null,
+      "readiness_status": "blocked_active_finish_not_proven",
+      "blockers": [
+        "no_active_finish_evidence",
+        "no_proposed_active_finish"
+      ],
+      "write_ready_now": 0,
+      "evidence": []
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "40",
+      "card_name": "Larvesta",
+      "stamp_identity_keys": [
+        "battle_academy_deck_stamp"
+      ],
+      "target_variant_key": "battle_academy_deck_stamp",
+      "candidate_variant_keys": [
+        "battle_academy_deck_stamp"
+      ],
+      "proposed_finish_keys": [],
+      "proposed_finish_key": null,
+      "readiness_status": "blocked_active_finish_not_proven",
+      "blockers": [
+        "no_active_finish_evidence",
+        "no_proposed_active_finish"
+      ],
+      "write_ready_now": 0,
+      "evidence": []
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "41",
+      "card_name": "Volcarona",
+      "stamp_identity_keys": [
+        "battle_academy_deck_stamp"
+      ],
+      "target_variant_key": "battle_academy_deck_stamp",
+      "candidate_variant_keys": [
+        "battle_academy_deck_stamp"
+      ],
+      "proposed_finish_keys": [],
+      "proposed_finish_key": null,
+      "readiness_status": "blocked_active_finish_not_proven",
+      "blockers": [
+        "no_active_finish_evidence",
+        "no_proposed_active_finish"
+      ],
+      "write_ready_now": 0,
+      "evidence": []
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "42",
+      "card_name": "Eiscue ex",
+      "stamp_identity_keys": [
+        "snowflake_symbol"
+      ],
+      "target_variant_key": "snowflake_symbol",
+      "candidate_variant_keys": [
+        "snowflake_symbol"
+      ],
+      "proposed_finish_keys": [
+        "holo"
+      ],
+      "proposed_finish_key": "holo",
+      "readiness_status": "review_ready_product_family_only",
+      "blockers": [],
+      "write_ready_now": 0,
+      "evidence": [
+        {
+          "source_lane": "holiday_calendar_2024",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Eiscue_ex_(Obsidian_Flames_42)",
+          "proposed_finish_key": "holo",
+          "stamp_identity_keys": [
+            "snowflake_symbol"
+          ],
+          "evidence_label": "A version of the Regular print featuring a silver snowflake stamp was available in the {{TCGMerch|Scarlet & Violet|Series|Holiday Calendar 2024}} from August 23, 2024.",
+          "evidence_strength": "product-family-active-finish-review-candidate"
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "66",
+      "card_name": "Tyranitar ex",
+      "stamp_identity_keys": [
+        "play_pokemon_stamp"
+      ],
+      "target_variant_key": "play_pokemon_stamp",
+      "candidate_variant_keys": [
+        "play_pokemon_stamp"
+      ],
+      "proposed_finish_keys": [
+        "holo"
+      ],
+      "proposed_finish_key": "holo",
+      "readiness_status": "review_ready_product_family_only",
+      "blockers": [],
+      "write_ready_now": 0,
+      "evidence": [
+        {
+          "source_lane": "bulbapedia_ex_regular_card_page",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Tyranitar_ex_(Obsidian_Flames_66)",
+          "proposed_finish_key": "holo",
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "Bulbapedia card page identifies the Obsidian Flames regular print as Double Rare and categorizes the card as holographic; Prize Pack page says Pokemon ex retain regular foil patterns.",
+          "evidence_strength": "product-family-active-finish-review-candidate"
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "92",
+      "card_name": "Lunatone",
+      "stamp_identity_keys": [
+        "play_pokemon_stamp"
+      ],
+      "target_variant_key": "play_pokemon_stamp",
+      "candidate_variant_keys": [
+        "play_pokemon_stamp"
+      ],
+      "proposed_finish_keys": [],
+      "proposed_finish_key": null,
+      "readiness_status": "blocked_active_finish_not_proven",
+      "blockers": [
+        "no_active_finish_evidence",
+        "no_proposed_active_finish"
+      ],
+      "write_ready_now": 0,
+      "evidence": []
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "95",
+      "card_name": "Claydol",
+      "stamp_identity_keys": [
+        "play_pokemon_stamp"
+      ],
+      "target_variant_key": "play_pokemon_stamp",
+      "candidate_variant_keys": [
+        "play_pokemon_stamp"
+      ],
+      "proposed_finish_keys": [],
+      "proposed_finish_key": null,
+      "readiness_status": "blocked_active_finish_not_proven",
+      "blockers": [
+        "no_active_finish_evidence",
+        "no_proposed_active_finish"
+      ],
+      "write_ready_now": 0,
+      "evidence": []
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "125",
+      "card_name": "Charizard ex",
+      "stamp_identity_keys": [
+        "jumbo_stamp",
+        "play_pokemon_stamp"
+      ],
+      "target_variant_key": "play_pokemon_stamp",
+      "candidate_variant_keys": [
+        "play_pokemon_stamp"
+      ],
+      "proposed_finish_keys": [
+        "holo"
+      ],
+      "proposed_finish_key": "holo",
+      "readiness_status": "review_ready_product_family_only",
+      "blockers": [],
+      "write_ready_now": 0,
+      "evidence": [
+        {
+          "source_lane": "bulbapedia_ex_regular_card_page",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Charizard_ex_(Obsidian_Flames_125)",
+          "proposed_finish_key": "holo",
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "Bulbapedia card page identifies the Obsidian Flames regular print as Double Rare and categorizes the card as holographic; Prize Pack page says Pokemon ex retain regular foil patterns.",
+          "evidence_strength": "product-family-active-finish-review-candidate"
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "131",
+      "card_name": "Houndour",
+      "stamp_identity_keys": [
+        "pikachu_jack_o_lantern_stamp"
+      ],
+      "target_variant_key": "pikachu_jack_o_lantern_stamp",
+      "candidate_variant_keys": [
+        "pikachu_jack_o_lantern_stamp"
+      ],
+      "proposed_finish_keys": [
+        "normal"
+      ],
+      "proposed_finish_key": "normal",
+      "readiness_status": "review_ready_product_family_only",
+      "blockers": [],
+      "write_ready_now": 0,
+      "evidence": [
+        {
+          "source_lane": "trick_or_trade_2024",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Trick_or_Trade_2024_(TCG)",
+          "proposed_finish_key": "normal",
+          "stamp_identity_keys": [
+            "pikachu_jack_o_lantern_stamp"
+          ],
+          "evidence_label": "Trick or Trade 2024 row: Houndour 131 rarity Common; page states cards feature Pikachu jack-o-lantern stamp.",
+          "evidence_strength": "product-family-active-finish-review-candidate"
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "133",
+      "card_name": "Houndoom",
+      "stamp_identity_keys": [
+        "pikachu_jack_o_lantern_stamp"
+      ],
+      "target_variant_key": "pikachu_jack_o_lantern_stamp",
+      "candidate_variant_keys": [
+        "pikachu_jack_o_lantern_stamp"
+      ],
+      "proposed_finish_keys": [
+        "normal"
+      ],
+      "proposed_finish_key": "normal",
+      "readiness_status": "review_ready_product_family_only",
+      "blockers": [],
+      "write_ready_now": 0,
+      "evidence": [
+        {
+          "source_lane": "trick_or_trade_2024",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Trick_or_Trade_2024_(TCG)",
+          "proposed_finish_key": "normal",
+          "stamp_identity_keys": [
+            "pikachu_jack_o_lantern_stamp"
+          ],
+          "evidence_label": "Trick or Trade 2024 row: Houndoom 133 rarity Uncommon; page states cards feature Pikachu jack-o-lantern stamp.",
+          "evidence_strength": "product-family-active-finish-review-candidate"
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "136",
+      "card_name": "Darkrai",
+      "stamp_identity_keys": [
+        "pikachu_jack_o_lantern_stamp"
+      ],
+      "target_variant_key": "pikachu_jack_o_lantern_stamp",
+      "candidate_variant_keys": [
+        "pikachu_jack_o_lantern_stamp"
+      ],
+      "proposed_finish_keys": [
+        "cosmos",
+        "holo"
+      ],
+      "proposed_finish_key": null,
+      "readiness_status": "blocked_conflicting_active_finish_candidates",
+      "blockers": [
+        "conflicting_active_finish_candidates:cosmos,holo"
+      ],
+      "write_ready_now": 0,
+      "evidence": [
+        {
+          "source_lane": "bulbapedia_obsidian_flames_additional_cards",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)",
+          "proposed_finish_key": "cosmos",
+          "stamp_identity_keys": [
+            "pikachu_jack_o_lantern_stamp"
+          ],
+          "evidence_label": "Cosmos Holo Pikachu jack-o'-lantern stamp Trick or Trade BOOster Bundle 2024 exclusive",
+          "evidence_strength": "same-row-active-finish-plus-stamped-identity"
+        },
+        {
+          "source_lane": "trick_or_trade_2024",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Trick_or_Trade_2024_(TCG)",
+          "proposed_finish_key": "holo",
+          "stamp_identity_keys": [
+            "pikachu_jack_o_lantern_stamp"
+          ],
+          "evidence_label": "Trick or Trade 2024 row: Darkrai 136 rarity Rare Holo; page states cards feature Pikachu jack-o-lantern stamp.",
+          "evidence_strength": "product-family-active-finish-review-candidate"
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "139",
+      "card_name": "Salandit",
+      "stamp_identity_keys": [
+        "battle_academy_deck_stamp"
+      ],
+      "target_variant_key": "battle_academy_deck_stamp",
+      "candidate_variant_keys": [
+        "battle_academy_deck_stamp"
+      ],
+      "proposed_finish_keys": [],
+      "proposed_finish_key": null,
+      "readiness_status": "blocked_active_finish_not_proven",
+      "blockers": [
+        "no_active_finish_evidence",
+        "no_proposed_active_finish"
+      ],
+      "write_ready_now": 0,
+      "evidence": []
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "140",
+      "card_name": "Salazzle",
+      "stamp_identity_keys": [
+        "battle_academy_deck_stamp"
+      ],
+      "target_variant_key": "battle_academy_deck_stamp",
+      "candidate_variant_keys": [
+        "battle_academy_deck_stamp"
+      ],
+      "proposed_finish_keys": [],
+      "proposed_finish_key": null,
+      "readiness_status": "blocked_active_finish_not_proven",
+      "blockers": [
+        "no_active_finish_evidence",
+        "no_proposed_active_finish"
+      ],
+      "write_ready_now": 0,
+      "evidence": []
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "141",
+      "card_name": "Scizor",
+      "stamp_identity_keys": [
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "target_variant_key": "pokemon_tcg_gym_present_pack_stamp",
+      "candidate_variant_keys": [
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "proposed_finish_keys": [],
+      "proposed_finish_key": null,
+      "readiness_status": "blocked_active_finish_not_proven",
+      "blockers": [
+        "no_active_finish_evidence",
+        "no_proposed_active_finish"
+      ],
+      "write_ready_now": 0,
+      "evidence": []
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "164",
+      "card_name": "Pidgeot ex",
+      "stamp_identity_keys": [
+        "great_ball_league_promo",
+        "play_pokemon_stamp",
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "target_variant_key": "great_ball_league_promo",
+      "candidate_variant_keys": [
+        "great_ball_league_promo"
+      ],
+      "proposed_finish_keys": [],
+      "proposed_finish_key": null,
+      "readiness_status": "blocked_active_finish_not_proven",
+      "blockers": [
+        "no_active_finish_evidence",
+        "no_proposed_active_finish"
+      ],
+      "write_ready_now": 0,
+      "evidence": []
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "164",
+      "card_name": "Pidgeot ex",
+      "stamp_identity_keys": [
+        "great_ball_league_promo",
+        "play_pokemon_stamp",
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "target_variant_key": "play_pokemon_stamp",
+      "candidate_variant_keys": [
+        "play_pokemon_stamp"
+      ],
+      "proposed_finish_keys": [
+        "holo"
+      ],
+      "proposed_finish_key": "holo",
+      "readiness_status": "review_ready_product_family_only",
+      "blockers": [],
+      "write_ready_now": 0,
+      "evidence": [
+        {
+          "source_lane": "bulbapedia_ex_regular_card_page",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Pidgeot_ex_(Obsidian_Flames_164)",
+          "proposed_finish_key": "holo",
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "Bulbapedia card page identifies the Obsidian Flames regular print as Double Rare and categorizes the card as holographic; Prize Pack page says Pokemon ex retain regular foil patterns.",
+          "evidence_strength": "product-family-active-finish-review-candidate"
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "164",
+      "card_name": "Pidgeot ex",
+      "stamp_identity_keys": [
+        "great_ball_league_promo",
+        "play_pokemon_stamp",
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "target_variant_key": "pokemon_tcg_gym_present_pack_stamp",
+      "candidate_variant_keys": [
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "proposed_finish_keys": [],
+      "proposed_finish_key": null,
+      "readiness_status": "blocked_active_finish_not_proven",
+      "blockers": [
+        "no_active_finish_evidence",
+        "no_proposed_active_finish"
+      ],
+      "write_ready_now": 0,
+      "evidence": []
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "188",
+      "card_name": "Geeta",
+      "stamp_identity_keys": [
+        "regionals_2023_promo",
+        "regionals_2023_staff_promo"
+      ],
+      "target_variant_key": "regionals_2023_promo",
+      "candidate_variant_keys": [
+        "regionals_2023_promo"
+      ],
+      "proposed_finish_keys": [
+        "reverse"
+      ],
+      "proposed_finish_key": "reverse",
+      "readiness_status": "review_ready_same_row_source_only",
+      "blockers": [],
+      "write_ready_now": 0,
+      "evidence": [
+        {
+          "source_lane": "bulbapedia_obsidian_flames_additional_cards",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)",
+          "proposed_finish_key": "reverse",
+          "stamp_identity_keys": [
+            "regionals_2023_promo"
+          ],
+          "evidence_label": "Reverse Holo Regionals 2023 promo",
+          "evidence_strength": "same-row-active-finish-plus-stamped-identity"
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "188",
+      "card_name": "Geeta",
+      "stamp_identity_keys": [
+        "regionals_2023_promo",
+        "regionals_2023_staff_promo"
+      ],
+      "target_variant_key": "regionals_2023_staff_promo",
+      "candidate_variant_keys": [
+        "regionals_2023_staff_promo"
+      ],
+      "proposed_finish_keys": [
+        "reverse"
+      ],
+      "proposed_finish_key": "reverse",
+      "readiness_status": "review_ready_same_row_source_only",
+      "blockers": [],
+      "write_ready_now": 0,
+      "evidence": [
+        {
+          "source_lane": "bulbapedia_obsidian_flames_additional_cards",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)",
+          "proposed_finish_key": "reverse",
+          "stamp_identity_keys": [
+            "regionals_2023_staff_promo"
+          ],
+          "evidence_label": "Reverse Holo Regionals 2023 Staff promo",
+          "evidence_strength": "same-row-active-finish-plus-stamped-identity"
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "189",
+      "card_name": "Letter of Encouragement",
+      "stamp_identity_keys": [
+        "play_pokemon_stamp",
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "target_variant_key": "play_pokemon_stamp",
+      "candidate_variant_keys": [
+        "play_pokemon_stamp"
+      ],
+      "proposed_finish_keys": [],
+      "proposed_finish_key": null,
+      "readiness_status": "blocked_active_finish_not_proven",
+      "blockers": [
+        "no_active_finish_evidence",
+        "no_proposed_active_finish"
+      ],
+      "write_ready_now": 0,
+      "evidence": []
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "189",
+      "card_name": "Letter of Encouragement",
+      "stamp_identity_keys": [
+        "play_pokemon_stamp",
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "target_variant_key": "pokemon_tcg_gym_present_pack_stamp",
+      "candidate_variant_keys": [
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "proposed_finish_keys": [],
+      "proposed_finish_key": null,
+      "readiness_status": "blocked_active_finish_not_proven",
+      "blockers": [
+        "no_active_finish_evidence",
+        "no_proposed_active_finish"
+      ],
+      "write_ready_now": 0,
+      "evidence": []
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "196",
+      "card_name": "Town Store",
+      "stamp_identity_keys": [
+        "play_pokemon_stamp"
+      ],
+      "target_variant_key": "play_pokemon_stamp",
+      "candidate_variant_keys": [
+        "play_pokemon_stamp"
+      ],
+      "proposed_finish_keys": [
+        "cosmos"
+      ],
+      "proposed_finish_key": "cosmos",
+      "readiness_status": "review_ready_multi_lane_active_finish",
+      "blockers": [],
+      "write_ready_now": 0,
+      "evidence": [
+        {
+          "source_lane": "bulbapedia_obsidian_flames_additional_cards",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)",
+          "proposed_finish_key": "cosmos",
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "Cosmos Holo \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Six exclusive",
+          "evidence_strength": "same-row-active-finish-plus-stamped-identity"
+        },
+        {
+          "source_lane": "play_pokemon_prize_pack",
+          "source_url": "docs/audits/english_master_index_source_exhaustion_v1/sv03_prize_pack_stamped_finish_rule_review_v1/sv03_prize_pack_stamped_finish_rule_review_v1.json",
+          "proposed_finish_key": "cosmos",
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "Prize Pack rule review: review_candidate_cosmos_from_prize_pack_rule",
+          "evidence_strength": "product-family-active-finish-review-candidate"
+        }
+      ]
+    }
+  ],
+  "safety_confirmation": {
+    "audit_only": true,
+    "db_writes_performed": false,
+    "durable_db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "write_ready_now": 0
+  }
+}

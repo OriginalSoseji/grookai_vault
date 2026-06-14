@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "cardtrader_stamped_finish_dv1",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.cardtrader.com/en/manasearch/5/blueprints.json",
+  "source_status": "available_generated",
+  "set_key": "dv1",
+  "set_name": "Dragon Vault",
+  "retrieved_at": "2026-06-11T17:22:14.403Z",
+  "raw_snapshot_ref": "generated_fixture:cardtrader_stamped_finish:dv1:2026-06-11T17:22:14.403Z",
+  "generation_note": "Generated from CardTrader Pokemon blueprint cache. Exact set/card-number/card-name/stamp-family/active-finish matches only.",
+  "records": [
+    {
+      "source_key": "cardtrader_stamped_finish",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardtrader.com/en/cards/114420-latias-stamp-holo-promo-009-020-dragon-vault",
+      "set_key": "dv1",
+      "set_name": "Dragon Vault",
+      "card_number": "9",
+      "card_name": "Latias",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "CardTrader exact stamped finish: Latias - Stamp Holo Promo | 009/020",
+      "language": "en",
+      "retrieved_at": "2026-06-11T17:22:14.403Z",
+      "raw_snapshot_ref": "cardtrader_blueprint:114420-latias-stamp-holo-promo-009-020-dragon-vault",
+      "notes": "Exact stamped active-finish evidence accepted only when CardTrader had one matching set/card/number/stamp-family title with an explicit active finish phrase."
+    }
+  ]
+}

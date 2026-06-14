@@ -1,0 +1,1691 @@
+{
+  "generated_at": "2026-06-11T02:01:07.055Z",
+  "version": "english_master_index_pkg08w_host_subset_collision_readiness_v1",
+  "package_id": "PKG-08W-HOST-SUBSET-COLLISION-READINESS",
+  "source_pkg08h_fingerprint_sha256": "7157ab3cefd064998d69cd173b2945039a451cf0df3a085edd8666f86e9643be",
+  "package_fingerprint_sha256": "97881ea0fcc6ab118e3915f61bda15a19bf9c5c157bb396def3e3c6f31ad6ff7",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "summary": {
+    "source_rows": 25,
+    "classified_rows": 25,
+    "by_readiness_status": {
+      "blocked_host_subset_alias_candidate_with_extra_child_finishes": 25
+    },
+    "top_sets_by_readiness_status": {
+      "blocked_host_subset_alias_candidate_with_extra_child_finishes": [
+        {
+          "key": "swsh4.5",
+          "count": 25
+        }
+      ]
+    },
+    "by_extra_child_finish_signature": {
+      "holo+reverse": 25
+    },
+    "rows_with_extra_child_finishes": 25,
+    "clean_relocation_candidates": 0
+  },
+  "recommended_next_package": {
+    "package_id": "PKG-08X",
+    "scope": "host_subset_alias_finish_impact_plan",
+    "candidate_rows": 25,
+    "status": "read_only_finish_impact_plan_required",
+    "allowed_write_shape": "none in this package"
+  },
+  "rows": [
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV023",
+      "card_name": "Galarian Darumaka",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV023",
+      "mapped_parent": {
+        "external_mapping_id": "55675",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV023",
+        "card_print_id": "e3c7f986-9967-4a6c-be4b-9145c6d72cf3",
+        "set_code": "swsh45sv",
+        "number": "SV023",
+        "number_plain": "023",
+        "name": "Galarian Darumaka"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv023",
+        "mapped_printed_number": "sv023",
+        "target_name": "Galarian Darumaka",
+        "mapped_name": "Galarian Darumaka"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV023",
+        "https://www.cardtrader.com/en/cards/153050-galarian-darumaka-shiny-rare-sv23-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV043",
+      "card_name": "Pincurchin",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV043",
+      "mapped_parent": {
+        "external_mapping_id": "55695",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV043",
+        "card_print_id": "ce00e4d0-7e5f-4f98-857d-9b6609e713ea",
+        "set_code": "swsh45sv",
+        "number": "SV043",
+        "number_plain": "043",
+        "name": "Pincurchin"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv043",
+        "mapped_printed_number": "sv043",
+        "target_name": "Pincurchin",
+        "mapped_name": "Pincurchin"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV043",
+        "https://www.cardtrader.com/en/cards/153070-pincurchin-shiny-rare-sv43-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV100",
+      "card_name": "Greedent",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV100",
+      "mapped_parent": {
+        "external_mapping_id": "55752",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV100",
+        "card_print_id": "b413c051-3248-4cd5-929b-6fffd929b5ce",
+        "set_code": "swsh45sv",
+        "number": "SV100",
+        "number_plain": "100",
+        "name": "Greedent"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv100",
+        "mapped_printed_number": "sv100",
+        "target_name": "Greedent",
+        "mapped_name": "Greedent"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV100",
+        "https://www.cardtrader.com/en/cards/153127-greedent-shiny-rare-sv100-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV101",
+      "card_name": "Rookidee",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV101",
+      "mapped_parent": {
+        "external_mapping_id": "55753",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV101",
+        "card_print_id": "13610758-59c4-441c-aff9-72edc417f0f1",
+        "set_code": "swsh45sv",
+        "number": "SV101",
+        "number_plain": "101",
+        "name": "Rookidee"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv101",
+        "mapped_printed_number": "sv101",
+        "target_name": "Rookidee",
+        "mapped_name": "Rookidee"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV101",
+        "https://www.cardtrader.com/en/cards/153128-rookidee-shiny-rare-sv101-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV102",
+      "card_name": "Corvisquire",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV102",
+      "mapped_parent": {
+        "external_mapping_id": "55754",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV102",
+        "card_print_id": "e2d9443f-0453-4967-b2e8-00f1f9a0394f",
+        "set_code": "swsh45sv",
+        "number": "SV102",
+        "number_plain": "102",
+        "name": "Corvisquire"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv102",
+        "mapped_printed_number": "sv102",
+        "target_name": "Corvisquire",
+        "mapped_name": "Corvisquire"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV102",
+        "https://www.cardtrader.com/en/cards/153129-corvisquire-shiny-rare-sv102-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV103",
+      "card_name": "Wooloo",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV103",
+      "mapped_parent": {
+        "external_mapping_id": "55755",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV103",
+        "card_print_id": "2c618136-437f-4eb1-b8a3-10ee021aa29e",
+        "set_code": "swsh45sv",
+        "number": "SV103",
+        "number_plain": "103",
+        "name": "Wooloo"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv103",
+        "mapped_printed_number": "sv103",
+        "target_name": "Wooloo",
+        "mapped_name": "Wooloo"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV103",
+        "https://www.cardtrader.com/en/cards/153130-wooloo-shiny-rare-sv103-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV104",
+      "card_name": "Dubwool",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV104",
+      "mapped_parent": {
+        "external_mapping_id": "55756",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV104",
+        "card_print_id": "51000325-03f9-474f-a631-0d9b0cce29ba",
+        "set_code": "swsh45sv",
+        "number": "SV104",
+        "number_plain": "104",
+        "name": "Dubwool"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv104",
+        "mapped_printed_number": "sv104",
+        "target_name": "Dubwool",
+        "mapped_name": "Dubwool"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV104",
+        "https://www.cardtrader.com/en/cards/153131-dubwool-shiny-rare-sv104-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV105",
+      "card_name": "Rillaboom V",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV105",
+      "mapped_parent": {
+        "external_mapping_id": "55757",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV105",
+        "card_print_id": "23d051d8-3da7-4b0f-808c-e664b8f65a99",
+        "set_code": "swsh45sv",
+        "number": "SV105",
+        "number_plain": "105",
+        "name": "Rillaboom V"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv105",
+        "mapped_printed_number": "sv105",
+        "target_name": "Rillaboom V",
+        "mapped_name": "Rillaboom V"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV105",
+        "https://www.cardtrader.com/en/cards/153132-rillaboom-v-shiny-rare-sv105-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV106",
+      "card_name": "Rillaboom VMAX",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV106",
+      "mapped_parent": {
+        "external_mapping_id": "55758",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV106",
+        "card_print_id": "24d17147-c0d3-49e6-8ca7-7837a79d3964",
+        "set_code": "swsh45sv",
+        "number": "SV106",
+        "number_plain": "106",
+        "name": "Rillaboom VMAX"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv106",
+        "mapped_printed_number": "sv106",
+        "target_name": "Rillaboom VMAX",
+        "mapped_name": "Rillaboom VMAX"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV106",
+        "https://www.cardtrader.com/en/cards/153133-rillaboom-vmax-shiny-rare-sv106-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV107",
+      "card_name": "Charizard VMAX",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV107",
+      "mapped_parent": {
+        "external_mapping_id": "55759",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV107",
+        "card_print_id": "ff941ffa-c29f-44e5-a789-2072ecca3fb2",
+        "set_code": "swsh45sv",
+        "number": "SV107",
+        "number_plain": "107",
+        "name": "Charizard VMAX"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv107",
+        "mapped_printed_number": "sv107",
+        "target_name": "Charizard VMAX",
+        "mapped_name": "Charizard VMAX"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV107",
+        "https://www.cardtrader.com/en/cards/153134-charizard-vmax-shiny-rare-sv107-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV108",
+      "card_name": "Centiskorch V",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV108",
+      "mapped_parent": {
+        "external_mapping_id": "55760",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV108",
+        "card_print_id": "96fbbc20-e22d-43c1-a352-c29023a642d8",
+        "set_code": "swsh45sv",
+        "number": "SV108",
+        "number_plain": "108",
+        "name": "Centiskorch V"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv108",
+        "mapped_printed_number": "sv108",
+        "target_name": "Centiskorch V",
+        "mapped_name": "Centiskorch V"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV108",
+        "https://www.cardtrader.com/en/cards/153135-centiskorch-v-shiny-rare-sv108-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV109",
+      "card_name": "Centiskorch VMAX",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV109",
+      "mapped_parent": {
+        "external_mapping_id": "55761",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV109",
+        "card_print_id": "2dff363f-c09c-44b3-84e6-22f333dc8e6b",
+        "set_code": "swsh45sv",
+        "number": "SV109",
+        "number_plain": "109",
+        "name": "Centiskorch VMAX"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv109",
+        "mapped_printed_number": "sv109",
+        "target_name": "Centiskorch VMAX",
+        "mapped_name": "Centiskorch VMAX"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV109",
+        "https://www.cardtrader.com/en/cards/153136-centiskorch-vmax-shiny-rare-sv109-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV110",
+      "card_name": "Lapras V",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV110",
+      "mapped_parent": {
+        "external_mapping_id": "55762",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV110",
+        "card_print_id": "1aab4ec4-b92e-4f23-baec-a01989ef041d",
+        "set_code": "swsh45sv",
+        "number": "SV110",
+        "number_plain": "110",
+        "name": "Lapras V"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv110",
+        "mapped_printed_number": "sv110",
+        "target_name": "Lapras V",
+        "mapped_name": "Lapras V"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV110",
+        "https://www.cardtrader.com/en/cards/153137-lapras-v-shiny-rare-sv110-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV111",
+      "card_name": "Lapras VMAX",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV111",
+      "mapped_parent": {
+        "external_mapping_id": "55763",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV111",
+        "card_print_id": "d7104595-1414-4865-aa5b-c8bb684b2c5d",
+        "set_code": "swsh45sv",
+        "number": "SV111",
+        "number_plain": "111",
+        "name": "Lapras VMAX"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv111",
+        "mapped_printed_number": "sv111",
+        "target_name": "Lapras VMAX",
+        "mapped_name": "Lapras VMAX"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV111",
+        "https://www.cardtrader.com/en/cards/153138-lapras-vmax-shiny-rare-sv111-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV112",
+      "card_name": "Toxtricity V",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV112",
+      "mapped_parent": {
+        "external_mapping_id": "55764",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV112",
+        "card_print_id": "0ffc7113-1af6-4f8a-93c6-c035cfaadd24",
+        "set_code": "swsh45sv",
+        "number": "SV112",
+        "number_plain": "112",
+        "name": "Toxtricity V"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv112",
+        "mapped_printed_number": "sv112",
+        "target_name": "Toxtricity V",
+        "mapped_name": "Toxtricity V"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV112",
+        "https://www.cardtrader.com/en/cards/153139-toxtricity-v-shiny-rare-sv112-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV113",
+      "card_name": "Toxtricity VMAX",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV113",
+      "mapped_parent": {
+        "external_mapping_id": "55765",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV113",
+        "card_print_id": "4f511770-c70d-4f72-90bd-fa3690359680",
+        "set_code": "swsh45sv",
+        "number": "SV113",
+        "number_plain": "113",
+        "name": "Toxtricity VMAX"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv113",
+        "mapped_printed_number": "sv113",
+        "target_name": "Toxtricity VMAX",
+        "mapped_name": "Toxtricity VMAX"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV113",
+        "https://www.cardtrader.com/en/cards/153140-toxtricity-vmax-shiny-rare-sv113-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV114",
+      "card_name": "Indeedee V",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV114",
+      "mapped_parent": {
+        "external_mapping_id": "55766",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV114",
+        "card_print_id": "6bdd14cd-7191-4a7d-9ede-20e5b1859908",
+        "set_code": "swsh45sv",
+        "number": "SV114",
+        "number_plain": "114",
+        "name": "Indeedee V"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv114",
+        "mapped_printed_number": "sv114",
+        "target_name": "Indeedee V",
+        "mapped_name": "Indeedee V"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV114",
+        "https://www.cardtrader.com/en/cards/153141-indeedee-v-shiny-rare-sv114-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV115",
+      "card_name": "Falinks V",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV115",
+      "mapped_parent": {
+        "external_mapping_id": "55767",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV115",
+        "card_print_id": "3239cfb4-494d-45f3-9174-bbea80917e9b",
+        "set_code": "swsh45sv",
+        "number": "SV115",
+        "number_plain": "115",
+        "name": "Falinks V"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv115",
+        "mapped_printed_number": "sv115",
+        "target_name": "Falinks V",
+        "mapped_name": "Falinks V"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV115",
+        "https://www.cardtrader.com/en/cards/153142-falinks-v-shiny-rare-sv115-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV116",
+      "card_name": "Grimmsnarl V",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV116",
+      "mapped_parent": {
+        "external_mapping_id": "55768",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV116",
+        "card_print_id": "5033fccf-7bdb-4b5a-89fa-c1f42d727ad2",
+        "set_code": "swsh45sv",
+        "number": "SV116",
+        "number_plain": "116",
+        "name": "Grimmsnarl V"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv116",
+        "mapped_printed_number": "sv116",
+        "target_name": "Grimmsnarl V",
+        "mapped_name": "Grimmsnarl V"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV116",
+        "https://www.cardtrader.com/en/cards/153143-grimmsnarl-v-shiny-rare-sv116-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV117",
+      "card_name": "Grimmsnarl VMAX",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV117",
+      "mapped_parent": {
+        "external_mapping_id": "55769",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV117",
+        "card_print_id": "3009e93b-1fd7-444a-b51f-e0b01f2e4f2a",
+        "set_code": "swsh45sv",
+        "number": "SV117",
+        "number_plain": "117",
+        "name": "Grimmsnarl VMAX"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv117",
+        "mapped_printed_number": "sv117",
+        "target_name": "Grimmsnarl VMAX",
+        "mapped_name": "Grimmsnarl VMAX"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV117",
+        "https://www.cardtrader.com/en/cards/153144-grimmsnarl-vmax-shiny-rare-sv117-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV118",
+      "card_name": "Ditto V",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV118",
+      "mapped_parent": {
+        "external_mapping_id": "55770",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV118",
+        "card_print_id": "16c1d62c-00e7-4af0-b68a-af4bc0c36fc0",
+        "set_code": "swsh45sv",
+        "number": "SV118",
+        "number_plain": "118",
+        "name": "Ditto V"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv118",
+        "mapped_printed_number": "sv118",
+        "target_name": "Ditto V",
+        "mapped_name": "Ditto V"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV118",
+        "https://www.cardtrader.com/en/cards/153145-ditto-v-shiny-rare-sv118-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV119",
+      "card_name": "Ditto VMAX",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV119",
+      "mapped_parent": {
+        "external_mapping_id": "55771",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV119",
+        "card_print_id": "df544042-b0d6-4a92-87a8-9bb14706afa7",
+        "set_code": "swsh45sv",
+        "number": "SV119",
+        "number_plain": "119",
+        "name": "Ditto VMAX"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv119",
+        "mapped_printed_number": "sv119",
+        "target_name": "Ditto VMAX",
+        "mapped_name": "Ditto VMAX"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV119",
+        "https://www.cardtrader.com/en/cards/153146-ditto-vmax-shiny-rare-sv119-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV120",
+      "card_name": "Dubwool V",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV120",
+      "mapped_parent": {
+        "external_mapping_id": "55772",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV120",
+        "card_print_id": "8637f45a-0064-43c2-8e24-d6ab50403dd4",
+        "set_code": "swsh45sv",
+        "number": "SV120",
+        "number_plain": "120",
+        "name": "Dubwool V"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv120",
+        "mapped_printed_number": "sv120",
+        "target_name": "Dubwool V",
+        "mapped_name": "Dubwool V"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV120",
+        "https://www.cardtrader.com/en/cards/153147-dubwool-v-shiny-rare-sv120-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV121",
+      "card_name": "Eternatus V",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV121",
+      "mapped_parent": {
+        "external_mapping_id": "55773",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV121",
+        "card_print_id": "7ecca79e-c6fd-416f-9bc7-5b09ccafd50b",
+        "set_code": "swsh45sv",
+        "number": "SV121",
+        "number_plain": "121",
+        "name": "Eternatus V"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv121",
+        "mapped_printed_number": "sv121",
+        "target_name": "Eternatus V",
+        "mapped_name": "Eternatus V"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV121",
+        "https://www.cardtrader.com/en/cards/153148-eternatus-v-gold-secret-rare-sv121-shining-fates"
+      ]
+    },
+    {
+      "readiness_status": "blocked_host_subset_alias_candidate_with_extra_child_finishes",
+      "recommended_next_action": "Prepare a separate non-write finish impact plan before any parent relocation; extra child finishes would move with the parent.",
+      "allowed_future_write_shape": "read-only impact plan first, then guarded dry-run only if finish impact is resolved",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV122",
+      "card_name": "Eternatus VMAX",
+      "finish_key": "normal",
+      "tcgdex_external_id": "swsh4.5-SV122",
+      "mapped_parent": {
+        "external_mapping_id": "55774",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV122",
+        "card_print_id": "95e30a1d-19a5-460c-a752-2e027bf6d270",
+        "set_code": "swsh45sv",
+        "number": "SV122",
+        "number_plain": "122",
+        "name": "Eternatus VMAX"
+      },
+      "mapped_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_present_on_mapped_parent": true,
+      "extra_child_finishes_on_mapped_parent": [
+        "holo",
+        "reverse"
+      ],
+      "host_subset_alias_shape": true,
+      "same_printed_identity": true,
+      "comparison": {
+        "target_set": "swsh4 5",
+        "mapped_set": "swsh45sv",
+        "target_set_compact": "swsh45",
+        "mapped_set_compact": "swsh45sv",
+        "target_printed_number": "sv122",
+        "mapped_printed_number": "sv122",
+        "target_name": "Eternatus VMAX",
+        "mapped_name": "Eternatus VMAX"
+      },
+      "dependency_counts": {
+        "child_printing_count": 3,
+        "child_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "external_mapping_count": 1,
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0,
+        "identity_count": 1,
+        "species_count": 1,
+        "trait_count": 1,
+        "dependency_total": 7
+      },
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV122",
+        "https://www.cardtrader.com/en/cards/153149-eternatus-vmax-gold-secret-rare-sv122-shining-fates"
+      ]
+    }
+  ]
+}

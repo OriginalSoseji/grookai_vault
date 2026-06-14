@@ -1,0 +1,841 @@
+{
+  "generated_at": "2026-06-12T00:52:13.142Z",
+  "version": "english_master_index_pkg15n_stamped_review_ready_parent_insert_readiness_v1",
+  "package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+  "future_package_id": "PKG-15O-STAMPED-REVIEW-READY-PARENT-INSERTS",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "pkg15k_stamped_identity_expansion_candidates": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15k_stamped_identity_expansion_candidates_v1.json",
+    "pkg15j_stamped_identity_granularity_plan": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15j_stamped_identity_granularity_plan_v1.json"
+  },
+  "source_fingerprints": {
+    "pkg15k": "832eba38f63aa2660a65112067730b397e7da5fa536d41791d7c91e63de4b695",
+    "pkg15j": "dc0fd43549ec2e75b8832e8dbd683b587d8895252c170763320a779bc104d2d2"
+  },
+  "package_fingerprint_sha256": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+  "report_fingerprint_sha256": "81ee8e8aa76ddb7ca029c19d505b935b97541653bd5627ad76f5ce7f304cf3ba",
+  "summary": {
+    "target_rows": 11,
+    "ready_for_guarded_dry_run_parent_child_insert": 0,
+    "blocked_before_dry_run": 11,
+    "expected_parent_inserts": 0,
+    "expected_child_inserts": 0,
+    "expected_identity_inserts": 0,
+    "expected_deletes": 0,
+    "expected_merges": 0,
+    "base_parent_vault_refs": 0,
+    "base_finish_child_vault_refs": 0,
+    "base_parent_external_mappings": 47,
+    "by_readiness_status": {
+      "blocked_before_dry_run": 11
+    },
+    "by_set": {
+      "dp1": 1,
+      "sm1": 1,
+      "sm4": 1,
+      "sm5": 1,
+      "sm6": 3,
+      "swsh10": 1,
+      "xy1": 1,
+      "xy10": 1,
+      "xy8": 1
+    },
+    "by_finish_key": {
+      "normal": 1,
+      "reverse": 10
+    }
+  },
+  "rows": [
+    {
+      "target_parent_id": "542686fb-9987-4003-b83b-b1eda3d75c73",
+      "target_child_id": "79b0fe77-d3a7-4af0-babd-f5821462312f",
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "source_card_number": "98",
+      "source_number_plain": "98",
+      "card_name": "Shinx",
+      "target_variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "target_finish_key": "normal",
+      "current_master_variant_key": "city_championships_stamp",
+      "expansion_status": "current_master_identity_multi_source_finish_multi_source_review_ready",
+      "independent_finish_sources": [
+        "pokecardvalues_stamped_finish",
+        "pokumon_promo_database"
+      ],
+      "independent_identity_sources": [
+        "pokecardvalues_stamped_finish",
+        "pricecharting_csv_product",
+        "pokumon_promo_database"
+      ],
+      "evidence_context": {
+        "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/shinx-98-130-non-holo-city-championships-diamond-pearl/dp1-98-2-23/",
+        "pkg15k_source_title": "Shinx - 98/130 - Non-Holo - City Championships - Promo",
+        "matching_manual_web_finish_context": [
+          {
+            "source_key": "pokumon_promo_database",
+            "source_kind": "collector_reference",
+            "source_url": "https://pokumon.com/card/shinx-98-130-city-championships-special-print/",
+            "evidence_label": "Shinx (98/130 City Championships Special Print) - Non-holo City Championships promo",
+            "evidence_type": "finish_presence"
+          }
+        ],
+        "matching_pricecharting_identity_context": [
+          {
+            "source_key": "pricecharting_csv_product",
+            "source_url": "https://www.pricecharting.com/game/pokemon-diamond-and-pearl/shinx-city-championships-98",
+            "evidence_label": "Shinx [City Championships] #98",
+            "validation_reason": "missing_explicit_active_finish"
+          }
+        ]
+      },
+      "base_candidate_count": 1,
+      "base_parent_id": "3b6f4dbd-177d-4778-b023-f49d0b9fd24d",
+      "base_parent_number": "98",
+      "base_parent_number_plain": "98",
+      "base_parent_variant_key": "",
+      "base_parent_printed_identity_modifier": null,
+      "base_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_child_id_collision_count": 1,
+      "existing_target_child_count": 1,
+      "active_finish_exists": true,
+      "ready_identity_projection": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "3a618ffb3f1ec21ef1f6602f8e76a3e1cdd59420a8873df7a5498223ee8e9de9",
+      "identity_hash_collision_count": 1,
+      "base_parent_vault_ref_count": 0,
+      "base_finish_child_vault_ref_count": 0,
+      "base_parent_external_mapping_count": 3,
+      "readiness_status": "blocked_before_dry_run",
+      "blockers": [
+        "target_stamped_parent_already_exists",
+        "target_child_id_collision",
+        "target_child_finish_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "target_parent_id": "9a29554c-c5e5-40ad-95b5-68714ca316bd",
+      "target_child_id": "c77a842c-1064-4cbd-9ddc-c2cb0dd68a81",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "source_card_number": "135",
+      "source_number_plain": "135",
+      "card_name": "Ultra Ball",
+      "target_variant_key": "oceania_championships_staff_stamp",
+      "stamp_label": "Oceania Championships Staff Stamp",
+      "target_finish_key": "reverse",
+      "current_master_variant_key": "championship_staff_stamp",
+      "expansion_status": "candidate_missing_more_specific_identity_multi_source_finish_multi_source_review_ready",
+      "independent_finish_sources": [
+        "pokecardvalues_stamped_finish",
+        "pokumon_promo_database"
+      ],
+      "independent_identity_sources": [
+        "pokecardvalues_stamped_finish",
+        "pricecharting_csv_product",
+        "pokumon_promo_database"
+      ],
+      "evidence_context": {
+        "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/ultra-ball-135-149-reverse-holo-staff-oceania-championships-sun-moon/sm1-135-3-81/",
+        "pkg15k_source_title": "Ultra Ball - 135/149 - Reverse Holo - Staff Oceania Championships - Promo",
+        "matching_manual_web_finish_context": [
+          {
+            "source_key": "pokumon_promo_database",
+            "source_kind": "collector_reference",
+            "source_url": "https://pokumon.com/card/oceania-championships-staff-ultra-ball-135-149-international-championships-oceania-special-print/",
+            "evidence_label": "Oceania Championships Staff Ultra Ball (135/149 International Championships Oceania Special Print) - Reverse Holo Staff promo",
+            "evidence_type": "finish_presence"
+          }
+        ],
+        "matching_pricecharting_identity_context": [
+          {
+            "source_key": "pricecharting_csv_product",
+            "source_url": "https://www.pricecharting.com/game/pokemon-sun-and-moon/ultra-ball-championships-staff-oceania-135",
+            "evidence_label": "Ultra Ball [Championships Staff Oceania] #135",
+            "validation_reason": "missing_explicit_active_finish"
+          }
+        ]
+      },
+      "base_candidate_count": 1,
+      "base_parent_id": "51d202d3-ec63-4f2b-998a-2bb3429a5610",
+      "base_parent_number": "135",
+      "base_parent_number_plain": "135",
+      "base_parent_variant_key": "",
+      "base_parent_printed_identity_modifier": null,
+      "base_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_child_id_collision_count": 1,
+      "existing_target_child_count": 1,
+      "active_finish_exists": true,
+      "ready_identity_projection": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "232be1f858c2b518672907c65bdde0ebc9fe51040d6c0ca63a436105dc3853e1",
+      "identity_hash_collision_count": 1,
+      "base_parent_vault_ref_count": 0,
+      "base_finish_child_vault_ref_count": 0,
+      "base_parent_external_mapping_count": 4,
+      "readiness_status": "blocked_before_dry_run",
+      "blockers": [
+        "target_stamped_parent_already_exists",
+        "target_child_id_collision",
+        "target_child_finish_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "target_parent_id": "a53b99df-ef7d-4403-8285-3210ddb9910a",
+      "target_child_id": "9eff98c3-f2c5-47a1-a82e-9cb25dd1256b",
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "source_card_number": "95",
+      "source_number_plain": "95",
+      "card_name": "Gladion",
+      "target_variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "target_finish_key": "reverse",
+      "current_master_variant_key": "regional_championships_stamp",
+      "expansion_status": "candidate_missing_more_specific_identity_multi_source_finish_multi_source_review_ready",
+      "independent_finish_sources": [
+        "pokecardvalues_stamped_finish",
+        "nobleknight_league_championship_cards"
+      ],
+      "independent_identity_sources": [
+        "pokecardvalues_stamped_finish",
+        "nobleknight_league_championship_cards"
+      ],
+      "evidence_context": {
+        "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/gladion-95-111-reverse-holo-staff-regional-championships-crimson-invasion/sm4-95-3-83/",
+        "pkg15k_source_title": "Gladion - 95/111 - Reverse Holo - Staff Regional Championships - Promo",
+        "matching_manual_web_finish_context": [
+          {
+            "source_key": "nobleknight_league_championship_cards",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.nobleknight.com/P/2148463577/Gladion---95-111-Regional-Championships-Staff-P-095-111-Reverse-Holo",
+            "evidence_label": "Gladion - 95/111 (Regional Championships) [Staff] (P) #095/111 (Reverse Holo)",
+            "evidence_type": "finish_presence"
+          }
+        ],
+        "matching_pricecharting_identity_context": []
+      },
+      "base_candidate_count": 1,
+      "base_parent_id": "a7898da7-d1ea-4b53-87c7-ac98fbcbc0fb",
+      "base_parent_number": "95",
+      "base_parent_number_plain": "95",
+      "base_parent_variant_key": "",
+      "base_parent_printed_identity_modifier": null,
+      "base_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_child_id_collision_count": 1,
+      "existing_target_child_count": 1,
+      "active_finish_exists": true,
+      "ready_identity_projection": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "d95f53f38dc7714559c344b50e52a336ee5b97edc35697c1e4329626891e9e3d",
+      "identity_hash_collision_count": 1,
+      "base_parent_vault_ref_count": 0,
+      "base_finish_child_vault_ref_count": 0,
+      "base_parent_external_mapping_count": 3,
+      "readiness_status": "blocked_before_dry_run",
+      "blockers": [
+        "target_stamped_parent_already_exists",
+        "target_child_id_collision",
+        "target_child_finish_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "target_parent_id": "1d9439c0-0bf1-4d5c-a8d1-77c69c22dd49",
+      "target_child_id": "8fa84c77-5a71-4f11-9418-f748baaca2e5",
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "source_card_number": "119",
+      "source_number_plain": "119",
+      "card_name": "Cynthia",
+      "target_variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "target_finish_key": "reverse",
+      "current_master_variant_key": "regional_championships_stamp",
+      "expansion_status": "current_master_identity_multi_source_finish_multi_source_review_ready",
+      "independent_finish_sources": [
+        "pokecardvalues_stamped_finish",
+        "pokumon_promo_database"
+      ],
+      "independent_identity_sources": [
+        "pokecardvalues_stamped_finish",
+        "pricecharting_csv_product",
+        "pokumon_promo_database"
+      ],
+      "evidence_context": {
+        "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/cynthia-119-156-reverse-holo-regional-championships-ultra-prism/sm5-119-3-60/",
+        "pkg15k_source_title": "Cynthia - 119/156 - Reverse Holo - Regional Championships - Promo",
+        "matching_manual_web_finish_context": [
+          {
+            "source_key": "pokumon_promo_database",
+            "source_kind": "collector_reference",
+            "source_url": "https://pokumon.com/card/cynthia-119a-156-regional-championships-special-print/",
+            "evidence_label": "Cynthia (119a/156 Regional Championships Special Print) - Reverse Holo Regional Championships promo",
+            "evidence_type": "finish_presence"
+          }
+        ],
+        "matching_pricecharting_identity_context": [
+          {
+            "source_key": "pricecharting_csv_product",
+            "source_url": "https://www.pricecharting.com/game/pokemon-ultra-prism/cynthia-regional-championship-119",
+            "evidence_label": "Cynthia [Regional Championship] #119",
+            "validation_reason": "stamp_variant_mismatch"
+          }
+        ]
+      },
+      "base_candidate_count": 1,
+      "base_parent_id": "df41a6f4-63cf-49c9-8cc6-9ea350726e64",
+      "base_parent_number": "119a",
+      "base_parent_number_plain": "119",
+      "base_parent_variant_key": "",
+      "base_parent_printed_identity_modifier": null,
+      "base_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_child_id_collision_count": 1,
+      "existing_target_child_count": 1,
+      "active_finish_exists": true,
+      "ready_identity_projection": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "03029490a94666032edf038ef5f155975a9c98b7c601dba2ebbe7bd3c92bf892",
+      "identity_hash_collision_count": 1,
+      "base_parent_vault_ref_count": 0,
+      "base_finish_child_vault_ref_count": 0,
+      "base_parent_external_mapping_count": 10,
+      "readiness_status": "blocked_before_dry_run",
+      "blockers": [
+        "target_stamped_parent_already_exists",
+        "target_child_id_collision",
+        "target_child_finish_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "target_parent_id": "664719b5-9898-40f7-bc6b-538711056228",
+      "target_child_id": "7efb8041-4c5e-4055-abeb-e6e3bd5e0dec",
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "source_card_number": "102",
+      "source_number_plain": "102",
+      "card_name": "Beast Ring",
+      "target_variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "target_finish_key": "reverse",
+      "current_master_variant_key": "league_stamp",
+      "expansion_status": "current_master_identity_multi_source_finish_multi_source_review_ready",
+      "independent_finish_sources": [
+        "pokecardvalues_stamped_finish",
+        "bulbapedia_forbidden_light_set_list",
+        "nobleknight_league_championship_cards"
+      ],
+      "independent_identity_sources": [
+        "pokecardvalues_stamped_finish",
+        "pricecharting_csv_product",
+        "bulbapedia_forbidden_light_set_list",
+        "nobleknight_league_championship_cards"
+      ],
+      "evidence_context": {
+        "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/beast-ring-102-131-reverse-holo-league-promo-forbidden-light/sm6-102-3-41/",
+        "pkg15k_source_title": "Beast Ring - 102/131 - Reverse Holo - League Promo - Promo",
+        "matching_manual_web_finish_context": [
+          {
+            "source_key": "bulbapedia_forbidden_light_set_list",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_(TCG)",
+            "evidence_label": "102/131 Beast Ring - Reverse Holo Pokemon League Forbidden Light Season 3 promo (July 2018)",
+            "evidence_type": "finish_presence"
+          },
+          {
+            "source_key": "nobleknight_league_championship_cards",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.nobleknight.com/P/2148463626/Beast-Ring---102-131-Pokemon-League-P-102-131-Reverse-Holo",
+            "evidence_label": "Beast Ring - 102/131 (Pokemon League) (P) #102/131 (Reverse Holo)",
+            "evidence_type": "finish_presence"
+          }
+        ],
+        "matching_pricecharting_identity_context": [
+          {
+            "source_key": "pricecharting_csv_product",
+            "source_url": "https://www.pricecharting.com/game/pokemon-forbidden-light/beast-ring-pokemon-league-102",
+            "evidence_label": "Beast Ring [Pokemon League] #102",
+            "validation_reason": "stamp_variant_mismatch"
+          }
+        ]
+      },
+      "base_candidate_count": 1,
+      "base_parent_id": "5cebfdd2-8535-4206-89dd-1c7d1a848515",
+      "base_parent_number": "102a",
+      "base_parent_number_plain": "102",
+      "base_parent_variant_key": "",
+      "base_parent_printed_identity_modifier": null,
+      "base_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_child_id_collision_count": 1,
+      "existing_target_child_count": 1,
+      "active_finish_exists": true,
+      "ready_identity_projection": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "0b1ab0854577d1bc3307644e6dacd934b241b4e2c9da72e09c9ecdcfb824ab95",
+      "identity_hash_collision_count": 1,
+      "base_parent_vault_ref_count": 0,
+      "base_finish_child_vault_ref_count": 0,
+      "base_parent_external_mapping_count": 5,
+      "readiness_status": "blocked_before_dry_run",
+      "blockers": [
+        "target_stamped_parent_already_exists",
+        "target_child_id_collision",
+        "target_child_finish_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "target_parent_id": "40ba1113-bad6-435e-93d3-37e7b0829ef1",
+      "target_child_id": "145c1c51-534c-4211-9aed-0ecf42222614",
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "source_card_number": "105",
+      "source_number_plain": "105",
+      "card_name": "Diantha",
+      "target_variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "target_finish_key": "reverse",
+      "current_master_variant_key": "regional_championships_stamp",
+      "expansion_status": "candidate_missing_more_specific_identity_multi_source_finish_multi_source_review_ready",
+      "independent_finish_sources": [
+        "pokecardvalues_stamped_finish",
+        "bulbapedia_forbidden_light_set_list"
+      ],
+      "independent_identity_sources": [
+        "pokecardvalues_stamped_finish",
+        "bulbapedia_forbidden_light_set_list"
+      ],
+      "evidence_context": {
+        "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/diantha-105-131-reverse-holo-staff-regional-championships-forbidden-light/sm6-105-3-83/",
+        "pkg15k_source_title": "Diantha - 105/131 - Reverse Holo - Staff Regional Championships - Promo",
+        "matching_manual_web_finish_context": [
+          {
+            "source_key": "bulbapedia_forbidden_light_set_list",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_(TCG)",
+            "evidence_label": "105/131 Diantha - Reverse Holo Forbidden Light Season Regional Championships Staff promo",
+            "evidence_type": "finish_presence"
+          }
+        ],
+        "matching_pricecharting_identity_context": []
+      },
+      "base_candidate_count": 1,
+      "base_parent_id": "6f66ce37-7cf5-4489-98cb-d303aae15304",
+      "base_parent_number": "105",
+      "base_parent_number_plain": "105",
+      "base_parent_variant_key": "",
+      "base_parent_printed_identity_modifier": null,
+      "base_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_child_id_collision_count": 1,
+      "existing_target_child_count": 1,
+      "active_finish_exists": true,
+      "ready_identity_projection": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "08a681f3d67cecf53b40bc372b0fbffbcee1a6058c74434f620070e80c783f84",
+      "identity_hash_collision_count": 1,
+      "base_parent_vault_ref_count": 0,
+      "base_finish_child_vault_ref_count": 0,
+      "base_parent_external_mapping_count": 4,
+      "readiness_status": "blocked_before_dry_run",
+      "blockers": [
+        "target_stamped_parent_already_exists",
+        "target_child_id_collision",
+        "target_child_finish_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "target_parent_id": "ae2f2edf-c696-4acd-bf6b-ea056b7212b2",
+      "target_child_id": "3828a17f-cc09-4401-98d9-4dc180a7f733",
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "source_card_number": "105",
+      "source_number_plain": "105",
+      "card_name": "Diantha",
+      "target_variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "target_finish_key": "reverse",
+      "current_master_variant_key": "regional_championships_stamp",
+      "expansion_status": "current_master_identity_multi_source_finish_multi_source_review_ready",
+      "independent_finish_sources": [
+        "pokecardvalues_stamped_finish",
+        "bulbapedia_forbidden_light_set_list",
+        "nobleknight_league_championship_cards"
+      ],
+      "independent_identity_sources": [
+        "pokecardvalues_stamped_finish",
+        "pricecharting_csv_product",
+        "bulbapedia_forbidden_light_set_list",
+        "nobleknight_league_championship_cards"
+      ],
+      "evidence_context": {
+        "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/diantha-105-131-reverse-holo-regional-championships-forbidden-light/sm6-105-3-60/",
+        "pkg15k_source_title": "Diantha - 105/131 - Reverse Holo - Regional Championships - Promo",
+        "matching_manual_web_finish_context": [
+          {
+            "source_key": "bulbapedia_forbidden_light_set_list",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_(TCG)",
+            "evidence_label": "105/131 Diantha - Reverse Holo Forbidden Light Season Regional Championships promo",
+            "evidence_type": "finish_presence"
+          },
+          {
+            "source_key": "nobleknight_league_championship_cards",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.nobleknight.com/P/2148463390/Diantha---105-131-Regional-Championships-P-105-131-Reverse-Holo",
+            "evidence_label": "Diantha - 105/131 (Regional Championships) (P) #105/131 (Reverse Holo)",
+            "evidence_type": "finish_presence"
+          }
+        ],
+        "matching_pricecharting_identity_context": [
+          {
+            "source_key": "pricecharting_csv_product",
+            "source_url": "https://www.pricecharting.com/game/pokemon-forbidden-light/diantha-regional-championships-105",
+            "evidence_label": "Diantha [Regional Championships] #105",
+            "validation_reason": "missing_explicit_active_finish"
+          }
+        ]
+      },
+      "base_candidate_count": 1,
+      "base_parent_id": "6f66ce37-7cf5-4489-98cb-d303aae15304",
+      "base_parent_number": "105",
+      "base_parent_number_plain": "105",
+      "base_parent_variant_key": "",
+      "base_parent_printed_identity_modifier": null,
+      "base_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_child_id_collision_count": 1,
+      "existing_target_child_count": 1,
+      "active_finish_exists": true,
+      "ready_identity_projection": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "2b04ea349ee3df618780616b0b5457c869d2a636bb3e379cb97537478242fa2e",
+      "identity_hash_collision_count": 1,
+      "base_parent_vault_ref_count": 0,
+      "base_finish_child_vault_ref_count": 0,
+      "base_parent_external_mapping_count": 4,
+      "readiness_status": "blocked_before_dry_run",
+      "blockers": [
+        "target_stamped_parent_already_exists",
+        "target_child_id_collision",
+        "target_child_finish_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "target_parent_id": "bf26d7a4-3168-444a-b0f0-f3ee57e3c0d3",
+      "target_child_id": "b1bcc676-11f4-4408-9eb6-0156dc3baa7f",
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "source_card_number": "150",
+      "source_number_plain": "150",
+      "card_name": "Roxanne",
+      "target_variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "target_finish_key": "reverse",
+      "current_master_variant_key": "regional_championships_stamp",
+      "expansion_status": "current_master_identity_multi_source_finish_multi_source_review_ready",
+      "independent_finish_sources": [
+        "pokecardvalues_stamped_finish",
+        "pricecharting_historic_sales_title"
+      ],
+      "independent_identity_sources": [
+        "pokecardvalues_stamped_finish",
+        "pricecharting_csv_product",
+        "pricecharting_historic_sales_title"
+      ],
+      "evidence_context": {
+        "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/Roxanne-150-189-Reverse-Holo-Regional-Championships-Astral-Radiance/swsh10-150-3-60/",
+        "pkg15k_source_title": "Roxanne - 150/189 - Reverse Holo - Regional Championships - Promo",
+        "matching_manual_web_finish_context": [
+          {
+            "source_key": "pricecharting_historic_sales_title",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/roxanne-regional-championships-150",
+            "evidence_label": "Pokemon Reverse Holo Roxanne 150/189 Regional Promo Card Astral Radiance",
+            "evidence_type": "finish_presence"
+          }
+        ],
+        "matching_pricecharting_identity_context": [
+          {
+            "source_key": "pricecharting_csv_product",
+            "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/roxanne-regional-championships-150",
+            "evidence_label": "Roxanne [Regional Championships] #150",
+            "validation_reason": "missing_explicit_active_finish"
+          }
+        ]
+      },
+      "base_candidate_count": 1,
+      "base_parent_id": "23a7a4c4-b333-487a-be9b-04aefe1f8424",
+      "base_parent_number": "150",
+      "base_parent_number_plain": "150",
+      "base_parent_variant_key": "",
+      "base_parent_printed_identity_modifier": null,
+      "base_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_child_id_collision_count": 1,
+      "existing_target_child_count": 1,
+      "active_finish_exists": true,
+      "ready_identity_projection": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "49af80c7a5aed27b42857144fc52c93e4fa95b3ec8cbd452256c4a75efede10b",
+      "identity_hash_collision_count": 1,
+      "base_parent_vault_ref_count": 0,
+      "base_finish_child_vault_ref_count": 0,
+      "base_parent_external_mapping_count": 4,
+      "readiness_status": "blocked_before_dry_run",
+      "blockers": [
+        "target_stamped_parent_already_exists",
+        "target_child_id_collision",
+        "target_child_finish_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "target_parent_id": "ac3dc158-0251-4836-a2d8-fdb17abaafb9",
+      "target_child_id": "ca070de2-f19a-442c-b2bf-f82027acc77b",
+      "set_key": "xy1",
+      "set_name": "XY",
+      "source_card_number": "83",
+      "source_number_plain": "83",
+      "card_name": "Honedge",
+      "target_variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "target_finish_key": "reverse",
+      "current_master_variant_key": "regional_championships_stamp",
+      "expansion_status": "current_master_identity_multi_source_finish_multi_source_review_ready",
+      "independent_finish_sources": [
+        "pokecardvalues_stamped_finish",
+        "nobleknight_league_championship_cards"
+      ],
+      "independent_identity_sources": [
+        "pokecardvalues_stamped_finish",
+        "pricecharting_csv_product",
+        "nobleknight_league_championship_cards"
+      ],
+      "evidence_context": {
+        "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/honedge-83-146-reverse-holo-regional-championships-xy/xy1-83-3-60/",
+        "pkg15k_source_title": "Honedge - 83/146 - Reverse Holo - Regional Championships - Promo",
+        "matching_manual_web_finish_context": [
+          {
+            "source_key": "nobleknight_league_championship_cards",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.nobleknight.com/P/2148463359/Honedge---83-146-Regional-Championships-P-083-146-Reverse-Holo",
+            "evidence_label": "Honedge - 83/146 (Regional Championships) (P) #083/146 (Reverse Holo)",
+            "evidence_type": "finish_presence"
+          }
+        ],
+        "matching_pricecharting_identity_context": [
+          {
+            "source_key": "pricecharting_csv_product",
+            "source_url": "https://www.pricecharting.com/game/pokemon-xy/honedge-regional-championships-83",
+            "evidence_label": "Honedge [Regional Championships] #83",
+            "validation_reason": "missing_explicit_active_finish"
+          }
+        ]
+      },
+      "base_candidate_count": 1,
+      "base_parent_id": "94a1987b-3ff0-4aea-a58c-aaa0903d1c61",
+      "base_parent_number": "83",
+      "base_parent_number_plain": "83",
+      "base_parent_variant_key": "",
+      "base_parent_printed_identity_modifier": null,
+      "base_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_child_id_collision_count": 1,
+      "existing_target_child_count": 1,
+      "active_finish_exists": true,
+      "ready_identity_projection": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "e48658c2260450c6a93c3494eb82e07db619ebab92aa996d18f1d8cdc339230b",
+      "identity_hash_collision_count": 1,
+      "base_parent_vault_ref_count": 0,
+      "base_finish_child_vault_ref_count": 0,
+      "base_parent_external_mapping_count": 3,
+      "readiness_status": "blocked_before_dry_run",
+      "blockers": [
+        "target_stamped_parent_already_exists",
+        "target_child_id_collision",
+        "target_child_finish_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "target_parent_id": "5fb9f9b8-d2c3-4663-af91-dcc01a411bee",
+      "target_child_id": "536daad5-0b36-4c3d-9d9a-648195ee4b98",
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "source_card_number": "94",
+      "source_number_plain": "94",
+      "card_name": "Chaos Tower",
+      "target_variant_key": "national_championships_stamp",
+      "stamp_label": "National Championships Stamp",
+      "target_finish_key": "reverse",
+      "current_master_variant_key": "national_championships_stamp",
+      "expansion_status": "current_master_identity_multi_source_finish_multi_source_review_ready",
+      "independent_finish_sources": [
+        "pokecardvalues_stamped_finish",
+        "pokumon_promo_database"
+      ],
+      "independent_identity_sources": [
+        "pokecardvalues_stamped_finish",
+        "pricecharting_csv_product",
+        "pokumon_promo_database"
+      ],
+      "evidence_context": {
+        "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/chaos-tower-94-124-reverse-holo-national-championships-fates-collide/xy10-94-3-45/",
+        "pkg15k_source_title": "Chaos Tower - 94/124 - Reverse Holo - National Championships - Promo",
+        "matching_manual_web_finish_context": [
+          {
+            "source_key": "pokumon_promo_database",
+            "source_kind": "collector_reference",
+            "source_url": "https://pokumon.com/card/chaos-tower-94-124-national-championships-special-print/",
+            "evidence_label": "Chaos Tower (94/124 National Championships Special Print) - Reverse Holo National Championships promo",
+            "evidence_type": "finish_presence"
+          }
+        ],
+        "matching_pricecharting_identity_context": [
+          {
+            "source_key": "pricecharting_csv_product",
+            "source_url": "https://www.pricecharting.com/game/pokemon-fates-collide/chaos-tower-national-championships-94",
+            "evidence_label": "Chaos Tower [National Championships] #94",
+            "validation_reason": "missing_explicit_active_finish"
+          }
+        ]
+      },
+      "base_candidate_count": 1,
+      "base_parent_id": "b0eea10e-ebda-45ca-9714-6db5c03b349d",
+      "base_parent_number": "94",
+      "base_parent_number_plain": "94",
+      "base_parent_variant_key": "",
+      "base_parent_printed_identity_modifier": null,
+      "base_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_child_id_collision_count": 1,
+      "existing_target_child_count": 1,
+      "active_finish_exists": true,
+      "ready_identity_projection": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "224bab4dbec7807419bf26c57208d8fd8d9cd5e9f2e3fdf9ae067ac2515015d0",
+      "identity_hash_collision_count": 1,
+      "base_parent_vault_ref_count": 0,
+      "base_finish_child_vault_ref_count": 0,
+      "base_parent_external_mapping_count": 4,
+      "readiness_status": "blocked_before_dry_run",
+      "blockers": [
+        "target_stamped_parent_already_exists",
+        "target_child_id_collision",
+        "target_child_finish_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "target_parent_id": "088833de-b996-464b-85a2-f0d8874e0fa4",
+      "target_child_id": "0ea89aed-b1cd-47f4-9af5-2b3843e62f7c",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "source_card_number": "145",
+      "source_number_plain": "145",
+      "card_name": "Parallel City",
+      "target_variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "target_finish_key": "reverse",
+      "current_master_variant_key": "city_championships_stamp",
+      "expansion_status": "current_master_identity_multi_source_finish_multi_source_review_ready",
+      "independent_finish_sources": [
+        "pokecardvalues_stamped_finish",
+        "pokumon_promo_database"
+      ],
+      "independent_identity_sources": [
+        "pokecardvalues_stamped_finish",
+        "pricecharting_csv_product",
+        "pokumon_promo_database"
+      ],
+      "evidence_context": {
+        "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/parallel-city-145-162-reverse-holo-city-championships-breakthrough/xy8-145-3-23/",
+        "pkg15k_source_title": "Parallel City - 145/162 - Reverse Holo - City Championships - Promo",
+        "matching_manual_web_finish_context": [
+          {
+            "source_key": "pokumon_promo_database",
+            "source_kind": "collector_reference",
+            "source_url": "https://pokumon.com/card/parallel-city-145-162-city-championships-special-print/",
+            "evidence_label": "Parallel City (145/162 City Championships Special Print) - Reverse Holo City Championships promo",
+            "evidence_type": "finish_presence"
+          }
+        ],
+        "matching_pricecharting_identity_context": [
+          {
+            "source_key": "pricecharting_csv_product",
+            "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/parallel-city-city-championship-145",
+            "evidence_label": "Parallel City [City Championship] #145",
+            "validation_reason": "stamp_variant_mismatch"
+          }
+        ]
+      },
+      "base_candidate_count": 1,
+      "base_parent_id": "73ebda40-d6b9-4ca9-91a7-1e03cd15bf4b",
+      "base_parent_number": "145",
+      "base_parent_number_plain": "145",
+      "base_parent_variant_key": "",
+      "base_parent_printed_identity_modifier": null,
+      "base_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_child_id_collision_count": 1,
+      "existing_target_child_count": 1,
+      "active_finish_exists": true,
+      "ready_identity_projection": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "8520baa887c2d17ef2737e603cd71a2fe1a6620477a94481a26a4336e05ac45f",
+      "identity_hash_collision_count": 1,
+      "base_parent_vault_ref_count": 0,
+      "base_finish_child_vault_ref_count": 0,
+      "base_parent_external_mapping_count": 3,
+      "readiness_status": "blocked_before_dry_run",
+      "blockers": [
+        "target_stamped_parent_already_exists",
+        "target_child_id_collision",
+        "target_child_finish_already_exists",
+        "identity_hash_collision"
+      ]
+    }
+  ],
+  "next_boundary": {
+    "recommended_next_step": "Prepare rollback-only guarded dry-run transaction artifact if operator wants to move these rows toward apply.",
+    "required_future_scope": "parent card_print insert + card_print_identity insert + child card_printing insert only",
+    "forbidden_future_scope": [
+      "deletes",
+      "merges",
+      "quarantine",
+      "finish_key=stamped activation",
+      "base parent mutation",
+      "migration"
+    ]
+  }
+}

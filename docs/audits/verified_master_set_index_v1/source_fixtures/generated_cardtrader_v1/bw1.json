@@ -6,8 +6,8 @@
   "source_status": "available_generated",
   "set_key": "bw1",
   "set_name": "Black & White",
-  "retrieved_at": "2026-06-08T02:53:52.187Z",
-  "raw_snapshot_ref": "generated_fixture:cardtrader:bw1:2026-06-08T02:53:52.187Z",
+  "retrieved_at": "2026-06-12T04:47:36.930Z",
+  "raw_snapshot_ref": "generated_fixture:cardtrader:bw1:2026-06-12T04:47:36.930Z",
   "generation_note": "Generated from CardTrader Pokemon blueprint index. Exact card-number/name/finish matches only.",
   "records": [
     {
@@ -23,7 +23,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "CardTrader blueprint row Reshiram - Ultra Rare | 113/114",
       "language": "en",
-      "retrieved_at": "2026-06-08T02:53:52.187Z",
+      "retrieved_at": "2026-06-12T04:47:36.930Z",
       "raw_snapshot_ref": "cardtrader_blueprint:111619-reshiram-ultra-rare-113-114-black-white",
       "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
     },
@@ -40,7 +40,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "CardTrader blueprint row Zekrom - Ultra Rare | 114/114",
       "language": "en",
-      "retrieved_at": "2026-06-08T02:53:52.187Z",
+      "retrieved_at": "2026-06-12T04:47:36.930Z",
       "raw_snapshot_ref": "cardtrader_blueprint:111620-zekrom-ultra-rare-114-114-black-white",
       "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
     },
@@ -57,7 +57,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "CardTrader blueprint row Pikachu - Secret Rare | 115/114",
       "language": "en",
-      "retrieved_at": "2026-06-08T02:53:52.187Z",
+      "retrieved_at": "2026-06-12T04:47:36.930Z",
       "raw_snapshot_ref": "cardtrader_blueprint:111621-pikachu-secret-rare-115-114-black-white",
       "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
     }

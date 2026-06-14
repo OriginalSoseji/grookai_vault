@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-06-10T04:57:36.752Z",
+  "version": "english_master_index_pkg06l_active_finish_child_printing_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-06L-ACTIVE-FINISH-CHILD-PRINTING-INSERTS",
+    "package_fingerprint_sha256": "e33919f310fb71194f2bc5852345cd2f81d3a8b854b95885a832e703e170e6c1",
+    "source_readiness_fingerprint_sha256": "dd1e8cc74ffdee1b00c4c9bbf48537c25161c75fea1d0d31e890c6872cb3a8ff",
+    "sql_hash_sha256": "c30d5cbe76bda0b791bcaadb8e8f52861d2713499e6e901f2b530b34ae8b90c5",
+    "child_card_printing_inserts": 35,
+    "target_parent_rows": 34,
+    "set_counts": {
+      "2015xy": 3,
+      "bw1": 3,
+      "bw10": 3,
+      "bw11": 3,
+      "bw3": 3,
+      "ecard3": 4,
+      "pop9": 4,
+      "sm4": 4,
+      "swsh12": 4,
+      "swsh4.5": 4
+    },
+    "finish_counts": {
+      "cosmos": 18,
+      "holo": 10,
+      "normal": 7
+    },
+    "parent_writes_allowed": false,
+    "child_insert_only": true,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_execution_status": "pkg06l_active_finish_child_printing_completed_rolled_back_no_durable_change",
+    "sql_artifact_ref": "docs/sql/english_master_index_pkg06l_active_finish_child_printing_guarded_dry_run_transaction_v1.sql",
+    "sql_hash_sha256": "c30d5cbe76bda0b791bcaadb8e8f52861d2713499e6e901f2b530b34ae8b90c5",
+    "before_hash_sha256": "e4791b7b213fa1c015fd5f898bcc6b241d4bde72ba34aee22365ec77d0c16e8c",
+    "after_hash_sha256": "e4791b7b213fa1c015fd5f898bcc6b241d4bde72ba34aee22365ec77d0c16e8c",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-06L-ACTIVE-FINISH-CHILD-PRINTING-INSERTS",
+        "source_readiness_fingerprint": "dd1e8cc74ffdee1b00c4c9bbf48537c25161c75fea1d0d31e890c6872cb3a8ff",
+        "package_fingerprint": "e33919f310fb71194f2bc5852345cd2f81d3a8b854b95885a832e703e170e6c1",
+        "planned_sets": 10,
+        "target_parent_rows": 34,
+        "planned_child_rows": 35
+      }
+    ]
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-06L-ACTIVE-FINISH-CHILD-PRINTING-INSERTS apply only. Fingerprint: e33919f310fb71194f2bc5852345cd2f81d3a8b854b95885a832e703e170e6c1. SQL hash: c30d5cbe76bda0b791bcaadb8e8f52861d2713499e6e901f2b530b34ae8b90c5. Scope: 35 child-only card_printing inserts for ecard3/Skyridge, pop9/POP Series 9, sm4/Crimson Invasion, swsh12/Silver Tempest, swsh4.5/Shining Fates, 2015xy/McDonald's Collection 2015, bw1/Black & White, bw10/Plasma Blast, bw11/Legendary Treasures, and bw3/Noble Victories; finishes cosmos=18, holo=10, normal=7; target parents=34. Dry-run proof: e4791b7b213fa1c015fd5f898bcc6b241d4bde72ba34aee22365ec77d0c16e8c == e4791b7b213fa1c015fd5f898bcc6b241d4bde72ba34aee22365ec77d0c16e8c. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No parent writes.",
+    "approval_effect": "This would authorize preparing and running the durable PKG-06L active-finish child-only apply path only."
+  },
+  "explicit_non_authorizations": [
+    "This gate is not a real apply.",
+    "This gate does not record approval.",
+    "This gate does not run SQL.",
+    "This gate does not read from or write to the database.",
+    "This gate does not create a migration.",
+    "This gate does not authorize global apply.",
+    "This gate does not authorize deletes.",
+    "This gate does not authorize merges.",
+    "This gate does not authorize unsupported cleanup.",
+    "This gate does not authorize parent writes."
+  ],
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg06l_active_finish_child_printing_guarded_dry_run_v1.json",
+    "sql_artifact": "docs/sql/english_master_index_pkg06l_active_finish_child_printing_guarded_dry_run_transaction_v1.sql"
+  },
+  "stop_findings": [],
+  "pass": true,
+  "gate_fingerprint_sha256": "9394a0877112196a3dd49782d5cc807da7fc55db05fbc2393e37c3aef5b79ee7"
+}

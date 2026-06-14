@@ -1,0 +1,411 @@
+{
+  "generated_at": "2026-06-14T03:53:22.821Z",
+  "version": "english_master_index_pkg41b_residual_active_finish_replacement_real_apply_v1",
+  "package_id": "PKG-41B-RESIDUAL-ACTIVE-FINISH-REPLACEMENT",
+  "package_fingerprint": "28c8db2789c9a57cdfc05b3b10351661a90a83e3dcb0be4c9f12200c01fc0f44",
+  "real_apply_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "parent_inserts_performed": false,
+  "mapping_writes_performed": false,
+  "merges_performed": false,
+  "approved_dry_run_proof_hash": "8b159b0af50241c887aff7f51ee8a40c3c86145aa2e0e8db5ed38b595c7ac236",
+  "dry_run_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg41b_residual_active_finish_replacement_guarded_dry_run_v1.json",
+  "before_snapshot": {
+    "captured_at": "2026-06-14T03:53:21.515Z",
+    "rows": [
+      {
+        "row_type": "active_identity",
+        "row_id": "a50b44a2-184f-4421-90db-8722df5a146b",
+        "set_code": "smp",
+        "number": "SM65",
+        "number_plain": "65",
+        "name": "Alolan Raichu",
+        "variant_key": "battle_academy_deck_mark",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": "9ad12049e24337ca62215818b42782b09825fbea048ac9a02f0a5fbae2336cd0"
+      },
+      {
+        "row_type": "child",
+        "row_id": "8035cb24-330e-4562-82fa-b3494eff43b8",
+        "set_code": "pl3",
+        "number": "106",
+        "number_plain": "106",
+        "name": "Gible",
+        "variant_key": "staff_stamp",
+        "printed_identity_modifier": null,
+        "finish_key": "holo",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "abd9e005-f35a-4344-ab4b-6f78d54cc4d1",
+        "set_code": "smp",
+        "number": "SM198",
+        "number_plain": "198",
+        "name": "Bulbasaur",
+        "variant_key": "pikachu_stamp",
+        "printed_identity_modifier": null,
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "1109fa5a-ee4f-4be3-a9b0-c03db432bbdb",
+        "set_code": "smp",
+        "number": "SM65",
+        "number_plain": "65",
+        "name": "Alolan Raichu",
+        "variant_key": "battle_academy_deck_mark",
+        "printed_identity_modifier": null,
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "ef328f35-adc4-4238-aa00-bf3e90d1da46",
+        "set_code": "pl3",
+        "number": "106",
+        "number_plain": "106",
+        "name": "Gible",
+        "variant_key": "staff_stamp",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "41d1c25c-d5cb-417b-93c2-aab56aa3e251",
+        "set_code": "smp",
+        "number": "SM198",
+        "number_plain": "198",
+        "name": "Bulbasaur",
+        "variant_key": "pikachu_stamp",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "0a2b6e89-89b7-4fc1-a5d9-762bec994326",
+        "set_code": "smp",
+        "number": "SM65",
+        "number_plain": "65",
+        "name": "Alolan Raichu",
+        "variant_key": "battle_academy_deck_mark",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "8035cb24-330e-4562-82fa-b3494eff43b8",
+        "set_code": "pl3",
+        "number": "106",
+        "number_plain": "106",
+        "name": "Gible",
+        "variant_key": "staff_stamp",
+        "printed_identity_modifier": null,
+        "finish_key": "holo",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "abd9e005-f35a-4344-ab4b-6f78d54cc4d1",
+        "set_code": "smp",
+        "number": "SM198",
+        "number_plain": "198",
+        "name": "Bulbasaur",
+        "variant_key": "pikachu_stamp",
+        "printed_identity_modifier": null,
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "1109fa5a-ee4f-4be3-a9b0-c03db432bbdb",
+        "set_code": "smp",
+        "number": "SM65",
+        "number_plain": "65",
+        "name": "Alolan Raichu",
+        "variant_key": "battle_academy_deck_mark",
+        "printed_identity_modifier": null,
+        "finish_key": "normal",
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "8b159b0af50241c887aff7f51ee8a40c3c86145aa2e0e8db5ed38b595c7ac236",
+    "counts": {
+      "active_identity": 1,
+      "child": 3,
+      "parent": 3,
+      "target_child": 3
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-14T03:53:22.740Z",
+    "rows": [
+      {
+        "row_type": "active_identity",
+        "row_id": "9b220e1c-f62a-4252-ba41-d6df8e9e166d",
+        "set_code": "pl3",
+        "number": "106",
+        "number_plain": "106",
+        "name": "Gible",
+        "variant_key": "staff_stamp",
+        "printed_identity_modifier": "staff_stamp",
+        "finish_key": null,
+        "identity_key_hash": "757a89705cf8699999f9df9e1b2477689e60fab45009c1bb749e36f98eff4b35"
+      },
+      {
+        "row_type": "active_identity",
+        "row_id": "cbd9efe2-9fff-4b04-9c22-c75df2665cb4",
+        "set_code": "smp",
+        "number": "SM198",
+        "number_plain": "198",
+        "name": "Bulbasaur",
+        "variant_key": "pikachu_stamp",
+        "printed_identity_modifier": "pikachu_stamp",
+        "finish_key": null,
+        "identity_key_hash": "53ef7f1ef22b7c35e6e8fd52e798151db0f4fbe0b9479fb7d05651c2cdeac9ea"
+      },
+      {
+        "row_type": "active_identity",
+        "row_id": "a50b44a2-184f-4421-90db-8722df5a146b",
+        "set_code": "smp",
+        "number": "SM65",
+        "number_plain": "65",
+        "name": "Alolan Raichu",
+        "variant_key": "battle_academy_deck_mark",
+        "printed_identity_modifier": "battle_academy_deck_mark",
+        "finish_key": null,
+        "identity_key_hash": "9ad12049e24337ca62215818b42782b09825fbea048ac9a02f0a5fbae2336cd0"
+      },
+      {
+        "row_type": "child",
+        "row_id": "87be7249-d7f9-4155-b31f-f43105a73103",
+        "set_code": "pl3",
+        "number": "106",
+        "number_plain": "106",
+        "name": "Gible",
+        "variant_key": "staff_stamp",
+        "printed_identity_modifier": "staff_stamp",
+        "finish_key": "reverse",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "97a96deb-941b-48d9-bcb0-b333557e6e9e",
+        "set_code": "smp",
+        "number": "SM198",
+        "number_plain": "198",
+        "name": "Bulbasaur",
+        "variant_key": "pikachu_stamp",
+        "printed_identity_modifier": "pikachu_stamp",
+        "finish_key": "holo",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "1109fa5a-ee4f-4be3-a9b0-c03db432bbdb",
+        "set_code": "smp",
+        "number": "SM65",
+        "number_plain": "65",
+        "name": "Alolan Raichu",
+        "variant_key": "battle_academy_deck_mark",
+        "printed_identity_modifier": "battle_academy_deck_mark",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "ef328f35-adc4-4238-aa00-bf3e90d1da46",
+        "set_code": "pl3",
+        "number": "106",
+        "number_plain": "106",
+        "name": "Gible",
+        "variant_key": "staff_stamp",
+        "printed_identity_modifier": "staff_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "41d1c25c-d5cb-417b-93c2-aab56aa3e251",
+        "set_code": "smp",
+        "number": "SM198",
+        "number_plain": "198",
+        "name": "Bulbasaur",
+        "variant_key": "pikachu_stamp",
+        "printed_identity_modifier": "pikachu_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "0a2b6e89-89b7-4fc1-a5d9-762bec994326",
+        "set_code": "smp",
+        "number": "SM65",
+        "number_plain": "65",
+        "name": "Alolan Raichu",
+        "variant_key": "battle_academy_deck_mark",
+        "printed_identity_modifier": "battle_academy_deck_mark",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "1109fa5a-ee4f-4be3-a9b0-c03db432bbdb",
+        "set_code": "smp",
+        "number": "SM65",
+        "number_plain": "65",
+        "name": "Alolan Raichu",
+        "variant_key": "battle_academy_deck_mark",
+        "printed_identity_modifier": "battle_academy_deck_mark",
+        "finish_key": "normal",
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "7595aac33c6b14fc5392fd4b7db83fe2cd3f1ed41e99e2104597437a82fd0eb6",
+    "counts": {
+      "active_identity": 3,
+      "child": 3,
+      "parent": 3,
+      "target_child": 1
+    }
+  },
+  "guard": {
+    "target_rows": 3,
+    "replacement_rows": 2,
+    "modifier_only_rows": 1,
+    "missing_parent_count": 0,
+    "variant_mismatch_count": 0,
+    "already_has_modifier_count": 0,
+    "existing_replacement_target_child_count": 0,
+    "existing_modifier_only_target_child_count": 1,
+    "matching_replacement_source_child_count": 2,
+    "ready_projection_count": 3,
+    "identity_hash_collision_count": 0,
+    "inactive_target_finish_count": 0
+  },
+  "summary": {
+    "parent_updates_applied": 3,
+    "identity_inserts_applied": 2,
+    "child_inserts_applied": 2,
+    "child_deletes_applied": 2,
+    "by_set": {
+      "pl3": 1,
+      "smp": 2
+    },
+    "by_target_finish": {
+      "holo": 1,
+      "normal": 1,
+      "reverse": 1
+    }
+  },
+  "targets": [
+    {
+      "card_print_id": "ef328f35-adc4-4238-aa00-bf3e90d1da46",
+      "current_child_printing_id": "8035cb24-330e-4562-82fa-b3494eff43b8",
+      "set_key": "pl3",
+      "card_number": "106",
+      "card_name": "Gible",
+      "target_variant_key": "staff_stamp",
+      "current_finish_key": "holo",
+      "target_finish_key": "reverse",
+      "requires_child_replacement": true,
+      "requires_parent_identity_backfill": true,
+      "source_route_fingerprint": "7f7b69130db550fb0f3ecaa12344c634856248916ca8147ce5e74186387ea632"
+    },
+    {
+      "card_print_id": "41d1c25c-d5cb-417b-93c2-aab56aa3e251",
+      "current_child_printing_id": "abd9e005-f35a-4344-ab4b-6f78d54cc4d1",
+      "set_key": "smp",
+      "card_number": "SM198",
+      "card_name": "Bulbasaur",
+      "target_variant_key": "pikachu_stamp",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "requires_child_replacement": true,
+      "requires_parent_identity_backfill": true,
+      "source_route_fingerprint": "7f7b69130db550fb0f3ecaa12344c634856248916ca8147ce5e74186387ea632"
+    },
+    {
+      "card_print_id": "0a2b6e89-89b7-4fc1-a5d9-762bec994326",
+      "current_child_printing_id": "1109fa5a-ee4f-4be3-a9b0-c03db432bbdb",
+      "set_key": "smp",
+      "card_number": "SM65",
+      "card_name": "Alolan Raichu",
+      "target_variant_key": "battle_academy_deck_mark",
+      "current_finish_key": "normal",
+      "target_finish_key": "normal",
+      "requires_child_replacement": false,
+      "requires_parent_identity_backfill": true,
+      "source_route_fingerprint": "7f7b69130db550fb0f3ecaa12344c634856248916ca8147ce5e74186387ea632"
+    }
+  ],
+  "parent_update_rows": [
+    {
+      "card_print_id": "ef328f35-adc4-4238-aa00-bf3e90d1da46",
+      "printed_identity_modifier": "staff_stamp"
+    },
+    {
+      "card_print_id": "41d1c25c-d5cb-417b-93c2-aab56aa3e251",
+      "printed_identity_modifier": "pikachu_stamp"
+    },
+    {
+      "card_print_id": "0a2b6e89-89b7-4fc1-a5d9-762bec994326",
+      "printed_identity_modifier": "battle_academy_deck_mark"
+    }
+  ],
+  "identity_insert_rows": [
+    {
+      "card_print_id": "ef328f35-adc4-4238-aa00-bf3e90d1da46",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "pl3",
+      "printed_number": "106",
+      "normalized_printed_name": "gible",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "757a89705cf8699999f9df9e1b2477689e60fab45009c1bb749e36f98eff4b35"
+    },
+    {
+      "card_print_id": "41d1c25c-d5cb-417b-93c2-aab56aa3e251",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "smp",
+      "printed_number": "SM198",
+      "normalized_printed_name": "bulbasaur",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "53ef7f1ef22b7c35e6e8fd52e798151db0f4fbe0b9479fb7d05651c2cdeac9ea"
+    }
+  ],
+  "child_insert_rows": [
+    {
+      "card_printing_id": "87be7249-d7f9-4155-b31f-f43105a73103",
+      "card_print_id": "ef328f35-adc4-4238-aa00-bf3e90d1da46",
+      "finish_key": "reverse"
+    },
+    {
+      "card_printing_id": "97a96deb-941b-48d9-bcb0-b333557e6e9e",
+      "card_print_id": "41d1c25c-d5cb-417b-93c2-aab56aa3e251",
+      "finish_key": "holo"
+    }
+  ],
+  "verification": {
+    "parent_modifier_backfilled_count": 3,
+    "active_identity_rows": 3,
+    "target_child_rows": 3,
+    "stale_source_child_rows": 0
+  },
+  "safety_confirmation": {
+    "approved_scope_only": true,
+    "no_global_apply": true,
+    "no_migrations_created": true,
+    "no_parent_inserts": true,
+    "no_mapping_writes": true,
+    "no_merges": true,
+    "no_quarantine": true
+  }
+}

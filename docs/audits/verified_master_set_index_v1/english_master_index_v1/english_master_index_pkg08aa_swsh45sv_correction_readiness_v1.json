@@ -1,0 +1,2640 @@
+{
+  "generated_at": "2026-06-11T02:56:43.780Z",
+  "version": "english_master_index_pkg08aa_swsh45sv_correction_readiness_v1",
+  "package_id": "PKG-08AA-SWSH45SV-CORRECTION-READINESS",
+  "package_fingerprint_sha256": "5e53a7f59f78e49cc360bd1ae99ac4d5c59422ba263ebb1e3dcec0101d4ed218",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "readiness_status": "ready_for_guarded_correction_dry_run",
+  "summary": {
+    "target_rows": 25,
+    "ready_rows": 25,
+    "blocked_rows": 0,
+    "source_missing_rows": 25,
+    "source_pkg08y_rows": 25,
+    "source_suppression_rows": 122,
+    "rows_by_master_finish": {
+      "holo": 25
+    },
+    "rows_by_master_sources": {
+      "pokemontcg_api+thepricedex_price_list": 25
+    }
+  },
+  "live_summary": {
+    "target_rows": 25,
+    "ready_rows": 25,
+    "blocked_rows": 0,
+    "current_set_counts": {
+      "swsh4.5": 25
+    },
+    "current_child_finish_counts": {
+      "normal": 25
+    },
+    "child_external_printing_mapping_refs": 0,
+    "child_vault_instance_refs": 0,
+    "parent_vault_item_refs": 0,
+    "parent_vault_instance_refs": 0,
+    "parent_pricing_watch_refs": 0,
+    "parent_card_feed_event_refs": 0
+  },
+  "correction_strategy": {
+    "parent_update": "set_code/set_id swsh4.5 -> swsh45sv",
+    "child_update": "finish_key normal -> holo in place",
+    "preserves_parent_ids": true,
+    "preserves_child_ids": true,
+    "preserves_external_mappings": true,
+    "deletes": false,
+    "inserts": false,
+    "migrations": false
+  },
+  "stop_findings": [],
+  "source_findings": [],
+  "live_findings": [],
+  "source_artifacts": {
+    "remaining_missing": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_remaining_missing_reconciliation_lanes_v1.json",
+    "host_subset_suppression": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_host_subset_duplicate_suppression_v1.json",
+    "pkg08y_real_apply": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg08y_host_subset_relocation_cleanup_real_apply_v1.json"
+  },
+  "rows": [
+    {
+      "card_print_id": "e3c7f986-9967-4a6c-be4b-9145c6d72cf3",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV023",
+      "card_name": "Galarian Darumaka",
+      "current_child_printing_id": "5dd15de6-2851-4427-aa2e-4d18bda04432",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "58a96fd4-1c28-4e87-8caf-a9dd9db31e13",
+        "da39b18e-a1ce-4e0e-a307-eb0eaff37377"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV023",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV023",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33674/galarian-darumaka-shining-fates-sv023-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV023",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "e3c7f986-9967-4a6c-be4b-9145c6d72cf3",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV023",
+        "number_plain": "023",
+        "card_number": "023",
+        "card_name": "Galarian Darumaka",
+        "rarity": "Shiny rare",
+        "child_printings": [
+          {
+            "id": "5dd15de6-2851-4427-aa2e-4d18bda04432",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "e3c7f986-9967-4a6c-be4b-9145c6d72cf3",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV023-STD",
+            "provenance_ref": "swsh4.5-SV023",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55675,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:08:32.475347+00:00",
+            "external_id": "swsh4.5-SV023",
+            "card_print_id": "e3c7f986-9967-4a6c-be4b-9145c6d72cf3"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "5dd15de6-2851-4427-aa2e-4d18bda04432",
+        "card_print_id": "e3c7f986-9967-4a6c-be4b-9145c6d72cf3",
+        "set_code": "swsh4.5",
+        "card_number": "023",
+        "card_name": "Galarian Darumaka",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "ce00e4d0-7e5f-4f98-857d-9b6609e713ea",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV043",
+      "card_name": "Pincurchin",
+      "current_child_printing_id": "1ee29515-5366-402e-900a-12a13c70b001",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "6ac34679-353b-4279-9e51-6ef7afa25df8",
+        "dc8b17a0-8afd-4f6c-82db-83d106f18774"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV043",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV043",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33694/pincurchin-shining-fates-sv043-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV043",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "ce00e4d0-7e5f-4f98-857d-9b6609e713ea",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV043",
+        "number_plain": "043",
+        "card_number": "043",
+        "card_name": "Pincurchin",
+        "rarity": "Shiny rare",
+        "child_printings": [
+          {
+            "id": "1ee29515-5366-402e-900a-12a13c70b001",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "ce00e4d0-7e5f-4f98-857d-9b6609e713ea",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV043-STD",
+            "provenance_ref": "swsh4.5-SV043",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55695,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:08:43.442557+00:00",
+            "external_id": "swsh4.5-SV043",
+            "card_print_id": "ce00e4d0-7e5f-4f98-857d-9b6609e713ea"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "1ee29515-5366-402e-900a-12a13c70b001",
+        "card_print_id": "ce00e4d0-7e5f-4f98-857d-9b6609e713ea",
+        "set_code": "swsh4.5",
+        "card_number": "043",
+        "card_name": "Pincurchin",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "b413c051-3248-4cd5-929b-6fffd929b5ce",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV100",
+      "card_name": "Greedent",
+      "current_child_printing_id": "c41f63f1-b542-404f-a2e5-89e216011be9",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "c54013b2-8eeb-4371-9386-27b64017b0f4",
+        "d5a2427e-dde0-4d6a-8723-3640c70476a4"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV100",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV100",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33751/greedent-shining-fates-sv100-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV100",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "b413c051-3248-4cd5-929b-6fffd929b5ce",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV100",
+        "number_plain": "100",
+        "card_number": "100",
+        "card_name": "Greedent",
+        "rarity": "Shiny rare",
+        "child_printings": [
+          {
+            "id": "c41f63f1-b542-404f-a2e5-89e216011be9",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "b413c051-3248-4cd5-929b-6fffd929b5ce",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV100-STD",
+            "provenance_ref": "swsh4.5-SV100",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55752,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:14.13589+00:00",
+            "external_id": "swsh4.5-SV100",
+            "card_print_id": "b413c051-3248-4cd5-929b-6fffd929b5ce"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "c41f63f1-b542-404f-a2e5-89e216011be9",
+        "card_print_id": "b413c051-3248-4cd5-929b-6fffd929b5ce",
+        "set_code": "swsh4.5",
+        "card_number": "100",
+        "card_name": "Greedent",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "13610758-59c4-441c-aff9-72edc417f0f1",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV101",
+      "card_name": "Rookidee",
+      "current_child_printing_id": "0ee2c877-9de6-4a4e-82bc-986adeefb510",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "8b98b19b-c6ea-4824-ad54-819c8733ff67",
+        "9f580fae-7cfa-45d5-afa7-72b2dcd29c7b"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV101",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV101",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33752/rookidee-shining-fates-sv101-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV101",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "13610758-59c4-441c-aff9-72edc417f0f1",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV101",
+        "number_plain": "101",
+        "card_number": "101",
+        "card_name": "Rookidee",
+        "rarity": "Shiny rare",
+        "child_printings": [
+          {
+            "id": "0ee2c877-9de6-4a4e-82bc-986adeefb510",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "13610758-59c4-441c-aff9-72edc417f0f1",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV101-STD",
+            "provenance_ref": "swsh4.5-SV101",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55753,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:14.749579+00:00",
+            "external_id": "swsh4.5-SV101",
+            "card_print_id": "13610758-59c4-441c-aff9-72edc417f0f1"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "0ee2c877-9de6-4a4e-82bc-986adeefb510",
+        "card_print_id": "13610758-59c4-441c-aff9-72edc417f0f1",
+        "set_code": "swsh4.5",
+        "card_number": "101",
+        "card_name": "Rookidee",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "e2d9443f-0453-4967-b2e8-00f1f9a0394f",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV102",
+      "card_name": "Corvisquire",
+      "current_child_printing_id": "819b9085-20fd-4f29-b1c5-7122c179ffeb",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "76e220ea-dfa0-461c-b766-418541e5c50a",
+        "ca2b6e47-6084-42e6-ade6-d646a068c2a0"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV102",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV102",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33753/corvisquire-shining-fates-sv102-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV102",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "e2d9443f-0453-4967-b2e8-00f1f9a0394f",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV102",
+        "number_plain": "102",
+        "card_number": "102",
+        "card_name": "Corvisquire",
+        "rarity": "Shiny rare",
+        "child_printings": [
+          {
+            "id": "819b9085-20fd-4f29-b1c5-7122c179ffeb",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "e2d9443f-0453-4967-b2e8-00f1f9a0394f",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV102-STD",
+            "provenance_ref": "swsh4.5-SV102",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55754,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:15.350748+00:00",
+            "external_id": "swsh4.5-SV102",
+            "card_print_id": "e2d9443f-0453-4967-b2e8-00f1f9a0394f"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "819b9085-20fd-4f29-b1c5-7122c179ffeb",
+        "card_print_id": "e2d9443f-0453-4967-b2e8-00f1f9a0394f",
+        "set_code": "swsh4.5",
+        "card_number": "102",
+        "card_name": "Corvisquire",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "2c618136-437f-4eb1-b8a3-10ee021aa29e",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV103",
+      "card_name": "Wooloo",
+      "current_child_printing_id": "7f72b3ca-5bcc-4652-99f8-7f88a312bdea",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "2d0cdba5-0e58-4d5f-8655-9b085ff9823c",
+        "51a02d83-ac5f-431e-ace4-78d11d9a6b92"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV103",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV103",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33754/wooloo-shining-fates-sv103-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV103",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "2c618136-437f-4eb1-b8a3-10ee021aa29e",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV103",
+        "number_plain": "103",
+        "card_number": "103",
+        "card_name": "Wooloo",
+        "rarity": "Shiny rare",
+        "child_printings": [
+          {
+            "id": "7f72b3ca-5bcc-4652-99f8-7f88a312bdea",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "2c618136-437f-4eb1-b8a3-10ee021aa29e",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV103-STD",
+            "provenance_ref": "swsh4.5-SV103",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55755,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:15.960746+00:00",
+            "external_id": "swsh4.5-SV103",
+            "card_print_id": "2c618136-437f-4eb1-b8a3-10ee021aa29e"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "7f72b3ca-5bcc-4652-99f8-7f88a312bdea",
+        "card_print_id": "2c618136-437f-4eb1-b8a3-10ee021aa29e",
+        "set_code": "swsh4.5",
+        "card_number": "103",
+        "card_name": "Wooloo",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "51000325-03f9-474f-a631-0d9b0cce29ba",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV104",
+      "card_name": "Dubwool",
+      "current_child_printing_id": "141eda67-38f9-4d62-8c45-112315d9afa1",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "9c38bb79-4b99-4e40-9ac1-66a5f9924c74",
+        "acf346a7-aecf-4c9d-a5ba-a248ccc758a8"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV104",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV104",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33755/dubwool-shining-fates-sv104-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV104",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "51000325-03f9-474f-a631-0d9b0cce29ba",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV104",
+        "number_plain": "104",
+        "card_number": "104",
+        "card_name": "Dubwool",
+        "rarity": "Shiny rare",
+        "child_printings": [
+          {
+            "id": "141eda67-38f9-4d62-8c45-112315d9afa1",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "51000325-03f9-474f-a631-0d9b0cce29ba",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV104-STD",
+            "provenance_ref": "swsh4.5-SV104",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55756,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:16.554742+00:00",
+            "external_id": "swsh4.5-SV104",
+            "card_print_id": "51000325-03f9-474f-a631-0d9b0cce29ba"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "141eda67-38f9-4d62-8c45-112315d9afa1",
+        "card_print_id": "51000325-03f9-474f-a631-0d9b0cce29ba",
+        "set_code": "swsh4.5",
+        "card_number": "104",
+        "card_name": "Dubwool",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "23d051d8-3da7-4b0f-808c-e664b8f65a99",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV105",
+      "card_name": "Rillaboom V",
+      "current_child_printing_id": "033c6505-986f-4e43-87ad-625a707dabea",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "04ab8a64-ee80-45d7-8eee-3ff7aa15d689",
+        "befba5a3-6ebf-44bc-807d-26ca3e3f3c92"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV105",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV105",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33756/rillaboom-v-shining-fates-sv105-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV105",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "23d051d8-3da7-4b0f-808c-e664b8f65a99",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV105",
+        "number_plain": "105",
+        "card_number": "105",
+        "card_name": "Rillaboom V",
+        "rarity": "Shiny rare V",
+        "child_printings": [
+          {
+            "id": "033c6505-986f-4e43-87ad-625a707dabea",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "23d051d8-3da7-4b0f-808c-e664b8f65a99",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV105-STD",
+            "provenance_ref": "swsh4.5-SV105",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55757,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:17.158782+00:00",
+            "external_id": "swsh4.5-SV105",
+            "card_print_id": "23d051d8-3da7-4b0f-808c-e664b8f65a99"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "033c6505-986f-4e43-87ad-625a707dabea",
+        "card_print_id": "23d051d8-3da7-4b0f-808c-e664b8f65a99",
+        "set_code": "swsh4.5",
+        "card_number": "105",
+        "card_name": "Rillaboom V",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "24d17147-c0d3-49e6-8ca7-7837a79d3964",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV106",
+      "card_name": "Rillaboom VMAX",
+      "current_child_printing_id": "b41bc20a-84ef-49e0-a8e5-79b10109138d",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "c717f49b-f084-45c9-a742-17cba94870da",
+        "e081f7d6-e5ba-4971-8794-cf6b7b6bc7b8"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV106",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV106",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33757/rillaboom-vmax-shining-fates-sv106-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV106",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "24d17147-c0d3-49e6-8ca7-7837a79d3964",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV106",
+        "number_plain": "106",
+        "card_number": "106",
+        "card_name": "Rillaboom VMAX",
+        "rarity": "Shiny rare VMAX",
+        "child_printings": [
+          {
+            "id": "b41bc20a-84ef-49e0-a8e5-79b10109138d",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "24d17147-c0d3-49e6-8ca7-7837a79d3964",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV106-STD",
+            "provenance_ref": "swsh4.5-SV106",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55758,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:17.731736+00:00",
+            "external_id": "swsh4.5-SV106",
+            "card_print_id": "24d17147-c0d3-49e6-8ca7-7837a79d3964"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "b41bc20a-84ef-49e0-a8e5-79b10109138d",
+        "card_print_id": "24d17147-c0d3-49e6-8ca7-7837a79d3964",
+        "set_code": "swsh4.5",
+        "card_number": "106",
+        "card_name": "Rillaboom VMAX",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "ff941ffa-c29f-44e5-a789-2072ecca3fb2",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV107",
+      "card_name": "Charizard VMAX",
+      "current_child_printing_id": "0c122cdb-695e-4968-b051-abece8ca3e62",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "4423c49c-0675-424e-95a7-2ba92c4d61bc",
+        "594d4236-5951-4cde-996e-7e2e8661a772"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV107",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV107",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33758/charizard-vmax-shining-fates-sv107-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV107",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "ff941ffa-c29f-44e5-a789-2072ecca3fb2",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV107",
+        "number_plain": "107",
+        "card_number": "107",
+        "card_name": "Charizard VMAX",
+        "rarity": "Shiny rare VMAX",
+        "child_printings": [
+          {
+            "id": "0c122cdb-695e-4968-b051-abece8ca3e62",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "ff941ffa-c29f-44e5-a789-2072ecca3fb2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV107-STD",
+            "provenance_ref": "swsh4.5-SV107",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55759,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:18.314733+00:00",
+            "external_id": "swsh4.5-SV107",
+            "card_print_id": "ff941ffa-c29f-44e5-a789-2072ecca3fb2"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "0c122cdb-695e-4968-b051-abece8ca3e62",
+        "card_print_id": "ff941ffa-c29f-44e5-a789-2072ecca3fb2",
+        "set_code": "swsh4.5",
+        "card_number": "107",
+        "card_name": "Charizard VMAX",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "96fbbc20-e22d-43c1-a352-c29023a642d8",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV108",
+      "card_name": "Centiskorch V",
+      "current_child_printing_id": "b9239628-79ff-4eaf-b1ea-44cdd8c5c619",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "63fbdab2-24ee-4ff3-946b-73d01b32b693",
+        "99bf808f-0eed-4077-8609-2bcebf3c64ad"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV108",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV108",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33759/centiskorch-v-shining-fates-sv108-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV108",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "96fbbc20-e22d-43c1-a352-c29023a642d8",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV108",
+        "number_plain": "108",
+        "card_number": "108",
+        "card_name": "Centiskorch V",
+        "rarity": "Shiny rare V",
+        "child_printings": [
+          {
+            "id": "b9239628-79ff-4eaf-b1ea-44cdd8c5c619",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "96fbbc20-e22d-43c1-a352-c29023a642d8",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV108-STD",
+            "provenance_ref": "swsh4.5-SV108",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55760,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:18.902403+00:00",
+            "external_id": "swsh4.5-SV108",
+            "card_print_id": "96fbbc20-e22d-43c1-a352-c29023a642d8"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "b9239628-79ff-4eaf-b1ea-44cdd8c5c619",
+        "card_print_id": "96fbbc20-e22d-43c1-a352-c29023a642d8",
+        "set_code": "swsh4.5",
+        "card_number": "108",
+        "card_name": "Centiskorch V",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "2dff363f-c09c-44b3-84e6-22f333dc8e6b",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV109",
+      "card_name": "Centiskorch VMAX",
+      "current_child_printing_id": "dbff3a29-5f92-4c0f-871f-1a4844897d91",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "2954a179-b9ec-4bd7-ad4b-bfa3ffdaef58",
+        "88c9dd33-0021-425c-bdfb-eddf99a24854"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV109",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV109",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33760/centiskorch-vmax-shining-fates-sv109-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV109",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "2dff363f-c09c-44b3-84e6-22f333dc8e6b",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV109",
+        "number_plain": "109",
+        "card_number": "109",
+        "card_name": "Centiskorch VMAX",
+        "rarity": "Shiny rare VMAX",
+        "child_printings": [
+          {
+            "id": "dbff3a29-5f92-4c0f-871f-1a4844897d91",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "2dff363f-c09c-44b3-84e6-22f333dc8e6b",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV109-STD",
+            "provenance_ref": "swsh4.5-SV109",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55761,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:19.486732+00:00",
+            "external_id": "swsh4.5-SV109",
+            "card_print_id": "2dff363f-c09c-44b3-84e6-22f333dc8e6b"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "dbff3a29-5f92-4c0f-871f-1a4844897d91",
+        "card_print_id": "2dff363f-c09c-44b3-84e6-22f333dc8e6b",
+        "set_code": "swsh4.5",
+        "card_number": "109",
+        "card_name": "Centiskorch VMAX",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "1aab4ec4-b92e-4f23-baec-a01989ef041d",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV110",
+      "card_name": "Lapras V",
+      "current_child_printing_id": "54eb45cb-1d16-464d-a202-f48e83ba578f",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "b7f09324-d890-4182-a088-17f10fa5333c",
+        "ddf6dfd5-f955-40f7-9d80-2848778c3214"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV110",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV110",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33761/lapras-v-shining-fates-sv110-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV110",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "1aab4ec4-b92e-4f23-baec-a01989ef041d",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV110",
+        "number_plain": "110",
+        "card_number": "110",
+        "card_name": "Lapras V",
+        "rarity": "Shiny rare V",
+        "child_printings": [
+          {
+            "id": "54eb45cb-1d16-464d-a202-f48e83ba578f",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1aab4ec4-b92e-4f23-baec-a01989ef041d",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV110-STD",
+            "provenance_ref": "swsh4.5-SV110",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55762,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:20.075754+00:00",
+            "external_id": "swsh4.5-SV110",
+            "card_print_id": "1aab4ec4-b92e-4f23-baec-a01989ef041d"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "54eb45cb-1d16-464d-a202-f48e83ba578f",
+        "card_print_id": "1aab4ec4-b92e-4f23-baec-a01989ef041d",
+        "set_code": "swsh4.5",
+        "card_number": "110",
+        "card_name": "Lapras V",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "d7104595-1414-4865-aa5b-c8bb684b2c5d",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV111",
+      "card_name": "Lapras VMAX",
+      "current_child_printing_id": "8b0eb1c6-ee33-4f28-8d30-df84186d9189",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "8aeda0c6-f5ac-4bb0-a149-dddcb43b0783",
+        "afb5cb77-58de-4097-ac27-f81b6cdc53a1"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV111",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV111",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33762/lapras-vmax-shining-fates-sv111-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV111",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "d7104595-1414-4865-aa5b-c8bb684b2c5d",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV111",
+        "number_plain": "111",
+        "card_number": "111",
+        "card_name": "Lapras VMAX",
+        "rarity": "Shiny rare VMAX",
+        "child_printings": [
+          {
+            "id": "8b0eb1c6-ee33-4f28-8d30-df84186d9189",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d7104595-1414-4865-aa5b-c8bb684b2c5d",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV111-STD",
+            "provenance_ref": "swsh4.5-SV111",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55763,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:20.656008+00:00",
+            "external_id": "swsh4.5-SV111",
+            "card_print_id": "d7104595-1414-4865-aa5b-c8bb684b2c5d"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "8b0eb1c6-ee33-4f28-8d30-df84186d9189",
+        "card_print_id": "d7104595-1414-4865-aa5b-c8bb684b2c5d",
+        "set_code": "swsh4.5",
+        "card_number": "111",
+        "card_name": "Lapras VMAX",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "0ffc7113-1af6-4f8a-93c6-c035cfaadd24",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV112",
+      "card_name": "Toxtricity V",
+      "current_child_printing_id": "80c15188-241d-4b38-bdda-f5245b90df78",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "3246d586-6c66-41e7-8c12-bcc93fa043a0",
+        "d04394bb-b4e8-4e88-afa4-09394a912ab3"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV112",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV112",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33763/toxtricity-v-shining-fates-sv112-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV112",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "0ffc7113-1af6-4f8a-93c6-c035cfaadd24",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV112",
+        "number_plain": "112",
+        "card_number": "112",
+        "card_name": "Toxtricity V",
+        "rarity": "Shiny rare V",
+        "child_printings": [
+          {
+            "id": "80c15188-241d-4b38-bdda-f5245b90df78",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0ffc7113-1af6-4f8a-93c6-c035cfaadd24",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV112-STD",
+            "provenance_ref": "swsh4.5-SV112",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55764,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:21.258146+00:00",
+            "external_id": "swsh4.5-SV112",
+            "card_print_id": "0ffc7113-1af6-4f8a-93c6-c035cfaadd24"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "80c15188-241d-4b38-bdda-f5245b90df78",
+        "card_print_id": "0ffc7113-1af6-4f8a-93c6-c035cfaadd24",
+        "set_code": "swsh4.5",
+        "card_number": "112",
+        "card_name": "Toxtricity V",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "4f511770-c70d-4f72-90bd-fa3690359680",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV113",
+      "card_name": "Toxtricity VMAX",
+      "current_child_printing_id": "bb4aa2b9-01b7-46d6-9ef7-a299fd900829",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "9a07bd50-8eb8-44cf-9287-fc24f5d328ed",
+        "b950e266-a756-4b8f-8638-13ca5f5d90a5"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV113",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV113",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33764/toxtricity-vmax-shining-fates-sv113-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV113",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "4f511770-c70d-4f72-90bd-fa3690359680",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV113",
+        "number_plain": "113",
+        "card_number": "113",
+        "card_name": "Toxtricity VMAX",
+        "rarity": "Shiny rare VMAX",
+        "child_printings": [
+          {
+            "id": "bb4aa2b9-01b7-46d6-9ef7-a299fd900829",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "4f511770-c70d-4f72-90bd-fa3690359680",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV113-STD",
+            "provenance_ref": "swsh4.5-SV113",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55765,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:21.841738+00:00",
+            "external_id": "swsh4.5-SV113",
+            "card_print_id": "4f511770-c70d-4f72-90bd-fa3690359680"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "bb4aa2b9-01b7-46d6-9ef7-a299fd900829",
+        "card_print_id": "4f511770-c70d-4f72-90bd-fa3690359680",
+        "set_code": "swsh4.5",
+        "card_number": "113",
+        "card_name": "Toxtricity VMAX",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "6bdd14cd-7191-4a7d-9ede-20e5b1859908",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV114",
+      "card_name": "Indeedee V",
+      "current_child_printing_id": "267f2104-5347-47bb-8ddf-3b07aee08565",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "ad050a9d-2217-437f-970b-09e7c8d84e82",
+        "cfeed3f3-831c-4d87-b0d6-e4873130fae4"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV114",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV114",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33765/indeedee-v-shining-fates-sv114-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV114",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "6bdd14cd-7191-4a7d-9ede-20e5b1859908",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV114",
+        "number_plain": "114",
+        "card_number": "114",
+        "card_name": "Indeedee V",
+        "rarity": "Shiny rare V",
+        "child_printings": [
+          {
+            "id": "267f2104-5347-47bb-8ddf-3b07aee08565",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "6bdd14cd-7191-4a7d-9ede-20e5b1859908",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV114-STD",
+            "provenance_ref": "swsh4.5-SV114",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55766,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:22.442737+00:00",
+            "external_id": "swsh4.5-SV114",
+            "card_print_id": "6bdd14cd-7191-4a7d-9ede-20e5b1859908"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "267f2104-5347-47bb-8ddf-3b07aee08565",
+        "card_print_id": "6bdd14cd-7191-4a7d-9ede-20e5b1859908",
+        "set_code": "swsh4.5",
+        "card_number": "114",
+        "card_name": "Indeedee V",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "3239cfb4-494d-45f3-9174-bbea80917e9b",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV115",
+      "card_name": "Falinks V",
+      "current_child_printing_id": "e20d0597-8255-4ede-a621-8f9c4ecc1672",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "1cf5d1cb-a404-476e-9fd5-5b35c0d678e3",
+        "920cd98b-f727-42e2-931b-f357ae428ff9"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV115",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV115",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33766/falinks-v-shining-fates-sv115-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV115",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "3239cfb4-494d-45f3-9174-bbea80917e9b",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV115",
+        "number_plain": "115",
+        "card_number": "115",
+        "card_name": "Falinks V",
+        "rarity": "Shiny rare V",
+        "child_printings": [
+          {
+            "id": "e20d0597-8255-4ede-a621-8f9c4ecc1672",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "3239cfb4-494d-45f3-9174-bbea80917e9b",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV115-STD",
+            "provenance_ref": "swsh4.5-SV115",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55767,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:23.03445+00:00",
+            "external_id": "swsh4.5-SV115",
+            "card_print_id": "3239cfb4-494d-45f3-9174-bbea80917e9b"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "e20d0597-8255-4ede-a621-8f9c4ecc1672",
+        "card_print_id": "3239cfb4-494d-45f3-9174-bbea80917e9b",
+        "set_code": "swsh4.5",
+        "card_number": "115",
+        "card_name": "Falinks V",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "5033fccf-7bdb-4b5a-89fa-c1f42d727ad2",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV116",
+      "card_name": "Grimmsnarl V",
+      "current_child_printing_id": "ca0904e8-a091-4006-8b8c-0f7d7ddd6349",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "733bb666-b4a3-4f52-8c87-cf018ec41245",
+        "87bd187d-26e1-402d-88f9-4c8616f556fb"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV116",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV116",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33767/grimmsnarl-v-shining-fates-sv116-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV116",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "5033fccf-7bdb-4b5a-89fa-c1f42d727ad2",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV116",
+        "number_plain": "116",
+        "card_number": "116",
+        "card_name": "Grimmsnarl V",
+        "rarity": "Shiny rare V",
+        "child_printings": [
+          {
+            "id": "ca0904e8-a091-4006-8b8c-0f7d7ddd6349",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "5033fccf-7bdb-4b5a-89fa-c1f42d727ad2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV116-STD",
+            "provenance_ref": "swsh4.5-SV116",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55768,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:23.602326+00:00",
+            "external_id": "swsh4.5-SV116",
+            "card_print_id": "5033fccf-7bdb-4b5a-89fa-c1f42d727ad2"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "ca0904e8-a091-4006-8b8c-0f7d7ddd6349",
+        "card_print_id": "5033fccf-7bdb-4b5a-89fa-c1f42d727ad2",
+        "set_code": "swsh4.5",
+        "card_number": "116",
+        "card_name": "Grimmsnarl V",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "3009e93b-1fd7-444a-b51f-e0b01f2e4f2a",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV117",
+      "card_name": "Grimmsnarl VMAX",
+      "current_child_printing_id": "9f8caeaa-2e5f-4aa4-949a-21d75a86d878",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "0bb47fad-ac83-48fe-b269-3840837e2056",
+        "bd4a6138-89f6-4103-a05d-2a5f835f210a"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV117",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV117",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33768/grimmsnarl-vmax-shining-fates-sv117-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV117",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "3009e93b-1fd7-444a-b51f-e0b01f2e4f2a",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV117",
+        "number_plain": "117",
+        "card_number": "117",
+        "card_name": "Grimmsnarl VMAX",
+        "rarity": "Shiny rare VMAX",
+        "child_printings": [
+          {
+            "id": "9f8caeaa-2e5f-4aa4-949a-21d75a86d878",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "3009e93b-1fd7-444a-b51f-e0b01f2e4f2a",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV117-STD",
+            "provenance_ref": "swsh4.5-SV117",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55769,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:24.211741+00:00",
+            "external_id": "swsh4.5-SV117",
+            "card_print_id": "3009e93b-1fd7-444a-b51f-e0b01f2e4f2a"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "9f8caeaa-2e5f-4aa4-949a-21d75a86d878",
+        "card_print_id": "3009e93b-1fd7-444a-b51f-e0b01f2e4f2a",
+        "set_code": "swsh4.5",
+        "card_number": "117",
+        "card_name": "Grimmsnarl VMAX",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "16c1d62c-00e7-4af0-b68a-af4bc0c36fc0",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV118",
+      "card_name": "Ditto V",
+      "current_child_printing_id": "2539e00e-8897-493e-be34-22c5e267f837",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "8efc518e-725a-4b03-a8df-c548cd5134ab",
+        "ccae0280-413f-4fe3-8cbe-e52f7f6b1107"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV118",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV118",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33769/ditto-v-shining-fates-sv118-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV118",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "16c1d62c-00e7-4af0-b68a-af4bc0c36fc0",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV118",
+        "number_plain": "118",
+        "card_number": "118",
+        "card_name": "Ditto V",
+        "rarity": "Shiny rare V",
+        "child_printings": [
+          {
+            "id": "2539e00e-8897-493e-be34-22c5e267f837",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "16c1d62c-00e7-4af0-b68a-af4bc0c36fc0",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV118-STD",
+            "provenance_ref": "swsh4.5-SV118",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55770,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:24.798738+00:00",
+            "external_id": "swsh4.5-SV118",
+            "card_print_id": "16c1d62c-00e7-4af0-b68a-af4bc0c36fc0"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "2539e00e-8897-493e-be34-22c5e267f837",
+        "card_print_id": "16c1d62c-00e7-4af0-b68a-af4bc0c36fc0",
+        "set_code": "swsh4.5",
+        "card_number": "118",
+        "card_name": "Ditto V",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "df544042-b0d6-4a92-87a8-9bb14706afa7",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV119",
+      "card_name": "Ditto VMAX",
+      "current_child_printing_id": "b4282902-9530-4747-bdcd-05490053a4b5",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "647be71d-8aa6-4f67-91ad-9b948fbed70d",
+        "a3744362-4ff8-411e-8a0e-a3f28f18813a"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV119",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV119",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33770/ditto-vmax-shining-fates-sv119-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV119",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "df544042-b0d6-4a92-87a8-9bb14706afa7",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV119",
+        "number_plain": "119",
+        "card_number": "119",
+        "card_name": "Ditto VMAX",
+        "rarity": "Shiny rare VMAX",
+        "child_printings": [
+          {
+            "id": "b4282902-9530-4747-bdcd-05490053a4b5",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "df544042-b0d6-4a92-87a8-9bb14706afa7",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV119-STD",
+            "provenance_ref": "swsh4.5-SV119",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55771,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:25.385443+00:00",
+            "external_id": "swsh4.5-SV119",
+            "card_print_id": "df544042-b0d6-4a92-87a8-9bb14706afa7"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "b4282902-9530-4747-bdcd-05490053a4b5",
+        "card_print_id": "df544042-b0d6-4a92-87a8-9bb14706afa7",
+        "set_code": "swsh4.5",
+        "card_number": "119",
+        "card_name": "Ditto VMAX",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "8637f45a-0064-43c2-8e24-d6ab50403dd4",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV120",
+      "card_name": "Dubwool V",
+      "current_child_printing_id": "f0a8edb8-25c0-4f57-878c-c7ae37e616ae",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "36f2b31f-130d-4e0a-a4ff-625350a1e627",
+        "65957fba-552d-41ff-8dda-87e8d2aa178b"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV120",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV120",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33771/dubwool-v-shining-fates-sv120-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV120",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "8637f45a-0064-43c2-8e24-d6ab50403dd4",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV120",
+        "number_plain": "120",
+        "card_number": "120",
+        "card_name": "Dubwool V",
+        "rarity": "Shiny rare V",
+        "child_printings": [
+          {
+            "id": "f0a8edb8-25c0-4f57-878c-c7ae37e616ae",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "8637f45a-0064-43c2-8e24-d6ab50403dd4",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV120-STD",
+            "provenance_ref": "swsh4.5-SV120",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55772,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:25.96021+00:00",
+            "external_id": "swsh4.5-SV120",
+            "card_print_id": "8637f45a-0064-43c2-8e24-d6ab50403dd4"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "f0a8edb8-25c0-4f57-878c-c7ae37e616ae",
+        "card_print_id": "8637f45a-0064-43c2-8e24-d6ab50403dd4",
+        "set_code": "swsh4.5",
+        "card_number": "120",
+        "card_name": "Dubwool V",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "7ecca79e-c6fd-416f-9bc7-5b09ccafd50b",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV121",
+      "card_name": "Eternatus V",
+      "current_child_printing_id": "6ad4accb-86a1-4804-9b50-1b249f3c6e0a",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "bf7337f2-c31f-4c88-8fe0-5b7a6c785d05",
+        "f1a5e2c2-e690-4a65-afee-66d9596c5c53"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV121",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV121",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33772/eternatus-v-shining-fates-sv121-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV121",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "7ecca79e-c6fd-416f-9bc7-5b09ccafd50b",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV121",
+        "number_plain": "121",
+        "card_number": "121",
+        "card_name": "Eternatus V",
+        "rarity": "Secret Rare",
+        "child_printings": [
+          {
+            "id": "6ad4accb-86a1-4804-9b50-1b249f3c6e0a",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "7ecca79e-c6fd-416f-9bc7-5b09ccafd50b",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV121-STD",
+            "provenance_ref": "swsh4.5-SV121",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55773,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:26.537147+00:00",
+            "external_id": "swsh4.5-SV121",
+            "card_print_id": "7ecca79e-c6fd-416f-9bc7-5b09ccafd50b"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "6ad4accb-86a1-4804-9b50-1b249f3c6e0a",
+        "card_print_id": "7ecca79e-c6fd-416f-9bc7-5b09ccafd50b",
+        "set_code": "swsh4.5",
+        "card_number": "121",
+        "card_name": "Eternatus V",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    },
+    {
+      "card_print_id": "95e30a1d-19a5-460c-a752-2e027bf6d270",
+      "current_set_code": "swsh4.5",
+      "target_set_code": "swsh45sv",
+      "card_number": "SV122",
+      "card_name": "Eternatus VMAX",
+      "current_child_printing_id": "ffdc5a83-6ef1-42d7-936f-1aa0631d679a",
+      "current_finish_key": "normal",
+      "target_finish_key": "holo",
+      "prior_deleted_child_printing_ids": [
+        "2a48b225-7006-4ddf-81f4-9408fe8f5c41",
+        "b196a567-9b0e-49c2-a25e-209e85642783"
+      ],
+      "prior_deleted_child_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "prior_tcgdex_external_id": "swsh4.5-SV122",
+      "master_index_sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "master_index_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV122",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "host_suppression_rule_id": "swsh4_5_shiny_vault_host_duplicate",
+      "host_suppression_reason": "Shining Fates Shiny Vault is governed as subset swsh45sv; host swsh4.5 SV-number copies are preserved as source evidence but suppressed from DB reconciliation.",
+      "host_evidence_urls": [
+        "https://reverseholo.app/sets/swsh4.5",
+        "https://www.tcgcollector.com/cards/33773/eternatus-vmax-shining-fates-sv122-sv122",
+        "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+      ],
+      "subset_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swsh45sv-SV122",
+        "https://www.thepricedex.com/set/swsh45sv/shining-fates-shiny-vault/price-list"
+      ],
+      "readiness_basis": {
+        "has_master_missing_row": true,
+        "has_host_subset_suppression_row": true,
+        "master_finish_key": "holo",
+        "suppression_subset_set_key": "swsh45sv",
+        "suppression_host_set_key": "swsh4.5"
+      },
+      "current_parent": {
+        "card_print_id": "95e30a1d-19a5-460c-a752-2e027bf6d270",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "number": "SV122",
+        "number_plain": "122",
+        "card_number": "122",
+        "card_name": "Eternatus VMAX",
+        "rarity": "Secret Rare",
+        "child_printings": [
+          {
+            "id": "ffdc5a83-6ef1-42d7-936f-1aa0631d679a",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "95e30a1d-19a5-460c-a752-2e027bf6d270",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-SHF-SV122-STD",
+            "provenance_ref": "swsh4.5-SV122",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 55774,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-18T05:09:27.121871+00:00",
+            "external_id": "swsh4.5-SV122",
+            "card_print_id": "95e30a1d-19a5-460c-a752-2e027bf6d270"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_instance_parent_count": 0,
+        "pricing_watch_count": 0,
+        "card_feed_event_count": 0
+      },
+      "current_child_dependency_counts": {
+        "card_printing_id": "ffdc5a83-6ef1-42d7-936f-1aa0631d679a",
+        "card_print_id": "95e30a1d-19a5-460c-a752-2e027bf6d270",
+        "set_code": "swsh4.5",
+        "card_number": "122",
+        "card_name": "Eternatus VMAX",
+        "finish_key": "normal",
+        "external_printing_mapping_count": 0,
+        "vault_instance_child_count": 0
+      },
+      "target_parent_collisions": [],
+      "same_number_target_set_rows": [],
+      "live_status": "ready_for_guarded_correction_dry_run",
+      "status_findings": []
+    }
+  ],
+  "recommended_next_step": "Build and run PKG-08AA guarded dry-run transaction artifact. Do not perform real apply until dry-run proof is generated."
+}

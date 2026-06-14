@@ -1,0 +1,244 @@
+{
+  "package_id": "PKG-32A-PARENTHETICAL-NAME-QUALIFIER-PARENT-UPDATES",
+  "generated_at": "2026-06-13T20:19:22.995Z",
+  "fingerprint": "ee81961d70dd94f3fcee5718efcc745bc6bcba47ad08e0e86c83ee2355509298",
+  "sql_hash": "2312c1110b922f56f17a5c5429f6a383638b6be91ed9960bc725009321fc4303",
+  "sql_path": "docs\\sql\\english_master_index_pkg32a_parenthetical_name_qualifier_guarded_dry_run_transaction_v1.sql",
+  "safety": {
+    "db_writes_committed": false,
+    "migrations_created": false,
+    "real_apply_authorized": false,
+    "parent_writes_in_dry_run": 6,
+    "child_writes_in_dry_run": 0,
+    "sql_ends_with_rollback": true
+  },
+  "summary": {
+    "parent_updates_in_dry_run": 6,
+    "affected_child_rows": 9,
+    "blocked_rows": 0,
+    "by_set": {
+      "sv01": 3,
+      "sv02": 3
+    }
+  },
+  "execution": {
+    "dry_run_executed": true,
+    "committed": false,
+    "sql_hash": "2312c1110b922f56f17a5c5429f6a383638b6be91ed9960bc725009321fc4303",
+    "result_count": 5,
+    "notices": [
+      "PKG-32A-PARENTHETICAL-NAME-QUALIFIER-PARENT-UPDATES dry-run passed: parent names updated 6, child writes 0, fingerprint ee81961d70dd94f3fcee5718efcc745bc6bcba47ad08e0e86c83ee2355509298"
+    ]
+  },
+  "candidates": [
+    {
+      "card_print_id": "3cc9f3b8-542b-4418-bef5-bb2e2131d0d4",
+      "set_code": "sv01",
+      "number": "189",
+      "number_plain": "189",
+      "old_name": "Professor's Research",
+      "new_name": "Professor's Research (Professor Sada)",
+      "child_rows": [
+        {
+          "card_printing_id": "8fd5b3f0-0549-48c5-b96d-6f8e8a5ddfd7",
+          "finish_key": "holo"
+        },
+        {
+          "card_printing_id": "f5ed48a5-520f-4bd5-ba82-0f0facc32c16",
+          "finish_key": "reverse"
+        }
+      ],
+      "master_facts": [
+        {
+          "set_key": "sv01",
+          "card_number": "189",
+          "card_name": "Professor's Research (Professor Sada)",
+          "finish_key": "holo",
+          "source_count": 2,
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        {
+          "set_key": "sv01",
+          "card_number": "189",
+          "card_name": "Professor's Research (Professor Sada)",
+          "finish_key": "reverse",
+          "source_count": 2,
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        }
+      ]
+    },
+    {
+      "card_print_id": "79b57853-1668-4c92-9bcf-c6a99e13370e",
+      "set_code": "sv01",
+      "number": "240",
+      "number_plain": "240",
+      "old_name": "Professor's Research",
+      "new_name": "Professor's Research (Professor Sada)",
+      "child_rows": [
+        {
+          "card_printing_id": "d5b4f7a2-1605-4cf4-a82e-1dd959b03158",
+          "finish_key": "holo"
+        }
+      ],
+      "master_facts": [
+        {
+          "set_key": "sv01",
+          "card_number": "240",
+          "card_name": "Professor's Research (Professor Sada)",
+          "finish_key": "holo",
+          "source_count": 2,
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        }
+      ]
+    },
+    {
+      "card_print_id": "69cfbb61-17b4-44cf-aa78-28bb61195c64",
+      "set_code": "sv01",
+      "number": "241",
+      "number_plain": "241",
+      "old_name": "Professor's Research",
+      "new_name": "Professor's Research (Professor Turo)",
+      "child_rows": [
+        {
+          "card_printing_id": "92479949-f537-451b-b2ad-1bc239d465a2",
+          "finish_key": "holo"
+        }
+      ],
+      "master_facts": [
+        {
+          "set_key": "sv01",
+          "card_number": "241",
+          "card_name": "Professor's Research (Professor Turo)",
+          "finish_key": "holo",
+          "source_count": 2,
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        }
+      ]
+    },
+    {
+      "card_print_id": "f429bfbc-8a25-4203-b036-f63f7027a0d8",
+      "set_code": "sv02",
+      "number": "172",
+      "number_plain": "172",
+      "old_name": "Boss's Orders",
+      "new_name": "Boss's Orders (Ghetsis)",
+      "child_rows": [
+        {
+          "card_printing_id": "db3c446b-91f5-470e-b446-a12c66bbf699",
+          "finish_key": "holo"
+        },
+        {
+          "card_printing_id": "cc09a385-586a-41f7-ab08-1ec9a677dab4",
+          "finish_key": "normal"
+        },
+        {
+          "card_printing_id": "e07821e0-9982-4383-a1d4-bb6f0e46bf49",
+          "finish_key": "reverse"
+        }
+      ],
+      "master_facts": [
+        {
+          "set_key": "sv02",
+          "card_number": "172",
+          "card_name": "Boss's Orders (Ghetsis)",
+          "finish_key": "holo",
+          "source_count": 2,
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        {
+          "set_key": "sv02",
+          "card_number": "172",
+          "card_name": "Boss's Orders (Ghetsis)",
+          "finish_key": "normal",
+          "source_count": 2,
+          "sources": [
+            "bulbapedia_build_battle_product",
+            "bulbapedia_set_list",
+            "thepricedex_price_list"
+          ]
+        },
+        {
+          "set_key": "sv02",
+          "card_number": "172",
+          "card_name": "Boss's Orders (Ghetsis)",
+          "finish_key": "reverse",
+          "source_count": 2,
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        }
+      ]
+    },
+    {
+      "card_print_id": "012d9ef6-75d0-43d1-b4dc-d4dfe131f45f",
+      "set_code": "sv02",
+      "number": "248",
+      "number_plain": "248",
+      "old_name": "Boss's Orders",
+      "new_name": "Boss's Orders (Ghetsis)",
+      "child_rows": [
+        {
+          "card_printing_id": "2279fea3-b4fa-477a-bf58-756e22222df9",
+          "finish_key": "holo"
+        }
+      ],
+      "master_facts": [
+        {
+          "set_key": "sv02",
+          "card_number": "248",
+          "card_name": "Boss's Orders (Ghetsis)",
+          "finish_key": "holo",
+          "source_count": 2,
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        }
+      ]
+    },
+    {
+      "card_print_id": "e380fe60-9e2e-49b2-9913-9c3285de4693",
+      "set_code": "sv02",
+      "number": "265",
+      "number_plain": "265",
+      "old_name": "Boss's Orders",
+      "new_name": "Boss's Orders (Ghetsis)",
+      "child_rows": [
+        {
+          "card_printing_id": "36a5375e-19de-4298-af20-35b3b7c954ca",
+          "finish_key": "holo"
+        }
+      ],
+      "master_facts": [
+        {
+          "set_key": "sv02",
+          "card_number": "265",
+          "card_name": "Boss's Orders (Ghetsis)",
+          "finish_key": "holo",
+          "source_count": 2,
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        }
+      ]
+    }
+  ],
+  "blocked": []
+}

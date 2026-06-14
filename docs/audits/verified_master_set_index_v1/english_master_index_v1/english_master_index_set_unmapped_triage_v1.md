@@ -1,6 +1,6 @@
 # English Master Index Set Unmapped Triage V1
 
-Generated: 2026-06-08T18:24:41.247Z
+Generated: 2026-06-12T08:27:20.983Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -11,7 +11,7 @@ Set-unmapped rows are set identity/audit-scope issues first. Do not judge printi
 | category | count |
 | --- | --- |
 | legacy_orphan | 16 |
-| missing_set_code | 5733 |
+| missing_set_code | 5019 |
 | out_of_scope_pocket | 5427 |
 
 ## Missing Set Code
@@ -20,7 +20,7 @@ Rows whose Grookai parent card has no usable `set_code`. These need source ident
 
 | set_code | count |
 | --- | --- |
-| unknown | 5733 |
+| unknown | 5019 |
 
 ## Out Of Scope Pocket
 

@@ -1,0 +1,33 @@
+{
+  "package_id": "PKG-28B-EXTERNAL-MAPPING-TRANSFER-CHILD-DELETE",
+  "generated_at": "2026-06-13T18:16:26.381Z",
+  "fingerprint": "9a4b671f19abe698262b55d2c5d9cbe7dc3ab068b74146e2341489de5cfea9ee",
+  "artifact_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg28b_external_mapping_transfer_child_delete_dry_run_artifact_v1.json",
+  "safety": {
+    "no_global_apply": true,
+    "migrations_created": false,
+    "parent_writes": false,
+    "merges": false,
+    "quarantine": false
+  },
+  "summary": {
+    "mapping_transfers": 4,
+    "child_deletes": 4
+  },
+  "execution": {
+    "apply_status": "pkg28b_real_apply_committed",
+    "committed": true,
+    "dry_run_sql_hash": "66f084dc988ddc87bb02f008c3141e4049b763af761d319e08fe1e9f38f887bf",
+    "real_apply_sql_hash": "0fd23e3d47b6950a82032cc281ba56c04f1eae17313eb20099887916b126450a",
+    "result_count": 5,
+    "notices": [
+      "PKG-28B-EXTERNAL-MAPPING-TRANSFER-CHILD-DELETE dry-run passed: mappings transferred 4, children deleted 4, fingerprint 9a4b671f19abe698262b55d2c5d9cbe7dc3ab068b74146e2341489de5cfea9ee"
+    ],
+    "post_apply_proof": {
+      "source_children_remaining": 0,
+      "target_children_present": 4,
+      "mappings_moved_to_targets": 4,
+      "mappings_remaining_on_source_children": 0
+    }
+  }
+}

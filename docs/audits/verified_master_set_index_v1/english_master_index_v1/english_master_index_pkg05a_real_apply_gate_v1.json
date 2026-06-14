@@ -1,0 +1,142 @@
+{
+  "generated_at": "2026-06-10T06:02:53.597Z",
+  "version": "english_master_index_pkg05a_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+    "readiness_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1",
+    "artifact_fingerprint_sha256": "df4c9dcae0a19731d4b96f9efd0322f5fde78722c0c08786e4d97a8a2d395dc9",
+    "selected_sets": [
+      {
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "expected_parent_rows": 15,
+        "expected_child_printings": 15
+      },
+      {
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "expected_parent_rows": 15,
+        "expected_child_printings": 15
+      },
+      {
+        "set_key": "mee",
+        "set_name": "Mega Evolution Energy",
+        "expected_parent_rows": 8,
+        "expected_child_printings": 16
+      },
+      {
+        "set_key": "mfb",
+        "set_name": "My First Battle",
+        "expected_parent_rows": 34,
+        "expected_child_printings": 34
+      }
+    ],
+    "planned_set_inserts": 4,
+    "planned_parent_card_print_inserts": 72,
+    "planned_child_card_printing_inserts": 80,
+    "planned_external_mapping_inserts": 72,
+    "parent_table": "public.card_prints",
+    "child_table": "public.card_printings",
+    "set_table": "public.sets",
+    "mapping_table": "public.external_mappings",
+    "allowed_mutation_class_if_later_approved": "insert_only",
+    "updates_allowed": false,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_execution_status": "guarded_dry_run_transaction_completed_and_rolled_back",
+    "sql_artifact_ref": "docs/sql/english_master_index_pkg05a_missing_set_inserts_guarded_dry_run_transaction_v1.sql",
+    "sql_hash_sha256": "004b8d3399c6b889a7632928e0364438176a284f32ba8976e3a58cedc69eae03",
+    "sql_contains_begin_statement": true,
+    "sql_contains_insert_statement": true,
+    "sql_contains_update_statement": false,
+    "sql_contains_delete_statement": false,
+    "sql_contains_commit_statement": false,
+    "sql_contains_rollback_statement": true,
+    "before_hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "after_hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "readiness_fingerprint": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1",
+        "artifact_fingerprint": "df4c9dcae0a19731d4b96f9efd0322f5fde78722c0c08786e4d97a8a2d395dc9",
+        "planned_sets": 4,
+        "planned_parent_rows": 72,
+        "planned_child_rows": 80
+      }
+    ],
+    "stop_findings": []
+  },
+  "final_snapshot_proof": {
+    "source_artifact_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg05a_final_snapshot_transaction_artifact_v1.json",
+    "fresh_snapshot_available": true,
+    "fresh_snapshot_hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "existing_set_rows": 0,
+    "existing_parent_rows": 0,
+    "existing_child_printing_rows": 0,
+    "planned_set_inserts": 4,
+    "planned_parent_inserts": 72,
+    "planned_child_printing_inserts": 80,
+    "planned_external_mapping_inserts": 72
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-05A apply only. Fingerprint: df4c9dcae0a19731d4b96f9efd0322f5fde78722c0c08786e4d97a8a2d395dc9. Readiness fingerprint: da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1. Scope: 4 set inserts, 72 parent card_print inserts, 80 child card_printing inserts, 72 external mappings. Dry-run proof: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 == 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+    "approval_effect": "This would authorize preparing and running the durable PKG-05A apply path only, scoped to four fully master-verified missing sets. It does not authorize global apply, deletes, merges, unsupported cleanup, identity modifier work, or migrations.",
+    "approval_must_reference": {
+      "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+      "readiness_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1",
+      "artifact_fingerprint_sha256": "df4c9dcae0a19731d4b96f9efd0322f5fde78722c0c08786e4d97a8a2d395dc9",
+      "planned_set_inserts": 4,
+      "planned_parent_card_print_inserts": 72,
+      "planned_child_card_printing_inserts": 80,
+      "planned_external_mapping_inserts": 72,
+      "dry_run_before_hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "dry_run_after_hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "next_step_if_approved_later": [
+    "Capture one more final fresh DB snapshot immediately before durable apply.",
+    "Verify the same four target sets are still absent and the same 72 parent rows, 80 child printings, and 72 external mappings are planned.",
+    "Execute a durable insert-only transaction with COMMIT only after this exact real-apply approval is present.",
+    "Capture post-apply readback for the four sets, parent card_prints, child card_printings, and external mappings.",
+    "Run a read-only Master Index comparison for the four inserted sets and write a post-apply checkpoint."
+  ],
+  "explicit_non_authorizations": [
+    "This gate is not a real apply.",
+    "This gate does not record approval.",
+    "This gate does not run SQL.",
+    "This gate does not read from or write to the database.",
+    "This gate does not create a migration.",
+    "This gate does not authorize global apply.",
+    "This gate does not authorize deletes.",
+    "This gate does not authorize merges.",
+    "This gate does not authorize unsupported cleanup.",
+    "This gate does not authorize identity modifier work."
+  ],
+  "source_artifacts": {
+    "readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg05a_missing_set_insert_readiness_v1.json",
+    "final_snapshot_transaction_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg05a_final_snapshot_transaction_artifact_v1.json",
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg05a_guarded_dry_run_execution_v1.json",
+    "sql_artifact": "docs/sql/english_master_index_pkg05a_missing_set_inserts_guarded_dry_run_transaction_v1.sql"
+  },
+  "stop_findings": [],
+  "pass": true
+}

@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-06-13T00:12:10.923Z",
+  "version": "english_master_index_pkg08e_existing_parent_child_printing_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-08E-EXISTING-PARENT-CHILD-PRINTING-INSERTS",
+    "package_fingerprint_sha256": "7bed0d85cfc7f875d902bb1b7453107a00be0a4b69329b171ef4583c7e6e2ef8",
+    "target_child_rows": 16,
+    "target_parent_rows": 15,
+    "excluded_resolution_rows": 0,
+    "by_set": {
+      "sv03": 16
+    },
+    "by_live_set": {
+      "sv03": 16
+    },
+    "by_finish": {
+      "cosmos": 15,
+      "normal": 1
+    },
+    "updates_allowed": false,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false,
+    "parent_writes_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_status": "pkg08e_existing_parent_child_printing_completed_rolled_back_no_durable_change",
+    "before_hash_sha256": "e7ca48bb8fac12f973774e94f97a4e924e11bd21311506f2e5500e9027518ff9",
+    "after_hash_sha256": "e7ca48bb8fac12f973774e94f97a4e924e11bd21311506f2e5500e9027518ff9",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-08E-EXISTING-PARENT-CHILD-PRINTING-INSERTS",
+        "package_fingerprint": "7bed0d85cfc7f875d902bb1b7453107a00be0a4b69329b171ef4583c7e6e2ef8",
+        "planned_child_rows": 16,
+        "planned_parent_rows": 15
+      }
+    ]
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-08E-EXISTING-PARENT-CHILD-PRINTING-INSERTS apply only. Fingerprint: 7bed0d85cfc7f875d902bb1b7453107a00be0a4b69329b171ef4583c7e6e2ef8. Scope: 16 child-only card_printing inserts across 1 sets; target parents=15; finishes cosmos=15, normal=1. Dry-run proof: e7ca48bb8fac12f973774e94f97a4e924e11bd21311506f2e5500e9027518ff9 == e7ca48bb8fac12f973774e94f97a4e924e11bd21311506f2e5500e9027518ff9. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No parent writes."
+  },
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg08e_existing_parent_child_printing_guarded_dry_run_v1.json"
+  },
+  "stop_findings": [],
+  "pass": true
+}

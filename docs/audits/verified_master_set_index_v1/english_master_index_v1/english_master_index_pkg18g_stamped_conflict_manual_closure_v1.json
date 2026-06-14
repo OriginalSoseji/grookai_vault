@@ -1,0 +1,88 @@
+{
+  "generated_at": "2026-06-13T00:06:16.410Z",
+  "version": "english_master_index_pkg18g_stamped_conflict_manual_closure_v1",
+  "package_id": "PKG-18G-STAMPED-CONFLICT-MANUAL-CLOSURE",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "execution_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18x_stamped_post_governance_execution_queue_v1.json",
+    "same_finish_split_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg16b_same_finish_stamped_split_readiness_v1.json"
+  },
+  "fingerprint_sha256": "8673c803aebf5b4a811e872460e6d6bbdd77f2737c1e310984455a5e05994bab",
+  "summary": {
+    "conflict_rows": 3,
+    "write_ready_rows": 0,
+    "by_variant_key": {
+      "gamestop_stamp": 1,
+      "regional_championships_staff_stamp": 1,
+      "regional_championships_stamp": 1
+    },
+    "by_set": {
+      "bw5": 1,
+      "me02": 1,
+      "xy1": 1
+    }
+  },
+  "rows": [
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "finish_key": "reverse",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "queue_status": "blocked_conflicting_finish_observation",
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "manual_conflict_adjudication_rule",
+      "blockers": [
+        "conflicting_finish_observation"
+      ],
+      "closure_status": "blocked_manual_conflict_adjudication_required",
+      "write_ready_now": 0,
+      "required_next_evidence": "Manual adjudication with exact source-backed active finish resolution. Do not write while source observations conflict."
+    },
+    {
+      "set_key": "me02",
+      "set_name": "Phantasmal Flames",
+      "card_number": "26",
+      "card_name": "Suicune",
+      "finish_key": "holo",
+      "variant_key": "gamestop_stamp",
+      "stamp_label": "GameStop Stamp",
+      "queue_status": "blocked_conflicting_finish_observation",
+      "variant_family": "small_custom_stamp",
+      "governance_rule_id": "manual_conflict_adjudication_rule",
+      "blockers": [
+        "conflicting_finish_observation"
+      ],
+      "closure_status": "blocked_manual_conflict_adjudication_required",
+      "write_ready_now": 0,
+      "required_next_evidence": "Manual adjudication with exact source-backed active finish resolution. Do not write while source observations conflict."
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "85",
+      "card_name": "Aegislash",
+      "finish_key": "reverse",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "queue_status": "blocked_conflicting_finish_observation",
+      "variant_family": "championship_or_staff",
+      "governance_rule_id": "manual_conflict_adjudication_rule",
+      "blockers": [
+        "conflicting_finish_observation"
+      ],
+      "closure_status": "blocked_manual_conflict_adjudication_required",
+      "write_ready_now": 0,
+      "required_next_evidence": "Manual adjudication with exact source-backed active finish resolution. Do not write while source observations conflict."
+    }
+  ]
+}

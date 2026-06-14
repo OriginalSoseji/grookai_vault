@@ -1,0 +1,980 @@
+{
+  "generated_at": "2026-06-13T00:11:58.831Z",
+  "version": "english_master_index_pkg08e_existing_parent_child_printing_guarded_dry_run_v1",
+  "package_id": "PKG-08E-EXISTING-PARENT-CHILD-PRINTING-INSERTS",
+  "package_fingerprint_sha256": "7bed0d85cfc7f875d902bb1b7453107a00be0a4b69329b171ef4583c7e6e2ef8",
+  "audit_only": false,
+  "rollback_only": true,
+  "dry_run_status": "pkg08e_existing_parent_child_printing_completed_rolled_back_no_durable_change",
+  "durable_db_writes_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_authorized": false,
+  "scope": {
+    "source_rows": 16,
+    "target_child_rows": 16,
+    "target_parent_rows": 15,
+    "blocked_resolution_rows": 0,
+    "blocked_resolution_rows_excluded_from_package": 0,
+    "by_set": {
+      "sv03": 16
+    },
+    "by_live_set": {
+      "sv03": 16
+    },
+    "by_finish": {
+      "cosmos": 15,
+      "normal": 1
+    },
+    "rows": [
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "13",
+        "card_name": "Rowlet",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42120/rowlet-obsidian-flames-013-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Rowlet"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "f4edf4cf-001f-49e7-9103-601d4b8e7292",
+        "live_set_code": "sv03",
+        "live_card_number": "013",
+        "live_card_name": "Rowlet",
+        "card_printing_id": "856463b3-bf34-4dfa-bc36-14614de996db",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:13:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "14",
+        "card_name": "Dartrix",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42122/dartrix-obsidian-flames-014-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Dartrix"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "f1474ae1-7dd2-47a4-b87b-96fc64c2b7d2",
+        "live_set_code": "sv03",
+        "live_card_number": "014",
+        "live_card_name": "Dartrix",
+        "card_printing_id": "2d431ccf-56ff-489a-bd38-668bf3182fcc",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:14:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "16",
+        "card_name": "Bounsweet",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42125/bounsweet-obsidian-flames-016-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Bounsweet"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "19367674-b09e-494f-b0c3-4c76eb69b25a",
+        "live_set_code": "sv03",
+        "live_card_number": "016",
+        "live_card_name": "Bounsweet",
+        "card_printing_id": "3e881cd9-6ce3-45fa-a24b-c62a4023b10b",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:16:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "25",
+        "card_name": "Scovillain",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42134/scovillain-obsidian-flames-025-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Scovillain"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "13309a0b-743f-43df-b6dc-d14bcc7c751c",
+        "live_set_code": "sv03",
+        "live_card_number": "025",
+        "live_card_name": "Scovillain",
+        "card_printing_id": "6ee1d643-7a4f-47e0-a9ab-905ef2ed5bee",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:25:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "56",
+        "card_name": "Froakie",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42165/froakie-obsidian-flames-056-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Froakie"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "f7b208f5-9be8-4b91-be1b-b6f323d64b16",
+        "live_set_code": "sv03",
+        "live_card_number": "056",
+        "live_card_name": "Froakie",
+        "card_printing_id": "8a47819e-0c54-45d0-ad86-d39b0e0521bc",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:56:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "57",
+        "card_name": "Frogadier",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42166/frogadier-obsidian-flames-057-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Frogadier"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "c25b8f46-aaa7-4568-90e7-9b961f11d533",
+        "live_set_code": "sv03",
+        "live_card_number": "057",
+        "live_card_name": "Frogadier",
+        "card_printing_id": "615260f4-94cd-4d5f-b092-bc1fa3ab9555",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:57:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "62",
+        "card_name": "Palafin",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42171/palafin-obsidian-flames-062-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Palafin"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "d967570a-fa10-4e32-a2e4-f3cc39a312f4",
+        "live_set_code": "sv03",
+        "live_card_number": "062",
+        "live_card_name": "Palafin",
+        "card_printing_id": "fd1f17c4-66b2-4479-807b-98a3289aaff8",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:62:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "85",
+        "card_name": "Togekiss",
+        "finish_key": "normal",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42194/togekiss-obsidian-flames-085-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Togekiss"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "16c07846-2fd1-40c7-b336-4af005efa35c",
+        "live_set_code": "sv03",
+        "live_card_number": "085",
+        "live_card_name": "Togekiss",
+        "card_printing_id": "7246207a-8955-4e8c-9988-c12fa228a2ed",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:85:normal",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "85",
+        "card_name": "Togekiss",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42194/togekiss-obsidian-flames-085-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Togekiss"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "16c07846-2fd1-40c7-b336-4af005efa35c",
+        "live_set_code": "sv03",
+        "live_card_number": "085",
+        "live_card_name": "Togekiss",
+        "card_printing_id": "12a6979e-4159-4af3-ac10-96d8bd8c3d9b",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:85:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "100",
+        "card_name": "Greavard",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42209/greavard-obsidian-flames-100-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Greavard"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "52228f2f-5bc7-4b75-8eaa-bc6738d9e776",
+        "live_set_code": "sv03",
+        "live_card_number": "100",
+        "live_card_name": "Greavard",
+        "card_printing_id": "9f3df071-7acd-4736-817d-756c45996fe4",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:100:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "105",
+        "card_name": "Larvitar",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42214/larvitar-obsidian-flames-105-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Larvitar"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "f359a0b3-b234-489a-948f-47e44562af87",
+        "live_set_code": "sv03",
+        "live_card_number": "105",
+        "live_card_name": "Larvitar",
+        "card_printing_id": "1b6607f0-2107-4573-9145-ac4add9ce06a",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:105:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "106",
+        "card_name": "Pupitar",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42215/pupitar-obsidian-flames-106-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Pupitar"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "af132509-8f4e-4557-8397-c67472a31ce9",
+        "live_set_code": "sv03",
+        "live_card_number": "106",
+        "live_card_name": "Pupitar",
+        "card_printing_id": "882b1f34-8e58-4d63-a349-f93e9d57da1b",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:106:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "136",
+        "card_name": "Darkrai",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42245/darkrai-obsidian-flames-136-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Darkrai"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "26268bd0-483d-4567-8181-8a8a6402e14c",
+        "live_set_code": "sv03",
+        "live_card_number": "136",
+        "live_card_name": "Darkrai",
+        "card_printing_id": "10f0512b-d49f-4777-afe2-eccd1e259b03",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:136:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "141",
+        "card_name": "Scizor",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42250/scizor-obsidian-flames-141-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Scizor"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "0afdebcf-5c5b-460e-9964-da4e4d2c714a",
+        "live_set_code": "sv03",
+        "live_card_number": "141",
+        "live_card_name": "Scizor",
+        "card_printing_id": "4c0b426c-0ca7-4dd7-a315-a23652f406d2",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:141:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "148",
+        "card_name": "Pawniard",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42257/pawniard-obsidian-flames-148-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Pawniard"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "bc7985a8-866b-4b71-ae4d-f78117a04258",
+        "live_set_code": "sv03",
+        "live_card_number": "148",
+        "live_card_name": "Pawniard",
+        "card_printing_id": "357dd61e-7261-4f03-b495-b30ec6485fb7",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:148:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "lane": "existing_parent_missing_child",
+        "reason": "The exact parent exists and only the child card_printing finish row is missing.",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "149",
+        "card_name": "Bisharp",
+        "finish_key": "cosmos",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/42258/bisharp-obsidian-flames-149-197",
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ],
+        "set_aliases_checked": [
+          "sv03",
+          "sv3",
+          "obsidian flames",
+          "obsidian flames tcg"
+        ],
+        "matched_parent_alias": "sv03",
+        "exact_parent_match_count": 1,
+        "matched_set_alias": "sv03",
+        "same_number_live_names": [
+          "Bisharp"
+        ],
+        "resolution_status": "resolved_exact_parent",
+        "resolution_match_count": 1,
+        "card_print_id": "857409a9-91c2-44a1-a539-c2caa68e98e1",
+        "live_set_code": "sv03",
+        "live_card_number": "149",
+        "live_card_name": "Bisharp",
+        "card_printing_id": "25b38687-84be-4e93-8943-94e3a3aab8f3",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:149:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      }
+    ],
+    "blocked_rows": []
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-13T00:11:57.935Z",
+    "rows": [
+      {
+        "row_type": "target_parent",
+        "row_id": "f4edf4cf-001f-49e7-9103-601d4b8e7292",
+        "set_code": "sv03",
+        "card_number": "013",
+        "card_name": "Rowlet",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f1474ae1-7dd2-47a4-b87b-96fc64c2b7d2",
+        "set_code": "sv03",
+        "card_number": "014",
+        "card_name": "Dartrix",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "19367674-b09e-494f-b0c3-4c76eb69b25a",
+        "set_code": "sv03",
+        "card_number": "016",
+        "card_name": "Bounsweet",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "13309a0b-743f-43df-b6dc-d14bcc7c751c",
+        "set_code": "sv03",
+        "card_number": "025",
+        "card_name": "Scovillain",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f7b208f5-9be8-4b91-be1b-b6f323d64b16",
+        "set_code": "sv03",
+        "card_number": "056",
+        "card_name": "Froakie",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c25b8f46-aaa7-4568-90e7-9b961f11d533",
+        "set_code": "sv03",
+        "card_number": "057",
+        "card_name": "Frogadier",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d967570a-fa10-4e32-a2e4-f3cc39a312f4",
+        "set_code": "sv03",
+        "card_number": "062",
+        "card_name": "Palafin",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "16c07846-2fd1-40c7-b336-4af005efa35c",
+        "set_code": "sv03",
+        "card_number": "085",
+        "card_name": "Togekiss",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "52228f2f-5bc7-4b75-8eaa-bc6738d9e776",
+        "set_code": "sv03",
+        "card_number": "100",
+        "card_name": "Greavard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f359a0b3-b234-489a-948f-47e44562af87",
+        "set_code": "sv03",
+        "card_number": "105",
+        "card_name": "Larvitar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "af132509-8f4e-4557-8397-c67472a31ce9",
+        "set_code": "sv03",
+        "card_number": "106",
+        "card_name": "Pupitar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "26268bd0-483d-4567-8181-8a8a6402e14c",
+        "set_code": "sv03",
+        "card_number": "136",
+        "card_name": "Darkrai",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "0afdebcf-5c5b-460e-9964-da4e4d2c714a",
+        "set_code": "sv03",
+        "card_number": "141",
+        "card_name": "Scizor",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "bc7985a8-866b-4b71-ae4d-f78117a04258",
+        "set_code": "sv03",
+        "card_number": "148",
+        "card_name": "Pawniard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "857409a9-91c2-44a1-a539-c2caa68e98e1",
+        "set_code": "sv03",
+        "card_number": "149",
+        "card_name": "Bisharp",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "e7ca48bb8fac12f973774e94f97a4e924e11bd21311506f2e5500e9027518ff9",
+    "counts": {
+      "target_parent_rows": 15,
+      "existing_target_child_rows": 0,
+      "planned_id_collision_rows": 0,
+      "total_rows": 15
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-13T00:11:58.830Z",
+    "rows": [
+      {
+        "row_type": "target_parent",
+        "row_id": "f4edf4cf-001f-49e7-9103-601d4b8e7292",
+        "set_code": "sv03",
+        "card_number": "013",
+        "card_name": "Rowlet",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f1474ae1-7dd2-47a4-b87b-96fc64c2b7d2",
+        "set_code": "sv03",
+        "card_number": "014",
+        "card_name": "Dartrix",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "19367674-b09e-494f-b0c3-4c76eb69b25a",
+        "set_code": "sv03",
+        "card_number": "016",
+        "card_name": "Bounsweet",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "13309a0b-743f-43df-b6dc-d14bcc7c751c",
+        "set_code": "sv03",
+        "card_number": "025",
+        "card_name": "Scovillain",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f7b208f5-9be8-4b91-be1b-b6f323d64b16",
+        "set_code": "sv03",
+        "card_number": "056",
+        "card_name": "Froakie",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c25b8f46-aaa7-4568-90e7-9b961f11d533",
+        "set_code": "sv03",
+        "card_number": "057",
+        "card_name": "Frogadier",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d967570a-fa10-4e32-a2e4-f3cc39a312f4",
+        "set_code": "sv03",
+        "card_number": "062",
+        "card_name": "Palafin",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "16c07846-2fd1-40c7-b336-4af005efa35c",
+        "set_code": "sv03",
+        "card_number": "085",
+        "card_name": "Togekiss",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "52228f2f-5bc7-4b75-8eaa-bc6738d9e776",
+        "set_code": "sv03",
+        "card_number": "100",
+        "card_name": "Greavard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f359a0b3-b234-489a-948f-47e44562af87",
+        "set_code": "sv03",
+        "card_number": "105",
+        "card_name": "Larvitar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "af132509-8f4e-4557-8397-c67472a31ce9",
+        "set_code": "sv03",
+        "card_number": "106",
+        "card_name": "Pupitar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "26268bd0-483d-4567-8181-8a8a6402e14c",
+        "set_code": "sv03",
+        "card_number": "136",
+        "card_name": "Darkrai",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "0afdebcf-5c5b-460e-9964-da4e4d2c714a",
+        "set_code": "sv03",
+        "card_number": "141",
+        "card_name": "Scizor",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "bc7985a8-866b-4b71-ae4d-f78117a04258",
+        "set_code": "sv03",
+        "card_number": "148",
+        "card_name": "Pawniard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "857409a9-91c2-44a1-a539-c2caa68e98e1",
+        "set_code": "sv03",
+        "card_number": "149",
+        "card_name": "Bisharp",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "e7ca48bb8fac12f973774e94f97a4e924e11bd21311506f2e5500e9027518ff9",
+    "counts": {
+      "target_parent_rows": 15,
+      "existing_target_child_rows": 0,
+      "planned_id_collision_rows": 0,
+      "total_rows": 15
+    }
+  },
+  "rollback_proof_rows": [
+    {
+      "package_id": "PKG-08E-EXISTING-PARENT-CHILD-PRINTING-INSERTS",
+      "package_fingerprint": "7bed0d85cfc7f875d902bb1b7453107a00be0a4b69329b171ef4583c7e6e2ef8",
+      "planned_child_rows": 16,
+      "planned_parent_rows": 15
+    }
+  ],
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "stop_findings": [],
+  "next_step_if_clean": "Prepare a no-write real-apply gate for exact operator approval. Do not apply without approval."
+}

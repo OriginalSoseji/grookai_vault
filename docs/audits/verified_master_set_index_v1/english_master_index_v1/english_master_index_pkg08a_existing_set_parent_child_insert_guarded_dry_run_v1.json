@@ -1,0 +1,2043 @@
+{
+  "generated_at": "2026-06-10T22:16:17.510Z",
+  "version": "english_master_index_pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+  "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+  "package_fingerprint_sha256": "7947cb0310ec38821edf4c85e8b4e7e53975c7a8689365437bd0500ea22e6fdb",
+  "audit_only": false,
+  "rollback_only": true,
+  "dry_run_status": "pkg08a_existing_set_parent_child_insert_failed_rolled_back",
+  "durable_db_writes_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_authorized": false,
+  "scope": {
+    "source_rows": 25,
+    "target_parent_rows": 25,
+    "target_child_rows": 25,
+    "target_external_mappings": 25,
+    "blocked_rows": 0,
+    "selected_set_keys": [
+      "swsh4.5"
+    ],
+    "by_set": {
+      "swsh4.5": 25
+    },
+    "by_live_set": {
+      "swsh45": 25
+    },
+    "by_finish": {
+      "normal": 25
+    },
+    "parent_rows": [
+      {
+        "card_print_id": "58da2868-9bbf-4286-bda3-a4e293f11250",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV023",
+        "card_name": "Galarian Darumaka",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV023",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV023"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV023",
+          "https://www.cardtrader.com/en/cards/153050-galarian-darumaka-shiny-rare-sv23-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "2dd649bc-3724-41d3-acfe-2296fddc2dd0",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV043",
+        "card_name": "Pincurchin",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV043",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV043"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV043",
+          "https://www.cardtrader.com/en/cards/153070-pincurchin-shiny-rare-sv43-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "e0326ae5-9370-4303-8464-c73af24fa660",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV100",
+        "card_name": "Greedent",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV100",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV100"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV100",
+          "https://www.cardtrader.com/en/cards/153127-greedent-shiny-rare-sv100-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "4ab107a1-df23-4e2a-be18-1fbb9dd1b2bb",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV101",
+        "card_name": "Rookidee",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV101",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV101"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV101",
+          "https://www.cardtrader.com/en/cards/153128-rookidee-shiny-rare-sv101-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "47b11cc4-70fb-4cc3-9d57-978ec7e42772",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV102",
+        "card_name": "Corvisquire",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV102",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV102"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV102",
+          "https://www.cardtrader.com/en/cards/153129-corvisquire-shiny-rare-sv102-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "d73444d4-1625-44dd-ba00-6882676bef3e",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV103",
+        "card_name": "Wooloo",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV103",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV103"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV103",
+          "https://www.cardtrader.com/en/cards/153130-wooloo-shiny-rare-sv103-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "81b47b4f-c59e-40f3-b2a4-b0612b54e316",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV104",
+        "card_name": "Dubwool",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV104",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV104"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV104",
+          "https://www.cardtrader.com/en/cards/153131-dubwool-shiny-rare-sv104-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "0e3870c8-7c4d-4a65-9210-109ed93b1fe8",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV105",
+        "card_name": "Rillaboom V",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV105",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV105"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV105",
+          "https://www.cardtrader.com/en/cards/153132-rillaboom-v-shiny-rare-sv105-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "ba18d636-f4e3-4b74-9f2e-c54fb0dea267",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV106",
+        "card_name": "Rillaboom VMAX",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV106",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV106"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV106",
+          "https://www.cardtrader.com/en/cards/153133-rillaboom-vmax-shiny-rare-sv106-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "a45b667a-1e9d-4c1d-9da1-13ced5e9a45c",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV107",
+        "card_name": "Charizard VMAX",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV107",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV107"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV107",
+          "https://www.cardtrader.com/en/cards/153134-charizard-vmax-shiny-rare-sv107-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "6c991f64-198a-4828-83b7-8876ae24e6e0",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV108",
+        "card_name": "Centiskorch V",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV108",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV108"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV108",
+          "https://www.cardtrader.com/en/cards/153135-centiskorch-v-shiny-rare-sv108-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "40e18cea-2bf3-460e-a494-a21345209cca",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV109",
+        "card_name": "Centiskorch VMAX",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV109",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV109"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV109",
+          "https://www.cardtrader.com/en/cards/153136-centiskorch-vmax-shiny-rare-sv109-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "5011fbfc-93a3-4744-8098-e94cfd4eb03c",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV110",
+        "card_name": "Lapras V",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV110",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV110"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV110",
+          "https://www.cardtrader.com/en/cards/153137-lapras-v-shiny-rare-sv110-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "6355b1fe-cf3b-4788-b557-ce1afd204a74",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV111",
+        "card_name": "Lapras VMAX",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV111",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV111"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV111",
+          "https://www.cardtrader.com/en/cards/153138-lapras-vmax-shiny-rare-sv111-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "4d7fafa2-3c5e-4331-b6fa-5db0aad59ced",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV112",
+        "card_name": "Toxtricity V",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV112",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV112"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV112",
+          "https://www.cardtrader.com/en/cards/153139-toxtricity-v-shiny-rare-sv112-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "0051ee48-dc35-4120-ba7f-933dbd1d00ef",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV113",
+        "card_name": "Toxtricity VMAX",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV113",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV113"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV113",
+          "https://www.cardtrader.com/en/cards/153140-toxtricity-vmax-shiny-rare-sv113-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "f90078e3-e53d-4adb-8174-d167ba703938",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV114",
+        "card_name": "Indeedee V",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV114",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV114"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV114",
+          "https://www.cardtrader.com/en/cards/153141-indeedee-v-shiny-rare-sv114-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "d9826114-dae7-4977-a690-d2cb94d6318c",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV115",
+        "card_name": "Falinks V",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV115",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV115"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV115",
+          "https://www.cardtrader.com/en/cards/153142-falinks-v-shiny-rare-sv115-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "4fe16265-70ef-48a3-9544-36882cf809b3",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV116",
+        "card_name": "Grimmsnarl V",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV116",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV116"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV116",
+          "https://www.cardtrader.com/en/cards/153143-grimmsnarl-v-shiny-rare-sv116-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "6c9f09e2-65e0-405a-8077-1a0773665cb1",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV117",
+        "card_name": "Grimmsnarl VMAX",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV117",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV117"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV117",
+          "https://www.cardtrader.com/en/cards/153144-grimmsnarl-vmax-shiny-rare-sv117-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "2b4c8275-388a-4f14-91b4-0a9a98e84958",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV118",
+        "card_name": "Ditto V",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV118",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV118"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV118",
+          "https://www.cardtrader.com/en/cards/153145-ditto-v-shiny-rare-sv118-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "fe157605-a517-461b-bafa-7292bfb16445",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV119",
+        "card_name": "Ditto VMAX",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV119",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV119"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV119",
+          "https://www.cardtrader.com/en/cards/153146-ditto-vmax-shiny-rare-sv119-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "48474db0-42c3-4023-9cc7-7a7681890228",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV120",
+        "card_name": "Dubwool V",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV120",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV120"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV120",
+          "https://www.cardtrader.com/en/cards/153147-dubwool-v-shiny-rare-sv120-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "b57d9221-ca63-4ab5-ac82-1b7e771872fd",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV121",
+        "card_name": "Eternatus V",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV121",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV121"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV121",
+          "https://www.cardtrader.com/en/cards/153148-eternatus-v-gold-secret-rare-sv121-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_print_id": "bb26bf45-7c6e-4679-9159-63dc9c66c5f1",
+        "set_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "set_name": "Shining Fates",
+        "card_number": "SV122",
+        "card_name": "Eternatus VMAX",
+        "rarity": null,
+        "variant_key": "",
+        "external_id": "swsh4.5-SV122",
+        "external_ids": {
+          "tcgdex": "swsh4.5-SV122"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "source_set_key": "swsh4.5"
+        },
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV122",
+          "https://www.cardtrader.com/en/cards/153149-eternatus-vmax-gold-secret-rare-sv122-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      }
+    ],
+    "child_rows": [
+      {
+        "card_printing_id": "7fc350b9-8cf2-4b55-b57f-e5e023d08a0b",
+        "card_print_id": "58da2868-9bbf-4286-bda3-a4e293f11250",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV023",
+        "card_name": "Galarian Darumaka",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV023:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV023",
+          "https://www.cardtrader.com/en/cards/153050-galarian-darumaka-shiny-rare-sv23-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "597b9eb7-d87e-40d3-896d-63950a48b4a8",
+        "card_print_id": "2dd649bc-3724-41d3-acfe-2296fddc2dd0",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV043",
+        "card_name": "Pincurchin",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV043:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV043",
+          "https://www.cardtrader.com/en/cards/153070-pincurchin-shiny-rare-sv43-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "94674570-ae5b-4930-9d02-3565a1187cc4",
+        "card_print_id": "e0326ae5-9370-4303-8464-c73af24fa660",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV100",
+        "card_name": "Greedent",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV100:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV100",
+          "https://www.cardtrader.com/en/cards/153127-greedent-shiny-rare-sv100-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "a7025de4-ca11-42f3-acb8-e5cef33bc75f",
+        "card_print_id": "4ab107a1-df23-4e2a-be18-1fbb9dd1b2bb",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV101",
+        "card_name": "Rookidee",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV101:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV101",
+          "https://www.cardtrader.com/en/cards/153128-rookidee-shiny-rare-sv101-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "afd9dff9-9ed4-4ec8-abe4-99f4ea15d32f",
+        "card_print_id": "47b11cc4-70fb-4cc3-9d57-978ec7e42772",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV102",
+        "card_name": "Corvisquire",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV102:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV102",
+          "https://www.cardtrader.com/en/cards/153129-corvisquire-shiny-rare-sv102-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "218ce29c-3ff1-461f-85d7-8fbfd079b4a9",
+        "card_print_id": "d73444d4-1625-44dd-ba00-6882676bef3e",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV103",
+        "card_name": "Wooloo",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV103:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV103",
+          "https://www.cardtrader.com/en/cards/153130-wooloo-shiny-rare-sv103-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "13335a5c-8518-4a6c-b5d0-57229280187c",
+        "card_print_id": "81b47b4f-c59e-40f3-b2a4-b0612b54e316",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV104",
+        "card_name": "Dubwool",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV104:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV104",
+          "https://www.cardtrader.com/en/cards/153131-dubwool-shiny-rare-sv104-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "910be5ba-1deb-43e6-b920-6a4cd0408f4c",
+        "card_print_id": "0e3870c8-7c4d-4a65-9210-109ed93b1fe8",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV105",
+        "card_name": "Rillaboom V",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV105:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV105",
+          "https://www.cardtrader.com/en/cards/153132-rillaboom-v-shiny-rare-sv105-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "e72d8f97-4f80-4b8c-841f-d488815816ad",
+        "card_print_id": "ba18d636-f4e3-4b74-9f2e-c54fb0dea267",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV106",
+        "card_name": "Rillaboom VMAX",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV106:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV106",
+          "https://www.cardtrader.com/en/cards/153133-rillaboom-vmax-shiny-rare-sv106-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "9ef32570-35af-4023-acd0-60b847333fb1",
+        "card_print_id": "a45b667a-1e9d-4c1d-9da1-13ced5e9a45c",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV107",
+        "card_name": "Charizard VMAX",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV107:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV107",
+          "https://www.cardtrader.com/en/cards/153134-charizard-vmax-shiny-rare-sv107-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "417e3741-6d24-4ef3-80d0-1868e657d94e",
+        "card_print_id": "6c991f64-198a-4828-83b7-8876ae24e6e0",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV108",
+        "card_name": "Centiskorch V",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV108:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV108",
+          "https://www.cardtrader.com/en/cards/153135-centiskorch-v-shiny-rare-sv108-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "62b51265-7e5d-4826-bcdc-76e150af7c78",
+        "card_print_id": "40e18cea-2bf3-460e-a494-a21345209cca",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV109",
+        "card_name": "Centiskorch VMAX",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV109:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV109",
+          "https://www.cardtrader.com/en/cards/153136-centiskorch-vmax-shiny-rare-sv109-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "dbe5ada5-c11d-4524-9af3-dba58406d319",
+        "card_print_id": "5011fbfc-93a3-4744-8098-e94cfd4eb03c",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV110",
+        "card_name": "Lapras V",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV110:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV110",
+          "https://www.cardtrader.com/en/cards/153137-lapras-v-shiny-rare-sv110-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "995abdde-b24e-4d7b-836b-94cad1f12ddc",
+        "card_print_id": "6355b1fe-cf3b-4788-b557-ce1afd204a74",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV111",
+        "card_name": "Lapras VMAX",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV111:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV111",
+          "https://www.cardtrader.com/en/cards/153138-lapras-vmax-shiny-rare-sv111-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "bedc3b61-604a-4084-9e4c-e907ecdeb4c2",
+        "card_print_id": "4d7fafa2-3c5e-4331-b6fa-5db0aad59ced",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV112",
+        "card_name": "Toxtricity V",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV112:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV112",
+          "https://www.cardtrader.com/en/cards/153139-toxtricity-v-shiny-rare-sv112-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "d4ca5b21-ad7b-4aaa-aa13-d16fd2ec97ac",
+        "card_print_id": "0051ee48-dc35-4120-ba7f-933dbd1d00ef",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV113",
+        "card_name": "Toxtricity VMAX",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV113:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV113",
+          "https://www.cardtrader.com/en/cards/153140-toxtricity-vmax-shiny-rare-sv113-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "801ab9ac-f3a9-4e96-8bcb-51b621592fb0",
+        "card_print_id": "f90078e3-e53d-4adb-8174-d167ba703938",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV114",
+        "card_name": "Indeedee V",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV114:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV114",
+          "https://www.cardtrader.com/en/cards/153141-indeedee-v-shiny-rare-sv114-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "65b5d6d9-c7c2-432f-8659-7efbda2c1da0",
+        "card_print_id": "d9826114-dae7-4977-a690-d2cb94d6318c",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV115",
+        "card_name": "Falinks V",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV115:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV115",
+          "https://www.cardtrader.com/en/cards/153142-falinks-v-shiny-rare-sv115-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "16fe3939-5f88-4a38-b56f-03e56528a964",
+        "card_print_id": "4fe16265-70ef-48a3-9544-36882cf809b3",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV116",
+        "card_name": "Grimmsnarl V",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV116:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV116",
+          "https://www.cardtrader.com/en/cards/153143-grimmsnarl-v-shiny-rare-sv116-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "37e6b01c-964b-464f-8e53-00243e4b1791",
+        "card_print_id": "6c9f09e2-65e0-405a-8077-1a0773665cb1",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV117",
+        "card_name": "Grimmsnarl VMAX",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV117:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV117",
+          "https://www.cardtrader.com/en/cards/153144-grimmsnarl-vmax-shiny-rare-sv117-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "6d99f50d-f856-42fa-9aa1-238cc9b8378c",
+        "card_print_id": "2b4c8275-388a-4f14-91b4-0a9a98e84958",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV118",
+        "card_name": "Ditto V",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV118:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV118",
+          "https://www.cardtrader.com/en/cards/153145-ditto-v-shiny-rare-sv118-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "19b15feb-4aef-46f5-9c25-38ea6e6ddfaf",
+        "card_print_id": "fe157605-a517-461b-bafa-7292bfb16445",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV119",
+        "card_name": "Ditto VMAX",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV119:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV119",
+          "https://www.cardtrader.com/en/cards/153146-ditto-vmax-shiny-rare-sv119-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "3e0a8865-b021-47de-9c11-6b481b3307b6",
+        "card_print_id": "48474db0-42c3-4023-9cc7-7a7681890228",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV120",
+        "card_name": "Dubwool V",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV120:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV120",
+          "https://www.cardtrader.com/en/cards/153147-dubwool-v-shiny-rare-sv120-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "2033f880-946c-4ba1-8429-c439d0ef3b84",
+        "card_print_id": "b57d9221-ca63-4ab5-ac82-1b7e771872fd",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV121",
+        "card_name": "Eternatus V",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV121:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV121",
+          "https://www.cardtrader.com/en/cards/153148-eternatus-v-gold-secret-rare-sv121-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      },
+      {
+        "card_printing_id": "b6f65151-3710-4bb5-b3b1-23667e1cf2a4",
+        "card_print_id": "bb26bf45-7c6e-4679-9159-63dc9c66c5f1",
+        "set_key": "swsh4.5",
+        "live_set_code": "swsh45",
+        "card_number": "SV122",
+        "card_name": "Eternatus VMAX",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh4.5:SV122:normal",
+        "created_by": "pkg08a_existing_set_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV122",
+          "https://www.cardtrader.com/en/cards/153149-eternatus-vmax-gold-secret-rare-sv122-shining-fates"
+        ],
+        "sources": [
+          "cardtrader_blueprint_index",
+          "tcgdex"
+        ]
+      }
+    ],
+    "external_mapping_rows": [
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV023",
+        "card_print_id": "58da2868-9bbf-4286-bda3-a4e293f11250",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Galarian Darumaka",
+          "card_number": "SV023"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV043",
+        "card_print_id": "2dd649bc-3724-41d3-acfe-2296fddc2dd0",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Pincurchin",
+          "card_number": "SV043"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV100",
+        "card_print_id": "e0326ae5-9370-4303-8464-c73af24fa660",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Greedent",
+          "card_number": "SV100"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV101",
+        "card_print_id": "4ab107a1-df23-4e2a-be18-1fbb9dd1b2bb",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Rookidee",
+          "card_number": "SV101"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV102",
+        "card_print_id": "47b11cc4-70fb-4cc3-9d57-978ec7e42772",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Corvisquire",
+          "card_number": "SV102"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV103",
+        "card_print_id": "d73444d4-1625-44dd-ba00-6882676bef3e",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Wooloo",
+          "card_number": "SV103"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV104",
+        "card_print_id": "81b47b4f-c59e-40f3-b2a4-b0612b54e316",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Dubwool",
+          "card_number": "SV104"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV105",
+        "card_print_id": "0e3870c8-7c4d-4a65-9210-109ed93b1fe8",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Rillaboom V",
+          "card_number": "SV105"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV106",
+        "card_print_id": "ba18d636-f4e3-4b74-9f2e-c54fb0dea267",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Rillaboom VMAX",
+          "card_number": "SV106"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV107",
+        "card_print_id": "a45b667a-1e9d-4c1d-9da1-13ced5e9a45c",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Charizard VMAX",
+          "card_number": "SV107"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV108",
+        "card_print_id": "6c991f64-198a-4828-83b7-8876ae24e6e0",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Centiskorch V",
+          "card_number": "SV108"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV109",
+        "card_print_id": "40e18cea-2bf3-460e-a494-a21345209cca",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Centiskorch VMAX",
+          "card_number": "SV109"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV110",
+        "card_print_id": "5011fbfc-93a3-4744-8098-e94cfd4eb03c",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Lapras V",
+          "card_number": "SV110"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV111",
+        "card_print_id": "6355b1fe-cf3b-4788-b557-ce1afd204a74",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Lapras VMAX",
+          "card_number": "SV111"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV112",
+        "card_print_id": "4d7fafa2-3c5e-4331-b6fa-5db0aad59ced",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Toxtricity V",
+          "card_number": "SV112"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV113",
+        "card_print_id": "0051ee48-dc35-4120-ba7f-933dbd1d00ef",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Toxtricity VMAX",
+          "card_number": "SV113"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV114",
+        "card_print_id": "f90078e3-e53d-4adb-8174-d167ba703938",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Indeedee V",
+          "card_number": "SV114"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV115",
+        "card_print_id": "d9826114-dae7-4977-a690-d2cb94d6318c",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Falinks V",
+          "card_number": "SV115"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV116",
+        "card_print_id": "4fe16265-70ef-48a3-9544-36882cf809b3",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Grimmsnarl V",
+          "card_number": "SV116"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV117",
+        "card_print_id": "6c9f09e2-65e0-405a-8077-1a0773665cb1",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Grimmsnarl VMAX",
+          "card_number": "SV117"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV118",
+        "card_print_id": "2b4c8275-388a-4f14-91b4-0a9a98e84958",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Ditto V",
+          "card_number": "SV118"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV119",
+        "card_print_id": "fe157605-a517-461b-bafa-7292bfb16445",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Ditto VMAX",
+          "card_number": "SV119"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV120",
+        "card_print_id": "48474db0-42c3-4023-9cc7-7a7681890228",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Dubwool V",
+          "card_number": "SV120"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV121",
+        "card_print_id": "b57d9221-ca63-4ab5-ac82-1b7e771872fd",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Eternatus V",
+          "card_number": "SV121"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV122",
+        "card_print_id": "bb26bf45-7c6e-4679-9159-63dc9c66c5f1",
+        "meta": {
+          "package_id": "PKG-08A-EXISTING-SET-PARENT-CHILD-INSERTS-LOW-RISK",
+          "set_key": "swsh4.5",
+          "live_set_code": "swsh45",
+          "card_name": "Eternatus VMAX",
+          "card_number": "SV122"
+        }
+      }
+    ],
+    "blocked_rows_detail": []
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-10T22:16:15.255Z",
+    "rows": [
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55675",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV023"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55695",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV043"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55752",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV100"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55753",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV101"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55754",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV102"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55755",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV103"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55756",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV104"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55757",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV105"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55758",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV106"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55759",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV107"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55760",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV108"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55761",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV109"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55762",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV110"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55763",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV111"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55764",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV112"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55765",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV113"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55766",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV114"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55767",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV115"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55768",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV116"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55769",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV117"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55770",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV118"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55771",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV119"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55772",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV120"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55773",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV121"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55774",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV122"
+      },
+      {
+        "row_type": "target_set",
+        "row_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_code": "swsh45",
+        "card_number": null,
+        "card_name": "Shining Fates",
+        "finish_key": null,
+        "external_id": null
+      }
+    ],
+    "hash_sha256": "4015ad75d790994aeb1d05328d33a31b4f1bdea17ba8064d2112b17a18b92d41",
+    "counts": {
+      "target_set_rows": 1,
+      "existing_parent_exact_rows": 0,
+      "existing_child_exact_rows": 0,
+      "external_mapping_collision_rows": 25,
+      "total_rows": 26
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-10T22:16:17.510Z",
+    "rows": [
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55675",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV023"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55695",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV043"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55752",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV100"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55753",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV101"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55754",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV102"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55755",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV103"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55756",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV104"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55757",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV105"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55758",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV106"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55759",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV107"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55760",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV108"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55761",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV109"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55762",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV110"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55763",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV111"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55764",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV112"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55765",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV113"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55766",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV114"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55767",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV115"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55768",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV116"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55769",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV117"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55770",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV118"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55771",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV119"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55772",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV120"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55773",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV121"
+      },
+      {
+        "row_type": "external_mapping_collision",
+        "row_id": "55774",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swsh4.5-SV122"
+      },
+      {
+        "row_type": "target_set",
+        "row_id": "76f87b73-fc9a-43e6-94c3-0b0533c4601f",
+        "set_code": "swsh45",
+        "card_number": null,
+        "card_name": "Shining Fates",
+        "finish_key": null,
+        "external_id": null
+      }
+    ],
+    "hash_sha256": "4015ad75d790994aeb1d05328d33a31b4f1bdea17ba8064d2112b17a18b92d41",
+    "counts": {
+      "target_set_rows": 1,
+      "existing_parent_exact_rows": 0,
+      "existing_child_exact_rows": 0,
+      "external_mapping_collision_rows": 25,
+      "total_rows": 26
+    }
+  },
+  "rollback_proof_rows": [],
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "stop_findings": [
+    "dry_run_error:collision guard failed: {\"parent_collisions\":0,\"child_collisions\":0,\"mapping_collisions\":25}",
+    "dry_run_not_passed",
+    "before_external_mapping_collision_rows_present"
+  ],
+  "next_step_if_clean": "Resolve stop findings before any real-apply gate."
+}

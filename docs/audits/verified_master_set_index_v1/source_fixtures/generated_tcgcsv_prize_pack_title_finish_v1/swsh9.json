@@ -1,0 +1,35 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_prize_pack_title_finish_swsh9",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://tcgcsv.com/tcgplayer/3/22880/products",
+  "source_status": "available_generated",
+  "set_key": "swsh9",
+  "set_name": "Brilliant Stars",
+  "retrieved_at": "2026-06-11T18:40:38.137Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv_prize_pack_title_finish:swsh9:2026-06-11T18:40:38.137Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "records": [
+    {
+      "source_key": "tcgcsv_prize_pack_title_finish",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/531829/pokemon-prize-pack-series-cards-double-turbo-energy-cosmos-holo",
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "151",
+      "card_name": "Double Turbo Energy",
+      "finish_key": "cosmos",
+      "rarity": "Uncommon",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer Prize Pack product title: Double Turbo Energy (Cosmos Holo)",
+      "language": "en",
+      "retrieved_at": "2026-06-11T18:40:38.137Z",
+      "raw_snapshot_ref": "tcgcsv_prize_pack_title_finish:22880:531829",
+      "notes": "Exact active-finish evidence from TCGCSV/TCGplayer Prize Pack product title. Accepted only when card number denominator matches the target set printed total."
+    }
+  ]
+}

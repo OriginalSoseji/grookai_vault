@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T05:45:06.717Z",
+  "generated_at": "2026-06-09T12:50:17.128Z",
   "version": "english_master_index_physical_recovery_priority_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -8,32 +8,33 @@
   "quarantine_performed": false,
   "rule": "This report ranks physical TCG missing-set recovery candidates only. It does not assign set identity or authorize mutation.",
   "summary": {
-    "physical_candidate_sets": 26,
-    "physical_candidate_card_prints": 807,
-    "physical_candidate_printing_rows": 1685,
+    "physical_candidate_sets": 25,
+    "physical_candidate_card_prints": 802,
+    "physical_candidate_printing_rows": 1672,
     "by_readiness_lane": {
-      "proof_loop_candidate_after_card_match": 285,
-      "high_volume_recovery_candidate": 180,
+      "proof_loop_candidate_after_card_match": 343,
       "promo_family_caution_review": 77,
       "legacy_caution_review": 104,
-      "source_acquisition_required": 161
+      "manual_priority_review": 2,
+      "source_acquisition_required": 276
     },
     "by_era_lane": {
-      "modern": 426,
-      "promo_or_special": 212,
-      "legacy": 169
+      "modern": 460,
+      "legacy": 169,
+      "promo_or_special": 148,
+      "other": 25
     },
     "top_sets_by_candidate_count": {
-      "sv8pt5": 180,
-      "sv4pt5": 108,
-      "me1": 83,
+      "sv08.5": 180,
+      "sv04.5": 108,
+      "me01": 83,
       "svp": 73,
       "xyp": 61,
-      "sv6pt5": 52,
+      "sv06.5": 52,
       "pl2": 37,
-      "pgo": 34,
+      "swsh10.5": 34,
+      "2021swsh": 25,
       "bw11": 25,
-      "mcd21": 25,
       "pl4": 20,
       "xy4": 16,
       "ecard3": 15,
@@ -43,11 +44,10 @@
       "pl1": 9,
       "pl3": 9,
       "dp7": 8,
-      "fut2020": 5,
       "cel25": 4,
       "ex10": 3,
       "bw9": 2,
-      "swsh45": 2,
+      "swsh4.5": 2,
       "swsh2": 1,
       "xy9": 1
     }
@@ -61,7 +61,7 @@
   ],
   "ranked_sets": [
     {
-      "set_key": "sv4pt5",
+      "set_key": "sv04.5",
       "set_name": "Paldean Fates",
       "era_lane": "modern",
       "physical_recovery_priority_score": 100,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "set_key": "sv6pt5",
+      "set_key": "sv06.5",
       "set_name": "Shrouded Fable",
       "era_lane": "modern",
       "physical_recovery_priority_score": 100,
@@ -242,13 +242,13 @@
         "holo|reverse",
         "normal|reverse"
       ],
-      "readiness_classification": "proof_ready",
-      "readiness_score": 100,
-      "source_coverage_score": 100,
-      "human_evidence_score": 100,
-      "master_verified_ratio": 1,
-      "repair_recommendation": "already_proven_monitor_only",
-      "repair_priority_score": 87,
+      "readiness_classification": "high_confidence",
+      "readiness_score": 94.03,
+      "source_coverage_score": 86.73,
+      "human_evidence_score": 86.73,
+      "master_verified_ratio": 0.8673,
+      "repair_recommendation": "controlled_proof_loop_candidate",
+      "repair_priority_score": 79.3,
       "current_blockers": {
         "source_acquisition_required": false,
         "exact_finish_matrix_required": false,
@@ -391,191 +391,30 @@
       ]
     },
     {
-      "set_key": "mcd21",
-      "set_name": "McDonald's Collection 2021",
-      "era_lane": "promo_or_special",
-      "physical_recovery_priority_score": 99.98,
+      "set_key": "me01",
+      "set_name": "Mega Evolution",
+      "era_lane": "modern",
+      "physical_recovery_priority_score": 96.2,
       "readiness_lane": "proof_loop_candidate_after_card_match",
       "next_action": "Run exact card-number/name/finish comparison against the matched master set before any future controlled repair.",
-      "candidate_card_print_count": 25,
-      "printing_row_count": 50,
+      "candidate_card_print_count": 83,
+      "printing_row_count": 168,
       "source_aliases": [
-        "2021swsh"
+        "me01"
       ],
       "finish_profiles": [
-        "holo|normal"
-      ],
-      "readiness_classification": "proof_ready",
-      "readiness_score": 100,
-      "source_coverage_score": 100,
-      "human_evidence_score": 100,
-      "master_verified_ratio": 1,
-      "repair_recommendation": "already_proven_monitor_only",
-      "repair_priority_score": 80,
-      "current_blockers": {
-        "source_acquisition_required": false,
-        "exact_finish_matrix_required": false,
-        "legacy_or_promo_caution": true,
-        "mutation_safe": false
-      },
-      "sample_cards": [
-        {
-          "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
-          "card_name": "Bulbasaur",
-          "finish_profile": "holo|normal",
-          "source_set_aliases": [
-            "2021swsh"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/2021swsh-1"
-          ]
-        },
-        {
-          "card_print_id": "9421cd5e-2640-44c5-8044-47aaa7a7954a",
-          "card_name": "Charmander",
-          "finish_profile": "holo|normal",
-          "source_set_aliases": [
-            "2021swsh"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/2021swsh-9"
-          ]
-        },
-        {
-          "card_print_id": "e95d8646-b98f-4c8c-a01d-2e499c02aa82",
-          "card_name": "Chespin",
-          "finish_profile": "holo|normal",
-          "source_set_aliases": [
-            "2021swsh"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/2021swsh-6"
-          ]
-        },
-        {
-          "card_print_id": "987099f7-59e9-4c0a-9bbb-a0b8fa24a086",
-          "card_name": "Chikorita",
-          "finish_profile": "holo|normal",
-          "source_set_aliases": [
-            "2021swsh"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/2021swsh-2"
-          ]
-        },
-        {
-          "card_print_id": "cefedf7b-f1c0-42f7-af7d-e6e9279358f3",
-          "card_name": "Chimchar",
-          "finish_profile": "holo|normal",
-          "source_set_aliases": [
-            "2021swsh"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/2021swsh-12"
-          ]
-        },
-        {
-          "card_print_id": "ac9e8297-6e39-419f-8fa0-f58e90c80c01",
-          "card_name": "Cyndaquil",
-          "finish_profile": "holo|normal",
-          "source_set_aliases": [
-            "2021swsh"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/2021swsh-10"
-          ]
-        },
-        {
-          "card_print_id": "0980ca25-d2fb-43a3-a74f-789e6a0f8f51",
-          "card_name": "Fennekin",
-          "finish_profile": "holo|normal",
-          "source_set_aliases": [
-            "2021swsh"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/2021swsh-14"
-          ]
-        },
-        {
-          "card_print_id": "3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2",
-          "card_name": "Froakie",
-          "finish_profile": "holo|normal",
-          "source_set_aliases": [
-            "2021swsh"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/2021swsh-22"
-          ]
-        },
-        {
-          "card_print_id": "6613c2ff-8bad-465b-b186-78c6ac7b9c26",
-          "card_name": "Grookey",
-          "finish_profile": "holo|normal",
-          "source_set_aliases": [
-            "2021swsh"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/2021swsh-8"
-          ]
-        },
-        {
-          "card_print_id": "229d3337-9150-428f-9259-36ee0a0636e2",
-          "card_name": "Litten",
-          "finish_profile": "holo|normal",
-          "source_set_aliases": [
-            "2021swsh"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/2021swsh-15"
-          ]
-        },
-        {
-          "card_print_id": "29d1fb6e-f0be-4ce1-a0b2-458845d33cad",
-          "card_name": "Mudkip",
-          "finish_profile": "holo|normal",
-          "source_set_aliases": [
-            "2021swsh"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/2021swsh-19"
-          ]
-        },
-        {
-          "card_print_id": "c9dbc8fc-b83a-4edb-acbe-d50c05e8a4f1",
-          "card_name": "Oshawott",
-          "finish_profile": "holo|normal",
-          "source_set_aliases": [
-            "2021swsh"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/2021swsh-21"
-          ]
-        }
-      ]
-    },
-    {
-      "set_key": "sv8pt5",
-      "set_name": "Prismatic Evolutions",
-      "era_lane": "modern",
-      "physical_recovery_priority_score": 96.62,
-      "readiness_lane": "high_volume_recovery_candidate",
-      "next_action": "Prioritize source acquisition and exact matching because this set has many recoverable missing-set rows.",
-      "candidate_card_print_count": 180,
-      "printing_row_count": 440,
-      "source_aliases": [
-        "sv08.5"
-      ],
-      "finish_profiles": [
+        "holo",
         "holo|normal|reverse",
-        "holo|reverse"
+        "holo|reverse",
+        "normal|reverse"
       ],
-      "readiness_classification": "blocked",
-      "readiness_score": 79.79,
-      "source_coverage_score": 100,
-      "human_evidence_score": 62.64,
-      "master_verified_ratio": 0.6264,
+      "readiness_classification": "high_confidence",
+      "readiness_score": 92.45,
+      "source_coverage_score": 88.86,
+      "human_evidence_score": 84.51,
+      "master_verified_ratio": 0.8451,
       "repair_recommendation": "source_acquisition_then_overgeneration_review",
-      "repair_priority_score": 75.76,
+      "repair_priority_score": 72.21,
       "current_blockers": {
         "source_acquisition_required": false,
         "exact_finish_matrix_required": true,
@@ -584,144 +423,144 @@
       },
       "sample_cards": [
         {
-          "card_print_id": "29357eff-81f7-4232-93ac-49f1226abfd2",
-          "card_name": "Amarys",
+          "card_print_id": "f7c0bdb9-b762-4c56-b698-4907376db02d",
+          "card_name": "Cinderace",
           "finish_profile": "holo|normal|reverse",
           "source_set_aliases": [
-            "sv08.5"
+            "me01"
           ],
           "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/sv08.5-093"
+            "https://api.tcgdex.net/v2/en/cards/me01-028"
           ]
         },
         {
-          "card_print_id": "6196ac6e-1301-451f-9bcf-1349cdafb4f8",
-          "card_name": "Applin",
+          "card_print_id": "4faab1bd-e8ce-4fe8-8fda-cd2167875850",
+          "card_name": "Hariyama",
           "finish_profile": "holo|normal|reverse",
           "source_set_aliases": [
-            "sv08.5"
+            "me01"
           ],
           "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/sv08.5-009"
+            "https://api.tcgdex.net/v2/en/cards/me01-073"
           ]
         },
         {
-          "card_print_id": "c8f1da98-202e-46aa-9a85-8649ebf8d399",
-          "card_name": "Area Zero Underdepths",
+          "card_print_id": "4800e647-2f2b-4ebc-931e-ef4b672788e2",
+          "card_name": "Kirlia",
           "finish_profile": "holo|normal|reverse",
           "source_set_aliases": [
-            "sv08.5"
+            "me01"
           ],
           "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/sv08.5-094"
+            "https://api.tcgdex.net/v2/en/cards/me01-059"
           ]
         },
         {
-          "card_print_id": "3c97af9d-aa95-49f6-90b0-706b88b76443",
-          "card_name": "Aromatisse",
+          "card_print_id": "711a2789-6c0b-4c7b-8e5a-15c865deb444",
+          "card_name": "Meganium",
           "finish_profile": "holo|normal|reverse",
           "source_set_aliases": [
-            "sv08.5"
+            "me01"
           ],
           "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/sv08.5-039"
+            "https://api.tcgdex.net/v2/en/cards/me01-010"
           ]
         },
         {
-          "card_print_id": "77851af6-8d91-43c5-beae-b9e23d5d3713",
-          "card_name": "Binding Mochi",
+          "card_print_id": "569f605f-b7e2-4e7d-9182-459287edda7a",
+          "card_name": "Ralts",
           "finish_profile": "holo|normal|reverse",
           "source_set_aliases": [
-            "sv08.5"
+            "me01"
           ],
           "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/sv08.5-095"
+            "https://api.tcgdex.net/v2/en/cards/me01-058"
           ]
         },
         {
-          "card_print_id": "3da65e78-0221-4651-9467-4d0e4f85b652",
-          "card_name": "Black Belt's Training",
+          "card_print_id": "6a389901-dd1b-480a-88fc-ca3d1ee02128",
+          "card_name": "Riolu",
           "finish_profile": "holo|normal|reverse",
           "source_set_aliases": [
-            "sv08.5"
+            "me01"
           ],
           "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/sv08.5-096"
+            "https://api.tcgdex.net/v2/en/cards/me01-076"
           ]
         },
         {
-          "card_print_id": "2f0e9e03-7ac5-45bd-9add-eac460ea6432",
-          "card_name": "Black Belt's Training",
+          "card_print_id": "6968d365-f435-4047-9c47-8c9f274f92e6",
+          "card_name": "Solrock",
           "finish_profile": "holo|normal|reverse",
           "source_set_aliases": [
-            "sv08.5"
+            "me01"
           ],
           "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/sv08.5-099"
+            "https://api.tcgdex.net/v2/en/cards/me01-075"
           ]
         },
         {
-          "card_print_id": "21d069c6-f6b7-41d6-8300-37f28e5ce9ae",
-          "card_name": "Black Belt's Training",
+          "card_print_id": "e003f060-6249-47f6-b31b-e2cb4cac5611",
+          "card_name": "Xerneas",
           "finish_profile": "holo|normal|reverse",
           "source_set_aliases": [
-            "sv08.5"
+            "me01"
           ],
           "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/sv08.5-097"
+            "https://api.tcgdex.net/v2/en/cards/me01-064"
           ]
         },
         {
-          "card_print_id": "1d778c67-b9ea-4aed-99d3-200f5534ac39",
-          "card_name": "Black Belt's Training",
-          "finish_profile": "holo|normal|reverse",
+          "card_print_id": "9b837cfd-0f7f-4bd1-ab75-c9b8c14ba027",
+          "card_name": "Alakazam",
+          "finish_profile": "holo|reverse",
           "source_set_aliases": [
-            "sv08.5"
+            "me01"
           ],
           "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/sv08.5-098"
+            "https://api.tcgdex.net/v2/en/cards/me01-056"
           ]
         },
         {
-          "card_print_id": "b851ae56-bade-4486-8810-65c0613c6bee",
-          "card_name": "Briar",
-          "finish_profile": "holo|normal|reverse",
+          "card_print_id": "493cbe02-e42b-4ca0-97cb-f9b75584c66f",
+          "card_name": "Bayleef",
+          "finish_profile": "normal|reverse",
           "source_set_aliases": [
-            "sv08.5"
+            "me01"
           ],
           "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/sv08.5-100"
+            "https://api.tcgdex.net/v2/en/cards/me01-009"
           ]
         },
         {
-          "card_print_id": "f62f966c-c60e-4226-913e-bcd69a35c17b",
-          "card_name": "Bronzong",
-          "finish_profile": "holo|normal|reverse",
+          "card_print_id": "35ec8ca0-6bc7-4b2a-9077-94bf42c4fecb",
+          "card_name": "Bulbasaur",
+          "finish_profile": "normal|reverse",
           "source_set_aliases": [
-            "sv08.5"
+            "me01"
           ],
           "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/sv08.5-067"
+            "https://api.tcgdex.net/v2/en/cards/me01-001"
           ]
         },
         {
-          "card_print_id": "b1cef86a-6042-4473-be07-14c9d9ed7b7f",
-          "card_name": "Bronzor",
-          "finish_profile": "holo|normal|reverse",
+          "card_print_id": "a2aae959-98c0-453d-a3e5-196b774acf77",
+          "card_name": "Celebi",
+          "finish_profile": "normal|reverse",
           "source_set_aliases": [
-            "sv08.5"
+            "me01"
           ],
           "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/sv08.5-066"
+            "https://api.tcgdex.net/v2/en/cards/me01-012"
           ]
         }
       ]
     },
     {
-      "set_key": "pgo",
+      "set_key": "swsh10.5",
       "set_name": "Pokémon GO",
-      "era_lane": "promo_or_special",
-      "physical_recovery_priority_score": 88.59,
+      "era_lane": "modern",
+      "physical_recovery_priority_score": 95.21,
       "readiness_lane": "proof_loop_candidate_after_card_match",
       "next_action": "Run exact card-number/name/finish comparison against the matched master set before any future controlled repair.",
       "candidate_card_print_count": 34,
@@ -735,16 +574,16 @@
         "normal|reverse"
       ],
       "readiness_classification": "high_confidence",
-      "readiness_score": 99.63,
-      "source_coverage_score": 100,
-      "human_evidence_score": 99.32,
-      "master_verified_ratio": 0.9932,
+      "readiness_score": 97.93,
+      "source_coverage_score": 95.41,
+      "human_evidence_score": 95.41,
+      "master_verified_ratio": 0.9541,
       "repair_recommendation": "controlled_proof_loop_candidate",
-      "repair_priority_score": 79.8,
+      "repair_priority_score": 84.34,
       "current_blockers": {
         "source_acquisition_required": false,
         "exact_finish_matrix_required": true,
-        "legacy_or_promo_caution": true,
+        "legacy_or_promo_caution": false,
         "mutation_safe": false
       },
       "sample_cards": [
@@ -1092,7 +931,7 @@
       "set_key": "ecard2",
       "set_name": "Aquapolis",
       "era_lane": "legacy",
-      "physical_recovery_priority_score": 86.89,
+      "physical_recovery_priority_score": 86.97,
       "readiness_lane": "proof_loop_candidate_after_card_match",
       "next_action": "Run exact card-number/name/finish comparison against the matched master set before any future controlled repair.",
       "candidate_card_print_count": 13,
@@ -1104,12 +943,12 @@
         "normal|reverse"
       ],
       "readiness_classification": "high_confidence",
-      "readiness_score": 91.17,
-      "source_coverage_score": 86.49,
-      "human_evidence_score": 81.84,
-      "master_verified_ratio": 0.8184,
+      "readiness_score": 91.3,
+      "source_coverage_score": 86.7,
+      "human_evidence_score": 82.12,
+      "master_verified_ratio": 0.8212,
       "repair_recommendation": "source_acquisition_then_overgeneration_review",
-      "repair_priority_score": 77.74,
+      "repair_priority_score": 77.88,
       "current_blockers": {
         "source_acquisition_required": false,
         "exact_finish_matrix_required": false,
@@ -1998,6 +1837,59 @@
       ]
     },
     {
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "era_lane": "modern",
+      "physical_recovery_priority_score": 75.71,
+      "readiness_lane": "manual_priority_review",
+      "next_action": "Review source evidence manually and keep this row family outside mutation until exact card-level agreement exists.",
+      "candidate_card_print_count": 2,
+      "printing_row_count": 4,
+      "source_aliases": [
+        "swsh4.5"
+      ],
+      "finish_profiles": [
+        "normal|reverse"
+      ],
+      "readiness_classification": "high_confidence",
+      "readiness_score": 74.33,
+      "source_coverage_score": 42.96,
+      "human_evidence_score": 42.96,
+      "master_verified_ratio": 0.4296,
+      "repair_recommendation": "controlled_proof_loop_candidate",
+      "repair_priority_score": 53.92,
+      "current_blockers": {
+        "source_acquisition_required": false,
+        "exact_finish_matrix_required": false,
+        "legacy_or_promo_caution": false,
+        "mutation_safe": false
+      },
+      "sample_cards": [
+        {
+          "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+          "card_name": "Boss's Orders (Lysandre)",
+          "finish_profile": "normal|reverse",
+          "source_set_aliases": [
+            "swsh4.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/swsh4.5-58"
+          ]
+        },
+        {
+          "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+          "card_name": "Professor's Research (Professor Juniper)",
+          "finish_profile": "normal|reverse",
+          "source_set_aliases": [
+            "swsh4.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/swsh4.5-60"
+          ]
+        }
+      ]
+    },
+    {
       "set_key": "pl4",
       "set_name": "Arceus",
       "era_lane": "legacy",
@@ -2165,10 +2057,173 @@
       ]
     },
     {
+      "set_key": "2021swsh",
+      "set_name": "McDonald's Collection 2021",
+      "era_lane": "other",
+      "physical_recovery_priority_score": 74.48,
+      "readiness_lane": "source_acquisition_required",
+      "next_action": "Acquire human-readable/checklist finish evidence for this set before promoting any recovered row beyond a provenance lead.",
+      "candidate_card_print_count": 25,
+      "printing_row_count": 50,
+      "source_aliases": [
+        "2021swsh"
+      ],
+      "finish_profiles": [
+        "holo|normal"
+      ],
+      "readiness_classification": "source_limited",
+      "readiness_score": 55,
+      "source_coverage_score": 0,
+      "human_evidence_score": 0,
+      "master_verified_ratio": 0,
+      "repair_recommendation": "source_acquisition_first",
+      "repair_priority_score": 22,
+      "current_blockers": {
+        "source_acquisition_required": true,
+        "exact_finish_matrix_required": false,
+        "legacy_or_promo_caution": false,
+        "mutation_safe": false
+      },
+      "sample_cards": [
+        {
+          "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+          "card_name": "Bulbasaur",
+          "finish_profile": "holo|normal",
+          "source_set_aliases": [
+            "2021swsh"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-1"
+          ]
+        },
+        {
+          "card_print_id": "9421cd5e-2640-44c5-8044-47aaa7a7954a",
+          "card_name": "Charmander",
+          "finish_profile": "holo|normal",
+          "source_set_aliases": [
+            "2021swsh"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-9"
+          ]
+        },
+        {
+          "card_print_id": "e95d8646-b98f-4c8c-a01d-2e499c02aa82",
+          "card_name": "Chespin",
+          "finish_profile": "holo|normal",
+          "source_set_aliases": [
+            "2021swsh"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-6"
+          ]
+        },
+        {
+          "card_print_id": "987099f7-59e9-4c0a-9bbb-a0b8fa24a086",
+          "card_name": "Chikorita",
+          "finish_profile": "holo|normal",
+          "source_set_aliases": [
+            "2021swsh"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-2"
+          ]
+        },
+        {
+          "card_print_id": "cefedf7b-f1c0-42f7-af7d-e6e9279358f3",
+          "card_name": "Chimchar",
+          "finish_profile": "holo|normal",
+          "source_set_aliases": [
+            "2021swsh"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-12"
+          ]
+        },
+        {
+          "card_print_id": "ac9e8297-6e39-419f-8fa0-f58e90c80c01",
+          "card_name": "Cyndaquil",
+          "finish_profile": "holo|normal",
+          "source_set_aliases": [
+            "2021swsh"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-10"
+          ]
+        },
+        {
+          "card_print_id": "0980ca25-d2fb-43a3-a74f-789e6a0f8f51",
+          "card_name": "Fennekin",
+          "finish_profile": "holo|normal",
+          "source_set_aliases": [
+            "2021swsh"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-14"
+          ]
+        },
+        {
+          "card_print_id": "3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2",
+          "card_name": "Froakie",
+          "finish_profile": "holo|normal",
+          "source_set_aliases": [
+            "2021swsh"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-22"
+          ]
+        },
+        {
+          "card_print_id": "6613c2ff-8bad-465b-b186-78c6ac7b9c26",
+          "card_name": "Grookey",
+          "finish_profile": "holo|normal",
+          "source_set_aliases": [
+            "2021swsh"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-8"
+          ]
+        },
+        {
+          "card_print_id": "229d3337-9150-428f-9259-36ee0a0636e2",
+          "card_name": "Litten",
+          "finish_profile": "holo|normal",
+          "source_set_aliases": [
+            "2021swsh"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-15"
+          ]
+        },
+        {
+          "card_print_id": "29d1fb6e-f0be-4ce1-a0b2-458845d33cad",
+          "card_name": "Mudkip",
+          "finish_profile": "holo|normal",
+          "source_set_aliases": [
+            "2021swsh"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-19"
+          ]
+        },
+        {
+          "card_print_id": "c9dbc8fc-b83a-4edb-acbe-d50c05e8a4f1",
+          "card_name": "Oshawott",
+          "finish_profile": "holo|normal",
+          "source_set_aliases": [
+            "2021swsh"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-21"
+          ]
+        }
+      ]
+    },
+    {
       "set_key": "cel25",
       "set_name": "Celebrations",
       "era_lane": "promo_or_special",
-      "physical_recovery_priority_score": 74.24,
+      "physical_recovery_priority_score": 74.46,
       "readiness_lane": "promo_family_caution_review",
       "next_action": "Confirm promo-family numbering and product-exclusive finish evidence before any proof loop.",
       "candidate_card_print_count": 4,
@@ -2180,12 +2235,12 @@
         "holo"
       ],
       "readiness_classification": "blocked",
-      "readiness_score": 78.41,
-      "source_coverage_score": 93.88,
-      "human_evidence_score": 64.79,
-      "master_verified_ratio": 0.6479,
+      "readiness_score": 78.72,
+      "source_coverage_score": 94,
+      "human_evidence_score": 65.28,
+      "master_verified_ratio": 0.6528,
       "repair_recommendation": "source_acquisition_first",
-      "repair_priority_score": 63.65,
+      "repair_priority_score": 63.89,
       "current_blockers": {
         "source_acquisition_required": false,
         "exact_finish_matrix_required": false,
@@ -2235,6 +2290,170 @@
           ],
           "source_card_urls": [
             "https://api.tcgdex.net/v2/en/cards/cel25-15A1"
+          ]
+        }
+      ]
+    },
+    {
+      "set_key": "sv08.5",
+      "set_name": "Prismatic Evolutions",
+      "era_lane": "modern",
+      "physical_recovery_priority_score": 71.5,
+      "readiness_lane": "source_acquisition_required",
+      "next_action": "Acquire human-readable/checklist finish evidence for this set before promoting any recovered row beyond a provenance lead.",
+      "candidate_card_print_count": 180,
+      "printing_row_count": 440,
+      "source_aliases": [
+        "sv08.5"
+      ],
+      "finish_profiles": [
+        "holo|normal|reverse",
+        "holo|reverse"
+      ],
+      "readiness_classification": "source_limited",
+      "readiness_score": 55,
+      "source_coverage_score": 0,
+      "human_evidence_score": 0,
+      "master_verified_ratio": 0,
+      "repair_recommendation": "source_acquisition_first",
+      "repair_priority_score": 29,
+      "current_blockers": {
+        "source_acquisition_required": true,
+        "exact_finish_matrix_required": true,
+        "legacy_or_promo_caution": false,
+        "mutation_safe": false
+      },
+      "sample_cards": [
+        {
+          "card_print_id": "29357eff-81f7-4232-93ac-49f1226abfd2",
+          "card_name": "Amarys",
+          "finish_profile": "holo|normal|reverse",
+          "source_set_aliases": [
+            "sv08.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-093"
+          ]
+        },
+        {
+          "card_print_id": "6196ac6e-1301-451f-9bcf-1349cdafb4f8",
+          "card_name": "Applin",
+          "finish_profile": "holo|normal|reverse",
+          "source_set_aliases": [
+            "sv08.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-009"
+          ]
+        },
+        {
+          "card_print_id": "c8f1da98-202e-46aa-9a85-8649ebf8d399",
+          "card_name": "Area Zero Underdepths",
+          "finish_profile": "holo|normal|reverse",
+          "source_set_aliases": [
+            "sv08.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-094"
+          ]
+        },
+        {
+          "card_print_id": "3c97af9d-aa95-49f6-90b0-706b88b76443",
+          "card_name": "Aromatisse",
+          "finish_profile": "holo|normal|reverse",
+          "source_set_aliases": [
+            "sv08.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-039"
+          ]
+        },
+        {
+          "card_print_id": "77851af6-8d91-43c5-beae-b9e23d5d3713",
+          "card_name": "Binding Mochi",
+          "finish_profile": "holo|normal|reverse",
+          "source_set_aliases": [
+            "sv08.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-095"
+          ]
+        },
+        {
+          "card_print_id": "3da65e78-0221-4651-9467-4d0e4f85b652",
+          "card_name": "Black Belt's Training",
+          "finish_profile": "holo|normal|reverse",
+          "source_set_aliases": [
+            "sv08.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-096"
+          ]
+        },
+        {
+          "card_print_id": "2f0e9e03-7ac5-45bd-9add-eac460ea6432",
+          "card_name": "Black Belt's Training",
+          "finish_profile": "holo|normal|reverse",
+          "source_set_aliases": [
+            "sv08.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-099"
+          ]
+        },
+        {
+          "card_print_id": "21d069c6-f6b7-41d6-8300-37f28e5ce9ae",
+          "card_name": "Black Belt's Training",
+          "finish_profile": "holo|normal|reverse",
+          "source_set_aliases": [
+            "sv08.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-097"
+          ]
+        },
+        {
+          "card_print_id": "1d778c67-b9ea-4aed-99d3-200f5534ac39",
+          "card_name": "Black Belt's Training",
+          "finish_profile": "holo|normal|reverse",
+          "source_set_aliases": [
+            "sv08.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-098"
+          ]
+        },
+        {
+          "card_print_id": "b851ae56-bade-4486-8810-65c0613c6bee",
+          "card_name": "Briar",
+          "finish_profile": "holo|normal|reverse",
+          "source_set_aliases": [
+            "sv08.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-100"
+          ]
+        },
+        {
+          "card_print_id": "f62f966c-c60e-4226-913e-bcd69a35c17b",
+          "card_name": "Bronzong",
+          "finish_profile": "holo|normal|reverse",
+          "source_set_aliases": [
+            "sv08.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-067"
+          ]
+        },
+        {
+          "card_print_id": "b1cef86a-6042-4473-be07-14c9d9ed7b7f",
+          "card_name": "Bronzor",
+          "finish_profile": "holo|normal|reverse",
+          "source_set_aliases": [
+            "sv08.5"
+          ],
+          "source_card_urls": [
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-066"
           ]
         }
       ]
@@ -3144,312 +3363,6 @@
           ],
           "source_card_urls": [
             "https://api.tcgdex.net/v2/en/cards/xyp-XY18"
-          ]
-        }
-      ]
-    },
-    {
-      "set_key": "fut2020",
-      "set_name": "Pokémon Futsal 2020",
-      "era_lane": "promo_or_special",
-      "physical_recovery_priority_score": 50.55,
-      "readiness_lane": "source_acquisition_required",
-      "next_action": "Acquire human-readable/checklist finish evidence for this set before promoting any recovered row beyond a provenance lead.",
-      "candidate_card_print_count": 5,
-      "printing_row_count": 13,
-      "source_aliases": [
-        "fut2020"
-      ],
-      "finish_profiles": [
-        "holo",
-        "holo|normal|reverse"
-      ],
-      "readiness_classification": "source_limited",
-      "readiness_score": 55,
-      "source_coverage_score": 0,
-      "human_evidence_score": 0,
-      "master_verified_ratio": 0,
-      "repair_recommendation": "source_acquisition_first",
-      "repair_priority_score": 22,
-      "current_blockers": {
-        "source_acquisition_required": true,
-        "exact_finish_matrix_required": true,
-        "legacy_or_promo_caution": true,
-        "mutation_safe": false
-      },
-      "sample_cards": [
-        {
-          "card_print_id": "2f2942c8-6019-4446-806c-593dd351af98",
-          "card_name": "Eevee on the Ball",
-          "finish_profile": "holo|normal|reverse",
-          "source_set_aliases": [
-            "fut2020"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/fut2020-2"
-          ]
-        },
-        {
-          "card_print_id": "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
-          "card_name": "Grookey on the Ball",
-          "finish_profile": "holo|normal|reverse",
-          "source_set_aliases": [
-            "fut2020"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/fut2020-3"
-          ]
-        },
-        {
-          "card_print_id": "53919228-7560-480c-9bdb-da99ad67250a",
-          "card_name": "Scorbunny on the Ball",
-          "finish_profile": "holo|normal|reverse",
-          "source_set_aliases": [
-            "fut2020"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/fut2020-4"
-          ]
-        },
-        {
-          "card_print_id": "82ebefc5-51bc-4dbd-ba14-a9a60186aa61",
-          "card_name": "Sobble on the Ball",
-          "finish_profile": "holo|normal|reverse",
-          "source_set_aliases": [
-            "fut2020"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/fut2020-5"
-          ]
-        },
-        {
-          "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
-          "card_name": "Pikachu on the Ball",
-          "finish_profile": "holo",
-          "source_set_aliases": [
-            "fut2020"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/fut2020-1"
-          ]
-        }
-      ]
-    },
-    {
-      "set_key": "me1",
-      "set_name": "Mega Evolution",
-      "era_lane": "modern",
-      "physical_recovery_priority_score": 11,
-      "readiness_lane": "source_acquisition_required",
-      "next_action": "Acquire human-readable/checklist finish evidence for this set before promoting any recovered row beyond a provenance lead.",
-      "candidate_card_print_count": 83,
-      "printing_row_count": 168,
-      "source_aliases": [
-        "me01"
-      ],
-      "finish_profiles": [
-        "holo",
-        "holo|normal|reverse",
-        "holo|reverse",
-        "normal|reverse"
-      ],
-      "readiness_classification": null,
-      "readiness_score": null,
-      "source_coverage_score": null,
-      "human_evidence_score": null,
-      "master_verified_ratio": null,
-      "repair_recommendation": null,
-      "repair_priority_score": null,
-      "current_blockers": {
-        "source_acquisition_required": true,
-        "exact_finish_matrix_required": true,
-        "legacy_or_promo_caution": false,
-        "mutation_safe": false
-      },
-      "sample_cards": [
-        {
-          "card_print_id": "f7c0bdb9-b762-4c56-b698-4907376db02d",
-          "card_name": "Cinderace",
-          "finish_profile": "holo|normal|reverse",
-          "source_set_aliases": [
-            "me01"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/me01-028"
-          ]
-        },
-        {
-          "card_print_id": "4faab1bd-e8ce-4fe8-8fda-cd2167875850",
-          "card_name": "Hariyama",
-          "finish_profile": "holo|normal|reverse",
-          "source_set_aliases": [
-            "me01"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/me01-073"
-          ]
-        },
-        {
-          "card_print_id": "4800e647-2f2b-4ebc-931e-ef4b672788e2",
-          "card_name": "Kirlia",
-          "finish_profile": "holo|normal|reverse",
-          "source_set_aliases": [
-            "me01"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/me01-059"
-          ]
-        },
-        {
-          "card_print_id": "711a2789-6c0b-4c7b-8e5a-15c865deb444",
-          "card_name": "Meganium",
-          "finish_profile": "holo|normal|reverse",
-          "source_set_aliases": [
-            "me01"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/me01-010"
-          ]
-        },
-        {
-          "card_print_id": "569f605f-b7e2-4e7d-9182-459287edda7a",
-          "card_name": "Ralts",
-          "finish_profile": "holo|normal|reverse",
-          "source_set_aliases": [
-            "me01"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/me01-058"
-          ]
-        },
-        {
-          "card_print_id": "6a389901-dd1b-480a-88fc-ca3d1ee02128",
-          "card_name": "Riolu",
-          "finish_profile": "holo|normal|reverse",
-          "source_set_aliases": [
-            "me01"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/me01-076"
-          ]
-        },
-        {
-          "card_print_id": "6968d365-f435-4047-9c47-8c9f274f92e6",
-          "card_name": "Solrock",
-          "finish_profile": "holo|normal|reverse",
-          "source_set_aliases": [
-            "me01"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/me01-075"
-          ]
-        },
-        {
-          "card_print_id": "e003f060-6249-47f6-b31b-e2cb4cac5611",
-          "card_name": "Xerneas",
-          "finish_profile": "holo|normal|reverse",
-          "source_set_aliases": [
-            "me01"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/me01-064"
-          ]
-        },
-        {
-          "card_print_id": "9b837cfd-0f7f-4bd1-ab75-c9b8c14ba027",
-          "card_name": "Alakazam",
-          "finish_profile": "holo|reverse",
-          "source_set_aliases": [
-            "me01"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/me01-056"
-          ]
-        },
-        {
-          "card_print_id": "493cbe02-e42b-4ca0-97cb-f9b75584c66f",
-          "card_name": "Bayleef",
-          "finish_profile": "normal|reverse",
-          "source_set_aliases": [
-            "me01"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/me01-009"
-          ]
-        },
-        {
-          "card_print_id": "35ec8ca0-6bc7-4b2a-9077-94bf42c4fecb",
-          "card_name": "Bulbasaur",
-          "finish_profile": "normal|reverse",
-          "source_set_aliases": [
-            "me01"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/me01-001"
-          ]
-        },
-        {
-          "card_print_id": "a2aae959-98c0-453d-a3e5-196b774acf77",
-          "card_name": "Celebi",
-          "finish_profile": "normal|reverse",
-          "source_set_aliases": [
-            "me01"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/me01-012"
-          ]
-        }
-      ]
-    },
-    {
-      "set_key": "swsh45",
-      "set_name": "Shining Fates",
-      "era_lane": "modern",
-      "physical_recovery_priority_score": 4.82,
-      "readiness_lane": "source_acquisition_required",
-      "next_action": "Acquire human-readable/checklist finish evidence for this set before promoting any recovered row beyond a provenance lead.",
-      "candidate_card_print_count": 2,
-      "printing_row_count": 4,
-      "source_aliases": [
-        "swsh4.5"
-      ],
-      "finish_profiles": [
-        "normal|reverse"
-      ],
-      "readiness_classification": null,
-      "readiness_score": null,
-      "source_coverage_score": null,
-      "human_evidence_score": null,
-      "master_verified_ratio": null,
-      "repair_recommendation": null,
-      "repair_priority_score": null,
-      "current_blockers": {
-        "source_acquisition_required": true,
-        "exact_finish_matrix_required": false,
-        "legacy_or_promo_caution": false,
-        "mutation_safe": false
-      },
-      "sample_cards": [
-        {
-          "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
-          "card_name": "Boss's Orders (Lysandre)",
-          "finish_profile": "normal|reverse",
-          "source_set_aliases": [
-            "swsh4.5"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/swsh4.5-58"
-          ]
-        },
-        {
-          "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
-          "card_name": "Professor's Research (Professor Juniper)",
-          "finish_profile": "normal|reverse",
-          "source_set_aliases": [
-            "swsh4.5"
-          ],
-          "source_card_urls": [
-            "https://api.tcgdex.net/v2/en/cards/swsh4.5-60"
           ]
         }
       ]

@@ -6,8 +6,8 @@
   "source_status": "available_generated",
   "set_key": "swsh5",
   "set_name": "Battle Styles",
-  "retrieved_at": "2026-05-26T04:41:18.789Z",
-  "raw_snapshot_ref": "generated_fixture:tcgcollector:swsh5:2026-05-26T04:41:18.789Z",
+  "retrieved_at": "2026-06-12T04:47:43.524Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcollector:swsh5:2026-06-12T04:47:43.524Z",
   "generation_note": "Generated from TCGCollector explicit card variant type IDs. No finish is inferred from set era, rarity, or card count.",
   "records": [
     {
@@ -59,6 +59,23 @@
       "language": "en",
       "retrieved_at": "2026-05-26T04:41:18.789Z",
       "raw_snapshot_ref": "tcgcollector:33911:48",
+      "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
+    },
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/33920/crobat-battle-styles-091-163",
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "91",
+      "card_name": "Crobat",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCollector card variant Non-holo",
+      "language": "en",
+      "retrieved_at": "2026-06-12T04:47:43.524Z",
+      "raw_snapshot_ref": "tcgcollector:33920:46",
       "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
     }
   ]

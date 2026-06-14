@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SOURCE_AVAILABILITY_V1",
-  "generated_at": "2026-06-08T18:24:41.247Z",
+  "generated_at": "2026-06-12T08:27:20.983Z",
   "audit_only": true,
   "db_writes": false,
   "source_availability": [
@@ -2051,7 +2051,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 12,
+      "evidence_rows": 13,
       "error": null
     },
     {
@@ -2061,7 +2061,7 @@
       "source_alias": "base6",
       "configured_status": "available",
       "runtime_status": "collected_plus_cached_snapshot",
-      "evidence_rows": 328,
+      "evidence_rows": 329,
       "error": null
     },
     {
@@ -2101,7 +2101,7 @@
       "source_alias": null,
       "configured_status": "available",
       "runtime_status": "collected_plus_cached_snapshot",
-      "evidence_rows": 218,
+      "evidence_rows": 219,
       "error": null
     },
     {
@@ -2110,8 +2110,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ecard1",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 488,
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 489,
       "error": null
     },
     {
@@ -2149,9 +2149,9 @@
       "set_name": "Expedition Base Set",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
-      "evidence_rows": 323,
+      "configured_status": "available",
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 324,
       "error": null
     },
     {
@@ -2711,7 +2711,7 @@
       "source_alias": "ex6",
       "configured_status": "available",
       "runtime_status": "collected_plus_cached_snapshot",
-      "evidence_rows": 355,
+      "evidence_rows": 354,
       "error": null
     },
     {
@@ -2810,8 +2810,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ex7",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 330,
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 331,
       "error": null
     },
     {
@@ -2861,7 +2861,7 @@
       "source_alias": "ex8",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 326,
+      "evidence_rows": 328,
       "error": null
     },
     {
@@ -3061,7 +3061,7 @@
       "source_alias": "ex11",
       "configured_status": "available",
       "runtime_status": "collected_plus_cached_snapshot",
-      "evidence_rows": 334,
+      "evidence_rows": 335,
       "error": null
     },
     {
@@ -4011,7 +4011,7 @@
       "source_alias": "dp6",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 428,
+      "evidence_rows": 429,
       "error": null
     },
     {
@@ -4051,7 +4051,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 275,
+      "evidence_rows": 276,
       "error": null
     },
     {
@@ -4499,8 +4499,8 @@
       "set_name": "HeartGold & SoulSilver",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
       "evidence_rows": 226,
       "error": null
     },
@@ -4710,8 +4710,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "col1",
       "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
-      "evidence_rows": 297,
+      "runtime_status": "collected",
+      "evidence_rows": 296,
       "error": null
     },
     {
@@ -4749,8 +4749,8 @@
       "set_name": "Call of Legends",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
       "evidence_rows": 72,
       "error": null
     },
@@ -4780,9 +4780,9 @@
       "source_key": "thepricedex_price_list",
       "source_alias": "bwp",
       "configured_status": "candidate_url",
-      "runtime_status": "error",
-      "evidence_rows": 0,
-      "error": "Command failed: curl.exe --ssl-no-revoke --silent --show-error --location --max-time 45 --user-agent Grookai Master Index Audit/1.0 --header Accept: text/html,application/xhtml+xml https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list\n"
+      "runtime_status": "collected",
+      "evidence_rows": 236,
+      "error": null
     },
     {
       "set_key": "bwp",
@@ -4910,7 +4910,7 @@
       "source_key": "pokemontcg_api",
       "source_alias": "bw2",
       "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 292,
       "error": null
     },
@@ -5061,7 +5061,7 @@
       "source_alias": "bw5",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 318,
+      "evidence_rows": 317,
       "error": null
     },
     {
@@ -5299,8 +5299,8 @@
       "set_name": "Boundaries Crossed",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 111,
       "error": null
     },
@@ -5360,7 +5360,7 @@
       "source_key": "pokemontcg_api",
       "source_alias": "bw9",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 344,
       "error": null
     },
@@ -5399,8 +5399,8 @@
       "set_name": "Plasma Freeze",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 86,
       "error": null
     },
@@ -6460,7 +6460,7 @@
       "source_key": "pokemontcg_api",
       "source_alias": "smp",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 503,
       "error": null
     },
@@ -6499,8 +6499,8 @@
       "set_name": "SM Black Star Promos",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 2,
       "error": null
     },
@@ -6510,7 +6510,7 @@
       "source_key": "pokemontcg_api",
       "source_alias": "sm1",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 462,
       "error": null
     },
@@ -6549,8 +6549,8 @@
       "set_name": "Sun & Moon",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 110,
       "error": null
     },
@@ -6560,7 +6560,7 @@
       "source_key": "pokemontcg_api",
       "source_alias": "sm2",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 467,
       "error": null
     },
@@ -6599,8 +6599,8 @@
       "set_name": "Guardians Rising",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 103,
       "error": null
     },
@@ -7230,9 +7230,9 @@
       "source_key": "thepricedex_price_list",
       "source_alias": "sm10",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 657,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Command failed: curl.exe --ssl-no-revoke --silent --show-error --location --max-time 45 --user-agent Grookai Master Index Audit/1.0 --header Accept: text/html,application/xhtml+xml https://www.thepricedex.com/set/sm10/unbroken-bonds/price-list\ncurl: (35) Recv failure: Connection was reset\r\n"
     },
     {
       "set_key": "sm10",
@@ -9131,7 +9131,7 @@
       "source_alias": "sv3",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 636,
+      "evidence_rows": 681,
       "error": null
     },
     {
@@ -10061,7 +10061,7 @@
       "source_alias": "docs\\audits\\verified_master_set_index_v1\\source_fixtures",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 113143,
+      "evidence_rows": 113448,
       "error": null
     }
   ]

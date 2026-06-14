@@ -1,0 +1,35 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "bulbapedia_prize_pack_current_gap_finish_sv05",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Five_(TCG)",
+  "source_status": "available_generated_current_gap",
+  "set_key": "sv05",
+  "set_name": "Temporal Forces",
+  "retrieved_at": "2026-06-12T08:26:26.817Z",
+  "raw_snapshot_ref": "generated_fixture:prize_pack_current_gap_cross_source:bulbapedia_prize_pack_current_gap_finish|sv05:2026-06-12T08:26:26.817Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "records": [
+    {
+      "source_key": "bulbapedia_prize_pack_current_gap_finish",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Five_(TCG)",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "162",
+      "card_name": "Neo Upper Energy",
+      "finish_key": "cosmos",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia Prize Pack Series 5: Neo Upper Energy 162 Standard Set Foil supports cosmos holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-12T08:26:26.817Z",
+      "raw_snapshot_ref": "bulbapedia_prize_pack_current_gap_finish:pps5:sv05:162:cosmos",
+      "notes": "Current-gap exact Prize Pack cross-source evidence. Accepted only when set key, card number, card name, and requested active finish are explicitly supported by the source row."
+    }
+  ]
+}

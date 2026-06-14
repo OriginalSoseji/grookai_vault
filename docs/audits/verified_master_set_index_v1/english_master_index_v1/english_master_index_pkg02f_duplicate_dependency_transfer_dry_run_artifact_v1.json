@@ -1,0 +1,4702 @@
+{
+  "generated_at": "2026-06-09T18:56:51.814Z",
+  "version": "english_master_index_pkg02f_duplicate_dependency_transfer_dry_run_artifact_v1",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "merge_performed": false,
+  "delete_performed": false,
+  "real_apply_performed": false,
+  "artifact_status": "pkg02f_duplicate_dependency_transfer_dry_run_artifact_prepared_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-02F-DUPLICATE-DEPENDENCY-TRANSFER",
+    "package_fingerprint_sha256": "21a4bfe4e443cf098d7ae257216fbfcd8daa5be06b9232af56328dc531b42d0a",
+    "duplicate_parent_rows": 21,
+    "duplicate_child_printing_rows": 23,
+    "number_key_collision_rows_excluded": 58,
+    "child_dependency_refs_allowed": 0,
+    "parent_tables_touched_in_dry_run_sql": [
+      "external_mappings",
+      "card_printings",
+      "card_prints"
+    ]
+  },
+  "required_operator_approval": {
+    "required_before_dry_run_execution": true,
+    "exact_phrase": "Approve PKG-02F-DUPLICATE-DEPENDENCY-TRANSFER for guarded dry-run transaction execution only. Fingerprint: 21a4bfe4e443cf098d7ae257216fbfcd8daa5be06b9232af56328dc531b42d0a. Scope: 21 duplicate parent rows, 23 duplicate child printings, external mapping transfer simulation, rollback-only. No real apply. No migrations."
+  },
+  "source_artifacts": {
+    "dependency_transfer_plan": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg02e_duplicate_dependency_transfer_plan_v1.json"
+  },
+  "fresh_snapshot": {
+    "available": true,
+    "reason": null,
+    "captured_at": "2026-06-09T18:56:51.728Z",
+    "rows": [
+      {
+        "card_print_id": "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+        "card_print": {
+          "id": "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+          "name": "Entei Star",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/ex/ex10/113/high.webp",
+          "created_at": "2026-03-26T23:04:06.346657+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:04:06.346657+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "ex10-113"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/ex/ex10/113",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "ex10",
+        "resolved_set_name": "Unseen Forces",
+        "card_printings": [
+          {
+            "id": "597aa8d8-7e4d-4f0a-b4ce-ebb96ed800e8",
+            "image_url": null,
+            "created_at": "2026-03-26T23:04:06.525145+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "ex10-113",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 59386,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-22T22:39:52.266312+00:00",
+            "external_id": "ex10-113",
+            "card_print_id": "2fdd39c8-7afa-4031-be84-649ac28a7b72"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "4e1c8802-12d8-4454-b067-04329e0d1a2c",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+            "printed_number": "113",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 115,
+              "printed_set_abbrev": "UF"
+            },
+            "identity_key_hash": "badf993a49f2621f94f3a4babf651016e5b638cfa38f463f8dcdd89ee711f60f",
+            "set_code_identity": "ex10",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "entei star"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 80,
+            "id": 35125,
+            "types": [
+              "Fire"
+            ],
+            "rarity": "Rare",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-26T23:04:06.701082+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 244,
+            "card_category": "Basic",
+            "card_print_id": "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "043dbc47-0815-4ef4-b31d-2027f70f2338",
+        "card_print": {
+          "id": "043dbc47-0815-4ef4-b31d-2027f70f2338",
+          "name": "Raikou Star",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/ex/ex10/114/high.webp",
+          "created_at": "2026-03-26T23:04:07.138402+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:04:07.138402+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "ex10-114"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/ex/ex10/114",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "ex10",
+        "resolved_set_name": "Unseen Forces",
+        "card_printings": [
+          {
+            "id": "90eb803f-345c-46f0-b5f3-6fd62af386d5",
+            "image_url": null,
+            "created_at": "2026-03-26T23:04:07.314239+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "043dbc47-0815-4ef4-b31d-2027f70f2338",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "ex10-114",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 59387,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-22T22:39:52.266312+00:00",
+            "external_id": "ex10-114",
+            "card_print_id": "043dbc47-0815-4ef4-b31d-2027f70f2338"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "3018fdd9-6a24-478b-89a3-88b066b6545a",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "043dbc47-0815-4ef4-b31d-2027f70f2338",
+            "printed_number": "114",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 115,
+              "printed_set_abbrev": "UF"
+            },
+            "identity_key_hash": "9ab677fd11240bdfe0841324728006f15a65987aa4072a69f6a3aaad43feec28",
+            "set_code_identity": "ex10",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "raikou star"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 80,
+            "id": 35126,
+            "types": [
+              "Lightning"
+            ],
+            "rarity": "Rare",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-26T23:04:07.507131+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 243,
+            "card_category": "Basic",
+            "card_print_id": "043dbc47-0815-4ef4-b31d-2027f70f2338",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "584c31ad-d7ac-4356-b9cc-4de3152511b2",
+        "card_print": {
+          "id": "584c31ad-d7ac-4356-b9cc-4de3152511b2",
+          "name": "Suicune Star",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/ex/ex10/115/high.webp",
+          "created_at": "2026-03-26T23:04:08.070445+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:04:08.070445+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "ex10-115"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/ex/ex10/115",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "ex10",
+        "resolved_set_name": "Unseen Forces",
+        "card_printings": [
+          {
+            "id": "4d6df833-3363-46a8-ad80-12ad715d9aec",
+            "image_url": null,
+            "created_at": "2026-03-26T23:04:08.315756+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "584c31ad-d7ac-4356-b9cc-4de3152511b2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "ex10-115",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 59303,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-22T22:39:52.266312+00:00",
+            "external_id": "ex10-115",
+            "card_print_id": "584c31ad-d7ac-4356-b9cc-4de3152511b2"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "08565fbc-488f-480f-98ab-c444d4449ed5",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "584c31ad-d7ac-4356-b9cc-4de3152511b2",
+            "printed_number": "115",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 115,
+              "printed_set_abbrev": "UF"
+            },
+            "identity_key_hash": "75e653e2ac03d6a390c645b248ea5febc862903b1264e3300982b92e733322ac",
+            "set_code_identity": "ex10",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "suicune star"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 80,
+            "id": 35127,
+            "types": [
+              "Water"
+            ],
+            "rarity": "Rare",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-26T23:04:08.598876+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 245,
+            "card_category": "Basic",
+            "card_print_id": "584c31ad-d7ac-4356-b9cc-4de3152511b2",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "96794036-5dd7-42e5-a90f-516d90eeb3b9",
+        "card_print": {
+          "id": "96794036-5dd7-42e5-a90f-516d90eeb3b9",
+          "name": "Entei ★",
+          "gv_id": "GV-PK-UF-113",
+          "artist": "Masakazu Fukuda",
+          "number": "113",
+          "rarity": "Rare Holo Star",
+          "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": "ex10",
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/ex/ex10/113/high.webp",
+          "created_at": "2025-11-16T06:32:35.437741+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2025-12-27T19:26:16.337401+00:00",
+          "ai_metadata": {
+            "pokemonapi": {
+              "legalities": {
+                "unlimited": "Legal"
+              },
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "pokemonapi": "ex10-113"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "113",
+          "tcgplayer_id": null,
+          "image_alt_url": "https://images.pokemontcg.io/ex10/113.png",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": {
+            "legacy_image_url": "https://images.pokemontcg.io/ex10/113_hires.png",
+            "pokemontcg_legacy": true
+          },
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "ex10",
+        "resolved_set_name": "Unseen Forces",
+        "card_printings": [
+          {
+            "id": "8a688e28-242a-42b4-8ff7-99c0596e8c46",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "96794036-5dd7-42e5-a90f-516d90eeb3b9",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-UF-113-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 91139,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "113/115",
+              "justtcg_set_name": "Unseen Forces",
+              "tcgplayer_external_id": "85275"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:25:16.565+00:00",
+            "external_id": "pokemon-unseen-forces-entei-star-ultra-rare",
+            "card_print_id": "96794036-5dd7-42e5-a90f-516d90eeb3b9"
+          },
+          {
+            "id": 828,
+            "meta": null,
+            "active": true,
+            "source": "pokemonapi",
+            "synced_at": "2025-11-18T06:09:19.541008+00:00",
+            "external_id": "ex10-113",
+            "card_print_id": "96794036-5dd7-42e5-a90f-516d90eeb3b9"
+          },
+          {
+            "id": 63944,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "ex10-113",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:04:39.145+00:00",
+            "external_id": "85275",
+            "card_print_id": "96794036-5dd7-42e5-a90f-516d90eeb3b9"
+          }
+        ],
+        "card_print_identity": [],
+        "card_print_traits": [
+          {
+            "hp": 80,
+            "id": 28197,
+            "types": [
+              "Fire"
+            ],
+            "rarity": "Rare Holo Star",
+            "source": "pokemonapi",
+            "supertype": "Pokémon",
+            "confidence": null,
+            "created_at": "2025-11-18T05:32:36.463503+00:00",
+            "trait_type": "pokemon:national_dex",
+            "trait_value": "244",
+            "national_dex": 244,
+            "card_category": "Basic",
+            "card_print_id": "96794036-5dd7-42e5-a90f-516d90eeb3b9",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "64269238-e6e3-4fd2-9c14-b9fb6367c0d5",
+        "card_print": {
+          "id": "64269238-e6e3-4fd2-9c14-b9fb6367c0d5",
+          "name": "Raikou ★",
+          "gv_id": "GV-PK-UF-114",
+          "artist": "Masakazu Fukuda",
+          "number": "114",
+          "rarity": "Rare Holo Star",
+          "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": "ex10",
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/ex/ex10/114/high.webp",
+          "created_at": "2025-11-16T06:32:35.437741+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2025-12-27T19:26:16.337401+00:00",
+          "ai_metadata": {
+            "pokemonapi": {
+              "legalities": {
+                "unlimited": "Legal"
+              },
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "pokemonapi": "ex10-114"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "114",
+          "tcgplayer_id": null,
+          "image_alt_url": "https://images.pokemontcg.io/ex10/114.png",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": {
+            "legacy_image_url": "https://images.pokemontcg.io/ex10/114_hires.png",
+            "pokemontcg_legacy": true
+          },
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "ex10",
+        "resolved_set_name": "Unseen Forces",
+        "card_printings": [
+          {
+            "id": "f60ef6d8-25e4-491d-bea8-3ef02e4a5f64",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "64269238-e6e3-4fd2-9c14-b9fb6367c0d5",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-UF-114-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 90995,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "114/115",
+              "justtcg_set_name": "Unseen Forces",
+              "tcgplayer_external_id": "88537"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:24:52.648+00:00",
+            "external_id": "pokemon-unseen-forces-raikou-star-ultra-rare",
+            "card_print_id": "64269238-e6e3-4fd2-9c14-b9fb6367c0d5"
+          },
+          {
+            "id": 829,
+            "meta": null,
+            "active": true,
+            "source": "pokemonapi",
+            "synced_at": "2025-11-18T06:09:19.896098+00:00",
+            "external_id": "ex10-114",
+            "card_print_id": "64269238-e6e3-4fd2-9c14-b9fb6367c0d5"
+          },
+          {
+            "id": 64031,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "ex10-114",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:05:09.865+00:00",
+            "external_id": "88537",
+            "card_print_id": "64269238-e6e3-4fd2-9c14-b9fb6367c0d5"
+          }
+        ],
+        "card_print_identity": [],
+        "card_print_traits": [
+          {
+            "hp": 80,
+            "id": 28199,
+            "types": [
+              "Lightning"
+            ],
+            "rarity": "Rare Holo Star",
+            "source": "pokemonapi",
+            "supertype": "Pokémon",
+            "confidence": null,
+            "created_at": "2025-11-18T05:32:37.138464+00:00",
+            "trait_type": "pokemon:national_dex",
+            "trait_value": "243",
+            "national_dex": 243,
+            "card_category": "Basic",
+            "card_print_id": "64269238-e6e3-4fd2-9c14-b9fb6367c0d5",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "0aa71fae-b6ec-4a12-ac8d-35dbc3c769bf",
+        "card_print": {
+          "id": "0aa71fae-b6ec-4a12-ac8d-35dbc3c769bf",
+          "name": "Suicune ★",
+          "gv_id": "GV-PK-UF-115",
+          "artist": "Masakazu Fukuda",
+          "number": "115",
+          "rarity": "Rare Holo Star",
+          "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": "ex10",
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/ex/ex10/115/high.webp",
+          "created_at": "2025-11-16T06:32:35.437741+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2025-12-27T19:26:16.337401+00:00",
+          "ai_metadata": {
+            "pokemonapi": {
+              "legalities": {
+                "unlimited": "Legal"
+              },
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "pokemonapi": "ex10-115"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "115",
+          "tcgplayer_id": null,
+          "image_alt_url": "https://images.pokemontcg.io/ex10/115.png",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": {
+            "legacy_image_url": "https://images.pokemontcg.io/ex10/115_hires.png",
+            "pokemontcg_legacy": true
+          },
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "ex10",
+        "resolved_set_name": "Unseen Forces",
+        "card_printings": [
+          {
+            "id": "f0d6e039-67d0-4aa0-a284-499107fd5a56",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0aa71fae-b6ec-4a12-ac8d-35dbc3c769bf",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-UF-115-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 90990,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "115/115",
+              "justtcg_set_name": "Unseen Forces",
+              "tcgplayer_external_id": "89608"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:24:51.317+00:00",
+            "external_id": "pokemon-unseen-forces-suicune-star-ultra-rare",
+            "card_print_id": "0aa71fae-b6ec-4a12-ac8d-35dbc3c769bf"
+          },
+          {
+            "id": 830,
+            "meta": null,
+            "active": true,
+            "source": "pokemonapi",
+            "synced_at": "2025-11-18T06:09:20.251084+00:00",
+            "external_id": "ex10-115",
+            "card_print_id": "0aa71fae-b6ec-4a12-ac8d-35dbc3c769bf"
+          },
+          {
+            "id": 64036,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "ex10-115",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:05:11.563+00:00",
+            "external_id": "89608",
+            "card_print_id": "0aa71fae-b6ec-4a12-ac8d-35dbc3c769bf"
+          }
+        ],
+        "card_print_identity": [],
+        "card_print_traits": [
+          {
+            "hp": 80,
+            "id": 28201,
+            "types": [
+              "Water"
+            ],
+            "rarity": "Rare Holo Star",
+            "source": "pokemonapi",
+            "supertype": "Pokémon",
+            "confidence": null,
+            "created_at": "2025-11-18T05:32:37.824299+00:00",
+            "trait_type": "pokemon:national_dex",
+            "trait_value": "245",
+            "national_dex": 245,
+            "card_category": "Basic",
+            "card_print_id": "0aa71fae-b6ec-4a12-ac8d-35dbc3c769bf",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+        "card_print": {
+          "id": "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+          "name": "Meganium",
+          "gv_id": "GV-PK-MEP-001",
+          "artist": "Uninori",
+          "number": "001",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/me/mep/001/high.webp",
+          "created_at": "2026-03-03T03:43:04.644482+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-03T03:43:04.644482+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "001",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "mep:001:meganium",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "fe043f63-7cd6-4095-a64b-5da01d4f48c0",
+            "image_url": null,
+            "created_at": "2026-03-03T04:08:25.625082+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEP-001-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+        "card_print": {
+          "id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+          "name": "Inteleon",
+          "gv_id": "GV-PK-MEP-002",
+          "artist": "Kazumasa Yasukuni",
+          "number": "002",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/me/mep/002/high.webp",
+          "created_at": "2026-03-03T03:43:04.644482+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-03T03:43:04.644482+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "002",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "mep:002:inteleon",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "42918a6d-7aeb-42fe-9163-9489ea3070c5",
+            "image_url": null,
+            "created_at": "2026-03-03T04:08:25.625082+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEP-002-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "718508f6-7825-43e8-98e1-a57b58dd490f",
+        "card_print": {
+          "id": "718508f6-7825-43e8-98e1-a57b58dd490f",
+          "name": "Alakazam",
+          "gv_id": "GV-PK-MEP-003",
+          "artist": "cochi8i",
+          "number": "003",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/me/mep/003/high.webp",
+          "created_at": "2026-03-03T03:43:04.644482+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-03T03:43:04.644482+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "003",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "mep:003:alakazam",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "c3fa605e-3e7f-419a-b09e-c5131e73664a",
+            "image_url": null,
+            "created_at": "2026-03-03T04:08:25.625082+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "718508f6-7825-43e8-98e1-a57b58dd490f",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEP-003-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+        "card_print": {
+          "id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+          "name": "Lunatone",
+          "gv_id": "GV-PK-MEP-004",
+          "artist": "Ounishi",
+          "number": "004",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/me/mep/004/high.webp",
+          "created_at": "2026-03-03T03:43:04.644482+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-03T03:43:04.644482+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "004",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "mep:004:lunatone",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "6f650737-4528-4b75-9b85-3037ce800dc2",
+            "image_url": null,
+            "created_at": "2026-03-03T04:08:25.625082+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEP-004-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "c5b19da0-1f2d-4b86-844f-90284539099d",
+        "card_print": {
+          "id": "c5b19da0-1f2d-4b86-844f-90284539099d",
+          "name": "Drifloon",
+          "gv_id": "GV-PK-MEP-005",
+          "artist": "Shimaris Yukichi",
+          "number": "005",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/me/mep/005/high.webp",
+          "created_at": "2026-03-03T03:43:04.644482+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-03T03:43:04.644482+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "005",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "mep:005:drifloon",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "119ea6b4-8e8c-4f06-b5a1-a882fc9ddd23",
+            "image_url": null,
+            "created_at": "2026-03-03T04:08:25.625082+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "c5b19da0-1f2d-4b86-844f-90284539099d",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEP-005-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "69572cf4-a580-49cc-90d2-36c053f510a9",
+        "card_print": {
+          "id": "69572cf4-a580-49cc-90d2-36c053f510a9",
+          "name": "Drifblim",
+          "gv_id": "GV-PK-MEP-006",
+          "artist": "Shimaris Yukichi",
+          "number": "006",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/me/mep/006/high.webp",
+          "created_at": "2026-03-03T03:43:04.644482+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-03T03:43:04.644482+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "006",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "mep:006:drifblim",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "09b92739-e605-4e7b-9e2f-78af37b9c744",
+            "image_url": null,
+            "created_at": "2026-03-03T04:08:25.625082+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "69572cf4-a580-49cc-90d2-36c053f510a9",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEP-006-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "a683bb41-182d-440b-9e6c-d82ebfd38f1d",
+        "card_print": {
+          "id": "a683bb41-182d-440b-9e6c-d82ebfd38f1d",
+          "name": "Psyduck",
+          "gv_id": "GV-PK-MEP-007",
+          "artist": "Jiro Sasumo",
+          "number": "007",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/me/mep/007/high.webp",
+          "created_at": "2026-03-03T03:43:04.644482+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-03T03:43:04.644482+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "007",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "mep:007:psyduck",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "40163317-cb48-4a16-859e-ed40e9a52253",
+            "image_url": null,
+            "created_at": "2026-03-03T04:08:25.625082+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "a683bb41-182d-440b-9e6c-d82ebfd38f1d",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEP-007-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "5dd278a1-ccaa-48e6-84c2-7190ee63c9d8",
+        "card_print": {
+          "id": "5dd278a1-ccaa-48e6-84c2-7190ee63c9d8",
+          "name": "Golduck",
+          "gv_id": "GV-PK-MEP-008",
+          "artist": "Jiro Sasumo",
+          "number": "008",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/me/mep/008/high.webp",
+          "created_at": "2026-03-03T03:43:04.644482+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-03T03:43:04.644482+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "008",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "mep:008:golduck",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "5cf6846f-dd2d-4701-9fec-08fc1456d58c",
+            "image_url": null,
+            "created_at": "2026-03-03T04:08:25.625082+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "5dd278a1-ccaa-48e6-84c2-7190ee63c9d8",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEP-008-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "26726d70-a78d-4210-9ccc-d79abd215099",
+        "card_print": {
+          "id": "26726d70-a78d-4210-9ccc-d79abd215099",
+          "name": "Alakazam",
+          "gv_id": "GV-PK-MEP-009",
+          "artist": "Aya Kusube",
+          "number": "009",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/me/mep/009/high.webp",
+          "created_at": "2026-03-03T03:43:04.644482+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-03T03:43:04.644482+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "009",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "mep:009:alakazam",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "7a730508-9c9b-4b2e-8ddc-2eb75bb81990",
+            "image_url": null,
+            "created_at": "2026-03-03T04:08:25.625082+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "26726d70-a78d-4210-9ccc-d79abd215099",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEP-009-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+        "card_print": {
+          "id": "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+          "name": "Riolu",
+          "gv_id": "GV-PK-MEP-010",
+          "artist": "GOSSAN",
+          "number": "010",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/me/mep/010/high.webp",
+          "created_at": "2026-03-03T03:43:04.644482+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-03T03:43:04.644482+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "010",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "mep:010:riolu",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "10f0ed13-c908-4ac2-b03c-8c5db021f95b",
+            "image_url": null,
+            "created_at": "2026-03-03T04:08:25.625082+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEP-010-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+        "card_print": {
+          "id": "6419894a-137f-4fc7-8db1-fa853872b190",
+          "name": "Meganium",
+          "gv_id": null,
+          "artist": null,
+          "number": "1",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": null,
+          "created_at": "2026-03-27T04:34:48.996121+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T04:34:48.996121+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "mep-001"
+          },
+          "image_source": null,
+          "image_status": "missing",
+          "number_plain": "1",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "I",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "2e4cadb9-44b8-490a-94af-3ea6f45f021f",
+            "image_url": null,
+            "created_at": "2026-03-27T04:34:49.191712+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "mep-001",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 62493,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-03-03T03:43:35.406511+00:00",
+            "external_id": "mep-001",
+            "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "f5434864-2d15-4a68-9ecf-68726bee6957",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+            "printed_number": "001",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 33,
+              "printed_set_abbrev": "MEP"
+            },
+            "identity_key_hash": "999495772a628789786faaa4fb398b6016450e0dac0d3a08764389c8983a3e88",
+            "set_code_identity": "mep",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "meganium"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 160,
+            "id": 51351,
+            "types": [
+              "Grass"
+            ],
+            "rarity": "None",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T04:34:49.377677+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 154,
+            "card_category": "Stage2",
+            "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+        "card_print": {
+          "id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+          "name": "Riolu",
+          "gv_id": null,
+          "artist": null,
+          "number": "10",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": null,
+          "created_at": "2026-03-27T04:34:56.228673+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T04:34:56.228673+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "mep-010"
+          },
+          "image_source": null,
+          "image_status": "missing",
+          "number_plain": "10",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "I",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "def4cbb4-1cc1-4ea4-86ed-e7d73c5dc5e0",
+            "image_url": null,
+            "created_at": "2026-03-27T04:34:56.424832+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "mep-010",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 62499,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-03-03T03:43:35.406511+00:00",
+            "external_id": "mep-010",
+            "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "dc0bd6bd-6267-436f-8587-3fd574dd9b9f",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+            "printed_number": "010",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 33,
+              "printed_set_abbrev": "MEP"
+            },
+            "identity_key_hash": "63344b94ab5bb0d09b1fc60052886c79a8889a81d182a1789d03d7a2561aed76",
+            "set_code_identity": "mep",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "riolu"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 80,
+            "id": 51360,
+            "types": [
+              "Fighting"
+            ],
+            "rarity": "None",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T04:34:56.600643+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 447,
+            "card_category": "Basic",
+            "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+        "card_print": {
+          "id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+          "name": "Inteleon",
+          "gv_id": null,
+          "artist": null,
+          "number": "2",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": null,
+          "created_at": "2026-03-27T04:34:49.843485+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T04:34:49.843485+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "mep-002"
+          },
+          "image_source": null,
+          "image_status": "missing",
+          "number_plain": "2",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "I",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "1d168cec-7194-42e4-9e62-691e5f1f8698",
+            "image_url": null,
+            "created_at": "2026-03-27T04:34:50.018975+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "mep-002",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 62490,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-03-03T03:43:35.406511+00:00",
+            "external_id": "mep-002",
+            "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "80cf5e95-d0c4-4776-b89c-b5919f243a5a",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+            "printed_number": "002",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 33,
+              "printed_set_abbrev": "MEP"
+            },
+            "identity_key_hash": "1b3fee072e8c1738180a3bc70379cc047ea5967b6f8999dfb6db95559500fdb1",
+            "set_code_identity": "mep",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "inteleon"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 150,
+            "id": 51352,
+            "types": [
+              "Water"
+            ],
+            "rarity": "None",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T04:34:50.206625+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 818,
+            "card_category": "Stage2",
+            "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+        "card_print": {
+          "id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+          "name": "Alakazam",
+          "gv_id": null,
+          "artist": null,
+          "number": "3",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": null,
+          "created_at": "2026-03-27T04:34:50.646647+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T04:34:50.646647+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "mep-003"
+          },
+          "image_source": null,
+          "image_status": "missing",
+          "number_plain": "3",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "I",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "7357533d-7e4b-430c-b8ce-f73c6d08cb55",
+            "image_url": null,
+            "created_at": "2026-03-27T04:34:50.822909+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "mep-003",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 62491,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-03-03T03:43:35.406511+00:00",
+            "external_id": "mep-003",
+            "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "81f29850-e313-4795-8de3-6f7cb63aa5d8",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+            "printed_number": "003",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 33,
+              "printed_set_abbrev": "MEP"
+            },
+            "identity_key_hash": "4699a32936ad179a49f89aa96c27687098ccc523c3a717e313626821edc1de1f",
+            "set_code_identity": "mep",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "alakazam"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 140,
+            "id": 51353,
+            "types": [
+              "Psychic"
+            ],
+            "rarity": "None",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T04:34:50.997599+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 65,
+            "card_category": "Stage2",
+            "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+        "card_print": {
+          "id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+          "name": "Lunatone",
+          "gv_id": null,
+          "artist": null,
+          "number": "4",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": null,
+          "created_at": "2026-03-27T04:34:51.452811+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T04:34:51.452811+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "mep-004"
+          },
+          "image_source": null,
+          "image_status": "missing",
+          "number_plain": "4",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "I",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "cab49274-d396-43b7-a09a-9e43bd310abf",
+            "image_url": null,
+            "created_at": "2026-03-27T04:34:51.640213+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "mep-004",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 62495,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-03-03T03:43:35.406511+00:00",
+            "external_id": "mep-004",
+            "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "4e63bb8e-2fc2-4029-a0b2-ccc4658d4b99",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+            "printed_number": "004",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 33,
+              "printed_set_abbrev": "MEP"
+            },
+            "identity_key_hash": "e5b3ffceb266e8a95b4226156aa97eefff6c6d454fe47e539acd2eb30831408e",
+            "set_code_identity": "mep",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "lunatone"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 110,
+            "id": 51354,
+            "types": [
+              "Fighting"
+            ],
+            "rarity": "None",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T04:34:51.831885+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 337,
+            "card_category": "Basic",
+            "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+        "card_print": {
+          "id": "04e533ae-dd17-478c-ab46-220859079b2c",
+          "name": "Drifloon",
+          "gv_id": null,
+          "artist": null,
+          "number": "5",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": null,
+          "created_at": "2026-03-27T04:34:52.267336+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T04:34:52.267336+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "mep-005"
+          },
+          "image_source": null,
+          "image_status": "missing",
+          "number_plain": "5",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "I",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "52313084-cf51-490b-9b7d-ed4e00d30735",
+            "image_url": null,
+            "created_at": "2026-03-27T04:34:52.437672+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "mep-005",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 62492,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-03-03T03:43:35.406511+00:00",
+            "external_id": "mep-005",
+            "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "eacb5a42-8037-4015-822e-a9212e65e060",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+            "printed_number": "005",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 33,
+              "printed_set_abbrev": "MEP"
+            },
+            "identity_key_hash": "f828960bcf71cc61c806361b277f8e0481f2760dbbf2cddc3ce1fe1bd3731832",
+            "set_code_identity": "mep",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "drifloon"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 70,
+            "id": 51355,
+            "types": [
+              "Psychic"
+            ],
+            "rarity": "None",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T04:34:52.61189+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 425,
+            "card_category": "Basic",
+            "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+        "card_print": {
+          "id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+          "name": "Drifblim",
+          "gv_id": null,
+          "artist": null,
+          "number": "6",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": null,
+          "created_at": "2026-03-27T04:34:53.065923+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T04:34:53.065923+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "mep-006"
+          },
+          "image_source": null,
+          "image_status": "missing",
+          "number_plain": "6",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "I",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "e7102e38-efbc-4e3b-bf6f-fe4770b78b0d",
+            "image_url": null,
+            "created_at": "2026-03-27T04:34:53.247973+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "mep-006",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 62494,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-03-03T03:43:35.406511+00:00",
+            "external_id": "mep-006",
+            "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "b0e9bda3-8681-4027-9064-2bc0b3b04885",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+            "printed_number": "006",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 33,
+              "printed_set_abbrev": "MEP"
+            },
+            "identity_key_hash": "b2df620afb99e49fd9d64419230c38cc064425ea5ad5ae50f89aa3b42cb1ffeb",
+            "set_code_identity": "mep",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "drifblim"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 110,
+            "id": 51356,
+            "types": [
+              "Psychic"
+            ],
+            "rarity": "None",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T04:34:53.421925+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 426,
+            "card_category": "Stage1",
+            "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+        "card_print": {
+          "id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+          "name": "Psyduck",
+          "gv_id": null,
+          "artist": null,
+          "number": "7",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": null,
+          "created_at": "2026-03-27T04:34:53.854994+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T04:34:53.854994+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "mep-007"
+          },
+          "image_source": null,
+          "image_status": "missing",
+          "number_plain": "7",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "I",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "e54ac5bb-df1a-4fc0-8298-668e4f4f42f9",
+            "image_url": null,
+            "created_at": "2026-03-27T04:34:54.031181+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "mep-007",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 62496,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-03-03T03:43:35.406511+00:00",
+            "external_id": "mep-007",
+            "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "e82dd461-e1f2-4660-a6df-34c42143fc77",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+            "printed_number": "007",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 33,
+              "printed_set_abbrev": "MEP"
+            },
+            "identity_key_hash": "5db7a0ab42726c37714cc3229b0abab9c0b9b176050f094393fbb807c1c1f591",
+            "set_code_identity": "mep",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "psyduck"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 70,
+            "id": 51357,
+            "types": [
+              "Water"
+            ],
+            "rarity": "None",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T04:34:54.203418+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 54,
+            "card_category": "Basic",
+            "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+        "card_print": {
+          "id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+          "name": "Golduck",
+          "gv_id": null,
+          "artist": null,
+          "number": "8",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": null,
+          "created_at": "2026-03-27T04:34:54.635017+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T04:34:54.635017+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "mep-008"
+          },
+          "image_source": null,
+          "image_status": "missing",
+          "number_plain": "8",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "I",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "7c71fdbc-98d3-4e80-a8b3-2e8c89cb4d30",
+            "image_url": null,
+            "created_at": "2026-03-27T04:34:54.803471+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "mep-008",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 62497,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-03-03T03:43:35.406511+00:00",
+            "external_id": "mep-008",
+            "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "f6f410a8-d478-4c7d-a036-d58cf67bca98",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+            "printed_number": "008",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 33,
+              "printed_set_abbrev": "MEP"
+            },
+            "identity_key_hash": "f644087dea4781c53c4c7ecd7fac6142f4b838e45ecf9e2c32fe56f4bcef624a",
+            "set_code_identity": "mep",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "golduck"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 120,
+            "id": 51358,
+            "types": [
+              "Water"
+            ],
+            "rarity": "None",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T04:34:54.995016+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 55,
+            "card_category": "Stage1",
+            "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+        "card_print": {
+          "id": "a3624761-be25-4841-83e4-c5936ec434fe",
+          "name": "Alakazam",
+          "gv_id": null,
+          "artist": null,
+          "number": "9",
+          "rarity": "None",
+          "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": null,
+          "created_at": "2026-03-27T04:34:55.443911+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T04:34:55.443911+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "mep-009"
+          },
+          "image_source": null,
+          "image_status": "missing",
+          "number_plain": "9",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "I",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "mep",
+        "resolved_set_name": "MEP Black Star Promos",
+        "card_printings": [
+          {
+            "id": "b2cb6ae1-c137-4013-b9b1-ccdbd58c9549",
+            "image_url": null,
+            "created_at": "2026-03-27T04:34:55.620969+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "mep-009",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 62498,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-03-03T03:43:35.406511+00:00",
+            "external_id": "mep-009",
+            "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "dfcde77b-d381-4201-889e-3e4d853c7977",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+            "printed_number": "009",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 33,
+              "printed_set_abbrev": "MEP"
+            },
+            "identity_key_hash": "7e5bfa1cb0f4f414fd70fcbca4a054cbcbbbcfc840dc85cc2e14dc6b37d956ac",
+            "set_code_identity": "mep",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "alakazam"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 140,
+            "id": 51359,
+            "types": [
+              "Psychic"
+            ],
+            "rarity": "None",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T04:34:55.790743+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 65,
+            "card_category": "Stage2",
+            "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "8c817161-627f-4ff5-aa27-127757b88213",
+        "card_print": {
+          "id": "8c817161-627f-4ff5-aa27-127757b88213",
+          "name": "Nidoran♀",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Common",
+          "set_id": "1b4f553a-f12c-4616-bead-ac5081865492",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl2/71/high.webp",
+          "created_at": "2026-03-26T23:42:33.748823+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:42:33.748823+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl2-71"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl2/71",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl2",
+        "resolved_set_name": "Rising Rivals",
+        "card_printings": [
+          {
+            "id": "9845afbb-0b55-4f96-9022-4083c6ed71f0",
+            "image_url": null,
+            "created_at": "2026-03-26T23:42:33.927203+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "8c817161-627f-4ff5-aa27-127757b88213",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl2-71",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "964e7f55-9290-4080-b26b-9e4188904654",
+            "image_url": null,
+            "created_at": "2026-03-26T23:42:34.075132+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "8c817161-627f-4ff5-aa27-127757b88213",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl2-71",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 35209,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-08T18:07:35.77467+00:00",
+            "external_id": "pl2-71",
+            "card_print_id": "8c817161-627f-4ff5-aa27-127757b88213"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "08e77546-a8f8-4fee-8ea0-1e5d7b259d7b",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "8c817161-627f-4ff5-aa27-127757b88213",
+            "printed_number": "71",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 111,
+              "printed_set_abbrev": "RR"
+            },
+            "identity_key_hash": "d4ed214dd5374280cb3c51fc8bb90d308becef49e0ceb7f2f98f2fbcdd8b5e5e",
+            "set_code_identity": "pl2",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "nidoran♀"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 60,
+            "id": 37151,
+            "types": [
+              "Psychic"
+            ],
+            "rarity": "Common",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-26T23:42:34.330507+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 29,
+            "card_category": "Basic",
+            "card_print_id": "8c817161-627f-4ff5-aa27-127757b88213",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "bc120b0e-4aad-47c1-989b-a733435a2000",
+        "card_print": {
+          "id": "bc120b0e-4aad-47c1-989b-a733435a2000",
+          "name": "Nidoran♂",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Common",
+          "set_id": "1b4f553a-f12c-4616-bead-ac5081865492",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl2/72/high.webp",
+          "created_at": "2026-03-26T23:42:34.830059+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:42:34.830059+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl2-72"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl2/72",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl2",
+        "resolved_set_name": "Rising Rivals",
+        "card_printings": [
+          {
+            "id": "65b6be37-a970-4308-8eec-82071cac0ba6",
+            "image_url": null,
+            "created_at": "2026-03-26T23:42:35.068031+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "bc120b0e-4aad-47c1-989b-a733435a2000",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl2-72",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "784a887f-4b92-4cc9-9d5d-4e7ebd2e67f0",
+            "image_url": null,
+            "created_at": "2026-03-26T23:42:35.160342+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "bc120b0e-4aad-47c1-989b-a733435a2000",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl2-72",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 35210,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-08T18:07:36.214074+00:00",
+            "external_id": "pl2-72",
+            "card_print_id": "bc120b0e-4aad-47c1-989b-a733435a2000"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "5bc5f203-37b7-4158-a483-d9db2da70baf",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "bc120b0e-4aad-47c1-989b-a733435a2000",
+            "printed_number": "72",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 111,
+              "printed_set_abbrev": "RR"
+            },
+            "identity_key_hash": "cb1600025f4b0d206f2b4591dd0971a8b76bac4f5442d62c48ebd8d8a627f44a",
+            "set_code_identity": "pl2",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "nidoran♂"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 50,
+            "id": 37152,
+            "types": [
+              "Psychic"
+            ],
+            "rarity": "Common",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-26T23:42:35.341309+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 32,
+            "card_category": "Basic",
+            "card_print_id": "bc120b0e-4aad-47c1-989b-a733435a2000",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "dd5bea69-e103-425d-9d45-adc5ff62d372",
+        "card_print": {
+          "id": "dd5bea69-e103-425d-9d45-adc5ff62d372",
+          "name": "Nidoran ♀",
+          "gv_id": "GV-PK-RR-71",
+          "artist": "Miki Tanaka",
+          "number": "71",
+          "rarity": "Common",
+          "set_id": "1b4f553a-f12c-4616-bead-ac5081865492",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": "pl2",
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl2/71/high.webp",
+          "created_at": "2025-11-16T06:32:35.437741+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2025-11-01T15:52:56.480034+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "71",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": {
+            "legacy_image_url": "https://images.pokemontcg.io/pl2/71_hires.png",
+            "pokemontcg_legacy": true
+          },
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl2",
+        "resolved_set_name": "Rising Rivals",
+        "card_printings": [
+          {
+            "id": "41dd323a-cbda-43a0-8a5e-fa6235d54d1f",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": null,
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "dd5bea69-e103-425d-9d45-adc5ff62d372",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-RR-71-STD",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "07a5dd10-702a-41bb-96d8-a8cf0081ba1d",
+            "image_url": null,
+            "created_at": "2026-02-24T01:53:43.186292+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "dd5bea69-e103-425d-9d45-adc5ff62d372",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-RR-71-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "0104fc59-640f-4470-8f46-17a8fea55b9a",
+        "card_print": {
+          "id": "0104fc59-640f-4470-8f46-17a8fea55b9a",
+          "name": "Nidoran ♂",
+          "gv_id": "GV-PK-RR-72",
+          "artist": "Ken Sugimori",
+          "number": "72",
+          "rarity": "Common",
+          "set_id": "1b4f553a-f12c-4616-bead-ac5081865492",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": "pl2",
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl2/72/high.webp",
+          "created_at": "2025-11-16T06:32:35.437741+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2025-12-27T19:26:16.337401+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "72",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": {
+            "legacy_image_url": "https://images.pokemontcg.io/pl2/72_hires.png",
+            "pokemontcg_legacy": true
+          },
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl2",
+        "resolved_set_name": "Rising Rivals",
+        "card_printings": [
+          {
+            "id": "7bbc940e-a956-4b13-a88a-2f8bcc100b8c",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": null,
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0104fc59-640f-4470-8f46-17a8fea55b9a",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-RR-72-STD",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "491361c0-ce32-4567-9d00-bd765b39328e",
+            "image_url": null,
+            "created_at": "2026-02-24T01:53:43.186292+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0104fc59-640f-4470-8f46-17a8fea55b9a",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-RR-72-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+        "card_print": {
+          "id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+          "name": "Arceus LV. X",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/94/high.webp",
+          "created_at": "2026-03-26T23:47:40.092251+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:40.092251+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-94"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/94",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl4",
+        "resolved_set_name": "Arceus",
+        "card_printings": [
+          {
+            "id": "99c5947d-6376-4954-98cc-2534b0e1eb4d",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:40.277031+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-94",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 60178,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-23T18:10:59.73984+00:00",
+            "external_id": "pl4-94",
+            "card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "1389f726-420b-4898-8fc2-88c263c53c27",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+            "printed_number": "94",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 99,
+              "printed_set_abbrev": "AR"
+            },
+            "identity_key_hash": "e5a2d3f22b741853b0a978f51ca88117d59aa8f17f621eb9154c51d11e0402a0",
+            "set_code_identity": "pl4",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "arceus lv. x"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": null,
+            "id": 37447,
+            "types": [
+              "Colorless"
+            ],
+            "rarity": "Rare Holo LV.X",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-26T23:47:40.459445+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 493,
+            "card_category": "LEVEL-UP",
+            "card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+        "card_print": {
+          "id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+          "name": "Arceus LV. X",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/96/high.webp",
+          "created_at": "2026-03-26T23:47:41.728021+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:41.728021+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-96"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/96",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl4",
+        "resolved_set_name": "Arceus",
+        "card_printings": [
+          {
+            "id": "e06a2a7a-b1e6-49a1-9fcf-105732fa7230",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:41.928163+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-96",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 60180,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-23T18:10:59.73984+00:00",
+            "external_id": "pl4-96",
+            "card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "a52d5198-f6b7-4481-aaa4-41b6896d5e88",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+            "printed_number": "96",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 99,
+              "printed_set_abbrev": "AR"
+            },
+            "identity_key_hash": "9c4ec4a2b712f5aa769e8317fa7f1e2617f172916166ef8d0b86a472b2837f16",
+            "set_code_identity": "pl4",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "arceus lv. x"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": null,
+            "id": 37449,
+            "types": [
+              "Colorless"
+            ],
+            "rarity": "Rare Holo LV.X",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-26T23:47:42.115977+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 493,
+            "card_category": "LEVEL-UP",
+            "card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+        "card_print": {
+          "id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+          "name": "Arceus LV. X",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/95/high.webp",
+          "created_at": "2026-03-26T23:47:40.90583+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:40.90583+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-95"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/95",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl4",
+        "resolved_set_name": "Arceus",
+        "card_printings": [
+          {
+            "id": "e4a86716-ad79-4747-a09d-b7bd7b0b4f71",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:41.089716+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-95",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 60179,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-23T18:10:59.73984+00:00",
+            "external_id": "pl4-95",
+            "card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "c9b351e1-9eb6-430a-aef2-5d4a3cb70453",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+            "printed_number": "95",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 99,
+              "printed_set_abbrev": "AR"
+            },
+            "identity_key_hash": "6ce669839c41f06533a15776690b38fe6335720fcb5cfcd50c40e665da519f9f",
+            "set_code_identity": "pl4",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "arceus lv. x"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": null,
+            "id": 37448,
+            "types": [
+              "Colorless"
+            ],
+            "rarity": "Rare Holo LV.X",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-26T23:47:41.266416+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 493,
+            "card_category": "LEVEL-UP",
+            "card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+        "card_print": {
+          "id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+          "name": "Gengar LV. X",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/97/high.webp",
+          "created_at": "2026-03-26T23:47:42.57652+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:42.57652+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-97"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/97",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl4",
+        "resolved_set_name": "Arceus",
+        "card_printings": [
+          {
+            "id": "53bc5d29-3a55-4797-93dd-819ca5cbc923",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:42.805788+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-97",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 60181,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-23T18:10:59.73984+00:00",
+            "external_id": "pl4-97",
+            "card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "0f014aa8-3a0a-4183-8147-7d27ee203a90",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+            "printed_number": "97",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 99,
+              "printed_set_abbrev": "AR"
+            },
+            "identity_key_hash": "493d5e1e3412740a97799ff2a2117d30deb6d9de0c3d2d61a22fdab86fc395ea",
+            "set_code_identity": "pl4",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "gengar lv. x"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": null,
+            "id": 37450,
+            "types": [
+              "Psychic"
+            ],
+            "rarity": "Rare Holo LV.X",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-26T23:47:43.005744+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 94,
+            "card_category": "LEVEL-UP",
+            "card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+        "card_print": {
+          "id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+          "name": "Salamence LV. X",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/98/high.webp",
+          "created_at": "2026-03-26T23:47:43.442472+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:43.442472+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-98"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/98",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl4",
+        "resolved_set_name": "Arceus",
+        "card_printings": [
+          {
+            "id": "e66af8cf-cc16-4ff8-93eb-c5c4f13bb75b",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:43.619732+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-98",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 60182,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-23T18:10:59.73984+00:00",
+            "external_id": "pl4-98",
+            "card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "b9ccd0aa-3b96-40e8-a2e9-b99af0f9b57f",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+            "printed_number": "98",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 99,
+              "printed_set_abbrev": "AR"
+            },
+            "identity_key_hash": "792802bff3174381e7290317e51aff444a83f74498bccc36e43fcbd2b880ee28",
+            "set_code_identity": "pl4",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "salamence lv. x"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": null,
+            "id": 37451,
+            "types": [
+              "Colorless"
+            ],
+            "rarity": "Rare Holo LV.X",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-26T23:47:43.80709+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 373,
+            "card_category": "LEVEL-UP",
+            "card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+        "card_print": {
+          "id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+          "name": "Tangrowth LV. X",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/99/high.webp",
+          "created_at": "2026-03-26T23:47:44.277178+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:44.277178+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-99"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/99",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl4",
+        "resolved_set_name": "Arceus",
+        "card_printings": [
+          {
+            "id": "aefe2eb1-ad38-418a-b814-320048008924",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:44.464125+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-99",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 60183,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-23T18:10:59.73984+00:00",
+            "external_id": "pl4-99",
+            "card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "843dd2e5-f257-4347-b61d-9bda94b6d4ee",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+            "printed_number": "99",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 99,
+              "printed_set_abbrev": "AR"
+            },
+            "identity_key_hash": "e1743aa49e63dce04d0a6d5297b2a1703ca0fae6f674055cdbfa13b37f90bc1c",
+            "set_code_identity": "pl4",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "tangrowth lv. x"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": null,
+            "id": 37452,
+            "types": [
+              "Grass"
+            ],
+            "rarity": "Rare Holo LV.X",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-26T23:47:44.647317+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 465,
+            "card_category": "LEVEL-UP",
+            "card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "1c2cef32-b323-4e64-b9ae-51439d5cd9b0",
+        "card_print": {
+          "id": "1c2cef32-b323-4e64-b9ae-51439d5cd9b0",
+          "name": "Arceus LV.X",
+          "gv_id": "GV-PK-AR-94",
+          "artist": "Shizurow",
+          "number": "94",
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": "pl4",
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/94/high.webp",
+          "created_at": "2025-11-16T06:32:35.437741+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2025-12-27T19:26:16.337401+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "94",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": {
+            "legacy_image_url": "https://images.pokemontcg.io/pl4/94_hires.png",
+            "pokemontcg_legacy": true
+          },
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl4",
+        "resolved_set_name": "Arceus",
+        "card_printings": [
+          {
+            "id": "ae5bd188-0613-422b-906c-414a45adcbac",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1c2cef32-b323-4e64-b9ae-51439d5cd9b0",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-AR-94-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "7e583fc5-66d0-4142-bea2-ec1f927a1bdc",
+        "card_print": {
+          "id": "7e583fc5-66d0-4142-bea2-ec1f927a1bdc",
+          "name": "Arceus LV.X",
+          "gv_id": "GV-PK-AR-95",
+          "artist": "Ryo Ueda",
+          "number": "95",
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": "pl4",
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/95/high.webp",
+          "created_at": "2025-11-16T06:32:35.437741+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2025-12-27T19:26:16.337401+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "95",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": {
+            "legacy_image_url": "https://images.pokemontcg.io/pl4/95_hires.png",
+            "pokemontcg_legacy": true
+          },
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl4",
+        "resolved_set_name": "Arceus",
+        "card_printings": [
+          {
+            "id": "b609bfb9-c417-4108-bd23-809b1400f6bd",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "7e583fc5-66d0-4142-bea2-ec1f927a1bdc",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-AR-95-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "4196309e-77f4-4bc6-93ac-5a5583a99a8e",
+        "card_print": {
+          "id": "4196309e-77f4-4bc6-93ac-5a5583a99a8e",
+          "name": "Arceus LV.X",
+          "gv_id": "GV-PK-AR-96",
+          "artist": "Ryo Ueda",
+          "number": "96",
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": "pl4",
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/96/high.webp",
+          "created_at": "2025-11-16T06:32:35.437741+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2025-12-27T19:26:16.337401+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "96",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": {
+            "legacy_image_url": "https://images.pokemontcg.io/pl4/96_hires.png",
+            "pokemontcg_legacy": true
+          },
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl4",
+        "resolved_set_name": "Arceus",
+        "card_printings": [
+          {
+            "id": "a403b284-475d-4047-94e7-991b9b80e865",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "4196309e-77f4-4bc6-93ac-5a5583a99a8e",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-AR-96-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "c2c128a7-8b1b-4e15-a857-723292b1a1a3",
+        "card_print": {
+          "id": "c2c128a7-8b1b-4e15-a857-723292b1a1a3",
+          "name": "Gengar LV.X",
+          "gv_id": "GV-PK-AR-97",
+          "artist": "Shizurow",
+          "number": "97",
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": "pl4",
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/97/high.webp",
+          "created_at": "2025-11-16T06:32:35.437741+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2025-12-27T19:26:16.337401+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "97",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": {
+            "legacy_image_url": "https://images.pokemontcg.io/pl4/97_hires.png",
+            "pokemontcg_legacy": true
+          },
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl4",
+        "resolved_set_name": "Arceus",
+        "card_printings": [
+          {
+            "id": "90d31b85-ca12-4045-a952-2abc8c7aebe2",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "c2c128a7-8b1b-4e15-a857-723292b1a1a3",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-AR-97-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 94289,
+            "meta": {
+              "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+              "justtcg_name": "Gengar Lv.X",
+              "resolved_via": "justtcg_direct_structure_exact",
+              "justtcg_number": "97/99",
+              "justtcg_rarity": "Ultra Rare",
+              "justtcg_set_id": "arceus-pokemon",
+              "override_reason": null,
+              "justtcg_set_name": "Arceus",
+              "set_alignment_method": "exact_raw_name",
+              "set_alignment_status": "exact_aligned",
+              "justtcg_query_number_used": "97",
+              "justtcg_query_variant_used": "raw",
+              "justtcg_query_variants_tried": [
+                "97"
+              ]
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-23T05:01:56.254+00:00",
+            "external_id": "pokemon-arceus-gengar-lv-x-ultra-rare",
+            "card_print_id": "c2c128a7-8b1b-4e15-a857-723292b1a1a3"
+          }
+        ],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "71d24e24-10ee-4047-93b1-14ab71bdaa1a",
+        "card_print": {
+          "id": "71d24e24-10ee-4047-93b1-14ab71bdaa1a",
+          "name": "Salamence LV.X",
+          "gv_id": "GV-PK-AR-98",
+          "artist": "Ryo Ueda",
+          "number": "98",
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": "pl4",
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/98/high.webp",
+          "created_at": "2025-11-16T06:32:35.437741+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2025-12-27T19:26:16.337401+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "98",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": {
+            "legacy_image_url": "https://images.pokemontcg.io/pl4/98_hires.png",
+            "pokemontcg_legacy": true
+          },
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl4",
+        "resolved_set_name": "Arceus",
+        "card_printings": [
+          {
+            "id": "bf2b56a9-fc25-4d3b-96ba-400be1b902b2",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "71d24e24-10ee-4047-93b1-14ab71bdaa1a",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-AR-98-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 94290,
+            "meta": {
+              "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+              "justtcg_name": "Salamence Lv.X",
+              "resolved_via": "justtcg_direct_structure_exact",
+              "justtcg_number": "98/99",
+              "justtcg_rarity": "Ultra Rare",
+              "justtcg_set_id": "arceus-pokemon",
+              "override_reason": null,
+              "justtcg_set_name": "Arceus",
+              "set_alignment_method": "exact_raw_name",
+              "set_alignment_status": "exact_aligned",
+              "justtcg_query_number_used": "98",
+              "justtcg_query_variant_used": "raw",
+              "justtcg_query_variants_tried": [
+                "98"
+              ]
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-23T05:01:57.996+00:00",
+            "external_id": "pokemon-arceus-salamence-lv-x-ultra-rare",
+            "card_print_id": "71d24e24-10ee-4047-93b1-14ab71bdaa1a"
+          }
+        ],
+        "card_print_identity": [],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "0b036f80-3ee6-47c4-8a08-fd128e273358",
+        "card_print": {
+          "id": "0b036f80-3ee6-47c4-8a08-fd128e273358",
+          "name": "Tangrowth LV.X",
+          "gv_id": "GV-PK-AR-99",
+          "artist": "Ryo Ueda",
+          "number": "99",
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": "pl4",
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/99/high.webp",
+          "created_at": "2025-11-16T06:32:35.437741+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2025-12-27T19:26:16.337401+00:00",
+          "ai_metadata": null,
+          "variant_key": "",
+          "external_ids": {},
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "99",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": {
+            "legacy_image_url": "https://images.pokemontcg.io/pl4/99_hires.png",
+            "pokemontcg_legacy": true
+          },
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "resolved_set_code": "pl4",
+        "resolved_set_name": "Arceus",
+        "card_printings": [
+          {
+            "id": "b5d81327-3537-4fa4-9407-79a0abec6d48",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0b036f80-3ee6-47c4-8a08-fd128e273358",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-AR-99-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 94291,
+            "meta": {
+              "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+              "justtcg_name": "Tangrowth Lv.X",
+              "resolved_via": "justtcg_direct_structure_exact",
+              "justtcg_number": "99/99",
+              "justtcg_rarity": "Ultra Rare",
+              "justtcg_set_id": "arceus-pokemon",
+              "override_reason": null,
+              "justtcg_set_name": "Arceus",
+              "set_alignment_method": "exact_raw_name",
+              "set_alignment_status": "exact_aligned",
+              "justtcg_query_number_used": "99",
+              "justtcg_query_variant_used": "raw",
+              "justtcg_query_variants_tried": [
+                "99"
+              ]
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-23T05:01:59.582+00:00",
+            "external_id": "pokemon-arceus-tangrowth-lv-x-ultra-rare",
+            "card_print_id": "0b036f80-3ee6-47c4-8a08-fd128e273358"
+          }
+        ],
+        "card_print_identity": [],
+        "card_print_traits": []
+      }
+    ],
+    "hash_sha256": "ca6bbbca58b64546658c33ffc2ab851982fe9d1342a1eefe6123d6645a49df69",
+    "impact_counts": {
+      "card_prints_found": 42,
+      "card_printings_found": 46,
+      "external_mappings_found": 33,
+      "identity_rows_found": 21,
+      "trait_rows_found": 24,
+      "blocked_child_printing_refs_found": 0
+    },
+    "child_reference_counts": {
+      "vault_item_instances": 0,
+      "external_printing_mappings": 0,
+      "canon_warehouse_candidates": 0
+    }
+  },
+  "set_summaries": [
+    {
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "duplicate_parent_rows": 3
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "duplicate_parent_rows": 10
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "duplicate_parent_rows": 2
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "duplicate_parent_rows": 6
+    }
+  ],
+  "parent_merge_matrix": [
+    {
+      "blocked_card_print_id": "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+      "survivor_card_print_id": "96794036-5dd7-42e5-a90f-516d90eeb3b9",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "target_number": "113",
+      "target_name": "Entei ★"
+    },
+    {
+      "blocked_card_print_id": "043dbc47-0815-4ef4-b31d-2027f70f2338",
+      "survivor_card_print_id": "64269238-e6e3-4fd2-9c14-b9fb6367c0d5",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "target_number": "114",
+      "target_name": "Raikou ★"
+    },
+    {
+      "blocked_card_print_id": "584c31ad-d7ac-4356-b9cc-4de3152511b2",
+      "survivor_card_print_id": "0aa71fae-b6ec-4a12-ac8d-35dbc3c769bf",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "target_number": "115",
+      "target_name": "Suicune ★"
+    },
+    {
+      "blocked_card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+      "survivor_card_print_id": "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_number": "001",
+      "target_name": "Meganium"
+    },
+    {
+      "blocked_card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+      "survivor_card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_number": "002",
+      "target_name": "Inteleon"
+    },
+    {
+      "blocked_card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+      "survivor_card_print_id": "718508f6-7825-43e8-98e1-a57b58dd490f",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_number": "003",
+      "target_name": "Alakazam"
+    },
+    {
+      "blocked_card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+      "survivor_card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_number": "004",
+      "target_name": "Lunatone"
+    },
+    {
+      "blocked_card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+      "survivor_card_print_id": "c5b19da0-1f2d-4b86-844f-90284539099d",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_number": "005",
+      "target_name": "Drifloon"
+    },
+    {
+      "blocked_card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+      "survivor_card_print_id": "69572cf4-a580-49cc-90d2-36c053f510a9",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_number": "006",
+      "target_name": "Drifblim"
+    },
+    {
+      "blocked_card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+      "survivor_card_print_id": "a683bb41-182d-440b-9e6c-d82ebfd38f1d",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_number": "007",
+      "target_name": "Psyduck"
+    },
+    {
+      "blocked_card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+      "survivor_card_print_id": "5dd278a1-ccaa-48e6-84c2-7190ee63c9d8",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_number": "008",
+      "target_name": "Golduck"
+    },
+    {
+      "blocked_card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+      "survivor_card_print_id": "26726d70-a78d-4210-9ccc-d79abd215099",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_number": "009",
+      "target_name": "Alakazam"
+    },
+    {
+      "blocked_card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+      "survivor_card_print_id": "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_number": "010",
+      "target_name": "Riolu"
+    },
+    {
+      "blocked_card_print_id": "8c817161-627f-4ff5-aa27-127757b88213",
+      "survivor_card_print_id": "dd5bea69-e103-425d-9d45-adc5ff62d372",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_number": "71",
+      "target_name": "Nidoran ♀"
+    },
+    {
+      "blocked_card_print_id": "bc120b0e-4aad-47c1-989b-a733435a2000",
+      "survivor_card_print_id": "0104fc59-640f-4470-8f46-17a8fea55b9a",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_number": "72",
+      "target_name": "Nidoran ♂"
+    },
+    {
+      "blocked_card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+      "survivor_card_print_id": "1c2cef32-b323-4e64-b9ae-51439d5cd9b0",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_number": "94",
+      "target_name": "Arceus LV.X"
+    },
+    {
+      "blocked_card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+      "survivor_card_print_id": "7e583fc5-66d0-4142-bea2-ec1f927a1bdc",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_number": "95",
+      "target_name": "Arceus LV.X"
+    },
+    {
+      "blocked_card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+      "survivor_card_print_id": "4196309e-77f4-4bc6-93ac-5a5583a99a8e",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_number": "96",
+      "target_name": "Arceus LV.X"
+    },
+    {
+      "blocked_card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+      "survivor_card_print_id": "c2c128a7-8b1b-4e15-a857-723292b1a1a3",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_number": "97",
+      "target_name": "Gengar LV.X"
+    },
+    {
+      "blocked_card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+      "survivor_card_print_id": "71d24e24-10ee-4047-93b1-14ab71bdaa1a",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_number": "98",
+      "target_name": "Salamence LV.X"
+    },
+    {
+      "blocked_card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+      "survivor_card_print_id": "0b036f80-3ee6-47c4-8a08-fd128e273358",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_number": "99",
+      "target_name": "Tangrowth LV.X"
+    }
+  ],
+  "child_merge_matrix": [
+    {
+      "blocked_card_print_id": "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+      "survivor_card_print_id": "96794036-5dd7-42e5-a90f-516d90eeb3b9",
+      "blocked_card_printing_id": "597aa8d8-7e4d-4f0a-b4ce-ebb96ed800e8",
+      "survivor_card_printing_id": "8a688e28-242a-42b4-8ff7-99c0596e8c46",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "043dbc47-0815-4ef4-b31d-2027f70f2338",
+      "survivor_card_print_id": "64269238-e6e3-4fd2-9c14-b9fb6367c0d5",
+      "blocked_card_printing_id": "90eb803f-345c-46f0-b5f3-6fd62af386d5",
+      "survivor_card_printing_id": "f60ef6d8-25e4-491d-bea8-3ef02e4a5f64",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "584c31ad-d7ac-4356-b9cc-4de3152511b2",
+      "survivor_card_print_id": "0aa71fae-b6ec-4a12-ac8d-35dbc3c769bf",
+      "blocked_card_printing_id": "4d6df833-3363-46a8-ad80-12ad715d9aec",
+      "survivor_card_printing_id": "f0d6e039-67d0-4aa0-a284-499107fd5a56",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+      "survivor_card_print_id": "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+      "blocked_card_printing_id": "2e4cadb9-44b8-490a-94af-3ea6f45f021f",
+      "survivor_card_printing_id": "fe043f63-7cd6-4095-a64b-5da01d4f48c0",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+      "survivor_card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+      "blocked_card_printing_id": "1d168cec-7194-42e4-9e62-691e5f1f8698",
+      "survivor_card_printing_id": "42918a6d-7aeb-42fe-9163-9489ea3070c5",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+      "survivor_card_print_id": "718508f6-7825-43e8-98e1-a57b58dd490f",
+      "blocked_card_printing_id": "7357533d-7e4b-430c-b8ce-f73c6d08cb55",
+      "survivor_card_printing_id": "c3fa605e-3e7f-419a-b09e-c5131e73664a",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+      "survivor_card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+      "blocked_card_printing_id": "cab49274-d396-43b7-a09a-9e43bd310abf",
+      "survivor_card_printing_id": "6f650737-4528-4b75-9b85-3037ce800dc2",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+      "survivor_card_print_id": "c5b19da0-1f2d-4b86-844f-90284539099d",
+      "blocked_card_printing_id": "52313084-cf51-490b-9b7d-ed4e00d30735",
+      "survivor_card_printing_id": "119ea6b4-8e8c-4f06-b5a1-a882fc9ddd23",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+      "survivor_card_print_id": "69572cf4-a580-49cc-90d2-36c053f510a9",
+      "blocked_card_printing_id": "e7102e38-efbc-4e3b-bf6f-fe4770b78b0d",
+      "survivor_card_printing_id": "09b92739-e605-4e7b-9e2f-78af37b9c744",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+      "survivor_card_print_id": "a683bb41-182d-440b-9e6c-d82ebfd38f1d",
+      "blocked_card_printing_id": "e54ac5bb-df1a-4fc0-8298-668e4f4f42f9",
+      "survivor_card_printing_id": "40163317-cb48-4a16-859e-ed40e9a52253",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+      "survivor_card_print_id": "5dd278a1-ccaa-48e6-84c2-7190ee63c9d8",
+      "blocked_card_printing_id": "7c71fdbc-98d3-4e80-a8b3-2e8c89cb4d30",
+      "survivor_card_printing_id": "5cf6846f-dd2d-4701-9fec-08fc1456d58c",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+      "survivor_card_print_id": "26726d70-a78d-4210-9ccc-d79abd215099",
+      "blocked_card_printing_id": "b2cb6ae1-c137-4013-b9b1-ccdbd58c9549",
+      "survivor_card_printing_id": "7a730508-9c9b-4b2e-8ddc-2eb75bb81990",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+      "survivor_card_print_id": "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+      "blocked_card_printing_id": "def4cbb4-1cc1-4ea4-86ed-e7d73c5dc5e0",
+      "survivor_card_printing_id": "10f0ed13-c908-4ac2-b03c-8c5db021f95b",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "8c817161-627f-4ff5-aa27-127757b88213",
+      "survivor_card_print_id": "dd5bea69-e103-425d-9d45-adc5ff62d372",
+      "blocked_card_printing_id": "9845afbb-0b55-4f96-9022-4083c6ed71f0",
+      "survivor_card_printing_id": "41dd323a-cbda-43a0-8a5e-fa6235d54d1f",
+      "finish_key": "normal"
+    },
+    {
+      "blocked_card_print_id": "8c817161-627f-4ff5-aa27-127757b88213",
+      "survivor_card_print_id": "dd5bea69-e103-425d-9d45-adc5ff62d372",
+      "blocked_card_printing_id": "964e7f55-9290-4080-b26b-9e4188904654",
+      "survivor_card_printing_id": "07a5dd10-702a-41bb-96d8-a8cf0081ba1d",
+      "finish_key": "reverse"
+    },
+    {
+      "blocked_card_print_id": "bc120b0e-4aad-47c1-989b-a733435a2000",
+      "survivor_card_print_id": "0104fc59-640f-4470-8f46-17a8fea55b9a",
+      "blocked_card_printing_id": "65b6be37-a970-4308-8eec-82071cac0ba6",
+      "survivor_card_printing_id": "7bbc940e-a956-4b13-a88a-2f8bcc100b8c",
+      "finish_key": "normal"
+    },
+    {
+      "blocked_card_print_id": "bc120b0e-4aad-47c1-989b-a733435a2000",
+      "survivor_card_print_id": "0104fc59-640f-4470-8f46-17a8fea55b9a",
+      "blocked_card_printing_id": "784a887f-4b92-4cc9-9d5d-4e7ebd2e67f0",
+      "survivor_card_printing_id": "491361c0-ce32-4567-9d00-bd765b39328e",
+      "finish_key": "reverse"
+    },
+    {
+      "blocked_card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+      "survivor_card_print_id": "1c2cef32-b323-4e64-b9ae-51439d5cd9b0",
+      "blocked_card_printing_id": "99c5947d-6376-4954-98cc-2534b0e1eb4d",
+      "survivor_card_printing_id": "ae5bd188-0613-422b-906c-414a45adcbac",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+      "survivor_card_print_id": "7e583fc5-66d0-4142-bea2-ec1f927a1bdc",
+      "blocked_card_printing_id": "e4a86716-ad79-4747-a09d-b7bd7b0b4f71",
+      "survivor_card_printing_id": "b609bfb9-c417-4108-bd23-809b1400f6bd",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+      "survivor_card_print_id": "4196309e-77f4-4bc6-93ac-5a5583a99a8e",
+      "blocked_card_printing_id": "e06a2a7a-b1e6-49a1-9fcf-105732fa7230",
+      "survivor_card_printing_id": "a403b284-475d-4047-94e7-991b9b80e865",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+      "survivor_card_print_id": "c2c128a7-8b1b-4e15-a857-723292b1a1a3",
+      "blocked_card_printing_id": "53bc5d29-3a55-4797-93dd-819ca5cbc923",
+      "survivor_card_printing_id": "90d31b85-ca12-4045-a952-2abc8c7aebe2",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+      "survivor_card_print_id": "71d24e24-10ee-4047-93b1-14ab71bdaa1a",
+      "blocked_card_printing_id": "e66af8cf-cc16-4ff8-93eb-c5c4f13bb75b",
+      "survivor_card_printing_id": "bf2b56a9-fc25-4d3b-96ba-400be1b902b2",
+      "finish_key": "holo"
+    },
+    {
+      "blocked_card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+      "survivor_card_print_id": "0b036f80-3ee6-47c4-8a08-fd128e273358",
+      "blocked_card_printing_id": "aefe2eb1-ad38-418a-b814-320048008924",
+      "survivor_card_printing_id": "b5d81327-3537-4fa4-9407-79a0abec6d48",
+      "finish_key": "holo"
+    }
+  ],
+  "sql_artifact": {
+    "path": "docs/sql/english_master_index_pkg02f_duplicate_dependency_transfer_guarded_dry_run_transaction_v1.sql",
+    "sha256": "b3a919d48a6e92a304aa9a0255eea0e80f9670e69209745c29fd40c231c31d1c",
+    "execution_performed": false,
+    "contains_update_statement": true,
+    "contains_delete_statement": true,
+    "contains_insert_statement": true,
+    "contains_commit_statement": false,
+    "contains_rollback_statement": true
+  },
+  "safety": [
+    "This is artifact preparation only.",
+    "No DB transaction was executed.",
+    "No real apply is authorized by this artifact.",
+    "The 58 number-key collision rows remain excluded.",
+    "The SQL artifact contains ROLLBACK and no COMMIT.",
+    "No migrations were created."
+  ],
+  "stop_findings": [],
+  "pass": true
+}

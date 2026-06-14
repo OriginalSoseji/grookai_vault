@@ -1,0 +1,151 @@
+{
+  "generated_at": "2026-06-11T15:57:36.738Z",
+  "version": "english_master_index_pkg15e_battle_academy_non_holo_guarded_dry_run_v1",
+  "package_id": "PKG-15E-BATTLE-ACADEMY-NON-HOLO-PARENT-INSERT",
+  "package_fingerprint_sha256": "b268384eaf62aabdb13b1754cb1fdd3b92c1b4a7ca9075f8211b9ef4134369a9",
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg15d_battle_academy_non_holo_adjudication_v1.json",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "target_count": 1,
+    "targets": [
+      {
+        "target_parent_id": "0a2b6e89-89b7-4fc1-a5d9-762bec994326",
+        "target_child_id": "1109fa5a-ee4f-4be3-a9b0-c03db432bbdb",
+        "base_parent_id": "5036e7c7-935a-40ef-b1cf-15f5dbb8a02b",
+        "set_key": "smp",
+        "set_name": "SM Black Star Promos",
+        "card_number": "SM65",
+        "card_name": "Alolan Raichu",
+        "target_finish_key": "normal",
+        "target_variant_key": "battle_academy_deck_mark",
+        "stamp_label": "Battle Academy Deck Mark",
+        "target_number_plain": "SM65",
+        "evidence": {
+          "adjudication_fingerprint": "128875366f9a89f8a907dd04bdf9a61ac9bbfba515d3de00d6974701f2d34486",
+          "source_package_id": "PKG-15D-BATTLE-ACADEMY-NON-HOLO-ADJUDICATION",
+          "stamp_family": "Battle Academy 2020",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_battle_academy_2020",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+              "evidence_label": "Battle Academy 2020 page states Non Holofoil print x2 of SM Black Star Promos Alolan Raichu and decklist row lists Alolan Raichu [SM Promo 65; Non Holofoil].",
+              "supports": [
+                "card_identity",
+                "stamp_family",
+                "normal_finish"
+              ]
+            },
+            {
+              "source_key": "pricecharting_promo_product_sales",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-promo/alolan-raichu-sm65",
+              "evidence_label": "PriceCharting exact Alolan Raichu SM65 product includes Battle Academy stamped and non-holo sale labels.",
+              "supports": [
+                "card_identity",
+                "stamp_family",
+                "normal_finish_review_support"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "pkg15e_battle_academy_non_holo_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 1,
+      "target_parent_count": 1,
+      "target_child_count": 1,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 1,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "PKG-15E-BATTLE-ACADEMY-NON-HOLO-PARENT-INSERT",
+      "package_fingerprint": "b268384eaf62aabdb13b1754cb1fdd3b92c1b4a7ca9075f8211b9ef4134369a9",
+      "target_rows": 1,
+      "inserted_parent_rows": 1,
+      "inserted_identity_rows": 1,
+      "inserted_child_rows": 1
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 1,
+      "identity_inserts": 1,
+      "child_inserts": 1,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-11T15:57:35.638Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "counts": {}
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-11T15:57:36.504Z",
+      "rows": [
+        {
+          "row_type": "target_child",
+          "row_id": "1109fa5a-ee4f-4be3-a9b0-c03db432bbdb",
+          "set_code": "smp",
+          "number": "SM65",
+          "number_plain": "65",
+          "name": "Alolan Raichu",
+          "variant_key": "battle_academy_deck_mark",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "5ef38a20-98b7-489a-b7ae-c8ddf8bf39d5",
+          "set_code": "smp",
+          "number": "SM65",
+          "number_plain": "65",
+          "name": "Alolan Raichu",
+          "variant_key": "battle_academy_deck_mark",
+          "finish_key": null,
+          "identity_key_hash": "9ad12049e24337ca62215818b42782b09825fbea048ac9a02f0a5fbae2336cd0"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "0a2b6e89-89b7-4fc1-a5d9-762bec994326",
+          "set_code": "smp",
+          "number": "SM65",
+          "number_plain": "65",
+          "name": "Alolan Raichu",
+          "variant_key": "battle_academy_deck_mark",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "2219eaf332e813fb04e845960533b1c928d05fa120234a19e34412515d341342",
+      "counts": {
+        "target_child": 1,
+        "target_identity": 1,
+        "target_parent": 1
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-11T15:57:36.659Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "counts": {}
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "aada8d9caee028c0ce1c340b69d4e9f2a3e416b8e7ddbd89c5040880c7e691ef",
+    "stop_findings": []
+  }
+}

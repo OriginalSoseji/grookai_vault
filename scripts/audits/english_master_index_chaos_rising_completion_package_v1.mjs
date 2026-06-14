@@ -48,6 +48,14 @@ function cardKey(row) {
   ].join('|');
 }
 
+function printingKey(number, name, finishKey) {
+  return [
+    normalizeNumber(number),
+    normalizeText(name),
+    String(finishKey ?? '').trim(),
+  ].join('|');
+}
+
 function buildIndexRows({ cardsArtifact, printingsArtifact, grookaiAudit }) {
   const cards = (cardsArtifact.cards ?? [])
     .filter((row) => row.set_key === SET_KEY)
@@ -213,6 +221,41 @@ function summarize({ indexRows, live }) {
   };
 }
 
+function exactLiveComparison({ indexRows, live }) {
+  const expected = new Map();
+  for (const row of indexRows.plannedPrintings) {
+    expected.set(printingKey(row.card_number, row.card_name, row.finish_key), row);
+  }
+
+  const liveRows = live.card_printings ?? [];
+  const actual = new Map();
+  for (const row of liveRows) {
+    actual.set(printingKey(row.number_plain ?? row.number, row.name, row.finish_key), row);
+  }
+
+  const missing = [];
+  const verified = [];
+  for (const [key, row] of expected.entries()) {
+    if (actual.has(key)) verified.push(row);
+    else missing.push(row);
+  }
+
+  const unsupported = [];
+  for (const [key, row] of actual.entries()) {
+    if (!expected.has(key)) unsupported.push(row);
+  }
+
+  return {
+    verified_by_index: verified.length,
+    missing_from_grookai: missing.length,
+    unsupported_by_current_index: unsupported.length,
+    expected_printings: expected.size,
+    live_printings: actual.size,
+    missing_rows: missing,
+    unsupported_rows: unsupported,
+  };
+}
+
 function blockers(summary, live) {
   const rows = [];
   if (!live.connection_available) rows.push({ blocker: live.blocker, severity: 'hard', required_resolution: 'Provide read-only DB connection before any dry-run package can be verified.' });
@@ -226,18 +269,32 @@ function blockers(summary, live) {
 function buildReport({ indexRows, live }) {
   const generatedAt = new Date().toISOString();
   const summary = summarize({ indexRows, live });
+  const comparison = exactLiveComparison({ indexRows, live });
   const blockerRows = blockers(summary, live);
+  const masterIndexComplete = summary.master_index_cards === 122 && summary.master_index_printings === 247;
+  const liveMatchesMasterIndex = (
+    summary.live_set_rows === 1
+    && summary.live_card_print_rows === summary.master_index_cards
+    && summary.live_card_printing_rows === summary.master_index_printings
+    && comparison.verified_by_index === summary.master_index_printings
+    && comparison.missing_from_grookai === 0
+    && comparison.unsupported_by_current_index === 0
+  );
   return {
     version: 'CHAOS_RISING_COMPLETION_PACKAGE_V1',
     generated_at: generatedAt,
     ...safety(),
     conclusion: {
-      master_index_complete: summary.master_index_cards === 122 && summary.master_index_printings === 247,
-      grookai_complete: false,
-      ready_for_write_package: false,
-      reason: 'Chaos Rising is master-verified in the index, but Grookai has no live set/card_print/card_printing rows for this set.',
+      master_index_complete: masterIndexComplete,
+      grookai_complete: liveMatchesMasterIndex,
+      live_matches_master_index: liveMatchesMasterIndex,
+      ready_for_write_package: !liveMatchesMasterIndex,
+      reason: liveMatchesMasterIndex
+        ? 'Chaos Rising live Grookai rows match the Verified Master Index counts for this set.'
+        : 'Chaos Rising is master-verified in the index, but Grookai live rows do not yet match this set.',
     },
     summary,
+    live_master_index_comparison: comparison,
     standard_ingestion_path: {
       intended_source: 'tcgdex',
       set_aliases: SET_ALIASES,
@@ -302,6 +359,18 @@ function buildMarkdown(report) {
       key,
       Array.isArray(value) || typeof value === 'object' ? JSON.stringify(value) : value,
     ])),
+    '',
+    '## Live Master Index Comparison',
+    '',
+    markdownTable(
+      ['metric', 'value'],
+      Object.entries(report.live_master_index_comparison)
+        .filter(([key]) => !['missing_rows', 'unsupported_rows'].includes(key))
+        .map(([key, value]) => [
+          key,
+          Array.isArray(value) || typeof value === 'object' ? JSON.stringify(value) : value,
+        ]),
+    ),
     '',
     '## Master Index Printings By Finish',
     '',

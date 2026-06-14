@@ -1,0 +1,670 @@
+{
+  "generated_at": "2026-06-11T13:24:10.023Z",
+  "version": "english_master_index_pkg15c_stamped_reverse_burger_king_real_apply_v1",
+  "package_id": "PKG-15C-STAMPED-REVERSE-BURGER-KING-PARENT-INSERTS",
+  "package_fingerprint_sha256": "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053",
+  "dry_run_proof_sha256": "35f15587cc9e0d5c3d8704f77d3f6c138643f68ae27c48d2419b1e1b8c7f6911",
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json",
+  "db_writes_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "target_count": 8,
+    "targets": [
+      {
+        "target_parent_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+        "target_child_id": "206271f6-5a8f-42e6-ab58-278bbc0e46db",
+        "base_parent_id": "ac32631b-2719-4e00-a7f5-a50c72b462d8",
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "card_number": "35",
+        "card_name": "Pachirisu",
+        "target_finish_key": "reverse",
+        "target_variant_key": "diamond_pearl_stamp",
+        "stamp_label": "Diamond & Pearl Stamp",
+        "target_number_plain": "35",
+        "evidence": {
+          "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+          "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+          "stamp_family": "Burger King Collection 2008",
+          "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_2008_burger_king_toys",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/2008_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "evidence_label": "Burger King 2008 checklist lists Pachirisu 35/130; page states Diamond & Pearl stamp mirror reverse holofoil variants.",
+              "supports": [
+                "card_identity",
+                "stamp_family",
+                "reverse_finish"
+              ]
+            },
+            {
+              "source_key": "pricecharting_stamped_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-diamond-%26-pearl/pachirisu-stamped-35",
+              "evidence_label": "PriceCharting exact product: Pachirisu [Stamped] #35 in Pokemon Diamond & Pearl.",
+              "supports": [
+                "card_identity",
+                "stamp_family"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+        "target_child_id": "dbbaeb57-2ca7-4259-a183-c97bc44513ba",
+        "base_parent_id": "dc32a8e3-0417-4d35-a5a3-85d80e67dd7b",
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "card_number": "49",
+        "card_name": "Grotle",
+        "target_finish_key": "reverse",
+        "target_variant_key": "diamond_pearl_stamp",
+        "stamp_label": "Diamond & Pearl Stamp",
+        "target_number_plain": "49",
+        "evidence": {
+          "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+          "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+          "stamp_family": "Burger King Collection 2008",
+          "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_diamond_pearl_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_(TCG)",
+              "evidence_label": "Diamond & Pearl additional-cards table lists Grotle 49/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008.",
+              "supports": [
+                "card_identity",
+                "stamp_family",
+                "reverse_finish"
+              ]
+            },
+            {
+              "source_key": "tcgplayer_burger_king_promos",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/155608/pokemon-burger-king-promos-grotle-49-130-diamond-and-pearl",
+              "evidence_label": "TCGplayer exact Burger King Promos product for Grotle 49/130 [Diamond & Pearl] exposes Reverse Holofoil pricing.",
+              "supports": [
+                "card_identity",
+                "reverse_finish"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+        "target_child_id": "f61e1f6a-ec43-485e-acd0-a1e3e824c22f",
+        "base_parent_id": "3a295e31-d617-4168-a8fe-fa0aacbf503b",
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "card_number": "56",
+        "card_name": "Monferno",
+        "target_finish_key": "reverse",
+        "target_variant_key": "diamond_pearl_stamp",
+        "stamp_label": "Diamond & Pearl Stamp",
+        "target_number_plain": "56",
+        "evidence": {
+          "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+          "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+          "stamp_family": "Burger King Collection 2008",
+          "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_diamond_pearl_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_(TCG)",
+              "evidence_label": "Diamond & Pearl additional-cards table lists Monferno 56/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008.",
+              "supports": [
+                "card_identity",
+                "stamp_family",
+                "reverse_finish"
+              ]
+            },
+            {
+              "source_key": "tcgplayer_burger_king_promos",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/174129/pokemon-burger-king-promos-monferno-56-130-diamond-and-pearl",
+              "evidence_label": "TCGplayer exact Burger King Promos product for Monferno 56/130 [Diamond & Pearl] exposes Reverse Holofoil pricing.",
+              "supports": [
+                "card_identity",
+                "reverse_finish"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "006b48c2-45af-486e-9059-ebf0c2a4f329",
+        "target_child_id": "7b63ea82-e888-47be-9d23-96810c96e544",
+        "base_parent_id": "fe21146c-77fb-49af-8f3e-e9ac85302308",
+        "set_key": "dp5",
+        "set_name": "Majestic Dawn",
+        "card_number": "56",
+        "card_name": "Chimchar",
+        "target_finish_key": "reverse",
+        "target_variant_key": "platinum_stamped_burger_king_2009",
+        "stamp_label": "Platinum Stamped Burger King 2009",
+        "target_number_plain": "56",
+        "evidence": {
+          "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+          "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+          "stamp_family": "Burger King Collection 2009",
+          "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_2009_burger_king_toys",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "evidence_label": "Burger King 2009 checklist lists Chimchar 56/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "supports": [
+                "card_identity",
+                "stamp_family",
+                "reverse_finish"
+              ]
+            },
+            {
+              "source_key": "pricecharting_stamped_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/chimchar-stamped-56",
+              "evidence_label": "PriceCharting exact product: Chimchar [Stamped] #56 in Pokemon Majestic Dawn.",
+              "supports": [
+                "card_identity",
+                "stamp_family"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "5d43f0d8-0fb3-4a0d-bcef-999fd40e67af",
+        "target_child_id": "6d4b7093-9427-4581-951d-d3204a5e60f7",
+        "base_parent_id": "4f7dfaf4-8edf-43db-b358-d5129d5f20a4",
+        "set_key": "dp5",
+        "set_name": "Majestic Dawn",
+        "card_number": "62",
+        "card_name": "Eevee",
+        "target_finish_key": "reverse",
+        "target_variant_key": "platinum_stamped_burger_king_2009",
+        "stamp_label": "Platinum Stamped Burger King 2009",
+        "target_number_plain": "62",
+        "evidence": {
+          "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+          "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+          "stamp_family": "Burger King Collection 2009",
+          "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_2009_burger_king_toys",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "evidence_label": "Burger King 2009 checklist lists Eevee 62/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "supports": [
+                "card_identity",
+                "stamp_family",
+                "reverse_finish"
+              ]
+            },
+            {
+              "source_key": "tcgplayer_burger_king_promos",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/155605/pokemon-burger-king-promos-eevee-62-100-platinum",
+              "evidence_label": "TCGplayer exact Burger King Promos product for Eevee 62/100 [Platinum] exposes Reverse Holofoil pricing.",
+              "supports": [
+                "card_identity",
+                "reverse_finish"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "41c3c346-edf5-4306-9dd9-992823418994",
+        "target_child_id": "210886b2-8058-465d-bf87-3fe1d93b3047",
+        "base_parent_id": "0af5eedc-e0a8-4e65-9a1a-e9a65092be64",
+        "set_key": "dp5",
+        "set_name": "Majestic Dawn",
+        "card_number": "70",
+        "card_name": "Pikachu",
+        "target_finish_key": "reverse",
+        "target_variant_key": "platinum_stamped_burger_king_2009",
+        "stamp_label": "Platinum Stamped Burger King 2009",
+        "target_number_plain": "70",
+        "evidence": {
+          "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+          "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+          "stamp_family": "Burger King Collection 2009",
+          "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_2009_burger_king_toys",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "evidence_label": "Burger King 2009 checklist lists Pikachu 70/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "supports": [
+                "card_identity",
+                "stamp_family",
+                "reverse_finish"
+              ]
+            },
+            {
+              "source_key": "pricecharting_reverse_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/pikachu-reverse-holo-70",
+              "evidence_label": "PriceCharting reverse-holo product for Pikachu #70 includes observed Platinum-stamped reverse-holo sale labels.",
+              "supports": [
+                "card_identity",
+                "reverse_finish"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "2df55ec4-c010-4a01-b468-d1da7270e9d2",
+        "target_child_id": "1b4e0a4b-0509-4270-a07d-63c906f3cee5",
+        "base_parent_id": "3e5fcdad-5a67-44fd-834c-ede3da5ddb78",
+        "set_key": "dp5",
+        "set_name": "Majestic Dawn",
+        "card_number": "71",
+        "card_name": "Piplup",
+        "target_finish_key": "reverse",
+        "target_variant_key": "platinum_stamped_burger_king_2009",
+        "stamp_label": "Platinum Stamped Burger King 2009",
+        "target_number_plain": "71",
+        "evidence": {
+          "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+          "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+          "stamp_family": "Burger King Collection 2009",
+          "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_2009_burger_king_toys",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "evidence_label": "Burger King 2009 checklist lists Piplup 71/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "supports": [
+                "card_identity",
+                "stamp_family",
+                "reverse_finish"
+              ]
+            },
+            {
+              "source_key": "pricecharting_reverse_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/piplup-reverse-holo-71",
+              "evidence_label": "PriceCharting reverse-holo product for Piplup #71 includes observed stamped reverse-holo sale labels.",
+              "supports": [
+                "card_identity",
+                "reverse_finish"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "d47a7931-82b8-42ba-a6dc-4137642c2f78",
+        "target_child_id": "82a0c5ab-c4e7-440b-9cee-320499342139",
+        "base_parent_id": "130661d1-bbfe-49ea-b8e6-2122d3c45c35",
+        "set_key": "dp5",
+        "set_name": "Majestic Dawn",
+        "card_number": "77",
+        "card_name": "Turtwig",
+        "target_finish_key": "reverse",
+        "target_variant_key": "platinum_stamped_burger_king_2009",
+        "stamp_label": "Platinum Stamped Burger King 2009",
+        "target_number_plain": "77",
+        "evidence": {
+          "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+          "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+          "stamp_family": "Burger King Collection 2009",
+          "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_2009_burger_king_toys",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "evidence_label": "Burger King 2009 checklist lists Turtwig 77/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "supports": [
+                "card_identity",
+                "stamp_family",
+                "reverse_finish"
+              ]
+            },
+            {
+              "source_key": "pricecharting_stamped_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/turtwig-stamped-77-77",
+              "evidence_label": "PriceCharting exact product: Turtwig [Stamped] #77 in Pokemon Majestic Dawn includes reverse-holo stamped sale labels.",
+              "supports": [
+                "card_identity",
+                "stamp_family",
+                "reverse_finish"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "execution": {
+    "apply_status": "pkg15c_stamped_reverse_burger_king_real_apply_committed",
+    "guard": {
+      "target_count": 8,
+      "target_parent_count": 8,
+      "target_child_count": 8,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 8,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "PKG-15C-STAMPED-REVERSE-BURGER-KING-PARENT-INSERTS",
+      "package_fingerprint": "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053",
+      "target_rows": 8,
+      "inserted_parent_rows": 8,
+      "inserted_identity_rows": 8,
+      "inserted_child_rows": 8
+    },
+    "write_counts": {
+      "parent_inserts": 8,
+      "identity_inserts": 8,
+      "child_inserts": 8,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-11T13:24:08.953Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "counts": {}
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-11T13:24:09.938Z",
+      "rows": [
+        {
+          "row_type": "target_child",
+          "row_id": "206271f6-5a8f-42e6-ab58-278bbc0e46db",
+          "set_code": "dp1",
+          "number": "35",
+          "number_plain": "35",
+          "name": "Pachirisu",
+          "variant_key": "diamond_pearl_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "dbbaeb57-2ca7-4259-a183-c97bc44513ba",
+          "set_code": "dp1",
+          "number": "49",
+          "number_plain": "49",
+          "name": "Grotle",
+          "variant_key": "diamond_pearl_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "f61e1f6a-ec43-485e-acd0-a1e3e824c22f",
+          "set_code": "dp1",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Monferno",
+          "variant_key": "diamond_pearl_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "7b63ea82-e888-47be-9d23-96810c96e544",
+          "set_code": "dp5",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Chimchar",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "6d4b7093-9427-4581-951d-d3204a5e60f7",
+          "set_code": "dp5",
+          "number": "62",
+          "number_plain": "62",
+          "name": "Eevee",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "210886b2-8058-465d-bf87-3fe1d93b3047",
+          "set_code": "dp5",
+          "number": "70",
+          "number_plain": "70",
+          "name": "Pikachu",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "1b4e0a4b-0509-4270-a07d-63c906f3cee5",
+          "set_code": "dp5",
+          "number": "71",
+          "number_plain": "71",
+          "name": "Piplup",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "82a0c5ab-c4e7-440b-9cee-320499342139",
+          "set_code": "dp5",
+          "number": "77",
+          "number_plain": "77",
+          "name": "Turtwig",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "16c8dfb3-2dc2-4676-8b12-1a50e38d353f",
+          "set_code": "dp1",
+          "number": "35",
+          "number_plain": "35",
+          "name": "Pachirisu",
+          "variant_key": "diamond_pearl_stamp",
+          "finish_key": null,
+          "identity_key_hash": "ad40e5569db12a7b98876a5f2eb48008ada61d05103b9cf992a4bc273585908f"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "bea24373-703c-4278-97ae-05585a98f3fd",
+          "set_code": "dp1",
+          "number": "49",
+          "number_plain": "49",
+          "name": "Grotle",
+          "variant_key": "diamond_pearl_stamp",
+          "finish_key": null,
+          "identity_key_hash": "8f85669987529646b55f62095ecb25811e6dab3394069db010e400f33a7f55c5"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "dc200a11-507c-429e-b681-d5cf8e2c3d8b",
+          "set_code": "dp1",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Monferno",
+          "variant_key": "diamond_pearl_stamp",
+          "finish_key": null,
+          "identity_key_hash": "d3e812d2f07e798f3c7e74c70cbf6f9c8b29b57d7ab3f95532cbebf29122deab"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "13636167-5ccc-4c00-8faa-1d0b2483ce8f",
+          "set_code": "dp5",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Chimchar",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": null,
+          "identity_key_hash": "c2cde612886659ae3f9bf2f7e203f4591f24f95b0720323f73c333f6cc14db97"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "a4990db6-f406-4cbd-ad10-6ca112b5ee70",
+          "set_code": "dp5",
+          "number": "62",
+          "number_plain": "62",
+          "name": "Eevee",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": null,
+          "identity_key_hash": "7f561233b757f7708910962689e8c7241dd2ca37c406824f66fb838defddb142"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "9da66356-de7e-48e4-a2e7-1db3b8ad9fa1",
+          "set_code": "dp5",
+          "number": "70",
+          "number_plain": "70",
+          "name": "Pikachu",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": null,
+          "identity_key_hash": "ea4d2f25d5600d0bc0b183b59e2863b4a890f1ba6c52e19d2831a68a429e6a2d"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2ed97069-0f48-4f5e-b455-c84790b3e6c1",
+          "set_code": "dp5",
+          "number": "71",
+          "number_plain": "71",
+          "name": "Piplup",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": null,
+          "identity_key_hash": "2730dec13f9beb77f8979aa4d85b1fdaa13a1ca4978afc70fcda327c952b6895"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2cea0045-6ae1-4168-b918-f3bf69ccd437",
+          "set_code": "dp5",
+          "number": "77",
+          "number_plain": "77",
+          "name": "Turtwig",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": null,
+          "identity_key_hash": "50dfa8886e58568c4b0fe7b8c6fcbb8591749813e84291478b1a404843f33d7a"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+          "set_code": "dp1",
+          "number": "35",
+          "number_plain": "35",
+          "name": "Pachirisu",
+          "variant_key": "diamond_pearl_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+          "set_code": "dp1",
+          "number": "49",
+          "number_plain": "49",
+          "name": "Grotle",
+          "variant_key": "diamond_pearl_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+          "set_code": "dp1",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Monferno",
+          "variant_key": "diamond_pearl_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "006b48c2-45af-486e-9059-ebf0c2a4f329",
+          "set_code": "dp5",
+          "number": "56",
+          "number_plain": "56",
+          "name": "Chimchar",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "5d43f0d8-0fb3-4a0d-bcef-999fd40e67af",
+          "set_code": "dp5",
+          "number": "62",
+          "number_plain": "62",
+          "name": "Eevee",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "41c3c346-edf5-4306-9dd9-992823418994",
+          "set_code": "dp5",
+          "number": "70",
+          "number_plain": "70",
+          "name": "Pikachu",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "2df55ec4-c010-4a01-b468-d1da7270e9d2",
+          "set_code": "dp5",
+          "number": "71",
+          "number_plain": "71",
+          "name": "Piplup",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d47a7931-82b8-42ba-a6dc-4137642c2f78",
+          "set_code": "dp5",
+          "number": "77",
+          "number_plain": "77",
+          "name": "Turtwig",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "68baf6f9d494092b59d849681ec216d4683d8dbef8255b2a4ab210b3dd251549",
+      "counts": {
+        "target_child": 8,
+        "target_identity": 8,
+        "target_parent": 8
+      }
+    },
+    "verification_hash_sha256": "2b5646fdcd696f70b7e8f904920483042c9edc24870faa2dec0827f3c7429316",
+    "stop_findings": []
+  }
+}

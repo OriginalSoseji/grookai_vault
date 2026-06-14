@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T03:46:37.268Z",
+  "generated_at": "2026-06-13T00:35:17.507Z",
   "version": "english_master_index_audit_closure_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -11,11 +11,11 @@
   "audit_status": "complete_to_pkg01_split_one_set_pilot_boundary_no_write",
   "conclusion": {
     "entire_audit_completed_to_current_evidence_boundary": true,
-    "master_index_complete": true,
+    "master_index_complete": false,
     "ready_for_db_writes": false,
-    "reason": "The completed Master Index now has PKG-01 split into one-set pilot PKG-01A and blocked remainder PKG-01B. The pilot package is ready for explicit operator decision, but writes still need recorded pilot approval, a final fresh snapshot, an actual guarded execution artifact, and transactional verification.",
-    "strongest_positive_finding": "PKG-01A isolates one low-blast-radius fut2020 row / one child printing from the 106-row PKG-01 package; PKG-01B keeps the remaining 105 rows blocked until pilot verification.",
-    "main_blocker": "PKG-01A is ready for explicit operator decision, but approval is not recorded and no executable guarded transaction artifact exists for the one-set pilot.",
+    "reason": "The completed Master Index has refreshed DB-vs-index planning after FUT2020. The current physical-recovery package set is blocked from apply design readiness because 3 package review finding(s) remain, including 4 vault item reference(s).",
+    "strongest_positive_finding": "FUT2020 is reconciled as verified_by_index after apply, and the refreshed recovery queue excludes FUT2020 while preserving 18 dry-run package(s) for future review.",
+    "main_blocker": "Resolve or split out package stop findings before apply design can proceed: 3 finding(s), 4 vault item reference(s).",
     "finish_blocker_boundary": "Former finish blockers are adjudicated exclusions outside working truth, not open completion gaps."
   },
   "summary": {
@@ -23,18 +23,19 @@
     "db_writes_allowed_from_this_plan": false,
     "master_index_completion": {
       "sets_in_registry": 201,
-      "complete_master_index_sets": 199,
-      "incomplete_sets": 2,
+      "complete_master_index_sets": 189,
+      "incomplete_sets": 12,
       "working_card_identity_facts": 21520,
       "master_admissible_card_identity_facts": 21520,
       "printing_derived_card_identity_facts": 0,
-      "working_printing_facts": 38841,
-      "master_admissible_printing_facts": 38841,
+      "working_printing_facts": 38927,
+      "master_admissible_printing_facts": 38893,
       "finish_absence_facts": 22,
       "finish_blocker_boundary_facts": 0,
       "adjudicated_excluded_printing_facts": 5,
       "by_completion_status": {
-        "complete_master_index_set": 199,
+        "card_identity_complete_finish_incomplete": 10,
+        "complete_master_index_set": 189,
         "non_standard_single_source_reference": 2
       },
       "by_card_fact_status": {
@@ -42,32 +43,34 @@
         "api_agreed": 9
       },
       "by_printing_fact_status": {
-        "master_verified": 38841
+        "master_verified": 38893,
+        "human_source_verified": 34
       },
-      "source_gap_queue_items": 0,
+      "source_gap_queue_items": 10,
       "grookai_reconciliation_performed": false
     },
-    "planning_ready_but_write_blocked": 75619,
-    "blocked_rows_counted": 30607,
-    "grookai_printing_rows": 55266,
-    "index_printing_rows": 38841,
+    "planning_ready_but_write_blocked": 80347,
+    "blocked_rows_counted": 27510,
+    "grookai_printing_rows": 59614,
+    "index_printing_rows": 38893,
     "global_status_counts": {
-      "human_source_verified_by_index": 1,
-      "master_verified_by_index": 31975,
-      "missing_from_grookai": 7317,
-      "name_mismatch_needs_review": 139,
-      "set_unmapped": 11176,
-      "unsupported_by_current_index": 11975
+      "human_source_verified_by_index": 17,
+      "master_verified_by_index": 36651,
+      "missing_from_grookai": 4564,
+      "name_mismatch_needs_review": 176,
+      "set_unmapped": 10462,
+      "unsupported_by_current_index": 12308
     },
     "set_unmapped_categories": {
       "legacy_orphan": 16,
-      "missing_set_code": 5733,
+      "missing_set_code": 5019,
       "out_of_scope_pocket": 5427
     },
     "physical_recovery_exact_match": {
-      "candidate_card_prints": 807,
-      "candidate_printing_rows": 1685,
+      "candidate_card_prints": 802,
+      "candidate_printing_rows": 1672,
       "by_set": {
+        "2021swsh": 25,
         "bw11": 25,
         "bw9": 2,
         "cel25": 4,
@@ -76,58 +79,71 @@
         "ecard2": 13,
         "ecard3": 15,
         "ex10": 3,
-        "fut2020": 5,
-        "mcd21": 25,
-        "me1": 83,
+        "me01": 83,
         "mep": 10,
-        "pgo": 34,
         "pl1": 9,
         "pl2": 37,
         "pl3": 9,
         "pl4": 20,
-        "sv4pt5": 108,
-        "sv6pt5": 52,
-        "sv8pt5": 180,
+        "sv04.5": 108,
+        "sv06.5": 52,
+        "sv08.5": 180,
         "svp": 73,
+        "swsh10.5": 34,
         "swsh2": 1,
-        "swsh45": 2,
+        "swsh4.5": 2,
         "xy4": 16,
         "xy9": 1,
         "xyp": 61
       },
       "by_card_match_status": {
-        "exact_card_identity_match": 319,
-        "number_missing_from_index": 488
+        "exact_card_identity_match": 798,
+        "number_missing_from_index": 4
       },
       "by_finish_match_status": {
-        "partial_finishes_supported_by_index": 210,
-        "blocked_until_card_identity_match": 488,
-        "all_finishes_master_verified_by_index": 106,
+        "all_finishes_master_verified_by_index": 422,
+        "partial_finishes_supported_by_index": 373,
+        "blocked_until_card_identity_match": 4,
         "no_finishes_supported_by_index": 3
       },
       "by_combined_status": {
-        "exact_card_identity_match / partial_finishes_supported_by_index": 210,
-        "number_missing_from_index / blocked_until_card_identity_match": 488,
-        "exact_card_identity_match / all_finishes_master_verified_by_index": 106,
+        "exact_card_identity_match / all_finishes_master_verified_by_index": 422,
+        "exact_card_identity_match / partial_finishes_supported_by_index": 373,
+        "number_missing_from_index / blocked_until_card_identity_match": 4,
         "exact_card_identity_match / no_finishes_supported_by_index": 3
       },
       "by_era_lane": {
+        "other": 25,
         "legacy": 169,
-        "promo_or_special": 212,
-        "modern": 426
+        "promo_or_special": 148,
+        "modern": 460
       },
       "printing_rows_by_finish_status": {
-        "partial_finishes_supported_by_index": 608,
-        "blocked_until_card_identity_match": 925,
-        "all_finishes_master_verified_by_index": 143,
+        "all_finishes_master_verified_by_index": 643,
+        "partial_finishes_supported_by_index": 1016,
+        "blocked_until_card_identity_match": 4,
         "no_finishes_supported_by_index": 9
       }
     },
     "generated_dry_run_packages": {
-      "package_count": 12,
-      "candidate_card_prints": 106,
-      "candidate_printing_rows": 143,
+      "package_count": 18,
+      "candidate_card_prints": 422,
+      "candidate_printing_rows": 643,
       "packages": [
+        {
+          "file": "2021swsh_physical_recovery_dry_run_v1.json",
+          "version": "2021swsh_physical_recovery_dry_run_v1",
+          "target_set_key": "2021swsh",
+          "target_set_name": "McDonald's Collection 2021",
+          "dry_run_package_status": "ready_for_review_no_write",
+          "candidate_card_prints": 25,
+          "candidate_printing_rows": 50,
+          "db_snapshot_available": true,
+          "db_card_prints_found": 25,
+          "db_card_printings_found": 50,
+          "vault_items_referencing_targets": 0,
+          "write_ready_now": 0
+        },
         {
           "file": "col1_physical_recovery_dry_run_v1.json",
           "version": "col1_physical_recovery_dry_run_v1",
@@ -199,17 +215,17 @@
           "write_ready_now": 0
         },
         {
-          "file": "fut2020_physical_recovery_dry_run_v1.json",
-          "version": "fut2020_physical_recovery_dry_run_v1",
-          "target_set_key": "fut2020",
-          "target_set_name": "Pokémon Futsal 2020",
+          "file": "me01_physical_recovery_dry_run_v1.json",
+          "version": "me01_physical_recovery_dry_run_v1",
+          "target_set_key": "me01",
+          "target_set_name": "Mega Evolution",
           "dry_run_package_status": "ready_for_review_no_write",
-          "candidate_card_prints": 1,
-          "candidate_printing_rows": 1,
+          "candidate_card_prints": 77,
+          "candidate_printing_rows": 151,
           "db_snapshot_available": true,
-          "db_card_prints_found": 1,
-          "db_card_printings_found": 1,
-          "vault_items_referencing_targets": 0,
+          "db_card_prints_found": 77,
+          "db_card_printings_found": 151,
+          "vault_items_referencing_targets": 2,
           "write_ready_now": 0
         },
         {
@@ -283,6 +299,62 @@
           "write_ready_now": 0
         },
         {
+          "file": "sv04.5_physical_recovery_dry_run_v1.json",
+          "version": "sv04.5_physical_recovery_dry_run_v1",
+          "target_set_key": "sv04.5",
+          "target_set_name": "Paldean Fates",
+          "dry_run_package_status": "ready_for_review_no_write",
+          "candidate_card_prints": 108,
+          "candidate_printing_rows": 148,
+          "db_snapshot_available": true,
+          "db_card_prints_found": 108,
+          "db_card_printings_found": 148,
+          "vault_items_referencing_targets": 1,
+          "write_ready_now": 0
+        },
+        {
+          "file": "sv06.5_physical_recovery_dry_run_v1.json",
+          "version": "sv06.5_physical_recovery_dry_run_v1",
+          "target_set_key": "sv06.5",
+          "target_set_name": "Shrouded Fable",
+          "dry_run_package_status": "ready_for_review_no_write",
+          "candidate_card_prints": 52,
+          "candidate_printing_rows": 69,
+          "db_snapshot_available": true,
+          "db_card_prints_found": 52,
+          "db_card_printings_found": 69,
+          "vault_items_referencing_targets": 1,
+          "write_ready_now": 0
+        },
+        {
+          "file": "sv08.5_physical_recovery_dry_run_v1.json",
+          "version": "sv08.5_physical_recovery_dry_run_v1",
+          "target_set_key": "sv08.5",
+          "target_set_name": "Prismatic Evolutions",
+          "dry_run_package_status": "ready_for_review_no_write",
+          "candidate_card_prints": 20,
+          "candidate_printing_rows": 40,
+          "db_snapshot_available": true,
+          "db_card_prints_found": 20,
+          "db_card_printings_found": 40,
+          "vault_items_referencing_targets": 0,
+          "write_ready_now": 0
+        },
+        {
+          "file": "swsh10.5_physical_recovery_dry_run_v1.json",
+          "version": "swsh10.5_physical_recovery_dry_run_v1",
+          "target_set_key": "swsh10.5",
+          "target_set_name": "Pokémon GO",
+          "dry_run_package_status": "ready_for_review_no_write",
+          "candidate_card_prints": 33,
+          "candidate_printing_rows": 39,
+          "db_snapshot_available": true,
+          "db_card_prints_found": 33,
+          "db_card_printings_found": 39,
+          "vault_items_referencing_targets": 0,
+          "write_ready_now": 0
+        },
+        {
           "file": "swsh2_physical_recovery_dry_run_v1.json",
           "version": "swsh2_physical_recovery_dry_run_v1",
           "target_set_key": "swsh2",
@@ -295,49 +367,63 @@
           "db_card_printings_found": 2,
           "vault_items_referencing_targets": 0,
           "write_ready_now": 0
+        },
+        {
+          "file": "swsh4.5_physical_recovery_dry_run_v1.json",
+          "version": "swsh4.5_physical_recovery_dry_run_v1",
+          "target_set_key": "swsh4.5",
+          "target_set_name": "Shining Fates",
+          "dry_run_package_status": "ready_for_review_no_write",
+          "candidate_card_prints": 2,
+          "candidate_printing_rows": 4,
+          "db_snapshot_available": true,
+          "db_card_prints_found": 2,
+          "db_card_printings_found": 4,
+          "vault_items_referencing_targets": 0,
+          "write_ready_now": 0
         }
       ]
     },
     "physical_recovery_review_gate": {
       "exists": true,
       "file": "english_master_index_physical_recovery_review_gate_v1.json",
-      "review_gate_status": "dry_run_packages_complete_review_required_no_write",
-      "package_count": 12,
-      "candidate_card_prints": 106,
-      "candidate_printing_rows": 143,
-      "package_stop_findings": 0,
+      "review_gate_status": "stop_review_required_before_any_apply_design",
+      "package_count": 18,
+      "candidate_card_prints": 422,
+      "candidate_printing_rows": 643,
+      "package_stop_findings": 3,
       "duplicate_card_print_ids": 0,
-      "vault_items_referencing_targets": 0,
+      "vault_items_referencing_targets": 4,
       "write_ready_now": 0
     },
     "physical_recovery_apply_design": {
       "exists": true,
       "file": "english_master_index_physical_recovery_apply_design_v1.json",
-      "apply_design_status": "apply_design_complete_approval_required_no_write",
+      "apply_design_status": "apply_design_blocked_stop_findings_present",
       "approval_status": "operator_approval_required_before_any_write",
-      "package_count": 12,
-      "candidate_card_prints": 106,
-      "candidate_printing_rows": 143,
-      "before_child_printing_rows": 143,
+      "package_count": 18,
+      "candidate_card_prints": 422,
+      "candidate_printing_rows": 643,
+      "before_child_printing_rows": 643,
       "changed_fields": {
-        "set_code": 106,
-        "number": 88,
+        "set_code": 422,
+        "number": 380,
         "name": 11
       },
-      "stop_findings": 0,
-      "vault_items_referencing_targets": 0,
+      "stop_findings": 3,
+      "vault_items_referencing_targets": 4,
       "write_ready_now": 0
     },
     "physical_recovery_db_impact_translation": {
       "exists": true,
       "file": "english_master_index_db_impact_translation_v1.json",
       "current_db_changed": false,
-      "future_card_print_updates_if_approved": 106,
-      "future_child_printings_verified": 143,
-      "affected_set_count": 12,
+      "future_card_print_updates_if_approved": 422,
+      "future_child_printings_verified": 643,
+      "affected_set_count": 18,
       "authorization_status": "not_authorized",
-      "stop_findings": 0,
-      "pass": true,
+      "stop_findings": 3,
+      "pass": false,
       "write_ready_now": 0
     },
     "physical_recovery_operator_approval_packet": {
@@ -471,9 +557,22 @@
       "write_ready_now": 0
     },
     "source_acquisition_queue": {
-      "total_queue_items": 0,
-      "by_lane": {},
-      "top_sets": {}
+      "total_queue_items": 10,
+      "by_lane": {
+        "finish_human_checklist_evidence": 10
+      },
+      "top_sets": {
+        "sv03": 18,
+        "swsh7": 4,
+        "swsh10": 3,
+        "swsh6": 3,
+        "sv05": 1,
+        "sv10": 1,
+        "swsh11": 1,
+        "swsh2": 1,
+        "swsh5": 1,
+        "swsh9": 1
+      }
     },
     "historical_source_acquisition_queue": {
       "total_queue_items": 161,
@@ -524,25 +623,25 @@
       "adjudicated_excluded_printing_facts": 5
     },
     "truth_readiness": {
-      "proof_ready": 8,
-      "high_confidence": 75,
-      "blocked": 124,
-      "source_limited": 29
+      "proof_ready": 25,
+      "high_confidence": 70,
+      "blocked": 125,
+      "source_limited": 16
     },
     "repair_priority": {
       "total_ranked_sets": 236,
       "by_recommendation": {
-        "already_proven_monitor_only": 8,
-        "controlled_proof_loop_candidate": 68,
-        "source_acquisition_first": 52,
+        "already_proven_monitor_only": 25,
+        "controlled_proof_loop_candidate": 61,
+        "source_acquisition_first": 33,
         "source_acquisition_then_overgeneration_review": 58,
-        "blocked": 38,
-        "alias_governance_first": 12
+        "blocked": 46,
+        "alias_governance_first": 13
       }
     }
   },
   "immediate_next_non_write_work": [
-    "Operator decision is now scoped to PKG-01A only: approve the fut2020 one-set pilot for final snapshot/execution-artifact preparation, reject it, or request changes. PKG-01B remains blocked.",
+    "Split the refreshed dry-run package set into a no-vault-reference safe subset and a vault-reference blocked subset; only the safe subset may move toward final snapshot and guarded dry-run artifact preparation.",
     "Capture a final fresh before-state snapshot for the pilot rows immediately before any future execution artifact is created.",
     "Create the actual guarded execution artifact only for explicitly approved pilot rows after approval and a fresh snapshot.",
     "Keep blocked remainder rows out of any future execution package."
@@ -557,20 +656,20 @@
   "global_buckets": [
     {
       "bucket": "completed_master_index",
-      "row_count": 38841,
-      "status": "complete_master_index_reference",
+      "row_count": 38893,
+      "status": "completion_gap_remaining",
       "mutation_ready": false,
       "reason": "The English Master Index is complete as reference truth, but reference completion is not DB write authority.",
       "next_action": "Use this as the target for row-level dry-run write packages only.",
       "detail": {
-        "complete_master_index_sets": 199,
-        "source_gap_queue_items": 0,
+        "complete_master_index_sets": 189,
+        "source_gap_queue_items": 10,
         "adjudicated_excluded_printing_facts": 5
       }
     },
     {
       "bucket": "master_verified_monitor_only",
-      "row_count": 31975,
+      "row_count": 36651,
       "status": "proven_monitor_only",
       "mutation_ready": false,
       "reason": "Already verified by the current index. Monitor only unless a future drift audit finds divergence.",
@@ -594,7 +693,7 @@
     },
     {
       "bucket": "unsupported_by_current_index",
-      "row_count": 11975,
+      "row_count": 12308,
       "status": "blocked",
       "mutation_ready": false,
       "reason": "Unsupported by current index is not deletion authority.",
@@ -602,7 +701,7 @@
     },
     {
       "bucket": "missing_from_grookai",
-      "row_count": 7317,
+      "row_count": 4564,
       "status": "blocked",
       "mutation_ready": false,
       "reason": "Missing from Grookai is not insertion authority.",
@@ -610,7 +709,7 @@
     },
     {
       "bucket": "name_mismatch_needs_review",
-      "row_count": 139,
+      "row_count": 176,
       "status": "blocked",
       "mutation_ready": false,
       "reason": "Name mismatch is not identity rewrite authority.",
@@ -618,7 +717,7 @@
     },
     {
       "bucket": "set_unmapped_total",
-      "row_count": 11176,
+      "row_count": 10462,
       "status": "blocked",
       "mutation_ready": false,
       "reason": "Unmapped set rows cannot be normalized safely without source identity.",
@@ -626,17 +725,17 @@
     },
     {
       "bucket": "missing_set_code_physical_candidates",
-      "row_count": 807,
-      "printing_rows": 1685,
+      "row_count": 802,
+      "printing_rows": 1672,
       "status": "partially_ready_for_dry_run_design",
       "mutation_ready": false,
       "reason": "A master-verified subset exists, but the overall physical recovery lane still contains identity and finish-blocked rows.",
       "next_action": "Design a dry-run package for the master-verified subset only; keep blocked remainder out.",
       "detail": {
-        "all_finishes_master_verified_by_index": 106,
-        "master_verified_printing_rows": 143,
-        "blocked_until_card_identity_match": 488,
-        "partial_finishes_supported_by_index": 210,
+        "all_finishes_master_verified_by_index": 422,
+        "master_verified_printing_rows": 643,
+        "blocked_until_card_identity_match": 4,
+        "partial_finishes_supported_by_index": 373,
         "no_finishes_supported_by_index": 3
       }
     },
@@ -666,7 +765,7 @@
     },
     {
       "bucket": "source_acquisition_queue",
-      "row_count": 0,
+      "row_count": 10,
       "historical_weighted_rows": {
         "reverse_holo": 1253,
         "holo": 4274,
@@ -676,10 +775,10 @@
         "legacy": 0,
         "alias_resolution": 6851
       },
-      "status": "closed_by_completion_report",
+      "status": "evidence_work_required",
       "mutation_ready": false,
-      "reason": "The completion report has no remaining Master Index source-gap queue items. Historical source-acquisition queues remain planning context only.",
-      "next_action": "Proceed to row-level dry-run package design for eligible subsets; do not run writes."
+      "reason": "The source acquisition queue is still the main blocker to safe writes.",
+      "next_action": "Prioritize human checklist evidence for high-volume physical recovery sets."
     },
     {
       "bucket": "finish_blocker_boundary",
@@ -729,10 +828,10 @@
       "bucket": "truth_readiness_sets",
       "row_count": 236,
       "detail": {
-        "proof_ready": 8,
-        "high_confidence": 75,
-        "blocked": 124,
-        "source_limited": 29
+        "proof_ready": 25,
+        "high_confidence": 70,
+        "blocked": 125,
+        "source_limited": 16
       },
       "status": "planning_only",
       "mutation_ready": false,
@@ -749,8 +848,8 @@
     },
     {
       "bucket": "provenance_recovery_leads",
-      "row_count": 2163,
-      "printing_rows": 5733,
+      "row_count": 2158,
+      "printing_rows": 5720,
       "status": "lead_map_complete",
       "mutation_ready": false,
       "reason": "Provenance recovery leads are not canonical truth.",
@@ -763,7 +862,7 @@
       "name": "Ascended Heroes monitor-only proof baseline",
       "current_state": "complete",
       "future_write_allowed_after_approval": false,
-      "candidate_rows": 31975,
+      "candidate_rows": 36651,
       "blockers": [],
       "required_before_write": [
         "No write required unless future drift appears."
@@ -777,10 +876,24 @@
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
       "generated_dry_run_packages": {
-        "package_count": 12,
-        "candidate_card_prints": 106,
-        "candidate_printing_rows": 143,
+        "package_count": 18,
+        "candidate_card_prints": 422,
+        "candidate_printing_rows": 643,
         "packages": [
+          {
+            "file": "2021swsh_physical_recovery_dry_run_v1.json",
+            "version": "2021swsh_physical_recovery_dry_run_v1",
+            "target_set_key": "2021swsh",
+            "target_set_name": "McDonald's Collection 2021",
+            "dry_run_package_status": "ready_for_review_no_write",
+            "candidate_card_prints": 25,
+            "candidate_printing_rows": 50,
+            "db_snapshot_available": true,
+            "db_card_prints_found": 25,
+            "db_card_printings_found": 50,
+            "vault_items_referencing_targets": 0,
+            "write_ready_now": 0
+          },
           {
             "file": "col1_physical_recovery_dry_run_v1.json",
             "version": "col1_physical_recovery_dry_run_v1",
@@ -852,17 +965,17 @@
             "write_ready_now": 0
           },
           {
-            "file": "fut2020_physical_recovery_dry_run_v1.json",
-            "version": "fut2020_physical_recovery_dry_run_v1",
-            "target_set_key": "fut2020",
-            "target_set_name": "Pokémon Futsal 2020",
+            "file": "me01_physical_recovery_dry_run_v1.json",
+            "version": "me01_physical_recovery_dry_run_v1",
+            "target_set_key": "me01",
+            "target_set_name": "Mega Evolution",
             "dry_run_package_status": "ready_for_review_no_write",
-            "candidate_card_prints": 1,
-            "candidate_printing_rows": 1,
+            "candidate_card_prints": 77,
+            "candidate_printing_rows": 151,
             "db_snapshot_available": true,
-            "db_card_prints_found": 1,
-            "db_card_printings_found": 1,
-            "vault_items_referencing_targets": 0,
+            "db_card_prints_found": 77,
+            "db_card_printings_found": 151,
+            "vault_items_referencing_targets": 2,
             "write_ready_now": 0
           },
           {
@@ -936,6 +1049,62 @@
             "write_ready_now": 0
           },
           {
+            "file": "sv04.5_physical_recovery_dry_run_v1.json",
+            "version": "sv04.5_physical_recovery_dry_run_v1",
+            "target_set_key": "sv04.5",
+            "target_set_name": "Paldean Fates",
+            "dry_run_package_status": "ready_for_review_no_write",
+            "candidate_card_prints": 108,
+            "candidate_printing_rows": 148,
+            "db_snapshot_available": true,
+            "db_card_prints_found": 108,
+            "db_card_printings_found": 148,
+            "vault_items_referencing_targets": 1,
+            "write_ready_now": 0
+          },
+          {
+            "file": "sv06.5_physical_recovery_dry_run_v1.json",
+            "version": "sv06.5_physical_recovery_dry_run_v1",
+            "target_set_key": "sv06.5",
+            "target_set_name": "Shrouded Fable",
+            "dry_run_package_status": "ready_for_review_no_write",
+            "candidate_card_prints": 52,
+            "candidate_printing_rows": 69,
+            "db_snapshot_available": true,
+            "db_card_prints_found": 52,
+            "db_card_printings_found": 69,
+            "vault_items_referencing_targets": 1,
+            "write_ready_now": 0
+          },
+          {
+            "file": "sv08.5_physical_recovery_dry_run_v1.json",
+            "version": "sv08.5_physical_recovery_dry_run_v1",
+            "target_set_key": "sv08.5",
+            "target_set_name": "Prismatic Evolutions",
+            "dry_run_package_status": "ready_for_review_no_write",
+            "candidate_card_prints": 20,
+            "candidate_printing_rows": 40,
+            "db_snapshot_available": true,
+            "db_card_prints_found": 20,
+            "db_card_printings_found": 40,
+            "vault_items_referencing_targets": 0,
+            "write_ready_now": 0
+          },
+          {
+            "file": "swsh10.5_physical_recovery_dry_run_v1.json",
+            "version": "swsh10.5_physical_recovery_dry_run_v1",
+            "target_set_key": "swsh10.5",
+            "target_set_name": "Pokémon GO",
+            "dry_run_package_status": "ready_for_review_no_write",
+            "candidate_card_prints": 33,
+            "candidate_printing_rows": 39,
+            "db_snapshot_available": true,
+            "db_card_prints_found": 33,
+            "db_card_printings_found": 39,
+            "vault_items_referencing_targets": 0,
+            "write_ready_now": 0
+          },
+          {
             "file": "swsh2_physical_recovery_dry_run_v1.json",
             "version": "swsh2_physical_recovery_dry_run_v1",
             "target_set_key": "swsh2",
@@ -948,49 +1117,63 @@
             "db_card_printings_found": 2,
             "vault_items_referencing_targets": 0,
             "write_ready_now": 0
+          },
+          {
+            "file": "swsh4.5_physical_recovery_dry_run_v1.json",
+            "version": "swsh4.5_physical_recovery_dry_run_v1",
+            "target_set_key": "swsh4.5",
+            "target_set_name": "Shining Fates",
+            "dry_run_package_status": "ready_for_review_no_write",
+            "candidate_card_prints": 2,
+            "candidate_printing_rows": 4,
+            "db_snapshot_available": true,
+            "db_card_prints_found": 2,
+            "db_card_printings_found": 4,
+            "vault_items_referencing_targets": 0,
+            "write_ready_now": 0
           }
         ]
       },
       "physical_recovery_review_gate": {
         "exists": true,
         "file": "english_master_index_physical_recovery_review_gate_v1.json",
-        "review_gate_status": "dry_run_packages_complete_review_required_no_write",
-        "package_count": 12,
-        "candidate_card_prints": 106,
-        "candidate_printing_rows": 143,
-        "package_stop_findings": 0,
+        "review_gate_status": "stop_review_required_before_any_apply_design",
+        "package_count": 18,
+        "candidate_card_prints": 422,
+        "candidate_printing_rows": 643,
+        "package_stop_findings": 3,
         "duplicate_card_print_ids": 0,
-        "vault_items_referencing_targets": 0,
+        "vault_items_referencing_targets": 4,
         "write_ready_now": 0
       },
       "physical_recovery_apply_design": {
         "exists": true,
         "file": "english_master_index_physical_recovery_apply_design_v1.json",
-        "apply_design_status": "apply_design_complete_approval_required_no_write",
+        "apply_design_status": "apply_design_blocked_stop_findings_present",
         "approval_status": "operator_approval_required_before_any_write",
-        "package_count": 12,
-        "candidate_card_prints": 106,
-        "candidate_printing_rows": 143,
-        "before_child_printing_rows": 143,
+        "package_count": 18,
+        "candidate_card_prints": 422,
+        "candidate_printing_rows": 643,
+        "before_child_printing_rows": 643,
         "changed_fields": {
-          "set_code": 106,
-          "number": 88,
+          "set_code": 422,
+          "number": 380,
           "name": 11
         },
-        "stop_findings": 0,
-        "vault_items_referencing_targets": 0,
+        "stop_findings": 3,
+        "vault_items_referencing_targets": 4,
         "write_ready_now": 0
       },
       "physical_recovery_db_impact_translation": {
         "exists": true,
         "file": "english_master_index_db_impact_translation_v1.json",
         "current_db_changed": false,
-        "future_card_print_updates_if_approved": 106,
-        "future_child_printings_verified": 143,
-        "affected_set_count": 12,
+        "future_card_print_updates_if_approved": 422,
+        "future_child_printings_verified": 643,
+        "affected_set_count": 18,
         "authorization_status": "not_authorized",
-        "stop_findings": 0,
-        "pass": true,
+        "stop_findings": 3,
+        "pass": false,
         "write_ready_now": 0
       },
       "physical_recovery_operator_approval_packet": {
@@ -1123,9 +1306,87 @@
         "pass": true,
         "write_ready_now": 0
       },
-      "candidate_card_prints": 106,
-      "candidate_printing_rows": 143,
+      "candidate_card_prints": 422,
+      "candidate_printing_rows": 643,
       "candidate_sets": [
+        {
+          "set_key": "me01",
+          "set_name": "Mega Evolution",
+          "candidate_card_prints": 77,
+          "candidate_printing_rows": 151,
+          "sample_card_print_ids": [
+            "35ec8ca0-6bc7-4b2a-9077-94bf42c4fecb",
+            "9de52da6-5c3c-4621-8cec-b01a9db1e4d7",
+            "2314a826-39ad-4782-9c0a-465c25f8fe48",
+            "80a83fe5-ccc6-4f14-b060-af5ee3bd56c4",
+            "7d4af188-1b3c-4c6b-8a9b-cb426f11d87b"
+          ]
+        },
+        {
+          "set_key": "sv04.5",
+          "set_name": "Paldean Fates",
+          "candidate_card_prints": 108,
+          "candidate_printing_rows": 148,
+          "sample_card_print_ids": [
+            "5683e068-ffb7-4689-93ed-71df3f25d037",
+            "eb2af5ec-a7fb-4792-a54c-30f8ef2e8a8b",
+            "022c209e-c0ff-4e94-beeb-9d784af48afd",
+            "d71315e2-8ea6-40e1-86e2-cf44878ef696",
+            "ea4af720-a5fc-4698-8cbf-2eb290e8e0d8"
+          ]
+        },
+        {
+          "set_key": "sv06.5",
+          "set_name": "Shrouded Fable",
+          "candidate_card_prints": 52,
+          "candidate_printing_rows": 69,
+          "sample_card_print_ids": [
+            "fea19e50-8295-4b9a-a653-07fe4b0e2b55",
+            "06f1e767-99e6-4853-bd86-a41a55cf3d9a",
+            "2e7d63cb-3a11-44b8-ac08-6edcbf405ba3",
+            "29c98330-0a72-4f2e-8fba-7a0005b20dbf",
+            "556e6391-212a-4da6-baf9-34b2d2f2efe7"
+          ]
+        },
+        {
+          "set_key": "2021swsh",
+          "set_name": "McDonald's Collection 2021",
+          "candidate_card_prints": 25,
+          "candidate_printing_rows": 50,
+          "sample_card_print_ids": [
+            "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+            "987099f7-59e9-4c0a-9bbb-a0b8fa24a086",
+            "ac2987ab-7972-4e0a-bd34-eecdc494b8b9",
+            "53ab14f5-7e43-4098-8eb6-77beb4450c99",
+            "99449877-8fd5-4651-bd39-2321b2bffff5"
+          ]
+        },
+        {
+          "set_key": "sv08.5",
+          "set_name": "Prismatic Evolutions",
+          "candidate_card_prints": 20,
+          "candidate_printing_rows": 40,
+          "sample_card_print_ids": [
+            "c11bc9b0-0fe8-488c-bdef-cf1b64f894ec",
+            "0c9700c4-ca45-4e83-a865-e1a3dee48e80",
+            "edc42048-89fc-4cff-8422-ebc9f233f386",
+            "9ed9e9aa-4019-42c5-8051-072fb56a7569",
+            "fb911570-4f51-4c86-b030-832974bffcc4"
+          ]
+        },
+        {
+          "set_key": "swsh10.5",
+          "set_name": "Pokémon GO",
+          "candidate_card_prints": 33,
+          "candidate_printing_rows": 39,
+          "sample_card_print_ids": [
+            "0832c419-3fe4-439a-8490-41011fcd843b",
+            "067bbc12-ce47-4e7a-bfbb-a9d1ac21f0d4",
+            "026c495e-d29a-4232-a319-88637d470cbd",
+            "3d22fb24-8491-45f1-9b36-b8e609298dcd",
+            "5819fec4-dd4b-4dd5-85c8-7d781aa35367"
+          ]
+        },
         {
           "set_key": "ecard2",
           "set_name": "Aquapolis",
@@ -1241,6 +1502,16 @@
           ]
         },
         {
+          "set_key": "swsh4.5",
+          "set_name": "Shining Fates",
+          "candidate_card_prints": 2,
+          "candidate_printing_rows": 4,
+          "sample_card_print_ids": [
+            "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+            "17cd3179-b844-47a8-a197-ae123ca4b583"
+          ]
+        },
+        {
           "set_key": "ex10",
           "set_name": "Unseen Forces",
           "candidate_card_prints": 3,
@@ -1259,20 +1530,11 @@
           "sample_card_print_ids": [
             "9cf48b11-bf42-4aa3-861b-c2ca5543877e"
           ]
-        },
-        {
-          "set_key": "fut2020",
-          "set_name": "Pokémon Futsal 2020",
-          "candidate_card_prints": 1,
-          "candidate_printing_rows": 1,
-          "sample_card_print_ids": [
-            "a676888d-19e0-4064-89aa-e67019af5b95"
-          ]
         }
       ],
       "evidence_shape": {
-        "exact_card_identity_match": 319,
-        "all_finishes_master_verified_by_index": 106
+        "exact_card_identity_match": 798,
+        "all_finishes_master_verified_by_index": 422
       },
       "blockers": [
         "Operator approval packet is a review artifact only and is not approval.",
@@ -1299,12 +1561,12 @@
       "name": "Physical missing-set recovery - blocked remainder",
       "current_state": "blocked_until_identity_or_finish_safe",
       "future_write_allowed_after_approval": false,
-      "candidate_card_prints": 701,
-      "candidate_printing_rows": 1542,
+      "candidate_card_prints": 380,
+      "candidate_printing_rows": 1029,
       "evidence_shape": {
-        "number_missing_from_index": 488,
-        "blocked_until_card_identity_match": 488,
-        "partial_finishes_supported_by_index": 210,
+        "number_missing_from_index": 4,
+        "blocked_until_card_identity_match": 4,
+        "partial_finishes_supported_by_index": 373,
         "no_finishes_supported_by_index": 3
       },
       "blockers": [
@@ -1341,7 +1603,7 @@
       "name": "Unsupported printings cleanup",
       "current_state": "blocked_by_index_maturity",
       "future_write_allowed_after_approval": false,
-      "candidate_printing_rows": 11975,
+      "candidate_printing_rows": 12308,
       "blockers": [
         "Unsupported by current index is not deletion authority.",
         "Many sets are API-only or source-limited."
@@ -1358,7 +1620,7 @@
       "name": "Missing-from-Grookai insertions",
       "current_state": "blocked_by_master_verification",
       "future_write_allowed_after_approval": false,
-      "candidate_printing_rows": 7317,
+      "candidate_printing_rows": 4564,
       "blockers": [
         "Missing from Grookai is not insertion authority.",
         "Only master_verified index rows may participate in future insertion."
@@ -1375,7 +1637,7 @@
       "name": "Name and alias governance",
       "current_state": "manual_governance_required",
       "future_write_allowed_after_approval": false,
-      "candidate_rows": 139,
+      "candidate_rows": 176,
       "blockers": [
         "Name mismatch is not identity rewrite authority.",
         "Alias and subset policies must be source-backed."

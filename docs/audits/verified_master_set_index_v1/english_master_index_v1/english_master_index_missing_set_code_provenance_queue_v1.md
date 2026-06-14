@@ -12,8 +12,8 @@ This queue ranks `missing_set_code` rows by available recovery evidence. Every r
 
 ## Queue Summary
 
-- queue_items: 2163
-- missing_set_code_printing_rows: 5733
+- queue_items: 2158
+- missing_set_code_printing_rows: 5720
 - db_enrichment_executed: true
 
 ## Top Queue Items

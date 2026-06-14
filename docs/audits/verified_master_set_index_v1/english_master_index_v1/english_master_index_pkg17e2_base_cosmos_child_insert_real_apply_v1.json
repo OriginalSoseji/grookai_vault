@@ -1,0 +1,603 @@
+{
+  "generated_at": "2026-06-12T21:05:00.956Z",
+  "version": "english_master_index_pkg17e2_base_cosmos_child_insert_real_apply_v1",
+  "package_id": "PKG-17E2-BASE-COSMOS-CHILD-PRINTING-INSERTS",
+  "package_fingerprint_sha256": "c96a24654788b7ed26116ebd423c35cd872528680d765d515e178a4b2b65e4f6",
+  "dry_run_proof_sha256": "e5845be43c26beae077311be2febf67c860613bc53879c1c4d35c9f31daeaea5",
+  "approval_text_required": "Approve real PKG-17E2-BASE-COSMOS-CHILD-PRINTING-INSERTS apply only. Fingerprint: c96a24654788b7ed26116ebd423c35cd872528680d765d515e178a4b2b65e4f6. Scope: 4 child-only base parent card_printing inserts; finishes cosmos=4; sets sv06.5=1, swsh12.5=3. Dry-run proof: cee812d57ed2a2b2d5eeb06631781c55323bab98608e73c86c5dfb817fdaf79e == cee812d57ed2a2b2d5eeb06631781c55323bab98608e73c86c5dfb817fdaf79e. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No parent writes. No identity writes.",
+  "apply_status": "pkg17e2_real_apply_committed",
+  "committed": true,
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17e2_base_cosmos_child_insert_guarded_dry_run_v1.json",
+  "db_writes_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "parent_writes_performed": false,
+  "identity_writes_performed": false,
+  "write_counts": {
+    "child_inserts": 4,
+    "parent_writes": 0,
+    "identity_writes": 0,
+    "deletes": 0,
+    "merges": 0
+  },
+  "guard": {
+    "target_count": 4,
+    "target_child_count": 4,
+    "target_parent_count": 4,
+    "exact_finish_count": 4,
+    "missing_parent_count": 0,
+    "parent_mismatch_count": 0,
+    "inactive_finish_count": 0,
+    "child_id_collision_count": 0,
+    "target_finish_collision_count": 0,
+    "forbidden_stamped_child_count": 0,
+    "insufficient_source_family_count": 0
+  },
+  "proof": {
+    "package_id": "PKG-17E2-BASE-COSMOS-CHILD-PRINTING-INSERTS",
+    "package_fingerprint": "c96a24654788b7ed26116ebd423c35cd872528680d765d515e178a4b2b65e4f6",
+    "target_rows": 4,
+    "inserted_child_rows": 4,
+    "inserted_cosmos_rows": 4,
+    "forbidden_stamped_child_rows": 0
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-12T21:05:00.115Z",
+    "rows": [
+      {
+        "row_type": "existing_child",
+        "row_id": "40a39e94-be60-4d3a-862f-70c063fc7ea0",
+        "set_code": "sv06.5",
+        "number": "002",
+        "number_plain": "002",
+        "name": "Galvantula",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "1d548cd1-215b-4aad-9ff7-65db0d15f935",
+        "set_code": "sv06.5",
+        "number": "002",
+        "number_plain": "002",
+        "name": "Galvantula",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "d5c28e70-3e51-45b6-ad8d-fcae33f54d0a",
+        "set_code": "swsh12.5",
+        "number": "135",
+        "number_plain": "135",
+        "name": "Lost Vacuum",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "06e33f31-6c45-4f4a-b55c-0750738d8cff",
+        "set_code": "swsh12.5",
+        "number": "135",
+        "number_plain": "135",
+        "name": "Lost Vacuum",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "758c8688-e10b-4af5-a591-112f9c5fbfc8",
+        "set_code": "swsh12.5",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Trekking Shoes",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "50306e58-b684-45e0-82bd-e3a2775052e8",
+        "set_code": "swsh12.5",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Trekking Shoes",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "68d6e2b2-89f2-4fc1-8fc9-ed6149620a42",
+        "set_code": "swsh12.5",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Ultra Ball",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "8b9cf466-4cc7-487a-8e54-94fd09db8506",
+        "set_code": "swsh12.5",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Ultra Ball",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "dd251220-bc75-49f5-b80b-146ec6a839c0",
+        "set_code": "sv06.5",
+        "number": "002",
+        "number_plain": "002",
+        "name": "Galvantula",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d1455a62-d371-4ae7-b24c-4411b61c19e0",
+        "set_code": "swsh12.5",
+        "number": "135",
+        "number_plain": "135",
+        "name": "Lost Vacuum",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "947dbf04-4e65-4206-bc80-d702e7b93109",
+        "set_code": "swsh12.5",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Trekking Shoes",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "6ec60f4d-c8ae-42f5-8941-47ab73aab6f1",
+        "set_code": "swsh12.5",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Ultra Ball",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null
+      }
+    ],
+    "hash_sha256": "cee812d57ed2a2b2d5eeb06631781c55323bab98608e73c86c5dfb817fdaf79e",
+    "counts": {
+      "existing_child": 8,
+      "target_parent": 4
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-12T21:05:00.877Z",
+    "rows": [
+      {
+        "row_type": "existing_child",
+        "row_id": "7236391b-6297-4946-96f3-dc85e69e9cc1",
+        "set_code": "sv06.5",
+        "number": "002",
+        "number_plain": "002",
+        "name": "Galvantula",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "cosmos"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "40a39e94-be60-4d3a-862f-70c063fc7ea0",
+        "set_code": "sv06.5",
+        "number": "002",
+        "number_plain": "002",
+        "name": "Galvantula",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "1d548cd1-215b-4aad-9ff7-65db0d15f935",
+        "set_code": "sv06.5",
+        "number": "002",
+        "number_plain": "002",
+        "name": "Galvantula",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "ed3fdf71-5b1c-4fa1-b31b-eb97e86a7ba0",
+        "set_code": "swsh12.5",
+        "number": "135",
+        "number_plain": "135",
+        "name": "Lost Vacuum",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "cosmos"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "d5c28e70-3e51-45b6-ad8d-fcae33f54d0a",
+        "set_code": "swsh12.5",
+        "number": "135",
+        "number_plain": "135",
+        "name": "Lost Vacuum",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "06e33f31-6c45-4f4a-b55c-0750738d8cff",
+        "set_code": "swsh12.5",
+        "number": "135",
+        "number_plain": "135",
+        "name": "Lost Vacuum",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "a1283a03-9ccf-4916-80e0-f9b4c7121936",
+        "set_code": "swsh12.5",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Trekking Shoes",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "cosmos"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "758c8688-e10b-4af5-a591-112f9c5fbfc8",
+        "set_code": "swsh12.5",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Trekking Shoes",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "50306e58-b684-45e0-82bd-e3a2775052e8",
+        "set_code": "swsh12.5",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Trekking Shoes",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "3a4ca694-58a2-4a9a-a184-207e0261f9fd",
+        "set_code": "swsh12.5",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Ultra Ball",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "cosmos"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "68d6e2b2-89f2-4fc1-8fc9-ed6149620a42",
+        "set_code": "swsh12.5",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Ultra Ball",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "existing_child",
+        "row_id": "8b9cf466-4cc7-487a-8e54-94fd09db8506",
+        "set_code": "swsh12.5",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Ultra Ball",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "7236391b-6297-4946-96f3-dc85e69e9cc1",
+        "set_code": "sv06.5",
+        "number": "002",
+        "number_plain": "002",
+        "name": "Galvantula",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "cosmos"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "ed3fdf71-5b1c-4fa1-b31b-eb97e86a7ba0",
+        "set_code": "swsh12.5",
+        "number": "135",
+        "number_plain": "135",
+        "name": "Lost Vacuum",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "cosmos"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "a1283a03-9ccf-4916-80e0-f9b4c7121936",
+        "set_code": "swsh12.5",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Trekking Shoes",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "cosmos"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "3a4ca694-58a2-4a9a-a184-207e0261f9fd",
+        "set_code": "swsh12.5",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Ultra Ball",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": "cosmos"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "dd251220-bc75-49f5-b80b-146ec6a839c0",
+        "set_code": "sv06.5",
+        "number": "002",
+        "number_plain": "002",
+        "name": "Galvantula",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d1455a62-d371-4ae7-b24c-4411b61c19e0",
+        "set_code": "swsh12.5",
+        "number": "135",
+        "number_plain": "135",
+        "name": "Lost Vacuum",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "947dbf04-4e65-4206-bc80-d702e7b93109",
+        "set_code": "swsh12.5",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Trekking Shoes",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "6ec60f4d-c8ae-42f5-8941-47ab73aab6f1",
+        "set_code": "swsh12.5",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Ultra Ball",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null
+      }
+    ],
+    "hash_sha256": "a8125077b41bb76b5a49a5e1290fba2245d63ff7fa95aa48b95c75e55f885cf5",
+    "counts": {
+      "existing_child": 12,
+      "target_child": 4,
+      "target_parent": 4
+    }
+  },
+  "scope": {
+    "target_count": 4,
+    "by_set": {
+      "sv06.5": 1,
+      "swsh12.5": 3
+    },
+    "by_finish": {
+      "cosmos": 4
+    },
+    "targets": [
+      {
+        "target_child_id": "7236391b-6297-4946-96f3-dc85e69e9cc1",
+        "target_parent_id": "dd251220-bc75-49f5-b80b-146ec6a839c0",
+        "set_key": "sv06.5",
+        "set_name": "Shrouded Fable",
+        "card_number": "2",
+        "card_name": "Galvantula",
+        "target_variant_key": "prize_pack_stamp",
+        "target_finish_key": "cosmos",
+        "source_families": [
+          "ebay",
+          "pricecharting"
+        ],
+        "evidence_count": 2,
+        "evidence": [
+          {
+            "source_key": "pricecharting",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-Shrouded-Fable/Galvantula-002",
+            "set_key": "sv06.5",
+            "set_name": "Shrouded Fable",
+            "card_number": "2",
+            "card_name": "Galvantula",
+            "variant_key": "prize_pack_stamp",
+            "finish_key": "cosmos",
+            "evidence_label": "PriceCharting search result identifies Galvantula #002 Prize Pack Cosmos Holo."
+          },
+          {
+            "source_key": "ebay",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.ebay.com/itm/335837500784",
+            "set_key": "sv06.5",
+            "set_name": "Shrouded Fable",
+            "card_number": "2",
+            "card_name": "Galvantula",
+            "variant_key": "prize_pack_stamp",
+            "finish_key": "cosmos",
+            "evidence_label": "eBay listing title identifies Galvantula #002 Prize Pack 6 as Cosmo Holo."
+          }
+        ],
+        "source_fingerprint_sha256": "1e655ea689401abeb9be3805bb266b471be3adc758dd19f7c18befdc0a0a5714"
+      },
+      {
+        "target_child_id": "ed3fdf71-5b1c-4fa1-b31b-eb97e86a7ba0",
+        "target_parent_id": "d1455a62-d371-4ae7-b24c-4411b61c19e0",
+        "set_key": "swsh12.5",
+        "set_name": "Crown Zenith",
+        "card_number": "135",
+        "card_name": "Lost Vacuum",
+        "target_variant_key": "prize_pack_stamp",
+        "target_finish_key": "cosmos",
+        "source_families": [
+          "ebay",
+          "pricecharting"
+        ],
+        "evidence_count": 2,
+        "evidence": [
+          {
+            "source_key": "pricecharting",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-crown-zenith/lost-vacuum-prize-pack-cosmos-holo-135",
+            "set_key": "swsh12.5",
+            "set_name": "Crown Zenith",
+            "card_number": "135",
+            "card_name": "Lost Vacuum",
+            "variant_key": "prize_pack_stamp",
+            "finish_key": "cosmos",
+            "evidence_label": "PriceCharting page title identifies Lost Vacuum #135 Prize Pack Cosmos Holo."
+          },
+          {
+            "source_key": "ebay",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.ebay.com/itm/188264277784",
+            "set_key": "swsh12.5",
+            "set_name": "Crown Zenith",
+            "card_number": "135",
+            "card_name": "Lost Vacuum",
+            "variant_key": "prize_pack_stamp",
+            "finish_key": "cosmos",
+            "evidence_label": "eBay listing identifies Lost Vacuum #135 Prize Pack as Cosmos Holo."
+          }
+        ],
+        "source_fingerprint_sha256": "1e655ea689401abeb9be3805bb266b471be3adc758dd19f7c18befdc0a0a5714"
+      },
+      {
+        "target_child_id": "a1283a03-9ccf-4916-80e0-f9b4c7121936",
+        "target_parent_id": "947dbf04-4e65-4206-bc80-d702e7b93109",
+        "set_key": "swsh12.5",
+        "set_name": "Crown Zenith",
+        "card_number": "145",
+        "card_name": "Trekking Shoes",
+        "target_variant_key": "prize_pack_stamp",
+        "target_finish_key": "cosmos",
+        "source_families": [
+          "ebay",
+          "pricecharting"
+        ],
+        "evidence_count": 2,
+        "evidence": [
+          {
+            "source_key": "pricecharting",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-crown-zenith/trekking-shoes-prize-pack-145",
+            "set_key": "swsh12.5",
+            "set_name": "Crown Zenith",
+            "card_number": "145",
+            "card_name": "Trekking Shoes",
+            "variant_key": "prize_pack_stamp",
+            "finish_key": "cosmos",
+            "evidence_label": "PriceCharting sales identify Trekking Shoes #145 Prize Pack as Cosmos Holo."
+          },
+          {
+            "source_key": "ebay",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.ebay.com/itm/127290149704",
+            "set_key": "swsh12.5",
+            "set_name": "Crown Zenith",
+            "card_number": "145",
+            "card_name": "Trekking Shoes",
+            "variant_key": "prize_pack_stamp",
+            "finish_key": "cosmos",
+            "evidence_label": "eBay listing title identifies Trekking Shoes #145 Prize Pack as Cosmos Holo."
+          }
+        ],
+        "source_fingerprint_sha256": "1e655ea689401abeb9be3805bb266b471be3adc758dd19f7c18befdc0a0a5714"
+      },
+      {
+        "target_child_id": "3a4ca694-58a2-4a9a-a184-207e0261f9fd",
+        "target_parent_id": "6ec60f4d-c8ae-42f5-8941-47ab73aab6f1",
+        "set_key": "swsh12.5",
+        "set_name": "Crown Zenith",
+        "card_number": "146",
+        "card_name": "Ultra Ball",
+        "target_variant_key": "prize_pack_stamp",
+        "target_finish_key": "cosmos",
+        "source_families": [
+          "ebay",
+          "pricecharting"
+        ],
+        "evidence_count": 2,
+        "evidence": [
+          {
+            "source_key": "pricecharting",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-crown-zenith/ultra-ball-prize-pack-146",
+            "set_key": "swsh12.5",
+            "set_name": "Crown Zenith",
+            "card_number": "146",
+            "card_name": "Ultra Ball",
+            "variant_key": "prize_pack_stamp",
+            "finish_key": "cosmos",
+            "evidence_label": "PriceCharting sales identify Ultra Ball #146 Prize Pack as Cosmos Holo."
+          },
+          {
+            "source_key": "ebay",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.ebay.com/b/Ultra-Ball-146-159-Prize-Pack-Series-Cards/2536/bn_7124592163",
+            "set_key": "swsh12.5",
+            "set_name": "Crown Zenith",
+            "card_number": "146",
+            "card_name": "Ultra Ball",
+            "variant_key": "prize_pack_stamp",
+            "finish_key": "cosmos",
+            "evidence_label": "eBay category/listing titles identify Ultra Ball #146 Prize Pack examples as Cosmos/Holo."
+          }
+        ],
+        "source_fingerprint_sha256": "1e655ea689401abeb9be3805bb266b471be3adc758dd19f7c18befdc0a0a5714"
+      }
+    ]
+  },
+  "stop_findings": []
+}

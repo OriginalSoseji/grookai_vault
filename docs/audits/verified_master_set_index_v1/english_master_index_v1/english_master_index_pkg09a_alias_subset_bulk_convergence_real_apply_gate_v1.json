@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-06-10T19:48:32.915Z",
+  "version": "english_master_index_pkg09a_alias_subset_bulk_convergence_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-09A-ALIAS-SUBSET-BULK-CONVERGENCE",
+    "package_fingerprint_sha256": "d66cc542f4f348f2cd137c03e2c13949da5ac22391eda5388a8d7d8ab1f7976a",
+    "candidate_rows": 155,
+    "parent_set_code_update_rows": 105,
+    "parent_insert_rows": 48,
+    "child_insert_rows": 53,
+    "external_mapping_insert_rows": 48,
+    "blocked_rows_excluded": 36,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false,
+    "quarantine_allowed": false,
+    "migrations_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_status": "pkg09a_alias_subset_bulk_convergence_completed_rolled_back_no_durable_change",
+    "dry_run_proof_hash_sha256": "a92b17da81d0e9166238cdd7a62750385a89b5d1044c1caf5b788de83680906f",
+    "dry_run_proof_row": {
+      "package_id": "PKG-09A-ALIAS-SUBSET-BULK-CONVERGENCE",
+      "package_fingerprint": "d66cc542f4f348f2cd137c03e2c13949da5ac22391eda5388a8d7d8ab1f7976a",
+      "parent_updates": 105,
+      "parent_inserts": 48,
+      "child_inserts": 53,
+      "mapping_inserts": 48,
+      "verified_parent_updates": 105
+    }
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-09A-ALIAS-SUBSET-BULK-CONVERGENCE apply only. Fingerprint: d66cc542f4f348f2cd137c03e2c13949da5ac22391eda5388a8d7d8ab1f7976a. Scope: 155 candidate rows, 105 parent set_id/set_code updates, 48 parent inserts, 53 child printing inserts, 48 external mapping inserts, 36 blocked rows excluded. Dry-run proof: a92b17da81d0e9166238cdd7a62750385a89b5d1044c1caf5b788de83680906f == a92b17da81d0e9166238cdd7a62750385a89b5d1044c1caf5b788de83680906f. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No quarantine."
+  },
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg09a_alias_subset_bulk_convergence_guarded_dry_run_v1.json",
+    "guarded_dry_run_sql": "docs/sql/english_master_index_pkg09a_alias_subset_bulk_convergence_guarded_dry_run_transaction_v1.sql"
+  },
+  "stop_findings": [],
+  "pass": true
+}

@@ -1,0 +1,230 @@
+{
+  "generated_at": "2026-06-11T05:03:46.653Z",
+  "version": "english_master_index_pkg13b_mep_tcgplayer_parent_child_insert_guarded_dry_run_v1",
+  "package_id": "PKG-13B-MEP-TCGPLAYER-PARENT-CHILD-INSERTS",
+  "package_fingerprint_sha256": "e880e0c4a5cfda5410cd41d3cbd62cd8007c47ff83528ba5ca3e27ae091b4cbf",
+  "rollback_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "scope": {
+    "target_parent_rows": 2,
+    "target_child_rows": 2,
+    "target_external_mappings": 2,
+    "by_set": {
+      "mep": 2
+    },
+    "by_finish": {
+      "cosmos": 2
+    },
+    "by_mapping_source": {
+      "tcgplayer": 2
+    },
+    "parent_rows": [
+      {
+        "card_print_id": "5ba489b2-bc25-4368-9050-edaca6c82c28",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "live_set_code": "mep",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "078",
+        "number_plain": "078",
+        "printed_identity_modifier": null,
+        "card_name": "Toxel",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "694692"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-13B-MEP-TCGPLAYER-PARENT-CHILD-INSERTS",
+          "evidence_note": "Exact TCGplayer product page identifies Toxel - 078 (Cosmos Holo) in ME: Mega Evolution Promo.",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/694692/pokemon-me-mega-evolution-promo-toxel-078-cosmos-holo",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "https://bulbapedia.bulbagarden.net/wiki/Toxel_(Phantasmal_Flames_67)"
+          ]
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/694692/pokemon-me-mega-evolution-promo-toxel-078-cosmos-holo",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+          "https://bulbapedia.bulbagarden.net/wiki/Toxel_(Phantasmal_Flames_67)"
+        ],
+        "mapping": {
+          "source": "tcgplayer",
+          "external_id": "694692",
+          "source_url": "https://www.tcgplayer.com/product/694692/pokemon-me-mega-evolution-promo-toxel-078-cosmos-holo"
+        }
+      },
+      {
+        "card_print_id": "72344666-6ef8-4c58-b515-410c9cb45780",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "live_set_code": "mep",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "079",
+        "number_plain": "079",
+        "printed_identity_modifier": null,
+        "card_name": "Charmeleon",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "694693"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-13B-MEP-TCGPLAYER-PARENT-CHILD-INSERTS",
+          "evidence_note": "Exact TCGplayer product page identifies Charmeleon - 079 (Cosmos Holo) in ME: Mega Evolution Promo.",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/694693/pokemon-me-mega-evolution-promo-charmeleon-079-cosmos-holo",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "https://bulbapedia.bulbagarden.net/wiki/Charmeleon_(Phantasmal_Flames_12)"
+          ]
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/694693/pokemon-me-mega-evolution-promo-charmeleon-079-cosmos-holo",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+          "https://bulbapedia.bulbagarden.net/wiki/Charmeleon_(Phantasmal_Flames_12)"
+        ],
+        "mapping": {
+          "source": "tcgplayer",
+          "external_id": "694693",
+          "source_url": "https://www.tcgplayer.com/product/694693/pokemon-me-mega-evolution-promo-charmeleon-079-cosmos-holo"
+        }
+      }
+    ],
+    "child_rows": [
+      {
+        "card_printing_id": "410e944b-cb07-425c-a9c5-3884a2c7b326",
+        "card_print_id": "5ba489b2-bc25-4368-9050-edaca6c82c28",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "card_number": "078",
+        "card_name": "Toxel",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mep:078:cosmos",
+        "created_by": "pkg13b_mep_tcgplayer_parent_child_insert_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "1df829ab-6170-4149-914d-c0d24a7ac4f2",
+        "card_print_id": "72344666-6ef8-4c58-b515-410c9cb45780",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "card_number": "079",
+        "card_name": "Charmeleon",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mep:079:cosmos",
+        "created_by": "pkg13b_mep_tcgplayer_parent_child_insert_guarded_dry_run_v1"
+      }
+    ],
+    "external_mapping_rows": [
+      {
+        "source": "tcgplayer",
+        "external_id": "694692",
+        "card_print_id": "5ba489b2-bc25-4368-9050-edaca6c82c28",
+        "meta": {
+          "package_id": "PKG-13B-MEP-TCGPLAYER-PARENT-CHILD-INSERTS",
+          "set_key": "mep",
+          "live_set_code": "mep",
+          "card_name": "Toxel",
+          "card_number": "078",
+          "source_url": "https://www.tcgplayer.com/product/694692/pokemon-me-mega-evolution-promo-toxel-078-cosmos-holo",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/694692/pokemon-me-mega-evolution-promo-toxel-078-cosmos-holo",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "https://bulbapedia.bulbagarden.net/wiki/Toxel_(Phantasmal_Flames_67)"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "694693",
+        "card_print_id": "72344666-6ef8-4c58-b515-410c9cb45780",
+        "meta": {
+          "package_id": "PKG-13B-MEP-TCGPLAYER-PARENT-CHILD-INSERTS",
+          "set_key": "mep",
+          "live_set_code": "mep",
+          "card_name": "Charmeleon",
+          "card_number": "079",
+          "source_url": "https://www.tcgplayer.com/product/694693/pokemon-me-mega-evolution-promo-charmeleon-079-cosmos-holo",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/694693/pokemon-me-mega-evolution-promo-charmeleon-079-cosmos-holo",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "https://bulbapedia.bulbagarden.net/wiki/Charmeleon_(Phantasmal_Flames_12)"
+          ]
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "pkg13b_mep_tcgplayer_parent_child_insert_completed_rolled_back_no_durable_change",
+    "before_snapshot": {
+      "captured_at": "2026-06-11T05:03:45.352Z",
+      "rows": [
+        {
+          "row_type": "target_set",
+          "row_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "set_code": "mep",
+          "card_number": null,
+          "card_name": "MEP Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        }
+      ],
+      "hash_sha256": "a959b1f40678c6bd49d35668f1b9e7ee058e9a60bb00ad2b9c37885adb3a4fe2",
+      "counts": {
+        "target_set": 1
+      }
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-11T05:03:46.653Z",
+      "rows": [
+        {
+          "row_type": "target_set",
+          "row_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "set_code": "mep",
+          "card_number": null,
+          "card_name": "MEP Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        }
+      ],
+      "hash_sha256": "a959b1f40678c6bd49d35668f1b9e7ee058e9a60bb00ad2b9c37885adb3a4fe2",
+      "counts": {
+        "target_set": 1
+      }
+    },
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "guard": {
+      "parent_rows": 2,
+      "child_rows": 2,
+      "mapping_rows": 2,
+      "inactive_finish_rows": 0,
+      "parent_collisions": 0,
+      "child_collisions": 0,
+      "mapping_collisions": 0
+    },
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-13B-MEP-TCGPLAYER-PARENT-CHILD-INSERTS",
+        "package_fingerprint": "e880e0c4a5cfda5410cd41d3cbd62cd8007c47ff83528ba5ca3e27ae091b4cbf",
+        "planned_parent_rows": 2,
+        "planned_child_rows": 2,
+        "planned_mapping_rows": 2
+      }
+    ],
+    "attempted_insert_counts": {
+      "parent_inserts": 2,
+      "child_inserts": 2,
+      "external_mapping_inserts": 2
+    },
+    "stop_findings": []
+  }
+}

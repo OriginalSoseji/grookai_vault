@@ -1,0 +1,696 @@
+{
+  "generated_at": "2026-06-11T20:07:52.941Z",
+  "version": "english_master_index_pkg11b_stamped_parent_identity_real_apply_v1",
+  "package_id": "PKG-11B-STAMPED-CANONICAL-PARENT-IDENTITY-ROUTED",
+  "source_package_id": "PKG-11B-STAMPED-FINISH-ROUTING-READINESS",
+  "package_fingerprint_sha256": "60571a2325e9415a808667ad7fa9d825bbfcd0910d796bbaff0f436943d6e884",
+  "db_write_committed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_artifacts": {
+    "routing_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json",
+    "guarded_dry_run": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_parent_identity_guarded_dry_run_v1.json"
+  },
+  "dry_run_proof": {
+    "before_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "after_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "rollback_verified": true
+  },
+  "scope": {
+    "target_count": 11,
+    "by_target_finish_key": {
+      "holo": 6,
+      "normal": 2,
+      "reverse": 3
+    },
+    "by_set": {
+      "bw1": 2,
+      "bw5": 1,
+      "dp5": 2,
+      "dpp": 2,
+      "pl2": 1,
+      "swsh9": 1,
+      "swshp": 1,
+      "xy1": 1
+    },
+    "targets": [
+      {
+        "target_parent_id": "6b1a8dca-f0b7-4bc3-a994-885ac28cd2ac",
+        "target_child_id": "f78c4e21-93d1-4eb5-a89e-2e4f16330cfb",
+        "base_parent_id": "d6294823-1b9a-4cfb-a792-00339e238d33",
+        "set_key": "dpp",
+        "card_number": "DP05",
+        "card_name": "Tropical Wind",
+        "target_finish_key": "normal",
+        "target_variant_key": "quarter_finalist_stamp",
+        "stamp_label": "Quarter Finalist Stamp",
+        "target_number_plain": "5",
+        "evidence": {
+          "preserved_evidence_sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-promo/tropical-wind-quarter-finalist-dp05",
+            "https://www.thepricedex.com/set/dpp/dp-black-star-promos/price-list"
+          ],
+          "evidence_labels": [
+            "ThePriceDex preserved finish evidence from last promoted Master Index",
+            "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+          ],
+          "finish_claims": [],
+          "routing_status": "ready_single_base_finish",
+          "routing_fingerprint": "fe2ac32fbb1ab2f6d906b7bcf531a1ffcadece119ef7e59023609e7a6e5483dc"
+        }
+      },
+      {
+        "target_parent_id": "fc412cd5-c65b-46a8-bf77-f6cfb24df771",
+        "target_child_id": "463e9a5d-b2c7-4643-8d2e-7916a3d97c0f",
+        "base_parent_id": "3087efa0-9ef8-4365-8820-bcc14e26a7e8",
+        "set_key": "dpp",
+        "card_number": "DP48",
+        "card_name": "Tropical Wind",
+        "target_finish_key": "normal",
+        "target_variant_key": "finalist_stamp",
+        "stamp_label": "Finalist Stamp",
+        "target_number_plain": "48",
+        "evidence": {
+          "preserved_evidence_sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-promo/tropical-wind-finalist-dp48",
+            "https://www.thepricedex.com/set/dpp/dp-black-star-promos/price-list"
+          ],
+          "evidence_labels": [
+            "ThePriceDex preserved finish evidence from last promoted Master Index",
+            "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+          ],
+          "finish_claims": [],
+          "routing_status": "ready_single_base_finish",
+          "routing_fingerprint": "fe2ac32fbb1ab2f6d906b7bcf531a1ffcadece119ef7e59023609e7a6e5483dc"
+        }
+      },
+      {
+        "target_parent_id": "0ad1ce7b-5b29-48d6-a2d1-6a6030b59a6f",
+        "target_child_id": "afc0ecaa-4fed-479d-b6b3-ef13037306f7",
+        "base_parent_id": "cfcbf472-332c-4b44-893c-790cca52148e",
+        "set_key": "dp5",
+        "card_number": "88",
+        "card_name": "Warp Point",
+        "target_finish_key": "holo",
+        "target_variant_key": "player_rewards_crosshatch_stamp",
+        "stamp_label": "Player Rewards Crosshatch Stamp",
+        "target_number_plain": "88",
+        "evidence": {
+          "preserved_evidence_sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-majestic-dawn/warp-point-crosshatch-holo-88",
+            "https://www.thepricedex.com/set/dp5/majestic-dawn/price-list"
+          ],
+          "evidence_labels": [
+            "ThePriceDex preserved finish evidence from last promoted Master Index",
+            "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+          ],
+          "finish_claims": [
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "https://www.pricecharting.com/game/pokemon-majestic-dawn/warp-point-crosshatch-holo-88"
+            }
+          ],
+          "routing_status": "ready_finish_routed_exact_label",
+          "routing_fingerprint": "fe2ac32fbb1ab2f6d906b7bcf531a1ffcadece119ef7e59023609e7a6e5483dc"
+        }
+      },
+      {
+        "target_parent_id": "d61d1739-3b2a-4a10-9a0c-c5a95914e14a",
+        "target_child_id": "5ca53acd-2f43-463f-81a5-613608f2b057",
+        "base_parent_id": "d6e9b349-dd31-4e22-917e-6fe3ba2dba68",
+        "set_key": "dp5",
+        "card_number": "92",
+        "card_name": "Call Energy",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "stamp_label": "League Stamp",
+        "target_number_plain": "92",
+        "evidence": {
+          "preserved_evidence_sources": [
+            "cardtrader_blueprint_index",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.cardtrader.com/en/cards/262486-call-energy-league-promo-reverse-holo-league-promos",
+            "https://www.thepricedex.com/set/dp5/majestic-dawn/price-list"
+          ],
+          "evidence_labels": [
+            "CardTrader blueprint row Call Energy - League Promo | Reverse Holo",
+            "ThePriceDex preserved finish evidence from last promoted Master Index"
+          ],
+          "finish_claims": [
+            {
+              "finish_key": "reverse",
+              "reason": "explicit_reverse_label",
+              "evidence_text": "CardTrader blueprint row Call Energy - League Promo | Reverse Holo"
+            },
+            {
+              "finish_key": "reverse",
+              "reason": "explicit_reverse_label",
+              "evidence_text": "cardtrader_blueprint:262486-call-energy-league-promo-reverse-holo-league-promos"
+            },
+            {
+              "finish_key": "reverse",
+              "reason": "explicit_reverse_label",
+              "evidence_text": "https://www.cardtrader.com/en/cards/262486-call-energy-league-promo-reverse-holo-league-promos"
+            }
+          ],
+          "routing_status": "ready_finish_routed_exact_label",
+          "routing_fingerprint": "fe2ac32fbb1ab2f6d906b7bcf531a1ffcadece119ef7e59023609e7a6e5483dc"
+        }
+      },
+      {
+        "target_parent_id": "23897bfd-f47c-426b-9c44-930658848cef",
+        "target_child_id": "4d05e222-ec1b-4eeb-b2c2-8af85e82b492",
+        "base_parent_id": "b21abecc-4d45-479c-9b5a-030a77f40b8e",
+        "set_key": "pl2",
+        "card_number": "97",
+        "card_name": "Underground Expedition",
+        "target_finish_key": "holo",
+        "target_variant_key": "player_rewards_crosshatch_stamp",
+        "stamp_label": "Player Rewards Crosshatch Stamp",
+        "target_number_plain": "97",
+        "evidence": {
+          "preserved_evidence_sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-rising-rivals/underground-expedition-crosshatch-holo-97",
+            "https://www.thepricedex.com/set/pl2/rising-rivals/price-list"
+          ],
+          "evidence_labels": [
+            "ThePriceDex preserved finish evidence from last promoted Master Index",
+            "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+          ],
+          "finish_claims": [
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "https://www.pricecharting.com/game/pokemon-rising-rivals/underground-expedition-crosshatch-holo-97"
+            }
+          ],
+          "routing_status": "ready_finish_routed_exact_label_external_finish",
+          "routing_fingerprint": "fe2ac32fbb1ab2f6d906b7bcf531a1ffcadece119ef7e59023609e7a6e5483dc"
+        }
+      },
+      {
+        "target_parent_id": "0f61df52-76d0-4894-b873-b9c1f972bcf9",
+        "target_child_id": "0e0dd58c-f675-4530-b829-b5933750ff13",
+        "base_parent_id": "cb354025-1f27-484a-8175-df4ba23b9f2b",
+        "set_key": "bw1",
+        "card_number": "1",
+        "card_name": "Snivy",
+        "target_finish_key": "reverse",
+        "target_variant_key": "player_rewards_crosshatch_stamp",
+        "stamp_label": "Player Rewards Crosshatch Stamp",
+        "target_number_plain": "1",
+        "evidence": {
+          "preserved_evidence_sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-black-and-white/snivy-crosshatch-reverse-holo-1",
+            "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+          ],
+          "evidence_labels": [
+            "ThePriceDex preserved finish evidence from last promoted Master Index",
+            "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+          ],
+          "finish_claims": [
+            {
+              "finish_key": "reverse",
+              "reason": "explicit_reverse_label",
+              "evidence_text": "https://www.pricecharting.com/game/pokemon-black-and-white/snivy-crosshatch-reverse-holo-1"
+            }
+          ],
+          "routing_status": "ready_finish_routed_exact_label",
+          "routing_fingerprint": "fe2ac32fbb1ab2f6d906b7bcf531a1ffcadece119ef7e59023609e7a6e5483dc"
+        }
+      },
+      {
+        "target_parent_id": "2ad03a0a-dbd8-4195-bce9-2c3582fc1010",
+        "target_child_id": "4c5e419f-737c-4cc9-8f71-37149b7f7fe2",
+        "base_parent_id": "cfce0cf8-6a23-420f-a5ff-4abfd4c11216",
+        "set_key": "bw1",
+        "card_number": "27",
+        "card_name": "Oshawott",
+        "target_finish_key": "holo",
+        "target_variant_key": "player_rewards_crosshatch_stamp",
+        "stamp_label": "Player Rewards Crosshatch Stamp",
+        "target_number_plain": "27",
+        "evidence": {
+          "preserved_evidence_sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-black-and-white/oshawott-crosshatch-holo-league-27",
+            "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+          ],
+          "evidence_labels": [
+            "ThePriceDex preserved finish evidence from last promoted Master Index",
+            "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+          ],
+          "finish_claims": [
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "https://www.pricecharting.com/game/pokemon-black-and-white/oshawott-crosshatch-holo-league-27"
+            }
+          ],
+          "routing_status": "ready_finish_routed_exact_label",
+          "routing_fingerprint": "fe2ac32fbb1ab2f6d906b7bcf531a1ffcadece119ef7e59023609e7a6e5483dc"
+        }
+      },
+      {
+        "target_parent_id": "6c619229-f946-4b9d-ad52-007b27cba252",
+        "target_child_id": "7358aeef-d8d0-449a-ae59-19f2caebaf4b",
+        "base_parent_id": "ac816edf-2375-4e6b-bac3-2cc857cfa40d",
+        "set_key": "bw5",
+        "card_number": "94",
+        "card_name": "Enhanced Hammer",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "stamp_label": "League Stamp",
+        "target_number_plain": "94",
+        "evidence": {
+          "preserved_evidence_sources": [
+            "bigorbit_league_promo_exact",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.bigorbitcards.co.uk/pokemon/pokemon-promos/league-en/enhanced-hammer-94-108-reverse-holo.html",
+            "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+          ],
+          "evidence_labels": [
+            "Big Orbit product page: Enhanced Hammer 94/108 League Promo Reverse Holo English",
+            "ThePriceDex preserved finish evidence from last promoted Master Index"
+          ],
+          "finish_claims": [
+            {
+              "finish_key": "reverse",
+              "reason": "explicit_reverse_label",
+              "evidence_text": "Big Orbit product page: Enhanced Hammer 94/108 League Promo Reverse Holo English"
+            },
+            {
+              "finish_key": "reverse",
+              "reason": "explicit_reverse_label",
+              "evidence_text": "Exact marketplace checklist page identifies Enhanced Hammer 94/108 as a League Promo Reverse Holo in English."
+            },
+            {
+              "finish_key": "reverse",
+              "reason": "explicit_reverse_label",
+              "evidence_text": "bigorbit:enhanced_hammer_94_108_league_reverse_holo"
+            },
+            {
+              "finish_key": "reverse",
+              "reason": "explicit_reverse_label",
+              "evidence_text": "https://www.bigorbitcards.co.uk/pokemon/pokemon-promos/league-en/enhanced-hammer-94-108-reverse-holo.html"
+            }
+          ],
+          "routing_status": "ready_finish_routed_exact_label",
+          "routing_fingerprint": "fe2ac32fbb1ab2f6d906b7bcf531a1ffcadece119ef7e59023609e7a6e5483dc"
+        }
+      },
+      {
+        "target_parent_id": "ad8770e6-9af1-41b0-98b3-a868b31ec126",
+        "target_child_id": "45118349-a7b8-4a8a-ad67-35dd51306094",
+        "base_parent_id": "4cec1b2e-358c-4e24-a295-efb955acc303",
+        "set_key": "xy1",
+        "card_number": "122",
+        "card_name": "Professor Sycamore",
+        "target_finish_key": "holo",
+        "target_variant_key": "player_rewards_crosshatch_stamp",
+        "stamp_label": "Player Rewards Crosshatch Stamp",
+        "target_number_plain": "122",
+        "evidence": {
+          "preserved_evidence_sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-xy/professor-sycamore-professor-program-crosshatch-holo-122",
+            "https://www.thepricedex.com/set/xy1/xy/price-list"
+          ],
+          "evidence_labels": [
+            "ThePriceDex preserved finish evidence from last promoted Master Index",
+            "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+          ],
+          "finish_claims": [
+            {
+              "finish_key": "holo",
+              "reason": "explicit_holo_label",
+              "evidence_text": "https://www.pricecharting.com/game/pokemon-xy/professor-sycamore-professor-program-crosshatch-holo-122"
+            }
+          ],
+          "routing_status": "ready_finish_routed_exact_label",
+          "routing_fingerprint": "fe2ac32fbb1ab2f6d906b7bcf531a1ffcadece119ef7e59023609e7a6e5483dc"
+        }
+      },
+      {
+        "target_parent_id": "9c2b6bc0-8e55-4aa0-9959-f2f1eb31fbec",
+        "target_child_id": "0d592774-8dd3-43b2-a9c0-18b478fe5d12",
+        "base_parent_id": "f9917dc5-5cb2-4f0e-b08c-70ec41dff4d7",
+        "set_key": "swshp",
+        "card_number": "SWSH150",
+        "card_name": "Vaporeon V",
+        "target_finish_key": "holo",
+        "target_variant_key": "league_stamp",
+        "stamp_label": "League Stamp",
+        "target_number_plain": "150",
+        "evidence": {
+          "preserved_evidence_sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-promo/vaporeon-v-league-play-swsh150",
+            "https://www.thepricedex.com/set/swshp/swsh-black-star-promos/price-list"
+          ],
+          "evidence_labels": [
+            "ThePriceDex preserved finish evidence from last promoted Master Index",
+            "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+          ],
+          "finish_claims": [],
+          "routing_status": "ready_single_base_finish",
+          "routing_fingerprint": "fe2ac32fbb1ab2f6d906b7bcf531a1ffcadece119ef7e59023609e7a6e5483dc"
+        }
+      },
+      {
+        "target_parent_id": "d5a6eb73-48d5-4173-a2bd-d091545efefa",
+        "target_child_id": "dff033c0-38bb-4bef-ab57-97d46211e342",
+        "base_parent_id": "2c9a8de1-4965-4382-9002-9f0216d3e500",
+        "set_key": "swsh9",
+        "card_number": "123",
+        "card_name": "Arceus VSTAR",
+        "target_finish_key": "holo",
+        "target_variant_key": "league_stamp",
+        "stamp_label": "League Stamp",
+        "target_number_plain": "123",
+        "evidence": {
+          "preserved_evidence_sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-brilliant-stars/arceus-vstar-league-promo-123",
+            "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+          ],
+          "evidence_labels": [
+            "ThePriceDex preserved finish evidence from last promoted Master Index",
+            "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+          ],
+          "finish_claims": [],
+          "routing_status": "ready_single_base_finish",
+          "routing_fingerprint": "fe2ac32fbb1ab2f6d906b7bcf531a1ffcadece119ef7e59023609e7a6e5483dc"
+        }
+      }
+    ]
+  },
+  "execution": {
+    "apply_status": "pkg11b_stamped_parent_identity_real_apply_committed",
+    "committed": true,
+    "before_snapshot": {
+      "captured_at": "2026-06-11T20:07:52.092Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "counts": {
+        "target_parent_rows": 0,
+        "target_child_rows": 0,
+        "proposed_parent_collision_rows": 0,
+        "total_rows": 0
+      }
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-11T20:07:52.941Z",
+      "rows": [
+        {
+          "row_type": "target_child",
+          "row_id": "0e0dd58c-f675-4530-b829-b5933750ff13",
+          "set_code": "bw1",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Snivy",
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "finish_key": "reverse"
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "4c5e419f-737c-4cc9-8f71-37149b7f7fe2",
+          "set_code": "bw1",
+          "number": "27",
+          "number_plain": "27",
+          "name": "Oshawott",
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "finish_key": "holo"
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "7358aeef-d8d0-449a-ae59-19f2caebaf4b",
+          "set_code": "bw5",
+          "number": "94",
+          "number_plain": "94",
+          "name": "Enhanced Hammer",
+          "variant_key": "league_stamp",
+          "finish_key": "reverse"
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "afc0ecaa-4fed-479d-b6b3-ef13037306f7",
+          "set_code": "dp5",
+          "number": "88",
+          "number_plain": "88",
+          "name": "Warp Point",
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "finish_key": "holo"
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "5ca53acd-2f43-463f-81a5-613608f2b057",
+          "set_code": "dp5",
+          "number": "92",
+          "number_plain": "92",
+          "name": "Call Energy",
+          "variant_key": "league_stamp",
+          "finish_key": "reverse"
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "f78c4e21-93d1-4eb5-a89e-2e4f16330cfb",
+          "set_code": "dpp",
+          "number": "DP05",
+          "number_plain": "05",
+          "name": "Tropical Wind",
+          "variant_key": "quarter_finalist_stamp",
+          "finish_key": "normal"
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "463e9a5d-b2c7-4643-8d2e-7916a3d97c0f",
+          "set_code": "dpp",
+          "number": "DP48",
+          "number_plain": "48",
+          "name": "Tropical Wind",
+          "variant_key": "finalist_stamp",
+          "finish_key": "normal"
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "4d05e222-ec1b-4eeb-b2c2-8af85e82b492",
+          "set_code": "pl2",
+          "number": "97",
+          "number_plain": "97",
+          "name": "Underground Expedition",
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "finish_key": "holo"
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "dff033c0-38bb-4bef-ab57-97d46211e342",
+          "set_code": "swsh9",
+          "number": "123",
+          "number_plain": "123",
+          "name": "Arceus VSTAR",
+          "variant_key": "league_stamp",
+          "finish_key": "holo"
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "0d592774-8dd3-43b2-a9c0-18b478fe5d12",
+          "set_code": "swshp",
+          "number": "SWSH150",
+          "number_plain": "150",
+          "name": "Vaporeon V",
+          "variant_key": "league_stamp",
+          "finish_key": "holo"
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "45118349-a7b8-4a8a-ad67-35dd51306094",
+          "set_code": "xy1",
+          "number": "122",
+          "number_plain": "122",
+          "name": "Professor Sycamore",
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "finish_key": "holo"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "0f61df52-76d0-4894-b873-b9c1f972bcf9",
+          "set_code": "bw1",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Snivy",
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "finish_key": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "2ad03a0a-dbd8-4195-bce9-2c3582fc1010",
+          "set_code": "bw1",
+          "number": "27",
+          "number_plain": "27",
+          "name": "Oshawott",
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "finish_key": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "6c619229-f946-4b9d-ad52-007b27cba252",
+          "set_code": "bw5",
+          "number": "94",
+          "number_plain": "94",
+          "name": "Enhanced Hammer",
+          "variant_key": "league_stamp",
+          "finish_key": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "0ad1ce7b-5b29-48d6-a2d1-6a6030b59a6f",
+          "set_code": "dp5",
+          "number": "88",
+          "number_plain": "88",
+          "name": "Warp Point",
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "finish_key": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d61d1739-3b2a-4a10-9a0c-c5a95914e14a",
+          "set_code": "dp5",
+          "number": "92",
+          "number_plain": "92",
+          "name": "Call Energy",
+          "variant_key": "league_stamp",
+          "finish_key": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "6b1a8dca-f0b7-4bc3-a994-885ac28cd2ac",
+          "set_code": "dpp",
+          "number": "DP05",
+          "number_plain": "05",
+          "name": "Tropical Wind",
+          "variant_key": "quarter_finalist_stamp",
+          "finish_key": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "fc412cd5-c65b-46a8-bf77-f6cfb24df771",
+          "set_code": "dpp",
+          "number": "DP48",
+          "number_plain": "48",
+          "name": "Tropical Wind",
+          "variant_key": "finalist_stamp",
+          "finish_key": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "23897bfd-f47c-426b-9c44-930658848cef",
+          "set_code": "pl2",
+          "number": "97",
+          "number_plain": "97",
+          "name": "Underground Expedition",
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "finish_key": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d5a6eb73-48d5-4173-a2bd-d091545efefa",
+          "set_code": "swsh9",
+          "number": "123",
+          "number_plain": "123",
+          "name": "Arceus VSTAR",
+          "variant_key": "league_stamp",
+          "finish_key": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "9c2b6bc0-8e55-4aa0-9959-f2f1eb31fbec",
+          "set_code": "swshp",
+          "number": "SWSH150",
+          "number_plain": "150",
+          "name": "Vaporeon V",
+          "variant_key": "league_stamp",
+          "finish_key": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ad8770e6-9af1-41b0-98b3-a868b31ec126",
+          "set_code": "xy1",
+          "number": "122",
+          "number_plain": "122",
+          "name": "Professor Sycamore",
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "finish_key": null
+        }
+      ],
+      "hash_sha256": "ff132512b71132e7a41347f10b825d4b369bc542b797c1cb49d672a5b01fe8f6",
+      "counts": {
+        "target_parent_rows": 11,
+        "target_child_rows": 11,
+        "proposed_parent_collision_rows": 0,
+        "total_rows": 22
+      }
+    },
+    "proof_rows": [
+      {
+        "package_id": "PKG-11B-STAMPED-CANONICAL-PARENT-IDENTITY-ROUTED",
+        "package_fingerprint": "60571a2325e9415a808667ad7fa9d825bbfcd0910d796bbaff0f436943d6e884",
+        "target_rows": 11,
+        "inserted_parent_rows": 11,
+        "inserted_child_rows": 11
+      }
+    ],
+    "guard": {
+      "target_count": 11,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0
+    },
+    "write_counts": {
+      "parent_inserts": 11,
+      "child_inserts": 11,
+      "deletes": 0,
+      "merges": 0
+    },
+    "stop_findings": []
+  }
+}

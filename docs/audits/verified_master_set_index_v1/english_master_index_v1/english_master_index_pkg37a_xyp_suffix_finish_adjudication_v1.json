@@ -1,0 +1,1143 @@
+{
+  "generated_at": "2026-06-14T00:13:20.588Z",
+  "version": "english_master_index_pkg37a_xyp_suffix_finish_adjudication_v1",
+  "package_id": "PKG-37A-XYP-SUFFIX-FINISH-ADJUDICATION",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "lanes_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_current_unsupported_reconciliation_lanes_v1.json",
+    "cards_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_cards_v1.json",
+    "printings_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_printings_v1.json",
+    "publishable_xyp_evidence_json": "docs\\audits\\english_master_index_publishable_v1\\sets\\xyp\\evidence.json",
+    "pricecharting_csv": "tmp\\pricecharting\\pokemon_cards_pricecharting.csv"
+  },
+  "summary": {
+    "target_live_rows": 15,
+    "target_card_identities": 5,
+    "by_finish": {
+      "holo": 5,
+      "normal": 5,
+      "reverse": 5
+    },
+    "by_adjudication_status": {
+      "holo_master_index_delta_ready": 5,
+      "normal_overfinish_candidate_after_holo_delta": 5,
+      "reverse_overfinish_candidate_after_holo_delta": 5
+    },
+    "by_db_action": {
+      "no_db_write_until_master_index_delta_promoted": 10,
+      "no_db_write_master_index_delta_first": 5
+    }
+  },
+  "rows": [
+    {
+      "adjudication_status": "holo_master_index_delta_ready",
+      "db_action": "no_db_write_master_index_delta_first",
+      "reason": "Two independent human/marketplace sources explicitly support the suffix promo as holo; promote Master Index finish fact before any DB cleanup.",
+      "card_printing_id": "6add8f55-b4c6-41eb-9e22-cfa69ce09ef4",
+      "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+      "set_key": "xyp",
+      "number": "XY150a",
+      "card_number": "XY150a",
+      "card_name": "Yveltal-EX",
+      "finish_key": "holo",
+      "variant_key": "",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/yveltal-ex-xy150a",
+          "evidence_label": "PriceCharting sales page includes exact Yveltal EX XY150a Alternate Art Holo Promo labels."
+        },
+        {
+          "source_key": "ebay_listing",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/itm/366296928265",
+          "evidence_label": "eBay listing identifies Yveltal EX XY150a as Full Art Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY150a",
+          "card_name": "Yveltal-EX",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY150a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY150a",
+          "card_name": "Yveltal-EX",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY150a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY150a",
+          "card_name": "Yveltal-EX",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/yveltal-ex-xy-promos-xyp-xy150a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/yveltal-ex-xy150a",
+          "product_name": "Yveltal EX #XY150a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Yveltal EX #XY150a",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "normal_overfinish_candidate_after_holo_delta",
+      "db_action": "no_db_write_until_master_index_delta_promoted",
+      "reason": "Explicit human/marketplace evidence supports holo for this suffix identity; normal should only be considered for deletion after the Master Index holo delta is promoted.",
+      "card_printing_id": "40cba86b-968e-414f-852f-bda623df9020",
+      "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+      "set_key": "xyp",
+      "number": "XY150a",
+      "card_number": "XY150a",
+      "card_name": "Yveltal-EX",
+      "finish_key": "normal",
+      "variant_key": "",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/yveltal-ex-xy150a",
+          "evidence_label": "PriceCharting sales page includes exact Yveltal EX XY150a Alternate Art Holo Promo labels."
+        },
+        {
+          "source_key": "ebay_listing",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/itm/366296928265",
+          "evidence_label": "eBay listing identifies Yveltal EX XY150a as Full Art Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY150a",
+          "card_name": "Yveltal-EX",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY150a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY150a",
+          "card_name": "Yveltal-EX",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY150a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY150a",
+          "card_name": "Yveltal-EX",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/yveltal-ex-xy-promos-xyp-xy150a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/yveltal-ex-xy150a",
+          "product_name": "Yveltal EX #XY150a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Yveltal EX #XY150a",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "reverse_overfinish_candidate_after_holo_delta",
+      "db_action": "no_db_write_until_master_index_delta_promoted",
+      "reason": "Explicit human/marketplace evidence supports holo for this suffix identity; reverse should only be considered for deletion after the Master Index holo delta is promoted.",
+      "card_printing_id": "13d84ee6-2ef1-4484-82d7-219437a7a4e6",
+      "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+      "set_key": "xyp",
+      "number": "XY150a",
+      "card_number": "XY150a",
+      "card_name": "Yveltal-EX",
+      "finish_key": "reverse",
+      "variant_key": "",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/yveltal-ex-xy150a",
+          "evidence_label": "PriceCharting sales page includes exact Yveltal EX XY150a Alternate Art Holo Promo labels."
+        },
+        {
+          "source_key": "ebay_listing",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/itm/366296928265",
+          "evidence_label": "eBay listing identifies Yveltal EX XY150a as Full Art Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY150a",
+          "card_name": "Yveltal-EX",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY150a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY150a",
+          "card_name": "Yveltal-EX",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY150a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY150a",
+          "card_name": "Yveltal-EX",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/yveltal-ex-xy-promos-xyp-xy150a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/yveltal-ex-xy150a",
+          "product_name": "Yveltal EX #XY150a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Yveltal EX #XY150a",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "holo_master_index_delta_ready",
+      "db_action": "no_db_write_master_index_delta_first",
+      "reason": "Two independent human/marketplace sources explicitly support the suffix promo as holo; promote Master Index finish fact before any DB cleanup.",
+      "card_printing_id": "3e9e9892-1857-4229-9745-45c61fd5f96a",
+      "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+      "set_key": "xyp",
+      "number": "XY177a",
+      "card_number": "XY177a",
+      "card_name": "Karen",
+      "finish_key": "holo",
+      "variant_key": "",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/karen-xy177a",
+          "evidence_label": "PriceCharting sales page includes exact Karen XY177a Promo Holo labels."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465200/Karen-P-XY177a-Holo",
+          "evidence_label": "Noble Knight product page title identifies Karen #XY177a as Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY177a",
+          "card_name": "Karen",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY177a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY177a",
+          "card_name": "Karen",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY177a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY177a",
+          "card_name": "Karen",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/karen-xy-promos-xyp-xy177a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/karen-xy177a",
+          "product_name": "Karen #XY177a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Karen #XY177a",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "normal_overfinish_candidate_after_holo_delta",
+      "db_action": "no_db_write_until_master_index_delta_promoted",
+      "reason": "Explicit human/marketplace evidence supports holo for this suffix identity; normal should only be considered for deletion after the Master Index holo delta is promoted.",
+      "card_printing_id": "62d2d277-6c1e-40b2-9bd3-03e2780cecb7",
+      "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+      "set_key": "xyp",
+      "number": "XY177a",
+      "card_number": "XY177a",
+      "card_name": "Karen",
+      "finish_key": "normal",
+      "variant_key": "",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/karen-xy177a",
+          "evidence_label": "PriceCharting sales page includes exact Karen XY177a Promo Holo labels."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465200/Karen-P-XY177a-Holo",
+          "evidence_label": "Noble Knight product page title identifies Karen #XY177a as Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY177a",
+          "card_name": "Karen",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY177a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY177a",
+          "card_name": "Karen",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY177a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY177a",
+          "card_name": "Karen",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/karen-xy-promos-xyp-xy177a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/karen-xy177a",
+          "product_name": "Karen #XY177a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Karen #XY177a",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "reverse_overfinish_candidate_after_holo_delta",
+      "db_action": "no_db_write_until_master_index_delta_promoted",
+      "reason": "Explicit human/marketplace evidence supports holo for this suffix identity; reverse should only be considered for deletion after the Master Index holo delta is promoted.",
+      "card_printing_id": "cdcf6094-67a3-47e7-ae3a-8ba636582a64",
+      "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+      "set_key": "xyp",
+      "number": "XY177a",
+      "card_number": "XY177a",
+      "card_name": "Karen",
+      "finish_key": "reverse",
+      "variant_key": "",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/karen-xy177a",
+          "evidence_label": "PriceCharting sales page includes exact Karen XY177a Promo Holo labels."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465200/Karen-P-XY177a-Holo",
+          "evidence_label": "Noble Knight product page title identifies Karen #XY177a as Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY177a",
+          "card_name": "Karen",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY177a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY177a",
+          "card_name": "Karen",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY177a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY177a",
+          "card_name": "Karen",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/karen-xy-promos-xyp-xy177a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/karen-xy177a",
+          "product_name": "Karen #XY177a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Karen #XY177a",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "holo_master_index_delta_ready",
+      "db_action": "no_db_write_master_index_delta_first",
+      "reason": "Two independent human/marketplace sources explicitly support the suffix promo as holo; promote Master Index finish fact before any DB cleanup.",
+      "card_printing_id": "614a338d-d333-47c2-835f-d52af8940b92",
+      "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+      "set_key": "xyp",
+      "number": "XY198a",
+      "card_number": "XY198a",
+      "card_name": "M Camerupt-EX",
+      "finish_key": "holo",
+      "variant_key": "",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/mega-camerupt-ex-xy198a",
+          "evidence_label": "PriceCharting sales page includes exact M Camerupt EX XY198a Promo Holo labels."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465203/M-Camerupt-EX-P-XY198a-Holo",
+          "evidence_label": "Noble Knight product page title identifies M Camerupt EX #XY198a as Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY198a",
+          "card_name": "M Camerupt-EX",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY198a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY198a",
+          "card_name": "M Camerupt-EX",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY198a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY198a",
+          "card_name": "M Camerupt-EX",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/m-camerupt-ex-xy-promos-xyp-xy198a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/mega-camerupt-ex-xy198a",
+          "product_name": "Mega Camerupt EX #XY198a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Mega Camerupt EX #XY198a",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "normal_overfinish_candidate_after_holo_delta",
+      "db_action": "no_db_write_until_master_index_delta_promoted",
+      "reason": "Explicit human/marketplace evidence supports holo for this suffix identity; normal should only be considered for deletion after the Master Index holo delta is promoted.",
+      "card_printing_id": "9e389935-bdc5-469b-81ca-8d8dd82ee379",
+      "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+      "set_key": "xyp",
+      "number": "XY198a",
+      "card_number": "XY198a",
+      "card_name": "M Camerupt-EX",
+      "finish_key": "normal",
+      "variant_key": "",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/mega-camerupt-ex-xy198a",
+          "evidence_label": "PriceCharting sales page includes exact M Camerupt EX XY198a Promo Holo labels."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465203/M-Camerupt-EX-P-XY198a-Holo",
+          "evidence_label": "Noble Knight product page title identifies M Camerupt EX #XY198a as Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY198a",
+          "card_name": "M Camerupt-EX",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY198a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY198a",
+          "card_name": "M Camerupt-EX",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY198a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY198a",
+          "card_name": "M Camerupt-EX",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/m-camerupt-ex-xy-promos-xyp-xy198a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/mega-camerupt-ex-xy198a",
+          "product_name": "Mega Camerupt EX #XY198a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Mega Camerupt EX #XY198a",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "reverse_overfinish_candidate_after_holo_delta",
+      "db_action": "no_db_write_until_master_index_delta_promoted",
+      "reason": "Explicit human/marketplace evidence supports holo for this suffix identity; reverse should only be considered for deletion after the Master Index holo delta is promoted.",
+      "card_printing_id": "68a3153d-b011-4737-b8de-aff97e7ed01e",
+      "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+      "set_key": "xyp",
+      "number": "XY198a",
+      "card_number": "XY198a",
+      "card_name": "M Camerupt-EX",
+      "finish_key": "reverse",
+      "variant_key": "",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/mega-camerupt-ex-xy198a",
+          "evidence_label": "PriceCharting sales page includes exact M Camerupt EX XY198a Promo Holo labels."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465203/M-Camerupt-EX-P-XY198a-Holo",
+          "evidence_label": "Noble Knight product page title identifies M Camerupt EX #XY198a as Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY198a",
+          "card_name": "M Camerupt-EX",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY198a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY198a",
+          "card_name": "M Camerupt-EX",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY198a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY198a",
+          "card_name": "M Camerupt-EX",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/m-camerupt-ex-xy-promos-xyp-xy198a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/mega-camerupt-ex-xy198a",
+          "product_name": "Mega Camerupt EX #XY198a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Mega Camerupt EX #XY198a",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "holo_master_index_delta_ready",
+      "db_action": "no_db_write_master_index_delta_first",
+      "reason": "Two independent human/marketplace sources explicitly support the suffix promo as holo; promote Master Index finish fact before any DB cleanup.",
+      "card_printing_id": "e82974ed-fea7-45ef-8f79-720df7ef9f0b",
+      "card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+      "set_key": "xyp",
+      "number": "XY200a",
+      "card_number": "XY200a",
+      "card_name": "M Sharpedo-EX",
+      "finish_key": "holo",
+      "variant_key": "XYa",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/mega-sharpedo-ex-xy200a",
+          "evidence_label": "PriceCharting sales page includes exact M Sharpedo EX XY200a Alternate Art Holo labels."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465218/M-Sharpedo-EX-P-XY200a-Holo",
+          "evidence_label": "Noble Knight product page title identifies M Sharpedo EX #XY200a as Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY200a",
+          "card_name": "M Sharpedo-EX",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY200a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY200a",
+          "card_name": "M Sharpedo-EX",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY200a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY200a",
+          "card_name": "M Sharpedo-EX",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/m-sharpedo-ex-xy-promos-xyp-xy200a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/mega-sharpedo-ex-xy200a",
+          "product_name": "Mega Sharpedo EX #XY200a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Mega Sharpedo EX #XY200a",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "normal_overfinish_candidate_after_holo_delta",
+      "db_action": "no_db_write_until_master_index_delta_promoted",
+      "reason": "Explicit human/marketplace evidence supports holo for this suffix identity; normal should only be considered for deletion after the Master Index holo delta is promoted.",
+      "card_printing_id": "2da04afd-5cfa-4083-9ef4-b6d2df5501d3",
+      "card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+      "set_key": "xyp",
+      "number": "XY200a",
+      "card_number": "XY200a",
+      "card_name": "M Sharpedo-EX",
+      "finish_key": "normal",
+      "variant_key": "XYa",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/mega-sharpedo-ex-xy200a",
+          "evidence_label": "PriceCharting sales page includes exact M Sharpedo EX XY200a Alternate Art Holo labels."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465218/M-Sharpedo-EX-P-XY200a-Holo",
+          "evidence_label": "Noble Knight product page title identifies M Sharpedo EX #XY200a as Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY200a",
+          "card_name": "M Sharpedo-EX",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY200a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY200a",
+          "card_name": "M Sharpedo-EX",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY200a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY200a",
+          "card_name": "M Sharpedo-EX",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/m-sharpedo-ex-xy-promos-xyp-xy200a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/mega-sharpedo-ex-xy200a",
+          "product_name": "Mega Sharpedo EX #XY200a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Mega Sharpedo EX #XY200a",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "reverse_overfinish_candidate_after_holo_delta",
+      "db_action": "no_db_write_until_master_index_delta_promoted",
+      "reason": "Explicit human/marketplace evidence supports holo for this suffix identity; reverse should only be considered for deletion after the Master Index holo delta is promoted.",
+      "card_printing_id": "801be04d-ea49-4a0c-9708-385b138fd22a",
+      "card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+      "set_key": "xyp",
+      "number": "XY200a",
+      "card_number": "XY200a",
+      "card_name": "M Sharpedo-EX",
+      "finish_key": "reverse",
+      "variant_key": "XYa",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/mega-sharpedo-ex-xy200a",
+          "evidence_label": "PriceCharting sales page includes exact M Sharpedo EX XY200a Alternate Art Holo labels."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465218/M-Sharpedo-EX-P-XY200a-Holo",
+          "evidence_label": "Noble Knight product page title identifies M Sharpedo EX #XY200a as Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY200a",
+          "card_name": "M Sharpedo-EX",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY200a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY200a",
+          "card_name": "M Sharpedo-EX",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY200a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY200a",
+          "card_name": "M Sharpedo-EX",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/m-sharpedo-ex-xy-promos-xyp-xy200a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/mega-sharpedo-ex-xy200a",
+          "product_name": "Mega Sharpedo EX #XY200a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Mega Sharpedo EX #XY200a",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "holo_master_index_delta_ready",
+      "db_action": "no_db_write_master_index_delta_first",
+      "reason": "Two independent human/marketplace sources explicitly support the suffix promo as holo; promote Master Index finish fact before any DB cleanup.",
+      "card_printing_id": "a92cfc22-bb02-424e-9177-950bb0208268",
+      "card_print_id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+      "set_key": "xyp",
+      "number": "XY67a",
+      "card_number": "XY67a",
+      "card_name": "Jirachi",
+      "finish_key": "holo",
+      "variant_key": "XYa",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "bulbapedia_card_page_release_info",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jirachi_(XY_Promo_67)",
+          "evidence_label": "Bulbapedia card page release info identifies the XY67a print as Cosmos Holofoil."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465229/Jirachi-P-XY67a-Holo",
+          "evidence_label": "Noble Knight product page title identifies Jirachi #XY67a as Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY67a",
+          "card_name": "Jirachi",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY67a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY67a",
+          "card_name": "Jirachi",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY67a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY67a",
+          "card_name": "Jirachi",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/jirachi-xy-promos-xyp-xy67a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/jirachi-xy67a",
+          "product_name": "Jirachi #XY67a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Jirachi #XY67a",
+          "finish_signal": "unqualified_promo_product"
+        },
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/jirachi-jumbo-67",
+          "product_name": "Jirachi [Jumbo] #67",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Jirachi [Jumbo] #67",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "normal_overfinish_candidate_after_holo_delta",
+      "db_action": "no_db_write_until_master_index_delta_promoted",
+      "reason": "Explicit human/marketplace evidence supports holo for this suffix identity; normal should only be considered for deletion after the Master Index holo delta is promoted.",
+      "card_printing_id": "777a29ba-d028-428f-855d-06493787a7ae",
+      "card_print_id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+      "set_key": "xyp",
+      "number": "XY67a",
+      "card_number": "XY67a",
+      "card_name": "Jirachi",
+      "finish_key": "normal",
+      "variant_key": "XYa",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "bulbapedia_card_page_release_info",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jirachi_(XY_Promo_67)",
+          "evidence_label": "Bulbapedia card page release info identifies the XY67a print as Cosmos Holofoil."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465229/Jirachi-P-XY67a-Holo",
+          "evidence_label": "Noble Knight product page title identifies Jirachi #XY67a as Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY67a",
+          "card_name": "Jirachi",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY67a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY67a",
+          "card_name": "Jirachi",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY67a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY67a",
+          "card_name": "Jirachi",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/jirachi-xy-promos-xyp-xy67a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/jirachi-xy67a",
+          "product_name": "Jirachi #XY67a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Jirachi #XY67a",
+          "finish_signal": "unqualified_promo_product"
+        },
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/jirachi-jumbo-67",
+          "product_name": "Jirachi [Jumbo] #67",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Jirachi [Jumbo] #67",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    },
+    {
+      "adjudication_status": "reverse_overfinish_candidate_after_holo_delta",
+      "db_action": "no_db_write_until_master_index_delta_promoted",
+      "reason": "Explicit human/marketplace evidence supports holo for this suffix identity; reverse should only be considered for deletion after the Master Index holo delta is promoted.",
+      "card_printing_id": "97432cd7-d1f2-4e03-ad29-c51223f950dc",
+      "card_print_id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+      "set_key": "xyp",
+      "number": "XY67a",
+      "card_number": "XY67a",
+      "card_name": "Jirachi",
+      "finish_key": "reverse",
+      "variant_key": "XYa",
+      "printed_identity_modifier": "",
+      "child_dependency_total": 0,
+      "master_card_identity_status": "master_verified",
+      "master_card_identity_sources": [
+        "pkmncards",
+        "pokemontcg_api",
+        "tcgdex"
+      ],
+      "existing_master_printing_facts": [],
+      "tcgdex_finish_claim": "normal=true,holo=false,reverse=false",
+      "explicit_holo_evidence_count": 2,
+      "explicit_holo_evidence": [
+        {
+          "source_key": "bulbapedia_card_page_release_info",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jirachi_(XY_Promo_67)",
+          "evidence_label": "Bulbapedia card page release info identifies the XY67a print as Cosmos Holofoil."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465229/Jirachi-P-XY67a-Holo",
+          "evidence_label": "Noble Knight product page title identifies Jirachi #XY67a as Holo."
+        }
+      ],
+      "source_evidence": [
+        {
+          "set_key": "xyp",
+          "card_number": "XY67a",
+          "card_name": "Jirachi",
+          "finish_key": null,
+          "source_url": "https://api.pokemontcg.io/v2/cards/xyp-XY67a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY67a",
+          "card_name": "Jirachi",
+          "finish_key": null,
+          "source_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY67a"
+        },
+        {
+          "set_key": "xyp",
+          "card_number": "XY67a",
+          "card_name": "Jirachi",
+          "finish_key": null,
+          "source_url": "https://pkmncards.com/card/jirachi-xy-promos-xyp-xy67a/"
+        }
+      ],
+      "pricecharting_evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/jirachi-xy67a",
+          "product_name": "Jirachi #XY67a",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Jirachi #XY67a",
+          "finish_signal": "unqualified_promo_product"
+        },
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/jirachi-jumbo-67",
+          "product_name": "Jirachi [Jumbo] #67",
+          "evidence_label": "PriceCharting exact Pokemon Promo product row: Jirachi [Jumbo] #67",
+          "finish_signal": "unqualified_promo_product"
+        }
+      ],
+      "pricecharting_finish_signal": "unqualified_promo_product"
+    }
+  ],
+  "fingerprint_sha256": "540b4aac8c335972a24cdf903e04cff9a514232e729a4322009577586b0dd87e"
+}

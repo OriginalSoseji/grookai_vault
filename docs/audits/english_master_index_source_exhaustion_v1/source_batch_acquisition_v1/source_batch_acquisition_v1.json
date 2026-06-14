@@ -1,6 +1,6 @@
 {
   "version": "english_master_index_source_batch_acquisition_v1",
-  "generated_at": "2026-06-08T12:44:51.987Z",
+  "generated_at": "2026-06-12T05:38:07.614Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -9,46 +9,11 @@
   "dry_run": false,
   "selected_sources": [
     {
-      "source_id": "bulbapedia_card_page",
-      "source_key": "bulbapedia_card_page_release_info",
-      "source_kind": "human_readable_checklist",
-      "fixture_mode": "merge",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_card_pages_v1"
-    },
-    {
-      "source_id": "bulbapedia_build_battle",
-      "source_key": "bulbapedia_build_battle_product",
-      "source_kind": "human_readable_checklist",
-      "fixture_mode": "merge",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_build_battle_v1"
-    },
-    {
-      "source_id": "cardtrader",
-      "source_key": "cardtrader_blueprint_index",
-      "source_kind": "marketplace_checklist",
-      "fixture_mode": "merge",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_cardtrader_v1"
-    },
-    {
-      "source_id": "elitefourum_alternate",
-      "source_key": "elitefourum_alternate_checklist",
+      "source_id": "tcgcollector",
+      "source_key": "tcgcollector_card_variants",
       "source_kind": "collector_reference",
       "fixture_mode": "merge",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_elitefourum_alternate_v1"
-    },
-    {
-      "source_id": "pokemoncard_io",
-      "source_key": "pokemoncard_io_price_breakdown",
-      "source_kind": "marketplace_checklist",
-      "fixture_mode": "merge",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokemoncard_io_v1"
-    },
-    {
-      "source_id": "reverseholo",
-      "source_key": "reverseholo_set_checklist",
-      "source_kind": "collector_reference",
-      "fixture_mode": "merge",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_reverseholo_v1"
+      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcollector_v1"
     },
     {
       "source_id": "tcgcsv_finish",
@@ -58,313 +23,71 @@
       "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_v1"
     },
     {
-      "source_id": "tcgcsv_identity",
-      "source_key": "tcgcsv_tcgplayer_catalog_identity",
+      "source_id": "pokemoncard_io",
+      "source_key": "pokemoncard_io_price_breakdown",
       "source_kind": "marketplace_checklist",
       "fixture_mode": "merge",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_identity_v1"
-    }
-  ],
-  "excluded_sources": [
+      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokemoncard_io_v1"
+    },
     {
-      "source_id": "tcgplayer_pricedex_link",
-      "source_key": "tcgplayer_pricedex_link",
-      "fixture_mode": "reset",
-      "reason": "fixture_reset_source_requires_--include-resetting-sources"
+      "source_id": "tcdb",
+      "source_key": "tcdb_checklist",
+      "source_kind": "collector_reference",
+      "fixture_mode": "merge",
+      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcdb_checklists_v1"
     }
   ],
+  "excluded_sources": [],
   "summary": {
-    "selected_sources": 8,
-    "excluded_sources": 1,
-    "acquisition_completed": 8,
+    "selected_sources": 4,
+    "excluded_sources": 0,
+    "acquisition_completed": 0,
     "acquisition_failed": 0,
-    "delta_completed": 8,
-    "candidate_records_loaded": 26927,
+    "delta_completed": 4,
+    "candidate_records_loaded": 2916,
     "useful_candidate_matches": 0,
     "guarded_rebuild_recommended": false,
     "guarded_rebuild_command": null,
     "guarded_promote_command": null,
     "delta_summary": {
-      "sources_reviewed": 32,
-      "candidate_records_loaded": 106354,
-      "matched_gap_facts": 78,
-      "useful_candidate_matches": 1,
-      "already_in_current_index": 100567,
-      "unmatched_candidate_records": 5709,
-      "useful_unabsorbed_source_lanes": 1,
-      "conclusion": "Review useful source lanes before any guarded rebuild."
+      "sources_reviewed": 40,
+      "candidate_records_loaded": 106616,
+      "matched_gap_facts": 77,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 100829,
+      "unmatched_candidate_records": 5710,
+      "useful_unabsorbed_source_lanes": 0,
+      "conclusion": "Existing generated source lanes do not contain useful unabsorbed evidence for current gaps; continue with new or retried source acquisition."
     }
   },
-  "acquisition_results": [
-    {
-      "source_id": "bulbapedia_card_page",
-      "source_key": "bulbapedia_card_page_release_info",
-      "command": "node scripts/audits/english_master_index_bulbapedia_card_page_acquisition_v1.mjs --sets bw2,bw3,bw5,bw6,bw8,bw9,cel25,col1,dp1,dp3,dp5,ecard2,ex1,ex14,ex4,ex6,ex9,hgss1,hgss2,hgss4,neo1,pl1,pl2,sm1,sm10,sm2,sm3,sm4,sm7,sm8,smp,sv03.5,swsh1,swsh10,swsh11,swsh2,swsh3.5,swsh4,swsh7,xy2,xy3,xy4,xy8,xy9,xyp",
-      "fixture_mode": "merge",
-      "phase": "acquisition",
-      "status": "completed",
-      "exit_code": 0,
-      "duration_ms": 11393,
-      "stdout_tail": "[bulbapedia-card-page] target facts 59\n[bulbapedia-card-page] target pages 58\n[bulbapedia-card-page] records 0\n[bulbapedia-card-page] fixtures 0\n",
-      "stderr_tail": ""
-    },
-    {
-      "source_id": "bulbapedia_build_battle",
-      "source_key": "bulbapedia_build_battle_product",
-      "command": "node scripts/audits/english_master_index_bulbapedia_build_battle_acquisition_v1.mjs --sets bw2,bw3,bw5,bw6,bw8,bw9,cel25,col1,dp1,dp3,dp5,ecard2,ex1,ex14,ex4,ex6,ex9,hgss1,hgss2,hgss4,neo1,pl1,pl2,sm1,sm10,sm2,sm3,sm4,sm7,sm8,smp,sv03.5,swsh1,swsh10,swsh11,swsh2,swsh3.5,swsh4,swsh7,xy2,xy3,xy4,xy8,xy9,xyp",
-      "fixture_mode": "merge",
-      "phase": "acquisition",
-      "status": "completed",
-      "exit_code": 0,
-      "duration_ms": 7057,
-      "stdout_tail": "[bulbapedia-build-battle] target facts 1083\n[bulbapedia-build-battle] candidate pages 45\n[bulbapedia-build-battle] swsh10 no_matching_remaining_gap_facts records 0\n[bulbapedia-build-battle] sm7 no_matching_remaining_gap_facts records 0\n[bulbapedia-build-battle] swsh7 no_matching_remaining_gap_facts records 0\n[bulbapedia-build-battle] swsh11 no_matching_remaining_gap_facts records 0\n[bulbapedia-build-battle] sm8 no_matching_remaining_gap_facts records 0\n[bulbapedia-build-battle] swsh2 no_matching_remaining_gap_facts records 0\n[bulbapedia-build-battle] swsh1 no_matching_remaining_gap_facts records 0\n[bulbapedia-build-battle] sm10 no_matching_remaining_gap_facts records 0\n[bulbapedia-build-battle] swsh4 no_matching_remaining_gap_facts records 0\n[bulbapedia-build-battle] records 0\n[bulbapedia-build-battle] fixtures 0\n",
-      "stderr_tail": ""
-    },
-    {
-      "source_id": "cardtrader",
-      "source_key": "cardtrader_blueprint_index",
-      "command": "node scripts/audits/english_master_index_cardtrader_finish_acquisition_v1.mjs --sets bw2,bw3,bw5,bw6,bw8,bw9,cel25,col1,dp1,dp3,dp5,ecard2,ex1,ex14,ex4,ex6,ex9,hgss1,hgss2,hgss4,neo1,pl1,pl2,sm1,sm10,sm2,sm3,sm4,sm7,sm8,smp,sv03.5,swsh1,swsh10,swsh11,swsh2,swsh3.5,swsh4,swsh7,xy2,xy3,xy4,xy8,xy9,xyp",
-      "fixture_mode": "merge",
-      "phase": "acquisition",
-      "status": "completed",
-      "exit_code": 0,
-      "duration_ms": 1831,
-      "stdout_tail": "[cardtrader] target facts 1056\n[cardtrader] blueprint rows 75009\n[cardtrader] records 465\n[cardtrader] fixtures 29\n",
-      "stderr_tail": ""
-    },
-    {
-      "source_id": "elitefourum_alternate",
-      "source_key": "elitefourum_alternate_checklist",
-      "command": "node scripts/audits/english_master_index_elitefourum_alternate_checklist_acquisition_v1.mjs --sets bw2,bw3,bw5,bw6,bw8,bw9,cel25,col1,dp1,dp3,dp5,ecard2,ex1,ex14,ex4,ex6,ex9,hgss1,hgss2,hgss4,neo1,pl1,pl2,sm1,sm10,sm2,sm3,sm4,sm7,sm8,smp,sv03.5,swsh1,swsh10,swsh11,swsh2,swsh3.5,swsh4,swsh7,xy2,xy3,xy4,xy8,xy9,xyp",
-      "fixture_mode": "merge",
-      "phase": "acquisition",
-      "status": "completed",
-      "exit_code": 0,
-      "duration_ms": 87,
-      "stdout_tail": "{\n  \"parsed_checklist_entries\": 597,\n  \"target_facts\": 59,\n  \"records_generated\": 0,\n  \"fixture_files_written\": 0,\n  \"by_status\": {\n    \"identity_found_finish_not_explicit\": 11,\n    \"no_exact_match\": 48\n  },\n  \"by_finish\": {}\n}\n",
-      "stderr_tail": ""
-    },
-    {
-      "source_id": "pokemoncard_io",
-      "source_key": "pokemoncard_io_price_breakdown",
-      "command": "node scripts/audits/english_master_index_pokemoncard_finish_acquisition_v1.mjs --sets bw2,bw3,bw5,bw6,bw8,bw9,cel25,col1,dp1,dp3,dp5,ecard2,ex1,ex14,ex4,ex6,ex9,hgss1,hgss2,hgss4,neo1,pl1,pl2,sm1,sm10,sm2,sm3,sm4,sm7,sm8,smp,sv03.5,swsh1,swsh10,swsh11,swsh2,swsh3.5,swsh4,swsh7,xy2,xy3,xy4,xy8,xy9,xyp",
-      "fixture_mode": "merge",
-      "phase": "acquisition",
-      "status": "completed",
-      "exit_code": 0,
-      "duration_ms": 8514,
-      "stdout_tail": "[pokemoncard.io] target facts 16\n[pokemoncard.io] 1/16 bw2 40 Scolipede holo\n{\n  \"report\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\pokemoncard_io_acquisition_v1\\\\pokemoncard_finish_acquisition_v1.json\",\n  \"records_generated\": 0,\n  \"fixture_files_written\": 0,\n  \"db_writes_performed\": false,\n  \"migrations_created\": false\n}\n",
-      "stderr_tail": ""
-    },
-    {
-      "source_id": "reverseholo",
-      "source_key": "reverseholo_set_checklist",
-      "command": "node scripts/audits/english_master_index_reverseholo_finish_acquisition_v1.mjs --sets bw2,bw3,bw5,bw6,bw8,bw9,cel25,col1,dp1,dp3,dp5,ecard2,ex1,ex14,ex4,ex6,ex9,hgss1,hgss2,hgss4,neo1,pl1,pl2,sm1,sm10,sm2,sm3,sm4,sm7,sm8,smp,sv03.5,swsh1,swsh10,swsh11,swsh2,swsh3.5,swsh4,swsh7,xy2,xy3,xy4,xy8,xy9,xyp",
-      "fixture_mode": "merge",
-      "phase": "acquisition",
-      "status": "completed",
-      "exit_code": 0,
-      "duration_ms": 92394,
-      "stdout_tail": "[reverseholo] target sets 45\n[reverseholo] swsh11 Lost Origin target facts 309\n[reverseholo] swsh10 Astral Radiance target facts 306\n[reverseholo] swsh7 Evolving Skies target facts 304\n[reverseholo] smp SM Black Star Promos target facts 296\n[reverseholo] swsh1 Sword & Shield target facts 283\n[reverseholo] sm8 Lost Thunder target facts 280\n[reverseholo] sm10 Unbroken Bonds target facts 265\n[reverseholo] sv03.5 151 target facts 254\n[reverseholo] swsh2 Rebel Clash target facts 254\n[reverseholo] swsh4 Vivid Voltage target facts 251\n[reverseholo] ex6 FireRed & LeafGreen target facts 221\n[reverseholo] xyp XY Black Star Promos target facts 218\n[reverseholo] sm7 Celestial Storm target facts 213\n[reverseholo] sm1 Sun & Moon target facts 211\n[reverseholo] ex9 Emerald target facts 203\n[reverseholo] ecard2 Aquapolis target facts 202\n[reverseholo] sm3 Burning Shadows target facts 197\n[reverseholo] xy8 BREAKthrough target facts 196\n[reverseholo] sm2 Guardians Rising target facts 195\n[reverseholo] dp1 Diamond & Pearl target facts 176\n[reverseholo] pl2 Rising Rivals target facts 169\n[reverseholo] dp3 Secret Wonders target facts 164\n[reverseholo] pl1 Platinum target facts 158\n[reverseholo] hgss1 HeartGold & SoulSilver target facts 155\n[reverseholo] bw8 Plasma Storm target facts 154\n[reverseholo] bw6 Dragons Exalted target facts 151\n[reverseholo] sm4 Crimson Invasion target facts 150\n[reverseholo] xy4 Phantom Forces target facts 145\n[reverseholo] bw9 Plasma Freeze target facts 144\n[reverseholo] xy9 BREAKpoint target facts 142\n[reverseholo] ex1 Ruby & Sapphire target facts 140\n[reverseholo] col1 Call of Legends target facts 139\n[reverseholo] xy3 Furious Fists target facts 139\n[reverseholo] bw5 Dark Explorers target facts 134\n[reverseholo] dp5 Majestic Dawn target facts 132\n[reverseholo] bw3 Noble Victories target facts 128\n[reverseholo] hgss2 HS—Unleashed target facts 125\n[reverseholo] xy2 Flashfire target facts 125\n[reverseholo] ex14 Crystal Guardians target facts 121\n[reverseholo] hgss4 HS—Triumphant target facts 121\n[reverseholo] bw2 Emerging Powers target facts 119\n[reverseholo] ex4 Team Magma vs Team Aqua target facts 118\n[reverseholo] swsh3.5 Champion's Path target facts 97\n[reverseholo] cel25 Celebrations target facts 50\n[reverseholo] neo1 Neo Genesis target facts 21\n[reverseholo] records 6265\n[reverseholo] fixtures 44\n",
-      "stderr_tail": ""
-    },
-    {
-      "source_id": "tcgcsv_finish",
-      "source_key": "tcgcsv_tcgplayer_catalog",
-      "command": "node scripts/audits/english_master_index_tcgcsv_finish_acquisition_v1.mjs --sets bw2,bw3,bw5,bw6,bw8,bw9,cel25,col1,dp1,dp3,dp5,ecard2,ex1,ex14,ex4,ex6,ex9,hgss1,hgss2,hgss4,neo1,pl1,pl2,sm1,sm10,sm2,sm3,sm4,sm7,sm8,smp,sv03.5,swsh1,swsh10,swsh11,swsh2,swsh3.5,swsh4,swsh7,xy2,xy3,xy4,xy8,xy9,xyp",
-      "fixture_mode": "merge",
-      "phase": "acquisition",
-      "status": "completed",
-      "exit_code": 0,
-      "duration_ms": 333,
-      "stdout_tail": "[tcgcsv] target sets 45\n[tcgcsv] neo1 Neo Genesis records 0 alternate finishes 2\n[tcgcsv] ecard2 Aquapolis records 0 alternate finishes 0\n[tcgcsv] ex1 Ruby & Sapphire records 0 alternate finishes 0\n[tcgcsv] ex4 Team Magma vs Team Aqua records 4 alternate finishes 6\n[tcgcsv] ex6 FireRed & LeafGreen records 0 alternate finishes 199\n[tcgcsv] ex14 Crystal Guardians records 0 alternate finishes 3\n[tcgcsv] dp1 Diamond & Pearl records 0 alternate finishes 0\n[tcgcsv] dp3 Secret Wonders records 0 alternate finishes 3\n[tcgcsv] dp5 Majestic Dawn records 0 alternate finishes 4\n[tcgcsv] pl1 Platinum records 4 alternate finishes 4\n[tcgcsv] pl2 Rising Rivals records 8 alternate finishes 4\n[tcgcsv] hgss1 HeartGold & SoulSilver records 0 alternate finishes 8\n[tcgcsv] hgss2 HS—Unleashed records 0 alternate finishes 4\n[tcgcsv] hgss4 HS—Triumphant records 0 alternate finishes 2\n[tcgcsv] col1 Call of Legends records 0 alternate finishes 37\n[tcgcsv] bw2 Emerging Powers records 0 alternate finishes 22\n[tcgcsv] bw3 Noble Victories records 0 alternate finishes 20\n[tcgcsv] bw5 Dark Explorers records 0 alternate finishes 20\n[tcgcsv] bw6 Dragons Exalted records 2 alternate finishes 27\n[tcgcsv] bw8 Plasma Storm records 0 alternate finishes 21\n[tcgcsv] bw9 Plasma Freeze records 0 alternate finishes 26\n[tcgcsv] xyp XY Black Star Promos records 0 alternate finishes 0\n[tcgcsv] xy2 Flashfire records 0 alternate finishes 20\n[tcgcsv] xy3 Furious Fists records 0 alternate finishes 21\n[tcgcsv] xy4 Phantom Forces records 0 alternate finishes 28\n[tcgcsv] xy8 BREAKthrough records 0 alternate finishes 36\n[tcgcsv] xy9 BREAKpoint records 0 alternate finishes 35\n[tcgcsv] smp SM Black Star Promos records 1 alternate finishes 6\n[tcgcsv] sm1 Sun & Moon records 0 alternate finishes 26\n[tcgcsv] sm2 Guardians Rising records 0 alternate finishes 26\n[tcgcsv] sm3 Burning Shadows records 0 alternate finishes 18\n[tcgcsv] sm4 Crimson Invasion records 0 alternate finishes 16\n[tcgcsv] sm7 Celestial Storm records 0 alternate finishes 34\n[tcgcsv] sm8 Lost Thunder records 0 alternate finishes 41\n[tcgcsv] sm10 Unbroken Bonds records 0 alternate finishes 38\n[tcgcsv] swsh1 Sword & Shield records 0 alternate finishes 0\n[tcgcsv] swsh2 Rebel Clash records 3 alternate finishes 2\n[tcgcsv] swsh3.5 Champion's Path records 0 alternate finishes 2\n[tcgcsv] swsh4 Vivid Voltage records 0 alternate finishes 2\n[tcgcsv] swsh7 Evolving Skies records 0 alternate finishes 2\n[tcgcsv] cel25 Celebrations records 0 alternate finishes 0\n[tcgcsv] swsh10 Astral Radiance records 0 alternate finishes 2\n[tcgcsv] swsh11 Lost Origin records 0 alternate finishes 2\n[tcgcsv] sv03.5 151 records 137 alternate finishes 7\n[tcgcsv] ex9 Emerald records 1 alternate finishes 174\n[tcgcsv] records 160\n[tcgcsv] fixtures 8\n",
-      "stderr_tail": ""
-    },
-    {
-      "source_id": "tcgcsv_identity",
-      "source_key": "tcgcsv_tcgplayer_catalog_identity",
-      "command": "node scripts/audits/english_master_index_tcgcsv_identity_acquisition_v1.mjs --sets bw2,bw3,bw5,bw6,bw8,bw9,cel25,col1,dp1,dp3,dp5,ecard2,ex1,ex14,ex4,ex6,ex9,hgss1,hgss2,hgss4,neo1,pl1,pl2,sm1,sm10,sm2,sm3,sm4,sm7,sm8,smp,sv03.5,swsh1,swsh10,swsh11,swsh2,swsh3.5,swsh4,swsh7,xy2,xy3,xy4,xy8,xy9,xyp",
-      "fixture_mode": "merge",
-      "phase": "acquisition",
-      "status": "completed",
-      "exit_code": 0,
-      "duration_ms": 74,
-      "stdout_tail": "[tcgcsv-identity] target sets 0\n[tcgcsv-identity] records 0\n[tcgcsv-identity] fixtures 0\n",
-      "stderr_tail": ""
-    }
-  ],
+  "acquisition_results": [],
   "delta_results": [
     {
-      "source_id": "bulbapedia_card_page",
-      "source_key": "bulbapedia_card_page_release_info",
-      "command": "node scripts/audits/english_master_index_source_delta_audit_v1.mjs --source-key bulbapedia_card_page_release_info --source-kind human_readable_checklist --fixture-dir docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_card_pages_v1",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_card_pages_v1",
+      "source_id": "tcgcollector",
+      "source_key": "tcgcollector_card_variants",
+      "command": "node scripts/audits/english_master_index_source_delta_audit_v1.mjs --source-key tcgcollector_card_variants --source-kind collector_reference --fixture-dir docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcollector_v1",
+      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcollector_v1",
       "phase": "delta",
       "status": "completed",
       "delta_summary": {
-        "current_gap_facts": 1678,
-        "candidate_records_loaded": 317,
+        "current_gap_facts": 1658,
+        "candidate_records_loaded": 1533,
         "matched_gap_facts": 0,
         "useful_candidate_matches": 0,
-        "already_in_current_index": 275,
-        "unmatched_candidate_records": 42,
+        "already_in_current_index": 1181,
+        "unmatched_candidate_records": 352,
         "by_delta_status": {},
         "by_gap_type": {},
         "by_unmatched_reason": {
-          "already_in_current_index_master_verified": 275,
-          "not_in_remaining_gaps_or_current_index": 42
+          "already_in_current_index_master_verified": 1181,
+          "not_in_remaining_gaps_or_current_index": 352
         },
         "top_sets": {},
-        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
-      },
-      "exit_code": 0,
-      "duration_ms": 339,
-      "stdout_tail": "{\n  \"jsonPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\bulbapedia_card_page_release_info_source_delta_audit_v1.json\",\n  \"mdPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\bulbapedia_card_page_release_info_source_delta_audit_v1.md\",\n  \"summary\": {\n    \"current_gap_facts\": 1678,\n    \"candidate_records_loaded\": 317,\n    \"matched_gap_facts\": 0,\n    \"useful_candidate_matches\": 0,\n    \"already_in_current_index\": 275,\n    \"unmatched_candidate_records\": 42,\n    \"by_delta_status\": {},\n    \"by_gap_type\": {},\n    \"by_unmatched_reason\": {\n      \"already_in_current_index_master_verified\": 275,\n      \"not_in_remaining_gaps_or_current_index\": 42\n    },\n    \"top_sets\": {},\n    \"next_step\": \"No useful gap-closing evidence found; do not run a global rebuild for this source.\"\n  },\n  \"useful_delta_statuses\": []\n}\n",
-      "stderr_tail": ""
-    },
-    {
-      "source_id": "bulbapedia_build_battle",
-      "source_key": "bulbapedia_build_battle_product",
-      "command": "node scripts/audits/english_master_index_source_delta_audit_v1.mjs --source-key bulbapedia_build_battle_product --source-kind human_readable_checklist --fixture-dir docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_build_battle_v1",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_build_battle_v1",
-      "phase": "delta",
-      "status": "completed",
-      "delta_summary": {
-        "current_gap_facts": 1678,
-        "candidate_records_loaded": 118,
-        "matched_gap_facts": 0,
-        "useful_candidate_matches": 0,
-        "already_in_current_index": 95,
-        "unmatched_candidate_records": 23,
-        "by_delta_status": {},
-        "by_gap_type": {},
-        "by_unmatched_reason": {
-          "not_in_remaining_gaps_or_current_index": 23,
-          "already_in_current_index_master_verified": 95
-        },
-        "top_sets": {},
-        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
-      },
-      "exit_code": 0,
-      "duration_ms": 331,
-      "stdout_tail": "{\n  \"jsonPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\bulbapedia_build_battle_product_source_delta_audit_v1.json\",\n  \"mdPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\bulbapedia_build_battle_product_source_delta_audit_v1.md\",\n  \"summary\": {\n    \"current_gap_facts\": 1678,\n    \"candidate_records_loaded\": 118,\n    \"matched_gap_facts\": 0,\n    \"useful_candidate_matches\": 0,\n    \"already_in_current_index\": 95,\n    \"unmatched_candidate_records\": 23,\n    \"by_delta_status\": {},\n    \"by_gap_type\": {},\n    \"by_unmatched_reason\": {\n      \"not_in_remaining_gaps_or_current_index\": 23,\n      \"already_in_current_index_master_verified\": 95\n    },\n    \"top_sets\": {},\n    \"next_step\": \"No useful gap-closing evidence found; do not run a global rebuild for this source.\"\n  },\n  \"useful_delta_statuses\": []\n}\n",
-      "stderr_tail": ""
-    },
-    {
-      "source_id": "cardtrader",
-      "source_key": "cardtrader_blueprint_index",
-      "command": "node scripts/audits/english_master_index_source_delta_audit_v1.mjs --source-key cardtrader_blueprint_index --source-kind marketplace_checklist --fixture-dir docs/audits/verified_master_set_index_v1/source_fixtures/generated_cardtrader_v1",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_cardtrader_v1",
-      "phase": "delta",
-      "status": "completed",
-      "delta_summary": {
-        "current_gap_facts": 1678,
-        "candidate_records_loaded": 1292,
-        "matched_gap_facts": 1,
-        "useful_candidate_matches": 0,
-        "already_in_current_index": 1180,
-        "unmatched_candidate_records": 111,
-        "by_delta_status": {
-          "same_source_or_authority": 1
-        },
-        "by_gap_type": {
-          "finish_second_source_needed": 1
-        },
-        "by_unmatched_reason": {
-          "already_in_current_index_master_verified": 1180,
-          "not_in_remaining_gaps_or_current_index": 111
-        },
-        "top_sets": {
-          "ex9|Emerald": 1
-        },
         "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
       },
       "exit_code": 0,
       "duration_ms": 375,
-      "stdout_tail": "{\n  \"jsonPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\cardtrader_blueprint_index_source_delta_audit_v1.json\",\n  \"mdPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\cardtrader_blueprint_index_source_delta_audit_v1.md\",\n  \"summary\": {\n    \"current_gap_facts\": 1678,\n    \"candidate_records_loaded\": 1292,\n    \"matched_gap_facts\": 1,\n    \"useful_candidate_matches\": 0,\n    \"already_in_current_index\": 1180,\n    \"unmatched_candidate_records\": 111,\n    \"by_delta_status\": {\n      \"same_source_or_authority\": 1\n    },\n    \"by_gap_type\": {\n      \"finish_second_source_needed\": 1\n    },\n    \"by_unmatched_reason\": {\n      \"already_in_current_index_master_verified\": 1180,\n      \"not_in_remaining_gaps_or_current_index\": 111\n    },\n    \"top_sets\": {\n      \"ex9|Emerald\": 1\n    },\n    \"next_step\": \"No useful gap-closing evidence found; do not run a global rebuild for this source.\"\n  },\n  \"useful_delta_statuses\": []\n}\n",
-      "stderr_tail": ""
-    },
-    {
-      "source_id": "elitefourum_alternate",
-      "source_key": "elitefourum_alternate_checklist",
-      "command": "node scripts/audits/english_master_index_source_delta_audit_v1.mjs --source-key elitefourum_alternate_checklist --source-kind collector_reference --fixture-dir docs/audits/verified_master_set_index_v1/source_fixtures/generated_elitefourum_alternate_v1",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_elitefourum_alternate_v1",
-      "phase": "delta",
-      "status": "completed",
-      "delta_summary": {
-        "current_gap_facts": 1678,
-        "candidate_records_loaded": 50,
-        "matched_gap_facts": 0,
-        "useful_candidate_matches": 0,
-        "already_in_current_index": 50,
-        "unmatched_candidate_records": 0,
-        "by_delta_status": {},
-        "by_gap_type": {},
-        "by_unmatched_reason": {
-          "already_in_current_index_master_verified": 50
-        },
-        "top_sets": {},
-        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
-      },
-      "exit_code": 0,
-      "duration_ms": 331,
-      "stdout_tail": "{\n  \"jsonPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\elitefourum_alternate_checklist_source_delta_audit_v1.json\",\n  \"mdPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\elitefourum_alternate_checklist_source_delta_audit_v1.md\",\n  \"summary\": {\n    \"current_gap_facts\": 1678,\n    \"candidate_records_loaded\": 50,\n    \"matched_gap_facts\": 0,\n    \"useful_candidate_matches\": 0,\n    \"already_in_current_index\": 50,\n    \"unmatched_candidate_records\": 0,\n    \"by_delta_status\": {},\n    \"by_gap_type\": {},\n    \"by_unmatched_reason\": {\n      \"already_in_current_index_master_verified\": 50\n    },\n    \"top_sets\": {},\n    \"next_step\": \"No useful gap-closing evidence found; do not run a global rebuild for this source.\"\n  },\n  \"useful_delta_statuses\": []\n}\n",
-      "stderr_tail": ""
-    },
-    {
-      "source_id": "pokemoncard_io",
-      "source_key": "pokemoncard_io_price_breakdown",
-      "command": "node scripts/audits/english_master_index_source_delta_audit_v1.mjs --source-key pokemoncard_io_price_breakdown --source-kind marketplace_checklist --fixture-dir docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokemoncard_io_v1",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokemoncard_io_v1",
-      "phase": "delta",
-      "status": "completed",
-      "delta_summary": {
-        "current_gap_facts": 1678,
-        "candidate_records_loaded": 17,
-        "matched_gap_facts": 0,
-        "useful_candidate_matches": 0,
-        "already_in_current_index": 2,
-        "unmatched_candidate_records": 15,
-        "by_delta_status": {},
-        "by_gap_type": {},
-        "by_unmatched_reason": {
-          "already_in_current_index_master_verified": 2,
-          "not_in_remaining_gaps_or_current_index": 15
-        },
-        "top_sets": {},
-        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
-      },
-      "exit_code": 0,
-      "duration_ms": 327,
-      "stdout_tail": "{\n  \"jsonPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\pokemoncard_io_price_breakdown_source_delta_audit_v1.json\",\n  \"mdPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\pokemoncard_io_price_breakdown_source_delta_audit_v1.md\",\n  \"summary\": {\n    \"current_gap_facts\": 1678,\n    \"candidate_records_loaded\": 17,\n    \"matched_gap_facts\": 0,\n    \"useful_candidate_matches\": 0,\n    \"already_in_current_index\": 2,\n    \"unmatched_candidate_records\": 15,\n    \"by_delta_status\": {},\n    \"by_gap_type\": {},\n    \"by_unmatched_reason\": {\n      \"already_in_current_index_master_verified\": 2,\n      \"not_in_remaining_gaps_or_current_index\": 15\n    },\n    \"top_sets\": {},\n    \"next_step\": \"No useful gap-closing evidence found; do not run a global rebuild for this source.\"\n  },\n  \"useful_delta_statuses\": []\n}\n",
-      "stderr_tail": ""
-    },
-    {
-      "source_id": "reverseholo",
-      "source_key": "reverseholo_set_checklist",
-      "command": "node scripts/audits/english_master_index_source_delta_audit_v1.mjs --source-key reverseholo_set_checklist --source-kind collector_reference --fixture-dir docs/audits/verified_master_set_index_v1/source_fixtures/generated_reverseholo_v1",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_reverseholo_v1",
-      "phase": "delta",
-      "status": "completed",
-      "delta_summary": {
-        "current_gap_facts": 1678,
-        "candidate_records_loaded": 23765,
-        "matched_gap_facts": 0,
-        "useful_candidate_matches": 0,
-        "already_in_current_index": 18933,
-        "unmatched_candidate_records": 4832,
-        "by_delta_status": {},
-        "by_gap_type": {},
-        "by_unmatched_reason": {
-          "already_in_current_index_master_verified": 18933,
-          "not_in_remaining_gaps_or_current_index": 4832
-        },
-        "top_sets": {},
-        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
-      },
-      "exit_code": 0,
-      "duration_ms": 526,
-      "stdout_tail": "{\n  \"jsonPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\reverseholo_set_checklist_source_delta_audit_v1.json\",\n  \"mdPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\reverseholo_set_checklist_source_delta_audit_v1.md\",\n  \"summary\": {\n    \"current_gap_facts\": 1678,\n    \"candidate_records_loaded\": 23765,\n    \"matched_gap_facts\": 0,\n    \"useful_candidate_matches\": 0,\n    \"already_in_current_index\": 18933,\n    \"unmatched_candidate_records\": 4832,\n    \"by_delta_status\": {},\n    \"by_gap_type\": {},\n    \"by_unmatched_reason\": {\n      \"already_in_current_index_master_verified\": 18933,\n      \"not_in_remaining_gaps_or_current_index\": 4832\n    },\n    \"top_sets\": {},\n    \"next_step\": \"No useful gap-closing evidence found; do not run a global rebuild for this source.\"\n  },\n  \"useful_delta_statuses\": []\n}\n",
+      "stdout_tail": "{\n  \"jsonPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\tcgcollector_card_variants_source_delta_audit_v1.json\",\n  \"mdPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\tcgcollector_card_variants_source_delta_audit_v1.md\",\n  \"summary\": {\n    \"current_gap_facts\": 1658,\n    \"candidate_records_loaded\": 1533,\n    \"matched_gap_facts\": 0,\n    \"useful_candidate_matches\": 0,\n    \"already_in_current_index\": 1181,\n    \"unmatched_candidate_records\": 352,\n    \"by_delta_status\": {},\n    \"by_gap_type\": {},\n    \"by_unmatched_reason\": {\n      \"already_in_current_index_master_verified\": 1181,\n      \"not_in_remaining_gaps_or_current_index\": 352\n    },\n    \"top_sets\": {},\n    \"next_step\": \"No useful gap-closing evidence found; do not run a global rebuild for this source.\"\n  },\n  \"useful_delta_statuses\": []\n}\n",
       "stderr_tail": ""
     },
     {
@@ -375,51 +98,80 @@
       "phase": "delta",
       "status": "completed",
       "delta_summary": {
-        "current_gap_facts": 1678,
-        "candidate_records_loaded": 1359,
+        "current_gap_facts": 1658,
+        "candidate_records_loaded": 1360,
         "matched_gap_facts": 0,
         "useful_candidate_matches": 0,
-        "already_in_current_index": 1034,
+        "already_in_current_index": 1035,
         "unmatched_candidate_records": 325,
         "by_delta_status": {},
         "by_gap_type": {},
         "by_unmatched_reason": {
-          "already_in_current_index_master_verified": 1034,
+          "already_in_current_index_master_verified": 1035,
           "not_in_remaining_gaps_or_current_index": 325
         },
         "top_sets": {},
         "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
       },
       "exit_code": 0,
-      "duration_ms": 354,
-      "stdout_tail": "{\n  \"jsonPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\tcgcsv_tcgplayer_catalog_source_delta_audit_v1.json\",\n  \"mdPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\tcgcsv_tcgplayer_catalog_source_delta_audit_v1.md\",\n  \"summary\": {\n    \"current_gap_facts\": 1678,\n    \"candidate_records_loaded\": 1359,\n    \"matched_gap_facts\": 0,\n    \"useful_candidate_matches\": 0,\n    \"already_in_current_index\": 1034,\n    \"unmatched_candidate_records\": 325,\n    \"by_delta_status\": {},\n    \"by_gap_type\": {},\n    \"by_unmatched_reason\": {\n      \"already_in_current_index_master_verified\": 1034,\n      \"not_in_remaining_gaps_or_current_index\": 325\n    },\n    \"top_sets\": {},\n    \"next_step\": \"No useful gap-closing evidence found; do not run a global rebuild for this source.\"\n  },\n  \"useful_delta_statuses\": []\n}\n",
+      "duration_ms": 359,
+      "stdout_tail": "{\n  \"jsonPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\tcgcsv_tcgplayer_catalog_source_delta_audit_v1.json\",\n  \"mdPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\tcgcsv_tcgplayer_catalog_source_delta_audit_v1.md\",\n  \"summary\": {\n    \"current_gap_facts\": 1658,\n    \"candidate_records_loaded\": 1360,\n    \"matched_gap_facts\": 0,\n    \"useful_candidate_matches\": 0,\n    \"already_in_current_index\": 1035,\n    \"unmatched_candidate_records\": 325,\n    \"by_delta_status\": {},\n    \"by_gap_type\": {},\n    \"by_unmatched_reason\": {\n      \"already_in_current_index_master_verified\": 1035,\n      \"not_in_remaining_gaps_or_current_index\": 325\n    },\n    \"top_sets\": {},\n    \"next_step\": \"No useful gap-closing evidence found; do not run a global rebuild for this source.\"\n  },\n  \"useful_delta_statuses\": []\n}\n",
       "stderr_tail": ""
     },
     {
-      "source_id": "tcgcsv_identity",
-      "source_key": "tcgcsv_tcgplayer_catalog_identity",
-      "command": "node scripts/audits/english_master_index_source_delta_audit_v1.mjs --source-key tcgcsv_tcgplayer_catalog_identity --source-kind marketplace_checklist --fixture-dir docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_identity_v1",
-      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcgcsv_identity_v1",
+      "source_id": "pokemoncard_io",
+      "source_key": "pokemoncard_io_price_breakdown",
+      "command": "node scripts/audits/english_master_index_source_delta_audit_v1.mjs --source-key pokemoncard_io_price_breakdown --source-kind marketplace_checklist --fixture-dir docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokemoncard_io_v1",
+      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokemoncard_io_v1",
       "phase": "delta",
       "status": "completed",
       "delta_summary": {
-        "current_gap_facts": 1678,
-        "candidate_records_loaded": 9,
+        "current_gap_facts": 1658,
+        "candidate_records_loaded": 18,
         "matched_gap_facts": 0,
         "useful_candidate_matches": 0,
-        "already_in_current_index": 9,
-        "unmatched_candidate_records": 0,
+        "already_in_current_index": 3,
+        "unmatched_candidate_records": 15,
         "by_delta_status": {},
         "by_gap_type": {},
         "by_unmatched_reason": {
-          "already_in_current_index_master_verified": 9
+          "already_in_current_index_master_verified": 3,
+          "not_in_remaining_gaps_or_current_index": 15
         },
         "top_sets": {},
         "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
       },
       "exit_code": 0,
-      "duration_ms": 343,
-      "stdout_tail": "{\n  \"jsonPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\tcgcsv_tcgplayer_catalog_identity_source_delta_audit_v1.json\",\n  \"mdPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\tcgcsv_tcgplayer_catalog_identity_source_delta_audit_v1.md\",\n  \"summary\": {\n    \"current_gap_facts\": 1678,\n    \"candidate_records_loaded\": 9,\n    \"matched_gap_facts\": 0,\n    \"useful_candidate_matches\": 0,\n    \"already_in_current_index\": 9,\n    \"unmatched_candidate_records\": 0,\n    \"by_delta_status\": {},\n    \"by_gap_type\": {},\n    \"by_unmatched_reason\": {\n      \"already_in_current_index_master_verified\": 9\n    },\n    \"top_sets\": {},\n    \"next_step\": \"No useful gap-closing evidence found; do not run a global rebuild for this source.\"\n  },\n  \"useful_delta_statuses\": []\n}\n",
+      "duration_ms": 330,
+      "stdout_tail": "{\n  \"jsonPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\pokemoncard_io_price_breakdown_source_delta_audit_v1.json\",\n  \"mdPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\pokemoncard_io_price_breakdown_source_delta_audit_v1.md\",\n  \"summary\": {\n    \"current_gap_facts\": 1658,\n    \"candidate_records_loaded\": 18,\n    \"matched_gap_facts\": 0,\n    \"useful_candidate_matches\": 0,\n    \"already_in_current_index\": 3,\n    \"unmatched_candidate_records\": 15,\n    \"by_delta_status\": {},\n    \"by_gap_type\": {},\n    \"by_unmatched_reason\": {\n      \"already_in_current_index_master_verified\": 3,\n      \"not_in_remaining_gaps_or_current_index\": 15\n    },\n    \"top_sets\": {},\n    \"next_step\": \"No useful gap-closing evidence found; do not run a global rebuild for this source.\"\n  },\n  \"useful_delta_statuses\": []\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "source_id": "tcdb",
+      "source_key": "tcdb_checklist",
+      "command": "node scripts/audits/english_master_index_source_delta_audit_v1.mjs --source-key tcdb_checklist --source-kind collector_reference --fixture-dir docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcdb_checklists_v1",
+      "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_tcdb_checklists_v1",
+      "phase": "delta",
+      "status": "completed",
+      "delta_summary": {
+        "current_gap_facts": 1658,
+        "candidate_records_loaded": 5,
+        "matched_gap_facts": 0,
+        "useful_candidate_matches": 0,
+        "already_in_current_index": 3,
+        "unmatched_candidate_records": 2,
+        "by_delta_status": {},
+        "by_gap_type": {},
+        "by_unmatched_reason": {
+          "already_in_current_index_master_verified": 3,
+          "not_in_remaining_gaps_or_current_index": 2
+        },
+        "top_sets": {},
+        "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+      },
+      "exit_code": 0,
+      "duration_ms": 338,
+      "stdout_tail": "{\n  \"jsonPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\tcdb_checklist_source_delta_audit_v1.json\",\n  \"mdPath\": \"docs\\\\audits\\\\english_master_index_source_exhaustion_v1\\\\source_delta_audit_v1\\\\tcdb_checklist_source_delta_audit_v1.md\",\n  \"summary\": {\n    \"current_gap_facts\": 1658,\n    \"candidate_records_loaded\": 5,\n    \"matched_gap_facts\": 0,\n    \"useful_candidate_matches\": 0,\n    \"already_in_current_index\": 3,\n    \"unmatched_candidate_records\": 2,\n    \"by_delta_status\": {},\n    \"by_gap_type\": {},\n    \"by_unmatched_reason\": {\n      \"already_in_current_index_master_verified\": 3,\n      \"not_in_remaining_gaps_or_current_index\": 2\n    },\n    \"top_sets\": {},\n    \"next_step\": \"No useful gap-closing evidence found; do not run a global rebuild for this source.\"\n  },\n  \"useful_delta_statuses\": []\n}\n",
       "stderr_tail": ""
     }
   ]

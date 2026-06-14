@@ -1,0 +1,164 @@
+{
+  "generated_at": "2026-06-11T05:11:17.525Z",
+  "version": "english_master_index_pkg13c_svp_holo_parent_child_insert_real_apply_v1",
+  "package_id": "PKG-13C-SVP-HOLO-PARENT-CHILD-INSERTS",
+  "package_fingerprint_sha256": "18b29ce632a171dd3b2e01d84e49b5d720a3d55617346ddcb3e1eacea8c077d4",
+  "db_write_committed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_conflict_documented": true,
+  "source_artifacts": {
+    "guarded_dry_run": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg13c_svp_holo_parent_child_insert_guarded_dry_run_v1.json"
+  },
+  "dry_run_proof": {
+    "before_hash": "5207f8f1b5fd652c3224d90073fd8bf394d29e69ef7e5e4cca16f3a5c0f632e4",
+    "after_hash": "5207f8f1b5fd652c3224d90073fd8bf394d29e69ef7e5e4cca16f3a5c0f632e4",
+    "rollback_verified": true
+  },
+  "scope": {
+    "target_parent_rows": 2,
+    "target_child_rows": 2,
+    "target_external_mappings": 2,
+    "by_set": {
+      "svp": 2
+    },
+    "by_finish": {
+      "holo": 2
+    },
+    "by_mapping_source": {
+      "tcgplayer": 2
+    }
+  },
+  "execution": {
+    "apply_status": "pkg13c_svp_holo_parent_child_insert_real_apply_committed",
+    "committed": true,
+    "before_snapshot": {
+      "captured_at": "2026-06-11T05:11:16.221Z",
+      "rows": [
+        {
+          "row_type": "target_set",
+          "row_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+          "set_code": "svp",
+          "card_number": null,
+          "card_name": "Scarlet & Violet Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        }
+      ],
+      "hash_sha256": "5207f8f1b5fd652c3224d90073fd8bf394d29e69ef7e5e4cca16f3a5c0f632e4",
+      "counts": {
+        "target_set": 1
+      }
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-11T05:11:17.520Z",
+      "rows": [
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "3bbbf3d5-64c4-48c2-bdfe-a64fff156b33",
+          "set_code": "svp",
+          "card_number": "175",
+          "card_name": "Espeon ex",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "d9f60554-2a1d-4245-98bc-b45bc9093f8e",
+          "set_code": "svp",
+          "card_number": "176",
+          "card_name": "Umbreon ex",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "92e847c5-792a-40d9-8f5e-0539ffb55cb9",
+          "set_code": "svp",
+          "card_number": "175",
+          "card_name": "Espeon ex",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "56b171e7-1ff0-4593-b10d-51520b884528",
+          "set_code": "svp",
+          "card_number": "176",
+          "card_name": "Umbreon ex",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122343",
+          "set_code": "svp",
+          "card_number": "175",
+          "card_name": "Espeon ex",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "655095"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122344",
+          "set_code": "svp",
+          "card_number": "176",
+          "card_name": "Umbreon ex",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "655094"
+        },
+        {
+          "row_type": "target_set",
+          "row_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+          "set_code": "svp",
+          "card_number": null,
+          "card_name": "Scarlet & Violet Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        }
+      ],
+      "hash_sha256": "310e7e092beefef7b46cfd913a91a8df8fbcf4334b219589ee7b2ad760931178",
+      "counts": {
+        "existing_child_exact": 2,
+        "existing_parent_exact": 2,
+        "external_mapping_collision": 2,
+        "target_set": 1
+      }
+    },
+    "proof_rows": [
+      {
+        "package_id": "PKG-13C-SVP-HOLO-PARENT-CHILD-INSERTS",
+        "package_fingerprint": "18b29ce632a171dd3b2e01d84e49b5d720a3d55617346ddcb3e1eacea8c077d4",
+        "planned_parent_rows": 2,
+        "planned_child_rows": 2,
+        "planned_mapping_rows": 2
+      }
+    ],
+    "guard": {
+      "parent_rows": 2,
+      "child_rows": 2,
+      "mapping_rows": 2,
+      "inactive_finish_rows": 0,
+      "parent_collisions": 0,
+      "child_collisions": 0,
+      "mapping_collisions": 0
+    },
+    "write_counts": {
+      "parent_inserts": 2,
+      "child_inserts": 2,
+      "external_mapping_inserts": 2,
+      "deletes": 0,
+      "merges": 0
+    },
+    "stop_findings": []
+  }
+}

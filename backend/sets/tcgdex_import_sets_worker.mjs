@@ -1,7 +1,7 @@
 // backend/sets/tcgdex_import_sets_worker.mjs
 //
 // Imports TCGdex sets into raw_imports (enrichment + identity support).
-// Mirrors pokemonapi import pattern while supporting --dry-run, --mode, --limit, --page flags.
+// Mirrors pokemonapi import pattern while supporting --dry-run, --mode, --limit, --page, and --set flags.
 
 // Load environment variables
 import '../env.mjs';
@@ -20,6 +20,7 @@ function parseArgs() {
     page: 1,
     mode: 'full',
     dryRun: false,
+    setIds: [],
   };
 
   for (let i = 0; i < args.length; i += 1) {
@@ -27,6 +28,9 @@ function parseArgs() {
     if (token === '--limit' && args[i + 1]) {
       const value = Number(args[i + 1]);
       if (!Number.isNaN(value)) options.limit = value;
+      i += 1;
+    } else if (token === '--set' && args[i + 1]) {
+      options.setIds.push(args[i + 1]);
       i += 1;
     } else if (token === '--page' && args[i + 1]) {
       const value = Number(args[i + 1]);
@@ -45,6 +49,16 @@ function parseArgs() {
   }
 
   return options;
+}
+
+function normalizeSetIds(setIds) {
+  return Array.from(
+    new Set(
+      (setIds ?? [])
+        .map((value) => String(value ?? '').trim())
+        .filter(Boolean),
+    ),
+  );
 }
 
 async function upsertRawImport(supabase, payload, { dryRun }) {
@@ -99,7 +113,7 @@ async function logRun(supabase, stats) {
       {
         kind: 'tcgdex_import_sets',
         source: SOURCE,
-        scope: { page_size: DEFAULT_PAGE_SIZE, mode: stats.mode },
+        scope: { page_size: DEFAULT_PAGE_SIZE, mode: stats.mode, set_ids: normalizeSetIds(stats.setIds) },
         status: 'success',
         finished_at: new Date().toISOString(),
         counts: { created: stats.created, updated: stats.updated },
@@ -129,11 +143,15 @@ async function importSets(supabase, tcgdexClient, options) {
     fetched: 0,
     dryRun: options.dryRun,
     mode: options.mode,
+    setIds: normalizeSetIds(options.setIds),
   };
 
   console.log('[tcgdex][sets] start import', options);
 
-  const sets = await tcgdexClient.fetchTcgdexSets();
+  const scopedSetIds = normalizeSetIds(options.setIds);
+  const sets = scopedSetIds.length > 0
+    ? await Promise.all(scopedSetIds.map((setId) => tcgdexClient.fetchTcgdexSetById(setId)))
+    : await tcgdexClient.fetchTcgdexSets();
   if (!Array.isArray(sets) || sets.length === 0) {
     console.warn('[tcgdex][sets] No sets returned from API.');
   } else {

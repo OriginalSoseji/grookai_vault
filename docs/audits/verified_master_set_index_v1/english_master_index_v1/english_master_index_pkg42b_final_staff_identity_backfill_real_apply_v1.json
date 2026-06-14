@@ -1,0 +1,172 @@
+{
+  "generated_at": "2026-06-14T04:13:12.849Z",
+  "version": "english_master_index_pkg42b_final_staff_identity_backfill_real_apply_v1",
+  "package_id": "PKG-42B-FINAL-STAFF-IDENTITY-BACKFILL",
+  "real_apply_performed": true,
+  "durable_db_writes_performed": true,
+  "db_reads_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "child_inserts_performed": false,
+  "deletes_performed": false,
+  "parent_updates_performed": true,
+  "identity_inserts_performed": true,
+  "package_fingerprint_sha256": "b59c6ee715acda48d211b8ff12a1210dba6e20bea8cac5b21a670cd3706789f2",
+  "approved_dry_run_proof_hash": "54ce95de001c9da8dc8060a489e3fbbdf95b6975a107354121ac121da4193d61",
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg42a_final_source_closure_master_index_delta_v1.json",
+  "dry_run_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg42b_final_staff_identity_backfill_guarded_dry_run_v1.json",
+  "before_snapshot": {
+    "captured_at": "2026-06-14T04:13:11.904Z",
+    "rows": [
+      {
+        "row_type": "child",
+        "row_id": "3a677dcd-8d59-430c-8116-51fb5926234c",
+        "set_code": "svp",
+        "number": "224",
+        "number_plain": "224",
+        "name": "Paradise Resort",
+        "variant_key": "world_championships_2025_staff_stamp",
+        "printed_identity_modifier": null,
+        "finish_key": "normal",
+        "identity_domain": null,
+        "identity_key_version": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "4b575fd9-1e87-4992-bae5-826795a4bfbd",
+        "set_code": "svp",
+        "number": "224",
+        "number_plain": "224",
+        "name": "Paradise Resort",
+        "variant_key": "world_championships_2025_staff_stamp",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_domain": null,
+        "identity_key_version": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "54ce95de001c9da8dc8060a489e3fbbdf95b6975a107354121ac121da4193d61",
+    "counts": {
+      "parent_rows": 1,
+      "child_rows": 1,
+      "active_identity_rows": 0,
+      "total_rows": 2
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-14T04:13:12.768Z",
+    "rows": [
+      {
+        "row_type": "active_identity",
+        "row_id": "8260cea3-b8f9-425b-a383-45377b20e1ed",
+        "set_code": "svp",
+        "number": "224",
+        "number_plain": "224",
+        "name": "Paradise Resort",
+        "variant_key": "world_championships_2025_staff_stamp",
+        "printed_identity_modifier": "world_championships_2025_staff_stamp",
+        "finish_key": null,
+        "identity_domain": "pokemon_eng_standard",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "91a8e91f654d3826bd7a0b5de0c6685794564b21e658394dc264e0588426fbad"
+      },
+      {
+        "row_type": "child",
+        "row_id": "3a677dcd-8d59-430c-8116-51fb5926234c",
+        "set_code": "svp",
+        "number": "224",
+        "number_plain": "224",
+        "name": "Paradise Resort",
+        "variant_key": "world_championships_2025_staff_stamp",
+        "printed_identity_modifier": "world_championships_2025_staff_stamp",
+        "finish_key": "normal",
+        "identity_domain": null,
+        "identity_key_version": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "4b575fd9-1e87-4992-bae5-826795a4bfbd",
+        "set_code": "svp",
+        "number": "224",
+        "number_plain": "224",
+        "name": "Paradise Resort",
+        "variant_key": "world_championships_2025_staff_stamp",
+        "printed_identity_modifier": "world_championships_2025_staff_stamp",
+        "finish_key": null,
+        "identity_domain": null,
+        "identity_key_version": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "7e4d8cfce1ca302291c14e70cb46c67030fda6770b478b24ad8237cb8b6fbac7",
+    "counts": {
+      "parent_rows": 1,
+      "child_rows": 1,
+      "active_identity_rows": 1,
+      "total_rows": 3
+    }
+  },
+  "guard": {
+    "target_count": 1,
+    "target_parent_count": 1,
+    "missing_parent_count": 0,
+    "variant_mismatch_count": 0,
+    "already_has_modifier_count": 0,
+    "active_identity_collision_count": 0,
+    "ready_projection_count": 1,
+    "identity_hash_collision_count": 0,
+    "inactive_target_finish_count": 0,
+    "matching_child_finish_count": 1,
+    "total_child_count": 1
+  },
+  "summary": {
+    "target_rows": 1,
+    "parent_updates_applied": 1,
+    "identity_inserts_applied": 1
+  },
+  "targets": [
+    {
+      "card_print_id": "4b575fd9-1e87-4992-bae5-826795a4bfbd",
+      "set_key": "svp",
+      "card_number": "224",
+      "card_name": "Paradise Resort",
+      "target_variant_key": "world_championships_2025_staff_stamp",
+      "target_finish_key": "normal",
+      "source_route_fingerprint": "0ec7ec6785b27eaebe294c5a26bd85cd9ed56d28f040b41084e7e612289ed9ba"
+    }
+  ],
+  "parent_update_rows": [
+    {
+      "card_print_id": "4b575fd9-1e87-4992-bae5-826795a4bfbd",
+      "printed_identity_modifier": "world_championships_2025_staff_stamp"
+    }
+  ],
+  "identity_insert_rows": [
+    {
+      "card_print_id": "4b575fd9-1e87-4992-bae5-826795a4bfbd",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "svp",
+      "printed_number": "224",
+      "normalized_printed_name": "paradise resort",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "91a8e91f654d3826bd7a0b5de0c6685794564b21e658394dc264e0588426fbad"
+    }
+  ],
+  "verification": {
+    "parent_modifier_backfilled_count": 1,
+    "active_identity_rows": 1,
+    "matching_child_finish_rows": 1
+  },
+  "safety_confirmation": {
+    "approved_scope_only": true,
+    "no_global_apply": true,
+    "no_migrations_created": true,
+    "no_child_inserts_included": true,
+    "no_deletes_included": true,
+    "no_cleanup_or_quarantine_performed": true
+  }
+}

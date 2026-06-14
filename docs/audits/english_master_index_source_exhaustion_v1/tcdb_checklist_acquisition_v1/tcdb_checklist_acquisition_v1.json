@@ -1,6 +1,6 @@
 {
   "version": "english_master_index_tcdb_checklist_acquisition_v1",
-  "generated_at": "2026-06-08T12:47:30.938Z",
+  "generated_at": "2026-06-12T04:47:58.082Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -8,1090 +8,111 @@
   "quarantine_performed": false,
   "source_key": "tcdb_checklist",
   "summary": {
-    "target_sets": 45,
-    "records_generated": 0,
-    "fixtures_written": 0,
+    "target_sets": 14,
+    "records_generated": 1,
+    "fixtures_written": 1,
     "source_unavailable_events": 0,
-    "no_match_sets": 45
+    "no_match_sets": 13
   },
   "results": [
     {
-      "set_key": "ex6",
-      "set_name": "FireRed & LeafGreen",
-      "searched_queries": 12,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "FireRed & LeafGreen Pokemon",
-          "status": "search_results",
-          "result_count": 43
-        },
-        {
-          "query": "EX FireRed & LeafGreen Pokemon",
-          "status": "search_results",
-          "result_count": 48
-        },
-        {
-          "query": "FireRed LeafGreen Pokemon",
-          "status": "search_results",
-          "result_count": 43
-        },
-        {
-          "query": "EX FireRed LeafGreen Pokemon",
-          "status": "search_results",
-          "result_count": 48
-        },
-        {
-          "query": "FireRed & LeafGreen Pokemon Stamped",
-          "status": "search_results",
-          "result_count": 43
-        },
-        {
-          "query": "EX FireRed & LeafGreen Pokemon Stamped",
-          "status": "search_results",
-          "result_count": 48
-        },
-        {
-          "query": "FireRed LeafGreen Pokemon Stamped",
-          "status": "search_results",
-          "result_count": 43
-        },
-        {
-          "query": "EX FireRed LeafGreen Pokemon Stamped",
-          "status": "search_results",
-          "result_count": 48
-        },
-        {
-          "query": "FireRed & LeafGreen Pokemon Holo",
-          "status": "search_results",
-          "result_count": 50
-        },
-        {
-          "query": "EX FireRed & LeafGreen Pokemon Holo",
-          "status": "search_results",
-          "result_count": 47
-        },
-        {
-          "query": "FireRed LeafGreen Pokemon Holo",
-          "status": "search_results",
-          "result_count": 50
-        },
-        {
-          "query": "EX FireRed LeafGreen Pokemon Holo",
-          "status": "search_results",
-          "result_count": 47
-        }
-      ],
-      "matched": [],
-      "no_match_count": 105
-    },
-    {
-      "set_key": "ex9",
-      "set_name": "Emerald",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
       "searched_queries": 4,
       "candidate_tcdb_sets": 0,
       "records_generated": 0,
       "fixture_file": null,
       "statuses": [
         {
-          "query": "Emerald Pokemon",
+          "query": "Obsidian Flames Pokemon",
           "status": "search_results",
-          "result_count": 43
+          "result_count": 42
         },
         {
-          "query": "EX Emerald Pokemon",
-          "status": "search_results",
-          "result_count": 48
-        },
-        {
-          "query": "Emerald Pokemon Holo",
+          "query": "Obsidian Flames Pokemon Galaxy Holo",
           "status": "search_results",
           "result_count": 50
         },
         {
-          "query": "EX Emerald Pokemon Holo",
+          "query": "Obsidian Flames Pokemon Stamped",
           "status": "search_results",
-          "result_count": 47
-        }
-      ],
-      "matched": [],
-      "no_match_count": 93
-    },
-    {
-      "set_key": "sm8",
-      "set_name": "Lost Thunder",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 2,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Lost Thunder Pokemon",
-          "status": "search_results",
-          "result_count": 50
+          "result_count": 42
         },
         {
-          "query": "Lost Thunder Pokemon Stamped",
+          "query": "Obsidian Flames Pokemon Holo",
           "status": "search_results",
           "result_count": 50
         }
       ],
       "matched": [],
-      "no_match_count": 28
+      "no_match_count": 45
     },
     {
-      "set_key": "xy9",
-      "set_name": "BREAKpoint",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "BREAKpoint Pokemon",
-          "status": "search_results",
-          "result_count": 43
-        },
-        {
-          "query": "BREAKpoint Pokemon Stamped",
-          "status": "search_results",
-          "result_count": 43
-        }
-      ],
-      "matched": [],
-      "no_match_count": 26
-    },
-    {
-      "set_key": "xy8",
-      "set_name": "BREAKthrough",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "BREAKthrough Pokemon",
-          "status": "search_results",
-          "result_count": 43
-        },
-        {
-          "query": "BREAKthrough Pokemon Stamped",
-          "status": "search_results",
-          "result_count": 43
-        }
-      ],
-      "matched": [],
-      "no_match_count": 25
-    },
-    {
-      "set_key": "pl2",
-      "set_name": "Rising Rivals",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 1,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Rising Rivals Pokemon",
-          "status": "search_results",
-          "result_count": 46
-        },
-        {
-          "query": "Rising Rivals Pokemon Stamped",
-          "status": "search_results",
-          "result_count": 46
-        }
-      ],
-      "matched": [],
-      "no_match_count": 22
-    },
-    {
-      "set_key": "sm7",
-      "set_name": "Celestial Storm",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Celestial Storm Pokemon",
-          "status": "search_results",
-          "result_count": 50
-        },
-        {
-          "query": "Celestial Storm Pokemon Stamped",
-          "status": "search_results",
-          "result_count": 50
-        }
-      ],
-      "matched": [],
-      "no_match_count": 20
-    },
-    {
-      "set_key": "xy4",
-      "set_name": "Phantom Forces",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Phantom Forces Pokemon",
-          "status": "search_results",
-          "result_count": 48
-        },
-        {
-          "query": "Phantom Forces Pokemon Stamped",
-          "status": "search_results",
-          "result_count": 48
-        }
-      ],
-      "matched": [],
-      "no_match_count": 20
-    },
-    {
-      "set_key": "bw6",
-      "set_name": "Dragons Exalted",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
       "searched_queries": 3,
-      "candidate_tcdb_sets": 1,
+      "candidate_tcdb_sets": 0,
       "records_generated": 0,
       "fixture_file": null,
       "statuses": [
         {
-          "query": "Dragons Exalted Pokemon",
+          "query": "Temporal Forces Pokemon",
           "status": "search_results",
-          "result_count": 44
+          "result_count": 41
         },
         {
-          "query": "Dragons Exalted Pokemon Holo",
+          "query": "Temporal Forces Pokemon Galaxy Holo",
           "status": "search_results",
           "result_count": 50
         },
         {
-          "query": "Dragons Exalted Pokemon Stamped",
-          "status": "search_results",
-          "result_count": 44
-        }
-      ],
-      "matched": [],
-      "no_match_count": 19
-    },
-    {
-      "set_key": "col1",
-      "set_name": "Call of Legends",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Call of Legends Pokemon",
-          "status": "search_results",
-          "result_count": 45
-        },
-        {
-          "query": "Call of Legends Pokemon Stamped",
-          "status": "search_results",
-          "result_count": 45
-        }
-      ],
-      "matched": [],
-      "no_match_count": 19
-    },
-    {
-      "set_key": "sm10",
-      "set_name": "Unbroken Bonds",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Unbroken Bonds Pokemon",
-          "status": "search_results",
-          "result_count": 43
-        },
-        {
-          "query": "Unbroken Bonds Pokemon Holo",
+          "query": "Temporal Forces Pokemon Holo",
           "status": "search_results",
           "result_count": 50
         }
       ],
       "matched": [],
-      "no_match_count": 19
+      "no_match_count": 20
     },
     {
-      "set_key": "bw9",
-      "set_name": "Plasma Freeze",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Plasma Freeze Pokemon",
-          "status": "search_results",
-          "result_count": 43
-        },
-        {
-          "query": "Plasma Freeze Pokemon Stamped",
-          "status": "search_results",
-          "result_count": 43
-        }
-      ],
-      "matched": [],
-      "no_match_count": 17
-    },
-    {
-      "set_key": "bw8",
-      "set_name": "Plasma Storm",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Plasma Storm Pokemon",
-          "status": "search_results",
-          "result_count": 50
-        },
-        {
-          "query": "Plasma Storm Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 14
-    },
-    {
-      "set_key": "xy2",
-      "set_name": "Flashfire",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Flashfire Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Flashfire Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 14
-    },
-    {
-      "set_key": "xy3",
-      "set_name": "Furious Fists",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Furious Fists Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Furious Fists Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 14
-    },
-    {
-      "set_key": "bw5",
-      "set_name": "Dark Explorers",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Dark Explorers Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Dark Explorers Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 13
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
+      "set_key": "bw1",
+      "set_name": "Black & White",
       "searched_queries": 4,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
+      "candidate_tcdb_sets": 49,
+      "records_generated": 1,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_tcdb_checklists_v1\\bw1.json",
       "statuses": [
         {
-          "query": "Sun & Moon Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
+          "query": "Black & White Pokemon",
+          "status": "search_results",
+          "result_count": 49
         },
         {
-          "query": "Sun Moon Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
+          "query": "Black White Pokemon",
+          "status": "search_results",
+          "result_count": 49
         },
         {
-          "query": "Sun & Moon Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
+          "query": "Black & White Pokemon Reverse Holo",
+          "status": "search_results",
+          "result_count": 50
         },
         {
-          "query": "Sun Moon Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
+          "query": "Black White Pokemon Reverse Holo",
+          "status": "search_results",
+          "result_count": 50
         }
       ],
-      "matched": [],
-      "no_match_count": 13
-    },
-    {
-      "set_key": "sm2",
-      "set_name": "Guardians Rising",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
+      "matched": [
         {
-          "query": "Guardians Rising Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Guardians Rising Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
+          "type": "printing_finish",
+          "card_number": "107",
+          "card_name": "Water Energy",
+          "finish_key": "reverse",
+          "tcdb_title": "2011 Pokemon Black & White - Reverse Holo"
         }
       ],
-      "matched": [],
-      "no_match_count": 13
-    },
-    {
-      "set_key": "bw2",
-      "set_name": "Emerging Powers",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Emerging Powers Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Emerging Powers Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 11
-    },
-    {
-      "set_key": "bw3",
-      "set_name": "Noble Victories",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Noble Victories Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Noble Victories Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 10
-    },
-    {
-      "set_key": "ex1",
-      "set_name": "Ruby & Sapphire",
-      "searched_queries": 12,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Ruby & Sapphire Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "EX Ruby & Sapphire Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Ruby Sapphire Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "EX Ruby Sapphire Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Ruby & Sapphire Pokemon Galaxy Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "EX Ruby & Sapphire Pokemon Galaxy Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Ruby Sapphire Pokemon Galaxy Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "EX Ruby Sapphire Pokemon Galaxy Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Ruby & Sapphire Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "EX Ruby & Sapphire Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Ruby Sapphire Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "EX Ruby Sapphire Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 10
-    },
-    {
-      "set_key": "sm3",
-      "set_name": "Burning Shadows",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Burning Shadows Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Burning Shadows Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 9
-    },
-    {
-      "set_key": "sm4",
-      "set_name": "Crimson Invasion",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Crimson Invasion Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Crimson Invasion Pokemon Galaxy Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
       "no_match_count": 8
-    },
-    {
-      "set_key": "dp1",
-      "set_name": "Diamond & Pearl",
-      "searched_queries": 6,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Diamond & Pearl Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Diamond Pearl Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Diamond & Pearl Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Diamond Pearl Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Diamond & Pearl Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Diamond Pearl Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 6
-    },
-    {
-      "set_key": "ex4",
-      "set_name": "Team Magma vs Team Aqua",
-      "searched_queries": 4,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Team Magma vs Team Aqua Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "EX Team Magma vs Team Aqua Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Team Magma vs Team Aqua Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "EX Team Magma vs Team Aqua Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 5
-    },
-    {
-      "set_key": "hgss1",
-      "set_name": "HeartGold & SoulSilver",
-      "searched_queries": 6,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "HeartGold & SoulSilver Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "HeartGold SoulSilver Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "HeartGold & SoulSilver Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "HeartGold SoulSilver Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "HeartGold & SoulSilver Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "HeartGold SoulSilver Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 5
-    },
-    {
-      "set_key": "sv03.5",
-      "set_name": "151",
-      "searched_queries": 3,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "151 Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "151 Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "151 Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 5
-    },
-    {
-      "set_key": "smp",
-      "set_name": "SM Black Star Promos",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "SM Black Star Promos Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "SM Black Star Promos Pokemon Galaxy Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 3
-    },
-    {
-      "set_key": "dp3",
-      "set_name": "Secret Wonders",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Secret Wonders Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Secret Wonders Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 2
-    },
-    {
-      "set_key": "dp5",
-      "set_name": "Majestic Dawn",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Majestic Dawn Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Majestic Dawn Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 2
-    },
-    {
-      "set_key": "ecard2",
-      "set_name": "Aquapolis",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Aquapolis Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Aquapolis Pokemon Reverse Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 2
-    },
-    {
-      "set_key": "ex14",
-      "set_name": "Crystal Guardians",
-      "searched_queries": 4,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Crystal Guardians Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "EX Crystal Guardians Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Crystal Guardians Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "EX Crystal Guardians Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 2
-    },
-    {
-      "set_key": "hgss2",
-      "set_name": "HS—Unleashed",
-      "searched_queries": 3,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "HS—Unleashed Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "HS—Unleashed Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "HS—Unleashed Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 2
-    },
-    {
-      "set_key": "neo1",
-      "set_name": "Neo Genesis",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Neo Genesis Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Neo Genesis Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 2
-    },
-    {
-      "set_key": "pl1",
-      "set_name": "Platinum",
-      "searched_queries": 3,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Platinum Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Platinum Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Platinum Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 2
-    },
-    {
-      "set_key": "swsh1",
-      "set_name": "Sword & Shield",
-      "searched_queries": 6,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Sword & Shield Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Sword Shield Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Sword & Shield Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Sword Shield Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Sword & Shield Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Sword Shield Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 2
-    },
-    {
-      "set_key": "xyp",
-      "set_name": "XY Black Star Promos",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "XY Black Star Promos Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "XY Black Star Promos Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 2
-    },
-    {
-      "set_key": "cel25",
-      "set_name": "Celebrations",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Celebrations Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Celebrations Pokemon Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 1
-    },
-    {
-      "set_key": "hgss4",
-      "set_name": "HS—Triumphant",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "HS—Triumphant Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "HS—Triumphant Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 1
     },
     {
       "set_key": "swsh10",
@@ -1103,17 +124,17 @@
       "statuses": [
         {
           "query": "Astral Radiance Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
+          "status": "search_results",
+          "result_count": 43
         },
         {
-          "query": "Astral Radiance Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
+          "query": "Astral Radiance Pokemon Galaxy Holo",
+          "status": "search_results",
+          "result_count": 50
         }
       ],
       "matched": [],
-      "no_match_count": 1
+      "no_match_count": 8
     },
     {
       "set_key": "swsh11",
@@ -1125,11 +146,177 @@
       "statuses": [
         {
           "query": "Lost Origin Pokemon",
+          "status": "search_results",
+          "result_count": 50
+        },
+        {
+          "query": "Lost Origin Pokemon Galaxy Holo",
+          "status": "search_results",
+          "result_count": 50
+        }
+      ],
+      "matched": [],
+      "no_match_count": 6
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "searched_queries": 1,
+      "candidate_tcdb_sets": 0,
+      "records_generated": 0,
+      "fixture_file": null,
+      "statuses": [
+        {
+          "query": "Evolving Skies Pokemon",
+          "status": "search_results",
+          "result_count": 43
+        }
+      ],
+      "matched": [],
+      "no_match_count": 4
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "searched_queries": 2,
+      "candidate_tcdb_sets": 0,
+      "records_generated": 0,
+      "fixture_file": null,
+      "statuses": [
+        {
+          "query": "Brilliant Stars Pokemon",
+          "status": "search_results",
+          "result_count": 42
+        },
+        {
+          "query": "Brilliant Stars Pokemon Galaxy Holo",
+          "status": "search_results",
+          "result_count": 50
+        }
+      ],
+      "matched": [],
+      "no_match_count": 4
+    },
+    {
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "searched_queries": 3,
+      "candidate_tcdb_sets": 1,
+      "records_generated": 0,
+      "fixture_file": null,
+      "statuses": [
+        {
+          "query": "Stellar Crown Pokemon",
+          "status": "search_results",
+          "result_count": 43
+        },
+        {
+          "query": "Stellar Crown Pokemon Galaxy Holo",
+          "status": "search_results",
+          "result_count": 50
+        },
+        {
+          "query": "Stellar Crown Pokemon Holo",
+          "status": "search_results",
+          "result_count": 50
+        }
+      ],
+      "matched": [],
+      "no_match_count": 3
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "searched_queries": 2,
+      "candidate_tcdb_sets": 0,
+      "records_generated": 0,
+      "fixture_file": null,
+      "statuses": [
+        {
+          "query": "Destined Rivals Pokemon",
+          "status": "search_results",
+          "result_count": 46
+        },
+        {
+          "query": "Destined Rivals Pokemon Holo",
+          "status": "search_results",
+          "result_count": 50
+        }
+      ],
+      "matched": [],
+      "no_match_count": 3
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "searched_queries": 1,
+      "candidate_tcdb_sets": 0,
+      "records_generated": 0,
+      "fixture_file": null,
+      "statuses": [
+        {
+          "query": "Chilling Reign Pokemon",
+          "status": "search_results",
+          "result_count": 43
+        }
+      ],
+      "matched": [],
+      "no_match_count": 3
+    },
+    {
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "searched_queries": 2,
+      "candidate_tcdb_sets": 0,
+      "records_generated": 0,
+      "fixture_file": null,
+      "statuses": [
+        {
+          "query": "Wizards Black Star Promos Pokemon",
           "status": "no_search_results",
           "result_count": 0
         },
         {
-          "query": "Lost Origin Pokemon Stamped",
+          "query": "Wizards Black Star Promos Pokemon Holo",
+          "status": "no_search_results",
+          "result_count": 0
+        }
+      ],
+      "matched": [],
+      "no_match_count": 2
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "searched_queries": 1,
+      "candidate_tcdb_sets": 0,
+      "records_generated": 0,
+      "fixture_file": null,
+      "statuses": [
+        {
+          "query": "Battle Styles Pokemon",
+          "status": "no_search_results",
+          "result_count": 0
+        }
+      ],
+      "matched": [],
+      "no_match_count": 2
+    },
+    {
+      "set_key": "swsh12",
+      "set_name": "Silver Tempest",
+      "searched_queries": 2,
+      "candidate_tcdb_sets": 0,
+      "records_generated": 0,
+      "fixture_file": null,
+      "statuses": [
+        {
+          "query": "Silver Tempest Pokemon",
+          "status": "no_search_results",
+          "result_count": 0
+        },
+        {
+          "query": "Silver Tempest Pokemon Galaxy Holo",
           "status": "no_search_results",
           "result_count": 0
         }
@@ -1140,79 +327,13 @@
     {
       "set_key": "swsh2",
       "set_name": "Rebel Clash",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Rebel Clash Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Rebel Clash Pokemon Galaxy Holo",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 1
-    },
-    {
-      "set_key": "swsh3.5",
-      "set_name": "Champion's Path",
       "searched_queries": 1,
       "candidate_tcdb_sets": 0,
       "records_generated": 0,
       "fixture_file": null,
       "statuses": [
         {
-          "query": "Champion's Path Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 1
-    },
-    {
-      "set_key": "swsh4",
-      "set_name": "Vivid Voltage",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Vivid Voltage Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Vivid Voltage Pokemon Stamped",
-          "status": "no_search_results",
-          "result_count": 0
-        }
-      ],
-      "matched": [],
-      "no_match_count": 1
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "searched_queries": 2,
-      "candidate_tcdb_sets": 0,
-      "records_generated": 0,
-      "fixture_file": null,
-      "statuses": [
-        {
-          "query": "Evolving Skies Pokemon",
-          "status": "no_search_results",
-          "result_count": 0
-        },
-        {
-          "query": "Evolving Skies Pokemon Stamped",
+          "query": "Rebel Clash Pokemon",
           "status": "no_search_results",
           "result_count": 0
         }

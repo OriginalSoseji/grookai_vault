@@ -1,0 +1,2134 @@
+{
+  "generated_at": "2026-06-11T04:41:56.003Z",
+  "version": "english_master_index_pkg12c_bw11_incomplete_parent_backfill_real_apply_v1",
+  "package_id": "PKG-12C-BW11-INCOMPLETE-PARENT-BACKFILL",
+  "package_fingerprint_sha256": "18b5f0780d8f64e07bce8fac5654850faf67909c0cac55a0710e520d24102413",
+  "apply_status": "applied",
+  "prerequisite_findings": [],
+  "post_apply_findings": [],
+  "db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "unsupported_cleanup_performed": false,
+  "scope": {
+    "survivor_set_code_updates": 5,
+    "tcgdex_mapping_transfers": 5,
+    "duplicate_child_deletes": 15,
+    "duplicate_parent_deletes": 5,
+    "survivor_species_deletes": 5,
+    "species_transfers": 5,
+    "trait_transfers": 5,
+    "by_set": {
+      "bw11": 5
+    },
+    "target_rows": [
+      {
+        "package_id": "PKG-12C-BW11-INCOMPLETE-PARENT-BACKFILL",
+        "set_key": "bw11",
+        "set_name": "Legendary Treasures",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "live_set_code": "bw11",
+        "card_number": "2",
+        "card_name": "Tangrowth",
+        "tcgdex_external_id": "bw11-2",
+        "duplicate_card_print_id": "16dfca86-c445-4969-9552-15e2185096fc",
+        "survivor_card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9",
+        "duplicate_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "survivor_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "duplicate_feed_events": 0,
+        "duplicate_vault_items": 0,
+        "duplicate_vault_instances": 0,
+        "duplicate_pricing_watch": 0,
+        "duplicate_discovery_candidates": 0,
+        "duplicate_warehouse_candidates": 0,
+        "duplicate_justtcg_variants": 0,
+        "duplicate_justtcg_latest": 0,
+        "duplicate_justtcg_snapshots": 0,
+        "duplicate_species_rows": 1,
+        "duplicate_trait_rows": 1
+      },
+      {
+        "package_id": "PKG-12C-BW11-INCOMPLETE-PARENT-BACKFILL",
+        "set_key": "bw11",
+        "set_name": "Legendary Treasures",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "live_set_code": "bw11",
+        "card_number": "8",
+        "card_name": "Serperior",
+        "tcgdex_external_id": "bw11-8",
+        "duplicate_card_print_id": "b958ef86-132a-4849-9db7-a69ed8fcbb1c",
+        "survivor_card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838",
+        "duplicate_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "survivor_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "duplicate_feed_events": 0,
+        "duplicate_vault_items": 0,
+        "duplicate_vault_instances": 0,
+        "duplicate_pricing_watch": 0,
+        "duplicate_discovery_candidates": 0,
+        "duplicate_warehouse_candidates": 0,
+        "duplicate_justtcg_variants": 0,
+        "duplicate_justtcg_latest": 0,
+        "duplicate_justtcg_snapshots": 0,
+        "duplicate_species_rows": 1,
+        "duplicate_trait_rows": 1
+      },
+      {
+        "package_id": "PKG-12C-BW11-INCOMPLETE-PARENT-BACKFILL",
+        "set_key": "bw11",
+        "set_name": "Legendary Treasures",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "live_set_code": "bw11",
+        "card_number": "11",
+        "card_name": "Swadloon",
+        "tcgdex_external_id": "bw11-11",
+        "duplicate_card_print_id": "875181b8-83c3-45b2-b15d-31aa05e0c615",
+        "survivor_card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66",
+        "duplicate_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "survivor_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "duplicate_feed_events": 0,
+        "duplicate_vault_items": 0,
+        "duplicate_vault_instances": 0,
+        "duplicate_pricing_watch": 0,
+        "duplicate_discovery_candidates": 0,
+        "duplicate_warehouse_candidates": 0,
+        "duplicate_justtcg_variants": 0,
+        "duplicate_justtcg_latest": 0,
+        "duplicate_justtcg_snapshots": 0,
+        "duplicate_species_rows": 1,
+        "duplicate_trait_rows": 1
+      },
+      {
+        "package_id": "PKG-12C-BW11-INCOMPLETE-PARENT-BACKFILL",
+        "set_key": "bw11",
+        "set_name": "Legendary Treasures",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "live_set_code": "bw11",
+        "card_number": "17",
+        "card_name": "Charmander",
+        "tcgdex_external_id": "bw11-17",
+        "duplicate_card_print_id": "bef9f1a1-27d7-4e71-ab9e-64aab82e30bf",
+        "survivor_card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+        "duplicate_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "survivor_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "duplicate_feed_events": 0,
+        "duplicate_vault_items": 0,
+        "duplicate_vault_instances": 0,
+        "duplicate_pricing_watch": 0,
+        "duplicate_discovery_candidates": 0,
+        "duplicate_warehouse_candidates": 0,
+        "duplicate_justtcg_variants": 0,
+        "duplicate_justtcg_latest": 0,
+        "duplicate_justtcg_snapshots": 0,
+        "duplicate_species_rows": 1,
+        "duplicate_trait_rows": 1
+      },
+      {
+        "package_id": "PKG-12C-BW11-INCOMPLETE-PARENT-BACKFILL",
+        "set_key": "bw11",
+        "set_name": "Legendary Treasures",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "live_set_code": "bw11",
+        "card_number": "25",
+        "card_name": "Tepig",
+        "tcgdex_external_id": "bw11-25",
+        "duplicate_card_print_id": "e0d286dc-607f-4abd-9b3e-d4a0c386c9d5",
+        "survivor_card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691",
+        "duplicate_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "survivor_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "duplicate_feed_events": 0,
+        "duplicate_vault_items": 0,
+        "duplicate_vault_instances": 0,
+        "duplicate_pricing_watch": 0,
+        "duplicate_discovery_candidates": 0,
+        "duplicate_warehouse_candidates": 0,
+        "duplicate_justtcg_variants": 0,
+        "duplicate_justtcg_latest": 0,
+        "duplicate_justtcg_snapshots": 0,
+        "duplicate_species_rows": 1,
+        "duplicate_trait_rows": 1
+      }
+    ],
+    "proof_rows": [
+      {
+        "package_id": "PKG-12C-BW11-INCOMPLETE-PARENT-BACKFILL",
+        "package_fingerprint": "18b5f0780d8f64e07bce8fac5654850faf67909c0cac55a0710e520d24102413",
+        "target_rows": 5,
+        "survivor_updates": 5,
+        "mapping_transfers": 5,
+        "child_deletes": 15,
+        "parent_deletes": 5,
+        "species_transfers": 5,
+        "trait_transfers": 5
+      }
+    ]
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-11T04:41:54.568Z",
+    "rows": [
+      {
+        "card_print_id": "bef9f1a1-27d7-4e71-ab9e-64aab82e30bf",
+        "target_role": "duplicate_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "printed_identity_modifier": null,
+        "name": "Charmander",
+        "rarity": "Common",
+        "card_printings": [
+          {
+            "id": "29fab860-523f-4c7a-847d-247710fcad1a",
+            "image_url": null,
+            "created_at": "2026-03-27T00:17:35.250192+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "bef9f1a1-27d7-4e71-ab9e-64aab82e30bf",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-17",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "dfc4da91-48e8-4f97-ad26-9f358050bbef",
+            "image_url": null,
+            "created_at": "2026-03-27T00:17:35.16249+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "bef9f1a1-27d7-4e71-ab9e-64aab82e30bf",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-17",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "4ab88a0e-0036-41c7-bfc0-53fcf6bbdd25",
+            "image_url": null,
+            "created_at": "2026-03-27T00:17:35.341172+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "bef9f1a1-27d7-4e71-ab9e-64aab82e30bf",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-17",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 60948,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-02-23T21:31:22.76517+00:00",
+            "external_id": "bw11-17",
+            "card_print_id": "bef9f1a1-27d7-4e71-ab9e-64aab82e30bf"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "6143d180-0b9b-493f-9c35-7c91c6a98151",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Charmander",
+              "supertype": "Pokemon",
+              "card_category": "Basic",
+              "matched_token": "charmander"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "0c15d9a9-4c65-4849-92e2-ca0ea7b7c713",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "bef9f1a1-27d7-4e71-ab9e-64aab82e30bf",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 70,
+            "id": 38052,
+            "types": [
+              "Fire"
+            ],
+            "rarity": "Common",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T00:17:35.529393+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 4,
+            "card_category": "Basic",
+            "card_print_id": "bef9f1a1-27d7-4e71-ab9e-64aab82e30bf",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "b958ef86-132a-4849-9db7-a69ed8fcbb1c",
+        "target_role": "duplicate_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "printed_identity_modifier": null,
+        "name": "Serperior",
+        "rarity": "Rare",
+        "card_printings": [
+          {
+            "id": "da634762-7da0-40a8-a288-cc5b5250d98d",
+            "image_url": null,
+            "created_at": "2026-03-27T00:17:07.022716+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "b958ef86-132a-4849-9db7-a69ed8fcbb1c",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-8",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "fb53e69d-d14f-4dae-83c5-873df057a9fc",
+            "image_url": null,
+            "created_at": "2026-03-27T00:17:06.935969+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "b958ef86-132a-4849-9db7-a69ed8fcbb1c",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-8",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "14219a1e-561d-4c91-9af0-9f1a1acd756d",
+            "image_url": null,
+            "created_at": "2026-03-27T00:17:07.118121+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "b958ef86-132a-4849-9db7-a69ed8fcbb1c",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-8",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 60930,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-02-23T21:31:22.76517+00:00",
+            "external_id": "bw11-8",
+            "card_print_id": "b958ef86-132a-4849-9db7-a69ed8fcbb1c"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "c4f8d458-46c6-442f-8e74-9f215c7cb13d",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Serperior",
+              "supertype": "Pokemon",
+              "card_category": "Stage2",
+              "matched_token": "serperior"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "a2388d20-e530-4dac-810f-07047c3b899c",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "b958ef86-132a-4849-9db7-a69ed8fcbb1c",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 130,
+            "id": 38025,
+            "types": [
+              "Grass"
+            ],
+            "rarity": "Rare",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T00:17:07.314325+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 497,
+            "card_category": "Stage2",
+            "card_print_id": "b958ef86-132a-4849-9db7-a69ed8fcbb1c",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "875181b8-83c3-45b2-b15d-31aa05e0c615",
+        "target_role": "duplicate_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "printed_identity_modifier": null,
+        "name": "Swadloon",
+        "rarity": "Uncommon",
+        "card_printings": [
+          {
+            "id": "ff3252c9-66a4-40b3-a6ef-13238086c42f",
+            "image_url": null,
+            "created_at": "2026-03-27T00:17:16.506823+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "875181b8-83c3-45b2-b15d-31aa05e0c615",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-11",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "c2ce85c0-7cf0-45f2-bbd9-b13aee51ea8d",
+            "image_url": null,
+            "created_at": "2026-03-27T00:17:16.411477+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "875181b8-83c3-45b2-b15d-31aa05e0c615",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-11",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "f71f87fc-78e6-4325-b187-02bb50eea12d",
+            "image_url": null,
+            "created_at": "2026-03-27T00:17:16.60845+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "875181b8-83c3-45b2-b15d-31aa05e0c615",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-11",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 60937,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-02-23T21:31:22.76517+00:00",
+            "external_id": "bw11-11",
+            "card_print_id": "875181b8-83c3-45b2-b15d-31aa05e0c615"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "9a8076b4-562b-4463-9fea-b0c379d34249",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Swadloon",
+              "supertype": "Pokemon",
+              "card_category": "Stage1",
+              "matched_token": "swadloon"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "e08c7ed1-6a8b-40b1-a36b-8af6460efb6e",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "875181b8-83c3-45b2-b15d-31aa05e0c615",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 70,
+            "id": 38034,
+            "types": [
+              "Grass"
+            ],
+            "rarity": "Uncommon",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T00:17:16.79919+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 541,
+            "card_category": "Stage1",
+            "card_print_id": "875181b8-83c3-45b2-b15d-31aa05e0c615",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "16dfca86-c445-4969-9552-15e2185096fc",
+        "target_role": "duplicate_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "printed_identity_modifier": null,
+        "name": "Tangrowth",
+        "rarity": "Rare",
+        "card_printings": [
+          {
+            "id": "d4c759fe-9287-40f6-9ce6-fe4e302eae14",
+            "image_url": null,
+            "created_at": "2026-03-27T00:16:48.415321+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "16dfca86-c445-4969-9552-15e2185096fc",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-2",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "0c12f3eb-bd43-4443-8735-15b022296b88",
+            "image_url": null,
+            "created_at": "2026-03-27T00:16:48.321566+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "16dfca86-c445-4969-9552-15e2185096fc",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-2",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "9d597e61-de55-4878-8e57-2499fc501ba4",
+            "image_url": null,
+            "created_at": "2026-03-27T00:16:48.514122+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "16dfca86-c445-4969-9552-15e2185096fc",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-2",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 60938,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-02-23T21:31:22.76517+00:00",
+            "external_id": "bw11-2",
+            "card_print_id": "16dfca86-c445-4969-9552-15e2185096fc"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "6b7dc2ec-a774-4173-96ef-15c855c8b4aa",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Tangrowth",
+              "supertype": "Pokemon",
+              "card_category": "Stage1",
+              "matched_token": "tangrowth"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "82fa4f22-20e7-4d7f-9feb-7ee8c14f082c",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "16dfca86-c445-4969-9552-15e2185096fc",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 120,
+            "id": 38007,
+            "types": [
+              "Grass"
+            ],
+            "rarity": "Rare",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T00:16:48.710352+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 465,
+            "card_category": "Stage1",
+            "card_print_id": "16dfca86-c445-4969-9552-15e2185096fc",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "e0d286dc-607f-4abd-9b3e-d4a0c386c9d5",
+        "target_role": "duplicate_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "printed_identity_modifier": null,
+        "name": "Tepig",
+        "rarity": "Common",
+        "card_printings": [
+          {
+            "id": "5badb93f-039b-4b81-b0cc-be2c0120880b",
+            "image_url": null,
+            "created_at": "2026-03-27T00:17:59.983674+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "e0d286dc-607f-4abd-9b3e-d4a0c386c9d5",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-25",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "9dd01406-0ee0-43d4-9925-4a7739f5001b",
+            "image_url": null,
+            "created_at": "2026-03-27T00:17:59.897012+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "e0d286dc-607f-4abd-9b3e-d4a0c386c9d5",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-25",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "def72f90-f4e4-4717-bbcb-cc096d524e0a",
+            "image_url": null,
+            "created_at": "2026-03-27T00:18:00.073147+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "e0d286dc-607f-4abd-9b3e-d4a0c386c9d5",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "bw11-25",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 60934,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-02-23T21:31:22.76517+00:00",
+            "external_id": "bw11-25",
+            "card_print_id": "e0d286dc-607f-4abd-9b3e-d4a0c386c9d5"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "2a7748ae-020e-499b-8ef9-f3ab3d678d32",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Tepig",
+              "supertype": "Pokemon",
+              "card_category": "Basic",
+              "matched_token": "tepig"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "1938f2bb-91cb-43ae-a5a1-a6495da2b368",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "e0d286dc-607f-4abd-9b3e-d4a0c386c9d5",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 70,
+            "id": 38076,
+            "types": [
+              "Fire"
+            ],
+            "rarity": "Common",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T00:18:00.269848+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 498,
+            "card_category": "Basic",
+            "card_print_id": "e0d286dc-607f-4abd-9b3e-d4a0c386c9d5",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+        "target_role": "survivor_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": null,
+        "number": "17",
+        "number_plain": "17",
+        "printed_identity_modifier": null,
+        "name": "Charmander",
+        "rarity": "Common",
+        "card_printings": [
+          {
+            "id": "8835f3f6-3fa5-4fcd-a7ff-4f309cd5dc53",
+            "image_url": null,
+            "created_at": "2026-03-03T04:03:38.310355+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-17-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "263bf2c5-e835-47d1-8caf-8886d04b77c9",
+            "image_url": null,
+            "created_at": "2026-03-03T06:02:31.209735+00:00",
+            "created_by": null,
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-17-STD",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "69df86fd-903e-4071-8ed5-79089db027cb",
+            "image_url": null,
+            "created_at": "2026-02-23T21:39:11.25213+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-17-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 91534,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "17/113",
+              "justtcg_set_name": "Legendary Treasures",
+              "tcgplayer_external_id": "84219"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:27:19.043+00:00",
+            "external_id": "pokemon-legendary-treasures-charmander-common",
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8"
+          },
+          {
+            "id": 63549,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw11-17",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:01:51.377+00:00",
+            "external_id": "84219",
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "41168da1-094c-46d5-b2cc-ab330d71a896",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Charmander",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "charmander"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "0c15d9a9-4c65-4849-92e2-ca0ea7b7c713",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838",
+        "target_role": "survivor_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": null,
+        "number": "8",
+        "number_plain": "8",
+        "printed_identity_modifier": null,
+        "name": "Serperior",
+        "rarity": "Rare",
+        "card_printings": [
+          {
+            "id": "6ce9ff8e-860f-4055-a5fb-866473a855e1",
+            "image_url": null,
+            "created_at": "2026-03-03T04:03:38.310355+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-8-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "67701e0f-1f1e-49f0-9e50-ecaf962167ea",
+            "image_url": null,
+            "created_at": "2026-03-03T06:02:31.209735+00:00",
+            "created_by": null,
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-8-STD",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "a3f7fdc9-4b13-4159-b26f-8d56014c7cc3",
+            "image_url": null,
+            "created_at": "2026-02-23T21:39:11.25213+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-8-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 91522,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "8/113",
+              "justtcg_set_name": "Legendary Treasures",
+              "tcgplayer_external_id": "89074"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:27:15.583+00:00",
+            "external_id": "pokemon-legendary-treasures-serperior-holo-rare",
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838"
+          },
+          {
+            "id": 63561,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw11-8",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.holofoil.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:01:55.442+00:00",
+            "external_id": "89074",
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "923edf61-3425-4148-9707-d80c433b518d",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Serperior",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "serperior"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "a2388d20-e530-4dac-810f-07047c3b899c",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66",
+        "target_role": "survivor_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": null,
+        "number": "11",
+        "number_plain": "11",
+        "printed_identity_modifier": null,
+        "name": "Swadloon",
+        "rarity": "Uncommon",
+        "card_printings": [
+          {
+            "id": "e4d137e1-bdb3-423e-b6fa-c57c9f078494",
+            "image_url": null,
+            "created_at": "2026-03-03T04:03:38.310355+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-11-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "966f2b84-39b8-43f8-b392-2dd5b572953c",
+            "image_url": null,
+            "created_at": "2026-03-03T06:02:31.209735+00:00",
+            "created_by": null,
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-11-STD",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "b34a35e8-30d6-41a3-87d5-46c0bc2d16a5",
+            "image_url": null,
+            "created_at": "2026-02-23T21:39:11.25213+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-11-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 91530,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "11/113",
+              "justtcg_set_name": "Legendary Treasures",
+              "tcgplayer_external_id": "89669"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:27:17.935+00:00",
+            "external_id": "pokemon-legendary-treasures-swadloon-uncommon",
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66"
+          },
+          {
+            "id": 63553,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw11-11",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:01:52.734+00:00",
+            "external_id": "89669",
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "6b141257-9344-4349-a276-ece5c2e8df4e",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Swadloon",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "swadloon"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "e08c7ed1-6a8b-40b1-a36b-8af6460efb6e",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9",
+        "target_role": "survivor_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": null,
+        "number": "2",
+        "number_plain": "2",
+        "printed_identity_modifier": null,
+        "name": "Tangrowth",
+        "rarity": "Rare",
+        "card_printings": [
+          {
+            "id": "510e8d81-f2cb-41af-96f6-c7be6fead4ae",
+            "image_url": null,
+            "created_at": "2026-03-03T04:03:38.310355+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-2-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "6aa3c3af-dbb4-4e9a-b812-8f1d41d069f8",
+            "image_url": null,
+            "created_at": "2026-03-03T06:02:31.209735+00:00",
+            "created_by": null,
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-2-STD",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "8bf37aea-89dd-47da-b53e-6129f02aaee6",
+            "image_url": null,
+            "created_at": "2026-02-23T21:39:11.25213+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-2-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 91529,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "2/113",
+              "justtcg_set_name": "Legendary Treasures",
+              "tcgplayer_external_id": "89756"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:27:17.651+00:00",
+            "external_id": "pokemon-legendary-treasures-tangrowth-rare",
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9"
+          },
+          {
+            "id": 63554,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw11-2",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:01:53.079+00:00",
+            "external_id": "89756",
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "06dec83f-633c-4f75-9100-96955a7d3496",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Tangrowth",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "tangrowth"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "82fa4f22-20e7-4d7f-9feb-7ee8c14f082c",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": []
+      },
+      {
+        "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691",
+        "target_role": "survivor_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": null,
+        "number": "25",
+        "number_plain": "25",
+        "printed_identity_modifier": null,
+        "name": "Tepig",
+        "rarity": "Common",
+        "card_printings": [
+          {
+            "id": "6f3069d7-b85a-4599-a9c8-d3d3b9ec49e7",
+            "image_url": null,
+            "created_at": "2026-03-03T04:03:38.310355+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-25-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "44530c8f-546e-4da0-a98a-462989188acf",
+            "image_url": null,
+            "created_at": "2026-03-03T06:02:31.209735+00:00",
+            "created_by": null,
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-25-STD",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "886157fa-bb12-4964-9df0-2716855995a6",
+            "image_url": null,
+            "created_at": "2026-02-23T21:39:11.25213+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-25-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 91526,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "25/113",
+              "justtcg_set_name": "Legendary Treasures",
+              "tcgplayer_external_id": "89885"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:27:16.799+00:00",
+            "external_id": "pokemon-legendary-treasures-tepig-common",
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691"
+          },
+          {
+            "id": 63557,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw11-25",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:01:54.091+00:00",
+            "external_id": "89885",
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "ea3b42cc-be4b-4d37-baf5-81af7355ff84",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Tepig",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "tepig"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "1938f2bb-91cb-43ae-a5a1-a6495da2b368",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": []
+      }
+    ],
+    "hash_sha256": "7e7ec07c2093e445179762c2a478e6104adc316f67eaf5220a38488b8fb4755a",
+    "counts": {
+      "duplicate_parent_rows": 5,
+      "survivor_parent_rows": 5,
+      "total_rows": 10
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-11T04:41:56.002Z",
+    "rows": [
+      {
+        "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+        "target_role": "survivor_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "17",
+        "number_plain": "17",
+        "printed_identity_modifier": null,
+        "name": "Charmander",
+        "rarity": "Common",
+        "card_printings": [
+          {
+            "id": "8835f3f6-3fa5-4fcd-a7ff-4f309cd5dc53",
+            "image_url": null,
+            "created_at": "2026-03-03T04:03:38.310355+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-17-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "263bf2c5-e835-47d1-8caf-8886d04b77c9",
+            "image_url": null,
+            "created_at": "2026-03-03T06:02:31.209735+00:00",
+            "created_by": null,
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-17-STD",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "69df86fd-903e-4071-8ed5-79089db027cb",
+            "image_url": null,
+            "created_at": "2026-02-23T21:39:11.25213+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-17-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 91534,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "17/113",
+              "justtcg_set_name": "Legendary Treasures",
+              "tcgplayer_external_id": "84219"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:27:19.043+00:00",
+            "external_id": "pokemon-legendary-treasures-charmander-common",
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8"
+          },
+          {
+            "id": 60948,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-02-23T21:31:22.76517+00:00",
+            "external_id": "bw11-17",
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8"
+          },
+          {
+            "id": 63549,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw11-17",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:01:51.377+00:00",
+            "external_id": "84219",
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "6143d180-0b9b-493f-9c35-7c91c6a98151",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Charmander",
+              "supertype": "Pokemon",
+              "card_category": "Basic",
+              "matched_token": "charmander"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "0c15d9a9-4c65-4849-92e2-ca0ea7b7c713",
+            "updated_at": "2026-06-11T04:41:55.815818+00:00",
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 70,
+            "id": 38052,
+            "types": [
+              "Fire"
+            ],
+            "rarity": "Common",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T00:17:35.529393+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 4,
+            "card_category": "Basic",
+            "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838",
+        "target_role": "survivor_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "8",
+        "number_plain": "8",
+        "printed_identity_modifier": null,
+        "name": "Serperior",
+        "rarity": "Rare",
+        "card_printings": [
+          {
+            "id": "6ce9ff8e-860f-4055-a5fb-866473a855e1",
+            "image_url": null,
+            "created_at": "2026-03-03T04:03:38.310355+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-8-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "67701e0f-1f1e-49f0-9e50-ecaf962167ea",
+            "image_url": null,
+            "created_at": "2026-03-03T06:02:31.209735+00:00",
+            "created_by": null,
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-8-STD",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "a3f7fdc9-4b13-4159-b26f-8d56014c7cc3",
+            "image_url": null,
+            "created_at": "2026-02-23T21:39:11.25213+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-8-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 91522,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "8/113",
+              "justtcg_set_name": "Legendary Treasures",
+              "tcgplayer_external_id": "89074"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:27:15.583+00:00",
+            "external_id": "pokemon-legendary-treasures-serperior-holo-rare",
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838"
+          },
+          {
+            "id": 60930,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-02-23T21:31:22.76517+00:00",
+            "external_id": "bw11-8",
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838"
+          },
+          {
+            "id": 63561,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw11-8",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.holofoil.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:01:55.442+00:00",
+            "external_id": "89074",
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "c4f8d458-46c6-442f-8e74-9f215c7cb13d",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Serperior",
+              "supertype": "Pokemon",
+              "card_category": "Stage2",
+              "matched_token": "serperior"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "a2388d20-e530-4dac-810f-07047c3b899c",
+            "updated_at": "2026-06-11T04:41:55.815818+00:00",
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 130,
+            "id": 38025,
+            "types": [
+              "Grass"
+            ],
+            "rarity": "Rare",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T00:17:07.314325+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 497,
+            "card_category": "Stage2",
+            "card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66",
+        "target_role": "survivor_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "11",
+        "number_plain": "11",
+        "printed_identity_modifier": null,
+        "name": "Swadloon",
+        "rarity": "Uncommon",
+        "card_printings": [
+          {
+            "id": "e4d137e1-bdb3-423e-b6fa-c57c9f078494",
+            "image_url": null,
+            "created_at": "2026-03-03T04:03:38.310355+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-11-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "966f2b84-39b8-43f8-b392-2dd5b572953c",
+            "image_url": null,
+            "created_at": "2026-03-03T06:02:31.209735+00:00",
+            "created_by": null,
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-11-STD",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "b34a35e8-30d6-41a3-87d5-46c0bc2d16a5",
+            "image_url": null,
+            "created_at": "2026-02-23T21:39:11.25213+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-11-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 91530,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "11/113",
+              "justtcg_set_name": "Legendary Treasures",
+              "tcgplayer_external_id": "89669"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:27:17.935+00:00",
+            "external_id": "pokemon-legendary-treasures-swadloon-uncommon",
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66"
+          },
+          {
+            "id": 60937,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-02-23T21:31:22.76517+00:00",
+            "external_id": "bw11-11",
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66"
+          },
+          {
+            "id": 63553,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw11-11",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:01:52.734+00:00",
+            "external_id": "89669",
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "9a8076b4-562b-4463-9fea-b0c379d34249",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Swadloon",
+              "supertype": "Pokemon",
+              "card_category": "Stage1",
+              "matched_token": "swadloon"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "e08c7ed1-6a8b-40b1-a36b-8af6460efb6e",
+            "updated_at": "2026-06-11T04:41:55.815818+00:00",
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 70,
+            "id": 38034,
+            "types": [
+              "Grass"
+            ],
+            "rarity": "Uncommon",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T00:17:16.79919+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 541,
+            "card_category": "Stage1",
+            "card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9",
+        "target_role": "survivor_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "2",
+        "number_plain": "2",
+        "printed_identity_modifier": null,
+        "name": "Tangrowth",
+        "rarity": "Rare",
+        "card_printings": [
+          {
+            "id": "510e8d81-f2cb-41af-96f6-c7be6fead4ae",
+            "image_url": null,
+            "created_at": "2026-03-03T04:03:38.310355+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-2-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "6aa3c3af-dbb4-4e9a-b812-8f1d41d069f8",
+            "image_url": null,
+            "created_at": "2026-03-03T06:02:31.209735+00:00",
+            "created_by": null,
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-2-STD",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "8bf37aea-89dd-47da-b53e-6129f02aaee6",
+            "image_url": null,
+            "created_at": "2026-02-23T21:39:11.25213+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-2-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 91529,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "2/113",
+              "justtcg_set_name": "Legendary Treasures",
+              "tcgplayer_external_id": "89756"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:27:17.651+00:00",
+            "external_id": "pokemon-legendary-treasures-tangrowth-rare",
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9"
+          },
+          {
+            "id": 60938,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-02-23T21:31:22.76517+00:00",
+            "external_id": "bw11-2",
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9"
+          },
+          {
+            "id": 63554,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw11-2",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:01:53.079+00:00",
+            "external_id": "89756",
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "6b7dc2ec-a774-4173-96ef-15c855c8b4aa",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Tangrowth",
+              "supertype": "Pokemon",
+              "card_category": "Stage1",
+              "matched_token": "tangrowth"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "82fa4f22-20e7-4d7f-9feb-7ee8c14f082c",
+            "updated_at": "2026-06-11T04:41:55.815818+00:00",
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 120,
+            "id": 38007,
+            "types": [
+              "Grass"
+            ],
+            "rarity": "Rare",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T00:16:48.710352+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 465,
+            "card_category": "Stage1",
+            "card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9",
+            "legacy_rarity": null
+          }
+        ]
+      },
+      {
+        "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691",
+        "target_role": "survivor_parent",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "25",
+        "number_plain": "25",
+        "printed_identity_modifier": null,
+        "name": "Tepig",
+        "rarity": "Common",
+        "card_printings": [
+          {
+            "id": "6f3069d7-b85a-4599-a9c8-d3d3b9ec49e7",
+            "image_url": null,
+            "created_at": "2026-03-03T04:03:38.310355+00:00",
+            "created_by": null,
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-25-HOLO",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "44530c8f-546e-4da0-a98a-462989188acf",
+            "image_url": null,
+            "created_at": "2026-03-03T06:02:31.209735+00:00",
+            "created_by": null,
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-25-STD",
+            "provenance_ref": null,
+            "provenance_source": null
+          },
+          {
+            "id": "886157fa-bb12-4964-9df0-2716855995a6",
+            "image_url": null,
+            "created_at": "2026-02-23T21:39:11.25213+00:00",
+            "created_by": null,
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-LTR-25-RH",
+            "provenance_ref": null,
+            "provenance_source": null
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 91526,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "25/113",
+              "justtcg_set_name": "Legendary Treasures",
+              "tcgplayer_external_id": "89885"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-21T19:27:16.799+00:00",
+            "external_id": "pokemon-legendary-treasures-tepig-common",
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691"
+          },
+          {
+            "id": 60934,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-02-23T21:31:22.76517+00:00",
+            "external_id": "bw11-25",
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691"
+          },
+          {
+            "id": 63557,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw11-25",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-21T06:01:54.091+00:00",
+            "external_id": "89885",
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691"
+          }
+        ],
+        "card_print_species": [
+          {
+            "id": "2a7748ae-020e-499b-8ef9-f3ab3d678d32",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Tepig",
+              "supertype": "Pokemon",
+              "card_category": "Basic",
+              "matched_token": "tepig"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "1938f2bb-91cb-43ae-a5a1-a6495da2b368",
+            "updated_at": "2026-06-11T04:41:55.815818+00:00",
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691",
+            "counts_for_completion": true
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": 70,
+            "id": 38076,
+            "types": [
+              "Fire"
+            ],
+            "rarity": "Common",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T00:18:00.269848+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 498,
+            "card_category": "Basic",
+            "card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691",
+            "legacy_rarity": null
+          }
+        ]
+      }
+    ],
+    "hash_sha256": "793aa7156c1b3a47013c1bbe66e80cf724c5e24b4a5f6870e5f301dca3225148",
+    "counts": {
+      "duplicate_parent_rows": 0,
+      "survivor_parent_rows": 5,
+      "total_rows": 5
+    }
+  }
+}

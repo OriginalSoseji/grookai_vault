@@ -1,0 +1,4392 @@
+{
+  "generated_at": "2026-06-10T22:30:56.742Z",
+  "version": "english_master_index_pkg08c_exu_parent_relocation_real_apply_v1",
+  "package_id": "PKG-08C-EXU-PARENT-RELOCATION",
+  "package_fingerprint_sha256": "89c340ab1b663ba736f85fe8b5715eb1ba95b61b2a0e26b8f81323bf26f00a62",
+  "approved_operator_text": "Approve real PKG-08C-EXU-PARENT-RELOCATION apply only. Fingerprint: 89c340ab1b663ba736f85fe8b5715eb1ba95b61b2a0e26b8f81323bf26f00a62. Scope: 28 parent relocations from ex10 to exu, 28 child printings preserved, 1 TCGdex mapping insert for the question-mark Unown. Dry-run proof: ca62890133468355372a35aef9ead4379649e87ccaa274706784a862dbb39a1b == ca62890133468355372a35aef9ead4379649e87ccaa274706784a862dbb39a1b. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+  "apply_status": "pkg08c_exu_parent_relocation_real_apply_committed",
+  "db_write_committed": true,
+  "migrations_created": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "unsupported_cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "target_parent_updates": 28,
+    "from_set_code": "ex10",
+    "to_set_code": "exu",
+    "approved_child_printings_preserved": 28,
+    "actual_child_rows_preserved_in_snapshot": 29,
+    "mapping_inserts": 1,
+    "targets": [
+      {
+        "card_print_id": "065aa0f7-6b66-4383-809f-328492ad139e",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "!",
+        "live_number": "!",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-!",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-!",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "8ee10c61-bbe4-4a20-aadb-4b994928c9de",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "%3F",
+        "live_number": "?",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-?",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-%253F",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "0281feb6-13e9-4464-8f76-cc0dd779b59b",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "A",
+        "live_number": "A",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-A",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-A",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "97709389-fbf1-4790-925e-5e95e89a80a0",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "B",
+        "live_number": "B",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-B",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-B",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "c5f69fc5-805d-4e06-b629-fe6f13d3c8d3",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "C",
+        "live_number": "C",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-C",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-C",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "eff73c3c-568f-4b56-9130-bbd84f763f7a",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "D",
+        "live_number": "D",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-D",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-D",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "83dc8f5d-06fd-4007-bb9c-d096baa6f3da",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "E",
+        "live_number": "E",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-E",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-E",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "038765c9-66bc-4d95-95d2-8ce16c65a0de",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "F",
+        "live_number": "F",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-F",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-F",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "e6954d97-cab9-4479-99a9-7fa10c8c411d",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "G",
+        "live_number": "G",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-G",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-G",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "98b680f3-4158-498e-9c68-4c45801f544d",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "H",
+        "live_number": "H",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-H",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-H",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "7a1d0396-aadc-4333-8652-b97a8c9f7791",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "I",
+        "live_number": "I",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-I",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-I",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "dd3d341b-09f5-445b-9a01-56d67d3b641c",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "J",
+        "live_number": "J",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-J",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-J",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "7c6ee0f1-e058-4fed-bc16-18ce9a985458",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "K",
+        "live_number": "K",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-K",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-K",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "d5d21cf6-579d-4dfb-a15a-e32cd29dc7fa",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "L",
+        "live_number": "L",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-L",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-L",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "8665ed72-9bfe-46c9-b140-fd707c887175",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "M",
+        "live_number": "M",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-M",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-M",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "e9b7843f-74e6-4418-a9f1-49ae2582a78b",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "N",
+        "live_number": "N",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-N",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-N",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "d1100eaa-7dc2-4882-bc8f-70f74935b7bf",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "O",
+        "live_number": "O",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-O",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-O",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "70de2f4b-a7ec-4b06-a98e-360582af0cfe",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "P",
+        "live_number": "P",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-P",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-P",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "d5ee93fa-14a4-46ae-8649-087001a36eb7",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "Q",
+        "live_number": "Q",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-Q",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-Q",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "99756d62-8124-456c-84fd-a1b74ac2240e",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "R",
+        "live_number": "R",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-R",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-R",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "73d84339-5997-4844-a144-32d469dc4666",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "S",
+        "live_number": "S",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-S",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-S",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "1746053b-155f-4557-97c4-dc4c254d5638",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "T",
+        "live_number": "T",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-T",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-T",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "14128686-13dc-41e1-8d30-f49552616f32",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "U",
+        "live_number": "U",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-U",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-U",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "0a372480-c960-47f4-be0a-fa3cf7b20004",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "V",
+        "live_number": "V",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-V",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-V",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "4fcde912-14d7-47ab-a8af-9e5a1cb0370b",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "W",
+        "live_number": "W",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-W",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-W",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "837b59cc-5cf6-496e-9ce7-e604236e0825",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "X",
+        "live_number": "X",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-X",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-X",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "faf577b9-9178-4074-963d-0098bd272b66",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "Y",
+        "live_number": "Y",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-Y",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-Y",
+          "https://reverseholo.app/sets/exu"
+        ]
+      },
+      {
+        "card_print_id": "5c5de53e-e4fb-4eee-96d4-1b37bf260e42",
+        "from_set_code": "ex10",
+        "from_set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "to_set_code": "exu",
+        "to_set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "card_number": "Z",
+        "live_number": "Z",
+        "card_name": "Unown",
+        "finish_key": "holo",
+        "tcgdex_external_id": "exu-Z",
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-Z",
+          "https://reverseholo.app/sets/exu"
+        ]
+      }
+    ]
+  },
+  "live_shape_before_apply": {
+    "ex10_target_parents": 28,
+    "exu_parent_collisions": 0,
+    "target_holo_children": 28,
+    "mapping_wrong_parent_collisions": 0,
+    "mapping_already_on_target": 27,
+    "missing_mapping_rows": 1
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-10T22:30:55.668Z",
+    "rows": [
+      {
+        "row_type": "child",
+        "row_id": "d03d9d73-09b0-4fde-a734-0db875347abe",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "!",
+        "number_plain": "!",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "b252ca9b-922a-4173-9987-a64749a56c45",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "?",
+        "number_plain": "?",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "284b0760-afc0-4a7f-911b-ace215c4feb0",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "?",
+        "number_plain": "?",
+        "name": "Unown",
+        "finish_key": "normal",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "ad266e4d-6777-470a-84ed-4d9bba42d400",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "A",
+        "number_plain": "A",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "7df2b6fe-8fbc-496f-8bdc-dbda78739e4e",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "B",
+        "number_plain": "B",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "b3e19669-56da-4f70-b0f2-37d5c25f8486",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "C",
+        "number_plain": "C",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "7366b653-16d0-4603-a96b-1ea5ca73240f",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "D",
+        "number_plain": "D",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "d59ed4e9-4bd1-47c4-bb7b-c6f5dd695e95",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "E",
+        "number_plain": "E",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "5de3bfd7-20e6-4988-aa6e-8140a509e265",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "F",
+        "number_plain": "F",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "34ff77d1-8c5a-4623-9d95-2badc8c5abec",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "G",
+        "number_plain": "G",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "50c5da42-70eb-4910-8c4f-fb7b9a234f5c",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "H",
+        "number_plain": "H",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "5f1df82a-9b3f-43af-91d4-6b56be8ea3d1",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "I",
+        "number_plain": "I",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "241576d2-e4b1-4ccf-9765-71a03e267869",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "J",
+        "number_plain": "J",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "211dbc58-5e9b-4173-9597-ba27758a9d83",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "K",
+        "number_plain": "K",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "c7be68cc-540f-4cb2-b552-f04b3ffb2d56",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "L",
+        "number_plain": "L",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "0c55afeb-a249-481e-afe9-5a770be35a4a",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "M",
+        "number_plain": "M",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "28f18d20-7f35-4e63-96b9-987cf950a94a",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "N",
+        "number_plain": "N",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "f456738f-c849-47f2-a343-66e43a9c5ca1",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "O",
+        "number_plain": "O",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "4b6cd914-ab0f-4695-ac96-56ec571227cf",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "P",
+        "number_plain": "P",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "d1e94f10-ce4a-4e7b-bced-2a62e3e534cd",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "Q",
+        "number_plain": "Q",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "2571de9a-f448-466a-9eb1-c526d32d41f9",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "R",
+        "number_plain": "R",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "4419ac6a-7236-4fee-99bc-af48bfb30569",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "S",
+        "number_plain": "S",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "0e0bcc71-4ea8-4492-ae34-8ba7277fe372",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "T",
+        "number_plain": "T",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "f0a1ec10-c206-49e8-a306-0b1c11c1788b",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "U",
+        "number_plain": "U",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "98aa1419-8507-426c-b9a1-7d9668cc7e4d",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "V",
+        "number_plain": "V",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "bc57c852-c223-412a-95a5-ce488b0e2784",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "W",
+        "number_plain": "W",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "dea8b942-18cc-4bcc-af83-dde9ab83bfbe",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "X",
+        "number_plain": "X",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "f9354906-46b3-425a-8059-679483e0a00d",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "Y",
+        "number_plain": "Y",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "5901617a-af66-422b-bbd2-64515ca778a6",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "Z",
+        "number_plain": "Z",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "065aa0f7-6b66-4383-809f-328492ad139e",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "!",
+        "number_plain": "!",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "8ee10c61-bbe4-4a20-aadb-4b994928c9de",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "?",
+        "number_plain": "?",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "0281feb6-13e9-4464-8f76-cc0dd779b59b",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "A",
+        "number_plain": "A",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "97709389-fbf1-4790-925e-5e95e89a80a0",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "B",
+        "number_plain": "B",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "c5f69fc5-805d-4e06-b629-fe6f13d3c8d3",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "C",
+        "number_plain": "C",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "eff73c3c-568f-4b56-9130-bbd84f763f7a",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "D",
+        "number_plain": "D",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "83dc8f5d-06fd-4007-bb9c-d096baa6f3da",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "E",
+        "number_plain": "E",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "038765c9-66bc-4d95-95d2-8ce16c65a0de",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "F",
+        "number_plain": "F",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "e6954d97-cab9-4479-99a9-7fa10c8c411d",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "G",
+        "number_plain": "G",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "98b680f3-4158-498e-9c68-4c45801f544d",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "H",
+        "number_plain": "H",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "7a1d0396-aadc-4333-8652-b97a8c9f7791",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "I",
+        "number_plain": "I",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "dd3d341b-09f5-445b-9a01-56d67d3b641c",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "J",
+        "number_plain": "J",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "7c6ee0f1-e058-4fed-bc16-18ce9a985458",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "K",
+        "number_plain": "K",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "d5d21cf6-579d-4dfb-a15a-e32cd29dc7fa",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "L",
+        "number_plain": "L",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "8665ed72-9bfe-46c9-b140-fd707c887175",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "M",
+        "number_plain": "M",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "e9b7843f-74e6-4418-a9f1-49ae2582a78b",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "N",
+        "number_plain": "N",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "d1100eaa-7dc2-4882-bc8f-70f74935b7bf",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "O",
+        "number_plain": "O",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "70de2f4b-a7ec-4b06-a98e-360582af0cfe",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "P",
+        "number_plain": "P",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "d5ee93fa-14a4-46ae-8649-087001a36eb7",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "Q",
+        "number_plain": "Q",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "99756d62-8124-456c-84fd-a1b74ac2240e",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "R",
+        "number_plain": "R",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "73d84339-5997-4844-a144-32d469dc4666",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "S",
+        "number_plain": "S",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "1746053b-155f-4557-97c4-dc4c254d5638",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "T",
+        "number_plain": "T",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "14128686-13dc-41e1-8d30-f49552616f32",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "U",
+        "number_plain": "U",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "0a372480-c960-47f4-be0a-fa3cf7b20004",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "V",
+        "number_plain": "V",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "4fcde912-14d7-47ab-a8af-9e5a1cb0370b",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "W",
+        "number_plain": "W",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "837b59cc-5cf6-496e-9ce7-e604236e0825",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "X",
+        "number_plain": "X",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "faf577b9-9178-4074-963d-0098bd272b66",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "Y",
+        "number_plain": "Y",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "5c5de53e-e4fb-4eee-96d4-1b37bf260e42",
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "number": "Z",
+        "number_plain": "Z",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "859",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "!",
+        "number_plain": "!",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-!"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59394",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "!",
+        "number_plain": "!",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-!"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "860",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "?",
+        "number_plain": "?",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-?"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97694",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "?",
+        "number_plain": "?",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "833",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "A",
+        "number_plain": "A",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-A"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59389",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "A",
+        "number_plain": "A",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-A"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97695",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "A",
+        "number_plain": "A",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-a-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "834",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "B",
+        "number_plain": "B",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-B"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59391",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "B",
+        "number_plain": "B",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-B"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97696",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "B",
+        "number_plain": "B",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-b-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "835",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "C",
+        "number_plain": "C",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-C"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59392",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "C",
+        "number_plain": "C",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-C"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97697",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "C",
+        "number_plain": "C",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-c-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "836",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "D",
+        "number_plain": "D",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-D"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59395",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "D",
+        "number_plain": "D",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-D"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97698",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "D",
+        "number_plain": "D",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-d-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "837",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "E",
+        "number_plain": "E",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-E"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59396",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "E",
+        "number_plain": "E",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-E"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97699",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "E",
+        "number_plain": "E",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-e-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "838",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "F",
+        "number_plain": "F",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-F"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59397",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "F",
+        "number_plain": "F",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-F"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97700",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "F",
+        "number_plain": "F",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-f-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "839",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "G",
+        "number_plain": "G",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-G"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59398",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "G",
+        "number_plain": "G",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-G"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97701",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "G",
+        "number_plain": "G",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-g-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "840",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "H",
+        "number_plain": "H",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-H"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59399",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "H",
+        "number_plain": "H",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-H"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97702",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "H",
+        "number_plain": "H",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-h-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "841",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "I",
+        "number_plain": "I",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-I"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59390",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "I",
+        "number_plain": "I",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-I"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97703",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "I",
+        "number_plain": "I",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-i-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "842",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "J",
+        "number_plain": "J",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-J"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59400",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "J",
+        "number_plain": "J",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-J"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97704",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "J",
+        "number_plain": "J",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-j-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "843",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "K",
+        "number_plain": "K",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-K"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59401",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "K",
+        "number_plain": "K",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-K"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97705",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "K",
+        "number_plain": "K",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-k-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "844",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "L",
+        "number_plain": "L",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-L"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59402",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "L",
+        "number_plain": "L",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-L"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97706",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "L",
+        "number_plain": "L",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-l-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "845",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "M",
+        "number_plain": "M",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-M"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59403",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "M",
+        "number_plain": "M",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-M"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97707",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "M",
+        "number_plain": "M",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-m-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "846",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "N",
+        "number_plain": "N",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-N"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59404",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "N",
+        "number_plain": "N",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-N"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97708",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "N",
+        "number_plain": "N",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-n-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "847",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "O",
+        "number_plain": "O",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-O"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59405",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "O",
+        "number_plain": "O",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-O"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97709",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "O",
+        "number_plain": "O",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-o-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "848",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "P",
+        "number_plain": "P",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-P"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59406",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "P",
+        "number_plain": "P",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-P"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97710",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "P",
+        "number_plain": "P",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-p-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "849",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "Q",
+        "number_plain": "Q",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-Q"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59407",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "Q",
+        "number_plain": "Q",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-Q"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97711",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "Q",
+        "number_plain": "Q",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-q-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "850",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "R",
+        "number_plain": "R",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-R"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59408",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "R",
+        "number_plain": "R",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-R"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97712",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "R",
+        "number_plain": "R",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-r-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "851",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "S",
+        "number_plain": "S",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-S"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59409",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "S",
+        "number_plain": "S",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-S"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97713",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "S",
+        "number_plain": "S",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-s-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "852",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "T",
+        "number_plain": "T",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-T"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59410",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "T",
+        "number_plain": "T",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-T"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97714",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "T",
+        "number_plain": "T",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-t-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "853",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "U",
+        "number_plain": "U",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-U"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59411",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "U",
+        "number_plain": "U",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-U"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97715",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "U",
+        "number_plain": "U",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-u-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "854",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "V",
+        "number_plain": "V",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-V"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59412",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "V",
+        "number_plain": "V",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-V"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97716",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "V",
+        "number_plain": "V",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-v-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "855",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "W",
+        "number_plain": "W",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-W"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59413",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "W",
+        "number_plain": "W",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-W"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97717",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "W",
+        "number_plain": "W",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-w-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "856",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "X",
+        "number_plain": "X",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-X"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59414",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "X",
+        "number_plain": "X",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-X"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97718",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "X",
+        "number_plain": "X",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-x-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "857",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "Y",
+        "number_plain": "Y",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-Y"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59415",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "Y",
+        "number_plain": "Y",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-Y"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97719",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "Y",
+        "number_plain": "Y",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-y-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "858",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "Z",
+        "number_plain": "Z",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-Z"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59416",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "Z",
+        "number_plain": "Z",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-Z"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97720",
+        "set_id": null,
+        "set_code": "ex10",
+        "number": "Z",
+        "number_plain": "Z",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-z-holo-rare"
+      }
+    ],
+    "hash_sha256": "958312cccb829e55c984f244fca903bea930a8c75337a5058077225431e9d0c9",
+    "counts": {
+      "parent_rows": 28,
+      "child_rows": 29,
+      "tcgdex_mapping_rows": 82,
+      "total_rows": 139
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-10T22:30:56.585Z",
+    "rows": [
+      {
+        "row_type": "child",
+        "row_id": "d03d9d73-09b0-4fde-a734-0db875347abe",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "!",
+        "number_plain": "!",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "b252ca9b-922a-4173-9987-a64749a56c45",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "?",
+        "number_plain": "?",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "284b0760-afc0-4a7f-911b-ace215c4feb0",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "?",
+        "number_plain": "?",
+        "name": "Unown",
+        "finish_key": "normal",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "ad266e4d-6777-470a-84ed-4d9bba42d400",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "A",
+        "number_plain": "A",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "7df2b6fe-8fbc-496f-8bdc-dbda78739e4e",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "B",
+        "number_plain": "B",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "b3e19669-56da-4f70-b0f2-37d5c25f8486",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "C",
+        "number_plain": "C",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "7366b653-16d0-4603-a96b-1ea5ca73240f",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "D",
+        "number_plain": "D",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "d59ed4e9-4bd1-47c4-bb7b-c6f5dd695e95",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "E",
+        "number_plain": "E",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "5de3bfd7-20e6-4988-aa6e-8140a509e265",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "F",
+        "number_plain": "F",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "34ff77d1-8c5a-4623-9d95-2badc8c5abec",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "G",
+        "number_plain": "G",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "50c5da42-70eb-4910-8c4f-fb7b9a234f5c",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "H",
+        "number_plain": "H",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "5f1df82a-9b3f-43af-91d4-6b56be8ea3d1",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "I",
+        "number_plain": "I",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "241576d2-e4b1-4ccf-9765-71a03e267869",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "J",
+        "number_plain": "J",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "211dbc58-5e9b-4173-9597-ba27758a9d83",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "K",
+        "number_plain": "K",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "c7be68cc-540f-4cb2-b552-f04b3ffb2d56",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "L",
+        "number_plain": "L",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "0c55afeb-a249-481e-afe9-5a770be35a4a",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "M",
+        "number_plain": "M",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "28f18d20-7f35-4e63-96b9-987cf950a94a",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "N",
+        "number_plain": "N",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "f456738f-c849-47f2-a343-66e43a9c5ca1",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "O",
+        "number_plain": "O",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "4b6cd914-ab0f-4695-ac96-56ec571227cf",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "P",
+        "number_plain": "P",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "d1e94f10-ce4a-4e7b-bced-2a62e3e534cd",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "Q",
+        "number_plain": "Q",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "2571de9a-f448-466a-9eb1-c526d32d41f9",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "R",
+        "number_plain": "R",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "4419ac6a-7236-4fee-99bc-af48bfb30569",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "S",
+        "number_plain": "S",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "0e0bcc71-4ea8-4492-ae34-8ba7277fe372",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "T",
+        "number_plain": "T",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "f0a1ec10-c206-49e8-a306-0b1c11c1788b",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "U",
+        "number_plain": "U",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "98aa1419-8507-426c-b9a1-7d9668cc7e4d",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "V",
+        "number_plain": "V",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "bc57c852-c223-412a-95a5-ce488b0e2784",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "W",
+        "number_plain": "W",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "dea8b942-18cc-4bcc-af83-dde9ab83bfbe",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "X",
+        "number_plain": "X",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "f9354906-46b3-425a-8059-679483e0a00d",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "Y",
+        "number_plain": "Y",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "child",
+        "row_id": "5901617a-af66-422b-bbd2-64515ca778a6",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "Z",
+        "number_plain": "Z",
+        "name": "Unown",
+        "finish_key": "holo",
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "065aa0f7-6b66-4383-809f-328492ad139e",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "!",
+        "number_plain": "!",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "8ee10c61-bbe4-4a20-aadb-4b994928c9de",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "?",
+        "number_plain": "?",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "0281feb6-13e9-4464-8f76-cc0dd779b59b",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "A",
+        "number_plain": "A",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "97709389-fbf1-4790-925e-5e95e89a80a0",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "B",
+        "number_plain": "B",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "c5f69fc5-805d-4e06-b629-fe6f13d3c8d3",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "C",
+        "number_plain": "C",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "eff73c3c-568f-4b56-9130-bbd84f763f7a",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "D",
+        "number_plain": "D",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "83dc8f5d-06fd-4007-bb9c-d096baa6f3da",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "E",
+        "number_plain": "E",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "038765c9-66bc-4d95-95d2-8ce16c65a0de",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "F",
+        "number_plain": "F",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "e6954d97-cab9-4479-99a9-7fa10c8c411d",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "G",
+        "number_plain": "G",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "98b680f3-4158-498e-9c68-4c45801f544d",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "H",
+        "number_plain": "H",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "7a1d0396-aadc-4333-8652-b97a8c9f7791",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "I",
+        "number_plain": "I",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "dd3d341b-09f5-445b-9a01-56d67d3b641c",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "J",
+        "number_plain": "J",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "7c6ee0f1-e058-4fed-bc16-18ce9a985458",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "K",
+        "number_plain": "K",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "d5d21cf6-579d-4dfb-a15a-e32cd29dc7fa",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "L",
+        "number_plain": "L",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "8665ed72-9bfe-46c9-b140-fd707c887175",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "M",
+        "number_plain": "M",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "e9b7843f-74e6-4418-a9f1-49ae2582a78b",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "N",
+        "number_plain": "N",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "d1100eaa-7dc2-4882-bc8f-70f74935b7bf",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "O",
+        "number_plain": "O",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "70de2f4b-a7ec-4b06-a98e-360582af0cfe",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "P",
+        "number_plain": "P",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "d5ee93fa-14a4-46ae-8649-087001a36eb7",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "Q",
+        "number_plain": "Q",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "99756d62-8124-456c-84fd-a1b74ac2240e",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "R",
+        "number_plain": "R",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "73d84339-5997-4844-a144-32d469dc4666",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "S",
+        "number_plain": "S",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "1746053b-155f-4557-97c4-dc4c254d5638",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "T",
+        "number_plain": "T",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "14128686-13dc-41e1-8d30-f49552616f32",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "U",
+        "number_plain": "U",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "0a372480-c960-47f4-be0a-fa3cf7b20004",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "V",
+        "number_plain": "V",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "4fcde912-14d7-47ab-a8af-9e5a1cb0370b",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "W",
+        "number_plain": "W",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "837b59cc-5cf6-496e-9ce7-e604236e0825",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "X",
+        "number_plain": "X",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "faf577b9-9178-4074-963d-0098bd272b66",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "Y",
+        "number_plain": "Y",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "5c5de53e-e4fb-4eee-96d4-1b37bf260e42",
+        "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "number": "Z",
+        "number_plain": "Z",
+        "name": "Unown",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "859",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "!",
+        "number_plain": "!",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-!"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59394",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "!",
+        "number_plain": "!",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-!"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "860",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "?",
+        "number_plain": "?",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-?"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "121916",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "?",
+        "number_plain": "?",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-?"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97694",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "?",
+        "number_plain": "?",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "833",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "A",
+        "number_plain": "A",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-A"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59389",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "A",
+        "number_plain": "A",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-A"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97695",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "A",
+        "number_plain": "A",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-a-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "834",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "B",
+        "number_plain": "B",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-B"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59391",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "B",
+        "number_plain": "B",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-B"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97696",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "B",
+        "number_plain": "B",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-b-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "835",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "C",
+        "number_plain": "C",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-C"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59392",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "C",
+        "number_plain": "C",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-C"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97697",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "C",
+        "number_plain": "C",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-c-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "836",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "D",
+        "number_plain": "D",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-D"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59395",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "D",
+        "number_plain": "D",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-D"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97698",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "D",
+        "number_plain": "D",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-d-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "837",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "E",
+        "number_plain": "E",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-E"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59396",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "E",
+        "number_plain": "E",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-E"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97699",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "E",
+        "number_plain": "E",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-e-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "838",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "F",
+        "number_plain": "F",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-F"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59397",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "F",
+        "number_plain": "F",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-F"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97700",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "F",
+        "number_plain": "F",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-f-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "839",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "G",
+        "number_plain": "G",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-G"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59398",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "G",
+        "number_plain": "G",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-G"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97701",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "G",
+        "number_plain": "G",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-g-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "840",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "H",
+        "number_plain": "H",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-H"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59399",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "H",
+        "number_plain": "H",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-H"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97702",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "H",
+        "number_plain": "H",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-h-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "841",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "I",
+        "number_plain": "I",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-I"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59390",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "I",
+        "number_plain": "I",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-I"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97703",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "I",
+        "number_plain": "I",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-i-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "842",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "J",
+        "number_plain": "J",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-J"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59400",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "J",
+        "number_plain": "J",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-J"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97704",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "J",
+        "number_plain": "J",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-j-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "843",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "K",
+        "number_plain": "K",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-K"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59401",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "K",
+        "number_plain": "K",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-K"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97705",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "K",
+        "number_plain": "K",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-k-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "844",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "L",
+        "number_plain": "L",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-L"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59402",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "L",
+        "number_plain": "L",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-L"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97706",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "L",
+        "number_plain": "L",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-l-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "845",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "M",
+        "number_plain": "M",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-M"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59403",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "M",
+        "number_plain": "M",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-M"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97707",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "M",
+        "number_plain": "M",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-m-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "846",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "N",
+        "number_plain": "N",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-N"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59404",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "N",
+        "number_plain": "N",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-N"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97708",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "N",
+        "number_plain": "N",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-n-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "847",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "O",
+        "number_plain": "O",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-O"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59405",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "O",
+        "number_plain": "O",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-O"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97709",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "O",
+        "number_plain": "O",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-o-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "848",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "P",
+        "number_plain": "P",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-P"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59406",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "P",
+        "number_plain": "P",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-P"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97710",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "P",
+        "number_plain": "P",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-p-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "849",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "Q",
+        "number_plain": "Q",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-Q"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59407",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "Q",
+        "number_plain": "Q",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-Q"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97711",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "Q",
+        "number_plain": "Q",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-q-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "850",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "R",
+        "number_plain": "R",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-R"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59408",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "R",
+        "number_plain": "R",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-R"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97712",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "R",
+        "number_plain": "R",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-r-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "851",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "S",
+        "number_plain": "S",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-S"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59409",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "S",
+        "number_plain": "S",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-S"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97713",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "S",
+        "number_plain": "S",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-s-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "852",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "T",
+        "number_plain": "T",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-T"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59410",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "T",
+        "number_plain": "T",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-T"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97714",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "T",
+        "number_plain": "T",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-t-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "853",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "U",
+        "number_plain": "U",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-U"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59411",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "U",
+        "number_plain": "U",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-U"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97715",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "U",
+        "number_plain": "U",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-u-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "854",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "V",
+        "number_plain": "V",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-V"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59412",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "V",
+        "number_plain": "V",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-V"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97716",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "V",
+        "number_plain": "V",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-v-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "855",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "W",
+        "number_plain": "W",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-W"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59413",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "W",
+        "number_plain": "W",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-W"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97717",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "W",
+        "number_plain": "W",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-w-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "856",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "X",
+        "number_plain": "X",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-X"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59414",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "X",
+        "number_plain": "X",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-X"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97718",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "X",
+        "number_plain": "X",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-x-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "857",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "Y",
+        "number_plain": "Y",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-Y"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59415",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "Y",
+        "number_plain": "Y",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-Y"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97719",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "Y",
+        "number_plain": "Y",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-y-holo-rare"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "858",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "Z",
+        "number_plain": "Z",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "pokemonapi",
+        "external_id": "ex10-Z"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "59416",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "Z",
+        "number_plain": "Z",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "tcgdex",
+        "external_id": "exu-Z"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "97720",
+        "set_id": null,
+        "set_code": "exu",
+        "number": "Z",
+        "number_plain": "Z",
+        "name": "Unown",
+        "finish_key": null,
+        "source": "justtcg",
+        "external_id": "pokemon-unseen-forces-unown-z-holo-rare"
+      }
+    ],
+    "hash_sha256": "ce6f996efa8d77b283617c459ca3400dfe69506074a5829059c650212520859d",
+    "counts": {
+      "parent_rows": 28,
+      "child_rows": 29,
+      "tcgdex_mapping_rows": 83,
+      "total_rows": 140
+    }
+  },
+  "proof_row": {
+    "package_id": "PKG-08C-EXU-PARENT-RELOCATION",
+    "package_fingerprint": "89c340ab1b663ba736f85fe8b5715eb1ba95b61b2a0e26b8f81323bf26f00a62",
+    "target_parent_updates": 28,
+    "relocated_parent_rows": 28,
+    "preserved_target_child_printings": 28,
+    "inserted_mapping_rows": 1
+  },
+  "proof_hash_sha256": "7e9eb459ad52c40d32e6d019dcee4fc09e1eb0e5022e930f7238d3598ae3255c",
+  "write_counts": {
+    "parent_updates": 28,
+    "mapping_inserts": 1
+  },
+  "post_apply_verification": {
+    "captured_at": "2026-06-10T22:30:56.663Z",
+    "rows": [
+      {
+        "card_print_id": "065aa0f7-6b66-4383-809f-328492ad139e",
+        "set_code": "exu",
+        "number": "!",
+        "number_plain": "!",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-!"
+        ]
+      },
+      {
+        "card_print_id": "8ee10c61-bbe4-4a20-aadb-4b994928c9de",
+        "set_code": "exu",
+        "number": "?",
+        "number_plain": "?",
+        "name": "Unown",
+        "finishes": [
+          "holo",
+          "normal"
+        ],
+        "tcgdex_external_ids": [
+          "exu-?"
+        ]
+      },
+      {
+        "card_print_id": "0281feb6-13e9-4464-8f76-cc0dd779b59b",
+        "set_code": "exu",
+        "number": "A",
+        "number_plain": "A",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-A"
+        ]
+      },
+      {
+        "card_print_id": "97709389-fbf1-4790-925e-5e95e89a80a0",
+        "set_code": "exu",
+        "number": "B",
+        "number_plain": "B",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-B"
+        ]
+      },
+      {
+        "card_print_id": "c5f69fc5-805d-4e06-b629-fe6f13d3c8d3",
+        "set_code": "exu",
+        "number": "C",
+        "number_plain": "C",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-C"
+        ]
+      },
+      {
+        "card_print_id": "eff73c3c-568f-4b56-9130-bbd84f763f7a",
+        "set_code": "exu",
+        "number": "D",
+        "number_plain": "D",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-D"
+        ]
+      },
+      {
+        "card_print_id": "83dc8f5d-06fd-4007-bb9c-d096baa6f3da",
+        "set_code": "exu",
+        "number": "E",
+        "number_plain": "E",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-E"
+        ]
+      },
+      {
+        "card_print_id": "038765c9-66bc-4d95-95d2-8ce16c65a0de",
+        "set_code": "exu",
+        "number": "F",
+        "number_plain": "F",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-F"
+        ]
+      },
+      {
+        "card_print_id": "e6954d97-cab9-4479-99a9-7fa10c8c411d",
+        "set_code": "exu",
+        "number": "G",
+        "number_plain": "G",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-G"
+        ]
+      },
+      {
+        "card_print_id": "98b680f3-4158-498e-9c68-4c45801f544d",
+        "set_code": "exu",
+        "number": "H",
+        "number_plain": "H",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-H"
+        ]
+      },
+      {
+        "card_print_id": "7a1d0396-aadc-4333-8652-b97a8c9f7791",
+        "set_code": "exu",
+        "number": "I",
+        "number_plain": "I",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-I"
+        ]
+      },
+      {
+        "card_print_id": "dd3d341b-09f5-445b-9a01-56d67d3b641c",
+        "set_code": "exu",
+        "number": "J",
+        "number_plain": "J",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-J"
+        ]
+      },
+      {
+        "card_print_id": "7c6ee0f1-e058-4fed-bc16-18ce9a985458",
+        "set_code": "exu",
+        "number": "K",
+        "number_plain": "K",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-K"
+        ]
+      },
+      {
+        "card_print_id": "d5d21cf6-579d-4dfb-a15a-e32cd29dc7fa",
+        "set_code": "exu",
+        "number": "L",
+        "number_plain": "L",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-L"
+        ]
+      },
+      {
+        "card_print_id": "8665ed72-9bfe-46c9-b140-fd707c887175",
+        "set_code": "exu",
+        "number": "M",
+        "number_plain": "M",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-M"
+        ]
+      },
+      {
+        "card_print_id": "e9b7843f-74e6-4418-a9f1-49ae2582a78b",
+        "set_code": "exu",
+        "number": "N",
+        "number_plain": "N",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-N"
+        ]
+      },
+      {
+        "card_print_id": "d1100eaa-7dc2-4882-bc8f-70f74935b7bf",
+        "set_code": "exu",
+        "number": "O",
+        "number_plain": "O",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-O"
+        ]
+      },
+      {
+        "card_print_id": "70de2f4b-a7ec-4b06-a98e-360582af0cfe",
+        "set_code": "exu",
+        "number": "P",
+        "number_plain": "P",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-P"
+        ]
+      },
+      {
+        "card_print_id": "d5ee93fa-14a4-46ae-8649-087001a36eb7",
+        "set_code": "exu",
+        "number": "Q",
+        "number_plain": "Q",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-Q"
+        ]
+      },
+      {
+        "card_print_id": "99756d62-8124-456c-84fd-a1b74ac2240e",
+        "set_code": "exu",
+        "number": "R",
+        "number_plain": "R",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-R"
+        ]
+      },
+      {
+        "card_print_id": "73d84339-5997-4844-a144-32d469dc4666",
+        "set_code": "exu",
+        "number": "S",
+        "number_plain": "S",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-S"
+        ]
+      },
+      {
+        "card_print_id": "1746053b-155f-4557-97c4-dc4c254d5638",
+        "set_code": "exu",
+        "number": "T",
+        "number_plain": "T",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-T"
+        ]
+      },
+      {
+        "card_print_id": "14128686-13dc-41e1-8d30-f49552616f32",
+        "set_code": "exu",
+        "number": "U",
+        "number_plain": "U",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-U"
+        ]
+      },
+      {
+        "card_print_id": "0a372480-c960-47f4-be0a-fa3cf7b20004",
+        "set_code": "exu",
+        "number": "V",
+        "number_plain": "V",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-V"
+        ]
+      },
+      {
+        "card_print_id": "4fcde912-14d7-47ab-a8af-9e5a1cb0370b",
+        "set_code": "exu",
+        "number": "W",
+        "number_plain": "W",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-W"
+        ]
+      },
+      {
+        "card_print_id": "837b59cc-5cf6-496e-9ce7-e604236e0825",
+        "set_code": "exu",
+        "number": "X",
+        "number_plain": "X",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-X"
+        ]
+      },
+      {
+        "card_print_id": "faf577b9-9178-4074-963d-0098bd272b66",
+        "set_code": "exu",
+        "number": "Y",
+        "number_plain": "Y",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-Y"
+        ]
+      },
+      {
+        "card_print_id": "5c5de53e-e4fb-4eee-96d4-1b37bf260e42",
+        "set_code": "exu",
+        "number": "Z",
+        "number_plain": "Z",
+        "name": "Unown",
+        "finishes": [
+          "holo"
+        ],
+        "tcgdex_external_ids": [
+          "exu-Z"
+        ]
+      }
+    ],
+    "hash_sha256": "60f38c4b6d76edf6f2a8eb4bb508e36687f4f579acfec8c42c9beb1a6a0adcf3",
+    "counts": {
+      "parent_rows_found": 28,
+      "by_set": {
+        "exu": 28
+      },
+      "target_rows_with_holo": 28,
+      "target_rows_with_tcgdex_mapping": 28
+    }
+  },
+  "rollback_preview": {
+    "parent_ids_to_move_back_to_ex10": [
+      "065aa0f7-6b66-4383-809f-328492ad139e",
+      "8ee10c61-bbe4-4a20-aadb-4b994928c9de",
+      "0281feb6-13e9-4464-8f76-cc0dd779b59b",
+      "97709389-fbf1-4790-925e-5e95e89a80a0",
+      "c5f69fc5-805d-4e06-b629-fe6f13d3c8d3",
+      "eff73c3c-568f-4b56-9130-bbd84f763f7a",
+      "83dc8f5d-06fd-4007-bb9c-d096baa6f3da",
+      "038765c9-66bc-4d95-95d2-8ce16c65a0de",
+      "e6954d97-cab9-4479-99a9-7fa10c8c411d",
+      "98b680f3-4158-498e-9c68-4c45801f544d",
+      "7a1d0396-aadc-4333-8652-b97a8c9f7791",
+      "dd3d341b-09f5-445b-9a01-56d67d3b641c",
+      "7c6ee0f1-e058-4fed-bc16-18ce9a985458",
+      "d5d21cf6-579d-4dfb-a15a-e32cd29dc7fa",
+      "8665ed72-9bfe-46c9-b140-fd707c887175",
+      "e9b7843f-74e6-4418-a9f1-49ae2582a78b",
+      "d1100eaa-7dc2-4882-bc8f-70f74935b7bf",
+      "70de2f4b-a7ec-4b06-a98e-360582af0cfe",
+      "d5ee93fa-14a4-46ae-8649-087001a36eb7",
+      "99756d62-8124-456c-84fd-a1b74ac2240e",
+      "73d84339-5997-4844-a144-32d469dc4666",
+      "1746053b-155f-4557-97c4-dc4c254d5638",
+      "14128686-13dc-41e1-8d30-f49552616f32",
+      "0a372480-c960-47f4-be0a-fa3cf7b20004",
+      "4fcde912-14d7-47ab-a8af-9e5a1cb0370b",
+      "837b59cc-5cf6-496e-9ce7-e604236e0825",
+      "faf577b9-9178-4074-963d-0098bd272b66",
+      "5c5de53e-e4fb-4eee-96d4-1b37bf260e42"
+    ],
+    "package_created_mapping_external_id": "exu-?",
+    "note": "Rollback is not authorized by this report."
+  },
+  "stop_findings": []
+}

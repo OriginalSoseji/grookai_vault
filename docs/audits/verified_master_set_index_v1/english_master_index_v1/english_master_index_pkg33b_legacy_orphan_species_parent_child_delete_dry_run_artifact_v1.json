@@ -1,0 +1,848 @@
+{
+  "package_id": "PKG-33B-LEGACY-ORPHAN-SPECIES-PARENT-CHILD-DELETE",
+  "generated_at": "2026-06-13T20:45:04.980Z",
+  "fingerprint": "2def6522202e4fab393ceaf63a18cfb55797da0328a01cd1091d65c32eb19b37",
+  "source_readiness_fingerprint": "5106dd72315cea0a3a2aa30c44cd7887a792fd8f8c559e8ba7d3290bbf5ac2b3",
+  "sql_hash": "e795e41a1d534007441b44f6f19266baeffcb0b4d9443987fcc62a45b266cf79",
+  "sql_path": "docs\\sql\\english_master_index_pkg33b_legacy_orphan_species_parent_child_delete_guarded_dry_run_transaction_v1.sql",
+  "safety": {
+    "db_writes_committed": false,
+    "migrations_created": false,
+    "real_apply_authorized": false,
+    "sql_ends_with_rollback": true
+  },
+  "summary": {
+    "target_rows": 14,
+    "species_mapping_deletes_in_dry_run": 14,
+    "child_deletes_in_dry_run": 14,
+    "parent_deletes_in_dry_run": 14
+  },
+  "rows": [
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "16770d4c-32a3-4c4b-b722-2ed76ecabb09",
+      "set_code": "legacy_orphan",
+      "card_number": "2",
+      "number": "2",
+      "number_plain": "2",
+      "card_name": "Ivysaur",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "131dd03f-aa60-4a14-94d7-43061155ca6a",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "16770d4c-32a3-4c4b-b722-2ed76ecabb09",
+        "set_code": "legacy_orphan",
+        "number": "2",
+        "number_plain": "2",
+        "name": "Ivysaur",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "131dd03f-aa60-4a14-94d7-43061155ca6a",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "16c9bf98-71c7-4919-9c9f-d1aa3cc366a5",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Ivysaur",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "ivysaur"
+            },
+            "confidence": "0.82",
+            "species_id": "be2a8be2-2ca8-4ff5-acc4-20365c9b52a3",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "16c9bf98-71c7-4919-9c9f-d1aa3cc366a5"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "69a78c80-8c98-4afc-80a7-43cef4d06e3b",
+      "set_code": "legacy_orphan",
+      "card_number": "24",
+      "number": "24",
+      "number_plain": "24",
+      "card_name": "Pyroar",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "7295ea87-d1e7-45e4-a85b-bbb4c517bee8",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "69a78c80-8c98-4afc-80a7-43cef4d06e3b",
+        "set_code": "legacy_orphan",
+        "number": "24",
+        "number_plain": "24",
+        "name": "Pyroar",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "7295ea87-d1e7-45e4-a85b-bbb4c517bee8",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "f0902f8a-4bf5-46bb-908b-24e7c5a9aba7",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Pyroar",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "pyroar"
+            },
+            "confidence": "0.82",
+            "species_id": "3b64c17a-6267-4158-9f7a-dd31031da7d0",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "f0902f8a-4bf5-46bb-908b-24e7c5a9aba7"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "eb09a5a2-e5ce-4d82-b29c-f012ae059746",
+      "set_code": "legacy_orphan",
+      "card_number": "3",
+      "number": "3",
+      "number_plain": "3",
+      "card_name": "Mega Venusaur ex",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "52672e8a-fc71-479a-8c8d-cda941a57fc3",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "eb09a5a2-e5ce-4d82-b29c-f012ae059746",
+        "set_code": "legacy_orphan",
+        "number": "3",
+        "number_plain": "3",
+        "name": "Mega Venusaur ex",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "52672e8a-fc71-479a-8c8d-cda941a57fc3",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "be38ebdd-d5a8-4a7f-b892-1791d5f58a70",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Mega Venusaur ex",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "venusaur"
+            },
+            "confidence": "0.82",
+            "species_id": "32e8ac8e-a20e-4e31-a11e-e16b5d58fc5c",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "be38ebdd-d5a8-4a7f-b892-1791d5f58a70"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "aafbe34a-372b-4372-973d-6e3f9a0724c0",
+      "set_code": "legacy_orphan",
+      "card_number": "48",
+      "number": "48",
+      "number_plain": "48",
+      "card_name": "Raikou",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "14544219-bec4-45a0-8f7e-034ec4356ab8",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "aafbe34a-372b-4372-973d-6e3f9a0724c0",
+        "set_code": "legacy_orphan",
+        "number": "48",
+        "number_plain": "48",
+        "name": "Raikou",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "14544219-bec4-45a0-8f7e-034ec4356ab8",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "f32f40ac-511a-4013-a05d-23577a445b87",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Raikou",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "raikou"
+            },
+            "confidence": "0.82",
+            "species_id": "777ac461-37dd-44a0-8143-e8f7d09c80de",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "f32f40ac-511a-4013-a05d-23577a445b87"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "7e602b13-dd87-496b-80fc-dfe247ad8f22",
+      "set_code": "legacy_orphan",
+      "card_number": "5",
+      "number": "5",
+      "number_plain": "5",
+      "card_name": "Exeggutor",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "2091d696-2ff2-4915-aade-d7c5801c15a9",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "7e602b13-dd87-496b-80fc-dfe247ad8f22",
+        "set_code": "legacy_orphan",
+        "number": "5",
+        "number_plain": "5",
+        "name": "Exeggutor",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "2091d696-2ff2-4915-aade-d7c5801c15a9",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "e8920a88-d73d-4a95-9fe6-021a0ec033d6",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Exeggutor",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "exeggutor"
+            },
+            "confidence": "0.82",
+            "species_id": "827386b3-0f1e-4061-b0e3-cee87b9b499d",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "e8920a88-d73d-4a95-9fe6-021a0ec033d6"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "ecdb1219-3c7a-4e02-a6c3-c70c09876945",
+      "set_code": "legacy_orphan",
+      "card_number": "53",
+      "number": "53",
+      "number_plain": "53",
+      "card_name": "Heliolisk",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "b2fe1f56-286f-49ff-807a-7af1a5713dcf",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "ecdb1219-3c7a-4e02-a6c3-c70c09876945",
+        "set_code": "legacy_orphan",
+        "number": "53",
+        "number_plain": "53",
+        "name": "Heliolisk",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "b2fe1f56-286f-49ff-807a-7af1a5713dcf",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "80cb82bf-d54d-4c7b-8418-2ad82e094a3f",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Heliolisk",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "heliolisk"
+            },
+            "confidence": "0.82",
+            "species_id": "9e884fd2-feab-4706-b0bd-ae6d644d27f1",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "80cb82bf-d54d-4c7b-8418-2ad82e094a3f"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "7de06767-8a39-4816-8c7c-0069ea9aef56",
+      "set_code": "legacy_orphan",
+      "card_number": "54",
+      "number": "54",
+      "number_plain": "54",
+      "card_name": "Abra",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "39a64161-dfd4-46b8-9773-add4befb0510",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "7de06767-8a39-4816-8c7c-0069ea9aef56",
+        "set_code": "legacy_orphan",
+        "number": "54",
+        "number_plain": "54",
+        "name": "Abra",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "39a64161-dfd4-46b8-9773-add4befb0510",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "bb3cabd9-8c53-4288-8127-869494e47710",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Abra",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "abra"
+            },
+            "confidence": "0.82",
+            "species_id": "c1743d99-fcef-427c-9c5e-7bed9c501b15",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "bb3cabd9-8c53-4288-8127-869494e47710"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "9244f260-31ab-4c2a-95a6-c6dd074b97f4",
+      "set_code": "legacy_orphan",
+      "card_number": "55",
+      "number": "55",
+      "number_plain": "55",
+      "card_name": "Kadabra",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "fc263c88-24ae-442b-bc23-573abf5a6652",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "9244f260-31ab-4c2a-95a6-c6dd074b97f4",
+        "set_code": "legacy_orphan",
+        "number": "55",
+        "number_plain": "55",
+        "name": "Kadabra",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "fc263c88-24ae-442b-bc23-573abf5a6652",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "88681c91-6e71-4795-80da-584f2840ef4c",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Kadabra",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "kadabra"
+            },
+            "confidence": "0.82",
+            "species_id": "3324ec13-cbfd-4e4f-a866-169713f4a221",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "88681c91-6e71-4795-80da-584f2840ef4c"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "983adbc3-0e3b-4636-a62c-6fd852af2284",
+      "set_code": "legacy_orphan",
+      "card_number": "62",
+      "number": "62",
+      "number_plain": "62",
+      "card_name": "Spoink",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "ccb7e545-55b0-4fa9-ac32-420011b79604",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "983adbc3-0e3b-4636-a62c-6fd852af2284",
+        "set_code": "legacy_orphan",
+        "number": "62",
+        "number_plain": "62",
+        "name": "Spoink",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "ccb7e545-55b0-4fa9-ac32-420011b79604",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "f43ec5a6-4b7c-4cdc-8b37-f28cfbf3b323",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Spoink",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "spoink"
+            },
+            "confidence": "0.82",
+            "species_id": "86343c6a-e693-415b-a32e-b39ee15a986d",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "f43ec5a6-4b7c-4cdc-8b37-f28cfbf3b323"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "cfef2ab1-d4e4-438c-9d12-dfd36b9c666c",
+      "set_code": "legacy_orphan",
+      "card_number": "74",
+      "number": "74",
+      "number_plain": "74",
+      "card_name": "Lunatone",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "d8c4ecc1-fd7a-4072-bee6-2954316fb603",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "cfef2ab1-d4e4-438c-9d12-dfd36b9c666c",
+        "set_code": "legacy_orphan",
+        "number": "74",
+        "number_plain": "74",
+        "name": "Lunatone",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "d8c4ecc1-fd7a-4072-bee6-2954316fb603",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "d67ebaa7-21b0-4038-a256-40cfeaf520ea",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Lunatone",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "lunatone"
+            },
+            "confidence": "0.82",
+            "species_id": "9baef975-dbf5-4f83-9d90-82d23f4e373e",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "d67ebaa7-21b0-4038-a256-40cfeaf520ea"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "f097e73c-0a80-4b0e-8744-68167798b06c",
+      "set_code": "legacy_orphan",
+      "card_number": "78",
+      "number": "78",
+      "number_plain": "78",
+      "card_name": "Croagunk",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "9227bce5-f22e-4153-bd04-23304a354cc1",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "f097e73c-0a80-4b0e-8744-68167798b06c",
+        "set_code": "legacy_orphan",
+        "number": "78",
+        "number_plain": "78",
+        "name": "Croagunk",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "9227bce5-f22e-4153-bd04-23304a354cc1",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "121f3576-cbf2-4dff-a475-f2b3f1219839",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Croagunk",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "croagunk"
+            },
+            "confidence": "0.82",
+            "species_id": "3b78c806-9ff4-4550-8d35-dc3d9d1944d8",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "121f3576-cbf2-4dff-a475-f2b3f1219839"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "b69810c8-c77f-4398-8792-7591339d9159",
+      "set_code": "legacy_orphan",
+      "card_number": "80",
+      "number": "80",
+      "number_plain": "80",
+      "card_name": "Marshadow",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "89dbea3c-e76e-444a-858c-b78f09f0010b",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "b69810c8-c77f-4398-8792-7591339d9159",
+        "set_code": "legacy_orphan",
+        "number": "80",
+        "number_plain": "80",
+        "name": "Marshadow",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "89dbea3c-e76e-444a-858c-b78f09f0010b",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "098323d0-684f-49a3-94ac-336dcf0bcc39",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Marshadow",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "marshadow"
+            },
+            "confidence": "0.82",
+            "species_id": "b25eb800-7e85-462c-999d-a69340e3bc8c",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "098323d0-684f-49a3-94ac-336dcf0bcc39"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "4f15e2d0-db12-473c-a1d6-96135cfda9a5",
+      "set_code": "legacy_orphan",
+      "card_number": "86",
+      "number": "86",
+      "number_plain": "86",
+      "card_name": "Mega Absol ex",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "c418b27a-acab-40e3-aafa-729fbe9801c1",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "4f15e2d0-db12-473c-a1d6-96135cfda9a5",
+        "set_code": "legacy_orphan",
+        "number": "86",
+        "number_plain": "86",
+        "name": "Mega Absol ex",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "c418b27a-acab-40e3-aafa-729fbe9801c1",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "2009dde4-266b-4f6e-8cbd-27b4d22ff801",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Mega Absol ex",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "absol"
+            },
+            "confidence": "0.82",
+            "species_id": "174d6086-d6e1-42ae-b579-fc74cd0299be",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "2009dde4-266b-4f6e-8cbd-27b4d22ff801"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "3e7b74cd-876e-4344-a5a9-a9f4cf383cb6",
+      "set_code": "legacy_orphan",
+      "card_number": "95",
+      "number": "95",
+      "number_plain": "95",
+      "card_name": "Dialga",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "72267b2f-85ed-4028-840b-a3b7dae7c094",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "3e7b74cd-876e-4344-a5a9-a9f4cf383cb6",
+        "set_code": "legacy_orphan",
+        "number": "95",
+        "number_plain": "95",
+        "name": "Dialga",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "children": [
+          {
+            "id": "72267b2f-85ed-4028-840b-a3b7dae7c094",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "6f0dbf62-4a26-4bbc-a539-5d8bcd48b0d7",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Dialga",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "dialga"
+            },
+            "confidence": "0.82",
+            "species_id": "1a9a5406-71e9-45cc-936d-1a0639c1802b",
+            "counts_for_completion": true
+          }
+        ]
+      },
+      "blocking_parent_reference_count": 0,
+      "blocking_child_reference_count": 0,
+      "classification": "legacy_orphan_species_child_parent_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_species_child_parent_delete",
+      "reason": "legacy_orphan parent has one normal child, one derived name-rule species mapping, and no other FK dependencies",
+      "species_mapping_id": "6f0dbf62-4a26-4bbc-a539-5d8bcd48b0d7"
+    }
+  ]
+}

@@ -1,0 +1,1150 @@
+{
+  "generated_at": "2026-06-13T00:17:04.874Z",
+  "version": "english_master_index_pkg08e_existing_parent_child_printing_real_apply_v1",
+  "audit_only": false,
+  "apply_only": true,
+  "package_scope": {
+    "package_id": "PKG-08E-EXISTING-PARENT-CHILD-PRINTING-INSERTS",
+    "package_fingerprint_sha256": "7bed0d85cfc7f875d902bb1b7453107a00be0a4b69329b171ef4583c7e6e2ef8",
+    "target_child_rows": 16,
+    "target_parent_rows": 15,
+    "excluded_resolution_rows": 0,
+    "by_set": {
+      "sv03": 16
+    },
+    "by_finish": {
+      "cosmos": 15,
+      "normal": 1
+    }
+  },
+  "approval": {
+    "exact_approval_text": "Approve real PKG-08E-EXISTING-PARENT-CHILD-PRINTING-INSERTS apply only. Fingerprint: 7bed0d85cfc7f875d902bb1b7453107a00be0a4b69329b171ef4583c7e6e2ef8. Scope: 16 child-only card_printing inserts across 1 sets; target parents=15; finishes cosmos=15, normal=1. Dry-run proof: e7ca48bb8fac12f973774e94f97a4e924e11bd21311506f2e5500e9027518ff9 == e7ca48bb8fac12f973774e94f97a4e924e11bd21311506f2e5500e9027518ff9. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No parent writes.",
+    "approved_real_apply_only": true,
+    "no_global_apply": true,
+    "no_migrations": true,
+    "no_deletes": true,
+    "no_merges": true,
+    "no_unsupported_cleanup": true,
+    "no_parent_writes": true
+  },
+  "apply_status": "pkg08e_existing_parent_child_printing_real_apply_committed",
+  "error_message": null,
+  "db_write_committed": true,
+  "db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "unsupported_cleanup_performed": false,
+  "parent_writes_performed": false,
+  "inserted_rows": 16,
+  "before_target_snapshot": {
+    "captured_at": "2026-06-13T00:17:03.576Z",
+    "rows": [
+      {
+        "row_type": "target_parent",
+        "row_id": "f4edf4cf-001f-49e7-9103-601d4b8e7292",
+        "set_code": "sv03",
+        "card_number": "013",
+        "card_name": "Rowlet",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f1474ae1-7dd2-47a4-b87b-96fc64c2b7d2",
+        "set_code": "sv03",
+        "card_number": "014",
+        "card_name": "Dartrix",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "19367674-b09e-494f-b0c3-4c76eb69b25a",
+        "set_code": "sv03",
+        "card_number": "016",
+        "card_name": "Bounsweet",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "13309a0b-743f-43df-b6dc-d14bcc7c751c",
+        "set_code": "sv03",
+        "card_number": "025",
+        "card_name": "Scovillain",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f7b208f5-9be8-4b91-be1b-b6f323d64b16",
+        "set_code": "sv03",
+        "card_number": "056",
+        "card_name": "Froakie",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c25b8f46-aaa7-4568-90e7-9b961f11d533",
+        "set_code": "sv03",
+        "card_number": "057",
+        "card_name": "Frogadier",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d967570a-fa10-4e32-a2e4-f3cc39a312f4",
+        "set_code": "sv03",
+        "card_number": "062",
+        "card_name": "Palafin",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "16c07846-2fd1-40c7-b336-4af005efa35c",
+        "set_code": "sv03",
+        "card_number": "085",
+        "card_name": "Togekiss",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "52228f2f-5bc7-4b75-8eaa-bc6738d9e776",
+        "set_code": "sv03",
+        "card_number": "100",
+        "card_name": "Greavard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f359a0b3-b234-489a-948f-47e44562af87",
+        "set_code": "sv03",
+        "card_number": "105",
+        "card_name": "Larvitar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "af132509-8f4e-4557-8397-c67472a31ce9",
+        "set_code": "sv03",
+        "card_number": "106",
+        "card_name": "Pupitar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "26268bd0-483d-4567-8181-8a8a6402e14c",
+        "set_code": "sv03",
+        "card_number": "136",
+        "card_name": "Darkrai",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "0afdebcf-5c5b-460e-9964-da4e4d2c714a",
+        "set_code": "sv03",
+        "card_number": "141",
+        "card_name": "Scizor",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "bc7985a8-866b-4b71-ae4d-f78117a04258",
+        "set_code": "sv03",
+        "card_number": "148",
+        "card_name": "Pawniard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "857409a9-91c2-44a1-a539-c2caa68e98e1",
+        "set_code": "sv03",
+        "card_number": "149",
+        "card_name": "Bisharp",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "e7ca48bb8fac12f973774e94f97a4e924e11bd21311506f2e5500e9027518ff9",
+    "counts": {
+      "target_parent_rows": 15,
+      "existing_target_child_rows": 0,
+      "planned_id_collision_rows": 0,
+      "total_rows": 15
+    }
+  },
+  "after_target_snapshot": {
+    "captured_at": "2026-06-13T00:17:04.638Z",
+    "rows": [
+      {
+        "row_type": "existing_target_child",
+        "row_id": "856463b3-bf34-4dfa-bc36-14614de996db",
+        "set_code": "sv03",
+        "card_number": "013",
+        "card_name": "Rowlet",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "856463b3-bf34-4dfa-bc36-14614de996db"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "2d431ccf-56ff-489a-bd38-668bf3182fcc",
+        "set_code": "sv03",
+        "card_number": "014",
+        "card_name": "Dartrix",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "2d431ccf-56ff-489a-bd38-668bf3182fcc"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "3e881cd9-6ce3-45fa-a24b-c62a4023b10b",
+        "set_code": "sv03",
+        "card_number": "016",
+        "card_name": "Bounsweet",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "3e881cd9-6ce3-45fa-a24b-c62a4023b10b"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "6ee1d643-7a4f-47e0-a9ab-905ef2ed5bee",
+        "set_code": "sv03",
+        "card_number": "025",
+        "card_name": "Scovillain",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "6ee1d643-7a4f-47e0-a9ab-905ef2ed5bee"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "8a47819e-0c54-45d0-ad86-d39b0e0521bc",
+        "set_code": "sv03",
+        "card_number": "056",
+        "card_name": "Froakie",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "8a47819e-0c54-45d0-ad86-d39b0e0521bc"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "615260f4-94cd-4d5f-b092-bc1fa3ab9555",
+        "set_code": "sv03",
+        "card_number": "057",
+        "card_name": "Frogadier",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "615260f4-94cd-4d5f-b092-bc1fa3ab9555"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "fd1f17c4-66b2-4479-807b-98a3289aaff8",
+        "set_code": "sv03",
+        "card_number": "062",
+        "card_name": "Palafin",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "fd1f17c4-66b2-4479-807b-98a3289aaff8"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "12a6979e-4159-4af3-ac10-96d8bd8c3d9b",
+        "set_code": "sv03",
+        "card_number": "085",
+        "card_name": "Togekiss",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "12a6979e-4159-4af3-ac10-96d8bd8c3d9b"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "7246207a-8955-4e8c-9988-c12fa228a2ed",
+        "set_code": "sv03",
+        "card_number": "085",
+        "card_name": "Togekiss",
+        "finish_key": "normal",
+        "target_card_printing_id": "7246207a-8955-4e8c-9988-c12fa228a2ed"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "9f3df071-7acd-4736-817d-756c45996fe4",
+        "set_code": "sv03",
+        "card_number": "100",
+        "card_name": "Greavard",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "9f3df071-7acd-4736-817d-756c45996fe4"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "1b6607f0-2107-4573-9145-ac4add9ce06a",
+        "set_code": "sv03",
+        "card_number": "105",
+        "card_name": "Larvitar",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "1b6607f0-2107-4573-9145-ac4add9ce06a"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "882b1f34-8e58-4d63-a349-f93e9d57da1b",
+        "set_code": "sv03",
+        "card_number": "106",
+        "card_name": "Pupitar",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "882b1f34-8e58-4d63-a349-f93e9d57da1b"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "10f0512b-d49f-4777-afe2-eccd1e259b03",
+        "set_code": "sv03",
+        "card_number": "136",
+        "card_name": "Darkrai",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "10f0512b-d49f-4777-afe2-eccd1e259b03"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "4c0b426c-0ca7-4dd7-a315-a23652f406d2",
+        "set_code": "sv03",
+        "card_number": "141",
+        "card_name": "Scizor",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "4c0b426c-0ca7-4dd7-a315-a23652f406d2"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "357dd61e-7261-4f03-b495-b30ec6485fb7",
+        "set_code": "sv03",
+        "card_number": "148",
+        "card_name": "Pawniard",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "357dd61e-7261-4f03-b495-b30ec6485fb7"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "25b38687-84be-4e93-8943-94e3a3aab8f3",
+        "set_code": "sv03",
+        "card_number": "149",
+        "card_name": "Bisharp",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "25b38687-84be-4e93-8943-94e3a3aab8f3"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "856463b3-bf34-4dfa-bc36-14614de996db",
+        "set_code": "sv03",
+        "card_number": "013",
+        "card_name": "Rowlet",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "856463b3-bf34-4dfa-bc36-14614de996db"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "2d431ccf-56ff-489a-bd38-668bf3182fcc",
+        "set_code": "sv03",
+        "card_number": "014",
+        "card_name": "Dartrix",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "2d431ccf-56ff-489a-bd38-668bf3182fcc"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "3e881cd9-6ce3-45fa-a24b-c62a4023b10b",
+        "set_code": "sv03",
+        "card_number": "016",
+        "card_name": "Bounsweet",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "3e881cd9-6ce3-45fa-a24b-c62a4023b10b"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "6ee1d643-7a4f-47e0-a9ab-905ef2ed5bee",
+        "set_code": "sv03",
+        "card_number": "025",
+        "card_name": "Scovillain",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "6ee1d643-7a4f-47e0-a9ab-905ef2ed5bee"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "8a47819e-0c54-45d0-ad86-d39b0e0521bc",
+        "set_code": "sv03",
+        "card_number": "056",
+        "card_name": "Froakie",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "8a47819e-0c54-45d0-ad86-d39b0e0521bc"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "615260f4-94cd-4d5f-b092-bc1fa3ab9555",
+        "set_code": "sv03",
+        "card_number": "057",
+        "card_name": "Frogadier",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "615260f4-94cd-4d5f-b092-bc1fa3ab9555"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "fd1f17c4-66b2-4479-807b-98a3289aaff8",
+        "set_code": "sv03",
+        "card_number": "062",
+        "card_name": "Palafin",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "fd1f17c4-66b2-4479-807b-98a3289aaff8"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "12a6979e-4159-4af3-ac10-96d8bd8c3d9b",
+        "set_code": "sv03",
+        "card_number": "085",
+        "card_name": "Togekiss",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "12a6979e-4159-4af3-ac10-96d8bd8c3d9b"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "7246207a-8955-4e8c-9988-c12fa228a2ed",
+        "set_code": "sv03",
+        "card_number": "085",
+        "card_name": "Togekiss",
+        "finish_key": "normal",
+        "target_card_printing_id": "7246207a-8955-4e8c-9988-c12fa228a2ed"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "9f3df071-7acd-4736-817d-756c45996fe4",
+        "set_code": "sv03",
+        "card_number": "100",
+        "card_name": "Greavard",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "9f3df071-7acd-4736-817d-756c45996fe4"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "1b6607f0-2107-4573-9145-ac4add9ce06a",
+        "set_code": "sv03",
+        "card_number": "105",
+        "card_name": "Larvitar",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "1b6607f0-2107-4573-9145-ac4add9ce06a"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "882b1f34-8e58-4d63-a349-f93e9d57da1b",
+        "set_code": "sv03",
+        "card_number": "106",
+        "card_name": "Pupitar",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "882b1f34-8e58-4d63-a349-f93e9d57da1b"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "10f0512b-d49f-4777-afe2-eccd1e259b03",
+        "set_code": "sv03",
+        "card_number": "136",
+        "card_name": "Darkrai",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "10f0512b-d49f-4777-afe2-eccd1e259b03"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "4c0b426c-0ca7-4dd7-a315-a23652f406d2",
+        "set_code": "sv03",
+        "card_number": "141",
+        "card_name": "Scizor",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "4c0b426c-0ca7-4dd7-a315-a23652f406d2"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "357dd61e-7261-4f03-b495-b30ec6485fb7",
+        "set_code": "sv03",
+        "card_number": "148",
+        "card_name": "Pawniard",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "357dd61e-7261-4f03-b495-b30ec6485fb7"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "25b38687-84be-4e93-8943-94e3a3aab8f3",
+        "set_code": "sv03",
+        "card_number": "149",
+        "card_name": "Bisharp",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "25b38687-84be-4e93-8943-94e3a3aab8f3"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f4edf4cf-001f-49e7-9103-601d4b8e7292",
+        "set_code": "sv03",
+        "card_number": "013",
+        "card_name": "Rowlet",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f1474ae1-7dd2-47a4-b87b-96fc64c2b7d2",
+        "set_code": "sv03",
+        "card_number": "014",
+        "card_name": "Dartrix",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "19367674-b09e-494f-b0c3-4c76eb69b25a",
+        "set_code": "sv03",
+        "card_number": "016",
+        "card_name": "Bounsweet",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "13309a0b-743f-43df-b6dc-d14bcc7c751c",
+        "set_code": "sv03",
+        "card_number": "025",
+        "card_name": "Scovillain",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f7b208f5-9be8-4b91-be1b-b6f323d64b16",
+        "set_code": "sv03",
+        "card_number": "056",
+        "card_name": "Froakie",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c25b8f46-aaa7-4568-90e7-9b961f11d533",
+        "set_code": "sv03",
+        "card_number": "057",
+        "card_name": "Frogadier",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d967570a-fa10-4e32-a2e4-f3cc39a312f4",
+        "set_code": "sv03",
+        "card_number": "062",
+        "card_name": "Palafin",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "16c07846-2fd1-40c7-b336-4af005efa35c",
+        "set_code": "sv03",
+        "card_number": "085",
+        "card_name": "Togekiss",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "52228f2f-5bc7-4b75-8eaa-bc6738d9e776",
+        "set_code": "sv03",
+        "card_number": "100",
+        "card_name": "Greavard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f359a0b3-b234-489a-948f-47e44562af87",
+        "set_code": "sv03",
+        "card_number": "105",
+        "card_name": "Larvitar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "af132509-8f4e-4557-8397-c67472a31ce9",
+        "set_code": "sv03",
+        "card_number": "106",
+        "card_name": "Pupitar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "26268bd0-483d-4567-8181-8a8a6402e14c",
+        "set_code": "sv03",
+        "card_number": "136",
+        "card_name": "Darkrai",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "0afdebcf-5c5b-460e-9964-da4e4d2c714a",
+        "set_code": "sv03",
+        "card_number": "141",
+        "card_name": "Scizor",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "bc7985a8-866b-4b71-ae4d-f78117a04258",
+        "set_code": "sv03",
+        "card_number": "148",
+        "card_name": "Pawniard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "857409a9-91c2-44a1-a539-c2caa68e98e1",
+        "set_code": "sv03",
+        "card_number": "149",
+        "card_name": "Bisharp",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "e0081367dca56c5f3fbfc92e10b6434cf6d1d9f7906d45c8f134c3916631ff95",
+    "counts": {
+      "target_parent_rows": 15,
+      "existing_target_child_rows": 16,
+      "planned_id_collision_rows": 16,
+      "total_rows": 47
+    }
+  },
+  "before_parent_snapshot": {
+    "captured_at": "2026-06-13T00:17:03.653Z",
+    "rows": [
+      {
+        "card_print_id": "f4edf4cf-001f-49e7-9103-601d4b8e7292",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "013",
+        "number_plain": "013",
+        "name": "Rowlet",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "f1474ae1-7dd2-47a4-b87b-96fc64c2b7d2",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "014",
+        "number_plain": "014",
+        "name": "Dartrix",
+        "rarity": "Uncommon"
+      },
+      {
+        "card_print_id": "19367674-b09e-494f-b0c3-4c76eb69b25a",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "016",
+        "number_plain": "016",
+        "name": "Bounsweet",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "13309a0b-743f-43df-b6dc-d14bcc7c751c",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "025",
+        "number_plain": "025",
+        "name": "Scovillain",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "f7b208f5-9be8-4b91-be1b-b6f323d64b16",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "056",
+        "number_plain": "056",
+        "name": "Froakie",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "c25b8f46-aaa7-4568-90e7-9b961f11d533",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "057",
+        "number_plain": "057",
+        "name": "Frogadier",
+        "rarity": "Uncommon"
+      },
+      {
+        "card_print_id": "d967570a-fa10-4e32-a2e4-f3cc39a312f4",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "062",
+        "number_plain": "062",
+        "name": "Palafin",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "16c07846-2fd1-40c7-b336-4af005efa35c",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "085",
+        "number_plain": "085",
+        "name": "Togekiss",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "52228f2f-5bc7-4b75-8eaa-bc6738d9e776",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "100",
+        "number_plain": "100",
+        "name": "Greavard",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "f359a0b3-b234-489a-948f-47e44562af87",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "105",
+        "number_plain": "105",
+        "name": "Larvitar",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "af132509-8f4e-4557-8397-c67472a31ce9",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "106",
+        "number_plain": "106",
+        "name": "Pupitar",
+        "rarity": "Uncommon"
+      },
+      {
+        "card_print_id": "26268bd0-483d-4567-8181-8a8a6402e14c",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "136",
+        "number_plain": "136",
+        "name": "Darkrai",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "0afdebcf-5c5b-460e-9964-da4e4d2c714a",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "141",
+        "number_plain": "141",
+        "name": "Scizor",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "bc7985a8-866b-4b71-ae4d-f78117a04258",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "148",
+        "number_plain": "148",
+        "name": "Pawniard",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "857409a9-91c2-44a1-a539-c2caa68e98e1",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "149",
+        "number_plain": "149",
+        "name": "Bisharp",
+        "rarity": "Common"
+      }
+    ],
+    "hash_sha256": "ba97b9587065b6ec500c21ac90d7e5331d29d58a715e8937428a513aaf707325",
+    "count": 15
+  },
+  "after_parent_snapshot": {
+    "captured_at": "2026-06-13T00:17:04.716Z",
+    "rows": [
+      {
+        "card_print_id": "f4edf4cf-001f-49e7-9103-601d4b8e7292",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "013",
+        "number_plain": "013",
+        "name": "Rowlet",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "f1474ae1-7dd2-47a4-b87b-96fc64c2b7d2",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "014",
+        "number_plain": "014",
+        "name": "Dartrix",
+        "rarity": "Uncommon"
+      },
+      {
+        "card_print_id": "19367674-b09e-494f-b0c3-4c76eb69b25a",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "016",
+        "number_plain": "016",
+        "name": "Bounsweet",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "13309a0b-743f-43df-b6dc-d14bcc7c751c",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "025",
+        "number_plain": "025",
+        "name": "Scovillain",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "f7b208f5-9be8-4b91-be1b-b6f323d64b16",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "056",
+        "number_plain": "056",
+        "name": "Froakie",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "c25b8f46-aaa7-4568-90e7-9b961f11d533",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "057",
+        "number_plain": "057",
+        "name": "Frogadier",
+        "rarity": "Uncommon"
+      },
+      {
+        "card_print_id": "d967570a-fa10-4e32-a2e4-f3cc39a312f4",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "062",
+        "number_plain": "062",
+        "name": "Palafin",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "16c07846-2fd1-40c7-b336-4af005efa35c",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "085",
+        "number_plain": "085",
+        "name": "Togekiss",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "52228f2f-5bc7-4b75-8eaa-bc6738d9e776",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "100",
+        "number_plain": "100",
+        "name": "Greavard",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "f359a0b3-b234-489a-948f-47e44562af87",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "105",
+        "number_plain": "105",
+        "name": "Larvitar",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "af132509-8f4e-4557-8397-c67472a31ce9",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "106",
+        "number_plain": "106",
+        "name": "Pupitar",
+        "rarity": "Uncommon"
+      },
+      {
+        "card_print_id": "26268bd0-483d-4567-8181-8a8a6402e14c",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "136",
+        "number_plain": "136",
+        "name": "Darkrai",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "0afdebcf-5c5b-460e-9964-da4e4d2c714a",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "141",
+        "number_plain": "141",
+        "name": "Scizor",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "bc7985a8-866b-4b71-ae4d-f78117a04258",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "148",
+        "number_plain": "148",
+        "name": "Pawniard",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "857409a9-91c2-44a1-a539-c2caa68e98e1",
+        "set_code": "sv03",
+        "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+        "number": "149",
+        "number_plain": "149",
+        "name": "Bisharp",
+        "rarity": "Common"
+      }
+    ],
+    "hash_sha256": "ba97b9587065b6ec500c21ac90d7e5331d29d58a715e8937428a513aaf707325",
+    "count": 15
+  },
+  "inserted_row_snapshot": {
+    "captured_at": "2026-06-13T00:17:04.795Z",
+    "rows": [
+      {
+        "card_printing_id": "856463b3-bf34-4dfa-bc36-14614de996db",
+        "card_print_id": "f4edf4cf-001f-49e7-9103-601d4b8e7292",
+        "set_code": "sv03",
+        "card_number": "013",
+        "card_name": "Rowlet",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:13:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "2d431ccf-56ff-489a-bd38-668bf3182fcc",
+        "card_print_id": "f1474ae1-7dd2-47a4-b87b-96fc64c2b7d2",
+        "set_code": "sv03",
+        "card_number": "014",
+        "card_name": "Dartrix",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:14:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "3e881cd9-6ce3-45fa-a24b-c62a4023b10b",
+        "card_print_id": "19367674-b09e-494f-b0c3-4c76eb69b25a",
+        "set_code": "sv03",
+        "card_number": "016",
+        "card_name": "Bounsweet",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:16:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "6ee1d643-7a4f-47e0-a9ab-905ef2ed5bee",
+        "card_print_id": "13309a0b-743f-43df-b6dc-d14bcc7c751c",
+        "set_code": "sv03",
+        "card_number": "025",
+        "card_name": "Scovillain",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:25:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "8a47819e-0c54-45d0-ad86-d39b0e0521bc",
+        "card_print_id": "f7b208f5-9be8-4b91-be1b-b6f323d64b16",
+        "set_code": "sv03",
+        "card_number": "056",
+        "card_name": "Froakie",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:56:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "615260f4-94cd-4d5f-b092-bc1fa3ab9555",
+        "card_print_id": "c25b8f46-aaa7-4568-90e7-9b961f11d533",
+        "set_code": "sv03",
+        "card_number": "057",
+        "card_name": "Frogadier",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:57:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "fd1f17c4-66b2-4479-807b-98a3289aaff8",
+        "card_print_id": "d967570a-fa10-4e32-a2e4-f3cc39a312f4",
+        "set_code": "sv03",
+        "card_number": "062",
+        "card_name": "Palafin",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:62:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "12a6979e-4159-4af3-ac10-96d8bd8c3d9b",
+        "card_print_id": "16c07846-2fd1-40c7-b336-4af005efa35c",
+        "set_code": "sv03",
+        "card_number": "085",
+        "card_name": "Togekiss",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:85:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "7246207a-8955-4e8c-9988-c12fa228a2ed",
+        "card_print_id": "16c07846-2fd1-40c7-b336-4af005efa35c",
+        "set_code": "sv03",
+        "card_number": "085",
+        "card_name": "Togekiss",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:85:normal",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "9f3df071-7acd-4736-817d-756c45996fe4",
+        "card_print_id": "52228f2f-5bc7-4b75-8eaa-bc6738d9e776",
+        "set_code": "sv03",
+        "card_number": "100",
+        "card_name": "Greavard",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:100:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "1b6607f0-2107-4573-9145-ac4add9ce06a",
+        "card_print_id": "f359a0b3-b234-489a-948f-47e44562af87",
+        "set_code": "sv03",
+        "card_number": "105",
+        "card_name": "Larvitar",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:105:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "882b1f34-8e58-4d63-a349-f93e9d57da1b",
+        "card_print_id": "af132509-8f4e-4557-8397-c67472a31ce9",
+        "set_code": "sv03",
+        "card_number": "106",
+        "card_name": "Pupitar",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:106:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "10f0512b-d49f-4777-afe2-eccd1e259b03",
+        "card_print_id": "26268bd0-483d-4567-8181-8a8a6402e14c",
+        "set_code": "sv03",
+        "card_number": "136",
+        "card_name": "Darkrai",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:136:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "4c0b426c-0ca7-4dd7-a315-a23652f406d2",
+        "card_print_id": "0afdebcf-5c5b-460e-9964-da4e4d2c714a",
+        "set_code": "sv03",
+        "card_number": "141",
+        "card_name": "Scizor",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:141:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "357dd61e-7261-4f03-b495-b30ec6485fb7",
+        "card_print_id": "bc7985a8-866b-4b71-ae4d-f78117a04258",
+        "set_code": "sv03",
+        "card_number": "148",
+        "card_name": "Pawniard",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:148:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "25b38687-84be-4e93-8943-94e3a3aab8f3",
+        "card_print_id": "857409a9-91c2-44a1-a539-c2caa68e98e1",
+        "set_code": "sv03",
+        "card_number": "149",
+        "card_name": "Bisharp",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv03:149:cosmos",
+        "created_by": "pkg08e_existing_parent_child_printing_guarded_dry_run_v1"
+      }
+    ],
+    "hash_sha256": "af96543731fc190dea725f0af8a6f60eb191b56f7d403791cf8f41aa6441881a",
+    "counts": {
+      "inserted_rows_found": 16,
+      "provisional_rows": 0,
+      "by_finish": {
+        "cosmos": 15,
+        "normal": 1
+      },
+      "by_live_set": {
+        "sv03": 16
+      }
+    }
+  },
+  "verification_summary": {
+    "inserted_by_live_set": {
+      "sv03": 16
+    },
+    "inserted_by_finish": {
+      "cosmos": 15,
+      "normal": 1
+    },
+    "parent_rows_unchanged": true
+  },
+  "rollback_proof": {
+    "rollback_sql_preview": "delete from public.card_printings where id = '856463b3-bf34-4dfa-bc36-14614de996db'::uuid and card_print_id = 'f4edf4cf-001f-49e7-9103-601d4b8e7292'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '2d431ccf-56ff-489a-bd38-668bf3182fcc'::uuid and card_print_id = 'f1474ae1-7dd2-47a4-b87b-96fc64c2b7d2'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '3e881cd9-6ce3-45fa-a24b-c62a4023b10b'::uuid and card_print_id = '19367674-b09e-494f-b0c3-4c76eb69b25a'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '6ee1d643-7a4f-47e0-a9ab-905ef2ed5bee'::uuid and card_print_id = '13309a0b-743f-43df-b6dc-d14bcc7c751c'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '8a47819e-0c54-45d0-ad86-d39b0e0521bc'::uuid and card_print_id = 'f7b208f5-9be8-4b91-be1b-b6f323d64b16'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '615260f4-94cd-4d5f-b092-bc1fa3ab9555'::uuid and card_print_id = 'c25b8f46-aaa7-4568-90e7-9b961f11d533'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = 'fd1f17c4-66b2-4479-807b-98a3289aaff8'::uuid and card_print_id = 'd967570a-fa10-4e32-a2e4-f3cc39a312f4'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '7246207a-8955-4e8c-9988-c12fa228a2ed'::uuid and card_print_id = '16c07846-2fd1-40c7-b336-4af005efa35c'::uuid and finish_key = 'normal';\ndelete from public.card_printings where id = '12a6979e-4159-4af3-ac10-96d8bd8c3d9b'::uuid and card_print_id = '16c07846-2fd1-40c7-b336-4af005efa35c'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '9f3df071-7acd-4736-817d-756c45996fe4'::uuid and card_print_id = '52228f2f-5bc7-4b75-8eaa-bc6738d9e776'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '1b6607f0-2107-4573-9145-ac4add9ce06a'::uuid and card_print_id = 'f359a0b3-b234-489a-948f-47e44562af87'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '882b1f34-8e58-4d63-a349-f93e9d57da1b'::uuid and card_print_id = 'af132509-8f4e-4557-8397-c67472a31ce9'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '10f0512b-d49f-4777-afe2-eccd1e259b03'::uuid and card_print_id = '26268bd0-483d-4567-8181-8a8a6402e14c'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '4c0b426c-0ca7-4dd7-a315-a23652f406d2'::uuid and card_print_id = '0afdebcf-5c5b-460e-9964-da4e4d2c714a'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '357dd61e-7261-4f03-b495-b30ec6485fb7'::uuid and card_print_id = 'bc7985a8-866b-4b71-ae4d-f78117a04258'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '25b38687-84be-4e93-8943-94e3a3aab8f3'::uuid and card_print_id = '857409a9-91c2-44a1-a539-c2caa68e98e1'::uuid and finish_key = 'cosmos';",
+    "inserted_child_printing_ids": [
+      "856463b3-bf34-4dfa-bc36-14614de996db",
+      "2d431ccf-56ff-489a-bd38-668bf3182fcc",
+      "3e881cd9-6ce3-45fa-a24b-c62a4023b10b",
+      "6ee1d643-7a4f-47e0-a9ab-905ef2ed5bee",
+      "8a47819e-0c54-45d0-ad86-d39b0e0521bc",
+      "615260f4-94cd-4d5f-b092-bc1fa3ab9555",
+      "fd1f17c4-66b2-4479-807b-98a3289aaff8",
+      "7246207a-8955-4e8c-9988-c12fa228a2ed",
+      "12a6979e-4159-4af3-ac10-96d8bd8c3d9b",
+      "9f3df071-7acd-4736-817d-756c45996fe4",
+      "1b6607f0-2107-4573-9145-ac4add9ce06a",
+      "882b1f34-8e58-4d63-a349-f93e9d57da1b",
+      "10f0512b-d49f-4777-afe2-eccd1e259b03",
+      "4c0b426c-0ca7-4dd7-a315-a23652f406d2",
+      "357dd61e-7261-4f03-b495-b30ec6485fb7",
+      "25b38687-84be-4e93-8943-94e3a3aab8f3"
+    ]
+  },
+  "stop_findings": [],
+  "pass": true
+}

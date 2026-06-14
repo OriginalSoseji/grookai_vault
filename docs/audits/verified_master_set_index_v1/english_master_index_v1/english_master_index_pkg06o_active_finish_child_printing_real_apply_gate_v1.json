@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-10T05:18:25.406Z",
+  "version": "english_master_index_pkg06o_active_finish_child_printing_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-06O-ACTIVE-FINISH-CHILD-PRINTING-INSERTS",
+    "package_fingerprint_sha256": "1010018fb1c6e78cde69680d5ca6548b1c18a87889aa015e7306db45a8a99449",
+    "source_readiness_fingerprint_sha256": "cbf85fe431198ce3905182788e9446fdbd77dba77eb645a3c0ac237bbb73c1b7",
+    "sql_hash_sha256": "5685d2ac674d56397c90ba1ec2e4b25f870b0f54bb98d3bad093d3f083a5fe46",
+    "child_card_printing_inserts": 40,
+    "target_parent_rows": 40,
+    "set_counts": {
+      "2018sm": 1,
+      "base2": 1,
+      "base3": 1,
+      "base5": 1,
+      "bw8": 1,
+      "dp6": 1,
+      "dpp": 1,
+      "ex2": 1,
+      "ex3": 1,
+      "fut20": 1,
+      "hgss3": 1,
+      "neo3": 2,
+      "pl1": 1,
+      "pop7": 2,
+      "sm2": 2,
+      "sm3": 2,
+      "sm3.5": 1,
+      "sm6": 1,
+      "sm9": 1,
+      "smp": 2,
+      "sv06": 1,
+      "sv08": 2,
+      "sv08.5": 1,
+      "swsh11": 2,
+      "xy10": 2,
+      "xy11": 2,
+      "xy2": 1,
+      "xy5": 2,
+      "xy6": 2
+    },
+    "finish_counts": {
+      "cosmos": 24,
+      "holo": 9,
+      "normal": 7
+    },
+    "parent_writes_allowed": false,
+    "child_insert_only": true,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_execution_status": "pkg06o_active_finish_child_printing_completed_rolled_back_no_durable_change",
+    "sql_artifact_ref": "docs/sql/english_master_index_pkg06o_active_finish_child_printing_guarded_dry_run_transaction_v1.sql",
+    "sql_hash_sha256": "5685d2ac674d56397c90ba1ec2e4b25f870b0f54bb98d3bad093d3f083a5fe46",
+    "before_hash_sha256": "7c7c49f566f0596f17fe71656647968aa5309642b5f6af518cdb3f5ad859937c",
+    "after_hash_sha256": "7c7c49f566f0596f17fe71656647968aa5309642b5f6af518cdb3f5ad859937c",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-06O-ACTIVE-FINISH-CHILD-PRINTING-INSERTS",
+        "source_readiness_fingerprint": "cbf85fe431198ce3905182788e9446fdbd77dba77eb645a3c0ac237bbb73c1b7",
+        "package_fingerprint": "1010018fb1c6e78cde69680d5ca6548b1c18a87889aa015e7306db45a8a99449",
+        "planned_sets": 29,
+        "target_parent_rows": 40,
+        "planned_child_rows": 40
+      }
+    ]
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-06O-ACTIVE-FINISH-CHILD-PRINTING-INSERTS apply only. Fingerprint: 1010018fb1c6e78cde69680d5ca6548b1c18a87889aa015e7306db45a8a99449. SQL hash: 5685d2ac674d56397c90ba1ec2e4b25f870b0f54bb98d3bad093d3f083a5fe46. Scope: 40 child-only card_printing inserts for base2/Jungle, base3/Fossil, base5/Team Rocket, neo3/Neo Revelation, ex2/Sandstorm, ex3/Dragon, dpp/DP Black Star Promos, pop7/POP Series 7, dp6/Legends Awakened, pl1/Platinum, hgss3/HS-Undaunted, bw8/Plasma Storm, xy2/Flashfire, xy5/Primal Clash, xy6/Roaring Skies, xy10/Fates Collide, xy11/Steam Siege, smp/SM Black Star Promos, sm2/Guardians Rising, sm3/Burning Shadows, sm3.5/Shining Legends, sm6/Forbidden Light, 2018sm/McDonald's Collection 2018, sm9/Team Up, fut20/Pokemon Futsal Collection, swsh11/Lost Origin, sv06/Twilight Masquerade, sv08/Surging Sparks, and sv08.5/Prismatic Evolutions; finishes cosmos=24, holo=9, normal=7; target parents=40. Dry-run proof: 7c7c49f566f0596f17fe71656647968aa5309642b5f6af518cdb3f5ad859937c == 7c7c49f566f0596f17fe71656647968aa5309642b5f6af518cdb3f5ad859937c. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No parent writes.",
+    "approval_effect": "This would authorize preparing and running the durable PKG-06O active-finish child-only apply path only."
+  },
+  "explicit_non_authorizations": [
+    "This gate is not a real apply.",
+    "This gate does not record approval.",
+    "This gate does not run SQL.",
+    "This gate does not read from or write to the database.",
+    "This gate does not create a migration.",
+    "This gate does not authorize global apply.",
+    "This gate does not authorize deletes.",
+    "This gate does not authorize merges.",
+    "This gate does not authorize unsupported cleanup.",
+    "This gate does not authorize parent writes."
+  ],
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg06o_active_finish_child_printing_guarded_dry_run_v1.json",
+    "sql_artifact": "docs/sql/english_master_index_pkg06o_active_finish_child_printing_guarded_dry_run_transaction_v1.sql"
+  },
+  "stop_findings": [],
+  "pass": true,
+  "gate_fingerprint_sha256": "1891a1bba66e080af5a8ec5809869f0a29223b908df66a8227965081e13ea713"
+}

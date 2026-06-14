@@ -1,0 +1,427 @@
+{
+  "generated_at": "2026-06-14T02:02:43.451Z",
+  "version": "english_master_index_pkg38a_xyp_suffix_overfinish_child_delete_real_apply_v1",
+  "package_id": "PKG-38A-XYP-SUFFIX-OVERFINISH-CHILD-DELETE",
+  "fingerprint": "aba4f25dc6ce864d71cd86108117bc46e2e7f2dd3bc65745e9bbde1d75edaaf1",
+  "dry_run_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg38a_xyp_suffix_overfinish_child_delete_guarded_dry_run_v1.json",
+  "safety": {
+    "no_global_apply": true,
+    "migrations_created": false,
+    "parent_writes": false,
+    "merges": false,
+    "quarantine": false
+  },
+  "execution": {
+    "apply_status": "pkg38a_real_apply_committed",
+    "committed": true,
+    "before_snapshot": {
+      "captured_at": "2026-06-14T02:02:42.364Z",
+      "rows": [
+        {
+          "card_printing_id": "40cba86b-968e-414f-852f-bda623df9020",
+          "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-02-22T00:23:13.964Z",
+          "set_code": "xyp",
+          "number": "XY150a",
+          "number_plain": "150",
+          "name": "Yveltal-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "13d84ee6-2ef1-4484-82d7-219437a7a4e6",
+          "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-03-03T04:03:38.310Z",
+          "set_code": "xyp",
+          "number": "XY150a",
+          "number_plain": "150",
+          "name": "Yveltal-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "62d2d277-6c1e-40b2-9bd3-03e2780cecb7",
+          "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-02-22T00:23:13.964Z",
+          "set_code": "xyp",
+          "number": "XY177a",
+          "number_plain": "177",
+          "name": "Karen",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "cdcf6094-67a3-47e7-ae3a-8ba636582a64",
+          "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-03-03T04:03:38.310Z",
+          "set_code": "xyp",
+          "number": "XY177a",
+          "number_plain": "177",
+          "name": "Karen",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "9e389935-bdc5-469b-81ca-8d8dd82ee379",
+          "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-02-22T00:23:13.964Z",
+          "set_code": "xyp",
+          "number": "XY198a",
+          "number_plain": "198",
+          "name": "M Camerupt-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "68a3153d-b011-4737-b8de-aff97e7ed01e",
+          "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-03-03T04:03:38.310Z",
+          "set_code": "xyp",
+          "number": "XY198a",
+          "number_plain": "198",
+          "name": "M Camerupt-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "2da04afd-5cfa-4083-9ef4-b6d2df5501d3",
+          "card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "provenance_source": "tcgdex",
+          "provenance_ref": "xyp-XY200a",
+          "created_by": "printing_ingestion_v2",
+          "created_at": "2026-02-22T00:23:13.964Z",
+          "set_code": "xyp",
+          "number": "XY200a",
+          "number_plain": "200",
+          "name": "M Sharpedo-EX",
+          "printed_identity_modifier": null,
+          "variant_key": "XYa"
+        },
+        {
+          "card_printing_id": "801be04d-ea49-4a0c-9708-385b138fd22a",
+          "card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": "tcgdex",
+          "provenance_ref": "xyp-XY200a",
+          "created_by": "printing_ingestion_v2",
+          "created_at": "2026-03-03T04:03:38.310Z",
+          "set_code": "xyp",
+          "number": "XY200a",
+          "number_plain": "200",
+          "name": "M Sharpedo-EX",
+          "printed_identity_modifier": null,
+          "variant_key": "XYa"
+        },
+        {
+          "card_printing_id": "777a29ba-d028-428f-855d-06493787a7ae",
+          "card_print_id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "provenance_source": "tcgdex",
+          "provenance_ref": "xyp-XY67a",
+          "created_by": "printing_ingestion_v2",
+          "created_at": "2026-02-22T00:23:13.964Z",
+          "set_code": "xyp",
+          "number": "XY67a",
+          "number_plain": "67",
+          "name": "Jirachi",
+          "printed_identity_modifier": null,
+          "variant_key": "XYa"
+        },
+        {
+          "card_printing_id": "97432cd7-d1f2-4e03-ad29-c51223f950dc",
+          "card_print_id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": "tcgdex",
+          "provenance_ref": "xyp-XY67a",
+          "created_by": "printing_ingestion_v2",
+          "created_at": "2026-03-03T04:03:38.310Z",
+          "set_code": "xyp",
+          "number": "XY67a",
+          "number_plain": "67",
+          "name": "Jirachi",
+          "printed_identity_modifier": null,
+          "variant_key": "XYa"
+        }
+      ],
+      "hash_sha256": "c024883e7880fecf739d20ba53441d5f357cb31c76ebf486f9a6611d1d7cf5d3",
+      "impact_counts": {
+        "child_rows": 10,
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "justtcg_mapping_refs": 0
+      }
+    },
+    "deleted_rows": 10,
+    "guard": {
+      "target_rows": 10,
+      "disallowed_finish_rows": 0,
+      "disallowed_bucket_rows": 0,
+      "matching_child_rows": 10,
+      "disallowed_parent_shape_rows": 0,
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "justtcg_mapping_refs": 0
+    }
+  },
+  "post_apply_proof": {
+    "target_children_remaining": 0,
+    "preserved_holo_children": [
+      {
+        "number": "XY150a",
+        "name": "Yveltal-EX",
+        "holo_children": 1
+      },
+      {
+        "number": "XY177a",
+        "name": "Karen",
+        "holo_children": 1
+      },
+      {
+        "number": "XY198a",
+        "name": "M Camerupt-EX",
+        "holo_children": 1
+      },
+      {
+        "number": "XY200a",
+        "name": "M Sharpedo-EX",
+        "holo_children": 1
+      },
+      {
+        "number": "XY67a",
+        "name": "Jirachi",
+        "holo_children": 1
+      }
+    ],
+    "remaining_children_by_parent_finish": [
+      {
+        "number": "XY150a",
+        "name": "Yveltal-EX",
+        "finish_key": "holo",
+        "rows": 1
+      },
+      {
+        "number": "XY177a",
+        "name": "Karen",
+        "finish_key": "holo",
+        "rows": 1
+      },
+      {
+        "number": "XY198a",
+        "name": "M Camerupt-EX",
+        "finish_key": "holo",
+        "rows": 1
+      },
+      {
+        "number": "XY200a",
+        "name": "M Sharpedo-EX",
+        "finish_key": "holo",
+        "rows": 1
+      },
+      {
+        "number": "XY67a",
+        "name": "Jirachi",
+        "finish_key": "holo",
+        "rows": 1
+      }
+    ]
+  },
+  "targets": [
+    {
+      "card_printing_id": "777a29ba-d028-428f-855d-06493787a7ae",
+      "card_print_id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+      "set_code": "xyp",
+      "canonical_set_key": "xyp",
+      "card_number": "67",
+      "number": "XY67a",
+      "number_plain": "67",
+      "card_name": "Jirachi",
+      "finish_key": "normal",
+      "variant_key": "XYa",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "97432cd7-d1f2-4e03-ad29-c51223f950dc",
+      "card_print_id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+      "set_code": "xyp",
+      "canonical_set_key": "xyp",
+      "card_number": "67",
+      "number": "XY67a",
+      "number_plain": "67",
+      "card_name": "Jirachi",
+      "finish_key": "reverse",
+      "variant_key": "XYa",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "40cba86b-968e-414f-852f-bda623df9020",
+      "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+      "set_code": "xyp",
+      "canonical_set_key": "xyp",
+      "card_number": "150",
+      "number": "XY150a",
+      "number_plain": "150",
+      "card_name": "Yveltal-EX",
+      "finish_key": "normal",
+      "variant_key": "",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "13d84ee6-2ef1-4484-82d7-219437a7a4e6",
+      "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+      "set_code": "xyp",
+      "canonical_set_key": "xyp",
+      "card_number": "150",
+      "number": "XY150a",
+      "number_plain": "150",
+      "card_name": "Yveltal-EX",
+      "finish_key": "reverse",
+      "variant_key": "",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "62d2d277-6c1e-40b2-9bd3-03e2780cecb7",
+      "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+      "set_code": "xyp",
+      "canonical_set_key": "xyp",
+      "card_number": "177",
+      "number": "XY177a",
+      "number_plain": "177",
+      "card_name": "Karen",
+      "finish_key": "normal",
+      "variant_key": "",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "cdcf6094-67a3-47e7-ae3a-8ba636582a64",
+      "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+      "set_code": "xyp",
+      "canonical_set_key": "xyp",
+      "card_number": "177",
+      "number": "XY177a",
+      "number_plain": "177",
+      "card_name": "Karen",
+      "finish_key": "reverse",
+      "variant_key": "",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "9e389935-bdc5-469b-81ca-8d8dd82ee379",
+      "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+      "set_code": "xyp",
+      "canonical_set_key": "xyp",
+      "card_number": "198",
+      "number": "XY198a",
+      "number_plain": "198",
+      "card_name": "M Camerupt-EX",
+      "finish_key": "normal",
+      "variant_key": "",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "68a3153d-b011-4737-b8de-aff97e7ed01e",
+      "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+      "set_code": "xyp",
+      "canonical_set_key": "xyp",
+      "card_number": "198",
+      "number": "XY198a",
+      "number_plain": "198",
+      "card_name": "M Camerupt-EX",
+      "finish_key": "reverse",
+      "variant_key": "",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "2da04afd-5cfa-4083-9ef4-b6d2df5501d3",
+      "card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+      "set_code": "xyp",
+      "canonical_set_key": "xyp",
+      "card_number": "200",
+      "number": "XY200a",
+      "number_plain": "200",
+      "card_name": "M Sharpedo-EX",
+      "finish_key": "normal",
+      "variant_key": "XYa",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "801be04d-ea49-4a0c-9708-385b138fd22a",
+      "card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+      "set_code": "xyp",
+      "canonical_set_key": "xyp",
+      "card_number": "200",
+      "number": "XY200a",
+      "number_plain": "200",
+      "card_name": "M Sharpedo-EX",
+      "finish_key": "reverse",
+      "variant_key": "XYa",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    }
+  ]
+}

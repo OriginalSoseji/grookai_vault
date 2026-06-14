@@ -1,0 +1,170 @@
+{
+  "generated_at": "2026-06-11T04:58:02.399Z",
+  "version": "english_master_index_pkg08s_non_tcgdex_parent_insert_readiness_v1",
+  "package_id": "PKG-08S-NON-TCGDEX-PARENT-INSERT-READINESS",
+  "package_fingerprint_sha256": "77bfee46fda739ed32e0b6c4c888312b4cc631ab162c050f1c870c3bed3680bd",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "collision_read": {
+    "available": true,
+    "reason": null,
+    "collision_rows": 0
+  },
+  "source_package_fingerprint_sha256": "cb58a2924cce61d713c82ad34d216be9e6539951cf1808a6a7e4464af3498035",
+  "summary": {
+    "source_rows": 4,
+    "classified_rows": 4,
+    "by_readiness_status": {
+      "blocked_mapping_source_governance_required": 2,
+      "blocked_no_stable_card_external_id": 2
+    },
+    "top_sets_by_readiness_status": {
+      "blocked_mapping_source_governance_required": [
+        {
+          "key": "mep",
+          "count": 2
+        }
+      ],
+      "blocked_no_stable_card_external_id": [
+        {
+          "key": "svp",
+          "count": 2
+        }
+      ]
+    },
+    "ready_for_non_tcgdex_parent_insert_dry_run": 0,
+    "blocked_mapping_source_governance_required": 2,
+    "blocked_no_stable_card_external_id": 2,
+    "blocked_existing_external_mapping_collision": 0,
+    "ready_rows_by_preferred_source": {},
+    "ready_rows_by_set": {}
+  },
+  "recommended_next_package": {
+    "package_id": "PKG-08T",
+    "scope": "ready_for_non_tcgdex_parent_insert_dry_run",
+    "candidate_rows": 0,
+    "allowed_write_shape": "parent inserts + child inserts + external_mappings for existing approved sources only",
+    "status": "blocked_no_candidates",
+    "blocked_governance_rows": 2,
+    "blocked_no_stable_id_rows": 2
+  },
+  "rows": [
+    {
+      "readiness_status": "blocked_mapping_source_governance_required",
+      "recommended_next_action": "Approve mapping-source governance before this source can carry inserted parent provenance.",
+      "preferred_external_mapping": {
+        "source": "bulbapedia",
+        "external_id": "Toxel_(Phantasmal_Flames_67)",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Toxel_(Phantasmal_Flames_67)"
+      },
+      "extracted_external_ids": [
+        {
+          "source": "bulbapedia",
+          "external_id": "Toxel_(Phantasmal_Flames_67)",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Toxel_(Phantasmal_Flames_67)"
+        }
+      ],
+      "existing_source_mapping_collisions": [],
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "78",
+      "card_name": "Toxel",
+      "finish_key": "cosmos",
+      "source_count": 2,
+      "matched_set_alias": "mep",
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Toxel_(Phantasmal_Flames_67)",
+        "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+      ],
+      "original_strategy_lane": "candidate_without_tcgdex_mapping"
+    },
+    {
+      "readiness_status": "blocked_mapping_source_governance_required",
+      "recommended_next_action": "Approve mapping-source governance before this source can carry inserted parent provenance.",
+      "preferred_external_mapping": {
+        "source": "bulbapedia",
+        "external_id": "Charmeleon_(Phantasmal_Flames_12)",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Charmeleon_(Phantasmal_Flames_12)"
+      },
+      "extracted_external_ids": [
+        {
+          "source": "bulbapedia",
+          "external_id": "Charmeleon_(Phantasmal_Flames_12)",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Charmeleon_(Phantasmal_Flames_12)"
+        }
+      ],
+      "existing_source_mapping_collisions": [],
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "79",
+      "card_name": "Charmeleon",
+      "finish_key": "cosmos",
+      "source_count": 2,
+      "matched_set_alias": "mep",
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Charmeleon_(Phantasmal_Flames_12)",
+        "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+      ],
+      "original_strategy_lane": "candidate_without_tcgdex_mapping"
+    },
+    {
+      "readiness_status": "blocked_no_stable_card_external_id",
+      "recommended_next_action": "Acquire exact card-level source ID before parent insert.",
+      "preferred_external_mapping": null,
+      "extracted_external_ids": [],
+      "existing_source_mapping_collisions": [],
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "175",
+      "card_name": "Espeon ex",
+      "finish_key": "holo",
+      "source_count": 2,
+      "matched_set_alias": "svp",
+      "sources": [
+        "reverseholo_set_checklist",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://reverseholo.app/sets/svp",
+        "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+      ],
+      "original_strategy_lane": "candidate_without_tcgdex_mapping"
+    },
+    {
+      "readiness_status": "blocked_no_stable_card_external_id",
+      "recommended_next_action": "Acquire exact card-level source ID before parent insert.",
+      "preferred_external_mapping": null,
+      "extracted_external_ids": [],
+      "existing_source_mapping_collisions": [],
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "176",
+      "card_name": "Umbreon ex",
+      "finish_key": "holo",
+      "source_count": 2,
+      "matched_set_alias": "svp",
+      "sources": [
+        "reverseholo_set_checklist",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://reverseholo.app/sets/svp",
+        "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+      ],
+      "original_strategy_lane": "candidate_without_tcgdex_mapping"
+    }
+  ]
+}

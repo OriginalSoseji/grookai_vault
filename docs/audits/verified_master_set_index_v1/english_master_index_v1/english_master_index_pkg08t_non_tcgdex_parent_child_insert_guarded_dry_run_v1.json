@@ -1,0 +1,2748 @@
+{
+  "generated_at": "2026-06-11T03:43:08.200Z",
+  "version": "english_master_index_pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+  "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+  "source_readiness_fingerprint_sha256": "cba7fe096f8d122decdec0cc5656e6fb00e2337caaeb259ce768d62753070f6b",
+  "package_fingerprint_sha256": "6f173353f1e455e1eef8d67f3d577183b939a4dcea4a5c719bcb61623933a341",
+  "audit_only": false,
+  "rollback_only": true,
+  "dry_run_status": "pkg08t_non_tcgdex_parent_child_insert_completed_rolled_back_no_durable_change",
+  "durable_db_writes_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_authorized": false,
+  "scope": {
+    "source_rows": 34,
+    "target_parent_rows": 34,
+    "target_child_rows": 34,
+    "target_external_mappings": 34,
+    "blocked_rows": 0,
+    "selected_set_keys": [
+      "bw11",
+      "bwp",
+      "mep",
+      "svp"
+    ],
+    "by_set": {
+      "bw11": 20,
+      "bwp": 2,
+      "mep": 6,
+      "svp": 6
+    },
+    "by_live_set": {
+      "bw11": 20,
+      "bwp": 2,
+      "mep": 6,
+      "svp": 6
+    },
+    "by_finish": {
+      "holo": 28,
+      "normal": 6
+    },
+    "by_mapping_source": {
+      "pokemonapi": 23,
+      "tcgplayer": 11
+    },
+    "parent_rows": [
+      {
+        "card_print_id": "e8cae0fa-408a-475d-ac20-860250c3e838",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "71",
+        "number_plain": "71",
+        "printed_identity_modifier": null,
+        "card_name": "Mega Zygarde ex",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "695311"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "mep",
+          "evidence_sources": [
+            "tcgcsv_tcgplayer_catalog",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "tcgplayer",
+          "external_id": "695311",
+          "source_url": "https://www.tcgplayer.com/product/695311/pokemon-me-mega-evolution-promo-mega-zygarde-ex-071"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/695311/pokemon-me-mega-evolution-promo-mega-zygarde-ex-071",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "22049e2c-19b2-449f-ac36-3a6d801f276f",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "74",
+        "number_plain": "74",
+        "printed_identity_modifier": null,
+        "card_name": "Delphox",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "694680"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "mep",
+          "evidence_sources": [
+            "tcgcsv_tcgplayer_catalog",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "tcgplayer",
+          "external_id": "694680",
+          "source_url": "https://www.tcgplayer.com/product/694680/pokemon-me-mega-evolution-promo-delphox-074-staff"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/694680/pokemon-me-mega-evolution-promo-delphox-074-staff",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "a34a0d78-3091-4392-9a44-376125594ad1",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "75",
+        "number_plain": "75",
+        "printed_identity_modifier": null,
+        "card_name": "Ampharos",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "694682"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "mep",
+          "evidence_sources": [
+            "tcgcsv_tcgplayer_catalog",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "tcgplayer",
+          "external_id": "694682",
+          "source_url": "https://www.tcgplayer.com/product/694682/pokemon-me-mega-evolution-promo-ampharos-075-staff"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/694682/pokemon-me-mega-evolution-promo-ampharos-075-staff",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "defafd1e-6f85-4f09-824b-c3caf29c94aa",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "76",
+        "number_plain": "76",
+        "printed_identity_modifier": null,
+        "card_name": "Crobat",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "694687"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "mep",
+          "evidence_sources": [
+            "tcgcsv_tcgplayer_catalog",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "tcgplayer",
+          "external_id": "694687",
+          "source_url": "https://www.tcgplayer.com/product/694687/pokemon-me-mega-evolution-promo-crobat-076-staff"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/694687/pokemon-me-mega-evolution-promo-crobat-076-staff",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "1669919e-5ac8-4ece-be9c-f8e8aa4adacc",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "77",
+        "number_plain": "77",
+        "printed_identity_modifier": null,
+        "card_name": "Goodra",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "694689"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "mep",
+          "evidence_sources": [
+            "tcgcsv_tcgplayer_catalog",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "tcgplayer",
+          "external_id": "694689",
+          "source_url": "https://www.tcgplayer.com/product/694689/pokemon-me-mega-evolution-promo-goodra-077-staff"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/694689/pokemon-me-mega-evolution-promo-goodra-077-staff",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "af929a84-3070-4ea4-a06f-0ea765eb37d4",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "80",
+        "number_plain": "80",
+        "printed_identity_modifier": null,
+        "card_name": "Fennekin",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "694695"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "mep",
+          "evidence_sources": [
+            "tcgcsv_tcgplayer_catalog",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "tcgplayer",
+          "external_id": "694695",
+          "source_url": "https://www.tcgplayer.com/product/694695/pokemon-me-mega-evolution-promo-fennekin-080-pokemon-center-exclusive"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/694695/pokemon-me-mega-evolution-promo-fennekin-080-pokemon-center-exclusive",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "7c7206cd-30ce-4729-94c0-6a8d9396530b",
+        "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+        "set_key": "bwp",
+        "live_set_code": "bwp",
+        "set_name": "BW Black Star Promos",
+        "card_number": "BW004",
+        "number_plain": "4",
+        "printed_identity_modifier": "number_prefix:BW",
+        "card_name": "Reshiram",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bwp-BW004"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bwp",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bwp-BW004",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bwp-BW004"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bwp-BW004",
+          "https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "a6eb05aa-ada9-4f59-b0eb-0a73df81c201",
+        "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+        "set_key": "bwp",
+        "live_set_code": "bwp",
+        "set_name": "BW Black Star Promos",
+        "card_number": "BW005",
+        "number_plain": "5",
+        "printed_identity_modifier": "number_prefix:BW",
+        "card_name": "Zekrom",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bwp-BW005"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bwp",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bwp-BW005",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bwp-BW005"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bwp-BW005",
+          "https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "7acb6ae7-9749-49c6-bdc4-128e0fda1ebe",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC1",
+        "number_plain": "1",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Snivy",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC1"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC1",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC1"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC1",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "74c5fba4-3cae-43d2-9770-24dd1a4991f2",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC3",
+        "number_plain": "3",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Serperior",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC3"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC3",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC3"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC3",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "ba6a6c23-fd10-4715-b698-3a266c95b7ae",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC4",
+        "number_plain": "4",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Growlithe",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC4"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC4",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC4"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC4",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "efa15a49-a1f9-46b0-bd69-85111388328e",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC5",
+        "number_plain": "5",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Torchic",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC5"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC5",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC5"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC5",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "93bc63a0-3285-4360-8eb8-965d81bd26e8",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC6",
+        "number_plain": "6",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Piplup",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC6"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC6",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC6"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC6",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "fca222fa-9629-4b95-8e3e-c156871f1131",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC7",
+        "number_plain": "7",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Pikachu",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC7"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC7",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC7"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC7",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "def3b50f-4d4d-45f4-a4c0-29f91b8dbb0f",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC9",
+        "number_plain": "9",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Kirlia",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC9"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC9",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC9"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC9",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "9ff063db-4121-456f-839a-f79822b7c7e0",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC10",
+        "number_plain": "10",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Gardevoir",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC10"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC10",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC10"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC10",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "ae5f8da5-8739-423f-a909-a4b35ef1f0f7",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC12",
+        "number_plain": "12",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Stunfisk",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC12"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC12",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC12"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC12",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "32e149cf-89c2-4786-9b59-fd20fecfd746",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC13",
+        "number_plain": "13",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Purrloin",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC13"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC13",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC13"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC13",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "2b3996ed-c314-4ccf-9c60-d3e7c13f6d62",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC14",
+        "number_plain": "14",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Eevee",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC14"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC14",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC14"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC14",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "f8d2770e-13a8-48ab-8fdd-f2134fcb43dc",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC15",
+        "number_plain": "15",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Teddiursa",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC15"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC15",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC15"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC15",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "64593d79-0242-4354-93d8-4fa5d27be758",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC16",
+        "number_plain": "16",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Ursaring",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC16"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC16",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC16"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC16",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "5cd07513-7d98-4952-accb-13efc906441a",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC18",
+        "number_plain": "18",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Minccino",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC18"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC18",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC18"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC18",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "25c0588d-9275-4b49-9b1d-1a590cc29f5c",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC19",
+        "number_plain": "19",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Cinccino",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC19"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC19",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC19"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC19",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "3b203a61-0bb1-486d-be32-32c724e71a7f",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC20",
+        "number_plain": "20",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Elesa",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC20"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC20",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC20"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC20",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "8f425977-bcfe-4a9f-bb2b-7d972a613ccb",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC21",
+        "number_plain": "21",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Shaymin-EX",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC21"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC21",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC21"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC21",
+          "https://reverseholo.app/sets/bw11",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "2a03720e-a769-4898-b16b-aee0e6501ccd",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC22",
+        "number_plain": "22",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Reshiram",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC22"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC22",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC22"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC22",
+          "https://reverseholo.app/sets/bw11",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "e9a99417-070e-4e70-9dc2-ddbbb907e03e",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC23",
+        "number_plain": "23",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Emolga",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC23"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC23",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC23"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC23",
+          "https://reverseholo.app/sets/bw11",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "7b64eeaf-63e5-491e-b70e-893ba616e6eb",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "RC24",
+        "number_plain": "24",
+        "printed_identity_modifier": "number_prefix:RC",
+        "card_name": "Mew-EX",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "bw11-RC24"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "bw11",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-RC24",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC24"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC24",
+          "https://reverseholo.app/sets/bw11",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "797add1a-99fc-41f6-a061-c36add0b20a9",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "card_number": "85",
+        "number_plain": "85",
+        "printed_identity_modifier": null,
+        "card_name": "Pikachu with Grey Felt Hat",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "svp-85"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "svp",
+          "evidence_sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "svp-85",
+          "source_url": "https://api.pokemontcg.io/v2/cards/svp-85"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/svp-85",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "5d990d10-c5bf-4027-a429-163c259e123e",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "card_number": "219",
+        "number_plain": "219",
+        "printed_identity_modifier": null,
+        "card_name": "Black Belt's Training",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "664825"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "svp",
+          "evidence_sources": [
+            "tcgcsv_tcgplayer_catalog",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "tcgplayer",
+          "external_id": "664825",
+          "source_url": "https://www.tcgplayer.com/product/664825/pokemon-sv-scarlet-and-violet-promo-cards-black-belts-training-219"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/664825/pokemon-sv-scarlet-and-violet-promo-cards-black-belts-training-219",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "2be3d16d-39fe-4d46-b5ec-e737a777624c",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "card_number": "220",
+        "number_plain": "220",
+        "printed_identity_modifier": null,
+        "card_name": "Black Belt's Training",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "664824"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "svp",
+          "evidence_sources": [
+            "tcgcsv_tcgplayer_catalog",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "tcgplayer",
+          "external_id": "664824",
+          "source_url": "https://www.tcgplayer.com/product/664824/pokemon-sv-scarlet-and-violet-promo-cards-black-belts-training-220"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/664824/pokemon-sv-scarlet-and-violet-promo-cards-black-belts-training-220",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "8d542ecd-ada6-4270-8cc8-883458ff3b84",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "card_number": "221",
+        "number_plain": "221",
+        "printed_identity_modifier": null,
+        "card_name": "Professor's Research",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "664829"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "svp",
+          "evidence_sources": [
+            "tcgcsv_tcgplayer_catalog",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "tcgplayer",
+          "external_id": "664829",
+          "source_url": "https://www.tcgplayer.com/product/664829/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-221"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/664829/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-221",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "9578935b-26af-4bb8-b928-fd653e205dc6",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "card_number": "222",
+        "number_plain": "222",
+        "printed_identity_modifier": null,
+        "card_name": "Professor's Research",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "664827"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "svp",
+          "evidence_sources": [
+            "tcgcsv_tcgplayer_catalog",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "tcgplayer",
+          "external_id": "664827",
+          "source_url": "https://www.tcgplayer.com/product/664827/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-222"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/664827/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-222",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "584be210-439b-4ff0-9cb2-964d66e1f231",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "card_number": "223",
+        "number_plain": "223",
+        "printed_identity_modifier": null,
+        "card_name": "Professor's Research",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "664828"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_set_key": "svp",
+          "evidence_sources": [
+            "tcgcsv_tcgplayer_catalog",
+            "thepricedex_price_list"
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "tcgplayer",
+          "external_id": "664828",
+          "source_url": "https://www.tcgplayer.com/product/664828/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-223"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/664828/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-223",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      }
+    ],
+    "child_rows": [
+      {
+        "card_printing_id": "11d3198c-661b-4dd7-b45c-a53c9d28b47a",
+        "card_print_id": "e8cae0fa-408a-475d-ac20-860250c3e838",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "card_number": "71",
+        "card_name": "Mega Zygarde ex",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mep:71:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/695311/pokemon-me-mega-evolution-promo-mega-zygarde-ex-071",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "30393dfa-60af-4e11-a26f-158a82b1331e",
+        "card_print_id": "22049e2c-19b2-449f-ac36-3a6d801f276f",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "card_number": "74",
+        "card_name": "Delphox",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mep:74:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/694680/pokemon-me-mega-evolution-promo-delphox-074-staff",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "9c510f5c-23e9-4509-b5be-f0db3a970e28",
+        "card_print_id": "a34a0d78-3091-4392-9a44-376125594ad1",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "card_number": "75",
+        "card_name": "Ampharos",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mep:75:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/694682/pokemon-me-mega-evolution-promo-ampharos-075-staff",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "ca6fd530-ebc7-47ee-8213-7679b1427d61",
+        "card_print_id": "defafd1e-6f85-4f09-824b-c3caf29c94aa",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "card_number": "76",
+        "card_name": "Crobat",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mep:76:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/694687/pokemon-me-mega-evolution-promo-crobat-076-staff",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "e71e1cf9-2b55-4de3-8bcd-b302caf26883",
+        "card_print_id": "1669919e-5ac8-4ece-be9c-f8e8aa4adacc",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "card_number": "77",
+        "card_name": "Goodra",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mep:77:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/694689/pokemon-me-mega-evolution-promo-goodra-077-staff",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "85367f10-2d1e-4314-ba84-b23bd09cd423",
+        "card_print_id": "af929a84-3070-4ea4-a06f-0ea765eb37d4",
+        "set_key": "mep",
+        "live_set_code": "mep",
+        "card_number": "80",
+        "card_name": "Fennekin",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mep:80:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/694695/pokemon-me-mega-evolution-promo-fennekin-080-pokemon-center-exclusive",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "6a024cc4-6446-42be-a92e-d9952692bc96",
+        "card_print_id": "7c7206cd-30ce-4729-94c0-6a8d9396530b",
+        "set_key": "bwp",
+        "live_set_code": "bwp",
+        "card_number": "BW004",
+        "card_name": "Reshiram",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bwp:BW004:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bwp-BW004",
+          "https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "77941160-6342-466b-9bd9-f20cecfd4e85",
+        "card_print_id": "a6eb05aa-ada9-4f59-b0eb-0a73df81c201",
+        "set_key": "bwp",
+        "live_set_code": "bwp",
+        "card_number": "BW005",
+        "card_name": "Zekrom",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bwp:BW005:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bwp-BW005",
+          "https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "63e84c58-8f49-4dcc-8df8-311f5113fb0c",
+        "card_print_id": "7acb6ae7-9749-49c6-bdc4-128e0fda1ebe",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC1",
+        "card_name": "Snivy",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC1:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC1",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "c33face1-5115-4a9c-907c-2525fa1d5795",
+        "card_print_id": "74c5fba4-3cae-43d2-9770-24dd1a4991f2",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC3",
+        "card_name": "Serperior",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC3:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC3",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "1890b382-af69-47c7-82c5-b15ac8681639",
+        "card_print_id": "ba6a6c23-fd10-4715-b698-3a266c95b7ae",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC4",
+        "card_name": "Growlithe",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC4:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC4",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "7787f9bd-e74d-491c-bb0b-564294f67005",
+        "card_print_id": "efa15a49-a1f9-46b0-bd69-85111388328e",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC5",
+        "card_name": "Torchic",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC5:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC5",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "4f758511-61d4-41c3-8feb-a5cdfbb3cbb0",
+        "card_print_id": "93bc63a0-3285-4360-8eb8-965d81bd26e8",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC6",
+        "card_name": "Piplup",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC6:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC6",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "0af79381-c8e6-44bb-997e-f0cd194d3c93",
+        "card_print_id": "fca222fa-9629-4b95-8e3e-c156871f1131",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC7",
+        "card_name": "Pikachu",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC7:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC7",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "4e85426b-5b1d-4c47-883a-867eccb0371b",
+        "card_print_id": "def3b50f-4d4d-45f4-a4c0-29f91b8dbb0f",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC9",
+        "card_name": "Kirlia",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC9:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC9",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "282b0d27-8fd4-42bc-a1eb-cdae43f2c8e8",
+        "card_print_id": "9ff063db-4121-456f-839a-f79822b7c7e0",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC10",
+        "card_name": "Gardevoir",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC10:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC10",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "0ed01524-3770-4bd3-a834-a7902116db99",
+        "card_print_id": "ae5f8da5-8739-423f-a909-a4b35ef1f0f7",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC12",
+        "card_name": "Stunfisk",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC12:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC12",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "1248d1cf-495b-4498-8e71-9c0b1fc41d72",
+        "card_print_id": "32e149cf-89c2-4786-9b59-fd20fecfd746",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC13",
+        "card_name": "Purrloin",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC13:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC13",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "705d5768-cea2-424d-be30-41384f1585a6",
+        "card_print_id": "2b3996ed-c314-4ccf-9c60-d3e7c13f6d62",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC14",
+        "card_name": "Eevee",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC14:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC14",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "cb1a62a9-3229-47da-97a3-750c7cb34660",
+        "card_print_id": "f8d2770e-13a8-48ab-8fdd-f2134fcb43dc",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC15",
+        "card_name": "Teddiursa",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC15:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC15",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "3837b283-74c2-4ff4-b417-c52339740ac7",
+        "card_print_id": "64593d79-0242-4354-93d8-4fa5d27be758",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC16",
+        "card_name": "Ursaring",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC16:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC16",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "a4e8e5a7-3593-4b33-a2be-ec03a7cf15b5",
+        "card_print_id": "5cd07513-7d98-4952-accb-13efc906441a",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC18",
+        "card_name": "Minccino",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC18:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC18",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "be5d634e-9511-491a-b76e-b8147968263f",
+        "card_print_id": "25c0588d-9275-4b49-9b1d-1a590cc29f5c",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC19",
+        "card_name": "Cinccino",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC19:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC19",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "98fb05cf-2986-4c9a-90b7-9d9a65977501",
+        "card_print_id": "3b203a61-0bb1-486d-be32-32c724e71a7f",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC20",
+        "card_name": "Elesa",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC20:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC20",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "8abc8667-4f9d-4384-a907-da28a7884831",
+        "card_print_id": "8f425977-bcfe-4a9f-bb2b-7d972a613ccb",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC21",
+        "card_name": "Shaymin-EX",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC21:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC21",
+          "https://reverseholo.app/sets/bw11",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "4caa8e4d-f0d3-4e6b-811b-25dd5da66f27",
+        "card_print_id": "2a03720e-a769-4898-b16b-aee0e6501ccd",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC22",
+        "card_name": "Reshiram",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC22:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC22",
+          "https://reverseholo.app/sets/bw11",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "303900b5-d856-4c69-bb89-b05a3730d593",
+        "card_print_id": "e9a99417-070e-4e70-9dc2-ddbbb907e03e",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC23",
+        "card_name": "Emolga",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC23:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC23",
+          "https://reverseholo.app/sets/bw11",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "07394da3-8f8a-4ef9-8b52-093ad2aff6e0",
+        "card_print_id": "7b64eeaf-63e5-491e-b70e-893ba616e6eb",
+        "set_key": "bw11",
+        "live_set_code": "bw11",
+        "card_number": "RC24",
+        "card_name": "Mew-EX",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw11:RC24:holo",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/bw11-RC24",
+          "https://reverseholo.app/sets/bw11",
+          "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "8bbc59fd-b806-4582-a7ef-ba9a32da8985",
+        "card_print_id": "797add1a-99fc-41f6-a061-c36add0b20a9",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "card_number": "85",
+        "card_name": "Pikachu with Grey Felt Hat",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "svp:85:normal",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/svp-85",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "d7838edc-1456-43a8-8c33-2c4c4f399122",
+        "card_print_id": "5d990d10-c5bf-4027-a429-163c259e123e",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "card_number": "219",
+        "card_name": "Black Belt's Training",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "svp:219:normal",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/664825/pokemon-sv-scarlet-and-violet-promo-cards-black-belts-training-219",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "00dda9be-0a8f-4a64-b64d-e6b40e256d6b",
+        "card_print_id": "2be3d16d-39fe-4d46-b5ec-e737a777624c",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "card_number": "220",
+        "card_name": "Black Belt's Training",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "svp:220:normal",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/664824/pokemon-sv-scarlet-and-violet-promo-cards-black-belts-training-220",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "8f31080c-1eb8-4c23-8eb9-a874167ab5b5",
+        "card_print_id": "8d542ecd-ada6-4270-8cc8-883458ff3b84",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "card_number": "221",
+        "card_name": "Professor's Research",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "svp:221:normal",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/664829/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-221",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "8ce18a76-6d7d-4d54-98c4-81880f36d180",
+        "card_print_id": "9578935b-26af-4bb8-b928-fd653e205dc6",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "card_number": "222",
+        "card_name": "Professor's Research",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "svp:222:normal",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/664827/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-222",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "3efa3e0b-8214-46b5-b786-32f61d805ffb",
+        "card_print_id": "584be210-439b-4ff0-9cb2-964d66e1f231",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "card_number": "223",
+        "card_name": "Professor's Research",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "svp:223:normal",
+        "created_by": "pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/664828/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-223",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "sources": [
+          "tcgcsv_tcgplayer_catalog",
+          "thepricedex_price_list"
+        ]
+      }
+    ],
+    "external_mapping_rows": [
+      {
+        "source": "tcgplayer",
+        "external_id": "695311",
+        "card_print_id": "e8cae0fa-408a-475d-ac20-860250c3e838",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "mep",
+          "live_set_code": "mep",
+          "card_name": "Mega Zygarde ex",
+          "card_number": "71",
+          "source_url": "https://www.tcgplayer.com/product/695311/pokemon-me-mega-evolution-promo-mega-zygarde-ex-071",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/695311/pokemon-me-mega-evolution-promo-mega-zygarde-ex-071",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "694680",
+        "card_print_id": "22049e2c-19b2-449f-ac36-3a6d801f276f",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "mep",
+          "live_set_code": "mep",
+          "card_name": "Delphox",
+          "card_number": "74",
+          "source_url": "https://www.tcgplayer.com/product/694680/pokemon-me-mega-evolution-promo-delphox-074-staff",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/694680/pokemon-me-mega-evolution-promo-delphox-074-staff",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "694682",
+        "card_print_id": "a34a0d78-3091-4392-9a44-376125594ad1",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "mep",
+          "live_set_code": "mep",
+          "card_name": "Ampharos",
+          "card_number": "75",
+          "source_url": "https://www.tcgplayer.com/product/694682/pokemon-me-mega-evolution-promo-ampharos-075-staff",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/694682/pokemon-me-mega-evolution-promo-ampharos-075-staff",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "694687",
+        "card_print_id": "defafd1e-6f85-4f09-824b-c3caf29c94aa",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "mep",
+          "live_set_code": "mep",
+          "card_name": "Crobat",
+          "card_number": "76",
+          "source_url": "https://www.tcgplayer.com/product/694687/pokemon-me-mega-evolution-promo-crobat-076-staff",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/694687/pokemon-me-mega-evolution-promo-crobat-076-staff",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "694689",
+        "card_print_id": "1669919e-5ac8-4ece-be9c-f8e8aa4adacc",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "mep",
+          "live_set_code": "mep",
+          "card_name": "Goodra",
+          "card_number": "77",
+          "source_url": "https://www.tcgplayer.com/product/694689/pokemon-me-mega-evolution-promo-goodra-077-staff",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/694689/pokemon-me-mega-evolution-promo-goodra-077-staff",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "694695",
+        "card_print_id": "af929a84-3070-4ea4-a06f-0ea765eb37d4",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "mep",
+          "live_set_code": "mep",
+          "card_name": "Fennekin",
+          "card_number": "80",
+          "source_url": "https://www.tcgplayer.com/product/694695/pokemon-me-mega-evolution-promo-fennekin-080-pokemon-center-exclusive",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/694695/pokemon-me-mega-evolution-promo-fennekin-080-pokemon-center-exclusive",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bwp-BW004",
+        "card_print_id": "7c7206cd-30ce-4729-94c0-6a8d9396530b",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bwp",
+          "live_set_code": "bwp",
+          "card_name": "Reshiram",
+          "card_number": "BW004",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bwp-BW004",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bwp-BW004",
+            "https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bwp-BW005",
+        "card_print_id": "a6eb05aa-ada9-4f59-b0eb-0a73df81c201",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bwp",
+          "live_set_code": "bwp",
+          "card_name": "Zekrom",
+          "card_number": "BW005",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bwp-BW005",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bwp-BW005",
+            "https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC1",
+        "card_print_id": "7acb6ae7-9749-49c6-bdc4-128e0fda1ebe",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Snivy",
+          "card_number": "RC1",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC1",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC1",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC3",
+        "card_print_id": "74c5fba4-3cae-43d2-9770-24dd1a4991f2",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Serperior",
+          "card_number": "RC3",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC3",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC3",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC4",
+        "card_print_id": "ba6a6c23-fd10-4715-b698-3a266c95b7ae",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Growlithe",
+          "card_number": "RC4",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC4",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC4",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC5",
+        "card_print_id": "efa15a49-a1f9-46b0-bd69-85111388328e",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Torchic",
+          "card_number": "RC5",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC5",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC5",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC6",
+        "card_print_id": "93bc63a0-3285-4360-8eb8-965d81bd26e8",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Piplup",
+          "card_number": "RC6",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC6",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC6",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC7",
+        "card_print_id": "fca222fa-9629-4b95-8e3e-c156871f1131",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Pikachu",
+          "card_number": "RC7",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC7",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC7",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC9",
+        "card_print_id": "def3b50f-4d4d-45f4-a4c0-29f91b8dbb0f",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Kirlia",
+          "card_number": "RC9",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC9",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC9",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC10",
+        "card_print_id": "9ff063db-4121-456f-839a-f79822b7c7e0",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Gardevoir",
+          "card_number": "RC10",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC10",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC10",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC12",
+        "card_print_id": "ae5f8da5-8739-423f-a909-a4b35ef1f0f7",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Stunfisk",
+          "card_number": "RC12",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC12",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC12",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC13",
+        "card_print_id": "32e149cf-89c2-4786-9b59-fd20fecfd746",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Purrloin",
+          "card_number": "RC13",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC13",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC13",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC14",
+        "card_print_id": "2b3996ed-c314-4ccf-9c60-d3e7c13f6d62",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Eevee",
+          "card_number": "RC14",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC14",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC14",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC15",
+        "card_print_id": "f8d2770e-13a8-48ab-8fdd-f2134fcb43dc",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Teddiursa",
+          "card_number": "RC15",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC15",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC15",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC16",
+        "card_print_id": "64593d79-0242-4354-93d8-4fa5d27be758",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Ursaring",
+          "card_number": "RC16",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC16",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC16",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC18",
+        "card_print_id": "5cd07513-7d98-4952-accb-13efc906441a",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Minccino",
+          "card_number": "RC18",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC18",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC18",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC19",
+        "card_print_id": "25c0588d-9275-4b49-9b1d-1a590cc29f5c",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Cinccino",
+          "card_number": "RC19",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC19",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC19",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC20",
+        "card_print_id": "3b203a61-0bb1-486d-be32-32c724e71a7f",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Elesa",
+          "card_number": "RC20",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC20",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC20",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC21",
+        "card_print_id": "8f425977-bcfe-4a9f-bb2b-7d972a613ccb",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Shaymin-EX",
+          "card_number": "RC21",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC21",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC21",
+            "https://reverseholo.app/sets/bw11",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC22",
+        "card_print_id": "2a03720e-a769-4898-b16b-aee0e6501ccd",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Reshiram",
+          "card_number": "RC22",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC22",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC22",
+            "https://reverseholo.app/sets/bw11",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC23",
+        "card_print_id": "e9a99417-070e-4e70-9dc2-ddbbb907e03e",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Emolga",
+          "card_number": "RC23",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC23",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC23",
+            "https://reverseholo.app/sets/bw11",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "bw11-RC24",
+        "card_print_id": "7b64eeaf-63e5-491e-b70e-893ba616e6eb",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "bw11",
+          "live_set_code": "bw11",
+          "card_name": "Mew-EX",
+          "card_number": "RC24",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-RC24",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw11-RC24",
+            "https://reverseholo.app/sets/bw11",
+            "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "svp-85",
+        "card_print_id": "797add1a-99fc-41f6-a061-c36add0b20a9",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "svp",
+          "live_set_code": "svp",
+          "card_name": "Pikachu with Grey Felt Hat",
+          "card_number": "85",
+          "source_url": "https://api.pokemontcg.io/v2/cards/svp-85",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/svp-85",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "664825",
+        "card_print_id": "5d990d10-c5bf-4027-a429-163c259e123e",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "svp",
+          "live_set_code": "svp",
+          "card_name": "Black Belt's Training",
+          "card_number": "219",
+          "source_url": "https://www.tcgplayer.com/product/664825/pokemon-sv-scarlet-and-violet-promo-cards-black-belts-training-219",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/664825/pokemon-sv-scarlet-and-violet-promo-cards-black-belts-training-219",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "664824",
+        "card_print_id": "2be3d16d-39fe-4d46-b5ec-e737a777624c",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "svp",
+          "live_set_code": "svp",
+          "card_name": "Black Belt's Training",
+          "card_number": "220",
+          "source_url": "https://www.tcgplayer.com/product/664824/pokemon-sv-scarlet-and-violet-promo-cards-black-belts-training-220",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/664824/pokemon-sv-scarlet-and-violet-promo-cards-black-belts-training-220",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "664829",
+        "card_print_id": "8d542ecd-ada6-4270-8cc8-883458ff3b84",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "svp",
+          "live_set_code": "svp",
+          "card_name": "Professor's Research",
+          "card_number": "221",
+          "source_url": "https://www.tcgplayer.com/product/664829/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-221",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/664829/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-221",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "664827",
+        "card_print_id": "9578935b-26af-4bb8-b928-fd653e205dc6",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "svp",
+          "live_set_code": "svp",
+          "card_name": "Professor's Research",
+          "card_number": "222",
+          "source_url": "https://www.tcgplayer.com/product/664827/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-222",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/664827/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-222",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "664828",
+        "card_print_id": "584be210-439b-4ff0-9cb2-964d66e1f231",
+        "meta": {
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "set_key": "svp",
+          "live_set_code": "svp",
+          "card_name": "Professor's Research",
+          "card_number": "223",
+          "source_url": "https://www.tcgplayer.com/product/664828/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-223",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/664828/pokemon-sv-scarlet-and-violet-promo-cards-professors-research-223",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ]
+        }
+      }
+    ],
+    "blocked_rows_detail": []
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-11T03:43:05.447Z",
+    "rows": [
+      {
+        "row_type": "target_set",
+        "row_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "card_number": null,
+        "card_name": "Legendary Treasures",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_set",
+        "row_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+        "set_code": "bwp",
+        "card_number": null,
+        "card_name": "BW Black Star Promos",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_set",
+        "row_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "set_code": "mep",
+        "card_number": null,
+        "card_name": "MEP Black Star Promos",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_set",
+        "row_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_code": "svp",
+        "card_number": null,
+        "card_name": "Scarlet & Violet Black Star Promos",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      }
+    ],
+    "hash_sha256": "2116311d42d31a693a757f4f24ae32f8eb55138eac8de6de77542fb785cb6e3a",
+    "counts": {
+      "target_set_rows": 4,
+      "existing_parent_exact_rows": 0,
+      "existing_child_exact_rows": 0,
+      "external_mapping_collision_rows": 0,
+      "total_rows": 4
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-11T03:43:08.194Z",
+    "rows": [
+      {
+        "row_type": "target_set",
+        "row_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "card_number": null,
+        "card_name": "Legendary Treasures",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_set",
+        "row_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+        "set_code": "bwp",
+        "card_number": null,
+        "card_name": "BW Black Star Promos",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_set",
+        "row_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "set_code": "mep",
+        "card_number": null,
+        "card_name": "MEP Black Star Promos",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_set",
+        "row_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_code": "svp",
+        "card_number": null,
+        "card_name": "Scarlet & Violet Black Star Promos",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      }
+    ],
+    "hash_sha256": "2116311d42d31a693a757f4f24ae32f8eb55138eac8de6de77542fb785cb6e3a",
+    "counts": {
+      "target_set_rows": 4,
+      "existing_parent_exact_rows": 0,
+      "existing_child_exact_rows": 0,
+      "external_mapping_collision_rows": 0,
+      "total_rows": 4
+    }
+  },
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "rollback_proof_rows": [
+    {
+      "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+      "package_fingerprint": "6f173353f1e455e1eef8d67f3d577183b939a4dcea4a5c719bcb61623933a341",
+      "planned_parent_rows": 34,
+      "planned_child_rows": 34,
+      "planned_mapping_rows": 34
+    }
+  ],
+  "stop_findings": [],
+  "recommended_real_apply_approval_text": "Approve real PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS apply only. Fingerprint: 6f173353f1e455e1eef8d67f3d577183b939a4dcea4a5c719bcb61623933a341. Scope: 34 parent card_print inserts, 34 child card_printing inserts, 34 external mappings across 4 sets; mapping sources pokemonapi=23, tcgplayer=11; finishes holo=28, normal=6. Dry-run proof: 2116311d42d31a693a757f4f24ae32f8eb55138eac8de6de77542fb785cb6e3a == 2116311d42d31a693a757f4f24ae32f8eb55138eac8de6de77542fb785cb6e3a. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}

@@ -1,0 +1,316 @@
+{
+  "generated_at": "2026-06-10T15:49:12.594Z",
+  "version": "english_master_index_pkg08m_suffix_parent_split_guarded_dry_run_v1",
+  "package_id": "PKG-08M-SUFFIX-PARENT-SPLIT",
+  "package_fingerprint_sha256": "1bf0d4aa087d3185935212bd1a244aecd3a0b3fce6bdc7bc851e9a0d82af3405",
+  "audit_only": false,
+  "rollback_only": true,
+  "dry_run_status": "pkg08m_suffix_parent_split_completed_rolled_back_no_durable_change",
+  "durable_db_writes_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_authorized": false,
+  "scope": {
+    "source_rows": 3,
+    "target_parent_inserts": 3,
+    "target_child_inserts": 3,
+    "target_mapping_transfers": 3,
+    "by_set": {
+      "g1": 1,
+      "sm4": 1,
+      "xy7": 1
+    },
+    "by_finish": {
+      "normal": 3
+    },
+    "target_rows": [
+      {
+        "suffix_parent_id": "95d0bdc4-c02f-4320-afe6-0a3d71dd9a8e",
+        "suffix_child_id": "9e7f56af-42ed-4208-98d9-4834bbe2fcb8",
+        "base_parent_id": "435e4087-3f0b-4bb4-b788-c53a9212f15f",
+        "set_id": "e5a95b51-a6b4-4c2e-8fda-88afecf2cff7",
+        "set_key": "xy7",
+        "set_code": "xy7",
+        "card_name": "Hex Maniac",
+        "base_number": "75",
+        "suffix_number": "75a",
+        "printed_identity_modifier": "a",
+        "finish_key": "normal",
+        "tcgdex_external_id": "xy7-75a",
+        "external_mapping_id": "42282",
+        "external_ids": {
+          "tcgdex": "xy7-75a"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08M-SUFFIX-PARENT-SPLIT",
+          "source_set_key": "xy7",
+          "split_from_card_print_id": "435e4087-3f0b-4bb4-b788-c53a9212f15f",
+          "split_reason": "suffix_number_collision"
+        },
+        "provenance_ref": "xy7:75a:normal",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/xy7-75a",
+          "https://www.pricecharting.com/game/pokemon-ancient-origins/hex-maniac-75a"
+        ],
+        "sources": [
+          "pricecharting_csv_base_product",
+          "pricecharting_csv_product",
+          "tcgdex"
+        ]
+      },
+      {
+        "suffix_parent_id": "40a98ebc-1174-4fde-8710-21cc5cf80f68",
+        "suffix_child_id": "ded95a72-431f-4ac5-823a-033fdfa22899",
+        "base_parent_id": "28dd8192-92d1-446e-8979-7d6b47083022",
+        "set_id": "12c27a1b-fd89-46d8-8ea9-a93014c3b439",
+        "set_key": "g1",
+        "set_code": "g1",
+        "card_name": "Team Flare Grunt",
+        "base_number": "73",
+        "suffix_number": "73a",
+        "printed_identity_modifier": "a",
+        "finish_key": "normal",
+        "tcgdex_external_id": "g1-73a",
+        "external_mapping_id": "34247",
+        "external_ids": {
+          "tcgdex": "g1-73a"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08M-SUFFIX-PARENT-SPLIT",
+          "source_set_key": "g1",
+          "split_from_card_print_id": "28dd8192-92d1-446e-8979-7d6b47083022",
+          "split_reason": "suffix_number_collision"
+        },
+        "provenance_ref": "g1:73a:normal",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/g1-73a",
+          "https://www.pricecharting.com/game/pokemon-generations/team-flare-grunt-73a"
+        ],
+        "sources": [
+          "pricecharting_csv_base_product",
+          "pricecharting_csv_product",
+          "tcgdex"
+        ]
+      },
+      {
+        "suffix_parent_id": "f1b7f455-6e5a-4870-9f3c-2ce93a9958d5",
+        "suffix_child_id": "32d6ab1d-84c4-42d2-a2d6-a77baa4527f5",
+        "base_parent_id": "3ccd86b2-311f-45a7-bcda-25d1b142c7d9",
+        "set_id": "e48229f9-c96e-4bef-90fe-4a9f99a28e9d",
+        "set_key": "sm4",
+        "set_code": "sm4",
+        "card_name": "Guzzlord-GX",
+        "base_number": "63",
+        "suffix_number": "63a",
+        "printed_identity_modifier": "a",
+        "finish_key": "normal",
+        "tcgdex_external_id": "sm4-63a",
+        "external_mapping_id": "36777",
+        "external_ids": {
+          "tcgdex": "sm4-63a"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08M-SUFFIX-PARENT-SPLIT",
+          "source_set_key": "sm4",
+          "split_from_card_print_id": "3ccd86b2-311f-45a7-bcda-25d1b142c7d9",
+          "split_reason": "suffix_number_collision"
+        },
+        "provenance_ref": "sm4:63a:normal",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/sm4-63a",
+          "https://www.pricecharting.com/game/pokemon-crimson-invasion/guzzlord-gx-63a"
+        ],
+        "sources": [
+          "pricecharting_csv_base_product",
+          "pricecharting_csv_product",
+          "tcgdex"
+        ]
+      }
+    ]
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-10T15:49:11.502Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "28dd8192-92d1-446e-8979-7d6b47083022",
+        "set_code": "g1",
+        "number": "73",
+        "number_plain": "73",
+        "printed_identity_modifier": null,
+        "name": "Team Flare Grunt",
+        "finish_key": null,
+        "external_id": null,
+        "mapping_card_print_id": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "3ccd86b2-311f-45a7-bcda-25d1b142c7d9",
+        "set_code": "sm4",
+        "number": "63",
+        "number_plain": "63",
+        "printed_identity_modifier": null,
+        "name": "Guzzlord-GX",
+        "finish_key": null,
+        "external_id": null,
+        "mapping_card_print_id": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "435e4087-3f0b-4bb4-b788-c53a9212f15f",
+        "set_code": "xy7",
+        "number": "75",
+        "number_plain": "75",
+        "printed_identity_modifier": null,
+        "name": "Hex Maniac",
+        "finish_key": null,
+        "external_id": null,
+        "mapping_card_print_id": null
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "34247",
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "printed_identity_modifier": null,
+        "name": null,
+        "finish_key": null,
+        "external_id": "g1-73a",
+        "mapping_card_print_id": "28dd8192-92d1-446e-8979-7d6b47083022"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "36777",
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "printed_identity_modifier": null,
+        "name": null,
+        "finish_key": null,
+        "external_id": "sm4-63a",
+        "mapping_card_print_id": "3ccd86b2-311f-45a7-bcda-25d1b142c7d9"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "42282",
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "printed_identity_modifier": null,
+        "name": null,
+        "finish_key": null,
+        "external_id": "xy7-75a",
+        "mapping_card_print_id": "435e4087-3f0b-4bb4-b788-c53a9212f15f"
+      }
+    ],
+    "hash_sha256": "22d54b6da93a7bc3f8530e7f9983f14b14fcac12db3ee848be7cc845953b2e8a",
+    "counts": {
+      "base_parent_rows": 3,
+      "suffix_parent_rows": 0,
+      "suffix_child_rows": 0,
+      "tcgdex_mapping_rows": 3,
+      "total_rows": 6
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-10T15:49:12.513Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "28dd8192-92d1-446e-8979-7d6b47083022",
+        "set_code": "g1",
+        "number": "73",
+        "number_plain": "73",
+        "printed_identity_modifier": null,
+        "name": "Team Flare Grunt",
+        "finish_key": null,
+        "external_id": null,
+        "mapping_card_print_id": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "3ccd86b2-311f-45a7-bcda-25d1b142c7d9",
+        "set_code": "sm4",
+        "number": "63",
+        "number_plain": "63",
+        "printed_identity_modifier": null,
+        "name": "Guzzlord-GX",
+        "finish_key": null,
+        "external_id": null,
+        "mapping_card_print_id": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "435e4087-3f0b-4bb4-b788-c53a9212f15f",
+        "set_code": "xy7",
+        "number": "75",
+        "number_plain": "75",
+        "printed_identity_modifier": null,
+        "name": "Hex Maniac",
+        "finish_key": null,
+        "external_id": null,
+        "mapping_card_print_id": null
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "34247",
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "printed_identity_modifier": null,
+        "name": null,
+        "finish_key": null,
+        "external_id": "g1-73a",
+        "mapping_card_print_id": "28dd8192-92d1-446e-8979-7d6b47083022"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "36777",
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "printed_identity_modifier": null,
+        "name": null,
+        "finish_key": null,
+        "external_id": "sm4-63a",
+        "mapping_card_print_id": "3ccd86b2-311f-45a7-bcda-25d1b142c7d9"
+      },
+      {
+        "row_type": "tcgdex_mapping",
+        "row_id": "42282",
+        "set_code": null,
+        "number": null,
+        "number_plain": null,
+        "printed_identity_modifier": null,
+        "name": null,
+        "finish_key": null,
+        "external_id": "xy7-75a",
+        "mapping_card_print_id": "435e4087-3f0b-4bb4-b788-c53a9212f15f"
+      }
+    ],
+    "hash_sha256": "22d54b6da93a7bc3f8530e7f9983f14b14fcac12db3ee848be7cc845953b2e8a",
+    "counts": {
+      "base_parent_rows": 3,
+      "suffix_parent_rows": 0,
+      "suffix_child_rows": 0,
+      "tcgdex_mapping_rows": 3,
+      "total_rows": 6
+    }
+  },
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "rollback_proof_rows": [
+    {
+      "package_id": "PKG-08M-SUFFIX-PARENT-SPLIT",
+      "package_fingerprint": "1bf0d4aa087d3185935212bd1a244aecd3a0b3fce6bdc7bc851e9a0d82af3405",
+      "target_rows": 3
+    }
+  ],
+  "stop_findings": [],
+  "recommended_real_apply_approval_text": "Approve real PKG-08M-SUFFIX-PARENT-SPLIT apply only. Fingerprint: 1bf0d4aa087d3185935212bd1a244aecd3a0b3fce6bdc7bc851e9a0d82af3405. Scope: 3 suffix parent inserts, 3 suffix child card_printing inserts, 3 TCGdex mapping transfers across 3 sets; finish normal=3; existing base parents preserved; unsupported cleanup deferred. Dry-run proof: 22d54b6da93a7bc3f8530e7f9983f14b14fcac12db3ee848be7cc845953b2e8a == 22d54b6da93a7bc3f8530e7f9983f14b14fcac12db3ee848be7cc845953b2e8a. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}

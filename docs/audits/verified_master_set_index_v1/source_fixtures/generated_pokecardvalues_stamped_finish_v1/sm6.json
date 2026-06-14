@@ -1,0 +1,32 @@
+{
+  "source_key": "pokecardvalues_stamped_finish_sm6",
+  "source_kind": "collector_reference",
+  "source_url": "https://pokecardvalues.co.uk/cards/buzzwole-77-131-reverse-holo-league-promo-forbidden-light/sm6-77-3-41/",
+  "source_status": "available_generated_fixture",
+  "generated_at": "2026-06-13T00:02:20.623Z",
+  "retrieved_at": "2026-06-13T00:02:20.623Z",
+  "raw_snapshot_ref": "generated_fixture:pokecardvalues_stamped_finish:sm6:2026-06-13T00:02:20.623Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "generation_note": "Generated from Poke Card Values structured set/card titles for remaining stamped finish blockers only.",
+  "records": [
+    {
+      "source_key": "pokecardvalues_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokecardvalues.co.uk/cards/buzzwole-77-131-reverse-holo-league-promo-forbidden-light/sm6-77-3-41/",
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "77",
+      "card_name": "Buzzwole",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Poke Card Values exact stamped finish: Buzzwole - 77/131 - Reverse Holo - League Promo - Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-13T00:02:20.623Z",
+      "raw_snapshot_ref": "pokecardvalues:sm6:77:league_stamp:reverse",
+      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
+    }
+  ]
+}

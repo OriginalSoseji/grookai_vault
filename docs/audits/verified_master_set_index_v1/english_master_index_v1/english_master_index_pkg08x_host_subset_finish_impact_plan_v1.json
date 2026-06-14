@@ -1,0 +1,1544 @@
+{
+  "generated_at": "2026-06-11T02:04:15.883Z",
+  "version": "english_master_index_pkg08x_host_subset_finish_impact_plan_v1",
+  "package_id": "PKG-08X-HOST-SUBSET-FINISH-IMPACT-PLAN",
+  "source_pkg08w_fingerprint_sha256": "97881ea0fcc6ab118e3915f61bda15a19bf9c5c157bb396def3e3c6f31ad6ff7",
+  "package_fingerprint_sha256": "c55922ed14260660392f379f34b3d10122a72175ac320300179f104e151fb1fa",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "live_read": {
+    "available": true,
+    "reason": null,
+    "parent_ids_read": 25,
+    "child_rows_read": 75,
+    "dependency_tables_checked": [
+      {
+        "table": "public.external_printing_mappings",
+        "table_type": "BASE TABLE",
+        "durable": true
+      },
+      {
+        "table": "public.v_print_identity_search_documents_v1",
+        "table_type": "VIEW",
+        "durable": false
+      },
+      {
+        "table": "public.vault_item_instances",
+        "table_type": "BASE TABLE",
+        "durable": true
+      }
+    ],
+    "dependency_errors": []
+  },
+  "summary": {
+    "source_rows": 25,
+    "classified_rows": 25,
+    "by_impact_status": {
+      "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only": 25
+    },
+    "target_child_rows_to_preserve": 25,
+    "extra_child_rows_impacted": 50,
+    "extra_child_rows_by_finish": {
+      "holo": 25,
+      "reverse": 25
+    },
+    "extra_child_rows_with_dependencies": 50,
+    "extra_child_rows_with_durable_dependencies": 0
+  },
+  "recommended_next_packages": [
+    {
+      "package_id": "PKG-08Y",
+      "scope": "host_subset_parent_relocation_plus_extra_child_cleanup_dry_run",
+      "candidate_rows": 25,
+      "status": "eligible_for_guarded_dry_run_preparation_requires_explicit_cleanup_authority",
+      "allowed_write_shape": "future guarded dry-run only: parent set relocation plus exact extra child cleanup; no global apply"
+    },
+    {
+      "package_id": "PKG-08Z",
+      "scope": "extra_child_dependency_strategy",
+      "candidate_rows": 0,
+      "status": "blocked_no_candidates",
+      "allowed_write_shape": "none until dependency strategy exists"
+    }
+  ],
+  "rows": [
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV023",
+      "card_name": "Galarian Darumaka",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55675",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV023",
+        "card_print_id": "e3c7f986-9967-4a6c-be4b-9145c6d72cf3",
+        "set_code": "swsh45sv",
+        "number": "SV023",
+        "number_plain": "023",
+        "name": "Galarian Darumaka"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "5dd15de6-2851-4427-aa2e-4d18bda04432",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "da39b18e-a1ce-4e0e-a307-eb0eaff37377",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "58a96fd4-1c28-4e87-8caf-a9dd9db31e13",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV023",
+        "https://www.cardtrader.com/en/cards/153050-galarian-darumaka-shiny-rare-sv23-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV043",
+      "card_name": "Pincurchin",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55695",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV043",
+        "card_print_id": "ce00e4d0-7e5f-4f98-857d-9b6609e713ea",
+        "set_code": "swsh45sv",
+        "number": "SV043",
+        "number_plain": "043",
+        "name": "Pincurchin"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "1ee29515-5366-402e-900a-12a13c70b001",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "dc8b17a0-8afd-4f6c-82db-83d106f18774",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "6ac34679-353b-4279-9e51-6ef7afa25df8",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV043",
+        "https://www.cardtrader.com/en/cards/153070-pincurchin-shiny-rare-sv43-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV100",
+      "card_name": "Greedent",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55752",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV100",
+        "card_print_id": "b413c051-3248-4cd5-929b-6fffd929b5ce",
+        "set_code": "swsh45sv",
+        "number": "SV100",
+        "number_plain": "100",
+        "name": "Greedent"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "c41f63f1-b542-404f-a2e5-89e216011be9",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "c54013b2-8eeb-4371-9386-27b64017b0f4",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "d5a2427e-dde0-4d6a-8723-3640c70476a4",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV100",
+        "https://www.cardtrader.com/en/cards/153127-greedent-shiny-rare-sv100-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV101",
+      "card_name": "Rookidee",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55753",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV101",
+        "card_print_id": "13610758-59c4-441c-aff9-72edc417f0f1",
+        "set_code": "swsh45sv",
+        "number": "SV101",
+        "number_plain": "101",
+        "name": "Rookidee"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "0ee2c877-9de6-4a4e-82bc-986adeefb510",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "8b98b19b-c6ea-4824-ad54-819c8733ff67",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "9f580fae-7cfa-45d5-afa7-72b2dcd29c7b",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV101",
+        "https://www.cardtrader.com/en/cards/153128-rookidee-shiny-rare-sv101-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV102",
+      "card_name": "Corvisquire",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55754",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV102",
+        "card_print_id": "e2d9443f-0453-4967-b2e8-00f1f9a0394f",
+        "set_code": "swsh45sv",
+        "number": "SV102",
+        "number_plain": "102",
+        "name": "Corvisquire"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "819b9085-20fd-4f29-b1c5-7122c179ffeb",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "ca2b6e47-6084-42e6-ade6-d646a068c2a0",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "76e220ea-dfa0-461c-b766-418541e5c50a",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV102",
+        "https://www.cardtrader.com/en/cards/153129-corvisquire-shiny-rare-sv102-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV103",
+      "card_name": "Wooloo",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55755",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV103",
+        "card_print_id": "2c618136-437f-4eb1-b8a3-10ee021aa29e",
+        "set_code": "swsh45sv",
+        "number": "SV103",
+        "number_plain": "103",
+        "name": "Wooloo"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "7f72b3ca-5bcc-4652-99f8-7f88a312bdea",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "2d0cdba5-0e58-4d5f-8655-9b085ff9823c",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "51a02d83-ac5f-431e-ace4-78d11d9a6b92",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV103",
+        "https://www.cardtrader.com/en/cards/153130-wooloo-shiny-rare-sv103-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV104",
+      "card_name": "Dubwool",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55756",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV104",
+        "card_print_id": "51000325-03f9-474f-a631-0d9b0cce29ba",
+        "set_code": "swsh45sv",
+        "number": "SV104",
+        "number_plain": "104",
+        "name": "Dubwool"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "141eda67-38f9-4d62-8c45-112315d9afa1",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "acf346a7-aecf-4c9d-a5ba-a248ccc758a8",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "9c38bb79-4b99-4e40-9ac1-66a5f9924c74",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV104",
+        "https://www.cardtrader.com/en/cards/153131-dubwool-shiny-rare-sv104-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV105",
+      "card_name": "Rillaboom V",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55757",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV105",
+        "card_print_id": "23d051d8-3da7-4b0f-808c-e664b8f65a99",
+        "set_code": "swsh45sv",
+        "number": "SV105",
+        "number_plain": "105",
+        "name": "Rillaboom V"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "033c6505-986f-4e43-87ad-625a707dabea",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "04ab8a64-ee80-45d7-8eee-3ff7aa15d689",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "befba5a3-6ebf-44bc-807d-26ca3e3f3c92",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV105",
+        "https://www.cardtrader.com/en/cards/153132-rillaboom-v-shiny-rare-sv105-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV106",
+      "card_name": "Rillaboom VMAX",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55758",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV106",
+        "card_print_id": "24d17147-c0d3-49e6-8ca7-7837a79d3964",
+        "set_code": "swsh45sv",
+        "number": "SV106",
+        "number_plain": "106",
+        "name": "Rillaboom VMAX"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "b41bc20a-84ef-49e0-a8e5-79b10109138d",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "c717f49b-f084-45c9-a742-17cba94870da",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "e081f7d6-e5ba-4971-8794-cf6b7b6bc7b8",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV106",
+        "https://www.cardtrader.com/en/cards/153133-rillaboom-vmax-shiny-rare-sv106-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV107",
+      "card_name": "Charizard VMAX",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55759",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV107",
+        "card_print_id": "ff941ffa-c29f-44e5-a789-2072ecca3fb2",
+        "set_code": "swsh45sv",
+        "number": "SV107",
+        "number_plain": "107",
+        "name": "Charizard VMAX"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "0c122cdb-695e-4968-b051-abece8ca3e62",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "594d4236-5951-4cde-996e-7e2e8661a772",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "4423c49c-0675-424e-95a7-2ba92c4d61bc",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV107",
+        "https://www.cardtrader.com/en/cards/153134-charizard-vmax-shiny-rare-sv107-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV108",
+      "card_name": "Centiskorch V",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55760",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV108",
+        "card_print_id": "96fbbc20-e22d-43c1-a352-c29023a642d8",
+        "set_code": "swsh45sv",
+        "number": "SV108",
+        "number_plain": "108",
+        "name": "Centiskorch V"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "b9239628-79ff-4eaf-b1ea-44cdd8c5c619",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "63fbdab2-24ee-4ff3-946b-73d01b32b693",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "99bf808f-0eed-4077-8609-2bcebf3c64ad",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV108",
+        "https://www.cardtrader.com/en/cards/153135-centiskorch-v-shiny-rare-sv108-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV109",
+      "card_name": "Centiskorch VMAX",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55761",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV109",
+        "card_print_id": "2dff363f-c09c-44b3-84e6-22f333dc8e6b",
+        "set_code": "swsh45sv",
+        "number": "SV109",
+        "number_plain": "109",
+        "name": "Centiskorch VMAX"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "dbff3a29-5f92-4c0f-871f-1a4844897d91",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "2954a179-b9ec-4bd7-ad4b-bfa3ffdaef58",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "88c9dd33-0021-425c-bdfb-eddf99a24854",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV109",
+        "https://www.cardtrader.com/en/cards/153136-centiskorch-vmax-shiny-rare-sv109-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV110",
+      "card_name": "Lapras V",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55762",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV110",
+        "card_print_id": "1aab4ec4-b92e-4f23-baec-a01989ef041d",
+        "set_code": "swsh45sv",
+        "number": "SV110",
+        "number_plain": "110",
+        "name": "Lapras V"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "54eb45cb-1d16-464d-a202-f48e83ba578f",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "ddf6dfd5-f955-40f7-9d80-2848778c3214",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "b7f09324-d890-4182-a088-17f10fa5333c",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV110",
+        "https://www.cardtrader.com/en/cards/153137-lapras-v-shiny-rare-sv110-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV111",
+      "card_name": "Lapras VMAX",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55763",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV111",
+        "card_print_id": "d7104595-1414-4865-aa5b-c8bb684b2c5d",
+        "set_code": "swsh45sv",
+        "number": "SV111",
+        "number_plain": "111",
+        "name": "Lapras VMAX"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "8b0eb1c6-ee33-4f28-8d30-df84186d9189",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "8aeda0c6-f5ac-4bb0-a149-dddcb43b0783",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "afb5cb77-58de-4097-ac27-f81b6cdc53a1",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV111",
+        "https://www.cardtrader.com/en/cards/153138-lapras-vmax-shiny-rare-sv111-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV112",
+      "card_name": "Toxtricity V",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55764",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV112",
+        "card_print_id": "0ffc7113-1af6-4f8a-93c6-c035cfaadd24",
+        "set_code": "swsh45sv",
+        "number": "SV112",
+        "number_plain": "112",
+        "name": "Toxtricity V"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "80c15188-241d-4b38-bdda-f5245b90df78",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "d04394bb-b4e8-4e88-afa4-09394a912ab3",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "3246d586-6c66-41e7-8c12-bcc93fa043a0",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV112",
+        "https://www.cardtrader.com/en/cards/153139-toxtricity-v-shiny-rare-sv112-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV113",
+      "card_name": "Toxtricity VMAX",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55765",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV113",
+        "card_print_id": "4f511770-c70d-4f72-90bd-fa3690359680",
+        "set_code": "swsh45sv",
+        "number": "SV113",
+        "number_plain": "113",
+        "name": "Toxtricity VMAX"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "bb4aa2b9-01b7-46d6-9ef7-a299fd900829",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "9a07bd50-8eb8-44cf-9287-fc24f5d328ed",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "b950e266-a756-4b8f-8638-13ca5f5d90a5",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV113",
+        "https://www.cardtrader.com/en/cards/153140-toxtricity-vmax-shiny-rare-sv113-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV114",
+      "card_name": "Indeedee V",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55766",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV114",
+        "card_print_id": "6bdd14cd-7191-4a7d-9ede-20e5b1859908",
+        "set_code": "swsh45sv",
+        "number": "SV114",
+        "number_plain": "114",
+        "name": "Indeedee V"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "267f2104-5347-47bb-8ddf-3b07aee08565",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "cfeed3f3-831c-4d87-b0d6-e4873130fae4",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "ad050a9d-2217-437f-970b-09e7c8d84e82",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV114",
+        "https://www.cardtrader.com/en/cards/153141-indeedee-v-shiny-rare-sv114-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV115",
+      "card_name": "Falinks V",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55767",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV115",
+        "card_print_id": "3239cfb4-494d-45f3-9174-bbea80917e9b",
+        "set_code": "swsh45sv",
+        "number": "SV115",
+        "number_plain": "115",
+        "name": "Falinks V"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "e20d0597-8255-4ede-a621-8f9c4ecc1672",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "1cf5d1cb-a404-476e-9fd5-5b35c0d678e3",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "920cd98b-f727-42e2-931b-f357ae428ff9",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV115",
+        "https://www.cardtrader.com/en/cards/153142-falinks-v-shiny-rare-sv115-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV116",
+      "card_name": "Grimmsnarl V",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55768",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV116",
+        "card_print_id": "5033fccf-7bdb-4b5a-89fa-c1f42d727ad2",
+        "set_code": "swsh45sv",
+        "number": "SV116",
+        "number_plain": "116",
+        "name": "Grimmsnarl V"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "ca0904e8-a091-4006-8b8c-0f7d7ddd6349",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "733bb666-b4a3-4f52-8c87-cf018ec41245",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "87bd187d-26e1-402d-88f9-4c8616f556fb",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV116",
+        "https://www.cardtrader.com/en/cards/153143-grimmsnarl-v-shiny-rare-sv116-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV117",
+      "card_name": "Grimmsnarl VMAX",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55769",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV117",
+        "card_print_id": "3009e93b-1fd7-444a-b51f-e0b01f2e4f2a",
+        "set_code": "swsh45sv",
+        "number": "SV117",
+        "number_plain": "117",
+        "name": "Grimmsnarl VMAX"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "9f8caeaa-2e5f-4aa4-949a-21d75a86d878",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "bd4a6138-89f6-4103-a05d-2a5f835f210a",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "0bb47fad-ac83-48fe-b269-3840837e2056",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV117",
+        "https://www.cardtrader.com/en/cards/153144-grimmsnarl-vmax-shiny-rare-sv117-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV118",
+      "card_name": "Ditto V",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55770",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV118",
+        "card_print_id": "16c1d62c-00e7-4af0-b68a-af4bc0c36fc0",
+        "set_code": "swsh45sv",
+        "number": "SV118",
+        "number_plain": "118",
+        "name": "Ditto V"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "2539e00e-8897-493e-be34-22c5e267f837",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "ccae0280-413f-4fe3-8cbe-e52f7f6b1107",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "8efc518e-725a-4b03-a8df-c548cd5134ab",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV118",
+        "https://www.cardtrader.com/en/cards/153145-ditto-v-shiny-rare-sv118-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV119",
+      "card_name": "Ditto VMAX",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55771",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV119",
+        "card_print_id": "df544042-b0d6-4a92-87a8-9bb14706afa7",
+        "set_code": "swsh45sv",
+        "number": "SV119",
+        "number_plain": "119",
+        "name": "Ditto VMAX"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "b4282902-9530-4747-bdcd-05490053a4b5",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "647be71d-8aa6-4f67-91ad-9b948fbed70d",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "a3744362-4ff8-411e-8a0e-a3f28f18813a",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV119",
+        "https://www.cardtrader.com/en/cards/153146-ditto-vmax-shiny-rare-sv119-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV120",
+      "card_name": "Dubwool V",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55772",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV120",
+        "card_print_id": "8637f45a-0064-43c2-8e24-d6ab50403dd4",
+        "set_code": "swsh45sv",
+        "number": "SV120",
+        "number_plain": "120",
+        "name": "Dubwool V"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "f0a8edb8-25c0-4f57-878c-c7ae37e616ae",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "65957fba-552d-41ff-8dda-87e8d2aa178b",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "36f2b31f-130d-4e0a-a4ff-625350a1e627",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV120",
+        "https://www.cardtrader.com/en/cards/153147-dubwool-v-shiny-rare-sv120-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV121",
+      "card_name": "Eternatus V",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55773",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV121",
+        "card_print_id": "7ecca79e-c6fd-416f-9bc7-5b09ccafd50b",
+        "set_code": "swsh45sv",
+        "number": "SV121",
+        "number_plain": "121",
+        "name": "Eternatus V"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "6ad4accb-86a1-4804-9b50-1b249f3c6e0a",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "bf7337f2-c31f-4c88-8fe0-5b7a6c785d05",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "f1a5e2c2-e690-4a65-afee-66d9596c5c53",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV121",
+        "https://www.cardtrader.com/en/cards/153148-eternatus-v-gold-secret-rare-sv121-shining-fates"
+      ]
+    },
+    {
+      "impact_status": "relocation_plus_extra_finish_cleanup_dry_run_candidate_derived_view_refs_only",
+      "recommended_next_action": "A future package may dry-run parent relocation plus exact extra child cleanup; observed dependencies are derived views only.",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "SV122",
+      "card_name": "Eternatus VMAX",
+      "target_finish_key": "normal",
+      "mapped_parent": {
+        "external_mapping_id": "55774",
+        "source": "tcgdex",
+        "external_id": "swsh4.5-SV122",
+        "card_print_id": "95e30a1d-19a5-460c-a752-2e027bf6d270",
+        "set_code": "swsh45sv",
+        "number": "SV122",
+        "number_plain": "122",
+        "name": "Eternatus VMAX"
+      },
+      "target_child_printings_to_preserve": [
+        {
+          "card_printing_id": "ffdc5a83-6ef1-42d7-936f-1aa0631d679a",
+          "finish_key": "normal"
+        }
+      ],
+      "extra_child_printings_impacted": [
+        {
+          "card_printing_id": "b196a567-9b0e-49c2-a25e-209e85642783",
+          "finish_key": "holo",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        },
+        {
+          "card_printing_id": "2a48b225-7006-4ddf-81f4-9408fe8f5c41",
+          "finish_key": "reverse",
+          "dependency_counts": {
+            "public.v_print_identity_search_documents_v1": {
+              "ref_count": 1,
+              "table_type": "VIEW",
+              "durable": false
+            }
+          },
+          "dependency_total": 1,
+          "durable_dependency_total": 0
+        }
+      ],
+      "extra_child_dependency_total": 2,
+      "extra_child_durable_dependency_total": 0,
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/swsh4.5-SV122",
+        "https://www.cardtrader.com/en/cards/153149-eternatus-vmax-gold-secret-rare-sv122-shining-fates"
+      ]
+    }
+  ]
+}

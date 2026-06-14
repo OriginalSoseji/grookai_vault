@@ -1,0 +1,2274 @@
+{
+  "package_id": "PKG-31B-EXTERNAL-ID-RELOCATION-CHILD-DELETE",
+  "generated_at": "2026-06-13T19:26:30.733Z",
+  "fingerprint": "3c7f3c848dae292c9fdd9fa0236b7455266bfa0e92a41038066377e08a93d911",
+  "source_readiness_fingerprint": "f60710e906d43ff3c2f0816f65e407f8b58e11ba4708f3a436e286d53213a3a5",
+  "sql_hash": "3a65a8e5b08c61eb7ec23d815d7d2dd0be13aa028400a7ae20f3db076bfdb4a8",
+  "sql_path": "docs\\sql\\english_master_index_pkg31b_external_id_relocation_child_delete_guarded_dry_run_transaction_v1.sql",
+  "safety": {
+    "db_writes_committed": false,
+    "migrations_created": false,
+    "real_apply_authorized": false,
+    "sql_ends_with_rollback": true
+  },
+  "summary": {
+    "target_rows": 40,
+    "mapping_transfers_in_dry_run": 40,
+    "source_child_deletes_in_dry_run": 40,
+    "by_target_rule": {
+      "h_number_external_id": 20,
+      "trainer_gallery_external_id": 20
+    }
+  },
+  "execution": {
+    "dry_run_executed": true,
+    "committed": false,
+    "sql_hash": "3a65a8e5b08c61eb7ec23d815d7d2dd0be13aa028400a7ae20f3db076bfdb4a8",
+    "result_count": 5,
+    "notices": [
+      "PKG-31B-EXTERNAL-ID-RELOCATION-CHILD-DELETE dry-run passed: mappings transferred 40, source children deleted 40, fingerprint 3c7f3c848dae292c9fdd9fa0236b7455266bfa0e92a41038066377e08a93d911"
+    ]
+  },
+  "rows": [
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "1aced3ae-35fb-4cd3-9ddb-76ff673473dc",
+        "card_printing_id": "afaf483c-52b4-438a-ade1-b45b18f668be",
+        "set_code": "ecard2",
+        "number": "10",
+        "number_plain": "10",
+        "card_name": "Entei",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "d81f6006-dc7f-406c-ba07-18efcca44c61",
+        "card_printing_id": "afaf483c-52b4-438a-ade1-b45b18f668be",
+        "source": "tcgdex",
+        "external_id": "ecard2-H10",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard2",
+        "card_number": "H10",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard2",
+          "card_number": "H10",
+          "card_name": "Exeggutor",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "f032b09e-b31f-5fa6-91ca-8efdb47675d8",
+        "card_printing_id": "367ce13c-79e0-421d-a880-d9e2652d9aca",
+        "set_code": "ecard2",
+        "number": "H10",
+        "number_plain": "H10",
+        "card_name": "Exeggutor",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "f032b09e-b31f-5fa6-91ca-8efdb47675d8",
+          "card_printing_id": "367ce13c-79e0-421d-a880-d9e2652d9aca",
+          "set_code": "ecard2",
+          "number": "H10",
+          "number_plain": "H10",
+          "card_name": "Exeggutor",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "ce39a6a3-888e-4943-b3fa-84289398ff55",
+        "card_printing_id": "fbeeac56-4482-461e-8d98-f58b5060cb10",
+        "set_code": "ecard2",
+        "number": "14",
+        "number_plain": "14",
+        "card_name": "Houndoom",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "e2a73fc9-4bcb-43d4-9ab1-ccbcb15f022e",
+        "card_printing_id": "fbeeac56-4482-461e-8d98-f58b5060cb10",
+        "source": "tcgdex",
+        "external_id": "ecard2-H14",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard2",
+        "card_number": "H14",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard2",
+          "card_number": "H14",
+          "card_name": "Kingdra",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "d87af928-22a4-575b-8dd0-0264feba89fa",
+        "card_printing_id": "fccaccf1-3a72-49c9-a6a2-de7b9a725e15",
+        "set_code": "ecard2",
+        "number": "H14",
+        "number_plain": "H14",
+        "card_name": "Kingdra",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "d87af928-22a4-575b-8dd0-0264feba89fa",
+          "card_printing_id": "fccaccf1-3a72-49c9-a6a2-de7b9a725e15",
+          "set_code": "ecard2",
+          "number": "H14",
+          "number_plain": "H14",
+          "card_name": "Kingdra",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "5d5fa454-31b6-4e3b-9aae-eb84a9d56b07",
+        "card_printing_id": "74325a25-3b1b-42c2-acfd-e41e8e739108",
+        "set_code": "ecard2",
+        "number": "21",
+        "number_plain": "21",
+        "card_name": "Lanturn",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "f18cc607-9080-436c-9f49-1a9e31f1307b",
+        "card_printing_id": "74325a25-3b1b-42c2-acfd-e41e8e739108",
+        "source": "tcgdex",
+        "external_id": "ecard2-H21",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard2",
+        "card_number": "H21",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard2",
+          "card_number": "H21",
+          "card_name": "Scizor",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "b45b373b-f594-5702-8941-550e8322e710",
+        "card_printing_id": "9dcda8d8-b577-40e3-a9a2-455adfe639ce",
+        "set_code": "ecard2",
+        "number": "H21",
+        "number_plain": "H21",
+        "card_name": "Scizor",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "b45b373b-f594-5702-8941-550e8322e710",
+          "card_printing_id": "9dcda8d8-b577-40e3-a9a2-455adfe639ce",
+          "set_code": "ecard2",
+          "number": "H21",
+          "number_plain": "H21",
+          "card_name": "Scizor",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "5f41c3c3-4ea1-446e-8903-2a47e62f5c2b",
+        "card_printing_id": "66d00c8c-782c-45d7-a1e4-fd7f8195e728",
+        "set_code": "ecard2",
+        "number": "22",
+        "number_plain": "22",
+        "card_name": "Magneton",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "2257692c-85cd-496f-9ee4-3d26e17663c0",
+        "card_printing_id": "66d00c8c-782c-45d7-a1e4-fd7f8195e728",
+        "source": "tcgdex",
+        "external_id": "ecard2-H22",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard2",
+        "card_number": "H22",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard2",
+          "card_number": "H22",
+          "card_name": "Slowking",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "0c9026b4-6631-52ff-8737-edc30779a163",
+        "card_printing_id": "4091404e-6afb-44b7-9e3a-a78ad11a1260",
+        "set_code": "ecard2",
+        "number": "H22",
+        "number_plain": "H22",
+        "card_name": "Slowking",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "0c9026b4-6631-52ff-8737-edc30779a163",
+          "card_printing_id": "4091404e-6afb-44b7-9e3a-a78ad11a1260",
+          "set_code": "ecard2",
+          "number": "H22",
+          "number_plain": "H22",
+          "card_name": "Slowking",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "abae3e32-eba3-4e79-8e40-ad8bf1a41109",
+        "card_printing_id": "be2b20d2-e437-44e7-9da6-93a95b8e0819",
+        "set_code": "ecard2",
+        "number": "23",
+        "number_plain": "23",
+        "card_name": "Muk",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "8b61ffd2-418e-412d-a203-ba5acf56f400",
+        "card_printing_id": "be2b20d2-e437-44e7-9da6-93a95b8e0819",
+        "source": "tcgdex",
+        "external_id": "ecard2-H23",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard2",
+        "card_number": "H23",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard2",
+          "card_number": "H23",
+          "card_name": "Steelix",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "a448846b-746c-5304-a31e-c528851c1ce7",
+        "card_printing_id": "0ba53c4f-63b2-454d-9486-095781ada106",
+        "set_code": "ecard2",
+        "number": "H23",
+        "number_plain": "H23",
+        "card_name": "Steelix",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "a448846b-746c-5304-a31e-c528851c1ce7",
+          "card_printing_id": "0ba53c4f-63b2-454d-9486-095781ada106",
+          "set_code": "ecard2",
+          "number": "H23",
+          "number_plain": "H23",
+          "card_name": "Steelix",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "63542736-504a-4dc3-86d1-c7f2ddac88bc",
+        "card_printing_id": "deb15d88-dd82-43f0-9bb3-02b7085e964a",
+        "set_code": "ecard2",
+        "number": "24",
+        "number_plain": "24",
+        "card_name": "Nidoking",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "64d261f1-f1cb-4a39-9413-dd2894eb2d3f",
+        "card_printing_id": "deb15d88-dd82-43f0-9bb3-02b7085e964a",
+        "source": "tcgdex",
+        "external_id": "ecard2-H24",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard2",
+        "card_number": "H24",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard2",
+          "card_number": "H24",
+          "card_name": "Sudowoodo",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "8cf8664d-1931-5f25-aab9-6de90a2d1e6e",
+        "card_printing_id": "35078974-b52e-4df8-9d41-0a95c3652619",
+        "set_code": "ecard2",
+        "number": "H24",
+        "number_plain": "H24",
+        "card_name": "Sudowoodo",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "8cf8664d-1931-5f25-aab9-6de90a2d1e6e",
+          "card_printing_id": "35078974-b52e-4df8-9d41-0a95c3652619",
+          "set_code": "ecard2",
+          "number": "H24",
+          "number_plain": "H24",
+          "card_name": "Sudowoodo",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "9bded929-b9da-47b0-9494-0f43967bbfd5",
+        "card_printing_id": "dd1608f4-88a1-4a43-992f-188af2d2ec6f",
+        "set_code": "ecard2",
+        "number": "26",
+        "number_plain": "26",
+        "card_name": "Octillery",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "620938db-8342-4b0f-990d-3e2ecaeadbd0",
+        "card_printing_id": "dd1608f4-88a1-4a43-992f-188af2d2ec6f",
+        "source": "tcgdex",
+        "external_id": "ecard2-H26",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard2",
+        "card_number": "H26",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard2",
+          "card_number": "H26",
+          "card_name": "Tentacruel",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "3d4ae2b4-fd56-5c6b-b665-bd114a8ec854",
+        "card_printing_id": "e3f73eb7-6951-4066-bdd7-565436a08aa8",
+        "set_code": "ecard2",
+        "number": "H26",
+        "number_plain": "H26",
+        "card_name": "Tentacruel",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "3d4ae2b4-fd56-5c6b-b665-bd114a8ec854",
+          "card_printing_id": "e3f73eb7-6951-4066-bdd7-565436a08aa8",
+          "set_code": "ecard2",
+          "number": "H26",
+          "number_plain": "H26",
+          "card_name": "Tentacruel",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "90147e16-aa4c-45f1-ad13-fafd293eb7a6",
+        "card_printing_id": "3d61954d-de69-4fbf-aaaf-adc218d11eeb",
+        "set_code": "ecard2",
+        "number": "27",
+        "number_plain": "27",
+        "card_name": "Parasect",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "5be4f299-30b4-40b9-88b2-3c87c3cdf1c6",
+        "card_printing_id": "3d61954d-de69-4fbf-aaaf-adc218d11eeb",
+        "source": "tcgdex",
+        "external_id": "ecard2-H27",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard2",
+        "card_number": "H27",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard2",
+          "card_number": "H27",
+          "card_name": "Togetic",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "8eb56712-a811-56f1-9301-107667e66e68",
+        "card_printing_id": "7261712b-2f55-4a6e-90ee-8fce6a7b0998",
+        "set_code": "ecard2",
+        "number": "H27",
+        "number_plain": "H27",
+        "card_name": "Togetic",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "8eb56712-a811-56f1-9301-107667e66e68",
+          "card_printing_id": "7261712b-2f55-4a6e-90ee-8fce6a7b0998",
+          "set_code": "ecard2",
+          "number": "H27",
+          "number_plain": "H27",
+          "card_name": "Togetic",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "6187a177-3e37-48c2-a5a3-40d62360be96",
+        "card_printing_id": "2f0a8560-e8ed-4ec4-a57b-b837c8ef8e46",
+        "set_code": "ecard2",
+        "number": "29",
+        "number_plain": "29",
+        "card_name": "Primeape",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "b1ba4d38-47c5-4c0e-87a1-6594f9ee7d18",
+        "card_printing_id": "2f0a8560-e8ed-4ec4-a57b-b837c8ef8e46",
+        "source": "tcgdex",
+        "external_id": "ecard2-H29",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard2",
+        "card_number": "H29",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard2",
+          "card_number": "H29",
+          "card_name": "Umbreon",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "67ee9049-aa3d-56b3-954c-98082aa2c1f4",
+        "card_printing_id": "b273df12-870c-4608-8c72-d94b2614f20e",
+        "set_code": "ecard2",
+        "number": "H29",
+        "number_plain": "H29",
+        "card_name": "Umbreon",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "67ee9049-aa3d-56b3-954c-98082aa2c1f4",
+          "card_printing_id": "b273df12-870c-4608-8c72-d94b2614f20e",
+          "set_code": "ecard2",
+          "number": "H29",
+          "number_plain": "H29",
+          "card_name": "Umbreon",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "63613092-a7b3-410e-8f1a-954fc8bfc4df",
+        "card_printing_id": "c4964e79-0c11-445b-ac7b-f1b29a96849f",
+        "set_code": "ecard2",
+        "number": "31",
+        "number_plain": "31",
+        "card_name": "Rapidash",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "b0eb2134-716c-4e22-8b93-3d50737cb79f",
+        "card_printing_id": "c4964e79-0c11-445b-ac7b-f1b29a96849f",
+        "source": "tcgdex",
+        "external_id": "ecard2-H31",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard2",
+        "card_number": "H31",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard2",
+          "card_number": "H31",
+          "card_name": "Vileplume",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "70bac15f-854f-5711-abbb-bc0040439c5e",
+        "card_printing_id": "4b60a8dc-fcd5-42dd-9883-e09d8859b632",
+        "set_code": "ecard2",
+        "number": "H31",
+        "number_plain": "H31",
+        "card_name": "Vileplume",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "70bac15f-854f-5711-abbb-bc0040439c5e",
+          "card_printing_id": "4b60a8dc-fcd5-42dd-9883-e09d8859b632",
+          "set_code": "ecard2",
+          "number": "H31",
+          "number_plain": "H31",
+          "card_name": "Vileplume",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "94d0bc20-42c5-4a8a-a1ec-e62cf187062e",
+        "card_printing_id": "51ac008a-46ce-4517-a44a-72c147a44009",
+        "set_code": "ecard3",
+        "number": "13",
+        "number_plain": "13",
+        "card_name": "Jolteon",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "c1c260cf-9281-4a7d-88f8-88a7a80af136",
+        "card_printing_id": "51ac008a-46ce-4517-a44a-72c147a44009",
+        "source": "tcgdex",
+        "external_id": "ecard3-H13",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard3",
+        "card_number": "H13",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard3",
+          "card_number": "H13",
+          "card_name": "Kabutops",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "d139fca7-558c-4dad-9a46-f94e4d45ab6b",
+        "card_printing_id": "a8d3ef98-d370-4d6e-8782-46667b5462a6",
+        "set_code": "ecard3",
+        "number": "H13",
+        "number_plain": "H13",
+        "card_name": "Kabutops",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "d139fca7-558c-4dad-9a46-f94e4d45ab6b",
+          "card_printing_id": "a8d3ef98-d370-4d6e-8782-46667b5462a6",
+          "set_code": "ecard3",
+          "number": "H13",
+          "number_plain": "H13",
+          "card_name": "Kabutops",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "406b8434-380b-442f-9f46-2d645cc1a8dc",
+        "card_printing_id": "c6000245-367b-4851-80aa-abf32ac58311",
+        "set_code": "ecard3",
+        "number": "14",
+        "number_plain": "14",
+        "card_name": "Kabutops",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "08d2657e-b4d7-4b28-a100-46f50f17a961",
+        "card_printing_id": "c6000245-367b-4851-80aa-abf32ac58311",
+        "source": "tcgdex",
+        "external_id": "ecard3-H14",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard3",
+        "card_number": "H14",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard3",
+          "card_number": "H14",
+          "card_name": "Ledian",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "8c78b35f-6dd0-4b12-9709-8b4198ad3089",
+        "card_printing_id": "54de4733-b7c7-43af-a9b8-d8bc772bc099",
+        "set_code": "ecard3",
+        "number": "H14",
+        "number_plain": "H14",
+        "card_name": "Ledian",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "8c78b35f-6dd0-4b12-9709-8b4198ad3089",
+          "card_printing_id": "54de4733-b7c7-43af-a9b8-d8bc772bc099",
+          "set_code": "ecard3",
+          "number": "H14",
+          "number_plain": "H14",
+          "card_name": "Ledian",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "0d854477-bc49-4af5-ab4a-51feee2326aa",
+        "card_printing_id": "62ec8356-2235-409a-8de5-2b977bf7bf32",
+        "set_code": "ecard3",
+        "number": "16",
+        "number_plain": "16",
+        "card_name": "Machamp",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "862c3d4d-de7f-4ddc-af4d-13364234fc72",
+        "card_printing_id": "62ec8356-2235-409a-8de5-2b977bf7bf32",
+        "source": "tcgdex",
+        "external_id": "ecard3-H16",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard3",
+        "card_number": "H16",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard3",
+          "card_number": "H16",
+          "card_name": "Magcargo",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "02a4156d-5f67-4969-8288-c440938a923c",
+        "card_printing_id": "efa663a9-aefc-49f7-b902-2af533891e98",
+        "set_code": "ecard3",
+        "number": "H16",
+        "number_plain": "H16",
+        "card_name": "Magcargo",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "02a4156d-5f67-4969-8288-c440938a923c",
+          "card_printing_id": "efa663a9-aefc-49f7-b902-2af533891e98",
+          "set_code": "ecard3",
+          "number": "H16",
+          "number_plain": "H16",
+          "card_name": "Magcargo",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "c3e228f2-4db5-46c9-b3d0-59dd2c75ecbe",
+        "card_printing_id": "dbe329ea-1e1e-49f7-be24-b29f0adcff78",
+        "set_code": "ecard3",
+        "number": "18",
+        "number_plain": "18",
+        "card_name": "Magcargo",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "1df84f2f-792c-472d-8ba3-4e75f39c3672",
+        "card_printing_id": "dbe329ea-1e1e-49f7-be24-b29f0adcff78",
+        "source": "tcgdex",
+        "external_id": "ecard3-H18",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard3",
+        "card_number": "H18",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard3",
+          "card_number": "H18",
+          "card_name": "Magneton",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "28d7a9bb-fcff-4e93-861d-d200770984d6",
+        "card_printing_id": "bb5904ea-d09f-4e11-83fc-440bcf428744",
+        "set_code": "ecard3",
+        "number": "H18",
+        "number_plain": "H18",
+        "card_name": "Magneton",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "28d7a9bb-fcff-4e93-861d-d200770984d6",
+          "card_printing_id": "bb5904ea-d09f-4e11-83fc-440bcf428744",
+          "set_code": "ecard3",
+          "number": "H18",
+          "number_plain": "H18",
+          "card_name": "Magneton",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "dac641c5-9dbd-497f-92fc-d7a5349c546a",
+        "card_printing_id": "a1e887f0-17c4-4231-8843-e6d55bb07850",
+        "set_code": "ecard3",
+        "number": "22",
+        "number_plain": "22",
+        "card_name": "Nidoqueen",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "2bc00fe4-3c1d-4bd8-9976-b631d4e494cb",
+        "card_printing_id": "a1e887f0-17c4-4231-8843-e6d55bb07850",
+        "source": "tcgdex",
+        "external_id": "ecard3-H22",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard3",
+        "card_number": "H22",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard3",
+          "card_number": "H22",
+          "card_name": "Piloswine",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "415065f4-68dd-44a9-a0f0-d6375e203275",
+        "card_printing_id": "3c1c7a1d-f330-4e2f-98d7-26ee2d1ac481",
+        "set_code": "ecard3",
+        "number": "H22",
+        "number_plain": "H22",
+        "card_name": "Piloswine",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "415065f4-68dd-44a9-a0f0-d6375e203275",
+          "card_printing_id": "3c1c7a1d-f330-4e2f-98d7-26ee2d1ac481",
+          "set_code": "ecard3",
+          "number": "H22",
+          "number_plain": "H22",
+          "card_name": "Piloswine",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "3757c019-1820-49b8-a50f-b8b01263170d",
+        "card_printing_id": "aa950ba8-cd0c-460c-a387-14a75eaf4039",
+        "set_code": "ecard3",
+        "number": "23",
+        "number_plain": "23",
+        "card_name": "Omastar",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "9aaa0dc6-483d-4508-aa12-0453c0114f1f",
+        "card_printing_id": "aa950ba8-cd0c-460c-a387-14a75eaf4039",
+        "source": "tcgdex",
+        "external_id": "ecard3-H23",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard3",
+        "card_number": "H23",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard3",
+          "card_number": "H23",
+          "card_name": "Politoed",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "b7c244c2-35bf-4dbd-836c-1341a777d65e",
+        "card_printing_id": "e346d49c-483d-4aac-b6af-5253ff52e2be",
+        "set_code": "ecard3",
+        "number": "H23",
+        "number_plain": "H23",
+        "card_name": "Politoed",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "b7c244c2-35bf-4dbd-836c-1341a777d65e",
+          "card_printing_id": "e346d49c-483d-4aac-b6af-5253ff52e2be",
+          "set_code": "ecard3",
+          "number": "H23",
+          "number_plain": "H23",
+          "card_name": "Politoed",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "49d54851-be61-4b3b-8240-4c7c4b4f18c2",
+        "card_printing_id": "71203435-92f1-4dfb-ae4c-c4356bbd7bec",
+        "set_code": "ecard3",
+        "number": "24",
+        "number_plain": "24",
+        "card_name": "Piloswine",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "c3573925-92d7-43d0-8a2f-e77eff491045",
+        "card_printing_id": "71203435-92f1-4dfb-ae4c-c4356bbd7bec",
+        "source": "tcgdex",
+        "external_id": "ecard3-H24",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard3",
+        "card_number": "H24",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard3",
+          "card_number": "H24",
+          "card_name": "Poliwrath",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "e99d7d18-af64-4d34-b62c-8a795f6da2c3",
+        "card_printing_id": "0f6d8bf1-6c07-469f-8252-a137c4a77c8b",
+        "set_code": "ecard3",
+        "number": "H24",
+        "number_plain": "H24",
+        "card_name": "Poliwrath",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "e99d7d18-af64-4d34-b62c-8a795f6da2c3",
+          "card_printing_id": "0f6d8bf1-6c07-469f-8252-a137c4a77c8b",
+          "set_code": "ecard3",
+          "number": "H24",
+          "number_plain": "H24",
+          "card_name": "Poliwrath",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "744efa2b-74bf-4b33-95d9-8c791fe5c81e",
+        "card_printing_id": "7e401b86-f243-41ff-9612-29f6d0bddbd6",
+        "set_code": "ecard3",
+        "number": "27",
+        "number_plain": "27",
+        "card_name": "Raichu",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "f4fbc538-5467-4eef-9553-0806ed661004",
+        "card_printing_id": "7e401b86-f243-41ff-9612-29f6d0bddbd6",
+        "source": "tcgdex",
+        "external_id": "ecard3-H27",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard3",
+        "card_number": "H27",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard3",
+          "card_number": "H27",
+          "card_name": "Rhydon",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "9a1cc452-e8b4-48bf-acc9-e592fe9cc521",
+        "card_printing_id": "c056acd1-ffe3-44ad-b9dc-14ad3fb20f2d",
+        "set_code": "ecard3",
+        "number": "H27",
+        "number_plain": "H27",
+        "card_name": "Rhydon",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "9a1cc452-e8b4-48bf-acc9-e592fe9cc521",
+          "card_printing_id": "c056acd1-ffe3-44ad-b9dc-14ad3fb20f2d",
+          "set_code": "ecard3",
+          "number": "H27",
+          "number_plain": "H27",
+          "card_name": "Rhydon",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "5f341a4c-1059-4c51-a006-c9d5579e5e36",
+        "card_printing_id": "05f8063f-42b7-4f19-ad99-6c667ae34e9c",
+        "set_code": "ecard3",
+        "number": "30",
+        "number_plain": "30",
+        "card_name": "Starmie",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "17118cfb-a810-4664-a47d-4e0c599a25c3",
+        "card_printing_id": "05f8063f-42b7-4f19-ad99-6c667ae34e9c",
+        "source": "tcgdex",
+        "external_id": "ecard3-H30",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard3",
+        "card_number": "H30",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard3",
+          "card_number": "H30",
+          "card_name": "Umbreon",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "abcf71f3-edd8-4130-aaa3-b7fecada39e2",
+        "card_printing_id": "17d43c10-4667-4904-b136-15a473437c51",
+        "set_code": "ecard3",
+        "number": "H30",
+        "number_plain": "H30",
+        "card_name": "Umbreon",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "abcf71f3-edd8-4130-aaa3-b7fecada39e2",
+          "card_printing_id": "17d43c10-4667-4904-b136-15a473437c51",
+          "set_code": "ecard3",
+          "number": "H30",
+          "number_plain": "H30",
+          "card_name": "Umbreon",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "18f4aa1e-a522-4441-9926-ed5736b7ef1d",
+        "card_printing_id": "cb056e44-5d37-4825-bae8-dcde9697a2fc",
+        "set_code": "ecard3",
+        "number": "31",
+        "number_plain": "31",
+        "card_name": "Steelix",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "7b122623-24b9-48e6-bbcc-525e4595ba2a",
+        "card_printing_id": "cb056e44-5d37-4825-bae8-dcde9697a2fc",
+        "source": "tcgdex",
+        "external_id": "ecard3-H31",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "ecard3",
+        "card_number": "H31",
+        "source": "h_number_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "ecard3",
+          "card_number": "H31",
+          "card_name": "Vaporeon",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 5
+        }
+      ],
+      "target_child": {
+        "card_print_id": "7cbee94f-9f6a-441d-98e1-6a50da7f72d7",
+        "card_printing_id": "42f46500-4ba9-4f85-8e73-bb15d211204e",
+        "set_code": "ecard3",
+        "number": "H31",
+        "number_plain": "H31",
+        "card_name": "Vaporeon",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "7cbee94f-9f6a-441d-98e1-6a50da7f72d7",
+          "card_printing_id": "42f46500-4ba9-4f85-8e73-bb15d211204e",
+          "set_code": "ecard3",
+          "number": "H31",
+          "number_plain": "H31",
+          "card_name": "Vaporeon",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "d31a95ca-bdc3-43b7-ab47-0142c41b602e",
+        "card_printing_id": "772ad84d-9946-4342-bd56-32a2ce5f7db1",
+        "set_code": "swsh12",
+        "number": "10",
+        "number_plain": "10",
+        "card_name": "Hisuian Lilligant",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "22bcd50e-b03b-4850-ba64-e33d496f6585",
+        "card_printing_id": "772ad84d-9946-4342-bd56-32a2ce5f7db1",
+        "source": "tcgdex",
+        "external_id": "swsh12-TG10",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh12tg",
+        "card_number": "TG10",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh12tg",
+          "card_number": "TG10",
+          "card_name": "Smeargle",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "fc803367-66c2-4f22-9aef-60e4297fb6fb",
+        "card_printing_id": "e4f55064-20ae-43a5-a43f-21467f17f2b6",
+        "set_code": "swsh12tg",
+        "number": "TG10",
+        "number_plain": "10",
+        "card_name": "Smeargle",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "fc803367-66c2-4f22-9aef-60e4297fb6fb",
+          "card_printing_id": "e4f55064-20ae-43a5-a43f-21467f17f2b6",
+          "set_code": "swsh12tg",
+          "number": "TG10",
+          "number_plain": "10",
+          "card_name": "Smeargle",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "2797bc23-0726-43e0-a3bc-dbe29844123d",
+        "card_printing_id": "f495ab50-49c1-44e7-95f1-6b0f4d253a72",
+        "set_code": "swsh12",
+        "number": "11",
+        "number_plain": "11",
+        "card_name": "Foongus",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "1a772520-6845-4502-8efa-ce5107cb08ed",
+        "card_printing_id": "f495ab50-49c1-44e7-95f1-6b0f4d253a72",
+        "source": "tcgdex",
+        "external_id": "swsh12-TG11",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh12tg",
+        "card_number": "TG11",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh12tg",
+          "card_number": "TG11",
+          "card_name": "Altaria",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "d485916c-634d-4e8b-b795-c16ac70553a2",
+        "card_printing_id": "c4be7750-2255-42b5-8dd4-b33a82f66dd8",
+        "set_code": "swsh12tg",
+        "number": "TG11",
+        "number_plain": "11",
+        "card_name": "Altaria",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "d485916c-634d-4e8b-b795-c16ac70553a2",
+          "card_printing_id": "c4be7750-2255-42b5-8dd4-b33a82f66dd8",
+          "set_code": "swsh12tg",
+          "number": "TG11",
+          "number_plain": "11",
+          "card_name": "Altaria",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "fd5665d2-40cd-403b-899c-d13d4d57126b",
+        "card_printing_id": "8484b671-8156-4862-bfca-fdc2f984451d",
+        "set_code": "swsh12",
+        "number": "13",
+        "number_plain": "13",
+        "card_name": "Durant",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "fc92847f-1371-44a9-890e-7409bae51a41",
+        "card_printing_id": "8484b671-8156-4862-bfca-fdc2f984451d",
+        "source": "tcgdex",
+        "external_id": "swsh12-TG13",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh12tg",
+        "card_number": "TG13",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh12tg",
+          "card_number": "TG13",
+          "card_name": "Serperior V",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "1c0381f7-fbdc-44f6-b1a1-a83fa12b81b7",
+        "card_printing_id": "26d12800-9baa-4806-a78c-1590603de86d",
+        "set_code": "swsh12tg",
+        "number": "TG13",
+        "number_plain": "13",
+        "card_name": "Serperior V",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "1c0381f7-fbdc-44f6-b1a1-a83fa12b81b7",
+          "card_printing_id": "26d12800-9baa-4806-a78c-1590603de86d",
+          "set_code": "swsh12tg",
+          "number": "TG13",
+          "number_plain": "13",
+          "card_name": "Serperior V",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "d6d18845-846c-4da4-9191-7242bf70866b",
+        "card_printing_id": "369d34bf-a1cd-44b0-abab-6d5bb9931d36",
+        "set_code": "swsh12",
+        "number": "17",
+        "number_plain": "17",
+        "card_name": "Vulpix",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "313b2592-69a9-4f53-8fa7-d11cd8aa102c",
+        "card_printing_id": "369d34bf-a1cd-44b0-abab-6d5bb9931d36",
+        "source": "tcgdex",
+        "external_id": "swsh12-TG17",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh12tg",
+        "card_number": "TG17",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh12tg",
+          "card_number": "TG17",
+          "card_name": "Mawile V",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "b2734e7a-a426-4ca2-a83d-3a272d7b1dfd",
+        "card_printing_id": "d6a2cce7-1685-468b-8399-a988c97aa464",
+        "set_code": "swsh12tg",
+        "number": "TG17",
+        "number_plain": "17",
+        "card_name": "Mawile V",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "b2734e7a-a426-4ca2-a83d-3a272d7b1dfd",
+          "card_printing_id": "d6a2cce7-1685-468b-8399-a988c97aa464",
+          "set_code": "swsh12tg",
+          "number": "TG17",
+          "number_plain": "17",
+          "card_name": "Mawile V",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "acf04653-49c8-4734-9068-e35fdcd0c5d8",
+        "card_printing_id": "4ab8a612-2a74-4c7e-90d4-ae444c396e00",
+        "set_code": "swsh12",
+        "number": "18",
+        "number_plain": "18",
+        "card_name": "Ninetales",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "309d97c8-022b-4563-8406-eb49c91aa264",
+        "card_printing_id": "4ab8a612-2a74-4c7e-90d4-ae444c396e00",
+        "source": "tcgdex",
+        "external_id": "swsh12-TG18",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh12tg",
+        "card_number": "TG18",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh12tg",
+          "card_number": "TG18",
+          "card_name": "Corviknight V",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "689153ec-d6f7-46e7-ace9-af6197f56477",
+        "card_printing_id": "8d79a8b2-26f7-42bc-90be-0ba8c9481483",
+        "set_code": "swsh12tg",
+        "number": "TG18",
+        "number_plain": "18",
+        "card_name": "Corviknight V",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "689153ec-d6f7-46e7-ace9-af6197f56477",
+          "card_printing_id": "8d79a8b2-26f7-42bc-90be-0ba8c9481483",
+          "set_code": "swsh12tg",
+          "number": "TG18",
+          "number_plain": "18",
+          "card_name": "Corviknight V",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "199bcc9b-a715-4a12-9d1b-464bd8edf3e9",
+        "card_printing_id": "f769c759-b5b6-413f-895b-14f91337ae11",
+        "set_code": "swsh12",
+        "number": "19",
+        "number_plain": "19",
+        "card_name": "Growlithe",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "fb6eda81-89a7-489d-bf56-0b452ea2fae7",
+        "card_printing_id": "f769c759-b5b6-413f-895b-14f91337ae11",
+        "source": "tcgdex",
+        "external_id": "swsh12-TG19",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh12tg",
+        "card_number": "TG19",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh12tg",
+          "card_number": "TG19",
+          "card_name": "Corviknight VMAX",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "1995f9f5-1a8a-4204-8498-d901cf27e6ed",
+        "card_printing_id": "ba8e9396-2158-4115-8e19-e6039e7fabd7",
+        "set_code": "swsh12tg",
+        "number": "TG19",
+        "number_plain": "19",
+        "card_name": "Corviknight VMAX",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "1995f9f5-1a8a-4204-8498-d901cf27e6ed",
+          "card_printing_id": "ba8e9396-2158-4115-8e19-e6039e7fabd7",
+          "set_code": "swsh12tg",
+          "number": "TG19",
+          "number_plain": "19",
+          "card_name": "Corviknight VMAX",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "84ee8fa8-d515-4b5c-a563-fe5779a6de6e",
+        "card_printing_id": "1fde69ac-8a5e-4c42-8f68-8e103c5ad599",
+        "set_code": "swsh12",
+        "number": "20",
+        "number_plain": "20",
+        "card_name": "Arcanine",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "cf0daa62-9110-4dca-ab7e-ad388c066c8c",
+        "card_printing_id": "1fde69ac-8a5e-4c42-8f68-8e103c5ad599",
+        "source": "tcgdex",
+        "external_id": "swsh12-TG20",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh12tg",
+        "card_number": "TG20",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh12tg",
+          "card_number": "TG20",
+          "card_name": "Rayquaza VMAX",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "b4b7d603-9797-43f0-8e42-00cfe5c5bc62",
+        "card_printing_id": "8b95eaa8-b7e1-4d76-b7d4-9836006cc99a",
+        "set_code": "swsh12tg",
+        "number": "TG20",
+        "number_plain": "20",
+        "card_name": "Rayquaza VMAX",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "b4b7d603-9797-43f0-8e42-00cfe5c5bc62",
+          "card_printing_id": "8b95eaa8-b7e1-4d76-b7d4-9836006cc99a",
+          "set_code": "swsh12tg",
+          "number": "TG20",
+          "number_plain": "20",
+          "card_name": "Rayquaza VMAX",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "e7d01a75-db18-4525-8dff-8e58dcff90d4",
+        "card_printing_id": "7c1bea86-ef34-40b7-ac14-9c793e9f6115",
+        "set_code": "swsh12",
+        "number": "21",
+        "number_plain": "21",
+        "card_name": "Ponyta",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "1a736ff4-55d9-493f-872e-d1b7031e5bb0",
+        "card_printing_id": "7c1bea86-ef34-40b7-ac14-9c793e9f6115",
+        "source": "tcgdex",
+        "external_id": "swsh12-TG21",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh12tg",
+        "card_number": "TG21",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh12tg",
+          "card_number": "TG21",
+          "card_name": "Duraludon VMAX",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "ce241241-2a2b-4c8c-8474-8b3aa6402e1d",
+        "card_printing_id": "5a44d032-fe2c-4422-a801-c467d614f75e",
+        "set_code": "swsh12tg",
+        "number": "TG21",
+        "number_plain": "21",
+        "card_name": "Duraludon VMAX",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "ce241241-2a2b-4c8c-8474-8b3aa6402e1d",
+          "card_printing_id": "5a44d032-fe2c-4422-a801-c467d614f75e",
+          "set_code": "swsh12tg",
+          "number": "TG21",
+          "number_plain": "21",
+          "card_name": "Duraludon VMAX",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "29c7d289-d5de-4494-9789-0cf1791c6fdb",
+        "card_printing_id": "531a7f28-6eb6-4554-90d8-2fe661ebc0d9",
+        "set_code": "swsh12",
+        "number": "26",
+        "number_plain": "26",
+        "card_name": "Braixen",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "e27806d6-bd20-40ad-b58c-6e9cefad3824",
+        "card_printing_id": "531a7f28-6eb6-4554-90d8-2fe661ebc0d9",
+        "source": "tcgdex",
+        "external_id": "swsh12-TG26",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh12tg",
+        "card_number": "TG26",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh12tg",
+          "card_number": "TG26",
+          "card_name": "Professor Burnet",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "b7baa703-5275-4086-8d90-825f373dcf38",
+        "card_printing_id": "4aacc239-7709-4033-bbbc-61ffca35fdc9",
+        "set_code": "swsh12tg",
+        "number": "TG26",
+        "number_plain": "26",
+        "card_name": "Professor Burnet",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "b7baa703-5275-4086-8d90-825f373dcf38",
+          "card_printing_id": "4aacc239-7709-4033-bbbc-61ffca35fdc9",
+          "set_code": "swsh12tg",
+          "number": "TG26",
+          "number_plain": "26",
+          "card_name": "Professor Burnet",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "ac271b53-e4aa-4c9f-900d-610dc521d389",
+        "card_printing_id": "530e1b5a-d164-4baf-9223-766a0b353483",
+        "set_code": "swsh12",
+        "number": "27",
+        "number_plain": "27",
+        "card_name": "Delphox",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "af46417a-9f9c-497e-b507-6302873c34e7",
+        "card_printing_id": "530e1b5a-d164-4baf-9223-766a0b353483",
+        "source": "tcgdex",
+        "external_id": "swsh12-TG27",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh12tg",
+        "card_number": "TG27",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh12tg",
+          "card_number": "TG27",
+          "card_name": "Raihan",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "5e908c4e-a62a-4d3e-9157-674a165a2654",
+        "card_printing_id": "caf9e815-3cd2-4c50-a651-7b41419f0a37",
+        "set_code": "swsh12tg",
+        "number": "TG27",
+        "number_plain": "27",
+        "card_name": "Raihan",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "5e908c4e-a62a-4d3e-9157-674a165a2654",
+          "card_printing_id": "caf9e815-3cd2-4c50-a651-7b41419f0a37",
+          "set_code": "swsh12tg",
+          "number": "TG27",
+          "number_plain": "27",
+          "card_name": "Raihan",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "815836cb-c31a-4d8b-8a68-a7467335393a",
+        "card_printing_id": "239b3344-b641-4b51-b9ca-dec5cfd63e70",
+        "set_code": "swsh12",
+        "number": "28",
+        "number_plain": "28",
+        "card_name": "Fletchinder",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "44bf5ec8-d33c-4e71-9e69-5f360cd95fd9",
+        "card_printing_id": "239b3344-b641-4b51-b9ca-dec5cfd63e70",
+        "source": "tcgdex",
+        "external_id": "swsh12-TG28",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh12tg",
+        "card_number": "TG28",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh12tg",
+          "card_number": "TG28",
+          "card_name": "Sordward & Shielbert",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "8a98e68e-b5a5-4fb9-bcbb-3750345d3ed5",
+        "card_printing_id": "e60c1a37-7b50-428a-b6a6-367c7bc5ddd0",
+        "set_code": "swsh12tg",
+        "number": "TG28",
+        "number_plain": "28",
+        "card_name": "Sordward & Shielbert",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "8a98e68e-b5a5-4fb9-bcbb-3750345d3ed5",
+          "card_printing_id": "e60c1a37-7b50-428a-b6a6-367c7bc5ddd0",
+          "set_code": "swsh12tg",
+          "number": "TG28",
+          "number_plain": "28",
+          "card_name": "Sordward & Shielbert",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "5e35bf8b-d6a5-4c5b-915f-a25ef2bc0454",
+        "card_printing_id": "095a8e79-fcff-4dd8-b803-a83e56db6dad",
+        "set_code": "swsh12",
+        "number": "29",
+        "number_plain": "29",
+        "card_name": "Talonflame",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "086a12f7-59ca-463a-bbae-97a4cb2d6c46",
+        "card_printing_id": "095a8e79-fcff-4dd8-b803-a83e56db6dad",
+        "source": "tcgdex",
+        "external_id": "swsh12-TG29",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh12tg",
+        "card_number": "TG29",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh12tg",
+          "card_number": "TG29",
+          "card_name": "Rayquaza VMAX",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "54f46b22-2df3-47b7-adf5-fd2c5e45e5e2",
+        "card_printing_id": "95b663f2-fa7e-4739-a278-4c6a2a00f2c3",
+        "set_code": "swsh12tg",
+        "number": "TG29",
+        "number_plain": "29",
+        "card_name": "Rayquaza VMAX",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "54f46b22-2df3-47b7-adf5-fd2c5e45e5e2",
+          "card_printing_id": "95b663f2-fa7e-4739-a278-4c6a2a00f2c3",
+          "set_code": "swsh12tg",
+          "number": "TG29",
+          "number_plain": "29",
+          "card_name": "Rayquaza VMAX",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "3e3e5e79-0717-4391-86e8-96739c0f5ce2",
+        "card_printing_id": "055d93f0-de68-4580-b698-1aa337fa1c45",
+        "set_code": "swsh12",
+        "number": "30",
+        "number_plain": "30",
+        "card_name": "Litten",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "17044a4e-8e5e-426e-a249-e80e87f0af2c",
+        "card_printing_id": "055d93f0-de68-4580-b698-1aa337fa1c45",
+        "source": "tcgdex",
+        "external_id": "swsh12-TG30",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh12tg",
+        "card_number": "TG30",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh12tg",
+          "card_number": "TG30",
+          "card_name": "Duraludon VMAX",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "00dc0508-a29f-4a13-9b96-51ddbe28392a",
+        "card_printing_id": "8db2c2a0-c6f7-4fc6-b0e2-7ce0a8ff3930",
+        "set_code": "swsh12tg",
+        "number": "TG30",
+        "number_plain": "30",
+        "card_name": "Duraludon VMAX",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "00dc0508-a29f-4a13-9b96-51ddbe28392a",
+          "card_printing_id": "8db2c2a0-c6f7-4fc6-b0e2-7ce0a8ff3930",
+          "set_code": "swsh12tg",
+          "number": "TG30",
+          "number_plain": "30",
+          "card_name": "Duraludon VMAX",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "8131e5dd-db69-467f-b828-b154248e66fe",
+        "card_printing_id": "d9832ad2-9b7f-4271-9193-0a52b7af24dc",
+        "set_code": "swsh9",
+        "number": "10",
+        "number_plain": "10",
+        "card_name": "Wormadam",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "00f96b3e-903f-46f9-b60f-e87a70b6a8a3",
+        "card_printing_id": "d9832ad2-9b7f-4271-9193-0a52b7af24dc",
+        "source": "tcgdex",
+        "external_id": "swsh9-TG10",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh9tg",
+        "card_number": "TG10",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh9tg",
+          "card_number": "TG10",
+          "card_name": "Houndoom",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "5266628f-e4a2-4c49-a0d5-c93d61b19e48",
+        "card_printing_id": "18941005-d40d-4d51-9618-0fc47e8eac6d",
+        "set_code": "swsh9tg",
+        "number": "TG10",
+        "number_plain": "10",
+        "card_name": "Houndoom",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "5266628f-e4a2-4c49-a0d5-c93d61b19e48",
+          "card_printing_id": "18941005-d40d-4d51-9618-0fc47e8eac6d",
+          "set_code": "swsh9tg",
+          "number": "TG10",
+          "number_plain": "10",
+          "card_name": "Houndoom",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "70f94fb1-56fc-4667-ae93-4efe89d1e924",
+        "card_printing_id": "cf1628aa-11d2-4959-8814-ec3d8aa87e21",
+        "set_code": "swsh9",
+        "number": "12",
+        "number_plain": "12",
+        "card_name": "Cherubi",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "e30a86b4-8dd7-42fe-bb44-471bc9499b75",
+        "card_printing_id": "cf1628aa-11d2-4959-8814-ec3d8aa87e21",
+        "source": "tcgdex",
+        "external_id": "swsh9-TG12",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh9tg",
+        "card_number": "TG12",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh9tg",
+          "card_number": "TG12",
+          "card_name": "Oranguru",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "c998e5a2-ff6c-420f-876d-01e2f74c6bcf",
+        "card_printing_id": "7b6957d1-6052-4cf0-92b8-6b1f2d732e21",
+        "set_code": "swsh9tg",
+        "number": "TG12",
+        "number_plain": "12",
+        "card_name": "Oranguru",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "c998e5a2-ff6c-420f-876d-01e2f74c6bcf",
+          "card_printing_id": "7b6957d1-6052-4cf0-92b8-6b1f2d732e21",
+          "set_code": "swsh9tg",
+          "number": "TG12",
+          "number_plain": "12",
+          "card_name": "Oranguru",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "96aeb302-26c7-436c-813b-fbbadd224f1a",
+        "card_printing_id": "9e6ff854-6bdc-455b-be78-8f6605570969",
+        "set_code": "swsh9",
+        "number": "15",
+        "number_plain": "15",
+        "card_name": "Karrablast",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "a7724362-338e-4a8c-9730-b37ee7266eb2",
+        "card_printing_id": "9e6ff854-6bdc-455b-be78-8f6605570969",
+        "source": "tcgdex",
+        "external_id": "swsh9-TG15",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh9tg",
+        "card_number": "TG15",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh9tg",
+          "card_number": "TG15",
+          "card_name": "Sylveon VMAX",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "68bdd0c6-0c9c-4f1a-b1f3-539469cddb94",
+        "card_printing_id": "2f7f0c13-bb27-46a4-a897-2f25247e8aa5",
+        "set_code": "swsh9tg",
+        "number": "TG15",
+        "number_plain": "15",
+        "card_name": "Sylveon VMAX",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "68bdd0c6-0c9c-4f1a-b1f3-539469cddb94",
+          "card_printing_id": "2f7f0c13-bb27-46a4-a897-2f25247e8aa5",
+          "set_code": "swsh9tg",
+          "number": "TG15",
+          "number_plain": "15",
+          "card_name": "Sylveon VMAX",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "e16a7fb8-879e-40d4-853f-a7ebcc1a06d8",
+        "card_printing_id": "a8189c8b-32cf-467e-9393-27d0781d5912",
+        "set_code": "swsh9",
+        "number": "19",
+        "number_plain": "19",
+        "card_name": "Magmar",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "ea67a370-ed54-4a93-bb10-7f66b3fb8b4f",
+        "card_printing_id": "a8189c8b-32cf-467e-9393-27d0781d5912",
+        "source": "tcgdex",
+        "external_id": "swsh9-TG19",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh9tg",
+        "card_number": "TG19",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh9tg",
+          "card_number": "TG19",
+          "card_name": "Single Strike Urshifu VMAX",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "04db0fe6-15fe-4007-b20c-d5be36ae4607",
+        "card_printing_id": "49d0dd53-6d50-4a82-86e8-87849ed74c3d",
+        "set_code": "swsh9tg",
+        "number": "TG19",
+        "number_plain": "19",
+        "card_name": "Single Strike Urshifu VMAX",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "04db0fe6-15fe-4007-b20c-d5be36ae4607",
+          "card_printing_id": "49d0dd53-6d50-4a82-86e8-87849ed74c3d",
+          "set_code": "swsh9tg",
+          "number": "TG19",
+          "number_plain": "19",
+          "card_name": "Single Strike Urshifu VMAX",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "39398077-6a5d-4f6a-a27a-0156ec599d88",
+        "card_printing_id": "8c3172e9-e923-4626-a35e-f34b6fd5371c",
+        "set_code": "swsh9",
+        "number": "20",
+        "number_plain": "20",
+        "card_name": "Magmortar",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "4dbb5d67-b3b3-4f36-be95-0390860cf1c0",
+        "card_printing_id": "8c3172e9-e923-4626-a35e-f34b6fd5371c",
+        "source": "tcgdex",
+        "external_id": "swsh9-TG20",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh9tg",
+        "card_number": "TG20",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh9tg",
+          "card_number": "TG20",
+          "card_name": "Rapid Strike Urshifu V",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "ec084c89-b90b-45f4-b77b-a80b84b542b8",
+        "card_printing_id": "f7d6b1a3-e16b-49cd-ad25-df27db62eecd",
+        "set_code": "swsh9tg",
+        "number": "TG20",
+        "number_plain": "20",
+        "card_name": "Rapid Strike Urshifu V",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "ec084c89-b90b-45f4-b77b-a80b84b542b8",
+          "card_printing_id": "f7d6b1a3-e16b-49cd-ad25-df27db62eecd",
+          "set_code": "swsh9tg",
+          "number": "TG20",
+          "number_plain": "20",
+          "card_name": "Rapid Strike Urshifu V",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "b9685496-6068-44ed-8cc6-c2baa41d659d",
+        "card_printing_id": "22d03372-5b83-4925-966b-77a1835b6797",
+        "set_code": "swsh9",
+        "number": "23",
+        "number_plain": "23",
+        "card_name": "Torkoal",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "96a2da43-dc14-4171-bd6b-8d806f5c87e6",
+        "card_printing_id": "22d03372-5b83-4925-966b-77a1835b6797",
+        "source": "tcgdex",
+        "external_id": "swsh9-TG23",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh9tg",
+        "card_number": "TG23",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh9tg",
+          "card_number": "TG23",
+          "card_name": "Umbreon VMAX",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "cf0de59c-1d77-4709-8e2f-f8e1d8199df8",
+        "card_printing_id": "5ec97c3e-5686-4ec2-aa9e-fcb2d5d28ef9",
+        "set_code": "swsh9tg",
+        "number": "TG23",
+        "number_plain": "23",
+        "card_name": "Umbreon VMAX",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "cf0de59c-1d77-4709-8e2f-f8e1d8199df8",
+          "card_printing_id": "5ec97c3e-5686-4ec2-aa9e-fcb2d5d28ef9",
+          "set_code": "swsh9tg",
+          "number": "TG23",
+          "number_plain": "23",
+          "card_name": "Umbreon VMAX",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "classification": "transfer_ready_existing_target_child",
+      "reason": "external ID resolves to one Master-verified target child that already exists",
+      "source": {
+        "card_print_id": "1d537521-54e1-4d16-81c7-795b995ff41f",
+        "card_printing_id": "2b6c724f-c4f2-4744-90bc-8191f4ce3f15",
+        "set_code": "swsh9",
+        "number": "24",
+        "number_plain": "24",
+        "card_name": "Chimchar",
+        "finish_key": "holo"
+      },
+      "external_mapping": {
+        "id": "b9f8b12e-50fd-42e6-a0ef-1223656e3187",
+        "card_printing_id": "2b6c724f-c4f2-4744-90bc-8191f4ce3f15",
+        "source": "tcgdex",
+        "external_id": "swsh9-TG24",
+        "active": true,
+        "meta": {}
+      },
+      "target": {
+        "set_key": "swsh9tg",
+        "card_number": "TG24",
+        "source": "trainer_gallery_external_id"
+      },
+      "master_facts": [
+        {
+          "set_key": "swsh9tg",
+          "card_number": "TG24",
+          "card_name": "Acerola's Premonition",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "source_count": 2
+        }
+      ],
+      "target_child": {
+        "card_print_id": "1d69e9d0-b86e-4d8d-bce5-80d956c5c6c9",
+        "card_printing_id": "96af9310-93dd-407d-88ee-04bdb6f807bb",
+        "set_code": "swsh9tg",
+        "number": "TG24",
+        "number_plain": "24",
+        "card_name": "Acerola's Premonition",
+        "finish_key": "holo"
+      },
+      "live_target_rows": [
+        {
+          "card_print_id": "1d69e9d0-b86e-4d8d-bce5-80d956c5c6c9",
+          "card_printing_id": "96af9310-93dd-407d-88ee-04bdb6f807bb",
+          "set_code": "swsh9tg",
+          "number": "TG24",
+          "number_plain": "24",
+          "card_name": "Acerola's Premonition",
+          "finish_key": "holo"
+        }
+      ]
+    }
+  ]
+}

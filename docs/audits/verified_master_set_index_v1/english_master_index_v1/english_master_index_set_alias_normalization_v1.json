@@ -1,14 +1,14 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SET_ALIAS_NORMALIZATION_V1",
-  "generated_at": "2026-06-08T18:24:41.247Z",
+  "generated_at": "2026-06-12T08:27:20.983Z",
   "audit_only": true,
   "db_writes": false,
   "rule": "Evidence set aliases are canonicalized before suppression and classification only when an alias resolves to exactly one configured English set.",
   "summary": {
-    "evidence_rows_examined": 304368,
-    "evidence_rows_after_dedupe": 234268,
+    "evidence_rows_examined": 304305,
+    "evidence_rows_after_dedupe": 234546,
     "evidence_rows_remapped": 908,
-    "duplicate_rows_collapsed": 70100,
+    "duplicate_rows_collapsed": 69759,
     "unresolved_evidence_rows": 0,
     "ambiguous_aliases": 0,
     "source_availability_rows_remapped": 0

@@ -22,6 +22,8 @@ function parseArgs() {
     mode: 'backfill',
     limit: null,
     dryRun: false,
+    setIds: [],
+    kind: 'all',
   };
 
   for (let i = 0; i < args.length; i += 1) {
@@ -29,6 +31,12 @@ function parseArgs() {
     if (token === '--limit' && args[i + 1]) {
       const value = Number(args[i + 1]);
       if (!Number.isNaN(value)) options.limit = value;
+      i += 1;
+    } else if (token === '--set' && args[i + 1]) {
+      options.setIds.push(args[i + 1]);
+      i += 1;
+    } else if (token === '--kind' && args[i + 1]) {
+      options.kind = args[i + 1];
       i += 1;
     } else if (token === '--dry-run') {
       options.dryRun = true;
@@ -42,6 +50,9 @@ function parseArgs() {
     }
   }
 
+  if (!['all', 'set', 'card'].includes(options.kind)) {
+    throw new Error('[tcgdex][normalize] --kind must be one of: all, set, card');
+  }
   return options;
 }
 
@@ -66,6 +77,18 @@ function deriveVariantKey(number) {
   if (!number) return '';
   const letters = String(number).replace(/[0-9]/g, '');
   return letters || '';
+}
+
+function cardNumber(cardData, cardPayload) {
+  return (
+    cardData?.number ??
+    cardData?.localId ??
+    cardData?.local_id ??
+    cardPayload?.number ??
+    cardPayload?.localId ??
+    cardPayload?.local_id ??
+    null
+  );
 }
 
 function mergeJson(base, patch) {
@@ -119,18 +142,71 @@ async function insertConflict(supabase, rawImportId, reason, options) {
   }
 }
 
-async function fetchPendingBatch(supabase, kind, batchSize) {
+function normalizeSetIds(setIds) {
+  return Array.from(
+    new Set(
+      (setIds ?? [])
+        .map((value) => String(value ?? '').trim())
+        .filter(Boolean),
+    ),
+  );
+}
+
+function applySetScope(query, kind, setIds) {
+  const scopedSetIds = normalizeSetIds(setIds);
+  if (scopedSetIds.length === 0) return query;
+  if (kind === 'set') return query.in('payload->>_external_id', scopedSetIds);
+  if (kind === 'card') return query.in('payload->>_set_external_id', scopedSetIds);
+  return query;
+}
+
+async function fetchPendingBatch(supabase, kind, batchSize, options = {}) {
   const limit = Math.max(1, Math.min(batchSize, BATCH_SIZE));
-  const { data, error } = await supabase
+  let query = supabase
     .from('raw_imports')
     .select('id, payload, status')
     .eq('source', SOURCE)
     .eq('payload->>_kind', kind)
     .eq('status', 'pending')
-    .order('ingested_at', { ascending: true })
-    .limit(limit);
+    .order('ingested_at', { ascending: true });
+  query = applySetScope(query, kind, options.setIds);
+  const { data, error } = await query.limit(limit);
   if (error) throw error;
   return data ?? [];
+}
+
+async function hasPendingRows(supabase, options = {}) {
+  const scopedSetIds = normalizeSetIds(options.setIds);
+  const kinds = options.kind === 'all' ? ['set', 'card'] : [options.kind];
+  if (scopedSetIds.length === 0) {
+    let query = supabase
+      .from('raw_imports')
+      .select('id')
+      .eq('source', SOURCE)
+      .eq('status', 'pending')
+      .limit(1);
+    if (kinds.length === 1) query = query.eq('payload->>_kind', kinds[0]);
+    const { data, error } = await query;
+    if (error) throw error;
+    return Boolean(data?.length);
+  }
+
+  const results = await Promise.all(kinds.map((kind) => (
+    applySetScope(
+      supabase
+        .from('raw_imports')
+        .select('id')
+        .eq('source', SOURCE)
+        .eq('payload->>_kind', kind)
+        .eq('status', 'pending'),
+      kind,
+      scopedSetIds,
+    ).limit(1)
+  )));
+  for (const result of results) {
+    if (result.error) throw result.error;
+  }
+  return results.some((result) => Boolean(result.data?.length));
 }
 
 function collectSetCodes(payload) {
@@ -384,7 +460,7 @@ async function resolveCardPrintMatch(supabase, setId, cardId, numberFull, number
     const { data, error } = await supabase
       .from('card_prints')
       .select(
-        'id, set_id, number, variant_key, external_ids, image_url, image_alt_url, image_source, rarity, regulation_mark, artist, ai_metadata',
+        'id, set_id, set_code, number, number_plain, variant_key, external_ids, image_url, image_alt_url, image_source, rarity, regulation_mark, artist, ai_metadata',
       )
       .eq('set_id', setId)
       .eq('external_ids->>tcgdex', cardId)
@@ -398,7 +474,7 @@ async function resolveCardPrintMatch(supabase, setId, cardId, numberFull, number
     const { data, error } = await supabase
       .from('card_prints')
       .select(
-        'id, set_id, number, variant_key, external_ids, image_url, image_alt_url, image_source, rarity, regulation_mark, artist, ai_metadata',
+        'id, set_id, set_code, number, number_plain, variant_key, external_ids, image_url, image_alt_url, image_source, rarity, regulation_mark, artist, ai_metadata',
       )
       .eq('set_id', setId)
       .eq('number', numberFull)
@@ -412,7 +488,7 @@ async function resolveCardPrintMatch(supabase, setId, cardId, numberFull, number
     const { data, error } = await supabase
       .from('card_prints')
       .select(
-        'id, set_id, number, variant_key, external_ids, image_url, image_alt_url, image_source, rarity, regulation_mark, artist, ai_metadata',
+        'id, set_id, set_code, number, number_plain, variant_key, external_ids, image_url, image_alt_url, image_source, rarity, regulation_mark, artist, ai_metadata',
       )
       .eq('set_id', setId)
       .eq('number_plain', numberPlainValue)
@@ -608,10 +684,10 @@ async function resolveSetForCard(supabase, cardPayload) {
   return { matches, requestedId: explicitId };
 }
 
-async function upsertCardPrint(supabase, raw, cardPayload, setId, options) {
+async function upsertCardPrint(supabase, raw, cardPayload, setId, setCode, options) {
   const cardData = cardPayload?.card ?? cardPayload ?? {};
   const cardId = cardData?.id || cardPayload?._external_id || raw?.payload?._external_id || null;
-  const numberFull = cardData?.number ?? null;
+  const numberFull = cardNumber(cardData, cardPayload);
   const numPlain = numberPlain(numberFull);
   const variantKey = deriveVariantKey(numberFull);
 
@@ -649,6 +725,7 @@ async function upsertCardPrint(supabase, raw, cardPayload, setId, options) {
   if (!match) {
     const insertPayload = {
       set_id: setId,
+      set_code: setCode ?? null,
       name: cardData?.name ?? cardId,
       number: numberFull,
       variant_key: variantKey,
@@ -682,6 +759,15 @@ async function upsertCardPrint(supabase, raw, cardPayload, setId, options) {
     external_ids: mergeExternalIds(match.external_ids, cardId),
     ai_metadata: buildAiMetadata(match.ai_metadata, cardData),
   };
+  if (setCode && !match.set_code) {
+    updates.set_code = setCode;
+  }
+  if (numberFull && !match.number) {
+    updates.number = numberFull;
+  }
+  if (variantKey && !match.variant_key) {
+    updates.variant_key = variantKey;
+  }
   if (sharedFields.regulation_mark && !match.regulation_mark) {
     updates.regulation_mark = sharedFields.regulation_mark;
   }
@@ -743,7 +829,7 @@ async function normalizeSets(supabase, options) {
     const batchSize =
       remaining !== null ? Math.min(BATCH_SIZE, Math.max(remaining, 0)) : BATCH_SIZE;
     if (batchSize === 0) break;
-    const raws = await fetchPendingBatch(supabase, 'set', batchSize);
+    const raws = await fetchPendingBatch(supabase, 'set', batchSize, options);
     if (!raws || raws.length === 0) break;
     for (const raw of raws) {
       const result = await upsertSet(supabase, raw, options);
@@ -771,7 +857,7 @@ async function normalizeCards(supabase, options) {
     const batchSize =
       remaining !== null ? Math.min(BATCH_SIZE, Math.max(remaining, 0)) : BATCH_SIZE;
     if (batchSize === 0) break;
-    const raws = await fetchPendingBatch(supabase, 'card', batchSize);
+    const raws = await fetchPendingBatch(supabase, 'card', batchSize, options);
     if (!raws || raws.length === 0) break;
 
     for (const raw of raws) {
@@ -792,11 +878,13 @@ async function normalizeCards(supabase, options) {
         }
 
         const setId = matches[0].id;
+        const setCode = matches[0].code ?? null;
         const upsertResult = await upsertCardPrint(
           supabase,
           raw,
           cardPayload,
           setId,
+          setCode,
           options,
         );
         if (upsertResult?.status === 'conflict') {
@@ -856,7 +944,12 @@ async function logRun(supabase, stats, options) {
       {
         kind: 'tcgdex_normalize',
         source: SOURCE,
-        scope: { batch_size: BATCH_SIZE, mode: options.mode },
+        scope: {
+          batch_size: BATCH_SIZE,
+          mode: options.mode,
+          set_ids: normalizeSetIds(options.setIds),
+          kind: options.kind,
+        },
         status: 'success',
         finished_at: todayIso(),
         counts: stats,
@@ -872,20 +965,18 @@ async function main() {
   const supabase = createBackendClient();
   console.log('[tcgdex][normalize] start', options);
 
-  const { data: pendingRows, error: pendingError } = await supabase
-    .from('raw_imports')
-    .select('id')
-    .eq('source', SOURCE)
-    .eq('status', 'pending')
-    .limit(1);
-  if (pendingError) throw pendingError;
-  if (!pendingRows || pendingRows.length === 0) {
+  const pendingRowsExist = await hasPendingRows(supabase, options);
+  if (!pendingRowsExist) {
     console.log('[tcgdex][normalize] no pending rows; exiting');
     return;
   }
 
-  const setStats = await normalizeSets(supabase, options);
-  const cardStats = await normalizeCards(supabase, options);
+  const setStats = options.kind === 'all' || options.kind === 'set'
+    ? await normalizeSets(supabase, options)
+    : { normalized: 0, conflicts: 0, errors: 0, processed: 0, skipped: true };
+  const cardStats = options.kind === 'all' || options.kind === 'card'
+    ? await normalizeCards(supabase, options)
+    : { normalized: 0, conflicts: 0, errors: 0, processed: 0, skipped: true };
 
   await logRun(
     supabase,

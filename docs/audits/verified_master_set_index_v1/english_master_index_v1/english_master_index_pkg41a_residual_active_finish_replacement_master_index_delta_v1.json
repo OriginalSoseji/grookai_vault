@@ -1,0 +1,181 @@
+{
+  "generated_at": "2026-06-14T03:39:43.077Z",
+  "version": "english_master_index_pkg41a_residual_active_finish_replacement_master_index_delta_v1",
+  "package_id": "PKG-41A-RESIDUAL-ACTIVE-FINISH-REPLACEMENT-MASTER-INDEX-DELTA",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_artifacts": {
+    "adjudication_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg40a_residual_unsupported_source_adjudication_v1.json",
+    "printings_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_printings_v1.json",
+    "completion_export_json": "docs\\audits\\english_master_index_completion_v1\\english_master_index_master_admissible_export_v1.json",
+    "publishable_printings_json": "docs\\audits\\english_master_index_publishable_v1\\sets\\smp\\printings.json",
+    "publishable_evidence_json": "docs\\audits\\english_master_index_publishable_v1\\sets\\smp\\evidence.json"
+  },
+  "summary": {
+    "master_printing_rows_inserted": 0,
+    "route_rows": 3,
+    "completion_export_rows_inserted": 0,
+    "publishable_printing_rows_inserted": 0,
+    "publishable_evidence_rows_inserted": 4
+  },
+  "added_master_printings": [],
+  "rows": [
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "106",
+      "card_name": "Gible",
+      "variant_key": "staff_stamp",
+      "selected_base_parent_id": "ef328f35-adc4-4238-aa00-bf3e90d1da46",
+      "base_parent_child_finishes": [
+        "holo"
+      ],
+      "accepted_finish_key": "reverse",
+      "source_family_count": 2,
+      "source_families": [
+        "pokecardvalues",
+        "pokemonflashfire"
+      ],
+      "evidence_count": 2,
+      "status": "ready_for_guarded_dry_run",
+      "route_origin": "PKG-41A-RESIDUAL-ACTIVE-FINISH-REPLACEMENT-MASTER-INDEX-DELTA",
+      "source_adjudication_status": "active_finish_conflict_replace_with_reverse_review_ready",
+      "requires_parent_identity_backfill": true,
+      "requires_child_replacement": true,
+      "current_finish_key": "holo",
+      "current_child_printing_id": "8035cb24-330e-4562-82fa-b3494eff43b8",
+      "evidence": [
+        {
+          "source_key": "pokemonflashfire_product_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokemonflashfire.com/product/gible-staff-106147-reverse-holo-pokemon-league-promo/",
+          "evidence_label": "Pokemon Flashfire identifies Gible #106 Staff as Reverse Holo / Crosshatch Holofoil.",
+          "set_key": "pl3",
+          "card_number": "106",
+          "card_name": "Gible",
+          "variant_key": "staff_stamp",
+          "finish_key": "reverse"
+        },
+        {
+          "source_key": "pokecardvalues_checklist",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/gible-106-147-reverse-holo-unlimited-supreme-victors/pl3-106-3-1/",
+          "evidence_label": "PokeCardValues lists Gible #106 Staff City Championships as Reverse Holo.",
+          "set_key": "pl3",
+          "card_number": "106",
+          "card_name": "Gible",
+          "variant_key": "staff_stamp",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM198",
+      "card_name": "Bulbasaur",
+      "variant_key": "pikachu_stamp",
+      "selected_base_parent_id": "41d1c25c-d5cb-417b-93c2-aab56aa3e251",
+      "base_parent_child_finishes": [
+        "normal"
+      ],
+      "accepted_finish_key": "holo",
+      "source_family_count": 2,
+      "source_families": [
+        "coolstuffinc",
+        "pricecharting"
+      ],
+      "evidence_count": 2,
+      "status": "ready_for_guarded_dry_run",
+      "route_origin": "PKG-41A-RESIDUAL-ACTIVE-FINISH-REPLACEMENT-MASTER-INDEX-DELTA",
+      "source_adjudication_status": "active_finish_conflict_replace_with_holo_review_ready",
+      "requires_parent_identity_backfill": true,
+      "requires_child_replacement": true,
+      "current_finish_key": "normal",
+      "current_child_printing_id": "abd9e005-f35a-4344-ab4b-6f78d54cc4d1",
+      "evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/bulbasaur-stamped-sm198",
+          "evidence_label": "PriceCharting identifies Bulbasaur SM198 Detective Pikachu stamped sales as holo.",
+          "set_key": "smp",
+          "card_number": "SM198",
+          "card_name": "Bulbasaur",
+          "variant_key": "pikachu_stamp",
+          "finish_key": "holo"
+        },
+        {
+          "source_key": "coolstuffinc_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.coolstuffinc.com/p/Pokemon/Bulbasaur%2B%28Detective%2BPikachu%2BStamp%29%2B-%2BSM198",
+          "evidence_label": "CoolStuffInc identifies Bulbasaur SM198 as Detective Pikachu stamped.",
+          "set_key": "smp",
+          "card_number": "SM198",
+          "card_name": "Bulbasaur",
+          "variant_key": "pikachu_stamp",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM65",
+      "card_name": "Alolan Raichu",
+      "variant_key": "battle_academy_deck_mark",
+      "selected_base_parent_id": "0a2b6e89-89b7-4fc1-a5d9-762bec994326",
+      "base_parent_child_finishes": [
+        "normal"
+      ],
+      "accepted_finish_key": "normal",
+      "source_family_count": 2,
+      "source_families": [
+        "ebay",
+        "pokumon"
+      ],
+      "evidence_count": 2,
+      "status": "ready_for_guarded_dry_run",
+      "route_origin": "PKG-41A-RESIDUAL-ACTIVE-FINISH-REPLACEMENT-MASTER-INDEX-DELTA",
+      "source_adjudication_status": "master_index_delta_and_identity_backfill_ready",
+      "requires_parent_identity_backfill": true,
+      "requires_child_replacement": false,
+      "current_finish_key": "normal",
+      "current_child_printing_id": "1109fa5a-ee4f-4be3-a9b0-c03db432bbdb",
+      "evidence": [
+        {
+          "source_key": "pokumon_battle_academy_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/non-holo-56-stamp-alolan-raichu-sm65-english-promo/",
+          "evidence_label": "Pokumon identifies Alolan Raichu SM65 Battle Academy #56 stamp as non-holo.",
+          "set_key": "smp",
+          "card_number": "SM65",
+          "card_name": "Alolan Raichu",
+          "variant_key": "battle_academy_deck_mark",
+          "finish_key": "normal"
+        },
+        {
+          "source_key": "ebay_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/itm/186075562807",
+          "evidence_label": "eBay product title identifies Alolan Raichu SM65 Battle Academy as Non-Holo Promo.",
+          "set_key": "smp",
+          "card_number": "SM65",
+          "card_name": "Alolan Raichu",
+          "variant_key": "battle_academy_deck_mark",
+          "finish_key": "normal"
+        }
+      ]
+    }
+  ],
+  "safety_confirmation": {
+    "docs_only": true,
+    "no_db_writes": true,
+    "no_migrations": true,
+    "not_apply_authority": true
+  },
+  "fingerprint_sha256": "7f7b69130db550fb0f3ecaa12344c634856248916ca8147ce5e74186387ea632"
+}

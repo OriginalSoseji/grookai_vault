@@ -1,0 +1,727 @@
+{
+  "generated_at": "2026-06-10T14:51:53.401Z",
+  "version": "english_master_index_pkg08g_true_parent_child_insert_real_apply_v1",
+  "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+  "package_fingerprint_sha256": "a6112f2e2bf911c3f1899bf496f20a5211e2bcc288813311c2200847aa4ce305",
+  "approval_text": "Approve real PKG-08G-TRUE-PARENT-CHILD-INSERTS apply only. Fingerprint: a6112f2e2bf911c3f1899bf496f20a5211e2bcc288813311c2200847aa4ce305. Scope: 9 parent card_print inserts, 9 child card_printing inserts, 9 TCGdex external mappings across 2 sets; finishes holo=1, normal=8. Dry-run proof: efe0cc82cab977ff39607996df26b09b760a1f49d0de6efe35fa1d82a60baeb1 == efe0cc82cab977ff39607996df26b09b760a1f49d0de6efe35fa1d82a60baeb1. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+  "apply_status": "pkg08g_true_parent_child_insert_real_apply_committed_and_verified",
+  "committed": true,
+  "db_writes_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "unsupported_cleanup_performed": false,
+  "inserted_parent_count": 9,
+  "inserted_child_count": 9,
+  "inserted_mapping_count": 9,
+  "scope": {
+    "parent_rows": 9,
+    "child_rows": 9,
+    "mapping_rows": 9,
+    "by_set": {
+      "sve": 8,
+      "swshp": 1
+    },
+    "by_finish": {
+      "holo": 1,
+      "normal": 8
+    }
+  },
+  "prerequisite_findings": [],
+  "stop_findings": [],
+  "error_message": null,
+  "before_snapshot": {
+    "captured_at": "2026-06-10T14:51:51.308Z",
+    "rows": [],
+    "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "counts": {
+      "target_parent_rows": 0,
+      "target_child_rows": 0,
+      "target_mapping_rows": 0,
+      "total_rows": 0
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-10T14:51:53.091Z",
+    "rows": [
+      {
+        "row_type": "target_child",
+        "row_id": "7758bb57-6f2e-4fa5-9239-5b3dd3b9836d",
+        "set_code": "sve",
+        "card_number": "017",
+        "card_name": "Basic Grass Energy",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "d6b4cf3c-df8b-4ba4-81df-21252c58cfe0",
+        "set_code": "sve",
+        "card_number": "018",
+        "card_name": "Basic Fire Energy",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "b3c1b7d3-e1fe-4f12-8735-9bae39c43398",
+        "set_code": "sve",
+        "card_number": "019",
+        "card_name": "Basic Water Energy",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "d6b5d6d8-3fb5-4f31-b427-4b54daa4df08",
+        "set_code": "sve",
+        "card_number": "020",
+        "card_name": "Basic Lightning Energy",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "4381c66b-cb01-4855-a484-767ca37492ef",
+        "set_code": "sve",
+        "card_number": "021",
+        "card_name": "Basic Psychic Energy",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "b9575043-cf06-4b33-958e-b6af72b5a9f0",
+        "set_code": "sve",
+        "card_number": "022",
+        "card_name": "Basic Fighting Energy",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "b796bc87-db9a-4a1b-953f-527509cfd0b7",
+        "set_code": "sve",
+        "card_number": "023",
+        "card_name": "Basic Darkness Energy",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "3dde103e-c187-490d-84b2-4b85eb6e48fc",
+        "set_code": "sve",
+        "card_number": "024",
+        "card_name": "Basic Metal Energy",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "e973055a-df3e-4bcb-bdc4-ae7a726e6178",
+        "set_code": "swshp",
+        "card_number": "301",
+        "card_name": "Lugia V",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "target_mapping",
+        "row_id": "121811",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "sve-017"
+      },
+      {
+        "row_type": "target_mapping",
+        "row_id": "121812",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "sve-018"
+      },
+      {
+        "row_type": "target_mapping",
+        "row_id": "121813",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "sve-019"
+      },
+      {
+        "row_type": "target_mapping",
+        "row_id": "121814",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "sve-020"
+      },
+      {
+        "row_type": "target_mapping",
+        "row_id": "121815",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "sve-021"
+      },
+      {
+        "row_type": "target_mapping",
+        "row_id": "121816",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "sve-022"
+      },
+      {
+        "row_type": "target_mapping",
+        "row_id": "121817",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "sve-023"
+      },
+      {
+        "row_type": "target_mapping",
+        "row_id": "121818",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "sve-024"
+      },
+      {
+        "row_type": "target_mapping",
+        "row_id": "121810",
+        "set_code": null,
+        "card_number": null,
+        "card_name": null,
+        "finish_key": null,
+        "external_id": "swshp-SWSH301"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "846771e7-8f59-4e3b-bab6-d6a330052441",
+        "set_code": "sve",
+        "card_number": "017",
+        "card_name": "Basic Grass Energy",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c660832a-9eb5-4b2a-9c9b-a0fab19d5d6a",
+        "set_code": "sve",
+        "card_number": "018",
+        "card_name": "Basic Fire Energy",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "16fb638f-0a6e-4ec8-8a2b-77fe6f047ce5",
+        "set_code": "sve",
+        "card_number": "019",
+        "card_name": "Basic Water Energy",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "9bd7388f-1393-4c59-87ca-af0e9b2261cf",
+        "set_code": "sve",
+        "card_number": "020",
+        "card_name": "Basic Lightning Energy",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e00a8dbd-375b-487c-86cf-e59bef8f9d2d",
+        "set_code": "sve",
+        "card_number": "021",
+        "card_name": "Basic Psychic Energy",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e8cd3c68-f7b9-4014-9bf0-05db1653b4a7",
+        "set_code": "sve",
+        "card_number": "022",
+        "card_name": "Basic Fighting Energy",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "47a5d12d-9d45-4070-b213-d2530ee3b10f",
+        "set_code": "sve",
+        "card_number": "023",
+        "card_name": "Basic Darkness Energy",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "5dbda36a-ecef-4414-bd88-2c9e76006c54",
+        "set_code": "sve",
+        "card_number": "024",
+        "card_name": "Basic Metal Energy",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+        "set_code": "swshp",
+        "card_number": "301",
+        "card_name": "Lugia V",
+        "finish_key": null,
+        "external_id": null
+      }
+    ],
+    "hash_sha256": "f2826bd4a5355961dbfe95ac146a4b654bb25f20e4d3f2320199de16d19da0a6",
+    "counts": {
+      "target_parent_rows": 9,
+      "target_child_rows": 9,
+      "target_mapping_rows": 9,
+      "total_rows": 27
+    }
+  },
+  "inserted_rows": {
+    "captured_at": "2026-06-10T14:51:53.318Z",
+    "parent_rows": [
+      {
+        "card_print_id": "846771e7-8f59-4e3b-bab6-d6a330052441",
+        "set_id": "01a1376f-75c5-463e-9aff-3446a1676f07",
+        "set_code": "sve",
+        "card_number": "017",
+        "number": "017",
+        "number_plain": "017",
+        "name": "Basic Grass Energy",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "sve-017"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "source_set_key": "sve"
+        }
+      },
+      {
+        "card_print_id": "c660832a-9eb5-4b2a-9c9b-a0fab19d5d6a",
+        "set_id": "01a1376f-75c5-463e-9aff-3446a1676f07",
+        "set_code": "sve",
+        "card_number": "018",
+        "number": "018",
+        "number_plain": "018",
+        "name": "Basic Fire Energy",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "sve-018"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "source_set_key": "sve"
+        }
+      },
+      {
+        "card_print_id": "16fb638f-0a6e-4ec8-8a2b-77fe6f047ce5",
+        "set_id": "01a1376f-75c5-463e-9aff-3446a1676f07",
+        "set_code": "sve",
+        "card_number": "019",
+        "number": "019",
+        "number_plain": "019",
+        "name": "Basic Water Energy",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "sve-019"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "source_set_key": "sve"
+        }
+      },
+      {
+        "card_print_id": "9bd7388f-1393-4c59-87ca-af0e9b2261cf",
+        "set_id": "01a1376f-75c5-463e-9aff-3446a1676f07",
+        "set_code": "sve",
+        "card_number": "020",
+        "number": "020",
+        "number_plain": "020",
+        "name": "Basic Lightning Energy",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "sve-020"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "source_set_key": "sve"
+        }
+      },
+      {
+        "card_print_id": "e00a8dbd-375b-487c-86cf-e59bef8f9d2d",
+        "set_id": "01a1376f-75c5-463e-9aff-3446a1676f07",
+        "set_code": "sve",
+        "card_number": "021",
+        "number": "021",
+        "number_plain": "021",
+        "name": "Basic Psychic Energy",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "sve-021"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "source_set_key": "sve"
+        }
+      },
+      {
+        "card_print_id": "e8cd3c68-f7b9-4014-9bf0-05db1653b4a7",
+        "set_id": "01a1376f-75c5-463e-9aff-3446a1676f07",
+        "set_code": "sve",
+        "card_number": "022",
+        "number": "022",
+        "number_plain": "022",
+        "name": "Basic Fighting Energy",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "sve-022"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "source_set_key": "sve"
+        }
+      },
+      {
+        "card_print_id": "47a5d12d-9d45-4070-b213-d2530ee3b10f",
+        "set_id": "01a1376f-75c5-463e-9aff-3446a1676f07",
+        "set_code": "sve",
+        "card_number": "023",
+        "number": "023",
+        "number_plain": "023",
+        "name": "Basic Darkness Energy",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "sve-023"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "source_set_key": "sve"
+        }
+      },
+      {
+        "card_print_id": "5dbda36a-ecef-4414-bd88-2c9e76006c54",
+        "set_id": "01a1376f-75c5-463e-9aff-3446a1676f07",
+        "set_code": "sve",
+        "card_number": "024",
+        "number": "024",
+        "number_plain": "024",
+        "name": "Basic Metal Energy",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "sve-024"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "source_set_key": "sve"
+        }
+      },
+      {
+        "card_print_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+        "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+        "set_code": "swshp",
+        "card_number": "301",
+        "number": "SWSH301",
+        "number_plain": "301",
+        "name": "Lugia V",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "swshp-SWSH301"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "source_set_key": "swshp"
+        }
+      }
+    ],
+    "child_rows": [
+      {
+        "card_printing_id": "7758bb57-6f2e-4fa5-9239-5b3dd3b9836d",
+        "card_print_id": "846771e7-8f59-4e3b-bab6-d6a330052441",
+        "set_code": "sve",
+        "card_number": "017",
+        "card_name": "Basic Grass Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sve:17:normal",
+        "created_by": "pkg08g_true_parent_child_insert_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "d6b4cf3c-df8b-4ba4-81df-21252c58cfe0",
+        "card_print_id": "c660832a-9eb5-4b2a-9c9b-a0fab19d5d6a",
+        "set_code": "sve",
+        "card_number": "018",
+        "card_name": "Basic Fire Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sve:18:normal",
+        "created_by": "pkg08g_true_parent_child_insert_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "b3c1b7d3-e1fe-4f12-8735-9bae39c43398",
+        "card_print_id": "16fb638f-0a6e-4ec8-8a2b-77fe6f047ce5",
+        "set_code": "sve",
+        "card_number": "019",
+        "card_name": "Basic Water Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sve:19:normal",
+        "created_by": "pkg08g_true_parent_child_insert_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "d6b5d6d8-3fb5-4f31-b427-4b54daa4df08",
+        "card_print_id": "9bd7388f-1393-4c59-87ca-af0e9b2261cf",
+        "set_code": "sve",
+        "card_number": "020",
+        "card_name": "Basic Lightning Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sve:20:normal",
+        "created_by": "pkg08g_true_parent_child_insert_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "4381c66b-cb01-4855-a484-767ca37492ef",
+        "card_print_id": "e00a8dbd-375b-487c-86cf-e59bef8f9d2d",
+        "set_code": "sve",
+        "card_number": "021",
+        "card_name": "Basic Psychic Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sve:21:normal",
+        "created_by": "pkg08g_true_parent_child_insert_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "b9575043-cf06-4b33-958e-b6af72b5a9f0",
+        "card_print_id": "e8cd3c68-f7b9-4014-9bf0-05db1653b4a7",
+        "set_code": "sve",
+        "card_number": "022",
+        "card_name": "Basic Fighting Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sve:22:normal",
+        "created_by": "pkg08g_true_parent_child_insert_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "b796bc87-db9a-4a1b-953f-527509cfd0b7",
+        "card_print_id": "47a5d12d-9d45-4070-b213-d2530ee3b10f",
+        "set_code": "sve",
+        "card_number": "023",
+        "card_name": "Basic Darkness Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sve:23:normal",
+        "created_by": "pkg08g_true_parent_child_insert_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "3dde103e-c187-490d-84b2-4b85eb6e48fc",
+        "card_print_id": "5dbda36a-ecef-4414-bd88-2c9e76006c54",
+        "set_code": "sve",
+        "card_number": "024",
+        "card_name": "Basic Metal Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sve:24:normal",
+        "created_by": "pkg08g_true_parent_child_insert_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "e973055a-df3e-4bcb-bdc4-ae7a726e6178",
+        "card_print_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+        "set_code": "swshp",
+        "card_number": "301",
+        "card_name": "Lugia V",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swshp:SWSH301:holo",
+        "created_by": "pkg08g_true_parent_child_insert_guarded_dry_run_v1"
+      }
+    ],
+    "mapping_rows": [
+      {
+        "external_mapping_id": "121811",
+        "source": "tcgdex",
+        "external_id": "sve-017",
+        "card_print_id": "846771e7-8f59-4e3b-bab6-d6a330052441",
+        "meta": {
+          "set_key": "sve",
+          "card_name": "Basic Grass Energy",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "card_number": "017",
+          "live_set_code": "sve"
+        }
+      },
+      {
+        "external_mapping_id": "121812",
+        "source": "tcgdex",
+        "external_id": "sve-018",
+        "card_print_id": "c660832a-9eb5-4b2a-9c9b-a0fab19d5d6a",
+        "meta": {
+          "set_key": "sve",
+          "card_name": "Basic Fire Energy",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "card_number": "018",
+          "live_set_code": "sve"
+        }
+      },
+      {
+        "external_mapping_id": "121813",
+        "source": "tcgdex",
+        "external_id": "sve-019",
+        "card_print_id": "16fb638f-0a6e-4ec8-8a2b-77fe6f047ce5",
+        "meta": {
+          "set_key": "sve",
+          "card_name": "Basic Water Energy",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "card_number": "019",
+          "live_set_code": "sve"
+        }
+      },
+      {
+        "external_mapping_id": "121814",
+        "source": "tcgdex",
+        "external_id": "sve-020",
+        "card_print_id": "9bd7388f-1393-4c59-87ca-af0e9b2261cf",
+        "meta": {
+          "set_key": "sve",
+          "card_name": "Basic Lightning Energy",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "card_number": "020",
+          "live_set_code": "sve"
+        }
+      },
+      {
+        "external_mapping_id": "121815",
+        "source": "tcgdex",
+        "external_id": "sve-021",
+        "card_print_id": "e00a8dbd-375b-487c-86cf-e59bef8f9d2d",
+        "meta": {
+          "set_key": "sve",
+          "card_name": "Basic Psychic Energy",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "card_number": "021",
+          "live_set_code": "sve"
+        }
+      },
+      {
+        "external_mapping_id": "121816",
+        "source": "tcgdex",
+        "external_id": "sve-022",
+        "card_print_id": "e8cd3c68-f7b9-4014-9bf0-05db1653b4a7",
+        "meta": {
+          "set_key": "sve",
+          "card_name": "Basic Fighting Energy",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "card_number": "022",
+          "live_set_code": "sve"
+        }
+      },
+      {
+        "external_mapping_id": "121817",
+        "source": "tcgdex",
+        "external_id": "sve-023",
+        "card_print_id": "47a5d12d-9d45-4070-b213-d2530ee3b10f",
+        "meta": {
+          "set_key": "sve",
+          "card_name": "Basic Darkness Energy",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "card_number": "023",
+          "live_set_code": "sve"
+        }
+      },
+      {
+        "external_mapping_id": "121818",
+        "source": "tcgdex",
+        "external_id": "sve-024",
+        "card_print_id": "5dbda36a-ecef-4414-bd88-2c9e76006c54",
+        "meta": {
+          "set_key": "sve",
+          "card_name": "Basic Metal Energy",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "card_number": "024",
+          "live_set_code": "sve"
+        }
+      },
+      {
+        "external_mapping_id": "121810",
+        "source": "tcgdex",
+        "external_id": "swshp-SWSH301",
+        "card_print_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+        "meta": {
+          "set_key": "swshp",
+          "card_name": "Lugia V",
+          "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+          "card_number": "SWSH301",
+          "live_set_code": "swshp"
+        }
+      }
+    ],
+    "hash_sha256": "9c27290ccdb217da9972d7bc1edda2a908767c94c2dfaea00c0481dcba8abda1",
+    "counts": {
+      "parent_rows_found": 9,
+      "child_rows_found": 9,
+      "mapping_rows_found": 9,
+      "provisional_child_rows": 0,
+      "by_set": {
+        "sve": 8,
+        "swshp": 1
+      },
+      "by_finish": {
+        "holo": 1,
+        "normal": 8
+      }
+    }
+  },
+  "source_artifacts": {
+    "real_apply_gate": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg08g_true_parent_child_insert_real_apply_gate_v1.json",
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg08g_true_parent_child_insert_guarded_dry_run_v1.json"
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "version": 1,
+  "package_id": "SV03-EXISTING-STAMPED-PARENT-IDENTITY-BACKFILL-READINESS-V1",
+  "generated_at": "2026-06-12T19:07:36.598Z",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_sv03_existing_stamped_parent_collision_audit_v1.json",
+  "source_collision_audit_fingerprint": "47a080fac47e1439538f13396073fb6332bd915f15ae4116476d5b68ed351f34",
+  "fingerprint_sha256": "32ca6894e2e9af1d13f6fb2add5c550a600dfbaa4c3b5dbc189d2180ca16bb90",
+  "summary": {
+    "target_rows": 3,
+    "identity_backfill_ready_rows": 0,
+    "blocked_identity_backfill_rows": 3,
+    "child_insert_candidate_after_identity_backfill": 0,
+    "child_insert_manual_adjudication_required": 2,
+    "by_readiness_status": {
+      "blocked_before_identity_backfill_dry_run": 3
+    },
+    "by_child_action_status": {
+      "blocked_before_child_insert": 1,
+      "manual_adjudication_required_before_child_insert": 2
+    },
+    "by_evidence_tier": {
+      "multi_lane": 1,
+      "product_family_only": 2
+    },
+    "by_blocker": {
+      "active_identity_already_exists_or_ambiguous": 3
+    },
+    "by_warning": {
+      "child_insert_evidence_still_requires_manual_adjudication": 2,
+      "target_child_finish_missing": 3
+    }
+  },
+  "rows": [
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "196",
+      "source_number_plain": "196",
+      "card_name": "Town Store",
+      "target_variant_key": "play_pokemon_stamp",
+      "target_finish_key": "cosmos",
+      "evidence_tier": "multi_lane",
+      "source_readiness_status": "review_ready_multi_lane_active_finish",
+      "existing_parent_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+      "base_parent_id": "ffa8abb2-de0c-4ab4-9fa5-c4d50c14d9f6",
+      "existing_parent_printed_identity_modifier": "play_pokemon_stamp",
+      "projected_identity_status": "ready",
+      "projected_identity_domain": "pokemon_eng_standard",
+      "projected_set_code_identity": "sv03",
+      "projected_printed_number": "196",
+      "projected_normalized_printed_name": "town store",
+      "projected_identity_key_version": "pokemon_eng_standard:v1",
+      "projected_identity_key_hash": "a4042a6bc95daabe2ad0a164cb96388eaaa47bc87baa4aa25b6edbae9c248419",
+      "child_printings": [],
+      "active_identity_count": 1,
+      "identities": [
+        {
+          "id": "f5ab64a0-c75d-4846-8ec4-deabd56eda22",
+          "is_active": true,
+          "printed_number": "196",
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "a4042a6bc95daabe2ad0a164cb96388eaaa47bc87baa4aa25b6edbae9c248419",
+          "set_code_identity": "sv03",
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "normalized_printed_name": "town store"
+        }
+      ],
+      "projected_identity_hash_collision_count": 0,
+      "expected_target_child_id_collision_count": 0,
+      "existing_target_finish_child_count": 0,
+      "active_finish_key_count": 1,
+      "readiness_status": "blocked_before_identity_backfill_dry_run",
+      "child_action_status": "blocked_before_child_insert",
+      "blockers": [
+        "active_identity_already_exists_or_ambiguous"
+      ],
+      "warnings": [
+        "target_child_finish_missing"
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "22",
+      "source_number_plain": "22",
+      "card_name": "Toedscruel ex",
+      "target_variant_key": "play_pokemon_stamp",
+      "target_finish_key": "holo",
+      "evidence_tier": "product_family_only",
+      "source_readiness_status": "review_ready_product_family_only",
+      "existing_parent_id": "25d66424-5250-4d77-b9b3-d8e82bca20a4",
+      "base_parent_id": "2ffec4d7-5896-4343-92ba-19adec2572c2",
+      "existing_parent_printed_identity_modifier": "play_pokemon_stamp",
+      "projected_identity_status": "ready",
+      "projected_identity_domain": "pokemon_eng_standard",
+      "projected_set_code_identity": "sv03",
+      "projected_printed_number": "022",
+      "projected_normalized_printed_name": "toedscruel ex",
+      "projected_identity_key_version": "pokemon_eng_standard:v1",
+      "projected_identity_key_hash": "466d584b30a3072ea0de2fa369b9482acb64c8cddc399cad1eba08aac6898671",
+      "child_printings": [],
+      "active_identity_count": 1,
+      "identities": [
+        {
+          "id": "b49e4f44-527b-4e39-b635-fefe5d97361c",
+          "is_active": true,
+          "printed_number": "022",
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "466d584b30a3072ea0de2fa369b9482acb64c8cddc399cad1eba08aac6898671",
+          "set_code_identity": "sv03",
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "normalized_printed_name": "toedscruel ex"
+        }
+      ],
+      "projected_identity_hash_collision_count": 0,
+      "expected_target_child_id_collision_count": 0,
+      "existing_target_finish_child_count": 0,
+      "active_finish_key_count": 1,
+      "readiness_status": "blocked_before_identity_backfill_dry_run",
+      "child_action_status": "manual_adjudication_required_before_child_insert",
+      "blockers": [
+        "active_identity_already_exists_or_ambiguous"
+      ],
+      "warnings": [
+        "target_child_finish_missing",
+        "child_insert_evidence_still_requires_manual_adjudication"
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "66",
+      "source_number_plain": "66",
+      "card_name": "Tyranitar ex",
+      "target_variant_key": "play_pokemon_stamp",
+      "target_finish_key": "holo",
+      "evidence_tier": "product_family_only",
+      "source_readiness_status": "review_ready_product_family_only",
+      "existing_parent_id": "3bfdd7db-f5d8-4275-85b8-bb64130860e6",
+      "base_parent_id": "213e9306-602a-4f85-8908-6625a802a380",
+      "existing_parent_printed_identity_modifier": "play_pokemon_stamp",
+      "projected_identity_status": "ready",
+      "projected_identity_domain": "pokemon_eng_standard",
+      "projected_set_code_identity": "sv03",
+      "projected_printed_number": "066",
+      "projected_normalized_printed_name": "tyranitar ex",
+      "projected_identity_key_version": "pokemon_eng_standard:v1",
+      "projected_identity_key_hash": "b1073277d4739b5157fc89c164c0fd8e1c6cdd8a74c0e40f812cd47f2ac9c1a2",
+      "child_printings": [],
+      "active_identity_count": 1,
+      "identities": [
+        {
+          "id": "686b64da-fdda-4597-9030-c785a8eae6b6",
+          "is_active": true,
+          "printed_number": "066",
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "b1073277d4739b5157fc89c164c0fd8e1c6cdd8a74c0e40f812cd47f2ac9c1a2",
+          "set_code_identity": "sv03",
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "normalized_printed_name": "tyranitar ex"
+        }
+      ],
+      "projected_identity_hash_collision_count": 0,
+      "expected_target_child_id_collision_count": 0,
+      "existing_target_finish_child_count": 0,
+      "active_finish_key_count": 1,
+      "readiness_status": "blocked_before_identity_backfill_dry_run",
+      "child_action_status": "manual_adjudication_required_before_child_insert",
+      "blockers": [
+        "active_identity_already_exists_or_ambiguous"
+      ],
+      "warnings": [
+        "target_child_finish_missing",
+        "child_insert_evidence_still_requires_manual_adjudication"
+      ]
+    }
+  ],
+  "safety_confirmation": {
+    "no_apply_sql_generated": true,
+    "no_db_writes_performed": true,
+    "no_migrations_created": true,
+    "no_cleanup_or_quarantine_performed": true,
+    "stamped_is_parent_identity_not_child_finish": true
+  }
+}

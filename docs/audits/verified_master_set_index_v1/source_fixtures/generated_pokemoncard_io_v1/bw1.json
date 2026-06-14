@@ -1,0 +1,30 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pokemoncard_io_finish_bw1",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://pokemoncard.io/",
+  "source_status": "available_generated",
+  "set_key": "bw1",
+  "set_name": "Black & White",
+  "retrieved_at": "2026-06-12T04:47:47.378Z",
+  "raw_snapshot_ref": "generated_fixture:pokemoncard_io_finish:bw1:2026-06-12T04:47:47.378Z",
+  "generation_note": "Generated from PokemonCard.io TCGplayer price breakdown print rows. Rarity text alone is ignored.",
+  "records": [
+    {
+      "source_key": "pokemoncard_io_price_breakdown",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokemoncard.io/card/water-energy-bw1-107",
+      "set_name": "Black & White",
+      "card_number": "107",
+      "card_name": "Water Energy",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PokemonCard.io TCGplayer price breakdown row: Water Energy reverse",
+      "language": "en",
+      "retrieved_at": "2026-06-12T04:47:47.378Z",
+      "raw_snapshot_ref": "pokemoncard_io:bw1:107:reverse",
+      "notes": "Exact finish evidence accepted only from a PokemonCard.io TCGplayer price breakdown print row. Rarity text alone is not used."
+    }
+  ]
+}

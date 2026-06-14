@@ -1,0 +1,271 @@
+{
+  "generated_at": "2026-06-11T04:46:06.313Z",
+  "version": "english_master_index_pkg12d_me03_display_alias_child_insert_real_apply_v1",
+  "package_id": "PKG-12D-ME03-DISPLAY-ALIAS-CHILD-INSERTS",
+  "package_fingerprint_sha256": "f0c8c9e8253a1697062c4aa6bbee65bd66def494d84b57705d80ece548eeeaa9",
+  "apply_status": "applied",
+  "prerequisite_findings": [],
+  "post_apply_findings": [],
+  "db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "parent_writes_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "unsupported_cleanup_performed": false,
+  "scope": {
+    "inserted_rows": 4,
+    "target_parent_rows": 4,
+    "by_set": {
+      "me03": 4
+    },
+    "by_finish": {
+      "holo": 1,
+      "normal": 3
+    },
+    "rows": [
+      {
+        "card_printing_id": "db3c1e5d-2626-4f2f-b552-e7acf271d52d",
+        "card_print_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+        "set_key": "me03",
+        "live_set_code": "me03",
+        "card_number": "080",
+        "master_card_name": "Poké Ball",
+        "live_card_name": "Poke Ball",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "me03:080:normal",
+        "created_by": "pkg12d_me03_display_alias_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/me03-080",
+          "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+        ],
+        "source_count": 2
+      },
+      {
+        "card_printing_id": "e78aac1a-57d9-4581-b386-9524dfdb92ad",
+        "card_print_id": "377086c4-b968-4335-aa44-54b0b518e913",
+        "set_key": "me03",
+        "live_set_code": "me03",
+        "card_number": "081",
+        "master_card_name": "Poké Pad",
+        "live_card_name": "Poke Pad",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "me03:081:normal",
+        "created_by": "pkg12d_me03_display_alias_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/me03-081",
+          "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+        ],
+        "source_count": 2
+      },
+      {
+        "card_printing_id": "5018a7e0-a81f-4964-992b-ec5af0687a2c",
+        "card_print_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+        "set_key": "me03",
+        "live_set_code": "me03",
+        "card_number": "082",
+        "master_card_name": "Pokémon Catcher",
+        "live_card_name": "Pokemon Catcher",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "me03:082:normal",
+        "created_by": "pkg12d_me03_display_alias_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/me03-082",
+          "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+        ],
+        "source_count": 2
+      },
+      {
+        "card_printing_id": "a03235b0-fa4f-441f-bdae-f53dc4731123",
+        "card_print_id": "6254904f-1f84-4f58-99c6-d4a06731adc0",
+        "set_key": "me03",
+        "live_set_code": "me03",
+        "card_number": "113",
+        "master_card_name": "Poké Pad",
+        "live_card_name": "Poke Pad",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "me03:113:holo",
+        "created_by": "pkg12d_me03_display_alias_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/me03-113",
+          "https://reverseholo.app/sets/me03",
+          "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+        ],
+        "source_count": 3
+      }
+    ]
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-11T04:46:05.613Z",
+    "rows": [
+      {
+        "row_type": "target_parent",
+        "row_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+        "set_code": "me03",
+        "card_number": "080",
+        "card_name": "Poke Ball",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "377086c4-b968-4335-aa44-54b0b518e913",
+        "set_code": "me03",
+        "card_number": "081",
+        "card_name": "Poke Pad",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+        "set_code": "me03",
+        "card_number": "082",
+        "card_name": "Pokemon Catcher",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "6254904f-1f84-4f58-99c6-d4a06731adc0",
+        "set_code": "me03",
+        "card_number": "113",
+        "card_name": "Poke Pad",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "9d39db282394c214ab1ee51dd933a3f7b498be82883328c825ffa145765fa39f",
+    "counts": {
+      "target_parent_rows": 4,
+      "target_child_rows": 0,
+      "planned_id_collision_rows": 0,
+      "total_rows": 4
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-11T04:46:06.313Z",
+    "rows": [
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "db3c1e5d-2626-4f2f-b552-e7acf271d52d",
+        "set_code": "me03",
+        "card_number": "080",
+        "card_name": "Poke Ball",
+        "finish_key": "normal",
+        "target_card_printing_id": "db3c1e5d-2626-4f2f-b552-e7acf271d52d"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "e78aac1a-57d9-4581-b386-9524dfdb92ad",
+        "set_code": "me03",
+        "card_number": "081",
+        "card_name": "Poke Pad",
+        "finish_key": "normal",
+        "target_card_printing_id": "e78aac1a-57d9-4581-b386-9524dfdb92ad"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "5018a7e0-a81f-4964-992b-ec5af0687a2c",
+        "set_code": "me03",
+        "card_number": "082",
+        "card_name": "Pokemon Catcher",
+        "finish_key": "normal",
+        "target_card_printing_id": "5018a7e0-a81f-4964-992b-ec5af0687a2c"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "a03235b0-fa4f-441f-bdae-f53dc4731123",
+        "set_code": "me03",
+        "card_number": "113",
+        "card_name": "Poke Pad",
+        "finish_key": "holo",
+        "target_card_printing_id": "a03235b0-fa4f-441f-bdae-f53dc4731123"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "db3c1e5d-2626-4f2f-b552-e7acf271d52d",
+        "set_code": "me03",
+        "card_number": "080",
+        "card_name": "Poke Ball",
+        "finish_key": "normal",
+        "target_card_printing_id": "db3c1e5d-2626-4f2f-b552-e7acf271d52d"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "e78aac1a-57d9-4581-b386-9524dfdb92ad",
+        "set_code": "me03",
+        "card_number": "081",
+        "card_name": "Poke Pad",
+        "finish_key": "normal",
+        "target_card_printing_id": "e78aac1a-57d9-4581-b386-9524dfdb92ad"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "5018a7e0-a81f-4964-992b-ec5af0687a2c",
+        "set_code": "me03",
+        "card_number": "082",
+        "card_name": "Pokemon Catcher",
+        "finish_key": "normal",
+        "target_card_printing_id": "5018a7e0-a81f-4964-992b-ec5af0687a2c"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "a03235b0-fa4f-441f-bdae-f53dc4731123",
+        "set_code": "me03",
+        "card_number": "113",
+        "card_name": "Poke Pad",
+        "finish_key": "holo",
+        "target_card_printing_id": "a03235b0-fa4f-441f-bdae-f53dc4731123"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+        "set_code": "me03",
+        "card_number": "080",
+        "card_name": "Poke Ball",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "377086c4-b968-4335-aa44-54b0b518e913",
+        "set_code": "me03",
+        "card_number": "081",
+        "card_name": "Poke Pad",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+        "set_code": "me03",
+        "card_number": "082",
+        "card_name": "Pokemon Catcher",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "6254904f-1f84-4f58-99c6-d4a06731adc0",
+        "set_code": "me03",
+        "card_number": "113",
+        "card_name": "Poke Pad",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "a0bdc806b0ae8a58a693d157f8c3fff33d2ad80a10508d6d7a24a5a2e55cbd1c",
+    "counts": {
+      "target_parent_rows": 4,
+      "target_child_rows": 4,
+      "planned_id_collision_rows": 4,
+      "total_rows": 12
+    }
+  }
+}

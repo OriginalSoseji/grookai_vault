@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-06-12T19:11:00.722Z",
+  "version": "english_master_index_sv03_town_store_stamped_child_insert_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "SV03-TOWN-STORE-STAMPED-CHILD-INSERT",
+    "package_fingerprint_sha256": "c28c54f0d0c73da9c7beb6f52a28b19a5e091d1e8e359ebce9e8bdaae32f006d",
+    "source_collision_audit_fingerprint": "2eb04a5b37f926d006b707ceada217c2328cedaf66643ebfcb0a8d329c99c957",
+    "target_child_inserts": 1,
+    "target_parent_writes": 0,
+    "target_identity_writes": 0,
+    "target_deletes": 0,
+    "target_merges": 0,
+    "update_scope": "existing_stamped_parent_child_printing_insert_only",
+    "parent_writes_allowed": false,
+    "identity_writes_allowed": false,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false,
+    "quarantine_allowed": false,
+    "global_apply_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_status": "sv03_town_store_stamped_child_insert_completed_rolled_back_no_durable_change",
+    "before_hash_sha256": "4ceed9a6afafe94d1787466b299bf76632346fc49c8ec2fad1b91860025aff90",
+    "after_hash_sha256": "4ceed9a6afafe94d1787466b299bf76632346fc49c8ec2fad1b91860025aff90",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "transient_after_snapshot_differs_from_before_snapshot": true
+  },
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_town_store_stamped_child_insert_guarded_dry_run_v1.json",
+    "source_collision_audit": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_sv03_existing_stamped_parent_collision_audit_v1.json"
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real SV03-TOWN-STORE-STAMPED-CHILD-INSERT apply only. Fingerprint: c28c54f0d0c73da9c7beb6f52a28b19a5e091d1e8e359ebce9e8bdaae32f006d. Scope: 1 child-only card_printing insert for sv03/Obsidian Flames Town Store #196 Play Pokemon stamped parent, finish cosmos; parent writes=0, identity writes=0, deletes=0, merges=0. Dry-run proof: 4ceed9a6afafe94d1787466b299bf76632346fc49c8ec2fad1b91860025aff90 == 4ceed9a6afafe94d1787466b299bf76632346fc49c8ec2fad1b91860025aff90. No global apply. No migrations. No cleanup. No quarantine."
+  },
+  "stop_findings": [],
+  "pass": true
+}

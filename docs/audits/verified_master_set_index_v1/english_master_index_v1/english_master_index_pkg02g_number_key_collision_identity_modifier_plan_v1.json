@@ -1,0 +1,3533 @@
+{
+  "generated_at": "2026-06-09T19:27:18.409Z",
+  "version": "english_master_index_pkg02g_number_key_collision_identity_modifier_plan_v1",
+  "audit_only": true,
+  "plan_only": true,
+  "dry_run_artifact_prepared": true,
+  "dry_run_executed": false,
+  "real_apply_performed": false,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "merge_performed": false,
+  "delete_performed": false,
+  "apply_paths_executed": false,
+  "plan_status": "pkg02g_number_key_collision_identity_modifier_plan_prepared_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-02G-NUMBER-KEY-IDENTITY-MODIFIER",
+    "parent_package_id": "PKG-02B-FULL-BETA",
+    "package_fingerprint_sha256": "6b99a72e94808480edb20c649c62d31364d40ca794bf9c175c630f4b48d678d4",
+    "number_key_collision_rows": 58,
+    "parent_update_rows": 97,
+    "blocked_target_parent_recovery_rows": 58,
+    "existing_collision_holder_modifier_rows": 39,
+    "deletes_included": false,
+    "global_apply_included": false,
+    "migrations_included": false
+  },
+  "source_artifacts": {
+    "pkg02d_collision_adjudication": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg02d_collision_adjudication_v1.json",
+    "pkg02f_real_apply": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg02f_duplicate_dependency_transfer_real_apply_v1.json"
+  },
+  "current_snapshot": {
+    "available": true,
+    "reason": null,
+    "captured_at": "2026-06-09T19:27:17.372Z",
+    "row_count": 116,
+    "hash_sha256": "99d219933595262b2ff9c75fc71073ac529d62a10e00e528ef5729ba43f0ec0f",
+    "impact_counts": {
+      "card_prints_found": 116,
+      "card_printings_found": 174,
+      "external_mappings_found": 186,
+      "identity_rows_found": 86,
+      "trait_rows_found": 86,
+      "species_rows_found": 107,
+      "vault_items_found": 0
+    }
+  },
+  "affected_set_snapshot": {
+    "available": true,
+    "reason": null,
+    "set_count": 8,
+    "row_count": 1071
+  },
+  "summary": {
+    "number_key_collision_rows": 58,
+    "parent_update_rows": 97,
+    "blocked_target_parent_recovery_rows": 58,
+    "existing_collision_holder_modifier_rows": 39,
+    "by_collision_kind": {
+      "prefixed_number_collision": 28,
+      "lvx_name_modifier_collision": 26,
+      "technical_machine_name_collision": 1,
+      "trainer_parenthetical_name_collision": 3
+    },
+    "by_update_class": {
+      "blocked_target_parent_recovery": 58,
+      "existing_collision_holder_modifier": 39
+    },
+    "by_set": [
+      {
+        "set_key": "col1",
+        "total_collision_rows": 2,
+        "prefixed_number_collision": 2,
+        "lvx_name_modifier_collision": 0,
+        "technical_machine_name_collision": 0,
+        "trainer_parenthetical_name_collision": 0,
+        "other_number_plain_collision": 0
+      },
+      {
+        "set_key": "dp7",
+        "total_collision_rows": 8,
+        "prefixed_number_collision": 3,
+        "lvx_name_modifier_collision": 5,
+        "technical_machine_name_collision": 0,
+        "trainer_parenthetical_name_collision": 0,
+        "other_number_plain_collision": 0
+      },
+      {
+        "set_key": "pl1",
+        "total_collision_rows": 9,
+        "prefixed_number_collision": 3,
+        "lvx_name_modifier_collision": 6,
+        "technical_machine_name_collision": 0,
+        "trainer_parenthetical_name_collision": 0,
+        "other_number_plain_collision": 0
+      },
+      {
+        "set_key": "pl2",
+        "total_collision_rows": 15,
+        "prefixed_number_collision": 6,
+        "lvx_name_modifier_collision": 8,
+        "technical_machine_name_collision": 1,
+        "trainer_parenthetical_name_collision": 0,
+        "other_number_plain_collision": 0
+      },
+      {
+        "set_key": "pl3",
+        "total_collision_rows": 9,
+        "prefixed_number_collision": 2,
+        "lvx_name_modifier_collision": 7,
+        "technical_machine_name_collision": 0,
+        "trainer_parenthetical_name_collision": 0,
+        "other_number_plain_collision": 0
+      },
+      {
+        "set_key": "pl4",
+        "total_collision_rows": 12,
+        "prefixed_number_collision": 12,
+        "lvx_name_modifier_collision": 0,
+        "technical_machine_name_collision": 0,
+        "trainer_parenthetical_name_collision": 0,
+        "other_number_plain_collision": 0
+      },
+      {
+        "set_key": "swsh2",
+        "total_collision_rows": 1,
+        "prefixed_number_collision": 0,
+        "lvx_name_modifier_collision": 0,
+        "technical_machine_name_collision": 0,
+        "trainer_parenthetical_name_collision": 1,
+        "other_number_plain_collision": 0
+      },
+      {
+        "set_key": "swsh4.5",
+        "total_collision_rows": 2,
+        "prefixed_number_collision": 0,
+        "lvx_name_modifier_collision": 0,
+        "technical_machine_name_collision": 0,
+        "trainer_parenthetical_name_collision": 2,
+        "other_number_plain_collision": 0
+      }
+    ]
+  },
+  "collision_plan_rows": [
+    {
+      "blocked_card_print_id": "2180d1db-0948-4cfc-9a98-da7629c2811a",
+      "conflict_card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+      "set_key": "col1",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "6",
+      "blocked_target_name": "Groudon",
+      "blocked_target_modifier": null,
+      "conflict_number": "SL6",
+      "conflict_name": "Kyogre",
+      "conflict_modifier": "number_prefix:SL"
+    },
+    {
+      "blocked_card_print_id": "922f2b4f-eb6f-492c-89a7-8b4f313509e2",
+      "conflict_card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+      "set_key": "col1",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "8",
+      "blocked_target_name": "Hitmontop",
+      "blocked_target_modifier": null,
+      "conflict_number": "SL8",
+      "conflict_name": "Palkia",
+      "conflict_modifier": "number_prefix:SL"
+    },
+    {
+      "blocked_card_print_id": "62f77935-5749-4d26-87e6-06bbca565b22",
+      "conflict_card_print_id": "1bf5b85a-1990-4546-b38c-2a7ad9d12cbf",
+      "set_key": "dp7",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "2",
+      "blocked_target_name": "Empoleon",
+      "blocked_target_modifier": null,
+      "conflict_number": "SH2",
+      "conflict_name": "Duskull",
+      "conflict_modifier": "number_prefix:SH"
+    },
+    {
+      "blocked_card_print_id": "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+      "conflict_card_print_id": "0fa024a0-c7ae-4a65-b6d4-6d638a82027a",
+      "set_key": "dp7",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "3",
+      "blocked_target_name": "Infernape",
+      "blocked_target_modifier": null,
+      "conflict_number": "SH3",
+      "conflict_name": "Voltorb",
+      "conflict_modifier": "number_prefix:SH"
+    },
+    {
+      "blocked_card_print_id": "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+      "conflict_card_print_id": "91bd37f9-7eef-40d7-a042-3292f6038985",
+      "set_key": "dp7",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "96",
+      "blocked_target_name": "Dusknoir",
+      "blocked_target_modifier": null,
+      "conflict_number": "96",
+      "conflict_name": "Dusknoir LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "7c211bf2-ab9e-489d-842f-65c896270783",
+      "conflict_card_print_id": "69b15482-f73f-49e0-906e-992a435f4b4f",
+      "set_key": "dp7",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "97",
+      "blocked_target_name": "Heatran",
+      "blocked_target_modifier": null,
+      "conflict_number": "97",
+      "conflict_name": "Heatran LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "6f49c231-0a53-4c0c-9db1-6d4c36aa460e",
+      "conflict_card_print_id": "52adb9a2-3176-41a3-8029-c227e8cf92e6",
+      "set_key": "dp7",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "98",
+      "blocked_target_name": "Machamp",
+      "blocked_target_modifier": null,
+      "conflict_number": "98",
+      "conflict_name": "Machamp LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "7a0dbe87-8ffb-4939-a5c0-371a0a21b302",
+      "conflict_card_print_id": "bcce787d-4252-4ee8-87f7-df38cfd2e5c4",
+      "set_key": "dp7",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "99",
+      "blocked_target_name": "Raichu",
+      "blocked_target_modifier": null,
+      "conflict_number": "99",
+      "conflict_name": "Raichu LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "687811f7-e3d2-41bb-b37d-1e73882551d2",
+      "conflict_card_print_id": "ca1b21a9-98a2-4645-9de1-66aa02a75e68",
+      "set_key": "dp7",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "100",
+      "blocked_target_name": "Regigigas",
+      "blocked_target_modifier": null,
+      "conflict_number": "100",
+      "conflict_name": "Regigigas LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "e8444009-0c47-48a6-af07-f5b450ac0082",
+      "conflict_card_print_id": "350fcd19-0cff-4a05-b776-c40e7f7c7013",
+      "set_key": "dp7",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "SH1",
+      "blocked_target_name": "Drifloon",
+      "blocked_target_modifier": "number_prefix:SH",
+      "conflict_number": "1",
+      "conflict_name": "Dusknoir",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+      "conflict_card_print_id": "0b42f7c0-c2b5-475f-bf1e-97655eb28a3a",
+      "set_key": "pl1",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "6",
+      "blocked_target_name": "Dialga",
+      "blocked_target_modifier": null,
+      "conflict_number": "SH6",
+      "conflict_name": "Vulpix",
+      "conflict_modifier": "number_prefix:SH"
+    },
+    {
+      "blocked_card_print_id": "9d20653b-49ea-4a30-8e18-629267d7397b",
+      "conflict_card_print_id": "3eb15a78-b5d6-42b6-913b-c8f84686249c",
+      "set_key": "pl1",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "122",
+      "blocked_target_name": "Dialga G",
+      "blocked_target_modifier": null,
+      "conflict_number": "122",
+      "conflict_name": "Dialga G LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+      "conflict_card_print_id": "38d416a8-a601-43f6-983b-3e8e0be8ffab",
+      "set_key": "pl1",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "123",
+      "blocked_target_name": "Drapion",
+      "blocked_target_modifier": null,
+      "conflict_number": "123",
+      "conflict_name": "Drapion LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+      "conflict_card_print_id": "6a5e1c30-1402-4fb7-a677-9399dbf067ee",
+      "set_key": "pl1",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "124",
+      "blocked_target_name": "Giratina",
+      "blocked_target_modifier": null,
+      "conflict_number": "124",
+      "conflict_name": "Giratina LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "182aab06-7802-4dea-90cb-32dfc7cefaab",
+      "conflict_card_print_id": "1c4056b6-275f-4435-aee8-638c6df5cee9",
+      "set_key": "pl1",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "125",
+      "blocked_target_name": "Palkia G",
+      "blocked_target_modifier": null,
+      "conflict_number": "125",
+      "conflict_name": "Palkia G LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "24bd8689-4031-40d0-8948-1d08e652ef34",
+      "conflict_card_print_id": "dc311e05-8d2c-41dc-a18b-4a42df480db7",
+      "set_key": "pl1",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "126",
+      "blocked_target_name": "Shaymin",
+      "blocked_target_modifier": null,
+      "conflict_number": "126",
+      "conflict_name": "Shaymin LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "1f03518a-bed9-4c04-ad0c-3a5cf3008248",
+      "conflict_card_print_id": "cb23edfe-7d5a-4e32-af26-e41f48271ccb",
+      "set_key": "pl1",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "127",
+      "blocked_target_name": "Shaymin",
+      "blocked_target_modifier": null,
+      "conflict_number": "127",
+      "conflict_name": "Shaymin LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "74b9d351-aecc-4ff9-8ed2-958311074af7",
+      "conflict_card_print_id": "438fd0ad-9e9c-4a60-96b8-52c055fd0900",
+      "set_key": "pl1",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "SH4",
+      "blocked_target_name": "Lotad",
+      "blocked_target_modifier": "number_prefix:SH",
+      "conflict_number": "4",
+      "conflict_name": "Delcatty",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "e48e17b9-b693-4882-9e9f-d177dbce37c8",
+      "conflict_card_print_id": "19337153-83da-45ef-876c-52d050316070",
+      "set_key": "pl1",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "SH5",
+      "blocked_target_name": "Swablu",
+      "blocked_target_modifier": "number_prefix:SH",
+      "conflict_number": "5",
+      "conflict_name": "Dialga",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "2ebe059c-614e-4dd6-812f-ebf268459ce5",
+      "conflict_card_print_id": "556a801c-bf26-4315-94cb-a023e6d1244b",
+      "set_key": "pl2",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "1",
+      "blocked_target_name": "Arcanine",
+      "blocked_target_modifier": null,
+      "conflict_number": "RT1",
+      "conflict_name": "Fan Rotom",
+      "conflict_modifier": "number_prefix:RT"
+    },
+    {
+      "blocked_card_print_id": "9d6eb3c7-dc61-4543-b436-a67fd23ba16c",
+      "conflict_card_print_id": "5e9cae28-ec79-4d4b-8e9b-c716056c3dc8",
+      "set_key": "pl2",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "3",
+      "blocked_target_name": "Darkrai G",
+      "blocked_target_modifier": null,
+      "conflict_number": "RT3",
+      "conflict_name": "Heat Rotom",
+      "conflict_modifier": "number_prefix:RT"
+    },
+    {
+      "blocked_card_print_id": "1970689f-8f93-4148-96b2-0ed8ed149568",
+      "conflict_card_print_id": "00f64a67-4b22-4827-bc85-d2c31dff23ab",
+      "set_key": "pl2",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "5",
+      "blocked_target_name": "Flygon",
+      "blocked_target_modifier": null,
+      "conflict_number": "RT5",
+      "conflict_name": "Wash Rotom",
+      "conflict_modifier": "number_prefix:RT"
+    },
+    {
+      "blocked_card_print_id": "f619ad6c-007c-4e4d-bea0-a4a517cffa50",
+      "conflict_card_print_id": "d1a5f335-824b-4023-af12-89896ac9ba3e",
+      "set_key": "pl2",
+      "collision_kind": "technical_machine_name_collision",
+      "blocked_target_number": "95",
+      "blocked_target_name": "Team Galactic's Invention G-107 Technical Machine",
+      "blocked_target_modifier": null,
+      "conflict_number": "95",
+      "conflict_name": "Team Galactic's Invention G-107 Technical Machine G",
+      "conflict_modifier": "name_suffix:g"
+    },
+    {
+      "blocked_card_print_id": "a1b66404-67e9-4586-8ac9-873c421da31e",
+      "conflict_card_print_id": "d5dcf523-4fa4-409d-828b-41590db54467",
+      "set_key": "pl2",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "103",
+      "blocked_target_name": "Alakazam 4",
+      "blocked_target_modifier": null,
+      "conflict_number": "103",
+      "conflict_name": "Alakazam E4 LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "5fd2b141-a2af-4c2c-bb33-df2c2af58c02",
+      "conflict_card_print_id": "bb349eab-a7e8-406e-9cb0-258ba52b4c98",
+      "set_key": "pl2",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "104",
+      "blocked_target_name": "Floatzel GL",
+      "blocked_target_modifier": null,
+      "conflict_number": "104",
+      "conflict_name": "Floatzel GL LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "7d47083d-43a4-4868-9bac-eb1deb237136",
+      "conflict_card_print_id": "36df499c-7b36-4f0b-9297-0608d198618b",
+      "set_key": "pl2",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "105",
+      "blocked_target_name": "Flygon",
+      "blocked_target_modifier": null,
+      "conflict_number": "105",
+      "conflict_name": "Flygon LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "60789fd6-a0bb-49cd-848f-1ba462f4e965",
+      "conflict_card_print_id": "b9b60d69-cde6-4dd8-bfd6-0c818bfd1196",
+      "set_key": "pl2",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "106",
+      "blocked_target_name": "Gallade 4",
+      "blocked_target_modifier": null,
+      "conflict_number": "106",
+      "conflict_name": "Gallade E4 LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "2ef89f59-3bd7-430f-9e71-42fea8cdd8ae",
+      "conflict_card_print_id": "c16d088f-0ad2-4a85-824e-c889a2bfde12",
+      "set_key": "pl2",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "107",
+      "blocked_target_name": "Hippowdon",
+      "blocked_target_modifier": null,
+      "conflict_number": "107",
+      "conflict_name": "Hippowdon LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "a719dd63-f527-4edf-8c8e-e77bac65a715",
+      "conflict_card_print_id": "f890ce32-6389-40a1-9b77-ff610b6e3f88",
+      "set_key": "pl2",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "108",
+      "blocked_target_name": "Infernape 4",
+      "blocked_target_modifier": null,
+      "conflict_number": "108",
+      "conflict_name": "Infernape E4 LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "26d6335d-9483-4de2-8b1b-771c43ab31cb",
+      "conflict_card_print_id": "c37513a0-d943-4c38-9f2f-83b9a0ec9524",
+      "set_key": "pl2",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "110",
+      "blocked_target_name": "Mismagius GL",
+      "blocked_target_modifier": null,
+      "conflict_number": "110",
+      "conflict_name": "Mismagius GL LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "25c91739-b09a-4360-94e5-9a8b1ed43755",
+      "conflict_card_print_id": "c98b6822-0ef1-462f-ad03-cd02107e5ed1",
+      "set_key": "pl2",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "111",
+      "blocked_target_name": "Snorlax",
+      "blocked_target_modifier": null,
+      "conflict_number": "111",
+      "conflict_name": "Snorlax LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "f5ada689-45c1-4b23-ac62-6a9f0bc11c97",
+      "conflict_card_print_id": "91d65ccb-ec51-416e-a107-8bf22d55d151",
+      "set_key": "pl2",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "RT2",
+      "blocked_target_name": "Frost Rotom",
+      "blocked_target_modifier": "number_prefix:RT",
+      "conflict_number": "2",
+      "conflict_name": "Bastiodon GL",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "949f5c1d-6d29-41cd-91c9-0be81e5360c5",
+      "conflict_card_print_id": "7c824d06-176b-4bab-8e4f-c40d30b6283c",
+      "set_key": "pl2",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "RT4",
+      "blocked_target_name": "Mow Rotom",
+      "blocked_target_modifier": "number_prefix:RT",
+      "conflict_number": "4",
+      "conflict_name": "Floatzel GL",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "0a14f347-5dd0-425a-9c9c-ffd134a9de4f",
+      "conflict_card_print_id": "088619ce-5478-42d0-ac26-223832390830",
+      "set_key": "pl2",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "RT6",
+      "blocked_target_name": "Charon's Choice",
+      "blocked_target_modifier": "number_prefix:RT",
+      "conflict_number": "6",
+      "conflict_name": "Froslass GL",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "8cd92a82-149d-43b4-a7d3-d65782536182",
+      "conflict_card_print_id": "5aba56ba-2887-4f19-b7ec-a3121f414be3",
+      "set_key": "pl3",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "141",
+      "blocked_target_name": "Absol G",
+      "blocked_target_modifier": null,
+      "conflict_number": "141",
+      "conflict_name": "Absol G LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "79097350-eb58-44e8-bd39-3ec5f417f02b",
+      "conflict_card_print_id": "d5330a73-ac35-409a-a3dd-c192dbd704bf",
+      "set_key": "pl3",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "142",
+      "blocked_target_name": "Blaziken FB",
+      "blocked_target_modifier": null,
+      "conflict_number": "142",
+      "conflict_name": "Blaziken FB LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "880dc8c7-6959-4fda-b79a-32e48c684267",
+      "conflict_card_print_id": "6541ddac-0b89-4591-85db-aba036f5f934",
+      "set_key": "pl3",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "143",
+      "blocked_target_name": "Charizard G",
+      "blocked_target_modifier": null,
+      "conflict_number": "143",
+      "conflict_name": "Charizard G LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "29a4bca4-6264-45f6-bc24-1d5ded5520cd",
+      "conflict_card_print_id": "4dc2bf8f-9624-4c7b-aa4d-b372ba4383bc",
+      "set_key": "pl3",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "144",
+      "blocked_target_name": "Electivire FB",
+      "blocked_target_modifier": null,
+      "conflict_number": "144",
+      "conflict_name": "Electivire FB LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "2c1b3125-dd67-4522-b3e0-5621c05f7a9a",
+      "conflict_card_print_id": "1c13bf1e-dcff-4460-af92-3289103f7c05",
+      "set_key": "pl3",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "145",
+      "blocked_target_name": "Garchomp C",
+      "blocked_target_modifier": null,
+      "conflict_number": "145",
+      "conflict_name": "Garchomp C LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "89f61622-12a4-4861-abb3-ef3dbcaf2a86",
+      "conflict_card_print_id": "cb5f46e6-97bd-4e6a-995c-2bca5072d793",
+      "set_key": "pl3",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "146",
+      "blocked_target_name": "Rayquaza C",
+      "blocked_target_modifier": null,
+      "conflict_number": "146",
+      "conflict_name": "Rayquaza C LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "fa6310ae-be43-4309-af1d-a5033daff2f0",
+      "conflict_card_print_id": "dc75d5dc-b426-480f-8f84-30f20d6518e6",
+      "set_key": "pl3",
+      "collision_kind": "lvx_name_modifier_collision",
+      "blocked_target_number": "147",
+      "blocked_target_name": "Staraptor FB",
+      "blocked_target_modifier": null,
+      "conflict_number": "147",
+      "conflict_name": "Staraptor FB LV.X",
+      "conflict_modifier": "level_x"
+    },
+    {
+      "blocked_card_print_id": "9089264b-fd13-4261-94ac-b252ab89f6c7",
+      "conflict_card_print_id": "90740ca1-cb80-4c1a-acf8-80364a299cb5",
+      "set_key": "pl3",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "SH8",
+      "blocked_target_name": "Relicanth",
+      "blocked_target_modifier": "number_prefix:SH",
+      "conflict_number": "8",
+      "conflict_name": "Rayquaza C",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "e8a8c0b0-2213-4701-89a9-8926cc0d5669",
+      "conflict_card_print_id": "940012d3-e7be-41e7-84f3-9e778341b750",
+      "set_key": "pl3",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "SH9",
+      "blocked_target_name": "Yanma",
+      "blocked_target_modifier": "number_prefix:SH",
+      "conflict_number": "9",
+      "conflict_name": "Regigigas FB",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "a02f871c-fe3e-432b-944d-6decea0eecdf",
+      "conflict_card_print_id": "5fefb496-b9cd-4dbe-bec6-63cd90b151f1",
+      "set_key": "pl4",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "1",
+      "blocked_target_name": "Charizard",
+      "blocked_target_modifier": null,
+      "conflict_number": "AR1",
+      "conflict_name": "Arceus",
+      "conflict_modifier": "number_prefix:AR"
+    },
+    {
+      "blocked_card_print_id": "71779a8b-ee22-4892-9425-8e3da51f179a",
+      "conflict_card_print_id": "74710bb3-5e5c-48f5-a642-086042df54e5",
+      "set_key": "pl4",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "6",
+      "blocked_target_name": "Mothim",
+      "blocked_target_modifier": null,
+      "conflict_number": "AR6",
+      "conflict_name": "Arceus",
+      "conflict_modifier": "number_prefix:AR"
+    },
+    {
+      "blocked_card_print_id": "3059259e-c28b-49d6-9f31-64e178e87f28",
+      "conflict_card_print_id": "47871621-a579-4429-805d-6d81d2959530",
+      "set_key": "pl4",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "9",
+      "blocked_target_name": "Swalot",
+      "blocked_target_modifier": null,
+      "conflict_number": "AR9",
+      "conflict_name": "Arceus",
+      "conflict_modifier": "number_prefix:AR"
+    },
+    {
+      "blocked_card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+      "conflict_card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+      "set_key": "pl4",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "12",
+      "blocked_target_name": "Zapdos",
+      "blocked_target_modifier": null,
+      "conflict_number": "SH12",
+      "conflict_name": "Shinx",
+      "conflict_modifier": "number_prefix:SH"
+    },
+    {
+      "blocked_card_print_id": "cf859f9b-f1d6-41ec-9e38-c7fd27743777",
+      "conflict_card_print_id": "033b1c14-ed0b-4064-b48b-b154895c9e27",
+      "set_key": "pl4",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "AR2",
+      "blocked_target_name": "Arceus",
+      "blocked_target_modifier": "number_prefix:AR",
+      "conflict_number": "2",
+      "conflict_name": "Froslass",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "8b2c91cf-bd7c-4564-84ca-5863e1414257",
+      "conflict_card_print_id": "4007590f-7a7b-4a47-acae-4ec1afa32781",
+      "set_key": "pl4",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "AR3",
+      "blocked_target_name": "Arceus",
+      "blocked_target_modifier": "number_prefix:AR",
+      "conflict_number": "3",
+      "conflict_name": "Heatran",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "61cd00a6-3418-4980-ade8-b26c8d0b4d5c",
+      "conflict_card_print_id": "062cb67c-4374-4268-aef0-6d5a2ffb1c40",
+      "set_key": "pl4",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "AR4",
+      "blocked_target_name": "Arceus",
+      "blocked_target_modifier": "number_prefix:AR",
+      "conflict_number": "4",
+      "conflict_name": "Kabutops",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "63a0a7b8-bdfa-4a08-ad30-680bcc45802e",
+      "conflict_card_print_id": "9da3429c-0844-4c55-9be3-bd32853eebd4",
+      "set_key": "pl4",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "AR5",
+      "blocked_target_name": "Arceus",
+      "blocked_target_modifier": "number_prefix:AR",
+      "conflict_number": "5",
+      "conflict_name": "Luxray",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "67e47461-e03c-4da3-8557-d3df639dbb98",
+      "conflict_card_print_id": "83e257d4-c675-4184-bc22-078e0fed2496",
+      "set_key": "pl4",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "AR7",
+      "blocked_target_name": "Arceus",
+      "blocked_target_modifier": "number_prefix:AR",
+      "conflict_number": "7",
+      "conflict_name": "Probopass",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "0db1b355-bb14-4042-8597-4afd1d9a2b77",
+      "conflict_card_print_id": "093450ca-570b-46c5-86c6-df224419a7ca",
+      "set_key": "pl4",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "AR8",
+      "blocked_target_name": "Arceus",
+      "blocked_target_modifier": "number_prefix:AR",
+      "conflict_number": "8",
+      "conflict_name": "Salamence",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "502ee1d6-d7c2-40d7-8bfa-5e94ff5c3bda",
+      "conflict_card_print_id": "327c53c1-d723-4b14-bd68-f9410fa9461d",
+      "set_key": "pl4",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "SH10",
+      "blocked_target_name": "Bagon",
+      "blocked_target_modifier": "number_prefix:SH",
+      "conflict_number": "10",
+      "conflict_name": "Tangrowth",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "22a0396f-a0fe-4680-8568-71246489db3c",
+      "conflict_card_print_id": "20e7ad00-a436-4b9f-ac12-e2f93f15a969",
+      "set_key": "pl4",
+      "collision_kind": "prefixed_number_collision",
+      "blocked_target_number": "SH11",
+      "blocked_target_name": "Ponyta",
+      "blocked_target_modifier": "number_prefix:SH",
+      "conflict_number": "11",
+      "conflict_name": "Toxicroak",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+      "conflict_card_print_id": "644a4cf1-4f21-47d1-8cf1-e8106aed984e",
+      "set_key": "swsh2",
+      "collision_kind": "trainer_parenthetical_name_collision",
+      "blocked_target_number": "154",
+      "blocked_target_name": "Boss's Orders (Giovanni)",
+      "blocked_target_modifier": "trainer_subject:giovanni",
+      "conflict_number": "154",
+      "conflict_name": "Boss's Orders",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+      "conflict_card_print_id": "1adc8c40-9657-4152-b792-f2349c582981",
+      "set_key": "swsh4.5",
+      "collision_kind": "trainer_parenthetical_name_collision",
+      "blocked_target_number": "58",
+      "blocked_target_name": "Boss's Orders (Lysandre)",
+      "blocked_target_modifier": "trainer_subject:lysandre",
+      "conflict_number": "58",
+      "conflict_name": "Boss's Orders",
+      "conflict_modifier": null
+    },
+    {
+      "blocked_card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+      "conflict_card_print_id": "1d04ea71-3ba1-430c-a926-34e5764dc0c4",
+      "set_key": "swsh4.5",
+      "collision_kind": "trainer_parenthetical_name_collision",
+      "blocked_target_number": "60",
+      "blocked_target_name": "Professor's Research (Professor Juniper)",
+      "blocked_target_modifier": "trainer_subject:professor_juniper",
+      "conflict_number": "60",
+      "conflict_name": "Professor's Research",
+      "conflict_modifier": null
+    }
+  ],
+  "parent_update_rows": [
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "2180d1db-0948-4cfc-9a98-da7629c2811a",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "target_fields": {
+        "set_code": "col1",
+        "number": "6",
+        "name": "Groudon",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Groudon",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "6",
+        "target_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "922f2b4f-eb6f-492c-89a7-8b4f313509e2",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "target_fields": {
+        "set_code": "col1",
+        "number": "8",
+        "name": "Hitmontop",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Hitmontop",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "8",
+        "target_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "62f77935-5749-4d26-87e6-06bbca565b22",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "2",
+        "name": "Empoleon",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Empoleon",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "2",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "3",
+        "name": "Infernape",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Infernape",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "3",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "96",
+        "name": "Dusknoir",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Dusknoir",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "96",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "7c211bf2-ab9e-489d-842f-65c896270783",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "97",
+        "name": "Heatran",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Heatran",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "97",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "6f49c231-0a53-4c0c-9db1-6d4c36aa460e",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "98",
+        "name": "Machamp",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Machamp",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "98",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "7a0dbe87-8ffb-4939-a5c0-371a0a21b302",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "99",
+        "name": "Raichu",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Raichu",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "99",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "687811f7-e3d2-41bb-b37d-1e73882551d2",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "100",
+        "name": "Regigigas",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Regigigas",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "100",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "e8444009-0c47-48a6-af07-f5b450ac0082",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "SH1",
+        "name": "Drifloon",
+        "printed_identity_modifier": "number_prefix:SH"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Drifloon",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "1",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "6",
+        "name": "Dialga",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Dialga",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "6",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "9d20653b-49ea-4a30-8e18-629267d7397b",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "122",
+        "name": "Dialga G",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Dialga G",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "122",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "123",
+        "name": "Drapion",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Drapion",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "123",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "124",
+        "name": "Giratina",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Giratina",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "124",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "182aab06-7802-4dea-90cb-32dfc7cefaab",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "125",
+        "name": "Palkia G",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Palkia G",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "125",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "24bd8689-4031-40d0-8948-1d08e652ef34",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "126",
+        "name": "Shaymin",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Shaymin",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "126",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "1f03518a-bed9-4c04-ad0c-3a5cf3008248",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "127",
+        "name": "Shaymin",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Shaymin",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "127",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "74b9d351-aecc-4ff9-8ed2-958311074af7",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "SH4",
+        "name": "Lotad",
+        "printed_identity_modifier": "number_prefix:SH"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Lotad",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "4",
+        "target_finishes": [
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "e48e17b9-b693-4882-9e9f-d177dbce37c8",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "SH5",
+        "name": "Swablu",
+        "printed_identity_modifier": "number_prefix:SH"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Swablu",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "5",
+        "target_finishes": [
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "2ebe059c-614e-4dd6-812f-ebf268459ce5",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "1",
+        "name": "Arcanine",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arcanine",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "1",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "9d6eb3c7-dc61-4543-b436-a67fd23ba16c",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "3",
+        "name": "Darkrai G",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Darkrai G",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "3",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "1970689f-8f93-4148-96b2-0ed8ed149568",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "5",
+        "name": "Flygon",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Flygon",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "5",
+        "target_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "technical_machine_name_collision",
+      "card_print_id": "f619ad6c-007c-4e4d-bea0-a4a517cffa50",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "95",
+        "name": "Team Galactic's Invention G-107 Technical Machine",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Team Galactic's Invention G-107 Technical Machine",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "95",
+        "target_finishes": [
+          "normal",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "a1b66404-67e9-4586-8ac9-873c421da31e",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "103",
+        "name": "Alakazam 4",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Alakazam 4",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "103",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "5fd2b141-a2af-4c2c-bb33-df2c2af58c02",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "104",
+        "name": "Floatzel GL",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Floatzel GL",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "104",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "7d47083d-43a4-4868-9bac-eb1deb237136",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "105",
+        "name": "Flygon",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Flygon",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "105",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "60789fd6-a0bb-49cd-848f-1ba462f4e965",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "106",
+        "name": "Gallade 4",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Gallade 4",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "106",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "2ef89f59-3bd7-430f-9e71-42fea8cdd8ae",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "107",
+        "name": "Hippowdon",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Hippowdon",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "107",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "a719dd63-f527-4edf-8c8e-e77bac65a715",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "108",
+        "name": "Infernape 4",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Infernape 4",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "108",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "26d6335d-9483-4de2-8b1b-771c43ab31cb",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "110",
+        "name": "Mismagius GL",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Mismagius GL",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "110",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "25c91739-b09a-4360-94e5-9a8b1ed43755",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "111",
+        "name": "Snorlax",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Snorlax",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "111",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "f5ada689-45c1-4b23-ac62-6a9f0bc11c97",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "RT2",
+        "name": "Frost Rotom",
+        "printed_identity_modifier": "number_prefix:RT"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Frost Rotom",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "2",
+        "target_finishes": [
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "949f5c1d-6d29-41cd-91c9-0be81e5360c5",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "RT4",
+        "name": "Mow Rotom",
+        "printed_identity_modifier": "number_prefix:RT"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Mow Rotom",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "4",
+        "target_finishes": [
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "0a14f347-5dd0-425a-9c9c-ffd134a9de4f",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "RT6",
+        "name": "Charon's Choice",
+        "printed_identity_modifier": "number_prefix:RT"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Charon's Choice",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "6",
+        "target_finishes": [
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "8cd92a82-149d-43b4-a7d3-d65782536182",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "141",
+        "name": "Absol G",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Absol G",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "141",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "79097350-eb58-44e8-bd39-3ec5f417f02b",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "142",
+        "name": "Blaziken FB",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Blaziken FB",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "142",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "880dc8c7-6959-4fda-b79a-32e48c684267",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "143",
+        "name": "Charizard G",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Charizard G",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "143",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "29a4bca4-6264-45f6-bc24-1d5ded5520cd",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "144",
+        "name": "Electivire FB",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Electivire FB",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "144",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "2c1b3125-dd67-4522-b3e0-5621c05f7a9a",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "145",
+        "name": "Garchomp C",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Garchomp C",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "145",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "89f61622-12a4-4861-abb3-ef3dbcaf2a86",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "146",
+        "name": "Rayquaza C",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Rayquaza C",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "146",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "fa6310ae-be43-4309-af1d-a5033daff2f0",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "147",
+        "name": "Staraptor FB",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Staraptor FB",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "147",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "9089264b-fd13-4261-94ac-b252ab89f6c7",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "SH8",
+        "name": "Relicanth",
+        "printed_identity_modifier": "number_prefix:SH"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Relicanth",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "8",
+        "target_finishes": [
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "e8a8c0b0-2213-4701-89a9-8926cc0d5669",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "SH9",
+        "name": "Yanma",
+        "printed_identity_modifier": "number_prefix:SH"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Yanma",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "9",
+        "target_finishes": [
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "a02f871c-fe3e-432b-944d-6decea0eecdf",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "1",
+        "name": "Charizard",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Charizard",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "1",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "71779a8b-ee22-4892-9425-8e3da51f179a",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "6",
+        "name": "Mothim",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Mothim",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "6",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "3059259e-c28b-49d6-9f31-64e178e87f28",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "9",
+        "name": "Swalot",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Swalot",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "9",
+        "target_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "12",
+        "name": "Zapdos",
+        "printed_identity_modifier": null
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Zapdos",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "12",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "cf859f9b-f1d6-41ec-9e38-c7fd27743777",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "AR2",
+        "name": "Arceus",
+        "printed_identity_modifier": "number_prefix:AR"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "2",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "8b2c91cf-bd7c-4564-84ca-5863e1414257",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "AR3",
+        "name": "Arceus",
+        "printed_identity_modifier": "number_prefix:AR"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "3",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "61cd00a6-3418-4980-ade8-b26c8d0b4d5c",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "AR4",
+        "name": "Arceus",
+        "printed_identity_modifier": "number_prefix:AR"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "4",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "63a0a7b8-bdfa-4a08-ad30-680bcc45802e",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "AR5",
+        "name": "Arceus",
+        "printed_identity_modifier": "number_prefix:AR"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "5",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "67e47461-e03c-4da3-8557-d3df639dbb98",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "AR7",
+        "name": "Arceus",
+        "printed_identity_modifier": "number_prefix:AR"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "7",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "0db1b355-bb14-4042-8597-4afd1d9a2b77",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "AR8",
+        "name": "Arceus",
+        "printed_identity_modifier": "number_prefix:AR"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "8",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "502ee1d6-d7c2-40d7-8bfa-5e94ff5c3bda",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "SH10",
+        "name": "Bagon",
+        "printed_identity_modifier": "number_prefix:SH"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Bagon",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "10",
+        "target_finishes": [
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "22a0396f-a0fe-4680-8568-71246489db3c",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "SH11",
+        "name": "Ponyta",
+        "printed_identity_modifier": "number_prefix:SH"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Ponyta",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "11",
+        "target_finishes": [
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "trainer_parenthetical_name_collision",
+      "card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "target_fields": {
+        "set_code": "swsh2",
+        "number": "154",
+        "name": "Boss's Orders (Giovanni)",
+        "printed_identity_modifier": "trainer_subject:giovanni"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Boss's Orders (Giovanni)",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "154",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "trainer_parenthetical_name_collision",
+      "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "target_fields": {
+        "set_code": "swsh4.5",
+        "number": "58",
+        "name": "Boss's Orders (Lysandre)",
+        "printed_identity_modifier": "trainer_subject:lysandre"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Boss's Orders (Lysandre)",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "58",
+        "target_finishes": [
+          "normal",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "blocked_target_parent_recovery",
+      "reason": "recover_blocked_parent_identity_after_modifier_disambiguation",
+      "collision_kind": "trainer_parenthetical_name_collision",
+      "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "target_fields": {
+        "set_code": "swsh4.5",
+        "number": "60",
+        "name": "Professor's Research (Professor Juniper)",
+        "printed_identity_modifier": "trainer_subject:professor_juniper"
+      },
+      "expected_before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Professor's Research (Professor Juniper)",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "60",
+        "target_finishes": [
+          "normal",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "target_fields": {
+        "set_code": "col1",
+        "number": "SL6",
+        "name": "Kyogre",
+        "printed_identity_modifier": "number_prefix:SL"
+      },
+      "expected_before_fields": {
+        "set_code": "col1",
+        "number": "SL6",
+        "name": "Kyogre",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "6",
+        "target_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "target_fields": {
+        "set_code": "col1",
+        "number": "SL8",
+        "name": "Palkia",
+        "printed_identity_modifier": "number_prefix:SL"
+      },
+      "expected_before_fields": {
+        "set_code": "col1",
+        "number": "SL8",
+        "name": "Palkia",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "8",
+        "target_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "91bd37f9-7eef-40d7-a042-3292f6038985",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "96",
+        "name": "Dusknoir LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "dp7",
+        "number": "96",
+        "name": "Dusknoir LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "96",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "69b15482-f73f-49e0-906e-992a435f4b4f",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "97",
+        "name": "Heatran LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "dp7",
+        "number": "97",
+        "name": "Heatran LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "97",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "52adb9a2-3176-41a3-8029-c227e8cf92e6",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "98",
+        "name": "Machamp LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "dp7",
+        "number": "98",
+        "name": "Machamp LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "98",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "bcce787d-4252-4ee8-87f7-df38cfd2e5c4",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "99",
+        "name": "Raichu LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "dp7",
+        "number": "99",
+        "name": "Raichu LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "99",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "ca1b21a9-98a2-4645-9de1-66aa02a75e68",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "100",
+        "name": "Regigigas LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "dp7",
+        "number": "100",
+        "name": "Regigigas LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "100",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "1bf5b85a-1990-4546-b38c-2a7ad9d12cbf",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "SH2",
+        "name": "Duskull",
+        "printed_identity_modifier": "number_prefix:SH"
+      },
+      "expected_before_fields": {
+        "set_code": "dp7",
+        "number": "SH2",
+        "name": "Duskull",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "2",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "0fa024a0-c7ae-4a65-b6d4-6d638a82027a",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_fields": {
+        "set_code": "dp7",
+        "number": "SH3",
+        "name": "Voltorb",
+        "printed_identity_modifier": "number_prefix:SH"
+      },
+      "expected_before_fields": {
+        "set_code": "dp7",
+        "number": "SH3",
+        "name": "Voltorb",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "3",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "3eb15a78-b5d6-42b6-913b-c8f84686249c",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "122",
+        "name": "Dialga G LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl1",
+        "number": "122",
+        "name": "Dialga G LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "122",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "38d416a8-a601-43f6-983b-3e8e0be8ffab",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "123",
+        "name": "Drapion LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl1",
+        "number": "123",
+        "name": "Drapion LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "123",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "6a5e1c30-1402-4fb7-a677-9399dbf067ee",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "124",
+        "name": "Giratina LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl1",
+        "number": "124",
+        "name": "Giratina LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "124",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "1c4056b6-275f-4435-aee8-638c6df5cee9",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "125",
+        "name": "Palkia G LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl1",
+        "number": "125",
+        "name": "Palkia G LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "125",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "dc311e05-8d2c-41dc-a18b-4a42df480db7",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "126",
+        "name": "Shaymin LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl1",
+        "number": "126",
+        "name": "Shaymin LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "126",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "cb23edfe-7d5a-4e32-af26-e41f48271ccb",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "127",
+        "name": "Shaymin LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl1",
+        "number": "127",
+        "name": "Shaymin LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "127",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "0b42f7c0-c2b5-475f-bf1e-97655eb28a3a",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_fields": {
+        "set_code": "pl1",
+        "number": "SH6",
+        "name": "Vulpix",
+        "printed_identity_modifier": "number_prefix:SH"
+      },
+      "expected_before_fields": {
+        "set_code": "pl1",
+        "number": "SH6",
+        "name": "Vulpix",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "6",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "technical_machine_name_collision",
+      "card_print_id": "d1a5f335-824b-4023-af12-89896ac9ba3e",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "95",
+        "name": "Team Galactic's Invention G-107 Technical Machine G",
+        "printed_identity_modifier": "name_suffix:g"
+      },
+      "expected_before_fields": {
+        "set_code": "pl2",
+        "number": "95",
+        "name": "Team Galactic's Invention G-107 Technical Machine G",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "95",
+        "target_finishes": [
+          "normal",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "d5dcf523-4fa4-409d-828b-41590db54467",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "103",
+        "name": "Alakazam E4 LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl2",
+        "number": "103",
+        "name": "Alakazam E4 LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "103",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "bb349eab-a7e8-406e-9cb0-258ba52b4c98",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "104",
+        "name": "Floatzel GL LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl2",
+        "number": "104",
+        "name": "Floatzel GL LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "104",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "36df499c-7b36-4f0b-9297-0608d198618b",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "105",
+        "name": "Flygon LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl2",
+        "number": "105",
+        "name": "Flygon LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "105",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "b9b60d69-cde6-4dd8-bfd6-0c818bfd1196",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "106",
+        "name": "Gallade E4 LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl2",
+        "number": "106",
+        "name": "Gallade E4 LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "106",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "c16d088f-0ad2-4a85-824e-c889a2bfde12",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "107",
+        "name": "Hippowdon LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl2",
+        "number": "107",
+        "name": "Hippowdon LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "107",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "f890ce32-6389-40a1-9b77-ff610b6e3f88",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "108",
+        "name": "Infernape E4 LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl2",
+        "number": "108",
+        "name": "Infernape E4 LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "108",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "c37513a0-d943-4c38-9f2f-83b9a0ec9524",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "110",
+        "name": "Mismagius GL LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl2",
+        "number": "110",
+        "name": "Mismagius GL LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "110",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "c98b6822-0ef1-462f-ad03-cd02107e5ed1",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "111",
+        "name": "Snorlax LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl2",
+        "number": "111",
+        "name": "Snorlax LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "111",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "556a801c-bf26-4315-94cb-a023e6d1244b",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "RT1",
+        "name": "Fan Rotom",
+        "printed_identity_modifier": "number_prefix:RT"
+      },
+      "expected_before_fields": {
+        "set_code": "pl2",
+        "number": "RT1",
+        "name": "Fan Rotom",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "1",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "5e9cae28-ec79-4d4b-8e9b-c716056c3dc8",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "RT3",
+        "name": "Heat Rotom",
+        "printed_identity_modifier": "number_prefix:RT"
+      },
+      "expected_before_fields": {
+        "set_code": "pl2",
+        "number": "RT3",
+        "name": "Heat Rotom",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "3",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "00f64a67-4b22-4827-bc85-d2c31dff23ab",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_fields": {
+        "set_code": "pl2",
+        "number": "RT5",
+        "name": "Wash Rotom",
+        "printed_identity_modifier": "number_prefix:RT"
+      },
+      "expected_before_fields": {
+        "set_code": "pl2",
+        "number": "RT5",
+        "name": "Wash Rotom",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "5",
+        "target_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "5aba56ba-2887-4f19-b7ec-a3121f414be3",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "141",
+        "name": "Absol G LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl3",
+        "number": "141",
+        "name": "Absol G LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "141",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "d5330a73-ac35-409a-a3dd-c192dbd704bf",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "142",
+        "name": "Blaziken FB LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl3",
+        "number": "142",
+        "name": "Blaziken FB LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "142",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "6541ddac-0b89-4591-85db-aba036f5f934",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "143",
+        "name": "Charizard G LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl3",
+        "number": "143",
+        "name": "Charizard G LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "143",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "4dc2bf8f-9624-4c7b-aa4d-b372ba4383bc",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "144",
+        "name": "Electivire FB LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl3",
+        "number": "144",
+        "name": "Electivire FB LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "144",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "1c13bf1e-dcff-4460-af92-3289103f7c05",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "145",
+        "name": "Garchomp C LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl3",
+        "number": "145",
+        "name": "Garchomp C LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "145",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "cb5f46e6-97bd-4e6a-995c-2bca5072d793",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "146",
+        "name": "Rayquaza C LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl3",
+        "number": "146",
+        "name": "Rayquaza C LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "146",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "lvx_name_modifier_collision",
+      "card_print_id": "dc75d5dc-b426-480f-8f84-30f20d6518e6",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_fields": {
+        "set_code": "pl3",
+        "number": "147",
+        "name": "Staraptor FB LV.X",
+        "printed_identity_modifier": "level_x"
+      },
+      "expected_before_fields": {
+        "set_code": "pl3",
+        "number": "147",
+        "name": "Staraptor FB LV.X",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "147",
+        "target_finishes": [
+          "holo"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "5fefb496-b9cd-4dbe-bec6-63cd90b151f1",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "AR1",
+        "name": "Arceus",
+        "printed_identity_modifier": "number_prefix:AR"
+      },
+      "expected_before_fields": {
+        "set_code": "pl4",
+        "number": "AR1",
+        "name": "Arceus",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "1",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "74710bb3-5e5c-48f5-a642-086042df54e5",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "AR6",
+        "name": "Arceus",
+        "printed_identity_modifier": "number_prefix:AR"
+      },
+      "expected_before_fields": {
+        "set_code": "pl4",
+        "number": "AR6",
+        "name": "Arceus",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "6",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "47871621-a579-4429-805d-6d81d2959530",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "AR9",
+        "name": "Arceus",
+        "printed_identity_modifier": "number_prefix:AR"
+      },
+      "expected_before_fields": {
+        "set_code": "pl4",
+        "number": "AR9",
+        "name": "Arceus",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "9",
+        "target_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "update_class": "existing_collision_holder_modifier",
+      "reason": "preserve_existing_distinct_card_while_freeing_number_plain_identity_collision",
+      "collision_kind": "prefixed_number_collision",
+      "card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_fields": {
+        "set_code": "pl4",
+        "number": "SH12",
+        "name": "Shinx",
+        "printed_identity_modifier": "number_prefix:SH"
+      },
+      "expected_before_fields": {
+        "set_code": "pl4",
+        "number": "SH12",
+        "name": "Shinx",
+        "printed_identity_modifier": null
+      },
+      "evidence": {
+        "collision_source": "PKG-02D",
+        "target_number_plain": "12",
+        "target_finishes": [
+          "holo",
+          "reverse"
+        ]
+      }
+    }
+  ],
+  "simulated_unique_index_result": {
+    "checked_rows": 1071,
+    "final_unique_collision_groups": [],
+    "final_unique_collision_count": 0
+  },
+  "sql_artifact": {
+    "path": "docs/sql/english_master_index_pkg02g_number_key_collision_identity_modifier_guarded_dry_run_transaction_v1.sql",
+    "sha256": "17be53be4fc5448db896a86e9d890395db5333a9cae5d521f368a43a4fbd5cd9",
+    "contains_update_statement": true,
+    "contains_delete_statement": false,
+    "contains_commit_statement": false,
+    "contains_rollback_statement": true,
+    "execution_performed": false
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve PKG-02G-NUMBER-KEY-IDENTITY-MODIFIER for guarded dry-run transaction execution only. Fingerprint: 6b99a72e94808480edb20c649c62d31364d40ca794bf9c175c630f4b48d678d4. Scope: 58 number-key collision rows, 97 parent identity updates, no deletes, rollback-only. No real apply. No migrations.",
+    "approval_effect": "Authorizes rollback-only execution of the PKG-02G dry-run transaction artifact. It does not authorize durable apply, deletes, migrations, cleanup, quarantine, or global apply."
+  },
+  "safety": [
+    "No SQL was executed.",
+    "No DB writes were performed.",
+    "No migrations were created.",
+    "No deletes are present in the SQL artifact.",
+    "PKG-02G uses printed_identity_modifier to disambiguate real distinct cards.",
+    "The simulated final standard-set unique identity check has zero collision groups."
+  ],
+  "stop_findings": [],
+  "report_hash_sha256": "445c35901f44d6577311794d34ba5674fb391e9649342513bb4e6e9d2b6abfd2",
+  "pass": true
+}

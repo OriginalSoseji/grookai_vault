@@ -1,0 +1,181 @@
+{
+  "version": "english_master_index_sv03_stamped_lane_closure_v1",
+  "generated_at": "2026-06-12T20:00:50.766Z",
+  "audit_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "collision_audit": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_existing_stamped_parent_collision_audit_v1.json",
+    "source_adjudication": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_play_pokemon_ex_holo_source_adjudication_v1.json",
+    "identity_apply": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_existing_stamped_parent_identity_backfill_real_apply_v1.json",
+    "town_store_apply": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_town_store_stamped_child_insert_real_apply_v1.json",
+    "ex_holo_apply": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_play_pokemon_ex_holo_child_insert_real_apply_v1.json"
+  },
+  "fingerprint_sha256": "5749b6a9c8290c0ccfafb97cc4822a9e02067e216f6e5f8ff59051fedbe4c10f",
+  "summary": {
+    "target_rows": 3,
+    "closed_rows": 3,
+    "open_rows": 0,
+    "missing_target_child_finish": 0,
+    "forbidden_stamped_child_finishes": 0,
+    "identity_rows_backfilled": 3,
+    "child_rows_inserted": 3,
+    "parent_writes_after_identity_backfill": 0,
+    "identity_writes_after_identity_backfill": 0,
+    "delete_rows": 0,
+    "merge_rows": 0,
+    "write_ready_now": 0,
+    "by_closure_status": {
+      "closed_verified_in_db": 3
+    },
+    "by_finish": {
+      "cosmos": 1,
+      "holo": 2
+    }
+  },
+  "packages": [
+    {
+      "package_id": "SV03-EXISTING-STAMPED-PARENT-IDENTITY-BACKFILL",
+      "package_fingerprint_sha256": "0481ed86bac219a6b2f8c150610c8bce59d8f4352b950874119f911148c7ab8f",
+      "apply_status": "sv03_existing_stamped_parent_identity_backfill_real_apply_committed",
+      "committed": true,
+      "write_counts": {
+        "parent_rows_updated": 3,
+        "identity_rows_inserted": 3,
+        "child_rows_inserted": 0,
+        "delete_rows": 0,
+        "merge_rows": 0
+      },
+      "stop_findings": []
+    },
+    {
+      "package_id": "SV03-TOWN-STORE-STAMPED-CHILD-INSERT",
+      "package_fingerprint_sha256": "c28c54f0d0c73da9c7beb6f52a28b19a5e091d1e8e359ebce9e8bdaae32f006d",
+      "apply_status": "sv03_town_store_stamped_child_insert_real_apply_committed",
+      "committed": true,
+      "write_counts": {
+        "child_rows_inserted": 1,
+        "parent_rows_written": 0,
+        "identity_rows_written": 0,
+        "delete_rows": 0,
+        "merge_rows": 0
+      },
+      "stop_findings": []
+    },
+    {
+      "package_id": "SV03-PLAY-POKEMON-EX-HOLO-CHILD-INSERT",
+      "package_fingerprint_sha256": "b33838c9f31d9b693bf8be33940c814cfe31fb78335dd87b18ec67864b8a13db",
+      "apply_status": "sv03_play_pokemon_ex_holo_child_insert_real_apply_committed",
+      "committed": true,
+      "write_counts": {
+        "child_rows_inserted": 2,
+        "parent_rows_written": 0,
+        "identity_rows_written": 0,
+        "delete_rows": 0,
+        "merge_rows": 0
+      },
+      "stop_findings": []
+    }
+  ],
+  "rows": [
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "196",
+      "card_name": "Town Store",
+      "target_variant_key": "play_pokemon_stamp",
+      "target_finish_key": "cosmos",
+      "existing_parent_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+      "expected_target_child_id": "fe7c011c-6d09-44d1-9c3f-3d52b829e80c",
+      "current_target_child_satisfied": true,
+      "active_identity_satisfied": true,
+      "forbidden_stamped_child_absent": true,
+      "historical_collision_status": "existing_parent_already_satisfies_target_finish",
+      "historical_blockers": [],
+      "evidence_tier_before_adjudication": "multi_lane",
+      "adjudication_status": null,
+      "exact_finish_sources_after_adjudication": null,
+      "exact_stamp_sources_after_adjudication": null,
+      "evidence_urls_after_adjudication": [],
+      "closure_status": "closed_verified_in_db",
+      "closure_reason": "multi_lane_source_backed_target_finish_already_satisfied"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "22",
+      "card_name": "Toedscruel ex",
+      "target_variant_key": "play_pokemon_stamp",
+      "target_finish_key": "holo",
+      "existing_parent_id": "25d66424-5250-4d77-b9b3-d8e82bca20a4",
+      "expected_target_child_id": "5e8873f0-dce9-436f-9984-2ac5280324f8",
+      "current_target_child_satisfied": true,
+      "active_identity_satisfied": true,
+      "forbidden_stamped_child_absent": true,
+      "historical_collision_status": "existing_parent_has_target_finish_but_blocked_by_evidence_or_identity",
+      "historical_blockers": [
+        "product_family_only_requires_manual_adjudication_before_child_action"
+      ],
+      "evidence_tier_before_adjudication": "product_family_only",
+      "adjudication_status": "accepted_exact_holo_play_pokemon_stamp_ready_for_child_insert_dry_run",
+      "exact_finish_sources_after_adjudication": 3,
+      "exact_stamp_sources_after_adjudication": 3,
+      "evidence_urls_after_adjudication": [
+        "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)",
+        "https://pokumon.com/card/holofoil-play-pokemon-toedscruel-ex-022-197-play-pokemon-prize-pack-series-4-special-print/",
+        "https://www.ebay.com/p/19067890392",
+        "https://www.tcgcollector.com/sets/1220/play-pokemon-prize-pack-series-four",
+        "https://www.tcgplayer.com/product/538743/pokemon-prize-pack-series-cards-toedscruel-ex"
+      ],
+      "closure_status": "closed_verified_in_db",
+      "closure_reason": "accepted_exact_holo_play_pokemon_stamp_ready_for_child_insert_dry_run"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "66",
+      "card_name": "Tyranitar ex",
+      "target_variant_key": "play_pokemon_stamp",
+      "target_finish_key": "holo",
+      "existing_parent_id": "3bfdd7db-f5d8-4275-85b8-bb64130860e6",
+      "expected_target_child_id": "d2442062-f601-4c87-b4e6-23aa1e3dafa0",
+      "current_target_child_satisfied": true,
+      "active_identity_satisfied": true,
+      "forbidden_stamped_child_absent": true,
+      "historical_collision_status": "existing_parent_has_target_finish_but_blocked_by_evidence_or_identity",
+      "historical_blockers": [
+        "product_family_only_requires_manual_adjudication_before_child_action"
+      ],
+      "evidence_tier_before_adjudication": "product_family_only",
+      "adjudication_status": "accepted_exact_holo_play_pokemon_stamp_ready_for_child_insert_dry_run",
+      "exact_finish_sources_after_adjudication": 3,
+      "exact_stamp_sources_after_adjudication": 3,
+      "evidence_urls_after_adjudication": [
+        "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)",
+        "https://pokumon.com/card/holofoil-play-pokemon-tyranitar-ex-066-197-play-pokemon-prize-pack-series-4-special-print/",
+        "https://www.ebay.com/p/7067898600",
+        "https://www.tcgcollector.com/sets/1220/play-pokemon-prize-pack-series-four",
+        "https://www.tcgplayer.com/product/538744/pokemon-prize-pack-series-cards-tyranitar-ex"
+      ],
+      "closure_status": "closed_verified_in_db",
+      "closure_reason": "accepted_exact_holo_play_pokemon_stamp_ready_for_child_insert_dry_run"
+    }
+  ],
+  "safety_confirmation": {
+    "audit_only": true,
+    "db_writes_performed_by_this_report": false,
+    "durable_db_writes_performed_by_this_report": false,
+    "prior_approved_apply_artifacts_consolidated": true,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "global_apply_performed": false,
+    "write_ready_now": 0
+  }
+}

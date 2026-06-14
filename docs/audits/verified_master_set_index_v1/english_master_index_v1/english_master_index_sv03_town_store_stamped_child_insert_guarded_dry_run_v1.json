@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "package_id": "SV03-TOWN-STORE-STAMPED-CHILD-INSERT",
+  "generated_at": "2026-06-12T19:09:53.398Z",
+  "rollback_only_dry_run": true,
+  "db_reads_performed": true,
+  "db_writes_performed_inside_rolled_back_transaction": true,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "package_fingerprint_sha256": "c28c54f0d0c73da9c7beb6f52a28b19a5e091d1e8e359ebce9e8bdaae32f006d",
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_sv03_existing_stamped_parent_collision_audit_v1.json",
+  "source_collision_audit_fingerprint": "2eb04a5b37f926d006b707ceada217c2328cedaf66643ebfcb0a8d329c99c957",
+  "dry_run_status": "sv03_town_store_stamped_child_insert_completed_rolled_back_no_durable_change",
+  "dry_run_proof_hash": "4ceed9a6afafe94d1787466b299bf76632346fc49c8ec2fad1b91860025aff90",
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "transient_after_snapshot_differs_from_before_snapshot": true,
+  "before_snapshot": {
+    "captured_at": "2026-06-12T19:09:52.475Z",
+    "rows": [
+      {
+        "row_type": "active_identity",
+        "row_id": "f5ab64a0-c75d-4846-8ec4-deabd56eda22",
+        "set_code": "sv03",
+        "number": "196",
+        "number_plain": "196",
+        "name": "Town Store",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "finish_key": null,
+        "identity_key_hash": "a4042a6bc95daabe2ad0a164cb96388eaaa47bc87baa4aa25b6edbae9c248419"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+        "set_code": "sv03",
+        "number": "196",
+        "number_plain": "196",
+        "name": "Town Store",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "4ceed9a6afafe94d1787466b299bf76632346fc49c8ec2fad1b91860025aff90",
+    "counts": {
+      "target_parent_rows": 1,
+      "target_child_rows": 0,
+      "active_identity_rows": 1,
+      "total_rows": 2
+    }
+  },
+  "transient_snapshot": {
+    "captured_at": "2026-06-12T19:09:53.168Z",
+    "rows": [
+      {
+        "row_type": "active_identity",
+        "row_id": "f5ab64a0-c75d-4846-8ec4-deabd56eda22",
+        "set_code": "sv03",
+        "number": "196",
+        "number_plain": "196",
+        "name": "Town Store",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "finish_key": null,
+        "identity_key_hash": "a4042a6bc95daabe2ad0a164cb96388eaaa47bc87baa4aa25b6edbae9c248419"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "fe7c011c-6d09-44d1-9c3f-3d52b829e80c",
+        "set_code": "sv03",
+        "number": "196",
+        "number_plain": "196",
+        "name": "Town Store",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "finish_key": "cosmos",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+        "set_code": "sv03",
+        "number": "196",
+        "number_plain": "196",
+        "name": "Town Store",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "225a138eba6bacbfaa040fb6dd713b543f062f570b8466428fd9a0fcd9a12036",
+    "counts": {
+      "target_parent_rows": 1,
+      "target_child_rows": 1,
+      "active_identity_rows": 1,
+      "total_rows": 3
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-12T19:09:53.319Z",
+    "rows": [
+      {
+        "row_type": "active_identity",
+        "row_id": "f5ab64a0-c75d-4846-8ec4-deabd56eda22",
+        "set_code": "sv03",
+        "number": "196",
+        "number_plain": "196",
+        "name": "Town Store",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "finish_key": null,
+        "identity_key_hash": "a4042a6bc95daabe2ad0a164cb96388eaaa47bc87baa4aa25b6edbae9c248419"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+        "set_code": "sv03",
+        "number": "196",
+        "number_plain": "196",
+        "name": "Town Store",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "4ceed9a6afafe94d1787466b299bf76632346fc49c8ec2fad1b91860025aff90",
+    "counts": {
+      "target_parent_rows": 1,
+      "target_child_rows": 0,
+      "active_identity_rows": 1,
+      "total_rows": 2
+    }
+  },
+  "guard": {
+    "target_count": 1,
+    "target_child_count": 1,
+    "target_parent_count": 1,
+    "exact_shape_count": 1,
+    "missing_parent_count": 0,
+    "parent_mismatch_count": 0,
+    "inactive_finish_count": 0,
+    "active_identity_count": 1,
+    "child_id_collision_count": 0,
+    "target_finish_collision_count": 0,
+    "forbidden_stamped_child_count": 0
+  },
+  "proof": {
+    "package_id": "SV03-TOWN-STORE-STAMPED-CHILD-INSERT",
+    "package_fingerprint": "c28c54f0d0c73da9c7beb6f52a28b19a5e091d1e8e359ebce9e8bdaae32f006d",
+    "target_rows": 1,
+    "inserted_child_rows": 1,
+    "active_identity_rows": 1,
+    "forbidden_stamped_child_rows": 0
+  },
+  "child_insert_rows": [
+    {
+      "child_printing_id": "fe7c011c-6d09-44d1-9c3f-3d52b829e80c",
+      "card_print_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+      "finish_key": "cosmos"
+    }
+  ],
+  "summary": {
+    "target_rows": 1,
+    "child_inserts_simulated": 1,
+    "parent_writes_simulated": 0,
+    "identity_writes_simulated": 0,
+    "deletes_simulated": 0,
+    "merges_simulated": 0
+  },
+  "targets": [
+    {
+      "target_child_id": "fe7c011c-6d09-44d1-9c3f-3d52b829e80c",
+      "target_parent_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "196",
+      "source_number_plain": "196",
+      "card_name": "Town Store",
+      "target_variant_key": "play_pokemon_stamp",
+      "target_finish_key": "cosmos",
+      "evidence_tier": "multi_lane",
+      "source_readiness_status": "review_ready_multi_lane_active_finish",
+      "source_collision_audit_fingerprint": "2eb04a5b37f926d006b707ceada217c2328cedaf66643ebfcb0a8d329c99c957"
+    }
+  ],
+  "recommended_real_apply_approval_text": "Approve real SV03-TOWN-STORE-STAMPED-CHILD-INSERT apply only. Fingerprint: c28c54f0d0c73da9c7beb6f52a28b19a5e091d1e8e359ebce9e8bdaae32f006d. Scope: 1 child-only card_printing insert for sv03/Obsidian Flames Town Store #196 Play Pokemon stamped parent, finish cosmos; parent writes=0, identity writes=0, deletes=0, merges=0. Dry-run proof: 4ceed9a6afafe94d1787466b299bf76632346fc49c8ec2fad1b91860025aff90 == 4ceed9a6afafe94d1787466b299bf76632346fc49c8ec2fad1b91860025aff90. No global apply. No migrations. No cleanup. No quarantine.",
+  "stop_findings": [],
+  "safety_confirmation": {
+    "no_durable_db_writes_performed": true,
+    "no_parent_or_identity_writes_included": true,
+    "no_migrations_created": true,
+    "no_cleanup_or_quarantine_performed": true,
+    "no_delete_or_merge_included": true,
+    "stamped_is_parent_identity_not_child_finish": true
+  }
+}

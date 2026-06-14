@@ -1,0 +1,811 @@
+{
+  "generated_at": "2026-06-12T20:43:01.637Z",
+  "version": "english_master_index_pkg17e1_stamped_active_finish_parent_insert_real_apply_v1",
+  "package_id": "PKG-17E1-STAMPED-ACTIVE-FINISH-PARENT-INSERTS",
+  "package_fingerprint_sha256": "c676b6adc30ea0202a563677ee646314d7ad1f45c31a47633c4faf04ff69e7c7",
+  "dry_run_proof_sha256": "8d28777242700d8bba19746afee8e65510fa73fec3acc92364a36e10a507ef07",
+  "approval_text_required": "Approve real PKG-17E1-STAMPED-ACTIVE-FINISH-PARENT-INSERTS apply only. Fingerprint: c676b6adc30ea0202a563677ee646314d7ad1f45c31a47633c4faf04ff69e7c7. Scope: 6 stamped parent inserts, 6 identity inserts, 6 child printing inserts; finishes cosmos=1, holo=2, reverse=3; sets sv03.5=4, swsh12.5=2. Dry-run proof: aa9e883dd3809f1e5b4fe4742d68c7334d859cdd3652d15fd674bc2659fbb856 == aa9e883dd3809f1e5b4fe4742d68c7334d859cdd3652d15fd674bc2659fbb856. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+  "apply_status": "pkg17e1_real_apply_committed",
+  "committed": true,
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17e1_stamped_active_finish_parent_insert_guarded_dry_run_v1.json",
+  "db_writes_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "write_counts": {
+    "parent_inserts": 6,
+    "identity_inserts": 6,
+    "child_inserts": 6,
+    "deletes": 0,
+    "merges": 0
+  },
+  "guard": {
+    "target_count": 6,
+    "target_parent_count": 6,
+    "target_child_count": 6,
+    "unsafe_variant_count": 0,
+    "modifier_mismatch_count": 0,
+    "missing_base_count": 0,
+    "base_parent_not_unstamped_count": 0,
+    "inactive_finish_count": 0,
+    "missing_base_finish_count": 0,
+    "parent_collision_count": 0,
+    "child_collision_count": 0,
+    "identity_target_collision_count": 0,
+    "ready_identity_projection_count": 6,
+    "identity_hash_collision_count": 0
+  },
+  "proof": {
+    "package_id": "PKG-17E1-STAMPED-ACTIVE-FINISH-PARENT-INSERTS",
+    "package_fingerprint": "c676b6adc30ea0202a563677ee646314d7ad1f45c31a47633c4faf04ff69e7c7",
+    "target_rows": 6,
+    "inserted_parent_rows": 6,
+    "inserted_parent_modifier_rows": 6,
+    "inserted_identity_rows": 6,
+    "inserted_child_rows": 6,
+    "forbidden_stamped_child_rows": 0
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-12T20:43:00.606Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "7dd08fd2-3546-43fc-8da5-a8daa086055b",
+        "set_code": "sv03.5",
+        "number": "004",
+        "number_plain": "004",
+        "name": "Charmander",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "7ce3c2bd-8980-4b5c-8270-9914a30c2206",
+        "set_code": "sv03.5",
+        "number": "007",
+        "number_plain": "007",
+        "name": "Squirtle",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "9bc544ad-f07f-4c7c-b806-7ab465c5726d",
+        "set_code": "sv03.5",
+        "number": "132",
+        "number_plain": "132",
+        "name": "Ditto",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "3d304f62-3d2c-409e-86ee-2b9b757ed7d0",
+        "set_code": "sv03.5",
+        "number": "151",
+        "number_plain": "151",
+        "name": "Mew ex",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+        "set_code": "swsh12.5",
+        "number": "036",
+        "number_plain": "036",
+        "name": "Kyogre",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "1e69f61d-a08b-4c75-9f87-3899cc131198",
+        "set_code": "swsh12.5",
+        "number": "131",
+        "number_plain": "131",
+        "name": "Friends in Sinnoh",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "aa9e883dd3809f1e5b4fe4742d68c7334d859cdd3652d15fd674bc2659fbb856",
+    "counts": {
+      "base_parent": 6
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-12T20:43:01.552Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "7dd08fd2-3546-43fc-8da5-a8daa086055b",
+        "set_code": "sv03.5",
+        "number": "004",
+        "number_plain": "004",
+        "name": "Charmander",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "7ce3c2bd-8980-4b5c-8270-9914a30c2206",
+        "set_code": "sv03.5",
+        "number": "007",
+        "number_plain": "007",
+        "name": "Squirtle",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "9bc544ad-f07f-4c7c-b806-7ab465c5726d",
+        "set_code": "sv03.5",
+        "number": "132",
+        "number_plain": "132",
+        "name": "Ditto",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "3d304f62-3d2c-409e-86ee-2b9b757ed7d0",
+        "set_code": "sv03.5",
+        "number": "151",
+        "number_plain": "151",
+        "name": "Mew ex",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+        "set_code": "swsh12.5",
+        "number": "036",
+        "number_plain": "036",
+        "name": "Kyogre",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "1e69f61d-a08b-4c75-9f87-3899cc131198",
+        "set_code": "swsh12.5",
+        "number": "131",
+        "number_plain": "131",
+        "name": "Friends in Sinnoh",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "eb460da5-0e69-4f36-b0bc-1ab989829a6a",
+        "set_code": "sv03.5",
+        "number": "004",
+        "number_plain": "004",
+        "name": "Charmander",
+        "variant_key": "eb_games_stamp",
+        "printed_identity_modifier": "eb_games_stamp",
+        "finish_key": "reverse",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "dfea8fbd-02bb-45df-85e9-a0abba2d61c0",
+        "set_code": "sv03.5",
+        "number": "007",
+        "number_plain": "007",
+        "name": "Squirtle",
+        "variant_key": "pokemon_center_stamp",
+        "printed_identity_modifier": "pokemon_center_stamp",
+        "finish_key": "reverse",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "da4901e1-a641-4a79-b3e9-9161f822e254",
+        "set_code": "sv03.5",
+        "number": "132",
+        "number_plain": "132",
+        "name": "Ditto",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "holo",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "bb534dfa-bbed-459a-b5a3-dd3560adf82a",
+        "set_code": "sv03.5",
+        "number": "151",
+        "number_plain": "151",
+        "name": "Mew ex",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "holo",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "5b2b84a3-5836-46df-a960-996f113a7893",
+        "set_code": "swsh12.5",
+        "number": "036",
+        "number_plain": "036",
+        "name": "Kyogre",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": "cosmos",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "eaa2615d-0602-45fc-be85-0b2d25d0f582",
+        "set_code": "swsh12.5",
+        "number": "131",
+        "number_plain": "131",
+        "name": "Friends in Sinnoh",
+        "variant_key": "professor_program_stamp",
+        "printed_identity_modifier": "professor_program_stamp",
+        "finish_key": "reverse",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "1408ad9e-2f69-4b3e-80d3-8e0052a149d3",
+        "set_code": "sv03.5",
+        "number": "004",
+        "number_plain": "004",
+        "name": "Charmander",
+        "variant_key": "eb_games_stamp",
+        "printed_identity_modifier": "eb_games_stamp",
+        "finish_key": null,
+        "identity_key_hash": "1de38629a9d5d2433f7163413156de1f9f7eba4fd88d549c1899104b43a7b7e1"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "86f699d5-2a83-47b6-a6ba-a5e602cf0f1d",
+        "set_code": "sv03.5",
+        "number": "007",
+        "number_plain": "007",
+        "name": "Squirtle",
+        "variant_key": "pokemon_center_stamp",
+        "printed_identity_modifier": "pokemon_center_stamp",
+        "finish_key": null,
+        "identity_key_hash": "e8c4da986d6144b71523dd07af41277ab7c8a9315425896a32209f21c359799d"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "8c9355bb-24cd-4a22-9fb9-b6795fe2cca1",
+        "set_code": "sv03.5",
+        "number": "132",
+        "number_plain": "132",
+        "name": "Ditto",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "fd8a5ec4a8e7e95658a941de781942c0ae6d2207a0400095ff993b7fb9ab67d4"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "b4c0e387-fe5f-493c-82f6-e7a21630a98a",
+        "set_code": "sv03.5",
+        "number": "151",
+        "number_plain": "151",
+        "name": "Mew ex",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "3ab4ac17c498f098c21e236f714f5068243981383d5766b8f0238bd51dfe5781"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "1c894ab3-dd73-4fac-bccd-49301157e3d8",
+        "set_code": "swsh12.5",
+        "number": "036",
+        "number_plain": "036",
+        "name": "Kyogre",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": "946068f95fd75ccf9834eba9d95e63c6b4ce1aae6dbe35edb72811126947d3bd"
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "93276d87-e6b4-486c-aa03-9a9a2081bbbf",
+        "set_code": "swsh12.5",
+        "number": "131",
+        "number_plain": "131",
+        "name": "Friends in Sinnoh",
+        "variant_key": "professor_program_stamp",
+        "printed_identity_modifier": "professor_program_stamp",
+        "finish_key": null,
+        "identity_key_hash": "e759b195a514c6028cf45f1c6a47efc4b3d8d7b4ad2846b753bab5d3ec5953fa"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "a828bea3-8870-4b80-9c1f-2f1a20eb71b6",
+        "set_code": "sv03.5",
+        "number": "004",
+        "number_plain": "004",
+        "name": "Charmander",
+        "variant_key": "eb_games_stamp",
+        "printed_identity_modifier": "eb_games_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "40f953a9-d1df-4414-9d53-ccc5493daad5",
+        "set_code": "sv03.5",
+        "number": "007",
+        "number_plain": "007",
+        "name": "Squirtle",
+        "variant_key": "pokemon_center_stamp",
+        "printed_identity_modifier": "pokemon_center_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "55c8c4d7-10e0-46ee-b2a7-dc87dc0544d8",
+        "set_code": "sv03.5",
+        "number": "132",
+        "number_plain": "132",
+        "name": "Ditto",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "811b0adc-8f9e-4b60-835f-c554f1091af9",
+        "set_code": "sv03.5",
+        "number": "151",
+        "number_plain": "151",
+        "name": "Mew ex",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "89c2b689-cf66-4d58-8752-356cded22db5",
+        "set_code": "swsh12.5",
+        "number": "036",
+        "number_plain": "036",
+        "name": "Kyogre",
+        "variant_key": "prize_pack_stamp",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ab7b0a26-2a90-49b5-adc7-886dd37881d0",
+        "set_code": "swsh12.5",
+        "number": "131",
+        "number_plain": "131",
+        "name": "Friends in Sinnoh",
+        "variant_key": "professor_program_stamp",
+        "printed_identity_modifier": "professor_program_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "c15108bbb01887f21b8ee4489206125f3473d33c343deba695e29836c8870584",
+    "counts": {
+      "base_parent": 6,
+      "target_child": 6,
+      "target_identity": 6,
+      "target_parent": 6
+    }
+  },
+  "scope": {
+    "target_count": 6,
+    "by_set": {
+      "sv03.5": 4,
+      "swsh12.5": 2
+    },
+    "by_finish": {
+      "cosmos": 1,
+      "holo": 2,
+      "reverse": 3
+    },
+    "targets": [
+      {
+        "target_parent_id": "a828bea3-8870-4b80-9c1f-2f1a20eb71b6",
+        "target_child_id": "eb460da5-0e69-4f36-b0bc-1ab989829a6a",
+        "base_parent_id": "7dd08fd2-3546-43fc-8da5-a8daa086055b",
+        "set_key": "sv03.5",
+        "set_name": "151",
+        "card_number": "4",
+        "card_name": "Charmander",
+        "target_finish_key": "reverse",
+        "target_variant_key": "eb_games_stamp",
+        "target_printed_identity_modifier": "eb_games_stamp",
+        "stamp_label": "eb_games_stamp",
+        "source_readiness_status": "ready_for_guarded_dry_run",
+        "evidence": {
+          "source_package_id": "PKG-17E-STAMPED-ACTIVE-FINISH-WEB-EVIDENCE",
+          "source_fingerprint_sha256": "1e655ea689401abeb9be3805bb266b471be3adc758dd19f7c18befdc0a0a5714",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "7dd08fd2-3546-43fc-8da5-a8daa086055b",
+          "base_parent_child_finishes": [
+            "cosmos",
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "eb_games_stamp",
+          "stamp_label": "eb_games_stamp",
+          "active_child_finish_key": "reverse",
+          "source_families": [
+            "pokecardvalues",
+            "pricecharting"
+          ],
+          "evidence_count": 2,
+          "evidence": [
+            {
+              "source_key": "pricecharting",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-%26-violet-151/charmander-eb-games-4",
+              "set_key": "sv03.5",
+              "set_name": "151",
+              "card_number": "4",
+              "card_name": "Charmander",
+              "variant_key": "eb_games_stamp",
+              "finish_key": "reverse",
+              "evidence_label": "PriceCharting sales include Charmander EB Games #004 Reverse Holo."
+            },
+            {
+              "source_key": "pokecardvalues",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://pokecardvalues.co.uk/cards/Charmander-004-165-Reverse-Holo-EB-Games-Stamp-151/sv3pt5-004-3-106/",
+              "set_key": "sv03.5",
+              "set_name": "151",
+              "card_number": "4",
+              "card_name": "Charmander",
+              "variant_key": "eb_games_stamp",
+              "finish_key": "reverse",
+              "evidence_label": "PokeCardValues page title identifies Charmander #004 EB Games Stamp as Reverse Holo."
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "40f953a9-d1df-4414-9d53-ccc5493daad5",
+        "target_child_id": "dfea8fbd-02bb-45df-85e9-a0abba2d61c0",
+        "base_parent_id": "7ce3c2bd-8980-4b5c-8270-9914a30c2206",
+        "set_key": "sv03.5",
+        "set_name": "151",
+        "card_number": "7",
+        "card_name": "Squirtle",
+        "target_finish_key": "reverse",
+        "target_variant_key": "pokemon_center_stamp",
+        "target_printed_identity_modifier": "pokemon_center_stamp",
+        "stamp_label": "pokemon_center_stamp",
+        "source_readiness_status": "ready_for_guarded_dry_run",
+        "evidence": {
+          "source_package_id": "PKG-17E-STAMPED-ACTIVE-FINISH-WEB-EVIDENCE",
+          "source_fingerprint_sha256": "1e655ea689401abeb9be3805bb266b471be3adc758dd19f7c18befdc0a0a5714",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "7ce3c2bd-8980-4b5c-8270-9914a30c2206",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "pokemon_center_stamp",
+          "stamp_label": "pokemon_center_stamp",
+          "active_child_finish_key": "reverse",
+          "source_families": [
+            "pokecardvalues",
+            "pricecharting",
+            "tcgplayer"
+          ],
+          "evidence_count": 3,
+          "evidence": [
+            {
+              "source_key": "pricecharting",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-%26-violet-151/squirtle-pokemon-center-7",
+              "set_key": "sv03.5",
+              "set_name": "151",
+              "card_number": "7",
+              "card_name": "Squirtle",
+              "variant_key": "pokemon_center_stamp",
+              "finish_key": "reverse",
+              "evidence_label": "PriceCharting sales include Squirtle Pokemon Center #007 Reverse Holo."
+            },
+            {
+              "source_key": "pokecardvalues",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://pokecardvalues.co.uk/cards/Squirtle-007-165-Reverse-Holo-Pokemon-Center-Stamp-151/sv3pt5-007-3-103/",
+              "set_key": "sv03.5",
+              "set_name": "151",
+              "card_number": "7",
+              "card_name": "Squirtle",
+              "variant_key": "pokemon_center_stamp",
+              "finish_key": "reverse",
+              "evidence_label": "PokeCardValues page title identifies Squirtle #007 Pokemon Center Stamp as Reverse Holo."
+            },
+            {
+              "source_key": "tcgplayer",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/520796/pokemon-miscellaneous-cards-and-products-squirtle-007-165-pokemon-center-exclusive",
+              "set_key": "sv03.5",
+              "set_name": "151",
+              "card_number": "7",
+              "card_name": "Squirtle",
+              "variant_key": "pokemon_center_stamp",
+              "finish_key": "reverse",
+              "evidence_label": "TCGplayer product identifies Squirtle #007 Pokemon Center Exclusive as Reverse Holofoil."
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "55c8c4d7-10e0-46ee-b2a7-dc87dc0544d8",
+        "target_child_id": "da4901e1-a641-4a79-b3e9-9161f822e254",
+        "base_parent_id": "9bc544ad-f07f-4c7c-b806-7ab465c5726d",
+        "set_key": "sv03.5",
+        "set_name": "151",
+        "card_number": "132",
+        "card_name": "Ditto",
+        "target_finish_key": "holo",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "prize_pack_stamp",
+        "source_readiness_status": "ready_for_guarded_dry_run",
+        "evidence": {
+          "source_package_id": "PKG-17E-STAMPED-ACTIVE-FINISH-WEB-EVIDENCE",
+          "source_fingerprint_sha256": "1e655ea689401abeb9be3805bb266b471be3adc758dd19f7c18befdc0a0a5714",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "9bc544ad-f07f-4c7c-b806-7ab465c5726d",
+          "base_parent_child_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "prize_pack_stamp",
+          "stamp_label": "prize_pack_stamp",
+          "active_child_finish_key": "holo",
+          "source_families": [
+            "ebay",
+            "tcgplayer"
+          ],
+          "evidence_count": 2,
+          "evidence": [
+            {
+              "source_key": "tcgplayer",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/619077/pokemon-prize-pack-series-cards-ditto-132-165",
+              "set_key": "sv03.5",
+              "set_name": "151",
+              "card_number": "132",
+              "card_name": "Ditto",
+              "variant_key": "prize_pack_stamp",
+              "finish_key": "holo",
+              "evidence_label": "TCGplayer Prize Pack product for Ditto #132 identifies Holofoil."
+            },
+            {
+              "source_key": "ebay",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.ebay.com/itm/257446815552",
+              "set_key": "sv03.5",
+              "set_name": "151",
+              "card_number": "132",
+              "card_name": "Ditto",
+              "variant_key": "prize_pack_stamp",
+              "finish_key": "holo",
+              "evidence_label": "eBay product title identifies Ditto #132 Prize Pack as Holo Rare."
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "811b0adc-8f9e-4b60-835f-c554f1091af9",
+        "target_child_id": "bb534dfa-bbed-459a-b5a3-dd3560adf82a",
+        "base_parent_id": "3d304f62-3d2c-409e-86ee-2b9b757ed7d0",
+        "set_key": "sv03.5",
+        "set_name": "151",
+        "card_number": "151",
+        "card_name": "Mew ex",
+        "target_finish_key": "holo",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "prize_pack_stamp",
+        "source_readiness_status": "ready_for_guarded_dry_run",
+        "evidence": {
+          "source_package_id": "PKG-17E-STAMPED-ACTIVE-FINISH-WEB-EVIDENCE",
+          "source_fingerprint_sha256": "1e655ea689401abeb9be3805bb266b471be3adc758dd19f7c18befdc0a0a5714",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "3d304f62-3d2c-409e-86ee-2b9b757ed7d0",
+          "base_parent_child_finishes": [
+            "holo"
+          ],
+          "stamped_variant_key": "prize_pack_stamp",
+          "stamp_label": "prize_pack_stamp",
+          "active_child_finish_key": "holo",
+          "source_families": [
+            "pricecharting",
+            "tcgplayer"
+          ],
+          "evidence_count": 2,
+          "evidence": [
+            {
+              "source_key": "pricecharting",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-%26-violet-151/mew-ex-prize-pack-151",
+              "set_key": "sv03.5",
+              "set_name": "151",
+              "card_number": "151",
+              "card_name": "Mew ex",
+              "variant_key": "prize_pack_stamp",
+              "finish_key": "holo",
+              "evidence_label": "PriceCharting sales include Mew ex #151 Prize Pack Series Cards Holo."
+            },
+            {
+              "source_key": "tcgplayer",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/565479/pokemon-prize-pack-series-cards-mew-ex",
+              "set_key": "sv03.5",
+              "set_name": "151",
+              "card_number": "151",
+              "card_name": "Mew ex",
+              "variant_key": "prize_pack_stamp",
+              "finish_key": "holo",
+              "evidence_label": "TCGplayer Prize Pack product for Mew ex identifies Holofoil."
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "89c2b689-cf66-4d58-8752-356cded22db5",
+        "target_child_id": "5b2b84a3-5836-46df-a960-996f113a7893",
+        "base_parent_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+        "set_key": "swsh12.5",
+        "set_name": "Crown Zenith",
+        "card_number": "36",
+        "card_name": "Kyogre",
+        "target_finish_key": "cosmos",
+        "target_variant_key": "prize_pack_stamp",
+        "target_printed_identity_modifier": "prize_pack_stamp",
+        "stamp_label": "prize_pack_stamp",
+        "source_readiness_status": "ready_for_guarded_dry_run",
+        "evidence": {
+          "source_package_id": "PKG-17E-STAMPED-ACTIVE-FINISH-WEB-EVIDENCE",
+          "source_fingerprint_sha256": "1e655ea689401abeb9be3805bb266b471be3adc758dd19f7c18befdc0a0a5714",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+          "base_parent_child_finishes": [
+            "cosmos",
+            "holo",
+            "reverse"
+          ],
+          "stamped_variant_key": "prize_pack_stamp",
+          "stamp_label": "prize_pack_stamp",
+          "active_child_finish_key": "cosmos",
+          "source_families": [
+            "pricecharting",
+            "tcgplayer"
+          ],
+          "evidence_count": 2,
+          "evidence": [
+            {
+              "source_key": "pricecharting",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-crown-zenith/kyogre-cosmos-holo-36",
+              "set_key": "swsh12.5",
+              "set_name": "Crown Zenith",
+              "card_number": "36",
+              "card_name": "Kyogre",
+              "variant_key": "prize_pack_stamp",
+              "finish_key": "cosmos",
+              "evidence_label": "PriceCharting page identifies Kyogre #036 as Cosmos Holo and includes Prize Pack stamped sales."
+            },
+            {
+              "source_key": "tcgplayer",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/575895/pokemon-miscellaneous-cards-and-products-kyogre-036-159-pixel-holo",
+              "set_key": "swsh12.5",
+              "set_name": "Crown Zenith",
+              "card_number": "36",
+              "card_name": "Kyogre",
+              "variant_key": "prize_pack_stamp",
+              "finish_key": "cosmos",
+              "evidence_label": "TCGplayer product for Kyogre #036 identifies the Prize Pack-style Pixel/Cosmos Holo product."
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "ab7b0a26-2a90-49b5-adc7-886dd37881d0",
+        "target_child_id": "eaa2615d-0602-45fc-be85-0b2d25d0f582",
+        "base_parent_id": "1e69f61d-a08b-4c75-9f87-3899cc131198",
+        "set_key": "swsh12.5",
+        "set_name": "Crown Zenith",
+        "card_number": "131",
+        "card_name": "Friends in Sinnoh",
+        "target_finish_key": "reverse",
+        "target_variant_key": "professor_program_stamp",
+        "target_printed_identity_modifier": "professor_program_stamp",
+        "stamp_label": "professor_program_stamp",
+        "source_readiness_status": "ready_for_guarded_dry_run",
+        "evidence": {
+          "source_package_id": "PKG-17E-STAMPED-ACTIVE-FINISH-WEB-EVIDENCE",
+          "source_fingerprint_sha256": "1e655ea689401abeb9be3805bb266b471be3adc758dd19f7c18befdc0a0a5714",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "1e69f61d-a08b-4c75-9f87-3899cc131198",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "professor_program_stamp",
+          "stamp_label": "professor_program_stamp",
+          "active_child_finish_key": "reverse",
+          "source_families": [
+            "dextcg",
+            "pricecharting"
+          ],
+          "evidence_count": 2,
+          "evidence": [
+            {
+              "source_key": "pricecharting",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-crown-zenith/friends-in-sinnoh-professor-program-131",
+              "set_key": "swsh12.5",
+              "set_name": "Crown Zenith",
+              "card_number": "131",
+              "card_name": "Friends in Sinnoh",
+              "variant_key": "professor_program_stamp",
+              "finish_key": "reverse",
+              "evidence_label": "PriceCharting sales include Friends in Sinnoh Professor Program #131 Reverse Holo."
+            },
+            {
+              "source_key": "dextcg",
+              "source_kind": "collector_reference",
+              "source_url": "https://dextcg.com/cards/swsh12pt5-131",
+              "set_key": "swsh12.5",
+              "set_name": "Crown Zenith",
+              "card_number": "131",
+              "card_name": "Friends in Sinnoh",
+              "variant_key": "professor_program_stamp",
+              "finish_key": "reverse",
+              "evidence_label": "DexTCG lists Friends in Sinnoh variants including Reverse Holo and Professor Program."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "stop_findings": []
+}

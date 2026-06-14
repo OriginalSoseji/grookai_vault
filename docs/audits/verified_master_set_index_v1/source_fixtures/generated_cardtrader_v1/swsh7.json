@@ -6,8 +6,8 @@
   "source_status": "available_generated",
   "set_key": "swsh7",
   "set_name": "Evolving Skies",
-  "retrieved_at": "2026-06-08T12:50:58.458Z",
-  "raw_snapshot_ref": "generated_fixture:cardtrader:swsh7:2026-06-08T12:50:58.458Z",
+  "retrieved_at": "2026-06-12T04:47:36.930Z",
+  "raw_snapshot_ref": "generated_fixture:cardtrader:swsh7:2026-06-12T04:47:36.930Z",
   "generation_note": "Generated from CardTrader Pokemon blueprint index. Exact card-number/name/finish matches only.",
   "records": [
     {
@@ -23,7 +23,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "CardTrader blueprint row Umbreon V - Ultra Rare | 094/203",
       "language": "en",
-      "retrieved_at": "2026-06-08T12:50:58.458Z",
+      "retrieved_at": "2026-06-12T04:47:36.930Z",
       "raw_snapshot_ref": "cardtrader_blueprint:166332-umbreon-v-ultra-rare-094-203-evolving-skies",
       "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
     },
@@ -40,7 +40,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "CardTrader blueprint row Sylveon V - Ultra Rare | 184/203",
       "language": "en",
-      "retrieved_at": "2026-06-08T12:50:58.458Z",
+      "retrieved_at": "2026-06-12T04:47:36.930Z",
       "raw_snapshot_ref": "cardtrader_blueprint:166422-sylveon-v-ultra-rare-184-203-evolving-skies",
       "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
     }

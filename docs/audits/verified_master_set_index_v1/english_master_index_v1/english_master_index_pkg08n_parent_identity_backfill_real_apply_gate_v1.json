@@ -1,0 +1,57 @@
+{
+  "generated_at": "2026-06-10T16:28:41.918Z",
+  "version": "english_master_index_pkg08n_parent_identity_backfill_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-08N-PARENT-IDENTITY-BACKFILL",
+    "package_fingerprint_sha256": "6401517a347571d92a766178f17c1dfc98dc45f31740802f9cdf6796f56464cf",
+    "target_parent_updates": 6,
+    "target_child_writes": 0,
+    "target_deletes": 0,
+    "by_set": {
+      "col1": 6
+    },
+    "by_finish": {
+      "normal": 6
+    },
+    "update_scope": "parent_set_id_set_code_number_printed_identity_modifier_only",
+    "child_writes_allowed": false,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false,
+    "global_apply_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_status": "pkg08n_parent_identity_backfill_completed_rolled_back_no_durable_change",
+    "before_hash_sha256": "3a1838d7473cad446d9d6ec03a7b5fb2179771bf37c01b94fdc8dc68aef66dae",
+    "after_hash_sha256": "3a1838d7473cad446d9d6ec03a7b5fb2179771bf37c01b94fdc8dc68aef66dae",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-08N-PARENT-IDENTITY-BACKFILL",
+        "package_fingerprint": "6401517a347571d92a766178f17c1dfc98dc45f31740802f9cdf6796f56464cf",
+        "target_rows": 6
+      }
+    ]
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-08N-PARENT-IDENTITY-BACKFILL apply only. Fingerprint: 6401517a347571d92a766178f17c1dfc98dc45f31740802f9cdf6796f56464cf. Scope: 6 parent card_print field updates for col1 Call of Legends shiny legend rows; updates set_id/set_code/number/printed_identity_modifier only, printed_identity_modifier=number_prefix:SL, generated number_plain verified by dry-run readback; no child writes, no deletes, no merges, no unsupported cleanup. Dry-run proof: 3a1838d7473cad446d9d6ec03a7b5fb2179771bf37c01b94fdc8dc68aef66dae == 3a1838d7473cad446d9d6ec03a7b5fb2179771bf37c01b94fdc8dc68aef66dae. No global apply. No migrations."
+  },
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg08n_parent_identity_backfill_guarded_dry_run_v1.json"
+  },
+  "stop_findings": [],
+  "pass": true
+}

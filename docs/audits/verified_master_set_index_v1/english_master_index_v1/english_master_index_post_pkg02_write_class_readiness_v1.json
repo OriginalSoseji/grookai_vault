@@ -1,0 +1,2456 @@
+{
+  "generated_at": "2026-06-10T06:10:10.525Z",
+  "version": "english_master_index_post_pkg02_write_class_readiness_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "report_status": "post_pkg02_write_class_readiness_ready_no_write",
+  "rule": "This report selects the next write-planning class only. It does not authorize writes.",
+  "live_snapshot": {
+    "available": true,
+    "reason": null,
+    "live_printing_rows": 57627
+  },
+  "summary": {
+    "live_printing_rows": 57627,
+    "live_by_status": {
+      "master_verified_by_index": 36384,
+      "unsupported_by_current_index": 10705,
+      "set_unmapped": 10520,
+      "name_mismatch_needs_review": 17,
+      "human_source_verified_by_index": 1
+    },
+    "missing_master_verified_from_grookai": 3348,
+    "missing_by_set_top": [
+      {
+        "set_key": "swsh4.5",
+        "missing_printings": 150
+      },
+      {
+        "set_key": "gym1",
+        "missing_printings": 134
+      },
+      {
+        "set_key": "gym2",
+        "missing_printings": 133
+      },
+      {
+        "set_key": "neo4",
+        "missing_printings": 114
+      },
+      {
+        "set_key": "neo1",
+        "missing_printings": 111
+      },
+      {
+        "set_key": "base1",
+        "missing_printings": 103
+      },
+      {
+        "set_key": "sm115",
+        "missing_printings": 103
+      },
+      {
+        "set_key": "base5",
+        "missing_printings": 86
+      },
+      {
+        "set_key": "mep",
+        "missing_printings": 85
+      },
+      {
+        "set_key": "svp",
+        "missing_printings": 79
+      },
+      {
+        "set_key": "swsh9",
+        "missing_printings": 79
+      },
+      {
+        "set_key": "neo2",
+        "missing_printings": 75
+      },
+      {
+        "set_key": "swsh11",
+        "missing_printings": 72
+      },
+      {
+        "set_key": "swsh12pt5gg",
+        "missing_printings": 70
+      },
+      {
+        "set_key": "swsh10",
+        "missing_printings": 67
+      },
+      {
+        "set_key": "base2",
+        "missing_printings": 66
+      },
+      {
+        "set_key": "neo3",
+        "missing_printings": 66
+      },
+      {
+        "set_key": "base3",
+        "missing_printings": 64
+      },
+      {
+        "set_key": "smp",
+        "missing_printings": 64
+      },
+      {
+        "set_key": "swsh12",
+        "missing_printings": 58
+      },
+      {
+        "set_key": "sve",
+        "missing_printings": 54
+      },
+      {
+        "set_key": "sv02",
+        "missing_printings": 49
+      },
+      {
+        "set_key": "swsh7",
+        "missing_printings": 49
+      },
+      {
+        "set_key": "swshp",
+        "missing_printings": 49
+      },
+      {
+        "set_key": "swsh1",
+        "missing_printings": 42
+      },
+      {
+        "set_key": "swsh6",
+        "missing_printings": 42
+      },
+      {
+        "set_key": "swsh8",
+        "missing_printings": 41
+      },
+      {
+        "set_key": "sv05",
+        "missing_printings": 40
+      },
+      {
+        "set_key": "sv10",
+        "missing_printings": 40
+      },
+      {
+        "set_key": "swsh5",
+        "missing_printings": 35
+      }
+    ],
+    "unsupported_source_backed_absence_candidates": 0,
+    "broad_unsupported_rows": 10705,
+    "name_mismatch_rows": 17,
+    "set_unmapped_rows": 10520,
+    "chaos_rising_missing_printings": 0,
+    "write_ready_now": 0
+  },
+  "ranked_write_planning_classes": [
+    {
+      "package_id": "PKG-03A",
+      "class_name": "Source-backed absence cleanup pilot",
+      "readiness": "no_current_exact_absence_candidates",
+      "candidate_rows": 0,
+      "reason": "No live rows currently match explicit finish_absence facts.",
+      "write_allowed_now": false
+    },
+    {
+      "package_id": "PKG-04A",
+      "class_name": "Missing master-verified insertion pilot",
+      "readiness": "planning_candidate_requires_parent_child_insert_design",
+      "candidate_rows": 3348,
+      "reason": "Missing master-verified rows exist, but insertion requires duplicate identity, parent/child, rollback, and provenance design.",
+      "write_allowed_now": false
+    },
+    {
+      "package_id": "PKG-05A",
+      "class_name": "Name mismatch governance",
+      "readiness": "manual_governance_candidate",
+      "candidate_rows": 17,
+      "reason": "Name mismatch is not identity mutation authority; it needs alias/display-name adjudication.",
+      "write_allowed_now": false
+    },
+    {
+      "package_id": "PKG-06A",
+      "class_name": "Unmapped set scope/provenance",
+      "readiness": "scope_and_provenance_required",
+      "candidate_rows": 10520,
+      "reason": "Unmapped rows require product scope or set-code provenance decisions before mutation.",
+      "write_allowed_now": false
+    },
+    {
+      "package_id": "PKG-03B",
+      "class_name": "Broad unsupported cleanup",
+      "readiness": "blocked_not_deletion_authority",
+      "candidate_rows": 10705,
+      "reason": "Unsupported by current index is not deletion authority without exact source-backed absence or set-level proof loop.",
+      "write_allowed_now": false
+    }
+  ],
+  "samples": {
+    "unsupported_source_backed_absence_candidates": [],
+    "missing_master_verified_from_grookai": [
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "001",
+        "card_name": "Meganium",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-001",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "002",
+        "card_name": "Inteleon",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-002",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "003",
+        "card_name": "Alakazam",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-003",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "004",
+        "card_name": "Lunatone",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-004",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "005",
+        "card_name": "Drifloon",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-005",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "006",
+        "card_name": "Drifblim",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-006",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "007",
+        "card_name": "Psyduck",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-007",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "008",
+        "card_name": "Golduck",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-008",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "009",
+        "card_name": "Alakazam",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-009",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "010",
+        "card_name": "Riolu",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-010",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "011",
+        "card_name": "Mega Latias ex",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-011",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "012",
+        "card_name": "Mega Lucario ex",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-012",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "013",
+        "card_name": "Mega Venusaur ex",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-013",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "014",
+        "card_name": "Ceruledge",
+        "finish_key": "holo",
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-014",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "015",
+        "card_name": "Zacian",
+        "finish_key": "holo",
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-015",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "016",
+        "card_name": "Flygon",
+        "finish_key": "holo",
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-016",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "017",
+        "card_name": "Toxtricity",
+        "finish_key": "holo",
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-017",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "018",
+        "card_name": "Cottonee",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-018",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "019",
+        "card_name": "Whimsicott",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-019",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "020",
+        "card_name": "Sneasel",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-020",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "021",
+        "card_name": "Weavile",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-021",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "022",
+        "card_name": "Charcadet",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-022",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "023",
+        "card_name": "Mega Charizard X ex",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-023",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "024",
+        "card_name": "Oricorio ex",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-024",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "025",
+        "card_name": "Mega Kangaskhan ex",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-025",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "026",
+        "card_name": "Meloetta",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-026",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "027",
+        "card_name": "Haunter",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-027",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "028",
+        "card_name": "Celebratory Fanfare",
+        "finish_key": "holo",
+        "source_count": 2,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-028",
+          "https://reverseholo.app/sets/mep"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "029",
+        "card_name": "Mega Charizard X ex",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-029",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "030",
+        "card_name": "Mega Charizard Y ex",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-030",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "031",
+        "card_name": "N's Zekrom",
+        "finish_key": "holo",
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-031",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "032",
+        "card_name": "Mega Gardevoir ex",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-032",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "033",
+        "card_name": "Mega Lucario ex",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-033",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "034",
+        "card_name": "Mega Meganium ex",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-034",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "035",
+        "card_name": "Mega Emboar ex",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-035",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "036",
+        "card_name": "Mega Feraligatr ex",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-036",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "037",
+        "card_name": "Bulbasaur",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-037",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "038",
+        "card_name": "Charmander",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-038",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "039",
+        "card_name": "Squirtle",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-039",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "040",
+        "card_name": "Turtwig",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-040",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "041",
+        "card_name": "Chimchar",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-041",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "042",
+        "card_name": "Piplup",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-042",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "043",
+        "card_name": "Rowlet",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-043",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "044",
+        "card_name": "Litten",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-044",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "045",
+        "card_name": "Popplio",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-045",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "064",
+        "card_name": "Serperior",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-064",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "065",
+        "card_name": "Barbaracle",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-065",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "066",
+        "card_name": "Tyrantrum",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-066",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "067",
+        "card_name": "Doublade",
+        "finish_key": "holo",
+        "source_count": 3,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-067",
+          "https://reverseholo.app/sets/mep",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      },
+      {
+        "status": "missing_master_verified_from_grookai",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "068",
+        "card_name": "Makuhita",
+        "finish_key": "holo",
+        "source_count": 2,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/mep-068",
+          "https://reverseholo.app/sets/mep"
+        ],
+        "note": "Master Index has this master_verified printing, but no exact live Grookai printing matched it."
+      }
+    ],
+    "chaos_rising_missing": [],
+    "name_mismatches": [
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "me03",
+        "set_code": "me03",
+        "card_number": "080",
+        "grookai_card_name": "Poke Ball",
+        "index_card_name": "Poké Ball",
+        "finish_key": "reverse",
+        "grookai_card_print_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+        "grookai_printing_id": "0ababfe3-b4c6-4ba6-b8f4-a892bb1dd2b9",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "me03",
+        "set_code": "me03",
+        "card_number": "081",
+        "grookai_card_name": "Poke Pad",
+        "index_card_name": "Poké Pad",
+        "finish_key": "reverse",
+        "grookai_card_print_id": "377086c4-b968-4335-aa44-54b0b518e913",
+        "grookai_printing_id": "9ea2a6eb-a4c0-4b8e-ab7f-f9738f03da12",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "me03",
+        "set_code": "me03",
+        "card_number": "082",
+        "grookai_card_name": "Pokemon Catcher",
+        "index_card_name": "Pokémon Catcher",
+        "finish_key": "reverse",
+        "grookai_card_print_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+        "grookai_printing_id": "4070607c-224b-4d7e-a104-60e4fd92090e",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "sv01",
+        "set_code": "sv01",
+        "card_number": "189",
+        "grookai_card_name": "Professor's Research",
+        "index_card_name": "Professor's Research (Professor Sada)",
+        "finish_key": "holo",
+        "grookai_card_print_id": "3cc9f3b8-542b-4418-bef5-bb2e2131d0d4",
+        "grookai_printing_id": "8fd5b3f0-0549-48c5-b96d-6f8e8a5ddfd7",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "dp2",
+        "set_code": "dp2",
+        "card_number": "121",
+        "grookai_card_name": "Electivire LV.X",
+        "index_card_name": "Electivire",
+        "finish_key": "reverse",
+        "grookai_card_print_id": "5081ec1d-979c-419e-b838-8e58ea4da5d8",
+        "grookai_printing_id": "920936d0-8859-4c54-adfd-bffc1f3d4650",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "dp1",
+        "set_code": "dp1",
+        "card_number": "120",
+        "grookai_card_name": "Empoleon LV.X",
+        "index_card_name": "Empoleon",
+        "finish_key": "reverse",
+        "grookai_card_print_id": "d501fbcc-245b-4f08-8303-4ea4d2a48ae1",
+        "grookai_printing_id": "d51f7ff8-1c43-4446-ad89-3fc479939041",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "dp1",
+        "set_code": "dp1",
+        "card_number": "121",
+        "grookai_card_name": "Infernape LV.X",
+        "index_card_name": "Infernape",
+        "finish_key": "reverse",
+        "grookai_card_print_id": "ad7f2469-1682-4695-9322-1a27823346c5",
+        "grookai_printing_id": "8c02654b-0a4c-4e88-981b-bf138cce257a",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "dp1",
+        "set_code": "dp1",
+        "card_number": "122",
+        "grookai_card_name": "Torterra LV.X",
+        "index_card_name": "Torterra",
+        "finish_key": "reverse",
+        "grookai_card_print_id": "9c7cd6e8-9881-45e0-b8d8-8b8763dc4147",
+        "grookai_printing_id": "c84babc9-33a3-47f4-9151-b19f3cd819ea",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "dp2",
+        "set_code": "dp2",
+        "card_number": "122",
+        "grookai_card_name": "Lucario LV.X",
+        "index_card_name": "Lucario",
+        "finish_key": "reverse",
+        "grookai_card_print_id": "48d366e6-c3fd-4ec4-92f2-5032524aafd0",
+        "grookai_printing_id": "5f1e8ecb-b974-4370-b678-96b7efc47637",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "dp2",
+        "set_code": "dp2",
+        "card_number": "123",
+        "grookai_card_name": "Magmortar LV.X",
+        "index_card_name": "Magmortar",
+        "finish_key": "reverse",
+        "grookai_card_print_id": "e2f2b04d-c672-4051-9105-b712a8f2ca16",
+        "grookai_printing_id": "96702e8c-80e8-4705-ace0-c7f18ffb634f",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "sv02",
+        "set_code": "sv02",
+        "card_number": "172",
+        "grookai_card_name": "Boss's Orders",
+        "index_card_name": "Boss's Orders (Ghetsis)",
+        "finish_key": "holo",
+        "grookai_card_print_id": "f429bfbc-8a25-4203-b036-f63f7027a0d8",
+        "grookai_printing_id": "db3c446b-91f5-470e-b446-a12c66bbf699",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "sv02",
+        "set_code": "sv02",
+        "card_number": "265",
+        "grookai_card_name": "Boss's Orders",
+        "index_card_name": "Boss's Orders (Ghetsis)",
+        "finish_key": "holo",
+        "grookai_card_print_id": "e380fe60-9e2e-49b2-9913-9c3285de4693",
+        "grookai_printing_id": "36a5375e-19de-4298-af20-35b3b7c954ca",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "sv02",
+        "set_code": "sv02",
+        "card_number": "248",
+        "grookai_card_name": "Boss's Orders",
+        "index_card_name": "Boss's Orders (Ghetsis)",
+        "finish_key": "holo",
+        "grookai_card_print_id": "012d9ef6-75d0-43d1-b4dc-d4dfe131f45f",
+        "grookai_printing_id": "2279fea3-b4fa-477a-bf58-756e22222df9",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "sv01",
+        "set_code": "sv01",
+        "card_number": "190",
+        "grookai_card_name": "Professor's Research",
+        "index_card_name": "Professor's Research (Professor Turo)",
+        "finish_key": "holo",
+        "grookai_card_print_id": "bf0b05aa-2269-47b8-b6e7-dd1ed1e3b30f",
+        "grookai_printing_id": "6aa3451f-e04d-40c2-8dd9-3f96ccb99d9f",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "sv01",
+        "set_code": "sv01",
+        "card_number": "240",
+        "grookai_card_name": "Professor's Research",
+        "index_card_name": "Professor's Research (Professor Sada)",
+        "finish_key": "holo",
+        "grookai_card_print_id": "79b57853-1668-4c92-9bcf-c6a99e13370e",
+        "grookai_printing_id": "d5b4f7a2-1605-4cf4-a82e-1dd959b03158",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "sv01",
+        "set_code": "sv01",
+        "card_number": "241",
+        "grookai_card_name": "Professor's Research",
+        "index_card_name": "Professor's Research (Professor Turo)",
+        "finish_key": "holo",
+        "grookai_card_print_id": "69cfbb61-17b4-44cf-aa78-28bb61195c64",
+        "grookai_printing_id": "92479949-f537-451b-b2ad-1bc239d465a2",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      },
+      {
+        "status": "name_mismatch_needs_review",
+        "set_key": "sv02",
+        "set_code": "sv02",
+        "card_number": "172",
+        "grookai_card_name": "Boss's Orders",
+        "index_card_name": "Boss's Orders (Ghetsis)",
+        "finish_key": "reverse",
+        "grookai_card_print_id": "f429bfbc-8a25-4203-b036-f63f7027a0d8",
+        "grookai_printing_id": "e07821e0-9982-4383-a1d4-bb6f0e46bf49",
+        "note": "Set, number, and finish match the index, but name does not match exactly."
+      }
+    ],
+    "set_unmapped": [
+      {
+        "status": "set_unmapped",
+        "set_code": "legacy_orphan",
+        "card_number": "48",
+        "grookai_card_name": "Raikou",
+        "finish_key": "normal",
+        "grookai_card_print_id": "aafbe34a-372b-4372-973d-6e3f9a0724c0",
+        "grookai_printing_id": "14544219-bec4-45a0-8f7e-034ec4356ab8",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "B1",
+        "card_number": "194",
+        "grookai_card_name": "Delcatty",
+        "finish_key": "normal",
+        "grookai_card_print_id": "08c8771a-2fd4-40bf-98c3-910234c48a15",
+        "grookai_printing_id": "50c08212-2855-4439-b4da-6c1989f7e8bb",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "B1",
+        "card_number": "205",
+        "grookai_card_name": "Braviary",
+        "finish_key": "normal",
+        "grookai_card_print_id": "6408da90-2037-4d8a-b3a0-4d9dc437bf1f",
+        "grookai_printing_id": "994c3e9c-2763-4b03-8d75-82334985770e",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "B1",
+        "card_number": "266",
+        "grookai_card_name": "Marlon",
+        "finish_key": "normal",
+        "grookai_card_print_id": "115da2fb-c167-4275-b3bd-62ae0f26432d",
+        "grookai_printing_id": "e9aee8f6-b97d-4c21-8b0e-49f87bc7f723",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "B1",
+        "card_number": "295",
+        "grookai_card_name": "Poliwag",
+        "finish_key": "normal",
+        "grookai_card_print_id": "0b34bc4e-f83f-4a45-a81b-b40ecac28171",
+        "grookai_printing_id": "f9084376-33ac-4277-882a-c02d8fb1bb55",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "B1",
+        "card_number": "117",
+        "grookai_card_name": "Swirlix",
+        "finish_key": "normal",
+        "grookai_card_print_id": "17bddada-4aba-4ea8-9849-d41dbbcf8510",
+        "grookai_printing_id": "c6bdcf20-69e2-416d-bf05-2ffd0b60f3ae",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "B1",
+        "card_number": "071",
+        "grookai_card_name": "Froakie",
+        "finish_key": "normal",
+        "grookai_card_print_id": "109a976e-73c7-4ca4-90b1-fcdb235e4234",
+        "grookai_printing_id": "9ac804e1-4e3a-49ee-b53d-9d73b78e8935",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "legacy_orphan",
+        "card_number": "80",
+        "grookai_card_name": "Marshadow",
+        "finish_key": "normal",
+        "grookai_card_print_id": "b69810c8-c77f-4398-8792-7591339d9159",
+        "grookai_printing_id": "89dbea3c-e76e-444a-858c-b78f09f0010b",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "legacy_orphan",
+        "card_number": "24",
+        "grookai_card_name": "Pyroar",
+        "finish_key": "normal",
+        "grookai_card_print_id": "69a78c80-8c98-4afc-80a7-43cef4d06e3b",
+        "grookai_printing_id": "7295ea87-d1e7-45e4-a85b-bbb4c517bee8",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "legacy_orphan",
+        "card_number": "68",
+        "grookai_card_name": "Sandshrew",
+        "finish_key": "normal",
+        "grookai_card_print_id": "070f8fd3-3aef-4e52-b84e-1b7e64673a96",
+        "grookai_printing_id": "293fa0c1-b221-4352-b7e8-83692613d771",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "legacy_orphan",
+        "card_number": "74",
+        "grookai_card_name": "Lunatone",
+        "finish_key": "normal",
+        "grookai_card_print_id": "cfef2ab1-d4e4-438c-9d12-dfd36b9c666c",
+        "grookai_printing_id": "d8c4ecc1-fd7a-4072-bee6-2954316fb603",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "legacy_orphan",
+        "card_number": "95",
+        "grookai_card_name": "Dialga",
+        "finish_key": "normal",
+        "grookai_card_print_id": "3e7b74cd-876e-4344-a5a9-a9f4cf383cb6",
+        "grookai_printing_id": "72267b2f-85ed-4028-840b-a3b7dae7c094",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "legacy_orphan",
+        "card_number": "5",
+        "grookai_card_name": "Exeggutor",
+        "finish_key": "normal",
+        "grookai_card_print_id": "7e602b13-dd87-496b-80fc-dfe247ad8f22",
+        "grookai_printing_id": "2091d696-2ff2-4915-aade-d7c5801c15a9",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "B1",
+        "card_number": "193",
+        "grookai_card_name": "Skitty",
+        "finish_key": "normal",
+        "grookai_card_print_id": "1909c34c-3cc0-4c57-a750-6908e9277826",
+        "grookai_printing_id": "8285971f-cad1-40fd-962e-b0d7d8977eb0",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "055",
+        "grookai_card_name": "Remoraid",
+        "finish_key": "normal",
+        "grookai_card_print_id": "71269afa-758c-4423-9f8a-ee36f9a12d47",
+        "grookai_printing_id": "eef7516e-ce8b-4123-9bec-c28e79ec38b2",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "059",
+        "grookai_card_name": "Suicune",
+        "finish_key": "normal",
+        "grookai_card_print_id": "45e9e6a6-a819-44d9-acc0-32a1f9b170f3",
+        "grookai_printing_id": "9d0384d2-59b8-4a38-9920-dbb3e9812d87",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "054",
+        "grookai_card_name": "Corsola",
+        "finish_key": "normal",
+        "grookai_card_print_id": "c44ac668-2d9a-4d07-8fd0-8ec3ecb901f8",
+        "grookai_printing_id": "1d72411c-92e7-4305-8305-ae44fe7fe00b",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "056",
+        "grookai_card_name": "Octillery",
+        "finish_key": "normal",
+        "grookai_card_print_id": "281325b8-60db-4fd5-b6f9-edcc88f875af",
+        "grookai_printing_id": "0c807c3b-74e3-490f-b8fb-98a5dc97c468",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "057",
+        "grookai_card_name": "Delibird",
+        "finish_key": "normal",
+        "grookai_card_print_id": "2bac4b86-42e7-4a4e-a213-6e53a9b035b3",
+        "grookai_printing_id": "9f95838f-3f9c-4b32-80b3-ad7026ee62c3",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "078",
+        "grookai_card_name": "Togepi",
+        "finish_key": "normal",
+        "grookai_card_print_id": "62a8b525-4402-49b3-ac01-d9c5997b7aad",
+        "grookai_printing_id": "10521989-abff-4dda-8256-a172f9c44735",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "082",
+        "grookai_card_name": "Xatu",
+        "finish_key": "normal",
+        "grookai_card_print_id": "c7c928bf-b1c6-47b5-a6ea-822489c1ff57",
+        "grookai_printing_id": "f80d614e-d58d-46c7-ae29-13d981e1e31f",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "076",
+        "grookai_card_name": "Jynx",
+        "finish_key": "normal",
+        "grookai_card_print_id": "ea3eae48-29fd-4cdf-9237-391c7deef548",
+        "grookai_printing_id": "1e1873cd-7ab0-4bee-8a21-fa58495e0c55",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "101",
+        "grookai_card_name": "Tyrogue",
+        "finish_key": "normal",
+        "grookai_card_print_id": "b5d727ab-4376-4458-89af-f874fd016a80",
+        "grookai_printing_id": "5fe66e68-dd84-49e4-b1b1-53c2608dc8bd",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "103",
+        "grookai_card_name": "Larvitar",
+        "finish_key": "normal",
+        "grookai_card_print_id": "7dcb8fed-4fd0-4b6c-8216-2d924fcdf432",
+        "grookai_printing_id": "9db58210-c7d4-49a7-9cc6-a715671c807d",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "127",
+        "grookai_card_name": "Klang",
+        "finish_key": "normal",
+        "grookai_card_print_id": "77f5faa3-688e-4b71-8b4b-2bd54d10856e",
+        "grookai_printing_id": "657de1a8-f940-4642-9876-a9959af7bff0",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "147",
+        "grookai_card_name": "Stantler",
+        "finish_key": "normal",
+        "grookai_card_print_id": "780de944-71a4-4d7c-becf-a6fcb4a6cf6b",
+        "grookai_printing_id": "bc43eef8-7fb8-47eb-8c81-dfaee402b191",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "156",
+        "grookai_card_name": "Will",
+        "finish_key": "normal",
+        "grookai_card_print_id": "251e1153-3ae2-4d85-97fb-a4b4d281a79c",
+        "grookai_printing_id": "915eeead-0bb5-4706-8285-ec8e0597ff3e",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "B1",
+        "card_number": "219",
+        "grookai_card_name": "Heavy Helmet",
+        "finish_key": "normal",
+        "grookai_card_print_id": "2b96f421-d584-4214-8dd6-968f08971ae9",
+        "grookai_printing_id": "c7f9aadd-dcd4-424c-bb9e-ba8b3878bbf3",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A4",
+        "card_number": "193",
+        "grookai_card_name": "Umbreon ex",
+        "finish_key": "normal",
+        "grookai_card_print_id": "65c12ff4-cd68-4ad7-80a6-bb13ca3c444b",
+        "grookai_printing_id": "5dbd3bdd-2c72-4b15-a63e-7adf6355aa05",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "085",
+        "grookai_card_name": "Paldean Clodsire ex",
+        "finish_key": "normal",
+        "grookai_card_print_id": "c4654caa-5d82-415b-addc-f49c7d8c9ea4",
+        "grookai_printing_id": "6c5e12c0-4c45-4587-8e2c-00d424443a06",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "086",
+        "grookai_card_name": "Tinkaton ex",
+        "finish_key": "normal",
+        "grookai_card_print_id": "68552c08-215f-4f8e-bfcf-a992c5f6e717",
+        "grookai_printing_id": "8f1352ce-4b79-404a-b1e4-9a321b4811bf",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "087",
+        "grookai_card_name": "Bibarel ex",
+        "finish_key": "normal",
+        "grookai_card_print_id": "47269a8e-eeef-42d5-a181-0504ab3c0f82",
+        "grookai_printing_id": "2caa42bf-dc0d-41ed-988b-c22db1c41c69",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "088",
+        "grookai_card_name": "Iono",
+        "finish_key": "normal",
+        "grookai_card_print_id": "a98f2b1d-6bb4-4807-ae00-0dcb4562b979",
+        "grookai_printing_id": "cae5653f-df09-49a5-b547-4dc65ed9aaa2",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "089",
+        "grookai_card_name": "Pokémon Center Lady",
+        "finish_key": "normal",
+        "grookai_card_print_id": "5bf8eed7-cc95-4b65-8f28-ba8f4b94dff8",
+        "grookai_printing_id": "d1c1b8c3-2fa2-4336-b2af-241fd97c0de3",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "090",
+        "grookai_card_name": "Red",
+        "finish_key": "normal",
+        "grookai_card_print_id": "4d555575-7c53-4dc7-9e79-ab9a1dc5a229",
+        "grookai_printing_id": "097f8822-94f7-450c-a83d-97501339b643",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "091",
+        "grookai_card_name": "Team Rocket Grunt",
+        "finish_key": "normal",
+        "grookai_card_print_id": "c90ab375-189e-46a6-b670-f7a61125fa44",
+        "grookai_printing_id": "26b1e79c-a126-4f7b-a7c8-cad95c640df6",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "093",
+        "grookai_card_name": "Paldean Clodsire ex",
+        "finish_key": "normal",
+        "grookai_card_print_id": "3f355c36-f908-49c1-b30b-499635ea91f1",
+        "grookai_printing_id": "1efc7a75-2263-4444-8246-9698a96798cf",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "071",
+        "grookai_card_name": "Red",
+        "finish_key": "normal",
+        "grookai_card_print_id": "9acf3465-c25f-4b2c-8fba-300cc2dd6158",
+        "grookai_printing_id": "ea19a172-150a-4e19-99b8-0109f352355f",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "073",
+        "grookai_card_name": "Meowscarada",
+        "finish_key": "normal",
+        "grookai_card_print_id": "378576ee-baea-4e0e-b6e7-c4ecdce4702b",
+        "grookai_printing_id": "ed535202-3831-4b4e-a456-8b224d0a8c09",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "074",
+        "grookai_card_name": "Buizel",
+        "finish_key": "normal",
+        "grookai_card_print_id": "6586ffab-0433-4b0b-ae1c-abbb23581a5f",
+        "grookai_printing_id": "526abfc5-1ed9-42ab-b586-e9cb143e01b9",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "075",
+        "grookai_card_name": "Tatsugiri",
+        "finish_key": "normal",
+        "grookai_card_print_id": "37c40609-44e8-4ab9-adac-d8f2eda8d79d",
+        "grookai_printing_id": "7581ae70-e948-47d1-a346-1824ea36ee1b",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "076",
+        "grookai_card_name": "Grafaiai",
+        "finish_key": "normal",
+        "grookai_card_print_id": "c167dd85-f96c-4c8b-b997-f4e0d1b17e23",
+        "grookai_printing_id": "5091c263-f53d-46f7-a50f-ff3d7de6217a",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "077",
+        "grookai_card_name": "Gholdengo",
+        "finish_key": "normal",
+        "grookai_card_print_id": "c8e84893-579d-43c5-8a3c-cc4bb9063916",
+        "grookai_printing_id": "07aaf53b-0b01-4869-8893-dd781870ee06",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "078",
+        "grookai_card_name": "Wigglytuff",
+        "finish_key": "normal",
+        "grookai_card_print_id": "9108f016-a49b-491a-8061-a04024fcf911",
+        "grookai_printing_id": "1be94efa-0081-4ff4-b0e2-c569dfc9b310",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "079",
+        "grookai_card_name": "Beedrill ex",
+        "finish_key": "normal",
+        "grookai_card_print_id": "0cd93e63-e8ee-4945-8e2d-8b2509ae04ec",
+        "grookai_printing_id": "999c7b54-efb7-4a92-bdf6-72b3f9d8046c",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A2b",
+        "card_number": "080",
+        "grookai_card_name": "Charizard ex",
+        "finish_key": "normal",
+        "grookai_card_print_id": "5350a92d-aad2-4f3e-a358-ddf160f43fe4",
+        "grookai_printing_id": "c51d0c48-4db0-4e0d-80d1-947103f630f6",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A3b",
+        "card_number": "091",
+        "grookai_card_name": "Snorlax ex",
+        "finish_key": "normal",
+        "grookai_card_print_id": "6642128a-ec36-419d-949a-fabd0f779324",
+        "grookai_printing_id": "547b2dcd-5956-447c-8d2c-04837f7b11a9",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A3b",
+        "card_number": "092",
+        "grookai_card_name": "Eevee ex",
+        "finish_key": "normal",
+        "grookai_card_print_id": "9c06e485-3092-4915-9e8f-5397a4c5f0b6",
+        "grookai_printing_id": "aac4eb56-eb22-4494-b0cc-d0a13f85373d",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A3b",
+        "card_number": "093",
+        "grookai_card_name": "Pinsir",
+        "finish_key": "normal",
+        "grookai_card_print_id": "bfda1e1e-e8c2-4966-9668-a74f01d7bfb1",
+        "grookai_printing_id": "1218e57f-d4b5-4dce-898f-ac22dab45b7f",
+        "note": "Live set_code is not mapped to the English Master Index."
+      },
+      {
+        "status": "set_unmapped",
+        "set_code": "A3b",
+        "card_number": "094",
+        "grookai_card_name": "Lapras",
+        "finish_key": "normal",
+        "grookai_card_print_id": "2c263968-af8a-4aed-8c78-4c615147b48d",
+        "grookai_printing_id": "bbe18deb-226a-44aa-9567-eb3000800f35",
+        "note": "Live set_code is not mapped to the English Master Index."
+      }
+    ],
+    "broad_unsupported": [
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "2022swsh",
+        "set_code": "mcd22",
+        "card_number": "4",
+        "grookai_card_name": "Growlithe",
+        "finish_key": "normal",
+        "grookai_card_print_id": "98b5e8e1-99c6-4c6e-9d89-ed1accb2dfb6",
+        "grookai_printing_id": "66ccde4c-b9cf-420c-adc1-e743f3d7ab6c",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG11",
+        "grookai_card_name": "Altaria",
+        "finish_key": "normal",
+        "grookai_card_print_id": "d485916c-634d-4e8b-b795-c16ac70553a2",
+        "grookai_printing_id": "709bb932-30a5-4b0d-b1fd-0355f7f7f99b",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG28",
+        "grookai_card_name": "Sordward & Shielbert",
+        "finish_key": "normal",
+        "grookai_card_print_id": "8a98e68e-b5a5-4fb9-bcbb-3750345d3ed5",
+        "grookai_printing_id": "59aa8562-8168-4226-8360-f64ee0f8c130",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG24",
+        "grookai_card_name": "Gordie",
+        "finish_key": "normal",
+        "grookai_card_print_id": "5105ac7a-0bb7-4143-ad4e-c548ad9c2f67",
+        "grookai_printing_id": "176367b3-12a6-4c86-8d8f-7babadc64abd",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG27",
+        "grookai_card_name": "Raihan",
+        "finish_key": "normal",
+        "grookai_card_print_id": "5e908c4e-a62a-4d3e-9157-674a165a2654",
+        "grookai_printing_id": "d86c526c-4593-440b-b3e7-5d2b6621f835",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG29",
+        "grookai_card_name": "Rayquaza VMAX",
+        "finish_key": "normal",
+        "grookai_card_print_id": "54f46b22-2df3-47b7-adf5-fd2c5e45e5e2",
+        "grookai_printing_id": "8f9d20d4-623d-428a-9001-055dbe34a1aa",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG30",
+        "grookai_card_name": "Duraludon VMAX",
+        "finish_key": "normal",
+        "grookai_card_print_id": "00dc0508-a29f-4a13-9b96-51ddbe28392a",
+        "grookai_printing_id": "657ed057-990f-4706-8a7a-ee8caceaf555",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG10",
+        "grookai_card_name": "Smeargle",
+        "finish_key": "normal",
+        "grookai_card_print_id": "fc803367-66c2-4f22-9aef-60e4297fb6fb",
+        "grookai_printing_id": "52ba81a6-dd3c-4d9d-8a85-6cbbf1c01484",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG13",
+        "grookai_card_name": "Serperior V",
+        "finish_key": "normal",
+        "grookai_card_print_id": "1c0381f7-fbdc-44f6-b1a1-a83fa12b81b7",
+        "grookai_printing_id": "2bf2577a-5e11-4dbe-8bac-8fcbfa0d4a37",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG15",
+        "grookai_card_name": "Blaziken VMAX",
+        "finish_key": "normal",
+        "grookai_card_print_id": "80a351f6-feb0-412c-bb22-6e425fb0a782",
+        "grookai_printing_id": "1ead8051-7e12-4fcb-a8a1-0200a663452e",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG16",
+        "grookai_card_name": "Zeraora V",
+        "finish_key": "normal",
+        "grookai_card_print_id": "ec6aa693-3953-4766-81c4-0f2d81fbef37",
+        "grookai_printing_id": "609461ea-7d14-4732-a3fd-24ad0490634a",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG17",
+        "grookai_card_name": "Mawile V",
+        "finish_key": "normal",
+        "grookai_card_print_id": "b2734e7a-a426-4ca2-a83d-3a272d7b1dfd",
+        "grookai_printing_id": "8e9a6e94-99cb-4cab-a6f0-7c3a42ed0922",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG18",
+        "grookai_card_name": "Corviknight V",
+        "finish_key": "normal",
+        "grookai_card_print_id": "689153ec-d6f7-46e7-ace9-af6197f56477",
+        "grookai_printing_id": "d3d19f7a-220f-4487-8f41-2b560d32fff6",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG19",
+        "grookai_card_name": "Corviknight VMAX",
+        "finish_key": "normal",
+        "grookai_card_print_id": "1995f9f5-1a8a-4204-8498-d901cf27e6ed",
+        "grookai_printing_id": "2050f94d-5e45-4d1a-8874-dee3f4c7f878",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG20",
+        "grookai_card_name": "Rayquaza VMAX",
+        "finish_key": "normal",
+        "grookai_card_print_id": "b4b7d603-9797-43f0-8e42-00cfe5c5bc62",
+        "grookai_printing_id": "765aa419-4086-42c0-8b90-683f4def623e",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG21",
+        "grookai_card_name": "Duraludon VMAX",
+        "finish_key": "normal",
+        "grookai_card_print_id": "ce241241-2a2b-4c8c-8474-8b3aa6402e1d",
+        "grookai_printing_id": "9fe74a86-3128-4268-8e64-dc0613c2bf72",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG26",
+        "grookai_card_name": "Professor Burnet",
+        "finish_key": "normal",
+        "grookai_card_print_id": "b7baa703-5275-4086-8d90-825f373dcf38",
+        "grookai_printing_id": "bbd068d0-3955-49af-8b12-25af114788a9",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh12tg",
+        "set_code": "swsh12tg",
+        "card_number": "TG22",
+        "grookai_card_name": "Blissey V",
+        "finish_key": "normal",
+        "grookai_card_print_id": "36fdf3fa-4f83-4699-acec-50f0a014ca4f",
+        "grookai_printing_id": "857d78a3-ee72-4745-acca-81a464d945a1",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "cel25",
+        "set_code": "cel25",
+        "card_number": "97",
+        "grookai_card_name": "Xerneas-EX",
+        "finish_key": "normal",
+        "grookai_card_print_id": "ee891a93-31ae-4eb0-91e4-c659a137180a",
+        "grookai_printing_id": "9587df81-6bd4-4efa-be5a-20b349a66bed",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "cel25",
+        "set_code": "cel25",
+        "card_number": "4",
+        "grookai_card_name": "Charizard",
+        "finish_key": "normal",
+        "grookai_card_print_id": "b16d1b88-29cf-44e9-82c8-53a66ea84692",
+        "grookai_printing_id": "366bf51c-2ff7-4eb0-93cc-728b454a502c",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "dp1",
+        "set_code": "dp1",
+        "card_number": "120",
+        "grookai_card_name": "Empoleon LV.X",
+        "finish_key": "normal",
+        "grookai_card_print_id": "d501fbcc-245b-4f08-8303-4ea4d2a48ae1",
+        "grookai_printing_id": "ca1f6c02-0fae-40ca-b7d2-85e7474da865",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "bwp",
+        "set_code": "bwp",
+        "card_number": "BW19",
+        "grookai_card_name": "Zoroark",
+        "finish_key": "normal",
+        "grookai_card_print_id": "8cd70f14-89fd-48be-ba01-76ea989a7243",
+        "grookai_printing_id": "d3da35cb-8f47-45d6-9724-bfc5220d807c",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "bwp",
+        "set_code": "bwp",
+        "card_number": "BW18",
+        "grookai_card_name": "Darumaka",
+        "finish_key": "normal",
+        "grookai_card_print_id": "f3dfeb31-8f74-44c8-9b55-5a0168999fe4",
+        "grookai_printing_id": "326e7b12-f825-4ba0-be00-4469d5d7dbe3",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "bwp",
+        "set_code": "bwp",
+        "card_number": "BW75",
+        "grookai_card_name": "Metagross",
+        "finish_key": "normal",
+        "grookai_card_print_id": "15a8b1d9-5374-43cb-92ee-bba53f681065",
+        "grookai_printing_id": "3907c275-39a8-4d6d-a0c9-8ddd6d55dc22",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "bwp",
+        "set_code": "bwp",
+        "card_number": "BW84",
+        "grookai_card_name": "Porygon-Z",
+        "finish_key": "normal",
+        "grookai_card_print_id": "4b8a06b2-3448-427b-9e33-f62f72161e76",
+        "grookai_printing_id": "bf58dcc1-9cac-4e43-aea1-20ab6a37dc52",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "bwp",
+        "set_code": "bwp",
+        "card_number": "BW92",
+        "grookai_card_name": "Espeon",
+        "finish_key": "normal",
+        "grookai_card_print_id": "def03e8a-9ef7-4b04-b0f4-b49d40c7475f",
+        "grookai_printing_id": "ce3addb3-27e4-42fd-bb37-0484b3c0abef",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "hgssp",
+        "set_code": "hsp",
+        "card_number": "HGSS18",
+        "grookai_card_name": "Tropical Tidal Wave",
+        "finish_key": "normal",
+        "grookai_card_print_id": "7563ffed-0a77-44e8-9c63-71a43939e4c5",
+        "grookai_printing_id": "129862ca-55c1-42a8-bb9f-fb78a1ea30e8",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "bwp",
+        "set_code": "bwp",
+        "card_number": "BW01",
+        "grookai_card_name": "Snivy",
+        "finish_key": "normal",
+        "grookai_card_print_id": "66648d82-14c6-4521-a89a-40550b377fff",
+        "grookai_printing_id": "c10aa3f8-bbc4-4144-b258-a61ad697a703",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "bwp",
+        "set_code": "bwp",
+        "card_number": "BW03",
+        "grookai_card_name": "Oshawott",
+        "finish_key": "normal",
+        "grookai_card_print_id": "b3c8142d-dafb-4bb1-aa69-b4dfcd263b01",
+        "grookai_printing_id": "be599cae-38c0-483b-90d5-f9ef725703be",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "bwp",
+        "set_code": "bwp",
+        "card_number": "BW06",
+        "grookai_card_name": "Snivy",
+        "finish_key": "normal",
+        "grookai_card_print_id": "bacb23df-f1b5-4fa0-8a8a-3ae25fb71fb8",
+        "grookai_printing_id": "607861f5-17f8-439c-bc42-f6e5f10744c5",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "bw11",
+        "set_code": "bw11",
+        "card_number": "19",
+        "grookai_card_name": "Charizard",
+        "finish_key": "normal",
+        "grookai_card_print_id": "dfd3361e-95fe-47c1-b586-352ad9086be5",
+        "grookai_printing_id": "16b9116c-eec1-4426-9ef5-1b41fc941d97",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "sm11",
+        "set_code": "sm11",
+        "card_number": "7",
+        "grookai_card_name": "Sewaddle",
+        "finish_key": "holo",
+        "grookai_card_print_id": "2442003f-f373-46fa-893e-1643f979a8dc",
+        "grookai_printing_id": "83d0bf04-4955-4ace-992e-91b2425bddf9",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "sm11",
+        "set_code": "sm11",
+        "card_number": "70",
+        "grookai_card_name": "Xurkitree",
+        "finish_key": "holo",
+        "grookai_card_print_id": "d11e0f7f-9563-4e6d-a79c-e4072d3e0486",
+        "grookai_printing_id": "3db2a35d-590e-46e0-a99b-ca845f2a7a93",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "sm11",
+        "set_code": "sm11",
+        "card_number": "71",
+        "grookai_card_name": "Mewtwo & Mew-GX",
+        "finish_key": "reverse",
+        "grookai_card_print_id": "3adf4114-dd9c-46b8-b03f-242f81921ea6",
+        "grookai_printing_id": "3f780057-ac5b-41e6-baeb-1bbbfc5914da",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "sm11",
+        "set_code": "sm11",
+        "card_number": "72",
+        "grookai_card_name": "Espeon & Deoxys-GX",
+        "finish_key": "reverse",
+        "grookai_card_print_id": "ccc7d0d9-de18-43a7-a970-5cc4fb4221f0",
+        "grookai_printing_id": "f82a8d7c-c37c-47fc-a368-eb73c3c9cb59",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "swsh10.5",
+        "set_code": "pgo",
+        "card_number": "28",
+        "grookai_card_name": "Pikachu",
+        "finish_key": "normal",
+        "grookai_card_print_id": "1d6c5c05-6c49-4e58-9843-d26701a29b27",
+        "grookai_printing_id": "0d5bd447-82ba-4728-8693-3e4743a95cba",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "svp",
+        "set_code": "svp",
+        "card_number": "137",
+        "grookai_card_name": "Horsea",
+        "finish_key": "normal",
+        "grookai_card_print_id": "b5b4db60-f8eb-47ef-a34e-385c5593094b",
+        "grookai_printing_id": "89acd27f-d14a-4410-ac95-63a93bd05735",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "svp",
+        "set_code": "svp",
+        "card_number": "21",
+        "grookai_card_name": "Murkrow",
+        "finish_key": "normal",
+        "grookai_card_print_id": "d540e969-4f37-4fca-a0ce-ea2855baf966",
+        "grookai_printing_id": "897f7ed1-16a8-43f2-904a-a7de7b8c1dc5",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "xyp",
+        "set_code": "xyp",
+        "card_number": "XY200a",
+        "grookai_card_name": "M Sharpedo-EX",
+        "finish_key": "normal",
+        "grookai_card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+        "grookai_printing_id": "2da04afd-5cfa-4083-9ef4-b6d2df5501d3",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "bw4",
+        "set_code": "bw4",
+        "card_number": "41",
+        "grookai_card_name": "Zapdos",
+        "finish_key": "normal",
+        "grookai_card_print_id": "da9ba45e-67da-45d7-8bad-accde5b78120",
+        "grookai_printing_id": "cfd68a7a-972d-4660-88e2-447fbea66d4e",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "bog",
+        "set_code": "bp",
+        "card_number": "2",
+        "grookai_card_name": "Hitmonchan",
+        "finish_key": "normal",
+        "grookai_card_print_id": "cf3b8770-892a-41d8-8a47-647dbb742fee",
+        "grookai_printing_id": "98507e33-e5f0-4a50-9091-63c7edbdb5db",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "2017sm",
+        "set_code": "mcd17",
+        "card_number": "12",
+        "grookai_card_name": "Yungoos",
+        "finish_key": "normal",
+        "grookai_card_print_id": "abc1a7d0-5bc6-46f9-a2ef-76d156c9c719",
+        "grookai_printing_id": "e97605a1-4836-45c1-a3ae-e1dada5f8ccd",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "2017sm",
+        "set_code": "mcd17",
+        "card_number": "2",
+        "grookai_card_name": "Grubbin",
+        "finish_key": "normal",
+        "grookai_card_print_id": "d0117b67-fcfa-4c7c-9749-68fba57ec2ab",
+        "grookai_printing_id": "d6d07bce-a398-4774-803a-25a7fe9718db",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "ex10",
+        "set_code": "ex10",
+        "card_number": "?",
+        "grookai_card_name": "Unown",
+        "finish_key": "normal",
+        "grookai_card_print_id": "8ee10c61-bbe4-4a20-aadb-4b994928c9de",
+        "grookai_printing_id": "284b0760-afc0-4a7f-911b-ace215c4feb0",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "cel25",
+        "set_code": "cel25",
+        "card_number": "88",
+        "grookai_card_name": "Mew ex",
+        "finish_key": "normal",
+        "grookai_card_print_id": "73d3fae8-4fcb-4b07-a875-c82e688d121c",
+        "grookai_printing_id": "e5713e2f-74fb-4ed5-8aea-4ee3d1dc42a2",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "cel25",
+        "set_code": "cel25",
+        "card_number": "15",
+        "grookai_card_name": "Venusaur",
+        "finish_key": "normal",
+        "grookai_card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+        "grookai_printing_id": "46e4a90f-392f-46ac-9b07-c82042d3d2eb",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "cel25",
+        "set_code": "cel25",
+        "card_number": "2",
+        "grookai_card_name": "Blastoise",
+        "finish_key": "normal",
+        "grookai_card_print_id": "bdbf4197-537b-4fa7-9cac-304006b170aa",
+        "grookai_printing_id": "7c18650a-94e1-4e55-93d9-fc8aa9266b96",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "cel25",
+        "set_code": "cel25",
+        "card_number": "20",
+        "grookai_card_name": "Cleffa",
+        "finish_key": "normal",
+        "grookai_card_print_id": "c07ec577-c800-4e0b-b089-e696c32bbdf2",
+        "grookai_printing_id": "d12069a6-3279-41ad-baa7-c2a1e2461407",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "cel25",
+        "set_code": "cel25",
+        "card_number": "54",
+        "grookai_card_name": "Mewtwo-EX",
+        "finish_key": "normal",
+        "grookai_card_print_id": "7b6c8f7d-6ad0-4e9c-84a8-66c3de23fb00",
+        "grookai_printing_id": "5b114702-e105-481a-8302-8f59952039ec",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      },
+      {
+        "status": "unsupported_by_current_index",
+        "set_key": "cel25",
+        "set_code": "cel25",
+        "card_number": "60",
+        "grookai_card_name": "Tapu Lele-GX",
+        "finish_key": "normal",
+        "grookai_card_print_id": "f7b2a03b-1990-450b-b0ce-70ffda4447cb",
+        "grookai_printing_id": "bf000012-eac7-4c6e-9eaf-a35b552bfe1a",
+        "note": "No exact printing fact exists in the current Master Index. This is not deletion authority."
+      }
+    ]
+  },
+  "stop_rules": [
+    "Do not delete rows based on unsupported_by_current_index.",
+    "Do not insert missing rows without parent/child/provenance/rollback design.",
+    "Do not mutate names without alias governance.",
+    "Do not apply anything from this report directly."
+  ]
+}

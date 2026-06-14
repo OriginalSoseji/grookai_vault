@@ -1,0 +1,261 @@
+{
+  "generated_at": "2026-06-14T04:05:32.897Z",
+  "version": "english_master_index_pkg42a_final_source_closure_master_index_delta_v1",
+  "package_id": "PKG-42A-FINAL-SOURCE-CLOSURE-MASTER-INDEX-DELTA",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_artifacts": {
+    "printings_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_printings_v1.json",
+    "completion_export_json": "docs\\audits\\english_master_index_completion_v1\\english_master_index_master_admissible_export_v1.json",
+    "sv03_printings_json": "docs\\audits\\english_master_index_publishable_v1\\sets\\sv03\\printings.json",
+    "sv03_evidence_json": "docs\\audits\\english_master_index_publishable_v1\\sets\\sv03\\evidence.json",
+    "svp_printings_json": "docs\\audits\\english_master_index_publishable_v1\\sets\\svp\\printings.json",
+    "svp_evidence_json": "docs\\audits\\english_master_index_publishable_v1\\sets\\svp\\evidence.json"
+  },
+  "summary": {
+    "master_rows_inserted": 2,
+    "master_rows_promoted": 1,
+    "master_rows_updated": 0,
+    "route_rows": 2,
+    "route_rows_requiring_identity_backfill": 1,
+    "completion_export_rows_inserted": 3,
+    "publishable_rows_inserted": 3,
+    "publishable_evidence_rows_inserted": 7
+  },
+  "master_changes": [
+    {
+      "action": "promoted",
+      "row": {
+        "fact_type": "printing_finish",
+        "key": "obsidian flames|196|town store|stamped",
+        "status": "master_verified",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "196",
+        "card_name": "Town Store",
+        "finish_key": "stamped",
+        "rarity_values": [
+          "Uncommon"
+        ],
+        "source_count": 2,
+        "sources": [
+          "thepricedex_price_list",
+          "bulbapedia_prize_pack_series_six"
+        ],
+        "source_authorities": [
+          "thepricedex.com",
+          "bulbapedia.bulbagarden.net"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "human_readable_checklist"
+        ],
+        "evidence_count": 2,
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list",
+          "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)"
+        ],
+        "evidence_note": "Bulbapedia lists Obsidian Flames Town Store 196 in Prize Pack Series Six as Standard Set Foil and the set rule states foil cards use Cosmos Holofoil except Pokemon ex and ACE SPEC cards."
+      },
+      "before": {
+        "fact_type": "printing_finish",
+        "key": "obsidian flames|196|town store|stamped",
+        "status": "human_source_verified",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "196",
+        "card_name": "Town Store",
+        "finish_key": "stamped",
+        "rarity_values": [
+          "Common"
+        ],
+        "source_count": 1,
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_count": 1,
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+        ]
+      }
+    },
+    {
+      "action": "inserted",
+      "row": {
+        "fact_type": "printing_finish",
+        "key": "scarlet violet black star promos|224|paradise resort|normal",
+        "status": "master_verified",
+        "set_key": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "card_number": "224",
+        "card_name": "Paradise Resort",
+        "finish_key": "normal",
+        "rarity_values": [
+          "Promo"
+        ],
+        "sources": [
+          "tcgdex",
+          "pkmncards_card_page",
+          "thepricedex_price_list"
+        ],
+        "source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/svp-224",
+          "https://pkmncards.com/card/paradise-resort-scarlet-violet-promos-svp-224/",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "evidence_note": "Exact SVP 224 Paradise Resort base promo row, distinct from the staff-stamped row.",
+        "source_count": 3,
+        "source_authorities": [
+          "api.tcgdex.net",
+          "pkmncards.com",
+          "thepricedex.com"
+        ],
+        "evidence_count": 3
+      }
+    },
+    {
+      "action": "inserted",
+      "row": {
+        "fact_type": "printing_finish",
+        "key": "scarlet violet black star promos|500|terapagos friends|normal",
+        "status": "master_verified",
+        "set_key": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "card_number": "500",
+        "card_name": "Terapagos & Friends",
+        "finish_key": "normal",
+        "rarity_values": [
+          "Promo"
+        ],
+        "sources": [
+          "tcgdex",
+          "tcgcollector_card_page"
+        ],
+        "source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/svp-500",
+          "https://www.tcgcollector.com/cards/46604/terapagos-and-friends-scarlet-and-violet-promos-no-500"
+        ],
+        "evidence_note": "Exact SVP No. 500 Terapagos & Friends promo evidence. This closes the existing DB normal row without adding a new jumbo modifier.",
+        "source_count": 2,
+        "source_authorities": [
+          "api.tcgdex.net",
+          "tcgcollector.com"
+        ],
+        "evidence_count": 2
+      }
+    }
+  ],
+  "rows": [
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "196",
+      "card_name": "Town Store",
+      "variant_key": "play_pokemon_stamp",
+      "selected_base_parent_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+      "base_parent_child_finishes": [
+        "cosmos"
+      ],
+      "accepted_finish_key": "cosmos",
+      "source_family_count": 2,
+      "source_families": [
+        "bulbapedia",
+        "thepricedex"
+      ],
+      "evidence_count": 2,
+      "status": "ready_for_guarded_dry_run",
+      "route_origin": "PKG-42A-FINAL-SOURCE-CLOSURE-MASTER-INDEX-DELTA",
+      "requires_parent_identity_backfill": false,
+      "requires_child_replacement": false,
+      "evidence": [
+        {
+          "source_key": "thepricedex_price_list",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list",
+          "evidence_label": "ThePriceDex lists Town Store #196 stamped Prize Pack family evidence."
+        },
+        {
+          "source_key": "bulbapedia_prize_pack_series_six",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "evidence_label": "Bulbapedia Prize Pack Series Six lists Town Store 196 as Standard Set Foil; set rule maps applicable foil rows to Cosmos Holofoil."
+        }
+      ]
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "224",
+      "card_name": "Paradise Resort",
+      "variant_key": "world_championships_2025_staff_stamp",
+      "selected_base_parent_id": "4b575fd9-1e87-4992-bae5-826795a4bfbd",
+      "base_parent_child_finishes": [
+        "normal"
+      ],
+      "accepted_finish_key": "normal",
+      "source_family_count": 4,
+      "source_families": [
+        "gamenerdz",
+        "pricecharting",
+        "tcgplayer",
+        "thepricedex"
+      ],
+      "evidence_count": 4,
+      "status": "ready_for_guarded_dry_run",
+      "route_origin": "PKG-42A-FINAL-SOURCE-CLOSURE-MASTER-INDEX-DELTA",
+      "requires_parent_identity_backfill": true,
+      "requires_child_replacement": false,
+      "evidence": [
+        {
+          "source_key": "pricecharting_csv_product_stamp",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/paradise-resort-world-championships-2025-staff-224",
+          "evidence_label": "PriceCharting identifies Paradise Resort #224 World Championships 2025 Staff."
+        },
+        {
+          "source_key": "thepricedex_price_list",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list",
+          "evidence_label": "ThePriceDex supports SVP #224 Paradise Resort staff-stamped listing."
+        },
+        {
+          "source_key": "tcgplayer_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/649234/pokemon-sv-scarlet-and-violet-promo-cards-paradise-resort-224-world-championships-2025-staff",
+          "evidence_label": "TCGplayer product page distinguishes Paradise Resort #224 World Championships 2025 Staff."
+        },
+        {
+          "source_key": "gamenerdz_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.gamenerdz.com/paradise-resort-224-world-championships-2025-staff-224-sv-scarlet-violet-promo-cards",
+          "evidence_label": "GameNerdz product page distinguishes Paradise Resort #224 World Championships 2025 Staff."
+        }
+      ]
+    }
+  ],
+  "safety_confirmation": {
+    "docs_only": true,
+    "no_db_writes": true,
+    "no_migrations": true,
+    "not_apply_authority": true
+  },
+  "fingerprint_sha256": "0ec7ec6785b27eaebe294c5a26bd85cd9ed56d28f040b41084e7e612289ed9ba"
+}

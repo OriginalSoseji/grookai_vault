@@ -1,0 +1,3724 @@
+{
+  "generated_at": "2026-06-09T12:51:43.958Z",
+  "version": "sv08.5_physical_recovery_dry_run_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "target_set_key": "sv08.5",
+  "target_set_name": "Prismatic Evolutions",
+  "dry_run_package_status": "ready_for_review_no_write",
+  "write_ready_now": 0,
+  "write_allowed_from_this_package": false,
+  "summary": {
+    "candidate_card_prints": 20,
+    "candidate_printing_rows": 40,
+    "by_supported_finish": {
+      "holo": 20,
+      "reverse": 20
+    },
+    "blocked_rows": 0,
+    "db_snapshot_available": true,
+    "db_card_prints_found": 20,
+    "db_card_printings_found": 40,
+    "external_mappings_referencing_targets": 20,
+    "identity_rows_referencing_targets": 20,
+    "trait_rows_referencing_targets": 20,
+    "vault_items_referencing_targets": 0
+  },
+  "safety": {
+    "rule": "This artifact is a dry-run package only. It is not an apply package and does not authorize DB writes.",
+    "stop_rules": [
+      "Stop if any target row is missing from the before-state snapshot.",
+      "Stop if child-printing count differs from package expectation.",
+      "Stop if unsupported finishes appear in the target rows.",
+      "Stop if identity, ownership, vault, or provenance impact cannot be explained.",
+      "Stop if rollback artifact is incomplete."
+    ]
+  },
+  "db_snapshot": {
+    "available": true,
+    "reason": null,
+    "target_set": [
+      {
+        "id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+        "code": "sv08.5",
+        "game": "pokemon",
+        "name": "Prismatic Evolutions",
+        "source": {
+          "tcgdex": {
+            "id": "sv08.5",
+            "raw": {
+              "id": "sv08.5",
+              "logo": "https://assets.tcgdex.net/en/sv/sv08.5/logo",
+              "name": "Prismatic Evolutions",
+              "cardCount": {
+                "total": 180,
+                "official": 131
+              }
+            },
+            "name": "Prismatic Evolutions",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          }
+        },
+        "logo_url": null,
+        "set_role": null,
+        "created_at": "2025-11-19T22:08:28.603328+00:00",
+        "symbol_url": null,
+        "updated_at": "2026-03-26T22:05:58.123+00:00",
+        "release_date": null,
+        "printed_total": 131,
+        "hero_image_url": null,
+        "identity_model": "standard",
+        "last_synced_at": null,
+        "hero_image_source": null,
+        "printed_set_abbrev": null,
+        "identity_domain_default": "pokemon_eng_standard"
+      }
+    ],
+    "rows": [
+      {
+        "card_print_id": "8968eec8-46f8-4185-a679-ee1d5805cc78",
+        "card_print": {
+          "id": "8968eec8-46f8-4185-a679-ee1d5805cc78",
+          "name": "Archaludon",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/070/high.webp",
+          "created_at": "2026-03-27T02:17:47.254849+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:17:47.254849+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-070"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/070",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "31de9f05-0634-4fca-bd76-c261abde03aa",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:47.447866+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "8968eec8-46f8-4185-a679-ee1d5805cc78",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-070",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "7f70cb0b-7108-4040-8455-fcfe12a19f0b",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:47.536087+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "8968eec8-46f8-4185-a679-ee1d5805cc78",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-070",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "6f45550b-ef5c-4767-ad57-77212d4d65c2",
+        "card_print": {
+          "id": "6f45550b-ef5c-4767-ad57-77212d4d65c2",
+          "name": "Bloodmoon Ursaluna",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/054/high.webp",
+          "created_at": "2026-03-27T02:17:16.046505+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:17:16.046505+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-054"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/054",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "2c7456ac-34bb-4ada-8f23-7e2ccc723c28",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:16.267818+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "6f45550b-ef5c-4767-ad57-77212d4d65c2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-054",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "7e5299ae-49f8-4897-92cc-0c35ce625c0e",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:16.366491+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "6f45550b-ef5c-4767-ad57-77212d4d65c2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-054",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "9030feb1-f99d-4e1e-8c6e-2c9f19b8b616",
+        "card_print": {
+          "id": "9030feb1-f99d-4e1e-8c6e-2c9f19b8b616",
+          "name": "Dudunsparce",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/080/high.webp",
+          "created_at": "2026-03-27T02:18:07.371703+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:18:07.371703+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-080"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/080",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "55322185-af20-4364-9385-91915666e1c3",
+            "image_url": null,
+            "created_at": "2026-03-27T02:18:07.562292+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9030feb1-f99d-4e1e-8c6e-2c9f19b8b616",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-080",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "452f373d-1b05-44ac-a597-474481df4e59",
+            "image_url": null,
+            "created_at": "2026-03-27T02:18:07.651362+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9030feb1-f99d-4e1e-8c6e-2c9f19b8b616",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-080",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "32f0c83a-ba31-419f-81c8-aae5f35033d7",
+        "card_print": {
+          "id": "32f0c83a-ba31-419f-81c8-aae5f35033d7",
+          "name": "Dusknoir",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/037/high.webp",
+          "created_at": "2026-03-27T02:16:41.910564+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:16:41.910564+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-037"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/037",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "37f6fb83-80dd-421d-b36e-42daa07e7500",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:42.110266+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "32f0c83a-ba31-419f-81c8-aae5f35033d7",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-037",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "b4377dee-503d-4ebf-b110-d4cd65895c40",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:42.204207+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "32f0c83a-ba31-419f-81c8-aae5f35033d7",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-037",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "6dfd7ee4-f9de-4d77-9373-0006bf86e1b1",
+        "card_print": {
+          "id": "6dfd7ee4-f9de-4d77-9373-0006bf86e1b1",
+          "name": "Espeon",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/033/high.webp",
+          "created_at": "2026-03-27T02:16:33.516197+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:16:33.516197+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-033"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/033",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "G",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "8cbeed97-cc31-4cbe-ad54-b20ff29cbea6",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:33.723468+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "6dfd7ee4-f9de-4d77-9373-0006bf86e1b1",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-033",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "dcd9d03e-60ee-4d8e-9f46-8c06924ea458",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:33.829731+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "6dfd7ee4-f9de-4d77-9373-0006bf86e1b1",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-033",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "96e8765b-984b-40ef-b000-75e72b8f47a4",
+        "card_print": {
+          "id": "96e8765b-984b-40ef-b000-75e72b8f47a4",
+          "name": "Fezandipiti",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/045/high.webp",
+          "created_at": "2026-03-27T02:16:57.934333+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:16:57.934333+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-045"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/045",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "0cae254d-26b8-430a-bf1a-cb2e197539d2",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:58.149765+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "96e8765b-984b-40ef-b000-75e72b8f47a4",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-045",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "39c1df82-1c3f-47bf-90dd-75ad2f644134",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:58.247634+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "96e8765b-984b-40ef-b000-75e72b8f47a4",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-045",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "edc42048-89fc-4cff-8422-ebc9f233f386",
+        "card_print": {
+          "id": "edc42048-89fc-4cff-8422-ebc9f233f386",
+          "name": "Flareon",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/013/high.webp",
+          "created_at": "2026-03-27T02:15:53.229727+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:15:53.229727+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-013"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/013",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "G",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "cc4ea3a0-f1b2-46b7-853b-c0b7de887b5a",
+            "image_url": null,
+            "created_at": "2026-03-27T02:15:53.427906+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "edc42048-89fc-4cff-8422-ebc9f233f386",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-013",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "71efa04f-0159-4f30-bf76-8b5c628842f9",
+            "image_url": null,
+            "created_at": "2026-03-27T02:15:53.515611+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "edc42048-89fc-4cff-8422-ebc9f233f386",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-013",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "ad2966e5-48b0-4f8e-b7ec-56cfb220de64",
+        "card_print": {
+          "id": "ad2966e5-48b0-4f8e-b7ec-56cfb220de64",
+          "name": "Flutter Mane",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/043/high.webp",
+          "created_at": "2026-03-27T02:16:54.009542+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:16:54.009542+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-043"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/043",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "3d7205b8-efca-456f-b3c9-8cef1af97d8b",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:54.200459+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "ad2966e5-48b0-4f8e-b7ec-56cfb220de64",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-043",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "221b10da-4d9e-4026-85ef-52c78dd0b403",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:54.293896+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "ad2966e5-48b0-4f8e-b7ec-56cfb220de64",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-043",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "fb911570-4f51-4c86-b030-832974bffcc4",
+        "card_print": {
+          "id": "fb911570-4f51-4c86-b030-832974bffcc4",
+          "name": "Glaceon",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/025/high.webp",
+          "created_at": "2026-03-27T02:16:17.672909+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:16:17.672909+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-025"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/025",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "c852590f-8d43-4a44-b305-02bb190c7473",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:17.874742+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "fb911570-4f51-4c86-b030-832974bffcc4",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-025",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "0873e0a2-bc9b-4f35-adbf-e1144563aad9",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:17.97092+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "fb911570-4f51-4c86-b030-832974bffcc4",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-025",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "1d4be26f-d405-491c-9ce8-fee06b35e702",
+        "card_print": {
+          "id": "1d4be26f-d405-491c-9ce8-fee06b35e702",
+          "name": "Groudon",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/049/high.webp",
+          "created_at": "2026-03-27T02:17:06.150256+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:17:06.150256+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-049"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/049",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "G",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "6a88823d-f89c-48e6-9c20-d5c2ae758c50",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:06.340208+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1d4be26f-d405-491c-9ce8-fee06b35e702",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-049",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "0142ee14-d561-41b9-b65f-845f5e6bd721",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:06.429229+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1d4be26f-d405-491c-9ce8-fee06b35e702",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-049",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "d9d6fe68-06ab-494b-9519-fc7d76393d09",
+        "card_print": {
+          "id": "d9d6fe68-06ab-494b-9519-fc7d76393d09",
+          "name": "Iron Boulder",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/046/high.webp",
+          "created_at": "2026-03-27T02:17:00.037282+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:17:00.037282+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-046"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/046",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "70e356a1-df39-4013-94af-003a65643884",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:00.252789+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d9d6fe68-06ab-494b-9519-fc7d76393d09",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-046",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "17968cef-297c-42ee-8e29-21f5b954ab90",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:00.34351+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d9d6fe68-06ab-494b-9519-fc7d76393d09",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-046",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "e22b6a0d-c544-463f-9654-ba9e7d6978fd",
+        "card_print": {
+          "id": "e22b6a0d-c544-463f-9654-ba9e7d6978fd",
+          "name": "Jolteon",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/029/high.webp",
+          "created_at": "2026-03-27T02:16:25.64723+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:16:25.64723+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-029"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/029",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "G",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "5a182b9c-532c-401e-9e51-98fc5943a145",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:25.857256+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "e22b6a0d-c544-463f-9654-ba9e7d6978fd",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-029",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "faa8adcb-11af-478c-90b6-67da54317b48",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:25.945029+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "e22b6a0d-c544-463f-9654-ba9e7d6978fd",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-029",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "c11bc9b0-0fe8-488c-bdef-cf1b64f894ec",
+        "card_print": {
+          "id": "c11bc9b0-0fe8-488c-bdef-cf1b64f894ec",
+          "name": "Leafeon",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/005/high.webp",
+          "created_at": "2026-03-27T02:15:38.729985+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:15:38.729985+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-005"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/005",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "32d4aab8-3726-4565-b56b-c23daecb93c8",
+            "image_url": null,
+            "created_at": "2026-03-27T02:15:38.902135+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "c11bc9b0-0fe8-488c-bdef-cf1b64f894ec",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-005",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "0438fed7-cbe4-4d03-a1f0-1fe1f7c2308d",
+            "image_url": null,
+            "created_at": "2026-03-27T02:15:38.983614+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "c11bc9b0-0fe8-488c-bdef-cf1b64f894ec",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-005",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "649e4751-83b0-49ea-83cf-75ef59f989ed",
+        "card_print": {
+          "id": "649e4751-83b0-49ea-83cf-75ef59f989ed",
+          "name": "Munkidori",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/044/high.webp",
+          "created_at": "2026-03-27T02:16:55.990318+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:16:55.990318+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-044"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/044",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "106dc81c-b366-4b1c-9fd2-3cade06b7498",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:56.185496+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "649e4751-83b0-49ea-83cf-75ef59f989ed",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-044",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "f2b6eded-bdbb-4fb2-a6b0-60a3d872e1fb",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:56.281921+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "649e4751-83b0-49ea-83cf-75ef59f989ed",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-044",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "bafa6068-a489-4705-811b-8f864f4679d3",
+        "card_print": {
+          "id": "bafa6068-a489-4705-811b-8f864f4679d3",
+          "name": "Noctowl",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/078/high.webp",
+          "created_at": "2026-03-27T02:18:03.221268+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:18:03.221268+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-078"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/078",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "78eb6886-d63b-4a6c-92ae-faa511e13a45",
+            "image_url": null,
+            "created_at": "2026-03-27T02:18:03.4304+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "bafa6068-a489-4705-811b-8f864f4679d3",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-078",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "623a2781-2cb8-4a3a-a8a7-5f81c0add339",
+            "image_url": null,
+            "created_at": "2026-03-27T02:18:03.535435+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "bafa6068-a489-4705-811b-8f864f4679d3",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-078",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "25f1cc8a-87f0-42d9-b440-d30ad27168d6",
+        "card_print": {
+          "id": "25f1cc8a-87f0-42d9-b440-d30ad27168d6",
+          "name": "Okidogi",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/057/high.webp",
+          "created_at": "2026-03-27T02:17:21.781908+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:17:21.781908+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-057"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/057",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "af1a0c8e-2718-4dd9-b310-544620dc1c44",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:21.978907+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "25f1cc8a-87f0-42d9-b440-d30ad27168d6",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-057",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "005f8f0b-1fef-4579-b473-5341b7e51711",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:22.071591+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "25f1cc8a-87f0-42d9-b440-d30ad27168d6",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-057",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "0c1d028f-fc8c-4295-8c3a-2f845eb5baf8",
+        "card_print": {
+          "id": "0c1d028f-fc8c-4295-8c3a-2f845eb5baf8",
+          "name": "Roaring Moon",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/065/high.webp",
+          "created_at": "2026-03-27T02:17:37.218875+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:17:37.218875+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-065"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/065",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "f47e9cf8-eb53-473d-961c-86d4dfb52e13",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:37.399674+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0c1d028f-fc8c-4295-8c3a-2f845eb5baf8",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-065",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "10111da3-88ac-413d-b81c-f6fa29e40ed6",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:37.48773+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0c1d028f-fc8c-4295-8c3a-2f845eb5baf8",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-065",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "ffb95ade-a643-4ec6-bcb7-6ff41e5e7eae",
+        "card_print": {
+          "id": "ffb95ade-a643-4ec6-bcb7-6ff41e5e7eae",
+          "name": "Umbreon",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/059/high.webp",
+          "created_at": "2026-03-27T02:17:25.591961+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:17:25.591961+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-059"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/059",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "G",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "ee6f4dbc-e320-4da6-a095-6749653de15a",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:25.794994+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "ffb95ade-a643-4ec6-bcb7-6ff41e5e7eae",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-059",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "f8f2679b-d4c3-46f0-bab3-d9b1a6084d93",
+            "image_url": null,
+            "created_at": "2026-03-27T02:17:25.879595+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "ffb95ade-a643-4ec6-bcb7-6ff41e5e7eae",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-059",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "9ed9e9aa-4019-42c5-8051-072fb56a7569",
+        "card_print": {
+          "id": "9ed9e9aa-4019-42c5-8051-072fb56a7569",
+          "name": "Vaporeon",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/022/high.webp",
+          "created_at": "2026-03-27T02:16:11.583572+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:16:11.583572+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-022"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/022",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "G",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "4bb11d27-2ea2-4952-b2cf-26e7fb48a6b1",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:11.86224+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9ed9e9aa-4019-42c5-8051-072fb56a7569",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-022",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "e402762d-bdf0-436f-80f6-6dfb271d0b9d",
+            "image_url": null,
+            "created_at": "2026-03-27T02:16:11.959976+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9ed9e9aa-4019-42c5-8051-072fb56a7569",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-022",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "0c9700c4-ca45-4e83-a865-e1a3dee48e80",
+        "card_print": {
+          "id": "0c9700c4-ca45-4e83-a865-e1a3dee48e80",
+          "name": "Whimsicott",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/008/high.webp",
+          "created_at": "2026-03-27T02:15:44.103401+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:15:44.103401+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "sv08.5-008"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/sv/sv08.5/008",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "H",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "dd407ba2-f566-4499-9b0c-f3c015d8df52",
+            "image_url": null,
+            "created_at": "2026-03-27T02:15:44.271954+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0c9700c4-ca45-4e83-a865-e1a3dee48e80",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-008",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "aa915d45-266e-45fb-a2dc-b8c51d001bbe",
+            "image_url": null,
+            "created_at": "2026-03-27T02:15:44.358643+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0c9700c4-ca45-4e83-a865-e1a3dee48e80",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "sv08.5-008",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "impact_counts": {
+      "card_prints_found": 20,
+      "card_printings_found": 40,
+      "external_mappings_found": 20,
+      "identity_rows_found": 20,
+      "trait_rows_found": 20,
+      "vault_items_found": 0
+    }
+  },
+  "package_rows": [
+    {
+      "card_print_id": "c11bc9b0-0fe8-488c-bdef-cf1b64f894ec",
+      "current_grookai_name": "Leafeon",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "005",
+      "target_card_name": "Leafeon",
+      "source_external_id": "sv08.5-005",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-005",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "005",
+        "number_plain": "005",
+        "name": "Leafeon"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-5",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-005",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-5",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-5",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-005",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-5",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "0c9700c4-ca45-4e83-a865-e1a3dee48e80",
+      "current_grookai_name": "Whimsicott",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "008",
+      "target_card_name": "Whimsicott",
+      "source_external_id": "sv08.5-008",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-008",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "008",
+        "number_plain": "008",
+        "name": "Whimsicott"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-8",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-008",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-8",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-8",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-008",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-8",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "edc42048-89fc-4cff-8422-ebc9f233f386",
+      "current_grookai_name": "Flareon",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "013",
+      "target_card_name": "Flareon",
+      "source_external_id": "sv08.5-013",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-013",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "013",
+        "number_plain": "013",
+        "name": "Flareon"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-13",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-013",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-13",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-13",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-013",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-13",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "9ed9e9aa-4019-42c5-8051-072fb56a7569",
+      "current_grookai_name": "Vaporeon",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "022",
+      "target_card_name": "Vaporeon",
+      "source_external_id": "sv08.5-022",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-022",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "022",
+        "number_plain": "022",
+        "name": "Vaporeon"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-22",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-022",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-22",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-22",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-022",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-22",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "fb911570-4f51-4c86-b030-832974bffcc4",
+      "current_grookai_name": "Glaceon",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "025",
+      "target_card_name": "Glaceon",
+      "source_external_id": "sv08.5-025",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-025",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "025",
+        "number_plain": "025",
+        "name": "Glaceon"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-25",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-025",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-25",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-25",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-025",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-25",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "e22b6a0d-c544-463f-9654-ba9e7d6978fd",
+      "current_grookai_name": "Jolteon",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "029",
+      "target_card_name": "Jolteon",
+      "source_external_id": "sv08.5-029",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-029",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "029",
+        "number_plain": "029",
+        "name": "Jolteon"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-29",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-029",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-29",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-29",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-029",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-29",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "6dfd7ee4-f9de-4d77-9373-0006bf86e1b1",
+      "current_grookai_name": "Espeon",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "033",
+      "target_card_name": "Espeon",
+      "source_external_id": "sv08.5-033",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-033",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "033",
+        "number_plain": "033",
+        "name": "Espeon"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-33",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-033",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-33",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-33",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-033",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-33",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "32f0c83a-ba31-419f-81c8-aae5f35033d7",
+      "current_grookai_name": "Dusknoir",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "037",
+      "target_card_name": "Dusknoir",
+      "source_external_id": "sv08.5-037",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-037",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "037",
+        "number_plain": "037",
+        "name": "Dusknoir"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-37",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-037",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-37",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-37",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-037",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-37",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "ad2966e5-48b0-4f8e-b7ec-56cfb220de64",
+      "current_grookai_name": "Flutter Mane",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "043",
+      "target_card_name": "Flutter Mane",
+      "source_external_id": "sv08.5-043",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-043",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "043",
+        "number_plain": "043",
+        "name": "Flutter Mane"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-43",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-043",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-43",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-43",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-043",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-43",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "649e4751-83b0-49ea-83cf-75ef59f989ed",
+      "current_grookai_name": "Munkidori",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "044",
+      "target_card_name": "Munkidori",
+      "source_external_id": "sv08.5-044",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-044",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "044",
+        "number_plain": "044",
+        "name": "Munkidori"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-44",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-044",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-44",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-44",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-044",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-44",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "96e8765b-984b-40ef-b000-75e72b8f47a4",
+      "current_grookai_name": "Fezandipiti",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "045",
+      "target_card_name": "Fezandipiti",
+      "source_external_id": "sv08.5-045",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-045",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "045",
+        "number_plain": "045",
+        "name": "Fezandipiti"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-45",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-045",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-45",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-45",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-045",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-45",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "d9d6fe68-06ab-494b-9519-fc7d76393d09",
+      "current_grookai_name": "Iron Boulder",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "046",
+      "target_card_name": "Iron Boulder",
+      "source_external_id": "sv08.5-046",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-046",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "046",
+        "number_plain": "046",
+        "name": "Iron Boulder"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-46",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-046",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-46",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-46",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-046",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-46",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "1d4be26f-d405-491c-9ce8-fee06b35e702",
+      "current_grookai_name": "Groudon",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "049",
+      "target_card_name": "Groudon",
+      "source_external_id": "sv08.5-049",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-049",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "049",
+        "number_plain": "049",
+        "name": "Groudon"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-49",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-049",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-49",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-49",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-049",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-49",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "6f45550b-ef5c-4767-ad57-77212d4d65c2",
+      "current_grookai_name": "Bloodmoon Ursaluna",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "054",
+      "target_card_name": "Bloodmoon Ursaluna",
+      "source_external_id": "sv08.5-054",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-054",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "054",
+        "number_plain": "054",
+        "name": "Bloodmoon Ursaluna"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-54",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-054",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-54",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-54",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-054",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-54",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "25f1cc8a-87f0-42d9-b440-d30ad27168d6",
+      "current_grookai_name": "Okidogi",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "057",
+      "target_card_name": "Okidogi",
+      "source_external_id": "sv08.5-057",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-057",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "057",
+        "number_plain": "057",
+        "name": "Okidogi"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-57",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-057",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-57",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-57",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-057",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-57",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "ffb95ade-a643-4ec6-bcb7-6ff41e5e7eae",
+      "current_grookai_name": "Umbreon",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "059",
+      "target_card_name": "Umbreon",
+      "source_external_id": "sv08.5-059",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-059",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "059",
+        "number_plain": "059",
+        "name": "Umbreon"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-59",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-059",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-59",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-59",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-059",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-59",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "0c1d028f-fc8c-4295-8c3a-2f845eb5baf8",
+      "current_grookai_name": "Roaring Moon",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "065",
+      "target_card_name": "Roaring Moon",
+      "source_external_id": "sv08.5-065",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-065",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "065",
+        "number_plain": "065",
+        "name": "Roaring Moon"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-65",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-065",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-65",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-65",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-065",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-65",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "8968eec8-46f8-4185-a679-ee1d5805cc78",
+      "current_grookai_name": "Archaludon",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "070",
+      "target_card_name": "Archaludon",
+      "source_external_id": "sv08.5-070",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-070",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "070",
+        "number_plain": "070",
+        "name": "Archaludon"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-70",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-070",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-70",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-70",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-070",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-70",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "bafa6068-a489-4705-811b-8f864f4679d3",
+      "current_grookai_name": "Noctowl",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "078",
+      "target_card_name": "Noctowl",
+      "source_external_id": "sv08.5-078",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-078",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "078",
+        "number_plain": "078",
+        "name": "Noctowl"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-78",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-078",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-78",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-78",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-078",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-78",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "9030feb1-f99d-4e1e-8c6e-2c9f19b8b616",
+      "current_grookai_name": "Dudunsparce",
+      "target_set_key": "sv08.5",
+      "target_set_name": "Prismatic Evolutions",
+      "target_card_number": "080",
+      "target_card_name": "Dudunsparce",
+      "source_external_id": "sv08.5-080",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-080",
+      "target_parent_fields": {
+        "set_code": "sv08.5",
+        "number": "080",
+        "number_plain": "080",
+        "name": "Dudunsparce"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-80",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-080",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-80",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv8pt5-80",
+            "https://api.tcgdex.net/v2/en/cards/sv08.5-080",
+            "https://prices.pokemontcg.io/tcgplayer/sv8pt5-80",
+            "https://reverseholo.app/sets/sv08.5",
+            "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    }
+  ],
+  "planned_sql_preview": "-- DRY-RUN PREVIEW ONLY. Do not execute until a separate approved apply package exists.\n-- Parent recovery shape under review:\nwith approved(card_print_id, set_code, number, number_plain, name) as (\n  values\n    ('c11bc9b0-0fe8-488c-bdef-cf1b64f894ec'::uuid, 'sv08.5', '005', '005', 'Leafeon'),\n    ('0c9700c4-ca45-4e83-a865-e1a3dee48e80'::uuid, 'sv08.5', '008', '008', 'Whimsicott'),\n    ('edc42048-89fc-4cff-8422-ebc9f233f386'::uuid, 'sv08.5', '013', '013', 'Flareon'),\n    ('9ed9e9aa-4019-42c5-8051-072fb56a7569'::uuid, 'sv08.5', '022', '022', 'Vaporeon'),\n    ('fb911570-4f51-4c86-b030-832974bffcc4'::uuid, 'sv08.5', '025', '025', 'Glaceon'),\n    ('e22b6a0d-c544-463f-9654-ba9e7d6978fd'::uuid, 'sv08.5', '029', '029', 'Jolteon'),\n    ('6dfd7ee4-f9de-4d77-9373-0006bf86e1b1'::uuid, 'sv08.5', '033', '033', 'Espeon'),\n    ('32f0c83a-ba31-419f-81c8-aae5f35033d7'::uuid, 'sv08.5', '037', '037', 'Dusknoir'),\n    ('ad2966e5-48b0-4f8e-b7ec-56cfb220de64'::uuid, 'sv08.5', '043', '043', 'Flutter Mane'),\n    ('649e4751-83b0-49ea-83cf-75ef59f989ed'::uuid, 'sv08.5', '044', '044', 'Munkidori'),\n    ('96e8765b-984b-40ef-b000-75e72b8f47a4'::uuid, 'sv08.5', '045', '045', 'Fezandipiti'),\n    ('d9d6fe68-06ab-494b-9519-fc7d76393d09'::uuid, 'sv08.5', '046', '046', 'Iron Boulder'),\n    ('1d4be26f-d405-491c-9ce8-fee06b35e702'::uuid, 'sv08.5', '049', '049', 'Groudon'),\n    ('6f45550b-ef5c-4767-ad57-77212d4d65c2'::uuid, 'sv08.5', '054', '054', 'Bloodmoon Ursaluna'),\n    ('25f1cc8a-87f0-42d9-b440-d30ad27168d6'::uuid, 'sv08.5', '057', '057', 'Okidogi'),\n    ('ffb95ade-a643-4ec6-bcb7-6ff41e5e7eae'::uuid, 'sv08.5', '059', '059', 'Umbreon'),\n    ('0c1d028f-fc8c-4295-8c3a-2f845eb5baf8'::uuid, 'sv08.5', '065', '065', 'Roaring Moon'),\n    ('8968eec8-46f8-4185-a679-ee1d5805cc78'::uuid, 'sv08.5', '070', '070', 'Archaludon'),\n    ('bafa6068-a489-4705-811b-8f864f4679d3'::uuid, 'sv08.5', '078', '078', 'Noctowl'),\n    ('9030feb1-f99d-4e1e-8c6e-2c9f19b8b616'::uuid, 'sv08.5', '080', '080', 'Dudunsparce')\n)\nselect cp.id, cp.set_code as before_set_code, approved.set_code as after_set_code,\n       cp.number as before_number, approved.number as after_number,\n       cp.name as before_name, approved.name as after_name\nfrom public.card_prints cp\njoin approved on approved.card_print_id = cp.id;",
+  "rollback_requirements": [
+    "Capture full before-state snapshot for every target card_print row before any apply.",
+    "Capture child card_printings for every target card_print row before any apply.",
+    "Rollback must restore only approved target row IDs and must not touch blocked remainder rows.",
+    "Rollback must preserve vault ownership and provenance references.",
+    "Rollback must be reviewed before any write path is executed."
+  ],
+  "post_apply_verification_queries": [
+    {
+      "name": "target_parent_rows_resolved_to_set",
+      "sql": "select count(*)::int as matching_rows\nfrom public.card_prints\nwhere id = any(array['c11bc9b0-0fe8-488c-bdef-cf1b64f894ec'::uuid, '0c9700c4-ca45-4e83-a865-e1a3dee48e80'::uuid, 'edc42048-89fc-4cff-8422-ebc9f233f386'::uuid, '9ed9e9aa-4019-42c5-8051-072fb56a7569'::uuid, 'fb911570-4f51-4c86-b030-832974bffcc4'::uuid, 'e22b6a0d-c544-463f-9654-ba9e7d6978fd'::uuid, '6dfd7ee4-f9de-4d77-9373-0006bf86e1b1'::uuid, '32f0c83a-ba31-419f-81c8-aae5f35033d7'::uuid, 'ad2966e5-48b0-4f8e-b7ec-56cfb220de64'::uuid, '649e4751-83b0-49ea-83cf-75ef59f989ed'::uuid, '96e8765b-984b-40ef-b000-75e72b8f47a4'::uuid, 'd9d6fe68-06ab-494b-9519-fc7d76393d09'::uuid, '1d4be26f-d405-491c-9ce8-fee06b35e702'::uuid, '6f45550b-ef5c-4767-ad57-77212d4d65c2'::uuid, '25f1cc8a-87f0-42d9-b440-d30ad27168d6'::uuid, 'ffb95ade-a643-4ec6-bcb7-6ff41e5e7eae'::uuid, '0c1d028f-fc8c-4295-8c3a-2f845eb5baf8'::uuid, '8968eec8-46f8-4185-a679-ee1d5805cc78'::uuid, 'bafa6068-a489-4705-811b-8f864f4679d3'::uuid, '9030feb1-f99d-4e1e-8c6e-2c9f19b8b616'::uuid])\n  and lower(coalesce(set_code, '')) = 'sv08.5';",
+      "expected": 20
+    },
+    {
+      "name": "target_child_printing_count_unchanged",
+      "sql": "select count(*)::int as child_printings\nfrom public.card_printings\nwhere card_print_id = any(array['c11bc9b0-0fe8-488c-bdef-cf1b64f894ec'::uuid, '0c9700c4-ca45-4e83-a865-e1a3dee48e80'::uuid, 'edc42048-89fc-4cff-8422-ebc9f233f386'::uuid, '9ed9e9aa-4019-42c5-8051-072fb56a7569'::uuid, 'fb911570-4f51-4c86-b030-832974bffcc4'::uuid, 'e22b6a0d-c544-463f-9654-ba9e7d6978fd'::uuid, '6dfd7ee4-f9de-4d77-9373-0006bf86e1b1'::uuid, '32f0c83a-ba31-419f-81c8-aae5f35033d7'::uuid, 'ad2966e5-48b0-4f8e-b7ec-56cfb220de64'::uuid, '649e4751-83b0-49ea-83cf-75ef59f989ed'::uuid, '96e8765b-984b-40ef-b000-75e72b8f47a4'::uuid, 'd9d6fe68-06ab-494b-9519-fc7d76393d09'::uuid, '1d4be26f-d405-491c-9ce8-fee06b35e702'::uuid, '6f45550b-ef5c-4767-ad57-77212d4d65c2'::uuid, '25f1cc8a-87f0-42d9-b440-d30ad27168d6'::uuid, 'ffb95ade-a643-4ec6-bcb7-6ff41e5e7eae'::uuid, '0c1d028f-fc8c-4295-8c3a-2f845eb5baf8'::uuid, '8968eec8-46f8-4185-a679-ee1d5805cc78'::uuid, 'bafa6068-a489-4705-811b-8f864f4679d3'::uuid, '9030feb1-f99d-4e1e-8c6e-2c9f19b8b616'::uuid]);",
+      "expected": 40
+    },
+    {
+      "name": "unsupported_finish_rows_absent_from_package",
+      "sql": "select cp.id, cpr.finish_key\nfrom public.card_prints cp\njoin public.card_printings cpr on cpr.card_print_id = cp.id\nwhere cp.id = any(array['c11bc9b0-0fe8-488c-bdef-cf1b64f894ec'::uuid, '0c9700c4-ca45-4e83-a865-e1a3dee48e80'::uuid, 'edc42048-89fc-4cff-8422-ebc9f233f386'::uuid, '9ed9e9aa-4019-42c5-8051-072fb56a7569'::uuid, 'fb911570-4f51-4c86-b030-832974bffcc4'::uuid, 'e22b6a0d-c544-463f-9654-ba9e7d6978fd'::uuid, '6dfd7ee4-f9de-4d77-9373-0006bf86e1b1'::uuid, '32f0c83a-ba31-419f-81c8-aae5f35033d7'::uuid, 'ad2966e5-48b0-4f8e-b7ec-56cfb220de64'::uuid, '649e4751-83b0-49ea-83cf-75ef59f989ed'::uuid, '96e8765b-984b-40ef-b000-75e72b8f47a4'::uuid, 'd9d6fe68-06ab-494b-9519-fc7d76393d09'::uuid, '1d4be26f-d405-491c-9ce8-fee06b35e702'::uuid, '6f45550b-ef5c-4767-ad57-77212d4d65c2'::uuid, '25f1cc8a-87f0-42d9-b440-d30ad27168d6'::uuid, 'ffb95ade-a643-4ec6-bcb7-6ff41e5e7eae'::uuid, '0c1d028f-fc8c-4295-8c3a-2f845eb5baf8'::uuid, '8968eec8-46f8-4185-a679-ee1d5805cc78'::uuid, 'bafa6068-a489-4705-811b-8f864f4679d3'::uuid, '9030feb1-f99d-4e1e-8c6e-2c9f19b8b616'::uuid])\n  and cpr.finish_key not in ('normal', 'reverse');",
+      "expected": "0 rows"
+    }
+  ]
+}

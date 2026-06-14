@@ -1,0 +1,176 @@
+{
+  "generated_at": "2026-06-14T00:15:08.369Z",
+  "version": "english_master_index_pkg37b_xyp_suffix_holo_master_index_delta_apply_v1",
+  "package_id": "PKG-37B-XYP-SUFFIX-HOLO-MASTER-INDEX-DELTA",
+  "fingerprint_sha256": "4ae69c2fad3c65732fc8dfcfa4f58c1cc76fe1aa9adfabe44e6e357610bbce60",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_artifacts": {
+    "adjudication_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg37a_xyp_suffix_finish_adjudication_v1.json",
+    "printings_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_printings_v1.json",
+    "completion_export_json": "docs\\audits\\english_master_index_completion_v1\\english_master_index_master_admissible_export_v1.json",
+    "publishable_printings_json": "docs\\audits\\english_master_index_publishable_v1\\sets\\xyp\\printings.json",
+    "publishable_evidence_json": "docs\\audits\\english_master_index_publishable_v1\\sets\\xyp\\evidence.json"
+  },
+  "summary": {
+    "master_printing_rows_inserted": 5,
+    "completion_export_rows_inserted": 5,
+    "publishable_printing_rows_inserted": 5,
+    "publishable_evidence_rows_inserted": 10
+  },
+  "added_master_printings": [
+    {
+      "fact_type": "printing_finish",
+      "key": "xy black star promos|XY150a|yveltal-ex|holo",
+      "status": "master_verified",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY150a",
+      "card_name": "Yveltal-EX",
+      "finish_key": "holo",
+      "rarity_values": [
+        "Promo"
+      ],
+      "source_count": 2,
+      "sources": [
+        "pricecharting_sales_page",
+        "ebay_listing"
+      ],
+      "source_authorities": [
+        "pricecharting.com",
+        "ebay.com"
+      ],
+      "source_kinds": [
+        "marketplace_checklist"
+      ],
+      "evidence_count": 2,
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-promo/yveltal-ex-xy150a",
+        "https://www.ebay.com/itm/366296928265"
+      ]
+    },
+    {
+      "fact_type": "printing_finish",
+      "key": "xy black star promos|XY177a|karen|holo",
+      "status": "master_verified",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY177a",
+      "card_name": "Karen",
+      "finish_key": "holo",
+      "rarity_values": [
+        "Promo"
+      ],
+      "source_count": 2,
+      "sources": [
+        "pricecharting_sales_page",
+        "noble_knight_product_page"
+      ],
+      "source_authorities": [
+        "pricecharting.com",
+        "nobleknight.com"
+      ],
+      "source_kinds": [
+        "marketplace_checklist"
+      ],
+      "evidence_count": 2,
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-promo/karen-xy177a",
+        "https://www.nobleknight.com/P/2148465200/Karen-P-XY177a-Holo"
+      ]
+    },
+    {
+      "fact_type": "printing_finish",
+      "key": "xy black star promos|XY198a|m camerupt-ex|holo",
+      "status": "master_verified",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY198a",
+      "card_name": "M Camerupt-EX",
+      "finish_key": "holo",
+      "rarity_values": [
+        "Promo"
+      ],
+      "source_count": 2,
+      "sources": [
+        "pricecharting_sales_page",
+        "noble_knight_product_page"
+      ],
+      "source_authorities": [
+        "pricecharting.com",
+        "nobleknight.com"
+      ],
+      "source_kinds": [
+        "marketplace_checklist"
+      ],
+      "evidence_count": 2,
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-promo/mega-camerupt-ex-xy198a",
+        "https://www.nobleknight.com/P/2148465203/M-Camerupt-EX-P-XY198a-Holo"
+      ]
+    },
+    {
+      "fact_type": "printing_finish",
+      "key": "xy black star promos|XY200a|m sharpedo-ex|holo",
+      "status": "master_verified",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY200a",
+      "card_name": "M Sharpedo-EX",
+      "finish_key": "holo",
+      "rarity_values": [
+        "Promo"
+      ],
+      "source_count": 2,
+      "sources": [
+        "pricecharting_sales_page",
+        "noble_knight_product_page"
+      ],
+      "source_authorities": [
+        "pricecharting.com",
+        "nobleknight.com"
+      ],
+      "source_kinds": [
+        "marketplace_checklist"
+      ],
+      "evidence_count": 2,
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-promo/mega-sharpedo-ex-xy200a",
+        "https://www.nobleknight.com/P/2148465218/M-Sharpedo-EX-P-XY200a-Holo"
+      ]
+    },
+    {
+      "fact_type": "printing_finish",
+      "key": "xy black star promos|XY67a|jirachi|holo",
+      "status": "master_verified",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY67a",
+      "card_name": "Jirachi",
+      "finish_key": "holo",
+      "rarity_values": [
+        "Promo"
+      ],
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "noble_knight_product_page"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net",
+        "nobleknight.com"
+      ],
+      "source_kinds": [
+        "human_readable_checklist",
+        "marketplace_checklist"
+      ],
+      "evidence_count": 2,
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Jirachi_(XY_Promo_67)",
+        "https://www.nobleknight.com/P/2148465229/Jirachi-P-XY67a-Holo"
+      ]
+    }
+  ]
+}

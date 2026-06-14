@@ -1,0 +1,24 @@
+[
+  {
+    "source_key": "pricecharting_csv_preserved_league",
+    "source_family": "pricecharting",
+    "source_kind": "marketplace_checklist",
+    "source_url": "https://www.pricecharting.com/game/pokemon-supreme-victors/garchomp-crosshatch-holo-5",
+    "source_file": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+    "set_key": "pl3",
+    "set_name": "Supreme Victors",
+    "card_number": "5",
+    "card_name": "Garchomp",
+    "finish_key": "reverse",
+    "variant_key": "league_stamp",
+    "stamp_label": "League Stamp",
+    "evidence_type": "finish_presence",
+    "evidence_label": "PriceCharting CSV preserved product title: Garchomp [Crosshatch Holo] #5",
+    "evidence_text_or_label": "Garchomp [Crosshatch Holo] #5",
+    "language": "en",
+    "retrieved_at": "2026-06-12T23:30:24.181Z",
+    "raw_snapshot_ref": "pricecharting_csv_preserved:7456997",
+    "observation_status": "crosshatch_alias_review_required",
+    "notes": "source label names Crosshatch Holo; this likely maps to the stamped reverse lane but needs explicit governance before write"
+  }
+]

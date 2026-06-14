@@ -1,0 +1,527 @@
+{
+  "generated_at": "2026-06-12T01:13:48.231Z",
+  "version": "english_master_index_pkg16f_same_finish_split_real_apply_v1",
+  "package_id": "PKG-16F-SAME-FINISH-SPLIT-PARENT-INSERTS",
+  "package_fingerprint_sha256": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+  "dry_run_proof_sha256": "48d2200c54e62cdb29a1c68570cc796291605b4738286ceeff3eb9d3cb2ab7e4",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg16f_same_finish_split_guarded_dry_run_v1.json",
+  "db_writes_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "target_count": 6,
+    "targets": [
+      {
+        "target_parent_id": "ff0dbd84-07a6-4d0f-a628-e873d343f481",
+        "target_child_id": "d514cdc7-330b-4df3-9f1e-f55532a3b4de",
+        "base_parent_id": "852d5fe5-3318-4aad-8443-0711a0df017d",
+        "set_key": "bw5",
+        "set_name": "Dark Explorers",
+        "card_number": "37",
+        "card_name": "Jolteon",
+        "target_finish_key": "reverse",
+        "target_variant_key": "regional_championships_stamp",
+        "stamp_label": "Regional Championships Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+          "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+          "independent_finish_sources": [
+            "pokecardvalues_same_finish_ambiguous",
+            "pricecharting_product_page"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_same_finish_ambiguous",
+            "pricecharting_product_page"
+          ],
+          "evidence_context": {
+            "pkg16b_source_rows": [
+              {
+                "source_key": "pokecardvalues_same_finish_ambiguous",
+                "source_kind": "collector_reference",
+                "source_url": "https://pokecardvalues.co.uk/cards/jolteon-37-108-reverse-holo-regional-championships-dark-explorers/bw5-37-3-60/",
+                "evidence_label": "Jolteon - 37/108 - Reverse Holo - Regional Championships - Promo"
+              },
+              {
+                "source_key": "pricecharting_product_page",
+                "source_kind": "marketplace_checklist",
+                "source_url": "https://www.pricecharting.com/game/pokemon-dark-explorers/jolteon-regional-championship-37",
+                "evidence_label": "Jolteon [Regional Championship] #37 page includes Reverse Foils pricing lane."
+              }
+            ],
+            "pkg16b_source_variant_label": "Regional Championships Promo"
+          }
+        }
+      },
+      {
+        "target_parent_id": "85ea4524-3f07-494b-986c-290dd1515685",
+        "target_child_id": "dad0ee99-ab6b-452c-892e-1abdbde3cf9a",
+        "base_parent_id": "cafec93e-cdb3-43e6-9f72-dcf6c6acc7d0",
+        "set_key": "bw5",
+        "set_name": "Dark Explorers",
+        "card_number": "84",
+        "card_name": "Eevee",
+        "target_finish_key": "reverse",
+        "target_variant_key": "city_championships_stamp",
+        "stamp_label": "City Championships Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+          "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+          "independent_finish_sources": [
+            "pokecardvalues_same_finish_ambiguous",
+            "tcgplayer_league_championship_product"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_same_finish_ambiguous",
+            "tcgplayer_league_championship_product"
+          ],
+          "evidence_context": {
+            "pkg16b_source_rows": [
+              {
+                "source_key": "pokecardvalues_same_finish_ambiguous",
+                "source_kind": "collector_reference",
+                "source_url": "https://pokecardvalues.co.uk/cards/eevee-84-108-reverse-holo-city-championships-dark-explorers/bw5-84-3-23/",
+                "evidence_label": "Eevee - 84/108 - Reverse Holo - City Championships - Promo"
+              },
+              {
+                "source_key": "tcgplayer_league_championship_product",
+                "source_kind": "marketplace_checklist",
+                "source_url": "https://www.tcgplayer.com/product/209530/pokemon-league-and-championship-cards-eevee-84-108-city-championships",
+                "evidence_label": "Eevee - 84/108 (City Championships) has Reverse Holofoil listing."
+              }
+            ],
+            "pkg16b_source_variant_label": "City Championships Promo"
+          }
+        }
+      },
+      {
+        "target_parent_id": "378cd3c8-dc1d-4206-b528-9cb79fbce6e6",
+        "target_child_id": "574619b0-8a03-4320-ac41-fcfdf2b9507c",
+        "base_parent_id": "1685b1e6-345a-4fb9-be34-06ae26afa4c4",
+        "set_key": "sm1",
+        "set_name": "Sun & Moon",
+        "card_number": "128",
+        "card_name": "Professor Kukui",
+        "target_finish_key": "reverse",
+        "target_variant_key": "regional_championships_stamp",
+        "stamp_label": "Regional Championships Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+          "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+          "independent_finish_sources": [
+            "pokecardvalues_same_finish_ambiguous",
+            "pricecharting_historic_sales_title"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_same_finish_ambiguous",
+            "pricecharting_historic_sales_title"
+          ],
+          "evidence_context": {
+            "pkg16b_source_rows": [
+              {
+                "source_key": "pokecardvalues_same_finish_ambiguous",
+                "source_kind": "collector_reference",
+                "source_url": "https://pokecardvalues.co.uk/cards/professor-kukui-128-149-reverse-holo-regional-championships-sun-moon/sm1-128-3-60/",
+                "evidence_label": "Professor Kukui - 128/149 - Reverse Holo - Regional Championships - Promo"
+              },
+              {
+                "source_key": "pricecharting_historic_sales_title",
+                "source_kind": "marketplace_checklist",
+                "source_url": "https://www.pricecharting.com/game/pokemon-sun-%26-moon/professor-kukui-reverse-holo-128",
+                "evidence_label": "Professor Kukui reverse holo page includes Regional Championship Promo sales title."
+              }
+            ],
+            "pkg16b_source_variant_label": "Regional Championships Promo"
+          }
+        }
+      },
+      {
+        "target_parent_id": "41d8cce4-540a-4a89-bcae-2e4518735c85",
+        "target_child_id": "c3501f8a-5ea3-46e8-9d26-8cb4483e30c8",
+        "base_parent_id": "23a7a4c4-b333-487a-be9b-04aefe1f8424",
+        "set_key": "swsh10",
+        "set_name": "Astral Radiance",
+        "card_number": "150",
+        "card_name": "Roxanne",
+        "target_finish_key": "reverse",
+        "target_variant_key": "regional_championships_staff_stamp",
+        "stamp_label": "Regional Championships Staff Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+          "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+          "independent_finish_sources": [
+            "pokecardvalues_same_finish_ambiguous",
+            "tcgplayer_league_championship_product"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_same_finish_ambiguous",
+            "tcgplayer_league_championship_product"
+          ],
+          "evidence_context": {
+            "pkg16b_source_rows": [
+              {
+                "source_key": "pokecardvalues_same_finish_ambiguous",
+                "source_kind": "collector_reference",
+                "source_url": "https://pokecardvalues.co.uk/cards/Roxanne-150-189-Reverse-Holo-Staff-Regional-Championships-Astral-Radiance/swsh10-150-3-83/",
+                "evidence_label": "Roxanne - 150/189 - Reverse Holo - Staff Regional Championships - Promo"
+              },
+              {
+                "source_key": "tcgplayer_league_championship_product",
+                "source_kind": "marketplace_checklist",
+                "source_url": "https://www.tcgplayer.com/product/282283/pokemon-league-and-championship-cards-roxanne-150-189-regional-championships-staff",
+                "evidence_label": "Roxanne - 150/189 (Regional Championships) [Staff] lists Reverse Holofoil condition."
+              }
+            ],
+            "pkg16b_source_variant_label": "Staff Regional Championships Promo"
+          }
+        }
+      },
+      {
+        "target_parent_id": "24795277-4419-4d8d-a418-47eb60a05659",
+        "target_child_id": "30f74cc9-9a17-47b4-a36e-efefad46a09c",
+        "base_parent_id": "3475e89a-9d54-4b8e-b096-f01eb9110230",
+        "set_key": "xy1",
+        "set_name": "XY",
+        "card_number": "84",
+        "card_name": "Doublade",
+        "target_finish_key": "reverse",
+        "target_variant_key": "regional_championships_staff_stamp",
+        "stamp_label": "Regional Championships Staff Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+          "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+          "independent_finish_sources": [
+            "pokecardvalues_same_finish_ambiguous",
+            "moonshot_game_store_product_page"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_same_finish_ambiguous",
+            "moonshot_game_store_product_page"
+          ],
+          "evidence_context": {
+            "pkg16b_source_rows": [
+              {
+                "source_key": "pokecardvalues_same_finish_ambiguous",
+                "source_kind": "collector_reference",
+                "source_url": "https://pokecardvalues.co.uk/cards/doublade-84-146-reverse-holo-staff-regional-championships-xy/xy1-84-3-83/",
+                "evidence_label": "Doublade - 84/146 - Reverse Holo - Staff Regional Championships - Promo"
+              },
+              {
+                "source_key": "moonshot_game_store_product_page",
+                "source_kind": "marketplace_checklist",
+                "source_url": "https://moonshotgamestore.com/products/pr-doublade-84-146-regional-championships-staff-reverse-holofoil",
+                "evidence_label": "Doublade - 84/146 (Regional Championships) [Staff] (Reverse Holofoil)."
+              }
+            ],
+            "pkg16b_source_variant_label": "Staff Regional Championships Promo"
+          }
+        }
+      },
+      {
+        "target_parent_id": "9d665bc1-f4cf-4e17-8ae8-99b8ced25165",
+        "target_child_id": "02d7e873-2550-4d7b-be98-bd7d10265994",
+        "base_parent_id": "3475e89a-9d54-4b8e-b096-f01eb9110230",
+        "set_key": "xy1",
+        "set_name": "XY",
+        "card_number": "84",
+        "card_name": "Doublade",
+        "target_finish_key": "reverse",
+        "target_variant_key": "regional_championships_stamp",
+        "stamp_label": "Regional Championships Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+          "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+          "independent_finish_sources": [
+            "pokecardvalues_same_finish_ambiguous",
+            "tcgplayer_league_championship_product",
+            "card_cavern_product_page"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_same_finish_ambiguous",
+            "tcgplayer_league_championship_product",
+            "card_cavern_product_page"
+          ],
+          "evidence_context": {
+            "pkg16b_source_rows": [
+              {
+                "source_key": "pokecardvalues_same_finish_ambiguous",
+                "source_kind": "collector_reference",
+                "source_url": "https://pokecardvalues.co.uk/cards/doublade-84-146-reverse-holo-regional-championships-xy/xy1-84-3-60/",
+                "evidence_label": "Doublade - 84/146 - Reverse Holo - Regional Championships - Promo"
+              },
+              {
+                "source_key": "tcgplayer_league_championship_product",
+                "source_kind": "marketplace_checklist",
+                "source_url": "https://www.tcgplayer.com/product/209556/pokemon-league-and-championship-cards-doublade-84-146-regional-championships",
+                "evidence_label": "Doublade - 84/146 (Regional Championships) page includes Reverse Holofoil pricing."
+              },
+              {
+                "source_key": "card_cavern_product_page",
+                "source_kind": "marketplace_checklist",
+                "source_url": "https://www.cardcaverntradingcards.com/products/doublade-84-146-regionalchampionshippromo-reverseholo",
+                "evidence_label": "Doublade - 84/146 - Regional Championship Promo - Reverse Holo."
+              }
+            ],
+            "pkg16b_source_variant_label": "Regional Championships Promo"
+          }
+        }
+      }
+    ]
+  },
+  "execution": {
+    "apply_status": "pkg16f_real_apply_committed",
+    "guard": {
+      "target_count": 6,
+      "target_parent_count": 6,
+      "target_child_count": 6,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 6,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "PKG-16F-SAME-FINISH-SPLIT-PARENT-INSERTS",
+      "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+      "target_rows": 6,
+      "inserted_parent_rows": 6,
+      "inserted_identity_rows": 6,
+      "inserted_child_rows": 6
+    },
+    "write_counts": {
+      "parent_inserts": 6,
+      "identity_inserts": 6,
+      "child_inserts": 6,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-12T01:13:47.202Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "counts": {}
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-12T01:13:48.145Z",
+      "rows": [
+        {
+          "row_type": "target_child",
+          "row_id": "d514cdc7-330b-4df3-9f1e-f55532a3b4de",
+          "set_code": "bw5",
+          "number": "37",
+          "number_plain": "37",
+          "name": "Jolteon",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "dad0ee99-ab6b-452c-892e-1abdbde3cf9a",
+          "set_code": "bw5",
+          "number": "84",
+          "number_plain": "84",
+          "name": "Eevee",
+          "variant_key": "city_championships_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "574619b0-8a03-4320-ac41-fcfdf2b9507c",
+          "set_code": "sm1",
+          "number": "128",
+          "number_plain": "128",
+          "name": "Professor Kukui",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "c3501f8a-5ea3-46e8-9d26-8cb4483e30c8",
+          "set_code": "swsh10",
+          "number": "150",
+          "number_plain": "150",
+          "name": "Roxanne",
+          "variant_key": "regional_championships_staff_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "30f74cc9-9a17-47b4-a36e-efefad46a09c",
+          "set_code": "xy1",
+          "number": "84",
+          "number_plain": "84",
+          "name": "Doublade",
+          "variant_key": "regional_championships_staff_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "02d7e873-2550-4d7b-be98-bd7d10265994",
+          "set_code": "xy1",
+          "number": "84",
+          "number_plain": "84",
+          "name": "Doublade",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "6798ffe6-47b1-41af-adf0-fe2a1a6605ad",
+          "set_code": "bw5",
+          "number": "37",
+          "number_plain": "37",
+          "name": "Jolteon",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": "7ab13a71e71e990d567b54cd4a54c8cab2ab7429711e07b4716228b38780e903"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "aba6a8a2-9ae9-45f3-b444-cd07fc87daf7",
+          "set_code": "bw5",
+          "number": "84",
+          "number_plain": "84",
+          "name": "Eevee",
+          "variant_key": "city_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": "d23735bd4e48a577a96eb2d3cb0c94fd3cd4e6d2fb4b777a6d6142a37560001b"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "8b6cf6df-3287-4374-a284-9fb56399f4ae",
+          "set_code": "sm1",
+          "number": "128",
+          "number_plain": "128",
+          "name": "Professor Kukui",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": "ae3064127c7ed69827ea864eda123d08340fccacbf2aa9c27533277233ed9d43"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "35efd1c0-282d-4866-aa6a-89000cdc18f3",
+          "set_code": "swsh10",
+          "number": "150",
+          "number_plain": "150",
+          "name": "Roxanne",
+          "variant_key": "regional_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": "99359aa4b36d84900d06374dd85c0e1280ea13b72c56063515a2ddc9a7ce0521"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "0ec05601-881f-47f0-b7e7-43b3815cad3c",
+          "set_code": "xy1",
+          "number": "84",
+          "number_plain": "84",
+          "name": "Doublade",
+          "variant_key": "regional_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": "14f5cf58d9761e881668010b9ca7e09cf00814cee52b0b06ba16726beedd1505"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "9171af83-bbcc-46e1-8f06-a2bd9b0a2678",
+          "set_code": "xy1",
+          "number": "84",
+          "number_plain": "84",
+          "name": "Doublade",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": "bc9a7422f3f60d449685989f41295627f5e2db3fcb48165a8e363ccea0f79700"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ff0dbd84-07a6-4d0f-a628-e873d343f481",
+          "set_code": "bw5",
+          "number": "37",
+          "number_plain": "37",
+          "name": "Jolteon",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "85ea4524-3f07-494b-986c-290dd1515685",
+          "set_code": "bw5",
+          "number": "84",
+          "number_plain": "84",
+          "name": "Eevee",
+          "variant_key": "city_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "378cd3c8-dc1d-4206-b528-9cb79fbce6e6",
+          "set_code": "sm1",
+          "number": "128",
+          "number_plain": "128",
+          "name": "Professor Kukui",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "41d8cce4-540a-4a89-bcae-2e4518735c85",
+          "set_code": "swsh10",
+          "number": "150",
+          "number_plain": "150",
+          "name": "Roxanne",
+          "variant_key": "regional_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "24795277-4419-4d8d-a418-47eb60a05659",
+          "set_code": "xy1",
+          "number": "84",
+          "number_plain": "84",
+          "name": "Doublade",
+          "variant_key": "regional_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "9d665bc1-f4cf-4e17-8ae8-99b8ced25165",
+          "set_code": "xy1",
+          "number": "84",
+          "number_plain": "84",
+          "name": "Doublade",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "d4674346c76daa94113f16c6c99eee701022016155bc3148d211d9879100cc01",
+      "counts": {
+        "target_child": 6,
+        "target_identity": 6,
+        "target_parent": 6
+      }
+    },
+    "verification_hash_sha256": "ebf36d3c49ed0bf9004a466a5277785555101daf539ab837f0a492b10d896070",
+    "stop_findings": []
+  }
+}

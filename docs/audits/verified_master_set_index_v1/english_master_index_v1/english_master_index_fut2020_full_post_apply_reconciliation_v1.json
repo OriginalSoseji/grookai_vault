@@ -1,0 +1,441 @@
+{
+  "generated_at": "2026-06-09T12:21:39.913Z",
+  "version": "english_master_index_fut2020_full_post_apply_reconciliation_v1",
+  "set_key": "fut2020",
+  "set_name": "Pokémon Futsal 2020",
+  "audit_only": true,
+  "read_only_post_apply_verification": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_included": false,
+  "reconciliation_status": "fut2020_full_post_apply_reconciled_verified_by_index",
+  "source_artifacts": {
+    "master_admissible_export": "docs/audits/english_master_index_completion_v1/english_master_index_master_admissible_export_v1.json",
+    "pkg01a_real_apply_proof": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg01a_real_apply_v1.json",
+    "pkg01b_real_apply_proof": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg01b_fut2020_real_apply_v1.json"
+  },
+  "prior_apply_status": {
+    "pkg01a": "pkg01a_real_apply_committed_and_verified",
+    "pkg01b": "pkg01b_fut2020_real_apply_committed_and_verified"
+  },
+  "grookai_snapshot": {
+    "connected": true,
+    "error_message": null,
+    "captured_at": "2026-06-09T12:21:39.913Z",
+    "rows": [
+      {
+        "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+        "set_code": "fut2020",
+        "number": "1",
+        "number_plain": "1",
+        "name": "Pikachu on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "external_ids": {
+          "tcgdex": "fut2020-1"
+        },
+        "updated_at": "2026-03-27T02:54:46.916Z",
+        "card_printings": [
+          {
+            "id": "aa586d57-a279-4cce-ba8c-e78ec7088bea",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-1",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "2f2942c8-6019-4446-806c-593dd351af98",
+        "set_code": "fut2020",
+        "number": "2",
+        "number_plain": "2",
+        "name": "Eevee on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "external_ids": {
+          "tcgdex": "fut2020-2"
+        },
+        "updated_at": "2026-03-27T02:54:47.779Z",
+        "card_printings": [
+          {
+            "id": "218f3d4f-35a3-47f9-abb8-df28252e55d9",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-2",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
+        "set_code": "fut2020",
+        "number": "3",
+        "number_plain": "3",
+        "name": "Grookey on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "external_ids": {
+          "tcgdex": "fut2020-3"
+        },
+        "updated_at": "2026-03-27T02:54:49.027Z",
+        "card_printings": [
+          {
+            "id": "7a0707e1-2755-4a88-b90b-2f95ab2584d2",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-3",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "53919228-7560-480c-9bdb-da99ad67250a",
+        "set_code": "fut2020",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Scorbunny on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "external_ids": {
+          "tcgdex": "fut2020-4"
+        },
+        "updated_at": "2026-03-27T02:54:50.028Z",
+        "card_printings": [
+          {
+            "id": "f3455573-4d20-4621-a206-ef88d8c726de",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-4",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "82ebefc5-51bc-4dbd-ba14-a9a60186aa61",
+        "set_code": "fut2020",
+        "number": "5",
+        "number_plain": "5",
+        "name": "Sobble on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "external_ids": {
+          "tcgdex": "fut2020-5"
+        },
+        "updated_at": "2026-03-27T02:54:51.078Z",
+        "card_printings": [
+          {
+            "id": "ac1fe5dc-a0f5-4d67-9cf7-d6e4b3fe865d",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-5",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "hash_sha256": "37a5dcf08078dcc1f1dc1f43d925f8e98fb6a375dedfa1ee352cf6dc855a9738"
+  },
+  "expected_master_index": {
+    "cards": [
+      {
+        "set_key": "fut2020",
+        "set_name": "Pokémon Futsal 2020",
+        "card_number": "1",
+        "card_name": "Pikachu on the Ball",
+        "status": "master_verified",
+        "source_count": 2,
+        "sources": [
+          "pkmncards_identity_gap",
+          "tcgdex"
+        ]
+      },
+      {
+        "set_key": "fut2020",
+        "set_name": "Pokémon Futsal 2020",
+        "card_number": "2",
+        "card_name": "Eevee on the Ball",
+        "status": "master_verified",
+        "source_count": 2,
+        "sources": [
+          "pkmncards_identity_gap",
+          "tcgdex"
+        ]
+      },
+      {
+        "set_key": "fut2020",
+        "set_name": "Pokémon Futsal 2020",
+        "card_number": "3",
+        "card_name": "Grookey on the Ball",
+        "status": "master_verified",
+        "source_count": 2,
+        "sources": [
+          "pkmncards_identity_gap",
+          "tcgdex"
+        ]
+      },
+      {
+        "set_key": "fut2020",
+        "set_name": "Pokémon Futsal 2020",
+        "card_number": "4",
+        "card_name": "Scorbunny on the Ball",
+        "status": "master_verified",
+        "source_count": 2,
+        "sources": [
+          "pkmncards_identity_gap",
+          "tcgdex"
+        ]
+      },
+      {
+        "set_key": "fut2020",
+        "set_name": "Pokémon Futsal 2020",
+        "card_number": "5",
+        "card_name": "Sobble on the Ball",
+        "status": "master_verified",
+        "source_count": 2,
+        "sources": [
+          "pkmncards_identity_gap",
+          "tcgdex"
+        ]
+      }
+    ],
+    "printings": [
+      {
+        "set_key": "fut2020",
+        "set_name": "Pokémon Futsal 2020",
+        "card_number": "1",
+        "card_name": "Pikachu on the Ball",
+        "finish_key": "holo",
+        "status": "master_verified",
+        "source_count": 2,
+        "sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ]
+      },
+      {
+        "set_key": "fut2020",
+        "set_name": "Pokémon Futsal 2020",
+        "card_number": "2",
+        "card_name": "Eevee on the Ball",
+        "finish_key": "normal",
+        "status": "master_verified",
+        "source_count": 2,
+        "sources": [
+          "pkmncollectors_futsal",
+          "tcgdex"
+        ]
+      },
+      {
+        "set_key": "fut2020",
+        "set_name": "Pokémon Futsal 2020",
+        "card_number": "3",
+        "card_name": "Grookey on the Ball",
+        "finish_key": "normal",
+        "status": "master_verified",
+        "source_count": 2,
+        "sources": [
+          "pkmncollectors_futsal",
+          "tcgdex"
+        ]
+      },
+      {
+        "set_key": "fut2020",
+        "set_name": "Pokémon Futsal 2020",
+        "card_number": "4",
+        "card_name": "Scorbunny on the Ball",
+        "finish_key": "normal",
+        "status": "master_verified",
+        "source_count": 2,
+        "sources": [
+          "pkmncollectors_futsal",
+          "tcgdex"
+        ]
+      },
+      {
+        "set_key": "fut2020",
+        "set_name": "Pokémon Futsal 2020",
+        "card_number": "5",
+        "card_name": "Sobble on the Ball",
+        "finish_key": "normal",
+        "status": "master_verified",
+        "source_count": 2,
+        "sources": [
+          "pkmncollectors_futsal",
+          "tcgdex"
+        ]
+      }
+    ]
+  },
+  "card_comparison": [
+    {
+      "set_key": "fut2020",
+      "card_number": "1",
+      "card_name": "Pikachu on the Ball",
+      "expected_status": "master_verified",
+      "grookai_match_count": 1,
+      "mapped_match_count": 1,
+      "card_print_ids": [
+        "a676888d-19e0-4064-89aa-e67019af5b95"
+      ],
+      "status": "verified_by_index"
+    },
+    {
+      "set_key": "fut2020",
+      "card_number": "2",
+      "card_name": "Eevee on the Ball",
+      "expected_status": "master_verified",
+      "grookai_match_count": 1,
+      "mapped_match_count": 1,
+      "card_print_ids": [
+        "2f2942c8-6019-4446-806c-593dd351af98"
+      ],
+      "status": "verified_by_index"
+    },
+    {
+      "set_key": "fut2020",
+      "card_number": "3",
+      "card_name": "Grookey on the Ball",
+      "expected_status": "master_verified",
+      "grookai_match_count": 1,
+      "mapped_match_count": 1,
+      "card_print_ids": [
+        "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2"
+      ],
+      "status": "verified_by_index"
+    },
+    {
+      "set_key": "fut2020",
+      "card_number": "4",
+      "card_name": "Scorbunny on the Ball",
+      "expected_status": "master_verified",
+      "grookai_match_count": 1,
+      "mapped_match_count": 1,
+      "card_print_ids": [
+        "53919228-7560-480c-9bdb-da99ad67250a"
+      ],
+      "status": "verified_by_index"
+    },
+    {
+      "set_key": "fut2020",
+      "card_number": "5",
+      "card_name": "Sobble on the Ball",
+      "expected_status": "master_verified",
+      "grookai_match_count": 1,
+      "mapped_match_count": 1,
+      "card_print_ids": [
+        "82ebefc5-51bc-4dbd-ba14-a9a60186aa61"
+      ],
+      "status": "verified_by_index"
+    }
+  ],
+  "printing_comparison": [
+    {
+      "set_key": "fut2020",
+      "card_number": "1",
+      "card_name": "Pikachu on the Ball",
+      "finish_key": "holo",
+      "expected_status": "master_verified",
+      "mapped_match_count": 1,
+      "finish_match_count": 1,
+      "card_print_ids": [
+        "a676888d-19e0-4064-89aa-e67019af5b95"
+      ],
+      "status": "verified_by_index"
+    },
+    {
+      "set_key": "fut2020",
+      "card_number": "2",
+      "card_name": "Eevee on the Ball",
+      "finish_key": "normal",
+      "expected_status": "master_verified",
+      "mapped_match_count": 1,
+      "finish_match_count": 1,
+      "card_print_ids": [
+        "2f2942c8-6019-4446-806c-593dd351af98"
+      ],
+      "status": "verified_by_index"
+    },
+    {
+      "set_key": "fut2020",
+      "card_number": "3",
+      "card_name": "Grookey on the Ball",
+      "finish_key": "normal",
+      "expected_status": "master_verified",
+      "mapped_match_count": 1,
+      "finish_match_count": 1,
+      "card_print_ids": [
+        "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2"
+      ],
+      "status": "verified_by_index"
+    },
+    {
+      "set_key": "fut2020",
+      "card_number": "4",
+      "card_name": "Scorbunny on the Ball",
+      "finish_key": "normal",
+      "expected_status": "master_verified",
+      "mapped_match_count": 1,
+      "finish_match_count": 1,
+      "card_print_ids": [
+        "53919228-7560-480c-9bdb-da99ad67250a"
+      ],
+      "status": "verified_by_index"
+    },
+    {
+      "set_key": "fut2020",
+      "card_number": "5",
+      "card_name": "Sobble on the Ball",
+      "finish_key": "normal",
+      "expected_status": "master_verified",
+      "mapped_match_count": 1,
+      "finish_match_count": 1,
+      "card_print_ids": [
+        "82ebefc5-51bc-4dbd-ba14-a9a60186aa61"
+      ],
+      "status": "verified_by_index"
+    }
+  ],
+  "unsupported_rows": [],
+  "extra_mapped_rows": [],
+  "summary": {
+    "master_index_cards": 5,
+    "master_index_printings": 5,
+    "grookai_mapped_cards": 5,
+    "grookai_mapped_printings": 5,
+    "card_status_counts": {
+      "verified_by_index": 5
+    },
+    "printing_status_counts": {
+      "verified_by_index": 5
+    },
+    "unsupported_by_index": 0,
+    "extra_mapped_rows_not_in_index": 0,
+    "total_vault_items_referencing_set": 0
+  },
+  "stop_findings": [],
+  "pass": true
+}

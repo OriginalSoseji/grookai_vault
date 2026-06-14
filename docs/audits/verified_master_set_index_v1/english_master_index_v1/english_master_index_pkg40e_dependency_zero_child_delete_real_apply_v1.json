@@ -1,0 +1,207 @@
+{
+  "generated_at": "2026-06-14T03:32:18.332Z",
+  "version": "english_master_index_pkg40e_dependency_zero_child_delete_real_apply_v1",
+  "package_id": "PKG-40E-DEPENDENCY-ZERO-CHILD-DELETE",
+  "package_fingerprint": "fbdd4890f8dd691fe84a4879dcae4555ae1b0be7ca55d9d3774ec094a7fed6fa",
+  "real_apply_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "parent_writes_performed": false,
+  "mapping_writes_performed": false,
+  "deletes_performed": true,
+  "approved_dry_run_proof_hash": "e5ceff99bccf01d617ee0deff7f73ca5007c2604c906cefb7bcb2fcf5c22b5d5",
+  "dry_run_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg40e_dependency_zero_child_delete_guarded_dry_run_v1.json",
+  "before_snapshot": {
+    "captured_at": "2026-06-14T03:32:17.339Z",
+    "rows": [
+      {
+        "card_printing_id": "1e0d7356-d71a-426d-ad10-a1fd53e81dd2",
+        "card_print_id": "581eb597-562c-42e0-be07-7c64853e95e0",
+        "finish_key": "reverse",
+        "is_provisional": false,
+        "provenance_source": null,
+        "provenance_ref": null,
+        "created_by": null,
+        "created_at": "2026-03-03T04:03:38.310Z",
+        "set_code": "g1",
+        "number": "28a",
+        "number_plain": "28",
+        "name": "Jolteon-EX",
+        "printed_identity_modifier": null,
+        "variant_key": "a"
+      },
+      {
+        "card_printing_id": "5f618071-1a3b-4758-aa8e-9b4579081029",
+        "card_print_id": "0efa1c0b-2556-4fcd-aeaa-a7bd612ffe92",
+        "finish_key": "reverse",
+        "is_provisional": false,
+        "provenance_source": null,
+        "provenance_ref": null,
+        "created_by": null,
+        "created_at": "2026-02-24T01:33:07.341Z",
+        "set_code": "np",
+        "number": "35",
+        "number_plain": "35",
+        "name": "Pikachu δ",
+        "printed_identity_modifier": "delta_species",
+        "variant_key": ""
+      },
+      {
+        "card_printing_id": "5b9fdc79-d306-4949-abf0-f6f91f2e1a34",
+        "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "tcgdex",
+        "provenance_ref": "xyp-XY177",
+        "created_by": "printing_ingestion_v2",
+        "created_at": "2026-03-03T04:03:38.310Z",
+        "set_code": "xyp",
+        "number": "XY177",
+        "number_plain": "177",
+        "name": "Karen",
+        "printed_identity_modifier": null,
+        "variant_key": "XY"
+      },
+      {
+        "card_printing_id": "751682a4-5314-4b19-bb70-fdd28876416e",
+        "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+        "finish_key": "reverse",
+        "is_provisional": false,
+        "provenance_source": "tcgdex",
+        "provenance_ref": "xyp-XY177",
+        "created_by": "printing_ingestion_v2",
+        "created_at": "2026-03-03T04:03:38.310Z",
+        "set_code": "xyp",
+        "number": "XY177",
+        "number_plain": "177",
+        "name": "Karen",
+        "printed_identity_modifier": null,
+        "variant_key": "XY"
+      }
+    ],
+    "hash_sha256": "e5ceff99bccf01d617ee0deff7f73ca5007c2604c906cefb7bcb2fcf5c22b5d5",
+    "impact_counts": {
+      "child_rows": 4,
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-14T03:32:18.253Z",
+    "rows": [],
+    "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "impact_counts": {
+      "child_rows": 0,
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0
+    }
+  },
+  "guard": {
+    "target_rows": 4,
+    "disallowed_finish_rows": 0,
+    "disallowed_status_rows": 0,
+    "matching_child_rows": 4,
+    "vault_item_instance_refs": 0,
+    "external_printing_mapping_refs": 0,
+    "canon_warehouse_candidate_refs": 0,
+    "truth_review_refs": 0,
+    "justtcg_mapping_refs": 0
+  },
+  "summary": {
+    "child_rows_deleted": 4,
+    "by_set": {
+      "g1": 1,
+      "np": 1,
+      "xyp": 2
+    },
+    "by_finish": {
+      "holo": 1,
+      "reverse": 3
+    },
+    "by_status": {
+      "delete_candidate_no_reverse_evidence_after_holo_suffix_verified": 1,
+      "delete_candidate_no_reverse_evidence_holo_normal_preserved": 1,
+      "delete_candidate_no_reverse_evidence_suffix_normalization_duplicate": 1,
+      "delete_candidate_suffix_normalization_duplicate": 1
+    }
+  },
+  "targets": [
+    {
+      "card_printing_id": "1e0d7356-d71a-426d-ad10-a1fd53e81dd2",
+      "card_print_id": "581eb597-562c-42e0-be07-7c64853e95e0",
+      "set_key": "g1",
+      "card_number": "28",
+      "card_name": "Jolteon-EX",
+      "finish_key": "reverse",
+      "printed_identity_modifier": "",
+      "variant_key": "a",
+      "proposed_status": "delete_candidate_no_reverse_evidence_after_holo_suffix_verified",
+      "evidence_urls": [
+        "https://www.tcgplayer.com/product/131697/pokemon-alternate-art-promos-jolteon-ex-28a-83",
+        "https://www.pricecharting.com/game/pokemon-generations/jolteon-ex-28a"
+      ]
+    },
+    {
+      "card_printing_id": "5f618071-1a3b-4758-aa8e-9b4579081029",
+      "card_print_id": "0efa1c0b-2556-4fcd-aeaa-a7bd612ffe92",
+      "set_key": "np",
+      "card_number": "35",
+      "card_name": "Pikachu δ",
+      "finish_key": "reverse",
+      "printed_identity_modifier": "delta_species",
+      "variant_key": "",
+      "proposed_status": "delete_candidate_no_reverse_evidence_holo_normal_preserved",
+      "evidence_urls": [
+        "https://www.serebii.net/card/nintendopromo/",
+        "https://pokegym.net/community/index.php?threads%2Fw-secret-reuniclus-h-landorus-ex-various-bits-and-pieces.126161%2Fpost-2223262="
+      ]
+    },
+    {
+      "card_printing_id": "5b9fdc79-d306-4949-abf0-f6f91f2e1a34",
+      "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "set_key": "xyp",
+      "card_number": "177",
+      "card_name": "Karen",
+      "finish_key": "holo",
+      "printed_identity_modifier": "",
+      "variant_key": "XY",
+      "proposed_status": "delete_candidate_suffix_normalization_duplicate",
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-promo/karen-xy177a",
+        "https://www.nobleknight.com/P/2148465200/Karen-P-XY177a-Holo"
+      ]
+    },
+    {
+      "card_printing_id": "751682a4-5314-4b19-bb70-fdd28876416e",
+      "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "set_key": "xyp",
+      "card_number": "177",
+      "card_name": "Karen",
+      "finish_key": "reverse",
+      "printed_identity_modifier": "",
+      "variant_key": "XY",
+      "proposed_status": "delete_candidate_no_reverse_evidence_suffix_normalization_duplicate",
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-promo/karen-xy177a",
+        "https://www.nobleknight.com/P/2148465200/Karen-P-XY177a-Holo"
+      ]
+    }
+  ],
+  "safety_confirmation": {
+    "approved_scope_only": true,
+    "no_global_apply": true,
+    "no_migrations_created": true,
+    "no_parent_writes": true,
+    "no_mapping_writes": true,
+    "no_cleanup_or_quarantine_performed": true,
+    "supported_canonical_rows_preserved": true
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "generated_at": "2026-06-09T22:17:34.502Z",
+  "version": "english_master_index_pkg06a_supported_finish_subset_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-06A-SUPPORTED-FINISH-SUBSET-CHILD-PRINTING-INSERTS",
+    "package_fingerprint_sha256": "4018ba8039a8b3835ec2a76d11af3af8ea0099ce21bbf5466c525df8772ab6d9",
+    "source_artifact_fingerprint_sha256": "a374b8c75f79f0abcda3923d100058366de48e4b1f3db50bea6ea8d599c3f120",
+    "sql_hash_sha256": "54599d99925c9e8fcbdfe694b1bfab0fd801e45e1e3e2ffe616fcbb48de05e98",
+    "set_key": "pl3",
+    "set_name": "Supreme Victors",
+    "child_card_printing_inserts": 115,
+    "target_parent_rows": 115,
+    "finish_counts": {
+      "normal": 113,
+      "cosmos": 2
+    },
+    "blocked_finish_taxonomy_rows_excluded": 282,
+    "parent_writes_allowed": false,
+    "child_insert_only": true,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_execution_status": "pkg06a_supported_finish_subset_completed_rolled_back_no_durable_change",
+    "sql_artifact_ref": "docs/sql/english_master_index_pkg06a_supported_finish_subset_guarded_dry_run_transaction_v1.sql",
+    "sql_hash_sha256": "54599d99925c9e8fcbdfe694b1bfab0fd801e45e1e3e2ffe616fcbb48de05e98",
+    "sql_contains_begin_statement": true,
+    "sql_contains_insert_statement": true,
+    "sql_contains_card_printings_insert": true,
+    "sql_contains_update_statement": false,
+    "sql_contains_delete_statement": false,
+    "sql_contains_commit_statement": false,
+    "sql_contains_rollback_statement": true,
+    "before_hash_sha256": "3f045c7dd1742d32a742cdfd891e6709bf3306e42073cb148c3d9b67e8fe5b2d",
+    "after_hash_sha256": "3f045c7dd1742d32a742cdfd891e6709bf3306e42073cb148c3d9b67e8fe5b2d",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-06A-SUPPORTED-FINISH-SUBSET-CHILD-PRINTING-INSERTS",
+        "source_artifact_fingerprint": "a374b8c75f79f0abcda3923d100058366de48e4b1f3db50bea6ea8d599c3f120",
+        "package_fingerprint": "4018ba8039a8b3835ec2a76d11af3af8ea0099ce21bbf5466c525df8772ab6d9",
+        "planned_sets": 1,
+        "target_parent_rows": 115,
+        "planned_child_rows": 115
+      }
+    ],
+    "stop_findings": []
+  },
+  "blocked_finish_taxonomy_scope": {
+    "blocked_rows_excluded_from_this_gate": 282,
+    "blocked_finish_counts": {
+      "cracked_ice": 3,
+      "first_edition_holo": 39,
+      "first_edition_normal": 225,
+      "stamped": 15
+    },
+    "reason": "Current DB finish_keys table cannot represent these Master Index logical finish keys.",
+    "apply_authorized_for_blocked_rows": false
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-06A-SUPPORTED-FINISH-SUBSET-CHILD-PRINTING-INSERTS apply only. Fingerprint: 4018ba8039a8b3835ec2a76d11af3af8ea0099ce21bbf5466c525df8772ab6d9. SQL hash: 54599d99925c9e8fcbdfe694b1bfab0fd801e45e1e3e2ffe616fcbb48de05e98. Scope: 115 child-only card_printing inserts for pl3/Supreme Victors, finishes normal=113 and cosmos=2. Blocked finish-taxonomy rows remain excluded: 282. Dry-run proof: 3f045c7dd1742d32a742cdfd891e6709bf3306e42073cb148c3d9b67e8fe5b2d == 3f045c7dd1742d32a742cdfd891e6709bf3306e42073cb148c3d9b67e8fe5b2d. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No parent writes.",
+    "approval_effect": "This would authorize preparing and running the durable PKG-06A supported-finish subset apply path only, scoped to 115 child-only card_printing inserts. It does not authorize the 282 blocked finish-taxonomy rows, global apply, deletes, merges, parent writes, unsupported cleanup, or migrations.",
+    "approval_must_reference": {
+      "package_id": "PKG-06A-SUPPORTED-FINISH-SUBSET-CHILD-PRINTING-INSERTS",
+      "package_fingerprint_sha256": "4018ba8039a8b3835ec2a76d11af3af8ea0099ce21bbf5466c525df8772ab6d9",
+      "sql_hash_sha256": "54599d99925c9e8fcbdfe694b1bfab0fd801e45e1e3e2ffe616fcbb48de05e98",
+      "child_card_printing_inserts": 115,
+      "target_parent_rows": 115,
+      "dry_run_before_hash_sha256": "3f045c7dd1742d32a742cdfd891e6709bf3306e42073cb148c3d9b67e8fe5b2d",
+      "dry_run_after_hash_sha256": "3f045c7dd1742d32a742cdfd891e6709bf3306e42073cb148c3d9b67e8fe5b2d"
+    }
+  },
+  "next_step_if_approved_later": [
+    "Capture one more final fresh DB snapshot immediately before durable apply.",
+    "Verify pl3 still has the same 115 missing target child printings and no target ID collisions.",
+    "Execute a durable child-insert-only transaction with COMMIT only after exact real-apply approval is present.",
+    "Capture post-apply readback for the 115 child printings.",
+    "Run post-apply Master Index comparison for pl3 and write a checkpoint."
+  ],
+  "explicit_non_authorizations": [
+    "This gate is not a real apply.",
+    "This gate does not record approval.",
+    "This gate does not run SQL.",
+    "This gate does not read from or write to the database.",
+    "This gate does not create a migration.",
+    "This gate does not authorize global apply.",
+    "This gate does not authorize deletes.",
+    "This gate does not authorize merges.",
+    "This gate does not authorize unsupported cleanup.",
+    "This gate does not authorize parent writes.",
+    "This gate does not authorize blocked finish-taxonomy rows."
+  ],
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg06a_supported_finish_subset_guarded_dry_run_v1.json",
+    "sql_artifact": "docs/sql/english_master_index_pkg06a_supported_finish_subset_guarded_dry_run_transaction_v1.sql"
+  },
+  "stop_findings": [],
+  "pass": true
+}

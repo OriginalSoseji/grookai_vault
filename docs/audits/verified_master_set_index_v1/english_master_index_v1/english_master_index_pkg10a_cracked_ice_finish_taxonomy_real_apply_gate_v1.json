@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-06-10T20:23:27.203Z",
+  "version": "english_master_index_pkg10a_cracked_ice_finish_taxonomy_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-10A-CRACKED-ICE-FINISH-TAXONOMY-ACTIVATION",
+    "package_fingerprint_sha256": "883bd24d352b7029e8e9fed6241ca058f1ec1ed12cb82ec37e247a188d4bf1e5",
+    "source_readiness_fingerprint_sha256": "382e2fab7154d290b90f4f0bda40941b4b353e8844459c4d03a7225b158d026b",
+    "sql_hash_sha256": "246fa3965d7dc87fbd3f8104d4d5b3bdaf004062c7fbe7c3c6183ee6feb1fbc8",
+    "finish_key": "cracked_ice",
+    "finish_label": "Cracked Ice Holo",
+    "sort_order": 36,
+    "candidate_printings_unlocked_later": 131,
+    "affected_sets": 53,
+    "finish_key_activation_only": true,
+    "child_inserts_allowed": false,
+    "parent_writes_allowed": false,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false,
+    "migrations_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_execution_status": "pkg10a_cracked_ice_finish_taxonomy_completed_rolled_back_no_durable_change",
+    "sql_artifact_ref": "docs/sql/english_master_index_pkg10a_cracked_ice_finish_taxonomy_guarded_dry_run_transaction_v1.sql",
+    "sql_hash_sha256": "246fa3965d7dc87fbd3f8104d4d5b3bdaf004062c7fbe7c3c6183ee6feb1fbc8",
+    "sql_contains_begin_statement": true,
+    "sql_contains_finish_key_insert": true,
+    "sql_contains_finish_key_upsert": true,
+    "sql_contains_commit_statement": false,
+    "sql_contains_rollback_statement": true,
+    "sql_contains_child_printing_insert": false,
+    "before_hash_sha256": "27dba3a506f6bc71246fe55bcc83fa4a7e83b5a92bf8b5d9ec6d541beda8dc61",
+    "after_hash_sha256": "27dba3a506f6bc71246fe55bcc83fa4a7e83b5a92bf8b5d9ec6d541beda8dc61",
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-10A-CRACKED-ICE-FINISH-TAXONOMY-ACTIVATION",
+        "source_readiness_fingerprint": "382e2fab7154d290b90f4f0bda40941b4b353e8844459c4d03a7225b158d026b",
+        "package_fingerprint": "883bd24d352b7029e8e9fed6241ca058f1ec1ed12cb82ec37e247a188d4bf1e5",
+        "finish_key": "cracked_ice",
+        "finish_label": "Cracked Ice Holo",
+        "finish_sort_order": 36,
+        "activated_finish_rows": 1,
+        "cracked_ice_candidate_rows": 131
+      }
+    ],
+    "stop_findings": []
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-10A-CRACKED-ICE-FINISH-TAXONOMY-ACTIVATION apply only. Fingerprint: 883bd24d352b7029e8e9fed6241ca058f1ec1ed12cb82ec37e247a188d4bf1e5. SQL hash: 246fa3965d7dc87fbd3f8104d4d5b3bdaf004062c7fbe7c3c6183ee6feb1fbc8. Scope: finish_keys activation only for cracked_ice / Cracked Ice Holo, sort_order=36; 131 cracked_ice Master Index printings across 53 sets remain for a separate child-insert package after activation. Dry-run proof: 27dba3a506f6bc71246fe55bcc83fa4a7e83b5a92bf8b5d9ec6d541beda8dc61 == 27dba3a506f6bc71246fe55bcc83fa4a7e83b5a92bf8b5d9ec6d541beda8dc61. No child inserts. No parent writes. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No quarantine.",
+    "approval_effect": "This would authorize preparing and running the durable PKG-10A finish_keys activation only. It does not authorize child printing inserts, parent writes, global apply, deletes, merges, unsupported cleanup, quarantine, or migrations."
+  },
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg10a_cracked_ice_finish_taxonomy_guarded_dry_run_v1.json",
+    "rollback_sql_artifact": "docs/sql/english_master_index_pkg10a_cracked_ice_finish_taxonomy_guarded_dry_run_transaction_v1.sql"
+  },
+  "stop_findings": [],
+  "pass": true
+}

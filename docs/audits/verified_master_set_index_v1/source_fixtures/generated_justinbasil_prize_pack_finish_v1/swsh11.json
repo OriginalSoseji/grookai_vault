@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "justinbasil_prize_pack_finish_swsh11",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.justinbasil.com/set-lists",
+  "source_status": "available_generated",
+  "set_key": "swsh11",
+  "set_name": "Lost Origin",
+  "retrieved_at": "2026-06-11T17:47:56.552Z",
+  "raw_snapshot_ref": "generated_fixture:justinbasil_prize_pack_finish:swsh11:2026-06-11T17:47:56.552Z",
+  "generation_note": "Generated from JustInBasil Prize Pack set-list text. Exact source set code, card number, card name, and single S/H finish mark only.",
+  "records": [
+    {
+      "source_key": "justinbasil_prize_pack_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.justinbasil.com/set-lists/pps4",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "153",
+      "card_name": "Arezu",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "JustInBasil Prize Pack Series 4: S (non-holo) Arezu LOR 153",
+      "language": "en",
+      "retrieved_at": "2026-06-11T17:47:56.552Z",
+      "raw_snapshot_ref": "justinbasil:pps4:LOR:153:S",
+      "notes": "Exact card-level Prize Pack finish evidence. JustInBasil defines S as non-holo and H as cosmos holofoil and states listed cards are Play! Pokemon stamped."
+    },
+    {
+      "source_key": "justinbasil_prize_pack_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.justinbasil.com/set-lists/pps4",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "161",
+      "card_name": "Lost City",
+      "finish_key": "cosmos",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "JustInBasil Prize Pack Series 4: H (cosmos holofoil) Lost City LOR 161",
+      "language": "en",
+      "retrieved_at": "2026-06-11T17:47:56.552Z",
+      "raw_snapshot_ref": "justinbasil:pps4:LOR:161:H",
+      "notes": "Exact card-level Prize Pack finish evidence. JustInBasil defines S as non-holo and H as cosmos holofoil and states listed cards are Play! Pokemon stamped."
+    }
+  ]
+}

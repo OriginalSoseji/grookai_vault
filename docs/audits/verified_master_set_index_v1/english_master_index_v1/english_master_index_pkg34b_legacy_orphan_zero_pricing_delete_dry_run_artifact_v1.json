@@ -1,0 +1,365 @@
+{
+  "package_id": "PKG-34B-LEGACY-ORPHAN-ZERO-PRICING-DELETE",
+  "generated_at": "2026-06-13T21:08:25.522Z",
+  "fingerprint": "cf3b0e774dc617aff711c67826c4ade5485e6beb2e18c396bdbc603a2099997b",
+  "source_readiness_fingerprint": "f52b3a6486d2f47857139474e6f72e71dacb6f699df2dd80f3d38d3df6cea471",
+  "sql_hash": "a00c8e21d85fc49ba606610975e843424f50b6715541a52a620e7028b90c923f",
+  "sql_path": "docs\\sql\\english_master_index_pkg34b_legacy_orphan_zero_pricing_delete_guarded_dry_run_transaction_v1.sql",
+  "safety": {
+    "db_writes_committed": false,
+    "migrations_created": false,
+    "real_apply_authorized": false,
+    "sql_ends_with_rollback": true
+  },
+  "summary": {
+    "target_rows": 2,
+    "pricing_dependency_deletes_in_dry_run": 8,
+    "species_mapping_deletes_in_dry_run": 2,
+    "child_deletes_in_dry_run": 2,
+    "parent_deletes_in_dry_run": 2
+  },
+  "rows": [
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "070f8fd3-3aef-4e52-b84e-1b7e64673a96",
+      "set_code": "legacy_orphan",
+      "card_number": "68",
+      "number": "68",
+      "number_plain": "68",
+      "card_name": "Sandshrew",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "293fa0c1-b221-4352-b7e8-83692613d771",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "070f8fd3-3aef-4e52-b84e-1b7e64673a96",
+        "set_code": "legacy_orphan",
+        "number": "68",
+        "number_plain": "68",
+        "name": "Sandshrew",
+        "children": [
+          {
+            "id": "293fa0c1-b221-4352-b7e8-83692613d771",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "0d5ce239-d675-4b8e-9c3d-b7a1de6d16f0",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Sandshrew",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "sandshrew"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "bdcf7160-b212-48b2-9008-32ab796cd302",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "070f8fd3-3aef-4e52-b84e-1b7e64673a96",
+            "counts_for_completion": true
+          }
+        ],
+        "price_curve_rows": [
+          {
+            "id": "fbf24a98-60a1-4a62-8650-050ba4bbc9bf",
+            "hp_floor": null,
+            "lp_floor": null,
+            "mp_floor": null,
+            "nm_floor": null,
+            "raw_json": {
+              "hp_floor": null,
+              "lp_floor": null,
+              "mp_floor": null,
+              "nm_floor": null,
+              "dmg_floor": null,
+              "hp_median": null,
+              "lp_median": null,
+              "monotonic": {
+                "applied": true,
+                "violations_after": {
+                  "hp_gt_mp": false,
+                  "lp_gt_nm": false,
+                  "mp_gt_lp": false,
+                  "dmg_gt_hp": false
+                },
+                "violations_before": {
+                  "hp_gt_mp": false,
+                  "lp_gt_nm": false,
+                  "mp_gt_lp": false,
+                  "dmg_gt_hp": false
+                }
+              },
+              "mp_median": null,
+              "nm_median": null,
+              "confidence": 0.2,
+              "dmg_median": null,
+              "card_print_id": "070f8fd3-3aef-4e52-b84e-1b7e64673a96",
+              "listing_count": 0,
+              "raw_sample_count_hp": 0,
+              "raw_sample_count_lp": 0,
+              "raw_sample_count_mp": 0,
+              "raw_sample_count_nm": 0,
+              "raw_sample_count_dmg": 0
+            },
+            "dmg_floor": null,
+            "hp_median": null,
+            "lp_median": null,
+            "mp_median": null,
+            "nm_median": null,
+            "confidence": 0.2,
+            "created_at": "2026-03-19T07:11:10.361843+00:00",
+            "dmg_median": null,
+            "hp_samples": 0,
+            "lp_samples": 0,
+            "mp_samples": 0,
+            "nm_samples": 0,
+            "dmg_samples": 0,
+            "card_print_id": "070f8fd3-3aef-4e52-b84e-1b7e64673a96",
+            "listing_count": 0
+          }
+        ],
+        "ebay_snapshot_rows": [
+          {
+            "id": "ddff1fe8-694d-4c25-80c5-752684bf285a",
+            "source": "ebay_browse",
+            "lp_floor": null,
+            "nm_floor": null,
+            "lp_median": null,
+            "nm_median": null,
+            "captured_at": "2026-03-19T07:11:10.086+00:00",
+            "card_print_id": "070f8fd3-3aef-4e52-b84e-1b7e64673a96",
+            "listing_count": 0,
+            "raw_sample_count_lp": 0,
+            "raw_sample_count_nm": 0
+          }
+        ],
+        "ebay_latest_rows": [
+          {
+            "source": "ebay_browse",
+            "lp_floor": null,
+            "nm_floor": null,
+            "lp_median": null,
+            "nm_median": null,
+            "confidence": 0.2,
+            "updated_at": "2026-03-19T07:11:10.185+00:00",
+            "card_print_id": "070f8fd3-3aef-4e52-b84e-1b7e64673a96",
+            "listing_count": 0,
+            "last_snapshot_at": "2026-03-19T07:11:10.086+00:00"
+          }
+        ],
+        "pricing_job_rows": [
+          {
+            "id": "04c6c4c7-89cc-42cc-878b-177974a0699e",
+            "error": null,
+            "reason": "scheduled_refresh",
+            "status": "done",
+            "attempts": 1,
+            "priority": "scheduled",
+            "locked_at": null,
+            "locked_by": null,
+            "started_at": "2026-03-19T07:11:08.975+00:00",
+            "completed_at": "2026-03-19T07:11:10.404+00:00",
+            "last_outcome": null,
+            "requested_at": "2026-03-16T07:30:02.577+00:00",
+            "card_print_id": "070f8fd3-3aef-4e52-b84e-1b7e64673a96",
+            "last_error_class": null,
+            "next_eligible_at": "2026-03-16T07:30:02.577+00:00",
+            "requester_user_id": null,
+            "last_meaningful_attempt_at": null
+          }
+        ]
+      },
+      "classification": "legacy_orphan_zero_pricing_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_zero_pricing_species_child_parent_delete",
+      "reason": "legacy_orphan row has only zero-signal pricing dependencies plus one derived species row and one normal child",
+      "species_mapping_id": "0d5ce239-d675-4b8e-9c3d-b7a1de6d16f0",
+      "price_curve_id": "fbf24a98-60a1-4a62-8650-050ba4bbc9bf",
+      "ebay_snapshot_id": "ddff1fe8-694d-4c25-80c5-752684bf285a",
+      "ebay_latest_source": "ebay_browse",
+      "pricing_job_id": "04c6c4c7-89cc-42cc-878b-177974a0699e"
+    },
+    {
+      "lane": "set_unmapped",
+      "cleanup_readiness": "blocked",
+      "governance_status": "blocked_unclassified_unmapped_set",
+      "governance_category": "unclassified_set_unmapped",
+      "card_print_id": "02a9c42c-5303-4d7c-85c9-886497097710",
+      "set_code": "legacy_orphan",
+      "card_number": "84",
+      "number": "84",
+      "number_plain": "84",
+      "card_name": "Garganacl",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "31b72a5d-f261-4f8d-8e5d-12e73a3abead",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "parent_snapshot": {
+        "card_print_id": "02a9c42c-5303-4d7c-85c9-886497097710",
+        "set_code": "legacy_orphan",
+        "number": "84",
+        "number_plain": "84",
+        "name": "Garganacl",
+        "children": [
+          {
+            "id": "31b72a5d-f261-4f8d-8e5d-12e73a3abead",
+            "finish_key": "normal"
+          }
+        ],
+        "species_rows": [
+          {
+            "id": "e05611f3-6753-43ba-881a-52e6e61e6afc",
+            "role": "primary",
+            "active": true,
+            "source": "grookai_dex_name_rule_v1",
+            "evidence": {
+              "card_name": "Garganacl",
+              "supertype": null,
+              "card_category": null,
+              "matched_token": "garganacl"
+            },
+            "confidence": 0.82,
+            "created_at": "2026-05-18T10:14:32.614406+00:00",
+            "species_id": "b3e4cbed-e5b0-43f3-8232-57e39ed23bd6",
+            "updated_at": "2026-05-18T10:14:32.614406+00:00",
+            "card_print_id": "02a9c42c-5303-4d7c-85c9-886497097710",
+            "counts_for_completion": true
+          }
+        ],
+        "price_curve_rows": [
+          {
+            "id": "bc60069f-f466-467f-adf5-59801f7a7a6c",
+            "hp_floor": null,
+            "lp_floor": null,
+            "mp_floor": null,
+            "nm_floor": null,
+            "raw_json": {
+              "hp_floor": null,
+              "lp_floor": null,
+              "mp_floor": null,
+              "nm_floor": null,
+              "dmg_floor": null,
+              "hp_median": null,
+              "lp_median": null,
+              "monotonic": {
+                "applied": true,
+                "violations_after": {
+                  "hp_gt_mp": false,
+                  "lp_gt_nm": false,
+                  "mp_gt_lp": false,
+                  "dmg_gt_hp": false
+                },
+                "violations_before": {
+                  "hp_gt_mp": false,
+                  "lp_gt_nm": false,
+                  "mp_gt_lp": false,
+                  "dmg_gt_hp": false
+                }
+              },
+              "mp_median": null,
+              "nm_median": null,
+              "confidence": 0.2,
+              "dmg_median": null,
+              "card_print_id": "02a9c42c-5303-4d7c-85c9-886497097710",
+              "listing_count": 0,
+              "raw_sample_count_hp": 0,
+              "raw_sample_count_lp": 0,
+              "raw_sample_count_mp": 0,
+              "raw_sample_count_nm": 0,
+              "raw_sample_count_dmg": 0
+            },
+            "dmg_floor": null,
+            "hp_median": null,
+            "lp_median": null,
+            "mp_median": null,
+            "nm_median": null,
+            "confidence": 0.2,
+            "created_at": "2026-03-16T07:24:05.690328+00:00",
+            "dmg_median": null,
+            "hp_samples": 0,
+            "lp_samples": 0,
+            "mp_samples": 0,
+            "nm_samples": 0,
+            "dmg_samples": 0,
+            "card_print_id": "02a9c42c-5303-4d7c-85c9-886497097710",
+            "listing_count": 0
+          }
+        ],
+        "ebay_snapshot_rows": [
+          {
+            "id": "4171d19a-c52c-4006-a6bc-a05e3a5217e8",
+            "source": "ebay_browse",
+            "lp_floor": null,
+            "nm_floor": null,
+            "lp_median": null,
+            "nm_median": null,
+            "captured_at": "2026-03-16T07:24:05.393+00:00",
+            "card_print_id": "02a9c42c-5303-4d7c-85c9-886497097710",
+            "listing_count": 0,
+            "raw_sample_count_lp": 0,
+            "raw_sample_count_nm": 0
+          }
+        ],
+        "ebay_latest_rows": [
+          {
+            "source": "ebay_browse",
+            "lp_floor": null,
+            "nm_floor": null,
+            "lp_median": null,
+            "nm_median": null,
+            "confidence": 0.2,
+            "updated_at": "2026-03-16T07:24:05.499+00:00",
+            "card_print_id": "02a9c42c-5303-4d7c-85c9-886497097710",
+            "listing_count": 0,
+            "last_snapshot_at": "2026-03-16T07:24:05.393+00:00"
+          }
+        ],
+        "pricing_job_rows": [
+          {
+            "id": "518d4cb1-5eae-49ba-9e4c-161a0a68bae5",
+            "error": null,
+            "reason": "scheduled_refresh",
+            "status": "done",
+            "attempts": 1,
+            "priority": "scheduled",
+            "locked_at": null,
+            "locked_by": null,
+            "started_at": "2026-03-16T07:24:04.409+00:00",
+            "completed_at": "2026-03-16T07:24:05.741+00:00",
+            "last_outcome": null,
+            "requested_at": "2026-03-15T23:30:03.459+00:00",
+            "card_print_id": "02a9c42c-5303-4d7c-85c9-886497097710",
+            "last_error_class": null,
+            "next_eligible_at": "2026-03-15T23:30:03.459+00:00",
+            "requester_user_id": null,
+            "last_meaningful_attempt_at": null
+          }
+        ]
+      },
+      "classification": "legacy_orphan_zero_pricing_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_zero_pricing_species_child_parent_delete",
+      "reason": "legacy_orphan row has only zero-signal pricing dependencies plus one derived species row and one normal child",
+      "species_mapping_id": "e05611f3-6753-43ba-881a-52e6e61e6afc",
+      "price_curve_id": "bc60069f-f466-467f-adf5-59801f7a7a6c",
+      "ebay_snapshot_id": "4171d19a-c52c-4006-a6bc-a05e3a5217e8",
+      "ebay_latest_source": "ebay_browse",
+      "pricing_job_id": "518d4cb1-5eae-49ba-9e4c-161a0a68bae5"
+    }
+  ]
+}

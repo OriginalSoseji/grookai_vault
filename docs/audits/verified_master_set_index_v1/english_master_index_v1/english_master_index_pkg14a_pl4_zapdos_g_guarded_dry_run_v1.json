@@ -1,0 +1,705 @@
+{
+  "generated_at": "2026-06-11T11:19:52.255Z",
+  "version": "english_master_index_pkg14a_pl4_zapdos_g_guarded_dry_run_v1",
+  "package_id": "PKG-14A-PL4-ZAPDOS-G-PARENT-NAME-MAPPING-TRANSFER",
+  "package_fingerprint_sha256": "b674004802f4f36363a4a694ce4c48d444aca03e9c0d96877c360399973674e0",
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg14_pl4_identity_adjudication_v1.json",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "set_code": "pl4",
+    "card_number": "12",
+    "number_plain": "12",
+    "target_card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+    "source_card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+    "current_target_name": "Zapdos",
+    "target_name": "Zapdos G",
+    "source_parent_name": "Shinx",
+    "source_parent_number": "SH12",
+    "preserved_source_mapping": {
+      "source": "tcgdex",
+      "external_id": "pl4-SH12"
+    },
+    "preserved_target_mapping": {
+      "source": "tcgdex",
+      "external_id": "pl4-12"
+    },
+    "transfer_mappings": [
+      {
+        "source": "tcgplayer",
+        "external_id": "90726"
+      },
+      {
+        "source": "justtcg",
+        "external_id": "pokemon-arceus-zapdos-g-holo-rare"
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "pkg14a_zapdos_g_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_rows": 1,
+      "target_parent_current_rows": 1,
+      "source_parent_preserved_rows": 1,
+      "target_child_rows": 2,
+      "target_tcgdex_rows": 1,
+      "source_shinx_tcgdex_rows": 1,
+      "transfer_mappings_on_source": 2,
+      "transfer_mappings_already_on_target": 0,
+      "ready_identity_projection_rows": 1,
+      "identity_hash_collisions": 0
+    },
+    "write_counts_inside_rolled_back_transaction": {
+      "parent_name_updates": 1,
+      "card_print_identity_updates": 1,
+      "external_mapping_transfers": 2,
+      "child_writes": 0,
+      "deletes": 0
+    },
+    "readback": {
+      "target_parent_updated": 1,
+      "target_identity_updated": 1,
+      "transferred_mappings_on_target": 2,
+      "source_parent_preserved": 1,
+      "source_tcgdex_preserved": 1,
+      "target_child_rows": 2,
+      "source_child_rows": 2
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-11T11:19:50.778Z",
+      "rows": [
+        {
+          "row_type": "card_print_identity",
+          "row_id": "92c0554a-1675-401e-89e5-6267ea202de1",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos",
+          "ai_metadata": {
+            "printed_total": 99,
+            "printed_set_abbrev": "AR"
+          },
+          "finish_key": null,
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": "zapdos",
+          "identity_key_hash": "1c825bf899b02d168e9d562d026c88a8dc34f66bdddc8591cc5bd0f9943160cb"
+        },
+        {
+          "row_type": "card_print_identity",
+          "row_id": "e210b4bf-af5b-49fe-a7db-d1763ff03f3e",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": {
+            "printed_total": 99,
+            "printed_set_abbrev": "AR"
+          },
+          "finish_key": null,
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": "shinx",
+          "identity_key_hash": "1bdb62398e257a985ada415de9a9b4c1d2f29fb8a5da5d18059168ee15bdf622"
+        },
+        {
+          "row_type": "child_printing",
+          "row_id": "b2c62598-ed2b-4154-94a5-fef88d6a2cf8",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos",
+          "ai_metadata": null,
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "child_printing",
+          "row_id": "55b71337-65a0-4943-9b33-d5e4a955f315",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos",
+          "ai_metadata": null,
+          "finish_key": "reverse",
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "child_printing",
+          "row_id": "3bf32129-bebe-4324-9402-47d477a3d9bc",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": null,
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "child_printing",
+          "row_id": "c37d8250-8dd4-49b6-9389-42c38f263d85",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": null,
+          "finish_key": "reverse",
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "external_mapping",
+          "row_id": "60114",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos",
+          "ai_metadata": null,
+          "finish_key": null,
+          "source": "tcgdex",
+          "external_id": "pl4-12",
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "external_mapping",
+          "row_id": "91169",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": {
+            "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+            "resolved_via": "tcgplayerId",
+            "justtcg_number": "12/99",
+            "justtcg_set_name": "Arceus",
+            "tcgplayer_external_id": "90726"
+          },
+          "finish_key": null,
+          "source": "justtcg",
+          "external_id": "pokemon-arceus-zapdos-g-holo-rare",
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "external_mapping",
+          "row_id": "103607",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": null,
+          "finish_key": null,
+          "source": "tcgdex",
+          "external_id": "pl4-SH12",
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "external_mapping",
+          "row_id": "63914",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": {
+            "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+            "derived_from": "tcgdex_pricing_productId",
+            "tcgdex_external_id": "pl4-12",
+            "validated_variant_paths": [
+              "pricing.tcgplayer.holofoil.productId",
+              "pricing.tcgplayer.reverse-holofoil.productId"
+            ]
+          },
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "90726",
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "finish_key": null,
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": null,
+          "finish_key": null,
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "6890f925bc7adea91a18578fce28ca91612c4053644b686c6d12fdb1b89f6d0a",
+      "counts": {
+        "card_print_identity": 2,
+        "child_printing": 4,
+        "external_mapping": 4,
+        "parent": 2
+      }
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-11T11:19:52.024Z",
+      "rows": [
+        {
+          "row_type": "card_print_identity",
+          "row_id": "92c0554a-1675-401e-89e5-6267ea202de1",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos G",
+          "ai_metadata": {
+            "printed_total": 99,
+            "printed_set_abbrev": "AR",
+            "variant_key_current": "base"
+          },
+          "finish_key": null,
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": "zapdos g",
+          "identity_key_hash": "b4a97eb2f4d9d4c6a0cc63164adb7ff2b11d52273714cad86586c33615ec9552"
+        },
+        {
+          "row_type": "card_print_identity",
+          "row_id": "e210b4bf-af5b-49fe-a7db-d1763ff03f3e",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": {
+            "printed_total": 99,
+            "printed_set_abbrev": "AR"
+          },
+          "finish_key": null,
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": "shinx",
+          "identity_key_hash": "1bdb62398e257a985ada415de9a9b4c1d2f29fb8a5da5d18059168ee15bdf622"
+        },
+        {
+          "row_type": "child_printing",
+          "row_id": "b2c62598-ed2b-4154-94a5-fef88d6a2cf8",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos G",
+          "ai_metadata": null,
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "child_printing",
+          "row_id": "55b71337-65a0-4943-9b33-d5e4a955f315",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos G",
+          "ai_metadata": null,
+          "finish_key": "reverse",
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "child_printing",
+          "row_id": "3bf32129-bebe-4324-9402-47d477a3d9bc",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": null,
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "child_printing",
+          "row_id": "c37d8250-8dd4-49b6-9389-42c38f263d85",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": null,
+          "finish_key": "reverse",
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "external_mapping",
+          "row_id": "91169",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos G",
+          "ai_metadata": {
+            "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+            "resolved_via": "tcgplayerId",
+            "justtcg_number": "12/99",
+            "justtcg_set_name": "Arceus",
+            "pkg14a_created_by": "pkg14a_pl4_zapdos_g_guarded_dry_run_v1",
+            "pkg14a_package_id": "PKG-14A-PL4-ZAPDOS-G-PARENT-NAME-MAPPING-TRANSFER",
+            "tcgplayer_external_id": "90726",
+            "pkg14a_transferred_to_card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+            "pkg14a_transferred_from_card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8"
+          },
+          "finish_key": null,
+          "source": "justtcg",
+          "external_id": "pokemon-arceus-zapdos-g-holo-rare",
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "external_mapping",
+          "row_id": "60114",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos G",
+          "ai_metadata": null,
+          "finish_key": null,
+          "source": "tcgdex",
+          "external_id": "pl4-12",
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "external_mapping",
+          "row_id": "63914",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos G",
+          "ai_metadata": {
+            "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+            "derived_from": "tcgdex_pricing_productId",
+            "pkg14a_created_by": "pkg14a_pl4_zapdos_g_guarded_dry_run_v1",
+            "pkg14a_package_id": "PKG-14A-PL4-ZAPDOS-G-PARENT-NAME-MAPPING-TRANSFER",
+            "tcgdex_external_id": "pl4-12",
+            "validated_variant_paths": [
+              "pricing.tcgplayer.holofoil.productId",
+              "pricing.tcgplayer.reverse-holofoil.productId"
+            ],
+            "pkg14a_transferred_to_card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+            "pkg14a_transferred_from_card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8"
+          },
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "90726",
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "external_mapping",
+          "row_id": "103607",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": null,
+          "finish_key": null,
+          "source": "tcgdex",
+          "external_id": "pl4-SH12",
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos G",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            },
+            "pkg14a_created_by": "pkg14a_pl4_zapdos_g_guarded_dry_run_v1",
+            "pkg14a_package_id": "PKG-14A-PL4-ZAPDOS-G-PARENT-NAME-MAPPING-TRANSFER",
+            "pkg14a_target_name": "Zapdos G",
+            "pkg14a_previous_name": "Zapdos"
+          },
+          "finish_key": null,
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": null,
+          "finish_key": null,
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "81bb3c54c330dc023efd0a981ba188767426c4dfc27349a3eab98d4742163d82",
+      "counts": {
+        "card_print_identity": 2,
+        "child_printing": 4,
+        "external_mapping": 4,
+        "parent": 2
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-11T11:19:52.176Z",
+      "rows": [
+        {
+          "row_type": "card_print_identity",
+          "row_id": "92c0554a-1675-401e-89e5-6267ea202de1",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos",
+          "ai_metadata": {
+            "printed_total": 99,
+            "printed_set_abbrev": "AR"
+          },
+          "finish_key": null,
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": "zapdos",
+          "identity_key_hash": "1c825bf899b02d168e9d562d026c88a8dc34f66bdddc8591cc5bd0f9943160cb"
+        },
+        {
+          "row_type": "card_print_identity",
+          "row_id": "e210b4bf-af5b-49fe-a7db-d1763ff03f3e",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": {
+            "printed_total": 99,
+            "printed_set_abbrev": "AR"
+          },
+          "finish_key": null,
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": "shinx",
+          "identity_key_hash": "1bdb62398e257a985ada415de9a9b4c1d2f29fb8a5da5d18059168ee15bdf622"
+        },
+        {
+          "row_type": "child_printing",
+          "row_id": "b2c62598-ed2b-4154-94a5-fef88d6a2cf8",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos",
+          "ai_metadata": null,
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "child_printing",
+          "row_id": "55b71337-65a0-4943-9b33-d5e4a955f315",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos",
+          "ai_metadata": null,
+          "finish_key": "reverse",
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "child_printing",
+          "row_id": "3bf32129-bebe-4324-9402-47d477a3d9bc",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": null,
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "child_printing",
+          "row_id": "c37d8250-8dd4-49b6-9389-42c38f263d85",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": null,
+          "finish_key": "reverse",
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "external_mapping",
+          "row_id": "60114",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos",
+          "ai_metadata": null,
+          "finish_key": null,
+          "source": "tcgdex",
+          "external_id": "pl4-12",
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "external_mapping",
+          "row_id": "91169",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": {
+            "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+            "resolved_via": "tcgplayerId",
+            "justtcg_number": "12/99",
+            "justtcg_set_name": "Arceus",
+            "tcgplayer_external_id": "90726"
+          },
+          "finish_key": null,
+          "source": "justtcg",
+          "external_id": "pokemon-arceus-zapdos-g-holo-rare",
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "external_mapping",
+          "row_id": "103607",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": null,
+          "finish_key": null,
+          "source": "tcgdex",
+          "external_id": "pl4-SH12",
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "external_mapping",
+          "row_id": "63914",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": {
+            "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+            "derived_from": "tcgdex_pricing_productId",
+            "tcgdex_external_id": "pl4-12",
+            "validated_variant_paths": [
+              "pricing.tcgplayer.holofoil.productId",
+              "pricing.tcgplayer.reverse-holofoil.productId"
+            ]
+          },
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "90726",
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "finish_key": null,
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "ai_metadata": null,
+          "finish_key": null,
+          "source": null,
+          "external_id": null,
+          "normalized_printed_name": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "6890f925bc7adea91a18578fce28ca91612c4053644b686c6d12fdb1b89f6d0a",
+      "counts": {
+        "card_print_identity": 2,
+        "child_printing": 4,
+        "external_mapping": 4,
+        "parent": 2
+      }
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "108007ab690a57541e588b51584ecedbb2ce0502ecc93ea5cdae120e854b9d8c",
+    "stop_findings": []
+  }
+}

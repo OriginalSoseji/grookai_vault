@@ -1,0 +1,670 @@
+{
+  "generated_at": "2026-06-09T23:09:28.595Z",
+  "version": "english_master_index_pkg06c_supported_finish_subset_real_apply_v1",
+  "audit_only": false,
+  "apply_only": true,
+  "approval_scope": {
+    "apply_approved_by_user": true,
+    "approval_text": "Approve real PKG-06C-SUPPORTED-FINISH-SUBSET-CHILD-PRINTING-INSERTS apply only. Fingerprint: 839a42b870b455a16055c88c5b4e39c4a83da421e4cd36df581eee4358000684. SQL hash: cc9060568b83642f27cc67aa56a1f53080771accb54d9aaeb61f983ce25af2ae. Scope: 8 child-only card_printing inserts for neo4/Neo Destiny, finish holo=8. Blocked finish-taxonomy rows remain excluded: 380. Dry-run proof: 7365fd1b32fd3c3072b3f3ddae25c17dd171938ca552d7cb3cb9db5fa4357358 == 7365fd1b32fd3c3072b3f3ddae25c17dd171938ca552d7cb3cb9db5fa4357358. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No parent writes.",
+    "approved_for_package_id": "PKG-06C-SUPPORTED-FINISH-SUBSET-CHILD-PRINTING-INSERTS",
+    "approved_for_fingerprint_sha256": "839a42b870b455a16055c88c5b4e39c4a83da421e4cd36df581eee4358000684",
+    "approved_for_sql_hash_sha256": "cc9060568b83642f27cc67aa56a1f53080771accb54d9aaeb61f983ce25af2ae",
+    "approved_for_child_insert_rows": 8,
+    "approved_for_set_key": "neo4",
+    "approved_for_global_apply": false,
+    "approved_for_migrations": false,
+    "approved_for_deletes": false,
+    "approved_for_merges": false,
+    "approved_for_parent_writes": false
+  },
+  "apply_status": "pkg06c_supported_finish_subset_real_apply_committed_and_verified",
+  "db_reads_performed": true,
+  "durable_db_writes_performed": true,
+  "db_write_committed": true,
+  "inserted_rows": 8,
+  "parent_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": true,
+  "package_scope": {
+    "package_id": "PKG-06C-SUPPORTED-FINISH-SUBSET-CHILD-PRINTING-INSERTS",
+    "package_fingerprint_sha256": "839a42b870b455a16055c88c5b4e39c4a83da421e4cd36df581eee4358000684",
+    "source_readiness_fingerprint_sha256": "e89f24ba671422a6198da0f9668753409cee408321c178248e8f78fe56639eec",
+    "sql_hash_sha256": "cc9060568b83642f27cc67aa56a1f53080771accb54d9aaeb61f983ce25af2ae",
+    "set_key": "neo4",
+    "set_name": "Neo Destiny",
+    "child_card_printing_inserts": 8,
+    "target_parent_rows": 8,
+    "finish_counts": {
+      "holo": 8
+    },
+    "blocked_finish_taxonomy_rows_excluded": 380,
+    "global_apply_included": false
+  },
+  "source_artifacts": {
+    "real_apply_gate": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg06c_supported_finish_subset_real_apply_gate_v1.json",
+    "dry_run_proof": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg06c_supported_finish_subset_guarded_dry_run_v1.json"
+  },
+  "execution_result": {
+    "connected": true,
+    "apply_status": "pkg06c_supported_finish_subset_real_apply_committed",
+    "error_message": null,
+    "committed": true
+  },
+  "before_target_snapshot": {
+    "captured_at": "2026-06-09T23:09:27.251Z",
+    "rows": [
+      {
+        "row_type": "target_parent",
+        "row_id": "3adadb08-a9ef-4879-af78-ef8f6f9decf6",
+        "set_code": "neo4",
+        "card_number": "106",
+        "card_name": "Shining Celebi",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "144e42f1-b803-42ac-aabe-a3db97c16fa6",
+        "set_code": "neo4",
+        "card_number": "107",
+        "card_name": "Shining Charizard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "01c5a20c-0d8c-4274-a55d-614b38b64fec",
+        "set_code": "neo4",
+        "card_number": "108",
+        "card_name": "Shining Kabutops",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "762b7cfc-3b44-4d9b-aa10-2b9539cf86e6",
+        "set_code": "neo4",
+        "card_number": "109",
+        "card_name": "Shining Mewtwo",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "afde284e-1cd1-422d-b6fa-a649c6f3e49d",
+        "set_code": "neo4",
+        "card_number": "110",
+        "card_name": "Shining Noctowl",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "3f5bba1d-3d0c-4188-8abf-1945d315decd",
+        "set_code": "neo4",
+        "card_number": "111",
+        "card_name": "Shining Raichu",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4b1a138c-ff9d-44de-91b4-eee95aadf558",
+        "set_code": "neo4",
+        "card_number": "112",
+        "card_name": "Shining Steelix",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "de40da7c-1283-4fe3-ab1b-a84948e88df8",
+        "set_code": "neo4",
+        "card_number": "113",
+        "card_name": "Shining Tyranitar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "7365fd1b32fd3c3072b3f3ddae25c17dd171938ca552d7cb3cb9db5fa4357358",
+    "counts": {
+      "target_parent_rows": 8,
+      "existing_target_child_rows": 0,
+      "planned_id_collision_rows": 0,
+      "total_rows": 8
+    },
+    "finish_counts": {}
+  },
+  "after_target_snapshot": {
+    "captured_at": "2026-06-09T23:09:28.368Z",
+    "rows": [
+      {
+        "row_type": "existing_target_child",
+        "row_id": "9bfbba3b-7aa5-4e9d-89d3-6e37359cb4ee",
+        "set_code": "neo4",
+        "card_number": "106",
+        "card_name": "Shining Celebi",
+        "finish_key": "holo",
+        "target_card_printing_id": "9bfbba3b-7aa5-4e9d-89d3-6e37359cb4ee"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "cfb1e942-b355-4ddb-ac0b-42b0109919f2",
+        "set_code": "neo4",
+        "card_number": "107",
+        "card_name": "Shining Charizard",
+        "finish_key": "holo",
+        "target_card_printing_id": "cfb1e942-b355-4ddb-ac0b-42b0109919f2"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "1816d38e-36a0-4e65-a40c-a84cda2e4220",
+        "set_code": "neo4",
+        "card_number": "108",
+        "card_name": "Shining Kabutops",
+        "finish_key": "holo",
+        "target_card_printing_id": "1816d38e-36a0-4e65-a40c-a84cda2e4220"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "6a123f5e-2371-4f2b-9d75-95abab7db6ac",
+        "set_code": "neo4",
+        "card_number": "109",
+        "card_name": "Shining Mewtwo",
+        "finish_key": "holo",
+        "target_card_printing_id": "6a123f5e-2371-4f2b-9d75-95abab7db6ac"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "77a7fd2a-48aa-458e-ad5a-db0f890461ed",
+        "set_code": "neo4",
+        "card_number": "110",
+        "card_name": "Shining Noctowl",
+        "finish_key": "holo",
+        "target_card_printing_id": "77a7fd2a-48aa-458e-ad5a-db0f890461ed"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "0b34f47b-860b-41f3-88f5-d71e9b543b15",
+        "set_code": "neo4",
+        "card_number": "111",
+        "card_name": "Shining Raichu",
+        "finish_key": "holo",
+        "target_card_printing_id": "0b34f47b-860b-41f3-88f5-d71e9b543b15"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "4a360cee-f686-4c13-9e61-6ef3452bc185",
+        "set_code": "neo4",
+        "card_number": "112",
+        "card_name": "Shining Steelix",
+        "finish_key": "holo",
+        "target_card_printing_id": "4a360cee-f686-4c13-9e61-6ef3452bc185"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "f68d1685-b298-4ab3-b42a-14d17eb20364",
+        "set_code": "neo4",
+        "card_number": "113",
+        "card_name": "Shining Tyranitar",
+        "finish_key": "holo",
+        "target_card_printing_id": "f68d1685-b298-4ab3-b42a-14d17eb20364"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "9bfbba3b-7aa5-4e9d-89d3-6e37359cb4ee",
+        "set_code": "neo4",
+        "card_number": "106",
+        "card_name": "Shining Celebi",
+        "finish_key": "holo",
+        "target_card_printing_id": "9bfbba3b-7aa5-4e9d-89d3-6e37359cb4ee"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "cfb1e942-b355-4ddb-ac0b-42b0109919f2",
+        "set_code": "neo4",
+        "card_number": "107",
+        "card_name": "Shining Charizard",
+        "finish_key": "holo",
+        "target_card_printing_id": "cfb1e942-b355-4ddb-ac0b-42b0109919f2"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "1816d38e-36a0-4e65-a40c-a84cda2e4220",
+        "set_code": "neo4",
+        "card_number": "108",
+        "card_name": "Shining Kabutops",
+        "finish_key": "holo",
+        "target_card_printing_id": "1816d38e-36a0-4e65-a40c-a84cda2e4220"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "6a123f5e-2371-4f2b-9d75-95abab7db6ac",
+        "set_code": "neo4",
+        "card_number": "109",
+        "card_name": "Shining Mewtwo",
+        "finish_key": "holo",
+        "target_card_printing_id": "6a123f5e-2371-4f2b-9d75-95abab7db6ac"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "77a7fd2a-48aa-458e-ad5a-db0f890461ed",
+        "set_code": "neo4",
+        "card_number": "110",
+        "card_name": "Shining Noctowl",
+        "finish_key": "holo",
+        "target_card_printing_id": "77a7fd2a-48aa-458e-ad5a-db0f890461ed"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "0b34f47b-860b-41f3-88f5-d71e9b543b15",
+        "set_code": "neo4",
+        "card_number": "111",
+        "card_name": "Shining Raichu",
+        "finish_key": "holo",
+        "target_card_printing_id": "0b34f47b-860b-41f3-88f5-d71e9b543b15"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "4a360cee-f686-4c13-9e61-6ef3452bc185",
+        "set_code": "neo4",
+        "card_number": "112",
+        "card_name": "Shining Steelix",
+        "finish_key": "holo",
+        "target_card_printing_id": "4a360cee-f686-4c13-9e61-6ef3452bc185"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "f68d1685-b298-4ab3-b42a-14d17eb20364",
+        "set_code": "neo4",
+        "card_number": "113",
+        "card_name": "Shining Tyranitar",
+        "finish_key": "holo",
+        "target_card_printing_id": "f68d1685-b298-4ab3-b42a-14d17eb20364"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "3adadb08-a9ef-4879-af78-ef8f6f9decf6",
+        "set_code": "neo4",
+        "card_number": "106",
+        "card_name": "Shining Celebi",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "144e42f1-b803-42ac-aabe-a3db97c16fa6",
+        "set_code": "neo4",
+        "card_number": "107",
+        "card_name": "Shining Charizard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "01c5a20c-0d8c-4274-a55d-614b38b64fec",
+        "set_code": "neo4",
+        "card_number": "108",
+        "card_name": "Shining Kabutops",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "762b7cfc-3b44-4d9b-aa10-2b9539cf86e6",
+        "set_code": "neo4",
+        "card_number": "109",
+        "card_name": "Shining Mewtwo",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "afde284e-1cd1-422d-b6fa-a649c6f3e49d",
+        "set_code": "neo4",
+        "card_number": "110",
+        "card_name": "Shining Noctowl",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "3f5bba1d-3d0c-4188-8abf-1945d315decd",
+        "set_code": "neo4",
+        "card_number": "111",
+        "card_name": "Shining Raichu",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4b1a138c-ff9d-44de-91b4-eee95aadf558",
+        "set_code": "neo4",
+        "card_number": "112",
+        "card_name": "Shining Steelix",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "de40da7c-1283-4fe3-ab1b-a84948e88df8",
+        "set_code": "neo4",
+        "card_number": "113",
+        "card_name": "Shining Tyranitar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "6950dd4b30f623f4f3c7e7d2cc0e4521d40a4a45a0719a7432061c24d5082e05",
+    "counts": {
+      "target_parent_rows": 8,
+      "existing_target_child_rows": 8,
+      "planned_id_collision_rows": 8,
+      "total_rows": 24
+    },
+    "finish_counts": {
+      "holo": 8
+    }
+  },
+  "before_parent_snapshot": {
+    "captured_at": "2026-06-09T23:09:27.326Z",
+    "rows": [
+      {
+        "card_print_id": "3adadb08-a9ef-4879-af78-ef8f6f9decf6",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "106",
+        "number_plain": "106",
+        "name": "Shining Celebi",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "144e42f1-b803-42ac-aabe-a3db97c16fa6",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "107",
+        "number_plain": "107",
+        "name": "Shining Charizard",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "01c5a20c-0d8c-4274-a55d-614b38b64fec",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "108",
+        "number_plain": "108",
+        "name": "Shining Kabutops",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "762b7cfc-3b44-4d9b-aa10-2b9539cf86e6",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "109",
+        "number_plain": "109",
+        "name": "Shining Mewtwo",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "afde284e-1cd1-422d-b6fa-a649c6f3e49d",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "110",
+        "number_plain": "110",
+        "name": "Shining Noctowl",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "3f5bba1d-3d0c-4188-8abf-1945d315decd",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "111",
+        "number_plain": "111",
+        "name": "Shining Raichu",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "4b1a138c-ff9d-44de-91b4-eee95aadf558",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "112",
+        "number_plain": "112",
+        "name": "Shining Steelix",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "de40da7c-1283-4fe3-ab1b-a84948e88df8",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "113",
+        "number_plain": "113",
+        "name": "Shining Tyranitar",
+        "rarity": "Rare Shining"
+      }
+    ],
+    "hash_sha256": "d322dc37ca6651b743718055e52ba31178d6ea60dd11665e644d2f023345ad9f",
+    "count": 8
+  },
+  "after_parent_snapshot": {
+    "captured_at": "2026-06-09T23:09:28.442Z",
+    "rows": [
+      {
+        "card_print_id": "3adadb08-a9ef-4879-af78-ef8f6f9decf6",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "106",
+        "number_plain": "106",
+        "name": "Shining Celebi",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "144e42f1-b803-42ac-aabe-a3db97c16fa6",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "107",
+        "number_plain": "107",
+        "name": "Shining Charizard",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "01c5a20c-0d8c-4274-a55d-614b38b64fec",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "108",
+        "number_plain": "108",
+        "name": "Shining Kabutops",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "762b7cfc-3b44-4d9b-aa10-2b9539cf86e6",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "109",
+        "number_plain": "109",
+        "name": "Shining Mewtwo",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "afde284e-1cd1-422d-b6fa-a649c6f3e49d",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "110",
+        "number_plain": "110",
+        "name": "Shining Noctowl",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "3f5bba1d-3d0c-4188-8abf-1945d315decd",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "111",
+        "number_plain": "111",
+        "name": "Shining Raichu",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "4b1a138c-ff9d-44de-91b4-eee95aadf558",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "112",
+        "number_plain": "112",
+        "name": "Shining Steelix",
+        "rarity": "Rare Shining"
+      },
+      {
+        "card_print_id": "de40da7c-1283-4fe3-ab1b-a84948e88df8",
+        "set_code": "neo4",
+        "set_id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "number": "113",
+        "number_plain": "113",
+        "name": "Shining Tyranitar",
+        "rarity": "Rare Shining"
+      }
+    ],
+    "hash_sha256": "d322dc37ca6651b743718055e52ba31178d6ea60dd11665e644d2f023345ad9f",
+    "count": 8
+  },
+  "inserted_row_readback": {
+    "captured_at": "2026-06-09T23:09:28.517Z",
+    "rows": [
+      {
+        "card_printing_id": "9bfbba3b-7aa5-4e9d-89d3-6e37359cb4ee",
+        "card_print_id": "3adadb08-a9ef-4879-af78-ef8f6f9decf6",
+        "set_code": "neo4",
+        "card_number": "106",
+        "card_name": "Shining Celebi",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:106:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1"
+      },
+      {
+        "card_printing_id": "cfb1e942-b355-4ddb-ac0b-42b0109919f2",
+        "card_print_id": "144e42f1-b803-42ac-aabe-a3db97c16fa6",
+        "set_code": "neo4",
+        "card_number": "107",
+        "card_name": "Shining Charizard",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:107:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1"
+      },
+      {
+        "card_printing_id": "1816d38e-36a0-4e65-a40c-a84cda2e4220",
+        "card_print_id": "01c5a20c-0d8c-4274-a55d-614b38b64fec",
+        "set_code": "neo4",
+        "card_number": "108",
+        "card_name": "Shining Kabutops",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:108:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1"
+      },
+      {
+        "card_printing_id": "6a123f5e-2371-4f2b-9d75-95abab7db6ac",
+        "card_print_id": "762b7cfc-3b44-4d9b-aa10-2b9539cf86e6",
+        "set_code": "neo4",
+        "card_number": "109",
+        "card_name": "Shining Mewtwo",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:109:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1"
+      },
+      {
+        "card_printing_id": "77a7fd2a-48aa-458e-ad5a-db0f890461ed",
+        "card_print_id": "afde284e-1cd1-422d-b6fa-a649c6f3e49d",
+        "set_code": "neo4",
+        "card_number": "110",
+        "card_name": "Shining Noctowl",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:110:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1"
+      },
+      {
+        "card_printing_id": "0b34f47b-860b-41f3-88f5-d71e9b543b15",
+        "card_print_id": "3f5bba1d-3d0c-4188-8abf-1945d315decd",
+        "set_code": "neo4",
+        "card_number": "111",
+        "card_name": "Shining Raichu",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:111:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1"
+      },
+      {
+        "card_printing_id": "4a360cee-f686-4c13-9e61-6ef3452bc185",
+        "card_print_id": "4b1a138c-ff9d-44de-91b4-eee95aadf558",
+        "set_code": "neo4",
+        "card_number": "112",
+        "card_name": "Shining Steelix",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:112:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1"
+      },
+      {
+        "card_printing_id": "f68d1685-b298-4ab3-b42a-14d17eb20364",
+        "card_print_id": "de40da7c-1283-4fe3-ab1b-a84948e88df8",
+        "set_code": "neo4",
+        "card_number": "113",
+        "card_name": "Shining Tyranitar",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:113:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1"
+      }
+    ],
+    "hash_sha256": "fe649a20cbfdb1aec2a8a472d7cf66d459d7386b746f3bec7664de1f94c1f7bc",
+    "counts": {
+      "inserted_rows_found": 8,
+      "holo": 8,
+      "provisional_rows": 0
+    }
+  },
+  "rollback_proof": {
+    "rollback_selector": "delete only inserted public.card_printings rows by exact id, card_print_id, and finish_key from this package.",
+    "inserted_row_ids": [
+      "9bfbba3b-7aa5-4e9d-89d3-6e37359cb4ee",
+      "cfb1e942-b355-4ddb-ac0b-42b0109919f2",
+      "1816d38e-36a0-4e65-a40c-a84cda2e4220",
+      "6a123f5e-2371-4f2b-9d75-95abab7db6ac",
+      "77a7fd2a-48aa-458e-ad5a-db0f890461ed",
+      "0b34f47b-860b-41f3-88f5-d71e9b543b15",
+      "4a360cee-f686-4c13-9e61-6ef3452bc185",
+      "f68d1685-b298-4ab3-b42a-14d17eb20364"
+    ],
+    "rollback_sql_preview": "delete from public.card_printings where id = '9bfbba3b-7aa5-4e9d-89d3-6e37359cb4ee'::uuid and card_print_id = '3adadb08-a9ef-4879-af78-ef8f6f9decf6'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = 'cfb1e942-b355-4ddb-ac0b-42b0109919f2'::uuid and card_print_id = '144e42f1-b803-42ac-aabe-a3db97c16fa6'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = '1816d38e-36a0-4e65-a40c-a84cda2e4220'::uuid and card_print_id = '01c5a20c-0d8c-4274-a55d-614b38b64fec'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = '6a123f5e-2371-4f2b-9d75-95abab7db6ac'::uuid and card_print_id = '762b7cfc-3b44-4d9b-aa10-2b9539cf86e6'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = '77a7fd2a-48aa-458e-ad5a-db0f890461ed'::uuid and card_print_id = 'afde284e-1cd1-422d-b6fa-a649c6f3e49d'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = '0b34f47b-860b-41f3-88f5-d71e9b543b15'::uuid and card_print_id = '3f5bba1d-3d0c-4188-8abf-1945d315decd'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = '4a360cee-f686-4c13-9e61-6ef3452bc185'::uuid and card_print_id = '4b1a138c-ff9d-44de-91b4-eee95aadf558'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = 'f68d1685-b298-4ab3-b42a-14d17eb20364'::uuid and card_print_id = 'de40da7c-1283-4fe3-ab1b-a84948e88df8'::uuid and finish_key = 'holo';"
+  },
+  "verification_summary": {
+    "before_hash_matches_dry_run_proof": true,
+    "inserted_rows_found": 8,
+    "holo_inserted": 8,
+    "provisional_rows_inserted": 0,
+    "parent_rows_unchanged": true,
+    "blocked_finish_taxonomy_rows_still_excluded": true,
+    "master_index_comparison_status": "pkg06c_supported_finish_subset_verified_after_apply"
+  },
+  "explicit_non_authorizations": [
+    "No global apply was authorized or performed.",
+    "No migrations were authorized or created.",
+    "No deletes were authorized or performed.",
+    "No merges were authorized or performed.",
+    "No unsupported cleanup was authorized or performed.",
+    "No parent writes were authorized or performed.",
+    "The 380 blocked finish-taxonomy rows remain excluded."
+  ],
+  "stop_findings": [],
+  "pass": true
+}

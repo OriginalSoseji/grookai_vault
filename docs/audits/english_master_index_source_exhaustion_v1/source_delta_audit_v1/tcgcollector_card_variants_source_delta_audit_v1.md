@@ -13,11 +13,11 @@ Audit-only source-delta report. No DB writes, migrations, cleanup, quarantine, o
 
 | Metric | Value |
 | --- | --- |
-| current_gap_facts | 1678 |
-| candidate_records_loaded | 1493 |
-| matched_gap_facts | 1 |
-| useful_candidate_matches | 1 |
-| already_in_current_index | 1140 |
+| current_gap_facts | 1658 |
+| candidate_records_loaded | 1533 |
+| matched_gap_facts | 0 |
+| useful_candidate_matches | 0 |
+| already_in_current_index | 1181 |
 | unmatched_candidate_records | 352 |
 | no_global_rebuild_required_for_discovery | true |
 
@@ -25,25 +25,23 @@ Audit-only source-delta report. No DB writes, migrations, cleanup, quarantine, o
 
 | Status | Count |
 | --- | --- |
-| suppressed_claim_review_evidence | 1 |
 
 ## Non-Gap Candidate Counts
 
 | Reason | Count |
 | --- | --- |
-| already_in_current_index_master_verified | 1140 |
+| already_in_current_index_master_verified | 1181 |
 | not_in_remaining_gaps_or_current_index | 352 |
 
 ## Useful Matches
 
 | Status | Gap | Set | Number | Card | Finish | Candidate Source | Authority |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| suppressed_claim_review_evidence | suppressed_structured_claim_reviewed | me01 | 074 | Lunatone | normal | tcgcollector_card_variants | tcgcollector.com |
 
 
 ## Next Step
 
-Review useful candidate matches, then run guarded rebuild only if the source lane is accepted.
+No useful gap-closing evidence found; do not run a global rebuild for this source.
 
 ## Safety Confirmation
 

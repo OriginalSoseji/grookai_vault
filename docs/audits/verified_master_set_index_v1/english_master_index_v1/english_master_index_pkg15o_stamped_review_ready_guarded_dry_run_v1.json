@@ -1,0 +1,478 @@
+{
+  "generated_at": "2026-06-11T21:46:24.216Z",
+  "version": "english_master_index_pkg15o_stamped_review_ready_guarded_dry_run_v1",
+  "package_id": "PKG-15O-STAMPED-REVIEW-READY-PARENT-INSERTS",
+  "package_fingerprint_sha256": "5bf78a89758478c48815200abb9f1f94874816bd2b9e43e3511ca69c82871d07",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15n_stamped_review_ready_parent_insert_readiness_v1.json",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "target_count": 5,
+    "targets": [
+      {
+        "target_parent_id": "a53b99df-ef7d-4403-8285-3210ddb9910a",
+        "target_child_id": "9eff98c3-f2c5-47a1-a82e-9cb25dd1256b",
+        "base_parent_id": "a7898da7-d1ea-4b53-87c7-ac98fbcbc0fb",
+        "set_key": "sm4",
+        "set_name": "Crimson Invasion",
+        "card_number": "95",
+        "card_name": "Gladion",
+        "target_finish_key": "reverse",
+        "target_variant_key": "regional_championships_staff_stamp",
+        "stamp_label": "Regional Championships Staff Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "a377d66086e6bfa3c08d7ca931364fd2368e2eda31f50fbff9bf9d88fe289fcb",
+          "package_fingerprint": "5bf78a89758478c48815200abb9f1f94874816bd2b9e43e3511ca69c82871d07",
+          "independent_finish_sources": [
+            "pokecardvalues_stamped_finish",
+            "nobleknight_league_championship_cards"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_stamped_finish",
+            "nobleknight_league_championship_cards"
+          ],
+          "evidence_context": {
+            "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/gladion-95-111-reverse-holo-staff-regional-championships-crimson-invasion/sm4-95-3-83/",
+            "pkg15k_source_title": "Gladion - 95/111 - Reverse Holo - Staff Regional Championships - Promo",
+            "matching_manual_web_finish_context": [
+              {
+                "source_key": "nobleknight_league_championship_cards",
+                "source_kind": "marketplace_checklist",
+                "source_url": "https://www.nobleknight.com/P/2148463577/Gladion---95-111-Regional-Championships-Staff-P-095-111-Reverse-Holo",
+                "evidence_label": "Gladion - 95/111 (Regional Championships) [Staff] (P) #095/111 (Reverse Holo)",
+                "evidence_type": "finish_presence"
+              }
+            ],
+            "matching_pricecharting_identity_context": []
+          }
+        }
+      },
+      {
+        "target_parent_id": "664719b5-9898-40f7-bc6b-538711056228",
+        "target_child_id": "7efb8041-4c5e-4055-abeb-e6e3bd5e0dec",
+        "base_parent_id": "5cebfdd2-8535-4206-89dd-1c7d1a848515",
+        "set_key": "sm6",
+        "set_name": "Forbidden Light",
+        "card_number": "102",
+        "card_name": "Beast Ring",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "stamp_label": "League Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "a377d66086e6bfa3c08d7ca931364fd2368e2eda31f50fbff9bf9d88fe289fcb",
+          "package_fingerprint": "5bf78a89758478c48815200abb9f1f94874816bd2b9e43e3511ca69c82871d07",
+          "independent_finish_sources": [
+            "pokecardvalues_stamped_finish",
+            "bulbapedia_forbidden_light_set_list",
+            "nobleknight_league_championship_cards"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_stamped_finish",
+            "pricecharting_csv_product",
+            "bulbapedia_forbidden_light_set_list",
+            "nobleknight_league_championship_cards"
+          ],
+          "evidence_context": {
+            "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/beast-ring-102-131-reverse-holo-league-promo-forbidden-light/sm6-102-3-41/",
+            "pkg15k_source_title": "Beast Ring - 102/131 - Reverse Holo - League Promo - Promo",
+            "matching_manual_web_finish_context": [
+              {
+                "source_key": "bulbapedia_forbidden_light_set_list",
+                "source_kind": "human_readable_checklist",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_(TCG)",
+                "evidence_label": "102/131 Beast Ring - Reverse Holo Pokemon League Forbidden Light Season 3 promo (July 2018)",
+                "evidence_type": "finish_presence"
+              },
+              {
+                "source_key": "nobleknight_league_championship_cards",
+                "source_kind": "marketplace_checklist",
+                "source_url": "https://www.nobleknight.com/P/2148463626/Beast-Ring---102-131-Pokemon-League-P-102-131-Reverse-Holo",
+                "evidence_label": "Beast Ring - 102/131 (Pokemon League) (P) #102/131 (Reverse Holo)",
+                "evidence_type": "finish_presence"
+              }
+            ],
+            "matching_pricecharting_identity_context": [
+              {
+                "source_key": "pricecharting_csv_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-forbidden-light/beast-ring-pokemon-league-102",
+                "evidence_label": "Beast Ring [Pokemon League] #102",
+                "validation_reason": "stamp_variant_mismatch"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "target_parent_id": "40ba1113-bad6-435e-93d3-37e7b0829ef1",
+        "target_child_id": "145c1c51-534c-4211-9aed-0ecf42222614",
+        "base_parent_id": "6f66ce37-7cf5-4489-98cb-d303aae15304",
+        "set_key": "sm6",
+        "set_name": "Forbidden Light",
+        "card_number": "105",
+        "card_name": "Diantha",
+        "target_finish_key": "reverse",
+        "target_variant_key": "regional_championships_staff_stamp",
+        "stamp_label": "Regional Championships Staff Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "a377d66086e6bfa3c08d7ca931364fd2368e2eda31f50fbff9bf9d88fe289fcb",
+          "package_fingerprint": "5bf78a89758478c48815200abb9f1f94874816bd2b9e43e3511ca69c82871d07",
+          "independent_finish_sources": [
+            "pokecardvalues_stamped_finish",
+            "bulbapedia_forbidden_light_set_list"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_stamped_finish",
+            "bulbapedia_forbidden_light_set_list"
+          ],
+          "evidence_context": {
+            "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/diantha-105-131-reverse-holo-staff-regional-championships-forbidden-light/sm6-105-3-83/",
+            "pkg15k_source_title": "Diantha - 105/131 - Reverse Holo - Staff Regional Championships - Promo",
+            "matching_manual_web_finish_context": [
+              {
+                "source_key": "bulbapedia_forbidden_light_set_list",
+                "source_kind": "human_readable_checklist",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_(TCG)",
+                "evidence_label": "105/131 Diantha - Reverse Holo Forbidden Light Season Regional Championships Staff promo",
+                "evidence_type": "finish_presence"
+              }
+            ],
+            "matching_pricecharting_identity_context": []
+          }
+        }
+      },
+      {
+        "target_parent_id": "ae2f2edf-c696-4acd-bf6b-ea056b7212b2",
+        "target_child_id": "3828a17f-cc09-4401-98d9-4dc180a7f733",
+        "base_parent_id": "6f66ce37-7cf5-4489-98cb-d303aae15304",
+        "set_key": "sm6",
+        "set_name": "Forbidden Light",
+        "card_number": "105",
+        "card_name": "Diantha",
+        "target_finish_key": "reverse",
+        "target_variant_key": "regional_championships_stamp",
+        "stamp_label": "Regional Championships Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "a377d66086e6bfa3c08d7ca931364fd2368e2eda31f50fbff9bf9d88fe289fcb",
+          "package_fingerprint": "5bf78a89758478c48815200abb9f1f94874816bd2b9e43e3511ca69c82871d07",
+          "independent_finish_sources": [
+            "pokecardvalues_stamped_finish",
+            "bulbapedia_forbidden_light_set_list",
+            "nobleknight_league_championship_cards"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_stamped_finish",
+            "pricecharting_csv_product",
+            "bulbapedia_forbidden_light_set_list",
+            "nobleknight_league_championship_cards"
+          ],
+          "evidence_context": {
+            "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/diantha-105-131-reverse-holo-regional-championships-forbidden-light/sm6-105-3-60/",
+            "pkg15k_source_title": "Diantha - 105/131 - Reverse Holo - Regional Championships - Promo",
+            "matching_manual_web_finish_context": [
+              {
+                "source_key": "bulbapedia_forbidden_light_set_list",
+                "source_kind": "human_readable_checklist",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_(TCG)",
+                "evidence_label": "105/131 Diantha - Reverse Holo Forbidden Light Season Regional Championships promo",
+                "evidence_type": "finish_presence"
+              },
+              {
+                "source_key": "nobleknight_league_championship_cards",
+                "source_kind": "marketplace_checklist",
+                "source_url": "https://www.nobleknight.com/P/2148463390/Diantha---105-131-Regional-Championships-P-105-131-Reverse-Holo",
+                "evidence_label": "Diantha - 105/131 (Regional Championships) (P) #105/131 (Reverse Holo)",
+                "evidence_type": "finish_presence"
+              }
+            ],
+            "matching_pricecharting_identity_context": [
+              {
+                "source_key": "pricecharting_csv_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-forbidden-light/diantha-regional-championships-105",
+                "evidence_label": "Diantha [Regional Championships] #105",
+                "validation_reason": "missing_explicit_active_finish"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "target_parent_id": "ac3dc158-0251-4836-a2d8-fdb17abaafb9",
+        "target_child_id": "ca070de2-f19a-442c-b2bf-f82027acc77b",
+        "base_parent_id": "94a1987b-3ff0-4aea-a58c-aaa0903d1c61",
+        "set_key": "xy1",
+        "set_name": "XY",
+        "card_number": "83",
+        "card_name": "Honedge",
+        "target_finish_key": "reverse",
+        "target_variant_key": "regional_championships_stamp",
+        "stamp_label": "Regional Championships Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "a377d66086e6bfa3c08d7ca931364fd2368e2eda31f50fbff9bf9d88fe289fcb",
+          "package_fingerprint": "5bf78a89758478c48815200abb9f1f94874816bd2b9e43e3511ca69c82871d07",
+          "independent_finish_sources": [
+            "pokecardvalues_stamped_finish",
+            "nobleknight_league_championship_cards"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_stamped_finish",
+            "pricecharting_csv_product",
+            "nobleknight_league_championship_cards"
+          ],
+          "evidence_context": {
+            "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/honedge-83-146-reverse-holo-regional-championships-xy/xy1-83-3-60/",
+            "pkg15k_source_title": "Honedge - 83/146 - Reverse Holo - Regional Championships - Promo",
+            "matching_manual_web_finish_context": [
+              {
+                "source_key": "nobleknight_league_championship_cards",
+                "source_kind": "marketplace_checklist",
+                "source_url": "https://www.nobleknight.com/P/2148463359/Honedge---83-146-Regional-Championships-P-083-146-Reverse-Holo",
+                "evidence_label": "Honedge - 83/146 (Regional Championships) (P) #083/146 (Reverse Holo)",
+                "evidence_type": "finish_presence"
+              }
+            ],
+            "matching_pricecharting_identity_context": [
+              {
+                "source_key": "pricecharting_csv_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-xy/honedge-regional-championships-83",
+                "evidence_label": "Honedge [Regional Championships] #83",
+                "validation_reason": "missing_explicit_active_finish"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "pkg15o_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 5,
+      "target_parent_count": 5,
+      "target_child_count": 5,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 5,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "PKG-15O-STAMPED-REVIEW-READY-PARENT-INSERTS",
+      "package_fingerprint": "5bf78a89758478c48815200abb9f1f94874816bd2b9e43e3511ca69c82871d07",
+      "target_rows": 5,
+      "inserted_parent_rows": 5,
+      "inserted_identity_rows": 5,
+      "inserted_child_rows": 5
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 5,
+      "identity_inserts": 5,
+      "child_inserts": 5,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-11T21:46:23.022Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "counts": {}
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-11T21:46:23.974Z",
+      "rows": [
+        {
+          "row_type": "target_child",
+          "row_id": "9eff98c3-f2c5-47a1-a82e-9cb25dd1256b",
+          "set_code": "sm4",
+          "number": "95",
+          "number_plain": "95",
+          "name": "Gladion",
+          "variant_key": "regional_championships_staff_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "7efb8041-4c5e-4055-abeb-e6e3bd5e0dec",
+          "set_code": "sm6",
+          "number": "102a",
+          "number_plain": "102",
+          "name": "Beast Ring",
+          "variant_key": "league_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "145c1c51-534c-4211-9aed-0ecf42222614",
+          "set_code": "sm6",
+          "number": "105",
+          "number_plain": "105",
+          "name": "Diantha",
+          "variant_key": "regional_championships_staff_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "3828a17f-cc09-4401-98d9-4dc180a7f733",
+          "set_code": "sm6",
+          "number": "105",
+          "number_plain": "105",
+          "name": "Diantha",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "ca070de2-f19a-442c-b2bf-f82027acc77b",
+          "set_code": "xy1",
+          "number": "83",
+          "number_plain": "83",
+          "name": "Honedge",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "89865084-ac38-4fd3-b3ea-ae5ba585c363",
+          "set_code": "sm4",
+          "number": "95",
+          "number_plain": "95",
+          "name": "Gladion",
+          "variant_key": "regional_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": "d95f53f38dc7714559c344b50e52a336ee5b97edc35697c1e4329626891e9e3d"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "105524c7-cbe9-468b-90a3-04acea47ec1d",
+          "set_code": "sm6",
+          "number": "102a",
+          "number_plain": "102",
+          "name": "Beast Ring",
+          "variant_key": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": "0b1ab0854577d1bc3307644e6dacd934b241b4e2c9da72e09c9ecdcfb824ab95"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "48ede4c2-90b4-4b1b-b680-d15de4efc5c1",
+          "set_code": "sm6",
+          "number": "105",
+          "number_plain": "105",
+          "name": "Diantha",
+          "variant_key": "regional_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": "08a681f3d67cecf53b40bc372b0fbffbcee1a6058c74434f620070e80c783f84"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "3aaadf0b-66d7-456f-90b1-92271a1eec74",
+          "set_code": "sm6",
+          "number": "105",
+          "number_plain": "105",
+          "name": "Diantha",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": "2b04ea349ee3df618780616b0b5457c869d2a636bb3e379cb97537478242fa2e"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "359b4c58-db62-469d-86b5-eb52148be24e",
+          "set_code": "xy1",
+          "number": "83",
+          "number_plain": "83",
+          "name": "Honedge",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": "e48658c2260450c6a93c3494eb82e07db619ebab92aa996d18f1d8cdc339230b"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "a53b99df-ef7d-4403-8285-3210ddb9910a",
+          "set_code": "sm4",
+          "number": "95",
+          "number_plain": "95",
+          "name": "Gladion",
+          "variant_key": "regional_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "664719b5-9898-40f7-bc6b-538711056228",
+          "set_code": "sm6",
+          "number": "102a",
+          "number_plain": "102",
+          "name": "Beast Ring",
+          "variant_key": "league_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "40ba1113-bad6-435e-93d3-37e7b0829ef1",
+          "set_code": "sm6",
+          "number": "105",
+          "number_plain": "105",
+          "name": "Diantha",
+          "variant_key": "regional_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ae2f2edf-c696-4acd-bf6b-ea056b7212b2",
+          "set_code": "sm6",
+          "number": "105",
+          "number_plain": "105",
+          "name": "Diantha",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ac3dc158-0251-4836-a2d8-fdb17abaafb9",
+          "set_code": "xy1",
+          "number": "83",
+          "number_plain": "83",
+          "name": "Honedge",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "5acac1e5593753aee1f5c91f5bfd0cc835eb24e3ad1dc62367824f63acbf4966",
+      "counts": {
+        "target_child": 5,
+        "target_identity": 5,
+        "target_parent": 5
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-11T21:46:24.134Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "counts": {}
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "628547af7a078c27c1b83a0cf6c80fbd5630e3e518743404edc99c5fbe27a0ad",
+    "stop_findings": []
+  }
+}

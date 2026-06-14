@@ -1,0 +1,604 @@
+{
+  "generated_at": "2026-06-14T02:06:41.693Z",
+  "version": "english_master_index_pkg39a_suffix_reverse_external_mapping_child_delete_guarded_dry_run_v1",
+  "package_id": "PKG-39A-SUFFIX-REVERSE-EXTERNAL-MAPPING-CHILD-DELETE",
+  "package_fingerprint": "a878917281b733c360a8313dcb487d50fdd2b1ec378355cd6172ea00d8cd3dc4",
+  "dry_run_only": true,
+  "db_writes_performed": false,
+  "durable_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg28a_dependency_blocked_mapping_readiness_v1.json",
+  "source_generated_at": "2026-06-14T02:03:49.094Z",
+  "source_fingerprint": "4745e1c4330f00ac049dd66eabef8ff4c646f5e2ded0e9e6d2afd2e1513e6f27",
+  "scope": {
+    "target_child_deletes": 7,
+    "target_external_mapping_deletes": 7,
+    "blocked_source_rows": 0,
+    "by_set": {
+      "xy10": 2,
+      "xy4": 2,
+      "g1": 1,
+      "xy3": 1,
+      "xy6": 1
+    },
+    "by_finish": {
+      "reverse": 7
+    },
+    "by_source": {
+      "tcgdex": 7
+    }
+  },
+  "execution": {
+    "dry_run_status": "pkg39a_guarded_dry_run_passed_rolled_back_no_durable_change",
+    "before_snapshot": {
+      "captured_at": "2026-06-14T02:06:40.559Z",
+      "children": [
+        {
+          "card_printing_id": "cbbf1c7a-9cc3-47e3-820b-d2caa8919da6",
+          "card_print_id": "ff741f35-d525-4725-bb8e-9878d2a12856",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-02-24T16:53:25.967Z",
+          "set_code": "g1",
+          "number": "28",
+          "number_plain": "28",
+          "name": "Jolteon-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "d8c0290d-d487-4564-943f-401847c592ca",
+          "card_print_id": "b5b9f054-0c84-4e36-9c71-8427aed4e76f",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": "tcgdex",
+          "provenance_ref": "xy10-43",
+          "created_by": "printing_ingestion_v2",
+          "created_at": "2026-02-24T05:13:41.247Z",
+          "set_code": "xy10",
+          "number": "43a",
+          "number_plain": "43",
+          "name": "Regirock-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "84c24de4-4425-423d-8ffe-9a5ea141f9eb",
+          "card_print_id": "1c26e78c-bcb3-425b-ad7c-0ae4bfd85a18",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": "tcgdex",
+          "provenance_ref": "xy10-54",
+          "created_by": "printing_ingestion_v2",
+          "created_at": "2026-02-24T05:13:41.247Z",
+          "set_code": "xy10",
+          "number": "54a",
+          "number_plain": "54",
+          "name": "Zygarde-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "f22e8f78-5d26-482f-8b79-4b6f29c31068",
+          "card_print_id": "2bc6a250-d786-4719-8a7f-9063489e5d73",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": "tcgdex",
+          "provenance_ref": "xy3-55",
+          "created_by": "printing_ingestion_v2",
+          "created_at": "2026-02-24T04:47:22.513Z",
+          "set_code": "xy3",
+          "number": "55",
+          "number_plain": "55",
+          "name": "M Lucario-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "e11e377b-9390-4de0-982b-73e956329d75",
+          "card_print_id": "298a9523-9d6a-40fe-b31e-8f59045bb00d",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-02-24T04:53:26.057Z",
+          "set_code": "xy4",
+          "number": "24",
+          "number_plain": "24",
+          "name": "M Manectric-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "ea1688c7-66dc-4d1b-892b-4d37b3bd7da1",
+          "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-02-24T04:53:26.057Z",
+          "set_code": "xy4",
+          "number": "65a",
+          "number_plain": "65",
+          "name": "Aegislash-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "8f9c959c-16c0-44f8-86de-0513da9484c2",
+          "card_print_id": "8ad97482-9c74-4ae2-b08f-ea15fa92077e",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": "tcgdex",
+          "provenance_ref": "xy6-77",
+          "created_by": "printing_ingestion_v2",
+          "created_at": "2026-02-24T04:58:06.684Z",
+          "set_code": "xy6",
+          "number": "77",
+          "number_plain": "77",
+          "name": "Shaymin-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        }
+      ],
+      "mappings": [
+        {
+          "id": "8bd1a33b-9f5c-4282-9b1a-5f90dd0d474b",
+          "card_printing_id": "cbbf1c7a-9cc3-47e3-820b-d2caa8919da6",
+          "source": "tcgdex",
+          "external_id": "g1-28a",
+          "active": true,
+          "meta": {
+            "set": "g1",
+            "join": "cp.number=28 -> reverse",
+            "lane": "suffix",
+            "finish": "reverse",
+            "base_number": "28"
+          }
+        },
+        {
+          "id": "eed65c97-d0b0-4cb4-8605-01f1b913528d",
+          "card_printing_id": "d8c0290d-d487-4564-943f-401847c592ca",
+          "source": "tcgdex",
+          "external_id": "xy10-43a",
+          "active": true,
+          "meta": {
+            "runner": "MANUAL_SUFFIX_LANE_V1",
+            "local_id": "43a",
+            "set_code": "xy10",
+            "finish_key": "reverse"
+          }
+        },
+        {
+          "id": "284295b1-0f7c-448e-8505-1eba71b1e19c",
+          "card_printing_id": "84c24de4-4425-423d-8ffe-9a5ea141f9eb",
+          "source": "tcgdex",
+          "external_id": "xy10-54a",
+          "active": true,
+          "meta": {
+            "runner": "MANUAL_SUFFIX_LANE_V1",
+            "local_id": "54a",
+            "set_code": "xy10",
+            "finish_key": "reverse"
+          }
+        },
+        {
+          "id": "d3c07836-71d3-4407-acde-f5777ed41c4e",
+          "card_printing_id": "f22e8f78-5d26-482f-8b79-4b6f29c31068",
+          "source": "tcgdex",
+          "external_id": "xy3-55a",
+          "active": true,
+          "meta": {
+            "runner": "MANUAL_SUFFIX_LANE_V1",
+            "local_id": "55a",
+            "set_code": "xy3",
+            "finish_key": "reverse"
+          }
+        },
+        {
+          "id": "cf8b8c97-8f3e-4678-9f20-1273227aafe8",
+          "card_printing_id": "e11e377b-9390-4de0-982b-73e956329d75",
+          "source": "tcgdex",
+          "external_id": "xy4-24a",
+          "active": true,
+          "meta": {
+            "runner": "MANUAL_SUFFIX_LANE_V1",
+            "local_id": "24a",
+            "set_code": "xy4",
+            "finish_key": "reverse"
+          }
+        },
+        {
+          "id": "c735f3fd-a993-4804-bfb9-15551f2fe677",
+          "card_printing_id": "ea1688c7-66dc-4d1b-892b-4d37b3bd7da1",
+          "source": "tcgdex",
+          "external_id": "xy4-65a",
+          "active": true,
+          "meta": {
+            "runner": "MANUAL_SUFFIX_LANE_V1",
+            "local_id": "65a",
+            "set_code": "xy4",
+            "finish_key": "reverse"
+          }
+        },
+        {
+          "id": "3ea90bb5-f247-4357-87d8-5b2f6bd51310",
+          "card_printing_id": "8f9c959c-16c0-44f8-86de-0513da9484c2",
+          "source": "tcgdex",
+          "external_id": "xy6-77a",
+          "active": true,
+          "meta": {
+            "runner": "MANUAL_SUFFIX_LANE_V1",
+            "local_id": "77a",
+            "set_code": "xy6",
+            "finish_key": "reverse"
+          }
+        }
+      ],
+      "hash_sha256": "b2790e5b7ffe1b18c13fc53e1b7b56b153bc3f051f1090d25a1ec392771a7405",
+      "impact_counts": {
+        "child_rows": 7,
+        "external_mapping_rows": 7,
+        "vault_item_instance_refs": 0,
+        "non_target_external_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "justtcg_mapping_refs": 0
+      }
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-14T02:06:41.615Z",
+      "children": [
+        {
+          "card_printing_id": "cbbf1c7a-9cc3-47e3-820b-d2caa8919da6",
+          "card_print_id": "ff741f35-d525-4725-bb8e-9878d2a12856",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-02-24T16:53:25.967Z",
+          "set_code": "g1",
+          "number": "28",
+          "number_plain": "28",
+          "name": "Jolteon-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "d8c0290d-d487-4564-943f-401847c592ca",
+          "card_print_id": "b5b9f054-0c84-4e36-9c71-8427aed4e76f",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": "tcgdex",
+          "provenance_ref": "xy10-43",
+          "created_by": "printing_ingestion_v2",
+          "created_at": "2026-02-24T05:13:41.247Z",
+          "set_code": "xy10",
+          "number": "43a",
+          "number_plain": "43",
+          "name": "Regirock-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "84c24de4-4425-423d-8ffe-9a5ea141f9eb",
+          "card_print_id": "1c26e78c-bcb3-425b-ad7c-0ae4bfd85a18",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": "tcgdex",
+          "provenance_ref": "xy10-54",
+          "created_by": "printing_ingestion_v2",
+          "created_at": "2026-02-24T05:13:41.247Z",
+          "set_code": "xy10",
+          "number": "54a",
+          "number_plain": "54",
+          "name": "Zygarde-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "f22e8f78-5d26-482f-8b79-4b6f29c31068",
+          "card_print_id": "2bc6a250-d786-4719-8a7f-9063489e5d73",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": "tcgdex",
+          "provenance_ref": "xy3-55",
+          "created_by": "printing_ingestion_v2",
+          "created_at": "2026-02-24T04:47:22.513Z",
+          "set_code": "xy3",
+          "number": "55",
+          "number_plain": "55",
+          "name": "M Lucario-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "e11e377b-9390-4de0-982b-73e956329d75",
+          "card_print_id": "298a9523-9d6a-40fe-b31e-8f59045bb00d",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-02-24T04:53:26.057Z",
+          "set_code": "xy4",
+          "number": "24",
+          "number_plain": "24",
+          "name": "M Manectric-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "ea1688c7-66dc-4d1b-892b-4d37b3bd7da1",
+          "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-02-24T04:53:26.057Z",
+          "set_code": "xy4",
+          "number": "65a",
+          "number_plain": "65",
+          "name": "Aegislash-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "8f9c959c-16c0-44f8-86de-0513da9484c2",
+          "card_print_id": "8ad97482-9c74-4ae2-b08f-ea15fa92077e",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": "tcgdex",
+          "provenance_ref": "xy6-77",
+          "created_by": "printing_ingestion_v2",
+          "created_at": "2026-02-24T04:58:06.684Z",
+          "set_code": "xy6",
+          "number": "77",
+          "number_plain": "77",
+          "name": "Shaymin-EX",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        }
+      ],
+      "mappings": [
+        {
+          "id": "8bd1a33b-9f5c-4282-9b1a-5f90dd0d474b",
+          "card_printing_id": "cbbf1c7a-9cc3-47e3-820b-d2caa8919da6",
+          "source": "tcgdex",
+          "external_id": "g1-28a",
+          "active": true,
+          "meta": {
+            "set": "g1",
+            "join": "cp.number=28 -> reverse",
+            "lane": "suffix",
+            "finish": "reverse",
+            "base_number": "28"
+          }
+        },
+        {
+          "id": "eed65c97-d0b0-4cb4-8605-01f1b913528d",
+          "card_printing_id": "d8c0290d-d487-4564-943f-401847c592ca",
+          "source": "tcgdex",
+          "external_id": "xy10-43a",
+          "active": true,
+          "meta": {
+            "runner": "MANUAL_SUFFIX_LANE_V1",
+            "local_id": "43a",
+            "set_code": "xy10",
+            "finish_key": "reverse"
+          }
+        },
+        {
+          "id": "284295b1-0f7c-448e-8505-1eba71b1e19c",
+          "card_printing_id": "84c24de4-4425-423d-8ffe-9a5ea141f9eb",
+          "source": "tcgdex",
+          "external_id": "xy10-54a",
+          "active": true,
+          "meta": {
+            "runner": "MANUAL_SUFFIX_LANE_V1",
+            "local_id": "54a",
+            "set_code": "xy10",
+            "finish_key": "reverse"
+          }
+        },
+        {
+          "id": "d3c07836-71d3-4407-acde-f5777ed41c4e",
+          "card_printing_id": "f22e8f78-5d26-482f-8b79-4b6f29c31068",
+          "source": "tcgdex",
+          "external_id": "xy3-55a",
+          "active": true,
+          "meta": {
+            "runner": "MANUAL_SUFFIX_LANE_V1",
+            "local_id": "55a",
+            "set_code": "xy3",
+            "finish_key": "reverse"
+          }
+        },
+        {
+          "id": "cf8b8c97-8f3e-4678-9f20-1273227aafe8",
+          "card_printing_id": "e11e377b-9390-4de0-982b-73e956329d75",
+          "source": "tcgdex",
+          "external_id": "xy4-24a",
+          "active": true,
+          "meta": {
+            "runner": "MANUAL_SUFFIX_LANE_V1",
+            "local_id": "24a",
+            "set_code": "xy4",
+            "finish_key": "reverse"
+          }
+        },
+        {
+          "id": "c735f3fd-a993-4804-bfb9-15551f2fe677",
+          "card_printing_id": "ea1688c7-66dc-4d1b-892b-4d37b3bd7da1",
+          "source": "tcgdex",
+          "external_id": "xy4-65a",
+          "active": true,
+          "meta": {
+            "runner": "MANUAL_SUFFIX_LANE_V1",
+            "local_id": "65a",
+            "set_code": "xy4",
+            "finish_key": "reverse"
+          }
+        },
+        {
+          "id": "3ea90bb5-f247-4357-87d8-5b2f6bd51310",
+          "card_printing_id": "8f9c959c-16c0-44f8-86de-0513da9484c2",
+          "source": "tcgdex",
+          "external_id": "xy6-77a",
+          "active": true,
+          "meta": {
+            "runner": "MANUAL_SUFFIX_LANE_V1",
+            "local_id": "77a",
+            "set_code": "xy6",
+            "finish_key": "reverse"
+          }
+        }
+      ],
+      "hash_sha256": "b2790e5b7ffe1b18c13fc53e1b7b56b153bc3f051f1090d25a1ec392771a7405",
+      "impact_counts": {
+        "child_rows": 7,
+        "external_mapping_rows": 7,
+        "vault_item_instance_refs": 0,
+        "non_target_external_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "justtcg_mapping_refs": 0
+      }
+    },
+    "rollback_proof_hash_match": true,
+    "stop_findings": []
+  },
+  "targets": [
+    {
+      "card_printing_id": "cbbf1c7a-9cc3-47e3-820b-d2caa8919da6",
+      "card_print_id": "ff741f35-d525-4725-bb8e-9878d2a12856",
+      "external_mapping_id": "8bd1a33b-9f5c-4282-9b1a-5f90dd0d474b",
+      "source": "tcgdex",
+      "external_id": "g1-28a",
+      "set_code": "g1",
+      "canonical_set_key": "g1",
+      "number": "28",
+      "number_plain": "28",
+      "card_name": "Jolteon-EX",
+      "finish_key": "reverse",
+      "known_index_finishes": [
+        "holo"
+      ],
+      "classification": "blocked_external_number_not_master_verified"
+    },
+    {
+      "card_printing_id": "d8c0290d-d487-4564-943f-401847c592ca",
+      "card_print_id": "b5b9f054-0c84-4e36-9c71-8427aed4e76f",
+      "external_mapping_id": "eed65c97-d0b0-4cb4-8605-01f1b913528d",
+      "source": "tcgdex",
+      "external_id": "xy10-43a",
+      "set_code": "xy10",
+      "canonical_set_key": "xy10",
+      "number": "43a",
+      "number_plain": "43",
+      "card_name": "Regirock-EX",
+      "finish_key": "reverse",
+      "known_index_finishes": [
+        "holo",
+        "normal"
+      ],
+      "classification": "blocked_external_number_not_master_verified"
+    },
+    {
+      "card_printing_id": "84c24de4-4425-423d-8ffe-9a5ea141f9eb",
+      "card_print_id": "1c26e78c-bcb3-425b-ad7c-0ae4bfd85a18",
+      "external_mapping_id": "284295b1-0f7c-448e-8505-1eba71b1e19c",
+      "source": "tcgdex",
+      "external_id": "xy10-54a",
+      "set_code": "xy10",
+      "canonical_set_key": "xy10",
+      "number": "54a",
+      "number_plain": "54",
+      "card_name": "Zygarde-EX",
+      "finish_key": "reverse",
+      "known_index_finishes": [
+        "holo",
+        "normal"
+      ],
+      "classification": "blocked_external_number_not_master_verified"
+    },
+    {
+      "card_printing_id": "f22e8f78-5d26-482f-8b79-4b6f29c31068",
+      "card_print_id": "2bc6a250-d786-4719-8a7f-9063489e5d73",
+      "external_mapping_id": "d3c07836-71d3-4407-acde-f5777ed41c4e",
+      "source": "tcgdex",
+      "external_id": "xy3-55a",
+      "set_code": "xy3",
+      "canonical_set_key": "xy3",
+      "number": "55",
+      "number_plain": "55",
+      "card_name": "M Lucario-EX",
+      "finish_key": "reverse",
+      "known_index_finishes": [
+        "holo"
+      ],
+      "classification": "blocked_external_number_not_master_verified"
+    },
+    {
+      "card_printing_id": "e11e377b-9390-4de0-982b-73e956329d75",
+      "card_print_id": "298a9523-9d6a-40fe-b31e-8f59045bb00d",
+      "external_mapping_id": "cf8b8c97-8f3e-4678-9f20-1273227aafe8",
+      "source": "tcgdex",
+      "external_id": "xy4-24a",
+      "set_code": "xy4",
+      "canonical_set_key": "xy4",
+      "number": "24",
+      "number_plain": "24",
+      "card_name": "M Manectric-EX",
+      "finish_key": "reverse",
+      "known_index_finishes": [
+        "holo"
+      ],
+      "classification": "blocked_external_number_not_master_verified"
+    },
+    {
+      "card_printing_id": "ea1688c7-66dc-4d1b-892b-4d37b3bd7da1",
+      "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+      "external_mapping_id": "c735f3fd-a993-4804-bfb9-15551f2fe677",
+      "source": "tcgdex",
+      "external_id": "xy4-65a",
+      "set_code": "xy4",
+      "canonical_set_key": "xy4",
+      "number": "65a",
+      "number_plain": "65",
+      "card_name": "Aegislash-EX",
+      "finish_key": "reverse",
+      "known_index_finishes": [
+        "holo",
+        "normal"
+      ],
+      "classification": "blocked_external_number_not_master_verified"
+    },
+    {
+      "card_printing_id": "8f9c959c-16c0-44f8-86de-0513da9484c2",
+      "card_print_id": "8ad97482-9c74-4ae2-b08f-ea15fa92077e",
+      "external_mapping_id": "3ea90bb5-f247-4357-87d8-5b2f6bd51310",
+      "source": "tcgdex",
+      "external_id": "xy6-77a",
+      "set_code": "xy6",
+      "canonical_set_key": "xy6",
+      "number": "77",
+      "number_plain": "77",
+      "card_name": "Shaymin-EX",
+      "finish_key": "reverse",
+      "known_index_finishes": [
+        "holo"
+      ],
+      "classification": "blocked_external_number_not_master_verified"
+    }
+  ],
+  "blocked": [],
+  "recommended_real_apply_approval_text": "Approve real PKG-39A-SUFFIX-REVERSE-EXTERNAL-MAPPING-CHILD-DELETE apply only. Fingerprint: a878917281b733c360a8313dcb487d50fdd2b1ec378355cd6172ea00d8cd3dc4. Scope: 7 unsupported suffix reverse child deletes and 7 stale TCGdex external mapping deletes; sets xy10=2, xy4=2, g1=1, xy3=1, xy6=1; finish reverse=7. Dry-run proof: b2790e5b7ffe1b18c13fc53e1b7b56b153bc3f051f1090d25a1ec392771a7405 == b2790e5b7ffe1b18c13fc53e1b7b56b153bc3f051f1090d25a1ec392771a7405. No global apply. No migrations. No parent writes. No merges. No quarantine. Supported holo/normal rows preserved."
+}

@@ -188,8 +188,15 @@ async function main() {
     .filter((row) => TARGETS.has(normalizeNumber(row.card_number)))
     .sort((a, b) => normalizeNumber(a.card_number).localeCompare(normalizeNumber(b.card_number), undefined, { numeric: true }));
 
-  const missing = [...TARGETS.keys()].filter((number) => !targetFacts.some((fact) => normalizeNumber(fact.card_number) === number));
-  if (missing.length > 0) throw new Error(`Target facts missing from remaining queue: ${missing.join(', ')}`);
+  const skippedAlreadyClosed = [...TARGETS.keys()]
+    .filter((number) => !targetFacts.some((fact) => normalizeNumber(fact.card_number) === number))
+    .map((number) => ({
+      card_number: number,
+      status: 'skipped_not_in_current_queue',
+      reason: 'The static PokeScope/PriceCharting target is no longer present in the current remaining queue; no evidence fixture is generated.',
+      source_url: TARGETS.get(number)?.source_url ?? null,
+      source_key: TARGETS.get(number)?.source_key ?? null,
+    }));
 
   const results = [];
   for (const fact of targetFacts) {
@@ -265,6 +272,7 @@ async function main() {
       : 'Default Node TLS verification succeeded.',
     summary: {
       target_facts: targetFacts.length,
+      skipped_not_in_current_queue: skippedAlreadyClosed.length,
       validated: validated.length,
       blocked: blocked.length,
       by_source_key: Object.fromEntries([...new Set(validated.map((row) => row.source_key))].sort().map((key) => [
@@ -273,6 +281,7 @@ async function main() {
       ])),
     },
     results,
+    skipped_rows: skippedAlreadyClosed,
   };
 
   if (!options.dryRun) {
@@ -291,6 +300,7 @@ async function main() {
         ['Metric', 'Value'],
         [
           ['target_facts', report.summary.target_facts],
+          ['skipped_not_in_current_queue', report.summary.skipped_not_in_current_queue],
           ['validated', report.summary.validated],
           ['blocked', report.summary.blocked],
           ['fixture_file', report.fixture_file],

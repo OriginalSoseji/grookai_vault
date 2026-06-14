@@ -244,7 +244,7 @@ async function main() {
   }
   const records = results.filter((row) => row.status === 'validated').map((row) => fixtureRecord(row, generatedAt));
   const fixtureFiles = [];
-  if (!options.dryRun) {
+  if (!options.dryRun && records.length > 0) {
     await fs.rm(FIXTURE_DIR, { recursive: true, force: true });
     await fs.mkdir(FIXTURE_DIR, { recursive: true });
     for (const [setKey, setRecords] of groupBySet(records)) {
@@ -286,6 +286,7 @@ async function main() {
       target_facts: facts.length,
       records_generated: records.length,
       fixture_files_written: fixtureFiles.length,
+      existing_fixtures_preserved: !options.dryRun && records.length === 0,
       by_status: countBy(results, (row) => row.status),
       validated_by_set: countBy(results.filter((row) => row.status === 'validated'), (row) => `${row.fact.set_key}|${row.fact.set_name}`),
     },

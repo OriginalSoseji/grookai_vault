@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-06-10T01:00:36.425Z",
+  "version": "english_master_index_pkg06h_active_finish_child_printing_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-06H-ACTIVE-FINISH-CHILD-PRINTING-INSERTS",
+    "package_fingerprint_sha256": "489d80ab40043f16badef31a9553b3cba2031aabaefd90b7ebe328a946173c36",
+    "source_readiness_fingerprint_sha256": "1cdba6ca2ad8cca6c5edd527ffee2e879aa9d6276cf52ac900c7681a3472318e",
+    "sql_hash_sha256": "d9ba66057a977458708e371ba3de1aa8a8b973864f7bf6142f8b08b4176c47c3",
+    "child_card_printing_inserts": 110,
+    "target_parent_rows": 105,
+    "set_counts": {
+      "ex1": 11,
+      "pop4": 10,
+      "pop6": 10,
+      "sm1": 13,
+      "sv01": 10,
+      "sv03.5": 12,
+      "sv05": 10,
+      "swsh10": 10,
+      "swsh6": 14,
+      "xy1": 10
+    },
+    "finish_counts": {
+      "cosmos": 51,
+      "holo": 14,
+      "normal": 34,
+      "reverse": 11
+    },
+    "parent_writes_allowed": false,
+    "child_insert_only": true,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_execution_status": "pkg06h_active_finish_child_printing_completed_rolled_back_no_durable_change",
+    "sql_artifact_ref": "docs/sql/english_master_index_pkg06h_active_finish_child_printing_guarded_dry_run_transaction_v1.sql",
+    "sql_hash_sha256": "d9ba66057a977458708e371ba3de1aa8a8b973864f7bf6142f8b08b4176c47c3",
+    "before_hash_sha256": "d85b454e481cb36711be7a2830b593d0349331534b04364f170392901952f8df",
+    "after_hash_sha256": "d85b454e481cb36711be7a2830b593d0349331534b04364f170392901952f8df",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-06H-ACTIVE-FINISH-CHILD-PRINTING-INSERTS",
+        "source_readiness_fingerprint": "1cdba6ca2ad8cca6c5edd527ffee2e879aa9d6276cf52ac900c7681a3472318e",
+        "package_fingerprint": "489d80ab40043f16badef31a9553b3cba2031aabaefd90b7ebe328a946173c36",
+        "planned_sets": 10,
+        "target_parent_rows": 105,
+        "planned_child_rows": 110
+      }
+    ]
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-06H-ACTIVE-FINISH-CHILD-PRINTING-INSERTS apply only. Fingerprint: 489d80ab40043f16badef31a9553b3cba2031aabaefd90b7ebe328a946173c36. SQL hash: d9ba66057a977458708e371ba3de1aa8a8b973864f7bf6142f8b08b4176c47c3. Scope: 110 child-only card_printing inserts for swsh6/Chilling Reign, sm1/Sun & Moon, sv03.5/151, ex1/Ruby & Sapphire, pop4/POP Series 4, pop6/POP Series 6, sv01/Scarlet & Violet, sv05/Temporal Forces, swsh10/Astral Radiance, and xy1/XY; finishes normal=34, cosmos=51, holo=14, reverse=11; target parents=105. Dry-run proof: d85b454e481cb36711be7a2830b593d0349331534b04364f170392901952f8df == d85b454e481cb36711be7a2830b593d0349331534b04364f170392901952f8df. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No parent writes.",
+    "approval_effect": "This would authorize preparing and running the durable PKG-06H active-finish child-only apply path only."
+  },
+  "explicit_non_authorizations": [
+    "This gate is not a real apply.",
+    "This gate does not record approval.",
+    "This gate does not run SQL.",
+    "This gate does not read from or write to the database.",
+    "This gate does not create a migration.",
+    "This gate does not authorize global apply.",
+    "This gate does not authorize deletes.",
+    "This gate does not authorize merges.",
+    "This gate does not authorize unsupported cleanup.",
+    "This gate does not authorize parent writes."
+  ],
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg06h_active_finish_child_printing_guarded_dry_run_v1.json",
+    "sql_artifact": "docs/sql/english_master_index_pkg06h_active_finish_child_printing_guarded_dry_run_transaction_v1.sql"
+  },
+  "stop_findings": [],
+  "pass": true,
+  "gate_fingerprint_sha256": "535f6a7f7234abfaed9cd4fe1fe6f9c29ed9b058d12eb538f006c10c80f4f7c3"
+}

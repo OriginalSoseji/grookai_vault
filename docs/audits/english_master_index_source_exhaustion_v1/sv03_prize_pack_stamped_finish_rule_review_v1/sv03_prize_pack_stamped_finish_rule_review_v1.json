@@ -1,0 +1,320 @@
+{
+  "version": "sv03_prize_pack_stamped_finish_rule_review_v1",
+  "generated_at": "2026-06-12T16:33:31.869Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_key": "bulbapedia_sv03_prize_pack_stamped_finish_rule_review",
+  "source_kind": "human_readable_checklist",
+  "source_urls": [
+    "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)",
+    "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)",
+    "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)"
+  ],
+  "rule": "Accept only exact Prize Pack rows where the row is Standard Set Foil and the page-level foil rule maps that row to Cosmos Holofoil. Pokemon ex regular-foil-pattern rows remain blocked until active finish mapping is explicitly governed.",
+  "fingerprint_sha256": "e852abb1e7d47b4a72cfd8615bb63a4a7198c8b3b718dc0899fdb0cfc41b966b",
+  "summary": {
+    "target_rows": 8,
+    "source_entries_parsed": 12,
+    "review_candidate_rows": 1,
+    "blocked_rows": 7,
+    "write_ready_now": 0,
+    "by_status": {
+      "blocked_ex_regular_foil_pattern_requires_active_finish_mapping": 4,
+      "blocked_standard_set_no_foil_finish_claim": 3,
+      "review_candidate_cosmos_from_prize_pack_rule": 1
+    },
+    "by_observation_status": {
+      "blocked_ex_regular_foil_pattern_requires_active_finish_mapping": 8,
+      "blocked_standard_set_no_foil_finish_claim": 3,
+      "review_candidate_cosmos_from_exact_standard_set_foil_rule": 1
+    }
+  },
+  "page_rules": {
+    "four": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon V}} {{TCG|Pokémon V|Pokémon VMAX}}, {{TCG|Pokémon V|Pokémon VSTAR}} and {{TCG|Pokémon ex}} which retain their regular foil patterns.",
+    "five": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon ex}} and {{TCG|ACE SPEC card}}s which retain their regular foil patterns.",
+    "six": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon ex}} and {{TCG|ACE SPEC card}}s which retain their regular foil patterns."
+  },
+  "results": [
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "22",
+      "card_name": "Toedscruel ex",
+      "referenced_series": [
+        "four"
+      ],
+      "status": "blocked_ex_regular_foil_pattern_requires_active_finish_mapping",
+      "accepted_finish_key": null,
+      "observations": [
+        {
+          "series_key": "four",
+          "series_label": "Four",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)",
+          "card_number": "22",
+          "card_name": "Toedscruel ex",
+          "promotion": "Standard Set Foil",
+          "rarity": "Double Rare",
+          "is_ex": true,
+          "raw_entry": "{{Setlist/entry|[[Image:SetSymbolObsidian Flames.png|x18px|link=Obsidian Flames (TCG)]] 022/197|G|[[Toedscruel ex (Obsidian Flames 22)|Toedscruel]]{{ex}}|Grass||Double Rare|Standard Set Foil}}",
+          "status": "blocked_ex_regular_foil_pattern_requires_active_finish_mapping",
+          "accepted_finish_key": null,
+          "page_foil_rule": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon V}} {{TCG|Pokémon V|Pokémon VMAX}}, {{TCG|Pokémon V|Pokémon VSTAR}} and {{TCG|Pokémon ex}} which retain their regular foil patterns."
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "66",
+      "card_name": "Tyranitar ex",
+      "referenced_series": [
+        "four"
+      ],
+      "status": "blocked_ex_regular_foil_pattern_requires_active_finish_mapping",
+      "accepted_finish_key": null,
+      "observations": [
+        {
+          "series_key": "four",
+          "series_label": "Four",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)",
+          "card_number": "66",
+          "card_name": "Tyranitar ex",
+          "promotion": "Standard Set Foil",
+          "rarity": "Double Rare",
+          "is_ex": true,
+          "raw_entry": "{{Setlist/entry|[[Image:SetSymbolObsidian Flames.png|x18px|link=Obsidian Flames (TCG)]] 066/197|G|[[Tyranitar ex (Obsidian Flames 66)|Tyranitar]]{{Tera ex}}|Lightning||Double Rare|Standard Set Foil}}",
+          "status": "blocked_ex_regular_foil_pattern_requires_active_finish_mapping",
+          "accepted_finish_key": null,
+          "page_foil_rule": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon V}} {{TCG|Pokémon V|Pokémon VMAX}}, {{TCG|Pokémon V|Pokémon VSTAR}} and {{TCG|Pokémon ex}} which retain their regular foil patterns."
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "92",
+      "card_name": "Lunatone",
+      "referenced_series": [
+        "four"
+      ],
+      "status": "blocked_standard_set_no_foil_finish_claim",
+      "accepted_finish_key": null,
+      "observations": [
+        {
+          "series_key": "four",
+          "series_label": "Four",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)",
+          "card_number": "92",
+          "card_name": "Lunatone",
+          "promotion": "Standard Set",
+          "rarity": "Uncommon",
+          "is_ex": false,
+          "raw_entry": "{{Setlist/entry|[[Image:SetSymbolObsidian Flames.png|x18px|link=Obsidian Flames (TCG)]] 092/197|G|{{TCG ID|Obsidian Flames|Lunatone|92}}|Psychic||Uncommon|Standard Set}}",
+          "status": "blocked_standard_set_no_foil_finish_claim",
+          "accepted_finish_key": null,
+          "page_foil_rule": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon V}} {{TCG|Pokémon V|Pokémon VMAX}}, {{TCG|Pokémon V|Pokémon VSTAR}} and {{TCG|Pokémon ex}} which retain their regular foil patterns."
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "95",
+      "card_name": "Claydol",
+      "referenced_series": [
+        "four"
+      ],
+      "status": "blocked_standard_set_no_foil_finish_claim",
+      "accepted_finish_key": null,
+      "observations": [
+        {
+          "series_key": "four",
+          "series_label": "Four",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)",
+          "card_number": "95",
+          "card_name": "Claydol",
+          "promotion": "Standard Set",
+          "rarity": "Rare",
+          "is_ex": false,
+          "raw_entry": "{{Setlist/entry|[[Image:SetSymbolObsidian Flames.png|x18px|link=Obsidian Flames (TCG)]] 095/197|G|{{TCG ID|Obsidian Flames|Claydol|95}}|Psychic||Rare|Standard Set}}",
+          "status": "blocked_standard_set_no_foil_finish_claim",
+          "accepted_finish_key": null,
+          "page_foil_rule": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon V}} {{TCG|Pokémon V|Pokémon VMAX}}, {{TCG|Pokémon V|Pokémon VSTAR}} and {{TCG|Pokémon ex}} which retain their regular foil patterns."
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "125",
+      "card_name": "Charizard ex",
+      "referenced_series": [
+        "four",
+        "five",
+        "six"
+      ],
+      "status": "blocked_ex_regular_foil_pattern_requires_active_finish_mapping",
+      "accepted_finish_key": null,
+      "observations": [
+        {
+          "series_key": "four",
+          "series_label": "Four",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)",
+          "card_number": "125",
+          "card_name": "Charizard ex",
+          "promotion": "Standard Set Foil",
+          "rarity": "Double Rare",
+          "is_ex": true,
+          "raw_entry": "{{Setlist/entry|[[Image:SetSymbolObsidian Flames.png|x18px|link=Obsidian Flames (TCG)]] 125/197|G|[[Charizard ex (Obsidian Flames 125)|Charizard]]{{Tera ex}}|Darkness||Double Rare|Standard Set Foil}}",
+          "status": "blocked_ex_regular_foil_pattern_requires_active_finish_mapping",
+          "accepted_finish_key": null,
+          "page_foil_rule": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon V}} {{TCG|Pokémon V|Pokémon VMAX}}, {{TCG|Pokémon V|Pokémon VSTAR}} and {{TCG|Pokémon ex}} which retain their regular foil patterns."
+        },
+        {
+          "series_key": "five",
+          "series_label": "Five",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)",
+          "card_number": "125",
+          "card_name": "Charizard ex",
+          "promotion": "Standard Set Foil",
+          "rarity": "Double Rare",
+          "is_ex": true,
+          "raw_entry": "{{Setlist/entry|[[Image:SetSymbolObsidian Flames.png|x18px|link=Obsidian Flames (TCG)]] 125/197|G|[[Charizard ex (Obsidian Flames 125)|Charizard]]{{Tera ex}}|Darkness||Double Rare|Standard Set Foil}}",
+          "status": "blocked_ex_regular_foil_pattern_requires_active_finish_mapping",
+          "accepted_finish_key": null,
+          "page_foil_rule": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon ex}} and {{TCG|ACE SPEC card}}s which retain their regular foil patterns."
+        },
+        {
+          "series_key": "six",
+          "series_label": "Six",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "card_number": "125",
+          "card_name": "Charizard ex",
+          "promotion": "Standard Set Foil",
+          "rarity": "Double Rare",
+          "is_ex": true,
+          "raw_entry": "{{Setlist/entry|[[Image:SetSymbolObsidian Flames.png|x18px|link=Obsidian Flames (TCG)]] 125/197|G|[[Charizard ex (Obsidian Flames 125)|Charizard]]{{Tera ex}}|Darkness||Double Rare|Standard Set Foil}}",
+          "status": "blocked_ex_regular_foil_pattern_requires_active_finish_mapping",
+          "accepted_finish_key": null,
+          "page_foil_rule": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon ex}} and {{TCG|ACE SPEC card}}s which retain their regular foil patterns."
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "164",
+      "card_name": "Pidgeot ex",
+      "referenced_series": [
+        "four",
+        "five",
+        "six"
+      ],
+      "status": "blocked_ex_regular_foil_pattern_requires_active_finish_mapping",
+      "accepted_finish_key": null,
+      "observations": [
+        {
+          "series_key": "four",
+          "series_label": "Four",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)",
+          "card_number": "164",
+          "card_name": "Pidgeot ex",
+          "promotion": "Standard Set Foil",
+          "rarity": "Double Rare",
+          "is_ex": true,
+          "raw_entry": "{{Setlist/entry|[[Image:SetSymbolObsidian Flames.png|x18px|link=Obsidian Flames (TCG)]] 164/197|G|[[Pidgeot ex (Obsidian Flames 164)|Pidgeot]]{{ex}}|Colorless||Double Rare|Standard Set Foil}}",
+          "status": "blocked_ex_regular_foil_pattern_requires_active_finish_mapping",
+          "accepted_finish_key": null,
+          "page_foil_rule": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon V}} {{TCG|Pokémon V|Pokémon VMAX}}, {{TCG|Pokémon V|Pokémon VSTAR}} and {{TCG|Pokémon ex}} which retain their regular foil patterns."
+        },
+        {
+          "series_key": "five",
+          "series_label": "Five",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)",
+          "card_number": "164",
+          "card_name": "Pidgeot ex",
+          "promotion": "Standard Set Foil",
+          "rarity": "Double Rare",
+          "is_ex": true,
+          "raw_entry": "{{Setlist/entry|[[Image:SetSymbolObsidian Flames.png|x18px|link=Obsidian Flames (TCG)]] 164/197|G|[[Pidgeot ex (Obsidian Flames 164)|Pidgeot]]{{ex}}|Colorless||Double Rare|Standard Set Foil}}",
+          "status": "blocked_ex_regular_foil_pattern_requires_active_finish_mapping",
+          "accepted_finish_key": null,
+          "page_foil_rule": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon ex}} and {{TCG|ACE SPEC card}}s which retain their regular foil patterns."
+        },
+        {
+          "series_key": "six",
+          "series_label": "Six",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "card_number": "164",
+          "card_name": "Pidgeot ex",
+          "promotion": "Standard Set Foil",
+          "rarity": "Double Rare",
+          "is_ex": true,
+          "raw_entry": "{{Setlist/entry|[[Image:SetSymbolObsidian Flames.png|x18px|link=Obsidian Flames (TCG)]] 164/197|G|[[Pidgeot ex (Obsidian Flames 164)|Pidgeot]]{{ex}}|Colorless||Double Rare|Standard Set Foil}}",
+          "status": "blocked_ex_regular_foil_pattern_requires_active_finish_mapping",
+          "accepted_finish_key": null,
+          "page_foil_rule": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon ex}} and {{TCG|ACE SPEC card}}s which retain their regular foil patterns."
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "189",
+      "card_name": "Letter of Encouragement",
+      "referenced_series": [
+        "four"
+      ],
+      "status": "blocked_standard_set_no_foil_finish_claim",
+      "accepted_finish_key": null,
+      "observations": [
+        {
+          "series_key": "four",
+          "series_label": "Four",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)",
+          "card_number": "189",
+          "card_name": "Letter of Encouragement",
+          "promotion": "Standard Set",
+          "rarity": "Uncommon",
+          "is_ex": false,
+          "raw_entry": "{{Setlist/entry|[[Image:SetSymbolObsidian Flames.png|x18px|link=Obsidian Flames (TCG)]] 189/197|G|{{TCG ID|Obsidian Flames|Letter of Encouragement|189}}|Item||Uncommon|Standard Set}}",
+          "status": "blocked_standard_set_no_foil_finish_claim",
+          "accepted_finish_key": null,
+          "page_foil_rule": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon V}} {{TCG|Pokémon V|Pokémon VMAX}}, {{TCG|Pokémon V|Pokémon VSTAR}} and {{TCG|Pokémon ex}} which retain their regular foil patterns."
+        }
+      ]
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "196",
+      "card_name": "Town Store",
+      "referenced_series": [
+        "six"
+      ],
+      "status": "review_candidate_cosmos_from_prize_pack_rule",
+      "accepted_finish_key": "cosmos",
+      "observations": [
+        {
+          "series_key": "six",
+          "series_label": "Six",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "card_number": "196",
+          "card_name": "Town Store",
+          "promotion": "Standard Set Foil",
+          "rarity": "Uncommon",
+          "is_ex": false,
+          "raw_entry": "{{Setlist/entry|[[Image:SetSymbolObsidian Flames.png|x18px|link=Obsidian Flames (TCG)]] 196/197|G|{{TCG ID|Obsidian Flames|Town Store|196}}|Stadium||Uncommon|Standard Set Foil}}",
+          "status": "review_candidate_cosmos_from_exact_standard_set_foil_rule",
+          "accepted_finish_key": "cosmos",
+          "page_foil_rule": "Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon ex}} and {{TCG|ACE SPEC card}}s which retain their regular foil patterns."
+        }
+      ]
+    }
+  ]
+}

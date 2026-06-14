@@ -1,0 +1,404 @@
+{
+  "generated_at": "2026-06-11T03:21:52.009Z",
+  "version": "english_master_index_pkg11a_stamped_parent_identity_real_apply_v1",
+  "package_id": "PKG-11A-STAMPED-CANONICAL-PARENT-IDENTITY-PILOT",
+  "package_fingerprint_sha256": "bfd77c554ba3ee32c18f523b1211d95aa7442dda6fccfeee2c0ebeea958fe6ea",
+  "dry_run_proof_hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "apply_status": "pkg11a_stamped_parent_identity_real_apply_committed",
+  "error_message": null,
+  "db_write_committed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "merges_performed": false,
+  "stamped_finish_activation_performed": false,
+  "scope": {
+    "target_parent_rows": 16,
+    "target_child_rows": 16,
+    "by_set": {
+      "mep": 8,
+      "svp": 1,
+      "swsh1": 1,
+      "swsh10": 1,
+      "swsh2": 1,
+      "swsh6": 2,
+      "swsh8": 1,
+      "swshp": 1
+    },
+    "by_child_finish": {
+      "holo": 15,
+      "normal": 1
+    },
+    "by_variant_key": {
+      "battle_academy_deck_mark": 2,
+      "gym_stamp": 1,
+      "play_pokemon_stamp": 1,
+      "snowflake_stamp": 2,
+      "snowflake_stamped": 1,
+      "staff_stamp": 8,
+      "world_championships_2025_staff_stamp": 1
+    }
+  },
+  "write_counts": {
+    "parent_inserts": 16,
+    "child_inserts": 16,
+    "deletes": 0,
+    "merges": 0
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-11T03:21:51.090Z",
+    "rows": [],
+    "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "counts": {
+      "target_parent_rows": 0,
+      "target_child_rows": 0,
+      "proposed_parent_collision_rows": 0,
+      "total_rows": 0
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-11T03:21:51.930Z",
+    "rows": [
+      {
+        "row_type": "target_child",
+        "row_id": "54851df1-483b-47c8-852c-df9d0306b4db",
+        "set_code": "mep",
+        "number": "001",
+        "number_plain": "001",
+        "name": "Meganium",
+        "variant_key": "staff_stamp",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "e294e1ec-e5e7-4fb2-9d9a-4252f0122e47",
+        "set_code": "mep",
+        "number": "002",
+        "number_plain": "002",
+        "name": "Inteleon",
+        "variant_key": "staff_stamp",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "37cf75ab-b0fa-42f0-b323-601670c8481f",
+        "set_code": "mep",
+        "number": "003",
+        "number_plain": "003",
+        "name": "Alakazam",
+        "variant_key": "staff_stamp",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "94f8f719-9a1a-4626-b8d4-822e422dc472",
+        "set_code": "mep",
+        "number": "004",
+        "number_plain": "004",
+        "name": "Lunatone",
+        "variant_key": "staff_stamp",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "cb222219-753c-4038-b4f0-e71a4005711d",
+        "set_code": "mep",
+        "number": "014",
+        "number_plain": "014",
+        "name": "Ceruledge",
+        "variant_key": "staff_stamp",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "44e0ca7e-d044-4dbb-9d83-f236ad08b4a7",
+        "set_code": "mep",
+        "number": "015",
+        "number_plain": "015",
+        "name": "Zacian",
+        "variant_key": "staff_stamp",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "651a02e6-09ce-4ad1-88ba-2334422b0425",
+        "set_code": "mep",
+        "number": "016",
+        "number_plain": "016",
+        "name": "Flygon",
+        "variant_key": "staff_stamp",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "30534f8f-be0c-4941-802b-edd3b6111d37",
+        "set_code": "mep",
+        "number": "017",
+        "number_plain": "017",
+        "name": "Toxtricity",
+        "variant_key": "staff_stamp",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "3a677dcd-8d59-430c-8116-51fb5926234c",
+        "set_code": "svp",
+        "number": "224",
+        "number_plain": "224",
+        "name": "Paradise Resort",
+        "variant_key": "world_championships_2025_staff_stamp",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "5d439bf8-40f0-43f1-a434-6556ce4f5778",
+        "set_code": "swsh1",
+        "number": "139",
+        "number_plain": "139",
+        "name": "Zamazenta V",
+        "variant_key": "play_pokemon_stamp",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "210018d1-af8c-46cb-ab47-026685b82436",
+        "set_code": "swsh10",
+        "number": "46",
+        "number_plain": "46",
+        "name": "Radiant Greninja",
+        "variant_key": "gym_stamp",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "40bd061b-c069-4653-84bc-1764321f794f",
+        "set_code": "swsh2",
+        "number": "55",
+        "number_plain": "55",
+        "name": "Eiscue V",
+        "variant_key": "snowflake_stamp",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "de3d79c5-2d9b-4232-afd1-167f212c8fee",
+        "set_code": "swsh6",
+        "number": "45",
+        "number_plain": "45",
+        "name": "Ice Rider Calyrex V",
+        "variant_key": "snowflake_stamp",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "93fd779b-206a-4a8b-b015-617ca8195fc4",
+        "set_code": "swsh6",
+        "number": "46",
+        "number_plain": "46",
+        "name": "Ice Rider Calyrex VMAX",
+        "variant_key": "snowflake_stamped",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "5eb2b52a-6d86-4fed-ad2d-89c5f2efe577",
+        "set_code": "swsh8",
+        "number": "43",
+        "number_plain": "43",
+        "name": "Cinderace V",
+        "variant_key": "battle_academy_deck_mark",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "d069ce66-a42c-4ba0-b7af-e1d6a8a3f1ac",
+        "set_code": "swshp",
+        "number": "SWSH065",
+        "number_plain": "065",
+        "name": "Eevee V",
+        "variant_key": "battle_academy_deck_mark",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e2a7b9b5-9f7c-4e61-90e6-b7a3607dd193",
+        "set_code": "mep",
+        "number": "001",
+        "number_plain": "001",
+        "name": "Meganium",
+        "variant_key": "staff_stamp",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "9feaa16d-defb-4fba-9fc4-ab9196e1f565",
+        "set_code": "mep",
+        "number": "002",
+        "number_plain": "002",
+        "name": "Inteleon",
+        "variant_key": "staff_stamp",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "490a6e0a-4eff-463d-b6aa-ca2d1642304e",
+        "set_code": "mep",
+        "number": "003",
+        "number_plain": "003",
+        "name": "Alakazam",
+        "variant_key": "staff_stamp",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f6a62fbe-ffa3-45fb-a7cb-ddc82b83d6b8",
+        "set_code": "mep",
+        "number": "004",
+        "number_plain": "004",
+        "name": "Lunatone",
+        "variant_key": "staff_stamp",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "7665585c-809c-4e13-a482-69514f778330",
+        "set_code": "mep",
+        "number": "014",
+        "number_plain": "014",
+        "name": "Ceruledge",
+        "variant_key": "staff_stamp",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "fcdcef21-aa7b-42c5-bd39-65a7986690e4",
+        "set_code": "mep",
+        "number": "015",
+        "number_plain": "015",
+        "name": "Zacian",
+        "variant_key": "staff_stamp",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "01989462-d1c4-4689-82a2-0cd7575bd55c",
+        "set_code": "mep",
+        "number": "016",
+        "number_plain": "016",
+        "name": "Flygon",
+        "variant_key": "staff_stamp",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "893cdd13-1815-41df-9972-079881ae43ed",
+        "set_code": "mep",
+        "number": "017",
+        "number_plain": "017",
+        "name": "Toxtricity",
+        "variant_key": "staff_stamp",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4b575fd9-1e87-4992-bae5-826795a4bfbd",
+        "set_code": "svp",
+        "number": "224",
+        "number_plain": "224",
+        "name": "Paradise Resort",
+        "variant_key": "world_championships_2025_staff_stamp",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "0a54475d-4c52-4eab-bc39-6fa9d034d466",
+        "set_code": "swsh1",
+        "number": "139",
+        "number_plain": "139",
+        "name": "Zamazenta V",
+        "variant_key": "play_pokemon_stamp",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "9f57a5fc-726b-4e69-bb2c-6863642a64f2",
+        "set_code": "swsh10",
+        "number": "46",
+        "number_plain": "46",
+        "name": "Radiant Greninja",
+        "variant_key": "gym_stamp",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "2893511f-2613-4633-815a-013a24b4920d",
+        "set_code": "swsh2",
+        "number": "55",
+        "number_plain": "55",
+        "name": "Eiscue V",
+        "variant_key": "snowflake_stamp",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "bdc2a66f-ae36-4efe-a705-8ea8296420a9",
+        "set_code": "swsh6",
+        "number": "45",
+        "number_plain": "45",
+        "name": "Ice Rider Calyrex V",
+        "variant_key": "snowflake_stamp",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "cfcc7050-5851-40a1-95e0-8ad51b21aac3",
+        "set_code": "swsh6",
+        "number": "46",
+        "number_plain": "46",
+        "name": "Ice Rider Calyrex VMAX",
+        "variant_key": "snowflake_stamped",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "b9175707-7cc0-427d-8869-0733aab5d29b",
+        "set_code": "swsh8",
+        "number": "43",
+        "number_plain": "43",
+        "name": "Cinderace V",
+        "variant_key": "battle_academy_deck_mark",
+        "finish_key": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "b6adf0cb-5c62-446b-96f4-5c2fc2994591",
+        "set_code": "swshp",
+        "number": "SWSH065",
+        "number_plain": "065",
+        "name": "Eevee V",
+        "variant_key": "battle_academy_deck_mark",
+        "finish_key": null
+      }
+    ],
+    "hash_sha256": "0d3c636934bfa05befa49a3749b4792f78b49d4a6ebdef505fa082f3968463cc",
+    "counts": {
+      "target_parent_rows": 16,
+      "target_child_rows": 16,
+      "proposed_parent_collision_rows": 0,
+      "total_rows": 32
+    }
+  },
+  "proof_rows": [
+    {
+      "package_id": "PKG-11A-STAMPED-CANONICAL-PARENT-IDENTITY-PILOT",
+      "package_fingerprint": "bfd77c554ba3ee32c18f523b1211d95aa7442dda6fccfeee2c0ebeea958fe6ea",
+      "target_rows": 16,
+      "inserted_parent_rows": 16,
+      "inserted_child_rows": 16
+    }
+  ],
+  "stop_findings": [],
+  "source_dry_run_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11a_stamped_parent_identity_guarded_dry_run_v1.json"
+}

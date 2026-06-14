@@ -1,0 +1,271 @@
+{
+  "generated_at": "2026-06-14T02:23:28.879Z",
+  "version": "english_master_index_pkg23a_subset_parallel_governance_readiness_v1",
+  "package_id": "PKG-23A-SUBSET-PARALLEL-GOVERNANCE-READINESS",
+  "package_fingerprint": "78d83419ff108fb74ab0a08207475aeafe30dba3c439a8b63c0264fae6229730",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_current_unsupported_reconciliation_lanes_v1.json",
+  "source_generated_at": "2026-06-14T02:02:57.297Z",
+  "summary": {
+    "source_rows": 9,
+    "dry_run_candidate_rows": 0,
+    "blocked_rows": 9,
+    "by_governance_bucket": {
+      "subset_parallel_identity_modifier_or_variant_source_review": 9
+    },
+    "by_cleanup_readiness": {
+      "blocked": 9
+    },
+    "top_sets_by_bucket": {
+      "subset_parallel_identity_modifier_or_variant_source_review": [
+        {
+          "key": "pl2",
+          "count": 4
+        },
+        {
+          "key": "g1",
+          "count": 2
+        },
+        {
+          "key": "col1",
+          "count": 1
+        },
+        {
+          "key": "pl1",
+          "count": 1
+        },
+        {
+          "key": "pl3",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "candidate_summary": {
+    "by_set": {},
+    "by_finish": {}
+  },
+  "rows": [
+    {
+      "governance_bucket": "subset_parallel_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Subset variant/modifier identity requires explicit parent identity governance before any cleanup.",
+      "card_printing_id": "ebee11ff-60d4-437e-b106-a98693665a80",
+      "card_print_id": "79a8d112-627f-417e-a2f2-eeaaf300682d",
+      "set_code": "col1",
+      "canonical_set_key": "col1",
+      "card_number": "33",
+      "number": "33",
+      "number_plain": "33",
+      "card_name": "Snorlax",
+      "finish_key": "holo",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "staff_stamp",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "33"
+      ]
+    },
+    {
+      "governance_bucket": "subset_parallel_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Subset variant/modifier identity requires explicit parent identity governance before any cleanup.",
+      "card_printing_id": "96ccb37b-12cb-4f33-961e-7b05227699dd",
+      "card_print_id": "b222a067-4259-4aaf-b28f-b593ac51f28a",
+      "set_code": "g1",
+      "canonical_set_key": "g1",
+      "card_number": "14",
+      "number": "14",
+      "number_plain": "14",
+      "card_name": "Ponyta",
+      "finish_key": "holo",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "stamped",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "14"
+      ]
+    },
+    {
+      "governance_bucket": "subset_parallel_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Subset variant/modifier identity requires explicit parent identity governance before any cleanup.",
+      "card_printing_id": "1e0d7356-d71a-426d-ad10-a1fd53e81dd2",
+      "card_print_id": "581eb597-562c-42e0-be07-7c64853e95e0",
+      "set_code": "g1",
+      "canonical_set_key": "g1",
+      "card_number": "28",
+      "number": "28a",
+      "number_plain": "28",
+      "card_name": "Jolteon-EX",
+      "finish_key": "reverse",
+      "known_index_finishes": [
+        "holo",
+        "normal"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "a",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "28",
+        "28a"
+      ]
+    },
+    {
+      "governance_bucket": "subset_parallel_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Subset variant/modifier identity requires explicit parent identity governance before any cleanup.",
+      "card_printing_id": "e6719c20-bbba-4ac1-bed7-584104c3d430",
+      "card_print_id": "b2617256-07f0-4870-8950-2d2210ee804e",
+      "set_code": "pl1",
+      "canonical_set_key": "pl1",
+      "card_number": "112",
+      "number": "112",
+      "number_plain": "112",
+      "card_name": "PlusPower",
+      "finish_key": "holo",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "player_rewards_crosshatch_stamp",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "112"
+      ]
+    },
+    {
+      "governance_bucket": "subset_parallel_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Subset variant/modifier identity requires explicit parent identity governance before any cleanup.",
+      "card_printing_id": "f3b05577-e82a-4aae-81e6-5b1641aae144",
+      "card_print_id": "07891ac1-73b1-4e3b-b61f-eca8c87371cc",
+      "set_code": "pl2",
+      "canonical_set_key": "pl2",
+      "card_number": "102",
+      "number": "102",
+      "number_plain": "102",
+      "card_name": "Upper Energy",
+      "finish_key": "holo",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "player_rewards_crosshatch_stamp",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "102"
+      ]
+    },
+    {
+      "governance_bucket": "subset_parallel_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Subset variant/modifier identity requires explicit parent identity governance before any cleanup.",
+      "card_printing_id": "d96cf58c-acda-49e5-95e7-e8e0c2307c69",
+      "card_print_id": "98044499-5fc9-471d-a1f1-3b1785115816",
+      "set_code": "pl2",
+      "canonical_set_key": "pl2",
+      "card_number": "33",
+      "number": "33",
+      "number_plain": "33",
+      "card_name": "Snorlax",
+      "finish_key": "holo",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "league_stamp",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "33"
+      ]
+    },
+    {
+      "governance_bucket": "subset_parallel_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Subset variant/modifier identity requires explicit parent identity governance before any cleanup.",
+      "card_printing_id": "f2291d2e-fd17-451f-b30b-98e9a7b2bb6a",
+      "card_print_id": "04df7c8d-71fb-4e3f-a799-066713790c06",
+      "set_code": "pl2",
+      "canonical_set_key": "pl2",
+      "card_number": "92",
+      "number": "92",
+      "number_plain": "92",
+      "card_name": "Lucian's Assignment",
+      "finish_key": "holo",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "player_rewards_crosshatch_stamp",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "92"
+      ]
+    },
+    {
+      "governance_bucket": "subset_parallel_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Subset variant/modifier identity requires explicit parent identity governance before any cleanup.",
+      "card_printing_id": "4d05e222-ec1b-4eeb-b2c2-8af85e82b492",
+      "card_print_id": "23897bfd-f47c-426b-9c44-930658848cef",
+      "set_code": "pl2",
+      "canonical_set_key": "pl2",
+      "card_number": "97",
+      "number": "97",
+      "number_plain": "97",
+      "card_name": "Underground Expedition",
+      "finish_key": "holo",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "player_rewards_crosshatch_stamp",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "97"
+      ]
+    },
+    {
+      "governance_bucket": "subset_parallel_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Subset variant/modifier identity requires explicit parent identity governance before any cleanup.",
+      "card_printing_id": "8035cb24-330e-4562-82fa-b3494eff43b8",
+      "card_print_id": "ef328f35-adc4-4238-aa00-bf3e90d1da46",
+      "set_code": "pl3",
+      "canonical_set_key": "pl3",
+      "card_number": "106",
+      "number": "106",
+      "number_plain": "106",
+      "card_name": "Gible",
+      "finish_key": "holo",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "staff_stamp",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "106"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,307 @@
+{
+  "generated_at": "2026-06-12T18:58:20.668Z",
+  "version": "english_master_index_sv03_existing_stamped_parent_identity_backfill_real_apply_v1",
+  "package_id": "SV03-EXISTING-STAMPED-PARENT-IDENTITY-BACKFILL",
+  "package_fingerprint_sha256": "0481ed86bac219a6b2f8c150610c8bce59d8f4352b950874119f911148c7ab8f",
+  "source_readiness_fingerprint": "457ee3e7f4fe33f038beb2f26ee579ad0d173453f50c5f6f8a9abb5f4f982f6b",
+  "approval_text_required": "Approve real SV03-EXISTING-STAMPED-PARENT-IDENTITY-BACKFILL apply only. Fingerprint: 0481ed86bac219a6b2f8c150610c8bce59d8f4352b950874119f911148c7ab8f. Scope: 3 existing SV03 stamped parent identity backfills, 3 parent printed_identity_modifier updates, 3 active card_print_identity inserts, 0 child inserts, 0 deletes, 0 merges. Dry-run proof: d5a110f24a7ef099b8470d3c7697cf098b49ae0fc860fdad43ecd90c80fd7e2f == d5a110f24a7ef099b8470d3c7697cf098b49ae0fc860fdad43ecd90c80fd7e2f. No global apply. No migrations. No cleanup. No quarantine.",
+  "apply_status": "sv03_existing_stamped_parent_identity_backfill_real_apply_committed",
+  "committed": true,
+  "db_writes_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "child_inserts_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "write_counts": {
+    "parent_rows_updated": 3,
+    "identity_rows_inserted": 3,
+    "child_rows_inserted": 0,
+    "delete_rows": 0,
+    "merge_rows": 0
+  },
+  "guard": {
+    "target_count": 3,
+    "target_parent_count": 3,
+    "non_sv03_target_count": 0,
+    "missing_parent_count": 0,
+    "variant_mismatch_count": 0,
+    "modifier_already_set_count": 0,
+    "active_identity_collision_count": 0,
+    "ready_projection_count": 3,
+    "identity_hash_collision_count": 0,
+    "existing_child_rows": 0,
+    "forbidden_stamped_child_count": 0
+  },
+  "proof": {
+    "package_id": "SV03-EXISTING-STAMPED-PARENT-IDENTITY-BACKFILL",
+    "package_fingerprint": "0481ed86bac219a6b2f8c150610c8bce59d8f4352b950874119f911148c7ab8f",
+    "target_rows": 3,
+    "parent_modifier_backfilled_rows": 3,
+    "active_identity_rows": 3,
+    "child_rows_after_apply": 0
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-12T18:58:19.614Z",
+    "rows": [
+      {
+        "row_type": "parent",
+        "row_id": "25d66424-5250-4d77-b9b3-d8e82bca20a4",
+        "set_code": "sv03",
+        "number": "022",
+        "number_plain": "022",
+        "name": "Toedscruel ex",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null,
+        "normalized_printed_name": null,
+        "identity_key_version": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "3bfdd7db-f5d8-4275-85b8-bb64130860e6",
+        "set_code": "sv03",
+        "number": "066",
+        "number_plain": "066",
+        "name": "Tyranitar ex",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null,
+        "normalized_printed_name": null,
+        "identity_key_version": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+        "set_code": "sv03",
+        "number": "196",
+        "number_plain": "196",
+        "name": "Town Store",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null,
+        "normalized_printed_name": null,
+        "identity_key_version": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "d5a110f24a7ef099b8470d3c7697cf098b49ae0fc860fdad43ecd90c80fd7e2f",
+    "counts": {
+      "parent_rows": 3,
+      "child_rows": 0,
+      "active_identity_rows": 0,
+      "total_rows": 3
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-12T18:58:20.510Z",
+    "rows": [
+      {
+        "row_type": "active_identity",
+        "row_id": "b49e4f44-527b-4e39-b635-fefe5d97361c",
+        "set_code": "sv03",
+        "number": "022",
+        "number_plain": "022",
+        "name": "Toedscruel ex",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "finish_key": null,
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv03",
+        "printed_number": "022",
+        "normalized_printed_name": "toedscruel ex",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "466d584b30a3072ea0de2fa369b9482acb64c8cddc399cad1eba08aac6898671"
+      },
+      {
+        "row_type": "active_identity",
+        "row_id": "686b64da-fdda-4597-9030-c785a8eae6b6",
+        "set_code": "sv03",
+        "number": "066",
+        "number_plain": "066",
+        "name": "Tyranitar ex",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "finish_key": null,
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv03",
+        "printed_number": "066",
+        "normalized_printed_name": "tyranitar ex",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "b1073277d4739b5157fc89c164c0fd8e1c6cdd8a74c0e40f812cd47f2ac9c1a2"
+      },
+      {
+        "row_type": "active_identity",
+        "row_id": "f5ab64a0-c75d-4846-8ec4-deabd56eda22",
+        "set_code": "sv03",
+        "number": "196",
+        "number_plain": "196",
+        "name": "Town Store",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "finish_key": null,
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv03",
+        "printed_number": "196",
+        "normalized_printed_name": "town store",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "a4042a6bc95daabe2ad0a164cb96388eaaa47bc87baa4aa25b6edbae9c248419"
+      },
+      {
+        "row_type": "parent",
+        "row_id": "25d66424-5250-4d77-b9b3-d8e82bca20a4",
+        "set_code": "sv03",
+        "number": "022",
+        "number_plain": "022",
+        "name": "Toedscruel ex",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "finish_key": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null,
+        "normalized_printed_name": null,
+        "identity_key_version": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "3bfdd7db-f5d8-4275-85b8-bb64130860e6",
+        "set_code": "sv03",
+        "number": "066",
+        "number_plain": "066",
+        "name": "Tyranitar ex",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "finish_key": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null,
+        "normalized_printed_name": null,
+        "identity_key_version": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+        "set_code": "sv03",
+        "number": "196",
+        "number_plain": "196",
+        "name": "Town Store",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "finish_key": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null,
+        "normalized_printed_name": null,
+        "identity_key_version": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "f68dea889473e62c86062c4cc01ceb21892a0a84f9027e4f81085f06c71376c8",
+    "counts": {
+      "parent_rows": 3,
+      "child_rows": 0,
+      "active_identity_rows": 3,
+      "total_rows": 6
+    }
+  },
+  "updated_rows": {
+    "captured_at": "2026-06-12T18:58:20.587Z",
+    "rows": [
+      {
+        "card_print_id": "25d66424-5250-4d77-b9b3-d8e82bca20a4",
+        "set_code": "sv03",
+        "number": "022",
+        "number_plain": "022",
+        "name": "Toedscruel ex",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "child_finishes": [],
+        "active_identities": [
+          {
+            "printed_number": "022",
+            "identity_domain": "pokemon_eng_standard",
+            "identity_key_hash": "466d584b30a3072ea0de2fa369b9482acb64c8cddc399cad1eba08aac6898671",
+            "set_code_identity": "sv03",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "toedscruel ex"
+          }
+        ]
+      },
+      {
+        "card_print_id": "3bfdd7db-f5d8-4275-85b8-bb64130860e6",
+        "set_code": "sv03",
+        "number": "066",
+        "number_plain": "066",
+        "name": "Tyranitar ex",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "child_finishes": [],
+        "active_identities": [
+          {
+            "printed_number": "066",
+            "identity_domain": "pokemon_eng_standard",
+            "identity_key_hash": "b1073277d4739b5157fc89c164c0fd8e1c6cdd8a74c0e40f812cd47f2ac9c1a2",
+            "set_code_identity": "sv03",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "tyranitar ex"
+          }
+        ]
+      },
+      {
+        "card_print_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+        "set_code": "sv03",
+        "number": "196",
+        "number_plain": "196",
+        "name": "Town Store",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "child_finishes": [],
+        "active_identities": [
+          {
+            "printed_number": "196",
+            "identity_domain": "pokemon_eng_standard",
+            "identity_key_hash": "a4042a6bc95daabe2ad0a164cb96388eaaa47bc87baa4aa25b6edbae9c248419",
+            "set_code_identity": "sv03",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "town store"
+          }
+        ]
+      }
+    ],
+    "hash_sha256": "0faff24f9d14748d2b1ec3f84ec6ed539a7796572947adb7aef69e69f6571d57",
+    "counts": {
+      "parent_rows_found": 3,
+      "by_set": {
+        "sv03": 3
+      },
+      "by_variant": {
+        "play_pokemon_stamp": 3
+      },
+      "by_modifier": {
+        "play_pokemon_stamp": 3
+      }
+    }
+  },
+  "stop_findings": [],
+  "source_artifacts": {
+    "real_apply_gate": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_existing_stamped_parent_identity_backfill_real_apply_gate_v1.json",
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_existing_stamped_parent_identity_backfill_guarded_dry_run_v1.json"
+  }
+}

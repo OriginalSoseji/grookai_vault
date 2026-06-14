@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-06-12T22:44:02.503Z",
+  "version": "english_master_index_pkg17m_skarmory_league_reverse_readiness_v1",
+  "package_id": "PKG-17M-SKARMORY-LEAGUE-REVERSE-READINESS",
+  "future_package_id": "PKG-17N-SKARMORY-LEAGUE-REVERSE-PARENT-INSERT",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkg17m_skarmory_league_active_finish_second_source_v1/skarmory_fb_league_reverse_second_source_v1.json",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_read_error": null,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "fingerprint_sha256": "bd3d987e03f7f21e64122d037a3a31abc0074f349817a80034b0e62face314c4",
+  "summary": {
+    "candidate_source_rows": 3,
+    "target_rows": 1,
+    "future_guarded_parent_identity_insert_candidates": 1,
+    "blocked_or_review_rows": 0,
+    "by_readiness_status": {
+      "future_guarded_parent_identity_insert_candidate": 1
+    },
+    "by_blocker": {}
+  },
+  "rows": [
+    {
+      "target_parent_id": "ce541d42-01ae-49ec-b37f-fded2d7cfea9",
+      "target_child_id": "f046a0e2-8153-4842-9433-11a221cc2102",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "83",
+      "number_plain": "83",
+      "card_name": "Skarmory FB",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "source_count": 3,
+      "source_keys": [
+        "beckett_skarmory_league_crosshatch_holo",
+        "pokecardvalues_skarmory_league_reverse",
+        "pricecharting_web_skarmory_league_reverse"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/skarmory-fb-83-147-reverse-holo-league-promo-supreme-victors/pl3-83-3-41/",
+        "https://www.beckett.com/pokemon/2010/pokemon-tcg-promos/83-skarmory-fb-crosshatch-holo-upokmon-league-thorton-season-march-2010-participation-prize-32991916",
+        "https://www.pricecharting.com/game/pokemon-supreme-victors/skarmory-fb-reverse-holo-league-promo-83"
+      ],
+      "base_parent_id": "e155c180-ac03-461e-ab3e-a7024f268713",
+      "base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_collision_count": 0,
+      "identity_projection_status": "ready",
+      "projected_identity_key_hash": "fd18a7f7d8dc1283a3024299d8f15e99c14424f4b79585a426f40b3b514b7bc7",
+      "readiness_status": "future_guarded_parent_identity_insert_candidate",
+      "blockers": []
+    }
+  ]
+}

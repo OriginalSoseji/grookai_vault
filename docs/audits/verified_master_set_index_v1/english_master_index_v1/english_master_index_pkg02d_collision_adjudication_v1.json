@@ -1,0 +1,5657 @@
+{
+  "generated_at": "2026-06-09T18:10:41.835Z",
+  "version": "english_master_index_pkg02d_collision_adjudication_v1",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "merge_performed": false,
+  "delete_performed": false,
+  "apply_paths_executed": false,
+  "audit_status": "pkg02d_collision_adjudication_complete_no_write",
+  "pkg02c_apply_status": "pkg02c_full_beta_noncolliding_real_apply_committed_and_verified",
+  "source_artifacts": {
+    "collision_audit": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg02b_full_beta_collision_audit_v1.json",
+    "pkg02c_real_apply": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg02c_full_beta_noncolliding_real_apply_v1.json"
+  },
+  "current_snapshot": {
+    "available": true,
+    "reason": null,
+    "captured_at": "2026-06-09T18:10:41.742Z",
+    "row_count": 158,
+    "hash_sha256": "9609b588af75f47174ad84dc08c692a72e07e6bb4e20e92ad34d5c029ca0f015"
+  },
+  "summary": {
+    "total_blocked_rows": 79,
+    "by_status": {
+      "number_plain_identity_collision_not_merge_safe": 58,
+      "possible_duplicate_dependency_review_required": 21
+    },
+    "by_set": [
+      {
+        "set_key": "col1",
+        "set_name": "Call of Legends",
+        "total_rows": 2,
+        "number_plain_identity_collision_not_merge_safe": 2,
+        "possible_exact_duplicate_merge_candidate": 0,
+        "possible_duplicate_dependency_review_required": 0,
+        "needs_manual_identity_model_review": 0
+      },
+      {
+        "set_key": "dp7",
+        "set_name": "Stormfront",
+        "total_rows": 8,
+        "number_plain_identity_collision_not_merge_safe": 8,
+        "possible_exact_duplicate_merge_candidate": 0,
+        "possible_duplicate_dependency_review_required": 0,
+        "needs_manual_identity_model_review": 0
+      },
+      {
+        "set_key": "ex10",
+        "set_name": "Unseen Forces",
+        "total_rows": 3,
+        "number_plain_identity_collision_not_merge_safe": 0,
+        "possible_exact_duplicate_merge_candidate": 0,
+        "possible_duplicate_dependency_review_required": 3,
+        "needs_manual_identity_model_review": 0
+      },
+      {
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "total_rows": 10,
+        "number_plain_identity_collision_not_merge_safe": 0,
+        "possible_exact_duplicate_merge_candidate": 0,
+        "possible_duplicate_dependency_review_required": 10,
+        "needs_manual_identity_model_review": 0
+      },
+      {
+        "set_key": "pl1",
+        "set_name": "Platinum",
+        "total_rows": 9,
+        "number_plain_identity_collision_not_merge_safe": 9,
+        "possible_exact_duplicate_merge_candidate": 0,
+        "possible_duplicate_dependency_review_required": 0,
+        "needs_manual_identity_model_review": 0
+      },
+      {
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "total_rows": 17,
+        "number_plain_identity_collision_not_merge_safe": 15,
+        "possible_exact_duplicate_merge_candidate": 0,
+        "possible_duplicate_dependency_review_required": 2,
+        "needs_manual_identity_model_review": 0
+      },
+      {
+        "set_key": "pl3",
+        "set_name": "Supreme Victors",
+        "total_rows": 9,
+        "number_plain_identity_collision_not_merge_safe": 9,
+        "possible_exact_duplicate_merge_candidate": 0,
+        "possible_duplicate_dependency_review_required": 0,
+        "needs_manual_identity_model_review": 0
+      },
+      {
+        "set_key": "pl4",
+        "set_name": "Arceus",
+        "total_rows": 18,
+        "number_plain_identity_collision_not_merge_safe": 12,
+        "possible_exact_duplicate_merge_candidate": 0,
+        "possible_duplicate_dependency_review_required": 6,
+        "needs_manual_identity_model_review": 0
+      },
+      {
+        "set_key": "swsh2",
+        "set_name": "Rebel Clash",
+        "total_rows": 1,
+        "number_plain_identity_collision_not_merge_safe": 1,
+        "possible_exact_duplicate_merge_candidate": 0,
+        "possible_duplicate_dependency_review_required": 0,
+        "needs_manual_identity_model_review": 0
+      },
+      {
+        "set_key": "swsh4.5",
+        "set_name": "Shining Fates",
+        "total_rows": 2,
+        "number_plain_identity_collision_not_merge_safe": 2,
+        "possible_exact_duplicate_merge_candidate": 0,
+        "possible_duplicate_dependency_review_required": 0,
+        "needs_manual_identity_model_review": 0
+      }
+    ]
+  },
+  "adjudication_rows": [
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "2180d1db-0948-4cfc-9a98-da7629c2811a",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "target_set_code": "col1",
+      "target_number": "6",
+      "target_number_plain": "6",
+      "target_name": "Groudon",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "col1",
+        "number": null,
+        "number_plain": null,
+        "name": "Groudon",
+        "finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 3,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "a99d0ffd-9711-4e29-82d4-e5514c3d9d98",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "col1",
+          "set_name": "Call of Legends",
+          "number": "SL6",
+          "number_plain": "6",
+          "name": "Kyogre",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 3,
+          "vault_item_count": 0,
+          "current_set_code": "col1",
+          "current_number": "SL6",
+          "current_number_plain": "6",
+          "current_name": "Kyogre",
+          "current_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 3,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "922f2b4f-eb6f-492c-89a7-8b4f313509e2",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "target_set_code": "col1",
+      "target_number": "8",
+      "target_number_plain": "8",
+      "target_name": "Hitmontop",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "col1",
+        "number": null,
+        "number_plain": null,
+        "name": "Hitmontop",
+        "finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 3,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "3397e2c4-7951-4928-86e3-8e12763ec428",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "col1",
+          "set_name": "Call of Legends",
+          "number": "SL8",
+          "number_plain": "8",
+          "name": "Palkia",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 3,
+          "vault_item_count": 0,
+          "current_set_code": "col1",
+          "current_number": "SL8",
+          "current_number_plain": "8",
+          "current_name": "Palkia",
+          "current_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 3,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "62f77935-5749-4d26-87e6-06bbca565b22",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_set_code": "dp7",
+      "target_number": "2",
+      "target_number_plain": "2",
+      "target_name": "Empoleon",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "dp7",
+        "number": null,
+        "number_plain": null,
+        "name": "Empoleon",
+        "finishes": [
+          "holo",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "1bf5b85a-1990-4546-b38c-2a7ad9d12cbf",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "SH2",
+          "number_plain": "2",
+          "name": "Duskull",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "dp7",
+          "current_number": "SH2",
+          "current_number_plain": "2",
+          "current_name": "Duskull",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_set_code": "dp7",
+      "target_number": "3",
+      "target_number_plain": "3",
+      "target_name": "Infernape",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "dp7",
+        "number": null,
+        "number_plain": null,
+        "name": "Infernape",
+        "finishes": [
+          "holo",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "0fa024a0-c7ae-4a65-b6d4-6d638a82027a",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "SH3",
+          "number_plain": "3",
+          "name": "Voltorb",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "dp7",
+          "current_number": "SH3",
+          "current_number_plain": "3",
+          "current_name": "Voltorb",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_set_code": "dp7",
+      "target_number": "96",
+      "target_number_plain": "96",
+      "target_name": "Dusknoir",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "dp7",
+        "number": null,
+        "number_plain": null,
+        "name": "Dusknoir",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "91bd37f9-7eef-40d7-a042-3292f6038985",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "96",
+          "number_plain": "96",
+          "name": "Dusknoir LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "dp7",
+          "current_number": "96",
+          "current_number_plain": "96",
+          "current_name": "Dusknoir LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "7c211bf2-ab9e-489d-842f-65c896270783",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_set_code": "dp7",
+      "target_number": "97",
+      "target_number_plain": "97",
+      "target_name": "Heatran",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "dp7",
+        "number": null,
+        "number_plain": null,
+        "name": "Heatran",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "69b15482-f73f-49e0-906e-992a435f4b4f",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "97",
+          "number_plain": "97",
+          "name": "Heatran LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "dp7",
+          "current_number": "97",
+          "current_number_plain": "97",
+          "current_name": "Heatran LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "6f49c231-0a53-4c0c-9db1-6d4c36aa460e",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_set_code": "dp7",
+      "target_number": "98",
+      "target_number_plain": "98",
+      "target_name": "Machamp",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "dp7",
+        "number": null,
+        "number_plain": null,
+        "name": "Machamp",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "52adb9a2-3176-41a3-8029-c227e8cf92e6",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "98",
+          "number_plain": "98",
+          "name": "Machamp LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "dp7",
+          "current_number": "98",
+          "current_number_plain": "98",
+          "current_name": "Machamp LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "7a0dbe87-8ffb-4939-a5c0-371a0a21b302",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_set_code": "dp7",
+      "target_number": "99",
+      "target_number_plain": "99",
+      "target_name": "Raichu",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "dp7",
+        "number": null,
+        "number_plain": null,
+        "name": "Raichu",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "bcce787d-4252-4ee8-87f7-df38cfd2e5c4",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "99",
+          "number_plain": "99",
+          "name": "Raichu LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "dp7",
+          "current_number": "99",
+          "current_number_plain": "99",
+          "current_name": "Raichu LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "687811f7-e3d2-41bb-b37d-1e73882551d2",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_set_code": "dp7",
+      "target_number": "100",
+      "target_number_plain": "100",
+      "target_name": "Regigigas",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "dp7",
+        "number": null,
+        "number_plain": null,
+        "name": "Regigigas",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "ca1b21a9-98a2-4645-9de1-66aa02a75e68",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "100",
+          "number_plain": "100",
+          "name": "Regigigas LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "dp7",
+          "current_number": "100",
+          "current_number_plain": "100",
+          "current_name": "Regigigas LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "e8444009-0c47-48a6-af07-f5b450ac0082",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "target_set_code": "dp7",
+      "target_number": "SH1",
+      "target_number_plain": "1",
+      "target_name": "Drifloon",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "dp7",
+        "number": null,
+        "number_plain": null,
+        "name": "Drifloon",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "350fcd19-0cff-4a05-b776-c40e7f7c7013",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Dusknoir",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "dp7",
+          "current_number": "1",
+          "current_number_plain": "1",
+          "current_name": "Dusknoir",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "target_set_code": "ex10",
+      "target_number": "113",
+      "target_number_plain": "113",
+      "target_name": "Entei ★",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "ex10",
+        "number": null,
+        "number_plain": null,
+        "name": "Entei Star",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "96794036-5dd7-42e5-a90f-516d90eeb3b9",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "ex10",
+          "set_name": "Unseen Forces",
+          "number": "113",
+          "number_plain": "113",
+          "name": "Entei ★",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "ex10",
+          "current_number": "113",
+          "current_number_plain": "113",
+          "current_name": "Entei ★",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 3,
+            "card_print_identity": 0,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "043dbc47-0815-4ef4-b31d-2027f70f2338",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "target_set_code": "ex10",
+      "target_number": "114",
+      "target_number_plain": "114",
+      "target_name": "Raikou ★",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "ex10",
+        "number": null,
+        "number_plain": null,
+        "name": "Raikou Star",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "64269238-e6e3-4fd2-9c14-b9fb6367c0d5",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "ex10",
+          "set_name": "Unseen Forces",
+          "number": "114",
+          "number_plain": "114",
+          "name": "Raikou ★",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "ex10",
+          "current_number": "114",
+          "current_number_plain": "114",
+          "current_name": "Raikou ★",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 3,
+            "card_print_identity": 0,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "584c31ad-d7ac-4356-b9cc-4de3152511b2",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "target_set_code": "ex10",
+      "target_number": "115",
+      "target_number_plain": "115",
+      "target_name": "Suicune ★",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "ex10",
+        "number": null,
+        "number_plain": null,
+        "name": "Suicune Star",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "0aa71fae-b6ec-4a12-ac8d-35dbc3c769bf",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "ex10",
+          "set_name": "Unseen Forces",
+          "number": "115",
+          "number_plain": "115",
+          "name": "Suicune ★",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "ex10",
+          "current_number": "115",
+          "current_number_plain": "115",
+          "current_name": "Suicune ★",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 3,
+            "card_print_identity": 0,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_set_code": "mep",
+      "target_number": "001",
+      "target_number_plain": "001",
+      "target_name": "Meganium",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "mep",
+        "number": "1",
+        "number_plain": "1",
+        "name": "Meganium",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "mep",
+          "set_name": "MEP Black Star Promos",
+          "number": "001",
+          "number_plain": "001",
+          "name": "Meganium",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": null,
+          "current_number": "001",
+          "current_number_plain": "001",
+          "current_name": "Meganium",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_set_code": "mep",
+      "target_number": "002",
+      "target_number_plain": "002",
+      "target_name": "Inteleon",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "mep",
+        "number": "2",
+        "number_plain": "2",
+        "name": "Inteleon",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "mep",
+          "set_name": "MEP Black Star Promos",
+          "number": "002",
+          "number_plain": "002",
+          "name": "Inteleon",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": null,
+          "current_number": "002",
+          "current_number_plain": "002",
+          "current_name": "Inteleon",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_set_code": "mep",
+      "target_number": "003",
+      "target_number_plain": "003",
+      "target_name": "Alakazam",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "mep",
+        "number": "3",
+        "number_plain": "3",
+        "name": "Alakazam",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "718508f6-7825-43e8-98e1-a57b58dd490f",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "mep",
+          "set_name": "MEP Black Star Promos",
+          "number": "003",
+          "number_plain": "003",
+          "name": "Alakazam",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": null,
+          "current_number": "003",
+          "current_number_plain": "003",
+          "current_name": "Alakazam",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_set_code": "mep",
+      "target_number": "004",
+      "target_number_plain": "004",
+      "target_name": "Lunatone",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "mep",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Lunatone",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "mep",
+          "set_name": "MEP Black Star Promos",
+          "number": "004",
+          "number_plain": "004",
+          "name": "Lunatone",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": null,
+          "current_number": "004",
+          "current_number_plain": "004",
+          "current_name": "Lunatone",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_set_code": "mep",
+      "target_number": "005",
+      "target_number_plain": "005",
+      "target_name": "Drifloon",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "mep",
+        "number": "5",
+        "number_plain": "5",
+        "name": "Drifloon",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "c5b19da0-1f2d-4b86-844f-90284539099d",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "mep",
+          "set_name": "MEP Black Star Promos",
+          "number": "005",
+          "number_plain": "005",
+          "name": "Drifloon",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": null,
+          "current_number": "005",
+          "current_number_plain": "005",
+          "current_name": "Drifloon",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_set_code": "mep",
+      "target_number": "006",
+      "target_number_plain": "006",
+      "target_name": "Drifblim",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "mep",
+        "number": "6",
+        "number_plain": "6",
+        "name": "Drifblim",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "69572cf4-a580-49cc-90d2-36c053f510a9",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "mep",
+          "set_name": "MEP Black Star Promos",
+          "number": "006",
+          "number_plain": "006",
+          "name": "Drifblim",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": null,
+          "current_number": "006",
+          "current_number_plain": "006",
+          "current_name": "Drifblim",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_set_code": "mep",
+      "target_number": "007",
+      "target_number_plain": "007",
+      "target_name": "Psyduck",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "mep",
+        "number": "7",
+        "number_plain": "7",
+        "name": "Psyduck",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "a683bb41-182d-440b-9e6c-d82ebfd38f1d",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "mep",
+          "set_name": "MEP Black Star Promos",
+          "number": "007",
+          "number_plain": "007",
+          "name": "Psyduck",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": null,
+          "current_number": "007",
+          "current_number_plain": "007",
+          "current_name": "Psyduck",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_set_code": "mep",
+      "target_number": "008",
+      "target_number_plain": "008",
+      "target_name": "Golduck",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "mep",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Golduck",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "5dd278a1-ccaa-48e6-84c2-7190ee63c9d8",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "mep",
+          "set_name": "MEP Black Star Promos",
+          "number": "008",
+          "number_plain": "008",
+          "name": "Golduck",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": null,
+          "current_number": "008",
+          "current_number_plain": "008",
+          "current_name": "Golduck",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_set_code": "mep",
+      "target_number": "009",
+      "target_number_plain": "009",
+      "target_name": "Alakazam",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "mep",
+        "number": "9",
+        "number_plain": "9",
+        "name": "Alakazam",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "26726d70-a78d-4210-9ccc-d79abd215099",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "mep",
+          "set_name": "MEP Black Star Promos",
+          "number": "009",
+          "number_plain": "009",
+          "name": "Alakazam",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": null,
+          "current_number": "009",
+          "current_number_plain": "009",
+          "current_name": "Alakazam",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "target_set_code": "mep",
+      "target_number": "010",
+      "target_number_plain": "010",
+      "target_name": "Riolu",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "mep",
+        "number": "10",
+        "number_plain": "10",
+        "name": "Riolu",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "mep",
+          "set_name": "MEP Black Star Promos",
+          "number": "010",
+          "number_plain": "010",
+          "name": "Riolu",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": null,
+          "current_number": "010",
+          "current_number_plain": "010",
+          "current_name": "Riolu",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_set_code": "pl1",
+      "target_number": "6",
+      "target_number_plain": "6",
+      "target_name": "Dialga",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl1",
+        "number": null,
+        "number_plain": null,
+        "name": "Dialga",
+        "finishes": [
+          "holo",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "0b42f7c0-c2b5-475f-bf1e-97655eb28a3a",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "SH6",
+          "number_plain": "6",
+          "name": "Vulpix",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl1",
+          "current_number": "SH6",
+          "current_number_plain": "6",
+          "current_name": "Vulpix",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "9d20653b-49ea-4a30-8e18-629267d7397b",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_set_code": "pl1",
+      "target_number": "122",
+      "target_number_plain": "122",
+      "target_name": "Dialga G",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl1",
+        "number": null,
+        "number_plain": null,
+        "name": "Dialga G",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "3eb15a78-b5d6-42b6-913b-c8f84686249c",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "122",
+          "number_plain": "122",
+          "name": "Dialga G LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl1",
+          "current_number": "122",
+          "current_number_plain": "122",
+          "current_name": "Dialga G LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_set_code": "pl1",
+      "target_number": "123",
+      "target_number_plain": "123",
+      "target_name": "Drapion",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl1",
+        "number": null,
+        "number_plain": null,
+        "name": "Drapion",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "38d416a8-a601-43f6-983b-3e8e0be8ffab",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "123",
+          "number_plain": "123",
+          "name": "Drapion LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl1",
+          "current_number": "123",
+          "current_number_plain": "123",
+          "current_name": "Drapion LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_set_code": "pl1",
+      "target_number": "124",
+      "target_number_plain": "124",
+      "target_name": "Giratina",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl1",
+        "number": null,
+        "number_plain": null,
+        "name": "Giratina",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "6a5e1c30-1402-4fb7-a677-9399dbf067ee",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "124",
+          "number_plain": "124",
+          "name": "Giratina LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl1",
+          "current_number": "124",
+          "current_number_plain": "124",
+          "current_name": "Giratina LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "182aab06-7802-4dea-90cb-32dfc7cefaab",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_set_code": "pl1",
+      "target_number": "125",
+      "target_number_plain": "125",
+      "target_name": "Palkia G",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl1",
+        "number": null,
+        "number_plain": null,
+        "name": "Palkia G",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "1c4056b6-275f-4435-aee8-638c6df5cee9",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "125",
+          "number_plain": "125",
+          "name": "Palkia G LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl1",
+          "current_number": "125",
+          "current_number_plain": "125",
+          "current_name": "Palkia G LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "24bd8689-4031-40d0-8948-1d08e652ef34",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_set_code": "pl1",
+      "target_number": "126",
+      "target_number_plain": "126",
+      "target_name": "Shaymin",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl1",
+        "number": null,
+        "number_plain": null,
+        "name": "Shaymin",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "dc311e05-8d2c-41dc-a18b-4a42df480db7",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "126",
+          "number_plain": "126",
+          "name": "Shaymin LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl1",
+          "current_number": "126",
+          "current_number_plain": "126",
+          "current_name": "Shaymin LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "1f03518a-bed9-4c04-ad0c-3a5cf3008248",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_set_code": "pl1",
+      "target_number": "127",
+      "target_number_plain": "127",
+      "target_name": "Shaymin",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl1",
+        "number": null,
+        "number_plain": null,
+        "name": "Shaymin",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "cb23edfe-7d5a-4e32-af26-e41f48271ccb",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "127",
+          "number_plain": "127",
+          "name": "Shaymin LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl1",
+          "current_number": "127",
+          "current_number_plain": "127",
+          "current_name": "Shaymin LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "74b9d351-aecc-4ff9-8ed2-958311074af7",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_set_code": "pl1",
+      "target_number": "SH4",
+      "target_number_plain": "4",
+      "target_name": "Lotad",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl1",
+        "number": null,
+        "number_plain": null,
+        "name": "Lotad",
+        "finishes": [
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "438fd0ad-9e9c-4a60-96b8-52c055fd0900",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Delcatty",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl1",
+          "current_number": "4",
+          "current_number_plain": "4",
+          "current_name": "Delcatty",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "e48e17b9-b693-4882-9e9f-d177dbce37c8",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "target_set_code": "pl1",
+      "target_number": "SH5",
+      "target_number_plain": "5",
+      "target_name": "Swablu",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl1",
+        "number": null,
+        "number_plain": null,
+        "name": "Swablu",
+        "finishes": [
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "19337153-83da-45ef-876c-52d050316070",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dialga",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl1",
+          "current_number": "5",
+          "current_number_plain": "5",
+          "current_name": "Dialga",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "2ebe059c-614e-4dd6-812f-ebf268459ce5",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "1",
+      "target_number_plain": "1",
+      "target_name": "Arcanine",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Arcanine",
+        "finishes": [
+          "holo",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "556a801c-bf26-4315-94cb-a023e6d1244b",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "RT1",
+          "number_plain": "1",
+          "name": "Fan Rotom",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "RT1",
+          "current_number_plain": "1",
+          "current_name": "Fan Rotom",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "9d6eb3c7-dc61-4543-b436-a67fd23ba16c",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "3",
+      "target_number_plain": "3",
+      "target_name": "Darkrai G",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Darkrai G",
+        "finishes": [
+          "holo",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "5e9cae28-ec79-4d4b-8e9b-c716056c3dc8",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "RT3",
+          "number_plain": "3",
+          "name": "Heat Rotom",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "RT3",
+          "current_number_plain": "3",
+          "current_name": "Heat Rotom",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "1970689f-8f93-4148-96b2-0ed8ed149568",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "5",
+      "target_number_plain": "5",
+      "target_name": "Flygon",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Flygon",
+        "finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 3,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "00f64a67-4b22-4827-bc85-d2c31dff23ab",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "RT5",
+          "number_plain": "5",
+          "name": "Wash Rotom",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 3,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "RT5",
+          "current_number_plain": "5",
+          "current_name": "Wash Rotom",
+          "current_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 3,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "8c817161-627f-4ff5-aa27-127757b88213",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "71",
+      "target_number_plain": "71",
+      "target_name": "Nidoran ♀",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Nidoran♀",
+        "finishes": [
+          "normal",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "dd5bea69-e103-425d-9d45-adc5ff62d372",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "71",
+          "number_plain": "71",
+          "name": "Nidoran ♀",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "71",
+          "current_number_plain": "71",
+          "current_name": "Nidoran ♀",
+          "current_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "bc120b0e-4aad-47c1-989b-a733435a2000",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "72",
+      "target_number_plain": "72",
+      "target_name": "Nidoran ♂",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Nidoran♂",
+        "finishes": [
+          "normal",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "0104fc59-640f-4470-8f46-17a8fea55b9a",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "72",
+          "number_plain": "72",
+          "name": "Nidoran ♂",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "72",
+          "current_number_plain": "72",
+          "current_name": "Nidoran ♂",
+          "current_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "f619ad6c-007c-4e4d-bea0-a4a517cffa50",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "95",
+      "target_number_plain": "95",
+      "target_name": "Team Galactic's Invention G-107 Technical Machine",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Team Galactic's Invention G-107 Technical Machine",
+        "finishes": [
+          "normal",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "d1a5f335-824b-4023-af12-89896ac9ba3e",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "95",
+          "number_plain": "95",
+          "name": "Team Galactic's Invention G-107 Technical Machine G",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "95",
+          "current_number_plain": "95",
+          "current_name": "Team Galactic's Invention G-107 Technical Machine G",
+          "current_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "a1b66404-67e9-4586-8ac9-873c421da31e",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "103",
+      "target_number_plain": "103",
+      "target_name": "Alakazam 4",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Alakazam 4",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "d5dcf523-4fa4-409d-828b-41590db54467",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "103",
+          "number_plain": "103",
+          "name": "Alakazam E4 LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "103",
+          "current_number_plain": "103",
+          "current_name": "Alakazam E4 LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "5fd2b141-a2af-4c2c-bb33-df2c2af58c02",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "104",
+      "target_number_plain": "104",
+      "target_name": "Floatzel GL",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Floatzel GL",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "bb349eab-a7e8-406e-9cb0-258ba52b4c98",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "104",
+          "number_plain": "104",
+          "name": "Floatzel GL LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "104",
+          "current_number_plain": "104",
+          "current_name": "Floatzel GL LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "7d47083d-43a4-4868-9bac-eb1deb237136",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "105",
+      "target_number_plain": "105",
+      "target_name": "Flygon",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Flygon",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "36df499c-7b36-4f0b-9297-0608d198618b",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "105",
+          "number_plain": "105",
+          "name": "Flygon LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "105",
+          "current_number_plain": "105",
+          "current_name": "Flygon LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "60789fd6-a0bb-49cd-848f-1ba462f4e965",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "106",
+      "target_number_plain": "106",
+      "target_name": "Gallade 4",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Gallade 4",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "b9b60d69-cde6-4dd8-bfd6-0c818bfd1196",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "106",
+          "number_plain": "106",
+          "name": "Gallade E4 LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "106",
+          "current_number_plain": "106",
+          "current_name": "Gallade E4 LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "2ef89f59-3bd7-430f-9e71-42fea8cdd8ae",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "107",
+      "target_number_plain": "107",
+      "target_name": "Hippowdon",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Hippowdon",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "c16d088f-0ad2-4a85-824e-c889a2bfde12",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "107",
+          "number_plain": "107",
+          "name": "Hippowdon LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "107",
+          "current_number_plain": "107",
+          "current_name": "Hippowdon LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "a719dd63-f527-4edf-8c8e-e77bac65a715",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "108",
+      "target_number_plain": "108",
+      "target_name": "Infernape 4",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Infernape 4",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "f890ce32-6389-40a1-9b77-ff610b6e3f88",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "108",
+          "number_plain": "108",
+          "name": "Infernape E4 LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "108",
+          "current_number_plain": "108",
+          "current_name": "Infernape E4 LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "26d6335d-9483-4de2-8b1b-771c43ab31cb",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "110",
+      "target_number_plain": "110",
+      "target_name": "Mismagius GL",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Mismagius GL",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "c37513a0-d943-4c38-9f2f-83b9a0ec9524",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "110",
+          "number_plain": "110",
+          "name": "Mismagius GL LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "110",
+          "current_number_plain": "110",
+          "current_name": "Mismagius GL LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "25c91739-b09a-4360-94e5-9a8b1ed43755",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "111",
+      "target_number_plain": "111",
+      "target_name": "Snorlax",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Snorlax",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "c98b6822-0ef1-462f-ad03-cd02107e5ed1",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "111",
+          "number_plain": "111",
+          "name": "Snorlax LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "111",
+          "current_number_plain": "111",
+          "current_name": "Snorlax LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "f5ada689-45c1-4b23-ac62-6a9f0bc11c97",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "RT2",
+      "target_number_plain": "2",
+      "target_name": "Frost Rotom",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Frost Rotom",
+        "finishes": [
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "91d65ccb-ec51-416e-a107-8bf22d55d151",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Bastiodon GL",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "2",
+          "current_number_plain": "2",
+          "current_name": "Bastiodon GL",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "949f5c1d-6d29-41cd-91c9-0be81e5360c5",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "RT4",
+      "target_number_plain": "4",
+      "target_name": "Mow Rotom",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Mow Rotom",
+        "finishes": [
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "7c824d06-176b-4bab-8e4f-c40d30b6283c",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Floatzel GL",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "4",
+          "current_number_plain": "4",
+          "current_name": "Floatzel GL",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "0a14f347-5dd0-425a-9c9c-ffd134a9de4f",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "target_set_code": "pl2",
+      "target_number": "RT6",
+      "target_number_plain": "6",
+      "target_name": "Charon's Choice",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl2",
+        "number": null,
+        "number_plain": null,
+        "name": "Charon's Choice",
+        "finishes": [
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "088619ce-5478-42d0-ac26-223832390830",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "6",
+          "number_plain": "6",
+          "name": "Froslass GL",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl2",
+          "current_number": "6",
+          "current_number_plain": "6",
+          "current_name": "Froslass GL",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "8cd92a82-149d-43b4-a7d3-d65782536182",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_set_code": "pl3",
+      "target_number": "141",
+      "target_number_plain": "141",
+      "target_name": "Absol G",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl3",
+        "number": null,
+        "number_plain": null,
+        "name": "Absol G",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "5aba56ba-2887-4f19-b7ec-a3121f414be3",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl3",
+          "set_name": "Supreme Victors",
+          "number": "141",
+          "number_plain": "141",
+          "name": "Absol G LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl3",
+          "current_number": "141",
+          "current_number_plain": "141",
+          "current_name": "Absol G LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "79097350-eb58-44e8-bd39-3ec5f417f02b",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_set_code": "pl3",
+      "target_number": "142",
+      "target_number_plain": "142",
+      "target_name": "Blaziken FB",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl3",
+        "number": null,
+        "number_plain": null,
+        "name": "Blaziken FB",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "d5330a73-ac35-409a-a3dd-c192dbd704bf",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl3",
+          "set_name": "Supreme Victors",
+          "number": "142",
+          "number_plain": "142",
+          "name": "Blaziken FB LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl3",
+          "current_number": "142",
+          "current_number_plain": "142",
+          "current_name": "Blaziken FB LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "880dc8c7-6959-4fda-b79a-32e48c684267",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_set_code": "pl3",
+      "target_number": "143",
+      "target_number_plain": "143",
+      "target_name": "Charizard G",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl3",
+        "number": null,
+        "number_plain": null,
+        "name": "Charizard G",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "6541ddac-0b89-4591-85db-aba036f5f934",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl3",
+          "set_name": "Supreme Victors",
+          "number": "143",
+          "number_plain": "143",
+          "name": "Charizard G LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl3",
+          "current_number": "143",
+          "current_number_plain": "143",
+          "current_name": "Charizard G LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "29a4bca4-6264-45f6-bc24-1d5ded5520cd",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_set_code": "pl3",
+      "target_number": "144",
+      "target_number_plain": "144",
+      "target_name": "Electivire FB",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl3",
+        "number": null,
+        "number_plain": null,
+        "name": "Electivire FB",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "4dc2bf8f-9624-4c7b-aa4d-b372ba4383bc",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl3",
+          "set_name": "Supreme Victors",
+          "number": "144",
+          "number_plain": "144",
+          "name": "Electivire FB LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl3",
+          "current_number": "144",
+          "current_number_plain": "144",
+          "current_name": "Electivire FB LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "2c1b3125-dd67-4522-b3e0-5621c05f7a9a",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_set_code": "pl3",
+      "target_number": "145",
+      "target_number_plain": "145",
+      "target_name": "Garchomp C",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl3",
+        "number": null,
+        "number_plain": null,
+        "name": "Garchomp C",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "1c13bf1e-dcff-4460-af92-3289103f7c05",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl3",
+          "set_name": "Supreme Victors",
+          "number": "145",
+          "number_plain": "145",
+          "name": "Garchomp C LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl3",
+          "current_number": "145",
+          "current_number_plain": "145",
+          "current_name": "Garchomp C LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "89f61622-12a4-4861-abb3-ef3dbcaf2a86",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_set_code": "pl3",
+      "target_number": "146",
+      "target_number_plain": "146",
+      "target_name": "Rayquaza C",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl3",
+        "number": null,
+        "number_plain": null,
+        "name": "Rayquaza C",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "cb5f46e6-97bd-4e6a-995c-2bca5072d793",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl3",
+          "set_name": "Supreme Victors",
+          "number": "146",
+          "number_plain": "146",
+          "name": "Rayquaza C LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl3",
+          "current_number": "146",
+          "current_number_plain": "146",
+          "current_name": "Rayquaza C LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "fa6310ae-be43-4309-af1d-a5033daff2f0",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_set_code": "pl3",
+      "target_number": "147",
+      "target_number_plain": "147",
+      "target_name": "Staraptor FB",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl3",
+        "number": null,
+        "number_plain": null,
+        "name": "Staraptor FB",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "dc75d5dc-b426-480f-8f84-30f20d6518e6",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl3",
+          "set_name": "Supreme Victors",
+          "number": "147",
+          "number_plain": "147",
+          "name": "Staraptor FB LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl3",
+          "current_number": "147",
+          "current_number_plain": "147",
+          "current_name": "Staraptor FB LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "9089264b-fd13-4261-94ac-b252ab89f6c7",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_set_code": "pl3",
+      "target_number": "SH8",
+      "target_number_plain": "8",
+      "target_name": "Relicanth",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl3",
+        "number": null,
+        "number_plain": null,
+        "name": "Relicanth",
+        "finishes": [
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "90740ca1-cb80-4c1a-acf8-80364a299cb5",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl3",
+          "set_name": "Supreme Victors",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Rayquaza C",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl3",
+          "current_number": "8",
+          "current_number_plain": "8",
+          "current_name": "Rayquaza C",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 2,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "e8a8c0b0-2213-4701-89a9-8926cc0d5669",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "target_set_code": "pl3",
+      "target_number": "SH9",
+      "target_number_plain": "9",
+      "target_name": "Yanma",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl3",
+        "number": null,
+        "number_plain": null,
+        "name": "Yanma",
+        "finishes": [
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "940012d3-e7be-41e7-84f3-9e778341b750",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl3",
+          "set_name": "Supreme Victors",
+          "number": "9",
+          "number_plain": "9",
+          "name": "Regigigas FB",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl3",
+          "current_number": "9",
+          "current_number_plain": "9",
+          "current_name": "Regigigas FB",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 2,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "a02f871c-fe3e-432b-944d-6decea0eecdf",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "1",
+      "target_number_plain": "1",
+      "target_name": "Charizard",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Charizard",
+        "finishes": [
+          "holo",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "5fefb496-b9cd-4dbe-bec6-63cd90b151f1",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "AR1",
+          "number_plain": "1",
+          "name": "Arceus",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "AR1",
+          "current_number_plain": "1",
+          "current_name": "Arceus",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "71779a8b-ee22-4892-9425-8e3da51f179a",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "6",
+      "target_number_plain": "6",
+      "target_name": "Mothim",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Mothim",
+        "finishes": [
+          "holo",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "74710bb3-5e5c-48f5-a642-086042df54e5",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "AR6",
+          "number_plain": "6",
+          "name": "Arceus",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "AR6",
+          "current_number_plain": "6",
+          "current_name": "Arceus",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "3059259e-c28b-49d6-9f31-64e178e87f28",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "9",
+      "target_number_plain": "9",
+      "target_name": "Swalot",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Swalot",
+        "finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 3,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "47871621-a579-4429-805d-6d81d2959530",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "AR9",
+          "number_plain": "9",
+          "name": "Arceus",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 3,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "AR9",
+          "current_number_plain": "9",
+          "current_name": "Arceus",
+          "current_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 3,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "12",
+      "target_number_plain": "12",
+      "target_name": "Zapdos",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Zapdos",
+        "finishes": [
+          "holo",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "SH12",
+          "current_number_plain": "12",
+          "current_name": "Shinx",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "94",
+      "target_number_plain": "94",
+      "target_name": "Arceus LV.X",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Arceus LV. X",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "1c2cef32-b323-4e64-b9ae-51439d5cd9b0",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "94",
+          "number_plain": "94",
+          "name": "Arceus LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "94",
+          "current_number_plain": "94",
+          "current_name": "Arceus LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "95",
+      "target_number_plain": "95",
+      "target_name": "Arceus LV.X",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Arceus LV. X",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "7e583fc5-66d0-4142-bea2-ec1f927a1bdc",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "95",
+          "number_plain": "95",
+          "name": "Arceus LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "95",
+          "current_number_plain": "95",
+          "current_name": "Arceus LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "96",
+      "target_number_plain": "96",
+      "target_name": "Arceus LV.X",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Arceus LV. X",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "4196309e-77f4-4bc6-93ac-5a5583a99a8e",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "96",
+          "number_plain": "96",
+          "name": "Arceus LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "96",
+          "current_number_plain": "96",
+          "current_name": "Arceus LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 0,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "97",
+      "target_number_plain": "97",
+      "target_name": "Gengar LV.X",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Gengar LV. X",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "c2c128a7-8b1b-4e15-a857-723292b1a1a3",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "97",
+          "number_plain": "97",
+          "name": "Gengar LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "97",
+          "current_number_plain": "97",
+          "current_name": "Gengar LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "98",
+      "target_number_plain": "98",
+      "target_name": "Salamence LV.X",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Salamence LV. X",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "71d24e24-10ee-4047-93b1-14ab71bdaa1a",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "98",
+          "number_plain": "98",
+          "name": "Salamence LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "98",
+          "current_number_plain": "98",
+          "current_name": "Salamence LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "possible_duplicate_dependency_review_required",
+      "recommended_action": "build_dependency_transfer_plan_before_any_merge",
+      "blocked_card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "99",
+      "target_number_plain": "99",
+      "target_name": "Tangrowth LV.X",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Tangrowth LV. X",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "0b036f80-3ee6-47c4-8a08-fd128e273358",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "99",
+          "number_plain": "99",
+          "name": "Tangrowth LV.X",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 1,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "99",
+          "current_number_plain": "99",
+          "current_name": "Tangrowth LV.X",
+          "current_finishes": [
+            "holo"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 1,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": true,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": false
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": true,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": false,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "cf859f9b-f1d6-41ec-9e38-c7fd27743777",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "AR2",
+      "target_number_plain": "2",
+      "target_name": "Arceus",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Arceus",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "033b1c14-ed0b-4064-b48b-b154895c9e27",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Froslass",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "2",
+          "current_number_plain": "2",
+          "current_name": "Froslass",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "8b2c91cf-bd7c-4564-84ca-5863e1414257",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "AR3",
+      "target_number_plain": "3",
+      "target_name": "Arceus",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Arceus",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "4007590f-7a7b-4a47-acae-4ec1afa32781",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Heatran",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "3",
+          "current_number_plain": "3",
+          "current_name": "Heatran",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "61cd00a6-3418-4980-ade8-b26c8d0b4d5c",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "AR4",
+      "target_number_plain": "4",
+      "target_name": "Arceus",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Arceus",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "062cb67c-4374-4268-aef0-6d5a2ffb1c40",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Kabutops",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "4",
+          "current_number_plain": "4",
+          "current_name": "Kabutops",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "63a0a7b8-bdfa-4a08-ad30-680bcc45802e",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "AR5",
+      "target_number_plain": "5",
+      "target_name": "Arceus",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Arceus",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "9da3429c-0844-4c55-9be3-bd32853eebd4",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Luxray",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 3,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "5",
+          "current_number_plain": "5",
+          "current_name": "Luxray",
+          "current_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 3,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "67e47461-e03c-4da3-8557-d3df639dbb98",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "AR7",
+      "target_number_plain": "7",
+      "target_name": "Arceus",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Arceus",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "83e257d4-c675-4184-bc22-078e0fed2496",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "7",
+          "number_plain": "7",
+          "name": "Probopass",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "7",
+          "current_number_plain": "7",
+          "current_name": "Probopass",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "0db1b355-bb14-4042-8597-4afd1d9a2b77",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "AR8",
+      "target_number_plain": "8",
+      "target_name": "Arceus",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Arceus",
+        "finishes": [
+          "holo"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "093450ca-570b-46c5-86c6-df224419a7ca",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Salamence",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "8",
+          "current_number_plain": "8",
+          "current_name": "Salamence",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "502ee1d6-d7c2-40d7-8bfa-5e94ff5c3bda",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "SH10",
+      "target_number_plain": "10",
+      "target_name": "Bagon",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Bagon",
+        "finishes": [
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "327c53c1-d723-4b14-bd68-f9410fa9461d",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "10",
+          "number_plain": "10",
+          "name": "Tangrowth",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 3,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "10",
+          "current_number_plain": "10",
+          "current_name": "Tangrowth",
+          "current_finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 3,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "22a0396f-a0fe-4680-8568-71246489db3c",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "target_set_code": "pl4",
+      "target_number": "SH11",
+      "target_number_plain": "11",
+      "target_name": "Ponyta",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "pl4",
+        "number": null,
+        "number_plain": null,
+        "name": "Ponyta",
+        "finishes": [
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 1,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "20e7ad00-a436-4b9f-ac12-e2f93f15a969",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "number": "11",
+          "number_plain": "11",
+          "name": "Toxicroak",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "pl4",
+          "current_number": "11",
+          "current_number_plain": "11",
+          "current_name": "Toxicroak",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 3,
+            "card_print_identity": 1,
+            "card_print_traits": 1,
+            "vault_items": 0
+          },
+          "exact_number_match": false,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": true,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": true,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "target_set_code": "swsh2",
+      "target_number": "154",
+      "target_number_plain": "154",
+      "target_name": "Boss's Orders (Giovanni)",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "swsh2",
+        "number": null,
+        "number_plain": null,
+        "name": "Boss's Orders (Giovanni)",
+        "finishes": [
+          "holo",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "644a4cf1-4f21-47d1-8cf1-e8106aed984e",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "swsh2",
+          "set_name": "Rebel Clash",
+          "number": "154",
+          "number_plain": "154",
+          "name": "Boss's Orders",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "swsh2",
+          "current_number": "154",
+          "current_number_plain": "154",
+          "current_name": "Boss's Orders",
+          "current_finishes": [
+            "holo",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 2,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "target_set_code": "swsh4.5",
+      "target_number": "58",
+      "target_number_plain": "58",
+      "target_name": "Boss's Orders (Lysandre)",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "swsh4.5",
+        "number": null,
+        "number_plain": null,
+        "name": "Boss's Orders (Lysandre)",
+        "finishes": [
+          "normal",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "1adc8c40-9657-4152-b792-f2349c582981",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "swsh4.5",
+          "set_name": "Shining Fates",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Boss's Orders",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "swsh4.5",
+          "current_number": "58",
+          "current_number_plain": "58",
+          "current_name": "Boss's Orders",
+          "current_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    },
+    {
+      "adjudication_status": "number_plain_identity_collision_not_merge_safe",
+      "recommended_action": "fix_identity_model_or_number_key_strategy_before_parent_update",
+      "blocked_card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "target_set_code": "swsh4.5",
+      "target_number": "60",
+      "target_number_plain": "60",
+      "target_name": "Professor's Research (Professor Juniper)",
+      "current_target_fields": {
+        "set_code": null,
+        "resolved_set_code": "swsh4.5",
+        "number": null,
+        "number_plain": null,
+        "name": "Professor's Research (Professor Juniper)",
+        "finishes": [
+          "normal",
+          "reverse"
+        ],
+        "dependency_counts": {
+          "card_printings": 2,
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      "conflict_rows": [
+        {
+          "card_print_id": "1d04ea71-3ba1-430c-a926-34e5764dc0c4",
+          "row_origin": "existing_unmodified_db_row",
+          "set_code": "swsh4.5",
+          "set_name": "Shining Fates",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Professor's Research",
+          "printed_identity_modifier": null,
+          "variant_key": "",
+          "child_printing_count": 2,
+          "vault_item_count": 0,
+          "current_set_code": "swsh4.5",
+          "current_number": "60",
+          "current_number_plain": "60",
+          "current_name": "Professor's Research",
+          "current_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "current_dependency_counts": {
+            "card_printings": 2,
+            "external_mappings": 1,
+            "card_print_identity": 0,
+            "card_print_traits": 0,
+            "vault_items": 0
+          },
+          "exact_number_match": true,
+          "exact_name_match": false,
+          "number_plain_match": true,
+          "printed_number_differs": false,
+          "printed_name_differs": true
+        }
+      ],
+      "reason_flags": {
+        "has_exact_duplicate": false,
+        "has_distinct_printed_number_collision": false,
+        "has_distinct_name_collision": true,
+        "has_dependency_refs": true,
+        "conflict_row_count": 1
+      }
+    }
+  ],
+  "next_steps": [
+    "Do not merge/delete collision rows automatically.",
+    "Treat number_plain identity collisions as schema/key-strategy work, not duplicate cleanup.",
+    "Prepare separate dry-run-only plans only for rows classified as possible exact duplicate candidates.",
+    "Keep distinct-number/name collisions blocked until identity model or number-key governance is decided."
+  ],
+  "safety": [
+    "No DB writes were performed.",
+    "No migrations were created.",
+    "No cleanup, quarantine, merge, delete, or apply path was executed.",
+    "PKG-02C applied rows are not revisited by this audit.",
+    "The 79 collision rows remain blocked from mutation."
+  ],
+  "stop_findings": [],
+  "report_hash_sha256": "d073e5925b8a0991e7f19a6db2eefd2867a1f1d4b1daa6e4f453c6d3395f62b7",
+  "pass": true
+}

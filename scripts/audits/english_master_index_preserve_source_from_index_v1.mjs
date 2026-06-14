@@ -14,6 +14,15 @@ const SOURCE_CONFIGS = {
     report_dir: 'docs/audits/english_master_index_source_exhaustion_v1/pricecharting_csv_preservation_v1',
     fixture_name: 'pricecharting_csv_preservation_v1.json',
   },
+  pricecharting_svp_winner_variant: {
+    source_kind: 'marketplace_checklist',
+    source_url: 'https://www.pricecharting.com/game/pokemon-promo/pikachu-world-championships-winner-225',
+    authority: 'pricecharting.com',
+    exact_source_key_only: true,
+    fixture_dir: 'docs/audits/verified_master_set_index_v1/source_fixtures/generated_pricecharting_svp_winner_preservation_v1',
+    report_dir: 'docs/audits/english_master_index_source_exhaustion_v1/pricecharting_svp_winner_preservation_v1',
+    fixture_name: 'pricecharting_svp_winner_preservation_v1.json',
+  },
   pokellector_set_checklist: {
     source_kind: 'collector_reference',
     source_url: 'https://www.pokellector.com/',

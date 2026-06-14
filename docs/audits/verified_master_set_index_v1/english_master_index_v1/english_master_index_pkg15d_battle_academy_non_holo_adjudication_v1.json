@@ -1,0 +1,981 @@
+{
+  "generated_at": "2026-06-11T15:59:51.783Z",
+  "version": "english_master_index_pkg15d_battle_academy_non_holo_adjudication_v1",
+  "package_id": "PKG-15D-BATTLE-ACADEMY-NON-HOLO-ADJUDICATION",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "stamped_finish_routing_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+  },
+  "summary": {
+    "reviewed_rows": 59,
+    "ready_rows_after_adjudication": 0,
+    "blocked_rows_after_adjudication": 59,
+    "by_adjudication_status": {
+      "blocked_no_exact_non_holo_source": 59
+    },
+    "by_target_variant_key": {
+      "none": 59
+    },
+    "by_target_finish_key": {
+      "none": 59
+    }
+  },
+  "governance_rules": [
+    "Battle Academy deck membership is not finish evidence by itself.",
+    "Only exact Non Holofoil checklist language can route Battle Academy deck-mark rows to normal.",
+    "Marketplace sale titles are support context only unless exact set, number, name, stamp, and finish are present."
+  ],
+  "rows": [
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM186",
+      "card_name": "Flareon",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "119",
+      "card_name": "Great Ball",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "120",
+      "card_name": "Hau",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "126",
+      "card_name": "Pokémon Catcher",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "127",
+      "card_name": "Potion",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "132",
+      "card_name": "Switch",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "43",
+      "card_name": "Electivire",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "25",
+      "card_name": "Salandit",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "43",
+      "card_name": "Electabuzz",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "133",
+      "card_name": "Pokémon Fan Club",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "38",
+      "card_name": "Moltres",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "81",
+      "card_name": "Blitzle",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "89",
+      "card_name": "Espeon",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "105",
+      "card_name": "Mareanie",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm9",
+      "set_name": "Team Up",
+      "card_number": "45",
+      "card_name": "Zebstrika",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm10",
+      "set_name": "Unbroken Bonds",
+      "card_number": "189",
+      "card_name": "Welder",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "card_number": "34",
+      "card_name": "Salazzle",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "card_number": "84",
+      "card_name": "Mesprit",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "card_number": "87",
+      "card_name": "Cresselia",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "card_number": "97",
+      "card_name": "Toxapex",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "card_number": "164",
+      "card_name": "Tauros",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "card_number": "189",
+      "card_name": "Bug Catcher",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "8",
+      "card_name": "Charmeleon",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "9",
+      "card_name": "Charizard-GX",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "19",
+      "card_name": "Pikachu",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "20",
+      "card_name": "Raichu-GX",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "31",
+      "card_name": "Mewtwo-GX",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "32",
+      "card_name": "Mew",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "46",
+      "card_name": "Chansey",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "49",
+      "card_name": "Eevee",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "50",
+      "card_name": "Snorlax",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH193",
+      "card_name": "Galarian Obstagoon",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "29",
+      "card_name": "Turtonator",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "74",
+      "card_name": "Yamper",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "76",
+      "card_name": "Boltund",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "160",
+      "card_name": "Energy Retrieval",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "165",
+      "card_name": "Hop",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "183",
+      "card_name": "Switch",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "165",
+      "card_name": "Piers",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "card_number": "53",
+      "card_name": "Blitzle",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "card_number": "54",
+      "card_name": "Zebstrika",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "124",
+      "card_name": "Energy Recycler",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "23",
+      "card_name": "Larvesta",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "24",
+      "card_name": "Volcarona",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "30",
+      "card_name": "Ninetales",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "49",
+      "card_name": "Centiskorch",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "91",
+      "card_name": "Shinx",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "92",
+      "card_name": "Luxio",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "93",
+      "card_name": "Luxray",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "102",
+      "card_name": "Zeraora",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "109",
+      "card_name": "Morpeko",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "162",
+      "card_name": "Carvanha",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "163",
+      "card_name": "Sharpedo",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "167",
+      "card_name": "Darkrai",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "170",
+      "card_name": "Zorua",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "171",
+      "card_name": "Zoroark",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "226",
+      "card_name": "Bug Catcher",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "228",
+      "card_name": "Cook",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "240",
+      "card_name": "Shauna",
+      "original_variant_key": "battle_academy_deck_mark",
+      "original_stamp_label": "Battle Academy Deck Mark",
+      "target_variant_key": null,
+      "target_stamp_label": null,
+      "target_finish_key": null,
+      "adjudication_status": "blocked_no_exact_non_holo_source",
+      "blockers": [
+        "no_exact_non_holo_adjudication"
+      ],
+      "evidence": []
+    }
+  ],
+  "fingerprint_sha256": "e3e59a3b968c9c5ee0490ef8c9339d875fb7fa585351f97842392090931521e1"
+}

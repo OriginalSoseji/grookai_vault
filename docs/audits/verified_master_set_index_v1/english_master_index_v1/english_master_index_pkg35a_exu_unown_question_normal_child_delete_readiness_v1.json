@@ -1,0 +1,119 @@
+{
+  "package_id": "PKG-35A-EXU-UNOWN-QUESTION-NORMAL-CHILD-DELETE-READINESS",
+  "generated_at": "2026-06-13T21:43:26.072Z",
+  "source_inputs": {
+    "lanes_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_current_unsupported_reconciliation_lanes_v1.json",
+    "printings_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_printings_v1.json"
+  },
+  "safety": {
+    "audit_only": true,
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "deletes_authorized": false,
+    "real_apply_authorized": false
+  },
+  "snapshot": {
+    "available": true,
+    "reason": null,
+    "parent_rows_read": 1,
+    "child_reference_rows": 0
+  },
+  "summary": {
+    "target_rows": 1,
+    "eligible_rows": 1,
+    "blocked_rows": 0,
+    "supported_master_finishes": [
+      "holo"
+    ]
+  },
+  "rows": [
+    {
+      "lane": "invalid_or_unknown_card_number_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "holo"
+      ],
+      "card_print_id": "8ee10c61-bbe4-4a20-aadb-4b994928c9de",
+      "set_code": "exu",
+      "card_number": "?",
+      "number": "?",
+      "number_plain": "?",
+      "card_name": "Unown",
+      "printed_identity_modifier": "",
+      "variant_key": "?",
+      "card_printing_id": "284b0760-afc0-4a7f-911b-ace215c4feb0",
+      "finish_key": "normal",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "exu",
+      "child_identity_key": "exu|?|unown|normal||",
+      "live_number_candidates": [
+        "?"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "8ee10c61-bbe4-4a20-aadb-4b994928c9de",
+        "set_code": "exu",
+        "number": "?",
+        "name": "Unown",
+        "variant_key": "?",
+        "children": [
+          {
+            "id": "b252ca9b-922a-4173-9987-a64749a56c45",
+            "finish_key": "holo"
+          },
+          {
+            "id": "284b0760-afc0-4a7f-911b-ace215c4feb0",
+            "finish_key": "normal"
+          }
+        ],
+        "external_mapping_count": 3,
+        "species_count": 1,
+        "trait_count": 1,
+        "justtcg_variant_count": 5
+      },
+      "supported_master_facts": [
+        {
+          "fact_type": "printing_finish",
+          "key": "unseen forces unown collection|?|unown|holo",
+          "status": "master_verified",
+          "set_key": "exu",
+          "set_name": "Unseen Forces Unown Collection",
+          "card_number": "%3F",
+          "card_name": "Unown",
+          "finish_key": "holo",
+          "rarity_values": [
+            "Rare"
+          ],
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_authorities": [
+            "api.tcgdex.net",
+            "reverseholo.app"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_count": 2,
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/exu-%253F",
+            "https://reverseholo.app/sets/exu"
+          ]
+        }
+      ],
+      "child_references": [],
+      "classification": "exu_unown_question_normal_child_delete_candidate",
+      "action": "eligible_for_guarded_dry_run_child_delete",
+      "reason": "parent is valid, holo child is supported, normal child is unsupported and dependency-free",
+      "supported_child_printing_id": "b252ca9b-922a-4173-9987-a64749a56c45"
+    }
+  ],
+  "fingerprint": "ffee0855f22f93f1e6f8ef7244724aa82d7762461b331e8456b8e9706e685af9"
+}

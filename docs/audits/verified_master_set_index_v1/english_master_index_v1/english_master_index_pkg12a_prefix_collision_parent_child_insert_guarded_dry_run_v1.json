@@ -1,0 +1,677 @@
+{
+  "generated_at": "2026-06-11T04:25:26.187Z",
+  "version": "english_master_index_pkg12a_prefix_collision_parent_child_insert_guarded_dry_run_v1",
+  "package_id": "PKG-12A-PREFIX-COLLISION-PARENT-CHILD-INSERTS",
+  "source_strategy_fingerprint_sha256": "c5751c15f7f66c9fb10e5fb69069134821bcdf9bd6d471721dea9e2811fc1e26",
+  "package_fingerprint_sha256": "5d2f3e012f334dbda88680766a82a72cec18c9cffd3296cc1c644e4a4c971c80",
+  "rollback_only": true,
+  "dry_run_status": "pkg12a_prefix_collision_parent_child_insert_completed_rolled_back_no_durable_change",
+  "durable_db_writes_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_authorized": false,
+  "scope": {
+    "source_rows": 16,
+    "target_parent_rows": 3,
+    "target_child_rows": 6,
+    "target_external_mappings": 3,
+    "blocked_rows": 5,
+    "selected_set_keys": [
+      "col1"
+    ],
+    "by_set": {
+      "col1": 6
+    },
+    "by_finish": {
+      "holo": 3,
+      "reverse": 3
+    },
+    "by_mapping_source": {
+      "pokemonapi": 3
+    },
+    "parent_rows": [
+      {
+        "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_key": "col1",
+        "live_set_code": "col1",
+        "set_name": "Call of Legends",
+        "card_number": "1",
+        "number_plain": "1",
+        "printed_identity_modifier": null,
+        "card_name": "Clefable",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "col1-1"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-12A-PREFIX-COLLISION-PARENT-CHILD-INSERTS",
+          "source_set_key": "col1",
+          "source_strategy_status": "prefix_collision_true_parent_insert_candidate",
+          "protected_same_number_candidates": [
+            {
+              "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+              "number": "SL1",
+              "number_plain": "1",
+              "name": "Deoxys",
+              "printed_identity_modifier": null
+            }
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "col1-1",
+          "source_url": "https://api.pokemontcg.io/v2/cards/col1-1"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/col1-1",
+          "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_key": "col1",
+        "live_set_code": "col1",
+        "set_name": "Call of Legends",
+        "card_number": "5",
+        "number_plain": "5",
+        "printed_identity_modifier": null,
+        "card_name": "Forretress",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "col1-5"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-12A-PREFIX-COLLISION-PARENT-CHILD-INSERTS",
+          "source_set_key": "col1",
+          "source_strategy_status": "prefix_collision_true_parent_insert_candidate",
+          "protected_same_number_candidates": [
+            {
+              "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+              "number": "SL5",
+              "number_plain": "5",
+              "name": "Ho-Oh",
+              "printed_identity_modifier": null
+            }
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "col1-5",
+          "source_url": "https://api.pokemontcg.io/v2/cards/col1-5"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/col1-5",
+          "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_key": "col1",
+        "live_set_code": "col1",
+        "set_name": "Call of Legends",
+        "card_number": "10",
+        "number_plain": "10",
+        "printed_identity_modifier": null,
+        "card_name": "Houndoom",
+        "rarity": null,
+        "variant_key": "",
+        "external_ids": {
+          "pokemonapi": "col1-10"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-12A-PREFIX-COLLISION-PARENT-CHILD-INSERTS",
+          "source_set_key": "col1",
+          "source_strategy_status": "prefix_collision_true_parent_insert_candidate",
+          "protected_same_number_candidates": [
+            {
+              "card_print_id": "5a3c4254-5da6-40c9-9025-335e01d542f0",
+              "number": "SL10",
+              "number_plain": "10",
+              "name": "Rayquaza",
+              "printed_identity_modifier": null
+            }
+          ]
+        },
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "col1-10",
+          "source_url": "https://api.pokemontcg.io/v2/cards/col1-10"
+        },
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/col1-10",
+          "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      }
+    ],
+    "child_rows": [
+      {
+        "card_printing_id": "1b8fd4ac-770d-468e-9226-8fca59f12f2e",
+        "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+        "set_key": "col1",
+        "live_set_code": "col1",
+        "card_number": "1",
+        "card_name": "Clefable",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "col1:1:holo",
+        "created_by": "pkg12a_prefix_collision_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/col1-1",
+          "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "a0826639-2a6e-44b8-bf22-c8e28c77dc58",
+        "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+        "set_key": "col1",
+        "live_set_code": "col1",
+        "card_number": "1",
+        "card_name": "Clefable",
+        "finish_key": "reverse",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "col1:1:reverse",
+        "created_by": "pkg12a_prefix_collision_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/col1-1",
+          "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "3a1f4d7c-f7ce-41ea-a6d8-6f9fde054329",
+        "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+        "set_key": "col1",
+        "live_set_code": "col1",
+        "card_number": "5",
+        "card_name": "Forretress",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "col1:5:holo",
+        "created_by": "pkg12a_prefix_collision_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/col1-5",
+          "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "5af6910b-0dd4-4b34-bc27-22a27a8aefdb",
+        "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+        "set_key": "col1",
+        "live_set_code": "col1",
+        "card_number": "5",
+        "card_name": "Forretress",
+        "finish_key": "reverse",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "col1:5:reverse",
+        "created_by": "pkg12a_prefix_collision_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/col1-5",
+          "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "c6af0731-5d64-43b3-8306-85e1d10f39a2",
+        "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+        "set_key": "col1",
+        "live_set_code": "col1",
+        "card_number": "10",
+        "card_name": "Houndoom",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "col1:10:holo",
+        "created_by": "pkg12a_prefix_collision_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/col1-10",
+          "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      },
+      {
+        "card_printing_id": "f3ee8b9a-d050-457d-a748-2fbf99824e78",
+        "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+        "set_key": "col1",
+        "live_set_code": "col1",
+        "card_number": "10",
+        "card_name": "Houndoom",
+        "finish_key": "reverse",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "col1:10:reverse",
+        "created_by": "pkg12a_prefix_collision_parent_child_insert_guarded_dry_run_v1",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/col1-10",
+          "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+        ],
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ]
+      }
+    ],
+    "external_mapping_rows": [
+      {
+        "source": "pokemonapi",
+        "external_id": "col1-1",
+        "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+        "meta": {
+          "package_id": "PKG-12A-PREFIX-COLLISION-PARENT-CHILD-INSERTS",
+          "set_key": "col1",
+          "live_set_code": "col1",
+          "card_name": "Clefable",
+          "card_number": "1",
+          "source_url": "https://api.pokemontcg.io/v2/cards/col1-1",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/col1-1",
+            "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "col1-5",
+        "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+        "meta": {
+          "package_id": "PKG-12A-PREFIX-COLLISION-PARENT-CHILD-INSERTS",
+          "set_key": "col1",
+          "live_set_code": "col1",
+          "card_name": "Forretress",
+          "card_number": "5",
+          "source_url": "https://api.pokemontcg.io/v2/cards/col1-5",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/col1-5",
+            "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+          ]
+        }
+      },
+      {
+        "source": "pokemonapi",
+        "external_id": "col1-10",
+        "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+        "meta": {
+          "package_id": "PKG-12A-PREFIX-COLLISION-PARENT-CHILD-INSERTS",
+          "set_key": "col1",
+          "live_set_code": "col1",
+          "card_name": "Houndoom",
+          "card_number": "10",
+          "source_url": "https://api.pokemontcg.io/v2/cards/col1-10",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/col1-10",
+            "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+          ]
+        }
+      }
+    ],
+    "blocked_rows_detail": [
+      {
+        "set_key": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "2",
+        "card_name": "Tangrowth",
+        "blocked_reason": "preferred_external_mapping_collision_present",
+        "preferred_external_mapping": {
+          "source": "tcgdex",
+          "external_id": "bw11-2",
+          "source_url": "https://api.tcgdex.net/v2/en/cards/bw11-2"
+        },
+        "existing_mapping_collisions": [
+          {
+            "external_mapping_id": "60938",
+            "source": "tcgdex",
+            "external_id": "bw11-2",
+            "current_card_print_id": "16dfca86-c445-4969-9552-15e2185096fc",
+            "set_code": null,
+            "number": null,
+            "number_plain": null,
+            "printed_identity_modifier": null,
+            "name": "Tangrowth",
+            "finishes": [
+              "holo",
+              "normal",
+              "reverse"
+            ]
+          }
+        ],
+        "existing_identity_slot_collisions": [
+          {
+            "target_card_print_id": "0cc92c33-ce5c-491b-9b90-943ae58eea1f",
+            "current_card_print_id": "36d373ee-1c35-4711-af33-18aeb3e91da9",
+            "set_code": null,
+            "number": "2",
+            "number_plain": "2",
+            "printed_identity_modifier": null,
+            "variant_key": "",
+            "name": "Tangrowth",
+            "finishes": [
+              "holo",
+              "normal",
+              "reverse"
+            ],
+            "external_mappings": [
+              {
+                "source": "justtcg",
+                "external_id": "pokemon-legendary-treasures-tangrowth-rare"
+              },
+              {
+                "source": "tcgplayer",
+                "external_id": "89756"
+              }
+            ]
+          }
+        ],
+        "recommended_next_action": "Handle as mapped/incomplete-parent backfill or mapping-transfer package; do not insert duplicate parent."
+      },
+      {
+        "set_key": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "8",
+        "card_name": "Serperior",
+        "blocked_reason": "unprefixed_identity_slot_already_occupied",
+        "preferred_external_mapping": {
+          "source": "pokemonapi",
+          "external_id": "bw11-8",
+          "source_url": "https://api.pokemontcg.io/v2/cards/bw11-8"
+        },
+        "existing_mapping_collisions": [],
+        "existing_identity_slot_collisions": [
+          {
+            "target_card_print_id": "3e6ce817-f026-4262-955c-afc9f03cf6e6",
+            "current_card_print_id": "9e7902f8-74c6-4caa-af91-6b3d4bea0838",
+            "set_code": null,
+            "number": "8",
+            "number_plain": "8",
+            "printed_identity_modifier": null,
+            "variant_key": "",
+            "name": "Serperior",
+            "finishes": [
+              "holo",
+              "normal",
+              "reverse"
+            ],
+            "external_mappings": [
+              {
+                "source": "justtcg",
+                "external_id": "pokemon-legendary-treasures-serperior-holo-rare"
+              },
+              {
+                "source": "tcgplayer",
+                "external_id": "89074"
+              }
+            ]
+          }
+        ],
+        "recommended_next_action": "Handle as mapped/incomplete-parent backfill or mapping-transfer package; do not insert duplicate parent."
+      },
+      {
+        "set_key": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "11",
+        "card_name": "Swadloon",
+        "blocked_reason": "preferred_external_mapping_collision_present",
+        "preferred_external_mapping": {
+          "source": "tcgdex",
+          "external_id": "bw11-11",
+          "source_url": "https://api.tcgdex.net/v2/en/cards/bw11-11"
+        },
+        "existing_mapping_collisions": [
+          {
+            "external_mapping_id": "60937",
+            "source": "tcgdex",
+            "external_id": "bw11-11",
+            "current_card_print_id": "875181b8-83c3-45b2-b15d-31aa05e0c615",
+            "set_code": null,
+            "number": null,
+            "number_plain": null,
+            "printed_identity_modifier": null,
+            "name": "Swadloon",
+            "finishes": [
+              "holo",
+              "normal",
+              "reverse"
+            ]
+          }
+        ],
+        "existing_identity_slot_collisions": [
+          {
+            "target_card_print_id": "65f10a1a-ab7e-4b41-b772-db9109853ce7",
+            "current_card_print_id": "1d60fe17-88aa-4f63-9627-b484ecbb0c66",
+            "set_code": null,
+            "number": "11",
+            "number_plain": "11",
+            "printed_identity_modifier": null,
+            "variant_key": "",
+            "name": "Swadloon",
+            "finishes": [
+              "holo",
+              "normal",
+              "reverse"
+            ],
+            "external_mappings": [
+              {
+                "source": "justtcg",
+                "external_id": "pokemon-legendary-treasures-swadloon-uncommon"
+              },
+              {
+                "source": "tcgplayer",
+                "external_id": "89669"
+              }
+            ]
+          }
+        ],
+        "recommended_next_action": "Handle as mapped/incomplete-parent backfill or mapping-transfer package; do not insert duplicate parent."
+      },
+      {
+        "set_key": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "17",
+        "card_name": "Charmander",
+        "blocked_reason": "preferred_external_mapping_collision_present",
+        "preferred_external_mapping": {
+          "source": "tcgdex",
+          "external_id": "bw11-17",
+          "source_url": "https://api.tcgdex.net/v2/en/cards/bw11-17"
+        },
+        "existing_mapping_collisions": [
+          {
+            "external_mapping_id": "60948",
+            "source": "tcgdex",
+            "external_id": "bw11-17",
+            "current_card_print_id": "bef9f1a1-27d7-4e71-ab9e-64aab82e30bf",
+            "set_code": null,
+            "number": null,
+            "number_plain": null,
+            "printed_identity_modifier": null,
+            "name": "Charmander",
+            "finishes": [
+              "holo",
+              "normal",
+              "reverse"
+            ]
+          }
+        ],
+        "existing_identity_slot_collisions": [
+          {
+            "target_card_print_id": "ecd51b0d-3ac3-4d4d-9942-24764af7c4c9",
+            "current_card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+            "set_code": null,
+            "number": "17",
+            "number_plain": "17",
+            "printed_identity_modifier": null,
+            "variant_key": "",
+            "name": "Charmander",
+            "finishes": [
+              "holo",
+              "normal",
+              "reverse"
+            ],
+            "external_mappings": [
+              {
+                "source": "justtcg",
+                "external_id": "pokemon-legendary-treasures-charmander-common"
+              },
+              {
+                "source": "tcgplayer",
+                "external_id": "84219"
+              }
+            ]
+          }
+        ],
+        "recommended_next_action": "Handle as mapped/incomplete-parent backfill or mapping-transfer package; do not insert duplicate parent."
+      },
+      {
+        "set_key": "bw11",
+        "set_name": "Legendary Treasures",
+        "card_number": "25",
+        "card_name": "Tepig",
+        "blocked_reason": "preferred_external_mapping_collision_present",
+        "preferred_external_mapping": {
+          "source": "tcgdex",
+          "external_id": "bw11-25",
+          "source_url": "https://api.tcgdex.net/v2/en/cards/bw11-25"
+        },
+        "existing_mapping_collisions": [
+          {
+            "external_mapping_id": "60934",
+            "source": "tcgdex",
+            "external_id": "bw11-25",
+            "current_card_print_id": "e0d286dc-607f-4abd-9b3e-d4a0c386c9d5",
+            "set_code": null,
+            "number": null,
+            "number_plain": null,
+            "printed_identity_modifier": null,
+            "name": "Tepig",
+            "finishes": [
+              "holo",
+              "normal",
+              "reverse"
+            ]
+          }
+        ],
+        "existing_identity_slot_collisions": [
+          {
+            "target_card_print_id": "abd62964-e54e-4d70-9e58-a11200a8785f",
+            "current_card_print_id": "54e4a510-4bdc-4ccd-858e-761e12825691",
+            "set_code": null,
+            "number": "25",
+            "number_plain": "25",
+            "printed_identity_modifier": null,
+            "variant_key": "",
+            "name": "Tepig",
+            "finishes": [
+              "holo",
+              "normal",
+              "reverse"
+            ],
+            "external_mappings": [
+              {
+                "source": "justtcg",
+                "external_id": "pokemon-legendary-treasures-tepig-common"
+              },
+              {
+                "source": "tcgplayer",
+                "external_id": "89885"
+              }
+            ]
+          }
+        ],
+        "recommended_next_action": "Handle as mapped/incomplete-parent backfill or mapping-transfer package; do not insert duplicate parent."
+      }
+    ]
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-11T04:25:24.679Z",
+    "rows": [
+      {
+        "row_type": "target_set",
+        "row_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "card_number": null,
+        "card_name": "Call of Legends",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      }
+    ],
+    "hash_sha256": "dcf719b4259ba805ff13a2f33ea1e66cb3dd9593cf0416d1484705733be079f5",
+    "counts": {
+      "target_set_rows": 1,
+      "existing_parent_exact_rows": 0,
+      "existing_child_exact_rows": 0,
+      "external_mapping_collision_rows": 0,
+      "total_rows": 1
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-11T04:25:26.181Z",
+    "rows": [
+      {
+        "row_type": "target_set",
+        "row_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "card_number": null,
+        "card_name": "Call of Legends",
+        "finish_key": null,
+        "source": null,
+        "external_id": null
+      }
+    ],
+    "hash_sha256": "dcf719b4259ba805ff13a2f33ea1e66cb3dd9593cf0416d1484705733be079f5",
+    "counts": {
+      "target_set_rows": 1,
+      "existing_parent_exact_rows": 0,
+      "existing_child_exact_rows": 0,
+      "external_mapping_collision_rows": 0,
+      "total_rows": 1
+    }
+  },
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "rollback_proof_rows": [
+    {
+      "package_id": "PKG-12A-PREFIX-COLLISION-PARENT-CHILD-INSERTS",
+      "package_fingerprint": "5d2f3e012f334dbda88680766a82a72cec18c9cffd3296cc1c644e4a4c971c80",
+      "planned_parent_rows": 3,
+      "planned_child_rows": 6,
+      "planned_mapping_rows": 3
+    }
+  ],
+  "stop_findings": [],
+  "recommended_real_apply_approval_text": "Approve real PKG-12A-PREFIX-COLLISION-PARENT-CHILD-INSERTS apply only. Fingerprint: 5d2f3e012f334dbda88680766a82a72cec18c9cffd3296cc1c644e4a4c971c80. Scope: 3 unprefixed parent card_print inserts, 6 child card_printing inserts, 3 external mappings across 1 sets; existing prefixed RC/SL same-number parents preserved; 5 collision rows excluded for separate incomplete-parent backfill/adjudication; mapping sources pokemonapi=3; finishes holo=3, reverse=3. Dry-run proof: dcf719b4259ba805ff13a2f33ea1e66cb3dd9593cf0416d1484705733be079f5 == dcf719b4259ba805ff13a2f33ea1e66cb3dd9593cf0416d1484705733be079f5. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}

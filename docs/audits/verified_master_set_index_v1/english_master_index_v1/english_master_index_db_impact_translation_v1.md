@@ -20,13 +20,13 @@ It is audit-only. It does not write to Supabase, create migrations, run cleanup,
 | Metric | Value |
 | --- | ---: |
 | write_ready_now | 0 |
-| card_print rows that would be updated | 106 |
-| card_printing rows verified but not directly changed | 143 |
-| affected sets | 12 |
-| external mappings referencing targets | 132 |
-| identity rows referencing targets | 106 |
-| trait rows referencing targets | 106 |
-| vault items referencing targets | 0 |
+| card_print rows that would be updated | 422 |
+| card_printing rows verified but not directly changed | 643 |
+| affected sets | 18 |
+| external mappings referencing targets | 448 |
+| identity rows referencing targets | 422 |
+| trait rows referencing targets | 422 |
+| vault items referencing targets | 4 |
 
 The future candidate package would update only `card_prints` parent identity fields under the current design: `set_code`, `number`, and `name`. `number_plain` is expected readback, not a direct assignment.
 
@@ -35,37 +35,43 @@ The future candidate package would update only `card_prints` parent identity fie
 | Field | Rows |
 | --- | ---: |
 | name | 11 |
-| number | 88 |
-| set_code | 106 |
+| number | 380 |
+| set_code | 422 |
 
 ## Affected Sets
 
 | Set | Name | card_print rows | child printings verified | Changed fields | Vault refs | Status |
 | --- | --- | ---: | ---: | --- | ---: | --- |
+| 2021swsh | McDonald's Collection 2021 | 25 | 50 | set_code:25 | 0 | approval_required_no_write |
 | col1 | Call of Legends | 2 | 6 | number:2, set_code:2 | 0 | approval_required_no_write |
 | dp7 | Stormfront | 8 | 10 | number:8, set_code:8 | 0 | approval_required_no_write |
 | ecard2 | Aquapolis | 13 | 26 | set_code:13 | 0 | approval_required_no_write |
 | ecard3 | Skyridge | 15 | 19 | number:11, set_code:15 | 0 | approval_required_no_write |
 | ex10 | Unseen Forces | 3 | 3 | name:3, number:3, set_code:3 | 0 | approval_required_no_write |
-| fut2020 | Pokémon Futsal 2020 | 1 | 1 | set_code:1 | 0 | approval_required_no_write |
+| me01 | Mega Evolution | 77 | 151 | number:77, set_code:77 | 2 | approval_required_no_write |
 | mep | MEP Black Star Promos | 10 | 10 | number:10, set_code:10 | 0 | approval_required_no_write |
 | pl1 | Platinum | 9 | 10 | number:9, set_code:9 | 0 | approval_required_no_write |
 | pl2 | Rising Rivals | 17 | 24 | name:2, number:17, set_code:17 | 0 | approval_required_no_write |
 | pl3 | Supreme Victors | 9 | 9 | number:9, set_code:9 | 0 | approval_required_no_write |
 | pl4 | Arceus | 18 | 23 | name:6, number:18, set_code:18 | 0 | approval_required_no_write |
+| sv04.5 | Paldean Fates | 108 | 148 | number:108, set_code:108 | 1 | approval_required_no_write |
+| sv06.5 | Shrouded Fable | 52 | 69 | number:52, set_code:52 | 1 | approval_required_no_write |
+| sv08.5 | Prismatic Evolutions | 20 | 40 | number:20, set_code:20 | 0 | approval_required_no_write |
+| swsh10.5 | Pokémon GO | 33 | 39 | number:33, set_code:33 | 0 | approval_required_no_write |
 | swsh2 | Rebel Clash | 1 | 2 | number:1, set_code:1 | 0 | approval_required_no_write |
+| swsh4.5 | Shining Fates | 2 | 4 | number:2, set_code:2 | 0 | approval_required_no_write |
 
 ## Global DB Vs Index Context
 
 | Bucket | Count | Meaning |
 | --- | ---: | --- |
-| Grookai printing rows | 55266 | Current DB comparison population |
-| Index printing rows | 38841 | Master Index reference population |
-| master_verified_by_index | 31975 | Already supported by index |
-| missing_from_grookai | 7317 | Not insertion authority |
-| unsupported_by_current_index | 11975 | Not deletion authority |
-| set_unmapped | 11176 | Needs identity/provenance recovery |
-| name_mismatch_needs_review | 139 | Needs alias/name governance |
+| Grookai printing rows | 59614 | Current DB comparison population |
+| Index printing rows | 38893 | Master Index reference population |
+| master_verified_by_index | 36651 | Already supported by index |
+| missing_from_grookai | 4564 | Not insertion authority |
+| unsupported_by_current_index | 12308 | Not deletion authority |
+| set_unmapped | 10462 | Needs identity/provenance recovery |
+| name_mismatch_needs_review | 176 | Needs alias/name governance |
 
 ## Gates Still Blocking Writes
 
@@ -91,8 +97,8 @@ The future candidate package would update only `card_prints` parent identity fie
 
 ## Status
 
-- pass: true
-- stop_findings: 0
+- pass: false
+- stop_findings: 3
 - db_writes_performed: false
 - migrations_created: false
 - cleanup_performed: false

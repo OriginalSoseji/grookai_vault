@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T19:44:32.664Z",
+  "generated_at": "2026-06-13T00:10:54.256Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -11,18 +11,19 @@
   "purpose": "Completion-first Master Index report. This is not a Grookai reconciliation report.",
   "summary": {
     "sets_in_registry": 201,
-    "complete_master_index_sets": 199,
-    "incomplete_sets": 2,
+    "complete_master_index_sets": 189,
+    "incomplete_sets": 12,
     "working_card_identity_facts": 21520,
     "master_admissible_card_identity_facts": 21520,
     "printing_derived_card_identity_facts": 0,
-    "working_printing_facts": 38841,
-    "master_admissible_printing_facts": 38841,
+    "working_printing_facts": 38927,
+    "master_admissible_printing_facts": 38893,
     "finish_absence_facts": 22,
     "finish_blocker_boundary_facts": 0,
     "adjudicated_excluded_printing_facts": 5,
     "by_completion_status": {
-      "complete_master_index_set": 199,
+      "card_identity_complete_finish_incomplete": 10,
+      "complete_master_index_set": 189,
       "non_standard_single_source_reference": 2
     },
     "by_card_fact_status": {
@@ -30,9 +31,10 @@
       "api_agreed": 9
     },
     "by_printing_fact_status": {
-      "master_verified": 38841
+      "master_verified": 38893,
+      "human_source_verified": 34
     },
-    "source_gap_queue_items": 0,
+    "source_gap_queue_items": 10,
     "grookai_reconciliation_performed": false
   },
   "source_standard": {

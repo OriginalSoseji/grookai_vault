@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-06-11T11:24:07.780Z",
+  "version": "english_master_index_pkg12_parent_identity_mismatch_strategy_v1",
+  "package_id": "PKG-12-PARENT-IDENTITY-MISMATCH-STRATEGY",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "live_read": {
+    "available": true,
+    "reason": null,
+    "live_parent_rows_read": 24988
+  },
+  "fingerprint": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "summary": {
+    "source_rows": 0,
+    "strategy_rows": 0,
+    "by_strategy_lane": {},
+    "by_strategy_status": {},
+    "top_sets_by_strategy_lane": {},
+    "top_sets_by_strategy_status": {},
+    "parent_insert_candidate_rows": 0,
+    "child_insert_candidate_rows": 0,
+    "identity_alias_suppression_ready": 0,
+    "blocked_rows": 0,
+    "vault_referenced_candidate_rows": 0
+  },
+  "rows": []
+}

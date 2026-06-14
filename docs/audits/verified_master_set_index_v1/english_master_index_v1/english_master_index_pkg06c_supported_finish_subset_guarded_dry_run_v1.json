@@ -1,0 +1,3484 @@
+{
+  "generated_at": "2026-06-09T22:44:30.504Z",
+  "version": "english_master_index_pkg06c_supported_finish_subset_guarded_dry_run_v1",
+  "package_id": "PKG-06C-SUPPORTED-FINISH-SUBSET-CHILD-PRINTING-INSERTS",
+  "source_readiness_fingerprint_sha256": "e89f24ba671422a6198da0f9668753409cee408321c178248e8f78fe56639eec",
+  "package_fingerprint_sha256": "839a42b870b455a16055c88c5b4e39c4a83da421e4cd36df581eee4358000684",
+  "sql_artifact_path": "C:\\grookai_vault\\docs\\sql\\english_master_index_pkg06c_supported_finish_subset_guarded_dry_run_transaction_v1.sql",
+  "sql_hash_sha256": "cc9060568b83642f27cc67aa56a1f53080771accb54d9aaeb61f983ce25af2ae",
+  "live_finish_keys": [
+    {
+      "key": "cosmos",
+      "label": "Cosmos Holo",
+      "is_active": true
+    },
+    {
+      "key": "holo",
+      "label": "Holo",
+      "is_active": true
+    },
+    {
+      "key": "masterball",
+      "label": "Master Ball",
+      "is_active": true
+    },
+    {
+      "key": "normal",
+      "label": "Normal",
+      "is_active": true
+    },
+    {
+      "key": "pokeball",
+      "label": "Poké Ball",
+      "is_active": true
+    },
+    {
+      "key": "reverse",
+      "label": "Reverse Holo",
+      "is_active": true
+    },
+    {
+      "key": "rocket_reverse",
+      "label": "Rocket Reverse",
+      "is_active": true
+    }
+  ],
+  "supported_subset": {
+    "child_printing_rows": 8,
+    "target_parent_rows": 8,
+    "set_count": 1,
+    "set_counts": {
+      "neo4": 8
+    },
+    "finish_counts": {
+      "holo": 8
+    },
+    "rows": [
+      {
+        "card_printing_id": "9bfbba3b-7aa5-4e9d-89d3-6e37359cb4ee",
+        "card_print_id": "3adadb08-a9ef-4879-af78-ef8f6f9decf6",
+        "set_key": "neo4",
+        "set_name": "Neo Destiny",
+        "card_number": "106",
+        "card_name": "Shining Celebi",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:106:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/1609/shining-celebi-neo-destiny-106-105",
+          "https://www.thepricedex.com/set/neo4/neo-destiny/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "cfb1e942-b355-4ddb-ac0b-42b0109919f2",
+        "card_print_id": "144e42f1-b803-42ac-aabe-a3db97c16fa6",
+        "set_key": "neo4",
+        "set_name": "Neo Destiny",
+        "card_number": "107",
+        "card_name": "Shining Charizard",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:107:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/1610/shining-charizard-neo-destiny-107-105",
+          "https://www.thepricedex.com/set/neo4/neo-destiny/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "1816d38e-36a0-4e65-a40c-a84cda2e4220",
+        "card_print_id": "01c5a20c-0d8c-4274-a55d-614b38b64fec",
+        "set_key": "neo4",
+        "set_name": "Neo Destiny",
+        "card_number": "108",
+        "card_name": "Shining Kabutops",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:108:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/1612/shining-kabutops-neo-destiny-108-105",
+          "https://www.thepricedex.com/set/neo4/neo-destiny/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "6a123f5e-2371-4f2b-9d75-95abab7db6ac",
+        "card_print_id": "762b7cfc-3b44-4d9b-aa10-2b9539cf86e6",
+        "set_key": "neo4",
+        "set_name": "Neo Destiny",
+        "card_number": "109",
+        "card_name": "Shining Mewtwo",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:109:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/1614/shining-mewtwo-neo-destiny-109-105",
+          "https://www.thepricedex.com/set/neo4/neo-destiny/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "77a7fd2a-48aa-458e-ad5a-db0f890461ed",
+        "card_print_id": "afde284e-1cd1-422d-b6fa-a649c6f3e49d",
+        "set_key": "neo4",
+        "set_name": "Neo Destiny",
+        "card_number": "110",
+        "card_name": "Shining Noctowl",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:110:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/1615/shining-noctowl-neo-destiny-110-105",
+          "https://www.thepricedex.com/set/neo4/neo-destiny/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "0b34f47b-860b-41f3-88f5-d71e9b543b15",
+        "card_print_id": "3f5bba1d-3d0c-4188-8abf-1945d315decd",
+        "set_key": "neo4",
+        "set_name": "Neo Destiny",
+        "card_number": "111",
+        "card_name": "Shining Raichu",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:111:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/1616/shining-raichu-neo-destiny-111-105",
+          "https://www.thepricedex.com/set/neo4/neo-destiny/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "4a360cee-f686-4c13-9e61-6ef3452bc185",
+        "card_print_id": "4b1a138c-ff9d-44de-91b4-eee95aadf558",
+        "set_key": "neo4",
+        "set_name": "Neo Destiny",
+        "card_number": "112",
+        "card_name": "Shining Steelix",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:112:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/1617/shining-steelix-neo-destiny-112-105",
+          "https://www.thepricedex.com/set/neo4/neo-destiny/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "f68d1685-b298-4ab3-b42a-14d17eb20364",
+        "card_print_id": "de40da7c-1283-4fe3-ab1b-a84948e88df8",
+        "set_key": "neo4",
+        "set_name": "Neo Destiny",
+        "card_number": "113",
+        "card_name": "Shining Tyranitar",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "neo4:113:holo",
+        "created_by": "pkg06c_supported_finish_subset_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/1618/shining-tyranitar-neo-destiny-113-105",
+          "https://www.thepricedex.com/set/neo4/neo-destiny/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      }
+    ]
+  },
+  "blocked_subset": {
+    "child_printing_rows": 380,
+    "finish_counts": {
+      "first_edition_holo": 63,
+      "first_edition_normal": 314,
+      "stamped": 3
+    },
+    "rows": [
+      {
+        "card_printing_id": "cb3de810-b7c1-4890-a219-bed612a62f9c",
+        "card_print_id": "674f7884-41e2-4e16-88ac-fb7f679404ce",
+        "set_key": "gym1",
+        "card_number": "1",
+        "card_name": "Blaine's Moltres",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "febdc0f4-1d5e-4e91-92b8-33203137d65f",
+        "card_print_id": "9258b1eb-f30f-4af3-98bb-8e24129c2397",
+        "set_key": "gym1",
+        "card_number": "2",
+        "card_name": "Brock's Rhydon",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "894116d7-1154-4cd2-93b3-694b7a95ef52",
+        "card_print_id": "3cfdd3ce-1bc3-4cd2-953b-cbbff62849af",
+        "set_key": "gym1",
+        "card_number": "3",
+        "card_name": "Erika's Clefable",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "6a0d1751-9706-4ae7-9c18-5b4f0a06300f",
+        "card_print_id": "8274e9e9-9e3e-4576-a970-cbaca3ce9296",
+        "set_key": "gym1",
+        "card_number": "4",
+        "card_name": "Erika's Dragonair",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "9995fc19-5ff8-45d5-84a4-6ab91a2f6f2f",
+        "card_print_id": "e9b81525-4708-40ff-b208-0f3b82aa73a8",
+        "set_key": "gym1",
+        "card_number": "5",
+        "card_name": "Erika's Vileplume",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "a069c3d3-1fe3-43f6-8579-3c082a4b9d76",
+        "card_print_id": "a586e5bb-e675-4bbd-a039-589e50ce6ff4",
+        "set_key": "gym1",
+        "card_number": "6",
+        "card_name": "Lt. Surge's Electabuzz",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "999fde2c-0a5a-488b-bc36-ba423d0b0f5e",
+        "card_print_id": "57691527-ef9f-493e-8d1b-fffbccbb138b",
+        "set_key": "gym1",
+        "card_number": "7",
+        "card_name": "Lt. Surge's Fearow",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "55f37081-f7d6-4015-ae3e-fe1b49ef8151",
+        "card_print_id": "8f0f18f4-8fb5-4c9e-8b62-943b6e9924d9",
+        "set_key": "gym1",
+        "card_number": "8",
+        "card_name": "Lt. Surge's Magneton",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "d221b255-4c2a-4d2d-883e-17671f69950f",
+        "card_print_id": "9cf99345-1b4e-47cd-9424-26f937104271",
+        "set_key": "gym1",
+        "card_number": "9",
+        "card_name": "Misty's Seadra",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "d1653706-027f-4704-be23-9df64d500ee7",
+        "card_print_id": "9cf99345-1b4e-47cd-9424-26f937104271",
+        "set_key": "gym1",
+        "card_number": "9",
+        "card_name": "Misty's Seadra",
+        "finish_key": "stamped"
+      },
+      {
+        "card_printing_id": "07a45670-2c9a-4fa4-b975-27ba3959c6af",
+        "card_print_id": "c623bf03-ec36-42de-94bc-1d1f4420ecdf",
+        "set_key": "gym1",
+        "card_number": "10",
+        "card_name": "Misty's Tentacruel",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "7eda59fd-40b2-4c15-8f92-9fe5f8e52826",
+        "card_print_id": "6a66a422-8061-47c7-94d4-a8dd45e5e0ae",
+        "set_key": "gym1",
+        "card_number": "11",
+        "card_name": "Rocket's Hitmonchan",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "0888a3cf-43f6-4ad6-b23c-f9f911ce4527",
+        "card_print_id": "f1434802-f5e1-4fa1-b36d-8bab1473e70c",
+        "set_key": "gym1",
+        "card_number": "12",
+        "card_name": "Rocket's Moltres",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "e4c4450e-3be7-476e-bcb2-56ad0f867bdb",
+        "card_print_id": "957a0787-cba7-46d3-9cd2-f8671b3ad6fb",
+        "set_key": "gym1",
+        "card_number": "13",
+        "card_name": "Rocket's Scyther",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "a2528d64-df23-44ef-b1ad-8558840ce787",
+        "card_print_id": "f59a3533-0ccd-4de1-baa4-1296ea74610f",
+        "set_key": "gym1",
+        "card_number": "14",
+        "card_name": "Sabrina's Gengar",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "e2628286-f8db-41a5-8c63-a245b4ece8f4",
+        "card_print_id": "1a0e9187-cd82-4216-b695-48693052ab49",
+        "set_key": "gym1",
+        "card_number": "15",
+        "card_name": "Brock",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "1c490f73-702e-4317-85ac-f82d8555fb18",
+        "card_print_id": "aecc355e-a209-4f72-81c0-01b7352aadda",
+        "set_key": "gym1",
+        "card_number": "16",
+        "card_name": "Erika",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "db9f81aa-9a21-45cb-a160-9c57108535d7",
+        "card_print_id": "60794761-11df-49ef-ae25-53ea2980d129",
+        "set_key": "gym1",
+        "card_number": "17",
+        "card_name": "Lt. Surge",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "22892536-85fe-4922-8bd4-12dedb120a6f",
+        "card_print_id": "05d537df-8556-4aed-b60a-e0bda1b8aadb",
+        "set_key": "gym1",
+        "card_number": "18",
+        "card_name": "Misty",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "6d6a8609-ee5b-4a37-98e8-8383c214f6f9",
+        "card_print_id": "14337c24-75af-4f7f-a89e-776d7757d411",
+        "set_key": "gym1",
+        "card_number": "19",
+        "card_name": "The Rocket's Trap",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "24a502e8-6750-4953-a4f6-0c817705172c",
+        "card_print_id": "9924cf26-694b-4253-8be6-d8c8876e9a12",
+        "set_key": "gym1",
+        "card_number": "20",
+        "card_name": "Brock's Golem",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "32139f56-0ec9-4318-a3de-fbdfe563b818",
+        "card_print_id": "cb4e327d-986f-419a-a555-e83ef0289d2e",
+        "set_key": "gym1",
+        "card_number": "21",
+        "card_name": "Brock's Onix",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "edf661af-e51b-4332-bbeb-c336fca1c539",
+        "card_print_id": "5ac5b388-be19-4272-8c6d-eefa6598a523",
+        "set_key": "gym1",
+        "card_number": "22",
+        "card_name": "Brock's Rhyhorn",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "0e0cc701-0bf3-4751-be2c-fd3f755cf606",
+        "card_print_id": "29dd8e67-d277-4ba4-a5dd-ca8e17d1b5e4",
+        "set_key": "gym1",
+        "card_number": "23",
+        "card_name": "Brock's Sandslash",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "b71a42f8-02a6-4f2e-a4c1-b03319631414",
+        "card_print_id": "3aaf3448-6159-4b8a-806c-609e6ec60d86",
+        "set_key": "gym1",
+        "card_number": "24",
+        "card_name": "Brock's Zubat",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "130f7a03-4cff-42b5-9bad-bdbb0e8b5f40",
+        "card_print_id": "0671b26d-ed69-47da-9891-0d549af916eb",
+        "set_key": "gym1",
+        "card_number": "25",
+        "card_name": "Erika's Clefairy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "835246af-3029-4fb9-9202-4c7899c00c5e",
+        "card_print_id": "fede145f-28e8-47dd-935c-4ecc84b2a820",
+        "set_key": "gym1",
+        "card_number": "26",
+        "card_name": "Erika's Victreebel",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c3ce1f9a-09e5-415a-8080-b53b6dde1c8b",
+        "card_print_id": "3fdb1ea1-0a6b-4fec-9efb-a1c5e1cd24e1",
+        "set_key": "gym1",
+        "card_number": "27",
+        "card_name": "Lt. Surge's Electabuzz",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "739d8194-3dd7-4136-82ff-b6d980ef4167",
+        "card_print_id": "1c23a48c-5bab-47c0-a747-12d84b7354b9",
+        "set_key": "gym1",
+        "card_number": "28",
+        "card_name": "Lt. Surge's Raichu",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "5f37fd4b-f49e-4ed0-bbd0-1a0dac2000f5",
+        "card_print_id": "3d74fc89-763a-4667-a506-ef7613787706",
+        "set_key": "gym1",
+        "card_number": "29",
+        "card_name": "Misty's Cloyster",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "969f2e03-0973-4d79-8a7d-ff830ea0ddb7",
+        "card_print_id": "8a210518-7b9b-4493-a5b5-8200c450e2bb",
+        "set_key": "gym1",
+        "card_number": "30",
+        "card_name": "Misty's Goldeen",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a91ec58b-b4b3-4d67-bb54-0e05f1300ba0",
+        "card_print_id": "c7b6479c-722c-4685-8ddd-54c14b2033d9",
+        "set_key": "gym1",
+        "card_number": "31",
+        "card_name": "Misty's Poliwrath",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "7977d0a7-eb20-426b-af39-12d375c1497e",
+        "card_print_id": "35d37db0-016e-471d-aa0e-93836fbccd22",
+        "set_key": "gym1",
+        "card_number": "32",
+        "card_name": "Misty's Tentacool",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "caa82f81-db6b-438a-a4c4-3f72ce70f9e3",
+        "card_print_id": "cdc4c053-79a3-483c-8ab4-a3cec30a43e8",
+        "set_key": "gym1",
+        "card_number": "33",
+        "card_name": "Rocket's Snorlax",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "eb03aa2a-c3a6-411b-b55a-be3bd216b374",
+        "card_print_id": "a5f30c64-b469-4c9b-bf6b-1ace89d7b6a9",
+        "set_key": "gym1",
+        "card_number": "34",
+        "card_name": "Sabrina's Venomoth",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "90a0eb0e-af1b-4943-aed8-35432ee0fa8e",
+        "card_print_id": "d0c41dca-1e13-450c-8ca2-dc6e1804cf14",
+        "set_key": "gym1",
+        "card_number": "35",
+        "card_name": "Blaine's Growlithe",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "eef18655-87c7-4464-bb60-7b19798d0eda",
+        "card_print_id": "8de57ad3-a025-4eeb-b29b-b9348de560cc",
+        "set_key": "gym1",
+        "card_number": "36",
+        "card_name": "Blaine's Kangaskhan",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "eafaf82d-666d-4713-bbf2-4fcd77bbf873",
+        "card_print_id": "e8b4c9af-b7f1-4ae6-8d86-92b71ab6863a",
+        "set_key": "gym1",
+        "card_number": "37",
+        "card_name": "Blaine's Magmar",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "981a406c-29f0-4054-a5f9-5f2cf9b54ee7",
+        "card_print_id": "e0479904-94ee-4eae-af3a-b735dc44540c",
+        "set_key": "gym1",
+        "card_number": "38",
+        "card_name": "Brock's Geodude",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c38d7a99-8152-477f-b6b7-82effc5edad1",
+        "card_print_id": "1cb97d31-058a-4a3d-956b-6dd48374ee24",
+        "set_key": "gym1",
+        "card_number": "39",
+        "card_name": "Brock's Golbat",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "542a3d6b-eb02-4458-b1cc-f3476a493ab5",
+        "card_print_id": "cef9b7a0-e070-46cc-abca-bc2c86f408e3",
+        "set_key": "gym1",
+        "card_number": "40",
+        "card_name": "Brock's Graveler",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "5e99f7d8-6868-4f19-b51a-ac4e438ce6f9",
+        "card_print_id": "a427f1f1-d2b1-4343-95f1-224c0e0e300d",
+        "set_key": "gym1",
+        "card_number": "41",
+        "card_name": "Brock's Lickitung",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "3578c081-4a44-4898-920d-e4eb622b9c38",
+        "card_print_id": "8e2f0890-d613-473b-8cad-9e0076d4b900",
+        "set_key": "gym1",
+        "card_number": "42",
+        "card_name": "Erika's Dratini",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "5c1eed31-2b40-4603-953d-de0145988f16",
+        "card_print_id": "eced7a0e-2436-4e60-b89e-d314da025b3b",
+        "set_key": "gym1",
+        "card_number": "43",
+        "card_name": "Erika's Exeggcute",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "232a0d99-0d4b-4141-b6af-33545d4511e9",
+        "card_print_id": "411371aa-c3c5-482b-8684-6eace10abda4",
+        "set_key": "gym1",
+        "card_number": "44",
+        "card_name": "Erika's Exeggutor",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "00b52d18-90d9-4526-93dd-932371e91999",
+        "card_print_id": "c86911bd-eeb5-48be-877c-50d354af3890",
+        "set_key": "gym1",
+        "card_number": "45",
+        "card_name": "Erika's Gloom",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "793b1727-cfab-44c5-9559-5e20e0f87b4e",
+        "card_print_id": "1166fcf9-6de1-4faf-a13c-39304ca2d222",
+        "set_key": "gym1",
+        "card_number": "46",
+        "card_name": "Erika's Gloom",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "36c4b162-b33b-4efa-b06d-256cb89d5d4a",
+        "card_print_id": "75ec1cb3-08a2-421a-9d8d-2794631c1cde",
+        "set_key": "gym1",
+        "card_number": "47",
+        "card_name": "Erika's Oddish",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "8738e572-d39f-4454-8f89-e2d1b74b0795",
+        "card_print_id": "c8d7c89f-783b-4579-936b-b203247ebaeb",
+        "set_key": "gym1",
+        "card_number": "48",
+        "card_name": "Erika's Weepinbell",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "9496373f-fb0c-4eef-968f-f56ab6a36d87",
+        "card_print_id": "fde9a5a0-00ec-4605-8496-ca97a2b0a52f",
+        "set_key": "gym1",
+        "card_number": "49",
+        "card_name": "Erika's Weepinbell",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "048f3acd-acb7-4adf-85df-d0ce91b1c8ab",
+        "card_print_id": "191746d6-f494-4477-a4ad-29048cdd72c5",
+        "set_key": "gym1",
+        "card_number": "50",
+        "card_name": "Lt. Surge's Magnemite",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "fdae31e1-46d7-4a5e-a6b7-db5afdd70380",
+        "card_print_id": "13241b89-cf25-4f8d-9a1e-4075d46c70ff",
+        "set_key": "gym1",
+        "card_number": "51",
+        "card_name": "Lt. Surge's Raticate",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "fff1d1bf-7aff-45c5-93e4-f42b4a107571",
+        "card_print_id": "7bdaa3a6-47ab-4e67-b770-ce1081c12137",
+        "set_key": "gym1",
+        "card_number": "52",
+        "card_name": "Lt. Surge's Spearow",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "26fe4f0b-c3fb-4bd8-bc4a-e36353fcbe8d",
+        "card_print_id": "5d7bba56-3f6f-48a7-a1a8-b9d59b2346a4",
+        "set_key": "gym1",
+        "card_number": "53",
+        "card_name": "Misty's Poliwhirl",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "ffd4a7c2-16b3-4feb-9458-293af89c0b2b",
+        "card_print_id": "d6360704-8d05-4ecb-abdf-0ac33a3eb81d",
+        "set_key": "gym1",
+        "card_number": "54",
+        "card_name": "Misty's Psyduck",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "81dcd137-1ca7-45cf-82e8-4775aa77606c",
+        "card_print_id": "d6360704-8d05-4ecb-abdf-0ac33a3eb81d",
+        "set_key": "gym1",
+        "card_number": "54",
+        "card_name": "Misty's Psyduck",
+        "finish_key": "stamped"
+      },
+      {
+        "card_printing_id": "2b9c30c6-bc5a-410b-82dc-aaa0d7e7906a",
+        "card_print_id": "05788603-9939-4dd5-b76a-65727eb6f298",
+        "set_key": "gym1",
+        "card_number": "55",
+        "card_name": "Misty's Seaking",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a48fefaa-0be1-4b5d-8d38-ff3378f0729c",
+        "card_print_id": "0c8b351f-0e3d-4eaf-8876-fdf9fb716a2e",
+        "set_key": "gym1",
+        "card_number": "56",
+        "card_name": "Misty's Starmie",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "4737eb52-c816-47ee-bf5f-baae105b5da7",
+        "card_print_id": "f38467e3-3b20-4f0e-b62f-301e957a5be9",
+        "set_key": "gym1",
+        "card_number": "57",
+        "card_name": "Misty's Tentacool",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "68c33798-107d-4726-8852-6a3df91ed9a1",
+        "card_print_id": "482207e2-1ca9-41b7-a1cd-b15f847048c1",
+        "set_key": "gym1",
+        "card_number": "58",
+        "card_name": "Sabrina's Haunter",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a89bf7e5-d4e7-408a-b363-3b32e5836397",
+        "card_print_id": "35ebf5eb-6e8d-4593-a764-3c456f206384",
+        "set_key": "gym1",
+        "card_number": "59",
+        "card_name": "Sabrina's Jynx",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "9ba5fdca-38da-4d67-b5b3-cc3fcdb80e9c",
+        "card_print_id": "115bae8a-0573-41ab-b1a5-650b61e6b664",
+        "set_key": "gym1",
+        "card_number": "60",
+        "card_name": "Sabrina's Slowbro",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "f6a05216-e793-4ace-9fa3-1a8224ef32ed",
+        "card_print_id": "65f22848-19a0-4b32-986a-7dbff65e8dc9",
+        "set_key": "gym1",
+        "card_number": "61",
+        "card_name": "Blaine's Charmander",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "4f568b77-4f1e-4a0b-98a7-dff09ffdbbdd",
+        "card_print_id": "f0912858-e711-442c-9466-41df5b992a63",
+        "set_key": "gym1",
+        "card_number": "62",
+        "card_name": "Blaine's Growlithe",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "720d3d67-5c02-43ea-a822-f27615ae6681",
+        "card_print_id": "471e6f3e-2cca-4fac-a892-1e682ccfde7e",
+        "set_key": "gym1",
+        "card_number": "63",
+        "card_name": "Blaine's Ponyta",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "0dbfad77-cd10-4670-b66f-8539c7bea42b",
+        "card_print_id": "7f4a2c68-fb1c-4a56-9329-55c67b0cd2b3",
+        "set_key": "gym1",
+        "card_number": "64",
+        "card_name": "Blaine's Tauros",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a645925a-d6f2-4119-b0a6-096aa810d88a",
+        "card_print_id": "d07aea61-ce6a-476c-bf30-ce8d2737b45f",
+        "set_key": "gym1",
+        "card_number": "65",
+        "card_name": "Blaine's Vulpix",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "8ce5c33a-b18f-4d5b-8b1f-5f9e86202399",
+        "card_print_id": "e4fd4967-0b0b-4ab9-9901-1c999b969f54",
+        "set_key": "gym1",
+        "card_number": "66",
+        "card_name": "Brock's Geodude",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "130fdb3b-7234-459b-a7ab-703d768714db",
+        "card_print_id": "51696e83-d19a-4d44-b915-716528cfbc0e",
+        "set_key": "gym1",
+        "card_number": "67",
+        "card_name": "Brock's Mankey",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c2ad9aee-219f-4987-8090-92802c07d52a",
+        "card_print_id": "3badf387-b68d-43fe-a8dc-2c527652f75b",
+        "set_key": "gym1",
+        "card_number": "68",
+        "card_name": "Brock's Mankey",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "36de0177-0890-46fe-97be-eb240a35f4e4",
+        "card_print_id": "1a6f0305-20cc-4a54-8232-dc58e0405827",
+        "set_key": "gym1",
+        "card_number": "69",
+        "card_name": "Brock's Onix",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "812e48f1-c426-4173-b482-e3f9c6df1c61",
+        "card_print_id": "71087210-10e1-4036-bb00-1f55c2526e5f",
+        "set_key": "gym1",
+        "card_number": "70",
+        "card_name": "Brock's Rhyhorn",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "13c758e6-2db7-47b3-ba47-d344c048d170",
+        "card_print_id": "39500794-7b47-4996-9859-e36b5e56d2b2",
+        "set_key": "gym1",
+        "card_number": "71",
+        "card_name": "Brock's Sandshrew",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "fe06d7ea-f343-4c09-8472-4ac4bbd082eb",
+        "card_print_id": "2ffaa17f-8da7-41bf-8b10-54452c131390",
+        "set_key": "gym1",
+        "card_number": "72",
+        "card_name": "Brock's Sandshrew",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "30e287eb-0c71-4c72-bcac-42dc01b99d06",
+        "card_print_id": "81911cac-87ef-4f44-9d70-9511086fa624",
+        "set_key": "gym1",
+        "card_number": "73",
+        "card_name": "Brock's Vulpix",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "0afe8b5e-ae98-46ae-8116-fd1ead7dcb55",
+        "card_print_id": "9fc4ad1e-87d9-43dc-978d-82a2371c00e9",
+        "set_key": "gym1",
+        "card_number": "74",
+        "card_name": "Brock's Zubat",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "78333f41-7dcf-4e28-ada6-2e50b041b925",
+        "card_print_id": "5e790249-ec47-456c-93a2-3f645c924dd9",
+        "set_key": "gym1",
+        "card_number": "75",
+        "card_name": "Erika's Bellsprout",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "edfb9c8d-d02a-49dd-9005-e9e40198c1e6",
+        "card_print_id": "4431f052-ebb0-4b5c-9b0b-ff32f21fb26d",
+        "set_key": "gym1",
+        "card_number": "76",
+        "card_name": "Erika's Bellsprout",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "e3083884-634c-4787-82d3-4375a36a4c83",
+        "card_print_id": "073659a1-c4e1-43b1-af3a-56b8dcd3fc09",
+        "set_key": "gym1",
+        "card_number": "77",
+        "card_name": "Erika's Exeggcute",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "bedd060d-f871-4de2-8cab-ef531381e57a",
+        "card_print_id": "7a1bcd15-7cfd-4e17-a823-d7bc2ca8f43f",
+        "set_key": "gym1",
+        "card_number": "78",
+        "card_name": "Erika's Oddish",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "871ae5ac-7632-4c99-8156-65579f47cbe3",
+        "card_print_id": "6c35767d-9631-4198-812b-53157b6f1722",
+        "set_key": "gym1",
+        "card_number": "79",
+        "card_name": "Erika's Tangela",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "bf122650-a392-47fd-82be-06b3255cd848",
+        "card_print_id": "3d22208c-b54a-4c77-a138-4592df9e5c4f",
+        "set_key": "gym1",
+        "card_number": "80",
+        "card_name": "Lt. Surge's Magnemite",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "9db9d760-7b0f-477a-b310-396e197ced13",
+        "card_print_id": "988f6918-875a-447a-a38c-7330c6c3841e",
+        "set_key": "gym1",
+        "card_number": "81",
+        "card_name": "Lt. Surge's Pikachu",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "1f18de02-1424-452d-b815-97910e446163",
+        "card_print_id": "ee8e55a8-85aa-4739-8958-cc2a469e11d5",
+        "set_key": "gym1",
+        "card_number": "82",
+        "card_name": "Lt. Surge's Rattata",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "e9572633-6c63-4979-aa10-8cd6b78e22e2",
+        "card_print_id": "c60d9237-83cf-42cd-bec8-969faf5abba1",
+        "set_key": "gym1",
+        "card_number": "83",
+        "card_name": "Lt. Surge's Spearow",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "b52c1c06-538a-45d6-bb57-06b1febf6ab1",
+        "card_print_id": "3fb18ff7-6e59-40e9-912e-049296bac7a5",
+        "set_key": "gym1",
+        "card_number": "84",
+        "card_name": "Lt. Surge's Voltorb",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "f4614310-0216-4e8f-948a-5e82168e45c5",
+        "card_print_id": "e364f97d-3be8-4a27-a71d-318cbf950aed",
+        "set_key": "gym1",
+        "card_number": "85",
+        "card_name": "Misty's Goldeen",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c45b9775-cd45-4ecb-9d61-82472c96daad",
+        "card_print_id": "41f59faa-9af4-4135-9c98-747f302868e5",
+        "set_key": "gym1",
+        "card_number": "86",
+        "card_name": "Misty's Horsea",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "544f95bc-9f8b-4454-b543-6fbd82971c91",
+        "card_print_id": "5b7674fe-5fab-4a9d-98d7-b90edecf0dad",
+        "set_key": "gym1",
+        "card_number": "87",
+        "card_name": "Misty's Poliwag",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "9a37fb63-1ce0-46e6-a5ec-f0565502112f",
+        "card_print_id": "e369c699-92a7-4f66-b00c-8c59d8060b8b",
+        "set_key": "gym1",
+        "card_number": "88",
+        "card_name": "Misty's Seel",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "03482072-67fe-4c89-8e60-8aa0f1755d5d",
+        "card_print_id": "5762e49f-acff-42bd-ba67-cd332c3f8c34",
+        "set_key": "gym1",
+        "card_number": "89",
+        "card_name": "Misty's Shellder",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "8008d890-aa57-41f0-b69c-de6c9021bd32",
+        "card_print_id": "86085efe-b72d-4e36-ad0a-acc91baa7a76",
+        "set_key": "gym1",
+        "card_number": "90",
+        "card_name": "Misty's Staryu",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "345a14ff-ff7f-4268-a812-553f95eb8343",
+        "card_print_id": "b5271c43-fc87-442d-9168-20dd95f72cfc",
+        "set_key": "gym1",
+        "card_number": "91",
+        "card_name": "Sabrina's Abra",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "39c185a7-848b-4808-8ba9-33d1f87dc56b",
+        "card_print_id": "142cb9e5-7ed7-4210-97e0-e06fe9f7b746",
+        "set_key": "gym1",
+        "card_number": "92",
+        "card_name": "Sabrina's Drowzee",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "39c20ab3-9363-4d9f-b3f8-7177fe770b76",
+        "card_print_id": "8be69950-2e55-46ad-b0d7-bf141ac48591",
+        "set_key": "gym1",
+        "card_number": "93",
+        "card_name": "Sabrina's Gastly",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "12013f95-548f-4c72-bcb4-8e5885d81a60",
+        "card_print_id": "1299680b-c978-4c9d-a150-717dac94d4a4",
+        "set_key": "gym1",
+        "card_number": "94",
+        "card_name": "Sabrina's Mr. Mime",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "715e3336-7f59-4047-8cf4-6aef00e9031e",
+        "card_print_id": "7929c9b1-d792-4e54-8aac-3be58317b1a4",
+        "set_key": "gym1",
+        "card_number": "95",
+        "card_name": "Sabrina's Slowpoke",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "8e93e4e7-9ba7-4c97-bb96-e00a585507b8",
+        "card_print_id": "f35836ba-b9ec-40bc-87da-efd35c5c6f46",
+        "set_key": "gym1",
+        "card_number": "96",
+        "card_name": "Sabrina's Venonat",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "7388a915-8344-44a8-a28e-9e21873874e2",
+        "card_print_id": "47da5693-8122-47ae-9f6b-c78fa7e83a83",
+        "set_key": "gym1",
+        "card_number": "97",
+        "card_name": "Blaine's Quiz #1",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "9e42fba3-1345-4792-80e3-fe0cbc8688a6",
+        "card_print_id": "3b4a287e-3c20-454a-b1a4-426b0b44533b",
+        "set_key": "gym1",
+        "card_number": "98",
+        "card_name": "Brock",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "70e437c7-b41e-4902-a7e8-10fc7d76110d",
+        "card_print_id": "6a1991d0-a771-4f9e-ac92-75592b9e3d6e",
+        "set_key": "gym1",
+        "card_number": "99",
+        "card_name": "Charity",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "fbc5bb6a-c67a-4df3-95f3-9de5e9d2b5d1",
+        "card_print_id": "2c810d08-6d2a-4413-b85d-a6a775c69af5",
+        "set_key": "gym1",
+        "card_number": "100",
+        "card_name": "Erika",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "562291f2-85e3-4eaf-b8f9-42fc6b092421",
+        "card_print_id": "e886632c-48fb-4776-8896-871b7c736a62",
+        "set_key": "gym1",
+        "card_number": "101",
+        "card_name": "Lt. Surge",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "20ba7f68-1fc0-4441-ab8d-03a0b6a6f4d2",
+        "card_print_id": "abb00d6f-16dc-4087-a648-7d49ca25d085",
+        "set_key": "gym1",
+        "card_number": "102",
+        "card_name": "Misty",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "2a94e5ea-cd2c-4df3-b4d0-9a3c92ea7b16",
+        "card_print_id": "d184dc2a-f0a6-44b2-a8b3-1cd157ad5318",
+        "set_key": "gym1",
+        "card_number": "103",
+        "card_name": "No Removal Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "18d7d312-20c7-4811-8313-62569dc5c14c",
+        "card_print_id": "dae02f24-bfd0-424f-88fd-20599c7e16b5",
+        "set_key": "gym1",
+        "card_number": "104",
+        "card_name": "The Rocket's Training Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a4699672-b564-4ab6-a88a-8044a0ac462c",
+        "card_print_id": "fa19669e-cef3-4093-ad16-0399f919bd51",
+        "set_key": "gym1",
+        "card_number": "105",
+        "card_name": "Blaine's Last Resort",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "5fb410ef-5375-42ab-a34a-08a041ea886c",
+        "card_print_id": "4e47b934-2621-4946-9f84-1f3ce71dece2",
+        "set_key": "gym1",
+        "card_number": "106",
+        "card_name": "Brock's Training Method",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "8c2e00c2-8c3b-4ac1-b428-15a3887c9b07",
+        "card_print_id": "33eef187-6e87-4ab8-a45c-f757718a54fe",
+        "set_key": "gym1",
+        "card_number": "107",
+        "card_name": "Celadon City Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "0330b0d1-afb5-40d5-b9de-b111a142e74b",
+        "card_print_id": "76643480-4b7a-4db9-a6f7-1edea51205bd",
+        "set_key": "gym1",
+        "card_number": "108",
+        "card_name": "Cerulean City Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "5a7e7bf5-d8a0-4482-bf20-8070a6f49ea5",
+        "card_print_id": "63fb2145-9600-4a9f-92ad-df73b24d89c5",
+        "set_key": "gym1",
+        "card_number": "109",
+        "card_name": "Erika's Maids",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "7e1a3cb4-7a98-4ef3-b1a7-fb10e6f56ced",
+        "card_print_id": "ac965877-9ff4-431e-a77b-a49249173fa8",
+        "set_key": "gym1",
+        "card_number": "110",
+        "card_name": "Erika's Perfume",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "5db911d6-9df1-4fc3-b95d-504c0e23968a",
+        "card_print_id": "36fc01e9-ef9f-4e0e-9c5f-f902ca1148fd",
+        "set_key": "gym1",
+        "card_number": "111",
+        "card_name": "Good Manners",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "81491c7a-a271-4963-abc6-809b481e44e9",
+        "card_print_id": "9c38425c-bbe2-4f1b-954b-3ec116b81e49",
+        "set_key": "gym1",
+        "card_number": "112",
+        "card_name": "Lt. Surge's Treaty",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "02cce3c6-bda5-4a7c-ab79-eda737e084fa",
+        "card_print_id": "a79b9fb0-61b8-43a1-8f63-8a6fa4dc474d",
+        "set_key": "gym1",
+        "card_number": "113",
+        "card_name": "Minion of Team Rocket",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "66f5eb84-77b8-42dc-9679-6b417156cd11",
+        "card_print_id": "421c10a8-c9c9-453a-9f93-d722994c27f8",
+        "set_key": "gym1",
+        "card_number": "114",
+        "card_name": "Misty's Wrath",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "b73bf1fb-218d-4ff6-ab60-bc1b60150dca",
+        "card_print_id": "493289ea-9665-4362-bcb6-1c4147b84b74",
+        "set_key": "gym1",
+        "card_number": "115",
+        "card_name": "Pewter City Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "b0fdb9aa-8b67-4d1b-ba5b-0cd54ab0f2de",
+        "card_print_id": "6e860c17-efaa-42d9-9609-3947815cb643",
+        "set_key": "gym1",
+        "card_number": "116",
+        "card_name": "Recall",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "236c5a6e-0377-44da-89fc-23a5e7938d94",
+        "card_print_id": "ca7a9cb8-f3e7-434e-a648-6c8cb6b80c2a",
+        "set_key": "gym1",
+        "card_number": "117",
+        "card_name": "Sabrina's ESP",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "959e5d80-a906-4571-8893-080e76484805",
+        "card_print_id": "aa466979-8ddb-4d52-83d5-88f451e6de03",
+        "set_key": "gym1",
+        "card_number": "118",
+        "card_name": "Secret Mission",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "66bd1711-9983-43d8-9d9e-fcd456653050",
+        "card_print_id": "f2744f2b-c534-47fa-801e-70cfab94402c",
+        "set_key": "gym1",
+        "card_number": "119",
+        "card_name": "Tickling Machine",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "91cb7b2e-8d22-4e9d-868a-8c2c2ad1985f",
+        "card_print_id": "3c90fc15-9ec0-4a03-86b9-3efc19df5e43",
+        "set_key": "gym1",
+        "card_number": "120",
+        "card_name": "Vermilion City Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "2f17f56d-3900-4f7e-aaf3-d29386778c34",
+        "card_print_id": "c1998195-edf8-4af2-828a-199fa85e2b7f",
+        "set_key": "gym1",
+        "card_number": "121",
+        "card_name": "Blaine's Gamble",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "06923281-5d3f-4aeb-a020-1c70caccee72",
+        "card_print_id": "d3c707c3-461d-41a6-94f0-f01906002839",
+        "set_key": "gym1",
+        "card_number": "122",
+        "card_name": "Energy Flow",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "afd3a1cd-c076-4d23-8da3-a0c667626643",
+        "card_print_id": "c45d561f-4d29-4e0e-874d-4718138e6449",
+        "set_key": "gym1",
+        "card_number": "123",
+        "card_name": "Misty's Duel",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "0ae4c180-001b-46da-9926-fc37a6ed9681",
+        "card_print_id": "38678239-8fd1-4a8a-ae93-e26bb9e953c4",
+        "set_key": "gym1",
+        "card_number": "124",
+        "card_name": "Narrow Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "767b4d48-f218-445a-8052-e00184db0291",
+        "card_print_id": "8ad9a779-4eda-48b4-a5ee-c94e1cc7acf1",
+        "set_key": "gym1",
+        "card_number": "125",
+        "card_name": "Sabrina's Gaze",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "3636364a-218b-4911-815f-d0100f032e5f",
+        "card_print_id": "f8dad9a6-5351-462c-904b-b172e29ace5b",
+        "set_key": "gym1",
+        "card_number": "126",
+        "card_name": "Trash Exchange",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "63188bfb-25ea-414a-84ba-420601230dfa",
+        "card_print_id": "0cd7a0bf-26fe-4643-9301-80ab2cdef8b3",
+        "set_key": "gym1",
+        "card_number": "127",
+        "card_name": "Fighting Energy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "47cc6864-f295-40a5-9b69-e39b5da8e498",
+        "card_print_id": "b5e1c6f3-b777-4512-8ce8-93b6f8f0b84d",
+        "set_key": "gym1",
+        "card_number": "128",
+        "card_name": "Fire Energy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "29398d18-e1f7-4e15-ad13-67533552c82a",
+        "card_print_id": "ee01f678-b6e9-4689-93a3-ee269a588cb6",
+        "set_key": "gym1",
+        "card_number": "129",
+        "card_name": "Grass Energy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a05e26f0-8e61-4a2d-a776-12ed3a34d4c4",
+        "card_print_id": "c1da069d-66e4-4468-b660-587afb50bac6",
+        "set_key": "gym1",
+        "card_number": "130",
+        "card_name": "Lightning Energy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "37a106ef-57c3-444e-ac23-00c51df07088",
+        "card_print_id": "f9d1dae8-9637-46c8-b51c-433c23e9d774",
+        "set_key": "gym1",
+        "card_number": "131",
+        "card_name": "Psychic Energy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "82578239-82f4-4814-834c-406d3deb8874",
+        "card_print_id": "f11ba18f-c7da-4584-b390-8af239262c12",
+        "set_key": "gym1",
+        "card_number": "132",
+        "card_name": "Water Energy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "de4210d4-82de-43b7-bf6f-ae2aaacece62",
+        "card_print_id": "cd2d09fd-8c83-418c-a84d-68d2aab5f0df",
+        "set_key": "gym2",
+        "card_number": "1",
+        "card_name": "Blaine's Arcanine",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "0b511972-ff85-4b51-9bb8-b05777c0b4e6",
+        "card_print_id": "e0515717-ce6f-4742-bf0e-1d1aa941440b",
+        "set_key": "gym2",
+        "card_number": "2",
+        "card_name": "Blaine's Charizard",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "3f99db95-4c6b-434b-875b-f70774fe27f7",
+        "card_print_id": "09d8abba-37d3-4e42-9c55-bd8b0a386f9c",
+        "set_key": "gym2",
+        "card_number": "3",
+        "card_name": "Brock's Ninetales",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "ed8a50e4-0555-4302-ac55-b90a116b6755",
+        "card_print_id": "444b71eb-5075-44f7-8b3d-e5efb83dab72",
+        "set_key": "gym2",
+        "card_number": "4",
+        "card_name": "Erika's Venusaur",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "95a31898-c732-4649-bf3f-349a2e077785",
+        "card_print_id": "dad07d03-f319-4e7b-bacc-a34af751f413",
+        "set_key": "gym2",
+        "card_number": "5",
+        "card_name": "Giovanni's Gyarados",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "a559d077-0095-4c99-9081-0fb39a415734",
+        "card_print_id": "5992b3f7-2f01-48d2-95c3-27fe71250e21",
+        "set_key": "gym2",
+        "card_number": "6",
+        "card_name": "Giovanni's Machamp",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "e588d84f-af1a-484f-b683-a34fa48ce970",
+        "card_print_id": "c9a5135f-84d3-432e-8bad-254669705a12",
+        "set_key": "gym2",
+        "card_number": "7",
+        "card_name": "Giovanni's Nidoking",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "a9168576-04eb-418a-bc91-238acc0147af",
+        "card_print_id": "e2467abd-92d2-4320-8023-4f811530d3d5",
+        "set_key": "gym2",
+        "card_number": "8",
+        "card_name": "Giovanni's Persian",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "14447c3d-1543-4ed1-9360-130e371c8db2",
+        "card_print_id": "1fa729e2-0aad-4285-8de1-2ed980ab9361",
+        "set_key": "gym2",
+        "card_number": "9",
+        "card_name": "Koga's Beedrill",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "20219741-8fc4-41c1-bb83-c0d6a3858868",
+        "card_print_id": "0f8684b6-6bba-466a-98d4-47cfd5f8311d",
+        "set_key": "gym2",
+        "card_number": "10",
+        "card_name": "Koga's Ditto",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "5a4c0445-3772-4df2-abac-df4459590c8e",
+        "card_print_id": "bf582367-01c6-4cc8-820e-b7f9fa887bbb",
+        "set_key": "gym2",
+        "card_number": "11",
+        "card_name": "Lt. Surge's Raichu",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "1e51acc3-b25a-456c-9977-d94908caed5a",
+        "card_print_id": "a91650a0-7b7d-4160-a894-0826c33bf126",
+        "set_key": "gym2",
+        "card_number": "12",
+        "card_name": "Misty's Golduck",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "28ca138f-6733-4ab6-ac30-db71b8e57811",
+        "card_print_id": "58bdb245-f125-4d9f-8b86-d1f0aebec9e2",
+        "set_key": "gym2",
+        "card_number": "13",
+        "card_name": "Misty's Gyarados",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "b00933d7-c453-45ee-a4fd-be9579e850f6",
+        "card_print_id": "14e1f8e5-e0b9-4e0b-89c6-7146b500182a",
+        "set_key": "gym2",
+        "card_number": "14",
+        "card_name": "Rocket's Mewtwo",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "38b7d55d-cea2-4ede-a4d1-f3223b5b70d7",
+        "card_print_id": "7f31705b-1f76-4c80-b5f6-741a6c4fda4a",
+        "set_key": "gym2",
+        "card_number": "15",
+        "card_name": "Rocket's Zapdos",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "6e688ffd-64e1-4963-89ae-9be78e6db25a",
+        "card_print_id": "5ea1f5cc-43a1-4de9-bc62-bf6093c5412d",
+        "set_key": "gym2",
+        "card_number": "16",
+        "card_name": "Sabrina's Alakazam",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "bc002a97-d9d1-49b8-8e9d-2d6d98b3cb21",
+        "card_print_id": "d840087b-7fa9-4632-893a-f8f1c34c1ec4",
+        "set_key": "gym2",
+        "card_number": "17",
+        "card_name": "Blaine",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "575e6b19-fd09-4c5d-bbc9-4813d195dcaf",
+        "card_print_id": "df64ece7-ad15-48b3-af8e-5763d17bd634",
+        "set_key": "gym2",
+        "card_number": "18",
+        "card_name": "Giovanni",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "f9b392a7-d2f3-4bc5-aa19-6a90dfd95884",
+        "card_print_id": "47054cf8-04f6-40c4-a3c8-fcf4a3e2cb1e",
+        "set_key": "gym2",
+        "card_number": "19",
+        "card_name": "Koga",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "6599f488-f1f7-4eee-b539-c90658dcbb54",
+        "card_print_id": "4e3f0413-4081-4647-a01f-ef61dfb3645a",
+        "set_key": "gym2",
+        "card_number": "20",
+        "card_name": "Sabrina",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "a5e3c6dc-a04e-403b-a916-2ca8cc971968",
+        "card_print_id": "bbd4c9b5-1a04-475f-a5f0-319688a64924",
+        "set_key": "gym2",
+        "card_number": "21",
+        "card_name": "Blaine's Ninetales",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "4ab13626-8366-406b-8709-c3b516a4cc3b",
+        "card_print_id": "6e97aa2f-d53c-41bc-9bb5-64882b77eb47",
+        "set_key": "gym2",
+        "card_number": "22",
+        "card_name": "Brock's Dugtrio",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "f3ddf830-2f78-4c0e-a4fa-2058f6c3ec45",
+        "card_print_id": "6eef4158-3d6e-4dff-b45a-9c7d583cf225",
+        "set_key": "gym2",
+        "card_number": "23",
+        "card_name": "Giovanni's Nidoqueen",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "755a2bba-9778-47b7-a5fb-8d17fd2bc175",
+        "card_print_id": "baaa1297-ee95-4b00-93e0-63faf1437543",
+        "set_key": "gym2",
+        "card_number": "24",
+        "card_name": "Giovanni's Pinsir",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a0ab8aeb-019d-4760-8b9b-be093e6ce71b",
+        "card_print_id": "9ca87144-81a7-480d-b327-7dd7dadb17e3",
+        "set_key": "gym2",
+        "card_number": "25",
+        "card_name": "Koga's Arbok",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c92eb3f7-8020-4eb2-8ad6-9c21c1f00c34",
+        "card_print_id": "3071e754-c710-4512-967f-7be2b5b48748",
+        "set_key": "gym2",
+        "card_number": "26",
+        "card_name": "Koga's Muk",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "83e39f17-c02b-4286-a8e3-ab08935b8381",
+        "card_print_id": "ac10642e-f279-47ab-8564-6c17d0cb4a66",
+        "set_key": "gym2",
+        "card_number": "27",
+        "card_name": "Koga's Pidgeotto",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "73b56374-ddeb-4d7a-9d1d-18aee34a9a0c",
+        "card_print_id": "04ee04b9-2727-41d6-9d0c-171000bfa0d8",
+        "set_key": "gym2",
+        "card_number": "28",
+        "card_name": "Lt. Surge's Jolteon",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "23931f15-08cb-40e6-9fb2-b69f2b3eb61c",
+        "card_print_id": "9af80ac6-9dc1-425f-bd74-03437ba0152b",
+        "set_key": "gym2",
+        "card_number": "29",
+        "card_name": "Sabrina's Gengar",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "aeb00293-b99e-4b93-b7a6-d2743e0b8bbe",
+        "card_print_id": "b70fad40-5bcd-4f2a-ade2-d6d478626098",
+        "set_key": "gym2",
+        "card_number": "30",
+        "card_name": "Sabrina's Golduck",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d5d08cd6-03cb-4970-9b07-b4e4e00a0de2",
+        "card_print_id": "a80dda33-866b-430a-8bd8-f7fc6bb1de02",
+        "set_key": "gym2",
+        "card_number": "31",
+        "card_name": "Blaine's Charmeleon",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a844e7dd-0710-459c-a805-fdefb1bfb1cf",
+        "card_print_id": "58eacde2-2d18-47c7-9fb6-eedc29dfda48",
+        "set_key": "gym2",
+        "card_number": "32",
+        "card_name": "Blaine's Dodrio",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "e7e09b22-9b02-483d-9155-1b553c824410",
+        "card_print_id": "88df3760-2012-400d-9d64-652c41d78031",
+        "set_key": "gym2",
+        "card_number": "33",
+        "card_name": "Blaine's Rapidash",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "6f4ba709-dead-434f-9e8f-f7586b1ee0d8",
+        "card_print_id": "d31ce698-2520-4649-aef4-5130972b8bd4",
+        "set_key": "gym2",
+        "card_number": "34",
+        "card_name": "Brock's Graveler",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d01d9c53-32ca-4da6-bd48-c0a1defca50b",
+        "card_print_id": "2d5b9394-ec0e-4347-a274-e13daf102682",
+        "set_key": "gym2",
+        "card_number": "35",
+        "card_name": "Brock's Primeape",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c6cc6271-d832-4c7b-8762-cb9f0340879a",
+        "card_print_id": "397b72e4-5fed-40bb-a9c3-9ca7e6ea5745",
+        "set_key": "gym2",
+        "card_number": "36",
+        "card_name": "Brock's Sandslash",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "5897e4e3-ae5f-4798-9fc6-b9a545042498",
+        "card_print_id": "66a60e67-e91a-41ef-8ade-3135e757a471",
+        "set_key": "gym2",
+        "card_number": "37",
+        "card_name": "Brock's Vulpix",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "1d4caff8-7522-46ce-9d94-12c63d98769c",
+        "card_print_id": "66a60e67-e91a-41ef-8ade-3135e757a471",
+        "set_key": "gym2",
+        "card_number": "37",
+        "card_name": "Brock's Vulpix",
+        "finish_key": "stamped"
+      },
+      {
+        "card_printing_id": "75f24b91-f0e5-4856-b530-6307ec8c1fd2",
+        "card_print_id": "5bb095fa-3684-4537-819f-01f7f67b1ec2",
+        "set_key": "gym2",
+        "card_number": "38",
+        "card_name": "Erika's Bellsprout",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "4cd22824-071e-45f0-b938-5f91f6bc22a1",
+        "card_print_id": "dc52ca92-9cf5-413d-b89e-2c00b37f19c1",
+        "set_key": "gym2",
+        "card_number": "39",
+        "card_name": "Erika's Bulbasaur",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "99e2338a-4722-4f58-bf86-f32ea7c15ded",
+        "card_print_id": "d433b545-3b50-4c25-b49c-54f8cffe6f81",
+        "set_key": "gym2",
+        "card_number": "40",
+        "card_name": "Erika's Clefairy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d5fc0b8d-5710-47a3-9be8-16ef9b4f5716",
+        "card_print_id": "1e76b3f4-5d94-4c63-b9fc-638c778096ed",
+        "set_key": "gym2",
+        "card_number": "41",
+        "card_name": "Erika's Ivysaur",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "17422d3d-305e-4551-9f6b-a35c42c788c9",
+        "card_print_id": "ac1ad723-3680-4676-9448-0d0e650ea0eb",
+        "set_key": "gym2",
+        "card_number": "42",
+        "card_name": "Giovanni's Machoke",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d9640b5d-68c0-42ac-b2be-0b39ba798e92",
+        "card_print_id": "9019ae55-337c-4bd5-b0c1-d08528463f6d",
+        "set_key": "gym2",
+        "card_number": "43",
+        "card_name": "Giovanni's Meowth",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "bde32c4f-833c-4efa-b562-c34bb054dbd7",
+        "card_print_id": "81ee40da-fd48-4ebc-bf40-03751c2f45ed",
+        "set_key": "gym2",
+        "card_number": "44",
+        "card_name": "Giovanni's Nidorina",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "f3a3f8ff-8a6d-4822-ac4a-50cf1ed190ce",
+        "card_print_id": "87b5d6dc-d6aa-42df-86ed-5ce5af91d449",
+        "set_key": "gym2",
+        "card_number": "45",
+        "card_name": "Giovanni's Nidorino",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "59c169ff-d9ef-4914-9aeb-644f66da3949",
+        "card_print_id": "3c864b42-9f01-4322-b380-d17803fb8c3b",
+        "set_key": "gym2",
+        "card_number": "46",
+        "card_name": "Koga's Golbat",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "cfe45f66-2918-4191-a30a-4c6daa01f14a",
+        "card_print_id": "d8615ee8-7cc3-4842-9bc8-14d6fac6f1be",
+        "set_key": "gym2",
+        "card_number": "47",
+        "card_name": "Koga's Kakuna",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "5e73944b-a996-409c-aad5-5188a11bdaab",
+        "card_print_id": "f2c0e36f-307e-45a9-bda8-3b80e4a89062",
+        "set_key": "gym2",
+        "card_number": "48",
+        "card_name": "Koga's Koffing",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "6f549dfb-30cb-44b3-b674-1ad0fb71176e",
+        "card_print_id": "6e812797-1657-445a-9669-64cc6c1779d9",
+        "set_key": "gym2",
+        "card_number": "49",
+        "card_name": "Koga's Pidgey",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "5196dfa7-28d0-4578-9f4e-fe117a3a1646",
+        "card_print_id": "b9c9a202-dc29-47a5-9cef-b96578b5e8ec",
+        "set_key": "gym2",
+        "card_number": "50",
+        "card_name": "Koga's Weezing",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "2d9b3125-8225-4e0f-b8f1-d5a8ac61c6d9",
+        "card_print_id": "0bcf5765-bac5-4cb6-9c31-ad100e6e2fd1",
+        "set_key": "gym2",
+        "card_number": "51",
+        "card_name": "Lt. Surge's Eevee",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "6fce7f29-e69f-4f81-bbb4-77cdae3a9552",
+        "card_print_id": "b51b8085-d6e7-4283-9e48-313607901d00",
+        "set_key": "gym2",
+        "card_number": "52",
+        "card_name": "Lt. Surge's Electrode",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "21298ce7-5efa-4d26-8dce-971ba4549edc",
+        "card_print_id": "3c9f4078-e168-4bbc-9bb2-5a3c6c4768b2",
+        "set_key": "gym2",
+        "card_number": "53",
+        "card_name": "Lt. Surge's Raticate",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a176b928-3454-4086-b7ca-f40cb3b09961",
+        "card_print_id": "821ae4f3-b146-4dc8-916d-f7a474cc571a",
+        "set_key": "gym2",
+        "card_number": "54",
+        "card_name": "Misty's Dewgong",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "2e61356a-f44e-44d3-974f-8d38b6caf488",
+        "card_print_id": "5802759d-c0f2-46b5-bdf9-a2e89cf54341",
+        "set_key": "gym2",
+        "card_number": "55",
+        "card_name": "Sabrina's Haunter",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "5682ae13-cf46-4646-8e6a-21568c78d6b1",
+        "card_print_id": "124a6ee8-dc48-4106-b11e-c99a37a087d3",
+        "set_key": "gym2",
+        "card_number": "56",
+        "card_name": "Sabrina's Hypno",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "73b60cd1-6cf9-4225-9e1a-5d497c507dbe",
+        "card_print_id": "a2a5cd8b-3e5a-4cad-9a96-e032a226e878",
+        "set_key": "gym2",
+        "card_number": "57",
+        "card_name": "Sabrina's Jynx",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "f90bc989-833d-4a0f-979e-9bbaef283c43",
+        "card_print_id": "dea68ceb-59d7-407a-85cf-145e00aa852e",
+        "set_key": "gym2",
+        "card_number": "58",
+        "card_name": "Sabrina's Kadabra",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "046ec29a-35cc-4b8d-ac6e-49f69bbb3da6",
+        "card_print_id": "abc50e8b-b3d4-412c-a2b8-f433a1ba4cea",
+        "set_key": "gym2",
+        "card_number": "59",
+        "card_name": "Sabrina's Mr. Mime",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "551dfd50-3f12-4686-bb06-c143d9dc28ac",
+        "card_print_id": "6442277f-dc5c-481b-a7f1-f5df2fd2fef3",
+        "set_key": "gym2",
+        "card_number": "60",
+        "card_name": "Blaine's Charmander",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "38b4845f-896d-46ac-8d56-f690e580af16",
+        "card_print_id": "b525fa09-4aa4-4a10-8301-0343283e81a7",
+        "set_key": "gym2",
+        "card_number": "61",
+        "card_name": "Blaine's Doduo",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a558d7db-cd7b-439d-98c5-f368ccf23dbc",
+        "card_print_id": "215882a5-2776-440b-b22a-02dda3fb00b1",
+        "set_key": "gym2",
+        "card_number": "62",
+        "card_name": "Blaine's Growlithe",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d06426b6-583c-463d-9ab4-94d5a4a9f536",
+        "card_print_id": "aa6a4a76-298a-4f41-9338-5b770909cd60",
+        "set_key": "gym2",
+        "card_number": "63",
+        "card_name": "Blaine's Mankey",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "3c5beb9a-0019-43d7-87e8-6eba8261ba15",
+        "card_print_id": "33214159-f9f4-4de0-943e-6f6916ceddfc",
+        "set_key": "gym2",
+        "card_number": "64",
+        "card_name": "Blaine's Ponyta",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "4010619d-7f11-4e52-81ff-6e95982ba809",
+        "card_print_id": "b755ac10-319e-4363-8b50-ed5302f7c172",
+        "set_key": "gym2",
+        "card_number": "65",
+        "card_name": "Blaine's Rhyhorn",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "8cd3ce2d-7f32-43b1-9e7d-76b225dc349f",
+        "card_print_id": "a5ba741b-887e-43dd-b079-6aac436e3ade",
+        "set_key": "gym2",
+        "card_number": "66",
+        "card_name": "Blaine's Vulpix",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "ac7dec69-401e-46fa-a634-4dfea637555b",
+        "card_print_id": "0bb2d3fd-a947-4410-a2f9-465611acf039",
+        "set_key": "gym2",
+        "card_number": "67",
+        "card_name": "Brock's Diglett",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "0e95a673-9ac8-4e6c-81c1-31d1d947a979",
+        "card_print_id": "a11f7cd6-0086-46ec-8ec6-b1bc9817c481",
+        "set_key": "gym2",
+        "card_number": "68",
+        "card_name": "Brock's Geodude",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "b6b7ff05-2c1f-4071-b859-73920c225fd7",
+        "card_print_id": "b022469d-1eaf-4485-85d4-38d20798cfb6",
+        "set_key": "gym2",
+        "card_number": "69",
+        "card_name": "Erika's Jigglypuff",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "3bb9d7ee-df3d-49d7-a83c-99206fcb9739",
+        "card_print_id": "c1ddcb77-8663-462f-9a69-c7a524e04274",
+        "set_key": "gym2",
+        "card_number": "70",
+        "card_name": "Erika's Oddish",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "35f885de-9ece-4268-9316-969cc7323c59",
+        "card_print_id": "9011c383-b6a5-4fa0-89f4-bf4cde0f27c3",
+        "set_key": "gym2",
+        "card_number": "71",
+        "card_name": "Erika's Paras",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "0e7f1275-cba4-4177-8c21-6e804c746ead",
+        "card_print_id": "36d2b2ed-2cab-4a65-915e-c3451b8d9afa",
+        "set_key": "gym2",
+        "card_number": "72",
+        "card_name": "Giovanni's Machop",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "4b66655a-1d83-4096-a28b-e3fc0b498630",
+        "card_print_id": "83778d28-ba1f-4f39-b51f-fb4a588fbfb4",
+        "set_key": "gym2",
+        "card_number": "73",
+        "card_name": "Giovanni's Magikarp",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "79a1a46d-514f-430d-b27c-cdabe65fd7b7",
+        "card_print_id": "07019741-9ec5-4860-b057-33a314139423",
+        "set_key": "gym2",
+        "card_number": "74",
+        "card_name": "Giovanni's Meowth",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "ff00aabf-1da9-44d9-9e14-ebe875bc8571",
+        "card_print_id": "b12ba460-4fc9-4c73-892e-11ea0cf27176",
+        "set_key": "gym2",
+        "card_number": "75",
+        "card_name": "Giovanni's Nidoran♀",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "b41a6748-428c-42e6-b1c0-2052ab51e3b1",
+        "card_print_id": "c864fcfa-fe67-4ec2-8932-a81b7a02c7e1",
+        "set_key": "gym2",
+        "card_number": "76",
+        "card_name": "Giovanni's Nidoran♂",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "99f811d7-975e-4e59-bda7-d39bd8fc954d",
+        "card_print_id": "c2025e7b-3086-4940-abd3-103b3ae843cf",
+        "set_key": "gym2",
+        "card_number": "77",
+        "card_name": "Koga's Ekans",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "66eeca32-5334-4666-9449-cb0ba5aa1f72",
+        "card_print_id": "828c9a0d-7bdc-41e5-96f2-1056bcc0281d",
+        "set_key": "gym2",
+        "card_number": "78",
+        "card_name": "Koga's Grimer",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "f41b10db-d81c-4a3d-8387-506e6891bcb9",
+        "card_print_id": "d586d4c8-9e53-4092-affe-57d17985adb6",
+        "set_key": "gym2",
+        "card_number": "79",
+        "card_name": "Koga's Koffing",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "472c7576-c029-4b60-8572-864c2b141730",
+        "card_print_id": "dc718f2b-71f5-4abb-9b38-daffdf6acb37",
+        "set_key": "gym2",
+        "card_number": "80",
+        "card_name": "Koga's Pidgey",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "026219ca-7ff6-4266-812e-7290e55ab413",
+        "card_print_id": "7b701313-73a1-4170-8603-b057c5cb6245",
+        "set_key": "gym2",
+        "card_number": "81",
+        "card_name": "Koga's Tangela",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "65ae57dc-1ce6-4f3b-8d5c-e069b2078652",
+        "card_print_id": "f93c3490-77a8-437b-848f-a1674ba1256e",
+        "set_key": "gym2",
+        "card_number": "82",
+        "card_name": "Koga's Weedle",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a1281e0e-ca49-46d6-80aa-1989b5225a2f",
+        "card_print_id": "fec8d03e-a43a-4c13-80d6-4c4a1d539404",
+        "set_key": "gym2",
+        "card_number": "83",
+        "card_name": "Koga's Zubat",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "02ad8128-b643-446a-a03b-b9d15db7c498",
+        "card_print_id": "bda43af8-6d38-44c2-9d61-50e86b592dab",
+        "set_key": "gym2",
+        "card_number": "84",
+        "card_name": "Lt. Surge's Pikachu",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a953b87d-f43e-49e0-b9ef-c68cb8981086",
+        "card_print_id": "9fe9d775-c791-4f8c-8c6e-0ddbd4190575",
+        "set_key": "gym2",
+        "card_number": "85",
+        "card_name": "Lt. Surge's Rattata",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "086e1ac0-b967-4fbf-b7b6-b79184fff7a7",
+        "card_print_id": "591afe77-af5b-4973-90ed-8277c4cf98c6",
+        "set_key": "gym2",
+        "card_number": "86",
+        "card_name": "Lt. Surge's Voltorb",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c550b81f-e169-4b53-b6b9-e1914125a814",
+        "card_print_id": "dbe8fa02-eb95-4f0d-8a11-1ce2f65259fe",
+        "set_key": "gym2",
+        "card_number": "87",
+        "card_name": "Misty's Horsea",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a7ffdf97-15a9-4e53-bad0-a81c5c6b6488",
+        "card_print_id": "75b25dde-f7c5-4938-a504-8f01c7c06737",
+        "set_key": "gym2",
+        "card_number": "88",
+        "card_name": "Misty's Magikarp",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "538a9e70-57ea-4a48-98cb-8dde5c281cd3",
+        "card_print_id": "3fc91fab-d383-4b07-adbd-bbe1347bab1a",
+        "set_key": "gym2",
+        "card_number": "89",
+        "card_name": "Misty's Poliwag",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "1c52079c-52e8-4ca3-97ee-b451b6f61e96",
+        "card_print_id": "4850b0c7-2292-4f62-b2a6-862c2077fbfa",
+        "set_key": "gym2",
+        "card_number": "90",
+        "card_name": "Misty's Psyduck",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "7cdf45e3-bd24-4e19-9b3f-c59864924188",
+        "card_print_id": "a3f2d22a-cda4-43e8-b348-51bf6d756edd",
+        "set_key": "gym2",
+        "card_number": "91",
+        "card_name": "Misty's Seel",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a4d9fdb4-9752-4e34-806b-1457075f1761",
+        "card_print_id": "7e663dc7-634f-4c75-b97f-42be6d0a7f89",
+        "set_key": "gym2",
+        "card_number": "92",
+        "card_name": "Misty's Staryu",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "e8c5204a-efa1-4d44-bc84-4c516b1ae799",
+        "card_print_id": "205f09c6-536a-42b4-9c4f-bb4b01ac5013",
+        "set_key": "gym2",
+        "card_number": "93",
+        "card_name": "Sabrina's Abra",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "34b1c03b-81b4-411a-ba0d-c93b2a6c7bab",
+        "card_print_id": "c0c58538-5215-4cf9-b02a-031cfa7b36a1",
+        "set_key": "gym2",
+        "card_number": "94",
+        "card_name": "Sabrina's Abra",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "98e8fc1e-1c34-42da-bb7c-7b58ad37d134",
+        "card_print_id": "1cfafc94-f752-4993-8d84-661b7d3eff72",
+        "set_key": "gym2",
+        "card_number": "95",
+        "card_name": "Sabrina's Drowzee",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "b6b9090c-2617-49a5-8e04-d2e4b0a8016c",
+        "card_print_id": "02530df0-686e-4cf3-9b20-3350e89abeb4",
+        "set_key": "gym2",
+        "card_number": "96",
+        "card_name": "Sabrina's Gastly",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "22fdcb84-9c92-44c8-bdd7-c54af89a0bbb",
+        "card_print_id": "89139fb7-1313-4a77-8b93-a5f9f1210921",
+        "set_key": "gym2",
+        "card_number": "97",
+        "card_name": "Sabrina's Gastly",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "ec72c412-e321-48e9-b992-7912b7a5386b",
+        "card_print_id": "b669fdef-1b1e-4504-aea5-376cb5440b99",
+        "set_key": "gym2",
+        "card_number": "98",
+        "card_name": "Sabrina's Porygon",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "54c0e820-8ef2-4c73-b8e0-4e72e7adacaa",
+        "card_print_id": "3ebd57b4-03b8-46bf-93f7-abd1d0c51059",
+        "set_key": "gym2",
+        "card_number": "99",
+        "card_name": "Sabrina's Psyduck",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "47e7904f-69c0-435c-94b0-137a3938b2f2",
+        "card_print_id": "a88358f7-ecd6-4d77-9af2-b387c7f25731",
+        "set_key": "gym2",
+        "card_number": "100",
+        "card_name": "Blaine",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d263edb2-1b5e-4b7c-a697-99e156e7f180",
+        "card_print_id": "4962405d-367a-44a3-b992-af4295562e98",
+        "set_key": "gym2",
+        "card_number": "101",
+        "card_name": "Brock's Protection",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d36113a1-90f4-490f-9ea6-394bdfb6ede9",
+        "card_print_id": "1dbbdcc9-9ba7-402d-b1bd-b70a4df5b477",
+        "set_key": "gym2",
+        "card_number": "102",
+        "card_name": "Chaos Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "3a8985a9-ea87-45f9-8bae-60c8fd7354d4",
+        "card_print_id": "e6817565-0dd7-4018-bbf8-411ebe1bec39",
+        "set_key": "gym2",
+        "card_number": "103",
+        "card_name": "Erika's Kindness",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "0a5fc5a6-17fc-43b7-9913-b503bbc78dbc",
+        "card_print_id": "7d355bf0-03e1-4ca0-9c5b-3c39071765ff",
+        "set_key": "gym2",
+        "card_number": "104",
+        "card_name": "Giovanni",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "9edb06f0-674c-46f9-83fa-986f1421bfba",
+        "card_print_id": "02c713f6-d847-4777-8e4b-1465233be3a5",
+        "set_key": "gym2",
+        "card_number": "105",
+        "card_name": "Giovanni's Last Resort",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "8f408a2e-1dc1-43da-aa15-c045e5d312a5",
+        "card_print_id": "fd759990-330e-408e-a8d6-2c6222a31fe0",
+        "set_key": "gym2",
+        "card_number": "106",
+        "card_name": "Koga",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "e3a191f2-5978-42e0-8cbe-69b79ef5e1ad",
+        "card_print_id": "981b0d5b-b26c-4a88-a5da-b81c47ef9a58",
+        "set_key": "gym2",
+        "card_number": "107",
+        "card_name": "Lt. Surge's Secret Plan",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "2e8d13f3-fccb-4611-8d6c-dc9774694847",
+        "card_print_id": "0915c739-6b7e-4f97-84b8-c2a898f831ec",
+        "set_key": "gym2",
+        "card_number": "108",
+        "card_name": "Misty's Wish",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d98e1918-4e38-4b09-866e-88d5c11e36d9",
+        "card_print_id": "416a23e4-04c7-4dd8-83f6-583209fa809b",
+        "set_key": "gym2",
+        "card_number": "109",
+        "card_name": "Resistance Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "bd3108a9-bfc5-484a-b3fb-58c0f2d887ba",
+        "card_print_id": "a592a950-2cb2-4fc6-af42-e40a7b934334",
+        "set_key": "gym2",
+        "card_number": "110",
+        "card_name": "Sabrina",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "3043f7f3-95a7-4a40-8150-c6c7fd5b6dca",
+        "card_print_id": "1e3700b7-373f-40ec-898f-e2ebc8737235",
+        "set_key": "gym2",
+        "card_number": "111",
+        "card_name": "Blaine's Quiz #2",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "4b424194-5f45-4b6d-be2a-da2d58d0d4d9",
+        "card_print_id": "b86b4927-850c-48ad-b540-55d52c37ba60",
+        "set_key": "gym2",
+        "card_number": "112",
+        "card_name": "Blaine's Quiz #3",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "f99c0923-ab89-4f5e-add4-93141fc058bd",
+        "card_print_id": "264fcb17-a2b5-4183-b616-4a1881fc5a2d",
+        "set_key": "gym2",
+        "card_number": "113",
+        "card_name": "Cinnabar City Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "36402567-2fc6-48e4-8122-51a672deb4a7",
+        "card_print_id": "ae19f77d-2187-45a5-b967-a4f7aab14e20",
+        "set_key": "gym2",
+        "card_number": "114",
+        "card_name": "Fuchsia City Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "b2b1e6f8-af56-47ab-8c0f-201132670594",
+        "card_print_id": "7a7234f7-e81d-48c7-b561-5cbb0aa814c8",
+        "set_key": "gym2",
+        "card_number": "115",
+        "card_name": "Koga's Ninja Trick",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "6ea251b8-2c4a-42b3-8460-6291d3beb131",
+        "card_print_id": "90bccf3d-1f1a-418a-8341-9e4da38aba51",
+        "set_key": "gym2",
+        "card_number": "116",
+        "card_name": "Master Ball",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "614a49a2-00d0-430b-b096-5554ab32ff3f",
+        "card_print_id": "75e9ac07-1a1d-488e-9314-3e6a1a806b07",
+        "set_key": "gym2",
+        "card_number": "117",
+        "card_name": "Max Revive",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "ed808dda-1884-4eff-97bc-dce4a215045f",
+        "card_print_id": "4ee5d543-a776-4cce-9013-0985e3952760",
+        "set_key": "gym2",
+        "card_number": "118",
+        "card_name": "Misty's Tears",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "4f087cf7-5c49-4362-8e5c-7cd0f8b98f9d",
+        "card_print_id": "7bc1e6f2-449e-4269-9867-3cfb6411fc6d",
+        "set_key": "gym2",
+        "card_number": "119",
+        "card_name": "Rocket's Minefield Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "ca440251-91fc-44ce-ab81-74e84bf71193",
+        "card_print_id": "a5bcbac2-3246-459a-ba45-9de22b5580fa",
+        "set_key": "gym2",
+        "card_number": "120",
+        "card_name": "Rocket's Secret Experiment",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d263d1a8-0a48-4799-9187-3574122600e5",
+        "card_print_id": "8b639c50-e9d0-48b8-b0d4-5ec8c76f2ab0",
+        "set_key": "gym2",
+        "card_number": "121",
+        "card_name": "Sabrina's Psychic Control",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "b24af9fd-f80e-457f-83e1-66485f4b6572",
+        "card_print_id": "d4cb815a-66ec-41b1-824d-8fadbf1b6161",
+        "set_key": "gym2",
+        "card_number": "122",
+        "card_name": "Saffron City Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "50912b11-a30c-4573-ae68-3dd2fc7fdd0e",
+        "card_print_id": "372e7250-fae8-47ea-8a60-cb9071872b7e",
+        "set_key": "gym2",
+        "card_number": "123",
+        "card_name": "Viridian City Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "7f31c032-45dd-4b5e-9cf3-ec710a974bac",
+        "card_print_id": "bd6e0c97-1721-49d7-b5fa-a304a651aca9",
+        "set_key": "gym2",
+        "card_number": "124",
+        "card_name": "Fervor",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "53b839ea-204b-484c-9251-144fc2f7a923",
+        "card_print_id": "fde6a7e4-0d81-4659-a50a-2e496594a482",
+        "set_key": "gym2",
+        "card_number": "125",
+        "card_name": "Transparent Walls",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "9554b346-4d09-4bd3-93fc-e3564e620572",
+        "card_print_id": "5494636d-4916-4299-81f5-c762e1d36db7",
+        "set_key": "gym2",
+        "card_number": "126",
+        "card_name": "Warp Point",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "f2279274-6c18-4236-b666-3645ba5fb6b3",
+        "card_print_id": "654e78fa-159a-496a-a906-10d4e7abc300",
+        "set_key": "gym2",
+        "card_number": "127",
+        "card_name": "Fighting Energy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "022572c7-901a-4301-bd9f-d5924d89b594",
+        "card_print_id": "fae44ff0-3afb-4074-b59d-fb337c35f596",
+        "set_key": "gym2",
+        "card_number": "128",
+        "card_name": "Fire Energy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a118760a-3ede-4cf0-a4b7-1d2d3eaedf4b",
+        "card_print_id": "7f3cbe77-0040-4464-aad5-42f9fd03f717",
+        "set_key": "gym2",
+        "card_number": "129",
+        "card_name": "Grass Energy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "b4939fd7-0a8e-4181-9a62-0fca561bb254",
+        "card_print_id": "b74bdcf8-1bde-4835-8cd2-ffad11bd3112",
+        "set_key": "gym2",
+        "card_number": "130",
+        "card_name": "Lightning Energy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "aadea96e-aa89-49da-9752-a93a8968c905",
+        "card_print_id": "d3a2e790-4cf6-4526-a136-518678c26c10",
+        "set_key": "gym2",
+        "card_number": "131",
+        "card_name": "Psychic Energy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "24cc20a9-c6b5-4ba9-88e4-d914cd697334",
+        "card_print_id": "06d6d569-1f6c-49e1-8196-fa21a4d041cb",
+        "set_key": "gym2",
+        "card_number": "132",
+        "card_name": "Water Energy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a4054249-5a98-445a-97c0-db4601b34c07",
+        "card_print_id": "46455eab-e550-4182-a634-ad0f4c2d173b",
+        "set_key": "neo4",
+        "card_number": "1",
+        "card_name": "Dark Ampharos",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "3124be25-38d5-43d4-90ec-f27cd31cbd1f",
+        "card_print_id": "a03f991c-7587-40cf-ab72-becc529fd534",
+        "set_key": "neo4",
+        "card_number": "2",
+        "card_name": "Dark Crobat",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "d702fe35-7a09-480c-8891-ae0b1c7a4b08",
+        "card_print_id": "41aebf26-ce5d-49cb-ba3e-da51ab5ba8ef",
+        "set_key": "neo4",
+        "card_number": "3",
+        "card_name": "Dark Donphan",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "a702dc2b-f99e-4b8d-9081-53a18150dca5",
+        "card_print_id": "585a3d3e-90e2-42c0-8f8e-dc83d5c3ca3d",
+        "set_key": "neo4",
+        "card_number": "4",
+        "card_name": "Dark Espeon",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "cfa141c6-95a6-4484-9251-0ed7d5336c21",
+        "card_print_id": "e1df48d5-d081-44b8-8dee-3ef1419f4a2a",
+        "set_key": "neo4",
+        "card_number": "5",
+        "card_name": "Dark Feraligatr",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "42ea0eb8-ef30-449f-8ebe-c81fca5a5c0a",
+        "card_print_id": "b18b3ba3-d557-4092-85cb-ee0038fe6fc3",
+        "set_key": "neo4",
+        "card_number": "6",
+        "card_name": "Dark Gengar",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "151e665c-0471-416f-87b6-37293d73e7af",
+        "card_print_id": "b1e8dd14-4c6a-4c74-bac2-bd60885f37fe",
+        "set_key": "neo4",
+        "card_number": "7",
+        "card_name": "Dark Houndoom",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "ce45a39d-957d-422b-a5ba-40186be00276",
+        "card_print_id": "eff083dd-eabd-4eb0-b4ae-f3df1adde577",
+        "set_key": "neo4",
+        "card_number": "8",
+        "card_name": "Dark Porygon2",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "a33cf352-8f31-4cae-bd80-07c4937c7899",
+        "card_print_id": "99021f4b-7815-4c29-8ef2-71d932abf57e",
+        "set_key": "neo4",
+        "card_number": "9",
+        "card_name": "Dark Scizor",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "52fde6bb-11af-4f76-9451-941ef03d2f35",
+        "card_print_id": "8e8593e0-b13b-4b54-962d-0d67a6e30cbc",
+        "set_key": "neo4",
+        "card_number": "10",
+        "card_name": "Dark Typhlosion",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "fb55ee72-5e51-4012-8243-4fb4333bdd46",
+        "card_print_id": "0988846c-64d7-401c-b249-6f1a421a7172",
+        "set_key": "neo4",
+        "card_number": "11",
+        "card_name": "Dark Tyranitar",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "0aedffe8-4f65-47bd-8e5a-1e474b5f8e6d",
+        "card_print_id": "0aa70d1e-e8da-47b4-aa25-154c61b016a2",
+        "set_key": "neo4",
+        "card_number": "12",
+        "card_name": "Light Arcanine",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "991c8ae4-08bc-4123-a4a7-3204ad661eba",
+        "card_print_id": "041c36df-8024-4760-a84e-7a5595e04b0b",
+        "set_key": "neo4",
+        "card_number": "13",
+        "card_name": "Light Azumarill",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "5bd04196-ae28-45f8-be18-6ff4d056eec8",
+        "card_print_id": "a4ad191c-da01-4017-baaf-03dcc78062fd",
+        "set_key": "neo4",
+        "card_number": "14",
+        "card_name": "Light Dragonite",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "54d5e98e-5cdf-4222-b61e-8572b982d157",
+        "card_print_id": "b71a406f-7ec2-4796-9ded-ddb0dd7a0374",
+        "set_key": "neo4",
+        "card_number": "15",
+        "card_name": "Light Togetic",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "337df390-ed10-4356-aa03-3952f4b0f691",
+        "card_print_id": "a8b7f667-d2a5-46bc-862f-394e31ce0fdf",
+        "set_key": "neo4",
+        "card_number": "16",
+        "card_name": "Miracle Energy",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "7e1dc081-9af0-40c8-a2c7-6b6736912c94",
+        "card_print_id": "116551de-fe8e-4df8-ac57-baa7f37a7606",
+        "set_key": "neo4",
+        "card_number": "17",
+        "card_name": "Dark Ariados",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "7d0b6add-7dac-4023-8a4b-d9d457831ec3",
+        "card_print_id": "45c45f8d-cc94-473c-b73a-0203c1ef363e",
+        "set_key": "neo4",
+        "card_number": "18",
+        "card_name": "Dark Magcargo",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a8f26ffa-5672-4694-9541-b98e14c87314",
+        "card_print_id": "85dbb54e-76a1-4cca-8e3e-b19c0931c1ef",
+        "set_key": "neo4",
+        "card_number": "19",
+        "card_name": "Dark Omastar",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c603a67e-7151-470b-821b-4032401351d0",
+        "card_print_id": "f2d57a15-c4c4-4cfc-aa65-320fd5d31c6e",
+        "set_key": "neo4",
+        "card_number": "20",
+        "card_name": "Dark Slowking",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "6a74c6d0-bc06-4310-b9fc-0ad50410b5fa",
+        "card_print_id": "95049d47-d308-4e9d-9f5d-0e03caead3e6",
+        "set_key": "neo4",
+        "card_number": "21",
+        "card_name": "Dark Ursaring",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "b0aba3bb-2b29-478f-9ecc-7476f0705797",
+        "card_print_id": "15c7dc87-8e6f-4f65-b6a8-61fc1787a214",
+        "set_key": "neo4",
+        "card_number": "22",
+        "card_name": "Light Dragonair",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "5f12f714-8058-45b1-8efb-fad9413ca3cd",
+        "card_print_id": "4dfbe7e7-cc93-43bb-9bca-5e98be21a59c",
+        "set_key": "neo4",
+        "card_number": "23",
+        "card_name": "Light Lanturn",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "0a656b3a-da54-4a4e-8fe6-f1e1863e6c90",
+        "card_print_id": "3cd2c7f9-1454-4851-9f8e-38402c12ef6b",
+        "set_key": "neo4",
+        "card_number": "24",
+        "card_name": "Light Ledian",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "658c70d4-72af-4fd9-a5da-9fac380715f7",
+        "card_print_id": "9ec221d0-6cb5-46c2-ab1f-e8ec17aa5edb",
+        "set_key": "neo4",
+        "card_number": "25",
+        "card_name": "Light Machamp",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "e55cf742-ec8d-412a-8037-be4b09ec5162",
+        "card_print_id": "864b8a2d-c716-40c3-8605-d8299a66f0a2",
+        "set_key": "neo4",
+        "card_number": "26",
+        "card_name": "Light Piloswine",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a958ef9f-4d15-4fc2-8474-45487b0eeed1",
+        "card_print_id": "c3335ec0-325b-42a8-a97f-c16ea9590ed8",
+        "set_key": "neo4",
+        "card_number": "27",
+        "card_name": "Unown [G]",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "b1beb506-fd26-48ae-b21a-0437c5561da3",
+        "card_print_id": "16dc89ae-390d-4552-ad2f-7e718524bb16",
+        "set_key": "neo4",
+        "card_number": "28",
+        "card_name": "Unown [H]",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "e57a5363-9722-47d6-a4e9-887f251d5898",
+        "card_print_id": "4f638019-4a18-4a25-a8cc-82c3a6d063be",
+        "set_key": "neo4",
+        "card_number": "29",
+        "card_name": "Unown [W]",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c6002dbb-a544-4c9c-9d10-20b6f7bbb869",
+        "card_print_id": "9fde355f-f9a1-40ef-a5a6-47d003c8fe09",
+        "set_key": "neo4",
+        "card_number": "30",
+        "card_name": "Unown [X]",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "2d307451-2ff7-443a-8959-af33b489ff10",
+        "card_print_id": "35f86931-dac2-4fbc-8a2c-cedc799dafe6",
+        "set_key": "neo4",
+        "card_number": "31",
+        "card_name": "Chansey",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "49804b0a-7229-4f50-9713-41a65edd69e9",
+        "card_print_id": "d6685f4a-b28c-46e6-a73b-0396f5471494",
+        "set_key": "neo4",
+        "card_number": "32",
+        "card_name": "Dark Croconaw",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a193fb04-cd48-4a75-8a6c-4e115c10bedb",
+        "card_print_id": "6c9d10c1-669c-42c1-80b6-1aa106c94922",
+        "set_key": "neo4",
+        "card_number": "33",
+        "card_name": "Dark Exeggutor",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c88869cd-1e5c-4f3e-b4f4-775cb1fdf2bb",
+        "card_print_id": "66d0e670-baec-4572-b58c-216183254f01",
+        "set_key": "neo4",
+        "card_number": "34",
+        "card_name": "Dark Flaaffy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "7f3a91fa-6eb6-42ec-b64e-d48b571d07eb",
+        "card_print_id": "9257da32-9545-4f24-8749-3c5da1b1d6cd",
+        "set_key": "neo4",
+        "card_number": "35",
+        "card_name": "Dark Forretress",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "5d1cb930-b882-4af5-b6ec-3688c448bc2e",
+        "card_print_id": "c0a50805-07a4-4ee8-b57a-e17de75384f4",
+        "set_key": "neo4",
+        "card_number": "36",
+        "card_name": "Dark Haunter",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "55c9be9d-7fda-466b-925d-42c56eebf13b",
+        "card_print_id": "1448ca65-9318-47b2-b5b0-b262fd83af23",
+        "set_key": "neo4",
+        "card_number": "37",
+        "card_name": "Dark Omanyte",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "e3ee61c9-e6e6-40b2-b6a0-ee66eb8a36a2",
+        "card_print_id": "1b2b2775-4711-4531-bd3a-2aac16977b58",
+        "set_key": "neo4",
+        "card_number": "38",
+        "card_name": "Dark Pupitar",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c3861357-bbc0-47a8-9916-1ccde9a389d2",
+        "card_print_id": "862264be-843a-4c4b-9f1d-44fe4ecadcb5",
+        "set_key": "neo4",
+        "card_number": "39",
+        "card_name": "Dark Quilava",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "0fe3da8c-3334-4b7f-b4a0-81b291f47f48",
+        "card_print_id": "dd99d716-26ce-4288-bf9d-7eba001adfab",
+        "set_key": "neo4",
+        "card_number": "40",
+        "card_name": "Dark Wigglytuff",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "6d2de36d-e9fe-4dc2-a76a-fec2b7a2efa0",
+        "card_print_id": "fa1f286a-e0a4-4cb3-ba79-468bf9d170e2",
+        "set_key": "neo4",
+        "card_number": "41",
+        "card_name": "Heracross",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "2f595e89-eeea-46b0-aaee-94ece2d954ad",
+        "card_print_id": "c71a63f6-949c-4e46-add8-ac680a6ed729",
+        "set_key": "neo4",
+        "card_number": "42",
+        "card_name": "Hitmonlee",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "301c6d0c-e958-4573-8659-e53d439c4089",
+        "card_print_id": "41dc8bd3-ceaa-41cd-990c-e16bc1ad24de",
+        "set_key": "neo4",
+        "card_number": "43",
+        "card_name": "Houndour",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a4ab2888-48fd-4adb-b91b-c09e1afadb49",
+        "card_print_id": "ff0b3e40-ffd5-4bb6-b59d-bae558ea9692",
+        "set_key": "neo4",
+        "card_number": "44",
+        "card_name": "Jigglypuff",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "1d5f2345-2ad5-4fbf-bca8-f83ff66d9357",
+        "card_print_id": "c65be22d-f03f-4da7-97c8-748762e1a206",
+        "set_key": "neo4",
+        "card_number": "45",
+        "card_name": "Light Dewgong",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "a736e71d-2d77-46bf-8640-76b8f40a06f1",
+        "card_print_id": "51302ff6-78cb-458a-81e5-b82bd77db244",
+        "set_key": "neo4",
+        "card_number": "46",
+        "card_name": "Light Flareon",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "2481656e-6785-413e-987f-be0b72f4998b",
+        "card_print_id": "ce91413e-eac8-4ac4-b208-d78bf247ea86",
+        "set_key": "neo4",
+        "card_number": "47",
+        "card_name": "Light Golduck",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "5708b70e-4033-422e-9771-9ec613bd9ed3",
+        "card_print_id": "2014ed72-11ca-4f2f-a20c-4e564bf8846e",
+        "set_key": "neo4",
+        "card_number": "48",
+        "card_name": "Light Jolteon",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "0f63bd50-102c-4e34-a7c5-8a6676a065be",
+        "card_print_id": "5b104a52-5b4a-4387-9fc6-bdeb386eaaf3",
+        "set_key": "neo4",
+        "card_number": "49",
+        "card_name": "Light Machoke",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "3dced196-0938-4d41-b3b4-ad664b673f78",
+        "card_print_id": "7c5273f9-4db3-4a37-bce1-bd8a0a7847d4",
+        "set_key": "neo4",
+        "card_number": "50",
+        "card_name": "Light Ninetales",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "f919aff6-2ba1-4427-9ac7-51421df9e40f",
+        "card_print_id": "d21ea2c3-66d7-423a-9df9-adac2154ed2d",
+        "set_key": "neo4",
+        "card_number": "51",
+        "card_name": "Light Slowbro",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "ed8ace6a-80bb-4a02-a080-b4775ddf0762",
+        "card_print_id": "bba41b10-ebad-4b7a-82c5-201e96f71de3",
+        "set_key": "neo4",
+        "card_number": "52",
+        "card_name": "Light Vaporeon",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d100897d-87c3-4f36-a989-462a8c809d40",
+        "card_print_id": "23d11092-d7b2-4853-910f-98a03f14e917",
+        "set_key": "neo4",
+        "card_number": "53",
+        "card_name": "Light Venomoth",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "09fd3d99-2b5f-408b-8ac5-e027b3ccd050",
+        "card_print_id": "38d63f3b-fbd7-4cfb-9db3-17288b89085d",
+        "set_key": "neo4",
+        "card_number": "54",
+        "card_name": "Light Wigglytuff",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "aea0856e-cf69-4c15-b407-8b9d92fbb60a",
+        "card_print_id": "220b7e2e-f615-4f72-9af0-18452d90b8ca",
+        "set_key": "neo4",
+        "card_number": "55",
+        "card_name": "Scyther",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "98b317de-1768-4ea9-993e-f3c6f004ccbb",
+        "card_print_id": "06fff192-d2b7-4ddc-8fd4-426c99147b34",
+        "set_key": "neo4",
+        "card_number": "56",
+        "card_name": "Togepi",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "1be20b81-2130-461f-a430-1574e1dca2d1",
+        "card_print_id": "a5f99e7d-35ed-49d1-92b9-34c4f0e18438",
+        "set_key": "neo4",
+        "card_number": "57",
+        "card_name": "Unown [C]",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d4a30533-c9ac-42c3-a310-5e1e3a90c8ab",
+        "card_print_id": "2dd17fb8-54d5-4ddf-ad35-4c0f5e2b15a2",
+        "set_key": "neo4",
+        "card_number": "58",
+        "card_name": "Unown [P]",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "4072a759-09ec-47fc-904e-0b9757bec64c",
+        "card_print_id": "c8d6dccb-2003-4667-8dd6-dca267fcc957",
+        "set_key": "neo4",
+        "card_number": "59",
+        "card_name": "Unown [Q]",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "31768cfe-7703-48cf-baa3-7e7460217842",
+        "card_print_id": "a5948736-f014-4fae-a2da-fcd631806ff7",
+        "set_key": "neo4",
+        "card_number": "60",
+        "card_name": "Unown [Z]",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "8732d542-3749-4ee5-8e97-238042045e15",
+        "card_print_id": "86e6e9ae-6abf-484c-9f9c-68ba1f123346",
+        "set_key": "neo4",
+        "card_number": "61",
+        "card_name": "Cyndaquil",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d99f29a3-5182-42e1-a848-6d7d550d7bb3",
+        "card_print_id": "e799c88e-fd91-42bb-aa1e-27511499eb4f",
+        "set_key": "neo4",
+        "card_number": "62",
+        "card_name": "Dark Octillery",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "86dc0707-b9ec-4129-8a93-73e2ce9f409c",
+        "card_print_id": "56abc28c-40d0-4a85-a536-8601a05d6cae",
+        "set_key": "neo4",
+        "card_number": "63",
+        "card_name": "Dratini",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "1bd74c58-71ab-4354-be08-9c81fa952f0e",
+        "card_print_id": "39b211b5-ddad-4ff5-a828-6d92dbfd0f02",
+        "set_key": "neo4",
+        "card_number": "64",
+        "card_name": "Exeggcute",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "9a8227fd-8516-4b3d-a5d7-d3798bbbde80",
+        "card_print_id": "e0a1ae6a-c370-4fc6-92f1-ddf5d441c15a",
+        "set_key": "neo4",
+        "card_number": "65",
+        "card_name": "Gastly",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "6e006707-875c-438d-ace3-700b171063bc",
+        "card_print_id": "8900cc9e-b591-4474-8ce7-54f7ae94867d",
+        "set_key": "neo4",
+        "card_number": "66",
+        "card_name": "Girafarig",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "1948c6c1-7fcf-4a81-b8c2-74f447a9baa6",
+        "card_print_id": "5ac65f96-077c-4a46-975f-2242118b5b54",
+        "set_key": "neo4",
+        "card_number": "67",
+        "card_name": "Gligar",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "2173dbe7-255f-4c76-a64b-ff3bc87d7d8a",
+        "card_print_id": "7f4e6c40-27c6-421c-986e-8220baa8ae1b",
+        "set_key": "neo4",
+        "card_number": "68",
+        "card_name": "Growlithe",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "679bc8e8-ab1d-4c9b-8e13-286127ef3679",
+        "card_print_id": "0f6529cb-6fc3-4597-9c87-295915265252",
+        "set_key": "neo4",
+        "card_number": "69",
+        "card_name": "Hitmonchan",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "e3e59d34-802f-417b-83c2-cbcdf1f02029",
+        "card_print_id": "d614e14d-1d8f-460d-a125-f82487d37703",
+        "set_key": "neo4",
+        "card_number": "70",
+        "card_name": "Larvitar",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "348aa93f-8a22-4ef9-a0bf-6ab919052c45",
+        "card_print_id": "2ef07335-d1cf-4f8c-a93a-212c2fb64c02",
+        "set_key": "neo4",
+        "card_number": "71",
+        "card_name": "Ledyba",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "8325732b-1869-4d54-89a8-218635a8f16a",
+        "card_print_id": "3da558dd-94b9-431f-81fe-223450061a37",
+        "set_key": "neo4",
+        "card_number": "72",
+        "card_name": "Light Sunflora",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "e88ddcc4-7732-4588-86f9-f485b846ee8a",
+        "card_print_id": "f75d1c1a-f977-4fc9-8826-94d8ad70ac13",
+        "set_key": "neo4",
+        "card_number": "73",
+        "card_name": "Machop",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "28fee9d4-38cf-43e0-9952-cff006df6b32",
+        "card_print_id": "1a2c8ec4-262d-4243-a6ea-148f11696a29",
+        "set_key": "neo4",
+        "card_number": "74",
+        "card_name": "Mantine",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d3b9548c-0fcd-419f-98f2-1c3d858324dc",
+        "card_print_id": "56ebc88a-3ad5-42c5-91e6-27db195d1c90",
+        "set_key": "neo4",
+        "card_number": "75",
+        "card_name": "Mareep",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "53c94b7c-822c-43a5-89aa-213a96eab248",
+        "card_print_id": "5139ca77-bcad-43c5-a5dd-0e25f462ed18",
+        "set_key": "neo4",
+        "card_number": "76",
+        "card_name": "Phanpy",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c971b8bf-907b-45a9-b61b-85a4be31cab2",
+        "card_print_id": "83f482cc-d857-4f56-b640-bec3ece6e2ad",
+        "set_key": "neo4",
+        "card_number": "77",
+        "card_name": "Pineco",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d494a630-d623-44b1-afc9-4dc87f1d6b84",
+        "card_print_id": "dcc12cbd-5882-46f4-aa1f-e1965b623e05",
+        "set_key": "neo4",
+        "card_number": "78",
+        "card_name": "Porygon",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "50e6e93d-d27d-4bfb-afe0-4d22dd35e3b2",
+        "card_print_id": "f3fc20b9-6cdb-443e-87a0-e6b997101a1e",
+        "set_key": "neo4",
+        "card_number": "79",
+        "card_name": "Psyduck",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "7d157a0f-6cf3-4353-920a-c142b366ff4a",
+        "card_print_id": "097e71e2-fd69-4b2c-8062-205b2a88363a",
+        "set_key": "neo4",
+        "card_number": "80",
+        "card_name": "Remoraid",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "f54892f4-71b3-48e2-be4b-8b9afd7e9b42",
+        "card_print_id": "c4c3af07-1de8-4e52-89ad-7fc01ed66fea",
+        "set_key": "neo4",
+        "card_number": "81",
+        "card_name": "Seel",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "f714ec45-d247-4d03-a083-08a650876040",
+        "card_print_id": "8a56c66c-467e-4c02-8a5d-51571b34f45e",
+        "set_key": "neo4",
+        "card_number": "82",
+        "card_name": "Slugma",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "ee579a1c-16ef-4f65-8ee4-78db6d1e093a",
+        "card_print_id": "cd623722-5288-4de3-b1ed-f0ac536de0fc",
+        "set_key": "neo4",
+        "card_number": "83",
+        "card_name": "Sunkern",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "03feb765-7c91-43e4-bd36-d51df6f2bdb9",
+        "card_print_id": "e7fa84fd-02fc-4e11-bdd6-f86d25f74b86",
+        "set_key": "neo4",
+        "card_number": "84",
+        "card_name": "Swinub",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "6fac55bb-5a70-4977-87ef-0fba3022344a",
+        "card_print_id": "3189f267-ca65-4748-bea5-101deb478c67",
+        "set_key": "neo4",
+        "card_number": "85",
+        "card_name": "Totodile",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "e04b5f14-d1eb-49e2-bfbf-61c05ac3635c",
+        "card_print_id": "c8cfad10-072e-4090-8932-52ca49b565e0",
+        "set_key": "neo4",
+        "card_number": "86",
+        "card_name": "Unown [L]",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "2335bff2-f1e8-4ed1-a0a1-9fbddf7e8b41",
+        "card_print_id": "0a3b6107-f097-44e5-b658-ff15a0096d4f",
+        "set_key": "neo4",
+        "card_number": "87",
+        "card_name": "Unown [S]",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c0f3c7b4-8f23-4394-ac95-92ddca5e4c91",
+        "card_print_id": "3948e5aa-0416-48cf-8d99-68261263ab1b",
+        "set_key": "neo4",
+        "card_number": "88",
+        "card_name": "Unown [T]",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "43a80598-3a53-4c80-a8bc-a8080221e72a",
+        "card_print_id": "cf8bffc3-daee-4f6c-95f0-10147a0f060c",
+        "set_key": "neo4",
+        "card_number": "89",
+        "card_name": "Unown [V]",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "4ec2c7ba-071e-45b1-9ba8-7e53d6a4f017",
+        "card_print_id": "52ca82c0-536a-47e3-b58f-6bc8f02d9b2f",
+        "set_key": "neo4",
+        "card_number": "90",
+        "card_name": "Venonat",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "c5c8cb24-6941-47db-b657-8f73187a9f1c",
+        "card_print_id": "1d991868-5c80-4b6a-8d89-f021a0c8a274",
+        "set_key": "neo4",
+        "card_number": "91",
+        "card_name": "Vulpix",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "6557b659-0020-41ec-a76e-0a2db138f64f",
+        "card_print_id": "cb1bde96-dca8-4620-9ae0-f1826b1e1a8a",
+        "set_key": "neo4",
+        "card_number": "92",
+        "card_name": "Broken Ground Gym",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "3bbd0732-e47c-4628-be8e-2e09950de6ed",
+        "card_print_id": "3ce15c94-94bb-41a6-94d6-afadc5183fc4",
+        "set_key": "neo4",
+        "card_number": "93",
+        "card_name": "EXP.ALL",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "05da6cbe-a25c-42c7-8c73-85ac76548188",
+        "card_print_id": "8d37d4de-cd20-4397-a094-ae3b9b5670a6",
+        "set_key": "neo4",
+        "card_number": "94",
+        "card_name": "Impostor Professor Oak's Invention",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "1fd670d6-a610-41b6-9e1b-7ef5e1c15e2a",
+        "card_print_id": "6c5550b4-2ebc-493d-9917-8e4939da97ac",
+        "set_key": "neo4",
+        "card_number": "95",
+        "card_name": "Radio Tower",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "08d6a42d-fbdd-460c-8273-4e475a574587",
+        "card_print_id": "c2ec716e-1651-4d2a-958b-abc169bd7e8a",
+        "set_key": "neo4",
+        "card_number": "96",
+        "card_name": "Thought Wave Machine",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "12918207-dacc-4120-acce-578d32f03fba",
+        "card_print_id": "02bf996a-c394-4c9a-9f03-89f1d50db905",
+        "set_key": "neo4",
+        "card_number": "97",
+        "card_name": "Counterattack Claws",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "7e94374e-22a2-4ffa-8c36-b1b7c1c44571",
+        "card_print_id": "df10ca9a-518b-43d7-9466-a527c432ae52",
+        "set_key": "neo4",
+        "card_number": "98",
+        "card_name": "Energy Amplifier",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "302282a4-2814-4235-a770-d780c37a9702",
+        "card_print_id": "c85d0165-e648-4fa6-916f-a6af87dfb37a",
+        "set_key": "neo4",
+        "card_number": "99",
+        "card_name": "Energy Stadium",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "e42f57af-11d9-4bf5-aff9-6d81f1003edc",
+        "card_print_id": "39fbe534-0da9-42bc-b2e1-013aa3722ccd",
+        "set_key": "neo4",
+        "card_number": "100",
+        "card_name": "Lucky Stadium",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "184780c4-49da-4fb1-b635-8b81f4bff0cd",
+        "card_print_id": "7be0ef9f-c446-4231-9126-84bd0f20839b",
+        "set_key": "neo4",
+        "card_number": "101",
+        "card_name": "Magnifier",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "8c295cd3-ad8d-4340-a484-6467d59acde1",
+        "card_print_id": "5cb439c2-6480-4742-8f31-6a4c69ade9eb",
+        "set_key": "neo4",
+        "card_number": "102",
+        "card_name": "Pokémon Personality Test",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "f3cd5b79-756d-4c34-b626-cb188b521a9b",
+        "card_print_id": "8841b17c-1a32-49f3-9a50-e8ade5e5d920",
+        "set_key": "neo4",
+        "card_number": "103",
+        "card_name": "Team Rocket's Evil Deeds",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "deb0c95e-d163-4269-a00c-b8e68d467a7d",
+        "card_print_id": "6dd0cc1d-8b08-47ac-9c3b-0d5336bbaa50",
+        "set_key": "neo4",
+        "card_number": "104",
+        "card_name": "Heal Powder",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "1566dfb2-8cca-415e-98e0-08b42ba31802",
+        "card_print_id": "0e46dc75-6315-4ee3-a5a2-89c3050edad6",
+        "set_key": "neo4",
+        "card_number": "105",
+        "card_name": "Mail from Bill",
+        "finish_key": "first_edition_normal"
+      },
+      {
+        "card_printing_id": "d0d77530-2769-48a7-8773-fa47374ef07c",
+        "card_print_id": "3adadb08-a9ef-4879-af78-ef8f6f9decf6",
+        "set_key": "neo4",
+        "card_number": "106",
+        "card_name": "Shining Celebi",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "7665c64a-18a0-4a74-8449-2949824054a8",
+        "card_print_id": "144e42f1-b803-42ac-aabe-a3db97c16fa6",
+        "set_key": "neo4",
+        "card_number": "107",
+        "card_name": "Shining Charizard",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "0f6ebf03-4921-48d1-bc3c-b2e987b6d6cf",
+        "card_print_id": "01c5a20c-0d8c-4274-a55d-614b38b64fec",
+        "set_key": "neo4",
+        "card_number": "108",
+        "card_name": "Shining Kabutops",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "c408dd38-3e8f-48f5-950d-65dc3670c308",
+        "card_print_id": "762b7cfc-3b44-4d9b-aa10-2b9539cf86e6",
+        "set_key": "neo4",
+        "card_number": "109",
+        "card_name": "Shining Mewtwo",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "e9a40325-7aa6-403d-9264-4b241576ff36",
+        "card_print_id": "afde284e-1cd1-422d-b6fa-a649c6f3e49d",
+        "set_key": "neo4",
+        "card_number": "110",
+        "card_name": "Shining Noctowl",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "5f3b2cdc-2785-40b2-bf00-4bb46eb64df4",
+        "card_print_id": "3f5bba1d-3d0c-4188-8abf-1945d315decd",
+        "set_key": "neo4",
+        "card_number": "111",
+        "card_name": "Shining Raichu",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "6a655252-ab94-42a5-8e45-74e94dd487e9",
+        "card_print_id": "4b1a138c-ff9d-44de-91b4-eee95aadf558",
+        "set_key": "neo4",
+        "card_number": "112",
+        "card_name": "Shining Steelix",
+        "finish_key": "first_edition_holo"
+      },
+      {
+        "card_printing_id": "a7799549-fa8e-4f53-be09-67da715c3916",
+        "card_print_id": "de40da7c-1283-4fe3-ab1b-a84948e88df8",
+        "set_key": "neo4",
+        "card_number": "113",
+        "card_name": "Shining Tyranitar",
+        "finish_key": "first_edition_holo"
+      }
+    ]
+  },
+  "dry_run_execution_status": "pkg06c_supported_finish_subset_completed_rolled_back_no_durable_change",
+  "error_message": null,
+  "before_snapshot": {
+    "captured_at": "2026-06-09T22:44:30.341Z",
+    "rows": [
+      {
+        "row_type": "target_parent",
+        "row_id": "3adadb08-a9ef-4879-af78-ef8f6f9decf6",
+        "set_code": "neo4",
+        "card_number": "106",
+        "card_name": "Shining Celebi",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "144e42f1-b803-42ac-aabe-a3db97c16fa6",
+        "set_code": "neo4",
+        "card_number": "107",
+        "card_name": "Shining Charizard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "01c5a20c-0d8c-4274-a55d-614b38b64fec",
+        "set_code": "neo4",
+        "card_number": "108",
+        "card_name": "Shining Kabutops",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "762b7cfc-3b44-4d9b-aa10-2b9539cf86e6",
+        "set_code": "neo4",
+        "card_number": "109",
+        "card_name": "Shining Mewtwo",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "afde284e-1cd1-422d-b6fa-a649c6f3e49d",
+        "set_code": "neo4",
+        "card_number": "110",
+        "card_name": "Shining Noctowl",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "3f5bba1d-3d0c-4188-8abf-1945d315decd",
+        "set_code": "neo4",
+        "card_number": "111",
+        "card_name": "Shining Raichu",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4b1a138c-ff9d-44de-91b4-eee95aadf558",
+        "set_code": "neo4",
+        "card_number": "112",
+        "card_name": "Shining Steelix",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "de40da7c-1283-4fe3-ab1b-a84948e88df8",
+        "set_code": "neo4",
+        "card_number": "113",
+        "card_name": "Shining Tyranitar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "7365fd1b32fd3c3072b3f3ddae25c17dd171938ca552d7cb3cb9db5fa4357358",
+    "counts": {
+      "target_parent_rows": 8,
+      "existing_target_child_rows": 0,
+      "planned_id_collision_rows": 0,
+      "total_rows": 8
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-09T22:44:30.504Z",
+    "rows": [
+      {
+        "row_type": "target_parent",
+        "row_id": "3adadb08-a9ef-4879-af78-ef8f6f9decf6",
+        "set_code": "neo4",
+        "card_number": "106",
+        "card_name": "Shining Celebi",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "144e42f1-b803-42ac-aabe-a3db97c16fa6",
+        "set_code": "neo4",
+        "card_number": "107",
+        "card_name": "Shining Charizard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "01c5a20c-0d8c-4274-a55d-614b38b64fec",
+        "set_code": "neo4",
+        "card_number": "108",
+        "card_name": "Shining Kabutops",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "762b7cfc-3b44-4d9b-aa10-2b9539cf86e6",
+        "set_code": "neo4",
+        "card_number": "109",
+        "card_name": "Shining Mewtwo",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "afde284e-1cd1-422d-b6fa-a649c6f3e49d",
+        "set_code": "neo4",
+        "card_number": "110",
+        "card_name": "Shining Noctowl",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "3f5bba1d-3d0c-4188-8abf-1945d315decd",
+        "set_code": "neo4",
+        "card_number": "111",
+        "card_name": "Shining Raichu",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4b1a138c-ff9d-44de-91b4-eee95aadf558",
+        "set_code": "neo4",
+        "card_number": "112",
+        "card_name": "Shining Steelix",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "de40da7c-1283-4fe3-ab1b-a84948e88df8",
+        "set_code": "neo4",
+        "card_number": "113",
+        "card_name": "Shining Tyranitar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "7365fd1b32fd3c3072b3f3ddae25c17dd171938ca552d7cb3cb9db5fa4357358",
+    "counts": {
+      "target_parent_rows": 8,
+      "existing_target_child_rows": 0,
+      "planned_id_collision_rows": 0,
+      "total_rows": 8
+    }
+  },
+  "rollback_proof_rows": [
+    {
+      "package_id": "PKG-06C-SUPPORTED-FINISH-SUBSET-CHILD-PRINTING-INSERTS",
+      "source_readiness_fingerprint": "e89f24ba671422a6198da0f9668753409cee408321c178248e8f78fe56639eec",
+      "package_fingerprint": "839a42b870b455a16055c88c5b4e39c4a83da421e4cd36df581eee4358000684",
+      "planned_sets": 1,
+      "target_parent_rows": 8,
+      "planned_child_rows": 8
+    }
+  ],
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_authorized": false,
+  "parent_writes": false,
+  "deletes_or_merges": false,
+  "write_ready_now": 0,
+  "stop_findings": [],
+  "next_allowed_step": "Prepare real-apply gate for PKG-06C supported subset only if separately requested."
+}

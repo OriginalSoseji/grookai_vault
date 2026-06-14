@@ -1,0 +1,198 @@
+{
+  "generated_at": "2026-06-13T23:05:59.266Z",
+  "version": "english_master_index_pkg36a_bwp_promo_zero_pad_overfinish_child_delete_real_apply_v1",
+  "package_id": "PKG-36A-BWP-PROMO-ZERO-PAD-OVERFINISH-CHILD-DELETE",
+  "fingerprint": "91e3dfcd8108f73c626609a9481b8db1c1bd8fb4267240ec88222c5e735b06ac",
+  "dry_run_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg36a_bwp_promo_zero_pad_overfinish_child_delete_guarded_dry_run_v1.json",
+  "safety": {
+    "no_global_apply": true,
+    "migrations_created": false,
+    "parent_writes": false,
+    "merges": false,
+    "quarantine": false
+  },
+  "execution": {
+    "apply_status": "pkg36a_real_apply_committed",
+    "committed": true,
+    "before_snapshot": {
+      "captured_at": "2026-06-13T23:05:58.282Z",
+      "rows": [
+        {
+          "card_printing_id": "4dc9908f-1833-46dd-8def-69eb98fa3c1a",
+          "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-02-22T00:23:13.964Z",
+          "set_code": "bwp",
+          "number": "BW04",
+          "number_plain": "04",
+          "name": "Reshiram",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "8ac6a6c0-83f3-41b5-b7a6-13d34e447545",
+          "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-03-03T04:03:38.310Z",
+          "set_code": "bwp",
+          "number": "BW04",
+          "number_plain": "04",
+          "name": "Reshiram",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "98914f84-973b-4c3d-aed8-708d4e9ad68e",
+          "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-02-22T00:23:13.964Z",
+          "set_code": "bwp",
+          "number": "BW05",
+          "number_plain": "05",
+          "name": "Zekrom",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        },
+        {
+          "card_printing_id": "fdf01320-baff-4090-8635-2af3e09a77a8",
+          "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "provenance_source": null,
+          "provenance_ref": null,
+          "created_by": null,
+          "created_at": "2026-03-03T04:03:38.310Z",
+          "set_code": "bwp",
+          "number": "BW05",
+          "number_plain": "05",
+          "name": "Zekrom",
+          "printed_identity_modifier": null,
+          "variant_key": ""
+        }
+      ],
+      "hash_sha256": "e10f5afafdd114b89316ecf7e878874e2d2eb66c3b1e7641d04d91bfea31d531",
+      "impact_counts": {
+        "child_rows": 4,
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "justtcg_mapping_refs": 0
+      }
+    },
+    "deleted_rows": 4,
+    "guard": {
+      "target_rows": 4,
+      "disallowed_finish_rows": 0,
+      "disallowed_bucket_rows": 0,
+      "matching_child_rows": 4,
+      "disallowed_parent_shape_rows": 0,
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "justtcg_mapping_refs": 0
+    }
+  },
+  "post_apply_proof": {
+    "target_children_remaining": 0,
+    "preserved_holo_children": [
+      {
+        "number": "BW04",
+        "name": "Reshiram",
+        "holo_children": 1
+      },
+      {
+        "number": "BW05",
+        "name": "Zekrom",
+        "holo_children": 1
+      }
+    ],
+    "remaining_children_by_parent_finish": [
+      {
+        "number": "BW04",
+        "name": "Reshiram",
+        "finish_key": "holo",
+        "rows": 1
+      },
+      {
+        "number": "BW05",
+        "name": "Zekrom",
+        "finish_key": "holo",
+        "rows": 1
+      }
+    ]
+  },
+  "targets": [
+    {
+      "card_printing_id": "4dc9908f-1833-46dd-8def-69eb98fa3c1a",
+      "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+      "set_code": "bwp",
+      "canonical_set_key": "bwp",
+      "card_number": "04",
+      "number": "BW04",
+      "number_plain": "04",
+      "card_name": "Reshiram",
+      "finish_key": "normal",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "8ac6a6c0-83f3-41b5-b7a6-13d34e447545",
+      "card_print_id": "c5a6b6da-6e46-4721-94c6-5f0ad332d0d7",
+      "set_code": "bwp",
+      "canonical_set_key": "bwp",
+      "card_number": "04",
+      "number": "BW04",
+      "number_plain": "04",
+      "card_name": "Reshiram",
+      "finish_key": "reverse",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "98914f84-973b-4c3d-aed8-708d4e9ad68e",
+      "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+      "set_code": "bwp",
+      "canonical_set_key": "bwp",
+      "card_number": "05",
+      "number": "BW05",
+      "number_plain": "05",
+      "card_name": "Zekrom",
+      "finish_key": "normal",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "fdf01320-baff-4090-8635-2af3e09a77a8",
+      "card_print_id": "218465f1-d753-4c1c-b0af-656654092afe",
+      "set_code": "bwp",
+      "canonical_set_key": "bwp",
+      "card_number": "05",
+      "number": "BW05",
+      "number_plain": "05",
+      "card_name": "Zekrom",
+      "finish_key": "reverse",
+      "governance_bucket": "product_promo_base_finish_overgeneration_candidate",
+      "known_index_finishes": [
+        "holo"
+      ]
+    }
+  ]
+}

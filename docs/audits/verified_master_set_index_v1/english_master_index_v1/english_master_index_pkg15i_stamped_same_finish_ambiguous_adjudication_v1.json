@@ -1,0 +1,713 @@
+{
+  "generated_at": "2026-06-11T19:49:06.311Z",
+  "version": "english_master_index_pkg15i_stamped_same_finish_ambiguous_adjudication_v1",
+  "package_id": "PKG-15I-STAMPED-SAME-FINISH-AMBIGUOUS-ADJUDICATION",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 2,
+  "source_artifacts": {
+    "pokecardvalues_stamped_finish_acquisition": "docs/audits/english_master_index_source_exhaustion_v1/pokecardvalues_stamped_finish_acquisition_v1/pokecardvalues_stamped_finish_acquisition_v1.json"
+  },
+  "summary": {
+    "reviewed_rows": 21,
+    "same_finish_supported_rows": 21,
+    "by_adjudication_status": {
+      "blocked_identity_granularity_required": 19,
+      "ready_for_guarded_battle_academy_deck_mark_display_metadata_route": 2
+    },
+    "by_target_finish_key": {
+      "reverse": 16,
+      "normal": 4,
+      "holo": 1
+    },
+    "by_variant": {
+      "regional_championships_stamp": 9,
+      "city_championships_stamp": 3,
+      "battle_academy_deck_mark": 2,
+      "championship_staff_stamp": 2,
+      "national_championships_stamp": 2,
+      "eb_games_stamp": 1,
+      "league_stamp": 1,
+      "staff_stamp": 1
+    }
+  },
+  "governance_blocker": "identity_granularity_required_before_write",
+  "rows": [
+    {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "80",
+      "card_name": "Escavalier",
+      "proposed_variant_key": "national_championships_stamp",
+      "stamp_label": "National Championships Stamp",
+      "base_parent_child_finishes": [
+        "cracked_ice",
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "National Championships Promo",
+        "Staff National Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/escavalier-80-101-reverse-holo-national-championships-noble-victories/bw3-80-3-45/",
+        "https://pokecardvalues.co.uk/cards/escavalier-80-101-reverse-holo-staff-national-championships-noble-victories/bw3-80-3-80/"
+      ],
+      "source_titles": [
+        "Escavalier - 80/101 - Reverse Holo - National Championships - Promo",
+        "Escavalier - 80/101 - Reverse Holo - Staff National Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "proposed_variant_key": "championship_staff_stamp",
+      "stamp_label": "Championship Staff Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "Staff Regional Championships Promo",
+        "Staff States Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/vaporeon-25-108-reverse-holo-staff-regional-championships-dark-explorers/bw5-25-3-83/",
+        "https://pokecardvalues.co.uk/cards/vaporeon-25-108-reverse-holo-staff-states-championships-dark-explorers/bw5-25-3-84/"
+      ],
+      "source_titles": [
+        "Vaporeon - 25/108 - Reverse Holo - Staff Regional Championships - Promo",
+        "Vaporeon - 25/108 - Reverse Holo - Staff States Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "37",
+      "card_name": "Jolteon",
+      "proposed_variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "Regional Championships Promo",
+        "Staff Regional Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/jolteon-37-108-reverse-holo-regional-championships-dark-explorers/bw5-37-3-60/",
+        "https://pokecardvalues.co.uk/cards/jolteon-37-108-reverse-holo-staff-regional-championships-dark-explorers/bw5-37-3-83/"
+      ],
+      "source_titles": [
+        "Jolteon - 37/108 - Reverse Holo - Regional Championships - Promo",
+        "Jolteon - 37/108 - Reverse Holo - Staff Regional Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "84",
+      "card_name": "Eevee",
+      "proposed_variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "City Championships Promo",
+        "Staff City Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/eevee-84-108-reverse-holo-city-championships-dark-explorers/bw5-84-3-23/",
+        "https://pokecardvalues.co.uk/cards/eevee-84-108-reverse-holo-staff-city-championships-dark-explorers/bw5-84-3-75/"
+      ],
+      "source_titles": [
+        "Eevee - 84/108 - Reverse Holo - City Championships - Promo",
+        "Eevee - 84/108 - Reverse Holo - Staff City Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "52",
+      "card_name": "Luxio",
+      "proposed_variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "normal",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "Staff Prerelease Promo",
+        "Staff States Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/luxio-52-130-non-holo-staff-prerelease-diamond-pearl/dp1-52-2-82/",
+        "https://pokecardvalues.co.uk/cards/luxio-52-130-non-holo-staff-states-championships-diamond-pearl/dp1-52-2-84/"
+      ],
+      "source_titles": [
+        "Luxio - 52/130 - Non-Holo - Staff Prerelease - Promo",
+        "Luxio - 52/130 - Non-Holo - Staff States Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Potentially routable only if Grookai governance intentionally treats Staff Prerelease and Staff States Championship labels as one generic staff-stamp parent.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "98",
+      "card_name": "Shinx",
+      "proposed_variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "normal",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "City Championships Promo",
+        "Staff City Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/shinx-98-130-non-holo-city-championships-diamond-pearl/dp1-98-2-23/",
+        "https://pokecardvalues.co.uk/cards/shinx-98-130-non-holo-staff-city-championships-diamond-pearl/dp1-98-2-75/"
+      ],
+      "source_titles": [
+        "Shinx - 98/130 - Non-Holo - City Championships - Promo",
+        "Shinx - 98/130 - Non-Holo - Staff City Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "me02",
+      "set_name": "Phantasmal Flames",
+      "card_number": "26",
+      "card_name": "Suicune",
+      "proposed_variant_key": "eb_games_stamp",
+      "stamp_label": "EB Games Stamp",
+      "base_parent_child_finishes": [
+        "cosmos",
+        "holo",
+        "reverse"
+      ],
+      "target_finish_key": "holo",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "EB Games Stamp Promo",
+        "GameStop Stamp Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/suicune-026-094-holo-eb-games-stamp-phantasmal-flames/me2-026-1-106/",
+        "https://pokecardvalues.co.uk/cards/suicune-026-094-holo-gamestop-stamp-phantasmal-flames/me2-026-1-104/"
+      ],
+      "source_titles": [
+        "Suicune - 026/094 - Holo - GameStop Stamp - Promo",
+        "Suicune - 026/094 - Holo - EB Games Stamp - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "128",
+      "card_name": "Professor Kukui",
+      "proposed_variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "Regional Championships Promo",
+        "Staff Regional Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/professor-kukui-128-149-reverse-holo-regional-championships-sun-moon/sm1-128-3-60/",
+        "https://pokecardvalues.co.uk/cards/professor-kukui-128-149-reverse-holo-staff-regional-championships-sun-moon/sm1-128-3-83/"
+      ],
+      "source_titles": [
+        "Professor Kukui - 128/149 - Reverse Holo - Regional Championships - Promo",
+        "Professor Kukui - 128/149 - Reverse Holo - Staff Regional Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "proposed_variant_key": "championship_staff_stamp",
+      "stamp_label": "Championship Staff Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "Staff Europe Championships Promo",
+        "Staff Oceania Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/ultra-ball-135-149-reverse-holo-staff-europe-championships-sun-moon/sm1-135-3-77/",
+        "https://pokecardvalues.co.uk/cards/ultra-ball-135-149-reverse-holo-staff-oceania-championships-sun-moon/sm1-135-3-81/"
+      ],
+      "source_titles": [
+        "Ultra Ball - 135/149 - Reverse Holo - Staff Europe Championships - Promo",
+        "Ultra Ball - 135/149 - Reverse Holo - Staff Oceania Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "95",
+      "card_name": "Gladion",
+      "proposed_variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "Regional Championships Promo",
+        "Staff Regional Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/gladion-95-111-reverse-holo-regional-championships-crimson-invasion/sm4-95-3-60/",
+        "https://pokecardvalues.co.uk/cards/gladion-95-111-reverse-holo-staff-regional-championships-crimson-invasion/sm4-95-3-83/"
+      ],
+      "source_titles": [
+        "Gladion - 95/111 - Reverse Holo - Regional Championships - Promo",
+        "Gladion - 95/111 - Reverse Holo - Staff Regional Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "119",
+      "card_name": "Cynthia",
+      "proposed_variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "Regional Championships Promo",
+        "Staff Regional Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/cynthia-119-156-reverse-holo-regional-championships-ultra-prism/sm5-119-3-60/",
+        "https://pokecardvalues.co.uk/cards/cynthia-119-156-reverse-holo-staff-regional-championships-ultra-prism/sm5-119-3-83/"
+      ],
+      "source_titles": [
+        "Cynthia - 119/156 - Reverse Holo - Regional Championships - Promo",
+        "Cynthia - 119/156 - Reverse Holo - Staff Regional Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "102",
+      "card_name": "Beast Ring",
+      "proposed_variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "League Promo Promo",
+        "Staff League Promo Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/beast-ring-102-131-reverse-holo-league-promo-forbidden-light/sm6-102-3-41/",
+        "https://pokecardvalues.co.uk/cards/beast-ring-102-131-reverse-holo-staff-league-promo-forbidden-light/sm6-102-3-78/"
+      ],
+      "source_titles": [
+        "Beast Ring - 102/131 - Reverse Holo - League Promo - Promo",
+        "Beast Ring - 102/131 - Reverse Holo - Staff League Promo - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "105",
+      "card_name": "Diantha",
+      "proposed_variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "Regional Championships Promo",
+        "Staff Regional Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/diantha-105-131-reverse-holo-regional-championships-forbidden-light/sm6-105-3-60/",
+        "https://pokecardvalues.co.uk/cards/diantha-105-131-reverse-holo-staff-regional-championships-forbidden-light/sm6-105-3-83/"
+      ],
+      "source_titles": [
+        "Diantha - 105/131 - Reverse Holo - Regional Championships - Promo",
+        "Diantha - 105/131 - Reverse Holo - Staff Regional Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "card_number": "150",
+      "card_name": "Roxanne",
+      "proposed_variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "Regional Championships Promo",
+        "Staff Regional Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/Roxanne-150-189-Reverse-Holo-Regional-Championships-Astral-Radiance/swsh10-150-3-60/",
+        "https://pokecardvalues.co.uk/cards/Roxanne-150-189-Reverse-Holo-Staff-Regional-Championships-Astral-Radiance/swsh10-150-3-83/"
+      ],
+      "source_titles": [
+        "Roxanne - 150/189 - Reverse Holo - Regional Championships - Promo",
+        "Roxanne - 150/189 - Reverse Holo - Staff Regional Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "23",
+      "card_name": "Larvesta",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "stamp_label": "Battle Academy Deck Mark",
+      "base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "normal",
+      "source_match_count": 3,
+      "source_variant_labels": [
+        "19 Battle Academy Stamp Promo",
+        "36 Battle Academy Stamp Promo",
+        "46 Battle Academy Stamp Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/Larvesta-023-198-Non-Holo-19-Battle-Academy-Stamp-Chilling-Reign/swsh6-23-2-108/",
+        "https://pokecardvalues.co.uk/cards/Larvesta-023-198-Non-Holo-36-Battle-Academy-Stamp-Chilling-Reign/swsh6-23-2-109/",
+        "https://pokecardvalues.co.uk/cards/Larvesta-023-198-Non-Holo-46-Battle-Academy-Stamp-Chilling-Reign/swsh6-23-2-110/"
+      ],
+      "source_titles": [
+        "Larvesta - 023/198 - Non-Holo - 19 - Battle Academy Stamp - Promo",
+        "Larvesta - 023/198 - Non-Holo - 36 - Battle Academy Stamp - Promo",
+        "Larvesta - 023/198 - Non-Holo - 46 - Battle Academy Stamp - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "ready_for_guarded_battle_academy_deck_mark_display_metadata_route",
+      "recommendation": "Routable: individual Battle Academy deck numbers are display metadata for this parent identity because every exact source product supports the same Non-Holo active finish.",
+      "governance_rule": "Battle Academy deck numbers remain display metadata. They do not create separate canonical parent identities when every exact source row supports the same Non-Holo active finish for the same set/card/number/name."
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "24",
+      "card_name": "Volcarona",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "stamp_label": "Battle Academy Deck Mark",
+      "base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "normal",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "27 Battle Academy Stamp Promo",
+        "44 Battle Academy Stamp Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/Volcarona-024-198-Non-Holo-27-Battle-Academy-Stamp-Chilling-Reign/swsh6-24-2-111/",
+        "https://pokecardvalues.co.uk/cards/Volcarona-024-198-Non-Holo-44-Battle-Academy-Stamp-Chilling-Reign/swsh6-24-2-112/"
+      ],
+      "source_titles": [
+        "Volcarona - 024/198 - Non-Holo - 27 - Battle Academy Stamp - Promo",
+        "Volcarona - 024/198 - Non-Holo - 44 - Battle Academy Stamp - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "ready_for_guarded_battle_academy_deck_mark_display_metadata_route",
+      "recommendation": "Routable: individual Battle Academy deck numbers are display metadata for this parent identity because every exact source product supports the same Non-Holo active finish.",
+      "governance_rule": "Battle Academy deck numbers remain display metadata. They do not create separate canonical parent identities when every exact source row supports the same Non-Holo active finish for the same set/card/number/name."
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "83",
+      "card_name": "Honedge",
+      "proposed_variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "Regional Championships Promo",
+        "Staff Regional Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/honedge-83-146-reverse-holo-regional-championships-xy/xy1-83-3-60/",
+        "https://pokecardvalues.co.uk/cards/honedge-83-146-reverse-holo-staff-regional-championships-xy/xy1-83-3-83/"
+      ],
+      "source_titles": [
+        "Honedge - 83/146 - Reverse Holo - Regional Championships - Promo",
+        "Honedge - 83/146 - Reverse Holo - Staff Regional Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "84",
+      "card_name": "Doublade",
+      "proposed_variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "Regional Championships Promo",
+        "Staff Regional Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/doublade-84-146-reverse-holo-regional-championships-xy/xy1-84-3-60/",
+        "https://pokecardvalues.co.uk/cards/doublade-84-146-reverse-holo-staff-regional-championships-xy/xy1-84-3-83/"
+      ],
+      "source_titles": [
+        "Doublade - 84/146 - Reverse Holo - Regional Championships - Promo",
+        "Doublade - 84/146 - Reverse Holo - Staff Regional Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "85",
+      "card_name": "Aegislash",
+      "proposed_variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "Regional Championships Promo",
+        "Staff Regional Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/aegislash-85-146-reverse-holo-regional-championships-xy/xy1-85-3-60/",
+        "https://pokecardvalues.co.uk/cards/aegislash-85-146-reverse-holo-staff-regional-championships-xy/xy1-85-3-83/"
+      ],
+      "source_titles": [
+        "Aegislash - 85/146 - Reverse Holo - Regional Championships - Promo",
+        "Aegislash - 85/146 - Reverse Holo - Staff Regional Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "card_number": "94",
+      "card_name": "Chaos Tower",
+      "proposed_variant_key": "national_championships_stamp",
+      "stamp_label": "National Championships Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "National Championships Promo",
+        "Staff National Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/chaos-tower-94-124-reverse-holo-national-championships-fates-collide/xy10-94-3-45/",
+        "https://pokecardvalues.co.uk/cards/chaos-tower-94-124-reverse-holo-staff-national-championships-fates-collide/xy10-94-3-80/"
+      ],
+      "source_titles": [
+        "Chaos Tower - 94/124 - Reverse Holo - National Championships - Promo",
+        "Chaos Tower - 94/124 - Reverse Holo - Staff National Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "145",
+      "card_name": "Parallel City",
+      "proposed_variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_finish_key": "reverse",
+      "source_match_count": 2,
+      "source_variant_labels": [
+        "City Championships Promo",
+        "Staff City Championships Promo"
+      ],
+      "source_urls": [
+        "https://pokecardvalues.co.uk/cards/parallel-city-145-162-reverse-holo-city-championships-breakthrough/xy8-145-3-23/",
+        "https://pokecardvalues.co.uk/cards/parallel-city-145-162-reverse-holo-staff-city-championships-breakthrough/xy8-145-3-75/"
+      ],
+      "source_titles": [
+        "Parallel City - 145/162 - Reverse Holo - City Championships - Promo",
+        "Parallel City - 145/162 - Reverse Holo - Staff City Championships - Promo"
+      ],
+      "same_finish_supported": true,
+      "identity_granularity": "multiple_source_variant_labels",
+      "adjudication_status": "blocked_identity_granularity_required",
+      "recommendation": "Do not write. Resolve whether source variant labels require distinct parent identities before routing the active finish.",
+      "governance_rule": null
+    }
+  ],
+  "fingerprint_sha256": "48d6e2a1f5da4b960a0ef8dc7eade4769139e0681de5449b7187b0c09846eea8"
+}

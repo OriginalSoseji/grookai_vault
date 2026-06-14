@@ -13,7 +13,7 @@ Audit-only source-delta report. No DB writes, migrations, cleanup, quarantine, o
 
 | Metric | Value |
 | --- | --- |
-| current_gap_facts | 1673 |
+| current_gap_facts | 1700 |
 | candidate_records_loaded | 1297 |
 | matched_gap_facts | 1 |
 | useful_candidate_matches | 0 |
@@ -25,7 +25,7 @@ Audit-only source-delta report. No DB writes, migrations, cleanup, quarantine, o
 
 | Status | Count |
 | --- | --- |
-| same_source_or_authority | 1 |
+| candidate_context | 1 |
 
 ## Non-Gap Candidate Counts
 

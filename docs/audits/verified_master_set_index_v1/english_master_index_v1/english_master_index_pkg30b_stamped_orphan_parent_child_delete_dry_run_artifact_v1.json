@@ -1,0 +1,3285 @@
+{
+  "package_id": "PKG-30B-STAMPED-ORPHAN-PARENT-CHILD-DELETE",
+  "generated_at": "2026-06-13T19:09:19.892Z",
+  "fingerprint": "fed84a447d3b571213e3f3a2b600f56f4f2f60f37203a7c763d489cef1133d9f",
+  "source_readiness_fingerprint": "db25d70e8bc515011e87b4f5028a4d713788bf84ccd3098ac211b3f3d60cd405",
+  "sql_hash": "25aa20505da034121867cc5ffdc7a20143cce02361496702e75da230f0fc7738",
+  "sql_path": "docs\\sql\\english_master_index_pkg30b_stamped_orphan_parent_child_delete_guarded_dry_run_transaction_v1.sql",
+  "safety": {
+    "db_writes_committed": false,
+    "migrations_created": false,
+    "real_apply_authorized": false,
+    "sql_ends_with_rollback": true
+  },
+  "summary": {
+    "target_rows": 62,
+    "child_deletes_in_dry_run": 62,
+    "parent_deletes_in_dry_run": 62
+  },
+  "rows": [
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "9f8d951c-151d-4811-bf78-2281fd32385c",
+      "set_code": "dp1",
+      "card_number": "112",
+      "number": "112",
+      "number_plain": "112",
+      "card_name": "Professor Rowan",
+      "printed_identity_modifier": "",
+      "variant_key": "professor_program_stamp",
+      "card_printing_id": "73d6084f-6c0d-48f0-98ce-bf58ec5f6fc5",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "dp1",
+      "child_identity_key": "dp1|112|professor rowan|cosmos||professor program stamp",
+      "live_number_candidates": [
+        "112"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "9f8d951c-151d-4811-bf78-2281fd32385c",
+        "set_code": "dp1",
+        "number": "112",
+        "number_plain": "112",
+        "name": "Professor Rowan",
+        "printed_identity_modifier": null,
+        "variant_key": "professor_program_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "73d6084f-6c0d-48f0-98ce-bf58ec5f6fc5",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "76a61722-62c6-47fc-951f-fae9f1c7ee39",
+      "set_code": "me01",
+      "card_number": "118",
+      "number": "118",
+      "number_plain": "118",
+      "card_name": "Iron Defender",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "0ad53585-160e-42a6-b495-b626c918be2e",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "me01",
+      "child_identity_key": "me01|118|iron defender|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "118"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "76a61722-62c6-47fc-951f-fae9f1c7ee39",
+        "set_code": "me01",
+        "number": "118",
+        "number_plain": "118",
+        "name": "Iron Defender",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "0ad53585-160e-42a6-b495-b626c918be2e",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "f4823132-e5a7-4abe-ace6-e510a6dec5e9",
+      "set_code": "me01",
+      "card_number": "122",
+      "number": "122",
+      "number_plain": "122",
+      "card_name": "Mystery Garden",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "6b1e6f35-4930-4c96-b411-713a32feb85b",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "me01",
+      "child_identity_key": "me01|122|mystery garden|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "122"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "f4823132-e5a7-4abe-ace6-e510a6dec5e9",
+        "set_code": "me01",
+        "number": "122",
+        "number_plain": "122",
+        "name": "Mystery Garden",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "6b1e6f35-4930-4c96-b411-713a32feb85b",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "16d3b4a8-b86f-4f0d-98e5-f8610fc541db",
+      "set_code": "me01",
+      "card_number": "124",
+      "number": "124",
+      "number_plain": "124",
+      "card_name": "Premium Power Pro",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "84ed770c-26ef-481f-b8e2-b4ae974aa52f",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "me01",
+      "child_identity_key": "me01|124|premium power pro|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "124"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "16d3b4a8-b86f-4f0d-98e5-f8610fc541db",
+        "set_code": "me01",
+        "number": "124",
+        "number_plain": "124",
+        "name": "Premium Power Pro",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "84ed770c-26ef-481f-b8e2-b4ae974aa52f",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "11494a1a-8f94-4f25-80b7-f7c98e25d7b0",
+      "set_code": "sv02",
+      "card_number": "171",
+      "number": "171",
+      "number_plain": "171",
+      "card_name": "Artazon",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "4a624ebf-0556-4a03-9270-66eac5bafa4b",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv02",
+      "child_identity_key": "sv02|171|artazon|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "171"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "11494a1a-8f94-4f25-80b7-f7c98e25d7b0",
+        "set_code": "sv02",
+        "number": "171",
+        "number_plain": "171",
+        "name": "Artazon",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "4a624ebf-0556-4a03-9270-66eac5bafa4b",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "2432f622-fe41-4f6c-869f-c6a6ae415ad1",
+      "set_code": "sv02",
+      "card_number": "177",
+      "number": "177",
+      "number_plain": "177",
+      "card_name": "Clavell",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "fd752964-3d7a-429d-86d4-235e059c6915",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv02",
+      "child_identity_key": "sv02|177|clavell|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "177"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "2432f622-fe41-4f6c-869f-c6a6ae415ad1",
+        "set_code": "sv02",
+        "number": "177",
+        "number_plain": "177",
+        "name": "Clavell",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "fd752964-3d7a-429d-86d4-235e059c6915",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "3e5da442-8158-4501-a278-c7ac3cd6b0e8",
+      "set_code": "sv02",
+      "card_number": "188",
+      "number": "188",
+      "number_plain": "188",
+      "card_name": "Super Rod",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "ed6c7e71-f60f-4602-8f1c-a47a40b82c05",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv02",
+      "child_identity_key": "sv02|188|super rod|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "188"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "3e5da442-8158-4501-a278-c7ac3cd6b0e8",
+        "set_code": "sv02",
+        "number": "188",
+        "number_plain": "188",
+        "name": "Super Rod",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "ed6c7e71-f60f-4602-8f1c-a47a40b82c05",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "5a00abe9-af9f-42b7-930c-bc9b21830078",
+      "set_code": "sv02",
+      "card_number": "189",
+      "number": "189",
+      "number_plain": "189",
+      "card_name": "Superior Energy Retrieval",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "4873fa05-7329-4958-a99b-a23809df3c30",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv02",
+      "child_identity_key": "sv02|189|superior energy retrieval|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "189"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "5a00abe9-af9f-42b7-930c-bc9b21830078",
+        "set_code": "sv02",
+        "number": "189",
+        "number_plain": "189",
+        "name": "Superior Energy Retrieval",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "4873fa05-7329-4958-a99b-a23809df3c30",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "bedaee4b-a307-4d49-8e5b-1e94f7ad9188",
+      "set_code": "sv02",
+      "card_number": "190",
+      "number": "190",
+      "number_plain": "190",
+      "card_name": "Jet Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "cfc857d7-0756-4b0b-a274-cdb2b7c750e5",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv02",
+      "child_identity_key": "sv02|190|jet energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "190"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "bedaee4b-a307-4d49-8e5b-1e94f7ad9188",
+        "set_code": "sv02",
+        "number": "190",
+        "number_plain": "190",
+        "name": "Jet Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "cfc857d7-0756-4b0b-a274-cdb2b7c750e5",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "21eb84c1-4a26-4cd0-9a16-1757d0257156",
+      "set_code": "sv02",
+      "card_number": "191",
+      "number": "191",
+      "number_plain": "191",
+      "card_name": "Luminous Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "d84d0324-87ad-41ee-96c1-371e4c0a0be8",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv02",
+      "child_identity_key": "sv02|191|luminous energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "191"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "21eb84c1-4a26-4cd0-9a16-1757d0257156",
+        "set_code": "sv02",
+        "number": "191",
+        "number_plain": "191",
+        "name": "Luminous Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "d84d0324-87ad-41ee-96c1-371e4c0a0be8",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "d18688e3-efa5-4020-a578-e865b68a040a",
+      "set_code": "sv02",
+      "card_number": "192",
+      "number": "192",
+      "number_plain": "192",
+      "card_name": "Reversal Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "bd102830-5480-4cd0-a798-e705c20b01c9",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv02",
+      "child_identity_key": "sv02|192|reversal energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "192"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "d18688e3-efa5-4020-a578-e865b68a040a",
+        "set_code": "sv02",
+        "number": "192",
+        "number_plain": "192",
+        "name": "Reversal Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "bd102830-5480-4cd0-a798-e705c20b01c9",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "holo",
+        "reverse"
+      ],
+      "card_print_id": "c4873cb1-8437-490f-bd86-1bbe43007e31",
+      "set_code": "sv02",
+      "card_number": "89",
+      "number": "89",
+      "number_plain": "89",
+      "card_name": "Spiritomb",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "c1d2f081-d2e0-446e-a14b-01fbb39cd1fa",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv02",
+      "child_identity_key": "sv02|89|spiritomb|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "89"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "c4873cb1-8437-490f-bd86-1bbe43007e31",
+        "set_code": "sv02",
+        "number": "89",
+        "number_plain": "89",
+        "name": "Spiritomb",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "c1d2f081-d2e0-446e-a14b-01fbb39cd1fa",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "cac19f52-e201-4618-809d-5484fd9e02e4",
+      "set_code": "sv05",
+      "card_number": "085",
+      "number": "085",
+      "number_plain": "085",
+      "card_name": "Drilbur",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "5688dc81-dbc6-4411-bdd8-6ba986df5e5d",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv05",
+      "child_identity_key": "sv05|85|drilbur|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "85"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "cac19f52-e201-4618-809d-5484fd9e02e4",
+        "set_code": "sv05",
+        "number": "085",
+        "number_plain": "085",
+        "name": "Drilbur",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "5688dc81-dbc6-4411-bdd8-6ba986df5e5d",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "holo"
+      ],
+      "card_print_id": "241b0735-6b4e-47f7-a8ce-3f0e08b78453",
+      "set_code": "sv05",
+      "card_number": "108",
+      "number": "108",
+      "number_plain": "108",
+      "card_name": "Farigiraf ex",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "3486e3cf-84bc-4f8e-947e-2b68e3e7f11e",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv05",
+      "child_identity_key": "sv05|108|farigiraf ex|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "108"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "241b0735-6b4e-47f7-a8ce-3f0e08b78453",
+        "set_code": "sv05",
+        "number": "108",
+        "number_plain": "108",
+        "name": "Farigiraf ex",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "3486e3cf-84bc-4f8e-947e-2b68e3e7f11e",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "holo",
+        "reverse"
+      ],
+      "card_print_id": "2b34ba4a-1cde-4aac-86e2-9472a65d75cb",
+      "set_code": "sv05",
+      "card_number": "109",
+      "number": "109",
+      "number_plain": "109",
+      "card_name": "Roaring Moon",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "5e947064-c3e1-485f-a61b-031cbdd3a496",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv05",
+      "child_identity_key": "sv05|109|roaring moon|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "109"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "2b34ba4a-1cde-4aac-86e2-9472a65d75cb",
+        "set_code": "sv05",
+        "number": "109",
+        "number_plain": "109",
+        "name": "Roaring Moon",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "5e947064-c3e1-485f-a61b-031cbdd3a496",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "d0df2076-906b-424b-9202-e7329ac32b8c",
+      "set_code": "sv05",
+      "card_number": "129",
+      "number": "129",
+      "number_plain": "129",
+      "card_name": "Dudunsparce",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "0acf86b9-1d32-454b-a789-405da36218fa",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv05",
+      "child_identity_key": "sv05|129|dudunsparce|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "129"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "d0df2076-906b-424b-9202-e7329ac32b8c",
+        "set_code": "sv05",
+        "number": "129",
+        "number_plain": "129",
+        "name": "Dudunsparce",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "0acf86b9-1d32-454b-a789-405da36218fa",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "8fcec6bf-2273-4b77-a6dd-db9133c6eb30",
+      "set_code": "sv05",
+      "card_number": "142",
+      "number": "142",
+      "number_plain": "142",
+      "card_name": "Bianca's Devotion",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "31699216-9819-4bd3-b4be-221b1037a6df",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv05",
+      "child_identity_key": "sv05|142|bianca s devotion|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "142"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "8fcec6bf-2273-4b77-a6dd-db9133c6eb30",
+        "set_code": "sv05",
+        "number": "142",
+        "number_plain": "142",
+        "name": "Bianca's Devotion",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "31699216-9819-4bd3-b4be-221b1037a6df",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "1b4b29ae-cd00-4088-8cb2-aa1574cb53c0",
+      "set_code": "sv05",
+      "card_number": "145",
+      "number": "145",
+      "number_plain": "145",
+      "card_name": "Ciphermaniac's Codebreaking",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "f4fd01b4-f35f-4b00-9221-1463efad05d6",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv05",
+      "child_identity_key": "sv05|145|ciphermaniac s codebreaking|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "145"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "1b4b29ae-cd00-4088-8cb2-aa1574cb53c0",
+        "set_code": "sv05",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Ciphermaniac's Codebreaking",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "f4fd01b4-f35f-4b00-9221-1463efad05d6",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "3301a2e5-64da-4472-916b-6a72c3c8058f",
+      "set_code": "sv05",
+      "card_number": "147",
+      "number": "147",
+      "number_plain": "147",
+      "card_name": "Explorer's Guidance",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "1992c9bd-f3ae-47bb-ab72-85e142e894b0",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv05",
+      "child_identity_key": "sv05|147|explorer s guidance|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "147"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "3301a2e5-64da-4472-916b-6a72c3c8058f",
+        "set_code": "sv05",
+        "number": "147",
+        "number_plain": "147",
+        "name": "Explorer's Guidance",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "1992c9bd-f3ae-47bb-ab72-85e142e894b0",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "5e6738d9-3ca3-47c8-b18c-4db8a9a82313",
+      "set_code": "sv05",
+      "card_number": "148",
+      "number": "148",
+      "number_plain": "148",
+      "card_name": "Full Metal Lab",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "7288ad54-84d6-45a2-b0d2-97930ce770dc",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv05",
+      "child_identity_key": "sv05|148|full metal lab|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "148"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "5e6738d9-3ca3-47c8-b18c-4db8a9a82313",
+        "set_code": "sv05",
+        "number": "148",
+        "number_plain": "148",
+        "name": "Full Metal Lab",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "7288ad54-84d6-45a2-b0d2-97930ce770dc",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "3a8acfe6-d0d9-44b3-96e5-43fad5142636",
+      "set_code": "sv05",
+      "card_number": "156",
+      "number": "156",
+      "number_plain": "156",
+      "card_name": "Perilous Jungle",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "c9ee4e51-0b3e-4764-ba24-e806cb804482",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv05",
+      "child_identity_key": "sv05|156|perilous jungle|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "156"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "3a8acfe6-d0d9-44b3-96e5-43fad5142636",
+        "set_code": "sv05",
+        "number": "156",
+        "number_plain": "156",
+        "name": "Perilous Jungle",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "c9ee4e51-0b3e-4764-ba24-e806cb804482",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "c491dd51-8124-4cf4-ab39-21216d07185b",
+      "set_code": "sv05",
+      "card_number": "159",
+      "number": "159",
+      "number_plain": "159",
+      "card_name": "Rescue Board",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "b32da362-e23c-4f6b-b769-2d28d56f4620",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv05",
+      "child_identity_key": "sv05|159|rescue board|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "159"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "c491dd51-8124-4cf4-ab39-21216d07185b",
+        "set_code": "sv05",
+        "number": "159",
+        "number_plain": "159",
+        "name": "Rescue Board",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "b32da362-e23c-4f6b-b769-2d28d56f4620",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "55b68f7e-87c9-4bee-b635-2bae9ecd2773",
+      "set_code": "sv05",
+      "card_number": "161",
+      "number": "161",
+      "number_plain": "161",
+      "card_name": "Mist Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "93fcb4d5-6664-478c-8b84-699d664cc0bb",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv05",
+      "child_identity_key": "sv05|161|mist energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "161"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "55b68f7e-87c9-4bee-b635-2bae9ecd2773",
+        "set_code": "sv05",
+        "number": "161",
+        "number_plain": "161",
+        "name": "Mist Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "93fcb4d5-6664-478c-8b84-699d664cc0bb",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "holo"
+      ],
+      "card_print_id": "3ed2c647-203a-47ca-aa08-ff0619e56fcf",
+      "set_code": "sv05",
+      "card_number": "162",
+      "number": "162",
+      "number_plain": "162",
+      "card_name": "Neo Upper Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "a501a38c-e590-410d-bc28-4ddadfd68cb3",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv05",
+      "child_identity_key": "sv05|162|neo upper energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "162"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "3ed2c647-203a-47ca-aa08-ff0619e56fcf",
+        "set_code": "sv05",
+        "number": "162",
+        "number_plain": "162",
+        "name": "Neo Upper Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "a501a38c-e590-410d-bc28-4ddadfd68cb3",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "42269654-5767-471f-8725-e83097355a59",
+      "set_code": "sv07",
+      "card_number": "132",
+      "number": "132",
+      "number_plain": "132",
+      "card_name": "Briar",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "85b5a6eb-a6dd-4e35-aef1-7c5173179732",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv07",
+      "child_identity_key": "sv07|132|briar|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "132"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "42269654-5767-471f-8725-e83097355a59",
+        "set_code": "sv07",
+        "number": "132",
+        "number_plain": "132",
+        "name": "Briar",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "85b5a6eb-a6dd-4e35-aef1-7c5173179732",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "5b268d3a-59dd-4e4c-b128-69bf1c2d88a2",
+      "set_code": "sv07",
+      "card_number": "50",
+      "number": "50",
+      "number_plain": "50",
+      "card_name": "Joltik",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "f22fbbf1-c4a5-430a-b255-b55dd58625d0",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv07",
+      "child_identity_key": "sv07|50|joltik|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "50"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "5b268d3a-59dd-4e4c-b128-69bf1c2d88a2",
+        "set_code": "sv07",
+        "number": "50",
+        "number_plain": "50",
+        "name": "Joltik",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "f22fbbf1-c4a5-430a-b255-b55dd58625d0",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "card_print_id": "c102ab03-daa9-4074-bb04-0546ab627ada",
+      "set_code": "sv07",
+      "card_number": "71",
+      "number": "71",
+      "number_plain": "71",
+      "card_name": "Iron Boulder",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "96bbae2f-1380-4fa2-a662-b87c747178ef",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv07",
+      "child_identity_key": "sv07|71|iron boulder|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "71"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "c102ab03-daa9-4074-bb04-0546ab627ada",
+        "set_code": "sv07",
+        "number": "71",
+        "number_plain": "71",
+        "name": "Iron Boulder",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "96bbae2f-1380-4fa2-a662-b87c747178ef",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "73b4a8be-3368-429b-9ca4-1ee18363df01",
+      "set_code": "sv09",
+      "card_number": "151",
+      "number": "151",
+      "number_plain": "151",
+      "card_name": "Lillie's Pearl",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "e17cf977-6791-4cb8-879c-eb55fbb64961",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv09",
+      "child_identity_key": "sv09|151|lillie s pearl|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "151"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "73b4a8be-3368-429b-9ca4-1ee18363df01",
+        "set_code": "sv09",
+        "number": "151",
+        "number_plain": "151",
+        "name": "Lillie's Pearl",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "e17cf977-6791-4cb8-879c-eb55fbb64961",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "a30a958c-216c-43c8-88d4-7ec11240328a",
+      "set_code": "sv09",
+      "card_number": "153",
+      "number": "153",
+      "number_plain": "153",
+      "card_name": "N's PP Up",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "3372a9b5-7793-45a8-8d4a-feebb6a22c14",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv09",
+      "child_identity_key": "sv09|153|n s pp up|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "153"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "a30a958c-216c-43c8-88d4-7ec11240328a",
+        "set_code": "sv09",
+        "number": "153",
+        "number_plain": "153",
+        "name": "N's PP Up",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "3372a9b5-7793-45a8-8d4a-feebb6a22c14",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "3cebd574-91f9-49e4-8a5b-b8328ef128d8",
+      "set_code": "sv09",
+      "card_number": "154",
+      "number": "154",
+      "number_plain": "154",
+      "card_name": "Postwick",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "d18e404b-4834-4623-9d51-e9df67101d0e",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv09",
+      "child_identity_key": "sv09|154|postwick|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "154"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "3cebd574-91f9-49e4-8a5b-b8328ef128d8",
+        "set_code": "sv09",
+        "number": "154",
+        "number_plain": "154",
+        "name": "Postwick",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "d18e404b-4834-4623-9d51-e9df67101d0e",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "600fe67f-d4eb-434a-80ac-b5d9cd057ce2",
+      "set_code": "sv09",
+      "card_number": "47",
+      "number": "47",
+      "number_plain": "47",
+      "card_name": "Iono's Voltorb",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "a941ac25-4d20-4857-a8e4-bc67e10c0778",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv09",
+      "child_identity_key": "sv09|47|iono s voltorb|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "47"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "600fe67f-d4eb-434a-80ac-b5d9cd057ce2",
+        "set_code": "sv09",
+        "number": "47",
+        "number_plain": "47",
+        "name": "Iono's Voltorb",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "a941ac25-4d20-4857-a8e4-bc67e10c0778",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "23a52d01-0ad9-4f53-a475-01601e7077f4",
+      "set_code": "sv10",
+      "card_number": "165",
+      "number": "165",
+      "number_plain": "165",
+      "card_name": "Ethan's Adventure",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "64c75c3a-a37f-4d3c-87ca-85514bf45712",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv10",
+      "child_identity_key": "sv10|165|ethan s adventure|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "165"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "23a52d01-0ad9-4f53-a475-01601e7077f4",
+        "set_code": "sv10",
+        "number": "165",
+        "number_plain": "165",
+        "name": "Ethan's Adventure",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "64c75c3a-a37f-4d3c-87ca-85514bf45712",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "card_print_id": "86948129-44a0-4c85-b986-816e4fe9e59b",
+      "set_code": "sv10",
+      "card_number": "8",
+      "number": "8",
+      "number_plain": "8",
+      "card_name": "Cynthia's Roserade",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "3d3ab89a-a400-4e83-92b9-00c1f26abbdf",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv10",
+      "child_identity_key": "sv10|8|cynthia s roserade|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "8"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "86948129-44a0-4c85-b986-816e4fe9e59b",
+        "set_code": "sv10",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Cynthia's Roserade",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "3d3ab89a-a400-4e83-92b9-00c1f26abbdf",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "537a392a-0589-43a3-96ff-3f0fd9f72754",
+      "set_code": "sve",
+      "card_number": "1",
+      "number": "1",
+      "number_plain": "1",
+      "card_name": "Basic Grass Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "66e42ad2-f243-4111-bc0a-653a7f1d733f",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|1|basic grass energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "1"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "537a392a-0589-43a3-96ff-3f0fd9f72754",
+        "set_code": "sve",
+        "number": "1",
+        "number_plain": "1",
+        "name": "Basic Grass Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "66e42ad2-f243-4111-bc0a-653a7f1d733f",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cracked ice",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "72ebbc3e-3d29-48a6-b651-026373ca773d",
+      "set_code": "sve",
+      "card_number": "10",
+      "number": "10",
+      "number_plain": "10",
+      "card_name": "Basic Fire Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "4adb1262-27f6-43f9-b713-f6ee7834744d",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|10|basic fire energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "10"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "72ebbc3e-3d29-48a6-b651-026373ca773d",
+        "set_code": "sve",
+        "number": "10",
+        "number_plain": "10",
+        "name": "Basic Fire Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "4adb1262-27f6-43f9-b713-f6ee7834744d",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cracked ice",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "5dca36fd-d2a9-4141-b8db-a42951764e45",
+      "set_code": "sve",
+      "card_number": "11",
+      "number": "11",
+      "number_plain": "11",
+      "card_name": "Basic Water Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "6321db54-2741-4ac1-9e6c-c1c46e906a2a",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|11|basic water energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "11"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "5dca36fd-d2a9-4141-b8db-a42951764e45",
+        "set_code": "sve",
+        "number": "11",
+        "number_plain": "11",
+        "name": "Basic Water Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "6321db54-2741-4ac1-9e6c-c1c46e906a2a",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cracked ice",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "99a85152-1bf6-4a4a-af99-b3b84c311b40",
+      "set_code": "sve",
+      "card_number": "12",
+      "number": "12",
+      "number_plain": "12",
+      "card_name": "Basic Lightning Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "bd7f2ffe-1ed8-4661-ae74-df8903a5a4e2",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|12|basic lightning energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "12"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "99a85152-1bf6-4a4a-af99-b3b84c311b40",
+        "set_code": "sve",
+        "number": "12",
+        "number_plain": "12",
+        "name": "Basic Lightning Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "bd7f2ffe-1ed8-4661-ae74-df8903a5a4e2",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cracked ice",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "1edf196d-2488-4a30-ab02-26afd150769a",
+      "set_code": "sve",
+      "card_number": "14",
+      "number": "14",
+      "number_plain": "14",
+      "card_name": "Basic Fighting Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "5ed988d8-d46f-44e3-8439-242082dd1410",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|14|basic fighting energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "14"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "1edf196d-2488-4a30-ab02-26afd150769a",
+        "set_code": "sve",
+        "number": "14",
+        "number_plain": "14",
+        "name": "Basic Fighting Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "5ed988d8-d46f-44e3-8439-242082dd1410",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cracked ice",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "947c2de8-e507-4602-806b-3435fd5becbe",
+      "set_code": "sve",
+      "card_number": "15",
+      "number": "15",
+      "number_plain": "15",
+      "card_name": "Basic Darkness Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "ba041f9e-a20d-4af7-a7a3-ad7316b15efe",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|15|basic darkness energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "15"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "947c2de8-e507-4602-806b-3435fd5becbe",
+        "set_code": "sve",
+        "number": "15",
+        "number_plain": "15",
+        "name": "Basic Darkness Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "ba041f9e-a20d-4af7-a7a3-ad7316b15efe",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cracked ice",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "86a24288-810e-45bb-984c-17a862b10d0d",
+      "set_code": "sve",
+      "card_number": "16",
+      "number": "16",
+      "number_plain": "16",
+      "card_name": "Basic Metal Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "77a9897e-a736-4ae3-945a-8580396c4f6d",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|16|basic metal energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "16"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "86a24288-810e-45bb-984c-17a862b10d0d",
+        "set_code": "sve",
+        "number": "16",
+        "number_plain": "16",
+        "name": "Basic Metal Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "77a9897e-a736-4ae3-945a-8580396c4f6d",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "74c4d635-f979-44b5-93ac-56a97f4607b3",
+      "set_code": "sve",
+      "card_number": "2",
+      "number": "2",
+      "number_plain": "2",
+      "card_name": "Basic Fire Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "fca4c3e2-09ca-4b4e-a528-341609c38548",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|2|basic fire energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "2"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "74c4d635-f979-44b5-93ac-56a97f4607b3",
+        "set_code": "sve",
+        "number": "2",
+        "number_plain": "2",
+        "name": "Basic Fire Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "fca4c3e2-09ca-4b4e-a528-341609c38548",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "70971e86-01ff-41b1-aa8f-6967eca9dd41",
+      "set_code": "sve",
+      "card_number": "3",
+      "number": "3",
+      "number_plain": "3",
+      "card_name": "Basic Water Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "484de5fb-6c6c-42b2-a780-6fd503c8188d",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|3|basic water energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "3"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "70971e86-01ff-41b1-aa8f-6967eca9dd41",
+        "set_code": "sve",
+        "number": "3",
+        "number_plain": "3",
+        "name": "Basic Water Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "484de5fb-6c6c-42b2-a780-6fd503c8188d",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "b218fe69-d7c1-4a9a-a614-fd2daf9d481d",
+      "set_code": "sve",
+      "card_number": "4",
+      "number": "4",
+      "number_plain": "4",
+      "card_name": "Basic Lightning Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "1871698b-fcd3-407c-8a05-9cf20f574952",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|4|basic lightning energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "4"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "b218fe69-d7c1-4a9a-a614-fd2daf9d481d",
+        "set_code": "sve",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Basic Lightning Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "1871698b-fcd3-407c-8a05-9cf20f574952",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "a70e76d6-9606-4339-9d3b-128d8db5da4e",
+      "set_code": "sve",
+      "card_number": "5",
+      "number": "5",
+      "number_plain": "5",
+      "card_name": "Basic Psychic Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "a54bef2b-8511-4ac3-8b4b-386bc3efc3b9",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|5|basic psychic energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "5"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "a70e76d6-9606-4339-9d3b-128d8db5da4e",
+        "set_code": "sve",
+        "number": "5",
+        "number_plain": "5",
+        "name": "Basic Psychic Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "a54bef2b-8511-4ac3-8b4b-386bc3efc3b9",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "73f6247a-05e3-4301-be4f-729db37579e3",
+      "set_code": "sve",
+      "card_number": "7",
+      "number": "7",
+      "number_plain": "7",
+      "card_name": "Basic Darkness Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "71565e5f-befb-445f-9200-993f048c7d61",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|7|basic darkness energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "7"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "73f6247a-05e3-4301-be4f-729db37579e3",
+        "set_code": "sve",
+        "number": "7",
+        "number_plain": "7",
+        "name": "Basic Darkness Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "71565e5f-befb-445f-9200-993f048c7d61",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "ddc2db15-6065-47a6-9dfe-841b4990cdb3",
+      "set_code": "sve",
+      "card_number": "8",
+      "number": "8",
+      "number_plain": "8",
+      "card_name": "Basic Metal Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "2714a467-a840-4c22-971a-07dd91305092",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|8|basic metal energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "8"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "ddc2db15-6065-47a6-9dfe-841b4990cdb3",
+        "set_code": "sve",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Basic Metal Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "2714a467-a840-4c22-971a-07dd91305092",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cracked ice",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "85162547-53ef-4458-8f19-856db51bcb89",
+      "set_code": "sve",
+      "card_number": "9",
+      "number": "9",
+      "number_plain": "9",
+      "card_name": "Basic Grass Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "19ea3371-78df-43bf-bfa5-cbc2dfa6a93c",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sve",
+      "child_identity_key": "sve|9|basic grass energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "9"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "85162547-53ef-4458-8f19-856db51bcb89",
+        "set_code": "sve",
+        "number": "9",
+        "number_plain": "9",
+        "name": "Basic Grass Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "19ea3371-78df-43bf-bfa5-cbc2dfa6a93c",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "88353cb3-5aa9-4ec3-b5ef-f2e2a809b26d",
+      "set_code": "swsh10",
+      "card_number": "136",
+      "number": "136",
+      "number_plain": "136",
+      "card_name": "Canceling Cologne",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "fdcc9de2-f33f-42fb-aa6a-a6bba919d3fa",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh10",
+      "child_identity_key": "swsh10|136|canceling cologne|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "136"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "88353cb3-5aa9-4ec3-b5ef-f2e2a809b26d",
+        "set_code": "swsh10",
+        "number": "136",
+        "number_plain": "136",
+        "name": "Canceling Cologne",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "fdcc9de2-f33f-42fb-aa6a-a6bba919d3fa",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "be59556c-24b7-4e64-b5b0-8c4cf2665e69",
+      "set_code": "swsh10",
+      "card_number": "141",
+      "number": "141",
+      "number_plain": "141",
+      "card_name": "Feather Ball",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "bb873f16-4eba-4661-9135-e864f058f311",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh10",
+      "child_identity_key": "swsh10|141|feather ball|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "141"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "be59556c-24b7-4e64-b5b0-8c4cf2665e69",
+        "set_code": "swsh10",
+        "number": "141",
+        "number_plain": "141",
+        "name": "Feather Ball",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "bb873f16-4eba-4661-9135-e864f058f311",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "95b32fc7-c6ae-47be-8bbe-264f5a878242",
+      "set_code": "swsh10",
+      "card_number": "146",
+      "number": "146",
+      "number_plain": "146",
+      "card_name": "Hisuian Heavy Ball",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "58b06d4a-dd5d-4a5f-931e-3b49f2761787",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh10",
+      "child_identity_key": "swsh10|146|hisuian heavy ball|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "146"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "95b32fc7-c6ae-47be-8bbe-264f5a878242",
+        "set_code": "swsh10",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Hisuian Heavy Ball",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "58b06d4a-dd5d-4a5f-931e-3b49f2761787",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "0ac3a3a4-0408-41cf-a032-c80e398ddc93",
+      "set_code": "swsh10",
+      "card_number": "154",
+      "number": "154",
+      "number_plain": "154",
+      "card_name": "Switch Cart",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "62d416c5-c36a-4883-b7c7-484968a538e0",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh10",
+      "child_identity_key": "swsh10|154|switch cart|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "154"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "0ac3a3a4-0408-41cf-a032-c80e398ddc93",
+        "set_code": "swsh10",
+        "number": "154",
+        "number_plain": "154",
+        "name": "Switch Cart",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "62d416c5-c36a-4883-b7c7-484968a538e0",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "390ed73e-e4ea-4110-88b9-947a0227da50",
+      "set_code": "swsh10",
+      "card_number": "43",
+      "number": "43",
+      "number_plain": "43",
+      "card_name": "Hisuian Basculin",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "0e8e0427-86bb-4de8-b042-150a4ff2c303",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh10",
+      "child_identity_key": "swsh10|43|hisuian basculin|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "43"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "390ed73e-e4ea-4110-88b9-947a0227da50",
+        "set_code": "swsh10",
+        "number": "43",
+        "number_plain": "43",
+        "name": "Hisuian Basculin",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "0e8e0427-86bb-4de8-b042-150a4ff2c303",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "bb65f5a1-f417-496b-b092-5d164cbca758",
+      "set_code": "swsh11",
+      "card_number": "050",
+      "number": "050",
+      "number_plain": "050",
+      "card_name": "Cramorant",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "da72efe8-6345-4b92-a15b-5957b31f6282",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh11",
+      "child_identity_key": "swsh11|50|cramorant|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "50"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "bb65f5a1-f417-496b-b092-5d164cbca758",
+        "set_code": "swsh11",
+        "number": "050",
+        "number_plain": "050",
+        "name": "Cramorant",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "da72efe8-6345-4b92-a15b-5957b31f6282",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "holo",
+        "reverse"
+      ],
+      "card_print_id": "067a5b85-a3fb-4edb-8ea8-1e6fa1717ad3",
+      "set_code": "swsh11",
+      "card_number": "070",
+      "number": "070",
+      "number_plain": "070",
+      "card_name": "Sableye",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "b5eb2c88-d953-4c72-bdf2-e3ab779635b7",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh11",
+      "child_identity_key": "swsh11|70|sableye|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "70"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "067a5b85-a3fb-4edb-8ea8-1e6fa1717ad3",
+        "set_code": "swsh11",
+        "number": "070",
+        "number_plain": "070",
+        "name": "Sableye",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "b5eb2c88-d953-4c72-bdf2-e3ab779635b7",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "fc844484-ef64-49b8-a3e1-482006715228",
+      "set_code": "swsh11",
+      "card_number": "156",
+      "number": "156",
+      "number_plain": "156",
+      "card_name": "Damage Pump",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "cb344c3f-ccda-4279-a1bb-6d2ea8658075",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh11",
+      "child_identity_key": "swsh11|156|damage pump|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "156"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "fc844484-ef64-49b8-a3e1-482006715228",
+        "set_code": "swsh11",
+        "number": "156",
+        "number_plain": "156",
+        "name": "Damage Pump",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "cb344c3f-ccda-4279-a1bb-6d2ea8658075",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "b36c3070-db5a-4472-a8eb-cca5b72aa7e9",
+      "set_code": "swsh11",
+      "card_number": "161",
+      "number": "161",
+      "number_plain": "161",
+      "card_name": "Lost City",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "4cc7cfad-4447-4b2a-8fd5-662bdc06a7f5",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh11",
+      "child_identity_key": "swsh11|161|lost city|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "161"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "b36c3070-db5a-4472-a8eb-cca5b72aa7e9",
+        "set_code": "swsh11",
+        "number": "161",
+        "number_plain": "161",
+        "name": "Lost City",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "4cc7cfad-4447-4b2a-8fd5-662bdc06a7f5",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "349b6bb2-3570-42a2-8506-015b9bca8646",
+      "set_code": "swsh11",
+      "card_number": "163",
+      "number": "163",
+      "number_plain": "163",
+      "card_name": "Mirage Gate",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "151e1075-5610-43b2-a521-a74592dadcd6",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh11",
+      "child_identity_key": "swsh11|163|mirage gate|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "163"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "349b6bb2-3570-42a2-8506-015b9bca8646",
+        "set_code": "swsh11",
+        "number": "163",
+        "number_plain": "163",
+        "name": "Mirage Gate",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "151e1075-5610-43b2-a521-a74592dadcd6",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "46c648b4-8fc8-40c6-97c9-a3e81a409c59",
+      "set_code": "swsh12",
+      "card_number": "167",
+      "number": "167",
+      "number_plain": "167",
+      "card_name": "Worker",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "cfe1790f-f517-48dc-a09f-1d59bb31c6ec",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh12",
+      "child_identity_key": "swsh12|167|worker|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "167"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "46c648b4-8fc8-40c6-97c9-a3e81a409c59",
+        "set_code": "swsh12",
+        "number": "167",
+        "number_plain": "167",
+        "name": "Worker",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "cfe1790f-f517-48dc-a09f-1d59bb31c6ec",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "8b207b0b-a11c-421d-b09d-beb3cedadf21",
+      "set_code": "swsh12",
+      "card_number": "38",
+      "number": "38",
+      "number_plain": "38",
+      "card_name": "Wailord",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "1270a8cb-d8bb-4933-8f00-4a9baee4c45b",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh12",
+      "child_identity_key": "swsh12|38|wailord|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "38"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "8b207b0b-a11c-421d-b09d-beb3cedadf21",
+        "set_code": "swsh12",
+        "number": "38",
+        "number_plain": "38",
+        "name": "Wailord",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "1270a8cb-d8bb-4933-8f00-4a9baee4c45b",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "c62f6288-c299-42d7-9539-446600460310",
+      "set_code": "swsh9",
+      "card_number": "146",
+      "number": "146",
+      "number_plain": "146",
+      "card_name": "Pot Helmet",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "e9cb041d-d756-4c8b-8592-64b047406352",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh9",
+      "child_identity_key": "swsh9|146|pot helmet|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "146"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "c62f6288-c299-42d7-9539-446600460310",
+        "set_code": "swsh9",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Pot Helmet",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "e9cb041d-d756-4c8b-8592-64b047406352",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "7f9ddbbf-4b60-4812-8ec1-10737ad9b054",
+      "set_code": "swsh9",
+      "card_number": "151",
+      "number": "151",
+      "number_plain": "151",
+      "card_name": "Double Turbo Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "46a2bb1f-f70a-4d48-940d-6dd7661d4e78",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh9",
+      "child_identity_key": "swsh9|151|double turbo energy|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "151"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "7f9ddbbf-4b60-4812-8ec1-10737ad9b054",
+        "set_code": "swsh9",
+        "number": "151",
+        "number_plain": "151",
+        "name": "Double Turbo Energy",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "46a2bb1f-f70a-4d48-940d-6dd7661d4e78",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "b4e0797c-5211-4e9f-96b3-8481658a6a45",
+      "set_code": "swsh9",
+      "card_number": "7",
+      "number": "7",
+      "number_plain": "7",
+      "card_name": "Grotle",
+      "printed_identity_modifier": "",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "884b5663-0e28-4fe1-b4e4-b0fb0da09371",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh9",
+      "child_identity_key": "swsh9|7|grotle|cosmos||prize pack stamp",
+      "live_number_candidates": [
+        "7"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "b4e0797c-5211-4e9f-96b3-8481658a6a45",
+        "set_code": "swsh9",
+        "number": "7",
+        "number_plain": "7",
+        "name": "Grotle",
+        "printed_identity_modifier": null,
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "884b5663-0e28-4fe1-b4e4-b0fb0da09371",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 0,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "stamped_orphan_parent_delete_candidate_no_dependencies",
+      "action": "eligible_for_guarded_dry_run_parent_and_child_delete",
+      "reason": "unsupported stamped cosmos row is an isolated parent with one child and no identity/dependency references"
+    }
+  ]
+}

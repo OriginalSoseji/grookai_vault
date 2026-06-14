@@ -1,0 +1,556 @@
+{
+  "generated_at": "2026-06-11T23:32:35.801Z",
+  "version": "english_master_index_pkg15p_stamped_second_wave_guarded_dry_run_v1",
+  "package_id": "PKG-15P-STAMPED-SECOND-WAVE-PARENT-INSERTS",
+  "package_fingerprint_sha256": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15n_stamped_review_ready_parent_insert_readiness_v1.json",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "target_count": 6,
+    "targets": [
+      {
+        "target_parent_id": "542686fb-9987-4003-b83b-b1eda3d75c73",
+        "target_child_id": "79b0fe77-d3a7-4af0-babd-f5821462312f",
+        "base_parent_id": "3b6f4dbd-177d-4778-b023-f49d0b9fd24d",
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "card_number": "98",
+        "card_name": "Shinx",
+        "target_finish_key": "normal",
+        "target_variant_key": "city_championships_stamp",
+        "stamp_label": "City Championships Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "d627635e90ea08b892013ca6e87eff86de744c14decdfbae5188d3efc52ba2fd",
+          "package_fingerprint": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+          "independent_finish_sources": [
+            "pokecardvalues_stamped_finish",
+            "pokumon_promo_database"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_stamped_finish",
+            "pricecharting_csv_product",
+            "pokumon_promo_database"
+          ],
+          "evidence_context": {
+            "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/shinx-98-130-non-holo-city-championships-diamond-pearl/dp1-98-2-23/",
+            "pkg15k_source_title": "Shinx - 98/130 - Non-Holo - City Championships - Promo",
+            "matching_manual_web_finish_context": [
+              {
+                "source_key": "pokumon_promo_database",
+                "source_kind": "collector_reference",
+                "source_url": "https://pokumon.com/card/shinx-98-130-city-championships-special-print/",
+                "evidence_label": "Shinx (98/130 City Championships Special Print) - Non-holo City Championships promo",
+                "evidence_type": "finish_presence"
+              }
+            ],
+            "matching_pricecharting_identity_context": [
+              {
+                "source_key": "pricecharting_csv_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-diamond-and-pearl/shinx-city-championships-98",
+                "evidence_label": "Shinx [City Championships] #98",
+                "validation_reason": "missing_explicit_active_finish"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "target_parent_id": "9a29554c-c5e5-40ad-95b5-68714ca316bd",
+        "target_child_id": "c77a842c-1064-4cbd-9ddc-c2cb0dd68a81",
+        "base_parent_id": "51d202d3-ec63-4f2b-998a-2bb3429a5610",
+        "set_key": "sm1",
+        "set_name": "Sun & Moon",
+        "card_number": "135",
+        "card_name": "Ultra Ball",
+        "target_finish_key": "reverse",
+        "target_variant_key": "oceania_championships_staff_stamp",
+        "stamp_label": "Oceania Championships Staff Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "d627635e90ea08b892013ca6e87eff86de744c14decdfbae5188d3efc52ba2fd",
+          "package_fingerprint": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+          "independent_finish_sources": [
+            "pokecardvalues_stamped_finish",
+            "pokumon_promo_database"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_stamped_finish",
+            "pricecharting_csv_product",
+            "pokumon_promo_database"
+          ],
+          "evidence_context": {
+            "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/ultra-ball-135-149-reverse-holo-staff-oceania-championships-sun-moon/sm1-135-3-81/",
+            "pkg15k_source_title": "Ultra Ball - 135/149 - Reverse Holo - Staff Oceania Championships - Promo",
+            "matching_manual_web_finish_context": [
+              {
+                "source_key": "pokumon_promo_database",
+                "source_kind": "collector_reference",
+                "source_url": "https://pokumon.com/card/oceania-championships-staff-ultra-ball-135-149-international-championships-oceania-special-print/",
+                "evidence_label": "Oceania Championships Staff Ultra Ball (135/149 International Championships Oceania Special Print) - Reverse Holo Staff promo",
+                "evidence_type": "finish_presence"
+              }
+            ],
+            "matching_pricecharting_identity_context": [
+              {
+                "source_key": "pricecharting_csv_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-sun-and-moon/ultra-ball-championships-staff-oceania-135",
+                "evidence_label": "Ultra Ball [Championships Staff Oceania] #135",
+                "validation_reason": "missing_explicit_active_finish"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "target_parent_id": "1d9439c0-0bf1-4d5c-a8d1-77c69c22dd49",
+        "target_child_id": "8fa84c77-5a71-4f11-9418-f748baaca2e5",
+        "base_parent_id": "df41a6f4-63cf-49c9-8cc6-9ea350726e64",
+        "set_key": "sm5",
+        "set_name": "Ultra Prism",
+        "card_number": "119",
+        "card_name": "Cynthia",
+        "target_finish_key": "reverse",
+        "target_variant_key": "regional_championships_stamp",
+        "stamp_label": "Regional Championships Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "d627635e90ea08b892013ca6e87eff86de744c14decdfbae5188d3efc52ba2fd",
+          "package_fingerprint": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+          "independent_finish_sources": [
+            "pokecardvalues_stamped_finish",
+            "pokumon_promo_database"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_stamped_finish",
+            "pricecharting_csv_product",
+            "pokumon_promo_database"
+          ],
+          "evidence_context": {
+            "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/cynthia-119-156-reverse-holo-regional-championships-ultra-prism/sm5-119-3-60/",
+            "pkg15k_source_title": "Cynthia - 119/156 - Reverse Holo - Regional Championships - Promo",
+            "matching_manual_web_finish_context": [
+              {
+                "source_key": "pokumon_promo_database",
+                "source_kind": "collector_reference",
+                "source_url": "https://pokumon.com/card/cynthia-119a-156-regional-championships-special-print/",
+                "evidence_label": "Cynthia (119a/156 Regional Championships Special Print) - Reverse Holo Regional Championships promo",
+                "evidence_type": "finish_presence"
+              }
+            ],
+            "matching_pricecharting_identity_context": [
+              {
+                "source_key": "pricecharting_csv_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-ultra-prism/cynthia-regional-championship-119",
+                "evidence_label": "Cynthia [Regional Championship] #119",
+                "validation_reason": "stamp_variant_mismatch"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "target_parent_id": "bf26d7a4-3168-444a-b0f0-f3ee57e3c0d3",
+        "target_child_id": "b1bcc676-11f4-4408-9eb6-0156dc3baa7f",
+        "base_parent_id": "23a7a4c4-b333-487a-be9b-04aefe1f8424",
+        "set_key": "swsh10",
+        "set_name": "Astral Radiance",
+        "card_number": "150",
+        "card_name": "Roxanne",
+        "target_finish_key": "reverse",
+        "target_variant_key": "regional_championships_stamp",
+        "stamp_label": "Regional Championships Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "d627635e90ea08b892013ca6e87eff86de744c14decdfbae5188d3efc52ba2fd",
+          "package_fingerprint": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+          "independent_finish_sources": [
+            "pokecardvalues_stamped_finish",
+            "pricecharting_historic_sales_title"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_stamped_finish",
+            "pricecharting_csv_product",
+            "pricecharting_historic_sales_title"
+          ],
+          "evidence_context": {
+            "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/Roxanne-150-189-Reverse-Holo-Regional-Championships-Astral-Radiance/swsh10-150-3-60/",
+            "pkg15k_source_title": "Roxanne - 150/189 - Reverse Holo - Regional Championships - Promo",
+            "matching_manual_web_finish_context": [
+              {
+                "source_key": "pricecharting_historic_sales_title",
+                "source_kind": "marketplace_checklist",
+                "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/roxanne-regional-championships-150",
+                "evidence_label": "Pokemon Reverse Holo Roxanne 150/189 Regional Promo Card Astral Radiance",
+                "evidence_type": "finish_presence"
+              }
+            ],
+            "matching_pricecharting_identity_context": [
+              {
+                "source_key": "pricecharting_csv_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/roxanne-regional-championships-150",
+                "evidence_label": "Roxanne [Regional Championships] #150",
+                "validation_reason": "missing_explicit_active_finish"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "target_parent_id": "5fb9f9b8-d2c3-4663-af91-dcc01a411bee",
+        "target_child_id": "536daad5-0b36-4c3d-9d9a-648195ee4b98",
+        "base_parent_id": "b0eea10e-ebda-45ca-9714-6db5c03b349d",
+        "set_key": "xy10",
+        "set_name": "Fates Collide",
+        "card_number": "94",
+        "card_name": "Chaos Tower",
+        "target_finish_key": "reverse",
+        "target_variant_key": "national_championships_stamp",
+        "stamp_label": "National Championships Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "d627635e90ea08b892013ca6e87eff86de744c14decdfbae5188d3efc52ba2fd",
+          "package_fingerprint": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+          "independent_finish_sources": [
+            "pokecardvalues_stamped_finish",
+            "pokumon_promo_database"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_stamped_finish",
+            "pricecharting_csv_product",
+            "pokumon_promo_database"
+          ],
+          "evidence_context": {
+            "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/chaos-tower-94-124-reverse-holo-national-championships-fates-collide/xy10-94-3-45/",
+            "pkg15k_source_title": "Chaos Tower - 94/124 - Reverse Holo - National Championships - Promo",
+            "matching_manual_web_finish_context": [
+              {
+                "source_key": "pokumon_promo_database",
+                "source_kind": "collector_reference",
+                "source_url": "https://pokumon.com/card/chaos-tower-94-124-national-championships-special-print/",
+                "evidence_label": "Chaos Tower (94/124 National Championships Special Print) - Reverse Holo National Championships promo",
+                "evidence_type": "finish_presence"
+              }
+            ],
+            "matching_pricecharting_identity_context": [
+              {
+                "source_key": "pricecharting_csv_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-fates-collide/chaos-tower-national-championships-94",
+                "evidence_label": "Chaos Tower [National Championships] #94",
+                "validation_reason": "missing_explicit_active_finish"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "target_parent_id": "088833de-b996-464b-85a2-f0d8874e0fa4",
+        "target_child_id": "0ea89aed-b1cd-47f4-9af5-2b3843e62f7c",
+        "base_parent_id": "73ebda40-d6b9-4ca9-91a7-1e03cd15bf4b",
+        "set_key": "xy8",
+        "set_name": "BREAKthrough",
+        "card_number": "145",
+        "card_name": "Parallel City",
+        "target_finish_key": "reverse",
+        "target_variant_key": "city_championships_stamp",
+        "stamp_label": "City Championships Stamp",
+        "evidence": {
+          "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+          "readiness_fingerprint": "d627635e90ea08b892013ca6e87eff86de744c14decdfbae5188d3efc52ba2fd",
+          "package_fingerprint": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+          "independent_finish_sources": [
+            "pokecardvalues_stamped_finish",
+            "pokumon_promo_database"
+          ],
+          "independent_identity_sources": [
+            "pokecardvalues_stamped_finish",
+            "pricecharting_csv_product",
+            "pokumon_promo_database"
+          ],
+          "evidence_context": {
+            "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/parallel-city-145-162-reverse-holo-city-championships-breakthrough/xy8-145-3-23/",
+            "pkg15k_source_title": "Parallel City - 145/162 - Reverse Holo - City Championships - Promo",
+            "matching_manual_web_finish_context": [
+              {
+                "source_key": "pokumon_promo_database",
+                "source_kind": "collector_reference",
+                "source_url": "https://pokumon.com/card/parallel-city-145-162-city-championships-special-print/",
+                "evidence_label": "Parallel City (145/162 City Championships Special Print) - Reverse Holo City Championships promo",
+                "evidence_type": "finish_presence"
+              }
+            ],
+            "matching_pricecharting_identity_context": [
+              {
+                "source_key": "pricecharting_csv_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/parallel-city-city-championship-145",
+                "evidence_label": "Parallel City [City Championship] #145",
+                "validation_reason": "stamp_variant_mismatch"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "pkg15p_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 6,
+      "target_parent_count": 6,
+      "target_child_count": 6,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 6,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "PKG-15P-STAMPED-SECOND-WAVE-PARENT-INSERTS",
+      "package_fingerprint": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+      "target_rows": 6,
+      "inserted_parent_rows": 6,
+      "inserted_identity_rows": 6,
+      "inserted_child_rows": 6
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 6,
+      "identity_inserts": 6,
+      "child_inserts": 6,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-11T23:32:34.443Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "counts": {}
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-11T23:32:35.566Z",
+      "rows": [
+        {
+          "row_type": "target_child",
+          "row_id": "79b0fe77-d3a7-4af0-babd-f5821462312f",
+          "set_code": "dp1",
+          "number": "98",
+          "number_plain": "98",
+          "name": "Shinx",
+          "variant_key": "city_championships_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "c77a842c-1064-4cbd-9ddc-c2cb0dd68a81",
+          "set_code": "sm1",
+          "number": "135",
+          "number_plain": "135",
+          "name": "Ultra Ball",
+          "variant_key": "oceania_championships_staff_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "8fa84c77-5a71-4f11-9418-f748baaca2e5",
+          "set_code": "sm5",
+          "number": "119a",
+          "number_plain": "119",
+          "name": "Cynthia",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "b1bcc676-11f4-4408-9eb6-0156dc3baa7f",
+          "set_code": "swsh10",
+          "number": "150",
+          "number_plain": "150",
+          "name": "Roxanne",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "536daad5-0b36-4c3d-9d9a-648195ee4b98",
+          "set_code": "xy10",
+          "number": "94",
+          "number_plain": "94",
+          "name": "Chaos Tower",
+          "variant_key": "national_championships_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "0ea89aed-b1cd-47f4-9af5-2b3843e62f7c",
+          "set_code": "xy8",
+          "number": "145",
+          "number_plain": "145",
+          "name": "Parallel City",
+          "variant_key": "city_championships_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "b7fdac9a-a28d-41b6-8ce3-e5b3c7110cb1",
+          "set_code": "dp1",
+          "number": "98",
+          "number_plain": "98",
+          "name": "Shinx",
+          "variant_key": "city_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": "3a618ffb3f1ec21ef1f6602f8e76a3e1cdd59420a8873df7a5498223ee8e9de9"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "e93a3643-7e2c-4c80-ac8e-6b40279554bf",
+          "set_code": "sm1",
+          "number": "135",
+          "number_plain": "135",
+          "name": "Ultra Ball",
+          "variant_key": "oceania_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": "232be1f858c2b518672907c65bdde0ebc9fe51040d6c0ca63a436105dc3853e1"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "9603bc5a-b193-4bf0-8372-264d47ef2e3b",
+          "set_code": "sm5",
+          "number": "119a",
+          "number_plain": "119",
+          "name": "Cynthia",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": "03029490a94666032edf038ef5f155975a9c98b7c601dba2ebbe7bd3c92bf892"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "58d47647-e01c-4b8e-b770-ccde2e3dcf92",
+          "set_code": "swsh10",
+          "number": "150",
+          "number_plain": "150",
+          "name": "Roxanne",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": "49af80c7a5aed27b42857144fc52c93e4fa95b3ec8cbd452256c4a75efede10b"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "5b833206-1e9a-4428-99af-45d28004b2e1",
+          "set_code": "xy10",
+          "number": "94",
+          "number_plain": "94",
+          "name": "Chaos Tower",
+          "variant_key": "national_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": "224bab4dbec7807419bf26c57208d8fd8d9cd5e9f2e3fdf9ae067ac2515015d0"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "146e0167-3bef-4341-af10-09081e8bd95e",
+          "set_code": "xy8",
+          "number": "145",
+          "number_plain": "145",
+          "name": "Parallel City",
+          "variant_key": "city_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": "8520baa887c2d17ef2737e603cd71a2fe1a6620477a94481a26a4336e05ac45f"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "542686fb-9987-4003-b83b-b1eda3d75c73",
+          "set_code": "dp1",
+          "number": "98",
+          "number_plain": "98",
+          "name": "Shinx",
+          "variant_key": "city_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "9a29554c-c5e5-40ad-95b5-68714ca316bd",
+          "set_code": "sm1",
+          "number": "135",
+          "number_plain": "135",
+          "name": "Ultra Ball",
+          "variant_key": "oceania_championships_staff_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "1d9439c0-0bf1-4d5c-a8d1-77c69c22dd49",
+          "set_code": "sm5",
+          "number": "119a",
+          "number_plain": "119",
+          "name": "Cynthia",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "bf26d7a4-3168-444a-b0f0-f3ee57e3c0d3",
+          "set_code": "swsh10",
+          "number": "150",
+          "number_plain": "150",
+          "name": "Roxanne",
+          "variant_key": "regional_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "5fb9f9b8-d2c3-4663-af91-dcc01a411bee",
+          "set_code": "xy10",
+          "number": "94",
+          "number_plain": "94",
+          "name": "Chaos Tower",
+          "variant_key": "national_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "088833de-b996-464b-85a2-f0d8874e0fa4",
+          "set_code": "xy8",
+          "number": "145",
+          "number_plain": "145",
+          "name": "Parallel City",
+          "variant_key": "city_championships_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "57dca84f2ae61538d72e1ea7b30ea7d383a2161c1dc43bc5c6e43c93e42b923b",
+      "counts": {
+        "target_child": 6,
+        "target_identity": 6,
+        "target_parent": 6
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-11T23:32:35.722Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "counts": {}
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "14d6405f2e4294b8f0afe3f03cb0a553c9e36a7466e828159bec2f4cb12e1c83",
+    "stop_findings": []
+  }
+}

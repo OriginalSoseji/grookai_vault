@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-24T16:03:49.558Z",
+  "generated_at": "2026-06-09T12:50:16.831Z",
   "version": "english_master_index_provenance_recovery_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -13,47 +13,47 @@
     "assignment_policy": "This pass does not infer set identity. It only classifies provenance recovery leads."
   },
   "summary": {
-    "missing_set_code_printing_rows": 5733,
-    "unique_card_prints": 2163,
-    "rows_with_card_number": 741,
+    "missing_set_code_printing_rows": 5720,
+    "unique_card_prints": 2158,
+    "rows_with_card_number": 728,
     "rows_with_set_code": 0,
     "db_enrichment_executed": true,
     "db_enrichment_reason": null,
-    "db_card_print_rows_loaded": 5733,
-    "db_external_mapping_rows_loaded": 2185,
+    "db_card_print_rows_loaded": 5720,
+    "db_external_mapping_rows_loaded": 2180,
     "by_recovery_classification": {
-      "external_mapping_recoverable": 1411,
+      "external_mapping_recoverable": 1406,
       "possible_pocket_provenance_lead": 742,
       "provenance_field_recoverable": 10
     },
     "by_finish": {
-      "reverse": 1923,
-      "holo": 1998,
-      "normal": 1812
+      "reverse": 1919,
+      "holo": 1993,
+      "normal": 1808
     },
     "by_finish_profile": {
-      "holo|normal|reverse": 1630,
+      "holo|normal|reverse": 1626,
       "holo|reverse": 128,
       "normal|reverse": 156,
       "holo|normal": 26,
-      "holo": 214,
+      "holo": 213,
       "reverse": 9
     },
     "by_evidence_field": {
-      "ai_metadata": 2135,
-      "external_ids": 2135,
-      "external_mappings": 2153,
-      "image_fields": 2122,
-      "printing_provenance": 2163
+      "ai_metadata": 2130,
+      "external_ids": 2130,
+      "external_mappings": 2148,
+      "image_fields": 2117,
+      "printing_provenance": 2158
     },
     "by_external_mapping_source": {
-      "tcgdex": 2148,
+      "tcgdex": 2143,
       "justtcg": 19,
       "tcgplayer": 18,
       "none": 10
     },
     "by_external_id_pattern": {
-      "physical_tcg_set_dash_number": 808,
+      "physical_tcg_set_dash_number": 803,
       "other_external_id": 616,
       "numeric_marketplace_id": 18,
       "possible_pocket_a_series": 642,

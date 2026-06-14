@@ -6,8 +6,8 @@
   "source_status": "available_generated",
   "set_key": "sv03",
   "set_name": "Obsidian Flames",
-  "retrieved_at": "2026-06-08T03:01:25.402Z",
-  "raw_snapshot_ref": "generated_fixture:tcgcsv:sv03:2026-06-08T03:01:25.402Z",
+  "retrieved_at": "2026-06-12T04:47:46.693Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv:sv03:2026-06-12T04:47:46.693Z",
   "generation_note": "Generated from TCGCSV TCGplayer catalog product and price subtype data. Exact finish evidence only.",
   "records": [
     {
@@ -23,7 +23,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509637 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509637:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -40,7 +40,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509653 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509653:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -57,7 +57,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509654 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509654:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -74,7 +74,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509655 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509655:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -91,7 +91,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509657 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509657:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -108,7 +108,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509658 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509658:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -125,7 +125,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509660 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509660:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -142,7 +142,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509662 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509662:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -159,7 +159,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509665 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509665:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -176,7 +176,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509700 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509700:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -193,7 +193,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509671 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509671:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -210,7 +210,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509672 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509672:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -227,7 +227,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509692 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509692:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -244,7 +244,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509705 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509705:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -261,7 +261,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509734 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509734:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -278,7 +278,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509748 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509748:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -295,7 +295,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509751 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509751:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -312,7 +312,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509754 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509754:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -329,7 +329,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509757 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509757:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -346,7 +346,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509762 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509762:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -363,7 +363,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509771 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509771:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -380,7 +380,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 510900 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:510900:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -397,7 +397,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509703 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509703:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -414,7 +414,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509708 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509708:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -431,7 +431,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509717 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509717:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -448,7 +448,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509724 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509724:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -465,7 +465,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509726 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509726:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -482,7 +482,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509728 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509728:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -499,7 +499,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509733 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509733:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -516,7 +516,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509735 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509735:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -533,7 +533,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509737 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509737:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -550,7 +550,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509739 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509739:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -567,7 +567,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509742 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509742:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -584,7 +584,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509744 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509744:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -601,7 +601,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509746 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509746:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -618,7 +618,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509747 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509747:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -635,7 +635,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509755 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509755:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -652,7 +652,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509756 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509756:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -669,7 +669,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509761 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509761:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -686,7 +686,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509763 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509763:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -703,7 +703,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509770 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509770:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -720,7 +720,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509772 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509772:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -737,7 +737,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509774 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509774:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -754,7 +754,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509775 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509775:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -771,7 +771,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509794 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509794:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -788,7 +788,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509796 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509796:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -805,7 +805,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509798 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509798:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -822,7 +822,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509800 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509800:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -839,7 +839,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509802 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509802:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -856,7 +856,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509803 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509803:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -873,7 +873,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509805 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509805:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -890,7 +890,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509807 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509807:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -907,7 +907,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509810 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509810:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -924,7 +924,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509823 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509823:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -941,7 +941,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509826 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509826:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -958,7 +958,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509829 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509829:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -975,7 +975,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509832 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509832:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -992,7 +992,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509834 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509834:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1009,7 +1009,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509835 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509835:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1026,7 +1026,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509841 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509841:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1043,7 +1043,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509858 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509858:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1060,7 +1060,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509862 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509862:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1077,7 +1077,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509809 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509809:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1094,7 +1094,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509811 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509811:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1111,7 +1111,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509825 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509825:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1128,7 +1128,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509833 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509833:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1145,7 +1145,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509848 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509848:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1162,7 +1162,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509854 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509854:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1179,7 +1179,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509860 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509860:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1196,7 +1196,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 511758 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:511758:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1213,7 +1213,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509863 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509863:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1230,7 +1230,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509867 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509867:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1247,7 +1247,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509871 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509871:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1264,7 +1264,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509872 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509872:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1281,7 +1281,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509876 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509876:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1298,7 +1298,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509930 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509930:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1315,7 +1315,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509931 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509931:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1332,7 +1332,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509933 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509933:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1349,7 +1349,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509947 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509947:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1366,7 +1366,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509953 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509953:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1383,7 +1383,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509790 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509790:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1400,7 +1400,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509791 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509791:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1417,7 +1417,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509792 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509792:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1434,7 +1434,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509793 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509793:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1451,7 +1451,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509795 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509795:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1468,7 +1468,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509797 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509797:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1485,7 +1485,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509801 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509801:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1502,7 +1502,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509804 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509804:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1519,7 +1519,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509808 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509808:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1536,7 +1536,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509814 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509814:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1553,7 +1553,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509836 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509836:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1570,7 +1570,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509839 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509839:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1587,7 +1587,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509842 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509842:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1604,7 +1604,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509856 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509856:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1621,7 +1621,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509865 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509865:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1638,7 +1638,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509866 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509866:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1655,7 +1655,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509868 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509868:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1672,7 +1672,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509873 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509873:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1689,7 +1689,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509875 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509875:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1706,7 +1706,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509880 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509880:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1723,7 +1723,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509883 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509883:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1740,7 +1740,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509884 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509884:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1757,7 +1757,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509887 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509887:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1774,7 +1774,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509888 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509888:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1791,7 +1791,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509890 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509890:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1808,7 +1808,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509891 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509891:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1825,7 +1825,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509893 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509893:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1842,7 +1842,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509901 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509901:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1859,7 +1859,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509909 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509909:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1876,7 +1876,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509911 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509911:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1893,7 +1893,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509912 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509912:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1910,7 +1910,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509920 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509920:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1927,7 +1927,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509922 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509922:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1944,7 +1944,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509928 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509928:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1961,7 +1961,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509929 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509929:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1978,7 +1978,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509932 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509932:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -1995,7 +1995,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509934 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509934:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2012,7 +2012,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509935 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509935:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2029,7 +2029,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509936 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509936:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2046,7 +2046,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509937 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509937:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2063,7 +2063,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509938 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509938:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2080,7 +2080,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509939 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509939:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2097,7 +2097,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509941 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509941:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2114,7 +2114,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509942 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509942:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2131,7 +2131,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509636 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509636:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2148,7 +2148,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509644 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509644:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2165,7 +2165,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509663 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509663:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2182,7 +2182,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509664 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509664:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2199,7 +2199,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509666 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509666:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2216,7 +2216,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509669 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509669:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2233,7 +2233,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509673 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509673:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2250,7 +2250,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509689 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509689:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2267,7 +2267,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509690 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509690:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2284,7 +2284,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509696 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509696:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2301,7 +2301,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509698 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509698:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2318,7 +2318,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509707 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509707:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2335,7 +2335,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509711 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509711:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2352,7 +2352,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509713 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509713:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2369,7 +2369,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509714 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509714:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2386,7 +2386,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509718 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509718:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2403,7 +2403,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509727 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509727:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2420,7 +2420,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509729 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509729:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2437,7 +2437,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509730 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509730:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2454,7 +2454,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509732 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509732:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2471,7 +2471,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509760 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509760:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2488,7 +2488,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509764 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509764:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2505,7 +2505,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509766 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509766:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2522,7 +2522,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509769 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509769:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2539,7 +2539,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509773 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509773:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2556,7 +2556,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 510901 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:510901:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2573,7 +2573,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509778 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509778:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2590,7 +2590,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509779 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509779:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2607,7 +2607,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509781 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509781:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2624,7 +2624,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509782 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509782:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2641,7 +2641,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509783 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509783:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2658,7 +2658,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509784 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509784:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2675,7 +2675,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509785 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509785:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2692,7 +2692,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509786 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509786:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2709,7 +2709,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509787 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509787:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2726,7 +2726,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 509788 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:509788:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -2743,7 +2743,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 510898 price subtype Normal",
       "language": "en",
-      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:23228:510898:Normal",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     }

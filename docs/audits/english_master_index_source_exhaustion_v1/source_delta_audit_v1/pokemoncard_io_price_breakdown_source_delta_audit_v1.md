@@ -13,11 +13,11 @@ Audit-only source-delta report. No DB writes, migrations, cleanup, quarantine, o
 
 | Metric | Value |
 | --- | --- |
-| current_gap_facts | 1678 |
-| candidate_records_loaded | 17 |
+| current_gap_facts | 1658 |
+| candidate_records_loaded | 18 |
 | matched_gap_facts | 0 |
 | useful_candidate_matches | 0 |
-| already_in_current_index | 2 |
+| already_in_current_index | 3 |
 | unmatched_candidate_records | 15 |
 | no_global_rebuild_required_for_discovery | true |
 
@@ -31,7 +31,7 @@ Audit-only source-delta report. No DB writes, migrations, cleanup, quarantine, o
 | Reason | Count |
 | --- | --- |
 | not_in_remaining_gaps_or_current_index | 15 |
-| already_in_current_index_master_verified | 2 |
+| already_in_current_index_master_verified | 3 |
 
 ## Useful Matches
 

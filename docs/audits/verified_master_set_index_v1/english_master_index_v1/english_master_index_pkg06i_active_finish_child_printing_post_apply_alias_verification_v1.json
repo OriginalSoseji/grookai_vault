@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-06-10T04:25:35.379Z",
+  "version": "english_master_index_pkg06i_active_finish_child_printing_post_apply_alias_verification_v1",
+  "package_id": "PKG-06I-ACTIVE-FINISH-CHILD-PRINTING-INSERTS",
+  "read_only_verification": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "original_apply_status": "pkg06i_active_finish_child_printing_real_apply_failed_or_blocked",
+  "original_execution_result": {
+    "connected": true,
+    "apply_status": "pkg06i_active_finish_child_printing_real_apply_committed",
+    "error_message": null,
+    "committed": true
+  },
+  "original_stop_findings": [
+    "inserted_set_2019sm_count_not_8"
+  ],
+  "alias_map_applied": {
+    "mcd19": "2019sm"
+  },
+  "inserted_rows_found": 84,
+  "target_parent_rows": 78,
+  "live_set_counts": {
+    "bw4": 8,
+    "mcd19": 8,
+    "pop8": 9,
+    "sv10": 8,
+    "sve": 9,
+    "svp": 9,
+    "swsh8": 8,
+    "xy3": 9,
+    "xy7": 8,
+    "xy8": 8
+  },
+  "alias_aware_set_counts": {
+    "2019sm": 8,
+    "bw4": 8,
+    "pop8": 9,
+    "sv10": 8,
+    "sve": 9,
+    "svp": 9,
+    "swsh8": 8,
+    "xy3": 9,
+    "xy7": 8,
+    "xy8": 8
+  },
+  "finish_counts": {
+    "cosmos": 57,
+    "holo": 9,
+    "normal": 9,
+    "reverse": 9
+  },
+  "parent_rows_unchanged": true,
+  "inserted_row_hash_sha256": "9ad6a7254cf0effa1c16d8d13167e2b5e6d8f1769237f45b30c3030b6bab701f",
+  "stop_findings": [],
+  "verification_status": "pkg06i_committed_and_alias_verified",
+  "pass": true
+}

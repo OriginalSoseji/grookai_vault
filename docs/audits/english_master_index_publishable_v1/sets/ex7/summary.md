@@ -6,7 +6,7 @@ Status: publishable_complete
 
 - set_key: ex7
 - cards: 111/111
-- printings: 212/212
+- printings: 213/213
 - completion_score: 100
 
 ## Finish Counts
@@ -14,7 +14,7 @@ Status: publishable_complete
 | finish_key | count |
 | --- | --- |
 | cosmos | 1 |
-| holo | 32 |
+| holo | 33 |
 | normal | 83 |
 | reverse | 95 |
 | stamped | 1 |

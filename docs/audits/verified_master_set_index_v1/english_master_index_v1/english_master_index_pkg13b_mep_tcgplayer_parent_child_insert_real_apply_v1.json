@@ -1,0 +1,163 @@
+{
+  "generated_at": "2026-06-11T05:03:54.648Z",
+  "version": "english_master_index_pkg13b_mep_tcgplayer_parent_child_insert_real_apply_v1",
+  "package_id": "PKG-13B-MEP-TCGPLAYER-PARENT-CHILD-INSERTS",
+  "package_fingerprint_sha256": "e880e0c4a5cfda5410cd41d3cbd62cd8007c47ff83528ba5ca3e27ae091b4cbf",
+  "db_write_committed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_artifacts": {
+    "guarded_dry_run": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg13b_mep_tcgplayer_parent_child_insert_guarded_dry_run_v1.json"
+  },
+  "dry_run_proof": {
+    "before_hash": "a959b1f40678c6bd49d35668f1b9e7ee058e9a60bb00ad2b9c37885adb3a4fe2",
+    "after_hash": "a959b1f40678c6bd49d35668f1b9e7ee058e9a60bb00ad2b9c37885adb3a4fe2",
+    "rollback_verified": true
+  },
+  "scope": {
+    "target_parent_rows": 2,
+    "target_child_rows": 2,
+    "target_external_mappings": 2,
+    "by_set": {
+      "mep": 2
+    },
+    "by_finish": {
+      "cosmos": 2
+    },
+    "by_mapping_source": {
+      "tcgplayer": 2
+    }
+  },
+  "execution": {
+    "apply_status": "pkg13b_mep_tcgplayer_parent_child_insert_real_apply_committed",
+    "committed": true,
+    "before_snapshot": {
+      "captured_at": "2026-06-11T05:03:53.317Z",
+      "rows": [
+        {
+          "row_type": "target_set",
+          "row_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "set_code": "mep",
+          "card_number": null,
+          "card_name": "MEP Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        }
+      ],
+      "hash_sha256": "a959b1f40678c6bd49d35668f1b9e7ee058e9a60bb00ad2b9c37885adb3a4fe2",
+      "counts": {
+        "target_set": 1
+      }
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-11T05:03:54.643Z",
+      "rows": [
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "410e944b-cb07-425c-a9c5-3884a2c7b326",
+          "set_code": "mep",
+          "card_number": "078",
+          "card_name": "Toxel",
+          "finish_key": "cosmos",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "1df829ab-6170-4149-914d-c0d24a7ac4f2",
+          "set_code": "mep",
+          "card_number": "079",
+          "card_name": "Charmeleon",
+          "finish_key": "cosmos",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "5ba489b2-bc25-4368-9050-edaca6c82c28",
+          "set_code": "mep",
+          "card_number": "078",
+          "card_name": "Toxel",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "72344666-6ef8-4c58-b515-410c9cb45780",
+          "set_code": "mep",
+          "card_number": "079",
+          "card_name": "Charmeleon",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122339",
+          "set_code": "mep",
+          "card_number": "078",
+          "card_name": "Toxel",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "694692"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122340",
+          "set_code": "mep",
+          "card_number": "079",
+          "card_name": "Charmeleon",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "694693"
+        },
+        {
+          "row_type": "target_set",
+          "row_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "set_code": "mep",
+          "card_number": null,
+          "card_name": "MEP Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        }
+      ],
+      "hash_sha256": "1d4a746b04339ea37aed3102071efac80ed654b260bb41a3888fd07c01515dd1",
+      "counts": {
+        "existing_child_exact": 2,
+        "existing_parent_exact": 2,
+        "external_mapping_collision": 2,
+        "target_set": 1
+      }
+    },
+    "proof_rows": [
+      {
+        "package_id": "PKG-13B-MEP-TCGPLAYER-PARENT-CHILD-INSERTS",
+        "package_fingerprint": "e880e0c4a5cfda5410cd41d3cbd62cd8007c47ff83528ba5ca3e27ae091b4cbf",
+        "planned_parent_rows": 2,
+        "planned_child_rows": 2,
+        "planned_mapping_rows": 2
+      }
+    ],
+    "guard": {
+      "parent_rows": 2,
+      "child_rows": 2,
+      "mapping_rows": 2,
+      "inactive_finish_rows": 0,
+      "parent_collisions": 0,
+      "child_collisions": 0,
+      "mapping_collisions": 0
+    },
+    "write_counts": {
+      "parent_inserts": 2,
+      "child_inserts": 2,
+      "external_mapping_inserts": 2,
+      "deletes": 0,
+      "merges": 0
+    },
+    "stop_findings": []
+  }
+}

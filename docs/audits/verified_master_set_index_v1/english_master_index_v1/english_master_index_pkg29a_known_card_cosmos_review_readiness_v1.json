@@ -1,0 +1,61 @@
+{
+  "package_id": "PKG-29A-KNOWN-CARD-COSMOS-REVIEW-READINESS",
+  "generated_at": "2026-06-14T02:23:44.570Z",
+  "source_inputs": {
+    "lanes_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_current_unsupported_reconciliation_lanes_v1.json"
+  },
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "deletes_authorized": false,
+    "real_apply_authorized": false
+  },
+  "summary": {
+    "target_rows": 1,
+    "by_classification": {
+      "stamped_variant_cosmos_evidence_needed": 1
+    },
+    "by_set": {
+      "sv03": 1
+    },
+    "by_action": {
+      "do_not_delete_without_stamped_identity_adjudication": 1
+    },
+    "stamped_or_variant_blocked": 1
+  },
+  "rows": [
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+      "set_code": "sv03",
+      "card_number": "196",
+      "number": "196",
+      "number_plain": "196",
+      "card_name": "Town Store",
+      "printed_identity_modifier": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "card_printing_id": "fe7c011c-6d09-44d1-9c3f-3d52b829e80c",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv03",
+      "child_identity_key": "sv03|196|town store|cosmos|play pokemon stamp|play pokemon stamp",
+      "live_number_candidates": [
+        "196"
+      ],
+      "child_dependency_total": 0,
+      "classification": "stamped_variant_cosmos_evidence_needed",
+      "action": "do_not_delete_without_stamped_identity_adjudication",
+      "reason": "stamped variant cosmos is not supported by current exact Master Index evidence"
+    }
+  ],
+  "fingerprint": "f953acd62bb74002c6548218ddad6a37594b2d687719a47f57f2981ddd1e396d"
+}

@@ -1,0 +1,853 @@
+{
+  "generated_at": "2026-06-14T02:55:02.933Z",
+  "version": "english_master_index_pkg40a_residual_unsupported_source_adjudication_v1",
+  "package_id": "PKG-40A-RESIDUAL-UNSUPPORTED-SOURCE-ADJUDICATION",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_performed": false,
+  "source_artifacts": {
+    "current_unsupported_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_current_unsupported_reconciliation_lanes_v1.json",
+    "master_printings_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_printings_v1.json"
+  },
+  "summary": {
+    "input_unsupported_rows": 19,
+    "adjudicated_rows": 19,
+    "unmatched_rows": 0,
+    "source_evidence_rows": 38,
+    "by_status": {
+      "stamped_active_finish_route_and_identity_backfill_ready": 8,
+      "delete_candidate_no_reverse_evidence_after_holo_suffix_verified": 1,
+      "delete_candidate_no_reverse_evidence_holo_normal_preserved": 1,
+      "active_finish_conflict_replace_with_reverse_review_ready": 1,
+      "active_finish_conflict_replace_with_holo_review_ready": 1,
+      "master_index_delta_and_identity_backfill_ready": 1,
+      "stamped_active_finish_route_ready": 1,
+      "stamped_active_finish_route_and_identity_backfill_needs_finish_confirmation": 1,
+      "master_index_delta_needs_finish_confirmation": 1,
+      "master_index_delta_needs_second_exact_source": 1,
+      "delete_candidate_suffix_normalization_duplicate": 1,
+      "delete_candidate_no_reverse_evidence_suffix_normalization_duplicate": 1
+    },
+    "by_recommended_next_package": {
+      "PKG-40B stamped route evidence + parent identity backfill dry-run": 8,
+      "PKG-40E dependency-zero child delete dry-run": 4,
+      "PKG-40C reverse stamped replacement dry-run after route proof": 1,
+      "PKG-40C holo stamped replacement dry-run after Master Index delta": 1,
+      "PKG-40D Battle Academy Master Index delta + identity backfill dry-run": 1,
+      "PKG-40B stamped route evidence dry-run": 1,
+      "manual finish confirmation before dry-run": 2,
+      "source acquisition before dry-run": 1
+    }
+  },
+  "rows": [
+    {
+      "card_print_id": "79a8d112-627f-417e-a2f2-eeaaf300682d",
+      "card_printing_id": "ebee11ff-60d4-437e-b106-a98693665a80",
+      "set_key": "col1",
+      "card_number": "33",
+      "card_name": "Snorlax",
+      "current_finish_key": "holo",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "staff_stamp",
+      "current_lane": "subset_or_parallel_identity_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "stamped_active_finish_route_and_identity_backfill_ready",
+      "proposed_active_finish_key": "holo",
+      "proposed_variant_key": "staff_stamp",
+      "required_master_fact_finish_key": "stamped",
+      "required_master_fact_exists": true,
+      "required_master_fact_sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-call-of-legends/snorlax-staff-pre-release-33",
+          "evidence_label": "PriceCharting identifies Snorlax #33 Staff Pre-Release as a holo Call of Legends printing."
+        },
+        {
+          "source_key": "goldin_auction_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://goldin.co/item/2011-pokemon-call-of-legends-prerelease-staff-holo-33-snorlax-psa-gempopl7",
+          "evidence_label": "Goldin identifies 2011 Call of Legends Prerelease Staff Holo #33 Snorlax."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40B stamped route evidence + parent identity backfill dry-run"
+    },
+    {
+      "card_print_id": "b222a067-4259-4aaf-b28f-b593ac51f28a",
+      "card_printing_id": "96ccb37b-12cb-4f33-961e-7b05227699dd",
+      "set_key": "g1",
+      "card_number": "14",
+      "card_name": "Ponyta",
+      "current_finish_key": "holo",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "stamped",
+      "current_lane": "subset_or_parallel_identity_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "stamped_active_finish_route_and_identity_backfill_ready",
+      "proposed_active_finish_key": "holo",
+      "proposed_variant_key": "stamped",
+      "required_master_fact_finish_key": "stamped",
+      "required_master_fact_exists": true,
+      "required_master_fact_sources": [
+        "doubleholo_set_checklist",
+        "thepricedex_price_list"
+      ],
+      "evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-generations/ponyta-toys-r-us-14",
+          "evidence_label": "PriceCharting identifies Ponyta #14 Toys R Us stamped promo as holo."
+        },
+        {
+          "source_key": "pokecardvalues_checklist",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/ponyta-14-83-holo-toys-r-us-promo-generations/g1-14-1-91/",
+          "evidence_label": "PokeCardValues identifies Ponyta #14 Generations Toys R Us promo as holo."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40B stamped route evidence + parent identity backfill dry-run"
+    },
+    {
+      "card_print_id": "581eb597-562c-42e0-be07-7c64853e95e0",
+      "card_printing_id": "1e0d7356-d71a-426d-ad10-a1fd53e81dd2",
+      "set_key": "g1",
+      "card_number": "28",
+      "card_name": "Jolteon-EX",
+      "current_finish_key": "reverse",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "a",
+      "current_lane": "subset_or_parallel_identity_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "delete_candidate_no_reverse_evidence_after_holo_suffix_verified",
+      "proposed_active_finish_key": "holo",
+      "proposed_variant_key": "a",
+      "required_master_fact_finish_key": "holo",
+      "required_master_fact_exists": true,
+      "required_master_fact_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "thepricedex_price_list"
+      ],
+      "evidence": [
+        {
+          "source_key": "tcgplayer_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/131697/pokemon-alternate-art-promos-jolteon-ex-28a-83",
+          "evidence_label": "TCGplayer identifies Jolteon EX #28a alternate art promo product."
+        },
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-generations/jolteon-ex-28a",
+          "evidence_label": "PriceCharting identifies Jolteon EX #28a sales as holo/full-art promo; no reverse evidence found in current source pass."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40E dependency-zero child delete dry-run"
+    },
+    {
+      "card_print_id": "9b47c6b8-e719-4876-9ba2-1699248a4562",
+      "card_printing_id": "faefd1e1-1a3b-4812-a745-4b712e7dc484",
+      "set_key": "np",
+      "card_number": "25",
+      "card_name": "Flygon",
+      "current_finish_key": "holo",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "winner_stamp",
+      "current_lane": "product_or_promo_source_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "stamped_active_finish_route_and_identity_backfill_ready",
+      "proposed_active_finish_key": "holo",
+      "proposed_variant_key": "winner_stamp",
+      "required_master_fact_finish_key": "stamped",
+      "required_master_fact_exists": true,
+      "required_master_fact_sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "thepricedex_price_list"
+      ],
+      "evidence": [
+        {
+          "source_key": "bulbapedia_card_page_release_info",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Flygon_(Nintendo_Promo_25)",
+          "evidence_label": "Bulbapedia documents the Nintendo Promo #25 Flygon Winner stamped release."
+        },
+        {
+          "source_key": "thepricedex_price_list",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.thepricedex.com/set/np/nintendo-black-star-promos/price-list",
+          "evidence_label": "ThePriceDex Nintendo Black Star Promos list carries the Flygon #25 stamped promo evidence used by the Master Index."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40B stamped route evidence + parent identity backfill dry-run"
+    },
+    {
+      "card_print_id": "0efa1c0b-2556-4fcd-aeaa-a7bd612ffe92",
+      "card_printing_id": "5f618071-1a3b-4758-aa8e-9b4579081029",
+      "set_key": "np",
+      "card_number": "35",
+      "card_name": "Pikachu δ",
+      "current_finish_key": "reverse",
+      "current_printed_identity_modifier": "delta_species",
+      "current_variant_key": "",
+      "current_lane": "product_or_promo_source_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "delete_candidate_no_reverse_evidence_holo_normal_preserved",
+      "proposed_active_finish_key": null,
+      "proposed_variant_key": "",
+      "required_master_fact_finish_key": null,
+      "required_master_fact_exists": false,
+      "required_master_fact_sources": [],
+      "evidence": [
+        {
+          "source_key": "serebii_set_database",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://www.serebii.net/card/nintendopromo/",
+          "evidence_label": "Serebii lists Nintendo Promo #35 Pikachu δ but does not provide exact reverse evidence for this card."
+        },
+        {
+          "source_key": "pokegym_trade_thread",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokegym.net/community/index.php?threads%2Fw-secret-reuniclus-h-landorus-ex-various-bits-and-pieces.126161%2Fpost-2223262=",
+          "evidence_label": "PokeGym historical discussion explicitly notes Nintendo Promo #35 Pikachu δ is not reverse holo."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40E dependency-zero child delete dry-run"
+    },
+    {
+      "card_print_id": "b2617256-07f0-4870-8950-2d2210ee804e",
+      "card_printing_id": "e6719c20-bbba-4ac1-bed7-584104c3d430",
+      "set_key": "pl1",
+      "card_number": "112",
+      "card_name": "PlusPower",
+      "current_finish_key": "holo",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "player_rewards_crosshatch_stamp",
+      "current_lane": "subset_or_parallel_identity_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "stamped_active_finish_route_and_identity_backfill_ready",
+      "proposed_active_finish_key": "holo",
+      "proposed_variant_key": "player_rewards_crosshatch_stamp",
+      "required_master_fact_finish_key": "stamped",
+      "required_master_fact_exists": true,
+      "required_master_fact_sources": [
+        "pokumon_player_rewards_special_print",
+        "thepricedex_price_list"
+      ],
+      "evidence": [
+        {
+          "source_key": "pokumon_player_rewards_special_print",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/pluspower-112-127-player-rewards-program-special-print/",
+          "evidence_label": "Pokumon identifies PlusPower #112 as a Player Rewards Program special print."
+        },
+        {
+          "source_key": "thepricedex_price_list",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.thepricedex.com/set/pl1/platinum/price-list",
+          "evidence_label": "ThePriceDex Platinum list carries PlusPower #112 special print evidence used by the Master Index."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40B stamped route evidence + parent identity backfill dry-run"
+    },
+    {
+      "card_print_id": "07891ac1-73b1-4e3b-b61f-eca8c87371cc",
+      "card_printing_id": "f3b05577-e82a-4aae-81e6-5b1641aae144",
+      "set_key": "pl2",
+      "card_number": "102",
+      "card_name": "Upper Energy",
+      "current_finish_key": "holo",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "player_rewards_crosshatch_stamp",
+      "current_lane": "subset_or_parallel_identity_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "stamped_active_finish_route_and_identity_backfill_ready",
+      "proposed_active_finish_key": "holo",
+      "proposed_variant_key": "player_rewards_crosshatch_stamp",
+      "required_master_fact_finish_key": "stamped",
+      "required_master_fact_exists": true,
+      "required_master_fact_sources": [
+        "pokumon_player_rewards_special_print",
+        "thepricedex_price_list"
+      ],
+      "evidence": [
+        {
+          "source_key": "pokumon_player_rewards_special_print",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/upper-energy-102-111-player-rewards-program-special-print/",
+          "evidence_label": "Pokumon identifies Upper Energy #102 as a Player Rewards Program special print."
+        },
+        {
+          "source_key": "thepricedex_price_list",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.thepricedex.com/set/pl2/rising-rivals/price-list",
+          "evidence_label": "ThePriceDex Rising Rivals list carries Upper Energy #102 special print evidence used by the Master Index."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40B stamped route evidence + parent identity backfill dry-run"
+    },
+    {
+      "card_print_id": "98044499-5fc9-471d-a1f1-3b1785115816",
+      "card_printing_id": "d96cf58c-acda-49e5-95e7-e8e0c2307c69",
+      "set_key": "pl2",
+      "card_number": "33",
+      "card_name": "Snorlax",
+      "current_finish_key": "holo",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "league_stamp",
+      "current_lane": "subset_or_parallel_identity_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "stamped_active_finish_route_and_identity_backfill_ready",
+      "proposed_active_finish_key": "holo",
+      "proposed_variant_key": "league_stamp",
+      "required_master_fact_finish_key": "stamped",
+      "required_master_fact_exists": true,
+      "required_master_fact_sources": [
+        "pricecharting_csv_product",
+        "thepricedex_price_list"
+      ],
+      "evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-rising-rivals/snorlax-pokemon-league-holo-33",
+          "evidence_label": "PriceCharting identifies Snorlax #33 Rising Rivals Pokemon League Holo."
+        },
+        {
+          "source_key": "thepricedex_price_list",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.thepricedex.com/set/pl2/rising-rivals/price-list",
+          "evidence_label": "ThePriceDex Rising Rivals list carries Snorlax #33 league stamped evidence used by the Master Index."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40B stamped route evidence + parent identity backfill dry-run"
+    },
+    {
+      "card_print_id": "04df7c8d-71fb-4e3f-a799-066713790c06",
+      "card_printing_id": "f2291d2e-fd17-451f-b30b-98e9a7b2bb6a",
+      "set_key": "pl2",
+      "card_number": "92",
+      "card_name": "Lucian's Assignment",
+      "current_finish_key": "holo",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "player_rewards_crosshatch_stamp",
+      "current_lane": "subset_or_parallel_identity_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "stamped_active_finish_route_and_identity_backfill_ready",
+      "proposed_active_finish_key": "holo",
+      "proposed_variant_key": "player_rewards_crosshatch_stamp",
+      "required_master_fact_finish_key": "stamped",
+      "required_master_fact_exists": true,
+      "required_master_fact_sources": [
+        "pokumon_player_rewards_special_print",
+        "thepricedex_price_list"
+      ],
+      "evidence": [
+        {
+          "source_key": "pokumon_player_rewards_special_print",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/lucians-assignment-92-111-player-rewards-program-special-print/",
+          "evidence_label": "Pokumon identifies Lucian's Assignment #92 as a Player Rewards Program special print."
+        },
+        {
+          "source_key": "thepricedex_price_list",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.thepricedex.com/set/pl2/rising-rivals/price-list",
+          "evidence_label": "ThePriceDex Rising Rivals list carries Lucian's Assignment #92 special print evidence used by the Master Index."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40B stamped route evidence + parent identity backfill dry-run"
+    },
+    {
+      "card_print_id": "23897bfd-f47c-426b-9c44-930658848cef",
+      "card_printing_id": "4d05e222-ec1b-4eeb-b2c2-8af85e82b492",
+      "set_key": "pl2",
+      "card_number": "97",
+      "card_name": "Underground Expedition",
+      "current_finish_key": "holo",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "player_rewards_crosshatch_stamp",
+      "current_lane": "subset_or_parallel_identity_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "stamped_active_finish_route_and_identity_backfill_ready",
+      "proposed_active_finish_key": "holo",
+      "proposed_variant_key": "player_rewards_crosshatch_stamp",
+      "required_master_fact_finish_key": "stamped",
+      "required_master_fact_exists": true,
+      "required_master_fact_sources": [
+        "pricecharting_csv_product",
+        "thepricedex_price_list"
+      ],
+      "evidence": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-rising-rivals/underground-expedition-crosshatch-holo-97",
+          "evidence_label": "PriceCharting identifies Underground Expedition #97 as Crosshatch Holo."
+        },
+        {
+          "source_key": "thepricedex_price_list",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.thepricedex.com/set/pl2/rising-rivals/price-list",
+          "evidence_label": "ThePriceDex Rising Rivals list carries Underground Expedition #97 special print evidence used by the Master Index."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40B stamped route evidence + parent identity backfill dry-run"
+    },
+    {
+      "card_print_id": "ef328f35-adc4-4238-aa00-bf3e90d1da46",
+      "card_printing_id": "8035cb24-330e-4562-82fa-b3494eff43b8",
+      "set_key": "pl3",
+      "card_number": "106",
+      "card_name": "Gible",
+      "current_finish_key": "holo",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "staff_stamp",
+      "current_lane": "subset_or_parallel_identity_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "active_finish_conflict_replace_with_reverse_review_ready",
+      "proposed_active_finish_key": "reverse",
+      "proposed_variant_key": "staff_stamp",
+      "required_master_fact_finish_key": "stamped",
+      "required_master_fact_exists": true,
+      "required_master_fact_sources": [
+        "elitefourum_alternate_checklist",
+        "pricecharting_csv_product",
+        "thepricedex_price_list"
+      ],
+      "evidence": [
+        {
+          "source_key": "pokemonflashfire_product_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokemonflashfire.com/product/gible-staff-106147-reverse-holo-pokemon-league-promo/",
+          "evidence_label": "Pokemon Flashfire identifies Gible #106 Staff as Reverse Holo / Crosshatch Holofoil."
+        },
+        {
+          "source_key": "pokecardvalues_checklist",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/gible-106-147-reverse-holo-unlimited-supreme-victors/pl3-106-3-1/",
+          "evidence_label": "PokeCardValues lists Gible #106 Staff City Championships as Reverse Holo."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40C reverse stamped replacement dry-run after route proof"
+    },
+    {
+      "card_print_id": "41d1c25c-d5cb-417b-93c2-aab56aa3e251",
+      "card_printing_id": "abd9e005-f35a-4344-ab4b-6f78d54cc4d1",
+      "set_key": "smp",
+      "card_number": "198",
+      "card_name": "Bulbasaur",
+      "current_finish_key": "normal",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "pikachu_stamp",
+      "current_lane": "product_or_promo_source_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "active_finish_conflict_replace_with_holo_review_ready",
+      "proposed_active_finish_key": "holo",
+      "proposed_variant_key": "pikachu_stamp",
+      "required_master_fact_finish_key": "stamped",
+      "required_master_fact_exists": false,
+      "required_master_fact_sources": [],
+      "evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/bulbasaur-stamped-sm198",
+          "evidence_label": "PriceCharting identifies Bulbasaur SM198 Detective Pikachu stamped sales as holo."
+        },
+        {
+          "source_key": "coolstuffinc_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.coolstuffinc.com/p/Pokemon/Bulbasaur%2B%28Detective%2BPikachu%2BStamp%29%2B-%2BSM198",
+          "evidence_label": "CoolStuffInc identifies Bulbasaur SM198 as Detective Pikachu stamped."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40C holo stamped replacement dry-run after Master Index delta"
+    },
+    {
+      "card_print_id": "0a2b6e89-89b7-4fc1-a5d9-762bec994326",
+      "card_printing_id": "1109fa5a-ee4f-4be3-a9b0-c03db432bbdb",
+      "set_key": "smp",
+      "card_number": "65",
+      "card_name": "Alolan Raichu",
+      "current_finish_key": "normal",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "battle_academy_deck_mark",
+      "current_lane": "product_or_promo_source_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "master_index_delta_and_identity_backfill_ready",
+      "proposed_active_finish_key": "normal",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "required_master_fact_finish_key": "stamped",
+      "required_master_fact_exists": false,
+      "required_master_fact_sources": [],
+      "evidence": [
+        {
+          "source_key": "pokumon_battle_academy_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/non-holo-56-stamp-alolan-raichu-sm65-english-promo/",
+          "evidence_label": "Pokumon identifies Alolan Raichu SM65 Battle Academy #56 stamp as non-holo."
+        },
+        {
+          "source_key": "ebay_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/itm/186075562807",
+          "evidence_label": "eBay product title identifies Alolan Raichu SM65 Battle Academy as Non-Holo Promo."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40D Battle Academy Master Index delta + identity backfill dry-run"
+    },
+    {
+      "card_print_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+      "card_printing_id": "fe7c011c-6d09-44d1-9c3f-3d52b829e80c",
+      "set_key": "sv03",
+      "card_number": "196",
+      "card_name": "Town Store",
+      "current_finish_key": "cosmos",
+      "current_printed_identity_modifier": "play_pokemon_stamp",
+      "current_variant_key": "play_pokemon_stamp",
+      "current_lane": "known_card_unsupported_finish_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "stamped_active_finish_route_ready",
+      "proposed_active_finish_key": "cosmos",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "required_master_fact_finish_key": "stamped",
+      "required_master_fact_exists": false,
+      "required_master_fact_sources": [],
+      "evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-obsidian-flames/town-store-play-pokemon-prize-pack-196",
+          "evidence_label": "PriceCharting identifies Town Store #196 Play Pokemon Prize Pack product evidence."
+        },
+        {
+          "source_key": "tcgplayer_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/509788/pokemon-sv03-obsidian-flames-town-store",
+          "evidence_label": "TCGplayer identifies Town Store #196 in Obsidian Flames; route remains active-finish review because the public page is base-product oriented."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40B stamped route evidence dry-run"
+    },
+    {
+      "card_print_id": "4b575fd9-1e87-4992-bae5-826795a4bfbd",
+      "card_printing_id": "3a677dcd-8d59-430c-8116-51fb5926234c",
+      "set_key": "svp",
+      "card_number": "224",
+      "card_name": "Paradise Resort",
+      "current_finish_key": "normal",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "world_championships_2025_staff_stamp",
+      "current_lane": "product_or_promo_source_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "stamped_active_finish_route_and_identity_backfill_needs_finish_confirmation",
+      "proposed_active_finish_key": "normal",
+      "proposed_variant_key": "world_championships_2025_staff_stamp",
+      "required_master_fact_finish_key": "stamped",
+      "required_master_fact_exists": true,
+      "required_master_fact_sources": [
+        "pricecharting_csv_product_stamp",
+        "thepricedex_price_list"
+      ],
+      "evidence": [
+        {
+          "source_key": "tcgplayer_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/649234/pokemon-sv-scarlet-and-violet-promo-cards-paradise-resort-224-world-championships-2025-staff",
+          "evidence_label": "TCGplayer identifies Paradise Resort #224 World Championships 2025 Staff."
+        },
+        {
+          "source_key": "gamenerdz_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.gamenerdz.com/paradise-resort-224-world-championships-2025-staff-224-sv-scarlet-violet-promo-cards",
+          "evidence_label": "GameNerdz identifies Paradise Resort #224 World Championships 2025 Staff."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "manual finish confirmation before dry-run"
+    },
+    {
+      "card_print_id": "dae7e1ad-487c-4923-84f8-6a2408a51514",
+      "card_printing_id": "dd08ecfc-f6b3-4d51-957e-172eed3965a3",
+      "set_key": "svp",
+      "card_number": "224",
+      "card_name": "Paradise Resort",
+      "current_finish_key": "normal",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "",
+      "current_lane": "product_or_promo_source_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "master_index_delta_needs_finish_confirmation",
+      "proposed_active_finish_key": "normal",
+      "proposed_variant_key": "",
+      "required_master_fact_finish_key": "normal",
+      "required_master_fact_exists": false,
+      "required_master_fact_sources": [],
+      "evidence": [
+        {
+          "source_key": "slabadvisor_catalog_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.slabadvisor.com/browse/pokemon/svp",
+          "evidence_label": "Slab Advisor lists Paradise Resort #224 World Championships 2025 and separate Staff variant rows."
+        },
+        {
+          "source_key": "ebay_category_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/b/Paradise-Resort-Pokemon-TCG-Cards/2536/bn_7124869754",
+          "evidence_label": "eBay category/listings show Paradise Resort SVP 224 World Championship 2025 examples, including staff and non-staff listings."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "manual finish confirmation before dry-run"
+    },
+    {
+      "card_print_id": "f3bfa292-cecd-48fc-b213-682489b5f962",
+      "card_printing_id": "97042674-4d1d-479c-925d-bb163de953a8",
+      "set_key": "svp",
+      "card_number": "500",
+      "card_name": "Terapagos & Friends",
+      "current_finish_key": "normal",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "",
+      "current_lane": "product_or_promo_source_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "master_index_delta_needs_second_exact_source",
+      "proposed_active_finish_key": "normal",
+      "proposed_variant_key": "",
+      "required_master_fact_finish_key": "normal",
+      "required_master_fact_exists": false,
+      "required_master_fact_sources": [],
+      "evidence": [
+        {
+          "source_key": "pricecharting_search_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/search-products?q=terapagos+%26amp%3Bamp%3B+friends+jumbo&type=prices",
+          "evidence_label": "PriceCharting search result includes Terapagos & Friends under Pokemon Promo."
+        },
+        {
+          "source_key": "slabadvisor_catalog_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.slabadvisor.com/browse/pokemon/svp",
+          "evidence_label": "Slab Advisor lists Terapagos & Friends #500 in the SVP catalog."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "source acquisition before dry-run"
+    },
+    {
+      "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "card_printing_id": "5b9fdc79-d306-4949-abf0-f6f91f2e1a34",
+      "set_key": "xyp",
+      "card_number": "177",
+      "card_name": "Karen",
+      "current_finish_key": "holo",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "XY",
+      "current_lane": "product_or_promo_source_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "delete_candidate_suffix_normalization_duplicate",
+      "proposed_active_finish_key": null,
+      "proposed_variant_key": "XY",
+      "required_master_fact_finish_key": null,
+      "required_master_fact_exists": false,
+      "required_master_fact_sources": [],
+      "evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/karen-xy177a",
+          "evidence_label": "PriceCharting identifies the holo printing as Karen XY177a, not XY177 with variant XY."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465200/Karen-P-XY177a-Holo",
+          "evidence_label": "Noble Knight identifies Karen holo as XY177a."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40E dependency-zero child delete dry-run"
+    },
+    {
+      "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "card_printing_id": "751682a4-5314-4b19-bb70-fdd28876416e",
+      "set_key": "xyp",
+      "card_number": "177",
+      "card_name": "Karen",
+      "current_finish_key": "reverse",
+      "current_printed_identity_modifier": "",
+      "current_variant_key": "XY",
+      "current_lane": "product_or_promo_source_review",
+      "dependency_refs": {
+        "vault_item_instance_refs": 0,
+        "external_printing_mapping_refs": 0,
+        "canon_warehouse_candidate_refs": 0,
+        "truth_review_refs": 0,
+        "justtcg_mapping_refs": 0
+      },
+      "proposed_status": "delete_candidate_no_reverse_evidence_suffix_normalization_duplicate",
+      "proposed_active_finish_key": null,
+      "proposed_variant_key": "XY",
+      "required_master_fact_finish_key": null,
+      "required_master_fact_exists": false,
+      "required_master_fact_sources": [],
+      "evidence": [
+        {
+          "source_key": "pricecharting_sales_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/karen-xy177a",
+          "evidence_label": "PriceCharting identifies the alternate suffix printing as holo XY177a; no reverse evidence found."
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148465200/Karen-P-XY177a-Holo",
+          "evidence_label": "Noble Knight identifies Karen XY177a as holo."
+        }
+      ],
+      "evidence_count": 2,
+      "recommended_next_package": "PKG-40E dependency-zero child delete dry-run"
+    }
+  ],
+  "unmatched_rows": [],
+  "safety_confirmation": {
+    "no_db_writes": true,
+    "no_migrations": true,
+    "no_deletes": true,
+    "no_merges": true,
+    "no_quarantine": true,
+    "not_apply_authority": true
+  },
+  "fingerprint_sha256": "c65d52df10351b16dc340c3fbd4c884daf10d1d47325ded5b849cee2c9fb8cd7"
+}

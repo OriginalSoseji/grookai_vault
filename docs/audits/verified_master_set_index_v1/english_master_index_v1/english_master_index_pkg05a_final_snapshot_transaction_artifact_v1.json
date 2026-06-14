@@ -1,0 +1,4693 @@
+{
+  "generated_at": "2026-06-10T06:00:57.357Z",
+  "version": "english_master_index_pkg05a_final_snapshot_transaction_artifact_v1",
+  "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+  "preparation_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "write_ready_now": 0,
+  "source_readiness_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1",
+  "artifact_fingerprint_sha256": "df4c9dcae0a19731d4b96f9efd0322f5fde78722c0c08786e4d97a8a2d395dc9",
+  "sql_artifact_path": "C:\\grookai_vault\\docs\\sql\\english_master_index_pkg05a_missing_set_inserts_guarded_dry_run_transaction_v1.sql",
+  "fresh_snapshot": {
+    "available": true,
+    "reason": null,
+    "captured_at": "2026-06-10T06:00:57.272Z",
+    "rows": [],
+    "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "impact_counts": {
+      "existing_set_rows": 0,
+      "existing_parent_rows": 0,
+      "existing_child_printing_rows": 0
+    }
+  },
+  "summary": {
+    "planned_set_inserts": 4,
+    "planned_parent_inserts": 72,
+    "planned_child_printing_inserts": 80,
+    "planned_external_mapping_inserts": 72,
+    "existing_set_rows_in_fresh_snapshot": 0,
+    "existing_parent_rows_in_fresh_snapshot": 0,
+    "existing_child_rows_in_fresh_snapshot": 0
+  },
+  "planned_sets": [
+    {
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "tcgdex_set_id": "2023sv",
+      "expected_parent_rows": 15,
+      "expected_child_printings": 15,
+      "expected_finish_counts": {
+        "holo": 6,
+        "normal": 9
+      },
+      "aliases": [
+        "2023sv",
+        "mcdonald s collection 2023",
+        "mcdonald s collection 2023 tcg",
+        "mcdonalds collection 2023"
+      ],
+      "source_json": {
+        "tcgdex": {
+          "id": "2023sv",
+          "name": "McDonald's Collection 2023"
+        },
+        "verified_master_index_v1": {
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      }
+    },
+    {
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "tcgdex_set_id": "2024sv",
+      "expected_parent_rows": 15,
+      "expected_child_printings": 15,
+      "expected_finish_counts": {
+        "normal": 8,
+        "holo": 7
+      },
+      "aliases": [
+        "2024sv",
+        "mcdonald s collection 2024",
+        "mcdonald s collection 2024 tcg",
+        "mcdonalds collection 2024"
+      ],
+      "source_json": {
+        "tcgdex": {
+          "id": "2024sv",
+          "name": "McDonald's Collection 2024"
+        },
+        "verified_master_index_v1": {
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      }
+    },
+    {
+      "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "tcgdex_set_id": "mee",
+      "expected_parent_rows": 8,
+      "expected_child_printings": 16,
+      "expected_finish_counts": {
+        "normal": 8,
+        "reverse": 8
+      },
+      "aliases": [
+        "mee",
+        "mega evolution energy",
+        "mega evolution energy tcg"
+      ],
+      "source_json": {
+        "tcgdex": {
+          "id": "mee",
+          "name": "Mega Evolution Energy"
+        },
+        "verified_master_index_v1": {
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      }
+    },
+    {
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "tcgdex_set_id": "mfb",
+      "expected_parent_rows": 34,
+      "expected_child_printings": 34,
+      "expected_finish_counts": {
+        "normal": 34
+      },
+      "aliases": [
+        "mfb",
+        "my first battle",
+        "my first battle tcg"
+      ],
+      "source_json": {
+        "tcgdex": {
+          "id": "mfb",
+          "name": "My First Battle"
+        },
+        "verified_master_index_v1": {
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      }
+    }
+  ],
+  "planned_parent_rows": [
+    {
+      "card_print_id": "4091ae25-3624-4f56-a455-7bd3d4beb154",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "1",
+      "card_name": "Sprigatito",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-1"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-1",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "451748ac-012e-4d67-9912-d04534a05817",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "2",
+      "card_name": "Fuecoco",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-2"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-2",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "3a769557-0102-4fd2-b79e-8eef05b52e60",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "3",
+      "card_name": "Quaxly",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-3"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-3",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "98500b36-36d3-470f-9d15-099865980b07",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "4",
+      "card_name": "Cetoddle",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-4"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-4",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "e22e07fa-71e2-46aa-9951-829e339f8763",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "5",
+      "card_name": "Cetitan",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-5"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-5",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "ee8c68fc-626c-42db-b7ef-fc869fe07ae8",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "6",
+      "card_name": "Pikachu",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-6"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-6",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "1dc8d631-789a-4857-a1fd-d72efea4d614",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "7",
+      "card_name": "Pawmi",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-7"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-7",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "31b28128-2bba-420a-acee-4962caf0514c",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "8",
+      "card_name": "Kilowattrel",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-8"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-8",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "c9372355-e4ff-46a7-8172-94fe7d8a28be",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "9",
+      "card_name": "Flittle",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-9"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-9",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "6e7a29e1-3b5b-4c27-86b3-1e63c99f576a",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "10",
+      "card_name": "Sandaconda",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-10"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-10",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "fae05233-f9c5-4860-aa86-49a942613ff5",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "11",
+      "card_name": "Klawf",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-11"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-11",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "3ed79a65-c672-451a-afd7-e47a68ae2c53",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "12",
+      "card_name": "Blissey",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-12"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-12",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "2dd83d5b-2476-4b63-9fbe-c849c2d56aa7",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "13",
+      "card_name": "Tandemaus",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-13"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-13",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "1df85310-35da-4070-a3bd-a01a96d39e1c",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "14",
+      "card_name": "Cyclizar",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-14"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-14",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "fb3bc199-9149-402e-8342-265eceecf120",
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "set_code": "2023sv",
+      "card_number": "15",
+      "card_name": "Kirlia",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2023sv-15"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-15",
+        "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+      ]
+    },
+    {
+      "card_print_id": "43e51937-5821-449d-adf5-7cfc30d135b9",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "1",
+      "card_name": "Charizard",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-1"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-1",
+        "https://bulbapedia.bulbagarden.net/wiki/Charizard_(Vivid_Voltage_25)"
+      ]
+    },
+    {
+      "card_print_id": "2ff72f10-b4cd-4e26-998c-87b1ca181028",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "2",
+      "card_name": "Pikachu",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-2"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-2",
+        "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(151_25)"
+      ]
+    },
+    {
+      "card_print_id": "afa60d30-57c3-44ec-9964-fdf2a2bd7690",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "3",
+      "card_name": "Miraidon",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-3"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-3",
+        "https://bulbapedia.bulbagarden.net/wiki/Miraidon_(Scarlet_%26_Violet_80)"
+      ]
+    },
+    {
+      "card_print_id": "7fe87152-ff37-4a8b-8b56-1338ca39751b",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "4",
+      "card_name": "Jigglypuff",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-4"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-4",
+        "https://bulbapedia.bulbagarden.net/wiki/Jigglypuff_(Fusion_Strike_110)"
+      ]
+    },
+    {
+      "card_print_id": "9218afd1-f370-4698-902d-2e60140f127c",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "5",
+      "card_name": "Hatenna",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-5"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-5",
+        "https://bulbapedia.bulbagarden.net/wiki/Hatenna_(Champion's_Path_18)"
+      ]
+    },
+    {
+      "card_print_id": "0a81032c-548d-438c-a091-5b2924557771",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "6",
+      "card_name": "Dragapult",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-6"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-6",
+        "https://bulbapedia.bulbagarden.net/wiki/Dragapult_(Silver_Tempest_89)"
+      ]
+    },
+    {
+      "card_print_id": "24b6d461-b043-4768-ae3a-1cf43442c7d6",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "7",
+      "card_name": "Quagsire",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-7"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-7",
+        "https://bulbapedia.bulbagarden.net/wiki/Quagsire_(Vivid_Voltage_84)"
+      ]
+    },
+    {
+      "card_print_id": "2d9108f8-f23d-49f6-8557-19553332e9eb",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "8",
+      "card_name": "Koraidon",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-8"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-8",
+        "https://bulbapedia.bulbagarden.net/wiki/Koraidon_(Scarlet_%26_Violet_124)"
+      ]
+    },
+    {
+      "card_print_id": "5d51ef4f-5f17-4b8e-b9fc-2ae31f955022",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "9",
+      "card_name": "Umbreon",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-9"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-9",
+        "https://bulbapedia.bulbagarden.net/wiki/Umbreon_(SWSH_Promo_129)"
+      ]
+    },
+    {
+      "card_print_id": "d3e549c3-b31d-4368-b7b4-e34b28b41c1d",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "10",
+      "card_name": "Hydreigon",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-10"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-10",
+        "https://bulbapedia.bulbagarden.net/wiki/Hydreigon_(Paldea_Evolved_140)"
+      ]
+    },
+    {
+      "card_print_id": "d2766899-2087-437d-81a4-8d769e4727a7",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "11",
+      "card_name": "Roaring Moon",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-11"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-11",
+        "https://bulbapedia.bulbagarden.net/wiki/Roaring_Moon_(Temporal_Forces_109)"
+      ]
+    },
+    {
+      "card_print_id": "2a8e6db0-3a82-4196-8cd8-f0528e68b9ef",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "12",
+      "card_name": "Dragonite",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-12"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-12",
+        "https://bulbapedia.bulbagarden.net/wiki/Dragonite_(151_149)"
+      ]
+    },
+    {
+      "card_print_id": "3faee98e-12b5-4f6c-a711-073d024155eb",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "13",
+      "card_name": "Eevee",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-13"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-13",
+        "https://bulbapedia.bulbagarden.net/wiki/Eevee_(Fusion_Strike_205)"
+      ]
+    },
+    {
+      "card_print_id": "194dc27a-ce21-4a69-93de-d8c48000c128",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "14",
+      "card_name": "Rayquaza",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-14"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-14",
+        "https://bulbapedia.bulbagarden.net/wiki/Rayquaza_(SWSH_Promo_29)"
+      ]
+    },
+    {
+      "card_print_id": "2c2649a8-a3b7-44cd-87ba-0c5d03667e0f",
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "set_code": "2024sv",
+      "card_number": "15",
+      "card_name": "Drampa",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "2024sv-15"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-15",
+        "https://bulbapedia.bulbagarden.net/wiki/Drampa_(Temporal_Forces_138)"
+      ]
+    },
+    {
+      "card_print_id": "6a28431f-8e78-45ee-adce-46ccde297389",
+      "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "set_code": "mee",
+      "card_number": "001",
+      "card_name": "Basic Grass Energy",
+      "rarity": "Common",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mee-001"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-001",
+        "https://eyevotcg.com/sets/mega-evolution-energy/"
+      ]
+    },
+    {
+      "card_print_id": "fa0fa953-2e87-4dfc-8bd9-ebda84a53a12",
+      "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "set_code": "mee",
+      "card_number": "002",
+      "card_name": "Basic Fire Energy",
+      "rarity": "Common",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mee-002"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-002",
+        "https://eyevotcg.com/sets/mega-evolution-energy/"
+      ]
+    },
+    {
+      "card_print_id": "fd2dbb1c-728d-48de-9324-6b4e16947e67",
+      "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "set_code": "mee",
+      "card_number": "003",
+      "card_name": "Basic Water Energy",
+      "rarity": "Common",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mee-003"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-003",
+        "https://eyevotcg.com/sets/mega-evolution-energy/"
+      ]
+    },
+    {
+      "card_print_id": "69ceec8e-8bbc-4faa-b70a-bac1556429b1",
+      "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "set_code": "mee",
+      "card_number": "004",
+      "card_name": "Basic Lightning Energy",
+      "rarity": "Common",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mee-004"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-004",
+        "https://eyevotcg.com/sets/mega-evolution-energy/"
+      ]
+    },
+    {
+      "card_print_id": "f1a590b0-3795-4145-9d68-93dcbb73f3c6",
+      "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "set_code": "mee",
+      "card_number": "005",
+      "card_name": "Basic Psychic Energy",
+      "rarity": "Common",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mee-005"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-005",
+        "https://eyevotcg.com/sets/mega-evolution-energy/"
+      ]
+    },
+    {
+      "card_print_id": "f2342804-4844-409a-9b95-ddf10b09bee6",
+      "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "set_code": "mee",
+      "card_number": "006",
+      "card_name": "Basic Fighting Energy",
+      "rarity": "Common",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mee-006"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-006",
+        "https://eyevotcg.com/sets/mega-evolution-energy/"
+      ]
+    },
+    {
+      "card_print_id": "c4df4bea-9e6a-46d7-8fbc-2a3293ef58d6",
+      "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "set_code": "mee",
+      "card_number": "007",
+      "card_name": "Basic Darkness Energy",
+      "rarity": "Common",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mee-007"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-007",
+        "https://eyevotcg.com/sets/mega-evolution-energy/"
+      ]
+    },
+    {
+      "card_print_id": "fe393cc0-6c1c-4a90-922d-08ef60599c15",
+      "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "set_code": "mee",
+      "card_number": "008",
+      "card_name": "Basic Metal Energy",
+      "rarity": "Common",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mee-008"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-008",
+        "https://eyevotcg.com/sets/mega-evolution-energy/"
+      ]
+    },
+    {
+      "card_print_id": "49d6a794-5703-4de0-aa70-c6b2438ed1c5",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "1",
+      "card_name": "Bulbasaur",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-1"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-1",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "09af1718-5dbb-4490-8a1e-a71c17584a43",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "2",
+      "card_name": "Ivysaur",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-2"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-2",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "15da4897-1148-4a9f-9e18-961cb696f249",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "3",
+      "card_name": "Oddish",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-3"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-3",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "dcf3403e-8108-45e7-b4c8-c8f3fdb8d73d",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "4",
+      "card_name": "Gloom",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-4"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-4",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "74061f6a-223a-4dd0-a6a7-f8b0f341fe26",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "5",
+      "card_name": "Exeggcute",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-5"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-5",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "ef1b1771-5477-4c48-b577-e8ded6e641d0",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "6",
+      "card_name": "Exeggutor",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-6"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-6",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "7981f4c1-055a-4eff-bae1-49fb428e3fdf",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "7",
+      "card_name": "Scyther",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-7"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-7",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "a6ece9a6-4e33-4879-b5c8-f09274cef1a7",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "8",
+      "card_name": "Grass Energy",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-8"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-8",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "1c4ae32e-714c-4aa2-8c35-7826cfe759b3",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "9",
+      "card_name": "Charmander",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-9"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-9",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "31c39836-62b4-4d44-a898-6ba37a148004",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "10",
+      "card_name": "Charmeleon",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-10"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-10",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "f62c0bf4-ab0e-451d-a149-c312dd95c51e",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "11",
+      "card_name": "Vulpix",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-11"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-11",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "db309a53-3ed8-4be0-b3f2-b096a64c2f3f",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "12",
+      "card_name": "Ninetales",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-12"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-12",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "eb4d8953-9d05-43b4-be64-b529162ce221",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "13",
+      "card_name": "Growlithe",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-13"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-13",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "f7865250-5030-4f54-be6b-aed423100717",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "14",
+      "card_name": "Arcanine",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-14"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-14",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "37047df4-d52c-4a32-8cb3-c77f565128bc",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "15",
+      "card_name": "Magmar",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-15"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-15",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "ece0e2a1-74d8-4b8e-bb65-ffd15cd1bbca",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "16",
+      "card_name": "Fire Energy",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-16"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-16",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "f57348f5-9b22-4d47-adbd-1dfc08f8ef95",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "17",
+      "card_name": "Pikachu",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-17"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-17",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "e9a443af-8d01-4369-8395-b25d6de7ea75",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "18",
+      "card_name": "Raichu",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-18"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-18",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "6b496428-8d58-48a8-ba35-a89db7bb4d1a",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "19",
+      "card_name": "Magnemite",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-19"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-19",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "4457f5d7-c979-493f-8a32-6790a91fb1d5",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "20",
+      "card_name": "Magneton",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-20"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-20",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "454211cf-bd3f-495a-973c-ef4ac787b7d5",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "21",
+      "card_name": "Voltorb",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-21"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-21",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "87796913-485e-4003-ad35-c47ec7490d00",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "22",
+      "card_name": "Electrode",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-22"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-22",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "c76cb0ce-6fde-47f4-a136-c54db8cf59ab",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "23",
+      "card_name": "Electabuzz",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-23"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-23",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "648e1d4b-8564-43eb-9596-71fbf48c017b",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "24",
+      "card_name": "Lightning Energy",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-24"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-24",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "49305424-a284-4bd5-a0af-3fd355db549b",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "25",
+      "card_name": "Squirtle",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-25"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-25",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "f63065d2-d77c-494d-9831-cf594600f7ae",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "26",
+      "card_name": "Wartortle",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-26"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-26",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "9e71eb08-b0c5-4e15-a581-f97f31120bf0",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "27",
+      "card_name": "Poliwag",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-27"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-27",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "d0c72906-4ded-475b-8319-c9a8cd7dbdd8",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "28",
+      "card_name": "Poliwhirl",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-28"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-28",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "0e3a69cb-81e6-4f3f-97e8-da5c4bf063f9",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "29",
+      "card_name": "Magikarp",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-29"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-29",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "b894bb8d-1ad3-4824-a8ca-0900941ec7cc",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "30",
+      "card_name": "Gyarados",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-30"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-30",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "cd03d17c-b61f-4d31-b52a-27ff45bcd2de",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "31",
+      "card_name": "Lapras",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-31"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-31",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "dece707c-a7c1-49b3-ac3b-51959227b4b5",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "32",
+      "card_name": "Water Energy",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-32"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-32",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "3184e491-41eb-466c-a456-dcea8ff79403",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "33",
+      "card_name": "Potion",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-33"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-33",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    },
+    {
+      "card_print_id": "056c0faf-05d0-455b-a576-bb1089414821",
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "set_code": "mfb",
+      "card_number": "34",
+      "card_name": "Switch",
+      "rarity": "None",
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "mfb-34"
+      },
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+      },
+      "source_count": 2,
+      "sources": [
+        "eyevo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-34",
+        "https://eyevotcg.com/sets/my-first-battle/"
+      ]
+    }
+  ],
+  "planned_child_printing_rows": [
+    {
+      "card_printing_id": "3a5ab65e-dda3-45a7-9871-f0532fd349ba",
+      "card_print_id": "4091ae25-3624-4f56-a455-7bd3d4beb154",
+      "set_key": "2023sv",
+      "card_number": "1",
+      "card_name": "Sprigatito",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:1:holo",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-1",
+        "https://www.tcgplayer.com/product/516512/pokemon-mcdonalds-promos-2023-sprigatito"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|1|sprigatito|holo"
+    },
+    {
+      "card_printing_id": "3c456c11-1915-4800-9e76-fc9deb0aa6d3",
+      "card_print_id": "451748ac-012e-4d67-9912-d04534a05817",
+      "set_key": "2023sv",
+      "card_number": "2",
+      "card_name": "Fuecoco",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:2:holo",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-2",
+        "https://www.tcgplayer.com/product/516513/pokemon-mcdonalds-promos-2023-fuecoco"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|2|fuecoco|holo"
+    },
+    {
+      "card_printing_id": "49566d90-2182-48df-8c6b-34e095ab09e1",
+      "card_print_id": "3a769557-0102-4fd2-b79e-8eef05b52e60",
+      "set_key": "2023sv",
+      "card_number": "3",
+      "card_name": "Quaxly",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:3:holo",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-3",
+        "https://www.tcgplayer.com/product/516514/pokemon-mcdonalds-promos-2023-quaxly"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|3|quaxly|holo"
+    },
+    {
+      "card_printing_id": "c01975b3-f875-4980-80ac-a1260b93a142",
+      "card_print_id": "98500b36-36d3-470f-9d15-099865980b07",
+      "set_key": "2023sv",
+      "card_number": "4",
+      "card_name": "Cetoddle",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:4:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-4",
+        "https://www.tcgplayer.com/product/516515/pokemon-mcdonalds-promos-2023-cetoddle"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|4|cetoddle|normal"
+    },
+    {
+      "card_printing_id": "3554a0f4-a4fb-4253-9081-0c90871af633",
+      "card_print_id": "e22e07fa-71e2-46aa-9951-829e339f8763",
+      "set_key": "2023sv",
+      "card_number": "5",
+      "card_name": "Cetitan",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:5:holo",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-5",
+        "https://www.tcgplayer.com/product/516516/pokemon-mcdonalds-promos-2023-cetitan"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|5|cetitan|holo"
+    },
+    {
+      "card_printing_id": "de5f9e17-89e1-40e3-9bc2-569097e55b0a",
+      "card_print_id": "ee8c68fc-626c-42db-b7ef-fc869fe07ae8",
+      "set_key": "2023sv",
+      "card_number": "6",
+      "card_name": "Pikachu",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:6:holo",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-6",
+        "https://www.tcgplayer.com/product/516517/pokemon-mcdonalds-promos-2023-pikachu"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|6|pikachu|holo"
+    },
+    {
+      "card_printing_id": "cbc1f5a9-2708-4417-a41a-a67492f24846",
+      "card_print_id": "1dc8d631-789a-4857-a1fd-d72efea4d614",
+      "set_key": "2023sv",
+      "card_number": "7",
+      "card_name": "Pawmi",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:7:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-7",
+        "https://www.tcgplayer.com/product/516518/pokemon-mcdonalds-promos-2023-pawmi"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|7|pawmi|normal"
+    },
+    {
+      "card_printing_id": "86fb7236-d4e3-41de-95da-04d9b98fb5cf",
+      "card_print_id": "31b28128-2bba-420a-acee-4962caf0514c",
+      "set_key": "2023sv",
+      "card_number": "8",
+      "card_name": "Kilowattrel",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:8:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-8",
+        "https://www.tcgplayer.com/product/516519/pokemon-mcdonalds-promos-2023-kilowattrel"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|8|kilowattrel|normal"
+    },
+    {
+      "card_printing_id": "f0e4042d-49d3-49ff-89d5-aca3bad95b31",
+      "card_print_id": "c9372355-e4ff-46a7-8172-94fe7d8a28be",
+      "set_key": "2023sv",
+      "card_number": "9",
+      "card_name": "Flittle",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:9:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-9",
+        "https://www.tcgplayer.com/product/516520/pokemon-mcdonalds-promos-2023-flittle"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|9|flittle|normal"
+    },
+    {
+      "card_printing_id": "28a2bd03-6287-4c5b-848b-737a2be841bf",
+      "card_print_id": "6e7a29e1-3b5b-4c27-86b3-1e63c99f576a",
+      "set_key": "2023sv",
+      "card_number": "10",
+      "card_name": "Sandaconda",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:10:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-10",
+        "https://www.tcgplayer.com/product/516521/pokemon-mcdonalds-promos-2023-sandaconda"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|10|sandaconda|normal"
+    },
+    {
+      "card_printing_id": "f58973ec-ae6d-48b9-b149-f75776d7d540",
+      "card_print_id": "fae05233-f9c5-4860-aa86-49a942613ff5",
+      "set_key": "2023sv",
+      "card_number": "11",
+      "card_name": "Klawf",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:11:holo",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-11",
+        "https://www.tcgplayer.com/product/516522/pokemon-mcdonalds-promos-2023-klawf"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|11|klawf|holo"
+    },
+    {
+      "card_printing_id": "f6be1aac-6bcc-4f7c-9bd5-99faaa03043a",
+      "card_print_id": "3ed79a65-c672-451a-afd7-e47a68ae2c53",
+      "set_key": "2023sv",
+      "card_number": "12",
+      "card_name": "Blissey",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:12:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-12",
+        "https://www.tcgplayer.com/product/516523/pokemon-mcdonalds-promos-2023-blissey"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|12|blissey|normal"
+    },
+    {
+      "card_printing_id": "da153acc-e4b0-4668-9e4d-25383c5d3a8e",
+      "card_print_id": "2dd83d5b-2476-4b63-9fbe-c849c2d56aa7",
+      "set_key": "2023sv",
+      "card_number": "13",
+      "card_name": "Tandemaus",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:13:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-13",
+        "https://www.tcgplayer.com/product/516524/pokemon-mcdonalds-promos-2023-tandemaus"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|13|tandemaus|normal"
+    },
+    {
+      "card_printing_id": "7a034cd5-5d86-4616-acee-505e92fe6438",
+      "card_print_id": "1df85310-35da-4070-a3bd-a01a96d39e1c",
+      "set_key": "2023sv",
+      "card_number": "14",
+      "card_name": "Cyclizar",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:14:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-14",
+        "https://www.tcgplayer.com/product/516525/pokemon-mcdonalds-promos-2023-cyclizar"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|14|cyclizar|normal"
+    },
+    {
+      "card_printing_id": "77d3c498-7661-4656-adf0-3319e99c48d0",
+      "card_print_id": "fb3bc199-9149-402e-8342-265eceecf120",
+      "set_key": "2023sv",
+      "card_number": "15",
+      "card_name": "Kirlia",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2023sv:15:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2023sv-15",
+        "https://www.tcgplayer.com/product/516526/pokemon-mcdonalds-promos-2023-kirlia"
+      ],
+      "parent_found": true,
+      "fact_key": "2023sv|15|kirlia|normal"
+    },
+    {
+      "card_printing_id": "9f030b5c-14bf-4086-9c00-0df453484c77",
+      "card_print_id": "43e51937-5821-449d-adf5-7cfc30d135b9",
+      "set_key": "2024sv",
+      "card_number": "1",
+      "card_name": "Charizard",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:1:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-1",
+        "https://www.tcgplayer.com/product/614370/pokemon-mcdonalds-promos-2024-charizard"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|1|charizard|normal"
+    },
+    {
+      "card_printing_id": "b23dcc5c-720a-4684-a5a6-c3634214978c",
+      "card_print_id": "2ff72f10-b4cd-4e26-998c-87b1ca181028",
+      "set_key": "2024sv",
+      "card_number": "2",
+      "card_name": "Pikachu",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:2:holo",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-2",
+        "https://www.tcgplayer.com/product/614371/pokemon-mcdonalds-promos-2024-pikachu"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|2|pikachu|holo"
+    },
+    {
+      "card_printing_id": "d1db979e-f99f-45e9-8f46-3837d42fd535",
+      "card_print_id": "afa60d30-57c3-44ec-9964-fdf2a2bd7690",
+      "set_key": "2024sv",
+      "card_number": "3",
+      "card_name": "Miraidon",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:3:holo",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-3",
+        "https://www.tcgplayer.com/product/614372/pokemon-mcdonalds-promos-2024-miraidon"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|3|miraidon|holo"
+    },
+    {
+      "card_printing_id": "53f7df37-2144-480a-9733-91e1ecfa0419",
+      "card_print_id": "7fe87152-ff37-4a8b-8b56-1338ca39751b",
+      "set_key": "2024sv",
+      "card_number": "4",
+      "card_name": "Jigglypuff",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:4:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-4",
+        "https://www.tcgplayer.com/product/614373/pokemon-mcdonalds-promos-2024-jigglypuff"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|4|jigglypuff|normal"
+    },
+    {
+      "card_printing_id": "e2ce355c-f215-4df4-9a9f-a434f1ee7dbc",
+      "card_print_id": "9218afd1-f370-4698-902d-2e60140f127c",
+      "set_key": "2024sv",
+      "card_number": "5",
+      "card_name": "Hatenna",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:5:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-5",
+        "https://www.tcgplayer.com/product/614374/pokemon-mcdonalds-promos-2024-hatenna"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|5|hatenna|normal"
+    },
+    {
+      "card_printing_id": "18137a8c-6450-49dc-879d-0a925eb9ab18",
+      "card_print_id": "0a81032c-548d-438c-a091-5b2924557771",
+      "set_key": "2024sv",
+      "card_number": "6",
+      "card_name": "Dragapult",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:6:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-6",
+        "https://www.tcgplayer.com/product/614375/pokemon-mcdonalds-promos-2024-dragapult"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|6|dragapult|normal"
+    },
+    {
+      "card_printing_id": "5282c217-bce0-4464-bf4d-dc14db786d0c",
+      "card_print_id": "24b6d461-b043-4768-ae3a-1cf43442c7d6",
+      "set_key": "2024sv",
+      "card_number": "7",
+      "card_name": "Quagsire",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:7:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-7",
+        "https://www.tcgplayer.com/product/614376/pokemon-mcdonalds-promos-2024-quagsire"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|7|quagsire|normal"
+    },
+    {
+      "card_printing_id": "643c1f32-7c70-41f4-aa5e-331c03a16af6",
+      "card_print_id": "2d9108f8-f23d-49f6-8557-19553332e9eb",
+      "set_key": "2024sv",
+      "card_number": "8",
+      "card_name": "Koraidon",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:8:holo",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-8",
+        "https://www.tcgplayer.com/product/614377/pokemon-mcdonalds-promos-2024-koraidon"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|8|koraidon|holo"
+    },
+    {
+      "card_printing_id": "d5d31c60-d683-4fb4-a451-62ff36a8ea70",
+      "card_print_id": "5d51ef4f-5f17-4b8e-b9fc-2ae31f955022",
+      "set_key": "2024sv",
+      "card_number": "9",
+      "card_name": "Umbreon",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:9:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-9",
+        "https://www.tcgplayer.com/product/614378/pokemon-mcdonalds-promos-2024-umbreon"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|9|umbreon|normal"
+    },
+    {
+      "card_printing_id": "1ad22655-6716-42ed-a219-aa7434f71e5a",
+      "card_print_id": "d3e549c3-b31d-4368-b7b4-e34b28b41c1d",
+      "set_key": "2024sv",
+      "card_number": "10",
+      "card_name": "Hydreigon",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:10:holo",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-10",
+        "https://www.tcgplayer.com/product/614379/pokemon-mcdonalds-promos-2024-hydreigon"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|10|hydreigon|holo"
+    },
+    {
+      "card_printing_id": "a49a4bf7-f24c-472c-9224-3b3c3dababa0",
+      "card_print_id": "d2766899-2087-437d-81a4-8d769e4727a7",
+      "set_key": "2024sv",
+      "card_number": "11",
+      "card_name": "Roaring Moon",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:11:holo",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-11",
+        "https://www.tcgplayer.com/product/614380/pokemon-mcdonalds-promos-2024-roaring-moon"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|11|roaring moon|holo"
+    },
+    {
+      "card_printing_id": "499b5a96-8132-41ac-94a4-c003cb046c93",
+      "card_print_id": "2a8e6db0-3a82-4196-8cd8-f0528e68b9ef",
+      "set_key": "2024sv",
+      "card_number": "12",
+      "card_name": "Dragonite",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:12:holo",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-12",
+        "https://www.tcgplayer.com/product/614381/pokemon-mcdonalds-promos-2024-dragonite"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|12|dragonite|holo"
+    },
+    {
+      "card_printing_id": "2ebf1e54-7022-49c5-9641-6e299ffdeba4",
+      "card_print_id": "3faee98e-12b5-4f6c-a711-073d024155eb",
+      "set_key": "2024sv",
+      "card_number": "13",
+      "card_name": "Eevee",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:13:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-13",
+        "https://www.tcgplayer.com/product/614382/pokemon-mcdonalds-promos-2024-eevee"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|13|eevee|normal"
+    },
+    {
+      "card_printing_id": "eb3133d3-d504-411d-aae4-33873e10c982",
+      "card_print_id": "194dc27a-ce21-4a69-93de-d8c48000c128",
+      "set_key": "2024sv",
+      "card_number": "14",
+      "card_name": "Rayquaza",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:14:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-14",
+        "https://www.tcgplayer.com/product/614383/pokemon-mcdonalds-promos-2024-rayquaza"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|14|rayquaza|normal"
+    },
+    {
+      "card_printing_id": "b1f8ccee-5b8b-45cc-86e1-3fdb209dd318",
+      "card_print_id": "2c2649a8-a3b7-44cd-87ba-0c5d03667e0f",
+      "set_key": "2024sv",
+      "card_number": "15",
+      "card_name": "Drampa",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "2024sv:15:holo",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/2024sv-15",
+        "https://www.tcgplayer.com/product/614384/pokemon-mcdonalds-promos-2024-drampa"
+      ],
+      "parent_found": true,
+      "fact_key": "2024sv|15|drampa|holo"
+    },
+    {
+      "card_printing_id": "6720ec03-ca13-4c66-b9b0-f314d4873dc7",
+      "card_print_id": "6a28431f-8e78-45ee-adce-46ccde297389",
+      "set_key": "mee",
+      "card_number": "001",
+      "card_name": "Basic Grass Energy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:1:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-001",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-grass-energy-1"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|1|basic grass energy|normal"
+    },
+    {
+      "card_printing_id": "48e37111-db45-4c3e-9331-eb502378cb24",
+      "card_print_id": "6a28431f-8e78-45ee-adce-46ccde297389",
+      "set_key": "mee",
+      "card_number": "001",
+      "card_name": "Basic Grass Energy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:1:reverse",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-001",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basis-energy-grass-reverse-holo-1"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|1|basic grass energy|reverse"
+    },
+    {
+      "card_printing_id": "aa86cecf-30f5-4c16-9473-e864efb458ed",
+      "card_print_id": "fa0fa953-2e87-4dfc-8bd9-ebda84a53a12",
+      "set_key": "mee",
+      "card_number": "002",
+      "card_name": "Basic Fire Energy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:2:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-002",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-fire-energy-2"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|2|basic fire energy|normal"
+    },
+    {
+      "card_printing_id": "94d17196-ca27-416f-8ca8-a5a89fd87f1d",
+      "card_print_id": "fa0fa953-2e87-4dfc-8bd9-ebda84a53a12",
+      "set_key": "mee",
+      "card_number": "002",
+      "card_name": "Basic Fire Energy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:2:reverse",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-002",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-fire-energy-reverse-holo-2"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|2|basic fire energy|reverse"
+    },
+    {
+      "card_printing_id": "17f713ca-82c4-44cf-9a0f-541d62302cf4",
+      "card_print_id": "fd2dbb1c-728d-48de-9324-6b4e16947e67",
+      "set_key": "mee",
+      "card_number": "003",
+      "card_name": "Basic Water Energy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:3:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-003",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-water-energy-3"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|3|basic water energy|normal"
+    },
+    {
+      "card_printing_id": "abc466a7-cd70-4e16-851c-2564d06440e2",
+      "card_print_id": "fd2dbb1c-728d-48de-9324-6b4e16947e67",
+      "set_key": "mee",
+      "card_number": "003",
+      "card_name": "Basic Water Energy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:3:reverse",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-003",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-water-energy-reverse-holo-3"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|3|basic water energy|reverse"
+    },
+    {
+      "card_printing_id": "67b59885-c79f-49e6-972b-99d095920dde",
+      "card_print_id": "69ceec8e-8bbc-4faa-b70a-bac1556429b1",
+      "set_key": "mee",
+      "card_number": "004",
+      "card_name": "Basic Lightning Energy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:4:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-004",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-lightning-energy-4"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|4|basic lightning energy|normal"
+    },
+    {
+      "card_printing_id": "187f6e23-116a-412f-9bf3-8388a2b27ec8",
+      "card_print_id": "69ceec8e-8bbc-4faa-b70a-bac1556429b1",
+      "set_key": "mee",
+      "card_number": "004",
+      "card_name": "Basic Lightning Energy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:4:reverse",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-004",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-lightning-energy-reverse-holo-4"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|4|basic lightning energy|reverse"
+    },
+    {
+      "card_printing_id": "97850493-7f57-4605-9a23-e0b5fe82ada3",
+      "card_print_id": "f1a590b0-3795-4145-9d68-93dcbb73f3c6",
+      "set_key": "mee",
+      "card_number": "005",
+      "card_name": "Basic Psychic Energy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:5:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-005",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-psychic-energy-5"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|5|basic psychic energy|normal"
+    },
+    {
+      "card_printing_id": "d017fb91-098b-4a20-8e6c-5fc9f6536744",
+      "card_print_id": "f1a590b0-3795-4145-9d68-93dcbb73f3c6",
+      "set_key": "mee",
+      "card_number": "005",
+      "card_name": "Basic Psychic Energy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:5:reverse",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-005",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-psychic-energy-reverse-holo-5"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|5|basic psychic energy|reverse"
+    },
+    {
+      "card_printing_id": "4cf36974-055f-418f-ab37-90bf0caea84e",
+      "card_print_id": "f2342804-4844-409a-9b95-ddf10b09bee6",
+      "set_key": "mee",
+      "card_number": "006",
+      "card_name": "Basic Fighting Energy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:6:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-006",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-fighting-energy-6"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|6|basic fighting energy|normal"
+    },
+    {
+      "card_printing_id": "2097cb2f-68eb-4fa5-9a3d-f148e1522589",
+      "card_print_id": "f2342804-4844-409a-9b95-ddf10b09bee6",
+      "set_key": "mee",
+      "card_number": "006",
+      "card_name": "Basic Fighting Energy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:6:reverse",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-006",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-fighting-energy-reverse-holo-6"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|6|basic fighting energy|reverse"
+    },
+    {
+      "card_printing_id": "a48c132f-a789-4bd4-a926-9941168721b3",
+      "card_print_id": "c4df4bea-9e6a-46d7-8fbc-2a3293ef58d6",
+      "set_key": "mee",
+      "card_number": "007",
+      "card_name": "Basic Darkness Energy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:7:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-007",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-darkness-energy-7"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|7|basic darkness energy|normal"
+    },
+    {
+      "card_printing_id": "8cb351fd-af44-4f09-94d1-2dcbc7240a27",
+      "card_print_id": "c4df4bea-9e6a-46d7-8fbc-2a3293ef58d6",
+      "set_key": "mee",
+      "card_number": "007",
+      "card_name": "Basic Darkness Energy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:7:reverse",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-007",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-darkness-energy-reverse-holo-7"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|7|basic darkness energy|reverse"
+    },
+    {
+      "card_printing_id": "0249c75c-6e4e-4ea7-a1db-de1187f252f8",
+      "card_print_id": "fe393cc0-6c1c-4a90-922d-08ef60599c15",
+      "set_key": "mee",
+      "card_number": "008",
+      "card_name": "Basic Metal Energy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:8:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-008",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-metal-energy-8"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|8|basic metal energy|normal"
+    },
+    {
+      "card_printing_id": "8c7a8a21-857c-44fc-a649-f64990d0f7b4",
+      "card_print_id": "fe393cc0-6c1c-4a90-922d-08ef60599c15",
+      "set_key": "mee",
+      "card_number": "008",
+      "card_name": "Basic Metal Energy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mee:8:reverse",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "pricecharting_csv_mee_energy",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mee-008",
+        "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-metal-energy-reverse-holo-8"
+      ],
+      "parent_found": true,
+      "fact_key": "mee|8|basic metal energy|reverse"
+    },
+    {
+      "card_printing_id": "ef0602d5-aa38-4185-8248-de4d2f277127",
+      "card_print_id": "49d6a794-5703-4de0-aa70-c6b2438ed1c5",
+      "set_key": "mfb",
+      "card_number": "1",
+      "card_name": "Bulbasaur",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:1:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcollector_card_variants",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-1",
+        "https://www.tcgcollector.com/cards/42763/bulbasaur-my-first-battle-bulbasaur-no-001"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|1|bulbasaur|normal"
+    },
+    {
+      "card_printing_id": "f94eeee8-dcdd-4418-925b-0171f059c4b1",
+      "card_print_id": "09af1718-5dbb-4490-8a1e-a71c17584a43",
+      "set_key": "mfb",
+      "card_number": "2",
+      "card_name": "Ivysaur",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:2:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-2",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|2|ivysaur|normal"
+    },
+    {
+      "card_printing_id": "e1c26e1b-c591-4435-aeb2-dbd7a6278e97",
+      "card_print_id": "15da4897-1148-4a9f-9e18-961cb696f249",
+      "set_key": "mfb",
+      "card_number": "3",
+      "card_name": "Oddish",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:3:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-3",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|3|oddish|normal"
+    },
+    {
+      "card_printing_id": "303ef3f7-fc39-465b-b723-af303cd5af92",
+      "card_print_id": "dcf3403e-8108-45e7-b4c8-c8f3fdb8d73d",
+      "set_key": "mfb",
+      "card_number": "4",
+      "card_name": "Gloom",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:4:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-4",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|4|gloom|normal"
+    },
+    {
+      "card_printing_id": "2e85b877-83e8-4eab-8a17-776c30dc3a8f",
+      "card_print_id": "74061f6a-223a-4dd0-a6a7-f8b0f341fe26",
+      "set_key": "mfb",
+      "card_number": "5",
+      "card_name": "Exeggcute",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:5:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-5",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|5|exeggcute|normal"
+    },
+    {
+      "card_printing_id": "5e7f6407-e7f6-4843-88c9-083a5039f060",
+      "card_print_id": "ef1b1771-5477-4c48-b577-e8ded6e641d0",
+      "set_key": "mfb",
+      "card_number": "6",
+      "card_name": "Exeggutor",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:6:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-6",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|6|exeggutor|normal"
+    },
+    {
+      "card_printing_id": "9bdf0043-f89d-4239-bd66-16ac35440637",
+      "card_print_id": "7981f4c1-055a-4eff-bae1-49fb428e3fdf",
+      "set_key": "mfb",
+      "card_number": "7",
+      "card_name": "Scyther",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:7:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-7",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|7|scyther|normal"
+    },
+    {
+      "card_printing_id": "fa943075-c9a3-4621-acb8-01e1be62f84e",
+      "card_print_id": "a6ece9a6-4e33-4879-b5c8-f09274cef1a7",
+      "set_key": "mfb",
+      "card_number": "8",
+      "card_name": "Grass Energy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:8:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-8",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|8|grass energy|normal"
+    },
+    {
+      "card_printing_id": "5b7c1221-c63c-4e49-87a2-be02179d89f0",
+      "card_print_id": "1c4ae32e-714c-4aa2-8c35-7826cfe759b3",
+      "set_key": "mfb",
+      "card_number": "9",
+      "card_name": "Charmander",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:9:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-9",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|9|charmander|normal"
+    },
+    {
+      "card_printing_id": "52761b25-1af1-4fd0-a442-4eb629ca2052",
+      "card_print_id": "31c39836-62b4-4d44-a898-6ba37a148004",
+      "set_key": "mfb",
+      "card_number": "10",
+      "card_name": "Charmeleon",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:10:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-10",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|10|charmeleon|normal"
+    },
+    {
+      "card_printing_id": "3d288b21-ea3a-4cf4-a491-3dd31532f4df",
+      "card_print_id": "f62c0bf4-ab0e-451d-a149-c312dd95c51e",
+      "set_key": "mfb",
+      "card_number": "11",
+      "card_name": "Vulpix",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:11:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-11",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|11|vulpix|normal"
+    },
+    {
+      "card_printing_id": "4321b0df-274c-44d6-82ea-70aad7c16ab5",
+      "card_print_id": "db309a53-3ed8-4be0-b3f2-b096a64c2f3f",
+      "set_key": "mfb",
+      "card_number": "12",
+      "card_name": "Ninetales",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:12:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-12",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|12|ninetales|normal"
+    },
+    {
+      "card_printing_id": "7ec36739-4363-4cc9-b960-15f3c6999705",
+      "card_print_id": "eb4d8953-9d05-43b4-be64-b529162ce221",
+      "set_key": "mfb",
+      "card_number": "13",
+      "card_name": "Growlithe",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:13:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-13",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|13|growlithe|normal"
+    },
+    {
+      "card_printing_id": "b79d631b-d7a0-4977-a190-e9868119b5f1",
+      "card_print_id": "f7865250-5030-4f54-be6b-aed423100717",
+      "set_key": "mfb",
+      "card_number": "14",
+      "card_name": "Arcanine",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:14:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-14",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|14|arcanine|normal"
+    },
+    {
+      "card_printing_id": "7d5adfe8-2267-4be9-8d4a-3146bd674591",
+      "card_print_id": "37047df4-d52c-4a32-8cb3-c77f565128bc",
+      "set_key": "mfb",
+      "card_number": "15",
+      "card_name": "Magmar",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:15:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-15",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|15|magmar|normal"
+    },
+    {
+      "card_printing_id": "5c45d0d7-67a0-4822-b667-a68416572b71",
+      "card_print_id": "ece0e2a1-74d8-4b8e-bb65-ffd15cd1bbca",
+      "set_key": "mfb",
+      "card_number": "16",
+      "card_name": "Fire Energy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:16:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-16",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|16|fire energy|normal"
+    },
+    {
+      "card_printing_id": "c43f6e98-b705-48c6-b6fb-a7dc8d6ab99c",
+      "card_print_id": "f57348f5-9b22-4d47-adbd-1dfc08f8ef95",
+      "set_key": "mfb",
+      "card_number": "17",
+      "card_name": "Pikachu",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:17:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-17",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|17|pikachu|normal"
+    },
+    {
+      "card_printing_id": "aac30c7e-6912-4078-aed8-382838922572",
+      "card_print_id": "e9a443af-8d01-4369-8395-b25d6de7ea75",
+      "set_key": "mfb",
+      "card_number": "18",
+      "card_name": "Raichu",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:18:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-18",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|18|raichu|normal"
+    },
+    {
+      "card_printing_id": "a687be9f-fa7c-4d99-8d1f-5cee9bad2f92",
+      "card_print_id": "6b496428-8d58-48a8-ba35-a89db7bb4d1a",
+      "set_key": "mfb",
+      "card_number": "19",
+      "card_name": "Magnemite",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:19:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-19",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|19|magnemite|normal"
+    },
+    {
+      "card_printing_id": "a8d9858e-5b68-475f-8090-07acb0e55906",
+      "card_print_id": "4457f5d7-c979-493f-8a32-6790a91fb1d5",
+      "set_key": "mfb",
+      "card_number": "20",
+      "card_name": "Magneton",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:20:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-20",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|20|magneton|normal"
+    },
+    {
+      "card_printing_id": "59f73167-8767-4af7-917a-edf3f240af09",
+      "card_print_id": "454211cf-bd3f-495a-973c-ef4ac787b7d5",
+      "set_key": "mfb",
+      "card_number": "21",
+      "card_name": "Voltorb",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:21:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-21",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|21|voltorb|normal"
+    },
+    {
+      "card_printing_id": "1f04a6d1-b34f-4fb3-9d2b-853c30f58a60",
+      "card_print_id": "87796913-485e-4003-ad35-c47ec7490d00",
+      "set_key": "mfb",
+      "card_number": "22",
+      "card_name": "Electrode",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:22:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-22",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|22|electrode|normal"
+    },
+    {
+      "card_printing_id": "2db13bfd-df62-47b6-9b28-76d3dcb1c00d",
+      "card_print_id": "c76cb0ce-6fde-47f4-a136-c54db8cf59ab",
+      "set_key": "mfb",
+      "card_number": "23",
+      "card_name": "Electabuzz",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:23:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-23",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|23|electabuzz|normal"
+    },
+    {
+      "card_printing_id": "b90cf0a0-fead-4b8c-89c6-a0ddf69a95b9",
+      "card_print_id": "648e1d4b-8564-43eb-9596-71fbf48c017b",
+      "set_key": "mfb",
+      "card_number": "24",
+      "card_name": "Lightning Energy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:24:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-24",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|24|lightning energy|normal"
+    },
+    {
+      "card_printing_id": "321c93f7-c450-475c-9089-d104c10f7e47",
+      "card_print_id": "49305424-a284-4bd5-a0af-3fd355db549b",
+      "set_key": "mfb",
+      "card_number": "25",
+      "card_name": "Squirtle",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:25:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-25",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|25|squirtle|normal"
+    },
+    {
+      "card_printing_id": "b989899c-7989-42f1-afde-e4beabc74dc3",
+      "card_print_id": "f63065d2-d77c-494d-9831-cf594600f7ae",
+      "set_key": "mfb",
+      "card_number": "26",
+      "card_name": "Wartortle",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:26:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-26",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|26|wartortle|normal"
+    },
+    {
+      "card_printing_id": "12eda396-59c0-4662-8d39-d9044bc667ac",
+      "card_print_id": "9e71eb08-b0c5-4e15-a581-f97f31120bf0",
+      "set_key": "mfb",
+      "card_number": "27",
+      "card_name": "Poliwag",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:27:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-27",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|27|poliwag|normal"
+    },
+    {
+      "card_printing_id": "83790ad1-9ea8-4222-bed9-87b9f2104587",
+      "card_print_id": "d0c72906-4ded-475b-8319-c9a8cd7dbdd8",
+      "set_key": "mfb",
+      "card_number": "28",
+      "card_name": "Poliwhirl",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:28:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-28",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|28|poliwhirl|normal"
+    },
+    {
+      "card_printing_id": "59564dbf-c2bb-4095-a384-22ba82932b54",
+      "card_print_id": "0e3a69cb-81e6-4f3f-97e8-da5c4bf063f9",
+      "set_key": "mfb",
+      "card_number": "29",
+      "card_name": "Magikarp",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:29:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-29",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|29|magikarp|normal"
+    },
+    {
+      "card_printing_id": "acf2edbe-d92d-498d-a128-00576bbecc71",
+      "card_print_id": "b894bb8d-1ad3-4824-a8ca-0900941ec7cc",
+      "set_key": "mfb",
+      "card_number": "30",
+      "card_name": "Gyarados",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:30:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-30",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|30|gyarados|normal"
+    },
+    {
+      "card_printing_id": "8a09e838-d6f1-4e36-a64d-84de74abffe4",
+      "card_print_id": "cd03d17c-b61f-4d31-b52a-27ff45bcd2de",
+      "set_key": "mfb",
+      "card_number": "31",
+      "card_name": "Lapras",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:31:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-31",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|31|lapras|normal"
+    },
+    {
+      "card_printing_id": "a073d963-b26b-44cd-b0f9-e72918dd9063",
+      "card_print_id": "dece707c-a7c1-49b3-ac3b-51959227b4b5",
+      "set_key": "mfb",
+      "card_number": "32",
+      "card_name": "Water Energy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:32:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-32",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|32|water energy|normal"
+    },
+    {
+      "card_printing_id": "673d0e32-6748-4f2c-8de6-f76a3f3698d5",
+      "card_print_id": "3184e491-41eb-466c-a456-dcea8ff79403",
+      "set_key": "mfb",
+      "card_number": "33",
+      "card_name": "Potion",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:33:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-33",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|33|potion|normal"
+    },
+    {
+      "card_printing_id": "3df8a13f-4fb7-45db-a8b7-d174a4895f6a",
+      "card_print_id": "056c0faf-05d0-455b-a576-bb1089414821",
+      "set_key": "mfb",
+      "card_number": "34",
+      "card_name": "Switch",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "mfb:34:normal",
+      "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "tcgstats_mfb_price_guide"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mfb-34",
+        "https://tcgstats.com/pokemon/expansions/my-first-battle"
+      ],
+      "parent_found": true,
+      "fact_key": "mfb|34|switch|normal"
+    }
+  ],
+  "planned_external_mapping_rows": [
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-1",
+      "card_print_id": "4091ae25-3624-4f56-a455-7bd3d4beb154",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-2",
+      "card_print_id": "451748ac-012e-4d67-9912-d04534a05817",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-3",
+      "card_print_id": "3a769557-0102-4fd2-b79e-8eef05b52e60",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-4",
+      "card_print_id": "98500b36-36d3-470f-9d15-099865980b07",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-5",
+      "card_print_id": "e22e07fa-71e2-46aa-9951-829e339f8763",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-6",
+      "card_print_id": "ee8c68fc-626c-42db-b7ef-fc869fe07ae8",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-7",
+      "card_print_id": "1dc8d631-789a-4857-a1fd-d72efea4d614",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-8",
+      "card_print_id": "31b28128-2bba-420a-acee-4962caf0514c",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-9",
+      "card_print_id": "c9372355-e4ff-46a7-8172-94fe7d8a28be",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-10",
+      "card_print_id": "6e7a29e1-3b5b-4c27-86b3-1e63c99f576a",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-11",
+      "card_print_id": "fae05233-f9c5-4860-aa86-49a942613ff5",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-12",
+      "card_print_id": "3ed79a65-c672-451a-afd7-e47a68ae2c53",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-13",
+      "card_print_id": "2dd83d5b-2476-4b63-9fbe-c849c2d56aa7",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-14",
+      "card_print_id": "1df85310-35da-4070-a3bd-a01a96d39e1c",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2023sv-15",
+      "card_print_id": "fb3bc199-9149-402e-8342-265eceecf120",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-1",
+      "card_print_id": "43e51937-5821-449d-adf5-7cfc30d135b9",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-2",
+      "card_print_id": "2ff72f10-b4cd-4e26-998c-87b1ca181028",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-3",
+      "card_print_id": "afa60d30-57c3-44ec-9964-fdf2a2bd7690",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-4",
+      "card_print_id": "7fe87152-ff37-4a8b-8b56-1338ca39751b",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-5",
+      "card_print_id": "9218afd1-f370-4698-902d-2e60140f127c",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-6",
+      "card_print_id": "0a81032c-548d-438c-a091-5b2924557771",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-7",
+      "card_print_id": "24b6d461-b043-4768-ae3a-1cf43442c7d6",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-8",
+      "card_print_id": "2d9108f8-f23d-49f6-8557-19553332e9eb",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-9",
+      "card_print_id": "5d51ef4f-5f17-4b8e-b9fc-2ae31f955022",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-10",
+      "card_print_id": "d3e549c3-b31d-4368-b7b4-e34b28b41c1d",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-11",
+      "card_print_id": "d2766899-2087-437d-81a4-8d769e4727a7",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-12",
+      "card_print_id": "2a8e6db0-3a82-4196-8cd8-f0528e68b9ef",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-13",
+      "card_print_id": "3faee98e-12b5-4f6c-a711-073d024155eb",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-14",
+      "card_print_id": "194dc27a-ce21-4a69-93de-d8c48000c128",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "2024sv-15",
+      "card_print_id": "2c2649a8-a3b7-44cd-87ba-0c5d03667e0f",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mee-001",
+      "card_print_id": "6a28431f-8e78-45ee-adce-46ccde297389",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mee",
+        "set_name": "Mega Evolution Energy"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mee-002",
+      "card_print_id": "fa0fa953-2e87-4dfc-8bd9-ebda84a53a12",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mee",
+        "set_name": "Mega Evolution Energy"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mee-003",
+      "card_print_id": "fd2dbb1c-728d-48de-9324-6b4e16947e67",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mee",
+        "set_name": "Mega Evolution Energy"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mee-004",
+      "card_print_id": "69ceec8e-8bbc-4faa-b70a-bac1556429b1",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mee",
+        "set_name": "Mega Evolution Energy"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mee-005",
+      "card_print_id": "f1a590b0-3795-4145-9d68-93dcbb73f3c6",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mee",
+        "set_name": "Mega Evolution Energy"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mee-006",
+      "card_print_id": "f2342804-4844-409a-9b95-ddf10b09bee6",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mee",
+        "set_name": "Mega Evolution Energy"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mee-007",
+      "card_print_id": "c4df4bea-9e6a-46d7-8fbc-2a3293ef58d6",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mee",
+        "set_name": "Mega Evolution Energy"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mee-008",
+      "card_print_id": "fe393cc0-6c1c-4a90-922d-08ef60599c15",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mee",
+        "set_name": "Mega Evolution Energy"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-1",
+      "card_print_id": "49d6a794-5703-4de0-aa70-c6b2438ed1c5",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-2",
+      "card_print_id": "09af1718-5dbb-4490-8a1e-a71c17584a43",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-3",
+      "card_print_id": "15da4897-1148-4a9f-9e18-961cb696f249",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-4",
+      "card_print_id": "dcf3403e-8108-45e7-b4c8-c8f3fdb8d73d",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-5",
+      "card_print_id": "74061f6a-223a-4dd0-a6a7-f8b0f341fe26",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-6",
+      "card_print_id": "ef1b1771-5477-4c48-b577-e8ded6e641d0",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-7",
+      "card_print_id": "7981f4c1-055a-4eff-bae1-49fb428e3fdf",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-8",
+      "card_print_id": "a6ece9a6-4e33-4879-b5c8-f09274cef1a7",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-9",
+      "card_print_id": "1c4ae32e-714c-4aa2-8c35-7826cfe759b3",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-10",
+      "card_print_id": "31c39836-62b4-4d44-a898-6ba37a148004",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-11",
+      "card_print_id": "f62c0bf4-ab0e-451d-a149-c312dd95c51e",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-12",
+      "card_print_id": "db309a53-3ed8-4be0-b3f2-b096a64c2f3f",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-13",
+      "card_print_id": "eb4d8953-9d05-43b4-be64-b529162ce221",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-14",
+      "card_print_id": "f7865250-5030-4f54-be6b-aed423100717",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-15",
+      "card_print_id": "37047df4-d52c-4a32-8cb3-c77f565128bc",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-16",
+      "card_print_id": "ece0e2a1-74d8-4b8e-bb65-ffd15cd1bbca",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-17",
+      "card_print_id": "f57348f5-9b22-4d47-adbd-1dfc08f8ef95",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-18",
+      "card_print_id": "e9a443af-8d01-4369-8395-b25d6de7ea75",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-19",
+      "card_print_id": "6b496428-8d58-48a8-ba35-a89db7bb4d1a",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-20",
+      "card_print_id": "4457f5d7-c979-493f-8a32-6790a91fb1d5",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-21",
+      "card_print_id": "454211cf-bd3f-495a-973c-ef4ac787b7d5",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-22",
+      "card_print_id": "87796913-485e-4003-ad35-c47ec7490d00",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-23",
+      "card_print_id": "c76cb0ce-6fde-47f4-a136-c54db8cf59ab",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-24",
+      "card_print_id": "648e1d4b-8564-43eb-9596-71fbf48c017b",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-25",
+      "card_print_id": "49305424-a284-4bd5-a0af-3fd355db549b",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-26",
+      "card_print_id": "f63065d2-d77c-494d-9831-cf594600f7ae",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-27",
+      "card_print_id": "9e71eb08-b0c5-4e15-a581-f97f31120bf0",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-28",
+      "card_print_id": "d0c72906-4ded-475b-8319-c9a8cd7dbdd8",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-29",
+      "card_print_id": "0e3a69cb-81e6-4f3f-97e8-da5c4bf063f9",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-30",
+      "card_print_id": "b894bb8d-1ad3-4824-a8ca-0900941ec7cc",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-31",
+      "card_print_id": "cd03d17c-b61f-4d31-b52a-27ff45bcd2de",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-32",
+      "card_print_id": "dece707c-a7c1-49b3-ac3b-51959227b4b5",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-33",
+      "card_print_id": "3184e491-41eb-466c-a456-dcea8ff79403",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    },
+    {
+      "source": "tcgdex",
+      "external_id": "mfb-34",
+      "card_print_id": "056c0faf-05d0-455b-a576-bb1089414821",
+      "meta": {
+        "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+        "set_key": "mfb",
+        "set_name": "My First Battle"
+      }
+    }
+  ],
+  "rollback_strategy": {
+    "artifact_is_rollback_only": true,
+    "durable_apply_not_authorized": true,
+    "future_real_apply_rollback_selector": "Use planned UUIDs from this artifact for inserted card_printings, external_mappings, card_prints, and sets in reverse dependency order."
+  },
+  "stop_findings": [],
+  "stop_rules": [
+    "Do not execute this SQL as a real apply.",
+    "Do not add COMMIT to this SQL without a separate real-apply approval gate.",
+    "Stop if fresh snapshot contains any existing set, parent, or child rows for the selected sets.",
+    "Stop if dry-run execution reports any collision or count mismatch.",
+    "No migrations, deletes, merges, unsupported cleanup, or identity modifier work are in scope."
+  ]
+}

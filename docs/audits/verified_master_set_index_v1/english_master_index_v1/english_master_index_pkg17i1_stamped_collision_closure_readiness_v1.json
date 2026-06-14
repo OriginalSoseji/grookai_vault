@@ -1,0 +1,402 @@
+{
+  "generated_at": "2026-06-12T21:39:13.116Z",
+  "version": "english_master_index_pkg17i1_stamped_collision_closure_readiness_v1",
+  "package_id": "PKG-17I1-STAMPED-COLLISION-CLOSURE-READINESS",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_read_error": null,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "write_ready_now": 0,
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17a_stamped_remaining_action_queue_v1.json",
+  "fingerprint_sha256": "57006019f83da5ae14b4006746c9520af2cd8d890bf74e4232dd33624c3bf0d6",
+  "summary": {
+    "target_collision_rows": 11,
+    "live_rows_returned": 11,
+    "closed_existing_parent_rows": 11,
+    "blocked_or_review_rows": 0,
+    "forbidden_stamped_child_rows": 0,
+    "by_closure_status": {
+      "closed_existing_stamped_parent_has_identity_and_active_child_finish": 11
+    },
+    "by_set": {
+      "bw5": 2,
+      "sm6": 2,
+      "xy1": 2,
+      "dp1": 1,
+      "sm1": 1,
+      "sm5": 1,
+      "xy10": 1,
+      "xy8": 1
+    }
+  },
+  "rows": [
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "37",
+      "card_name": "Jolteon",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "card_print_id": "ff0dbd84-07a6-4d0f-a628-e873d343f481",
+      "printed_identity_modifier": null,
+      "active_identity_count": 1,
+      "child_count": 1,
+      "child_printings": [
+        {
+          "id": "d514cdc7-330b-4df3-9f1e-f55532a3b4de",
+          "created_by": "pkg16f_same_finish_split_real_apply_v1",
+          "finish_key": "reverse",
+          "is_provisional": false
+        }
+      ],
+      "active_external_mapping_count": 0,
+      "vault_instance_parent_count": 0,
+      "pricing_watch_count": 0,
+      "closure_status": "closed_existing_stamped_parent_has_identity_and_active_child_finish",
+      "child_finishes": [
+        "reverse"
+      ],
+      "active_child_finishes": [
+        "reverse"
+      ],
+      "blockers": [],
+      "write_ready_now": 0,
+      "recommended_next_action": "Remove from future write packages after global audit refresh; DB already has a clean stamped parent and active child finish."
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "84",
+      "card_name": "Eevee",
+      "variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "card_print_id": "85ea4524-3f07-494b-986c-290dd1515685",
+      "printed_identity_modifier": null,
+      "active_identity_count": 1,
+      "child_count": 1,
+      "child_printings": [
+        {
+          "id": "dad0ee99-ab6b-452c-892e-1abdbde3cf9a",
+          "created_by": "pkg16f_same_finish_split_real_apply_v1",
+          "finish_key": "reverse",
+          "is_provisional": false
+        }
+      ],
+      "active_external_mapping_count": 0,
+      "vault_instance_parent_count": 0,
+      "pricing_watch_count": 0,
+      "closure_status": "closed_existing_stamped_parent_has_identity_and_active_child_finish",
+      "child_finishes": [
+        "reverse"
+      ],
+      "active_child_finishes": [
+        "reverse"
+      ],
+      "blockers": [],
+      "write_ready_now": 0,
+      "recommended_next_action": "Remove from future write packages after global audit refresh; DB already has a clean stamped parent and active child finish."
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "98",
+      "card_name": "Shinx",
+      "variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "card_print_id": "542686fb-9987-4003-b83b-b1eda3d75c73",
+      "printed_identity_modifier": null,
+      "active_identity_count": 1,
+      "child_count": 1,
+      "child_printings": [
+        {
+          "id": "79b0fe77-d3a7-4af0-babd-f5821462312f",
+          "created_by": "pkg15p_stamped_second_wave_real_apply_v1",
+          "finish_key": "normal",
+          "is_provisional": false
+        }
+      ],
+      "active_external_mapping_count": 0,
+      "vault_instance_parent_count": 0,
+      "pricing_watch_count": 0,
+      "closure_status": "closed_existing_stamped_parent_has_identity_and_active_child_finish",
+      "child_finishes": [
+        "normal"
+      ],
+      "active_child_finishes": [
+        "normal"
+      ],
+      "blockers": [],
+      "write_ready_now": 0,
+      "recommended_next_action": "Remove from future write packages after global audit refresh; DB already has a clean stamped parent and active child finish."
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "128",
+      "card_name": "Professor Kukui",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "card_print_id": "378cd3c8-dc1d-4206-b528-9cb79fbce6e6",
+      "printed_identity_modifier": null,
+      "active_identity_count": 1,
+      "child_count": 1,
+      "child_printings": [
+        {
+          "id": "574619b0-8a03-4320-ac41-fcfdf2b9507c",
+          "created_by": "pkg16f_same_finish_split_real_apply_v1",
+          "finish_key": "reverse",
+          "is_provisional": false
+        }
+      ],
+      "active_external_mapping_count": 0,
+      "vault_instance_parent_count": 0,
+      "pricing_watch_count": 0,
+      "closure_status": "closed_existing_stamped_parent_has_identity_and_active_child_finish",
+      "child_finishes": [
+        "reverse"
+      ],
+      "active_child_finishes": [
+        "reverse"
+      ],
+      "blockers": [],
+      "write_ready_now": 0,
+      "recommended_next_action": "Remove from future write packages after global audit refresh; DB already has a clean stamped parent and active child finish."
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "119",
+      "card_name": "Cynthia",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "card_print_id": "1d9439c0-0bf1-4d5c-a8d1-77c69c22dd49",
+      "printed_identity_modifier": null,
+      "active_identity_count": 1,
+      "child_count": 1,
+      "child_printings": [
+        {
+          "id": "8fa84c77-5a71-4f11-9418-f748baaca2e5",
+          "created_by": "pkg15p_stamped_second_wave_real_apply_v1",
+          "finish_key": "reverse",
+          "is_provisional": false
+        }
+      ],
+      "active_external_mapping_count": 0,
+      "vault_instance_parent_count": 0,
+      "pricing_watch_count": 0,
+      "closure_status": "closed_existing_stamped_parent_has_identity_and_active_child_finish",
+      "child_finishes": [
+        "reverse"
+      ],
+      "active_child_finishes": [
+        "reverse"
+      ],
+      "blockers": [],
+      "write_ready_now": 0,
+      "recommended_next_action": "Remove from future write packages after global audit refresh; DB already has a clean stamped parent and active child finish."
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "102",
+      "card_name": "Beast Ring",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "card_print_id": "664719b5-9898-40f7-bc6b-538711056228",
+      "printed_identity_modifier": null,
+      "active_identity_count": 1,
+      "child_count": 1,
+      "child_printings": [
+        {
+          "id": "7efb8041-4c5e-4055-abeb-e6e3bd5e0dec",
+          "created_by": "pkg15o_stamped_review_ready_real_apply_v1",
+          "finish_key": "reverse",
+          "is_provisional": false
+        }
+      ],
+      "active_external_mapping_count": 0,
+      "vault_instance_parent_count": 0,
+      "pricing_watch_count": 0,
+      "closure_status": "closed_existing_stamped_parent_has_identity_and_active_child_finish",
+      "child_finishes": [
+        "reverse"
+      ],
+      "active_child_finishes": [
+        "reverse"
+      ],
+      "blockers": [],
+      "write_ready_now": 0,
+      "recommended_next_action": "Remove from future write packages after global audit refresh; DB already has a clean stamped parent and active child finish."
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "105",
+      "card_name": "Diantha",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "card_print_id": "ae2f2edf-c696-4acd-bf6b-ea056b7212b2",
+      "printed_identity_modifier": null,
+      "active_identity_count": 1,
+      "child_count": 1,
+      "child_printings": [
+        {
+          "id": "3828a17f-cc09-4401-98d9-4dc180a7f733",
+          "created_by": "pkg15o_stamped_review_ready_real_apply_v1",
+          "finish_key": "reverse",
+          "is_provisional": false
+        }
+      ],
+      "active_external_mapping_count": 0,
+      "vault_instance_parent_count": 0,
+      "pricing_watch_count": 0,
+      "closure_status": "closed_existing_stamped_parent_has_identity_and_active_child_finish",
+      "child_finishes": [
+        "reverse"
+      ],
+      "active_child_finishes": [
+        "reverse"
+      ],
+      "blockers": [],
+      "write_ready_now": 0,
+      "recommended_next_action": "Remove from future write packages after global audit refresh; DB already has a clean stamped parent and active child finish."
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "83",
+      "card_name": "Honedge",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "card_print_id": "ac3dc158-0251-4836-a2d8-fdb17abaafb9",
+      "printed_identity_modifier": null,
+      "active_identity_count": 1,
+      "child_count": 1,
+      "child_printings": [
+        {
+          "id": "ca070de2-f19a-442c-b2bf-f82027acc77b",
+          "created_by": "pkg15o_stamped_review_ready_real_apply_v1",
+          "finish_key": "reverse",
+          "is_provisional": false
+        }
+      ],
+      "active_external_mapping_count": 0,
+      "vault_instance_parent_count": 0,
+      "pricing_watch_count": 0,
+      "closure_status": "closed_existing_stamped_parent_has_identity_and_active_child_finish",
+      "child_finishes": [
+        "reverse"
+      ],
+      "active_child_finishes": [
+        "reverse"
+      ],
+      "blockers": [],
+      "write_ready_now": 0,
+      "recommended_next_action": "Remove from future write packages after global audit refresh; DB already has a clean stamped parent and active child finish."
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "84",
+      "card_name": "Doublade",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "card_print_id": "9d665bc1-f4cf-4e17-8ae8-99b8ced25165",
+      "printed_identity_modifier": null,
+      "active_identity_count": 1,
+      "child_count": 1,
+      "child_printings": [
+        {
+          "id": "02d7e873-2550-4d7b-be98-bd7d10265994",
+          "created_by": "pkg16f_same_finish_split_real_apply_v1",
+          "finish_key": "reverse",
+          "is_provisional": false
+        }
+      ],
+      "active_external_mapping_count": 0,
+      "vault_instance_parent_count": 0,
+      "pricing_watch_count": 0,
+      "closure_status": "closed_existing_stamped_parent_has_identity_and_active_child_finish",
+      "child_finishes": [
+        "reverse"
+      ],
+      "active_child_finishes": [
+        "reverse"
+      ],
+      "blockers": [],
+      "write_ready_now": 0,
+      "recommended_next_action": "Remove from future write packages after global audit refresh; DB already has a clean stamped parent and active child finish."
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "card_number": "94",
+      "card_name": "Chaos Tower",
+      "variant_key": "national_championships_stamp",
+      "stamp_label": "National Championships Stamp",
+      "card_print_id": "5fb9f9b8-d2c3-4663-af91-dcc01a411bee",
+      "printed_identity_modifier": null,
+      "active_identity_count": 1,
+      "child_count": 1,
+      "child_printings": [
+        {
+          "id": "536daad5-0b36-4c3d-9d9a-648195ee4b98",
+          "created_by": "pkg15p_stamped_second_wave_real_apply_v1",
+          "finish_key": "reverse",
+          "is_provisional": false
+        }
+      ],
+      "active_external_mapping_count": 0,
+      "vault_instance_parent_count": 0,
+      "pricing_watch_count": 0,
+      "closure_status": "closed_existing_stamped_parent_has_identity_and_active_child_finish",
+      "child_finishes": [
+        "reverse"
+      ],
+      "active_child_finishes": [
+        "reverse"
+      ],
+      "blockers": [],
+      "write_ready_now": 0,
+      "recommended_next_action": "Remove from future write packages after global audit refresh; DB already has a clean stamped parent and active child finish."
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "145",
+      "card_name": "Parallel City",
+      "variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "card_print_id": "088833de-b996-464b-85a2-f0d8874e0fa4",
+      "printed_identity_modifier": null,
+      "active_identity_count": 1,
+      "child_count": 1,
+      "child_printings": [
+        {
+          "id": "0ea89aed-b1cd-47f4-9af5-2b3843e62f7c",
+          "created_by": "pkg15p_stamped_second_wave_real_apply_v1",
+          "finish_key": "reverse",
+          "is_provisional": false
+        }
+      ],
+      "active_external_mapping_count": 0,
+      "vault_instance_parent_count": 0,
+      "pricing_watch_count": 0,
+      "closure_status": "closed_existing_stamped_parent_has_identity_and_active_child_finish",
+      "child_finishes": [
+        "reverse"
+      ],
+      "active_child_finishes": [
+        "reverse"
+      ],
+      "blockers": [],
+      "write_ready_now": 0,
+      "recommended_next_action": "Remove from future write packages after global audit refresh; DB already has a clean stamped parent and active child finish."
+    }
+  ]
+}

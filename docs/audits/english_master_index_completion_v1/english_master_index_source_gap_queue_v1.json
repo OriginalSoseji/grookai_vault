@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T19:44:32.664Z",
+  "generated_at": "2026-06-13T00:10:54.256Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -9,9 +9,113 @@
   "grookai_reconciliation_performed": false,
   "version": "english_master_index_source_gap_queue_v1",
   "summary": {
-    "total_queue_items": 0,
-    "by_lane": {},
-    "top_sets": {}
+    "total_queue_items": 10,
+    "by_lane": {
+      "finish_human_checklist_evidence": 10
+    },
+    "top_sets": {
+      "sv03": 18,
+      "swsh7": 4,
+      "swsh10": 3,
+      "swsh6": 3,
+      "sv05": 1,
+      "sv10": 1,
+      "swsh11": 1,
+      "swsh2": 1,
+      "swsh5": 1,
+      "swsh9": 1
+    }
   },
-  "queue": []
+  "queue": [
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "gap_count": 18,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "gap_count": 4,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "gap_count": 3,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "gap_count": 3,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    }
+  ]
 }

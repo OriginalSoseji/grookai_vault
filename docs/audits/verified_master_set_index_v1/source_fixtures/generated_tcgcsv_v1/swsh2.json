@@ -6,8 +6,8 @@
   "source_status": "available_generated",
   "set_key": "swsh2",
   "set_name": "Rebel Clash",
-  "retrieved_at": "2026-06-08T12:46:55.588Z",
-  "raw_snapshot_ref": "generated_fixture:tcgcsv:swsh2:2026-06-08T12:46:55.588Z",
+  "retrieved_at": "2026-06-12T04:47:46.693Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv:swsh2:2026-06-12T04:47:46.693Z",
   "generation_note": "Generated from TCGCSV TCGplayer catalog product and price subtype data. Exact finish evidence only.",
   "records": [
     {
@@ -23,7 +23,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 213255 price subtype Holofoil",
       "language": "en",
-      "retrieved_at": "2026-06-08T12:46:55.588Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:2626:213255:Holofoil",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -40,7 +40,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 213255 price subtype Reverse Holofoil",
       "language": "en",
-      "retrieved_at": "2026-06-08T12:46:55.588Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:2626:213255:Reverse Holofoil",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     },
@@ -57,7 +57,7 @@
       "evidence_type": "finish_presence",
       "evidence_label": "TCGCSV/TCGplayer product 213257 price subtype Holofoil",
       "language": "en",
-      "retrieved_at": "2026-06-08T12:46:55.588Z",
+      "retrieved_at": "2026-06-12T04:47:46.693Z",
       "raw_snapshot_ref": "tcgcsv:2626:213257:Holofoil",
       "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
     }

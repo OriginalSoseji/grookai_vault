@@ -1,0 +1,374 @@
+{
+  "generated_at": "2026-06-10T15:49:05.844Z",
+  "version": "english_master_index_pkg08k_suffix_collision_split_strategy_v1",
+  "package_id": "PKG-08K-SUFFIX-COLLISION-SPLIT-STRATEGY",
+  "source_adjudication_package_id": "PKG-08H-EXTERNAL-MAPPING-COLLISION-ADJUDICATION",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "live_read": {
+    "available": true,
+    "reason": null,
+    "rows_read": 3
+  },
+  "summary": {
+    "source_rows": 3,
+    "split_parent_required_rows": 3,
+    "by_split_readiness": {
+      "blocked_split_parent_required": 3
+    },
+    "rows_with_unsupported_child_cleanup_deferred": 3
+  },
+  "rows": [
+    {
+      "split_readiness": "blocked_split_parent_required",
+      "recommended_next_action": "Do not update the existing parent number. Existing live parent must remain available for the base card while a suffix parent is introduced separately.",
+      "future_write_shape_if_approved_later": {
+        "create_suffix_parent": true,
+        "transfer_tcgdex_mapping_to_suffix_parent": true,
+        "insert_suffix_child_printings": [
+          "normal"
+        ],
+        "preserve_existing_parent_as_base_number": true,
+        "insert_missing_base_child_printings": [],
+        "unsupported_child_cleanup_deferred": [
+          "holo"
+        ],
+        "delete_existing_parent": false,
+        "global_apply": false
+      },
+      "set_key": "xy7",
+      "set_name": "Ancient Origins",
+      "card_name": "Hex Maniac",
+      "base_card_number": "75",
+      "suffix_card_number": "75a",
+      "tcgdex_external_id": "xy7-75a",
+      "finish_key_from_gap": "normal",
+      "live_parent": {
+        "card_print_id": "435e4087-3f0b-4bb4-b788-c53a9212f15f",
+        "set_id": "e5a95b51-a6b4-4c2e-8fda-88afecf2cff7",
+        "set_code": "xy7",
+        "number": "75",
+        "number_plain": "75",
+        "name": "Hex Maniac",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-xy-ancient-origins-hex-maniac-uncommon",
+            "external_mapping_id": "91731"
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "xy7-75",
+            "external_mapping_id": "61223"
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "xy7-75a",
+            "external_mapping_id": "42282"
+          },
+          {
+            "source": "tcgplayer",
+            "external_id": "101497",
+            "external_mapping_id": "63352"
+          }
+        ],
+        "child_printings": [
+          {
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "provenance_ref": "xy7-75a",
+            "card_printing_id": "7b3905c5-2da2-42bd-b3e2-657f3405419d",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "provenance_ref": "xy7-75a",
+            "card_printing_id": "95cb48ee-68a9-409d-afb6-be993869f894",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "provenance_ref": "xy7-75a",
+            "card_printing_id": "3ee1d478-edd6-406b-ae59-a9b8619a843e",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0
+      },
+      "master_truth": {
+        "base_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "suffix_finishes": [
+          "normal"
+        ],
+        "both_base_and_suffix_master_verified": true
+      },
+      "live_vs_master": {
+        "live_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "overlapping_finishes": [
+          "normal"
+        ],
+        "unsupported_on_merged_parent": [
+          "holo"
+        ],
+        "finishes_needed_on_base": [],
+        "finishes_needed_on_suffix": [
+          "normal"
+        ]
+      },
+      "sources": [
+        "pricecharting_csv_base_product",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/xy7-75a",
+        "https://www.pricecharting.com/game/pokemon-ancient-origins/hex-maniac-75a"
+      ]
+    },
+    {
+      "split_readiness": "blocked_split_parent_required",
+      "recommended_next_action": "Do not update the existing parent number. Existing live parent must remain available for the base card while a suffix parent is introduced separately.",
+      "future_write_shape_if_approved_later": {
+        "create_suffix_parent": true,
+        "transfer_tcgdex_mapping_to_suffix_parent": true,
+        "insert_suffix_child_printings": [
+          "normal"
+        ],
+        "preserve_existing_parent_as_base_number": true,
+        "insert_missing_base_child_printings": [],
+        "unsupported_child_cleanup_deferred": [
+          "holo"
+        ],
+        "delete_existing_parent": false,
+        "global_apply": false
+      },
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_name": "Team Flare Grunt",
+      "base_card_number": "73",
+      "suffix_card_number": "73a",
+      "tcgdex_external_id": "g1-73a",
+      "finish_key_from_gap": "normal",
+      "live_parent": {
+        "card_print_id": "28dd8192-92d1-446e-8979-7d6b47083022",
+        "set_id": "12c27a1b-fd89-46d8-8ea9-a93014c3b439",
+        "set_code": "g1",
+        "number": "73",
+        "number_plain": "73",
+        "name": "Team Flare Grunt",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-generations-team-flare-grunt-uncommon",
+            "external_mapping_id": "91744"
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "g1-73",
+            "external_mapping_id": "61299"
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "g1-73a",
+            "external_mapping_id": "34247"
+          },
+          {
+            "source": "tcgplayer",
+            "external_id": "113731",
+            "external_mapping_id": "63339"
+          }
+        ],
+        "child_printings": [
+          {
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "provenance_ref": "g1-73a",
+            "card_printing_id": "31909ba0-0e72-4ad2-b9ee-1e499811c578",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "provenance_ref": "g1-73a",
+            "card_printing_id": "734a24c4-1dc4-4e29-8dcb-263ed60e3d82",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "provenance_ref": "g1-73a",
+            "card_printing_id": "1f97597b-6d07-4065-a5a7-e7b311c6fcf2",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0
+      },
+      "master_truth": {
+        "base_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "suffix_finishes": [
+          "normal"
+        ],
+        "both_base_and_suffix_master_verified": true
+      },
+      "live_vs_master": {
+        "live_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "overlapping_finishes": [
+          "normal"
+        ],
+        "unsupported_on_merged_parent": [
+          "holo"
+        ],
+        "finishes_needed_on_base": [],
+        "finishes_needed_on_suffix": [
+          "normal"
+        ]
+      },
+      "sources": [
+        "pricecharting_csv_base_product",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/g1-73a",
+        "https://www.pricecharting.com/game/pokemon-generations/team-flare-grunt-73a"
+      ]
+    },
+    {
+      "split_readiness": "blocked_split_parent_required",
+      "recommended_next_action": "Do not update the existing parent number. Existing live parent must remain available for the base card while a suffix parent is introduced separately.",
+      "future_write_shape_if_approved_later": {
+        "create_suffix_parent": true,
+        "transfer_tcgdex_mapping_to_suffix_parent": true,
+        "insert_suffix_child_printings": [
+          "normal"
+        ],
+        "preserve_existing_parent_as_base_number": true,
+        "insert_missing_base_child_printings": [],
+        "unsupported_child_cleanup_deferred": [
+          "reverse"
+        ],
+        "delete_existing_parent": false,
+        "global_apply": false
+      },
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_name": "Guzzlord-GX",
+      "base_card_number": "63",
+      "suffix_card_number": "63a",
+      "tcgdex_external_id": "sm4-63a",
+      "finish_key_from_gap": "normal",
+      "live_parent": {
+        "card_print_id": "3ccd86b2-311f-45a7-bcda-25d1b142c7d9",
+        "set_id": "e48229f9-c96e-4bef-90fe-4a9f99a28e9d",
+        "set_code": "sm4",
+        "number": "63",
+        "number_plain": "63",
+        "name": "Guzzlord-GX",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-sm-crimson-invasion-guzzlord-gx-ultra-rare",
+            "external_mapping_id": "91722"
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "sm4-63",
+            "external_mapping_id": "61210"
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "sm4-63a",
+            "external_mapping_id": "36777"
+          },
+          {
+            "source": "tcgplayer",
+            "external_id": "149086",
+            "external_mapping_id": "63361"
+          }
+        ],
+        "child_printings": [
+          {
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "provenance_ref": "sm4-63",
+            "card_printing_id": "e607ecfa-e218-40d3-8af8-8291628cbbef",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "provenance_ref": "sm4-63",
+            "card_printing_id": "f217eb3f-174b-4552-bea8-5a04bdc26c2c",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "provenance_ref": "sm4-63",
+            "card_printing_id": "c1e18bb5-56be-4722-9459-fa3154acdc86",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "vault_item_count": 0,
+        "vault_item_instance_count": 0
+      },
+      "master_truth": {
+        "base_finishes": [
+          "holo",
+          "normal"
+        ],
+        "suffix_finishes": [
+          "normal"
+        ],
+        "both_base_and_suffix_master_verified": true
+      },
+      "live_vs_master": {
+        "live_finishes": [
+          "holo",
+          "normal",
+          "reverse"
+        ],
+        "overlapping_finishes": [
+          "normal"
+        ],
+        "unsupported_on_merged_parent": [
+          "reverse"
+        ],
+        "finishes_needed_on_base": [],
+        "finishes_needed_on_suffix": [
+          "normal"
+        ]
+      },
+      "sources": [
+        "pricecharting_csv_base_product",
+        "pricecharting_csv_product",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/sm4-63a",
+        "https://www.pricecharting.com/game/pokemon-crimson-invasion/guzzlord-gx-63a"
+      ]
+    }
+  ]
+}

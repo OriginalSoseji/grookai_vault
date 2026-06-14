@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "bulbapedia_prize_pack_foil_sv07",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://bulbapedia.bulbagarden.net",
+  "source_status": "available_generated",
+  "set_key": "sv07",
+  "set_name": "Stellar Crown",
+  "retrieved_at": "2026-06-11T18:13:40.043Z",
+  "raw_snapshot_ref": "generated_fixture:bulbapedia_prize_pack_foil:sv07:2026-06-11T18:13:40.043Z",
+  "generation_note": "Generated from reviewed Bulbapedia Prize Pack Standard Set Foil rows only when page-level foil-pattern text explicitly routes the row to Cosmos Holofoil.",
+  "records": [
+    {
+      "source_key": "bulbapedia_prize_pack_foil",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Seven_(TCG)",
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "card_number": "50",
+      "card_name": "Joltik",
+      "finish_key": "cosmos",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia Prize Pack Series 7: Joltik 50 Standard Set Foil follows Cosmos Holofoil rule",
+      "language": "en",
+      "retrieved_at": "2026-06-11T18:13:40.043Z",
+      "raw_snapshot_ref": "bulbapedia:prize-pack-series-7:sv07:50:standard-set-foil-cosmos-rule",
+      "notes": "Exact Standard Set Foil card-list row. Series rule text: Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon ex}} and {{TCG|ACE SPEC card}}s which retain their regular foil patterns."
+    },
+    {
+      "source_key": "bulbapedia_prize_pack_foil",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Seven_(TCG)",
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "card_number": "132",
+      "card_name": "Briar",
+      "finish_key": "cosmos",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia Prize Pack Series 7: Briar 132 Standard Set Foil follows Cosmos Holofoil rule",
+      "language": "en",
+      "retrieved_at": "2026-06-11T18:13:40.043Z",
+      "raw_snapshot_ref": "bulbapedia:prize-pack-series-7:sv07:132:standard-set-foil-cosmos-rule",
+      "notes": "Exact Standard Set Foil card-list row. Series rule text: Foil cards in this set have Cosmos Holofoil except for {{TCG|Pokémon ex}} and {{TCG|ACE SPEC card}}s which retain their regular foil patterns."
+    }
+  ]
+}

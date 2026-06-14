@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T19:44:32.664Z",
+  "generated_at": "2026-06-13T00:10:54.256Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -10,18 +10,19 @@
   "version": "english_master_index_set_completion_matrix_v1",
   "summary": {
     "sets_in_registry": 201,
-    "complete_master_index_sets": 199,
-    "incomplete_sets": 2,
+    "complete_master_index_sets": 189,
+    "incomplete_sets": 12,
     "working_card_identity_facts": 21520,
     "master_admissible_card_identity_facts": 21520,
     "printing_derived_card_identity_facts": 0,
-    "working_printing_facts": 38841,
-    "master_admissible_printing_facts": 38841,
+    "working_printing_facts": 38927,
+    "master_admissible_printing_facts": 38893,
     "finish_absence_facts": 22,
     "finish_blocker_boundary_facts": 0,
     "adjudicated_excluded_printing_facts": 5,
     "by_completion_status": {
-      "complete_master_index_set": 199,
+      "card_identity_complete_finish_incomplete": 10,
+      "complete_master_index_set": 189,
       "non_standard_single_source_reference": 2
     },
     "by_card_fact_status": {
@@ -29,12 +30,1452 @@
       "api_agreed": 9
     },
     "by_printing_fact_status": {
-      "master_verified": 38841
+      "master_verified": 38893,
+      "human_source_verified": 34
     },
-    "source_gap_queue_items": 0,
+    "source_gap_queue_items": 10,
     "grookai_reconciliation_performed": false
   },
   "sets": [
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "source_aliases": {
+        "pokemontcg_api": "sv10",
+        "tcgdex": "sv10",
+        "official_checklist_pdf": "sv10",
+        "official_pokemon_checklist": "sv10",
+        "thepricedex": "sv10",
+        "thepricedex_price_list": "sv10",
+        "pkmncards": "destined-rivals",
+        "bulbapedia": "Destined_Rivals_(TCG)",
+        "bulbapedia_set_list": "Destined_Rivals_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available",
+        "official_checklist_pdf": "candidate_url",
+        "official_pokemon_checklist": "candidate_url",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 182,
+          "total": 244
+        },
+        "tcgdex": {
+          "official": 182,
+          "total": 244
+        }
+      },
+      "source_availability": {
+        "pokemontcg_api": {
+          "source_alias": "sv10",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 653,
+          "error": null
+        },
+        "tcgdex": {
+          "source_alias": "sv10",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 660,
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "source_alias": "sv10",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 706,
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "source_alias": "Destined_Rivals_(TCG)",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Destined_Rivals_(TCG)"
+        },
+        "tcgplayer_price_guide": {
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 409,
+          "error": null
+        }
+      },
+      "card_identity": {
+        "total_working_facts": 244,
+        "master_admissible": 244,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 244,
+        "human_supported": 244,
+        "master_admissible_from_exact_printing": 0,
+        "manual_review_resolved_by_exact_printing": 0,
+        "conflicts": 0,
+        "manual_review": 0
+      },
+      "printings": {
+        "total_working_facts": 458,
+        "master_admissible": 457,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 457,
+        "human_supported": 458,
+        "conflicts": 0,
+        "manual_review": 0,
+        "finish_absences": 0,
+        "finish_blocker_boundary": 0,
+        "adjudicated_excluded": 0
+      },
+      "finish_counts": {
+        "normal": 153,
+        "reverse": 165,
+        "holo": 97,
+        "stamped": 32,
+        "cosmos": 11
+      },
+      "source_keys": {
+        "pkmncards": 242,
+        "pokemontcg_api": 653,
+        "tcgdex": 658,
+        "thepricedex_price_list": 698,
+        "tcgplayer_price_guide": 409,
+        "reverseholo_set_checklist": 104,
+        "bulbapedia_prize_pack_normal": 12,
+        "tcgcollector_card_variants": 22,
+        "bulbapedia_build_battle_product": 1,
+        "bulbapedia_set_list": 3,
+        "pricecharting_csv_product": 21,
+        "bulbapedia_card_page_release_info": 2,
+        "bulbapedia_prize_pack_current_gap_finish": 1
+      },
+      "evidence_urls_sample": [
+        "https://api.pokemontcg.io/v2/cards/sv10-1",
+        "https://api.pokemontcg.io/v2/cards/sv10-2",
+        "https://api.tcgdex.net/v2/en/cards/sv10-001",
+        "https://api.tcgdex.net/v2/en/cards/sv10-002",
+        "https://pkmncards.com/card/ethans-pinsir-destined-rivals-dri-001/",
+        "https://pkmncards.com/card/yanma-destined-rivals-dri-002/",
+        "https://www.thepricedex.com/set/sv10/destined-rivals/price-list"
+      ],
+      "completion": {
+        "status": "card_identity_complete_finish_incomplete",
+        "completion_score": 99.91,
+        "card_identity_master_admissible_percent": 100,
+        "printing_master_admissible_percent": 99.78,
+        "master_index_complete": false,
+        "eligible_for_future_downstream_audit": false,
+        "verification_level": "normal_double_source_required",
+        "non_standard_policy": null,
+        "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+      }
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "source_aliases": {
+        "pokemontcg_api": "swsh11",
+        "tcgdex": "swsh11",
+        "official_checklist_pdf": "swsh11",
+        "official_pokemon_checklist": "swsh11",
+        "thepricedex": "swsh11",
+        "thepricedex_price_list": "swsh11",
+        "pkmncards": "lost-origin",
+        "bulbapedia": "Lost_Origin_(TCG)",
+        "bulbapedia_set_list": "Lost_Origin_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available",
+        "official_checklist_pdf": "candidate_url",
+        "official_pokemon_checklist": "candidate_url",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 196,
+          "total": 217
+        },
+        "tcgdex": {
+          "official": 196,
+          "total": 247
+        }
+      },
+      "source_availability": {
+        "pokemontcg_api": {
+          "source_alias": "swsh11",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 583,
+          "error": null
+        },
+        "tcgdex": {
+          "source_alias": "swsh11",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 643,
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "source_alias": "swsh11",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 699,
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "source_alias": "Lost_Origin_(TCG)",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Lost_Origin_(TCG)"
+        },
+        "tcgplayer_price_guide": {
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 364,
+          "error": null
+        }
+      },
+      "card_identity": {
+        "total_working_facts": 247,
+        "master_admissible": 247,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 247,
+        "human_supported": 247,
+        "master_admissible_from_exact_printing": 0,
+        "manual_review_resolved_by_exact_printing": 0,
+        "conflicts": 0,
+        "manual_review": 0
+      },
+      "printings": {
+        "total_working_facts": 446,
+        "master_admissible": 445,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 445,
+        "human_supported": 446,
+        "conflicts": 0,
+        "manual_review": 0,
+        "finish_absences": 0,
+        "finish_blocker_boundary": 0,
+        "adjudicated_excluded": 0
+      },
+      "finish_counts": {
+        "normal": 132,
+        "reverse": 149,
+        "holo": 120,
+        "stamped": 40,
+        "cosmos": 5
+      },
+      "source_keys": {
+        "pkmncards": 247,
+        "pokemontcg_api": 583,
+        "tcgdex": 643,
+        "thepricedex_price_list": 687,
+        "tcgplayer_price_guide": 364,
+        "reverseholo_set_checklist": 262,
+        "bulbapedia_prize_pack_normal": 7,
+        "justinbasil_prize_pack_finish": 2,
+        "bulbapedia_card_page_release_info": 8,
+        "bulbapedia_set_list": 10,
+        "bulbapedia_swsh11_trick_or_trade_stamps": 3,
+        "bulbapedia_build_battle_product": 2,
+        "tcgcsv_prize_pack_catalog": 10,
+        "pricecharting_csv_product": 17,
+        "pricecharting_product_page": 2,
+        "tcgcollector_card_variants": 7,
+        "pokescope_variant_exact": 1,
+        "bulbapedia_prize_pack_foil": 4,
+        "bulbapedia_prize_pack_current_gap_finish": 1
+      },
+      "evidence_urls_sample": [
+        "https://api.pokemontcg.io/v2/cards/swsh11-1",
+        "https://api.pokemontcg.io/v2/cards/swsh11-2",
+        "https://api.tcgdex.net/v2/en/cards/swsh11-001",
+        "https://api.tcgdex.net/v2/en/cards/swsh11-002",
+        "https://pkmncards.com/card/gloom-lost-origin-lor-002/",
+        "https://pkmncards.com/card/oddish-lost-origin-lor-001/",
+        "https://www.thepricedex.com/set/swsh11/lost-origin/price-list"
+      ],
+      "completion": {
+        "status": "card_identity_complete_finish_incomplete",
+        "completion_score": 99.91,
+        "card_identity_master_admissible_percent": 100,
+        "printing_master_admissible_percent": 99.78,
+        "master_index_complete": false,
+        "eligible_for_future_downstream_audit": false,
+        "verification_level": "normal_double_source_required",
+        "non_standard_policy": null,
+        "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+      }
+    },
+    {
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "source_aliases": {
+        "pokemontcg_api": "sv5",
+        "tcgdex": "sv05",
+        "official_checklist_pdf": "sv5",
+        "official_pokemon_checklist": "sv5",
+        "thepricedex": "sv5",
+        "thepricedex_price_list": "sv5",
+        "pkmncards": "temporal-forces",
+        "bulbapedia": "Temporal_Forces_(TCG)",
+        "bulbapedia_set_list": "Temporal_Forces_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available",
+        "official_checklist_pdf": "candidate_url",
+        "official_pokemon_checklist": "candidate_url",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 162,
+          "total": 218
+        },
+        "tcgdex": {
+          "official": 162,
+          "total": 218
+        }
+      },
+      "source_availability": {
+        "pokemontcg_api": {
+          "source_alias": "sv5",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 576,
+          "error": null
+        },
+        "tcgdex": {
+          "source_alias": "sv05",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 597,
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "source_alias": "sv5",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 640,
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "source_alias": "Temporal_Forces_(TCG)",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Temporal_Forces_(TCG)"
+        },
+        "tcgplayer_price_guide": {
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 358,
+          "error": null
+        }
+      },
+      "card_identity": {
+        "total_working_facts": 218,
+        "master_admissible": 218,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 218,
+        "human_supported": 218,
+        "master_admissible_from_exact_printing": 0,
+        "manual_review_resolved_by_exact_printing": 0,
+        "conflicts": 0,
+        "manual_review": 0
+      },
+      "printings": {
+        "total_working_facts": 422,
+        "master_admissible": 421,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 421,
+        "human_supported": 422,
+        "conflicts": 0,
+        "manual_review": 0,
+        "finish_absences": 0,
+        "finish_blocker_boundary": 0,
+        "adjudicated_excluded": 0
+      },
+      "finish_counts": {
+        "normal": 134,
+        "reverse": 140,
+        "holo": 93,
+        "stamped": 37,
+        "cosmos": 18
+      },
+      "source_keys": {
+        "pkmncards": 218,
+        "pokemontcg_api": 576,
+        "tcgdex": 584,
+        "thepricedex_price_list": 631,
+        "tcgplayer_price_guide": 358,
+        "reverseholo_set_checklist": 221,
+        "justinbasil_prize_pack_finish": 10,
+        "tcgcollector_card_variants": 19,
+        "pricecharting_csv_product": 25,
+        "bulbapedia_card_page_release_info": 7,
+        "bulbapedia_set_list": 8,
+        "bulbapedia_sv05_additional_cards": 3,
+        "bulbapedia_build_battle_product": 1,
+        "bulbapedia_prize_pack_foil": 3,
+        "justinbasil_prize_pack_current_gap_finish": 2,
+        "bulbapedia_prize_pack_current_gap_finish": 1
+      },
+      "evidence_urls_sample": [
+        "https://api.pokemontcg.io/v2/cards/sv5-1",
+        "https://api.pokemontcg.io/v2/cards/sv5-2",
+        "https://api.tcgdex.net/v2/en/cards/sv05-001",
+        "https://api.tcgdex.net/v2/en/cards/sv05-002",
+        "https://pkmncards.com/card/pineco-temporal-forces-tef-002/",
+        "https://pkmncards.com/card/scyther-temporal-forces-tef-001/",
+        "https://www.thepricedex.com/set/sv5/temporal-forces/price-list"
+      ],
+      "completion": {
+        "status": "card_identity_complete_finish_incomplete",
+        "completion_score": 99.9,
+        "card_identity_master_admissible_percent": 100,
+        "printing_master_admissible_percent": 99.76,
+        "master_index_complete": false,
+        "eligible_for_future_downstream_audit": false,
+        "verification_level": "normal_double_source_required",
+        "non_standard_policy": null,
+        "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+      }
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "source_aliases": {
+        "pokemontcg_api": "swsh2",
+        "tcgdex": "swsh2",
+        "official_checklist_pdf": "swsh2",
+        "official_pokemon_checklist": "swsh2",
+        "thepricedex": "swsh2",
+        "thepricedex_price_list": "swsh2",
+        "pkmncards": "rebel-clash",
+        "bulbapedia": "Rebel_Clash_(TCG)",
+        "bulbapedia_set_list": "Rebel_Clash_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available",
+        "official_checklist_pdf": "candidate_url",
+        "official_pokemon_checklist": "candidate_url",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 192,
+          "total": 209
+        },
+        "tcgdex": {
+          "official": 192,
+          "total": 209
+        }
+      },
+      "source_availability": {
+        "pokemontcg_api": {
+          "source_alias": "swsh2",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 569,
+          "error": null
+        },
+        "tcgdex": {
+          "source_alias": "swsh2",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 565,
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "source_alias": "swsh2",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 609,
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "source_alias": "Rebel_Clash_(TCG)",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 207,
+          "error": null
+        },
+        "tcgplayer_price_guide": {
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 352,
+          "error": null
+        }
+      },
+      "card_identity": {
+        "total_working_facts": 212,
+        "master_admissible": 212,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 212,
+        "human_supported": 212,
+        "master_admissible_from_exact_printing": 0,
+        "manual_review_resolved_by_exact_printing": 0,
+        "conflicts": 0,
+        "manual_review": 0
+      },
+      "printings": {
+        "total_working_facts": 395,
+        "master_admissible": 394,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 394,
+        "human_supported": 395,
+        "conflicts": 0,
+        "manual_review": 0,
+        "finish_absences": 0,
+        "finish_blocker_boundary": 0,
+        "adjudicated_excluded": 0
+      },
+      "finish_counts": {
+        "normal": 141,
+        "reverse": 152,
+        "holo": 79,
+        "stamped": 17,
+        "cosmos": 5,
+        "cracked_ice": 1
+      },
+      "source_keys": {
+        "bulbapedia_set_list": 217,
+        "pkmncards": 207,
+        "pokemontcg_api": 569,
+        "tcgdex": 565,
+        "thepricedex_price_list": 600,
+        "pkmncards_identity_gap": 3,
+        "tcgplayer_price_guide": 352,
+        "reverseholo_set_checklist": 220,
+        "bulbapedia_prize_pack_normal": 2,
+        "tcgcsv_tcgplayer_catalog": 3,
+        "bulbapedia_card_page_release_info": 8,
+        "pricecharting_csv_product": 6,
+        "tcgcollector_card_variants": 9,
+        "pokescope_variant_exact": 1,
+        "doubleholo_set_checklist": 1,
+        "bulbapedia_build_battle_product": 2,
+        "tcgcsv_prize_pack_catalog": 3,
+        "bulbapedia_prize_pack_current_gap_finish": 1
+      },
+      "evidence_urls_sample": [
+        "https://api.pokemontcg.io/v2/cards/swsh2-1",
+        "https://api.pokemontcg.io/v2/cards/swsh2-2",
+        "https://api.tcgdex.net/v2/en/cards/swsh2-1",
+        "https://api.tcgdex.net/v2/en/cards/swsh2-2",
+        "https://bulbapedia.bulbagarden.net/wiki/Rebel_Clash_(TCG)#Set_lists",
+        "https://pkmncards.com/card/caterpie-rebel-clash-rcl-001/",
+        "https://www.thepricedex.com/set/swsh2/rebel-clash/price-list"
+      ],
+      "completion": {
+        "status": "card_identity_complete_finish_incomplete",
+        "completion_score": 99.9,
+        "card_identity_master_admissible_percent": 100,
+        "printing_master_admissible_percent": 99.75,
+        "master_index_complete": false,
+        "eligible_for_future_downstream_audit": false,
+        "verification_level": "normal_double_source_required",
+        "non_standard_policy": null,
+        "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+      }
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "source_aliases": {
+        "pokemontcg_api": "swsh9",
+        "tcgdex": "swsh9",
+        "official_checklist_pdf": "swsh9",
+        "official_pokemon_checklist": "swsh9",
+        "thepricedex": "swsh9",
+        "thepricedex_price_list": "swsh9",
+        "pkmncards": "brilliant-stars",
+        "bulbapedia": "Brilliant_Stars_(TCG)",
+        "bulbapedia_set_list": "Brilliant_Stars_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available",
+        "official_checklist_pdf": "candidate_url",
+        "official_pokemon_checklist": "candidate_url",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 172,
+          "total": 186
+        },
+        "tcgdex": {
+          "official": 172,
+          "total": 216
+        }
+      },
+      "source_availability": {
+        "pokemontcg_api": {
+          "source_alias": "swsh9",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 496,
+          "error": null
+        },
+        "tcgdex": {
+          "source_alias": "swsh9",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 557,
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "source_alias": "swsh9",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 630,
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "source_alias": "Brilliant_Stars_(TCG)",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Brilliant_Stars_(TCG)"
+        },
+        "tcgplayer_price_guide": {
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 310,
+          "error": null
+        }
+      },
+      "card_identity": {
+        "total_working_facts": 216,
+        "master_admissible": 216,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 216,
+        "human_supported": 216,
+        "master_admissible_from_exact_printing": 0,
+        "manual_review_resolved_by_exact_printing": 0,
+        "conflicts": 0,
+        "manual_review": 0
+      },
+      "printings": {
+        "total_working_facts": 401,
+        "master_admissible": 400,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 400,
+        "human_supported": 401,
+        "conflicts": 0,
+        "manual_review": 0,
+        "finish_absences": 0,
+        "finish_blocker_boundary": 0,
+        "adjudicated_excluded": 0
+      },
+      "finish_counts": {
+        "normal": 122,
+        "reverse": 124,
+        "holo": 102,
+        "stamped": 46,
+        "cosmos": 7
+      },
+      "source_keys": {
+        "pkmncards": 216,
+        "pokemontcg_api": 496,
+        "tcgdex": 557,
+        "thepricedex_price_list": 613,
+        "tcgplayer_price_guide": 310,
+        "reverseholo_set_checklist": 207,
+        "bulbapedia_prize_pack_normal": 5,
+        "pricecharting_csv_product": 21,
+        "magicmadhouse_swsh9_stamps": 5,
+        "tcgcsv_prize_pack_catalog": 13,
+        "tcgcollector_card_variants": 9,
+        "binderbuilder_set_variant": 1,
+        "bulbapedia_card_page_release_info": 6,
+        "bulbapedia_set_list": 10,
+        "bulbapedia_build_battle_product": 4,
+        "pricecharting_product_page": 1,
+        "bulbapedia_prize_pack_foil": 2,
+        "bulbapedia_prize_pack_current_gap_finish": 2,
+        "tcgcsv_prize_pack_title_finish": 1
+      },
+      "evidence_urls_sample": [
+        "https://api.pokemontcg.io/v2/cards/swsh9-1",
+        "https://api.pokemontcg.io/v2/cards/swsh9-2",
+        "https://api.tcgdex.net/v2/en/cards/swsh9-001",
+        "https://api.tcgdex.net/v2/en/cards/swsh9-002",
+        "https://pkmncards.com/card/exeggcute-brilliant-stars-brs-001/",
+        "https://pkmncards.com/card/exeggutor-brilliant-stars-brs-002/",
+        "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+      ],
+      "completion": {
+        "status": "card_identity_complete_finish_incomplete",
+        "completion_score": 99.9,
+        "card_identity_master_admissible_percent": 100,
+        "printing_master_admissible_percent": 99.75,
+        "master_index_complete": false,
+        "eligible_for_future_downstream_audit": false,
+        "verification_level": "normal_double_source_required",
+        "non_standard_policy": null,
+        "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+      }
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "source_aliases": {
+        "pokemontcg_api": "swsh5",
+        "tcgdex": "swsh5",
+        "official_checklist_pdf": "swsh5",
+        "official_pokemon_checklist": "swsh5",
+        "thepricedex": "swsh5",
+        "thepricedex_price_list": "swsh5",
+        "pkmncards": "battle-styles",
+        "bulbapedia": "Battle_Styles_(TCG)",
+        "bulbapedia_set_list": "Battle_Styles_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available",
+        "official_checklist_pdf": "candidate_url",
+        "official_pokemon_checklist": "candidate_url",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 163,
+          "total": 183
+        },
+        "tcgdex": {
+          "official": 163,
+          "total": 183
+        }
+      },
+      "source_availability": {
+        "pokemontcg_api": {
+          "source_alias": "swsh5",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 489,
+          "error": null
+        },
+        "tcgdex": {
+          "source_alias": "swsh5",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 489,
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "source_alias": "swsh5",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 541,
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "source_alias": "Battle_Styles_(TCG)",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 183,
+          "error": null
+        },
+        "tcgplayer_price_guide": {
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 306,
+          "error": null
+        }
+      },
+      "card_identity": {
+        "total_working_facts": 183,
+        "master_admissible": 183,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 183,
+        "human_supported": 183,
+        "master_admissible_from_exact_printing": 0,
+        "manual_review_resolved_by_exact_printing": 0,
+        "conflicts": 0,
+        "manual_review": 0
+      },
+      "printings": {
+        "total_working_facts": 350,
+        "master_admissible": 349,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 349,
+        "human_supported": 350,
+        "conflicts": 0,
+        "manual_review": 0,
+        "finish_absences": 0,
+        "finish_blocker_boundary": 0,
+        "adjudicated_excluded": 0
+      },
+      "finish_counts": {
+        "normal": 113,
+        "reverse": 123,
+        "holo": 76,
+        "stamped": 35,
+        "cosmos": 3
+      },
+      "source_keys": {
+        "bulbapedia_set_list": 188,
+        "pkmncards": 183,
+        "pokemontcg_api": 489,
+        "tcgdex": 489,
+        "thepricedex_price_list": 531,
+        "tcgplayer_price_guide": 306,
+        "reverseholo_set_checklist": 196,
+        "bulbapedia_prize_pack_normal": 3,
+        "pricecharting_csv_product": 14,
+        "binderbuilder_set_variant": 2,
+        "tcgcsv_prize_pack_catalog": 17,
+        "tcgcollector_card_variants": 4,
+        "bulbapedia_build_battle_product": 2,
+        "bulbapedia_card_page_release_info": 3,
+        "bulbapedia_battle_academy_product": 1,
+        "bulbapedia_prize_pack_current_gap_finish": 1
+      },
+      "evidence_urls_sample": [
+        "https://api.pokemontcg.io/v2/cards/swsh5-1",
+        "https://api.pokemontcg.io/v2/cards/swsh5-2",
+        "https://api.tcgdex.net/v2/en/cards/swsh5-1",
+        "https://api.tcgdex.net/v2/en/cards/swsh5-2",
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Styles_(TCG)#Set_lists",
+        "https://pkmncards.com/card/bellsprout-battle-styles-bst-001/",
+        "https://www.thepricedex.com/set/swsh5/battle-styles/price-list"
+      ],
+      "completion": {
+        "status": "card_identity_complete_finish_incomplete",
+        "completion_score": 99.88,
+        "card_identity_master_admissible_percent": 100,
+        "printing_master_admissible_percent": 99.71,
+        "master_index_complete": false,
+        "eligible_for_future_downstream_audit": false,
+        "verification_level": "normal_double_source_required",
+        "non_standard_policy": null,
+        "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+      }
+    },
+    {
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "source_aliases": {
+        "pokemontcg_api": "swsh10",
+        "tcgdex": "swsh10",
+        "official_checklist_pdf": "swsh10",
+        "official_pokemon_checklist": "swsh10",
+        "thepricedex": "swsh10",
+        "thepricedex_price_list": "swsh10",
+        "pkmncards": "astral-radiance",
+        "bulbapedia": "Astral_Radiance_(TCG)",
+        "bulbapedia_set_list": "Astral_Radiance_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available",
+        "official_checklist_pdf": "candidate_url",
+        "official_pokemon_checklist": "candidate_url",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 189,
+          "total": 216
+        },
+        "tcgdex": {
+          "official": 189,
+          "total": 246
+        }
+      },
+      "source_availability": {
+        "pokemontcg_api": {
+          "source_alias": "swsh10",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 560,
+          "error": null
+        },
+        "tcgdex": {
+          "source_alias": "swsh10",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 620,
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "source_alias": "swsh10",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 674,
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "source_alias": "Astral_Radiance_(TCG)",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 216,
+          "error": null
+        },
+        "tcgplayer_price_guide": {
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 344,
+          "error": null
+        }
+      },
+      "card_identity": {
+        "total_working_facts": 246,
+        "master_admissible": 246,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 246,
+        "human_supported": 246,
+        "master_admissible_from_exact_printing": 0,
+        "manual_review_resolved_by_exact_printing": 0,
+        "conflicts": 0,
+        "manual_review": 0
+      },
+      "printings": {
+        "total_working_facts": 429,
+        "master_admissible": 426,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 426,
+        "human_supported": 429,
+        "conflicts": 0,
+        "manual_review": 0,
+        "finish_absences": 0,
+        "finish_blocker_boundary": 0,
+        "adjudicated_excluded": 0
+      },
+      "finish_counts": {
+        "holo": 138,
+        "normal": 118,
+        "reverse": 128,
+        "cosmos": 9,
+        "stamped": 36
+      },
+      "source_keys": {
+        "bulbapedia_set_list": 226,
+        "pkmncards": 246,
+        "pokemontcg_api": 560,
+        "tcgdex": 620,
+        "thepricedex_price_list": 667,
+        "reverseholo_set_checklist": 263,
+        "tcgplayer_price_guide": 344,
+        "bulbapedia_prize_pack_normal": 14,
+        "tcgcollector_card_variants": 10,
+        "tcgcsv_prize_pack_catalog": 17,
+        "pricecharting_csv_product": 14,
+        "pricecharting_product_page": 3,
+        "bulbapedia_build_battle_product": 7,
+        "doubleholo_set_checklist": 1,
+        "bulbapedia_card_page_release_info": 3,
+        "pricecharting_api_product": 1,
+        "pokescope_variant_exact": 1,
+        "bulbapedia_prize_pack_foil": 5,
+        "bulbapedia_prize_pack_current_gap_finish": 3
+      },
+      "evidence_urls_sample": [
+        "https://api.pokemontcg.io/v2/cards/swsh10-1",
+        "https://api.pokemontcg.io/v2/cards/swsh10-2",
+        "https://api.tcgdex.net/v2/en/cards/swsh10-001",
+        "https://api.tcgdex.net/v2/en/cards/swsh10-002",
+        "https://bulbapedia.bulbagarden.net/wiki/Astral_Radiance_(TCG)#Set_lists",
+        "https://pkmncards.com/card/beedrill-v-astral-radiance-asr-001/",
+        "https://www.thepricedex.com/set/swsh10/astral-radiance/price-list"
+      ],
+      "completion": {
+        "status": "card_identity_complete_finish_incomplete",
+        "completion_score": 99.72,
+        "card_identity_master_admissible_percent": 100,
+        "printing_master_admissible_percent": 99.3,
+        "master_index_complete": false,
+        "eligible_for_future_downstream_audit": false,
+        "verification_level": "normal_double_source_required",
+        "non_standard_policy": null,
+        "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+      }
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "source_aliases": {
+        "pokemontcg_api": "swsh6",
+        "tcgdex": "swsh6",
+        "official_checklist_pdf": "swsh6",
+        "official_pokemon_checklist": "swsh6",
+        "thepricedex": "swsh6",
+        "thepricedex_price_list": "swsh6",
+        "pkmncards": "chilling-reign",
+        "bulbapedia": "Chilling_Reign_(TCG)",
+        "bulbapedia_set_list": "Chilling_Reign_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available",
+        "official_checklist_pdf": "candidate_url",
+        "official_pokemon_checklist": "candidate_url",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 198,
+          "total": 233
+        },
+        "tcgdex": {
+          "official": 198,
+          "total": 233
+        }
+      },
+      "source_availability": {
+        "pokemontcg_api": {
+          "source_alias": "swsh6",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 602,
+          "error": null
+        },
+        "tcgdex": {
+          "source_alias": "swsh6",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 596,
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "source_alias": "swsh6",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 662,
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "source_alias": "Chilling_Reign_(TCG)",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 233,
+          "error": null
+        },
+        "tcgplayer_price_guide": {
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 363,
+          "error": null
+        }
+      },
+      "card_identity": {
+        "total_working_facts": 233,
+        "master_admissible": 233,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 233,
+        "human_supported": 233,
+        "master_admissible_from_exact_printing": 0,
+        "manual_review_resolved_by_exact_printing": 0,
+        "conflicts": 0,
+        "manual_review": 0
+      },
+      "printings": {
+        "total_working_facts": 422,
+        "master_admissible": 419,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 419,
+        "human_supported": 422,
+        "conflicts": 0,
+        "manual_review": 0,
+        "finish_absences": 0,
+        "finish_blocker_boundary": 0,
+        "adjudicated_excluded": 0
+      },
+      "finish_counts": {
+        "normal": 122,
+        "reverse": 136,
+        "holo": 121,
+        "stamped": 39,
+        "cosmos": 4
+      },
+      "source_keys": {
+        "bulbapedia_set_list": 243,
+        "pkmncards": 233,
+        "pokemontcg_api": 602,
+        "tcgdex": 596,
+        "thepricedex_price_list": 652,
+        "tcgcsv_tcgplayer_catalog": 118,
+        "tcgplayer_price_guide": 363,
+        "reverseholo_set_checklist": 249,
+        "bulbapedia_prize_pack_normal": 7,
+        "bulbapedia_card_page_release_info": 8,
+        "pricecharting_csv_product": 14,
+        "tcgcsv_prize_pack_catalog": 14,
+        "bulbapedia_battle_academy_product": 2,
+        "binderbuilder_set_variant": 1,
+        "bulbapedia_build_battle_product": 2,
+        "tcgcollector_card_variants": 7,
+        "doubleholo_set_checklist": 2,
+        "bulbapedia_prize_pack_current_gap_finish": 3
+      },
+      "evidence_urls_sample": [
+        "https://api.pokemontcg.io/v2/cards/swsh6-1",
+        "https://api.pokemontcg.io/v2/cards/swsh6-2",
+        "https://api.tcgdex.net/v2/en/cards/swsh6-1",
+        "https://api.tcgdex.net/v2/en/cards/swsh6-2",
+        "https://bulbapedia.bulbagarden.net/wiki/Chilling_Reign_(TCG)#Set_lists",
+        "https://pkmncards.com/card/weedle-chilling-reign-cre-001/",
+        "https://www.thepricedex.com/set/swsh6/chilling-reign/price-list"
+      ],
+      "completion": {
+        "status": "card_identity_complete_finish_incomplete",
+        "completion_score": 99.72,
+        "card_identity_master_admissible_percent": 100,
+        "printing_master_admissible_percent": 99.29,
+        "master_index_complete": false,
+        "eligible_for_future_downstream_audit": false,
+        "verification_level": "normal_double_source_required",
+        "non_standard_policy": null,
+        "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+      }
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "source_aliases": {
+        "pokemontcg_api": "swsh7",
+        "tcgdex": "swsh7",
+        "official_checklist_pdf": "swsh7",
+        "official_pokemon_checklist": "swsh7",
+        "thepricedex": "swsh7",
+        "thepricedex_price_list": "swsh7",
+        "pkmncards": "evolving-skies",
+        "bulbapedia": "Evolving_Skies_(TCG)",
+        "bulbapedia_set_list": "Evolving_Skies_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available",
+        "official_checklist_pdf": "candidate_url",
+        "official_pokemon_checklist": "candidate_url",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 203,
+          "total": 237
+        },
+        "tcgdex": {
+          "official": 203,
+          "total": 237
+        }
+      },
+      "source_availability": {
+        "pokemontcg_api": {
+          "source_alias": "swsh7",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 606,
+          "error": null
+        },
+        "tcgdex": {
+          "source_alias": "swsh7",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 553,
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "source_alias": "swsh7",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 665,
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "source_alias": "Evolving_Skies_(TCG)",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 237,
+          "error": null
+        },
+        "tcgplayer_price_guide": {
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 315,
+          "error": null
+        }
+      },
+      "card_identity": {
+        "total_working_facts": 237,
+        "master_admissible": 237,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 237,
+        "human_supported": 237,
+        "master_admissible_from_exact_printing": 0,
+        "manual_review_resolved_by_exact_printing": 0,
+        "conflicts": 0,
+        "manual_review": 0
+      },
+      "printings": {
+        "total_working_facts": 426,
+        "master_admissible": 422,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 422,
+        "human_supported": 426,
+        "conflicts": 0,
+        "manual_review": 0,
+        "finish_absences": 0,
+        "finish_blocker_boundary": 0,
+        "adjudicated_excluded": 0
+      },
+      "finish_counts": {
+        "normal": 122,
+        "reverse": 132,
+        "holo": 125,
+        "stamped": 45,
+        "cosmos": 2
+      },
+      "source_keys": {
+        "bulbapedia_set_list": 249,
+        "pkmncards": 237,
+        "pokemontcg_api": 606,
+        "tcgdex": 553,
+        "thepricedex_price_list": 658,
+        "tcgplayer_price_guide": 315,
+        "reverseholo_set_checklist": 250,
+        "bulbapedia_prize_pack_normal": 8,
+        "cardtrader_blueprint_index": 2,
+        "pricecharting_csv_product": 22,
+        "binderbuilder_set_variant": 1,
+        "tcgcsv_prize_pack_catalog": 11,
+        "bulbapedia_card_page_release_info": 10,
+        "doubleholo_set_checklist": 1,
+        "pricecharting_product_page": 1,
+        "bulbapedia_build_battle_product": 2,
+        "tcgcollector_card_variants": 3,
+        "pokescope_variant_exact": 1,
+        "bulbapedia_prize_pack_current_gap_finish": 4
+      },
+      "evidence_urls_sample": [
+        "https://api.pokemontcg.io/v2/cards/swsh7-1",
+        "https://api.pokemontcg.io/v2/cards/swsh7-2",
+        "https://api.tcgdex.net/v2/en/cards/swsh7-1",
+        "https://api.tcgdex.net/v2/en/cards/swsh7-2",
+        "https://bulbapedia.bulbagarden.net/wiki/Evolving_Skies_(TCG)#Set_lists",
+        "https://pkmncards.com/card/pinsir-evolving-skies-evs-001/",
+        "https://www.thepricedex.com/set/swsh7/evolving-skies/price-list"
+      ],
+      "completion": {
+        "status": "card_identity_complete_finish_incomplete",
+        "completion_score": 99.62,
+        "card_identity_master_admissible_percent": 100,
+        "printing_master_admissible_percent": 99.06,
+        "master_index_complete": false,
+        "eligible_for_future_downstream_audit": false,
+        "verification_level": "normal_double_source_required",
+        "non_standard_policy": null,
+        "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+      }
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "source_aliases": {
+        "pokemontcg_api": "sv3",
+        "tcgdex": "sv03",
+        "official_checklist_pdf": "sv3",
+        "official_pokemon_checklist": "sv3",
+        "thepricedex": "sv3",
+        "thepricedex_price_list": "sv3",
+        "pkmncards": "obsidian-flames",
+        "bulbapedia": "Obsidian_Flames_(TCG)",
+        "bulbapedia_set_list": "Obsidian_Flames_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available",
+        "official_checklist_pdf": "candidate_url",
+        "official_pokemon_checklist": "candidate_url",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 197,
+          "total": 230
+        },
+        "tcgdex": {
+          "official": 197,
+          "total": 230
+        }
+      },
+      "source_availability": {
+        "pokemontcg_api": {
+          "source_alias": "sv3",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 636,
+          "error": null
+        },
+        "tcgdex": {
+          "source_alias": "sv03",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 647,
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "source_alias": "sv3",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 681,
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "source_alias": "Obsidian_Flames_(TCG)",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        },
+        "tcgplayer_price_guide": {
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 406,
+          "error": null
+        }
+      },
+      "card_identity": {
+        "total_working_facts": 230,
+        "master_admissible": 230,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 230,
+        "human_supported": 230,
+        "master_admissible_from_exact_printing": 0,
+        "manual_review_resolved_by_exact_printing": 0,
+        "conflicts": 0,
+        "manual_review": 0
+      },
+      "printings": {
+        "total_working_facts": 446,
+        "master_admissible": 428,
+        "api_agreed": 0,
+        "candidate_unconfirmed": 0,
+        "master_verified": 428,
+        "human_supported": 446,
+        "conflicts": 0,
+        "manual_review": 0,
+        "finish_absences": 0,
+        "finish_blocker_boundary": 0,
+        "adjudicated_excluded": 0
+      },
+      "finish_counts": {
+        "normal": 169,
+        "reverse": 176,
+        "holo": 66,
+        "cosmos": 15,
+        "stamped": 20
+      },
+      "source_keys": {
+        "pkmncards": 229,
+        "pokemontcg_api": 636,
+        "tcgdex": 639,
+        "thepricedex_price_list": 676,
+        "tcgcsv_tcgplayer_catalog": 161,
+        "tcgplayer_price_guide": 406,
+        "reverseholo_set_checklist": 240,
+        "cardtrader_blueprint_index": 2,
+        "bulbapedia_build_battle_product": 1,
+        "bulbapedia_set_list": 1,
+        "tcgcollector_card_variants": 19
+      },
+      "evidence_urls_sample": [
+        "https://api.pokemontcg.io/v2/cards/sv3-1",
+        "https://api.pokemontcg.io/v2/cards/sv3-2",
+        "https://api.tcgdex.net/v2/en/cards/sv03-001",
+        "https://api.tcgdex.net/v2/en/cards/sv03-002",
+        "https://pkmncards.com/card/gloom-obsidian-flames-obf-002/",
+        "https://pkmncards.com/card/oddish-obsidian-flames-obf-001/",
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "completion": {
+        "status": "card_identity_complete_finish_incomplete",
+        "completion_score": 98.38,
+        "card_identity_master_admissible_percent": 100,
+        "printing_master_admissible_percent": 95.96,
+        "master_index_complete": false,
+        "eligible_for_future_downstream_audit": false,
+        "verification_level": "normal_double_source_required",
+        "non_standard_policy": null,
+        "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+      }
+    },
     {
       "set_key": "2011bw",
       "set_name": "McDonald's Collection 2011",
@@ -2859,12 +4300,12 @@
         "manual_review": 0
       },
       "printings": {
-        "total_working_facts": 58,
-        "master_admissible": 58,
+        "total_working_facts": 59,
+        "master_admissible": 59,
         "api_agreed": 0,
         "candidate_unconfirmed": 0,
-        "master_verified": 58,
-        "human_supported": 58,
+        "master_verified": 59,
+        "human_supported": 59,
         "conflicts": 0,
         "manual_review": 0,
         "finish_absences": 0,
@@ -2872,7 +4313,7 @@
         "adjudicated_excluded": 0
       },
       "finish_counts": {
-        "normal": 44,
+        "normal": 45,
         "holo": 7,
         "reverse": 3,
         "first_edition_normal": 1,
@@ -2887,7 +4328,9 @@
         "binderbuilder_set_variant": 3,
         "pricecharting_csv_promo_exact": 2,
         "bulbapedia_card_page_release_info": 1,
-        "bulbapedia_set_list": 1
+        "bulbapedia_set_list": 1,
+        "cardtrader_stamped_finish": 1,
+        "tcgcsv_tcgplayer_catalog": 1
       },
       "evidence_urls_sample": [
         "https://api.pokemontcg.io/v2/cards/basep-1",
@@ -3127,12 +4570,12 @@
         "manual_review": 0
       },
       "printings": {
-        "total_working_facts": 261,
-        "master_admissible": 261,
+        "total_working_facts": 262,
+        "master_admissible": 262,
         "api_agreed": 0,
         "candidate_unconfirmed": 0,
-        "master_verified": 261,
-        "human_supported": 261,
+        "master_verified": 262,
+        "human_supported": 262,
         "conflicts": 0,
         "manual_review": 0,
         "finish_absences": 0,
@@ -3141,7 +4584,7 @@
       },
       "finish_counts": {
         "normal": 107,
-        "reverse": 105,
+        "reverse": 106,
         "holo": 15,
         "cosmos": 3,
         "stamped": 18,
@@ -3155,10 +4598,13 @@
         "thepricedex_price_list": 373,
         "tcgplayer_price_guide": 100,
         "reverseholo_set_checklist": 77,
+        "pokecardvalues_stamped_finish": 4,
         "cardtrader_blueprint_index": 3,
         "tcgcollector_card_variants": 17,
         "pricecharting_csv_product": 14,
-        "magicmadhouse_bw1_league_promos": 3
+        "magicmadhouse_bw1_league_promos": 3,
+        "pokemoncard_io_price_breakdown": 1,
+        "tcdb_checklist": 1
       },
       "evidence_urls_sample": [
         "https://api.pokemontcg.io/v2/cards/bw1-1",
@@ -3432,6 +4878,7 @@
         "thepricedex_price_list": 392,
         "tcgplayer_price_guide": 71,
         "reverseholo_set_checklist": 66,
+        "pokecardvalues_stamped_finish": 1,
         "tcgcollector_card_variants": 5,
         "cardtrader_blueprint_index": 14,
         "bulbapedia_card_page_release_info": 1,
@@ -3497,7 +4944,7 @@
         "pokemontcg_api": {
           "source_alias": "bw2",
           "configured_status": "available",
-          "runtime_status": "collected_plus_cached_snapshot",
+          "runtime_status": "collected",
           "evidence_rows": 292,
           "error": null
         },
@@ -3571,6 +5018,7 @@
         "tcgplayer_price_guide": 86,
         "reverseholo_set_checklist": 67,
         "tcgcollector_card_variants": 9,
+        "pokecardvalues_stamped_finish": 1,
         "cardtrader_blueprint_index": 2,
         "pokescope_variant_exact": 1,
         "pricecharting_csv_product": 2
@@ -3709,6 +5157,7 @@
         "thepricedex_price_list": 317,
         "tcgplayer_price_guide": 83,
         "reverseholo_set_checklist": 67,
+        "pokecardvalues_stamped_finish": 1,
         "cardtrader_blueprint_index": 6,
         "binderbuilder_set_variant": 3,
         "tcgcollector_card_variants": 6,
@@ -3914,7 +5363,7 @@
           "source_alias": "bw5",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 318,
+          "evidence_rows": 317,
           "error": null
         },
         "tcgdex": {
@@ -3982,14 +5431,14 @@
       "source_keys": {
         "bulbapedia_set_list": 112,
         "pkmncards": 111,
-        "pokemontcg_api": 318,
+        "pokemontcg_api": 317,
         "tcgdex": 210,
         "thepricedex_price_list": 335,
         "tcgplayer_price_guide": 87,
         "reverseholo_set_checklist": 77,
-        "tcgcollector_card_variants": 5,
         "cardtrader_blueprint_index": 9,
         "bulbapedia_card_page_release_info": 1,
+        "tcgcollector_card_variants": 5,
         "pricecharting_csv_product": 6,
         "binderbuilder_set_variant": 1,
         "pricecharting_csv_product_stamp": 1,
@@ -4223,8 +5672,8 @@
         },
         "tcgplayer_price_guide": {
           "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
+          "configured_status": "available",
+          "runtime_status": "collected_plus_cached_snapshot",
           "evidence_rows": 111,
           "error": null
         }
@@ -4409,6 +5858,7 @@
         "thepricedex_price_list": 404,
         "tcgplayer_price_guide": 109,
         "reverseholo_set_checklist": 91,
+        "pokecardvalues_stamped_finish": 1,
         "cardtrader_blueprint_index": 12,
         "tcgcollector_card_variants": 2,
         "pricecharting_csv_product": 3
@@ -4473,7 +5923,7 @@
         "pokemontcg_api": {
           "source_alias": "bw9",
           "configured_status": "available",
-          "runtime_status": "collected",
+          "runtime_status": "cached_snapshot",
           "evidence_rows": 344,
           "error": null
         },
@@ -4500,8 +5950,8 @@
         },
         "tcgplayer_price_guide": {
           "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
+          "configured_status": "available",
+          "runtime_status": "cached_snapshot",
           "evidence_rows": 86,
           "error": null
         }
@@ -4546,8 +5996,8 @@
         "tcgdex": 228,
         "thepricedex_price_list": 358,
         "tcgplayer_price_guide": 86,
-        "reverseholo_set_checklist": 78,
         "cardtrader_blueprint_index": 15,
+        "reverseholo_set_checklist": 78,
         "tcgcollector_card_variants": 3,
         "binderbuilder_set_variant": 3,
         "pricecharting_csv_product": 1,
@@ -4627,9 +6077,9 @@
         "thepricedex_price_list": {
           "source_alias": "bwp",
           "configured_status": "candidate_url",
-          "runtime_status": "error",
-          "evidence_rows": 0,
-          "error": "Command failed: curl.exe --ssl-no-revoke --silent --show-error --location --max-time 45 --user-agent Grookai Master Index Audit/1.0 --header Accept: text/html,application/xhtml+xml https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list\n"
+          "runtime_status": "collected",
+          "evidence_rows": 236,
+          "error": null
         },
         "bulbapedia_set_list": {
           "source_alias": "BW_Black_Star_Promos_(TCG)",
@@ -4687,11 +6137,12 @@
         "bulbapedia_card_page_release_info": 4,
         "bulbapedia_set_list": 4,
         "reverseholo_set_checklist": 2,
+        "pokecardvalues_stamped_finish": 1,
         "binderbuilder_set_variant": 10,
         "cardtrader_blueprint_index": 5,
         "pricecharting_csv_product": 7,
-        "pricecharting_csv_promo_exact": 1,
-        "tcgcsv_tcgplayer_catalog": 1
+        "tcgcsv_tcgplayer_catalog": 1,
+        "pricecharting_csv_promo_exact": 1
       },
       "evidence_urls_sample": [
         "https://api.pokemontcg.io/v2/cards/bwp-BW01",
@@ -5011,8 +6462,8 @@
         "pokemontcg_api": {
           "source_alias": "col1",
           "configured_status": "available",
-          "runtime_status": "collected_plus_cached_snapshot",
-          "evidence_rows": 297,
+          "runtime_status": "collected",
+          "evidence_rows": 296,
           "error": null
         },
         "tcgdex": {
@@ -5038,8 +6489,8 @@
         },
         "tcgplayer_price_guide": {
           "source_alias": null,
-          "configured_status": "available",
-          "runtime_status": "collected_plus_cached_snapshot",
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
           "evidence_rows": 72,
           "error": null
         }
@@ -5078,13 +6529,13 @@
       },
       "source_keys": {
         "pkmncards": 106,
-        "pokemontcg_api": 297,
+        "pokemontcg_api": 296,
         "tcgdex": 194,
         "thepricedex_price_list": 315,
         "tcgplayer_price_guide": 72,
-        "tcgcollector_card_variants": 3,
         "reverseholo_set_checklist": 43,
         "cardtrader_blueprint_index": 12,
+        "tcgcollector_card_variants": 3,
         "pricecharting_csv_product": 7,
         "pokumon_player_rewards_special_print": 1,
         "binderbuilder_set_variant": 9
@@ -6114,7 +7565,7 @@
           "source_alias": "dp6",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 428,
+          "evidence_rows": 429,
           "error": null
         },
         "tcgdex": {
@@ -6142,7 +7593,7 @@
           "source_alias": null,
           "configured_status": "unavailable",
           "runtime_status": "collected",
-          "evidence_rows": 275,
+          "evidence_rows": 276,
           "error": null
         }
       },
@@ -6180,14 +7631,14 @@
       },
       "source_keys": {
         "pkmncards": 146,
-        "pokemontcg_api": 428,
+        "pokemontcg_api": 429,
         "tcgdex": 439,
         "thepricedex_price_list": 447,
         "bulbapedia_set_list": 140,
         "pokellector_set_checklist": 7,
         "official_pokemon_checklist_pdf": 7,
         "reverseholo_set_checklist": 161,
-        "tcgplayer_price_guide": 275,
+        "tcgplayer_price_guide": 276,
         "doubleholo_set_checklist": 2,
         "cardtrader_blueprint_index": 1,
         "elitefourum_alternate_checklist": 5,
@@ -6599,6 +8050,7 @@
         "pokemontcg_api": 42,
         "tcgdex": 21,
         "thepricedex_price_list": 52,
+        "cardtrader_stamped_finish": 1,
         "binderbuilder_set_variant": 4,
         "tcgcollector_card_variants": 6
       },
@@ -6662,8 +8114,8 @@
         "pokemontcg_api": {
           "source_alias": "ecard1",
           "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 488,
+          "runtime_status": "collected_plus_cached_snapshot",
+          "evidence_rows": 489,
           "error": null
         },
         "tcgdex": {
@@ -6689,9 +8141,9 @@
         },
         "tcgplayer_price_guide": {
           "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 323,
+          "configured_status": "available",
+          "runtime_status": "collected_plus_cached_snapshot",
+          "evidence_rows": 324,
           "error": null
         }
       },
@@ -6727,11 +8179,11 @@
       },
       "source_keys": {
         "bulbapedia_set_list": 165,
-        "pokemontcg_api": 488,
+        "pokemontcg_api": 489,
         "tcgdex": 495,
         "thepricedex_price_list": 489,
         "reverseholo_set_checklist": 193,
-        "tcgplayer_price_guide": 323
+        "tcgplayer_price_guide": 324
       },
       "evidence_urls_sample": [
         "https://api.pokemontcg.io/v2/cards/ecard1-1",
@@ -7342,7 +8794,7 @@
           "source_alias": "ex11",
           "configured_status": "available",
           "runtime_status": "collected_plus_cached_snapshot",
-          "evidence_rows": 334,
+          "evidence_rows": 335,
           "error": null
         },
         "tcgdex": {
@@ -7407,7 +8859,7 @@
       },
       "source_keys": {
         "pkmncards": 114,
-        "pokemontcg_api": 334,
+        "pokemontcg_api": 335,
         "tcgdex": 228,
         "thepricedex_price_list": 338,
         "reverseholo_set_checklist": 92,
@@ -8705,7 +10157,7 @@
           "source_alias": "ex6",
           "configured_status": "available",
           "runtime_status": "collected_plus_cached_snapshot",
-          "evidence_rows": 355,
+          "evidence_rows": 354,
           "error": null
         },
         "tcgdex": {
@@ -8843,8 +10295,8 @@
         "pokemontcg_api": {
           "source_alias": "ex7",
           "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 330,
+          "runtime_status": "collected_plus_cached_snapshot",
+          "evidence_rows": 331,
           "error": null
         },
         "tcgdex": {
@@ -8889,12 +10341,12 @@
         "manual_review": 0
       },
       "printings": {
-        "total_working_facts": 212,
-        "master_admissible": 212,
+        "total_working_facts": 213,
+        "master_admissible": 213,
         "api_agreed": 0,
         "candidate_unconfirmed": 0,
-        "master_verified": 212,
-        "human_supported": 212,
+        "master_verified": 213,
+        "human_supported": 213,
         "conflicts": 0,
         "manual_review": 0,
         "finish_absences": 0,
@@ -8902,7 +10354,7 @@
         "adjudicated_excluded": 0
       },
       "finish_counts": {
-        "holo": 32,
+        "holo": 33,
         "normal": 83,
         "reverse": 95,
         "cosmos": 1,
@@ -8912,13 +10364,14 @@
         "bulbapedia_set_list": 111,
         "pkmncards": 111,
         "pokemontcg_api": 317,
-        "tcgdex": 226,
+        "tcgdex": 227,
         "thepricedex_price_list": 322,
         "tcgplayer_price_guide": 111,
         "reverseholo_set_checklist": 93,
         "tcgcsv_tcgplayer_catalog": 19,
         "binderbuilder_set_variant": 2,
         "cardtrader_blueprint_index": 1,
+        "pokecardvalues_stamped_finish": 1,
         "pricecharting_csv_product": 1
       },
       "evidence_urls_sample": [
@@ -8982,7 +10435,7 @@
           "source_alias": "ex8",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 326,
+          "evidence_rows": 328,
           "error": null
         },
         "tcgdex": {
@@ -9164,12 +10617,12 @@
         "manual_review": 0
       },
       "printings": {
-        "total_working_facts": 208,
-        "master_admissible": 208,
+        "total_working_facts": 209,
+        "master_admissible": 209,
         "api_agreed": 0,
         "candidate_unconfirmed": 0,
-        "master_verified": 208,
-        "human_supported": 208,
+        "master_verified": 209,
+        "human_supported": 209,
         "conflicts": 0,
         "manual_review": 0,
         "finish_absences": 0,
@@ -9177,7 +10630,7 @@
         "adjudicated_excluded": 1
       },
       "finish_counts": {
-        "holo": 30,
+        "holo": 31,
         "normal": 82,
         "reverse": 89,
         "stamped": 7
@@ -9185,12 +10638,13 @@
       "source_keys": {
         "pkmncards": 107,
         "pokemontcg_api": 305,
-        "tcgdex": 219,
+        "tcgdex": 220,
         "thepricedex_price_list": 314,
         "tcgplayer_price_guide": 110,
         "reverseholo_set_checklist": 103,
-        "tcgcsv_tcgplayer_catalog": 1,
+        "pokecardvalues_stamped_finish": 1,
         "binderbuilder_set_variant": 2,
+        "tcgcsv_tcgplayer_catalog": 1,
         "elitefourum_alternate_checklist": 3,
         "pricecharting_csv_product": 4
       },
@@ -9812,8 +11266,8 @@
         },
         "tcgplayer_price_guide": {
           "source_alias": null,
-          "configured_status": "available",
-          "runtime_status": "collected_plus_cached_snapshot",
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
           "evidence_rows": 226,
           "error": null
         }
@@ -9860,6 +11314,7 @@
         "eyevo_set_checklist": 1,
         "reverseholo_set_checklist": 133,
         "tcgplayer_price_guide": 226,
+        "pokecardvalues_stamped_finish": 3,
         "cardtrader_blueprint_index": 2,
         "tcgcollector_card_variants": 10,
         "pricecharting_csv_product": 5,
@@ -9972,12 +11427,12 @@
         "manual_review": 0
       },
       "printings": {
-        "total_working_facts": 198,
-        "master_admissible": 198,
+        "total_working_facts": 199,
+        "master_admissible": 199,
         "api_agreed": 0,
         "candidate_unconfirmed": 0,
-        "master_verified": 198,
-        "human_supported": 198,
+        "master_verified": 199,
+        "human_supported": 199,
         "conflicts": 0,
         "manual_review": 0,
         "finish_absences": 0,
@@ -9985,7 +11440,7 @@
         "adjudicated_excluded": 0
       },
       "finish_counts": {
-        "holo": 26,
+        "holo": 27,
         "reverse": 83,
         "normal": 74,
         "cracked_ice": 5,
@@ -9993,10 +11448,11 @@
       },
       "source_keys": {
         "pokemontcg_api": 275,
-        "tcgdex": 276,
+        "tcgdex": 277,
         "thepricedex_price_list": 293,
         "reverseholo_set_checklist": 108,
         "tcgplayer_price_guide": 177,
+        "pokecardvalues_stamped_finish": 2,
         "cardtrader_blueprint_index": 1,
         "binderbuilder_set_variant": 9,
         "elitefourum_alternate_checklist": 4,
@@ -10466,7 +11922,7 @@
           "source_alias": "base6",
           "configured_status": "available",
           "runtime_status": "collected_plus_cached_snapshot",
-          "evidence_rows": 328,
+          "evidence_rows": 329,
           "error": null
         },
         "tcgdex": {
@@ -10494,7 +11950,7 @@
           "source_alias": null,
           "configured_status": "available",
           "runtime_status": "collected_plus_cached_snapshot",
-          "evidence_rows": 218,
+          "evidence_rows": 219,
           "error": null
         }
       },
@@ -10530,11 +11986,11 @@
       },
       "source_keys": {
         "pkmncards": 108,
-        "pokemontcg_api": 328,
+        "pokemontcg_api": 329,
         "tcgdex": 333,
         "thepricedex_price_list": 333,
         "reverseholo_set_checklist": 125,
-        "tcgplayer_price_guide": 218
+        "tcgplayer_price_guide": 219
       },
       "evidence_urls_sample": [
         "https://api.pokemontcg.io/v2/cards/base6-1",
@@ -10642,12 +12098,12 @@
         "manual_review": 0
       },
       "printings": {
-        "total_working_facts": 350,
-        "master_admissible": 350,
+        "total_working_facts": 351,
+        "master_admissible": 351,
         "api_agreed": 0,
         "candidate_unconfirmed": 0,
-        "master_verified": 350,
-        "human_supported": 350,
+        "master_verified": 351,
+        "human_supported": 351,
         "conflicts": 0,
         "manual_review": 1,
         "finish_absences": 0,
@@ -10655,7 +12111,7 @@
         "adjudicated_excluded": 0
       },
       "finish_counts": {
-        "normal": 113,
+        "normal": 114,
         "reverse": 122,
         "holo": 79,
         "stamped": 31,
@@ -10664,13 +12120,13 @@
       "source_keys": {
         "pkmncards": 188,
         "pokemontcg_api": 498,
-        "tcgdex": 502,
+        "tcgdex": 503,
         "thepricedex_price_list": 537,
         "tcgplayer_price_guide": 310,
         "reverseholo_set_checklist": 188,
+        "tcgcollector_card_variants": 9,
         "pokescope_me01_stamp": 6,
         "pricecharting_csv_product": 18,
-        "tcgcollector_card_variants": 8,
         "bulbapedia_card_page_release_info": 1,
         "bulbapedia_set_list": 1,
         "doubleholo_set_checklist": 1,
@@ -11703,7 +13159,7 @@
           "source_alias": null,
           "configured_status": "unavailable",
           "runtime_status": "collected",
-          "evidence_rows": 12,
+          "evidence_rows": 13,
           "error": null
         }
       },
@@ -11745,7 +13201,7 @@
         "tcgdex": 330,
         "thepricedex_price_list": 339,
         "tcgcsv_tcgplayer_catalog_identity": 1,
-        "tcgplayer_price_guide": 12,
+        "tcgplayer_price_guide": 13,
         "tcgcollector_card_variants": 14,
         "reverseholo_set_checklist": 16,
         "tcgcsv_tcgplayer_catalog": 88,
@@ -12019,6 +13475,7 @@
         "tcgcollector_card_variants": 8,
         "reverseholo_set_checklist": 145,
         "tcgplayer_price_guide": 248,
+        "pokecardvalues_stamped_finish": 1,
         "tcgcsv_tcgplayer_catalog": 4,
         "binderbuilder_set_variant": 1,
         "pricecharting_csv_product": 2,
@@ -12305,6 +13762,7 @@
         "tcgcollector_card_variants": 13,
         "reverseholo_set_checklist": 192,
         "tcgplayer_price_guide": 172,
+        "pokecardvalues_stamped_finish": 2,
         "tcgcsv_tcgplayer_catalog": 7,
         "binderbuilder_set_variant": 3,
         "elitefourum_alternate_checklist": 8,
@@ -12444,6 +13902,7 @@
         "official_pokemon_checklist_pdf": 3,
         "reverseholo_set_checklist": 122,
         "tcgplayer_price_guide": 198,
+        "pokecardvalues_stamped_finish": 2,
         "tcgcollector_card_variants": 2,
         "elitefourum_alternate_checklist": 2,
         "pricecharting_csv_product": 2
@@ -13961,7 +15420,7 @@
         "pokemontcg_api": {
           "source_alias": "sm1",
           "configured_status": "available",
-          "runtime_status": "collected",
+          "runtime_status": "cached_snapshot",
           "evidence_rows": 462,
           "error": null
         },
@@ -13988,8 +15447,8 @@
         },
         "tcgplayer_price_guide": {
           "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
+          "configured_status": "available",
+          "runtime_status": "cached_snapshot",
           "evidence_rows": 110,
           "error": null
         }
@@ -14022,10 +15481,10 @@
       "finish_counts": {
         "normal": 160,
         "reverse": 126,
-        "holo": 53,
         "cosmos": 14,
         "cracked_ice": 3,
-        "stamped": 15
+        "stamped": 15,
+        "holo": 53
       },
       "source_keys": {
         "bulbapedia_set_list": 165,
@@ -14034,14 +15493,15 @@
         "tcgdex": 332,
         "thepricedex_price_list": 488,
         "tcgplayer_price_guide": 110,
-        "reverseholo_set_checklist": 130,
         "cardtrader_blueprint_index": 37,
         "pkmncollectors_sm1_energy": 9,
+        "reverseholo_set_checklist": 130,
         "tcgcollector_card_variants": 17,
         "binderbuilder_set_variant": 1,
         "pricecharting_csv_product": 7,
         "bulbapedia_card_page_release_info": 2,
         "pricecharting_product_page": 1,
+        "pokecardvalues_stamped_finish": 1,
         "pricecharting_variant_exact": 1,
         "bulbapedia_battle_academy_product": 5
       },
@@ -14119,9 +15579,9 @@
         "thepricedex_price_list": {
           "source_alias": "sm10",
           "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 657,
-          "error": null
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "error": "Command failed: curl.exe --ssl-no-revoke --silent --show-error --location --max-time 45 --user-agent Grookai Master Index Audit/1.0 --header Accept: text/html,application/xhtml+xml https://www.thepricedex.com/set/sm10/unbroken-bonds/price-list\ncurl: (35) Recv failure: Connection was reset\r\n"
         },
         "bulbapedia_set_list": {
           "source_alias": "Unbroken_Bonds_(TCG)",
@@ -14167,9 +15627,9 @@
         "holo": 83,
         "normal": 216,
         "reverse": 176,
+        "stamped": 2,
         "cosmos": 3,
-        "cracked_ice": 1,
-        "stamped": 2
+        "cracked_ice": 1
       },
       "source_keys": {
         "bulbapedia_set_list": 233,
@@ -14180,10 +15640,10 @@
         "reverseholo_set_checklist": 173,
         "tcgplayer_price_guide": 154,
         "cardtrader_blueprint_index": 58,
-        "tcgcollector_card_variants": 5,
+        "bulbapedia_battle_academy_product": 1,
         "doubleholo_set_checklist": 2,
         "pricecharting_product_page": 1,
-        "bulbapedia_battle_academy_product": 1
+        "tcgcollector_card_variants": 5
       },
       "evidence_urls_sample": [
         "https://api.pokemontcg.io/v2/cards/sm10-1",
@@ -14659,7 +16119,7 @@
         "pokemontcg_api": {
           "source_alias": "sm2",
           "configured_status": "available",
-          "runtime_status": "collected",
+          "runtime_status": "cached_snapshot",
           "evidence_rows": 467,
           "error": null
         },
@@ -14686,8 +16146,8 @@
         },
         "tcgplayer_price_guide": {
           "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
+          "configured_status": "available",
+          "runtime_status": "cached_snapshot",
           "evidence_rows": 103,
           "error": null
         }
@@ -14732,8 +16192,8 @@
         "tcgdex": 326,
         "thepricedex_price_list": 470,
         "tcgplayer_price_guide": 103,
-        "reverseholo_set_checklist": 126,
         "cardtrader_blueprint_index": 51,
+        "reverseholo_set_checklist": 126,
         "binderbuilder_set_variant": 1,
         "bulbapedia_card_page_release_info": 2,
         "tcgcollector_card_variants": 4,
@@ -14874,6 +16334,7 @@
         "thepricedex_price_list": 474,
         "tcgplayer_price_guide": 103,
         "reverseholo_set_checklist": 129,
+        "pokecardvalues_stamped_finish": 1,
         "cardtrader_blueprint_index": 53,
         "binderbuilder_set_variant": 2,
         "bulbapedia_card_page_release_info": 3,
@@ -15434,6 +16895,7 @@
         "thepricedex_price_list": 409,
         "tcgplayer_price_guide": 93,
         "reverseholo_set_checklist": 105,
+        "pokecardvalues_stamped_finish": 1,
         "cardtrader_blueprint_index": 35,
         "tcgcollector_card_variants": 3,
         "bulbapedia_card_page_release_info": 2,
@@ -15573,6 +17035,7 @@
         "thepricedex_price_list": 517,
         "tcgplayer_price_guide": 119,
         "reverseholo_set_checklist": 145,
+        "pokecardvalues_stamped_finish": 1,
         "cardtrader_blueprint_index": 44,
         "tcgcollector_card_variants": 5,
         "pricecharting_csv_product": 5,
@@ -15849,6 +17312,7 @@
         "thepricedex_price_list": 671,
         "tcgplayer_price_guide": 153,
         "reverseholo_set_checklist": 170,
+        "pokecardvalues_stamped_finish": 2,
         "cardtrader_blueprint_index": 55,
         "binderbuilder_set_variant": 1,
         "bulbapedia_battle_academy_product": 4,
@@ -16183,7 +17647,7 @@
         "pokemontcg_api": {
           "source_alias": "smp",
           "configured_status": "available",
-          "runtime_status": "collected",
+          "runtime_status": "collected_plus_cached_snapshot",
           "evidence_rows": 503,
           "error": null
         },
@@ -16210,8 +17674,8 @@
         },
         "tcgplayer_price_guide": {
           "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
+          "configured_status": "available",
+          "runtime_status": "collected_plus_cached_snapshot",
           "evidence_rows": 2,
           "error": null
         }
@@ -16507,12 +17971,12 @@
         "manual_review": 0
       },
       "printings": {
-        "total_working_facts": 517,
-        "master_admissible": 517,
+        "total_working_facts": 519,
+        "master_admissible": 519,
         "api_agreed": 0,
         "candidate_unconfirmed": 0,
-        "master_verified": 517,
-        "human_supported": 517,
+        "master_verified": 519,
+        "human_supported": 519,
         "conflicts": 0,
         "manual_review": 0,
         "finish_absences": 0,
@@ -16520,11 +17984,11 @@
         "adjudicated_excluded": 0
       },
       "finish_counts": {
-        "normal": 156,
+        "normal": 157,
         "reverse": 176,
         "holo": 131,
         "stamped": 42,
-        "cosmos": 12
+        "cosmos": 13
       },
       "source_keys": {
         "pkmncards": 277,
@@ -16533,13 +17997,16 @@
         "thepricedex_price_list": 796,
         "tcgplayer_price_guide": 151,
         "reverseholo_set_checklist": 300,
+        "justinbasil_prize_pack_finish": 3,
         "bulbapedia_card_page_release_info": 12,
         "bulbapedia_set_list": 16,
         "doubleholo_set_checklist": 4,
         "pricecharting_csv_product": 20,
         "bulbapedia_build_battle_product": 4,
         "pokescope_sv02_stamp": 7,
-        "tcgcollector_card_variants": 15
+        "tcgcollector_card_variants": 15,
+        "bulbapedia_prize_pack_current_gap_finish": 2,
+        "justinbasil_prize_pack_current_gap_finish": 2
       },
       "evidence_urls_sample": [
         "https://api.pokemontcg.io/v2/cards/sv2-1",
@@ -16549,141 +18016,6 @@
         "https://pkmncards.com/card/hoppip-paldea-evolved-pal-001/",
         "https://pkmncards.com/card/skiploom-paldea-evolved-pal-002/",
         "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
-      ],
-      "completion": {
-        "status": "complete_master_index_set",
-        "completion_score": 100,
-        "card_identity_master_admissible_percent": 100,
-        "printing_master_admissible_percent": 100,
-        "master_index_complete": true,
-        "eligible_for_future_downstream_audit": true,
-        "verification_level": "normal_double_source_required",
-        "non_standard_policy": null,
-        "blocker_summary": "No current completion blocker."
-      }
-    },
-    {
-      "set_key": "sv03",
-      "set_name": "Obsidian Flames",
-      "source_aliases": {
-        "pokemontcg_api": "sv3",
-        "tcgdex": "sv03",
-        "official_checklist_pdf": "sv3",
-        "official_pokemon_checklist": "sv3",
-        "thepricedex": "sv3",
-        "thepricedex_price_list": "sv3",
-        "pkmncards": "obsidian-flames",
-        "bulbapedia": "Obsidian_Flames_(TCG)",
-        "bulbapedia_set_list": "Obsidian_Flames_(TCG)"
-      },
-      "source_status": {
-        "pokemontcg_api": "available",
-        "tcgdex": "available",
-        "official_checklist_pdf": "candidate_url",
-        "official_pokemon_checklist": "candidate_url",
-        "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url",
-        "pkmncards": "candidate_url",
-        "bulbapedia": "candidate_url",
-        "bulbapedia_set_list": "candidate_url"
-      },
-      "source_totals": {
-        "pokemontcg_api": {
-          "printed_total": 197,
-          "total": 230
-        },
-        "tcgdex": {
-          "official": 197,
-          "total": 230
-        }
-      },
-      "source_availability": {
-        "pokemontcg_api": {
-          "source_alias": "sv3",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 636,
-          "error": null
-        },
-        "tcgdex": {
-          "source_alias": "sv03",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 647,
-          "error": null
-        },
-        "thepricedex_price_list": {
-          "source_alias": "sv3",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 636,
-          "error": null
-        },
-        "bulbapedia_set_list": {
-          "source_alias": "Obsidian_Flames_(TCG)",
-          "configured_status": "candidate_url",
-          "runtime_status": "error",
-          "evidence_rows": 0,
-          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
-        },
-        "tcgplayer_price_guide": {
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 406,
-          "error": null
-        }
-      },
-      "card_identity": {
-        "total_working_facts": 230,
-        "master_admissible": 230,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 230,
-        "human_supported": 230,
-        "master_admissible_from_exact_printing": 0,
-        "manual_review_resolved_by_exact_printing": 0,
-        "conflicts": 0,
-        "manual_review": 0
-      },
-      "printings": {
-        "total_working_facts": 409,
-        "master_admissible": 409,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 409,
-        "human_supported": 409,
-        "conflicts": 0,
-        "manual_review": 0,
-        "finish_absences": 0,
-        "finish_blocker_boundary": 0,
-        "adjudicated_excluded": 0
-      },
-      "finish_counts": {
-        "normal": 167,
-        "reverse": 176,
-        "holo": 66
-      },
-      "source_keys": {
-        "pkmncards": 229,
-        "pokemontcg_api": 636,
-        "tcgdex": 639,
-        "thepricedex_price_list": 636,
-        "tcgcsv_tcgplayer_catalog": 161,
-        "tcgplayer_price_guide": 406,
-        "reverseholo_set_checklist": 240,
-        "cardtrader_blueprint_index": 2,
-        "bulbapedia_build_battle_product": 1,
-        "bulbapedia_set_list": 1
-      },
-      "evidence_urls_sample": [
-        "https://api.pokemontcg.io/v2/cards/sv3-1",
-        "https://api.pokemontcg.io/v2/cards/sv3-2",
-        "https://api.tcgdex.net/v2/en/cards/sv03-001",
-        "https://api.tcgdex.net/v2/en/cards/sv03-002",
-        "https://pkmncards.com/card/gloom-obsidian-flames-obf-002/",
-        "https://pkmncards.com/card/oddish-obsidian-flames-obf-001/",
-        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
       ],
       "completion": {
         "status": "complete_master_index_set",
@@ -17100,145 +18432,6 @@
       }
     },
     {
-      "set_key": "sv05",
-      "set_name": "Temporal Forces",
-      "source_aliases": {
-        "pokemontcg_api": "sv5",
-        "tcgdex": "sv05",
-        "official_checklist_pdf": "sv5",
-        "official_pokemon_checklist": "sv5",
-        "thepricedex": "sv5",
-        "thepricedex_price_list": "sv5",
-        "pkmncards": "temporal-forces",
-        "bulbapedia": "Temporal_Forces_(TCG)",
-        "bulbapedia_set_list": "Temporal_Forces_(TCG)"
-      },
-      "source_status": {
-        "pokemontcg_api": "available",
-        "tcgdex": "available",
-        "official_checklist_pdf": "candidate_url",
-        "official_pokemon_checklist": "candidate_url",
-        "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url",
-        "pkmncards": "candidate_url",
-        "bulbapedia": "candidate_url",
-        "bulbapedia_set_list": "candidate_url"
-      },
-      "source_totals": {
-        "pokemontcg_api": {
-          "printed_total": 162,
-          "total": 218
-        },
-        "tcgdex": {
-          "official": 162,
-          "total": 218
-        }
-      },
-      "source_availability": {
-        "pokemontcg_api": {
-          "source_alias": "sv5",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 576,
-          "error": null
-        },
-        "tcgdex": {
-          "source_alias": "sv05",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 597,
-          "error": null
-        },
-        "thepricedex_price_list": {
-          "source_alias": "sv5",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 640,
-          "error": null
-        },
-        "bulbapedia_set_list": {
-          "source_alias": "Temporal_Forces_(TCG)",
-          "configured_status": "candidate_url",
-          "runtime_status": "error",
-          "evidence_rows": 0,
-          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Temporal_Forces_(TCG)"
-        },
-        "tcgplayer_price_guide": {
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 358,
-          "error": null
-        }
-      },
-      "card_identity": {
-        "total_working_facts": 218,
-        "master_admissible": 218,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 218,
-        "human_supported": 218,
-        "master_admissible_from_exact_printing": 0,
-        "manual_review_resolved_by_exact_printing": 0,
-        "conflicts": 0,
-        "manual_review": 0
-      },
-      "printings": {
-        "total_working_facts": 414,
-        "master_admissible": 414,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 414,
-        "human_supported": 414,
-        "conflicts": 0,
-        "manual_review": 0,
-        "finish_absences": 0,
-        "finish_blocker_boundary": 0,
-        "adjudicated_excluded": 0
-      },
-      "finish_counts": {
-        "normal": 133,
-        "reverse": 140,
-        "holo": 93,
-        "stamped": 37,
-        "cosmos": 11
-      },
-      "source_keys": {
-        "pkmncards": 218,
-        "pokemontcg_api": 576,
-        "tcgdex": 583,
-        "thepricedex_price_list": 631,
-        "tcgplayer_price_guide": 358,
-        "reverseholo_set_checklist": 221,
-        "tcgcollector_card_variants": 14,
-        "pricecharting_csv_product": 25,
-        "bulbapedia_card_page_release_info": 7,
-        "bulbapedia_set_list": 8,
-        "bulbapedia_sv05_additional_cards": 3,
-        "bulbapedia_build_battle_product": 1
-      },
-      "evidence_urls_sample": [
-        "https://api.pokemontcg.io/v2/cards/sv5-1",
-        "https://api.pokemontcg.io/v2/cards/sv5-2",
-        "https://api.tcgdex.net/v2/en/cards/sv05-001",
-        "https://api.tcgdex.net/v2/en/cards/sv05-002",
-        "https://pkmncards.com/card/pineco-temporal-forces-tef-002/",
-        "https://pkmncards.com/card/scyther-temporal-forces-tef-001/",
-        "https://www.thepricedex.com/set/sv5/temporal-forces/price-list"
-      ],
-      "completion": {
-        "status": "complete_master_index_set",
-        "completion_score": 100,
-        "card_identity_master_admissible_percent": 100,
-        "printing_master_admissible_percent": 100,
-        "master_index_complete": true,
-        "eligible_for_future_downstream_audit": true,
-        "verification_level": "normal_double_source_required",
-        "non_standard_policy": null,
-        "blocker_summary": "No current completion blocker."
-      }
-    },
-    {
       "set_key": "sv06",
       "set_name": "Twilight Masquerade",
       "source_aliases": {
@@ -17593,12 +18786,12 @@
         "manual_review": 0
       },
       "printings": {
-        "total_working_facts": 328,
-        "master_admissible": 328,
+        "total_working_facts": 330,
+        "master_admissible": 330,
         "api_agreed": 0,
         "candidate_unconfirmed": 0,
-        "master_verified": 328,
-        "human_supported": 328,
+        "master_verified": 330,
+        "human_supported": 330,
         "conflicts": 0,
         "manual_review": 0,
         "finish_absences": 0,
@@ -17610,7 +18803,7 @@
         "normal": 114,
         "reverse": 125,
         "stamped": 21,
-        "cosmos": 3
+        "cosmos": 5
       },
       "source_keys": {
         "pkmncards": 175,
@@ -17619,10 +18812,11 @@
         "thepricedex_price_list": 501,
         "reverseholo_set_checklist": 190,
         "tcgplayer_price_guide": 299,
-        "tcgcollector_card_variants": 12,
+        "tcgcollector_card_variants": 14,
         "bulbapedia_card_page_release_info": 4,
         "bulbapedia_set_list": 4,
-        "pricecharting_csv_product": 10
+        "pricecharting_csv_product": 10,
+        "bulbapedia_prize_pack_foil": 2
       },
       "evidence_urls_sample": [
         "https://api.pokemontcg.io/v2/cards/sv7-1",
@@ -18005,12 +19199,12 @@
         "manual_review": 0
       },
       "printings": {
-        "total_working_facts": 368,
-        "master_admissible": 368,
+        "total_working_facts": 369,
+        "master_admissible": 369,
         "api_agreed": 0,
         "candidate_unconfirmed": 0,
-        "master_verified": 368,
-        "human_supported": 368,
+        "master_verified": 369,
+        "human_supported": 369,
         "conflicts": 0,
         "manual_review": 0,
         "finish_absences": 0,
@@ -18018,7 +19212,7 @@
         "adjudicated_excluded": 0
       },
       "finish_counts": {
-        "normal": 129,
+        "normal": 130,
         "reverse": 143,
         "holo": 63,
         "stamped": 27,
@@ -18027,10 +19221,11 @@
       "source_keys": {
         "pkmncards": 190,
         "pokemontcg_api": 523,
-        "tcgdex": 525,
+        "tcgdex": 526,
         "thepricedex_price_list": 558,
         "tcgplayer_price_guide": 333,
         "reverseholo_set_checklist": 142,
+        "bulbapedia_prize_pack_normal": 5,
         "bulbapedia_card_page_release_info": 4,
         "bulbapedia_set_list": 4,
         "tcgcollector_card_variants": 13,
@@ -18044,144 +19239,6 @@
         "https://pkmncards.com/card/caterpie-journey-together-jtg-001/",
         "https://pkmncards.com/card/metapod-journey-together-jtg-002/",
         "https://www.thepricedex.com/set/sv9/journey-together/price-list"
-      ],
-      "completion": {
-        "status": "complete_master_index_set",
-        "completion_score": 100,
-        "card_identity_master_admissible_percent": 100,
-        "printing_master_admissible_percent": 100,
-        "master_index_complete": true,
-        "eligible_for_future_downstream_audit": true,
-        "verification_level": "normal_double_source_required",
-        "non_standard_policy": null,
-        "blocker_summary": "No current completion blocker."
-      }
-    },
-    {
-      "set_key": "sv10",
-      "set_name": "Destined Rivals",
-      "source_aliases": {
-        "pokemontcg_api": "sv10",
-        "tcgdex": "sv10",
-        "official_checklist_pdf": "sv10",
-        "official_pokemon_checklist": "sv10",
-        "thepricedex": "sv10",
-        "thepricedex_price_list": "sv10",
-        "pkmncards": "destined-rivals",
-        "bulbapedia": "Destined_Rivals_(TCG)",
-        "bulbapedia_set_list": "Destined_Rivals_(TCG)"
-      },
-      "source_status": {
-        "pokemontcg_api": "available",
-        "tcgdex": "available",
-        "official_checklist_pdf": "candidate_url",
-        "official_pokemon_checklist": "candidate_url",
-        "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url",
-        "pkmncards": "candidate_url",
-        "bulbapedia": "candidate_url",
-        "bulbapedia_set_list": "candidate_url"
-      },
-      "source_totals": {
-        "pokemontcg_api": {
-          "printed_total": 182,
-          "total": 244
-        },
-        "tcgdex": {
-          "official": 182,
-          "total": 244
-        }
-      },
-      "source_availability": {
-        "pokemontcg_api": {
-          "source_alias": "sv10",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 653,
-          "error": null
-        },
-        "tcgdex": {
-          "source_alias": "sv10",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 660,
-          "error": null
-        },
-        "thepricedex_price_list": {
-          "source_alias": "sv10",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 706,
-          "error": null
-        },
-        "bulbapedia_set_list": {
-          "source_alias": "Destined_Rivals_(TCG)",
-          "configured_status": "candidate_url",
-          "runtime_status": "error",
-          "evidence_rows": 0,
-          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Destined_Rivals_(TCG)"
-        },
-        "tcgplayer_price_guide": {
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 409,
-          "error": null
-        }
-      },
-      "card_identity": {
-        "total_working_facts": 244,
-        "master_admissible": 244,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 244,
-        "human_supported": 244,
-        "master_admissible_from_exact_printing": 0,
-        "manual_review_resolved_by_exact_printing": 0,
-        "conflicts": 0,
-        "manual_review": 0
-      },
-      "printings": {
-        "total_working_facts": 457,
-        "master_admissible": 457,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 457,
-        "human_supported": 457,
-        "conflicts": 0,
-        "manual_review": 0,
-        "finish_absences": 0,
-        "finish_blocker_boundary": 0,
-        "adjudicated_excluded": 0
-      },
-      "finish_counts": {
-        "normal": 152,
-        "reverse": 165,
-        "holo": 97,
-        "stamped": 32,
-        "cosmos": 11
-      },
-      "source_keys": {
-        "pkmncards": 242,
-        "pokemontcg_api": 653,
-        "tcgdex": 658,
-        "thepricedex_price_list": 698,
-        "tcgplayer_price_guide": 409,
-        "reverseholo_set_checklist": 104,
-        "tcgcollector_card_variants": 22,
-        "bulbapedia_build_battle_product": 1,
-        "bulbapedia_set_list": 3,
-        "pricecharting_csv_product": 21,
-        "bulbapedia_card_page_release_info": 2
-      },
-      "evidence_urls_sample": [
-        "https://api.pokemontcg.io/v2/cards/sv10-1",
-        "https://api.pokemontcg.io/v2/cards/sv10-2",
-        "https://api.tcgdex.net/v2/en/cards/sv10-001",
-        "https://api.tcgdex.net/v2/en/cards/sv10-002",
-        "https://pkmncards.com/card/ethans-pinsir-destined-rivals-dri-001/",
-        "https://pkmncards.com/card/yanma-destined-rivals-dri-002/",
-        "https://www.thepricedex.com/set/sv10/destined-rivals/price-list"
       ],
       "completion": {
         "status": "complete_master_index_set",
@@ -18711,6 +19768,7 @@
         "tcgdex": 245,
         "thepricedex_price_list": 519,
         "tcgcollector_card_variants": 1,
+        "tcgcsv_stamped_subtype": 13,
         "reverseholo_set_checklist": 145,
         "tcgcsv_tcgplayer_catalog": 14,
         "tcgcsv_prize_pack_catalog": 4,
@@ -18856,6 +19914,7 @@
         "thepricedex_price_list": 658,
         "reverseholo_set_checklist": 229,
         "tcgplayer_price_guide": 380,
+        "bulbapedia_prize_pack_normal": 3,
         "tcgcollector_card_variants": 16,
         "binderbuilder_set_variant": 2,
         "pricecharting_csv_product": 11,
@@ -18875,149 +19934,6 @@
         "https://bulbapedia.bulbagarden.net/wiki/Sword_%26_Shield_(TCG)#Set_lists",
         "https://pkmncards.com/card/celebi-v-sword-shield-ssh-001/",
         "https://www.thepricedex.com/set/swsh1/sword-and-shield/price-list"
-      ],
-      "completion": {
-        "status": "complete_master_index_set",
-        "completion_score": 100,
-        "card_identity_master_admissible_percent": 100,
-        "printing_master_admissible_percent": 100,
-        "master_index_complete": true,
-        "eligible_for_future_downstream_audit": true,
-        "verification_level": "normal_double_source_required",
-        "non_standard_policy": null,
-        "blocker_summary": "No current completion blocker."
-      }
-    },
-    {
-      "set_key": "swsh10",
-      "set_name": "Astral Radiance",
-      "source_aliases": {
-        "pokemontcg_api": "swsh10",
-        "tcgdex": "swsh10",
-        "official_checklist_pdf": "swsh10",
-        "official_pokemon_checklist": "swsh10",
-        "thepricedex": "swsh10",
-        "thepricedex_price_list": "swsh10",
-        "pkmncards": "astral-radiance",
-        "bulbapedia": "Astral_Radiance_(TCG)",
-        "bulbapedia_set_list": "Astral_Radiance_(TCG)"
-      },
-      "source_status": {
-        "pokemontcg_api": "available",
-        "tcgdex": "available",
-        "official_checklist_pdf": "candidate_url",
-        "official_pokemon_checklist": "candidate_url",
-        "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url",
-        "pkmncards": "candidate_url",
-        "bulbapedia": "candidate_url",
-        "bulbapedia_set_list": "candidate_url"
-      },
-      "source_totals": {
-        "pokemontcg_api": {
-          "printed_total": 189,
-          "total": 216
-        },
-        "tcgdex": {
-          "official": 189,
-          "total": 246
-        }
-      },
-      "source_availability": {
-        "pokemontcg_api": {
-          "source_alias": "swsh10",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 560,
-          "error": null
-        },
-        "tcgdex": {
-          "source_alias": "swsh10",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 620,
-          "error": null
-        },
-        "thepricedex_price_list": {
-          "source_alias": "swsh10",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 674,
-          "error": null
-        },
-        "bulbapedia_set_list": {
-          "source_alias": "Astral_Radiance_(TCG)",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 216,
-          "error": null
-        },
-        "tcgplayer_price_guide": {
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 344,
-          "error": null
-        }
-      },
-      "card_identity": {
-        "total_working_facts": 246,
-        "master_admissible": 246,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 246,
-        "human_supported": 246,
-        "master_admissible_from_exact_printing": 0,
-        "manual_review_resolved_by_exact_printing": 0,
-        "conflicts": 0,
-        "manual_review": 0
-      },
-      "printings": {
-        "total_working_facts": 421,
-        "master_admissible": 421,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 421,
-        "human_supported": 421,
-        "conflicts": 0,
-        "manual_review": 0,
-        "finish_absences": 0,
-        "finish_blocker_boundary": 0,
-        "adjudicated_excluded": 0
-      },
-      "finish_counts": {
-        "holo": 138,
-        "normal": 115,
-        "reverse": 128,
-        "cosmos": 4,
-        "stamped": 36
-      },
-      "source_keys": {
-        "bulbapedia_set_list": 226,
-        "pkmncards": 246,
-        "pokemontcg_api": 560,
-        "tcgdex": 620,
-        "thepricedex_price_list": 667,
-        "reverseholo_set_checklist": 263,
-        "tcgplayer_price_guide": 344,
-        "tcgcollector_card_variants": 5,
-        "tcgcsv_prize_pack_catalog": 17,
-        "pricecharting_csv_product": 14,
-        "pricecharting_product_page": 3,
-        "bulbapedia_build_battle_product": 7,
-        "doubleholo_set_checklist": 1,
-        "bulbapedia_card_page_release_info": 3,
-        "pricecharting_api_product": 1,
-        "pokescope_variant_exact": 1
-      },
-      "evidence_urls_sample": [
-        "https://api.pokemontcg.io/v2/cards/swsh10-1",
-        "https://api.pokemontcg.io/v2/cards/swsh10-2",
-        "https://api.tcgdex.net/v2/en/cards/swsh10-001",
-        "https://api.tcgdex.net/v2/en/cards/swsh10-002",
-        "https://bulbapedia.bulbagarden.net/wiki/Astral_Radiance_(TCG)#Set_lists",
-        "https://pkmncards.com/card/beedrill-v-astral-radiance-asr-001/",
-        "https://www.thepricedex.com/set/swsh10/astral-radiance/price-list"
       ],
       "completion": {
         "status": "complete_master_index_set",
@@ -19290,147 +20206,6 @@
       }
     },
     {
-      "set_key": "swsh11",
-      "set_name": "Lost Origin",
-      "source_aliases": {
-        "pokemontcg_api": "swsh11",
-        "tcgdex": "swsh11",
-        "official_checklist_pdf": "swsh11",
-        "official_pokemon_checklist": "swsh11",
-        "thepricedex": "swsh11",
-        "thepricedex_price_list": "swsh11",
-        "pkmncards": "lost-origin",
-        "bulbapedia": "Lost_Origin_(TCG)",
-        "bulbapedia_set_list": "Lost_Origin_(TCG)"
-      },
-      "source_status": {
-        "pokemontcg_api": "available",
-        "tcgdex": "available",
-        "official_checklist_pdf": "candidate_url",
-        "official_pokemon_checklist": "candidate_url",
-        "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url",
-        "pkmncards": "candidate_url",
-        "bulbapedia": "candidate_url",
-        "bulbapedia_set_list": "candidate_url"
-      },
-      "source_totals": {
-        "pokemontcg_api": {
-          "printed_total": 196,
-          "total": 217
-        },
-        "tcgdex": {
-          "official": 196,
-          "total": 247
-        }
-      },
-      "source_availability": {
-        "pokemontcg_api": {
-          "source_alias": "swsh11",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 583,
-          "error": null
-        },
-        "tcgdex": {
-          "source_alias": "swsh11",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 643,
-          "error": null
-        },
-        "thepricedex_price_list": {
-          "source_alias": "swsh11",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 699,
-          "error": null
-        },
-        "bulbapedia_set_list": {
-          "source_alias": "Lost_Origin_(TCG)",
-          "configured_status": "candidate_url",
-          "runtime_status": "error",
-          "evidence_rows": 0,
-          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Lost_Origin_(TCG)"
-        },
-        "tcgplayer_price_guide": {
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 364,
-          "error": null
-        }
-      },
-      "card_identity": {
-        "total_working_facts": 247,
-        "master_admissible": 247,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 247,
-        "human_supported": 247,
-        "master_admissible_from_exact_printing": 0,
-        "manual_review_resolved_by_exact_printing": 0,
-        "conflicts": 0,
-        "manual_review": 0
-      },
-      "printings": {
-        "total_working_facts": 440,
-        "master_admissible": 440,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 440,
-        "human_supported": 440,
-        "conflicts": 0,
-        "manual_review": 0,
-        "finish_absences": 0,
-        "finish_blocker_boundary": 0,
-        "adjudicated_excluded": 0
-      },
-      "finish_counts": {
-        "normal": 131,
-        "reverse": 149,
-        "holo": 120,
-        "stamped": 40
-      },
-      "source_keys": {
-        "pkmncards": 247,
-        "pokemontcg_api": 583,
-        "tcgdex": 643,
-        "thepricedex_price_list": 687,
-        "tcgplayer_price_guide": 364,
-        "reverseholo_set_checklist": 262,
-        "bulbapedia_card_page_release_info": 8,
-        "bulbapedia_set_list": 10,
-        "bulbapedia_swsh11_trick_or_trade_stamps": 3,
-        "bulbapedia_build_battle_product": 2,
-        "tcgcsv_prize_pack_catalog": 10,
-        "pricecharting_csv_product": 17,
-        "pricecharting_product_page": 2,
-        "tcgcollector_card_variants": 2,
-        "pokescope_variant_exact": 1
-      },
-      "evidence_urls_sample": [
-        "https://api.pokemontcg.io/v2/cards/swsh11-1",
-        "https://api.pokemontcg.io/v2/cards/swsh11-2",
-        "https://api.tcgdex.net/v2/en/cards/swsh11-001",
-        "https://api.tcgdex.net/v2/en/cards/swsh11-002",
-        "https://pkmncards.com/card/gloom-lost-origin-lor-002/",
-        "https://pkmncards.com/card/oddish-lost-origin-lor-001/",
-        "https://www.thepricedex.com/set/swsh11/lost-origin/price-list"
-      ],
-      "completion": {
-        "status": "complete_master_index_set",
-        "completion_score": 100,
-        "card_identity_master_admissible_percent": 100,
-        "printing_master_admissible_percent": 100,
-        "master_index_complete": true,
-        "eligible_for_future_downstream_audit": true,
-        "verification_level": "normal_double_source_required",
-        "non_standard_policy": null,
-        "blocker_summary": "No current completion blocker."
-      }
-    },
-    {
       "set_key": "swsh11tg",
       "set_name": "Lost Origin Trainer Gallery",
       "source_aliases": {
@@ -19638,12 +20413,12 @@
         "manual_review": 0
       },
       "printings": {
-        "total_working_facts": 419,
-        "master_admissible": 419,
+        "total_working_facts": 420,
+        "master_admissible": 420,
         "api_agreed": 0,
         "candidate_unconfirmed": 0,
-        "master_verified": 419,
-        "human_supported": 419,
+        "master_verified": 420,
+        "human_supported": 420,
         "conflicts": 0,
         "manual_review": 0,
         "finish_absences": 0,
@@ -19655,7 +20430,7 @@
         "reverse": 142,
         "holo": 115,
         "stamped": 28,
-        "cosmos": 1
+        "cosmos": 2
       },
       "source_keys": {
         "pkmncards": 245,
@@ -19664,11 +20439,13 @@
         "thepricedex_price_list": 664,
         "tcgplayer_price_guide": 357,
         "reverseholo_set_checklist": 257,
+        "justinbasil_prize_pack_finish": 3,
+        "bulbapedia_prize_pack_normal": 4,
         "pricecharting_csv_product": 21,
         "binderbuilder_set_variant": 1,
         "bulbapedia_card_page_release_info": 5,
         "bulbapedia_set_list": 6,
-        "tcgcollector_card_variants": 4,
+        "tcgcollector_card_variants": 5,
         "pricecharting_product_page": 1,
         "bulbapedia_build_battle_product": 1
       },
@@ -20076,150 +20853,6 @@
       }
     },
     {
-      "set_key": "swsh2",
-      "set_name": "Rebel Clash",
-      "source_aliases": {
-        "pokemontcg_api": "swsh2",
-        "tcgdex": "swsh2",
-        "official_checklist_pdf": "swsh2",
-        "official_pokemon_checklist": "swsh2",
-        "thepricedex": "swsh2",
-        "thepricedex_price_list": "swsh2",
-        "pkmncards": "rebel-clash",
-        "bulbapedia": "Rebel_Clash_(TCG)",
-        "bulbapedia_set_list": "Rebel_Clash_(TCG)"
-      },
-      "source_status": {
-        "pokemontcg_api": "available",
-        "tcgdex": "available",
-        "official_checklist_pdf": "candidate_url",
-        "official_pokemon_checklist": "candidate_url",
-        "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url",
-        "pkmncards": "candidate_url",
-        "bulbapedia": "candidate_url",
-        "bulbapedia_set_list": "candidate_url"
-      },
-      "source_totals": {
-        "pokemontcg_api": {
-          "printed_total": 192,
-          "total": 209
-        },
-        "tcgdex": {
-          "official": 192,
-          "total": 209
-        }
-      },
-      "source_availability": {
-        "pokemontcg_api": {
-          "source_alias": "swsh2",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 569,
-          "error": null
-        },
-        "tcgdex": {
-          "source_alias": "swsh2",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 565,
-          "error": null
-        },
-        "thepricedex_price_list": {
-          "source_alias": "swsh2",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 609,
-          "error": null
-        },
-        "bulbapedia_set_list": {
-          "source_alias": "Rebel_Clash_(TCG)",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 207,
-          "error": null
-        },
-        "tcgplayer_price_guide": {
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 352,
-          "error": null
-        }
-      },
-      "card_identity": {
-        "total_working_facts": 212,
-        "master_admissible": 212,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 212,
-        "human_supported": 212,
-        "master_admissible_from_exact_printing": 0,
-        "manual_review_resolved_by_exact_printing": 0,
-        "conflicts": 0,
-        "manual_review": 0
-      },
-      "printings": {
-        "total_working_facts": 394,
-        "master_admissible": 394,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 394,
-        "human_supported": 394,
-        "conflicts": 0,
-        "manual_review": 0,
-        "finish_absences": 0,
-        "finish_blocker_boundary": 0,
-        "adjudicated_excluded": 0
-      },
-      "finish_counts": {
-        "normal": 140,
-        "reverse": 152,
-        "holo": 79,
-        "stamped": 17,
-        "cosmos": 5,
-        "cracked_ice": 1
-      },
-      "source_keys": {
-        "bulbapedia_set_list": 217,
-        "pkmncards": 207,
-        "pokemontcg_api": 569,
-        "tcgdex": 565,
-        "thepricedex_price_list": 600,
-        "pkmncards_identity_gap": 3,
-        "tcgplayer_price_guide": 352,
-        "reverseholo_set_checklist": 220,
-        "tcgcsv_tcgplayer_catalog": 3,
-        "bulbapedia_card_page_release_info": 8,
-        "pricecharting_csv_product": 6,
-        "tcgcollector_card_variants": 9,
-        "pokescope_variant_exact": 1,
-        "doubleholo_set_checklist": 1,
-        "bulbapedia_build_battle_product": 2,
-        "tcgcsv_prize_pack_catalog": 3
-      },
-      "evidence_urls_sample": [
-        "https://api.pokemontcg.io/v2/cards/swsh2-1",
-        "https://api.pokemontcg.io/v2/cards/swsh2-2",
-        "https://api.tcgdex.net/v2/en/cards/swsh2-1",
-        "https://api.tcgdex.net/v2/en/cards/swsh2-2",
-        "https://bulbapedia.bulbagarden.net/wiki/Rebel_Clash_(TCG)#Set_lists",
-        "https://pkmncards.com/card/caterpie-rebel-clash-rcl-001/",
-        "https://www.thepricedex.com/set/swsh2/rebel-clash/price-list"
-      ],
-      "completion": {
-        "status": "complete_master_index_set",
-        "completion_score": 100,
-        "card_identity_master_admissible_percent": 100,
-        "printing_master_admissible_percent": 100,
-        "master_index_complete": true,
-        "eligible_for_future_downstream_audit": true,
-        "verification_level": "normal_double_source_required",
-        "non_standard_policy": null,
-        "blocker_summary": "No current completion blocker."
-      }
-    },
-    {
       "set_key": "swsh3",
       "set_name": "Darkness Ablaze",
       "source_aliases": {
@@ -20332,6 +20965,7 @@
         "thepricedex_price_list": 590,
         "reverseholo_set_checklist": 215,
         "tcgplayer_price_guide": 356,
+        "bulbapedia_prize_pack_normal": 1,
         "bulbapedia_card_page_release_info": 8,
         "pricecharting_csv_product": 3,
         "tcgcollector_card_variants": 14,
@@ -20610,6 +21244,7 @@
         "thepricedex_price_list": 580,
         "tcgplayer_price_guide": 345,
         "reverseholo_set_checklist": 219,
+        "bulbapedia_prize_pack_normal": 1,
         "tcgcollector_card_variants": 16,
         "bulbapedia_card_page_release_info": 5,
         "binderbuilder_set_variant": 1,
@@ -20903,434 +21538,6 @@
       }
     },
     {
-      "set_key": "swsh5",
-      "set_name": "Battle Styles",
-      "source_aliases": {
-        "pokemontcg_api": "swsh5",
-        "tcgdex": "swsh5",
-        "official_checklist_pdf": "swsh5",
-        "official_pokemon_checklist": "swsh5",
-        "thepricedex": "swsh5",
-        "thepricedex_price_list": "swsh5",
-        "pkmncards": "battle-styles",
-        "bulbapedia": "Battle_Styles_(TCG)",
-        "bulbapedia_set_list": "Battle_Styles_(TCG)"
-      },
-      "source_status": {
-        "pokemontcg_api": "available",
-        "tcgdex": "available",
-        "official_checklist_pdf": "candidate_url",
-        "official_pokemon_checklist": "candidate_url",
-        "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url",
-        "pkmncards": "candidate_url",
-        "bulbapedia": "candidate_url",
-        "bulbapedia_set_list": "candidate_url"
-      },
-      "source_totals": {
-        "pokemontcg_api": {
-          "printed_total": 163,
-          "total": 183
-        },
-        "tcgdex": {
-          "official": 163,
-          "total": 183
-        }
-      },
-      "source_availability": {
-        "pokemontcg_api": {
-          "source_alias": "swsh5",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 489,
-          "error": null
-        },
-        "tcgdex": {
-          "source_alias": "swsh5",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 489,
-          "error": null
-        },
-        "thepricedex_price_list": {
-          "source_alias": "swsh5",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 541,
-          "error": null
-        },
-        "bulbapedia_set_list": {
-          "source_alias": "Battle_Styles_(TCG)",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 183,
-          "error": null
-        },
-        "tcgplayer_price_guide": {
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 306,
-          "error": null
-        }
-      },
-      "card_identity": {
-        "total_working_facts": 183,
-        "master_admissible": 183,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 183,
-        "human_supported": 183,
-        "master_admissible_from_exact_printing": 0,
-        "manual_review_resolved_by_exact_printing": 0,
-        "conflicts": 0,
-        "manual_review": 0
-      },
-      "printings": {
-        "total_working_facts": 348,
-        "master_admissible": 348,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 348,
-        "human_supported": 348,
-        "conflicts": 0,
-        "manual_review": 0,
-        "finish_absences": 0,
-        "finish_blocker_boundary": 0,
-        "adjudicated_excluded": 0
-      },
-      "finish_counts": {
-        "normal": 111,
-        "reverse": 123,
-        "holo": 76,
-        "stamped": 35,
-        "cosmos": 3
-      },
-      "source_keys": {
-        "bulbapedia_set_list": 188,
-        "pkmncards": 183,
-        "pokemontcg_api": 489,
-        "tcgdex": 489,
-        "thepricedex_price_list": 531,
-        "tcgplayer_price_guide": 306,
-        "reverseholo_set_checklist": 196,
-        "pricecharting_csv_product": 14,
-        "binderbuilder_set_variant": 2,
-        "tcgcsv_prize_pack_catalog": 17,
-        "tcgcollector_card_variants": 3,
-        "bulbapedia_build_battle_product": 2,
-        "bulbapedia_card_page_release_info": 3,
-        "bulbapedia_battle_academy_product": 1
-      },
-      "evidence_urls_sample": [
-        "https://api.pokemontcg.io/v2/cards/swsh5-1",
-        "https://api.pokemontcg.io/v2/cards/swsh5-2",
-        "https://api.tcgdex.net/v2/en/cards/swsh5-1",
-        "https://api.tcgdex.net/v2/en/cards/swsh5-2",
-        "https://bulbapedia.bulbagarden.net/wiki/Battle_Styles_(TCG)#Set_lists",
-        "https://pkmncards.com/card/bellsprout-battle-styles-bst-001/",
-        "https://www.thepricedex.com/set/swsh5/battle-styles/price-list"
-      ],
-      "completion": {
-        "status": "complete_master_index_set",
-        "completion_score": 100,
-        "card_identity_master_admissible_percent": 100,
-        "printing_master_admissible_percent": 100,
-        "master_index_complete": true,
-        "eligible_for_future_downstream_audit": true,
-        "verification_level": "normal_double_source_required",
-        "non_standard_policy": null,
-        "blocker_summary": "No current completion blocker."
-      }
-    },
-    {
-      "set_key": "swsh6",
-      "set_name": "Chilling Reign",
-      "source_aliases": {
-        "pokemontcg_api": "swsh6",
-        "tcgdex": "swsh6",
-        "official_checklist_pdf": "swsh6",
-        "official_pokemon_checklist": "swsh6",
-        "thepricedex": "swsh6",
-        "thepricedex_price_list": "swsh6",
-        "pkmncards": "chilling-reign",
-        "bulbapedia": "Chilling_Reign_(TCG)",
-        "bulbapedia_set_list": "Chilling_Reign_(TCG)"
-      },
-      "source_status": {
-        "pokemontcg_api": "available",
-        "tcgdex": "available",
-        "official_checklist_pdf": "candidate_url",
-        "official_pokemon_checklist": "candidate_url",
-        "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url",
-        "pkmncards": "candidate_url",
-        "bulbapedia": "candidate_url",
-        "bulbapedia_set_list": "candidate_url"
-      },
-      "source_totals": {
-        "pokemontcg_api": {
-          "printed_total": 198,
-          "total": 233
-        },
-        "tcgdex": {
-          "official": 198,
-          "total": 233
-        }
-      },
-      "source_availability": {
-        "pokemontcg_api": {
-          "source_alias": "swsh6",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 602,
-          "error": null
-        },
-        "tcgdex": {
-          "source_alias": "swsh6",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 596,
-          "error": null
-        },
-        "thepricedex_price_list": {
-          "source_alias": "swsh6",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 662,
-          "error": null
-        },
-        "bulbapedia_set_list": {
-          "source_alias": "Chilling_Reign_(TCG)",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 233,
-          "error": null
-        },
-        "tcgplayer_price_guide": {
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 363,
-          "error": null
-        }
-      },
-      "card_identity": {
-        "total_working_facts": 233,
-        "master_admissible": 233,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 233,
-        "human_supported": 233,
-        "master_admissible_from_exact_printing": 0,
-        "manual_review_resolved_by_exact_printing": 0,
-        "conflicts": 0,
-        "manual_review": 0
-      },
-      "printings": {
-        "total_working_facts": 419,
-        "master_admissible": 419,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 419,
-        "human_supported": 419,
-        "conflicts": 0,
-        "manual_review": 0,
-        "finish_absences": 0,
-        "finish_blocker_boundary": 0,
-        "adjudicated_excluded": 0
-      },
-      "finish_counts": {
-        "normal": 119,
-        "reverse": 136,
-        "holo": 121,
-        "stamped": 39,
-        "cosmos": 4
-      },
-      "source_keys": {
-        "bulbapedia_set_list": 243,
-        "pkmncards": 233,
-        "pokemontcg_api": 602,
-        "tcgdex": 596,
-        "thepricedex_price_list": 652,
-        "tcgcsv_tcgplayer_catalog": 118,
-        "tcgplayer_price_guide": 363,
-        "reverseholo_set_checklist": 249,
-        "bulbapedia_card_page_release_info": 8,
-        "pricecharting_csv_product": 14,
-        "tcgcsv_prize_pack_catalog": 14,
-        "bulbapedia_battle_academy_product": 2,
-        "binderbuilder_set_variant": 1,
-        "bulbapedia_build_battle_product": 2,
-        "tcgcollector_card_variants": 7,
-        "doubleholo_set_checklist": 2
-      },
-      "evidence_urls_sample": [
-        "https://api.pokemontcg.io/v2/cards/swsh6-1",
-        "https://api.pokemontcg.io/v2/cards/swsh6-2",
-        "https://api.tcgdex.net/v2/en/cards/swsh6-1",
-        "https://api.tcgdex.net/v2/en/cards/swsh6-2",
-        "https://bulbapedia.bulbagarden.net/wiki/Chilling_Reign_(TCG)#Set_lists",
-        "https://pkmncards.com/card/weedle-chilling-reign-cre-001/",
-        "https://www.thepricedex.com/set/swsh6/chilling-reign/price-list"
-      ],
-      "completion": {
-        "status": "complete_master_index_set",
-        "completion_score": 100,
-        "card_identity_master_admissible_percent": 100,
-        "printing_master_admissible_percent": 100,
-        "master_index_complete": true,
-        "eligible_for_future_downstream_audit": true,
-        "verification_level": "normal_double_source_required",
-        "non_standard_policy": null,
-        "blocker_summary": "No current completion blocker."
-      }
-    },
-    {
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "source_aliases": {
-        "pokemontcg_api": "swsh7",
-        "tcgdex": "swsh7",
-        "official_checklist_pdf": "swsh7",
-        "official_pokemon_checklist": "swsh7",
-        "thepricedex": "swsh7",
-        "thepricedex_price_list": "swsh7",
-        "pkmncards": "evolving-skies",
-        "bulbapedia": "Evolving_Skies_(TCG)",
-        "bulbapedia_set_list": "Evolving_Skies_(TCG)"
-      },
-      "source_status": {
-        "pokemontcg_api": "available",
-        "tcgdex": "available",
-        "official_checklist_pdf": "candidate_url",
-        "official_pokemon_checklist": "candidate_url",
-        "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url",
-        "pkmncards": "candidate_url",
-        "bulbapedia": "candidate_url",
-        "bulbapedia_set_list": "candidate_url"
-      },
-      "source_totals": {
-        "pokemontcg_api": {
-          "printed_total": 203,
-          "total": 237
-        },
-        "tcgdex": {
-          "official": 203,
-          "total": 237
-        }
-      },
-      "source_availability": {
-        "pokemontcg_api": {
-          "source_alias": "swsh7",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 606,
-          "error": null
-        },
-        "tcgdex": {
-          "source_alias": "swsh7",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 553,
-          "error": null
-        },
-        "thepricedex_price_list": {
-          "source_alias": "swsh7",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 665,
-          "error": null
-        },
-        "bulbapedia_set_list": {
-          "source_alias": "Evolving_Skies_(TCG)",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 237,
-          "error": null
-        },
-        "tcgplayer_price_guide": {
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 315,
-          "error": null
-        }
-      },
-      "card_identity": {
-        "total_working_facts": 237,
-        "master_admissible": 237,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 237,
-        "human_supported": 237,
-        "master_admissible_from_exact_printing": 0,
-        "manual_review_resolved_by_exact_printing": 0,
-        "conflicts": 0,
-        "manual_review": 0
-      },
-      "printings": {
-        "total_working_facts": 422,
-        "master_admissible": 422,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 422,
-        "human_supported": 422,
-        "conflicts": 0,
-        "manual_review": 0,
-        "finish_absences": 0,
-        "finish_blocker_boundary": 0,
-        "adjudicated_excluded": 0
-      },
-      "finish_counts": {
-        "normal": 118,
-        "reverse": 132,
-        "holo": 125,
-        "stamped": 45,
-        "cosmos": 2
-      },
-      "source_keys": {
-        "bulbapedia_set_list": 249,
-        "pkmncards": 237,
-        "pokemontcg_api": 606,
-        "tcgdex": 553,
-        "thepricedex_price_list": 658,
-        "tcgplayer_price_guide": 315,
-        "reverseholo_set_checklist": 250,
-        "cardtrader_blueprint_index": 2,
-        "pricecharting_csv_product": 22,
-        "binderbuilder_set_variant": 1,
-        "tcgcsv_prize_pack_catalog": 11,
-        "bulbapedia_card_page_release_info": 10,
-        "doubleholo_set_checklist": 1,
-        "pricecharting_product_page": 1,
-        "bulbapedia_build_battle_product": 2,
-        "tcgcollector_card_variants": 3,
-        "pokescope_variant_exact": 1
-      },
-      "evidence_urls_sample": [
-        "https://api.pokemontcg.io/v2/cards/swsh7-1",
-        "https://api.pokemontcg.io/v2/cards/swsh7-2",
-        "https://api.tcgdex.net/v2/en/cards/swsh7-1",
-        "https://api.tcgdex.net/v2/en/cards/swsh7-2",
-        "https://bulbapedia.bulbagarden.net/wiki/Evolving_Skies_(TCG)#Set_lists",
-        "https://pkmncards.com/card/pinsir-evolving-skies-evs-001/",
-        "https://www.thepricedex.com/set/swsh7/evolving-skies/price-list"
-      ],
-      "completion": {
-        "status": "complete_master_index_set",
-        "completion_score": 100,
-        "card_identity_master_admissible_percent": 100,
-        "printing_master_admissible_percent": 100,
-        "master_index_complete": true,
-        "eligible_for_future_downstream_audit": true,
-        "verification_level": "normal_double_source_required",
-        "non_standard_policy": null,
-        "blocker_summary": "No current completion blocker."
-      }
-    },
-    {
       "set_key": "swsh8",
       "set_name": "Fusion Strike",
       "source_aliases": {
@@ -21442,6 +21649,7 @@
         "thepricedex_price_list": 834,
         "tcgplayer_price_guide": 488,
         "reverseholo_set_checklist": 292,
+        "bulbapedia_prize_pack_normal": 5,
         "cardtrader_blueprint_index": 13,
         "bulbapedia_card_page_release_info": 1,
         "pricecharting_csv_product_stamp": 2,
@@ -21460,148 +21668,6 @@
         "https://bulbapedia.bulbagarden.net/wiki/Fusion_Strike_(TCG)#Set_lists",
         "https://pkmncards.com/card/caterpie-fusion-strike-fst-001/",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
-      ],
-      "completion": {
-        "status": "complete_master_index_set",
-        "completion_score": 100,
-        "card_identity_master_admissible_percent": 100,
-        "printing_master_admissible_percent": 100,
-        "master_index_complete": true,
-        "eligible_for_future_downstream_audit": true,
-        "verification_level": "normal_double_source_required",
-        "non_standard_policy": null,
-        "blocker_summary": "No current completion blocker."
-      }
-    },
-    {
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
-      "source_aliases": {
-        "pokemontcg_api": "swsh9",
-        "tcgdex": "swsh9",
-        "official_checklist_pdf": "swsh9",
-        "official_pokemon_checklist": "swsh9",
-        "thepricedex": "swsh9",
-        "thepricedex_price_list": "swsh9",
-        "pkmncards": "brilliant-stars",
-        "bulbapedia": "Brilliant_Stars_(TCG)",
-        "bulbapedia_set_list": "Brilliant_Stars_(TCG)"
-      },
-      "source_status": {
-        "pokemontcg_api": "available",
-        "tcgdex": "available",
-        "official_checklist_pdf": "candidate_url",
-        "official_pokemon_checklist": "candidate_url",
-        "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url",
-        "pkmncards": "candidate_url",
-        "bulbapedia": "candidate_url",
-        "bulbapedia_set_list": "candidate_url"
-      },
-      "source_totals": {
-        "pokemontcg_api": {
-          "printed_total": 172,
-          "total": 186
-        },
-        "tcgdex": {
-          "official": 172,
-          "total": 216
-        }
-      },
-      "source_availability": {
-        "pokemontcg_api": {
-          "source_alias": "swsh9",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 496,
-          "error": null
-        },
-        "tcgdex": {
-          "source_alias": "swsh9",
-          "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 557,
-          "error": null
-        },
-        "thepricedex_price_list": {
-          "source_alias": "swsh9",
-          "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 630,
-          "error": null
-        },
-        "bulbapedia_set_list": {
-          "source_alias": "Brilliant_Stars_(TCG)",
-          "configured_status": "candidate_url",
-          "runtime_status": "error",
-          "evidence_rows": 0,
-          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Brilliant_Stars_(TCG)"
-        },
-        "tcgplayer_price_guide": {
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 310,
-          "error": null
-        }
-      },
-      "card_identity": {
-        "total_working_facts": 216,
-        "master_admissible": 216,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 216,
-        "human_supported": 216,
-        "master_admissible_from_exact_printing": 0,
-        "manual_review_resolved_by_exact_printing": 0,
-        "conflicts": 0,
-        "manual_review": 0
-      },
-      "printings": {
-        "total_working_facts": 397,
-        "master_admissible": 397,
-        "api_agreed": 0,
-        "candidate_unconfirmed": 0,
-        "master_verified": 397,
-        "human_supported": 397,
-        "conflicts": 0,
-        "manual_review": 0,
-        "finish_absences": 0,
-        "finish_blocker_boundary": 0,
-        "adjudicated_excluded": 0
-      },
-      "finish_counts": {
-        "normal": 121,
-        "reverse": 124,
-        "holo": 102,
-        "stamped": 46,
-        "cosmos": 4
-      },
-      "source_keys": {
-        "pkmncards": 216,
-        "pokemontcg_api": 496,
-        "tcgdex": 557,
-        "thepricedex_price_list": 613,
-        "tcgplayer_price_guide": 310,
-        "reverseholo_set_checklist": 207,
-        "pricecharting_csv_product": 21,
-        "magicmadhouse_swsh9_stamps": 5,
-        "tcgcsv_prize_pack_catalog": 13,
-        "tcgcollector_card_variants": 7,
-        "binderbuilder_set_variant": 1,
-        "bulbapedia_card_page_release_info": 6,
-        "bulbapedia_set_list": 10,
-        "bulbapedia_build_battle_product": 4,
-        "pricecharting_product_page": 1
-      },
-      "evidence_urls_sample": [
-        "https://api.pokemontcg.io/v2/cards/swsh9-1",
-        "https://api.pokemontcg.io/v2/cards/swsh9-2",
-        "https://api.tcgdex.net/v2/en/cards/swsh9-001",
-        "https://api.tcgdex.net/v2/en/cards/swsh9-002",
-        "https://pkmncards.com/card/exeggcute-brilliant-stars-brs-001/",
-        "https://pkmncards.com/card/exeggutor-brilliant-stars-brs-002/",
-        "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
       ],
       "completion": {
         "status": "complete_master_index_set",
@@ -22636,6 +22702,7 @@
         "thepricedex_price_list": 440,
         "reverseholo_set_checklist": 94,
         "tcgplayer_price_guide": 116,
+        "pokecardvalues_stamped_finish": 1,
         "cardtrader_blueprint_index": 9,
         "tcgcollector_card_variants": 13,
         "pricecharting_csv_product": 9,
@@ -23194,6 +23261,7 @@
         "thepricedex_price_list": 320,
         "tcgplayer_price_guide": 84,
         "reverseholo_set_checklist": 81,
+        "pokecardvalues_stamped_finish": 3,
         "pricecharting_csv_base_product": 1,
         "pricecharting_csv_product": 5,
         "cardtrader_blueprint_index": 10,
@@ -23333,6 +23401,7 @@
         "thepricedex_price_list": 343,
         "tcgplayer_price_guide": 88,
         "reverseholo_set_checklist": 84,
+        "pokecardvalues_stamped_finish": 1,
         "cardtrader_blueprint_index": 10,
         "pricecharting_csv_product": 2,
         "binderbuilder_set_variant": 3,
@@ -24036,6 +24105,7 @@
         "thepricedex_price_list": 488,
         "tcgplayer_price_guide": 122,
         "reverseholo_set_checklist": 124,
+        "pokecardvalues_stamped_finish": 2,
         "pricecharting_csv_base_product": 1,
         "pricecharting_csv_product": 7,
         "cardtrader_blueprint_index": 12,
@@ -24312,6 +24382,7 @@
         "pokemontcg_api": 425,
         "tcgdex": 216,
         "thepricedex_price_list": 441,
+        "tcgcsv_stamped_subtype": 2,
         "binderbuilder_set_variant": 5,
         "pricecharting_csv_product": 3,
         "bulbapedia_card_page_release_info": 11,

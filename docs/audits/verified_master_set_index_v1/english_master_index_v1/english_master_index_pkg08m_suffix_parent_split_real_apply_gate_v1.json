@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-06-10T16:00:20.578Z",
+  "version": "english_master_index_pkg08m_suffix_parent_split_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-08M-SUFFIX-PARENT-SPLIT",
+    "package_fingerprint_sha256": "1bf0d4aa087d3185935212bd1a244aecd3a0b3fce6bdc7bc851e9a0d82af3405",
+    "target_parent_inserts": 3,
+    "target_child_inserts": 3,
+    "target_mapping_transfers": 3,
+    "by_set": {
+      "g1": 1,
+      "sm4": 1,
+      "xy7": 1
+    },
+    "by_finish": {
+      "normal": 3
+    },
+    "updates_allowed": true,
+    "update_scope": "tcgdex_external_mapping_transfer_only",
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false,
+    "global_apply_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_status": "pkg08m_suffix_parent_split_completed_rolled_back_no_durable_change",
+    "before_hash_sha256": "22d54b6da93a7bc3f8530e7f9983f14b14fcac12db3ee848be7cc845953b2e8a",
+    "after_hash_sha256": "22d54b6da93a7bc3f8530e7f9983f14b14fcac12db3ee848be7cc845953b2e8a",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-08M-SUFFIX-PARENT-SPLIT",
+        "package_fingerprint": "1bf0d4aa087d3185935212bd1a244aecd3a0b3fce6bdc7bc851e9a0d82af3405",
+        "target_rows": 3
+      }
+    ]
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-08M-SUFFIX-PARENT-SPLIT apply only. Fingerprint: 1bf0d4aa087d3185935212bd1a244aecd3a0b3fce6bdc7bc851e9a0d82af3405. Scope: 3 suffix parent inserts, 3 suffix child card_printing inserts, 3 TCGdex mapping transfers across 3 sets; finish normal=3; existing base parents preserved; unsupported cleanup deferred. Dry-run proof: 22d54b6da93a7bc3f8530e7f9983f14b14fcac12db3ee848be7cc845953b2e8a == 22d54b6da93a7bc3f8530e7f9983f14b14fcac12db3ee848be7cc845953b2e8a. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+  },
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg08m_suffix_parent_split_guarded_dry_run_v1.json"
+  },
+  "stop_findings": [],
+  "pass": true
+}

@@ -1,0 +1,295 @@
+{
+  "package_id": "PKG-28B-EXTERNAL-MAPPING-TRANSFER-CHILD-DELETE",
+  "generated_at": "2026-06-13T18:06:06.861Z",
+  "fingerprint": "9a4b671f19abe698262b55d2c5d9cbe7dc3ab068b74146e2341489de5cfea9ee",
+  "source_readiness_fingerprint": "3c196d849bc0c375cc57a932970576135dec0cd174824224584aac354159c6f9",
+  "sql_hash": "66f084dc988ddc87bb02f008c3141e4049b763af761d319e08fe1e9f38f887bf",
+  "sql_path": "docs\\sql\\english_master_index_pkg28b_external_mapping_transfer_child_delete_guarded_dry_run_transaction_v1.sql",
+  "safety": {
+    "db_writes_committed": false,
+    "migrations_created": false,
+    "real_apply_authorized": false,
+    "sql_ends_with_rollback": true
+  },
+  "summary": {
+    "target_rows": 4,
+    "mapping_transfers": 4,
+    "child_deletes_in_dry_run": 4
+  },
+  "rows": [
+    {
+      "lane": "dependency_blocked_unsupported_child",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "ac7282b6-d83f-403b-91c6-e1bf22e4d79d",
+      "set_code": "ecard2",
+      "card_number": "1",
+      "number": "1",
+      "number_plain": "1",
+      "card_name": "Ampharos",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "be415b20-0da5-4493-a30c-10f0cdfe34cb",
+      "finish_key": "holo",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 1,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "ecard2",
+      "child_identity_key": "ecard2|1|ampharos|holo||",
+      "live_number_candidates": [
+        "1"
+      ],
+      "child_dependency_total": 1,
+      "external_number": "H01",
+      "exact_master_fact_count": 1,
+      "exact_master_facts": [
+        {
+          "set_key": "ecard2",
+          "card_number": "H01",
+          "card_name": "Ampharos",
+          "finish_key": "holo",
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/ecard2-H01",
+            "https://reverseholo.app/sets/ecard2"
+          ]
+        }
+      ],
+      "target": {
+        "target_status": "target_child_found",
+        "target_card_print_id": "1e9e47a7-eae7-5fc7-8f93-70344832b56b",
+        "target_card_printing_id": "37a6be79-4e47-4aec-a567-5ad9865c872b",
+        "target_number": "H01",
+        "target_number_plain": "H01",
+        "target_finish_key": "holo"
+      },
+      "classification": "transfer_ready_external_mapping_to_verified_target_child",
+      "reason": "external mapping number resolves to a different existing Master-verified target child",
+      "external_mappings": [
+        {
+          "id": "ab277b4a-19d9-4fb4-8a59-9723cf348a2c",
+          "card_printing_id": "be415b20-0da5-4493-a30c-10f0cdfe34cb",
+          "source": "tcgdex",
+          "external_id": "ecard2-H01",
+          "active": true,
+          "meta": {}
+        }
+      ]
+    },
+    {
+      "lane": "dependency_blocked_unsupported_child",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "4a227d77-bc07-4a76-8aca-de1df960f237",
+      "set_code": "ecard2",
+      "card_number": "5",
+      "number": "5",
+      "number_plain": "5",
+      "card_name": "Bellossom",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "6971fe2c-bcdf-4671-bf82-28738595ce96",
+      "finish_key": "holo",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 1,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "ecard2",
+      "child_identity_key": "ecard2|5|bellossom|holo||",
+      "live_number_candidates": [
+        "5"
+      ],
+      "child_dependency_total": 1,
+      "external_number": "H05",
+      "exact_master_fact_count": 1,
+      "exact_master_facts": [
+        {
+          "set_key": "ecard2",
+          "card_number": "H05",
+          "card_name": "Bellossom",
+          "finish_key": "holo",
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/ecard2-H05",
+            "https://reverseholo.app/sets/ecard2"
+          ]
+        }
+      ],
+      "target": {
+        "target_status": "target_child_found",
+        "target_card_print_id": "5bd53600-e109-5340-9310-58b8db67d005",
+        "target_card_printing_id": "e0295a7f-de79-4a1f-a95b-28ce8b3b4105",
+        "target_number": "H05",
+        "target_number_plain": "H05",
+        "target_finish_key": "holo"
+      },
+      "classification": "transfer_ready_external_mapping_to_verified_target_child",
+      "reason": "external mapping number resolves to a different existing Master-verified target child",
+      "external_mappings": [
+        {
+          "id": "11f1dc82-9ceb-4443-9ba5-712b1451b406",
+          "card_printing_id": "6971fe2c-bcdf-4671-bf82-28738595ce96",
+          "source": "tcgdex",
+          "external_id": "ecard2-H05",
+          "active": true,
+          "meta": {}
+        }
+      ]
+    },
+    {
+      "lane": "dependency_blocked_unsupported_child",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "9949d6f1-caa1-466c-97d5-1d63940ff0d2",
+      "set_code": "ecard2",
+      "card_number": "6",
+      "number": "6",
+      "number_plain": "6",
+      "card_name": "Blissey",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "390b57da-d2dc-4815-9069-312516ecba23",
+      "finish_key": "holo",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 1,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "ecard2",
+      "child_identity_key": "ecard2|6|blissey|holo||",
+      "live_number_candidates": [
+        "6"
+      ],
+      "child_dependency_total": 1,
+      "external_number": "H06",
+      "exact_master_fact_count": 1,
+      "exact_master_facts": [
+        {
+          "set_key": "ecard2",
+          "card_number": "H06",
+          "card_name": "Blissey",
+          "finish_key": "holo",
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/ecard2-H06",
+            "https://reverseholo.app/sets/ecard2"
+          ]
+        }
+      ],
+      "target": {
+        "target_status": "target_child_found",
+        "target_card_print_id": "e053096d-d687-5731-aace-de737a884616",
+        "target_card_printing_id": "ffe8d593-ffc2-4539-8795-0e64b8d7c858",
+        "target_number": "H06",
+        "target_number_plain": "H06",
+        "target_finish_key": "holo"
+      },
+      "classification": "transfer_ready_external_mapping_to_verified_target_child",
+      "reason": "external mapping number resolves to a different existing Master-verified target child",
+      "external_mappings": [
+        {
+          "id": "21e03600-abc5-41ef-9bb3-68c24e7a4abb",
+          "card_printing_id": "390b57da-d2dc-4815-9069-312516ecba23",
+          "source": "tcgdex",
+          "external_id": "ecard2-H06",
+          "active": true,
+          "meta": {}
+        }
+      ]
+    },
+    {
+      "lane": "dependency_blocked_unsupported_child",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "01d1554e-c6bb-4972-bc56-fbc7d82de97e",
+      "set_code": "ecard3",
+      "card_number": "17",
+      "number": "17",
+      "number_plain": "17",
+      "card_name": "Magcargo",
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "card_printing_id": "50940a33-ce3f-48ed-b7c3-3aa65bac051e",
+      "finish_key": "holo",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 1,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "ecard3",
+      "child_identity_key": "ecard3|17|magcargo|holo||",
+      "live_number_candidates": [
+        "17"
+      ],
+      "child_dependency_total": 1,
+      "external_number": "H17",
+      "exact_master_fact_count": 1,
+      "exact_master_facts": [
+        {
+          "set_key": "ecard3",
+          "card_number": "H17",
+          "card_name": "Magcargo",
+          "finish_key": "holo",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ecard3-H17",
+            "https://api.tcgdex.net/v2/en/cards/ecard3-H17",
+            "https://prices.pokemontcg.io/tcgplayer/ecard3-H17",
+            "https://reverseholo.app/sets/ecard3",
+            "https://www.thepricedex.com/set/ecard3/skyridge/price-list"
+          ]
+        }
+      ],
+      "target": {
+        "target_status": "target_child_found",
+        "target_card_print_id": "bb73d56c-c46f-4341-b4a1-825a10c2406b",
+        "target_card_printing_id": "50c11bac-6547-4c74-8b59-459a84c0bb32",
+        "target_number": "H17",
+        "target_number_plain": "H17",
+        "target_finish_key": "holo"
+      },
+      "classification": "transfer_ready_external_mapping_to_verified_target_child",
+      "reason": "external mapping number resolves to a different existing Master-verified target child",
+      "external_mappings": [
+        {
+          "id": "8a3b635a-f459-4026-ae37-9fb6b2c347c7",
+          "card_printing_id": "50940a33-ce3f-48ed-b7c3-3aa65bac051e",
+          "source": "tcgdex",
+          "external_id": "ecard3-H17",
+          "active": true,
+          "meta": {}
+        }
+      ]
+    }
+  ]
+}

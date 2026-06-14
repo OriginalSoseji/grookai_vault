@@ -1,0 +1,3633 @@
+{
+  "generated_at": "2026-06-13T00:02:03.534Z",
+  "version": "pkg17i2_stamp_label_source_acquisition_v1",
+  "package_id": "PKG-17I2-STAMP-LABEL-SOURCE-ACQUISITION",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "write_ready_now": 0,
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17a_stamped_remaining_action_queue_v1.json",
+  "scanned_roots": [
+    "docs/audits/english_master_index_source_exhaustion_v1",
+    "docs/checkpoints/warehouse"
+  ],
+  "fingerprint_sha256": "f9fa877413a80d60f00f75ae188324b9e0877d5e1a72c60ef2ef37f087cc7ed1",
+  "summary": {
+    "target_rows": 178,
+    "candidate_objects_matched": 49,
+    "unique_rows_with_candidates": 11,
+    "unique_rows_with_external_candidates": 0,
+    "by_status": {
+      "blocked_no_candidate_label_found": 167,
+      "candidate_internal_checkpoint_label_found": 6,
+      "blocked_conflicting_candidate_labels": 5
+    },
+    "by_set": {
+      "svp": 26,
+      "sv02": 18,
+      "sv09": 11,
+      "dp2": 9,
+      "dp1": 7,
+      "sv05": 7,
+      "bwp": 6,
+      "col1": 6,
+      "dp5": 6,
+      "g1": 6,
+      "mep": 6,
+      "bw1": 4,
+      "sm1": 4,
+      "sv07": 4,
+      "dp4": 3,
+      "sm12": 3,
+      "sm4": 3,
+      "smp": 3,
+      "swsh6": 3,
+      "swsh7": 3,
+      "bog": 2,
+      "bw5": 2,
+      "dp3": 2,
+      "me01": 2,
+      "sm3": 2,
+      "swsh3": 2,
+      "xy7": 2,
+      "xyp": 2,
+      "basep": 1,
+      "bw10": 1,
+      "bw11": 1,
+      "dp6": 1,
+      "ex3": 1,
+      "hgss1": 1,
+      "np": 1,
+      "pl1": 1,
+      "pl3": 1,
+      "pop6": 1,
+      "pop9": 1,
+      "sm2": 1,
+      "sm5": 1,
+      "sv10": 1,
+      "swsh1": 1,
+      "swsh10": 1,
+      "swsh11": 1,
+      "swsh12": 1,
+      "swsh8": 1,
+      "xy12": 1,
+      "xy2": 1,
+      "xy5": 1,
+      "xy6": 1,
+      "xy9": 1
+    },
+    "by_source_family": {
+      "warehouse_checkpoint": 49
+    }
+  },
+  "rows": [
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "9",
+      "card_name": "Alakazam",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "10",
+      "card_name": "Riolu",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "22",
+      "card_name": "Charcadet",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "31",
+      "card_name": "N's Zekrom",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "70",
+      "card_name": "Tyrunt",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "80",
+      "card_name": "Fennekin",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "51",
+      "card_name": "Rapidash",
+      "finish_key": "normal",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bog",
+      "set_name": "Best of Game",
+      "card_number": "4",
+      "card_name": "Rocket's Scizor",
+      "finish_key": "normal",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bog",
+      "set_name": "Best of Game",
+      "card_number": "5",
+      "card_name": "Rocket's Sneasel",
+      "finish_key": "normal",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "np",
+      "set_name": "Nintendo Black Star Promos",
+      "card_number": "12",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "ex3",
+      "set_name": "Dragon",
+      "card_number": "50",
+      "card_name": "Bagon",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "61",
+      "card_name": "Riolu",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "76",
+      "card_name": "Chimchar",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "83",
+      "card_name": "Glameow",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "93",
+      "card_name": "Piplup",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "99",
+      "card_name": "Skorupi",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "102",
+      "card_name": "Stunky",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "103",
+      "card_name": "Turtwig",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "19",
+      "card_name": "Abomasnow",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "42",
+      "card_name": "Chingling",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "52",
+      "card_name": "Happiny",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "73",
+      "card_name": "Bidoof",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "74",
+      "card_name": "Bronzor",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "86",
+      "card_name": "Kricketot",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "94",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "98",
+      "card_name": "Shinx",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "101",
+      "card_name": "Snover",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "pop6",
+      "set_name": "POP Series 6",
+      "card_number": "9",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "card_number": "40",
+      "card_name": "Weavile",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "card_number": "78",
+      "card_name": "Burmy Plant Cloak",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp4",
+      "set_name": "Great Encounters",
+      "card_number": "16",
+      "card_name": "Dialga",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp4",
+      "set_name": "Great Encounters",
+      "card_number": "37",
+      "card_name": "Floatzel",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp4",
+      "set_name": "Great Encounters",
+      "card_number": "61",
+      "card_name": "Buizel",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "20",
+      "card_name": "Glaceon",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "57",
+      "card_name": "Chimchar",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "59",
+      "card_name": "Combee",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "68",
+      "card_name": "Munchlax",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "72",
+      "card_name": "Piplup",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "78",
+      "card_name": "Turtwig",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "43",
+      "card_name": "Uxie",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_number": "91",
+      "card_name": "Riolu",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "pop9",
+      "set_name": "POP Series 9",
+      "card_number": "15",
+      "card_name": "Pikachu",
+      "finish_key": "normal",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "56",
+      "card_name": "Dragonite FB",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "90",
+      "card_name": "Copycat",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "89",
+      "card_name": "Fire Energy",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "90",
+      "card_name": "Water Energy",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "92",
+      "card_name": "Psychic Energy",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "93",
+      "card_name": "Fighting Energy",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "94",
+      "card_name": "Darkness Energy",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "95",
+      "card_name": "Metal Energy",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW29",
+      "card_name": "Victory Cup",
+      "finish_key": null,
+      "status": "blocked_conflicting_candidate_labels",
+      "candidate_stamp_labels": [
+        "Battle Road Autumn 2011 3rd Place Stamp",
+        "Battle Road Autumn 2012 3rd Place Stamp",
+        "Battle Road Spring 2012 3rd Place Stamp",
+        "Battle Road Spring 2013 3rd Place Stamp"
+      ],
+      "candidate_variant_keys": [
+        "battle_road_autumn_2011_3rd_place_stamp",
+        "battle_road_autumn_2012_3rd_place_stamp",
+        "battle_road_spring_2012_3rd_place_stamp",
+        "battle_road_spring_2013_3rd_place_stamp"
+      ],
+      "candidate_source_count": 9,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "conflicting_candidate_labels_Battle Road Autumn 2011 3rd Place Stamp_Battle Road Autumn 2012 3rd Place Stamp_Battle Road Spring 2012 3rd Place Stamp_Battle Road Spring 2013 3rd Place Stamp"
+      ],
+      "evidence": [
+        {
+          "match_key": "bwp|BW29|victory cup",
+          "stamp_label": "Battle Road Autumn 2011 3rd Place Stamp",
+          "variant_key": "battle_road_autumn_2011_3rd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW29|victory cup",
+          "stamp_label": "Battle Road Autumn 2012 3rd Place Stamp",
+          "variant_key": "battle_road_autumn_2012_3rd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW29|victory cup",
+          "stamp_label": "Battle Road Spring 2012 3rd Place Stamp",
+          "variant_key": "battle_road_spring_2012_3rd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW29|victory cup",
+          "stamp_label": "Battle Road Spring 2013 3rd Place Stamp",
+          "variant_key": "battle_road_spring_2013_3rd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW29|victory cup",
+          "stamp_label": "Battle Road Autumn 2011 3rd Place Stamp",
+          "variant_key": "battle_road_autumn_2011_3rd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW29|victory cup",
+          "stamp_label": "Battle Road Autumn 2011 3rd Place Stamp",
+          "variant_key": "battle_road_autumn_2011_3rd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW29|victory cup",
+          "stamp_label": "Battle Road Autumn 2012 3rd Place Stamp",
+          "variant_key": "battle_road_autumn_2012_3rd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW29|victory cup",
+          "stamp_label": "Battle Road Spring 2012 3rd Place Stamp",
+          "variant_key": "battle_road_spring_2012_3rd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW29|victory cup",
+          "stamp_label": "Battle Road Spring 2013 3rd Place Stamp",
+          "variant_key": "battle_road_spring_2013_3rd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+          "evidence_label": null
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW30",
+      "card_name": "Victory Cup",
+      "finish_key": null,
+      "status": "blocked_conflicting_candidate_labels",
+      "candidate_stamp_labels": [
+        "Battle Road Autumn 2011 2nd Place Stamp",
+        "Battle Road Autumn 2012 2nd Place Stamp",
+        "Battle Road Spring 2012 2nd Place Stamp",
+        "Battle Road Spring 2013 2nd Place Stamp"
+      ],
+      "candidate_variant_keys": [
+        "battle_road_autumn_2011_2nd_place_stamp",
+        "battle_road_autumn_2012_2nd_place_stamp",
+        "battle_road_spring_2012_2nd_place_stamp",
+        "battle_road_spring_2013_2nd_place_stamp"
+      ],
+      "candidate_source_count": 8,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "conflicting_candidate_labels_Battle Road Autumn 2011 2nd Place Stamp_Battle Road Autumn 2012 2nd Place Stamp_Battle Road Spring 2012 2nd Place Stamp_Battle Road Spring 2013 2nd Place Stamp"
+      ],
+      "evidence": [
+        {
+          "match_key": "bwp|BW30|victory cup",
+          "stamp_label": "Battle Road Autumn 2011 2nd Place Stamp",
+          "variant_key": "battle_road_autumn_2011_2nd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW30|victory cup",
+          "stamp_label": "Battle Road Autumn 2012 2nd Place Stamp",
+          "variant_key": "battle_road_autumn_2012_2nd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW30|victory cup",
+          "stamp_label": "Battle Road Spring 2012 2nd Place Stamp",
+          "variant_key": "battle_road_spring_2012_2nd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW30|victory cup",
+          "stamp_label": "Battle Road Spring 2013 2nd Place Stamp",
+          "variant_key": "battle_road_spring_2013_2nd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW30|victory cup",
+          "stamp_label": "Battle Road Autumn 2011 2nd Place Stamp",
+          "variant_key": "battle_road_autumn_2011_2nd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW30|victory cup",
+          "stamp_label": "Battle Road Autumn 2012 2nd Place Stamp",
+          "variant_key": "battle_road_autumn_2012_2nd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW30|victory cup",
+          "stamp_label": "Battle Road Spring 2012 2nd Place Stamp",
+          "variant_key": "battle_road_spring_2012_2nd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW30|victory cup",
+          "stamp_label": "Battle Road Spring 2013 2nd Place Stamp",
+          "variant_key": "battle_road_spring_2013_2nd_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+          "evidence_label": null
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW31",
+      "card_name": "Victory Cup",
+      "finish_key": null,
+      "status": "blocked_conflicting_candidate_labels",
+      "candidate_stamp_labels": [
+        "Battle Road Autumn 2011 1st Place Stamp",
+        "Battle Road Autumn 2012 1st Place Stamp",
+        "Battle Road Spring 2012 1st Place Stamp",
+        "Battle Road Spring 2013 1st Place Stamp"
+      ],
+      "candidate_variant_keys": [
+        "battle_road_autumn_2011_1st_place_stamp",
+        "battle_road_autumn_2012_1st_place_stamp",
+        "battle_road_spring_2012_1st_place_stamp",
+        "battle_road_spring_2013_1st_place_stamp"
+      ],
+      "candidate_source_count": 9,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "conflicting_candidate_labels_Battle Road Autumn 2011 1st Place Stamp_Battle Road Autumn 2012 1st Place Stamp_Battle Road Spring 2012 1st Place Stamp_Battle Road Spring 2013 1st Place Stamp"
+      ],
+      "evidence": [
+        {
+          "match_key": "bwp|BW31|victory cup",
+          "stamp_label": "Battle Road Autumn 2011 1st Place Stamp",
+          "variant_key": "battle_road_autumn_2011_1st_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW31|victory cup",
+          "stamp_label": "Battle Road Autumn 2012 1st Place Stamp",
+          "variant_key": "battle_road_autumn_2012_1st_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW31|victory cup",
+          "stamp_label": "Battle Road Spring 2012 1st Place Stamp",
+          "variant_key": "battle_road_spring_2012_1st_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW31|victory cup",
+          "stamp_label": "Battle Road Spring 2013 1st Place Stamp",
+          "variant_key": "battle_road_spring_2013_1st_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW31|victory cup",
+          "stamp_label": "Battle Road Spring 2013 1st Place Stamp",
+          "variant_key": "battle_road_spring_2013_1st_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW31|victory cup",
+          "stamp_label": "Battle Road Autumn 2011 1st Place Stamp",
+          "variant_key": "battle_road_autumn_2011_1st_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW31|victory cup",
+          "stamp_label": "Battle Road Autumn 2012 1st Place Stamp",
+          "variant_key": "battle_road_autumn_2012_1st_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW31|victory cup",
+          "stamp_label": "Battle Road Spring 2012 1st Place Stamp",
+          "variant_key": "battle_road_spring_2012_1st_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW31|victory cup",
+          "stamp_label": "Battle Road Spring 2013 1st Place Stamp",
+          "variant_key": "battle_road_spring_2013_1st_place_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+          "evidence_label": null
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW53",
+      "card_name": "Flygon",
+      "finish_key": null,
+      "status": "blocked_conflicting_candidate_labels",
+      "candidate_stamp_labels": [
+        "Prerelease Stamp",
+        "Staff Prerelease Stamp"
+      ],
+      "candidate_variant_keys": [
+        "prerelease_stamp",
+        "staff_prerelease_stamp"
+      ],
+      "candidate_source_count": 2,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "conflicting_candidate_labels_Prerelease Stamp_Staff Prerelease Stamp"
+      ],
+      "evidence": [
+        {
+          "match_key": "bwp|BW53|flygon",
+          "stamp_label": "Prerelease Stamp",
+          "variant_key": "prerelease_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_ready_batch_2_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW53|flygon",
+          "stamp_label": "Staff Prerelease Stamp",
+          "variant_key": "staff_prerelease_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_ready_batch_2_v1.json",
+          "evidence_label": null
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW84",
+      "card_name": "Porygon-Z",
+      "finish_key": null,
+      "status": "blocked_conflicting_candidate_labels",
+      "candidate_stamp_labels": [
+        "Prerelease Stamp",
+        "Staff Prerelease Stamp"
+      ],
+      "candidate_variant_keys": [
+        "prerelease_stamp",
+        "staff_prerelease_stamp"
+      ],
+      "candidate_source_count": 2,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "conflicting_candidate_labels_Prerelease Stamp_Staff Prerelease Stamp"
+      ],
+      "evidence": [
+        {
+          "match_key": "bwp|BW84|porygon z",
+          "stamp_label": "Prerelease Stamp",
+          "variant_key": "prerelease_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_ready_batch_2_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "bwp|BW84|porygon z",
+          "stamp_label": "Staff Prerelease Stamp",
+          "variant_key": "staff_prerelease_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_ready_batch_2_v1.json",
+          "evidence_label": null
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW96",
+      "card_name": "Tornadus-EX",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "108",
+      "card_name": "Lightning Energy",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "109",
+      "card_name": "Psychic Energy",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "110",
+      "card_name": "Fighting Energy",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "112",
+      "card_name": "Metal Energy",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "1",
+      "card_name": "Bulbasaur",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "60",
+      "card_name": "Umbreon",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw10",
+      "set_name": "Plasma Blast",
+      "card_number": "14",
+      "card_name": "Squirtle",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY91",
+      "card_name": "Champions Festival",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY176",
+      "card_name": "Champions Festival",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "17",
+      "card_name": "Charmander",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy2",
+      "set_name": "Flashfire",
+      "card_number": "80",
+      "card_name": "Snorlax",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy5",
+      "set_name": "Primal Clash",
+      "card_number": "20",
+      "card_name": "Vulpix",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy6",
+      "set_name": "Roaring Skies",
+      "card_number": "67",
+      "card_name": "Meowth",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy7",
+      "set_name": "Ancient Origins",
+      "card_number": "63",
+      "card_name": "Eevee",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy7",
+      "set_name": "Ancient Origins",
+      "card_number": "69",
+      "card_name": "Ace Trainer",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "card_number": "113",
+      "card_name": "Splash Energy",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "8",
+      "card_name": "Tangela",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "22",
+      "card_name": "Magikarp",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "26",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "32",
+      "card_name": "Slowpoke",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "50",
+      "card_name": "Clefairy",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "53",
+      "card_name": "Meowth",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy12",
+      "set_name": "Evolutions",
+      "card_number": "41",
+      "card_name": "Electabuzz",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM78",
+      "card_name": "Champions Festival",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM199",
+      "card_name": "Psyduck",
+      "finish_key": null,
+      "status": "candidate_internal_checkpoint_label_found",
+      "candidate_stamp_labels": [
+        "Detective Pikachu Stamp"
+      ],
+      "candidate_variant_keys": [
+        "detective_pikachu_stamp"
+      ],
+      "candidate_source_count": 3,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "internal_checkpoint_not_external_truth"
+      ],
+      "evidence": [
+        {
+          "match_key": "smp|SM199|psyduck",
+          "stamp_label": "Detective Pikachu Stamp",
+          "variant_key": "detective_pikachu_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_ready_batch_3_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "smp|SM199|psyduck",
+          "stamp_label": "Detective Pikachu Stamp",
+          "variant_key": "detective_pikachu_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_ready_batch_3_warehouse_intake_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "smp|SM199|psyduck",
+          "stamp_label": "Detective Pikachu Stamp",
+          "variant_key": "detective_pikachu_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_ready_remainder_batch_v1_48.json",
+          "evidence_label": null
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM200",
+      "card_name": "Snubbull",
+      "finish_key": null,
+      "status": "candidate_internal_checkpoint_label_found",
+      "candidate_stamp_labels": [
+        "Detective Pikachu Stamp"
+      ],
+      "candidate_variant_keys": [
+        "detective_pikachu_stamp"
+      ],
+      "candidate_source_count": 3,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "internal_checkpoint_not_external_truth"
+      ],
+      "evidence": [
+        {
+          "match_key": "smp|SM200|snubbull",
+          "stamp_label": "Detective Pikachu Stamp",
+          "variant_key": "detective_pikachu_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_ready_batch_3_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "smp|SM200|snubbull",
+          "stamp_label": "Detective Pikachu Stamp",
+          "variant_key": "detective_pikachu_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_ready_batch_3_warehouse_intake_v1.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "smp|SM200|snubbull",
+          "stamp_label": "Detective Pikachu Stamp",
+          "variant_key": "detective_pikachu_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_ready_remainder_batch_v1_48.json",
+          "evidence_label": null
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "26",
+      "card_name": "Incineroar",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "28",
+      "card_name": "Psyduck",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "64",
+      "card_name": "Cosmog",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "90",
+      "card_name": "Snubbull",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "card_number": "21",
+      "card_name": "Alolan Vulpix",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "18",
+      "card_name": "Charmander",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "110",
+      "card_name": "Stufful",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "71",
+      "card_name": "Jigglypuff",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "75",
+      "card_name": "Jangmo-o",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "84",
+      "card_name": "Regigigas",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "32",
+      "card_name": "Piplup",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "card_number": "99",
+      "card_name": "Cosmog",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "card_number": "101",
+      "card_name": "Cosmoem",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "card_number": "102",
+      "card_name": "Lunala",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "48",
+      "card_name": "Lapras",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "49",
+      "card_name": "Beartic",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "111",
+      "card_name": "Hoopa",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "10",
+      "card_name": "Abomasnow",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "32",
+      "card_name": "Delibird",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "97",
+      "card_name": "Galarian Moltres V",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "8",
+      "card_name": "Leafeon VMAX",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "30",
+      "card_name": "Vaporeon VMAX",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "106",
+      "card_name": "Altaria",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "237",
+      "card_name": "Quick Ball",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "card_number": "125",
+      "card_name": "Stantler",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "51",
+      "card_name": "Glastrier",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh12",
+      "set_name": "Silver Tempest",
+      "card_number": "49",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "13",
+      "card_name": "Miraidon",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "14",
+      "card_name": "Koraidon",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "27",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "44",
+      "card_name": "Charmander",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "51",
+      "card_name": "Snorlax",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "58",
+      "card_name": "Iron Bundle",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "65",
+      "card_name": "Scream Tail",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "66",
+      "card_name": "Iron Bundle",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "91",
+      "card_name": "Koraidon",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "92",
+      "card_name": "Miraidon",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "97",
+      "card_name": "Flutter Mane",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "98",
+      "card_name": "Iron Thorns",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "107",
+      "card_name": "Mareep",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "108",
+      "card_name": "Flaaffy",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "109",
+      "card_name": "Ampharos",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "114",
+      "card_name": "Picnicker",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "118",
+      "card_name": "Tatsugiri",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "123",
+      "card_name": "Teal Mask Ogerpon",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "129",
+      "card_name": "Pecharunt",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "141",
+      "card_name": "Noctowl",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "148",
+      "card_name": "Miraidon",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "153",
+      "card_name": "Magneton",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "159",
+      "card_name": "Magneton",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "173",
+      "card_name": "Eevee",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "189",
+      "card_name": "N's Zorua",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "203",
+      "card_name": "Team Rocket's Wobbuffet",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "12",
+      "card_name": "Sprigatito",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "36",
+      "card_name": "Crocalor",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "39",
+      "card_name": "Charcadet",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "46",
+      "card_name": "Delibird",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "50",
+      "card_name": "Quaxly",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "60",
+      "card_name": "Baxcalibur",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "62",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "63",
+      "card_name": "Pikachu ex",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "67",
+      "card_name": "Electrode",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "76",
+      "card_name": "Pawmot",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "82",
+      "card_name": "Kilowattrel",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "88",
+      "card_name": "Mismagius",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "105",
+      "card_name": "Tinkaton",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "131",
+      "card_name": "Murkrow",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "135",
+      "card_name": "Tyranitar",
+      "finish_key": null,
+      "status": "candidate_internal_checkpoint_label_found",
+      "candidate_stamp_labels": [
+        "Paldea Evolved Stamp"
+      ],
+      "candidate_variant_keys": [
+        "paldea_evolved_stamp"
+      ],
+      "candidate_source_count": 1,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "internal_checkpoint_not_external_truth"
+      ],
+      "evidence": [
+        {
+          "match_key": "sv02|135|tyranitar",
+          "stamp_label": "Paldea Evolved Stamp",
+          "variant_key": "paldea_evolved_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/stamped_manual_review_misc_expansion_name_stamp_overlays_ready_batch_v1.json",
+          "evidence_label": null
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "137",
+      "card_name": "Seviper",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "183",
+      "card_name": "Great Ball",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "185",
+      "card_name": "Iono",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "51",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "81",
+      "card_name": "Iron Crown ex",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "102",
+      "card_name": "Gastly",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "103",
+      "card_name": "Haunter",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "119",
+      "card_name": "Koraidon",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "121",
+      "card_name": "Miraidon",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "139",
+      "card_name": "Iron Jugulis",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "card_number": "31",
+      "card_name": "Lapras",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "card_number": "107",
+      "card_name": "Archaludon",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "card_number": "119",
+      "card_name": "Bouffalant",
+      "finish_key": null,
+      "status": "candidate_internal_checkpoint_label_found",
+      "candidate_stamp_labels": [
+        "Play! Pokémon Stamp"
+      ],
+      "candidate_variant_keys": [
+        "play_pokemon_stamp"
+      ],
+      "candidate_source_count": 4,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "internal_checkpoint_not_external_truth"
+      ],
+      "evidence": [
+        {
+          "match_key": "sv07|119|bouffalant",
+          "stamp_label": "Play! Pokémon Stamp",
+          "variant_key": "play_pokemon_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "sv07|119|bouffalant",
+          "stamp_label": null,
+          "variant_key": "play_pokemon_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "sv07|119|bouffalant",
+          "stamp_label": null,
+          "variant_key": "play_pokemon_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "sv07|119|bouffalant",
+          "stamp_label": "Play! Pokémon Stamp",
+          "variant_key": "play_pokemon_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129_promoted_subset.json",
+          "evidence_label": null
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "card_number": "149",
+      "card_name": "Crabominable",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "27",
+      "card_name": "N's Darmanitan",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "30",
+      "card_name": "Reshiram ex",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "55",
+      "card_name": "Iono's Kilowattrel",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "67",
+      "card_name": "Lillie's Ribombee",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "69",
+      "card_name": "Mimikyu ex",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "75",
+      "card_name": "Alcremie ex",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "114",
+      "card_name": "Salamence ex",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "116",
+      "card_name": "N's Reshiram",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "117",
+      "card_name": "Hop's Snorlax",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "150",
+      "card_name": "Levincia",
+      "finish_key": null,
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "167",
+      "card_name": "N's Reshiram",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "20",
+      "card_name": "Team Rocket's Spidops",
+      "finish_key": null,
+      "status": "candidate_internal_checkpoint_label_found",
+      "candidate_stamp_labels": [
+        "Play! Pokémon Stamp"
+      ],
+      "candidate_variant_keys": [
+        "play_pokemon_stamp"
+      ],
+      "candidate_source_count": 4,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "internal_checkpoint_not_external_truth"
+      ],
+      "evidence": [
+        {
+          "match_key": "sv10|20|team rocket s spidops",
+          "stamp_label": "Play! Pokémon Stamp",
+          "variant_key": "play_pokemon_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "sv10|20|team rocket s spidops",
+          "stamp_label": null,
+          "variant_key": "play_pokemon_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "sv10|20|team rocket s spidops",
+          "stamp_label": null,
+          "variant_key": "play_pokemon_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "sv10|20|team rocket s spidops",
+          "stamp_label": "Play! Pokémon Stamp",
+          "variant_key": "play_pokemon_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129_promoted_subset.json",
+          "evidence_label": null
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "me01",
+      "set_name": "Mega Evolution",
+      "card_number": "104",
+      "card_name": "Mega Kangaskhan ex",
+      "finish_key": null,
+      "status": "candidate_internal_checkpoint_label_found",
+      "candidate_stamp_labels": [
+        "Play! Pokémon Stamp"
+      ],
+      "candidate_variant_keys": [
+        "play_pokemon_stamp"
+      ],
+      "candidate_source_count": 4,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "internal_checkpoint_not_external_truth"
+      ],
+      "evidence": [
+        {
+          "match_key": "me01|104|mega kangaskhan ex",
+          "stamp_label": "Play! Pokémon Stamp",
+          "variant_key": "play_pokemon_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "me01|104|mega kangaskhan ex",
+          "stamp_label": null,
+          "variant_key": "play_pokemon_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "me01|104|mega kangaskhan ex",
+          "stamp_label": null,
+          "variant_key": "play_pokemon_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.json",
+          "evidence_label": null
+        },
+        {
+          "match_key": "me01|104|mega kangaskhan ex",
+          "stamp_label": "Play! Pokémon Stamp",
+          "variant_key": "play_pokemon_stamp",
+          "source_url": null,
+          "source_kind": "audit_artifact",
+          "source_file": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129_promoted_subset.json",
+          "evidence_label": null
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "me01",
+      "set_name": "Mega Evolution",
+      "card_number": "133",
+      "card_name": "Bulbasaur",
+      "finish_key": "holo",
+      "status": "blocked_no_candidate_label_found",
+      "candidate_stamp_labels": [],
+      "candidate_variant_keys": [],
+      "candidate_source_count": 0,
+      "external_candidate_source_count": 0,
+      "blockers": [
+        "no_matching_stamp_label_source_found"
+      ],
+      "evidence": [],
+      "write_ready_now": 0
+    }
+  ]
+}

@@ -12,39 +12,39 @@ This is an audit-only feasibility check for physical TCG `missing_set_code` reco
 
 ## Summary
 
-- candidate_card_prints: 807
-- candidate_printing_rows: 1685
+- candidate_card_prints: 802
+- candidate_printing_rows: 1672
 
 ## Card Match Status
 
 | status | card prints |
 | --- | --- |
-| number_missing_from_index | 488 |
-| exact_card_identity_match | 319 |
+| exact_card_identity_match | 798 |
+| number_missing_from_index | 4 |
 
 ## Finish Match Status
 
 | status | card prints |
 | --- | --- |
-| blocked_until_card_identity_match | 488 |
-| partial_finishes_supported_by_index | 210 |
-| all_finishes_master_verified_by_index | 106 |
+| all_finishes_master_verified_by_index | 422 |
+| partial_finishes_supported_by_index | 373 |
+| blocked_until_card_identity_match | 4 |
 | no_finishes_supported_by_index | 3 |
 
 ## Top Sets
 
 | set_key | card prints |
 | --- | --- |
-| sv8pt5 | 180 |
-| sv4pt5 | 108 |
-| me1 | 83 |
+| sv08.5 | 180 |
+| sv04.5 | 108 |
+| me01 | 83 |
 | svp | 73 |
 | xyp | 61 |
-| sv6pt5 | 52 |
+| sv06.5 | 52 |
 | pl2 | 37 |
-| pgo | 34 |
+| swsh10.5 | 34 |
+| 2021swsh | 25 |
 | bw11 | 25 |
-| mcd21 | 25 |
 | pl4 | 20 |
 | xy4 | 16 |
 | ecard3 | 15 |
@@ -54,11 +54,10 @@ This is an audit-only feasibility check for physical TCG `missing_set_code` reco
 | pl1 | 9 |
 | pl3 | 9 |
 | dp7 | 8 |
-| fut2020 | 5 |
 | cel25 | 4 |
 | ex10 | 3 |
 | bw9 | 2 |
-| swsh45 | 2 |
+| swsh4.5 | 2 |
 | swsh2 | 1 |
 | xy9 | 1 |
 
@@ -66,6 +65,31 @@ This is an audit-only feasibility check for physical TCG `missing_set_code` reco
 
 | set | external_id | card | card_status | finish_status | candidate_finishes | supported | unsupported |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2021swsh | 2021swsh-1 | Bulbasaur | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-2 | Chikorita | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-3 | Treecko | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-4 | Turtwig | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-5 | Snivy | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-6 | Chespin | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-7 | Rowlet | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-8 | Grookey | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-9 | Charmander | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-10 | Cyndaquil | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-11 | Torchic | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-12 | Chimchar | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-13 | Tepig | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-14 | Fennekin | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-15 | Litten | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-16 | Scorbunny | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-17 | Squirtle | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-18 | Totodile | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-19 | Mudkip | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-20 | Piplup | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-21 | Oshawott | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-22 | Froakie | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-23 | Popplio | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-24 | Sobble | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
+| 2021swsh | 2021swsh-25 | Pikachu | exact_card_identity_match | all_finishes_master_verified_by_index | holo\|normal | holo, normal |  |
 | bw11 | bw11-2 | Tangrowth | exact_card_identity_match | partial_finishes_supported_by_index | holo\|normal\|reverse | normal, reverse | holo |
 | bw11 | bw11-8 | Serperior | exact_card_identity_match | partial_finishes_supported_by_index | holo\|normal\|reverse | holo, reverse | normal |
 | bw11 | bw11-11 | Swadloon | exact_card_identity_match | partial_finishes_supported_by_index | holo\|normal\|reverse | normal, reverse | holo |
@@ -121,31 +145,6 @@ This is an audit-only feasibility check for physical TCG `missing_set_code` reco
 | ecard2 | ecard2-13 | Exeggutor | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
 | ecard2 | ecard2-15 | Houndoom | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
 | ecard2 | ecard2-16 | Hypno | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
-| ecard2 | ecard2-17 | Jumpluff | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
-| ecard2 | ecard2-18 | Jynx | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
-| ecard2 | ecard2-19 | Kingdra | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
-| ecard2 | ecard2-20 | Lanturn | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
-| ecard2 | ecard2-25 | Ninetales | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
-| ecard2 | ecard2-28 | Porygon2 | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
-| ecard2 | ecard2-30 | Quagsire | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
-| ecard2 | ecard2-32 | Scizor | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
-| ecard3 | ecard3-4 | Articuno | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
-| ecard3 | ecard3-6 | Crobat | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
-| ecard3 | ecard3-8 | Flareon | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
-| ecard3 | ecard3-9 | Forretress | exact_card_identity_match | all_finishes_master_verified_by_index | normal\|reverse | normal, reverse |  |
-| ecard3 | ecard3-H13 | Kabutops | exact_card_identity_match | all_finishes_master_verified_by_index | holo | holo |  |
-| ecard3 | ecard3-H14 | Ledian | exact_card_identity_match | all_finishes_master_verified_by_index | holo | holo |  |
-| ecard3 | ecard3-H16 | Magcargo | exact_card_identity_match | all_finishes_master_verified_by_index | holo | holo |  |
-| ecard3 | ecard3-H17 | Magcargo | exact_card_identity_match | all_finishes_master_verified_by_index | holo | holo |  |
-| ecard3 | ecard3-H18 | Magneton | exact_card_identity_match | all_finishes_master_verified_by_index | holo | holo |  |
-| ecard3 | ecard3-H22 | Piloswine | exact_card_identity_match | all_finishes_master_verified_by_index | holo | holo |  |
-| ecard3 | ecard3-H23 | Politoed | exact_card_identity_match | all_finishes_master_verified_by_index | holo | holo |  |
-| ecard3 | ecard3-H24 | Poliwrath | exact_card_identity_match | all_finishes_master_verified_by_index | holo | holo |  |
-| ecard3 | ecard3-H27 | Rhydon | exact_card_identity_match | all_finishes_master_verified_by_index | holo | holo |  |
-| ecard3 | ecard3-H30 | Umbreon | exact_card_identity_match | all_finishes_master_verified_by_index | holo | holo |  |
-| ecard3 | ecard3-H31 | Vaporeon | exact_card_identity_match | all_finishes_master_verified_by_index | holo | holo |  |
-| ex10 | ex10-113 | Entei Star | exact_card_identity_match | all_finishes_master_verified_by_index | holo | holo |  |
-| ex10 | ex10-114 | Raikou Star | exact_card_identity_match | all_finishes_master_verified_by_index | holo | holo |  |
 
 ## Guardrails
 

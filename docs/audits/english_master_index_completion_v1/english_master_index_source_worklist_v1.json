@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T19:44:32.664Z",
+  "generated_at": "2026-06-13T00:10:54.256Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -10,9 +10,244 @@
   "version": "english_master_index_source_worklist_v1",
   "rule": "Set-first source acquisition list for completing the Master Index. It is not a Grookai write, cleanup, or reconciliation plan.",
   "summary": {
-    "total_incomplete_sets": 0,
-    "by_completion_status": {},
-    "by_primary_lane": {}
+    "total_incomplete_sets": 10,
+    "by_completion_status": {
+      "card_identity_complete_finish_incomplete": 10
+    },
+    "by_primary_lane": {
+      "finish_human_checklist_evidence": 10
+    }
   },
-  "worklist": []
+  "worklist": [
+    {
+      "rank": 1,
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.38,
+      "total_gap_count": 18,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 18,
+      "finish_blocker_boundary_count": 0,
+      "source_alias_gap": false,
+      "lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "card_identity_progress": "230/230",
+      "printing_finish_progress": "428/446",
+      "priority": 100,
+      "mutation_authority": "not mutation authority",
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+    },
+    {
+      "rank": 2,
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.62,
+      "total_gap_count": 4,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 4,
+      "finish_blocker_boundary_count": 0,
+      "source_alias_gap": false,
+      "lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "card_identity_progress": "237/237",
+      "printing_finish_progress": "422/426",
+      "priority": 100,
+      "mutation_authority": "not mutation authority",
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+    },
+    {
+      "rank": 3,
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.72,
+      "total_gap_count": 3,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 3,
+      "finish_blocker_boundary_count": 0,
+      "source_alias_gap": false,
+      "lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "card_identity_progress": "246/246",
+      "printing_finish_progress": "426/429",
+      "priority": 100,
+      "mutation_authority": "not mutation authority",
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+    },
+    {
+      "rank": 4,
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.72,
+      "total_gap_count": 3,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 3,
+      "finish_blocker_boundary_count": 0,
+      "source_alias_gap": false,
+      "lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "card_identity_progress": "233/233",
+      "printing_finish_progress": "419/422",
+      "priority": 100,
+      "mutation_authority": "not mutation authority",
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+    },
+    {
+      "rank": 5,
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.9,
+      "total_gap_count": 1,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 1,
+      "finish_blocker_boundary_count": 0,
+      "source_alias_gap": false,
+      "lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "card_identity_progress": "218/218",
+      "printing_finish_progress": "421/422",
+      "priority": 100,
+      "mutation_authority": "not mutation authority",
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+    },
+    {
+      "rank": 6,
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.91,
+      "total_gap_count": 1,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 1,
+      "finish_blocker_boundary_count": 0,
+      "source_alias_gap": false,
+      "lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "card_identity_progress": "244/244",
+      "printing_finish_progress": "457/458",
+      "priority": 100,
+      "mutation_authority": "not mutation authority",
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+    },
+    {
+      "rank": 7,
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.91,
+      "total_gap_count": 1,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 1,
+      "finish_blocker_boundary_count": 0,
+      "source_alias_gap": false,
+      "lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "card_identity_progress": "247/247",
+      "printing_finish_progress": "445/446",
+      "priority": 100,
+      "mutation_authority": "not mutation authority",
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+    },
+    {
+      "rank": 8,
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.9,
+      "total_gap_count": 1,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 1,
+      "finish_blocker_boundary_count": 0,
+      "source_alias_gap": false,
+      "lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "card_identity_progress": "212/212",
+      "printing_finish_progress": "394/395",
+      "priority": 100,
+      "mutation_authority": "not mutation authority",
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+    },
+    {
+      "rank": 9,
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.88,
+      "total_gap_count": 1,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 1,
+      "finish_blocker_boundary_count": 0,
+      "source_alias_gap": false,
+      "lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "card_identity_progress": "183/183",
+      "printing_finish_progress": "349/350",
+      "priority": 100,
+      "mutation_authority": "not mutation authority",
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+    },
+    {
+      "rank": 10,
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.9,
+      "total_gap_count": 1,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 1,
+      "finish_blocker_boundary_count": 0,
+      "source_alias_gap": false,
+      "lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "card_identity_progress": "216/216",
+      "printing_finish_progress": "400/401",
+      "priority": 100,
+      "mutation_authority": "not mutation authority",
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support."
+    }
+  ]
 }

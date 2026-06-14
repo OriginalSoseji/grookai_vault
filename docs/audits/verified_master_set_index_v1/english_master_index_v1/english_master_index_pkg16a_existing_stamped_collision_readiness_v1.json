@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-06-11T20:10:08.039Z",
+  "version": "english_master_index_pkg16a_existing_stamped_collision_readiness_v1",
+  "package_id": "PKG-16A-EXISTING-STAMPED-COLLISION-READINESS",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "source_artifacts": {
+    "stamped_identity_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_identity_readiness_v1.json"
+  },
+  "live_read": {
+    "available": true,
+    "reason": null,
+    "collision_parent_ids_requested": 0,
+    "collision_parent_rows_loaded": 0
+  },
+  "summary": {
+    "collision_rows_reviewed": 0,
+    "already_satisfied_rows": 0,
+    "blocked_rows": 0,
+    "by_status": {},
+    "by_target_finish_key": {},
+    "by_set": {}
+  },
+  "recommended_next_package": {
+    "package_id": "PKG-16B-EXISTING-STAMPED-COLLISION-CLOSURE",
+    "candidate_rows": 0,
+    "allowed_shape": "report-level closure only unless a downstream Master Index comparison adapter is explicitly changed to treat existing stamped variant parents with active child finishes as satisfying stamped taxonomy facts",
+    "forbidden_shape": "no child finish_key=stamped, no duplicate parent inserts, no deletes, no merges, no source-rule weakening",
+    "status": "blocked_no_clean_existing_collisions"
+  },
+  "rows": []
+}

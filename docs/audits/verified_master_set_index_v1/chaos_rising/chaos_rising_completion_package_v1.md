@@ -2,16 +2,17 @@
 
 Audit only. This package does not write to Grookai, create migrations, cleanup, quarantine, or execute an apply path.
 
-Generated: 2026-06-08T19:34:05.713Z
+Generated: 2026-06-09T21:18:22.238Z
 
 ## Conclusion
 
 | field | value |
 | --- | --- |
 | master_index_complete | true |
-| grookai_complete | false |
+| grookai_complete | true |
+| live_matches_master_index | true |
 | ready_for_write_package | false |
-| reason | Chaos Rising is master-verified in the index, but Grookai has no live set/card_print/card_printing rows for this set. |
+| reason | Chaos Rising live Grookai rows match the Verified Master Index counts for this set. |
 
 ## Safety
 
@@ -37,12 +38,22 @@ Generated: 2026-06-08T19:34:05.713Z
 | master_index_printings_by_finish | {"normal":113,"reverse":76,"holo":58} |
 | master_index_printing_sources | {"tcgdex":113,"thepricedex_price_list":198,"reverseholo_set_checklist":122,"tcgcollector_card_variants":134,"cardtrader_blueprint_index":45,"bulbapedia_build_battle_product":4,"bulbapedia_set_list":4} |
 | grookai_audit_status | {"missing_from_grookai":247} |
-| live_set_rows | 0 |
-| live_card_print_rows | 0 |
-| live_card_printing_rows | 0 |
-| tcgdex_raw_import_rows | 0 |
+| live_set_rows | 1 |
+| live_card_print_rows | 122 |
+| live_card_printing_rows | 247 |
+| tcgdex_raw_import_rows | 123 |
 | required_finish_keys_present | true |
 | write_ready_now | 0 |
+
+## Live Master Index Comparison
+
+| metric | value |
+| --- | --- |
+| verified_by_index | 247 |
+| missing_from_grookai | 0 |
+| unsupported_by_current_index | 0 |
+| expected_printings | 247 |
+| live_printings | 247 |
 
 ## Master Index Printings By Finish
 
@@ -66,11 +77,7 @@ Generated: 2026-06-08T19:34:05.713Z
 
 ## Blockers Before Any Write
 
-| blocker | severity | required_resolution |
-| --- | --- | --- |
-| target_set_missing_from_grookai | hard | Standard ingestion must create the set before card_print parents can be inserted. |
-| target_parent_card_prints_missing_from_grookai | hard | Standard ingestion must create 122 parent card_print rows before child printings can exist. |
-| tcgdex_raw_imports_missing | hard | Run TCGdex import for set me04/me4 before normalize/apply. |
+No blockers.
 
 ## Standard Ingestion Path
 

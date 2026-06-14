@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-06-11T03:48:55.591Z",
+  "version": "english_master_index_pkg08u_tcgcollector_mapping_governance_v1",
+  "package_id": "PKG-08U-TCGCOLLECTOR-MAPPING-GOVERNANCE",
+  "source_readiness_fingerprint_sha256": "c247ec977b2b0d211b8ccc7ae0920e1eb9052a524f754eea6dd0ef7a695d306f",
+  "expected_source_readiness_fingerprint_sha256": "17432e7255bad914984b5caf33b8a2fa0c3701edb907ddd55a5be0fac5b0f5ed",
+  "package_fingerprint_sha256": "e7e1324054f15e534914fb67596fc2b9a83ef685560f5c156f1d5ad6810066ee",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "collision_read": {
+    "available": true,
+    "reason": null,
+    "collision_rows": 0
+  },
+  "summary": {
+    "source_rows": 2,
+    "classified_rows": 2,
+    "by_governance_status": {
+      "blocked_reference_source_not_mapping_carrier": 2
+    },
+    "top_sets_by_governance_status": {
+      "blocked_reference_source_not_mapping_carrier": [
+        {
+          "key": "mep",
+          "count": 2
+        }
+      ]
+    },
+    "governed_mapping_carrier_ready_for_dry_run": 0,
+    "blocked_reference_source_not_mapping_carrier": 2,
+    "blocked_existing_source_mapping_collision": 0,
+    "ready_rows_by_set": {},
+    "ready_rows_by_finish": {},
+    "ready_rows_by_mapping_source": {}
+  },
+  "recommended_next_package": {
+    "package_id": "PKG-08V",
+    "scope": "governed_mapping_carrier_ready_for_dry_run",
+    "candidate_rows": 0,
+    "allowed_write_shape": "parent inserts + child inserts + tcgcollector external_mappings only",
+    "status": "blocked_no_candidates"
+  },
+  "rows": [
+    {
+      "governance_status": "blocked_reference_source_not_mapping_carrier",
+      "mapping_governance": "reference_only",
+      "recommended_next_action": "Keep Bulbapedia as evidence only; acquire a stable product/card external ID before parent insert.",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "78",
+      "card_name": "Toxel",
+      "finish_key": "cosmos",
+      "source_count": 2,
+      "matched_set_alias": "mep",
+      "preferred_external_mapping": {
+        "source": "bulbapedia",
+        "external_id": "Toxel_(Phantasmal_Flames_67)",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Toxel_(Phantasmal_Flames_67)"
+      },
+      "source_mapping_collisions": [],
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Toxel_(Phantasmal_Flames_67)",
+        "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+      ]
+    },
+    {
+      "governance_status": "blocked_reference_source_not_mapping_carrier",
+      "mapping_governance": "reference_only",
+      "recommended_next_action": "Keep Bulbapedia as evidence only; acquire a stable product/card external ID before parent insert.",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "79",
+      "card_name": "Charmeleon",
+      "finish_key": "cosmos",
+      "source_count": 2,
+      "matched_set_alias": "mep",
+      "preferred_external_mapping": {
+        "source": "bulbapedia",
+        "external_id": "Charmeleon_(Phantasmal_Flames_12)",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Charmeleon_(Phantasmal_Flames_12)"
+      },
+      "source_mapping_collisions": [],
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Charmeleon_(Phantasmal_Flames_12)",
+        "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+      ]
+    }
+  ]
+}

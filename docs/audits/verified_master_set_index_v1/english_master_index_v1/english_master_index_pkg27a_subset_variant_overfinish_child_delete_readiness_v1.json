@@ -1,0 +1,300 @@
+{
+  "generated_at": "2026-06-13T22:06:24.257Z",
+  "version": "english_master_index_pkg27a_subset_variant_overfinish_child_delete_readiness_v1",
+  "package_id": "PKG-27A-SUBSET-VARIANT-OVERFINISH-CHILD-DELETE-READINESS",
+  "package_fingerprint": "17ee467511f78388c3e32b9ec75dd4d6b79aee077542f8369ab601a5df22686e",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_current_unsupported_reconciliation_lanes_v1.json",
+  "source_generated_at": "2026-06-13T22:05:24.688Z",
+  "sibling_count_available": false,
+  "sibling_count_reason": "no targets",
+  "summary": {
+    "source_rows": 9,
+    "candidate_rows": 0,
+    "blocked_rows": 9,
+    "by_candidate_family": {},
+    "by_candidate_set": {},
+    "by_candidate_finish": {},
+    "by_blocked_reason": {
+      "not_deterministic_subset_overfinish_family": 9
+    }
+  },
+  "candidates": [],
+  "blocked_rows": [
+    {
+      "lane": "subset_or_parallel_identity_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "79a8d112-627f-417e-a2f2-eeaaf300682d",
+      "set_code": "col1",
+      "card_number": "33",
+      "number": "33",
+      "number_plain": "33",
+      "card_name": "Snorlax",
+      "printed_identity_modifier": "",
+      "variant_key": "staff_stamp",
+      "card_printing_id": "ebee11ff-60d4-437e-b106-a98693665a80",
+      "finish_key": "holo",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "col1",
+      "child_identity_key": "col1|33|snorlax|holo||staff stamp",
+      "live_number_candidates": [
+        "33"
+      ],
+      "child_dependency_total": 0,
+      "blocked_reason": "not_deterministic_subset_overfinish_family"
+    },
+    {
+      "lane": "subset_or_parallel_identity_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "b222a067-4259-4aaf-b28f-b593ac51f28a",
+      "set_code": "g1",
+      "card_number": "14",
+      "number": "14",
+      "number_plain": "14",
+      "card_name": "Ponyta",
+      "printed_identity_modifier": "",
+      "variant_key": "stamped",
+      "card_printing_id": "96ccb37b-12cb-4f33-961e-7b05227699dd",
+      "finish_key": "holo",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "g1",
+      "child_identity_key": "g1|14|ponyta|holo||stamped",
+      "live_number_candidates": [
+        "14"
+      ],
+      "child_dependency_total": 0,
+      "blocked_reason": "not_deterministic_subset_overfinish_family"
+    },
+    {
+      "lane": "subset_or_parallel_identity_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "holo",
+        "normal"
+      ],
+      "card_print_id": "581eb597-562c-42e0-be07-7c64853e95e0",
+      "set_code": "g1",
+      "card_number": "28",
+      "number": "28a",
+      "number_plain": "28",
+      "card_name": "Jolteon-EX",
+      "printed_identity_modifier": "",
+      "variant_key": "a",
+      "card_printing_id": "1e0d7356-d71a-426d-ad10-a1fd53e81dd2",
+      "finish_key": "reverse",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "g1",
+      "child_identity_key": "g1|28|jolteon ex|reverse||a",
+      "live_number_candidates": [
+        "28",
+        "28a"
+      ],
+      "child_dependency_total": 0,
+      "blocked_reason": "not_deterministic_subset_overfinish_family"
+    },
+    {
+      "lane": "subset_or_parallel_identity_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "b2617256-07f0-4870-8950-2d2210ee804e",
+      "set_code": "pl1",
+      "card_number": "112",
+      "number": "112",
+      "number_plain": "112",
+      "card_name": "PlusPower",
+      "printed_identity_modifier": "",
+      "variant_key": "player_rewards_crosshatch_stamp",
+      "card_printing_id": "e6719c20-bbba-4ac1-bed7-584104c3d430",
+      "finish_key": "holo",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "pl1",
+      "child_identity_key": "pl1|112|pluspower|holo||player rewards crosshatch stamp",
+      "live_number_candidates": [
+        "112"
+      ],
+      "child_dependency_total": 0,
+      "blocked_reason": "not_deterministic_subset_overfinish_family"
+    },
+    {
+      "lane": "subset_or_parallel_identity_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "07891ac1-73b1-4e3b-b61f-eca8c87371cc",
+      "set_code": "pl2",
+      "card_number": "102",
+      "number": "102",
+      "number_plain": "102",
+      "card_name": "Upper Energy",
+      "printed_identity_modifier": "",
+      "variant_key": "player_rewards_crosshatch_stamp",
+      "card_printing_id": "f3b05577-e82a-4aae-81e6-5b1641aae144",
+      "finish_key": "holo",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "pl2",
+      "child_identity_key": "pl2|102|upper energy|holo||player rewards crosshatch stamp",
+      "live_number_candidates": [
+        "102"
+      ],
+      "child_dependency_total": 0,
+      "blocked_reason": "not_deterministic_subset_overfinish_family"
+    },
+    {
+      "lane": "subset_or_parallel_identity_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "98044499-5fc9-471d-a1f1-3b1785115816",
+      "set_code": "pl2",
+      "card_number": "33",
+      "number": "33",
+      "number_plain": "33",
+      "card_name": "Snorlax",
+      "printed_identity_modifier": "",
+      "variant_key": "league_stamp",
+      "card_printing_id": "d96cf58c-acda-49e5-95e7-e8e0c2307c69",
+      "finish_key": "holo",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "pl2",
+      "child_identity_key": "pl2|33|snorlax|holo||league stamp",
+      "live_number_candidates": [
+        "33"
+      ],
+      "child_dependency_total": 0,
+      "blocked_reason": "not_deterministic_subset_overfinish_family"
+    },
+    {
+      "lane": "subset_or_parallel_identity_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "04df7c8d-71fb-4e3f-a799-066713790c06",
+      "set_code": "pl2",
+      "card_number": "92",
+      "number": "92",
+      "number_plain": "92",
+      "card_name": "Lucian's Assignment",
+      "printed_identity_modifier": "",
+      "variant_key": "player_rewards_crosshatch_stamp",
+      "card_printing_id": "f2291d2e-fd17-451f-b30b-98e9a7b2bb6a",
+      "finish_key": "holo",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "pl2",
+      "child_identity_key": "pl2|92|lucian s assignment|holo||player rewards crosshatch stamp",
+      "live_number_candidates": [
+        "92"
+      ],
+      "child_dependency_total": 0,
+      "blocked_reason": "not_deterministic_subset_overfinish_family"
+    },
+    {
+      "lane": "subset_or_parallel_identity_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "23897bfd-f47c-426b-9c44-930658848cef",
+      "set_code": "pl2",
+      "card_number": "97",
+      "number": "97",
+      "number_plain": "97",
+      "card_name": "Underground Expedition",
+      "printed_identity_modifier": "",
+      "variant_key": "player_rewards_crosshatch_stamp",
+      "card_printing_id": "4d05e222-ec1b-4eeb-b2c2-8af85e82b492",
+      "finish_key": "holo",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "pl2",
+      "child_identity_key": "pl2|97|underground expedition|holo||player rewards crosshatch stamp",
+      "live_number_candidates": [
+        "97"
+      ],
+      "child_dependency_total": 0,
+      "blocked_reason": "not_deterministic_subset_overfinish_family"
+    },
+    {
+      "lane": "subset_or_parallel_identity_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "ef328f35-adc4-4238-aa00-bf3e90d1da46",
+      "set_code": "pl3",
+      "card_number": "106",
+      "number": "106",
+      "number_plain": "106",
+      "card_name": "Gible",
+      "printed_identity_modifier": "",
+      "variant_key": "staff_stamp",
+      "card_printing_id": "8035cb24-330e-4562-82fa-b3494eff43b8",
+      "finish_key": "holo",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "pl3",
+      "child_identity_key": "pl3|106|gible|holo||staff stamp",
+      "live_number_candidates": [
+        "106"
+      ],
+      "child_dependency_total": 0,
+      "blocked_reason": "not_deterministic_subset_overfinish_family"
+    }
+  ]
+}

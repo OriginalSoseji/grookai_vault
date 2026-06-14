@@ -1,0 +1,365 @@
+{
+  "generated_at": "2026-06-10T21:18:37.780Z",
+  "version": "english_master_index_pkg08r_append_only_duplicate_non_delete_child_insert_guarded_dry_run_v1",
+  "package_id": "PKG-08R-APPEND-ONLY-DUPLICATE-NON-DELETE-CHILD-INSERT",
+  "package_fingerprint_sha256": "ab7fe98f70f60608e69647870097a7b54d6aafb335a66e8ae7729cda019d2d9f",
+  "audit_only": false,
+  "rollback_only": true,
+  "dry_run_status": "pkg08r_append_only_duplicate_non_delete_child_insert_completed_rolled_back_no_durable_change",
+  "durable_db_writes_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "unsupported_cleanup_performed": false,
+  "parent_updates_performed": false,
+  "parent_deletes_performed": false,
+  "dependency_transfers_performed": false,
+  "real_apply_authorized": false,
+  "scope": {
+    "child_inserts": 1,
+    "parent_updates": 0,
+    "parent_deletes": 0,
+    "dependency_transfers": 0,
+    "target": {
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "25",
+      "card_name": "Pikachu",
+      "finish_key": "cosmos",
+      "survivor_card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d",
+      "preserved_duplicate_card_print_id": "a058c87e-0779-4e90-b60e-81d8c90b0b50",
+      "card_printing_id": "1d7c8050-be90-4c4b-a1fe-de55a2b05937",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "sv03.5:25:cosmos",
+      "created_by": "pkg08r_append_only_duplicate_non_delete_child_insert_guarded_dry_run_v1",
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(151_25)",
+        "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+      ]
+    }
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-10T21:18:36.869Z",
+    "rows": [
+      {
+        "card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d",
+        "set_code": "sv03.5",
+        "number": "025",
+        "number_plain": "025",
+        "name": "Pikachu",
+        "variant_key": "",
+        "gv_id": "GV-PK-MEW-025",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "target_role": "canonical_survivor_parent",
+        "card_printings": [
+          {
+            "id": "e92cf614-ea13-49c8-9737-786c5ee200fe",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEW-025-STD",
+            "provenance_ref": "sv03.5-025",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "f6eb8322-7426-4a5c-bd8f-b8294998b36f",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEW-025-RH",
+            "provenance_ref": "sv03.5-025",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 97357,
+            "meta": {
+              "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+              "justtcg_name": "Pikachu - 025/165",
+              "resolved_via": "justtcg_direct_structure_exact",
+              "justtcg_number": "025/165",
+              "justtcg_rarity": "Common",
+              "justtcg_set_id": "sv-scarlet-violet-151-pokemon",
+              "override_reason": null,
+              "justtcg_set_name": "SV: Scarlet & Violet 151",
+              "set_alignment_method": "manual_set_probe",
+              "set_alignment_status": "manual_helper_override",
+              "justtcg_query_number_used": "025",
+              "justtcg_query_variant_used": "raw",
+              "justtcg_query_variants_tried": [
+                "025"
+              ]
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-23T13:06:54.004+00:00",
+            "external_id": "pokemon-sv-scarlet-violet-151-pikachu-025-165-common",
+            "card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d"
+          },
+          {
+            "id": 55396,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-17T22:07:09.609483+00:00",
+            "external_id": "sv03.5-025",
+            "card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d"
+          }
+        ],
+        "card_feed_event_count": 0,
+        "vault_item_count": 1,
+        "vault_instance_count": 2,
+        "shared_card_count": 0,
+        "pricing_watch_count": 1
+      },
+      {
+        "card_print_id": "a058c87e-0779-4e90-b60e-81d8c90b0b50",
+        "set_code": "sv03.5",
+        "number": "025",
+        "number_plain": "025",
+        "name": "Pikachu",
+        "variant_key": "pokemon_together_stamp",
+        "gv_id": "GV-PK-MEW-025-POKEMON-TOGETHER-STAMP",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "target_role": "preserved_append_only_variant_parent",
+        "card_printings": [],
+        "external_mappings": [
+          {
+            "id": 120407,
+            "meta": {
+              "source": "manual_mapping_from_justtcg_lookup",
+              "version": "v1",
+              "tcgplayer_id": "559566"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-31T02:29:44.844716+00:00",
+            "external_id": "pokemon-miscellaneous-cards-products-pikachu-025-165-pokemon-together-promo",
+            "card_print_id": "a058c87e-0779-4e90-b60e-81d8c90b0b50"
+          },
+          {
+            "id": 120406,
+            "meta": {
+              "note": "Pokemon Together stamp Pikachu",
+              "source": "manual_mapping",
+              "version": "v1"
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-31T01:36:32.490762+00:00",
+            "external_id": "559566",
+            "card_print_id": "a058c87e-0779-4e90-b60e-81d8c90b0b50"
+          }
+        ],
+        "card_feed_event_count": 1,
+        "vault_item_count": 1,
+        "vault_instance_count": 1,
+        "shared_card_count": 1,
+        "pricing_watch_count": 1
+      }
+    ],
+    "hash_sha256": "21ed1da49549e0f099822b033ba51af3503bbc5edaeadcbe90d78af88f5a5987",
+    "impact_counts": {
+      "survivor_parent_rows": 1,
+      "preserved_duplicate_parent_rows": 1,
+      "survivor_target_child_rows": 0,
+      "preserved_duplicate_child_rows": 0,
+      "preserved_duplicate_feed_rows": 1,
+      "preserved_duplicate_mapping_rows": 2,
+      "preserved_duplicate_vault_rows": 1,
+      "preserved_duplicate_vault_instance_rows": 1,
+      "preserved_duplicate_shared_card_rows": 1
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-10T21:18:37.780Z",
+    "rows": [
+      {
+        "card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d",
+        "set_code": "sv03.5",
+        "number": "025",
+        "number_plain": "025",
+        "name": "Pikachu",
+        "variant_key": "",
+        "gv_id": "GV-PK-MEW-025",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "target_role": "canonical_survivor_parent",
+        "card_printings": [
+          {
+            "id": "e92cf614-ea13-49c8-9737-786c5ee200fe",
+            "image_url": null,
+            "created_at": "2026-02-22T00:23:13.964701+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEW-025-STD",
+            "provenance_ref": "sv03.5-025",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "f6eb8322-7426-4a5c-bd8f-b8294998b36f",
+            "image_url": null,
+            "created_at": "2026-03-03T05:57:22.191161+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MEW-025-RH",
+            "provenance_ref": "sv03.5-025",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 97357,
+            "meta": {
+              "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+              "justtcg_name": "Pikachu - 025/165",
+              "resolved_via": "justtcg_direct_structure_exact",
+              "justtcg_number": "025/165",
+              "justtcg_rarity": "Common",
+              "justtcg_set_id": "sv-scarlet-violet-151-pokemon",
+              "override_reason": null,
+              "justtcg_set_name": "SV: Scarlet & Violet 151",
+              "set_alignment_method": "manual_set_probe",
+              "set_alignment_status": "manual_helper_override",
+              "justtcg_query_number_used": "025",
+              "justtcg_query_variant_used": "raw",
+              "justtcg_query_variants_tried": [
+                "025"
+              ]
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-23T13:06:54.004+00:00",
+            "external_id": "pokemon-sv-scarlet-violet-151-pikachu-025-165-common",
+            "card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d"
+          },
+          {
+            "id": 55396,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2025-12-17T22:07:09.609483+00:00",
+            "external_id": "sv03.5-025",
+            "card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d"
+          }
+        ],
+        "card_feed_event_count": 0,
+        "vault_item_count": 1,
+        "vault_instance_count": 2,
+        "shared_card_count": 0,
+        "pricing_watch_count": 1
+      },
+      {
+        "card_print_id": "a058c87e-0779-4e90-b60e-81d8c90b0b50",
+        "set_code": "sv03.5",
+        "number": "025",
+        "number_plain": "025",
+        "name": "Pikachu",
+        "variant_key": "pokemon_together_stamp",
+        "gv_id": "GV-PK-MEW-025-POKEMON-TOGETHER-STAMP",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "target_role": "preserved_append_only_variant_parent",
+        "card_printings": [],
+        "external_mappings": [
+          {
+            "id": 120407,
+            "meta": {
+              "source": "manual_mapping_from_justtcg_lookup",
+              "version": "v1",
+              "tcgplayer_id": "559566"
+            },
+            "active": true,
+            "source": "justtcg",
+            "synced_at": "2026-03-31T02:29:44.844716+00:00",
+            "external_id": "pokemon-miscellaneous-cards-products-pikachu-025-165-pokemon-together-promo",
+            "card_print_id": "a058c87e-0779-4e90-b60e-81d8c90b0b50"
+          },
+          {
+            "id": 120406,
+            "meta": {
+              "note": "Pokemon Together stamp Pikachu",
+              "source": "manual_mapping",
+              "version": "v1"
+            },
+            "active": true,
+            "source": "tcgplayer",
+            "synced_at": "2026-03-31T01:36:32.490762+00:00",
+            "external_id": "559566",
+            "card_print_id": "a058c87e-0779-4e90-b60e-81d8c90b0b50"
+          }
+        ],
+        "card_feed_event_count": 1,
+        "vault_item_count": 1,
+        "vault_instance_count": 1,
+        "shared_card_count": 1,
+        "pricing_watch_count": 1
+      }
+    ],
+    "hash_sha256": "21ed1da49549e0f099822b033ba51af3503bbc5edaeadcbe90d78af88f5a5987",
+    "impact_counts": {
+      "survivor_parent_rows": 1,
+      "preserved_duplicate_parent_rows": 1,
+      "survivor_target_child_rows": 0,
+      "preserved_duplicate_child_rows": 0,
+      "preserved_duplicate_feed_rows": 1,
+      "preserved_duplicate_mapping_rows": 2,
+      "preserved_duplicate_vault_rows": 1,
+      "preserved_duplicate_vault_instance_rows": 1,
+      "preserved_duplicate_shared_card_rows": 1
+    }
+  },
+  "rollback_proof_rows": [
+    {
+      "package_id": "PKG-08R-APPEND-ONLY-DUPLICATE-NON-DELETE-CHILD-INSERT",
+      "package_fingerprint": "ab7fe98f70f60608e69647870097a7b54d6aafb335a66e8ae7729cda019d2d9f",
+      "child_inserts": 1,
+      "parent_updates": 0,
+      "parent_deletes": 0,
+      "dependency_transfers": 0
+    }
+  ],
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "recommended_real_apply_approval_text": "Approve real PKG-08R-APPEND-ONLY-DUPLICATE-NON-DELETE-CHILD-INSERT apply only. Fingerprint: ab7fe98f70f60608e69647870097a7b54d6aafb335a66e8ae7729cda019d2d9f. Scope: 1 child-only card_printing insert for sv03.5/151 Pikachu #025 cosmos on canonical parent 85d64fe0-be9a-4760-a1a6-51dadcc88a7d; preserved Pokemon Together stamped parent a058c87e-0779-4e90-b60e-81d8c90b0b50 remains untouched with append-only feed history. Dry-run proof: 21ed1da49549e0f099822b033ba51af3503bbc5edaeadcbe90d78af88f5a5987 == 21ed1da49549e0f099822b033ba51af3503bbc5edaeadcbe90d78af88f5a5987. No parent writes. No dependency transfers. No deletes. No global apply. No migrations. No unsupported cleanup. No quarantine.",
+  "stop_findings": [],
+  "pass": true
+}

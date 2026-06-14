@@ -1,0 +1,264 @@
+{
+  "generated_at": "2026-06-14T02:23:28.860Z",
+  "version": "english_master_index_pkg22a_product_promo_governance_readiness_v1",
+  "package_id": "PKG-22A-PRODUCT-PROMO-GOVERNANCE-READINESS",
+  "package_fingerprint": "b9d2e0b3c45c67c09d2725b84ba0cb4c27e26f2e766579aad93f36a0984239ab",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_current_unsupported_reconciliation_lanes_v1.json",
+  "source_generated_at": "2026-06-14T02:02:57.297Z",
+  "summary": {
+    "source_rows": 9,
+    "dry_run_candidate_rows": 0,
+    "blocked_rows": 9,
+    "by_governance_bucket": {
+      "product_promo_identity_modifier_or_variant_source_review": 7,
+      "product_promo_source_coverage_gap": 2
+    },
+    "by_cleanup_readiness": {
+      "blocked": 9
+    },
+    "top_sets_by_bucket": {
+      "product_promo_identity_modifier_or_variant_source_review": [
+        {
+          "key": "np",
+          "count": 2
+        },
+        {
+          "key": "smp",
+          "count": 2
+        },
+        {
+          "key": "xyp",
+          "count": 2
+        },
+        {
+          "key": "svp",
+          "count": 1
+        }
+      ],
+      "product_promo_source_coverage_gap": [
+        {
+          "key": "svp",
+          "count": 2
+        }
+      ]
+    }
+  },
+  "candidate_summary": {
+    "by_set": {},
+    "by_finish": {}
+  },
+  "rows": [
+    {
+      "governance_bucket": "product_promo_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Variant/modifier identity must be resolved as parent identity or source-backed display modifier before any child cleanup.",
+      "card_printing_id": "faefd1e1-1a3b-4812-a745-4b712e7dc484",
+      "card_print_id": "9b47c6b8-e719-4876-9ba2-1699248a4562",
+      "set_code": "np",
+      "canonical_set_key": "np",
+      "card_number": "25",
+      "number": "25",
+      "number_plain": "25",
+      "card_name": "Flygon",
+      "finish_key": "holo",
+      "known_index_finishes": [
+        "normal"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "winner_stamp",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "25"
+      ]
+    },
+    {
+      "governance_bucket": "product_promo_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Variant/modifier identity must be resolved as parent identity or source-backed display modifier before any child cleanup.",
+      "card_printing_id": "5f618071-1a3b-4758-aa8e-9b4579081029",
+      "card_print_id": "0efa1c0b-2556-4fcd-aeaa-a7bd612ffe92",
+      "set_code": "np",
+      "canonical_set_key": "np",
+      "card_number": "35",
+      "number": "35",
+      "number_plain": "35",
+      "card_name": "Pikachu δ",
+      "finish_key": "reverse",
+      "known_index_finishes": [
+        "holo",
+        "normal"
+      ],
+      "printed_identity_modifier": "delta_species",
+      "variant_key": "",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "35"
+      ]
+    },
+    {
+      "governance_bucket": "product_promo_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Variant/modifier identity must be resolved as parent identity or source-backed display modifier before any child cleanup.",
+      "card_printing_id": "abd9e005-f35a-4344-ab4b-6f78d54cc4d1",
+      "card_print_id": "41d1c25c-d5cb-417b-93c2-aab56aa3e251",
+      "set_code": "smp",
+      "canonical_set_key": "smp",
+      "card_number": "198",
+      "number": "SM198",
+      "number_plain": "198",
+      "card_name": "Bulbasaur",
+      "finish_key": "normal",
+      "known_index_finishes": [
+        "cosmos",
+        "holo"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "pikachu_stamp",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "198",
+        "SM198"
+      ]
+    },
+    {
+      "governance_bucket": "product_promo_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Variant/modifier identity must be resolved as parent identity or source-backed display modifier before any child cleanup.",
+      "card_printing_id": "1109fa5a-ee4f-4be3-a9b0-c03db432bbdb",
+      "card_print_id": "0a2b6e89-89b7-4fc1-a5d9-762bec994326",
+      "set_code": "smp",
+      "canonical_set_key": "smp",
+      "card_number": "65",
+      "number": "SM65",
+      "number_plain": "65",
+      "card_name": "Alolan Raichu",
+      "finish_key": "normal",
+      "known_index_finishes": [
+        "holo"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "battle_academy_deck_mark",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "65",
+        "SM65"
+      ]
+    },
+    {
+      "governance_bucket": "product_promo_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Variant/modifier identity must be resolved as parent identity or source-backed display modifier before any child cleanup.",
+      "card_printing_id": "3a677dcd-8d59-430c-8116-51fb5926234c",
+      "card_print_id": "4b575fd9-1e87-4992-bae5-826795a4bfbd",
+      "set_code": "svp",
+      "canonical_set_key": "svp",
+      "card_number": "224",
+      "number": "224",
+      "number_plain": "224",
+      "card_name": "Paradise Resort",
+      "finish_key": "normal",
+      "known_index_finishes": [],
+      "printed_identity_modifier": "",
+      "variant_key": "world_championships_2025_staff_stamp",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "224"
+      ]
+    },
+    {
+      "governance_bucket": "product_promo_source_coverage_gap",
+      "cleanup_readiness": "blocked",
+      "reason": "No Master Index finish fact matched this promo card; source acquisition or alias governance is required.",
+      "card_printing_id": "dd08ecfc-f6b3-4d51-957e-172eed3965a3",
+      "card_print_id": "dae7e1ad-487c-4923-84f8-6a2408a51514",
+      "set_code": "svp",
+      "canonical_set_key": "svp",
+      "card_number": "224",
+      "number": "224",
+      "number_plain": "224",
+      "card_name": "Paradise Resort",
+      "finish_key": "normal",
+      "known_index_finishes": [],
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "224"
+      ]
+    },
+    {
+      "governance_bucket": "product_promo_source_coverage_gap",
+      "cleanup_readiness": "blocked",
+      "reason": "No Master Index finish fact matched this promo card; source acquisition or alias governance is required.",
+      "card_printing_id": "97042674-4d1d-479c-925d-bb163de953a8",
+      "card_print_id": "f3bfa292-cecd-48fc-b213-682489b5f962",
+      "set_code": "svp",
+      "canonical_set_key": "svp",
+      "card_number": "500",
+      "number": "500",
+      "number_plain": "500",
+      "card_name": "Terapagos & Friends",
+      "finish_key": "normal",
+      "known_index_finishes": [],
+      "printed_identity_modifier": "",
+      "variant_key": "",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "500"
+      ]
+    },
+    {
+      "governance_bucket": "product_promo_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Variant/modifier identity must be resolved as parent identity or source-backed display modifier before any child cleanup.",
+      "card_printing_id": "5b9fdc79-d306-4949-abf0-f6f91f2e1a34",
+      "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "set_code": "xyp",
+      "canonical_set_key": "xyp",
+      "card_number": "177",
+      "number": "XY177",
+      "number_plain": "177",
+      "card_name": "Karen",
+      "finish_key": "holo",
+      "known_index_finishes": [
+        "normal"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "XY",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "177",
+        "XY177"
+      ]
+    },
+    {
+      "governance_bucket": "product_promo_identity_modifier_or_variant_source_review",
+      "cleanup_readiness": "blocked",
+      "reason": "Variant/modifier identity must be resolved as parent identity or source-backed display modifier before any child cleanup.",
+      "card_printing_id": "751682a4-5314-4b19-bb70-fdd28876416e",
+      "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "set_code": "xyp",
+      "canonical_set_key": "xyp",
+      "card_number": "177",
+      "number": "XY177",
+      "number_plain": "177",
+      "card_name": "Karen",
+      "finish_key": "reverse",
+      "known_index_finishes": [
+        "normal"
+      ],
+      "printed_identity_modifier": "",
+      "variant_key": "XY",
+      "child_dependency_total": 0,
+      "live_number_candidates": [
+        "177",
+        "XY177"
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SET_AUDIT_V1",
-  "generated_at": "2026-06-08T18:24:41.247Z",
+  "generated_at": "2026-06-12T08:27:20.983Z",
   "audit_only": true,
   "db_writes": false,
   "sets": [
@@ -3005,12 +3005,12 @@
           "total": 53
         }
       },
-      "evidence_rows": 292,
+      "evidence_rows": 294,
       "card_status_counts": {
         "master_verified": 53
       },
       "printing_status_counts": {
-        "master_verified": 58
+        "master_verified": 59
       },
       "source_availability": [
         {
@@ -3995,7 +3995,7 @@
           "total": 113
         }
       },
-      "evidence_rows": 1165,
+      "evidence_rows": 1166,
       "card_status_counts": {
         "master_verified": 114
       },
@@ -4050,7 +4050,7 @@
           "source_alias": null,
           "configured_status": "unavailable",
           "runtime_status": "collected",
-          "evidence_rows": 12,
+          "evidence_rows": 13,
           "error": null
         }
       ]
@@ -4094,7 +4094,7 @@
           "total": 110
         }
       },
-      "evidence_rows": 1445,
+      "evidence_rows": 1447,
       "card_status_counts": {
         "master_verified": 110
       },
@@ -4109,7 +4109,7 @@
           "source_alias": "base6",
           "configured_status": "available",
           "runtime_status": "collected_plus_cached_snapshot",
-          "evidence_rows": 328,
+          "evidence_rows": 329,
           "error": null
         },
         {
@@ -4149,7 +4149,7 @@
           "source_alias": null,
           "configured_status": "available",
           "runtime_status": "collected_plus_cached_snapshot",
-          "evidence_rows": 218,
+          "evidence_rows": 219,
           "error": null
         }
       ]
@@ -4193,7 +4193,7 @@
           "total": 165
         }
       },
-      "evidence_rows": 2153,
+      "evidence_rows": 2155,
       "card_status_counts": {
         "master_verified": 165
       },
@@ -4207,8 +4207,8 @@
           "source_key": "pokemontcg_api",
           "source_alias": "ecard1",
           "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 488,
+          "runtime_status": "collected_plus_cached_snapshot",
+          "evidence_rows": 489,
           "error": null
         },
         {
@@ -4246,9 +4246,9 @@
           "set_name": "Expedition Base Set",
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 323,
+          "configured_status": "available",
+          "runtime_status": "collected_plus_cached_snapshot",
+          "evidence_rows": 324,
           "error": null
         }
       ]
@@ -5396,7 +5396,7 @@
           "source_alias": "ex6",
           "configured_status": "available",
           "runtime_status": "collected_plus_cached_snapshot",
-          "evidence_rows": 355,
+          "evidence_rows": 354,
           "error": null
         },
         {
@@ -5579,12 +5579,12 @@
           "total": 111
         }
       },
-      "evidence_rows": 1314,
+      "evidence_rows": 1316,
       "card_status_counts": {
         "master_verified": 111
       },
       "printing_status_counts": {
-        "master_verified": 212
+        "master_verified": 213
       },
       "source_availability": [
         {
@@ -5593,8 +5593,8 @@
           "source_key": "pokemontcg_api",
           "source_alias": "ex7",
           "configured_status": "available",
-          "runtime_status": "collected",
-          "evidence_rows": 330,
+          "runtime_status": "collected_plus_cached_snapshot",
+          "evidence_rows": 331,
           "error": null
         },
         {
@@ -5693,7 +5693,7 @@
           "source_alias": "ex8",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 326,
+          "evidence_rows": 328,
           "error": null
         },
         {
@@ -5777,13 +5777,13 @@
           "total": 107
         }
       },
-      "evidence_rows": 1169,
+      "evidence_rows": 1171,
       "card_status_counts": {
         "master_verified": 107
       },
       "printing_status_counts": {
         "human_source_verified": 1,
-        "master_verified": 208
+        "master_verified": 209
       },
       "source_availability": [
         {
@@ -6075,7 +6075,7 @@
           "total": 114
         }
       },
-      "evidence_rows": 1224,
+      "evidence_rows": 1225,
       "card_status_counts": {
         "master_verified": 114
       },
@@ -6090,7 +6090,7 @@
           "source_alias": "ex11",
           "configured_status": "available",
           "runtime_status": "collected_plus_cached_snapshot",
-          "evidence_rows": 334,
+          "evidence_rows": 335,
           "error": null
         },
         {
@@ -7956,7 +7956,7 @@
           "total": 146
         }
       },
-      "evidence_rows": 2066,
+      "evidence_rows": 2068,
       "card_status_counts": {
         "master_verified": 153
       },
@@ -7971,7 +7971,7 @@
           "source_alias": "dp6",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 428,
+          "evidence_rows": 429,
           "error": null
         },
         {
@@ -8011,7 +8011,7 @@
           "source_alias": null,
           "configured_status": "unavailable",
           "runtime_status": "collected",
-          "evidence_rows": 275,
+          "evidence_rows": 276,
           "error": null
         }
       ]
@@ -8253,7 +8253,7 @@
           "total": 133
         }
       },
-      "evidence_rows": 1847,
+      "evidence_rows": 1848,
       "card_status_counts": {
         "master_verified": 139
       },
@@ -8550,7 +8550,7 @@
           "total": 153
         }
       },
-      "evidence_rows": 1988,
+      "evidence_rows": 1990,
       "card_status_counts": {
         "master_verified": 160
       },
@@ -8649,7 +8649,7 @@
           "total": 111
         }
       },
-      "evidence_rows": 1393,
+      "evidence_rows": 1395,
       "card_status_counts": {
         "master_verified": 114
       },
@@ -8847,7 +8847,7 @@
           "total": 124
         }
       },
-      "evidence_rows": 1712,
+      "evidence_rows": 1715,
       "card_status_counts": {
         "master_verified": 125
       },
@@ -8900,8 +8900,8 @@
           "set_name": "HeartGold & SoulSilver",
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
-          "configured_status": "available",
-          "runtime_status": "collected_plus_cached_snapshot",
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
           "evidence_rows": 226,
           "error": null
         }
@@ -9045,12 +9045,12 @@
           "total": 96
         }
       },
-      "evidence_rows": 1150,
+      "evidence_rows": 1153,
       "card_status_counts": {
         "master_verified": 96
       },
       "printing_status_counts": {
-        "master_verified": 198
+        "master_verified": 199
       },
       "source_availability": [
         {
@@ -9342,7 +9342,7 @@
           "total": 106
         }
       },
-      "evidence_rows": 1059,
+      "evidence_rows": 1058,
       "card_status_counts": {
         "master_verified": 106
       },
@@ -9356,8 +9356,8 @@
           "source_key": "pokemontcg_api",
           "source_alias": "col1",
           "configured_status": "available",
-          "runtime_status": "collected_plus_cached_snapshot",
-          "evidence_rows": 297,
+          "runtime_status": "collected",
+          "evidence_rows": 296,
           "error": null
         },
         {
@@ -9395,8 +9395,8 @@
           "set_name": "Call of Legends",
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
-          "configured_status": "available",
-          "runtime_status": "collected_plus_cached_snapshot",
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
           "evidence_rows": 72,
           "error": null
         }
@@ -9441,7 +9441,7 @@
           "total": 101
         }
       },
-      "evidence_rows": 658,
+      "evidence_rows": 659,
       "card_status_counts": {
         "master_verified": 103
       },
@@ -9475,9 +9475,9 @@
           "source_key": "thepricedex_price_list",
           "source_alias": "bwp",
           "configured_status": "candidate_url",
-          "runtime_status": "error",
-          "evidence_rows": 0,
-          "error": "Command failed: curl.exe --ssl-no-revoke --silent --show-error --location --max-time 45 --user-agent Grookai Master Index Audit/1.0 --header Accept: text/html,application/xhtml+xml https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list\n"
+          "runtime_status": "collected",
+          "evidence_rows": 236,
+          "error": null
         },
         {
           "set_key": "bwp",
@@ -9540,12 +9540,12 @@
           "total": 115
         }
       },
-      "evidence_rows": 1373,
+      "evidence_rows": 1379,
       "card_status_counts": {
         "master_verified": 115
       },
       "printing_status_counts": {
-        "master_verified": 261
+        "master_verified": 262
       },
       "source_availability": [
         {
@@ -9738,7 +9738,7 @@
           "total": 98
         }
       },
-      "evidence_rows": 1046,
+      "evidence_rows": 1047,
       "card_status_counts": {
         "master_verified": 98
       },
@@ -9752,7 +9752,7 @@
           "source_key": "pokemontcg_api",
           "source_alias": "bw2",
           "configured_status": "available",
-          "runtime_status": "collected_plus_cached_snapshot",
+          "runtime_status": "collected",
           "evidence_rows": 292,
           "error": null
         },
@@ -9837,7 +9837,7 @@
           "total": 102
         }
       },
-      "evidence_rows": 1185,
+      "evidence_rows": 1186,
       "card_status_counts": {
         "master_verified": 102
       },
@@ -10035,7 +10035,7 @@
           "total": 111
         }
       },
-      "evidence_rows": 1274,
+      "evidence_rows": 1273,
       "card_status_counts": {
         "master_verified": 111
       },
@@ -10050,7 +10050,7 @@
           "source_alias": "bw5",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 318,
+          "evidence_rows": 317,
           "error": null
         },
         {
@@ -10332,7 +10332,7 @@
           "total": 21
         }
       },
-      "evidence_rows": 167,
+      "evidence_rows": 168,
       "card_status_counts": {
         "master_verified": 21
       },
@@ -10484,8 +10484,8 @@
           "set_name": "Boundaries Crossed",
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
+          "configured_status": "available",
+          "runtime_status": "collected_plus_cached_snapshot",
           "evidence_rows": 111,
           "error": null
         }
@@ -10530,7 +10530,7 @@
           "total": 138
         }
       },
-      "evidence_rows": 1556,
+      "evidence_rows": 1557,
       "card_status_counts": {
         "master_verified": 138
       },
@@ -10644,7 +10644,7 @@
           "source_key": "pokemontcg_api",
           "source_alias": "bw9",
           "configured_status": "available",
-          "runtime_status": "collected",
+          "runtime_status": "cached_snapshot",
           "evidence_rows": 344,
           "error": null
         },
@@ -10683,8 +10683,8 @@
           "set_name": "Plasma Freeze",
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
+          "configured_status": "available",
+          "runtime_status": "cached_snapshot",
           "evidence_rows": 86,
           "error": null
         }
@@ -10828,7 +10828,7 @@
           "total": 216
         }
       },
-      "evidence_rows": 1330,
+      "evidence_rows": 1332,
       "card_status_counts": {
         "master_verified": 216
       },
@@ -10927,7 +10927,7 @@
           "total": 140
         }
       },
-      "evidence_rows": 1420,
+      "evidence_rows": 1421,
       "card_status_counts": {
         "master_verified": 140
       },
@@ -11125,7 +11125,7 @@
           "total": 146
         }
       },
-      "evidence_rows": 1662,
+      "evidence_rows": 1663,
       "card_status_counts": {
         "master_verified": 146
       },
@@ -11224,7 +11224,7 @@
           "total": 110
         }
       },
-      "evidence_rows": 1234,
+      "evidence_rows": 1237,
       "card_status_counts": {
         "master_verified": 110
       },
@@ -11422,7 +11422,7 @@
           "total": 114
         }
       },
-      "evidence_rows": 1304,
+      "evidence_rows": 1305,
       "card_status_counts": {
         "master_verified": 114
       },
@@ -12016,7 +12016,7 @@
           "total": 165
         }
       },
-      "evidence_rows": 1860,
+      "evidence_rows": 1862,
       "card_status_counts": {
         "master_verified": 165
       },
@@ -12822,7 +12822,7 @@
           "source_key": "pokemontcg_api",
           "source_alias": "smp",
           "configured_status": "available",
-          "runtime_status": "collected",
+          "runtime_status": "collected_plus_cached_snapshot",
           "evidence_rows": 503,
           "error": null
         },
@@ -12861,8 +12861,8 @@
           "set_name": "SM Black Star Promos",
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
+          "configured_status": "available",
+          "runtime_status": "collected_plus_cached_snapshot",
           "evidence_rows": 2,
           "error": null
         }
@@ -12907,7 +12907,7 @@
           "total": 172
         }
       },
-      "evidence_rows": 1931,
+      "evidence_rows": 1932,
       "card_status_counts": {
         "api_agreed": 9,
         "master_verified": 164
@@ -12922,7 +12922,7 @@
           "source_key": "pokemontcg_api",
           "source_alias": "sm1",
           "configured_status": "available",
-          "runtime_status": "collected",
+          "runtime_status": "cached_snapshot",
           "evidence_rows": 462,
           "error": null
         },
@@ -12961,8 +12961,8 @@
           "set_name": "Sun & Moon",
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
+          "configured_status": "available",
+          "runtime_status": "cached_snapshot",
           "evidence_rows": 110,
           "error": null
         }
@@ -13021,7 +13021,7 @@
           "source_key": "pokemontcg_api",
           "source_alias": "sm2",
           "configured_status": "available",
-          "runtime_status": "collected",
+          "runtime_status": "cached_snapshot",
           "evidence_rows": 467,
           "error": null
         },
@@ -13060,8 +13060,8 @@
           "set_name": "Guardians Rising",
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "collected",
+          "configured_status": "available",
+          "runtime_status": "cached_snapshot",
           "evidence_rows": 103,
           "error": null
         }
@@ -13106,7 +13106,7 @@
           "total": 169
         }
       },
-      "evidence_rows": 1915,
+      "evidence_rows": 1916,
       "card_status_counts": {
         "master_verified": 177
       },
@@ -13601,7 +13601,7 @@
           "total": 146
         }
       },
-      "evidence_rows": 1617,
+      "evidence_rows": 1618,
       "card_status_counts": {
         "master_verified": 150
       },
@@ -13700,7 +13700,7 @@
           "total": 183
         }
       },
-      "evidence_rows": 2061,
+      "evidence_rows": 2062,
       "card_status_counts": {
         "master_verified": 187
       },
@@ -13997,7 +13997,7 @@
           "total": 236
         }
       },
-      "evidence_rows": 2628,
+      "evidence_rows": 2630,
       "card_status_counts": {
         "master_verified": 240
       },
@@ -14329,9 +14329,9 @@
           "source_key": "thepricedex_price_list",
           "source_alias": "sm10",
           "configured_status": "candidate_url",
-          "runtime_status": "collected",
-          "evidence_rows": 657,
-          "error": null
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "error": "Command failed: curl.exe --ssl-no-revoke --silent --show-error --location --max-time 45 --user-agent Grookai Master Index Audit/1.0 --header Accept: text/html,application/xhtml+xml https://www.thepricedex.com/set/sm10/unbroken-bonds/price-list\ncurl: (35) Recv failure: Connection was reset\r\n"
         },
         {
           "set_key": "sm10",
@@ -14988,7 +14988,7 @@
           "total": 216
         }
       },
-      "evidence_rows": 2959,
+      "evidence_rows": 2962,
       "card_status_counts": {
         "master_verified": 216
       },
@@ -15087,11 +15087,12 @@
           "total": 209
         }
       },
-      "evidence_rows": 2766,
+      "evidence_rows": 2769,
       "card_status_counts": {
         "master_verified": 212
       },
       "printing_status_counts": {
+        "human_source_verified": 1,
         "master_verified": 394
       },
       "source_availability": [
@@ -15186,7 +15187,7 @@
           "total": 201
         }
       },
-      "evidence_rows": 2715,
+      "evidence_rows": 2716,
       "card_status_counts": {
         "master_verified": 201
       },
@@ -15484,7 +15485,7 @@
           "total": 203
         }
       },
-      "evidence_rows": 2675,
+      "evidence_rows": 2676,
       "card_status_counts": {
         "master_verified": 203
       },
@@ -15880,12 +15881,13 @@
           "total": 183
         }
       },
-      "evidence_rows": 2424,
+      "evidence_rows": 2429,
       "card_status_counts": {
         "master_verified": 183
       },
       "printing_status_counts": {
-        "master_verified": 348
+        "human_source_verified": 1,
+        "master_verified": 349
       },
       "source_availability": [
         {
@@ -15979,11 +15981,12 @@
           "total": 233
         }
       },
-      "evidence_rows": 3106,
+      "evidence_rows": 3116,
       "card_status_counts": {
         "master_verified": 233
       },
       "printing_status_counts": {
+        "human_source_verified": 3,
         "master_verified": 419
       },
       "source_availability": [
@@ -16078,11 +16081,12 @@
           "total": 237
         }
       },
-      "evidence_rows": 2922,
+      "evidence_rows": 2934,
       "card_status_counts": {
         "master_verified": 237
       },
       "printing_status_counts": {
+        "human_source_verified": 4,
         "master_verified": 422
       },
       "source_availability": [
@@ -16375,7 +16379,7 @@
           "total": 284
         }
       },
-      "evidence_rows": 3817,
+      "evidence_rows": 3822,
       "card_status_counts": {
         "master_verified": 284
       },
@@ -16474,12 +16478,13 @@
           "total": 216
         }
       },
-      "evidence_rows": 2467,
+      "evidence_rows": 2479,
       "card_status_counts": {
         "master_verified": 216
       },
       "printing_status_counts": {
-        "master_verified": 397
+        "human_source_verified": 1,
+        "master_verified": 400
       },
       "source_availability": [
         {
@@ -16672,12 +16677,13 @@
           "total": 246
         }
       },
-      "evidence_rows": 2978,
+      "evidence_rows": 3005,
       "card_status_counts": {
         "master_verified": 246
       },
       "printing_status_counts": {
-        "master_verified": 421
+        "human_source_verified": 3,
+        "master_verified": 426
       },
       "source_availability": [
         {
@@ -17068,12 +17074,13 @@
           "total": 247
         }
       },
-      "evidence_rows": 2841,
+      "evidence_rows": 2860,
       "card_status_counts": {
         "master_verified": 247
       },
       "printing_status_counts": {
-        "master_verified": 440
+        "human_source_verified": 1,
+        "master_verified": 445
       },
       "source_availability": [
         {
@@ -17266,12 +17273,12 @@
           "total": 245
         }
       },
-      "evidence_rows": 2766,
+      "evidence_rows": 2774,
       "card_status_counts": {
         "master_verified": 245
       },
       "printing_status_counts": {
-        "master_verified": 419
+        "master_verified": 420
       },
       "source_availability": [
         {
@@ -17464,7 +17471,7 @@
           "total": 226
         }
       },
-      "evidence_rows": 1670,
+      "evidence_rows": 1683,
       "card_status_counts": {
         "master_verified": 226
       },
@@ -17959,12 +17966,12 @@
           "total": 279
         }
       },
-      "evidence_rows": 2766,
+      "evidence_rows": 2773,
       "card_status_counts": {
         "master_verified": 282
       },
       "printing_status_counts": {
-        "master_verified": 517
+        "master_verified": 519
       },
       "source_availability": [
         {
@@ -18058,12 +18065,13 @@
           "total": 230
         }
       },
-      "evidence_rows": 2951,
+      "evidence_rows": 3010,
       "card_status_counts": {
         "master_verified": 230
       },
       "printing_status_counts": {
-        "master_verified": 409
+        "human_source_verified": 18,
+        "master_verified": 428
       },
       "source_availability": [
         {
@@ -18093,7 +18101,7 @@
           "source_alias": "sv3",
           "configured_status": "candidate_url",
           "runtime_status": "collected",
-          "evidence_rows": 636,
+          "evidence_rows": 681,
           "error": null
         },
         {
@@ -18455,12 +18463,13 @@
           "total": 218
         }
       },
-      "evidence_rows": 2645,
+      "evidence_rows": 2667,
       "card_status_counts": {
         "master_verified": 218
       },
       "printing_status_counts": {
-        "master_verified": 414
+        "human_source_verified": 1,
+        "master_verified": 421
       },
       "source_availability": [
         {
@@ -18752,12 +18761,12 @@
           "total": 175
         }
       },
-      "evidence_rows": 2148,
+      "evidence_rows": 2152,
       "card_status_counts": {
         "master_verified": 175
       },
       "printing_status_counts": {
-        "master_verified": 328
+        "master_verified": 330
       },
       "source_availability": [
         {
@@ -19049,12 +19058,12 @@
           "total": 190
         }
       },
-      "evidence_rows": 2308,
+      "evidence_rows": 2314,
       "card_status_counts": {
         "master_verified": 190
       },
       "printing_status_counts": {
-        "master_verified": 368
+        "master_verified": 369
       },
       "source_availability": [
         {
@@ -19148,11 +19157,12 @@
           "total": 244
         }
       },
-      "evidence_rows": 2813,
+      "evidence_rows": 2826,
       "card_status_counts": {
         "master_verified": 244
       },
       "printing_status_counts": {
+        "human_source_verified": 1,
         "master_verified": 457
       },
       "source_availability": [
@@ -19445,12 +19455,12 @@
           "total": 188
         }
       },
-      "evidence_rows": 2261,
+      "evidence_rows": 2263,
       "card_status_counts": {
         "master_verified": 188
       },
       "printing_status_counts": {
-        "master_verified": 350
+        "master_verified": 351
       },
       "source_availability": [
         {

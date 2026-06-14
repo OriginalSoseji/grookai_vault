@@ -1,0 +1,3922 @@
+{
+  "generated_at": "2026-06-10T04:53:31.569Z",
+  "version": "english_master_index_pkg06k_active_finish_child_printing_real_apply_v1",
+  "audit_only": false,
+  "apply_only": true,
+  "approval_scope": {
+    "apply_approved_by_user": true,
+    "approval_text": "Approve real PKG-06K-ACTIVE-FINISH-CHILD-PRINTING-INSERTS apply only. Fingerprint: 93a6199e422ce13f9f64142c05d9eb677d15522e95412c3578d4eff77893dbb1. SQL hash: 3e9cbf1072ede97a985b67ac1bc7b1fe708367d0a57e1268431bd3236b3f2ba3. Scope: 56 child-only card_printing inserts for bw6/Dragons Exalted, dp2/Mysterious Treasures, ex4/Team Magma vs Team Aqua, me01/Mega Evolution, si1/Southern Islands, sm8/Lost Thunder, sv09/Journey Together, 2012bw/McDonald's Collection 2012, sv07/Stellar Crown, and basep/Wizards Black Star Promos; finishes cosmos=27, holo=25, normal=4; target parents=56. Dry-run proof: cc0c32303b4270813d652f4784ef322e5acac07ab3af21a56fd00d4f1de1e2b7 == cc0c32303b4270813d652f4784ef322e5acac07ab3af21a56fd00d4f1de1e2b7. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No parent writes.",
+    "approved_for_package_id": "PKG-06K-ACTIVE-FINISH-CHILD-PRINTING-INSERTS",
+    "approved_for_fingerprint_sha256": "93a6199e422ce13f9f64142c05d9eb677d15522e95412c3578d4eff77893dbb1",
+    "approved_for_sql_hash_sha256": "3e9cbf1072ede97a985b67ac1bc7b1fe708367d0a57e1268431bd3236b3f2ba3",
+    "approved_for_child_insert_rows": 56,
+    "approved_for_global_apply": false,
+    "approved_for_migrations": false,
+    "approved_for_deletes": false,
+    "approved_for_merges": false,
+    "approved_for_parent_writes": false
+  },
+  "apply_status": "pkg06k_active_finish_child_printing_real_apply_committed_and_verified",
+  "db_reads_performed": true,
+  "durable_db_writes_performed": true,
+  "db_write_committed": true,
+  "inserted_rows": 56,
+  "parent_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": true,
+  "package_scope": {
+    "package_id": "PKG-06K-ACTIVE-FINISH-CHILD-PRINTING-INSERTS",
+    "package_fingerprint_sha256": "93a6199e422ce13f9f64142c05d9eb677d15522e95412c3578d4eff77893dbb1",
+    "source_readiness_fingerprint_sha256": "9409a240229daece80d0d39382e4013840523b6ac335e38ce5c7cd68f9448633",
+    "sql_hash_sha256": "3e9cbf1072ede97a985b67ac1bc7b1fe708367d0a57e1268431bd3236b3f2ba3",
+    "child_card_printing_inserts": 56,
+    "target_parent_rows": 56,
+    "set_counts": {
+      "bw6": 6,
+      "dp2": 6,
+      "ex4": 6,
+      "me01": 6,
+      "si1": 6,
+      "sm8": 6,
+      "sv09": 6,
+      "2012bw": 5,
+      "sv07": 5,
+      "basep": 4
+    },
+    "finish_counts": {
+      "cosmos": 27,
+      "holo": 25,
+      "normal": 4
+    },
+    "global_apply_included": false
+  },
+  "source_artifacts": {
+    "real_apply_gate": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg06k_active_finish_child_printing_real_apply_gate_v1.json",
+    "dry_run_proof": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg06k_active_finish_child_printing_guarded_dry_run_v1.json"
+  },
+  "execution_result": {
+    "connected": true,
+    "apply_status": "pkg06k_active_finish_child_printing_real_apply_committed",
+    "error_message": null,
+    "committed": true
+  },
+  "before_target_snapshot": {
+    "captured_at": "2026-06-10T04:53:30.125Z",
+    "rows": [
+      {
+        "row_type": "target_parent",
+        "row_id": "079ae0a0-eba5-4620-9e72-801bd0a1714e",
+        "set_code": "basep",
+        "card_number": "13",
+        "card_name": "Venusaur",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "5af74dbf-2b3d-4d92-b17a-a5cc3fecf13a",
+        "set_code": "basep",
+        "card_number": "15",
+        "card_name": "Cool Porygon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c9fc79b3-3130-4910-b4b7-1aad5d31d874",
+        "set_code": "basep",
+        "card_number": "18",
+        "card_name": "Team Rocket's Meowth",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f92b127d-17a6-4c93-b638-c29434a6c031",
+        "set_code": "basep",
+        "card_number": "33",
+        "card_name": "Scizor",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "54698766-cc91-4386-bd6d-dfc4f569f6fd",
+        "set_code": "bw6",
+        "card_number": "24",
+        "card_name": "Gyarados",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ec067898-aa72-4aaf-bb81-c7ee78527250",
+        "set_code": "bw6",
+        "card_number": "28",
+        "card_name": "Milotic",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "0be0dd94-49c6-4d58-9cef-b29a4db22142",
+        "set_code": "bw6",
+        "card_number": "40",
+        "card_name": "Ampharos",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "98c489f9-e34c-4687-8130-afe70b3ec450",
+        "set_code": "bw6",
+        "card_number": "80",
+        "card_name": "Aggron",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f623349e-0ea2-4a4d-a370-a8bab7152498",
+        "set_code": "bw6",
+        "card_number": "91",
+        "card_name": "Garchomp",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "3d3119f4-18bd-4dae-8611-455ebce1cf4a",
+        "set_code": "bw6",
+        "card_number": "98",
+        "card_name": "Hydreigon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "23ca8e6f-6772-42a9-96cd-78e4cf338a02",
+        "set_code": "dp2",
+        "card_number": "109",
+        "card_name": "Bebe's Search",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "5081ec1d-979c-419e-b838-8e58ea4da5d8",
+        "set_code": "dp2",
+        "card_number": "121",
+        "card_name": "Electivire LV.X",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "48d366e6-c3fd-4ec4-92f2-5032524aafd0",
+        "set_code": "dp2",
+        "card_number": "122",
+        "card_name": "Lucario LV.X",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e2f2b04d-c672-4051-9105-b712a8f2ca16",
+        "set_code": "dp2",
+        "card_number": "123",
+        "card_name": "Magmortar LV.X",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f142196a-ad89-4138-9540-e27067505fb0",
+        "set_code": "dp2",
+        "card_number": "124",
+        "card_name": "Time-Space Distortion",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "99282997-fa3a-4764-bd55-9411860d9b10",
+        "set_code": "dp2",
+        "card_number": "33",
+        "card_name": "Rampardos",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4b0ca559-e74a-477d-8d33-d027fddbc58e",
+        "set_code": "ex4",
+        "card_number": "90",
+        "card_name": "Cradily ex",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "948a7294-2833-4f53-81ca-a9ff677e215d",
+        "set_code": "ex4",
+        "card_number": "91",
+        "card_name": "Entei ex",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4c23f0ab-4d8a-451b-bcac-a47dc3b189c3",
+        "set_code": "ex4",
+        "card_number": "92",
+        "card_name": "Raikou ex",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "72047f9f-df62-4b25-b90a-fcde0da3ebf3",
+        "set_code": "ex4",
+        "card_number": "93",
+        "card_name": "Sceptile ex",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "63fc471f-1a60-45f8-91c9-3675d959dd84",
+        "set_code": "ex4",
+        "card_number": "96",
+        "card_name": "Absol",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "16163c20-78d4-4c1f-9b8d-5ad033c55170",
+        "set_code": "ex4",
+        "card_number": "97",
+        "card_name": "Jirachi",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "353b9924-4d4e-44b4-b55c-a28a5a377cb2",
+        "set_code": "mcd12",
+        "card_number": "10",
+        "card_name": "Scraggy",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d3b5a22a-f7fe-4088-9756-845e95ab3011",
+        "set_code": "mcd12",
+        "card_number": "11",
+        "card_name": "Klang",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ba12910d-12b8-48ea-9623-d717bfb211d1",
+        "set_code": "mcd12",
+        "card_number": "12",
+        "card_name": "Axew",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "5a88f7e3-847b-4d39-94e1-1891ca9dcafe",
+        "set_code": "mcd12",
+        "card_number": "4",
+        "card_name": "Pignite",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d807f57c-6904-4710-9ab9-de53d9bb1dc4",
+        "set_code": "mcd12",
+        "card_number": "5",
+        "card_name": "Dewott",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "0e9d8afb-099a-449e-8201-d05eaf4970c6",
+        "set_code": "me01",
+        "card_number": "048",
+        "card_name": "Raikou",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "04433312-9e95-4e0c-a593-929c278e7499",
+        "set_code": "me01",
+        "card_number": "095",
+        "card_name": "Dialga",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "87e718fc-f5df-46ba-8a40-32f1881ada53",
+        "set_code": "me01",
+        "card_number": "58",
+        "card_name": "Ralts",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "dd8f0c4d-ac21-441d-a57f-34be3a02a6f8",
+        "set_code": "me01",
+        "card_number": "59",
+        "card_name": "Kirlia",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "031dc29b-18cb-4048-8301-a29f3bd6335c",
+        "set_code": "me01",
+        "card_number": "76",
+        "card_name": "Riolu",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c29cf7bf-d1cb-407a-8570-37f9dff2d488",
+        "set_code": "me01",
+        "card_number": "93",
+        "card_name": "Steelix",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "666de235-a8af-49f2-99c9-f1a8a5343494",
+        "set_code": "si1",
+        "card_number": "1",
+        "card_name": "Mew",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "169d68d8-588a-445b-9ce5-01e9d4086699",
+        "set_code": "si1",
+        "card_number": "11",
+        "card_name": "Marill",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "17406c6f-0e35-4790-8e21-2e5f4b2ad6ec",
+        "set_code": "si1",
+        "card_number": "14",
+        "card_name": "Slowking",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f7776eff-94e3-4ff9-a627-1577df92a4a5",
+        "set_code": "si1",
+        "card_number": "17",
+        "card_name": "Vileplume",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "6e97b72a-8adc-4005-8a15-f51b79d7087c",
+        "set_code": "si1",
+        "card_number": "4",
+        "card_name": "Togepi",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "27b7b9fb-ebff-483b-8d93-8e600ec2fd19",
+        "set_code": "si1",
+        "card_number": "7",
+        "card_name": "Ledyba",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4656055f-65cd-4033-a6d0-42e154fa1710",
+        "set_code": "sm8",
+        "card_number": "120",
+        "card_name": "Umbreon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ee0f8640-d08b-42bf-a964-5df1dd3078e7",
+        "set_code": "sm8",
+        "card_number": "125",
+        "card_name": "Steelix",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "00ce0a0e-6796-4979-9997-7985d22f74b0",
+        "set_code": "sm8",
+        "card_number": "141",
+        "card_name": "Gardevoir",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "a1293676-da0f-48c6-ba3e-2707f3860a0f",
+        "set_code": "sm8",
+        "card_number": "153",
+        "card_name": "Blissey",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "49f5f973-82b9-4a31-8cb3-16917661f180",
+        "set_code": "sm8",
+        "card_number": "89",
+        "card_name": "Espeon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "8d474ebf-0156-4aad-afef-551a545d02c1",
+        "set_code": "sm8",
+        "card_number": "97",
+        "card_name": "Giratina",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "0e886428-ca60-4b13-9b98-cc41d91361d1",
+        "set_code": "sv07",
+        "card_number": "101",
+        "card_name": "Klinklang",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c84e3e43-8b65-4ddd-a760-f9d4a5060d73",
+        "set_code": "sv07",
+        "card_number": "104",
+        "card_name": "Melmetal",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+        "set_code": "sv07",
+        "card_number": "107",
+        "card_name": "Archaludon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d17130cc-b402-49e2-ba6b-22c7d3bac711",
+        "set_code": "sv07",
+        "card_number": "76",
+        "card_name": "Rhyperior",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d25c5497-7045-4717-b361-49d34d8fd645",
+        "set_code": "sv07",
+        "card_number": "96",
+        "card_name": "Grimmsnarl",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "0f65e7ff-3806-41e3-b51b-18795ad72869",
+        "set_code": "sv09",
+        "card_number": "117",
+        "card_name": "Hop's Snorlax",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "daf0489f-69b3-4710-987e-fb5e878386ae",
+        "set_code": "sv09",
+        "card_number": "135",
+        "card_name": "Hop's Wooloo",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "316451de-61c5-4662-a9df-a7546f890991",
+        "set_code": "sv09",
+        "card_number": "151",
+        "card_name": "Lillie's Pearl",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "8b27da65-9d66-43b0-8816-5b842bee1fee",
+        "set_code": "sv09",
+        "card_number": "41",
+        "card_name": "Wailord",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ebba564d-1cf7-4494-9b0a-831c09bac46d",
+        "set_code": "sv09",
+        "card_number": "52",
+        "card_name": "Iono's Tadbulb",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "6081b50b-7978-44e7-90a3-47eb1d4d496f",
+        "set_code": "sv09",
+        "card_number": "85",
+        "card_name": "Lycanroc",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "cc0c32303b4270813d652f4784ef322e5acac07ab3af21a56fd00d4f1de1e2b7",
+    "counts": {
+      "target_parent_rows": 56,
+      "existing_target_child_rows": 0,
+      "planned_id_collision_rows": 0,
+      "total_rows": 56
+    }
+  },
+  "after_target_snapshot": {
+    "captured_at": "2026-06-10T04:53:31.339Z",
+    "rows": [
+      {
+        "row_type": "existing_target_child",
+        "row_id": "0eb48e5c-0ba1-48cb-ae01-8dfc2123a29c",
+        "set_code": "basep",
+        "card_number": "13",
+        "card_name": "Venusaur",
+        "finish_key": "holo",
+        "target_card_printing_id": "0eb48e5c-0ba1-48cb-ae01-8dfc2123a29c"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "d533920d-72d3-4c74-ab71-28eebddb44ed",
+        "set_code": "basep",
+        "card_number": "15",
+        "card_name": "Cool Porygon",
+        "finish_key": "holo",
+        "target_card_printing_id": "d533920d-72d3-4c74-ab71-28eebddb44ed"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "38081e9e-73c4-4e36-bf85-876e82cc5fb8",
+        "set_code": "basep",
+        "card_number": "18",
+        "card_name": "Team Rocket's Meowth",
+        "finish_key": "normal",
+        "target_card_printing_id": "38081e9e-73c4-4e36-bf85-876e82cc5fb8"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "1e58e3a4-0ed7-4d16-acf6-e2ba4464cd3d",
+        "set_code": "basep",
+        "card_number": "33",
+        "card_name": "Scizor",
+        "finish_key": "normal",
+        "target_card_printing_id": "1e58e3a4-0ed7-4d16-acf6-e2ba4464cd3d"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "3e20f4e7-ace1-4caf-814f-b4c03d8639cf",
+        "set_code": "bw6",
+        "card_number": "24",
+        "card_name": "Gyarados",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "3e20f4e7-ace1-4caf-814f-b4c03d8639cf"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "42e9904e-17e3-40c7-bff5-4c916dba54e1",
+        "set_code": "bw6",
+        "card_number": "28",
+        "card_name": "Milotic",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "42e9904e-17e3-40c7-bff5-4c916dba54e1"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "586f414c-a380-41ba-92fc-096f641e58fd",
+        "set_code": "bw6",
+        "card_number": "40",
+        "card_name": "Ampharos",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "586f414c-a380-41ba-92fc-096f641e58fd"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "b37bc1c3-c5c1-436e-9a0f-e4182686e537",
+        "set_code": "bw6",
+        "card_number": "80",
+        "card_name": "Aggron",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "b37bc1c3-c5c1-436e-9a0f-e4182686e537"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "0f57d1d8-6ef9-4c7d-b045-bf07fca3cca3",
+        "set_code": "bw6",
+        "card_number": "91",
+        "card_name": "Garchomp",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "0f57d1d8-6ef9-4c7d-b045-bf07fca3cca3"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "aa0d9fd3-9354-40d7-b209-3b7f530ad43d",
+        "set_code": "bw6",
+        "card_number": "98",
+        "card_name": "Hydreigon",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "aa0d9fd3-9354-40d7-b209-3b7f530ad43d"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "2172b0a9-b9c8-42ad-9f4b-650a9b168bb5",
+        "set_code": "dp2",
+        "card_number": "109",
+        "card_name": "Bebe's Search",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "2172b0a9-b9c8-42ad-9f4b-650a9b168bb5"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "5e088fe5-e7e8-45bf-9ecf-825f3ab1ad15",
+        "set_code": "dp2",
+        "card_number": "121",
+        "card_name": "Electivire LV.X",
+        "finish_key": "holo",
+        "target_card_printing_id": "5e088fe5-e7e8-45bf-9ecf-825f3ab1ad15"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "96c321fc-771c-42fe-8f60-d47fa69fc814",
+        "set_code": "dp2",
+        "card_number": "122",
+        "card_name": "Lucario LV.X",
+        "finish_key": "holo",
+        "target_card_printing_id": "96c321fc-771c-42fe-8f60-d47fa69fc814"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "dbe46339-331f-4859-8a36-73ad911ead31",
+        "set_code": "dp2",
+        "card_number": "123",
+        "card_name": "Magmortar LV.X",
+        "finish_key": "holo",
+        "target_card_printing_id": "dbe46339-331f-4859-8a36-73ad911ead31"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "fe81dec0-27f5-434d-b4dd-4ea88a818de0",
+        "set_code": "dp2",
+        "card_number": "124",
+        "card_name": "Time-Space Distortion",
+        "finish_key": "holo",
+        "target_card_printing_id": "fe81dec0-27f5-434d-b4dd-4ea88a818de0"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "aceabf6d-ddda-471d-a35b-5347fe16c729",
+        "set_code": "dp2",
+        "card_number": "33",
+        "card_name": "Rampardos",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "aceabf6d-ddda-471d-a35b-5347fe16c729"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "fa493bd3-c0f3-4699-a689-187c7f500aa4",
+        "set_code": "ex4",
+        "card_number": "90",
+        "card_name": "Cradily ex",
+        "finish_key": "holo",
+        "target_card_printing_id": "fa493bd3-c0f3-4699-a689-187c7f500aa4"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "a5a63fc3-55c1-4579-b3fa-c1e6c38fa10a",
+        "set_code": "ex4",
+        "card_number": "91",
+        "card_name": "Entei ex",
+        "finish_key": "holo",
+        "target_card_printing_id": "a5a63fc3-55c1-4579-b3fa-c1e6c38fa10a"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "d8b2a25d-17fb-417c-8105-20bcdee42c6c",
+        "set_code": "ex4",
+        "card_number": "92",
+        "card_name": "Raikou ex",
+        "finish_key": "holo",
+        "target_card_printing_id": "d8b2a25d-17fb-417c-8105-20bcdee42c6c"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "3ddce893-6fb9-4999-981a-335b624043bc",
+        "set_code": "ex4",
+        "card_number": "93",
+        "card_name": "Sceptile ex",
+        "finish_key": "holo",
+        "target_card_printing_id": "3ddce893-6fb9-4999-981a-335b624043bc"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "4fe604db-0023-4faf-863e-dacadade5c4a",
+        "set_code": "ex4",
+        "card_number": "96",
+        "card_name": "Absol",
+        "finish_key": "holo",
+        "target_card_printing_id": "4fe604db-0023-4faf-863e-dacadade5c4a"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "82777d06-fb45-4761-9be9-5371ba02179e",
+        "set_code": "ex4",
+        "card_number": "97",
+        "card_name": "Jirachi",
+        "finish_key": "holo",
+        "target_card_printing_id": "82777d06-fb45-4761-9be9-5371ba02179e"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "8abc3ac6-1fa7-43ad-9533-742711afc811",
+        "set_code": "mcd12",
+        "card_number": "10",
+        "card_name": "Scraggy",
+        "finish_key": "holo",
+        "target_card_printing_id": "8abc3ac6-1fa7-43ad-9533-742711afc811"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "e8818427-7496-4c33-a0b1-705c8a16b8d4",
+        "set_code": "mcd12",
+        "card_number": "11",
+        "card_name": "Klang",
+        "finish_key": "holo",
+        "target_card_printing_id": "e8818427-7496-4c33-a0b1-705c8a16b8d4"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "83b37eec-6b28-4e19-8779-7cbb02a52bc1",
+        "set_code": "mcd12",
+        "card_number": "12",
+        "card_name": "Axew",
+        "finish_key": "holo",
+        "target_card_printing_id": "83b37eec-6b28-4e19-8779-7cbb02a52bc1"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "f11e55fd-ab20-4f93-8564-460135e1fc63",
+        "set_code": "mcd12",
+        "card_number": "4",
+        "card_name": "Pignite",
+        "finish_key": "holo",
+        "target_card_printing_id": "f11e55fd-ab20-4f93-8564-460135e1fc63"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "aee3d36a-a6fc-433b-b2d6-49c92555cf7d",
+        "set_code": "mcd12",
+        "card_number": "5",
+        "card_name": "Dewott",
+        "finish_key": "holo",
+        "target_card_printing_id": "aee3d36a-a6fc-433b-b2d6-49c92555cf7d"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "d3356c58-2e40-4dd9-9783-94197f78a287",
+        "set_code": "me01",
+        "card_number": "048",
+        "card_name": "Raikou",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "d3356c58-2e40-4dd9-9783-94197f78a287"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "7fe63728-7a59-4e58-b00b-9ff304512d11",
+        "set_code": "me01",
+        "card_number": "095",
+        "card_name": "Dialga",
+        "finish_key": "holo",
+        "target_card_printing_id": "7fe63728-7a59-4e58-b00b-9ff304512d11"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "5161e4da-3781-4149-93ed-eb12773ffc42",
+        "set_code": "me01",
+        "card_number": "58",
+        "card_name": "Ralts",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "5161e4da-3781-4149-93ed-eb12773ffc42"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "a9b75f1c-229d-4b6d-a371-b19821653778",
+        "set_code": "me01",
+        "card_number": "59",
+        "card_name": "Kirlia",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "a9b75f1c-229d-4b6d-a371-b19821653778"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "b3e6344f-b3a5-48c6-aab6-07e317ef7d87",
+        "set_code": "me01",
+        "card_number": "76",
+        "card_name": "Riolu",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "b3e6344f-b3a5-48c6-aab6-07e317ef7d87"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "cf450ee9-a050-4688-bc90-970ebd3edaf1",
+        "set_code": "me01",
+        "card_number": "93",
+        "card_name": "Steelix",
+        "finish_key": "holo",
+        "target_card_printing_id": "cf450ee9-a050-4688-bc90-970ebd3edaf1"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "6ca6bcf4-a63d-4dbd-81fb-a7f6f9197d02",
+        "set_code": "si1",
+        "card_number": "1",
+        "card_name": "Mew",
+        "finish_key": "holo",
+        "target_card_printing_id": "6ca6bcf4-a63d-4dbd-81fb-a7f6f9197d02"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "b5d92cc6-cfd4-4d97-a0b4-734fac5234e8",
+        "set_code": "si1",
+        "card_number": "11",
+        "card_name": "Marill",
+        "finish_key": "holo",
+        "target_card_printing_id": "b5d92cc6-cfd4-4d97-a0b4-734fac5234e8"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "b50b2af0-886c-4185-b86d-1acdf1003690",
+        "set_code": "si1",
+        "card_number": "14",
+        "card_name": "Slowking",
+        "finish_key": "holo",
+        "target_card_printing_id": "b50b2af0-886c-4185-b86d-1acdf1003690"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "9921a6a8-23b3-4136-8e98-826be4178f51",
+        "set_code": "si1",
+        "card_number": "17",
+        "card_name": "Vileplume",
+        "finish_key": "holo",
+        "target_card_printing_id": "9921a6a8-23b3-4136-8e98-826be4178f51"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "898e07f2-3783-4faf-90d5-6567fb3e49ca",
+        "set_code": "si1",
+        "card_number": "4",
+        "card_name": "Togepi",
+        "finish_key": "holo",
+        "target_card_printing_id": "898e07f2-3783-4faf-90d5-6567fb3e49ca"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "ad96e570-ee93-4579-a69f-965d284c55e1",
+        "set_code": "si1",
+        "card_number": "7",
+        "card_name": "Ledyba",
+        "finish_key": "holo",
+        "target_card_printing_id": "ad96e570-ee93-4579-a69f-965d284c55e1"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "bad29a5f-ce49-44e8-8a24-1605440fc5b0",
+        "set_code": "sm8",
+        "card_number": "120",
+        "card_name": "Umbreon",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "bad29a5f-ce49-44e8-8a24-1605440fc5b0"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "ca9e4a6e-7644-4b86-973b-429b7730fc0d",
+        "set_code": "sm8",
+        "card_number": "125",
+        "card_name": "Steelix",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "ca9e4a6e-7644-4b86-973b-429b7730fc0d"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "e0b3f09f-513e-4390-9710-02cf95f1ba6c",
+        "set_code": "sm8",
+        "card_number": "141",
+        "card_name": "Gardevoir",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "e0b3f09f-513e-4390-9710-02cf95f1ba6c"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "3a1bc817-98f4-4751-b322-92121c29a5f5",
+        "set_code": "sm8",
+        "card_number": "153",
+        "card_name": "Blissey",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "3a1bc817-98f4-4751-b322-92121c29a5f5"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "1292e129-2020-413e-91d0-32ca7f445374",
+        "set_code": "sm8",
+        "card_number": "89",
+        "card_name": "Espeon",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "1292e129-2020-413e-91d0-32ca7f445374"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "1b11f6ff-ef3b-40fa-aa96-635654f6b0fc",
+        "set_code": "sm8",
+        "card_number": "97",
+        "card_name": "Giratina",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "1b11f6ff-ef3b-40fa-aa96-635654f6b0fc"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "d20eaf75-ce1d-48e0-af3c-a4b15fc8b21d",
+        "set_code": "sv07",
+        "card_number": "101",
+        "card_name": "Klinklang",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "d20eaf75-ce1d-48e0-af3c-a4b15fc8b21d"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "f0540689-9795-4a1f-ad91-75091bb56e83",
+        "set_code": "sv07",
+        "card_number": "104",
+        "card_name": "Melmetal",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "f0540689-9795-4a1f-ad91-75091bb56e83"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "fd02b7ab-85e0-4a1d-9c2f-1091218459be",
+        "set_code": "sv07",
+        "card_number": "107",
+        "card_name": "Archaludon",
+        "finish_key": "normal",
+        "target_card_printing_id": "fd02b7ab-85e0-4a1d-9c2f-1091218459be"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "42f1c605-6d27-4144-8ce5-ae44ff4f3074",
+        "set_code": "sv07",
+        "card_number": "76",
+        "card_name": "Rhyperior",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "42f1c605-6d27-4144-8ce5-ae44ff4f3074"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "5a20494c-0cf9-4a30-92b3-d098cce4990a",
+        "set_code": "sv07",
+        "card_number": "96",
+        "card_name": "Grimmsnarl",
+        "finish_key": "normal",
+        "target_card_printing_id": "5a20494c-0cf9-4a30-92b3-d098cce4990a"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "499d4d8f-d83d-49e8-aa8c-5886be2440c4",
+        "set_code": "sv09",
+        "card_number": "117",
+        "card_name": "Hop's Snorlax",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "499d4d8f-d83d-49e8-aa8c-5886be2440c4"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "d35eff3a-2857-4aa2-bf82-0ddbb7aa875a",
+        "set_code": "sv09",
+        "card_number": "135",
+        "card_name": "Hop's Wooloo",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "d35eff3a-2857-4aa2-bf82-0ddbb7aa875a"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "179eadac-a6d5-4300-b465-a1ff8c55e8f4",
+        "set_code": "sv09",
+        "card_number": "151",
+        "card_name": "Lillie's Pearl",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "179eadac-a6d5-4300-b465-a1ff8c55e8f4"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "a293289e-e7ad-4769-8459-9952c56b52ad",
+        "set_code": "sv09",
+        "card_number": "41",
+        "card_name": "Wailord",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "a293289e-e7ad-4769-8459-9952c56b52ad"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "1c8851a2-ae18-4587-a9ec-4f93669c3a8a",
+        "set_code": "sv09",
+        "card_number": "52",
+        "card_name": "Iono's Tadbulb",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "1c8851a2-ae18-4587-a9ec-4f93669c3a8a"
+      },
+      {
+        "row_type": "existing_target_child",
+        "row_id": "520b9bb5-a4cb-4717-9d35-a79e68610d3c",
+        "set_code": "sv09",
+        "card_number": "85",
+        "card_name": "Lycanroc",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "520b9bb5-a4cb-4717-9d35-a79e68610d3c"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "0eb48e5c-0ba1-48cb-ae01-8dfc2123a29c",
+        "set_code": "basep",
+        "card_number": "13",
+        "card_name": "Venusaur",
+        "finish_key": "holo",
+        "target_card_printing_id": "0eb48e5c-0ba1-48cb-ae01-8dfc2123a29c"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "d533920d-72d3-4c74-ab71-28eebddb44ed",
+        "set_code": "basep",
+        "card_number": "15",
+        "card_name": "Cool Porygon",
+        "finish_key": "holo",
+        "target_card_printing_id": "d533920d-72d3-4c74-ab71-28eebddb44ed"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "38081e9e-73c4-4e36-bf85-876e82cc5fb8",
+        "set_code": "basep",
+        "card_number": "18",
+        "card_name": "Team Rocket's Meowth",
+        "finish_key": "normal",
+        "target_card_printing_id": "38081e9e-73c4-4e36-bf85-876e82cc5fb8"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "1e58e3a4-0ed7-4d16-acf6-e2ba4464cd3d",
+        "set_code": "basep",
+        "card_number": "33",
+        "card_name": "Scizor",
+        "finish_key": "normal",
+        "target_card_printing_id": "1e58e3a4-0ed7-4d16-acf6-e2ba4464cd3d"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "3e20f4e7-ace1-4caf-814f-b4c03d8639cf",
+        "set_code": "bw6",
+        "card_number": "24",
+        "card_name": "Gyarados",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "3e20f4e7-ace1-4caf-814f-b4c03d8639cf"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "42e9904e-17e3-40c7-bff5-4c916dba54e1",
+        "set_code": "bw6",
+        "card_number": "28",
+        "card_name": "Milotic",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "42e9904e-17e3-40c7-bff5-4c916dba54e1"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "586f414c-a380-41ba-92fc-096f641e58fd",
+        "set_code": "bw6",
+        "card_number": "40",
+        "card_name": "Ampharos",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "586f414c-a380-41ba-92fc-096f641e58fd"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "b37bc1c3-c5c1-436e-9a0f-e4182686e537",
+        "set_code": "bw6",
+        "card_number": "80",
+        "card_name": "Aggron",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "b37bc1c3-c5c1-436e-9a0f-e4182686e537"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "0f57d1d8-6ef9-4c7d-b045-bf07fca3cca3",
+        "set_code": "bw6",
+        "card_number": "91",
+        "card_name": "Garchomp",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "0f57d1d8-6ef9-4c7d-b045-bf07fca3cca3"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "aa0d9fd3-9354-40d7-b209-3b7f530ad43d",
+        "set_code": "bw6",
+        "card_number": "98",
+        "card_name": "Hydreigon",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "aa0d9fd3-9354-40d7-b209-3b7f530ad43d"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "2172b0a9-b9c8-42ad-9f4b-650a9b168bb5",
+        "set_code": "dp2",
+        "card_number": "109",
+        "card_name": "Bebe's Search",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "2172b0a9-b9c8-42ad-9f4b-650a9b168bb5"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "5e088fe5-e7e8-45bf-9ecf-825f3ab1ad15",
+        "set_code": "dp2",
+        "card_number": "121",
+        "card_name": "Electivire LV.X",
+        "finish_key": "holo",
+        "target_card_printing_id": "5e088fe5-e7e8-45bf-9ecf-825f3ab1ad15"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "96c321fc-771c-42fe-8f60-d47fa69fc814",
+        "set_code": "dp2",
+        "card_number": "122",
+        "card_name": "Lucario LV.X",
+        "finish_key": "holo",
+        "target_card_printing_id": "96c321fc-771c-42fe-8f60-d47fa69fc814"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "dbe46339-331f-4859-8a36-73ad911ead31",
+        "set_code": "dp2",
+        "card_number": "123",
+        "card_name": "Magmortar LV.X",
+        "finish_key": "holo",
+        "target_card_printing_id": "dbe46339-331f-4859-8a36-73ad911ead31"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "fe81dec0-27f5-434d-b4dd-4ea88a818de0",
+        "set_code": "dp2",
+        "card_number": "124",
+        "card_name": "Time-Space Distortion",
+        "finish_key": "holo",
+        "target_card_printing_id": "fe81dec0-27f5-434d-b4dd-4ea88a818de0"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "aceabf6d-ddda-471d-a35b-5347fe16c729",
+        "set_code": "dp2",
+        "card_number": "33",
+        "card_name": "Rampardos",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "aceabf6d-ddda-471d-a35b-5347fe16c729"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "fa493bd3-c0f3-4699-a689-187c7f500aa4",
+        "set_code": "ex4",
+        "card_number": "90",
+        "card_name": "Cradily ex",
+        "finish_key": "holo",
+        "target_card_printing_id": "fa493bd3-c0f3-4699-a689-187c7f500aa4"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "a5a63fc3-55c1-4579-b3fa-c1e6c38fa10a",
+        "set_code": "ex4",
+        "card_number": "91",
+        "card_name": "Entei ex",
+        "finish_key": "holo",
+        "target_card_printing_id": "a5a63fc3-55c1-4579-b3fa-c1e6c38fa10a"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "d8b2a25d-17fb-417c-8105-20bcdee42c6c",
+        "set_code": "ex4",
+        "card_number": "92",
+        "card_name": "Raikou ex",
+        "finish_key": "holo",
+        "target_card_printing_id": "d8b2a25d-17fb-417c-8105-20bcdee42c6c"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "3ddce893-6fb9-4999-981a-335b624043bc",
+        "set_code": "ex4",
+        "card_number": "93",
+        "card_name": "Sceptile ex",
+        "finish_key": "holo",
+        "target_card_printing_id": "3ddce893-6fb9-4999-981a-335b624043bc"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "4fe604db-0023-4faf-863e-dacadade5c4a",
+        "set_code": "ex4",
+        "card_number": "96",
+        "card_name": "Absol",
+        "finish_key": "holo",
+        "target_card_printing_id": "4fe604db-0023-4faf-863e-dacadade5c4a"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "82777d06-fb45-4761-9be9-5371ba02179e",
+        "set_code": "ex4",
+        "card_number": "97",
+        "card_name": "Jirachi",
+        "finish_key": "holo",
+        "target_card_printing_id": "82777d06-fb45-4761-9be9-5371ba02179e"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "8abc3ac6-1fa7-43ad-9533-742711afc811",
+        "set_code": "mcd12",
+        "card_number": "10",
+        "card_name": "Scraggy",
+        "finish_key": "holo",
+        "target_card_printing_id": "8abc3ac6-1fa7-43ad-9533-742711afc811"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "e8818427-7496-4c33-a0b1-705c8a16b8d4",
+        "set_code": "mcd12",
+        "card_number": "11",
+        "card_name": "Klang",
+        "finish_key": "holo",
+        "target_card_printing_id": "e8818427-7496-4c33-a0b1-705c8a16b8d4"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "83b37eec-6b28-4e19-8779-7cbb02a52bc1",
+        "set_code": "mcd12",
+        "card_number": "12",
+        "card_name": "Axew",
+        "finish_key": "holo",
+        "target_card_printing_id": "83b37eec-6b28-4e19-8779-7cbb02a52bc1"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "f11e55fd-ab20-4f93-8564-460135e1fc63",
+        "set_code": "mcd12",
+        "card_number": "4",
+        "card_name": "Pignite",
+        "finish_key": "holo",
+        "target_card_printing_id": "f11e55fd-ab20-4f93-8564-460135e1fc63"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "aee3d36a-a6fc-433b-b2d6-49c92555cf7d",
+        "set_code": "mcd12",
+        "card_number": "5",
+        "card_name": "Dewott",
+        "finish_key": "holo",
+        "target_card_printing_id": "aee3d36a-a6fc-433b-b2d6-49c92555cf7d"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "d3356c58-2e40-4dd9-9783-94197f78a287",
+        "set_code": "me01",
+        "card_number": "048",
+        "card_name": "Raikou",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "d3356c58-2e40-4dd9-9783-94197f78a287"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "7fe63728-7a59-4e58-b00b-9ff304512d11",
+        "set_code": "me01",
+        "card_number": "095",
+        "card_name": "Dialga",
+        "finish_key": "holo",
+        "target_card_printing_id": "7fe63728-7a59-4e58-b00b-9ff304512d11"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "5161e4da-3781-4149-93ed-eb12773ffc42",
+        "set_code": "me01",
+        "card_number": "58",
+        "card_name": "Ralts",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "5161e4da-3781-4149-93ed-eb12773ffc42"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "a9b75f1c-229d-4b6d-a371-b19821653778",
+        "set_code": "me01",
+        "card_number": "59",
+        "card_name": "Kirlia",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "a9b75f1c-229d-4b6d-a371-b19821653778"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "b3e6344f-b3a5-48c6-aab6-07e317ef7d87",
+        "set_code": "me01",
+        "card_number": "76",
+        "card_name": "Riolu",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "b3e6344f-b3a5-48c6-aab6-07e317ef7d87"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "cf450ee9-a050-4688-bc90-970ebd3edaf1",
+        "set_code": "me01",
+        "card_number": "93",
+        "card_name": "Steelix",
+        "finish_key": "holo",
+        "target_card_printing_id": "cf450ee9-a050-4688-bc90-970ebd3edaf1"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "6ca6bcf4-a63d-4dbd-81fb-a7f6f9197d02",
+        "set_code": "si1",
+        "card_number": "1",
+        "card_name": "Mew",
+        "finish_key": "holo",
+        "target_card_printing_id": "6ca6bcf4-a63d-4dbd-81fb-a7f6f9197d02"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "b5d92cc6-cfd4-4d97-a0b4-734fac5234e8",
+        "set_code": "si1",
+        "card_number": "11",
+        "card_name": "Marill",
+        "finish_key": "holo",
+        "target_card_printing_id": "b5d92cc6-cfd4-4d97-a0b4-734fac5234e8"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "b50b2af0-886c-4185-b86d-1acdf1003690",
+        "set_code": "si1",
+        "card_number": "14",
+        "card_name": "Slowking",
+        "finish_key": "holo",
+        "target_card_printing_id": "b50b2af0-886c-4185-b86d-1acdf1003690"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "9921a6a8-23b3-4136-8e98-826be4178f51",
+        "set_code": "si1",
+        "card_number": "17",
+        "card_name": "Vileplume",
+        "finish_key": "holo",
+        "target_card_printing_id": "9921a6a8-23b3-4136-8e98-826be4178f51"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "898e07f2-3783-4faf-90d5-6567fb3e49ca",
+        "set_code": "si1",
+        "card_number": "4",
+        "card_name": "Togepi",
+        "finish_key": "holo",
+        "target_card_printing_id": "898e07f2-3783-4faf-90d5-6567fb3e49ca"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "ad96e570-ee93-4579-a69f-965d284c55e1",
+        "set_code": "si1",
+        "card_number": "7",
+        "card_name": "Ledyba",
+        "finish_key": "holo",
+        "target_card_printing_id": "ad96e570-ee93-4579-a69f-965d284c55e1"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "bad29a5f-ce49-44e8-8a24-1605440fc5b0",
+        "set_code": "sm8",
+        "card_number": "120",
+        "card_name": "Umbreon",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "bad29a5f-ce49-44e8-8a24-1605440fc5b0"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "ca9e4a6e-7644-4b86-973b-429b7730fc0d",
+        "set_code": "sm8",
+        "card_number": "125",
+        "card_name": "Steelix",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "ca9e4a6e-7644-4b86-973b-429b7730fc0d"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "e0b3f09f-513e-4390-9710-02cf95f1ba6c",
+        "set_code": "sm8",
+        "card_number": "141",
+        "card_name": "Gardevoir",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "e0b3f09f-513e-4390-9710-02cf95f1ba6c"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "3a1bc817-98f4-4751-b322-92121c29a5f5",
+        "set_code": "sm8",
+        "card_number": "153",
+        "card_name": "Blissey",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "3a1bc817-98f4-4751-b322-92121c29a5f5"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "1292e129-2020-413e-91d0-32ca7f445374",
+        "set_code": "sm8",
+        "card_number": "89",
+        "card_name": "Espeon",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "1292e129-2020-413e-91d0-32ca7f445374"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "1b11f6ff-ef3b-40fa-aa96-635654f6b0fc",
+        "set_code": "sm8",
+        "card_number": "97",
+        "card_name": "Giratina",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "1b11f6ff-ef3b-40fa-aa96-635654f6b0fc"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "d20eaf75-ce1d-48e0-af3c-a4b15fc8b21d",
+        "set_code": "sv07",
+        "card_number": "101",
+        "card_name": "Klinklang",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "d20eaf75-ce1d-48e0-af3c-a4b15fc8b21d"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "f0540689-9795-4a1f-ad91-75091bb56e83",
+        "set_code": "sv07",
+        "card_number": "104",
+        "card_name": "Melmetal",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "f0540689-9795-4a1f-ad91-75091bb56e83"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "fd02b7ab-85e0-4a1d-9c2f-1091218459be",
+        "set_code": "sv07",
+        "card_number": "107",
+        "card_name": "Archaludon",
+        "finish_key": "normal",
+        "target_card_printing_id": "fd02b7ab-85e0-4a1d-9c2f-1091218459be"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "42f1c605-6d27-4144-8ce5-ae44ff4f3074",
+        "set_code": "sv07",
+        "card_number": "76",
+        "card_name": "Rhyperior",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "42f1c605-6d27-4144-8ce5-ae44ff4f3074"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "5a20494c-0cf9-4a30-92b3-d098cce4990a",
+        "set_code": "sv07",
+        "card_number": "96",
+        "card_name": "Grimmsnarl",
+        "finish_key": "normal",
+        "target_card_printing_id": "5a20494c-0cf9-4a30-92b3-d098cce4990a"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "499d4d8f-d83d-49e8-aa8c-5886be2440c4",
+        "set_code": "sv09",
+        "card_number": "117",
+        "card_name": "Hop's Snorlax",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "499d4d8f-d83d-49e8-aa8c-5886be2440c4"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "d35eff3a-2857-4aa2-bf82-0ddbb7aa875a",
+        "set_code": "sv09",
+        "card_number": "135",
+        "card_name": "Hop's Wooloo",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "d35eff3a-2857-4aa2-bf82-0ddbb7aa875a"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "179eadac-a6d5-4300-b465-a1ff8c55e8f4",
+        "set_code": "sv09",
+        "card_number": "151",
+        "card_name": "Lillie's Pearl",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "179eadac-a6d5-4300-b465-a1ff8c55e8f4"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "a293289e-e7ad-4769-8459-9952c56b52ad",
+        "set_code": "sv09",
+        "card_number": "41",
+        "card_name": "Wailord",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "a293289e-e7ad-4769-8459-9952c56b52ad"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "1c8851a2-ae18-4587-a9ec-4f93669c3a8a",
+        "set_code": "sv09",
+        "card_number": "52",
+        "card_name": "Iono's Tadbulb",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "1c8851a2-ae18-4587-a9ec-4f93669c3a8a"
+      },
+      {
+        "row_type": "planned_id_collision",
+        "row_id": "520b9bb5-a4cb-4717-9d35-a79e68610d3c",
+        "set_code": "sv09",
+        "card_number": "85",
+        "card_name": "Lycanroc",
+        "finish_key": "cosmos",
+        "target_card_printing_id": "520b9bb5-a4cb-4717-9d35-a79e68610d3c"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "079ae0a0-eba5-4620-9e72-801bd0a1714e",
+        "set_code": "basep",
+        "card_number": "13",
+        "card_name": "Venusaur",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "5af74dbf-2b3d-4d92-b17a-a5cc3fecf13a",
+        "set_code": "basep",
+        "card_number": "15",
+        "card_name": "Cool Porygon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c9fc79b3-3130-4910-b4b7-1aad5d31d874",
+        "set_code": "basep",
+        "card_number": "18",
+        "card_name": "Team Rocket's Meowth",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f92b127d-17a6-4c93-b638-c29434a6c031",
+        "set_code": "basep",
+        "card_number": "33",
+        "card_name": "Scizor",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "54698766-cc91-4386-bd6d-dfc4f569f6fd",
+        "set_code": "bw6",
+        "card_number": "24",
+        "card_name": "Gyarados",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ec067898-aa72-4aaf-bb81-c7ee78527250",
+        "set_code": "bw6",
+        "card_number": "28",
+        "card_name": "Milotic",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "0be0dd94-49c6-4d58-9cef-b29a4db22142",
+        "set_code": "bw6",
+        "card_number": "40",
+        "card_name": "Ampharos",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "98c489f9-e34c-4687-8130-afe70b3ec450",
+        "set_code": "bw6",
+        "card_number": "80",
+        "card_name": "Aggron",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f623349e-0ea2-4a4d-a370-a8bab7152498",
+        "set_code": "bw6",
+        "card_number": "91",
+        "card_name": "Garchomp",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "3d3119f4-18bd-4dae-8611-455ebce1cf4a",
+        "set_code": "bw6",
+        "card_number": "98",
+        "card_name": "Hydreigon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "23ca8e6f-6772-42a9-96cd-78e4cf338a02",
+        "set_code": "dp2",
+        "card_number": "109",
+        "card_name": "Bebe's Search",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "5081ec1d-979c-419e-b838-8e58ea4da5d8",
+        "set_code": "dp2",
+        "card_number": "121",
+        "card_name": "Electivire LV.X",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "48d366e6-c3fd-4ec4-92f2-5032524aafd0",
+        "set_code": "dp2",
+        "card_number": "122",
+        "card_name": "Lucario LV.X",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e2f2b04d-c672-4051-9105-b712a8f2ca16",
+        "set_code": "dp2",
+        "card_number": "123",
+        "card_name": "Magmortar LV.X",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f142196a-ad89-4138-9540-e27067505fb0",
+        "set_code": "dp2",
+        "card_number": "124",
+        "card_name": "Time-Space Distortion",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "99282997-fa3a-4764-bd55-9411860d9b10",
+        "set_code": "dp2",
+        "card_number": "33",
+        "card_name": "Rampardos",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4b0ca559-e74a-477d-8d33-d027fddbc58e",
+        "set_code": "ex4",
+        "card_number": "90",
+        "card_name": "Cradily ex",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "948a7294-2833-4f53-81ca-a9ff677e215d",
+        "set_code": "ex4",
+        "card_number": "91",
+        "card_name": "Entei ex",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4c23f0ab-4d8a-451b-bcac-a47dc3b189c3",
+        "set_code": "ex4",
+        "card_number": "92",
+        "card_name": "Raikou ex",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "72047f9f-df62-4b25-b90a-fcde0da3ebf3",
+        "set_code": "ex4",
+        "card_number": "93",
+        "card_name": "Sceptile ex",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "63fc471f-1a60-45f8-91c9-3675d959dd84",
+        "set_code": "ex4",
+        "card_number": "96",
+        "card_name": "Absol",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "16163c20-78d4-4c1f-9b8d-5ad033c55170",
+        "set_code": "ex4",
+        "card_number": "97",
+        "card_name": "Jirachi",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "353b9924-4d4e-44b4-b55c-a28a5a377cb2",
+        "set_code": "mcd12",
+        "card_number": "10",
+        "card_name": "Scraggy",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d3b5a22a-f7fe-4088-9756-845e95ab3011",
+        "set_code": "mcd12",
+        "card_number": "11",
+        "card_name": "Klang",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ba12910d-12b8-48ea-9623-d717bfb211d1",
+        "set_code": "mcd12",
+        "card_number": "12",
+        "card_name": "Axew",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "5a88f7e3-847b-4d39-94e1-1891ca9dcafe",
+        "set_code": "mcd12",
+        "card_number": "4",
+        "card_name": "Pignite",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d807f57c-6904-4710-9ab9-de53d9bb1dc4",
+        "set_code": "mcd12",
+        "card_number": "5",
+        "card_name": "Dewott",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "0e9d8afb-099a-449e-8201-d05eaf4970c6",
+        "set_code": "me01",
+        "card_number": "048",
+        "card_name": "Raikou",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "04433312-9e95-4e0c-a593-929c278e7499",
+        "set_code": "me01",
+        "card_number": "095",
+        "card_name": "Dialga",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "87e718fc-f5df-46ba-8a40-32f1881ada53",
+        "set_code": "me01",
+        "card_number": "58",
+        "card_name": "Ralts",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "dd8f0c4d-ac21-441d-a57f-34be3a02a6f8",
+        "set_code": "me01",
+        "card_number": "59",
+        "card_name": "Kirlia",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "031dc29b-18cb-4048-8301-a29f3bd6335c",
+        "set_code": "me01",
+        "card_number": "76",
+        "card_name": "Riolu",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c29cf7bf-d1cb-407a-8570-37f9dff2d488",
+        "set_code": "me01",
+        "card_number": "93",
+        "card_name": "Steelix",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "666de235-a8af-49f2-99c9-f1a8a5343494",
+        "set_code": "si1",
+        "card_number": "1",
+        "card_name": "Mew",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "169d68d8-588a-445b-9ce5-01e9d4086699",
+        "set_code": "si1",
+        "card_number": "11",
+        "card_name": "Marill",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "17406c6f-0e35-4790-8e21-2e5f4b2ad6ec",
+        "set_code": "si1",
+        "card_number": "14",
+        "card_name": "Slowking",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f7776eff-94e3-4ff9-a627-1577df92a4a5",
+        "set_code": "si1",
+        "card_number": "17",
+        "card_name": "Vileplume",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "6e97b72a-8adc-4005-8a15-f51b79d7087c",
+        "set_code": "si1",
+        "card_number": "4",
+        "card_name": "Togepi",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "27b7b9fb-ebff-483b-8d93-8e600ec2fd19",
+        "set_code": "si1",
+        "card_number": "7",
+        "card_name": "Ledyba",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4656055f-65cd-4033-a6d0-42e154fa1710",
+        "set_code": "sm8",
+        "card_number": "120",
+        "card_name": "Umbreon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ee0f8640-d08b-42bf-a964-5df1dd3078e7",
+        "set_code": "sm8",
+        "card_number": "125",
+        "card_name": "Steelix",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "00ce0a0e-6796-4979-9997-7985d22f74b0",
+        "set_code": "sm8",
+        "card_number": "141",
+        "card_name": "Gardevoir",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "a1293676-da0f-48c6-ba3e-2707f3860a0f",
+        "set_code": "sm8",
+        "card_number": "153",
+        "card_name": "Blissey",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "49f5f973-82b9-4a31-8cb3-16917661f180",
+        "set_code": "sm8",
+        "card_number": "89",
+        "card_name": "Espeon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "8d474ebf-0156-4aad-afef-551a545d02c1",
+        "set_code": "sm8",
+        "card_number": "97",
+        "card_name": "Giratina",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "0e886428-ca60-4b13-9b98-cc41d91361d1",
+        "set_code": "sv07",
+        "card_number": "101",
+        "card_name": "Klinklang",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c84e3e43-8b65-4ddd-a760-f9d4a5060d73",
+        "set_code": "sv07",
+        "card_number": "104",
+        "card_name": "Melmetal",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+        "set_code": "sv07",
+        "card_number": "107",
+        "card_name": "Archaludon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d17130cc-b402-49e2-ba6b-22c7d3bac711",
+        "set_code": "sv07",
+        "card_number": "76",
+        "card_name": "Rhyperior",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d25c5497-7045-4717-b361-49d34d8fd645",
+        "set_code": "sv07",
+        "card_number": "96",
+        "card_name": "Grimmsnarl",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "0f65e7ff-3806-41e3-b51b-18795ad72869",
+        "set_code": "sv09",
+        "card_number": "117",
+        "card_name": "Hop's Snorlax",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "daf0489f-69b3-4710-987e-fb5e878386ae",
+        "set_code": "sv09",
+        "card_number": "135",
+        "card_name": "Hop's Wooloo",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "316451de-61c5-4662-a9df-a7546f890991",
+        "set_code": "sv09",
+        "card_number": "151",
+        "card_name": "Lillie's Pearl",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "8b27da65-9d66-43b0-8816-5b842bee1fee",
+        "set_code": "sv09",
+        "card_number": "41",
+        "card_name": "Wailord",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ebba564d-1cf7-4494-9b0a-831c09bac46d",
+        "set_code": "sv09",
+        "card_number": "52",
+        "card_name": "Iono's Tadbulb",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "6081b50b-7978-44e7-90a3-47eb1d4d496f",
+        "set_code": "sv09",
+        "card_number": "85",
+        "card_name": "Lycanroc",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "7179d20a3b56ec232ab35482b86e493189a2fe5f24f87be9a7b0c6df4284b78b",
+    "counts": {
+      "target_parent_rows": 56,
+      "existing_target_child_rows": 56,
+      "planned_id_collision_rows": 56,
+      "total_rows": 168
+    }
+  },
+  "before_parent_snapshot": {
+    "captured_at": "2026-06-10T04:53:30.201Z",
+    "rows": [
+      {
+        "card_print_id": "079ae0a0-eba5-4620-9e72-801bd0a1714e",
+        "set_code": "basep",
+        "set_id": "915c6517-a6b5-418f-8bc7-c05cae51e0ff",
+        "number": "13",
+        "number_plain": "13",
+        "name": "Venusaur",
+        "rarity": "Promo"
+      },
+      {
+        "card_print_id": "5af74dbf-2b3d-4d92-b17a-a5cc3fecf13a",
+        "set_code": "basep",
+        "set_id": "915c6517-a6b5-418f-8bc7-c05cae51e0ff",
+        "number": "15",
+        "number_plain": "15",
+        "name": "Cool Porygon",
+        "rarity": "Promo"
+      },
+      {
+        "card_print_id": "c9fc79b3-3130-4910-b4b7-1aad5d31d874",
+        "set_code": "basep",
+        "set_id": "915c6517-a6b5-418f-8bc7-c05cae51e0ff",
+        "number": "18",
+        "number_plain": "18",
+        "name": "Team Rocket's Meowth",
+        "rarity": "Promo"
+      },
+      {
+        "card_print_id": "f92b127d-17a6-4c93-b638-c29434a6c031",
+        "set_code": "basep",
+        "set_id": "915c6517-a6b5-418f-8bc7-c05cae51e0ff",
+        "number": "33",
+        "number_plain": "33",
+        "name": "Scizor",
+        "rarity": "Promo"
+      },
+      {
+        "card_print_id": "54698766-cc91-4386-bd6d-dfc4f569f6fd",
+        "set_code": "bw6",
+        "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+        "number": "24",
+        "number_plain": "24",
+        "name": "Gyarados",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "ec067898-aa72-4aaf-bb81-c7ee78527250",
+        "set_code": "bw6",
+        "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+        "number": "28",
+        "number_plain": "28",
+        "name": "Milotic",
+        "rarity": "Rare Holo"
+      },
+      {
+        "card_print_id": "0be0dd94-49c6-4d58-9cef-b29a4db22142",
+        "set_code": "bw6",
+        "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+        "number": "40",
+        "number_plain": "40",
+        "name": "Ampharos",
+        "rarity": "Rare Holo"
+      },
+      {
+        "card_print_id": "98c489f9-e34c-4687-8130-afe70b3ec450",
+        "set_code": "bw6",
+        "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+        "number": "80",
+        "number_plain": "80",
+        "name": "Aggron",
+        "rarity": "Rare Holo"
+      },
+      {
+        "card_print_id": "f623349e-0ea2-4a4d-a370-a8bab7152498",
+        "set_code": "bw6",
+        "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+        "number": "91",
+        "number_plain": "91",
+        "name": "Garchomp",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "3d3119f4-18bd-4dae-8611-455ebce1cf4a",
+        "set_code": "bw6",
+        "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+        "number": "98",
+        "number_plain": "98",
+        "name": "Hydreigon",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "23ca8e6f-6772-42a9-96cd-78e4cf338a02",
+        "set_code": "dp2",
+        "set_id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+        "number": "109",
+        "number_plain": "109",
+        "name": "Bebe's Search",
+        "rarity": "Uncommon"
+      },
+      {
+        "card_print_id": "5081ec1d-979c-419e-b838-8e58ea4da5d8",
+        "set_code": "dp2",
+        "set_id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+        "number": "121",
+        "number_plain": "121",
+        "name": "Electivire LV.X",
+        "rarity": "Rare Holo LV.X"
+      },
+      {
+        "card_print_id": "48d366e6-c3fd-4ec4-92f2-5032524aafd0",
+        "set_code": "dp2",
+        "set_id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+        "number": "122",
+        "number_plain": "122",
+        "name": "Lucario LV.X",
+        "rarity": "Rare Holo LV.X"
+      },
+      {
+        "card_print_id": "e2f2b04d-c672-4051-9105-b712a8f2ca16",
+        "set_code": "dp2",
+        "set_id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+        "number": "123",
+        "number_plain": "123",
+        "name": "Magmortar LV.X",
+        "rarity": "Rare Holo LV.X"
+      },
+      {
+        "card_print_id": "f142196a-ad89-4138-9540-e27067505fb0",
+        "set_code": "dp2",
+        "set_id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+        "number": "124",
+        "number_plain": "124",
+        "name": "Time-Space Distortion",
+        "rarity": "Rare Secret"
+      },
+      {
+        "card_print_id": "99282997-fa3a-4764-bd55-9411860d9b10",
+        "set_code": "dp2",
+        "set_id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+        "number": "33",
+        "number_plain": "33",
+        "name": "Rampardos",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "4b0ca559-e74a-477d-8d33-d027fddbc58e",
+        "set_code": "ex4",
+        "set_id": "e8c08c11-2e00-4405-836b-d01eff3fe555",
+        "number": "90",
+        "number_plain": "90",
+        "name": "Cradily ex",
+        "rarity": "Rare Holo EX"
+      },
+      {
+        "card_print_id": "948a7294-2833-4f53-81ca-a9ff677e215d",
+        "set_code": "ex4",
+        "set_id": "e8c08c11-2e00-4405-836b-d01eff3fe555",
+        "number": "91",
+        "number_plain": "91",
+        "name": "Entei ex",
+        "rarity": "Rare Holo EX"
+      },
+      {
+        "card_print_id": "4c23f0ab-4d8a-451b-bcac-a47dc3b189c3",
+        "set_code": "ex4",
+        "set_id": "e8c08c11-2e00-4405-836b-d01eff3fe555",
+        "number": "92",
+        "number_plain": "92",
+        "name": "Raikou ex",
+        "rarity": "Rare Holo EX"
+      },
+      {
+        "card_print_id": "72047f9f-df62-4b25-b90a-fcde0da3ebf3",
+        "set_code": "ex4",
+        "set_id": "e8c08c11-2e00-4405-836b-d01eff3fe555",
+        "number": "93",
+        "number_plain": "93",
+        "name": "Sceptile ex",
+        "rarity": "Rare Holo EX"
+      },
+      {
+        "card_print_id": "63fc471f-1a60-45f8-91c9-3675d959dd84",
+        "set_code": "ex4",
+        "set_id": "e8c08c11-2e00-4405-836b-d01eff3fe555",
+        "number": "96",
+        "number_plain": "96",
+        "name": "Absol",
+        "rarity": "Rare Secret"
+      },
+      {
+        "card_print_id": "16163c20-78d4-4c1f-9b8d-5ad033c55170",
+        "set_code": "ex4",
+        "set_id": "e8c08c11-2e00-4405-836b-d01eff3fe555",
+        "number": "97",
+        "number_plain": "97",
+        "name": "Jirachi",
+        "rarity": "Rare Secret"
+      },
+      {
+        "card_print_id": "353b9924-4d4e-44b4-b55c-a28a5a377cb2",
+        "set_code": "mcd12",
+        "set_id": "7107390f-ae71-44c9-bfe8-63ef3794763c",
+        "number": "10",
+        "number_plain": "10",
+        "name": "Scraggy",
+        "rarity": "None"
+      },
+      {
+        "card_print_id": "d3b5a22a-f7fe-4088-9756-845e95ab3011",
+        "set_code": "mcd12",
+        "set_id": "7107390f-ae71-44c9-bfe8-63ef3794763c",
+        "number": "11",
+        "number_plain": "11",
+        "name": "Klang",
+        "rarity": "None"
+      },
+      {
+        "card_print_id": "ba12910d-12b8-48ea-9623-d717bfb211d1",
+        "set_code": "mcd12",
+        "set_id": "7107390f-ae71-44c9-bfe8-63ef3794763c",
+        "number": "12",
+        "number_plain": "12",
+        "name": "Axew",
+        "rarity": "None"
+      },
+      {
+        "card_print_id": "5a88f7e3-847b-4d39-94e1-1891ca9dcafe",
+        "set_code": "mcd12",
+        "set_id": "7107390f-ae71-44c9-bfe8-63ef3794763c",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Pignite",
+        "rarity": "None"
+      },
+      {
+        "card_print_id": "d807f57c-6904-4710-9ab9-de53d9bb1dc4",
+        "set_code": "mcd12",
+        "set_id": "7107390f-ae71-44c9-bfe8-63ef3794763c",
+        "number": "5",
+        "number_plain": "5",
+        "name": "Dewott",
+        "rarity": "None"
+      },
+      {
+        "card_print_id": "0e9d8afb-099a-449e-8201-d05eaf4970c6",
+        "set_code": "me01",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "number": "048",
+        "number_plain": "048",
+        "name": "Raikou",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "04433312-9e95-4e0c-a593-929c278e7499",
+        "set_code": "me01",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "number": "095",
+        "number_plain": "095",
+        "name": "Dialga",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "87e718fc-f5df-46ba-8a40-32f1881ada53",
+        "set_code": "me01",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "number": "58",
+        "number_plain": "58",
+        "name": "Ralts",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "dd8f0c4d-ac21-441d-a57f-34be3a02a6f8",
+        "set_code": "me01",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "number": "59",
+        "number_plain": "59",
+        "name": "Kirlia",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "031dc29b-18cb-4048-8301-a29f3bd6335c",
+        "set_code": "me01",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "number": "76",
+        "number_plain": "76",
+        "name": "Riolu",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "c29cf7bf-d1cb-407a-8570-37f9dff2d488",
+        "set_code": "me01",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "number": "93",
+        "number_plain": "93",
+        "name": "Steelix",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "666de235-a8af-49f2-99c9-f1a8a5343494",
+        "set_code": "si1",
+        "set_id": "a85a9351-420f-4a52-95e2-bfd06a840ef5",
+        "number": "1",
+        "number_plain": "1",
+        "name": "Mew",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "169d68d8-588a-445b-9ce5-01e9d4086699",
+        "set_code": "si1",
+        "set_id": "a85a9351-420f-4a52-95e2-bfd06a840ef5",
+        "number": "11",
+        "number_plain": "11",
+        "name": "Marill",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "17406c6f-0e35-4790-8e21-2e5f4b2ad6ec",
+        "set_code": "si1",
+        "set_id": "a85a9351-420f-4a52-95e2-bfd06a840ef5",
+        "number": "14",
+        "number_plain": "14",
+        "name": "Slowking",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "f7776eff-94e3-4ff9-a627-1577df92a4a5",
+        "set_code": "si1",
+        "set_id": "a85a9351-420f-4a52-95e2-bfd06a840ef5",
+        "number": "17",
+        "number_plain": "17",
+        "name": "Vileplume",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "6e97b72a-8adc-4005-8a15-f51b79d7087c",
+        "set_code": "si1",
+        "set_id": "a85a9351-420f-4a52-95e2-bfd06a840ef5",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Togepi",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "27b7b9fb-ebff-483b-8d93-8e600ec2fd19",
+        "set_code": "si1",
+        "set_id": "a85a9351-420f-4a52-95e2-bfd06a840ef5",
+        "number": "7",
+        "number_plain": "7",
+        "name": "Ledyba",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "4656055f-65cd-4033-a6d0-42e154fa1710",
+        "set_code": "sm8",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "number": "120",
+        "number_plain": "120",
+        "name": "Umbreon",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "ee0f8640-d08b-42bf-a964-5df1dd3078e7",
+        "set_code": "sm8",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "number": "125",
+        "number_plain": "125",
+        "name": "Steelix",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "00ce0a0e-6796-4979-9997-7985d22f74b0",
+        "set_code": "sm8",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "number": "141",
+        "number_plain": "141",
+        "name": "Gardevoir",
+        "rarity": "Rare Holo"
+      },
+      {
+        "card_print_id": "a1293676-da0f-48c6-ba3e-2707f3860a0f",
+        "set_code": "sm8",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "number": "153",
+        "number_plain": "153",
+        "name": "Blissey",
+        "rarity": "Rare Holo"
+      },
+      {
+        "card_print_id": "49f5f973-82b9-4a31-8cb3-16917661f180",
+        "set_code": "sm8",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "number": "89",
+        "number_plain": "89",
+        "name": "Espeon",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "8d474ebf-0156-4aad-afef-551a545d02c1",
+        "set_code": "sm8",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "number": "97",
+        "number_plain": "97",
+        "name": "Giratina",
+        "rarity": "Rare Holo"
+      },
+      {
+        "card_print_id": "0e886428-ca60-4b13-9b98-cc41d91361d1",
+        "set_code": "sv07",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "number": "101",
+        "number_plain": "101",
+        "name": "Klinklang",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "c84e3e43-8b65-4ddd-a760-f9d4a5060d73",
+        "set_code": "sv07",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "number": "104",
+        "number_plain": "104",
+        "name": "Melmetal",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+        "set_code": "sv07",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "number": "107",
+        "number_plain": "107",
+        "name": "Archaludon",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "d17130cc-b402-49e2-ba6b-22c7d3bac711",
+        "set_code": "sv07",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "number": "76",
+        "number_plain": "76",
+        "name": "Rhyperior",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "d25c5497-7045-4717-b361-49d34d8fd645",
+        "set_code": "sv07",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "number": "96",
+        "number_plain": "96",
+        "name": "Grimmsnarl",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "0f65e7ff-3806-41e3-b51b-18795ad72869",
+        "set_code": "sv09",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "number": "117",
+        "number_plain": "117",
+        "name": "Hop's Snorlax",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "daf0489f-69b3-4710-987e-fb5e878386ae",
+        "set_code": "sv09",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "number": "135",
+        "number_plain": "135",
+        "name": "Hop's Wooloo",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "316451de-61c5-4662-a9df-a7546f890991",
+        "set_code": "sv09",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "number": "151",
+        "number_plain": "151",
+        "name": "Lillie's Pearl",
+        "rarity": "Uncommon"
+      },
+      {
+        "card_print_id": "8b27da65-9d66-43b0-8816-5b842bee1fee",
+        "set_code": "sv09",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "number": "41",
+        "number_plain": "41",
+        "name": "Wailord",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "ebba564d-1cf7-4494-9b0a-831c09bac46d",
+        "set_code": "sv09",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "number": "52",
+        "number_plain": "52",
+        "name": "Iono's Tadbulb",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "6081b50b-7978-44e7-90a3-47eb1d4d496f",
+        "set_code": "sv09",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "number": "85",
+        "number_plain": "85",
+        "name": "Lycanroc",
+        "rarity": "Rare"
+      }
+    ],
+    "hash_sha256": "7a8756c6f232a6f12820d0bf72488095392944abae99553f48740b4cd9891bb4",
+    "count": 56
+  },
+  "after_parent_snapshot": {
+    "captured_at": "2026-06-10T04:53:31.414Z",
+    "rows": [
+      {
+        "card_print_id": "079ae0a0-eba5-4620-9e72-801bd0a1714e",
+        "set_code": "basep",
+        "set_id": "915c6517-a6b5-418f-8bc7-c05cae51e0ff",
+        "number": "13",
+        "number_plain": "13",
+        "name": "Venusaur",
+        "rarity": "Promo"
+      },
+      {
+        "card_print_id": "5af74dbf-2b3d-4d92-b17a-a5cc3fecf13a",
+        "set_code": "basep",
+        "set_id": "915c6517-a6b5-418f-8bc7-c05cae51e0ff",
+        "number": "15",
+        "number_plain": "15",
+        "name": "Cool Porygon",
+        "rarity": "Promo"
+      },
+      {
+        "card_print_id": "c9fc79b3-3130-4910-b4b7-1aad5d31d874",
+        "set_code": "basep",
+        "set_id": "915c6517-a6b5-418f-8bc7-c05cae51e0ff",
+        "number": "18",
+        "number_plain": "18",
+        "name": "Team Rocket's Meowth",
+        "rarity": "Promo"
+      },
+      {
+        "card_print_id": "f92b127d-17a6-4c93-b638-c29434a6c031",
+        "set_code": "basep",
+        "set_id": "915c6517-a6b5-418f-8bc7-c05cae51e0ff",
+        "number": "33",
+        "number_plain": "33",
+        "name": "Scizor",
+        "rarity": "Promo"
+      },
+      {
+        "card_print_id": "54698766-cc91-4386-bd6d-dfc4f569f6fd",
+        "set_code": "bw6",
+        "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+        "number": "24",
+        "number_plain": "24",
+        "name": "Gyarados",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "ec067898-aa72-4aaf-bb81-c7ee78527250",
+        "set_code": "bw6",
+        "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+        "number": "28",
+        "number_plain": "28",
+        "name": "Milotic",
+        "rarity": "Rare Holo"
+      },
+      {
+        "card_print_id": "0be0dd94-49c6-4d58-9cef-b29a4db22142",
+        "set_code": "bw6",
+        "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+        "number": "40",
+        "number_plain": "40",
+        "name": "Ampharos",
+        "rarity": "Rare Holo"
+      },
+      {
+        "card_print_id": "98c489f9-e34c-4687-8130-afe70b3ec450",
+        "set_code": "bw6",
+        "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+        "number": "80",
+        "number_plain": "80",
+        "name": "Aggron",
+        "rarity": "Rare Holo"
+      },
+      {
+        "card_print_id": "f623349e-0ea2-4a4d-a370-a8bab7152498",
+        "set_code": "bw6",
+        "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+        "number": "91",
+        "number_plain": "91",
+        "name": "Garchomp",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "3d3119f4-18bd-4dae-8611-455ebce1cf4a",
+        "set_code": "bw6",
+        "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+        "number": "98",
+        "number_plain": "98",
+        "name": "Hydreigon",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "23ca8e6f-6772-42a9-96cd-78e4cf338a02",
+        "set_code": "dp2",
+        "set_id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+        "number": "109",
+        "number_plain": "109",
+        "name": "Bebe's Search",
+        "rarity": "Uncommon"
+      },
+      {
+        "card_print_id": "5081ec1d-979c-419e-b838-8e58ea4da5d8",
+        "set_code": "dp2",
+        "set_id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+        "number": "121",
+        "number_plain": "121",
+        "name": "Electivire LV.X",
+        "rarity": "Rare Holo LV.X"
+      },
+      {
+        "card_print_id": "48d366e6-c3fd-4ec4-92f2-5032524aafd0",
+        "set_code": "dp2",
+        "set_id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+        "number": "122",
+        "number_plain": "122",
+        "name": "Lucario LV.X",
+        "rarity": "Rare Holo LV.X"
+      },
+      {
+        "card_print_id": "e2f2b04d-c672-4051-9105-b712a8f2ca16",
+        "set_code": "dp2",
+        "set_id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+        "number": "123",
+        "number_plain": "123",
+        "name": "Magmortar LV.X",
+        "rarity": "Rare Holo LV.X"
+      },
+      {
+        "card_print_id": "f142196a-ad89-4138-9540-e27067505fb0",
+        "set_code": "dp2",
+        "set_id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+        "number": "124",
+        "number_plain": "124",
+        "name": "Time-Space Distortion",
+        "rarity": "Rare Secret"
+      },
+      {
+        "card_print_id": "99282997-fa3a-4764-bd55-9411860d9b10",
+        "set_code": "dp2",
+        "set_id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+        "number": "33",
+        "number_plain": "33",
+        "name": "Rampardos",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "4b0ca559-e74a-477d-8d33-d027fddbc58e",
+        "set_code": "ex4",
+        "set_id": "e8c08c11-2e00-4405-836b-d01eff3fe555",
+        "number": "90",
+        "number_plain": "90",
+        "name": "Cradily ex",
+        "rarity": "Rare Holo EX"
+      },
+      {
+        "card_print_id": "948a7294-2833-4f53-81ca-a9ff677e215d",
+        "set_code": "ex4",
+        "set_id": "e8c08c11-2e00-4405-836b-d01eff3fe555",
+        "number": "91",
+        "number_plain": "91",
+        "name": "Entei ex",
+        "rarity": "Rare Holo EX"
+      },
+      {
+        "card_print_id": "4c23f0ab-4d8a-451b-bcac-a47dc3b189c3",
+        "set_code": "ex4",
+        "set_id": "e8c08c11-2e00-4405-836b-d01eff3fe555",
+        "number": "92",
+        "number_plain": "92",
+        "name": "Raikou ex",
+        "rarity": "Rare Holo EX"
+      },
+      {
+        "card_print_id": "72047f9f-df62-4b25-b90a-fcde0da3ebf3",
+        "set_code": "ex4",
+        "set_id": "e8c08c11-2e00-4405-836b-d01eff3fe555",
+        "number": "93",
+        "number_plain": "93",
+        "name": "Sceptile ex",
+        "rarity": "Rare Holo EX"
+      },
+      {
+        "card_print_id": "63fc471f-1a60-45f8-91c9-3675d959dd84",
+        "set_code": "ex4",
+        "set_id": "e8c08c11-2e00-4405-836b-d01eff3fe555",
+        "number": "96",
+        "number_plain": "96",
+        "name": "Absol",
+        "rarity": "Rare Secret"
+      },
+      {
+        "card_print_id": "16163c20-78d4-4c1f-9b8d-5ad033c55170",
+        "set_code": "ex4",
+        "set_id": "e8c08c11-2e00-4405-836b-d01eff3fe555",
+        "number": "97",
+        "number_plain": "97",
+        "name": "Jirachi",
+        "rarity": "Rare Secret"
+      },
+      {
+        "card_print_id": "353b9924-4d4e-44b4-b55c-a28a5a377cb2",
+        "set_code": "mcd12",
+        "set_id": "7107390f-ae71-44c9-bfe8-63ef3794763c",
+        "number": "10",
+        "number_plain": "10",
+        "name": "Scraggy",
+        "rarity": "None"
+      },
+      {
+        "card_print_id": "d3b5a22a-f7fe-4088-9756-845e95ab3011",
+        "set_code": "mcd12",
+        "set_id": "7107390f-ae71-44c9-bfe8-63ef3794763c",
+        "number": "11",
+        "number_plain": "11",
+        "name": "Klang",
+        "rarity": "None"
+      },
+      {
+        "card_print_id": "ba12910d-12b8-48ea-9623-d717bfb211d1",
+        "set_code": "mcd12",
+        "set_id": "7107390f-ae71-44c9-bfe8-63ef3794763c",
+        "number": "12",
+        "number_plain": "12",
+        "name": "Axew",
+        "rarity": "None"
+      },
+      {
+        "card_print_id": "5a88f7e3-847b-4d39-94e1-1891ca9dcafe",
+        "set_code": "mcd12",
+        "set_id": "7107390f-ae71-44c9-bfe8-63ef3794763c",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Pignite",
+        "rarity": "None"
+      },
+      {
+        "card_print_id": "d807f57c-6904-4710-9ab9-de53d9bb1dc4",
+        "set_code": "mcd12",
+        "set_id": "7107390f-ae71-44c9-bfe8-63ef3794763c",
+        "number": "5",
+        "number_plain": "5",
+        "name": "Dewott",
+        "rarity": "None"
+      },
+      {
+        "card_print_id": "0e9d8afb-099a-449e-8201-d05eaf4970c6",
+        "set_code": "me01",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "number": "048",
+        "number_plain": "048",
+        "name": "Raikou",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "04433312-9e95-4e0c-a593-929c278e7499",
+        "set_code": "me01",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "number": "095",
+        "number_plain": "095",
+        "name": "Dialga",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "87e718fc-f5df-46ba-8a40-32f1881ada53",
+        "set_code": "me01",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "number": "58",
+        "number_plain": "58",
+        "name": "Ralts",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "dd8f0c4d-ac21-441d-a57f-34be3a02a6f8",
+        "set_code": "me01",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "number": "59",
+        "number_plain": "59",
+        "name": "Kirlia",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "031dc29b-18cb-4048-8301-a29f3bd6335c",
+        "set_code": "me01",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "number": "76",
+        "number_plain": "76",
+        "name": "Riolu",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "c29cf7bf-d1cb-407a-8570-37f9dff2d488",
+        "set_code": "me01",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "number": "93",
+        "number_plain": "93",
+        "name": "Steelix",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "666de235-a8af-49f2-99c9-f1a8a5343494",
+        "set_code": "si1",
+        "set_id": "a85a9351-420f-4a52-95e2-bfd06a840ef5",
+        "number": "1",
+        "number_plain": "1",
+        "name": "Mew",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "169d68d8-588a-445b-9ce5-01e9d4086699",
+        "set_code": "si1",
+        "set_id": "a85a9351-420f-4a52-95e2-bfd06a840ef5",
+        "number": "11",
+        "number_plain": "11",
+        "name": "Marill",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "17406c6f-0e35-4790-8e21-2e5f4b2ad6ec",
+        "set_code": "si1",
+        "set_id": "a85a9351-420f-4a52-95e2-bfd06a840ef5",
+        "number": "14",
+        "number_plain": "14",
+        "name": "Slowking",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "f7776eff-94e3-4ff9-a627-1577df92a4a5",
+        "set_code": "si1",
+        "set_id": "a85a9351-420f-4a52-95e2-bfd06a840ef5",
+        "number": "17",
+        "number_plain": "17",
+        "name": "Vileplume",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "6e97b72a-8adc-4005-8a15-f51b79d7087c",
+        "set_code": "si1",
+        "set_id": "a85a9351-420f-4a52-95e2-bfd06a840ef5",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Togepi",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "27b7b9fb-ebff-483b-8d93-8e600ec2fd19",
+        "set_code": "si1",
+        "set_id": "a85a9351-420f-4a52-95e2-bfd06a840ef5",
+        "number": "7",
+        "number_plain": "7",
+        "name": "Ledyba",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "4656055f-65cd-4033-a6d0-42e154fa1710",
+        "set_code": "sm8",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "number": "120",
+        "number_plain": "120",
+        "name": "Umbreon",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "ee0f8640-d08b-42bf-a964-5df1dd3078e7",
+        "set_code": "sm8",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "number": "125",
+        "number_plain": "125",
+        "name": "Steelix",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "00ce0a0e-6796-4979-9997-7985d22f74b0",
+        "set_code": "sm8",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "number": "141",
+        "number_plain": "141",
+        "name": "Gardevoir",
+        "rarity": "Rare Holo"
+      },
+      {
+        "card_print_id": "a1293676-da0f-48c6-ba3e-2707f3860a0f",
+        "set_code": "sm8",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "number": "153",
+        "number_plain": "153",
+        "name": "Blissey",
+        "rarity": "Rare Holo"
+      },
+      {
+        "card_print_id": "49f5f973-82b9-4a31-8cb3-16917661f180",
+        "set_code": "sm8",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "number": "89",
+        "number_plain": "89",
+        "name": "Espeon",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "8d474ebf-0156-4aad-afef-551a545d02c1",
+        "set_code": "sm8",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "number": "97",
+        "number_plain": "97",
+        "name": "Giratina",
+        "rarity": "Rare Holo"
+      },
+      {
+        "card_print_id": "0e886428-ca60-4b13-9b98-cc41d91361d1",
+        "set_code": "sv07",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "number": "101",
+        "number_plain": "101",
+        "name": "Klinklang",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "c84e3e43-8b65-4ddd-a760-f9d4a5060d73",
+        "set_code": "sv07",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "number": "104",
+        "number_plain": "104",
+        "name": "Melmetal",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+        "set_code": "sv07",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "number": "107",
+        "number_plain": "107",
+        "name": "Archaludon",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "d17130cc-b402-49e2-ba6b-22c7d3bac711",
+        "set_code": "sv07",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "number": "76",
+        "number_plain": "76",
+        "name": "Rhyperior",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "d25c5497-7045-4717-b361-49d34d8fd645",
+        "set_code": "sv07",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "number": "96",
+        "number_plain": "96",
+        "name": "Grimmsnarl",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "0f65e7ff-3806-41e3-b51b-18795ad72869",
+        "set_code": "sv09",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "number": "117",
+        "number_plain": "117",
+        "name": "Hop's Snorlax",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "daf0489f-69b3-4710-987e-fb5e878386ae",
+        "set_code": "sv09",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "number": "135",
+        "number_plain": "135",
+        "name": "Hop's Wooloo",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "316451de-61c5-4662-a9df-a7546f890991",
+        "set_code": "sv09",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "number": "151",
+        "number_plain": "151",
+        "name": "Lillie's Pearl",
+        "rarity": "Uncommon"
+      },
+      {
+        "card_print_id": "8b27da65-9d66-43b0-8816-5b842bee1fee",
+        "set_code": "sv09",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "number": "41",
+        "number_plain": "41",
+        "name": "Wailord",
+        "rarity": "Rare"
+      },
+      {
+        "card_print_id": "ebba564d-1cf7-4494-9b0a-831c09bac46d",
+        "set_code": "sv09",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "number": "52",
+        "number_plain": "52",
+        "name": "Iono's Tadbulb",
+        "rarity": "Common"
+      },
+      {
+        "card_print_id": "6081b50b-7978-44e7-90a3-47eb1d4d496f",
+        "set_code": "sv09",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "number": "85",
+        "number_plain": "85",
+        "name": "Lycanroc",
+        "rarity": "Rare"
+      }
+    ],
+    "hash_sha256": "7a8756c6f232a6f12820d0bf72488095392944abae99553f48740b4cd9891bb4",
+    "count": 56
+  },
+  "inserted_row_readback": {
+    "captured_at": "2026-06-10T04:53:31.489Z",
+    "rows": [
+      {
+        "card_printing_id": "0eb48e5c-0ba1-48cb-ae01-8dfc2123a29c",
+        "card_print_id": "079ae0a0-eba5-4620-9e72-801bd0a1714e",
+        "set_code": "basep",
+        "card_number": "13",
+        "card_name": "Venusaur",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "basep:13:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "d533920d-72d3-4c74-ab71-28eebddb44ed",
+        "card_print_id": "5af74dbf-2b3d-4d92-b17a-a5cc3fecf13a",
+        "set_code": "basep",
+        "card_number": "15",
+        "card_name": "Cool Porygon",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "basep:15:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "38081e9e-73c4-4e36-bf85-876e82cc5fb8",
+        "card_print_id": "c9fc79b3-3130-4910-b4b7-1aad5d31d874",
+        "set_code": "basep",
+        "card_number": "18",
+        "card_name": "Team Rocket's Meowth",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "basep:18:normal",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "1e58e3a4-0ed7-4d16-acf6-e2ba4464cd3d",
+        "card_print_id": "f92b127d-17a6-4c93-b638-c29434a6c031",
+        "set_code": "basep",
+        "card_number": "33",
+        "card_name": "Scizor",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "basep:33:normal",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "3e20f4e7-ace1-4caf-814f-b4c03d8639cf",
+        "card_print_id": "54698766-cc91-4386-bd6d-dfc4f569f6fd",
+        "set_code": "bw6",
+        "card_number": "24",
+        "card_name": "Gyarados",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw6:24:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "42e9904e-17e3-40c7-bff5-4c916dba54e1",
+        "card_print_id": "ec067898-aa72-4aaf-bb81-c7ee78527250",
+        "set_code": "bw6",
+        "card_number": "28",
+        "card_name": "Milotic",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw6:28:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "586f414c-a380-41ba-92fc-096f641e58fd",
+        "card_print_id": "0be0dd94-49c6-4d58-9cef-b29a4db22142",
+        "set_code": "bw6",
+        "card_number": "40",
+        "card_name": "Ampharos",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw6:40:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "b37bc1c3-c5c1-436e-9a0f-e4182686e537",
+        "card_print_id": "98c489f9-e34c-4687-8130-afe70b3ec450",
+        "set_code": "bw6",
+        "card_number": "80",
+        "card_name": "Aggron",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw6:80:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "0f57d1d8-6ef9-4c7d-b045-bf07fca3cca3",
+        "card_print_id": "f623349e-0ea2-4a4d-a370-a8bab7152498",
+        "set_code": "bw6",
+        "card_number": "91",
+        "card_name": "Garchomp",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw6:91:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "aa0d9fd3-9354-40d7-b209-3b7f530ad43d",
+        "card_print_id": "3d3119f4-18bd-4dae-8611-455ebce1cf4a",
+        "set_code": "bw6",
+        "card_number": "98",
+        "card_name": "Hydreigon",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw6:98:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "2172b0a9-b9c8-42ad-9f4b-650a9b168bb5",
+        "card_print_id": "23ca8e6f-6772-42a9-96cd-78e4cf338a02",
+        "set_code": "dp2",
+        "card_number": "109",
+        "card_name": "Bebe's Search",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "dp2:109:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "5e088fe5-e7e8-45bf-9ecf-825f3ab1ad15",
+        "card_print_id": "5081ec1d-979c-419e-b838-8e58ea4da5d8",
+        "set_code": "dp2",
+        "card_number": "121",
+        "card_name": "Electivire LV.X",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "dp2:121:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "96c321fc-771c-42fe-8f60-d47fa69fc814",
+        "card_print_id": "48d366e6-c3fd-4ec4-92f2-5032524aafd0",
+        "set_code": "dp2",
+        "card_number": "122",
+        "card_name": "Lucario LV.X",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "dp2:122:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "dbe46339-331f-4859-8a36-73ad911ead31",
+        "card_print_id": "e2f2b04d-c672-4051-9105-b712a8f2ca16",
+        "set_code": "dp2",
+        "card_number": "123",
+        "card_name": "Magmortar LV.X",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "dp2:123:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "fe81dec0-27f5-434d-b4dd-4ea88a818de0",
+        "card_print_id": "f142196a-ad89-4138-9540-e27067505fb0",
+        "set_code": "dp2",
+        "card_number": "124",
+        "card_name": "Time-Space Distortion",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "dp2:124:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "aceabf6d-ddda-471d-a35b-5347fe16c729",
+        "card_print_id": "99282997-fa3a-4764-bd55-9411860d9b10",
+        "set_code": "dp2",
+        "card_number": "33",
+        "card_name": "Rampardos",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "dp2:33:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "fa493bd3-c0f3-4699-a689-187c7f500aa4",
+        "card_print_id": "4b0ca559-e74a-477d-8d33-d027fddbc58e",
+        "set_code": "ex4",
+        "card_number": "90",
+        "card_name": "Cradily ex",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "ex4:90:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "a5a63fc3-55c1-4579-b3fa-c1e6c38fa10a",
+        "card_print_id": "948a7294-2833-4f53-81ca-a9ff677e215d",
+        "set_code": "ex4",
+        "card_number": "91",
+        "card_name": "Entei ex",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "ex4:91:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "d8b2a25d-17fb-417c-8105-20bcdee42c6c",
+        "card_print_id": "4c23f0ab-4d8a-451b-bcac-a47dc3b189c3",
+        "set_code": "ex4",
+        "card_number": "92",
+        "card_name": "Raikou ex",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "ex4:92:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "3ddce893-6fb9-4999-981a-335b624043bc",
+        "card_print_id": "72047f9f-df62-4b25-b90a-fcde0da3ebf3",
+        "set_code": "ex4",
+        "card_number": "93",
+        "card_name": "Sceptile ex",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "ex4:93:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "4fe604db-0023-4faf-863e-dacadade5c4a",
+        "card_print_id": "63fc471f-1a60-45f8-91c9-3675d959dd84",
+        "set_code": "ex4",
+        "card_number": "96",
+        "card_name": "Absol",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "ex4:96:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "82777d06-fb45-4761-9be9-5371ba02179e",
+        "card_print_id": "16163c20-78d4-4c1f-9b8d-5ad033c55170",
+        "set_code": "ex4",
+        "card_number": "97",
+        "card_name": "Jirachi",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "ex4:97:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "8abc3ac6-1fa7-43ad-9533-742711afc811",
+        "card_print_id": "353b9924-4d4e-44b4-b55c-a28a5a377cb2",
+        "set_code": "mcd12",
+        "card_number": "10",
+        "card_name": "Scraggy",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2012bw:10:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "e8818427-7496-4c33-a0b1-705c8a16b8d4",
+        "card_print_id": "d3b5a22a-f7fe-4088-9756-845e95ab3011",
+        "set_code": "mcd12",
+        "card_number": "11",
+        "card_name": "Klang",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2012bw:11:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "83b37eec-6b28-4e19-8779-7cbb02a52bc1",
+        "card_print_id": "ba12910d-12b8-48ea-9623-d717bfb211d1",
+        "set_code": "mcd12",
+        "card_number": "12",
+        "card_name": "Axew",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2012bw:12:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "f11e55fd-ab20-4f93-8564-460135e1fc63",
+        "card_print_id": "5a88f7e3-847b-4d39-94e1-1891ca9dcafe",
+        "set_code": "mcd12",
+        "card_number": "4",
+        "card_name": "Pignite",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2012bw:4:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "aee3d36a-a6fc-433b-b2d6-49c92555cf7d",
+        "card_print_id": "d807f57c-6904-4710-9ab9-de53d9bb1dc4",
+        "set_code": "mcd12",
+        "card_number": "5",
+        "card_name": "Dewott",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2012bw:5:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "d3356c58-2e40-4dd9-9783-94197f78a287",
+        "card_print_id": "0e9d8afb-099a-449e-8201-d05eaf4970c6",
+        "set_code": "me01",
+        "card_number": "048",
+        "card_name": "Raikou",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "me01:48:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "7fe63728-7a59-4e58-b00b-9ff304512d11",
+        "card_print_id": "04433312-9e95-4e0c-a593-929c278e7499",
+        "set_code": "me01",
+        "card_number": "095",
+        "card_name": "Dialga",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "me01:95:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "5161e4da-3781-4149-93ed-eb12773ffc42",
+        "card_print_id": "87e718fc-f5df-46ba-8a40-32f1881ada53",
+        "set_code": "me01",
+        "card_number": "58",
+        "card_name": "Ralts",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "me01:58:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "a9b75f1c-229d-4b6d-a371-b19821653778",
+        "card_print_id": "dd8f0c4d-ac21-441d-a57f-34be3a02a6f8",
+        "set_code": "me01",
+        "card_number": "59",
+        "card_name": "Kirlia",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "me01:59:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "b3e6344f-b3a5-48c6-aab6-07e317ef7d87",
+        "card_print_id": "031dc29b-18cb-4048-8301-a29f3bd6335c",
+        "set_code": "me01",
+        "card_number": "76",
+        "card_name": "Riolu",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "me01:76:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "cf450ee9-a050-4688-bc90-970ebd3edaf1",
+        "card_print_id": "c29cf7bf-d1cb-407a-8570-37f9dff2d488",
+        "set_code": "me01",
+        "card_number": "93",
+        "card_name": "Steelix",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "me01:93:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "6ca6bcf4-a63d-4dbd-81fb-a7f6f9197d02",
+        "card_print_id": "666de235-a8af-49f2-99c9-f1a8a5343494",
+        "set_code": "si1",
+        "card_number": "1",
+        "card_name": "Mew",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "si1:1:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "b5d92cc6-cfd4-4d97-a0b4-734fac5234e8",
+        "card_print_id": "169d68d8-588a-445b-9ce5-01e9d4086699",
+        "set_code": "si1",
+        "card_number": "11",
+        "card_name": "Marill",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "si1:11:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "b50b2af0-886c-4185-b86d-1acdf1003690",
+        "card_print_id": "17406c6f-0e35-4790-8e21-2e5f4b2ad6ec",
+        "set_code": "si1",
+        "card_number": "14",
+        "card_name": "Slowking",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "si1:14:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "9921a6a8-23b3-4136-8e98-826be4178f51",
+        "card_print_id": "f7776eff-94e3-4ff9-a627-1577df92a4a5",
+        "set_code": "si1",
+        "card_number": "17",
+        "card_name": "Vileplume",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "si1:17:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "898e07f2-3783-4faf-90d5-6567fb3e49ca",
+        "card_print_id": "6e97b72a-8adc-4005-8a15-f51b79d7087c",
+        "set_code": "si1",
+        "card_number": "4",
+        "card_name": "Togepi",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "si1:4:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "ad96e570-ee93-4579-a69f-965d284c55e1",
+        "card_print_id": "27b7b9fb-ebff-483b-8d93-8e600ec2fd19",
+        "set_code": "si1",
+        "card_number": "7",
+        "card_name": "Ledyba",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "si1:7:holo",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "bad29a5f-ce49-44e8-8a24-1605440fc5b0",
+        "card_print_id": "4656055f-65cd-4033-a6d0-42e154fa1710",
+        "set_code": "sm8",
+        "card_number": "120",
+        "card_name": "Umbreon",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sm8:120:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "ca9e4a6e-7644-4b86-973b-429b7730fc0d",
+        "card_print_id": "ee0f8640-d08b-42bf-a964-5df1dd3078e7",
+        "set_code": "sm8",
+        "card_number": "125",
+        "card_name": "Steelix",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sm8:125:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "e0b3f09f-513e-4390-9710-02cf95f1ba6c",
+        "card_print_id": "00ce0a0e-6796-4979-9997-7985d22f74b0",
+        "set_code": "sm8",
+        "card_number": "141",
+        "card_name": "Gardevoir",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sm8:141:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "3a1bc817-98f4-4751-b322-92121c29a5f5",
+        "card_print_id": "a1293676-da0f-48c6-ba3e-2707f3860a0f",
+        "set_code": "sm8",
+        "card_number": "153",
+        "card_name": "Blissey",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sm8:153:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "1292e129-2020-413e-91d0-32ca7f445374",
+        "card_print_id": "49f5f973-82b9-4a31-8cb3-16917661f180",
+        "set_code": "sm8",
+        "card_number": "89",
+        "card_name": "Espeon",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sm8:89:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "1b11f6ff-ef3b-40fa-aa96-635654f6b0fc",
+        "card_print_id": "8d474ebf-0156-4aad-afef-551a545d02c1",
+        "set_code": "sm8",
+        "card_number": "97",
+        "card_name": "Giratina",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sm8:97:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "d20eaf75-ce1d-48e0-af3c-a4b15fc8b21d",
+        "card_print_id": "0e886428-ca60-4b13-9b98-cc41d91361d1",
+        "set_code": "sv07",
+        "card_number": "101",
+        "card_name": "Klinklang",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv07:101:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "f0540689-9795-4a1f-ad91-75091bb56e83",
+        "card_print_id": "c84e3e43-8b65-4ddd-a760-f9d4a5060d73",
+        "set_code": "sv07",
+        "card_number": "104",
+        "card_name": "Melmetal",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv07:104:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "fd02b7ab-85e0-4a1d-9c2f-1091218459be",
+        "card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+        "set_code": "sv07",
+        "card_number": "107",
+        "card_name": "Archaludon",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv07:107:normal",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "42f1c605-6d27-4144-8ce5-ae44ff4f3074",
+        "card_print_id": "d17130cc-b402-49e2-ba6b-22c7d3bac711",
+        "set_code": "sv07",
+        "card_number": "76",
+        "card_name": "Rhyperior",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv07:76:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "5a20494c-0cf9-4a30-92b3-d098cce4990a",
+        "card_print_id": "d25c5497-7045-4717-b361-49d34d8fd645",
+        "set_code": "sv07",
+        "card_number": "96",
+        "card_name": "Grimmsnarl",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv07:96:normal",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "499d4d8f-d83d-49e8-aa8c-5886be2440c4",
+        "card_print_id": "0f65e7ff-3806-41e3-b51b-18795ad72869",
+        "set_code": "sv09",
+        "card_number": "117",
+        "card_name": "Hop's Snorlax",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv09:117:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "d35eff3a-2857-4aa2-bf82-0ddbb7aa875a",
+        "card_print_id": "daf0489f-69b3-4710-987e-fb5e878386ae",
+        "set_code": "sv09",
+        "card_number": "135",
+        "card_name": "Hop's Wooloo",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv09:135:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "179eadac-a6d5-4300-b465-a1ff8c55e8f4",
+        "card_print_id": "316451de-61c5-4662-a9df-a7546f890991",
+        "set_code": "sv09",
+        "card_number": "151",
+        "card_name": "Lillie's Pearl",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv09:151:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "a293289e-e7ad-4769-8459-9952c56b52ad",
+        "card_print_id": "8b27da65-9d66-43b0-8816-5b842bee1fee",
+        "set_code": "sv09",
+        "card_number": "41",
+        "card_name": "Wailord",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv09:41:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "1c8851a2-ae18-4587-a9ec-4f93669c3a8a",
+        "card_print_id": "ebba564d-1cf7-4494-9b0a-831c09bac46d",
+        "set_code": "sv09",
+        "card_number": "52",
+        "card_name": "Iono's Tadbulb",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv09:52:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      },
+      {
+        "card_printing_id": "520b9bb5-a4cb-4717-9d35-a79e68610d3c",
+        "card_print_id": "6081b50b-7978-44e7-90a3-47eb1d4d496f",
+        "set_code": "sv09",
+        "card_number": "85",
+        "card_name": "Lycanroc",
+        "finish_key": "cosmos",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sv09:85:cosmos",
+        "created_by": "pkg06k_active_finish_child_printing_dry_run_v1"
+      }
+    ],
+    "hash_sha256": "cbe702769847fe0f64d4265c41ece0288bc70e48e1d51b7ebef0b08f079467c7",
+    "counts": {
+      "inserted_rows_found": 56,
+      "provisional_rows": 0,
+      "by_finish": {
+        "cosmos": 27,
+        "holo": 25,
+        "normal": 4
+      },
+      "by_set": {
+        "basep": 4,
+        "bw6": 6,
+        "dp2": 6,
+        "ex4": 6,
+        "mcd12": 5,
+        "me01": 6,
+        "si1": 6,
+        "sm8": 6,
+        "sv07": 5,
+        "sv09": 6
+      }
+    }
+  },
+  "rollback_proof": {
+    "rollback_selector": "delete only inserted public.card_printings rows by exact id, card_print_id, and finish_key from this package.",
+    "inserted_row_ids": [
+      "f11e55fd-ab20-4f93-8564-460135e1fc63",
+      "aee3d36a-a6fc-433b-b2d6-49c92555cf7d",
+      "8abc3ac6-1fa7-43ad-9533-742711afc811",
+      "e8818427-7496-4c33-a0b1-705c8a16b8d4",
+      "83b37eec-6b28-4e19-8779-7cbb02a52bc1",
+      "0eb48e5c-0ba1-48cb-ae01-8dfc2123a29c",
+      "d533920d-72d3-4c74-ab71-28eebddb44ed",
+      "38081e9e-73c4-4e36-bf85-876e82cc5fb8",
+      "1e58e3a4-0ed7-4d16-acf6-e2ba4464cd3d",
+      "3e20f4e7-ace1-4caf-814f-b4c03d8639cf",
+      "42e9904e-17e3-40c7-bff5-4c916dba54e1",
+      "586f414c-a380-41ba-92fc-096f641e58fd",
+      "b37bc1c3-c5c1-436e-9a0f-e4182686e537",
+      "0f57d1d8-6ef9-4c7d-b045-bf07fca3cca3",
+      "aa0d9fd3-9354-40d7-b209-3b7f530ad43d",
+      "aceabf6d-ddda-471d-a35b-5347fe16c729",
+      "2172b0a9-b9c8-42ad-9f4b-650a9b168bb5",
+      "5e088fe5-e7e8-45bf-9ecf-825f3ab1ad15",
+      "96c321fc-771c-42fe-8f60-d47fa69fc814",
+      "dbe46339-331f-4859-8a36-73ad911ead31",
+      "fe81dec0-27f5-434d-b4dd-4ea88a818de0",
+      "fa493bd3-c0f3-4699-a689-187c7f500aa4",
+      "a5a63fc3-55c1-4579-b3fa-c1e6c38fa10a",
+      "d8b2a25d-17fb-417c-8105-20bcdee42c6c",
+      "3ddce893-6fb9-4999-981a-335b624043bc",
+      "4fe604db-0023-4faf-863e-dacadade5c4a",
+      "82777d06-fb45-4761-9be9-5371ba02179e",
+      "d3356c58-2e40-4dd9-9783-94197f78a287",
+      "5161e4da-3781-4149-93ed-eb12773ffc42",
+      "a9b75f1c-229d-4b6d-a371-b19821653778",
+      "b3e6344f-b3a5-48c6-aab6-07e317ef7d87",
+      "cf450ee9-a050-4688-bc90-970ebd3edaf1",
+      "7fe63728-7a59-4e58-b00b-9ff304512d11",
+      "6ca6bcf4-a63d-4dbd-81fb-a7f6f9197d02",
+      "898e07f2-3783-4faf-90d5-6567fb3e49ca",
+      "ad96e570-ee93-4579-a69f-965d284c55e1",
+      "b5d92cc6-cfd4-4d97-a0b4-734fac5234e8",
+      "b50b2af0-886c-4185-b86d-1acdf1003690",
+      "9921a6a8-23b3-4136-8e98-826be4178f51",
+      "1292e129-2020-413e-91d0-32ca7f445374",
+      "1b11f6ff-ef3b-40fa-aa96-635654f6b0fc",
+      "bad29a5f-ce49-44e8-8a24-1605440fc5b0",
+      "ca9e4a6e-7644-4b86-973b-429b7730fc0d",
+      "e0b3f09f-513e-4390-9710-02cf95f1ba6c",
+      "3a1bc817-98f4-4751-b322-92121c29a5f5",
+      "42f1c605-6d27-4144-8ce5-ae44ff4f3074",
+      "5a20494c-0cf9-4a30-92b3-d098cce4990a",
+      "d20eaf75-ce1d-48e0-af3c-a4b15fc8b21d",
+      "f0540689-9795-4a1f-ad91-75091bb56e83",
+      "fd02b7ab-85e0-4a1d-9c2f-1091218459be",
+      "a293289e-e7ad-4769-8459-9952c56b52ad",
+      "1c8851a2-ae18-4587-a9ec-4f93669c3a8a",
+      "520b9bb5-a4cb-4717-9d35-a79e68610d3c",
+      "499d4d8f-d83d-49e8-aa8c-5886be2440c4",
+      "d35eff3a-2857-4aa2-bf82-0ddbb7aa875a",
+      "179eadac-a6d5-4300-b465-a1ff8c55e8f4"
+    ],
+    "rollback_sql_preview": "delete from public.card_printings where id = 'f11e55fd-ab20-4f93-8564-460135e1fc63'::uuid and card_print_id = '5a88f7e3-847b-4d39-94e1-1891ca9dcafe'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = 'aee3d36a-a6fc-433b-b2d6-49c92555cf7d'::uuid and card_print_id = 'd807f57c-6904-4710-9ab9-de53d9bb1dc4'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = '8abc3ac6-1fa7-43ad-9533-742711afc811'::uuid and card_print_id = '353b9924-4d4e-44b4-b55c-a28a5a377cb2'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = 'e8818427-7496-4c33-a0b1-705c8a16b8d4'::uuid and card_print_id = 'd3b5a22a-f7fe-4088-9756-845e95ab3011'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = '83b37eec-6b28-4e19-8779-7cbb02a52bc1'::uuid and card_print_id = 'ba12910d-12b8-48ea-9623-d717bfb211d1'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = '0eb48e5c-0ba1-48cb-ae01-8dfc2123a29c'::uuid and card_print_id = '079ae0a0-eba5-4620-9e72-801bd0a1714e'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = 'd533920d-72d3-4c74-ab71-28eebddb44ed'::uuid and card_print_id = '5af74dbf-2b3d-4d92-b17a-a5cc3fecf13a'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = '38081e9e-73c4-4e36-bf85-876e82cc5fb8'::uuid and card_print_id = 'c9fc79b3-3130-4910-b4b7-1aad5d31d874'::uuid and finish_key = 'normal';\ndelete from public.card_printings where id = '1e58e3a4-0ed7-4d16-acf6-e2ba4464cd3d'::uuid and card_print_id = 'f92b127d-17a6-4c93-b638-c29434a6c031'::uuid and finish_key = 'normal';\ndelete from public.card_printings where id = '3e20f4e7-ace1-4caf-814f-b4c03d8639cf'::uuid and card_print_id = '54698766-cc91-4386-bd6d-dfc4f569f6fd'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '42e9904e-17e3-40c7-bff5-4c916dba54e1'::uuid and card_print_id = 'ec067898-aa72-4aaf-bb81-c7ee78527250'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '586f414c-a380-41ba-92fc-096f641e58fd'::uuid and card_print_id = '0be0dd94-49c6-4d58-9cef-b29a4db22142'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = 'b37bc1c3-c5c1-436e-9a0f-e4182686e537'::uuid and card_print_id = '98c489f9-e34c-4687-8130-afe70b3ec450'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '0f57d1d8-6ef9-4c7d-b045-bf07fca3cca3'::uuid and card_print_id = 'f623349e-0ea2-4a4d-a370-a8bab7152498'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = 'aa0d9fd3-9354-40d7-b209-3b7f530ad43d'::uuid and card_print_id = '3d3119f4-18bd-4dae-8611-455ebce1cf4a'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = 'aceabf6d-ddda-471d-a35b-5347fe16c729'::uuid and card_print_id = '99282997-fa3a-4764-bd55-9411860d9b10'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '2172b0a9-b9c8-42ad-9f4b-650a9b168bb5'::uuid and card_print_id = '23ca8e6f-6772-42a9-96cd-78e4cf338a02'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '5e088fe5-e7e8-45bf-9ecf-825f3ab1ad15'::uuid and card_print_id = '5081ec1d-979c-419e-b838-8e58ea4da5d8'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = '96c321fc-771c-42fe-8f60-d47fa69fc814'::uuid and card_print_id = '48d366e6-c3fd-4ec4-92f2-5032524aafd0'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = 'dbe46339-331f-4859-8a36-73ad911ead31'::uuid and card_print_id = 'e2f2b04d-c672-4051-9105-b712a8f2ca16'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = 'fe81dec0-27f5-434d-b4dd-4ea88a818de0'::uuid and card_print_id = 'f142196a-ad89-4138-9540-e27067505fb0'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = 'fa493bd3-c0f3-4699-a689-187c7f500aa4'::uuid and card_print_id = '4b0ca559-e74a-477d-8d33-d027fddbc58e'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = 'a5a63fc3-55c1-4579-b3fa-c1e6c38fa10a'::uuid and card_print_id = '948a7294-2833-4f53-81ca-a9ff677e215d'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = 'd8b2a25d-17fb-417c-8105-20bcdee42c6c'::uuid and card_print_id = '4c23f0ab-4d8a-451b-bcac-a47dc3b189c3'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = '3ddce893-6fb9-4999-981a-335b624043bc'::uuid and card_print_id = '72047f9f-df62-4b25-b90a-fcde0da3ebf3'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = '4fe604db-0023-4faf-863e-dacadade5c4a'::uuid and card_print_id = '63fc471f-1a60-45f8-91c9-3675d959dd84'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = '82777d06-fb45-4761-9be9-5371ba02179e'::uuid and card_print_id = '16163c20-78d4-4c1f-9b8d-5ad033c55170'::uuid and finish_key = 'holo';\ndelete from public.card_printings where id = 'd3356c58-2e40-4dd9-9783-94197f78a287'::uuid and card_print_id = '0e9d8afb-099a-449e-8201-d05eaf4970c6'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = '5161e4da-3781-4149-93ed-eb12773ffc42'::uuid and card_print_id = '87e718fc-f5df-46ba-8a40-32f1881ada53'::uuid and finish_key = 'cosmos';\ndelete from public.card_printings where id = 'a9b75f1c-229d-4b6d-a371-b19821653778'::uuid and card_print_id = 'dd8f0c4d-ac21-441d-a57f-34be3a02a6f8'::uuid and finish_key = 'cosmos';"
+  },
+  "verification_summary": {
+    "before_hash_matches_dry_run_proof": true,
+    "inserted_rows_found": 56,
+    "inserted_by_set": {
+      "basep": 4,
+      "bw6": 6,
+      "dp2": 6,
+      "ex4": 6,
+      "mcd12": 5,
+      "me01": 6,
+      "si1": 6,
+      "sm8": 6,
+      "sv07": 5,
+      "sv09": 6
+    },
+    "inserted_by_finish": {
+      "cosmos": 27,
+      "holo": 25,
+      "normal": 4
+    },
+    "provisional_rows_inserted": 0,
+    "parent_rows_unchanged": true,
+    "master_index_comparison_status": "pkg06k_active_finish_child_printing_verified_after_apply"
+  },
+  "explicit_non_authorizations": [
+    "No global apply was authorized or performed.",
+    "No migrations were authorized or created.",
+    "No deletes were authorized or performed.",
+    "No merges were authorized or performed.",
+    "No unsupported cleanup was authorized or performed.",
+    "No parent writes were authorized or performed."
+  ],
+  "stop_findings": [],
+  "pass": true
+}

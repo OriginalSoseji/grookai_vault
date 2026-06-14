@@ -1,0 +1,461 @@
+{
+  "version": "english_master_index_prize_pack_current_gap_cross_source_v1",
+  "generated_at": "2026-06-12T23:59:47.518Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_prize_pack_current_gap_cross_source_v1",
+  "fixture_files": [],
+  "fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "summary": {
+    "target_rows": 16,
+    "justinbasil_entries": 223,
+    "bulbapedia_entries": 1016,
+    "records_generated": 0,
+    "fixture_files_written": 0,
+    "by_status": {
+      "blocked_no_independent_exact_current_gap_prize_pack_match": 16
+    },
+    "by_source": {},
+    "by_finish": {},
+    "by_set": {}
+  },
+  "results": [
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "108",
+      "card_name": "Farigiraf ex",
+      "finish_key": "cosmos",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "justinbasil_prize_pack_current_gap_finish",
+        "justinbasil_prize_pack_finish"
+      ],
+      "source_authorities": [
+        "justinbasil.com"
+      ],
+      "source_kinds": [
+        "collector_reference"
+      ],
+      "evidence_urls": [
+        "https://www.justinbasil.com/set-lists/pps5"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "36",
+      "card_name": "Ethan's Magcargo",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Eight_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "card_number": "62",
+      "card_name": "Gallade",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "card_number": "68",
+      "card_name": "Diancie",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "card_number": "130",
+      "card_name": "Regigigas",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "143",
+      "card_name": "Snorlax",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "113",
+      "card_name": "Galarian Weezing",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "65",
+      "card_name": "Orbeetle",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "36",
+      "card_name": "Froslass",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "87",
+      "card_name": "Lycanroc",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "108",
+      "card_name": "Single Strike Urshifu",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "34",
+      "card_name": "Ludicolo",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "112",
+      "card_name": "Dialga",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "116",
+      "card_name": "Kyurem",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "124",
+      "card_name": "Regidrago",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    },
+    {
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "109",
+      "card_name": "Garchomp",
+      "finish_key": "normal",
+      "status": "blocked_no_independent_exact_current_gap_prize_pack_match",
+      "sources": [
+        "bulbapedia_prize_pack_current_gap_finish",
+        "bulbapedia_prize_pack_normal"
+      ],
+      "source_authorities": [
+        "bulbapedia.bulbagarden.net"
+      ],
+      "source_kinds": [
+        "human_readable_checklist"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)"
+      ],
+      "blocker_type": null,
+      "blocker_reason": null,
+      "blocker_next_action": null,
+      "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+    }
+  ]
+}

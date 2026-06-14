@@ -1,0 +1,82 @@
+{
+  "generated_at": "2026-06-09T23:38:16.131Z",
+  "version": "english_master_index_pkg06f_active_finish_child_printing_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-06F-ACTIVE-FINISH-CHILD-PRINTING-INSERTS",
+    "package_fingerprint_sha256": "795cb07aed903181a3f671c1ad76d55139ca31dcf73c84269a13494d71b25a5f",
+    "source_readiness_fingerprint_sha256": "27e3873d92679d3255f13f65f90e14597511535a3f4567c89099515ea1ada8f2",
+    "sql_hash_sha256": "e76cf579592e7f005518aa24d7356d0ddaa266e811d4c5cd71945306cebefc9b",
+    "child_card_printing_inserts": 355,
+    "target_parent_rows": 355,
+    "set_counts": {
+      "ex14": 88,
+      "ex15": 89,
+      "ex5": 90,
+      "ex9": 88
+    },
+    "finish_counts": {
+      "reverse": 355
+    },
+    "parent_writes_allowed": false,
+    "child_insert_only": true,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_execution_status": "pkg06f_active_finish_child_printing_completed_rolled_back_no_durable_change",
+    "sql_artifact_ref": "docs/sql/english_master_index_pkg06f_active_finish_child_printing_guarded_dry_run_transaction_v1.sql",
+    "sql_hash_sha256": "e76cf579592e7f005518aa24d7356d0ddaa266e811d4c5cd71945306cebefc9b",
+    "before_hash_sha256": "8410c763077cfb51af7243eb025b52f9f0c0b14ead0f60307ea716e77e5a2d24",
+    "after_hash_sha256": "8410c763077cfb51af7243eb025b52f9f0c0b14ead0f60307ea716e77e5a2d24",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-06F-ACTIVE-FINISH-CHILD-PRINTING-INSERTS",
+        "source_readiness_fingerprint": "27e3873d92679d3255f13f65f90e14597511535a3f4567c89099515ea1ada8f2",
+        "package_fingerprint": "795cb07aed903181a3f671c1ad76d55139ca31dcf73c84269a13494d71b25a5f",
+        "planned_sets": 4,
+        "target_parent_rows": 355,
+        "planned_child_rows": 355
+      }
+    ]
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-06F-ACTIVE-FINISH-CHILD-PRINTING-INSERTS apply only. Fingerprint: 795cb07aed903181a3f671c1ad76d55139ca31dcf73c84269a13494d71b25a5f. SQL hash: e76cf579592e7f005518aa24d7356d0ddaa266e811d4c5cd71945306cebefc9b. Scope: 355 child-only card_printing inserts for ex5/Hidden Legends, ex15/Dragon Frontiers, ex14/Crystal Guardians, and ex9/Emerald; finishes reverse=355; target parents=355. Dry-run proof: 8410c763077cfb51af7243eb025b52f9f0c0b14ead0f60307ea716e77e5a2d24 == 8410c763077cfb51af7243eb025b52f9f0c0b14ead0f60307ea716e77e5a2d24. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No parent writes.",
+    "approval_effect": "This would authorize preparing and running the durable PKG-06F active-finish child-only apply path only."
+  },
+  "explicit_non_authorizations": [
+    "This gate is not a real apply.",
+    "This gate does not record approval.",
+    "This gate does not run SQL.",
+    "This gate does not read from or write to the database.",
+    "This gate does not create a migration.",
+    "This gate does not authorize global apply.",
+    "This gate does not authorize deletes.",
+    "This gate does not authorize merges.",
+    "This gate does not authorize unsupported cleanup.",
+    "This gate does not authorize parent writes."
+  ],
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg06f_active_finish_child_printing_guarded_dry_run_v1.json",
+    "sql_artifact": "docs/sql/english_master_index_pkg06f_active_finish_child_printing_guarded_dry_run_transaction_v1.sql"
+  },
+  "stop_findings": [],
+  "pass": true,
+  "gate_fingerprint_sha256": "c092ae0c714724161c4ed3015bb92f84fdb384900b40c457fa3196ca0bde358d"
+}

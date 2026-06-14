@@ -1,0 +1,87 @@
+{
+  "generated_at": "2026-06-10T05:37:20.122Z",
+  "version": "english_master_index_pkg07a_vault_safe_physical_recovery_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-07A-VAULT-SAFE-PHYSICAL-RECOVERY",
+    "package_fingerprint_sha256": "d6c304be4f6c3a13b316fbeb8297a8f27d7165f28bd7c2dcbfe4412bfc7f726b",
+    "sql_hash_sha256": "f9c1f57739700544abcbbbb7c62e2b7fd028e4ca980daa2f048f6fc090be0be0",
+    "source_candidate_rows": 185,
+    "excluded_missing_rows": 21,
+    "parent_update_rows": 164,
+    "preserved_child_printings": 253,
+    "vault_references": 0,
+    "set_counts": {
+      "2021swsh": 25,
+      "col1": 2,
+      "dp7": 8,
+      "ecard2": 13,
+      "ecard3": 15,
+      "pl1": 9,
+      "pl2": 15,
+      "pl3": 9,
+      "pl4": 12,
+      "sv08.5": 20,
+      "swsh10.5": 33,
+      "swsh2": 1,
+      "swsh4.5": 2
+    },
+    "child_writes_allowed": false,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_execution_status": "pkg07a_vault_safe_physical_recovery_completed_rolled_back_no_durable_change",
+    "sql_artifact_ref": "docs/sql/english_master_index_pkg07a_vault_safe_physical_recovery_guarded_dry_run_transaction_v1.sql",
+    "sql_hash_sha256": "f9c1f57739700544abcbbbb7c62e2b7fd028e4ca980daa2f048f6fc090be0be0",
+    "before_hash_sha256": "33b271ade124ddd34c6a46892f821439bb3de18d1052e4c0ec3366de0ea71df1",
+    "after_hash_sha256": "33b271ade124ddd34c6a46892f821439bb3de18d1052e4c0ec3366de0ea71df1",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-07A-VAULT-SAFE-PHYSICAL-RECOVERY",
+        "package_fingerprint": "d6c304be4f6c3a13b316fbeb8297a8f27d7165f28bd7c2dcbfe4412bfc7f726b",
+        "planned_parent_rows": 164,
+        "preserved_child_printings": 253
+      }
+    ]
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-07A-VAULT-SAFE-PHYSICAL-RECOVERY apply only. Fingerprint: d6c304be4f6c3a13b316fbeb8297a8f27d7165f28bd7c2dcbfe4412bfc7f726b. SQL hash: f9c1f57739700544abcbbbb7c62e2b7fd028e4ca980daa2f048f6fc090be0be0. Scope: 164 vault-safe card_print parent updates across 13 sets, preserving 253 child printings; source candidates=185, stale missing rows excluded=21, vault references=0. Sets: 2021swsh=25, col1=2, dp7=8, ecard2=13, ecard3=15, pl1=9, pl2=15, pl3=9, pl4=12, sv08.5=20, swsh10.5=33, swsh2=1, swsh4.5=2. Dry-run proof: 33b271ade124ddd34c6a46892f821439bb3de18d1052e4c0ec3366de0ea71df1 == 33b271ade124ddd34c6a46892f821439bb3de18d1052e4c0ec3366de0ea71df1. No global apply. No migrations. No deletes. No merges. No unsupported cleanup. No child writes.",
+    "approval_effect": "This would authorize preparing and running the durable PKG-07A vault-safe physical recovery parent-update apply path only."
+  },
+  "explicit_non_authorizations": [
+    "This gate is not a real apply.",
+    "This gate does not record approval.",
+    "This gate does not run SQL.",
+    "This gate does not read from or write to the database.",
+    "This gate does not create a migration.",
+    "This gate does not authorize global apply.",
+    "This gate does not authorize deletes.",
+    "This gate does not authorize merges.",
+    "This gate does not authorize unsupported cleanup.",
+    "This gate does not authorize child writes."
+  ],
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg07a_vault_safe_physical_recovery_guarded_dry_run_v1.json",
+    "sql_artifact": "docs/sql/english_master_index_pkg07a_vault_safe_physical_recovery_guarded_dry_run_transaction_v1.sql"
+  },
+  "stop_findings": [],
+  "pass": true,
+  "gate_fingerprint_sha256": "e9a0f661ebb9f18ad461150f3013020a504e137a619863cd4700071503000148"
+}

@@ -1,0 +1,35 @@
+{
+  "package_id": "PKG-32A-PARENTHETICAL-NAME-QUALIFIER-PARENT-UPDATES",
+  "generated_at": "2026-06-13T20:27:16.731Z",
+  "fingerprint": "ee81961d70dd94f3fcee5718efcc745bc6bcba47ad08e0e86c83ee2355509298",
+  "artifact_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg32a_parenthetical_name_qualifier_guarded_dry_run_v1.json",
+  "safety": {
+    "no_global_apply": true,
+    "migrations_created": false,
+    "child_writes": false,
+    "deletes": false,
+    "merges": false,
+    "quarantine": false
+  },
+  "summary": {
+    "parent_updates": 6,
+    "affected_child_rows": 9,
+    "child_writes": 0
+  },
+  "execution": {
+    "apply_status": "pkg32a_real_apply_committed",
+    "committed": true,
+    "dry_run_sql_hash": "2312c1110b922f56f17a5c5429f6a383638b6be91ed9960bc725009321fc4303",
+    "real_apply_sql_hash": "28f0d9e21975ba771d9d6ed1fab9c087a29a7e1408e3836f6f9e6d4c805a732a",
+    "result_count": 5,
+    "notices": [
+      "PKG-32A-PARENTHETICAL-NAME-QUALIFIER-PARENT-UPDATES dry-run passed: parent names updated 6, child writes 0, fingerprint ee81961d70dd94f3fcee5718efcc745bc6bcba47ad08e0e86c83ee2355509298"
+    ],
+    "post_apply_proof": {
+      "target_parent_names_present": 6,
+      "old_parent_names_remaining": 0,
+      "affected_child_rows_present": 9,
+      "active_identity_rows_on_targets": 0
+    }
+  }
+}

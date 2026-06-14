@@ -1,0 +1,5483 @@
+{
+  "generated_at": "2026-06-10T06:08:02.188Z",
+  "version": "english_master_index_pkg05a_real_apply_v1",
+  "audit_only": false,
+  "apply_only": true,
+  "package_scope": {
+    "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+    "readiness_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1",
+    "artifact_fingerprint_sha256": "df4c9dcae0a19731d4b96f9efd0322f5fde78722c0c08786e4d97a8a2d395dc9",
+    "selected_sets": [
+      {
+        "set_key": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "expected_parent_rows": 15,
+        "expected_child_printings": 15
+      },
+      {
+        "set_key": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "expected_parent_rows": 15,
+        "expected_child_printings": 15
+      },
+      {
+        "set_key": "mee",
+        "set_name": "Mega Evolution Energy",
+        "expected_parent_rows": 8,
+        "expected_child_printings": 16
+      },
+      {
+        "set_key": "mfb",
+        "set_name": "My First Battle",
+        "expected_parent_rows": 34,
+        "expected_child_printings": 34
+      }
+    ],
+    "planned_set_inserts": 4,
+    "planned_parent_card_print_inserts": 72,
+    "planned_child_card_printing_inserts": 80,
+    "planned_external_mapping_inserts": 72
+  },
+  "approval": {
+    "exact_approval_text": "Approve real PKG-05A apply only. Fingerprint: df4c9dcae0a19731d4b96f9efd0322f5fde78722c0c08786e4d97a8a2d395dc9. Readiness fingerprint: da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1. Scope: 4 set inserts, 72 parent card_print inserts, 80 child card_printing inserts, 72 external mappings. Dry-run proof: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 == 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+    "approved_real_apply_only": true,
+    "no_global_apply": true,
+    "no_migrations": true,
+    "no_deletes": true,
+    "no_merges": true,
+    "no_unsupported_cleanup": true
+  },
+  "apply_status": "pkg05a_missing_master_verified_set_inserts_real_apply_committed",
+  "error_message": null,
+  "db_write_committed": true,
+  "db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "unsupported_cleanup_performed": false,
+  "insert_counts": {
+    "sets": 4,
+    "parents": 72,
+    "children": 80,
+    "mappings": 72
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-10T06:07:57.876Z",
+    "rows": [],
+    "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "counts": {
+      "set_rows": 0,
+      "parent_rows": 0,
+      "child_printing_rows": 0,
+      "external_mapping_rows": 0,
+      "total_rows": 0
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-10T06:08:01.796Z",
+    "rows": [
+      {
+        "row_type": "card_print",
+        "row_id": "4091ae25-3624-4f56-a455-7bd3d4beb154",
+        "set_code": "2023sv",
+        "name": "Sprigatito",
+        "card_number": "1",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "6e7a29e1-3b5b-4c27-86b3-1e63c99f576a",
+        "set_code": "2023sv",
+        "name": "Sandaconda",
+        "card_number": "10",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "fae05233-f9c5-4860-aa86-49a942613ff5",
+        "set_code": "2023sv",
+        "name": "Klawf",
+        "card_number": "11",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "3ed79a65-c672-451a-afd7-e47a68ae2c53",
+        "set_code": "2023sv",
+        "name": "Blissey",
+        "card_number": "12",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "2dd83d5b-2476-4b63-9fbe-c849c2d56aa7",
+        "set_code": "2023sv",
+        "name": "Tandemaus",
+        "card_number": "13",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "1df85310-35da-4070-a3bd-a01a96d39e1c",
+        "set_code": "2023sv",
+        "name": "Cyclizar",
+        "card_number": "14",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "fb3bc199-9149-402e-8342-265eceecf120",
+        "set_code": "2023sv",
+        "name": "Kirlia",
+        "card_number": "15",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "451748ac-012e-4d67-9912-d04534a05817",
+        "set_code": "2023sv",
+        "name": "Fuecoco",
+        "card_number": "2",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "3a769557-0102-4fd2-b79e-8eef05b52e60",
+        "set_code": "2023sv",
+        "name": "Quaxly",
+        "card_number": "3",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "98500b36-36d3-470f-9d15-099865980b07",
+        "set_code": "2023sv",
+        "name": "Cetoddle",
+        "card_number": "4",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "e22e07fa-71e2-46aa-9951-829e339f8763",
+        "set_code": "2023sv",
+        "name": "Cetitan",
+        "card_number": "5",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "ee8c68fc-626c-42db-b7ef-fc869fe07ae8",
+        "set_code": "2023sv",
+        "name": "Pikachu",
+        "card_number": "6",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "1dc8d631-789a-4857-a1fd-d72efea4d614",
+        "set_code": "2023sv",
+        "name": "Pawmi",
+        "card_number": "7",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "31b28128-2bba-420a-acee-4962caf0514c",
+        "set_code": "2023sv",
+        "name": "Kilowattrel",
+        "card_number": "8",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "c9372355-e4ff-46a7-8172-94fe7d8a28be",
+        "set_code": "2023sv",
+        "name": "Flittle",
+        "card_number": "9",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "43e51937-5821-449d-adf5-7cfc30d135b9",
+        "set_code": "2024sv",
+        "name": "Charizard",
+        "card_number": "1",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "d3e549c3-b31d-4368-b7b4-e34b28b41c1d",
+        "set_code": "2024sv",
+        "name": "Hydreigon",
+        "card_number": "10",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "d2766899-2087-437d-81a4-8d769e4727a7",
+        "set_code": "2024sv",
+        "name": "Roaring Moon",
+        "card_number": "11",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "2a8e6db0-3a82-4196-8cd8-f0528e68b9ef",
+        "set_code": "2024sv",
+        "name": "Dragonite",
+        "card_number": "12",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "3faee98e-12b5-4f6c-a711-073d024155eb",
+        "set_code": "2024sv",
+        "name": "Eevee",
+        "card_number": "13",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "194dc27a-ce21-4a69-93de-d8c48000c128",
+        "set_code": "2024sv",
+        "name": "Rayquaza",
+        "card_number": "14",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "2c2649a8-a3b7-44cd-87ba-0c5d03667e0f",
+        "set_code": "2024sv",
+        "name": "Drampa",
+        "card_number": "15",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "2ff72f10-b4cd-4e26-998c-87b1ca181028",
+        "set_code": "2024sv",
+        "name": "Pikachu",
+        "card_number": "2",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "afa60d30-57c3-44ec-9964-fdf2a2bd7690",
+        "set_code": "2024sv",
+        "name": "Miraidon",
+        "card_number": "3",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "7fe87152-ff37-4a8b-8b56-1338ca39751b",
+        "set_code": "2024sv",
+        "name": "Jigglypuff",
+        "card_number": "4",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "9218afd1-f370-4698-902d-2e60140f127c",
+        "set_code": "2024sv",
+        "name": "Hatenna",
+        "card_number": "5",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "0a81032c-548d-438c-a091-5b2924557771",
+        "set_code": "2024sv",
+        "name": "Dragapult",
+        "card_number": "6",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "24b6d461-b043-4768-ae3a-1cf43442c7d6",
+        "set_code": "2024sv",
+        "name": "Quagsire",
+        "card_number": "7",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "2d9108f8-f23d-49f6-8557-19553332e9eb",
+        "set_code": "2024sv",
+        "name": "Koraidon",
+        "card_number": "8",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "5d51ef4f-5f17-4b8e-b9fc-2ae31f955022",
+        "set_code": "2024sv",
+        "name": "Umbreon",
+        "card_number": "9",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "6a28431f-8e78-45ee-adce-46ccde297389",
+        "set_code": "mee",
+        "name": "Basic Grass Energy",
+        "card_number": "001",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "fa0fa953-2e87-4dfc-8bd9-ebda84a53a12",
+        "set_code": "mee",
+        "name": "Basic Fire Energy",
+        "card_number": "002",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "fd2dbb1c-728d-48de-9324-6b4e16947e67",
+        "set_code": "mee",
+        "name": "Basic Water Energy",
+        "card_number": "003",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "69ceec8e-8bbc-4faa-b70a-bac1556429b1",
+        "set_code": "mee",
+        "name": "Basic Lightning Energy",
+        "card_number": "004",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "f1a590b0-3795-4145-9d68-93dcbb73f3c6",
+        "set_code": "mee",
+        "name": "Basic Psychic Energy",
+        "card_number": "005",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "f2342804-4844-409a-9b95-ddf10b09bee6",
+        "set_code": "mee",
+        "name": "Basic Fighting Energy",
+        "card_number": "006",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "c4df4bea-9e6a-46d7-8fbc-2a3293ef58d6",
+        "set_code": "mee",
+        "name": "Basic Darkness Energy",
+        "card_number": "007",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "fe393cc0-6c1c-4a90-922d-08ef60599c15",
+        "set_code": "mee",
+        "name": "Basic Metal Energy",
+        "card_number": "008",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "49d6a794-5703-4de0-aa70-c6b2438ed1c5",
+        "set_code": "mfb",
+        "name": "Bulbasaur",
+        "card_number": "1",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "31c39836-62b4-4d44-a898-6ba37a148004",
+        "set_code": "mfb",
+        "name": "Charmeleon",
+        "card_number": "10",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "f62c0bf4-ab0e-451d-a149-c312dd95c51e",
+        "set_code": "mfb",
+        "name": "Vulpix",
+        "card_number": "11",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "db309a53-3ed8-4be0-b3f2-b096a64c2f3f",
+        "set_code": "mfb",
+        "name": "Ninetales",
+        "card_number": "12",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "eb4d8953-9d05-43b4-be64-b529162ce221",
+        "set_code": "mfb",
+        "name": "Growlithe",
+        "card_number": "13",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "f7865250-5030-4f54-be6b-aed423100717",
+        "set_code": "mfb",
+        "name": "Arcanine",
+        "card_number": "14",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "37047df4-d52c-4a32-8cb3-c77f565128bc",
+        "set_code": "mfb",
+        "name": "Magmar",
+        "card_number": "15",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "ece0e2a1-74d8-4b8e-bb65-ffd15cd1bbca",
+        "set_code": "mfb",
+        "name": "Fire Energy",
+        "card_number": "16",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "f57348f5-9b22-4d47-adbd-1dfc08f8ef95",
+        "set_code": "mfb",
+        "name": "Pikachu",
+        "card_number": "17",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "e9a443af-8d01-4369-8395-b25d6de7ea75",
+        "set_code": "mfb",
+        "name": "Raichu",
+        "card_number": "18",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "6b496428-8d58-48a8-ba35-a89db7bb4d1a",
+        "set_code": "mfb",
+        "name": "Magnemite",
+        "card_number": "19",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "09af1718-5dbb-4490-8a1e-a71c17584a43",
+        "set_code": "mfb",
+        "name": "Ivysaur",
+        "card_number": "2",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "4457f5d7-c979-493f-8a32-6790a91fb1d5",
+        "set_code": "mfb",
+        "name": "Magneton",
+        "card_number": "20",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "454211cf-bd3f-495a-973c-ef4ac787b7d5",
+        "set_code": "mfb",
+        "name": "Voltorb",
+        "card_number": "21",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "87796913-485e-4003-ad35-c47ec7490d00",
+        "set_code": "mfb",
+        "name": "Electrode",
+        "card_number": "22",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "c76cb0ce-6fde-47f4-a136-c54db8cf59ab",
+        "set_code": "mfb",
+        "name": "Electabuzz",
+        "card_number": "23",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "648e1d4b-8564-43eb-9596-71fbf48c017b",
+        "set_code": "mfb",
+        "name": "Lightning Energy",
+        "card_number": "24",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "49305424-a284-4bd5-a0af-3fd355db549b",
+        "set_code": "mfb",
+        "name": "Squirtle",
+        "card_number": "25",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "f63065d2-d77c-494d-9831-cf594600f7ae",
+        "set_code": "mfb",
+        "name": "Wartortle",
+        "card_number": "26",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "9e71eb08-b0c5-4e15-a581-f97f31120bf0",
+        "set_code": "mfb",
+        "name": "Poliwag",
+        "card_number": "27",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "d0c72906-4ded-475b-8319-c9a8cd7dbdd8",
+        "set_code": "mfb",
+        "name": "Poliwhirl",
+        "card_number": "28",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "0e3a69cb-81e6-4f3f-97e8-da5c4bf063f9",
+        "set_code": "mfb",
+        "name": "Magikarp",
+        "card_number": "29",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "15da4897-1148-4a9f-9e18-961cb696f249",
+        "set_code": "mfb",
+        "name": "Oddish",
+        "card_number": "3",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "b894bb8d-1ad3-4824-a8ca-0900941ec7cc",
+        "set_code": "mfb",
+        "name": "Gyarados",
+        "card_number": "30",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "cd03d17c-b61f-4d31-b52a-27ff45bcd2de",
+        "set_code": "mfb",
+        "name": "Lapras",
+        "card_number": "31",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "dece707c-a7c1-49b3-ac3b-51959227b4b5",
+        "set_code": "mfb",
+        "name": "Water Energy",
+        "card_number": "32",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "3184e491-41eb-466c-a456-dcea8ff79403",
+        "set_code": "mfb",
+        "name": "Potion",
+        "card_number": "33",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "056c0faf-05d0-455b-a576-bb1089414821",
+        "set_code": "mfb",
+        "name": "Switch",
+        "card_number": "34",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "dcf3403e-8108-45e7-b4c8-c8f3fdb8d73d",
+        "set_code": "mfb",
+        "name": "Gloom",
+        "card_number": "4",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "74061f6a-223a-4dd0-a6a7-f8b0f341fe26",
+        "set_code": "mfb",
+        "name": "Exeggcute",
+        "card_number": "5",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "ef1b1771-5477-4c48-b577-e8ded6e641d0",
+        "set_code": "mfb",
+        "name": "Exeggutor",
+        "card_number": "6",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "7981f4c1-055a-4eff-bae1-49fb428e3fdf",
+        "set_code": "mfb",
+        "name": "Scyther",
+        "card_number": "7",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "a6ece9a6-4e33-4879-b5c8-f09274cef1a7",
+        "set_code": "mfb",
+        "name": "Grass Energy",
+        "card_number": "8",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_print",
+        "row_id": "1c4ae32e-714c-4aa2-8c35-7826cfe759b3",
+        "set_code": "mfb",
+        "name": "Charmander",
+        "card_number": "9",
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "3a5ab65e-dda3-45a7-9871-f0532fd349ba",
+        "set_code": "2023sv",
+        "name": "Sprigatito",
+        "card_number": "1",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "28a2bd03-6287-4c5b-848b-737a2be841bf",
+        "set_code": "2023sv",
+        "name": "Sandaconda",
+        "card_number": "10",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "f58973ec-ae6d-48b9-b149-f75776d7d540",
+        "set_code": "2023sv",
+        "name": "Klawf",
+        "card_number": "11",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "f6be1aac-6bcc-4f7c-9bd5-99faaa03043a",
+        "set_code": "2023sv",
+        "name": "Blissey",
+        "card_number": "12",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "da153acc-e4b0-4668-9e4d-25383c5d3a8e",
+        "set_code": "2023sv",
+        "name": "Tandemaus",
+        "card_number": "13",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "7a034cd5-5d86-4616-acee-505e92fe6438",
+        "set_code": "2023sv",
+        "name": "Cyclizar",
+        "card_number": "14",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "77d3c498-7661-4656-adf0-3319e99c48d0",
+        "set_code": "2023sv",
+        "name": "Kirlia",
+        "card_number": "15",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "3c456c11-1915-4800-9e76-fc9deb0aa6d3",
+        "set_code": "2023sv",
+        "name": "Fuecoco",
+        "card_number": "2",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "49566d90-2182-48df-8c6b-34e095ab09e1",
+        "set_code": "2023sv",
+        "name": "Quaxly",
+        "card_number": "3",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "c01975b3-f875-4980-80ac-a1260b93a142",
+        "set_code": "2023sv",
+        "name": "Cetoddle",
+        "card_number": "4",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "3554a0f4-a4fb-4253-9081-0c90871af633",
+        "set_code": "2023sv",
+        "name": "Cetitan",
+        "card_number": "5",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "de5f9e17-89e1-40e3-9bc2-569097e55b0a",
+        "set_code": "2023sv",
+        "name": "Pikachu",
+        "card_number": "6",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "cbc1f5a9-2708-4417-a41a-a67492f24846",
+        "set_code": "2023sv",
+        "name": "Pawmi",
+        "card_number": "7",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "86fb7236-d4e3-41de-95da-04d9b98fb5cf",
+        "set_code": "2023sv",
+        "name": "Kilowattrel",
+        "card_number": "8",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "f0e4042d-49d3-49ff-89d5-aca3bad95b31",
+        "set_code": "2023sv",
+        "name": "Flittle",
+        "card_number": "9",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "9f030b5c-14bf-4086-9c00-0df453484c77",
+        "set_code": "2024sv",
+        "name": "Charizard",
+        "card_number": "1",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "1ad22655-6716-42ed-a219-aa7434f71e5a",
+        "set_code": "2024sv",
+        "name": "Hydreigon",
+        "card_number": "10",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "a49a4bf7-f24c-472c-9224-3b3c3dababa0",
+        "set_code": "2024sv",
+        "name": "Roaring Moon",
+        "card_number": "11",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "499b5a96-8132-41ac-94a4-c003cb046c93",
+        "set_code": "2024sv",
+        "name": "Dragonite",
+        "card_number": "12",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "2ebf1e54-7022-49c5-9641-6e299ffdeba4",
+        "set_code": "2024sv",
+        "name": "Eevee",
+        "card_number": "13",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "eb3133d3-d504-411d-aae4-33873e10c982",
+        "set_code": "2024sv",
+        "name": "Rayquaza",
+        "card_number": "14",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "b1f8ccee-5b8b-45cc-86e1-3fdb209dd318",
+        "set_code": "2024sv",
+        "name": "Drampa",
+        "card_number": "15",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "b23dcc5c-720a-4684-a5a6-c3634214978c",
+        "set_code": "2024sv",
+        "name": "Pikachu",
+        "card_number": "2",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "d1db979e-f99f-45e9-8f46-3837d42fd535",
+        "set_code": "2024sv",
+        "name": "Miraidon",
+        "card_number": "3",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "53f7df37-2144-480a-9733-91e1ecfa0419",
+        "set_code": "2024sv",
+        "name": "Jigglypuff",
+        "card_number": "4",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "e2ce355c-f215-4df4-9a9f-a434f1ee7dbc",
+        "set_code": "2024sv",
+        "name": "Hatenna",
+        "card_number": "5",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "18137a8c-6450-49dc-879d-0a925eb9ab18",
+        "set_code": "2024sv",
+        "name": "Dragapult",
+        "card_number": "6",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "5282c217-bce0-4464-bf4d-dc14db786d0c",
+        "set_code": "2024sv",
+        "name": "Quagsire",
+        "card_number": "7",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "643c1f32-7c70-41f4-aa5e-331c03a16af6",
+        "set_code": "2024sv",
+        "name": "Koraidon",
+        "card_number": "8",
+        "finish_key": "holo",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "d5d31c60-d683-4fb4-a451-62ff36a8ea70",
+        "set_code": "2024sv",
+        "name": "Umbreon",
+        "card_number": "9",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "6720ec03-ca13-4c66-b9b0-f314d4873dc7",
+        "set_code": "mee",
+        "name": "Basic Grass Energy",
+        "card_number": "001",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "48e37111-db45-4c3e-9331-eb502378cb24",
+        "set_code": "mee",
+        "name": "Basic Grass Energy",
+        "card_number": "001",
+        "finish_key": "reverse",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "aa86cecf-30f5-4c16-9473-e864efb458ed",
+        "set_code": "mee",
+        "name": "Basic Fire Energy",
+        "card_number": "002",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "94d17196-ca27-416f-8ca8-a5a89fd87f1d",
+        "set_code": "mee",
+        "name": "Basic Fire Energy",
+        "card_number": "002",
+        "finish_key": "reverse",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "17f713ca-82c4-44cf-9a0f-541d62302cf4",
+        "set_code": "mee",
+        "name": "Basic Water Energy",
+        "card_number": "003",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "abc466a7-cd70-4e16-851c-2564d06440e2",
+        "set_code": "mee",
+        "name": "Basic Water Energy",
+        "card_number": "003",
+        "finish_key": "reverse",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "67b59885-c79f-49e6-972b-99d095920dde",
+        "set_code": "mee",
+        "name": "Basic Lightning Energy",
+        "card_number": "004",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "187f6e23-116a-412f-9bf3-8388a2b27ec8",
+        "set_code": "mee",
+        "name": "Basic Lightning Energy",
+        "card_number": "004",
+        "finish_key": "reverse",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "97850493-7f57-4605-9a23-e0b5fe82ada3",
+        "set_code": "mee",
+        "name": "Basic Psychic Energy",
+        "card_number": "005",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "d017fb91-098b-4a20-8e6c-5fc9f6536744",
+        "set_code": "mee",
+        "name": "Basic Psychic Energy",
+        "card_number": "005",
+        "finish_key": "reverse",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "4cf36974-055f-418f-ab37-90bf0caea84e",
+        "set_code": "mee",
+        "name": "Basic Fighting Energy",
+        "card_number": "006",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "2097cb2f-68eb-4fa5-9a3d-f148e1522589",
+        "set_code": "mee",
+        "name": "Basic Fighting Energy",
+        "card_number": "006",
+        "finish_key": "reverse",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "a48c132f-a789-4bd4-a926-9941168721b3",
+        "set_code": "mee",
+        "name": "Basic Darkness Energy",
+        "card_number": "007",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "8cb351fd-af44-4f09-94d1-2dcbc7240a27",
+        "set_code": "mee",
+        "name": "Basic Darkness Energy",
+        "card_number": "007",
+        "finish_key": "reverse",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "0249c75c-6e4e-4ea7-a1db-de1187f252f8",
+        "set_code": "mee",
+        "name": "Basic Metal Energy",
+        "card_number": "008",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "8c7a8a21-857c-44fc-a649-f64990d0f7b4",
+        "set_code": "mee",
+        "name": "Basic Metal Energy",
+        "card_number": "008",
+        "finish_key": "reverse",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "ef0602d5-aa38-4185-8248-de4d2f277127",
+        "set_code": "mfb",
+        "name": "Bulbasaur",
+        "card_number": "1",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "52761b25-1af1-4fd0-a442-4eb629ca2052",
+        "set_code": "mfb",
+        "name": "Charmeleon",
+        "card_number": "10",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "3d288b21-ea3a-4cf4-a491-3dd31532f4df",
+        "set_code": "mfb",
+        "name": "Vulpix",
+        "card_number": "11",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "4321b0df-274c-44d6-82ea-70aad7c16ab5",
+        "set_code": "mfb",
+        "name": "Ninetales",
+        "card_number": "12",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "7ec36739-4363-4cc9-b960-15f3c6999705",
+        "set_code": "mfb",
+        "name": "Growlithe",
+        "card_number": "13",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "b79d631b-d7a0-4977-a190-e9868119b5f1",
+        "set_code": "mfb",
+        "name": "Arcanine",
+        "card_number": "14",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "7d5adfe8-2267-4be9-8d4a-3146bd674591",
+        "set_code": "mfb",
+        "name": "Magmar",
+        "card_number": "15",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "5c45d0d7-67a0-4822-b667-a68416572b71",
+        "set_code": "mfb",
+        "name": "Fire Energy",
+        "card_number": "16",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "c43f6e98-b705-48c6-b6fb-a7dc8d6ab99c",
+        "set_code": "mfb",
+        "name": "Pikachu",
+        "card_number": "17",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "aac30c7e-6912-4078-aed8-382838922572",
+        "set_code": "mfb",
+        "name": "Raichu",
+        "card_number": "18",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "a687be9f-fa7c-4d99-8d1f-5cee9bad2f92",
+        "set_code": "mfb",
+        "name": "Magnemite",
+        "card_number": "19",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "f94eeee8-dcdd-4418-925b-0171f059c4b1",
+        "set_code": "mfb",
+        "name": "Ivysaur",
+        "card_number": "2",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "a8d9858e-5b68-475f-8090-07acb0e55906",
+        "set_code": "mfb",
+        "name": "Magneton",
+        "card_number": "20",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "59f73167-8767-4af7-917a-edf3f240af09",
+        "set_code": "mfb",
+        "name": "Voltorb",
+        "card_number": "21",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "1f04a6d1-b34f-4fb3-9d2b-853c30f58a60",
+        "set_code": "mfb",
+        "name": "Electrode",
+        "card_number": "22",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "2db13bfd-df62-47b6-9b28-76d3dcb1c00d",
+        "set_code": "mfb",
+        "name": "Electabuzz",
+        "card_number": "23",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "b90cf0a0-fead-4b8c-89c6-a0ddf69a95b9",
+        "set_code": "mfb",
+        "name": "Lightning Energy",
+        "card_number": "24",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "321c93f7-c450-475c-9089-d104c10f7e47",
+        "set_code": "mfb",
+        "name": "Squirtle",
+        "card_number": "25",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "b989899c-7989-42f1-afde-e4beabc74dc3",
+        "set_code": "mfb",
+        "name": "Wartortle",
+        "card_number": "26",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "12eda396-59c0-4662-8d39-d9044bc667ac",
+        "set_code": "mfb",
+        "name": "Poliwag",
+        "card_number": "27",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "83790ad1-9ea8-4222-bed9-87b9f2104587",
+        "set_code": "mfb",
+        "name": "Poliwhirl",
+        "card_number": "28",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "59564dbf-c2bb-4095-a384-22ba82932b54",
+        "set_code": "mfb",
+        "name": "Magikarp",
+        "card_number": "29",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "e1c26e1b-c591-4435-aeb2-dbd7a6278e97",
+        "set_code": "mfb",
+        "name": "Oddish",
+        "card_number": "3",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "acf2edbe-d92d-498d-a128-00576bbecc71",
+        "set_code": "mfb",
+        "name": "Gyarados",
+        "card_number": "30",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "8a09e838-d6f1-4e36-a64d-84de74abffe4",
+        "set_code": "mfb",
+        "name": "Lapras",
+        "card_number": "31",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "a073d963-b26b-44cd-b0f9-e72918dd9063",
+        "set_code": "mfb",
+        "name": "Water Energy",
+        "card_number": "32",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "673d0e32-6748-4f2c-8de6-f76a3f3698d5",
+        "set_code": "mfb",
+        "name": "Potion",
+        "card_number": "33",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "3df8a13f-4fb7-45db-a8b7-d174a4895f6a",
+        "set_code": "mfb",
+        "name": "Switch",
+        "card_number": "34",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "303ef3f7-fc39-465b-b723-af303cd5af92",
+        "set_code": "mfb",
+        "name": "Gloom",
+        "card_number": "4",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "2e85b877-83e8-4eab-8a17-776c30dc3a8f",
+        "set_code": "mfb",
+        "name": "Exeggcute",
+        "card_number": "5",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "5e7f6407-e7f6-4843-88c9-083a5039f060",
+        "set_code": "mfb",
+        "name": "Exeggutor",
+        "card_number": "6",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "9bdf0043-f89d-4239-bd66-16ac35440637",
+        "set_code": "mfb",
+        "name": "Scyther",
+        "card_number": "7",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "fa943075-c9a3-4621-acb8-01e1be62f84e",
+        "set_code": "mfb",
+        "name": "Grass Energy",
+        "card_number": "8",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "card_printing",
+        "row_id": "5b7c1221-c63c-4e49-87a2-be02179d89f0",
+        "set_code": "mfb",
+        "name": "Charmander",
+        "card_number": "9",
+        "finish_key": "normal",
+        "external_id": null
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121729",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-1"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121738",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-10"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121739",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-11"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121740",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-12"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121741",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-13"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121742",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-14"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121743",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-15"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121730",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-2"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121731",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-3"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121732",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-4"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121733",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-5"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121734",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-6"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121735",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-7"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121736",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-8"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121737",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2023sv-9"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121744",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-1"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121753",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-10"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121754",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-11"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121755",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-12"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121756",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-13"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121757",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-14"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121758",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-15"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121745",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-2"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121746",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-3"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121747",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-4"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121748",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-5"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121749",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-6"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121750",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-7"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121751",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-8"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121752",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "2024sv-9"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121759",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mee-001"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121760",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mee-002"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121761",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mee-003"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121762",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mee-004"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121763",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mee-005"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121764",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mee-006"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121765",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mee-007"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121766",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mee-008"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121767",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-1"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121776",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-10"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121777",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-11"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121778",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-12"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121779",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-13"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121780",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-14"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121781",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-15"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121782",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-16"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121783",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-17"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121784",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-18"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121785",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-19"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121768",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-2"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121786",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-20"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121787",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-21"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121788",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-22"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121789",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-23"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121790",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-24"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121791",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-25"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121792",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-26"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121793",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-27"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121794",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-28"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121795",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-29"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121769",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-3"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121796",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-30"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121797",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-31"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121798",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-32"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121799",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-33"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121800",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-34"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121770",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-4"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121771",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-5"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121772",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-6"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121773",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-7"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121774",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-8"
+      },
+      {
+        "row_type": "external_mapping",
+        "row_id": "121775",
+        "set_code": null,
+        "name": null,
+        "card_number": null,
+        "finish_key": null,
+        "external_id": "mfb-9"
+      },
+      {
+        "row_type": "set",
+        "row_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "name": "McDonald's Collection 2023",
+        "card_number": null,
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "set",
+        "row_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "name": "McDonald's Collection 2024",
+        "card_number": null,
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "set",
+        "row_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+        "set_code": "mee",
+        "name": "Mega Evolution Energy",
+        "card_number": null,
+        "finish_key": null,
+        "external_id": null
+      },
+      {
+        "row_type": "set",
+        "row_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "name": "My First Battle",
+        "card_number": null,
+        "finish_key": null,
+        "external_id": null
+      }
+    ],
+    "hash_sha256": "e3afbfca953082467ed1d698db0505f1619de04a90c43f86a60db8577f1aeac8",
+    "counts": {
+      "set_rows": 4,
+      "parent_rows": 72,
+      "child_printing_rows": 80,
+      "external_mapping_rows": 72,
+      "total_rows": 228
+    }
+  },
+  "inserted_rows": {
+    "captured_at": "2026-06-10T06:08:02.106Z",
+    "sets": [
+      {
+        "id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "code": "2023sv",
+        "name": "McDonald's Collection 2023",
+        "game": "pokemon",
+        "source": {
+          "tcgdex": {
+            "id": "2023sv",
+            "name": "McDonald's Collection 2023"
+          },
+          "verified_master_index_v1": {
+            "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+            "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+          }
+        }
+      },
+      {
+        "id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "code": "2024sv",
+        "name": "McDonald's Collection 2024",
+        "game": "pokemon",
+        "source": {
+          "tcgdex": {
+            "id": "2024sv",
+            "name": "McDonald's Collection 2024"
+          },
+          "verified_master_index_v1": {
+            "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+            "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+          }
+        }
+      },
+      {
+        "id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+        "code": "mee",
+        "name": "Mega Evolution Energy",
+        "game": "pokemon",
+        "source": {
+          "tcgdex": {
+            "id": "mee",
+            "name": "Mega Evolution Energy"
+          },
+          "verified_master_index_v1": {
+            "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+            "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+          }
+        }
+      },
+      {
+        "id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "code": "mfb",
+        "name": "My First Battle",
+        "game": "pokemon",
+        "source": {
+          "tcgdex": {
+            "id": "mfb",
+            "name": "My First Battle"
+          },
+          "verified_master_index_v1": {
+            "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+            "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+          }
+        }
+      }
+    ],
+    "parents": [
+      {
+        "id": "4091ae25-3624-4f56-a455-7bd3d4beb154",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "1",
+        "number_plain": "1",
+        "name": "Sprigatito",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-1"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "6e7a29e1-3b5b-4c27-86b3-1e63c99f576a",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "10",
+        "number_plain": "10",
+        "name": "Sandaconda",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-10"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "fae05233-f9c5-4860-aa86-49a942613ff5",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "11",
+        "number_plain": "11",
+        "name": "Klawf",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-11"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "3ed79a65-c672-451a-afd7-e47a68ae2c53",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "12",
+        "number_plain": "12",
+        "name": "Blissey",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-12"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "2dd83d5b-2476-4b63-9fbe-c849c2d56aa7",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "13",
+        "number_plain": "13",
+        "name": "Tandemaus",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-13"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "1df85310-35da-4070-a3bd-a01a96d39e1c",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "14",
+        "number_plain": "14",
+        "name": "Cyclizar",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-14"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "fb3bc199-9149-402e-8342-265eceecf120",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "15",
+        "number_plain": "15",
+        "name": "Kirlia",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-15"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "451748ac-012e-4d67-9912-d04534a05817",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "2",
+        "number_plain": "2",
+        "name": "Fuecoco",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-2"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "3a769557-0102-4fd2-b79e-8eef05b52e60",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "3",
+        "number_plain": "3",
+        "name": "Quaxly",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-3"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "98500b36-36d3-470f-9d15-099865980b07",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Cetoddle",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-4"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "e22e07fa-71e2-46aa-9951-829e339f8763",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "5",
+        "number_plain": "5",
+        "name": "Cetitan",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-5"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "ee8c68fc-626c-42db-b7ef-fc869fe07ae8",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "6",
+        "number_plain": "6",
+        "name": "Pikachu",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-6"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "1dc8d631-789a-4857-a1fd-d72efea4d614",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "7",
+        "number_plain": "7",
+        "name": "Pawmi",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-7"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "31b28128-2bba-420a-acee-4962caf0514c",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Kilowattrel",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-8"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "c9372355-e4ff-46a7-8172-94fe7d8a28be",
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "number": "9",
+        "number_plain": "9",
+        "name": "Flittle",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2023sv-9"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "43e51937-5821-449d-adf5-7cfc30d135b9",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "1",
+        "number_plain": "1",
+        "name": "Charizard",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-1"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "d3e549c3-b31d-4368-b7b4-e34b28b41c1d",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "10",
+        "number_plain": "10",
+        "name": "Hydreigon",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-10"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "d2766899-2087-437d-81a4-8d769e4727a7",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "11",
+        "number_plain": "11",
+        "name": "Roaring Moon",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-11"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "2a8e6db0-3a82-4196-8cd8-f0528e68b9ef",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "12",
+        "number_plain": "12",
+        "name": "Dragonite",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-12"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "3faee98e-12b5-4f6c-a711-073d024155eb",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "13",
+        "number_plain": "13",
+        "name": "Eevee",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-13"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "194dc27a-ce21-4a69-93de-d8c48000c128",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "14",
+        "number_plain": "14",
+        "name": "Rayquaza",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-14"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "2c2649a8-a3b7-44cd-87ba-0c5d03667e0f",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "15",
+        "number_plain": "15",
+        "name": "Drampa",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-15"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "2ff72f10-b4cd-4e26-998c-87b1ca181028",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "2",
+        "number_plain": "2",
+        "name": "Pikachu",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-2"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "afa60d30-57c3-44ec-9964-fdf2a2bd7690",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "3",
+        "number_plain": "3",
+        "name": "Miraidon",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-3"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "7fe87152-ff37-4a8b-8b56-1338ca39751b",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Jigglypuff",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-4"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "9218afd1-f370-4698-902d-2e60140f127c",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "5",
+        "number_plain": "5",
+        "name": "Hatenna",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-5"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "0a81032c-548d-438c-a091-5b2924557771",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "6",
+        "number_plain": "6",
+        "name": "Dragapult",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-6"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "24b6d461-b043-4768-ae3a-1cf43442c7d6",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "7",
+        "number_plain": "7",
+        "name": "Quagsire",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-7"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "2d9108f8-f23d-49f6-8557-19553332e9eb",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Koraidon",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-8"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "5d51ef4f-5f17-4b8e-b9fc-2ae31f955022",
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "number": "9",
+        "number_plain": "9",
+        "name": "Umbreon",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "2024sv-9"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "6a28431f-8e78-45ee-adce-46ccde297389",
+        "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+        "set_code": "mee",
+        "number": "001",
+        "number_plain": "001",
+        "name": "Basic Grass Energy",
+        "rarity": "Common",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mee-001"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "fa0fa953-2e87-4dfc-8bd9-ebda84a53a12",
+        "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+        "set_code": "mee",
+        "number": "002",
+        "number_plain": "002",
+        "name": "Basic Fire Energy",
+        "rarity": "Common",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mee-002"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "fd2dbb1c-728d-48de-9324-6b4e16947e67",
+        "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+        "set_code": "mee",
+        "number": "003",
+        "number_plain": "003",
+        "name": "Basic Water Energy",
+        "rarity": "Common",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mee-003"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "69ceec8e-8bbc-4faa-b70a-bac1556429b1",
+        "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+        "set_code": "mee",
+        "number": "004",
+        "number_plain": "004",
+        "name": "Basic Lightning Energy",
+        "rarity": "Common",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mee-004"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "f1a590b0-3795-4145-9d68-93dcbb73f3c6",
+        "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+        "set_code": "mee",
+        "number": "005",
+        "number_plain": "005",
+        "name": "Basic Psychic Energy",
+        "rarity": "Common",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mee-005"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "f2342804-4844-409a-9b95-ddf10b09bee6",
+        "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+        "set_code": "mee",
+        "number": "006",
+        "number_plain": "006",
+        "name": "Basic Fighting Energy",
+        "rarity": "Common",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mee-006"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "c4df4bea-9e6a-46d7-8fbc-2a3293ef58d6",
+        "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+        "set_code": "mee",
+        "number": "007",
+        "number_plain": "007",
+        "name": "Basic Darkness Energy",
+        "rarity": "Common",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mee-007"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "fe393cc0-6c1c-4a90-922d-08ef60599c15",
+        "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+        "set_code": "mee",
+        "number": "008",
+        "number_plain": "008",
+        "name": "Basic Metal Energy",
+        "rarity": "Common",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mee-008"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "49d6a794-5703-4de0-aa70-c6b2438ed1c5",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "1",
+        "number_plain": "1",
+        "name": "Bulbasaur",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-1"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "31c39836-62b4-4d44-a898-6ba37a148004",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "10",
+        "number_plain": "10",
+        "name": "Charmeleon",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-10"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "f62c0bf4-ab0e-451d-a149-c312dd95c51e",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "11",
+        "number_plain": "11",
+        "name": "Vulpix",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-11"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "db309a53-3ed8-4be0-b3f2-b096a64c2f3f",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "12",
+        "number_plain": "12",
+        "name": "Ninetales",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-12"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "eb4d8953-9d05-43b4-be64-b529162ce221",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "13",
+        "number_plain": "13",
+        "name": "Growlithe",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-13"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "f7865250-5030-4f54-be6b-aed423100717",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "14",
+        "number_plain": "14",
+        "name": "Arcanine",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-14"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "37047df4-d52c-4a32-8cb3-c77f565128bc",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "15",
+        "number_plain": "15",
+        "name": "Magmar",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-15"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "ece0e2a1-74d8-4b8e-bb65-ffd15cd1bbca",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "16",
+        "number_plain": "16",
+        "name": "Fire Energy",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-16"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "f57348f5-9b22-4d47-adbd-1dfc08f8ef95",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "17",
+        "number_plain": "17",
+        "name": "Pikachu",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-17"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "e9a443af-8d01-4369-8395-b25d6de7ea75",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "18",
+        "number_plain": "18",
+        "name": "Raichu",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-18"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "6b496428-8d58-48a8-ba35-a89db7bb4d1a",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "19",
+        "number_plain": "19",
+        "name": "Magnemite",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-19"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "09af1718-5dbb-4490-8a1e-a71c17584a43",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "2",
+        "number_plain": "2",
+        "name": "Ivysaur",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-2"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "4457f5d7-c979-493f-8a32-6790a91fb1d5",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "20",
+        "number_plain": "20",
+        "name": "Magneton",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-20"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "454211cf-bd3f-495a-973c-ef4ac787b7d5",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "21",
+        "number_plain": "21",
+        "name": "Voltorb",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-21"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "87796913-485e-4003-ad35-c47ec7490d00",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "22",
+        "number_plain": "22",
+        "name": "Electrode",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-22"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "c76cb0ce-6fde-47f4-a136-c54db8cf59ab",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "23",
+        "number_plain": "23",
+        "name": "Electabuzz",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-23"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "648e1d4b-8564-43eb-9596-71fbf48c017b",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "24",
+        "number_plain": "24",
+        "name": "Lightning Energy",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-24"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "49305424-a284-4bd5-a0af-3fd355db549b",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "25",
+        "number_plain": "25",
+        "name": "Squirtle",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-25"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "f63065d2-d77c-494d-9831-cf594600f7ae",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "26",
+        "number_plain": "26",
+        "name": "Wartortle",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-26"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "9e71eb08-b0c5-4e15-a581-f97f31120bf0",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "27",
+        "number_plain": "27",
+        "name": "Poliwag",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-27"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "d0c72906-4ded-475b-8319-c9a8cd7dbdd8",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "28",
+        "number_plain": "28",
+        "name": "Poliwhirl",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-28"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "0e3a69cb-81e6-4f3f-97e8-da5c4bf063f9",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "29",
+        "number_plain": "29",
+        "name": "Magikarp",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-29"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "15da4897-1148-4a9f-9e18-961cb696f249",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "3",
+        "number_plain": "3",
+        "name": "Oddish",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-3"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "b894bb8d-1ad3-4824-a8ca-0900941ec7cc",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "30",
+        "number_plain": "30",
+        "name": "Gyarados",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-30"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "cd03d17c-b61f-4d31-b52a-27ff45bcd2de",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "31",
+        "number_plain": "31",
+        "name": "Lapras",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-31"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "dece707c-a7c1-49b3-ac3b-51959227b4b5",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "32",
+        "number_plain": "32",
+        "name": "Water Energy",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-32"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "3184e491-41eb-466c-a456-dcea8ff79403",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "33",
+        "number_plain": "33",
+        "name": "Potion",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-33"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "056c0faf-05d0-455b-a576-bb1089414821",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "34",
+        "number_plain": "34",
+        "name": "Switch",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-34"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "dcf3403e-8108-45e7-b4c8-c8f3fdb8d73d",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Gloom",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-4"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "74061f6a-223a-4dd0-a6a7-f8b0f341fe26",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "5",
+        "number_plain": "5",
+        "name": "Exeggcute",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-5"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "ef1b1771-5477-4c48-b577-e8ded6e641d0",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "6",
+        "number_plain": "6",
+        "name": "Exeggutor",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-6"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "7981f4c1-055a-4eff-bae1-49fb428e3fdf",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "7",
+        "number_plain": "7",
+        "name": "Scyther",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-7"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "a6ece9a6-4e33-4879-b5c8-f09274cef1a7",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Grass Energy",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-8"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      },
+      {
+        "id": "1c4ae32e-714c-4aa2-8c35-7826cfe759b3",
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "number": "9",
+        "number_plain": "9",
+        "name": "Charmander",
+        "rarity": "None",
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "mfb-9"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS",
+          "package_fingerprint_sha256": "da6014ad1fbac00382875106ba2ae4dc2709c6b8cd3a2a09c85aada55a2c69e1"
+        }
+      }
+    ],
+    "children": [
+      {
+        "card_printing_id": "3a5ab65e-dda3-45a7-9871-f0532fd349ba",
+        "card_print_id": "4091ae25-3624-4f56-a455-7bd3d4beb154",
+        "set_code": "2023sv",
+        "card_number": "1",
+        "card_name": "Sprigatito",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:1:holo",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "28a2bd03-6287-4c5b-848b-737a2be841bf",
+        "card_print_id": "6e7a29e1-3b5b-4c27-86b3-1e63c99f576a",
+        "set_code": "2023sv",
+        "card_number": "10",
+        "card_name": "Sandaconda",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:10:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "f58973ec-ae6d-48b9-b149-f75776d7d540",
+        "card_print_id": "fae05233-f9c5-4860-aa86-49a942613ff5",
+        "set_code": "2023sv",
+        "card_number": "11",
+        "card_name": "Klawf",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:11:holo",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "f6be1aac-6bcc-4f7c-9bd5-99faaa03043a",
+        "card_print_id": "3ed79a65-c672-451a-afd7-e47a68ae2c53",
+        "set_code": "2023sv",
+        "card_number": "12",
+        "card_name": "Blissey",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:12:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "da153acc-e4b0-4668-9e4d-25383c5d3a8e",
+        "card_print_id": "2dd83d5b-2476-4b63-9fbe-c849c2d56aa7",
+        "set_code": "2023sv",
+        "card_number": "13",
+        "card_name": "Tandemaus",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:13:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "7a034cd5-5d86-4616-acee-505e92fe6438",
+        "card_print_id": "1df85310-35da-4070-a3bd-a01a96d39e1c",
+        "set_code": "2023sv",
+        "card_number": "14",
+        "card_name": "Cyclizar",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:14:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "77d3c498-7661-4656-adf0-3319e99c48d0",
+        "card_print_id": "fb3bc199-9149-402e-8342-265eceecf120",
+        "set_code": "2023sv",
+        "card_number": "15",
+        "card_name": "Kirlia",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:15:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "3c456c11-1915-4800-9e76-fc9deb0aa6d3",
+        "card_print_id": "451748ac-012e-4d67-9912-d04534a05817",
+        "set_code": "2023sv",
+        "card_number": "2",
+        "card_name": "Fuecoco",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:2:holo",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "49566d90-2182-48df-8c6b-34e095ab09e1",
+        "card_print_id": "3a769557-0102-4fd2-b79e-8eef05b52e60",
+        "set_code": "2023sv",
+        "card_number": "3",
+        "card_name": "Quaxly",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:3:holo",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "c01975b3-f875-4980-80ac-a1260b93a142",
+        "card_print_id": "98500b36-36d3-470f-9d15-099865980b07",
+        "set_code": "2023sv",
+        "card_number": "4",
+        "card_name": "Cetoddle",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:4:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "3554a0f4-a4fb-4253-9081-0c90871af633",
+        "card_print_id": "e22e07fa-71e2-46aa-9951-829e339f8763",
+        "set_code": "2023sv",
+        "card_number": "5",
+        "card_name": "Cetitan",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:5:holo",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "de5f9e17-89e1-40e3-9bc2-569097e55b0a",
+        "card_print_id": "ee8c68fc-626c-42db-b7ef-fc869fe07ae8",
+        "set_code": "2023sv",
+        "card_number": "6",
+        "card_name": "Pikachu",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:6:holo",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "cbc1f5a9-2708-4417-a41a-a67492f24846",
+        "card_print_id": "1dc8d631-789a-4857-a1fd-d72efea4d614",
+        "set_code": "2023sv",
+        "card_number": "7",
+        "card_name": "Pawmi",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:7:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "86fb7236-d4e3-41de-95da-04d9b98fb5cf",
+        "card_print_id": "31b28128-2bba-420a-acee-4962caf0514c",
+        "set_code": "2023sv",
+        "card_number": "8",
+        "card_name": "Kilowattrel",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:8:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "f0e4042d-49d3-49ff-89d5-aca3bad95b31",
+        "card_print_id": "c9372355-e4ff-46a7-8172-94fe7d8a28be",
+        "set_code": "2023sv",
+        "card_number": "9",
+        "card_name": "Flittle",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2023sv:9:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "9f030b5c-14bf-4086-9c00-0df453484c77",
+        "card_print_id": "43e51937-5821-449d-adf5-7cfc30d135b9",
+        "set_code": "2024sv",
+        "card_number": "1",
+        "card_name": "Charizard",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:1:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "1ad22655-6716-42ed-a219-aa7434f71e5a",
+        "card_print_id": "d3e549c3-b31d-4368-b7b4-e34b28b41c1d",
+        "set_code": "2024sv",
+        "card_number": "10",
+        "card_name": "Hydreigon",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:10:holo",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "a49a4bf7-f24c-472c-9224-3b3c3dababa0",
+        "card_print_id": "d2766899-2087-437d-81a4-8d769e4727a7",
+        "set_code": "2024sv",
+        "card_number": "11",
+        "card_name": "Roaring Moon",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:11:holo",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "499b5a96-8132-41ac-94a4-c003cb046c93",
+        "card_print_id": "2a8e6db0-3a82-4196-8cd8-f0528e68b9ef",
+        "set_code": "2024sv",
+        "card_number": "12",
+        "card_name": "Dragonite",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:12:holo",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "2ebf1e54-7022-49c5-9641-6e299ffdeba4",
+        "card_print_id": "3faee98e-12b5-4f6c-a711-073d024155eb",
+        "set_code": "2024sv",
+        "card_number": "13",
+        "card_name": "Eevee",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:13:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "eb3133d3-d504-411d-aae4-33873e10c982",
+        "card_print_id": "194dc27a-ce21-4a69-93de-d8c48000c128",
+        "set_code": "2024sv",
+        "card_number": "14",
+        "card_name": "Rayquaza",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:14:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "b1f8ccee-5b8b-45cc-86e1-3fdb209dd318",
+        "card_print_id": "2c2649a8-a3b7-44cd-87ba-0c5d03667e0f",
+        "set_code": "2024sv",
+        "card_number": "15",
+        "card_name": "Drampa",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:15:holo",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "b23dcc5c-720a-4684-a5a6-c3634214978c",
+        "card_print_id": "2ff72f10-b4cd-4e26-998c-87b1ca181028",
+        "set_code": "2024sv",
+        "card_number": "2",
+        "card_name": "Pikachu",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:2:holo",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "d1db979e-f99f-45e9-8f46-3837d42fd535",
+        "card_print_id": "afa60d30-57c3-44ec-9964-fdf2a2bd7690",
+        "set_code": "2024sv",
+        "card_number": "3",
+        "card_name": "Miraidon",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:3:holo",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "53f7df37-2144-480a-9733-91e1ecfa0419",
+        "card_print_id": "7fe87152-ff37-4a8b-8b56-1338ca39751b",
+        "set_code": "2024sv",
+        "card_number": "4",
+        "card_name": "Jigglypuff",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:4:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "e2ce355c-f215-4df4-9a9f-a434f1ee7dbc",
+        "card_print_id": "9218afd1-f370-4698-902d-2e60140f127c",
+        "set_code": "2024sv",
+        "card_number": "5",
+        "card_name": "Hatenna",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:5:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "18137a8c-6450-49dc-879d-0a925eb9ab18",
+        "card_print_id": "0a81032c-548d-438c-a091-5b2924557771",
+        "set_code": "2024sv",
+        "card_number": "6",
+        "card_name": "Dragapult",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:6:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "5282c217-bce0-4464-bf4d-dc14db786d0c",
+        "card_print_id": "24b6d461-b043-4768-ae3a-1cf43442c7d6",
+        "set_code": "2024sv",
+        "card_number": "7",
+        "card_name": "Quagsire",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:7:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "643c1f32-7c70-41f4-aa5e-331c03a16af6",
+        "card_print_id": "2d9108f8-f23d-49f6-8557-19553332e9eb",
+        "set_code": "2024sv",
+        "card_number": "8",
+        "card_name": "Koraidon",
+        "finish_key": "holo",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:8:holo",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "d5d31c60-d683-4fb4-a451-62ff36a8ea70",
+        "card_print_id": "5d51ef4f-5f17-4b8e-b9fc-2ae31f955022",
+        "set_code": "2024sv",
+        "card_number": "9",
+        "card_name": "Umbreon",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2024sv:9:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "6720ec03-ca13-4c66-b9b0-f314d4873dc7",
+        "card_print_id": "6a28431f-8e78-45ee-adce-46ccde297389",
+        "set_code": "mee",
+        "card_number": "001",
+        "card_name": "Basic Grass Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:1:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "48e37111-db45-4c3e-9331-eb502378cb24",
+        "card_print_id": "6a28431f-8e78-45ee-adce-46ccde297389",
+        "set_code": "mee",
+        "card_number": "001",
+        "card_name": "Basic Grass Energy",
+        "finish_key": "reverse",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:1:reverse",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "aa86cecf-30f5-4c16-9473-e864efb458ed",
+        "card_print_id": "fa0fa953-2e87-4dfc-8bd9-ebda84a53a12",
+        "set_code": "mee",
+        "card_number": "002",
+        "card_name": "Basic Fire Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:2:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "94d17196-ca27-416f-8ca8-a5a89fd87f1d",
+        "card_print_id": "fa0fa953-2e87-4dfc-8bd9-ebda84a53a12",
+        "set_code": "mee",
+        "card_number": "002",
+        "card_name": "Basic Fire Energy",
+        "finish_key": "reverse",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:2:reverse",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "17f713ca-82c4-44cf-9a0f-541d62302cf4",
+        "card_print_id": "fd2dbb1c-728d-48de-9324-6b4e16947e67",
+        "set_code": "mee",
+        "card_number": "003",
+        "card_name": "Basic Water Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:3:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "abc466a7-cd70-4e16-851c-2564d06440e2",
+        "card_print_id": "fd2dbb1c-728d-48de-9324-6b4e16947e67",
+        "set_code": "mee",
+        "card_number": "003",
+        "card_name": "Basic Water Energy",
+        "finish_key": "reverse",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:3:reverse",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "67b59885-c79f-49e6-972b-99d095920dde",
+        "card_print_id": "69ceec8e-8bbc-4faa-b70a-bac1556429b1",
+        "set_code": "mee",
+        "card_number": "004",
+        "card_name": "Basic Lightning Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:4:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "187f6e23-116a-412f-9bf3-8388a2b27ec8",
+        "card_print_id": "69ceec8e-8bbc-4faa-b70a-bac1556429b1",
+        "set_code": "mee",
+        "card_number": "004",
+        "card_name": "Basic Lightning Energy",
+        "finish_key": "reverse",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:4:reverse",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "97850493-7f57-4605-9a23-e0b5fe82ada3",
+        "card_print_id": "f1a590b0-3795-4145-9d68-93dcbb73f3c6",
+        "set_code": "mee",
+        "card_number": "005",
+        "card_name": "Basic Psychic Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:5:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "d017fb91-098b-4a20-8e6c-5fc9f6536744",
+        "card_print_id": "f1a590b0-3795-4145-9d68-93dcbb73f3c6",
+        "set_code": "mee",
+        "card_number": "005",
+        "card_name": "Basic Psychic Energy",
+        "finish_key": "reverse",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:5:reverse",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "4cf36974-055f-418f-ab37-90bf0caea84e",
+        "card_print_id": "f2342804-4844-409a-9b95-ddf10b09bee6",
+        "set_code": "mee",
+        "card_number": "006",
+        "card_name": "Basic Fighting Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:6:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "2097cb2f-68eb-4fa5-9a3d-f148e1522589",
+        "card_print_id": "f2342804-4844-409a-9b95-ddf10b09bee6",
+        "set_code": "mee",
+        "card_number": "006",
+        "card_name": "Basic Fighting Energy",
+        "finish_key": "reverse",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:6:reverse",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "a48c132f-a789-4bd4-a926-9941168721b3",
+        "card_print_id": "c4df4bea-9e6a-46d7-8fbc-2a3293ef58d6",
+        "set_code": "mee",
+        "card_number": "007",
+        "card_name": "Basic Darkness Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:7:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "8cb351fd-af44-4f09-94d1-2dcbc7240a27",
+        "card_print_id": "c4df4bea-9e6a-46d7-8fbc-2a3293ef58d6",
+        "set_code": "mee",
+        "card_number": "007",
+        "card_name": "Basic Darkness Energy",
+        "finish_key": "reverse",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:7:reverse",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "0249c75c-6e4e-4ea7-a1db-de1187f252f8",
+        "card_print_id": "fe393cc0-6c1c-4a90-922d-08ef60599c15",
+        "set_code": "mee",
+        "card_number": "008",
+        "card_name": "Basic Metal Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:8:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "8c7a8a21-857c-44fc-a649-f64990d0f7b4",
+        "card_print_id": "fe393cc0-6c1c-4a90-922d-08ef60599c15",
+        "set_code": "mee",
+        "card_number": "008",
+        "card_name": "Basic Metal Energy",
+        "finish_key": "reverse",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mee:8:reverse",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "ef0602d5-aa38-4185-8248-de4d2f277127",
+        "card_print_id": "49d6a794-5703-4de0-aa70-c6b2438ed1c5",
+        "set_code": "mfb",
+        "card_number": "1",
+        "card_name": "Bulbasaur",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:1:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "52761b25-1af1-4fd0-a442-4eb629ca2052",
+        "card_print_id": "31c39836-62b4-4d44-a898-6ba37a148004",
+        "set_code": "mfb",
+        "card_number": "10",
+        "card_name": "Charmeleon",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:10:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "3d288b21-ea3a-4cf4-a491-3dd31532f4df",
+        "card_print_id": "f62c0bf4-ab0e-451d-a149-c312dd95c51e",
+        "set_code": "mfb",
+        "card_number": "11",
+        "card_name": "Vulpix",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:11:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "4321b0df-274c-44d6-82ea-70aad7c16ab5",
+        "card_print_id": "db309a53-3ed8-4be0-b3f2-b096a64c2f3f",
+        "set_code": "mfb",
+        "card_number": "12",
+        "card_name": "Ninetales",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:12:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "7ec36739-4363-4cc9-b960-15f3c6999705",
+        "card_print_id": "eb4d8953-9d05-43b4-be64-b529162ce221",
+        "set_code": "mfb",
+        "card_number": "13",
+        "card_name": "Growlithe",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:13:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "b79d631b-d7a0-4977-a190-e9868119b5f1",
+        "card_print_id": "f7865250-5030-4f54-be6b-aed423100717",
+        "set_code": "mfb",
+        "card_number": "14",
+        "card_name": "Arcanine",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:14:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "7d5adfe8-2267-4be9-8d4a-3146bd674591",
+        "card_print_id": "37047df4-d52c-4a32-8cb3-c77f565128bc",
+        "set_code": "mfb",
+        "card_number": "15",
+        "card_name": "Magmar",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:15:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "5c45d0d7-67a0-4822-b667-a68416572b71",
+        "card_print_id": "ece0e2a1-74d8-4b8e-bb65-ffd15cd1bbca",
+        "set_code": "mfb",
+        "card_number": "16",
+        "card_name": "Fire Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:16:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "c43f6e98-b705-48c6-b6fb-a7dc8d6ab99c",
+        "card_print_id": "f57348f5-9b22-4d47-adbd-1dfc08f8ef95",
+        "set_code": "mfb",
+        "card_number": "17",
+        "card_name": "Pikachu",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:17:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "aac30c7e-6912-4078-aed8-382838922572",
+        "card_print_id": "e9a443af-8d01-4369-8395-b25d6de7ea75",
+        "set_code": "mfb",
+        "card_number": "18",
+        "card_name": "Raichu",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:18:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "a687be9f-fa7c-4d99-8d1f-5cee9bad2f92",
+        "card_print_id": "6b496428-8d58-48a8-ba35-a89db7bb4d1a",
+        "set_code": "mfb",
+        "card_number": "19",
+        "card_name": "Magnemite",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:19:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "f94eeee8-dcdd-4418-925b-0171f059c4b1",
+        "card_print_id": "09af1718-5dbb-4490-8a1e-a71c17584a43",
+        "set_code": "mfb",
+        "card_number": "2",
+        "card_name": "Ivysaur",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:2:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "a8d9858e-5b68-475f-8090-07acb0e55906",
+        "card_print_id": "4457f5d7-c979-493f-8a32-6790a91fb1d5",
+        "set_code": "mfb",
+        "card_number": "20",
+        "card_name": "Magneton",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:20:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "59f73167-8767-4af7-917a-edf3f240af09",
+        "card_print_id": "454211cf-bd3f-495a-973c-ef4ac787b7d5",
+        "set_code": "mfb",
+        "card_number": "21",
+        "card_name": "Voltorb",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:21:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "1f04a6d1-b34f-4fb3-9d2b-853c30f58a60",
+        "card_print_id": "87796913-485e-4003-ad35-c47ec7490d00",
+        "set_code": "mfb",
+        "card_number": "22",
+        "card_name": "Electrode",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:22:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "2db13bfd-df62-47b6-9b28-76d3dcb1c00d",
+        "card_print_id": "c76cb0ce-6fde-47f4-a136-c54db8cf59ab",
+        "set_code": "mfb",
+        "card_number": "23",
+        "card_name": "Electabuzz",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:23:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "b90cf0a0-fead-4b8c-89c6-a0ddf69a95b9",
+        "card_print_id": "648e1d4b-8564-43eb-9596-71fbf48c017b",
+        "set_code": "mfb",
+        "card_number": "24",
+        "card_name": "Lightning Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:24:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "321c93f7-c450-475c-9089-d104c10f7e47",
+        "card_print_id": "49305424-a284-4bd5-a0af-3fd355db549b",
+        "set_code": "mfb",
+        "card_number": "25",
+        "card_name": "Squirtle",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:25:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "b989899c-7989-42f1-afde-e4beabc74dc3",
+        "card_print_id": "f63065d2-d77c-494d-9831-cf594600f7ae",
+        "set_code": "mfb",
+        "card_number": "26",
+        "card_name": "Wartortle",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:26:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "12eda396-59c0-4662-8d39-d9044bc667ac",
+        "card_print_id": "9e71eb08-b0c5-4e15-a581-f97f31120bf0",
+        "set_code": "mfb",
+        "card_number": "27",
+        "card_name": "Poliwag",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:27:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "83790ad1-9ea8-4222-bed9-87b9f2104587",
+        "card_print_id": "d0c72906-4ded-475b-8319-c9a8cd7dbdd8",
+        "set_code": "mfb",
+        "card_number": "28",
+        "card_name": "Poliwhirl",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:28:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "59564dbf-c2bb-4095-a384-22ba82932b54",
+        "card_print_id": "0e3a69cb-81e6-4f3f-97e8-da5c4bf063f9",
+        "set_code": "mfb",
+        "card_number": "29",
+        "card_name": "Magikarp",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:29:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "e1c26e1b-c591-4435-aeb2-dbd7a6278e97",
+        "card_print_id": "15da4897-1148-4a9f-9e18-961cb696f249",
+        "set_code": "mfb",
+        "card_number": "3",
+        "card_name": "Oddish",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:3:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "acf2edbe-d92d-498d-a128-00576bbecc71",
+        "card_print_id": "b894bb8d-1ad3-4824-a8ca-0900941ec7cc",
+        "set_code": "mfb",
+        "card_number": "30",
+        "card_name": "Gyarados",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:30:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "8a09e838-d6f1-4e36-a64d-84de74abffe4",
+        "card_print_id": "cd03d17c-b61f-4d31-b52a-27ff45bcd2de",
+        "set_code": "mfb",
+        "card_number": "31",
+        "card_name": "Lapras",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:31:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "a073d963-b26b-44cd-b0f9-e72918dd9063",
+        "card_print_id": "dece707c-a7c1-49b3-ac3b-51959227b4b5",
+        "set_code": "mfb",
+        "card_number": "32",
+        "card_name": "Water Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:32:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "673d0e32-6748-4f2c-8de6-f76a3f3698d5",
+        "card_print_id": "3184e491-41eb-466c-a456-dcea8ff79403",
+        "set_code": "mfb",
+        "card_number": "33",
+        "card_name": "Potion",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:33:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "3df8a13f-4fb7-45db-a8b7-d174a4895f6a",
+        "card_print_id": "056c0faf-05d0-455b-a576-bb1089414821",
+        "set_code": "mfb",
+        "card_number": "34",
+        "card_name": "Switch",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:34:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "303ef3f7-fc39-465b-b723-af303cd5af92",
+        "card_print_id": "dcf3403e-8108-45e7-b4c8-c8f3fdb8d73d",
+        "set_code": "mfb",
+        "card_number": "4",
+        "card_name": "Gloom",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:4:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "2e85b877-83e8-4eab-8a17-776c30dc3a8f",
+        "card_print_id": "74061f6a-223a-4dd0-a6a7-f8b0f341fe26",
+        "set_code": "mfb",
+        "card_number": "5",
+        "card_name": "Exeggcute",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:5:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "5e7f6407-e7f6-4843-88c9-083a5039f060",
+        "card_print_id": "ef1b1771-5477-4c48-b577-e8ded6e641d0",
+        "set_code": "mfb",
+        "card_number": "6",
+        "card_name": "Exeggutor",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:6:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "9bdf0043-f89d-4239-bd66-16ac35440637",
+        "card_print_id": "7981f4c1-055a-4eff-bae1-49fb428e3fdf",
+        "set_code": "mfb",
+        "card_number": "7",
+        "card_name": "Scyther",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:7:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "fa943075-c9a3-4621-acb8-01e1be62f84e",
+        "card_print_id": "a6ece9a6-4e33-4879-b5c8-f09274cef1a7",
+        "set_code": "mfb",
+        "card_number": "8",
+        "card_name": "Grass Energy",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:8:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      },
+      {
+        "card_printing_id": "5b7c1221-c63c-4e49-87a2-be02179d89f0",
+        "card_print_id": "1c4ae32e-714c-4aa2-8c35-7826cfe759b3",
+        "set_code": "mfb",
+        "card_number": "9",
+        "card_name": "Charmander",
+        "finish_key": "normal",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mfb:9:normal",
+        "created_by": "pkg05a_missing_set_insert_dry_run_artifact_v1"
+      }
+    ],
+    "mappings": [
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-1",
+        "card_print_id": "4091ae25-3624-4f56-a455-7bd3d4beb154",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-10",
+        "card_print_id": "6e7a29e1-3b5b-4c27-86b3-1e63c99f576a",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-11",
+        "card_print_id": "fae05233-f9c5-4860-aa86-49a942613ff5",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-12",
+        "card_print_id": "3ed79a65-c672-451a-afd7-e47a68ae2c53",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-13",
+        "card_print_id": "2dd83d5b-2476-4b63-9fbe-c849c2d56aa7",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-14",
+        "card_print_id": "1df85310-35da-4070-a3bd-a01a96d39e1c",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-15",
+        "card_print_id": "fb3bc199-9149-402e-8342-265eceecf120",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-2",
+        "card_print_id": "451748ac-012e-4d67-9912-d04534a05817",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-3",
+        "card_print_id": "3a769557-0102-4fd2-b79e-8eef05b52e60",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-4",
+        "card_print_id": "98500b36-36d3-470f-9d15-099865980b07",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-5",
+        "card_print_id": "e22e07fa-71e2-46aa-9951-829e339f8763",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-6",
+        "card_print_id": "ee8c68fc-626c-42db-b7ef-fc869fe07ae8",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-7",
+        "card_print_id": "1dc8d631-789a-4857-a1fd-d72efea4d614",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-8",
+        "card_print_id": "31b28128-2bba-420a-acee-4962caf0514c",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2023sv-9",
+        "card_print_id": "c9372355-e4ff-46a7-8172-94fe7d8a28be",
+        "meta": {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-1",
+        "card_print_id": "43e51937-5821-449d-adf5-7cfc30d135b9",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-10",
+        "card_print_id": "d3e549c3-b31d-4368-b7b4-e34b28b41c1d",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-11",
+        "card_print_id": "d2766899-2087-437d-81a4-8d769e4727a7",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-12",
+        "card_print_id": "2a8e6db0-3a82-4196-8cd8-f0528e68b9ef",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-13",
+        "card_print_id": "3faee98e-12b5-4f6c-a711-073d024155eb",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-14",
+        "card_print_id": "194dc27a-ce21-4a69-93de-d8c48000c128",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-15",
+        "card_print_id": "2c2649a8-a3b7-44cd-87ba-0c5d03667e0f",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-2",
+        "card_print_id": "2ff72f10-b4cd-4e26-998c-87b1ca181028",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-3",
+        "card_print_id": "afa60d30-57c3-44ec-9964-fdf2a2bd7690",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-4",
+        "card_print_id": "7fe87152-ff37-4a8b-8b56-1338ca39751b",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-5",
+        "card_print_id": "9218afd1-f370-4698-902d-2e60140f127c",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-6",
+        "card_print_id": "0a81032c-548d-438c-a091-5b2924557771",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-7",
+        "card_print_id": "24b6d461-b043-4768-ae3a-1cf43442c7d6",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-8",
+        "card_print_id": "2d9108f8-f23d-49f6-8557-19553332e9eb",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "2024sv-9",
+        "card_print_id": "5d51ef4f-5f17-4b8e-b9fc-2ae31f955022",
+        "meta": {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mee-001",
+        "card_print_id": "6a28431f-8e78-45ee-adce-46ccde297389",
+        "meta": {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mee-002",
+        "card_print_id": "fa0fa953-2e87-4dfc-8bd9-ebda84a53a12",
+        "meta": {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mee-003",
+        "card_print_id": "fd2dbb1c-728d-48de-9324-6b4e16947e67",
+        "meta": {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mee-004",
+        "card_print_id": "69ceec8e-8bbc-4faa-b70a-bac1556429b1",
+        "meta": {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mee-005",
+        "card_print_id": "f1a590b0-3795-4145-9d68-93dcbb73f3c6",
+        "meta": {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mee-006",
+        "card_print_id": "f2342804-4844-409a-9b95-ddf10b09bee6",
+        "meta": {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mee-007",
+        "card_print_id": "c4df4bea-9e6a-46d7-8fbc-2a3293ef58d6",
+        "meta": {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mee-008",
+        "card_print_id": "fe393cc0-6c1c-4a90-922d-08ef60599c15",
+        "meta": {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-1",
+        "card_print_id": "49d6a794-5703-4de0-aa70-c6b2438ed1c5",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-10",
+        "card_print_id": "31c39836-62b4-4d44-a898-6ba37a148004",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-11",
+        "card_print_id": "f62c0bf4-ab0e-451d-a149-c312dd95c51e",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-12",
+        "card_print_id": "db309a53-3ed8-4be0-b3f2-b096a64c2f3f",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-13",
+        "card_print_id": "eb4d8953-9d05-43b4-be64-b529162ce221",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-14",
+        "card_print_id": "f7865250-5030-4f54-be6b-aed423100717",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-15",
+        "card_print_id": "37047df4-d52c-4a32-8cb3-c77f565128bc",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-16",
+        "card_print_id": "ece0e2a1-74d8-4b8e-bb65-ffd15cd1bbca",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-17",
+        "card_print_id": "f57348f5-9b22-4d47-adbd-1dfc08f8ef95",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-18",
+        "card_print_id": "e9a443af-8d01-4369-8395-b25d6de7ea75",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-19",
+        "card_print_id": "6b496428-8d58-48a8-ba35-a89db7bb4d1a",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-2",
+        "card_print_id": "09af1718-5dbb-4490-8a1e-a71c17584a43",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-20",
+        "card_print_id": "4457f5d7-c979-493f-8a32-6790a91fb1d5",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-21",
+        "card_print_id": "454211cf-bd3f-495a-973c-ef4ac787b7d5",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-22",
+        "card_print_id": "87796913-485e-4003-ad35-c47ec7490d00",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-23",
+        "card_print_id": "c76cb0ce-6fde-47f4-a136-c54db8cf59ab",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-24",
+        "card_print_id": "648e1d4b-8564-43eb-9596-71fbf48c017b",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-25",
+        "card_print_id": "49305424-a284-4bd5-a0af-3fd355db549b",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-26",
+        "card_print_id": "f63065d2-d77c-494d-9831-cf594600f7ae",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-27",
+        "card_print_id": "9e71eb08-b0c5-4e15-a581-f97f31120bf0",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-28",
+        "card_print_id": "d0c72906-4ded-475b-8319-c9a8cd7dbdd8",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-29",
+        "card_print_id": "0e3a69cb-81e6-4f3f-97e8-da5c4bf063f9",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-3",
+        "card_print_id": "15da4897-1148-4a9f-9e18-961cb696f249",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-30",
+        "card_print_id": "b894bb8d-1ad3-4824-a8ca-0900941ec7cc",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-31",
+        "card_print_id": "cd03d17c-b61f-4d31-b52a-27ff45bcd2de",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-32",
+        "card_print_id": "dece707c-a7c1-49b3-ac3b-51959227b4b5",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-33",
+        "card_print_id": "3184e491-41eb-466c-a456-dcea8ff79403",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-34",
+        "card_print_id": "056c0faf-05d0-455b-a576-bb1089414821",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-4",
+        "card_print_id": "dcf3403e-8108-45e7-b4c8-c8f3fdb8d73d",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-5",
+        "card_print_id": "74061f6a-223a-4dd0-a6a7-f8b0f341fe26",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-6",
+        "card_print_id": "ef1b1771-5477-4c48-b577-e8ded6e641d0",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-7",
+        "card_print_id": "7981f4c1-055a-4eff-bae1-49fb428e3fdf",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-8",
+        "card_print_id": "a6ece9a6-4e33-4879-b5c8-f09274cef1a7",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      },
+      {
+        "source": "tcgdex",
+        "external_id": "mfb-9",
+        "card_print_id": "1c4ae32e-714c-4aa2-8c35-7826cfe759b3",
+        "meta": {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "package_id": "PKG-05A-MISSING-MASTER-VERIFIED-SET-INSERTS"
+        }
+      }
+    ],
+    "hash_sha256": "b9f3aa86ba55452671b153b9b320ccec7489090a350f1277ae59619cda7390f4",
+    "counts": {
+      "set_rows_found": 4,
+      "parent_rows_found": 72,
+      "child_rows_found": 80,
+      "external_mapping_rows_found": 72,
+      "provisional_child_rows": 0,
+      "children_by_finish": {
+        "holo": 13,
+        "normal": 59,
+        "reverse": 8
+      },
+      "parents_by_set": {
+        "2023sv": 15,
+        "2024sv": 15,
+        "mee": 8,
+        "mfb": 34
+      },
+      "children_by_set": {
+        "2023sv": 15,
+        "2024sv": 15,
+        "mee": 16,
+        "mfb": 34
+      }
+    }
+  },
+  "verification_summary": {
+    "inserted_sets_found": 4,
+    "inserted_parents_found": 72,
+    "inserted_children_found": 80,
+    "inserted_external_mappings_found": 72,
+    "children_by_finish": {
+      "holo": 13,
+      "normal": 59,
+      "reverse": 8
+    },
+    "parents_by_set": {
+      "2023sv": 15,
+      "2024sv": 15,
+      "mee": 8,
+      "mfb": 34
+    },
+    "children_by_set": {
+      "2023sv": 15,
+      "2024sv": 15,
+      "mee": 16,
+      "mfb": 34
+    }
+  },
+  "rollback_proof": {
+    "rollback_sql_preview": "delete from public.card_printings where id = any(array['3a5ab65e-dda3-45a7-9871-f0532fd349ba'::uuid, '3c456c11-1915-4800-9e76-fc9deb0aa6d3'::uuid, '49566d90-2182-48df-8c6b-34e095ab09e1'::uuid, 'c01975b3-f875-4980-80ac-a1260b93a142'::uuid, '3554a0f4-a4fb-4253-9081-0c90871af633'::uuid, 'de5f9e17-89e1-40e3-9bc2-569097e55b0a'::uuid, 'cbc1f5a9-2708-4417-a41a-a67492f24846'::uuid, '86fb7236-d4e3-41de-95da-04d9b98fb5cf'::uuid, 'f0e4042d-49d3-49ff-89d5-aca3bad95b31'::uuid, '28a2bd03-6287-4c5b-848b-737a2be841bf'::uuid, 'f58973ec-ae6d-48b9-b149-f75776d7d540'::uuid, 'f6be1aac-6bcc-4f7c-9bd5-99faaa03043a'::uuid, 'da153acc-e4b0-4668-9e4d-25383c5d3a8e'::uuid, '7a034cd5-5d86-4616-acee-505e92fe6438'::uuid, '77d3c498-7661-4656-adf0-3319e99c48d0'::uuid, '9f030b5c-14bf-4086-9c00-0df453484c77'::uuid, 'b23dcc5c-720a-4684-a5a6-c3634214978c'::uuid, 'd1db979e-f99f-45e9-8f46-3837d42fd535'::uuid, '53f7df37-2144-480a-9733-91e1ecfa0419'::uuid, 'e2ce355c-f215-4df4-9a9f-a434f1ee7dbc'::uuid, '18137a8c-6450-49dc-879d-0a925eb9ab18'::uuid, '5282c217-bce0-4464-bf4d-dc14db786d0c'::uuid, '643c1f32-7c70-41f4-aa5e-331c03a16af6'::uuid, 'd5d31c60-d683-4fb4-a451-62ff36a8ea70'::uuid, '1ad22655-6716-42ed-a219-aa7434f71e5a'::uuid, 'a49a4bf7-f24c-472c-9224-3b3c3dababa0'::uuid, '499b5a96-8132-41ac-94a4-c003cb046c93'::uuid, '2ebf1e54-7022-49c5-9641-6e299ffdeba4'::uuid, 'eb3133d3-d504-411d-aae4-33873e10c982'::uuid, 'b1f8ccee-5b8b-45cc-86e1-3fdb209dd318'::uuid, '6720ec03-ca13-4c66-b9b0-f314d4873dc7'::uuid, '48e37111-db45-4c3e-9331-eb502378cb24'::uuid, 'aa86cecf-30f5-4c16-9473-e864efb458ed'::uuid, '94d17196-ca27-416f-8ca8-a5a89fd87f1d'::uuid, '17f713ca-82c4-44cf-9a0f-541d62302cf4'::uuid, 'abc466a7-cd70-4e16-851c-2564d06440e2'::uuid, '67b59885-c79f-49e6-972b-99d095920dde'::uuid, '187f6e23-116a-412f-9bf3-8388a2b27ec8'::uuid, '97850493-7f57-4605-9a23-e0b5fe82ada3'::uuid, 'd017fb91-098b-4a20-8e6c-5fc9f6536744'::uuid, '4cf36974-055f-418f-ab37-90bf0caea84e'::uuid, '2097cb2f-68eb-4fa5-9a3d-f148e1522589'::uuid, 'a48c132f-a789-4bd4-a926-9941168721b3'::uuid, '8cb351fd-af44-4f09-94d1-2dcbc7240a27'::uuid, '0249c75c-6e4e-4ea7-a1db-de1187f252f8'::uuid, '8c7a8a21-857c-44fc-a649-f64990d0f7b4'::uuid, 'ef0602d5-aa38-4185-8248-de4d2f277127'::uuid, 'f94eeee8-dcdd-4418-925b-0171f059c4b1'::uuid, 'e1c26e1b-c591-4435-aeb2-dbd7a6278e97'::uuid, '303ef3f7-fc39-465b-b723-af303cd5af92'::uuid, '2e85b877-83e8-4eab-8a17-776c30dc3a8f'::uuid, '5e7f6407-e7f6-4843-88c9-083a5039f060'::uuid, '9bdf0043-f89d-4239-bd66-16ac35440637'::uuid, 'fa943075-c9a3-4621-acb8-01e1be62f84e'::uuid, '5b7c1221-c63c-4e49-87a2-be02179d89f0'::uuid, '52761b25-1af1-4fd0-a442-4eb629ca2052'::uuid, '3d288b21-ea3a-4cf4-a491-3dd31532f4df'::uuid, '4321b0df-274c-44d6-82ea-70aad7c16ab5'::uuid, '7ec36739-4363-4cc9-b960-15f3c6999705'::uuid, 'b79d631b-d7a0-4977-a190-e9868119b5f1'::uuid, '7d5adfe8-2267-4be9-8d4a-3146bd674591'::uuid, '5c45d0d7-67a0-4822-b667-a68416572b71'::uuid, 'c43f6e98-b705-48c6-b6fb-a7dc8d6ab99c'::uuid, 'aac30c7e-6912-4078-aed8-382838922572'::uuid, 'a687be9f-fa7c-4d99-8d1f-5cee9bad2f92'::uuid, 'a8d9858e-5b68-475f-8090-07acb0e55906'::uuid, '59f73167-8767-4af7-917a-edf3f240af09'::uuid, '1f04a6d1-b34f-4fb3-9d2b-853c30f58a60'::uuid, '2db13bfd-df62-47b6-9b28-76d3dcb1c00d'::uuid, 'b90cf0a0-fead-4b8c-89c6-a0ddf69a95b9'::uuid, '321c93f7-c450-475c-9089-d104c10f7e47'::uuid, 'b989899c-7989-42f1-afde-e4beabc74dc3'::uuid, '12eda396-59c0-4662-8d39-d9044bc667ac'::uuid, '83790ad1-9ea8-4222-bed9-87b9f2104587'::uuid, '59564dbf-c2bb-4095-a384-22ba82932b54'::uuid, 'acf2edbe-d92d-498d-a128-00576bbecc71'::uuid, '8a09e838-d6f1-4e36-a64d-84de74abffe4'::uuid, 'a073d963-b26b-44cd-b0f9-e72918dd9063'::uuid, '673d0e32-6748-4f2c-8de6-f76a3f3698d5'::uuid, '3df8a13f-4fb7-45db-a8b7-d174a4895f6a'::uuid]);\ndelete from public.external_mappings where source = 'tcgdex' and external_id = any(array['2023sv-1', '2023sv-2', '2023sv-3', '2023sv-4', '2023sv-5', '2023sv-6', '2023sv-7', '2023sv-8', '2023sv-9', '2023sv-10', '2023sv-11', '2023sv-12', '2023sv-13', '2023sv-14', '2023sv-15', '2024sv-1', '2024sv-2', '2024sv-3', '2024sv-4', '2024sv-5', '2024sv-6', '2024sv-7', '2024sv-8', '2024sv-9', '2024sv-10', '2024sv-11', '2024sv-12', '2024sv-13', '2024sv-14', '2024sv-15', 'mee-001', 'mee-002', 'mee-003', 'mee-004', 'mee-005', 'mee-006', 'mee-007', 'mee-008', 'mfb-1', 'mfb-2', 'mfb-3', 'mfb-4', 'mfb-5', 'mfb-6', 'mfb-7', 'mfb-8', 'mfb-9', 'mfb-10', 'mfb-11', 'mfb-12', 'mfb-13', 'mfb-14', 'mfb-15', 'mfb-16', 'mfb-17', 'mfb-18', 'mfb-19', 'mfb-20', 'mfb-21', 'mfb-22', 'mfb-23', 'mfb-24', 'mfb-25', 'mfb-26', 'mfb-27', 'mfb-28', 'mfb-29', 'mfb-30', 'mfb-31', 'mfb-32', 'mfb-33', 'mfb-34']);\ndelete from public.card_prints where id = any(array['4091ae25-3624-4f56-a455-7bd3d4beb154'::uuid, '451748ac-012e-4d67-9912-d04534a05817'::uuid, '3a769557-0102-4fd2-b79e-8eef05b52e60'::uuid, '98500b36-36d3-470f-9d15-099865980b07'::uuid, 'e22e07fa-71e2-46aa-9951-829e339f8763'::uuid, 'ee8c68fc-626c-42db-b7ef-fc869fe07ae8'::uuid, '1dc8d631-789a-4857-a1fd-d72efea4d614'::uuid, '31b28128-2bba-420a-acee-4962caf0514c'::uuid, 'c9372355-e4ff-46a7-8172-94fe7d8a28be'::uuid, '6e7a29e1-3b5b-4c27-86b3-1e63c99f576a'::uuid, 'fae05233-f9c5-4860-aa86-49a942613ff5'::uuid, '3ed79a65-c672-451a-afd7-e47a68ae2c53'::uuid, '2dd83d5b-2476-4b63-9fbe-c849c2d56aa7'::uuid, '1df85310-35da-4070-a3bd-a01a96d39e1c'::uuid, 'fb3bc199-9149-402e-8342-265eceecf120'::uuid, '43e51937-5821-449d-adf5-7cfc30d135b9'::uuid, '2ff72f10-b4cd-4e26-998c-87b1ca181028'::uuid, 'afa60d30-57c3-44ec-9964-fdf2a2bd7690'::uuid, '7fe87152-ff37-4a8b-8b56-1338ca39751b'::uuid, '9218afd1-f370-4698-902d-2e60140f127c'::uuid, '0a81032c-548d-438c-a091-5b2924557771'::uuid, '24b6d461-b043-4768-ae3a-1cf43442c7d6'::uuid, '2d9108f8-f23d-49f6-8557-19553332e9eb'::uuid, '5d51ef4f-5f17-4b8e-b9fc-2ae31f955022'::uuid, 'd3e549c3-b31d-4368-b7b4-e34b28b41c1d'::uuid, 'd2766899-2087-437d-81a4-8d769e4727a7'::uuid, '2a8e6db0-3a82-4196-8cd8-f0528e68b9ef'::uuid, '3faee98e-12b5-4f6c-a711-073d024155eb'::uuid, '194dc27a-ce21-4a69-93de-d8c48000c128'::uuid, '2c2649a8-a3b7-44cd-87ba-0c5d03667e0f'::uuid, '6a28431f-8e78-45ee-adce-46ccde297389'::uuid, 'fa0fa953-2e87-4dfc-8bd9-ebda84a53a12'::uuid, 'fd2dbb1c-728d-48de-9324-6b4e16947e67'::uuid, '69ceec8e-8bbc-4faa-b70a-bac1556429b1'::uuid, 'f1a590b0-3795-4145-9d68-93dcbb73f3c6'::uuid, 'f2342804-4844-409a-9b95-ddf10b09bee6'::uuid, 'c4df4bea-9e6a-46d7-8fbc-2a3293ef58d6'::uuid, 'fe393cc0-6c1c-4a90-922d-08ef60599c15'::uuid, '49d6a794-5703-4de0-aa70-c6b2438ed1c5'::uuid, '09af1718-5dbb-4490-8a1e-a71c17584a43'::uuid, '15da4897-1148-4a9f-9e18-961cb696f249'::uuid, 'dcf3403e-8108-45e7-b4c8-c8f3fdb8d73d'::uuid, '74061f6a-223a-4dd0-a6a7-f8b0f341fe26'::uuid, 'ef1b1771-5477-4c48-b577-e8ded6e641d0'::uuid, '7981f4c1-055a-4eff-bae1-49fb428e3fdf'::uuid, 'a6ece9a6-4e33-4879-b5c8-f09274cef1a7'::uuid, '1c4ae32e-714c-4aa2-8c35-7826cfe759b3'::uuid, '31c39836-62b4-4d44-a898-6ba37a148004'::uuid, 'f62c0bf4-ab0e-451d-a149-c312dd95c51e'::uuid, 'db309a53-3ed8-4be0-b3f2-b096a64c2f3f'::uuid, 'eb4d8953-9d05-43b4-be64-b529162ce221'::uuid, 'f7865250-5030-4f54-be6b-aed423100717'::uuid, '37047df4-d52c-4a32-8cb3-c77f565128bc'::uuid, 'ece0e2a1-74d8-4b8e-bb65-ffd15cd1bbca'::uuid, 'f57348f5-9b22-4d47-adbd-1dfc08f8ef95'::uuid, 'e9a443af-8d01-4369-8395-b25d6de7ea75'::uuid, '6b496428-8d58-48a8-ba35-a89db7bb4d1a'::uuid, '4457f5d7-c979-493f-8a32-6790a91fb1d5'::uuid, '454211cf-bd3f-495a-973c-ef4ac787b7d5'::uuid, '87796913-485e-4003-ad35-c47ec7490d00'::uuid, 'c76cb0ce-6fde-47f4-a136-c54db8cf59ab'::uuid, '648e1d4b-8564-43eb-9596-71fbf48c017b'::uuid, '49305424-a284-4bd5-a0af-3fd355db549b'::uuid, 'f63065d2-d77c-494d-9831-cf594600f7ae'::uuid, '9e71eb08-b0c5-4e15-a581-f97f31120bf0'::uuid, 'd0c72906-4ded-475b-8319-c9a8cd7dbdd8'::uuid, '0e3a69cb-81e6-4f3f-97e8-da5c4bf063f9'::uuid, 'b894bb8d-1ad3-4824-a8ca-0900941ec7cc'::uuid, 'cd03d17c-b61f-4d31-b52a-27ff45bcd2de'::uuid, 'dece707c-a7c1-49b3-ac3b-51959227b4b5'::uuid, '3184e491-41eb-466c-a456-dcea8ff79403'::uuid, '056c0faf-05d0-455b-a576-bb1089414821'::uuid]);\ndelete from public.sets where id = any(array['02a0e8fa-acc7-4093-b1c8-399468ae82a6'::uuid, '74f082df-35b6-4b08-af89-4e5d6c7d53bc'::uuid, '1f0996bd-cb77-40c2-9a2b-121849099003'::uuid, '6c43360a-bfd9-4df7-b6d5-7b7f2f874c18'::uuid]);",
+    "inserted_set_ids": [
+      "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "1f0996bd-cb77-40c2-9a2b-121849099003",
+      "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18"
+    ],
+    "inserted_parent_ids": [
+      "4091ae25-3624-4f56-a455-7bd3d4beb154",
+      "451748ac-012e-4d67-9912-d04534a05817",
+      "3a769557-0102-4fd2-b79e-8eef05b52e60",
+      "98500b36-36d3-470f-9d15-099865980b07",
+      "e22e07fa-71e2-46aa-9951-829e339f8763",
+      "ee8c68fc-626c-42db-b7ef-fc869fe07ae8",
+      "1dc8d631-789a-4857-a1fd-d72efea4d614",
+      "31b28128-2bba-420a-acee-4962caf0514c",
+      "c9372355-e4ff-46a7-8172-94fe7d8a28be",
+      "6e7a29e1-3b5b-4c27-86b3-1e63c99f576a",
+      "fae05233-f9c5-4860-aa86-49a942613ff5",
+      "3ed79a65-c672-451a-afd7-e47a68ae2c53",
+      "2dd83d5b-2476-4b63-9fbe-c849c2d56aa7",
+      "1df85310-35da-4070-a3bd-a01a96d39e1c",
+      "fb3bc199-9149-402e-8342-265eceecf120",
+      "43e51937-5821-449d-adf5-7cfc30d135b9",
+      "2ff72f10-b4cd-4e26-998c-87b1ca181028",
+      "afa60d30-57c3-44ec-9964-fdf2a2bd7690",
+      "7fe87152-ff37-4a8b-8b56-1338ca39751b",
+      "9218afd1-f370-4698-902d-2e60140f127c",
+      "0a81032c-548d-438c-a091-5b2924557771",
+      "24b6d461-b043-4768-ae3a-1cf43442c7d6",
+      "2d9108f8-f23d-49f6-8557-19553332e9eb",
+      "5d51ef4f-5f17-4b8e-b9fc-2ae31f955022",
+      "d3e549c3-b31d-4368-b7b4-e34b28b41c1d",
+      "d2766899-2087-437d-81a4-8d769e4727a7",
+      "2a8e6db0-3a82-4196-8cd8-f0528e68b9ef",
+      "3faee98e-12b5-4f6c-a711-073d024155eb",
+      "194dc27a-ce21-4a69-93de-d8c48000c128",
+      "2c2649a8-a3b7-44cd-87ba-0c5d03667e0f",
+      "6a28431f-8e78-45ee-adce-46ccde297389",
+      "fa0fa953-2e87-4dfc-8bd9-ebda84a53a12",
+      "fd2dbb1c-728d-48de-9324-6b4e16947e67",
+      "69ceec8e-8bbc-4faa-b70a-bac1556429b1",
+      "f1a590b0-3795-4145-9d68-93dcbb73f3c6",
+      "f2342804-4844-409a-9b95-ddf10b09bee6",
+      "c4df4bea-9e6a-46d7-8fbc-2a3293ef58d6",
+      "fe393cc0-6c1c-4a90-922d-08ef60599c15",
+      "49d6a794-5703-4de0-aa70-c6b2438ed1c5",
+      "09af1718-5dbb-4490-8a1e-a71c17584a43",
+      "15da4897-1148-4a9f-9e18-961cb696f249",
+      "dcf3403e-8108-45e7-b4c8-c8f3fdb8d73d",
+      "74061f6a-223a-4dd0-a6a7-f8b0f341fe26",
+      "ef1b1771-5477-4c48-b577-e8ded6e641d0",
+      "7981f4c1-055a-4eff-bae1-49fb428e3fdf",
+      "a6ece9a6-4e33-4879-b5c8-f09274cef1a7",
+      "1c4ae32e-714c-4aa2-8c35-7826cfe759b3",
+      "31c39836-62b4-4d44-a898-6ba37a148004",
+      "f62c0bf4-ab0e-451d-a149-c312dd95c51e",
+      "db309a53-3ed8-4be0-b3f2-b096a64c2f3f",
+      "eb4d8953-9d05-43b4-be64-b529162ce221",
+      "f7865250-5030-4f54-be6b-aed423100717",
+      "37047df4-d52c-4a32-8cb3-c77f565128bc",
+      "ece0e2a1-74d8-4b8e-bb65-ffd15cd1bbca",
+      "f57348f5-9b22-4d47-adbd-1dfc08f8ef95",
+      "e9a443af-8d01-4369-8395-b25d6de7ea75",
+      "6b496428-8d58-48a8-ba35-a89db7bb4d1a",
+      "4457f5d7-c979-493f-8a32-6790a91fb1d5",
+      "454211cf-bd3f-495a-973c-ef4ac787b7d5",
+      "87796913-485e-4003-ad35-c47ec7490d00",
+      "c76cb0ce-6fde-47f4-a136-c54db8cf59ab",
+      "648e1d4b-8564-43eb-9596-71fbf48c017b",
+      "49305424-a284-4bd5-a0af-3fd355db549b",
+      "f63065d2-d77c-494d-9831-cf594600f7ae",
+      "9e71eb08-b0c5-4e15-a581-f97f31120bf0",
+      "d0c72906-4ded-475b-8319-c9a8cd7dbdd8",
+      "0e3a69cb-81e6-4f3f-97e8-da5c4bf063f9",
+      "b894bb8d-1ad3-4824-a8ca-0900941ec7cc",
+      "cd03d17c-b61f-4d31-b52a-27ff45bcd2de",
+      "dece707c-a7c1-49b3-ac3b-51959227b4b5",
+      "3184e491-41eb-466c-a456-dcea8ff79403",
+      "056c0faf-05d0-455b-a576-bb1089414821"
+    ],
+    "inserted_child_printing_ids": [
+      "3a5ab65e-dda3-45a7-9871-f0532fd349ba",
+      "3c456c11-1915-4800-9e76-fc9deb0aa6d3",
+      "49566d90-2182-48df-8c6b-34e095ab09e1",
+      "c01975b3-f875-4980-80ac-a1260b93a142",
+      "3554a0f4-a4fb-4253-9081-0c90871af633",
+      "de5f9e17-89e1-40e3-9bc2-569097e55b0a",
+      "cbc1f5a9-2708-4417-a41a-a67492f24846",
+      "86fb7236-d4e3-41de-95da-04d9b98fb5cf",
+      "f0e4042d-49d3-49ff-89d5-aca3bad95b31",
+      "28a2bd03-6287-4c5b-848b-737a2be841bf",
+      "f58973ec-ae6d-48b9-b149-f75776d7d540",
+      "f6be1aac-6bcc-4f7c-9bd5-99faaa03043a",
+      "da153acc-e4b0-4668-9e4d-25383c5d3a8e",
+      "7a034cd5-5d86-4616-acee-505e92fe6438",
+      "77d3c498-7661-4656-adf0-3319e99c48d0",
+      "9f030b5c-14bf-4086-9c00-0df453484c77",
+      "b23dcc5c-720a-4684-a5a6-c3634214978c",
+      "d1db979e-f99f-45e9-8f46-3837d42fd535",
+      "53f7df37-2144-480a-9733-91e1ecfa0419",
+      "e2ce355c-f215-4df4-9a9f-a434f1ee7dbc",
+      "18137a8c-6450-49dc-879d-0a925eb9ab18",
+      "5282c217-bce0-4464-bf4d-dc14db786d0c",
+      "643c1f32-7c70-41f4-aa5e-331c03a16af6",
+      "d5d31c60-d683-4fb4-a451-62ff36a8ea70",
+      "1ad22655-6716-42ed-a219-aa7434f71e5a",
+      "a49a4bf7-f24c-472c-9224-3b3c3dababa0",
+      "499b5a96-8132-41ac-94a4-c003cb046c93",
+      "2ebf1e54-7022-49c5-9641-6e299ffdeba4",
+      "eb3133d3-d504-411d-aae4-33873e10c982",
+      "b1f8ccee-5b8b-45cc-86e1-3fdb209dd318",
+      "6720ec03-ca13-4c66-b9b0-f314d4873dc7",
+      "48e37111-db45-4c3e-9331-eb502378cb24",
+      "aa86cecf-30f5-4c16-9473-e864efb458ed",
+      "94d17196-ca27-416f-8ca8-a5a89fd87f1d",
+      "17f713ca-82c4-44cf-9a0f-541d62302cf4",
+      "abc466a7-cd70-4e16-851c-2564d06440e2",
+      "67b59885-c79f-49e6-972b-99d095920dde",
+      "187f6e23-116a-412f-9bf3-8388a2b27ec8",
+      "97850493-7f57-4605-9a23-e0b5fe82ada3",
+      "d017fb91-098b-4a20-8e6c-5fc9f6536744",
+      "4cf36974-055f-418f-ab37-90bf0caea84e",
+      "2097cb2f-68eb-4fa5-9a3d-f148e1522589",
+      "a48c132f-a789-4bd4-a926-9941168721b3",
+      "8cb351fd-af44-4f09-94d1-2dcbc7240a27",
+      "0249c75c-6e4e-4ea7-a1db-de1187f252f8",
+      "8c7a8a21-857c-44fc-a649-f64990d0f7b4",
+      "ef0602d5-aa38-4185-8248-de4d2f277127",
+      "f94eeee8-dcdd-4418-925b-0171f059c4b1",
+      "e1c26e1b-c591-4435-aeb2-dbd7a6278e97",
+      "303ef3f7-fc39-465b-b723-af303cd5af92",
+      "2e85b877-83e8-4eab-8a17-776c30dc3a8f",
+      "5e7f6407-e7f6-4843-88c9-083a5039f060",
+      "9bdf0043-f89d-4239-bd66-16ac35440637",
+      "fa943075-c9a3-4621-acb8-01e1be62f84e",
+      "5b7c1221-c63c-4e49-87a2-be02179d89f0",
+      "52761b25-1af1-4fd0-a442-4eb629ca2052",
+      "3d288b21-ea3a-4cf4-a491-3dd31532f4df",
+      "4321b0df-274c-44d6-82ea-70aad7c16ab5",
+      "7ec36739-4363-4cc9-b960-15f3c6999705",
+      "b79d631b-d7a0-4977-a190-e9868119b5f1",
+      "7d5adfe8-2267-4be9-8d4a-3146bd674591",
+      "5c45d0d7-67a0-4822-b667-a68416572b71",
+      "c43f6e98-b705-48c6-b6fb-a7dc8d6ab99c",
+      "aac30c7e-6912-4078-aed8-382838922572",
+      "a687be9f-fa7c-4d99-8d1f-5cee9bad2f92",
+      "a8d9858e-5b68-475f-8090-07acb0e55906",
+      "59f73167-8767-4af7-917a-edf3f240af09",
+      "1f04a6d1-b34f-4fb3-9d2b-853c30f58a60",
+      "2db13bfd-df62-47b6-9b28-76d3dcb1c00d",
+      "b90cf0a0-fead-4b8c-89c6-a0ddf69a95b9",
+      "321c93f7-c450-475c-9089-d104c10f7e47",
+      "b989899c-7989-42f1-afde-e4beabc74dc3",
+      "12eda396-59c0-4662-8d39-d9044bc667ac",
+      "83790ad1-9ea8-4222-bed9-87b9f2104587",
+      "59564dbf-c2bb-4095-a384-22ba82932b54",
+      "acf2edbe-d92d-498d-a128-00576bbecc71",
+      "8a09e838-d6f1-4e36-a64d-84de74abffe4",
+      "a073d963-b26b-44cd-b0f9-e72918dd9063",
+      "673d0e32-6748-4f2c-8de6-f76a3f3698d5",
+      "3df8a13f-4fb7-45db-a8b7-d174a4895f6a"
+    ],
+    "inserted_external_ids": [
+      "2023sv-1",
+      "2023sv-2",
+      "2023sv-3",
+      "2023sv-4",
+      "2023sv-5",
+      "2023sv-6",
+      "2023sv-7",
+      "2023sv-8",
+      "2023sv-9",
+      "2023sv-10",
+      "2023sv-11",
+      "2023sv-12",
+      "2023sv-13",
+      "2023sv-14",
+      "2023sv-15",
+      "2024sv-1",
+      "2024sv-2",
+      "2024sv-3",
+      "2024sv-4",
+      "2024sv-5",
+      "2024sv-6",
+      "2024sv-7",
+      "2024sv-8",
+      "2024sv-9",
+      "2024sv-10",
+      "2024sv-11",
+      "2024sv-12",
+      "2024sv-13",
+      "2024sv-14",
+      "2024sv-15",
+      "mee-001",
+      "mee-002",
+      "mee-003",
+      "mee-004",
+      "mee-005",
+      "mee-006",
+      "mee-007",
+      "mee-008",
+      "mfb-1",
+      "mfb-2",
+      "mfb-3",
+      "mfb-4",
+      "mfb-5",
+      "mfb-6",
+      "mfb-7",
+      "mfb-8",
+      "mfb-9",
+      "mfb-10",
+      "mfb-11",
+      "mfb-12",
+      "mfb-13",
+      "mfb-14",
+      "mfb-15",
+      "mfb-16",
+      "mfb-17",
+      "mfb-18",
+      "mfb-19",
+      "mfb-20",
+      "mfb-21",
+      "mfb-22",
+      "mfb-23",
+      "mfb-24",
+      "mfb-25",
+      "mfb-26",
+      "mfb-27",
+      "mfb-28",
+      "mfb-29",
+      "mfb-30",
+      "mfb-31",
+      "mfb-32",
+      "mfb-33",
+      "mfb-34"
+    ]
+  },
+  "stop_findings": [],
+  "pass": true
+}

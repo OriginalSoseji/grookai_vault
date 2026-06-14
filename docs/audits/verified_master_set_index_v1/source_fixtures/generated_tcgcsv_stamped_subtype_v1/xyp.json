@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_stamped_subtype_xyp",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://tcgcsv.com/tcgplayer",
+  "source_status": "available_generated",
+  "set_key": "xyp",
+  "set_name": "XY Black Star Promos",
+  "retrieved_at": "2026-06-11T16:47:00.138Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv_stamped_subtype:xyp:2026-06-11T16:47:00.138Z",
+  "generation_note": "Generated from TCGCSV TCGplayer products and price subtypes. Exact card-number/name/stamp identity and one active subtype only.",
+  "records": [
+    {
+      "source_key": "tcgcsv_stamped_subtype",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/96384/pokemon-xy-promos-bronzong-xy21-prerelease-staff",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY21",
+      "card_name": "Bronzong",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer exact stamped subtype: Bronzong - XY21 (Prerelease) [Staff] / Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-11T16:47:00.138Z",
+      "raw_snapshot_ref": "tcgcsv:1451:96384:holofoil",
+      "notes": "Exact active-finish evidence accepted only when TCGCSV product matched set/card/number/stamp identity and exactly one TCGplayer subtype mapped to an active child finish."
+    },
+    {
+      "source_key": "tcgcsv_stamped_subtype",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/96414/pokemon-xy-promos-kingdra-xy39-prerelease-staff",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY39",
+      "card_name": "Kingdra",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer exact stamped subtype: Kingdra - XY39 (Prerelease) [Staff] / Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-11T16:47:00.138Z",
+      "raw_snapshot_ref": "tcgcsv:1451:96414:holofoil",
+      "notes": "Exact active-finish evidence accepted only when TCGCSV product matched set/card/number/stamp identity and exactly one TCGplayer subtype mapped to an active child finish."
+    }
+  ]
+}

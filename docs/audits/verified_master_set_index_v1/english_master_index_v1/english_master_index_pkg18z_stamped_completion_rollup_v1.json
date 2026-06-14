@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-06-13T00:07:14.974Z",
+  "version": "english_master_index_pkg18z_stamped_completion_rollup_v1",
+  "package_id": "PKG-18Z-STAMPED-COMPLETION-ROLLUP",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "execution_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18x_stamped_post_governance_execution_queue_v1.json",
+    "no_write_governance": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18ab_stamped_no_write_governance_closure_v1.json",
+    "base_parent_resolution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18c_stamped_base_parent_resolution_closure_v1.json",
+    "prize_pack_mapping": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18d_prize_pack_finish_mapping_closure_v1.json",
+    "source_acquisition": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18ef_stamped_source_acquisition_closure_v1.json",
+    "conflict_closure": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg18g_stamped_conflict_manual_closure_v1.json"
+  },
+  "fingerprint_sha256": "c62476d8b98a186d9b671e1de9928cc4884179c78d7a2fee725576ffdf366175",
+  "summary": {
+    "original_execution_queue_rows": 579,
+    "closed_or_classified_rows": 579,
+    "write_ready_rows": 0,
+    "no_write_governance_rows": 242,
+    "base_parent_rows_classified": 59,
+    "prize_pack_rows_blocked": 63,
+    "source_acquisition_rows_blocked": 212,
+    "manual_conflict_rows_blocked": 3
+  },
+  "bucket_outcomes": [
+    {
+      "bucket": "01/02 no-write governance",
+      "rows": 242,
+      "outcome": "closed from write-readiness by governance; no DB writes needed"
+    },
+    {
+      "bucket": "03 base-parent resolution",
+      "rows": 59,
+      "outcome": "35 stale-return rows; 24 blocked; 0 insert candidates"
+    },
+    {
+      "bucket": "04 Prize Pack finish mapping",
+      "rows": 63,
+      "outcome": "63 blocked; 0 write-ready rows"
+    },
+    {
+      "bucket": "05/06 variant-family and second-source acquisition",
+      "rows": 212,
+      "outcome": "212 blocked; 0 useful source-delta matches"
+    },
+    {
+      "bucket": "07 manual conflicts",
+      "rows": 3,
+      "outcome": "blocked for manual adjudication; fail closed"
+    }
+  ]
+}

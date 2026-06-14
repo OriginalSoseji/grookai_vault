@@ -1,0 +1,292 @@
+{
+  "generated_at": "2026-06-11T11:23:53.743Z",
+  "version": "english_master_index_pkg14_pl4_identity_adjudication_v1",
+  "package_id": "PKG-14-PL4-IDENTITY-ADJUDICATION",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg12_parent_identity_mismatch_strategy_v1.json",
+  "fingerprint_sha256": "614bc605517a593a5f24939389a9baec1f9d5035a274d23e8d8e38c509f13f67",
+  "summary": {
+    "source_rows": 2,
+    "adjudicated_rows": 2,
+    "by_adjudication_status": {
+      "db_parent_name_and_mapping_transfer_ready": 2
+    },
+    "by_db_action": {
+      "prepare_guarded_zapdos_g_parent_name_update_and_mapping_transfer": 2
+    },
+    "mapping_transfer_candidates": 2,
+    "parent_name_update_candidates": 2,
+    "no_db_write_rows": 0
+  },
+  "rows": [
+    {
+      "row_key": "pl4|12|Zapdos|holo",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "12",
+      "source_card_name": "Zapdos",
+      "finish_key": "holo",
+      "canonical_name": "Zapdos G",
+      "target_parent_card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+      "current_target_parent_name": "Zapdos",
+      "adjudication_status": "db_parent_name_and_mapping_transfer_ready",
+      "db_action": "prepare_guarded_zapdos_g_parent_name_update_and_mapping_transfer",
+      "evidence": [
+        {
+          "source_key": "pokemontcg_api",
+          "source_kind": "structured_api",
+          "source_url": "https://api.pokemontcg.io/v2/cards/pl4-12",
+          "evidence_label": "PokemonTCG.io PL4-12 supports Zapdos G."
+        },
+        {
+          "source_key": "tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/90726/pokemon-arceus-zapdos-g",
+          "evidence_label": "TCGplayer product 90726 is Zapdos G from Arceus."
+        },
+        {
+          "source_key": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-arceus/zapdos-g-12",
+          "evidence_label": "PriceCharting lists Zapdos G #12 for Pokemon Arceus."
+        },
+        {
+          "source_key": "thepricedex_price_list",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.thepricedex.com/set/pl4/arceus/price-list",
+          "evidence_label": "ThePriceDex Arceus price list participates in the existing Master Index evidence."
+        }
+      ],
+      "live_same_number_candidates": [
+        {
+          "card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos G",
+          "rarity": "Rare Holo",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finishes": [
+            "holo",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mappings": [
+            {
+              "source": "justtcg",
+              "external_id": "pokemon-arceus-zapdos-g-holo-rare"
+            },
+            {
+              "source": "tcgdex",
+              "external_id": "pl4-12"
+            },
+            {
+              "source": "tcgplayer",
+              "external_id": "90726"
+            }
+          ],
+          "vault_item_count": 0,
+          "is_prefix_collision": false,
+          "has_target_finish": true
+        },
+        {
+          "card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "rarity": "Rare",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SH",
+          "finishes": [
+            "holo",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mappings": [
+            {
+              "source": "tcgdex",
+              "external_id": "pl4-SH12"
+            }
+          ],
+          "vault_item_count": 0,
+          "is_prefix_collision": true,
+          "has_target_finish": true
+        }
+      ],
+      "mapping_transfer_candidates": [
+        {
+          "source": "tcgplayer",
+          "external_id": "90726",
+          "from_card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "to_card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "reason": "TCGplayer product is Zapdos G #12, not Shinx SH12."
+        },
+        {
+          "source": "justtcg",
+          "external_id": "pokemon-arceus-zapdos-g-holo-rare",
+          "from_card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "to_card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "reason": "JustTCG slug is Zapdos G holo rare, not Shinx SH12."
+        }
+      ],
+      "preserve_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "pl4-SH12",
+          "card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "reason": "Shinx SH12 is a distinct shiny subset identity and must remain on the Shinx parent."
+        }
+      ]
+    },
+    {
+      "row_key": "pl4|12|Zapdos|reverse",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "12",
+      "source_card_name": "Zapdos",
+      "finish_key": "reverse",
+      "canonical_name": "Zapdos G",
+      "target_parent_card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+      "current_target_parent_name": "Zapdos",
+      "adjudication_status": "db_parent_name_and_mapping_transfer_ready",
+      "db_action": "prepare_guarded_zapdos_g_parent_name_update_and_mapping_transfer",
+      "evidence": [
+        {
+          "source_key": "pokemontcg_api",
+          "source_kind": "structured_api",
+          "source_url": "https://api.pokemontcg.io/v2/cards/pl4-12",
+          "evidence_label": "PokemonTCG.io PL4-12 supports Zapdos G."
+        },
+        {
+          "source_key": "tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/90726/pokemon-arceus-zapdos-g",
+          "evidence_label": "TCGplayer product 90726 is Zapdos G from Arceus."
+        },
+        {
+          "source_key": "pricecharting",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-arceus/zapdos-g-12",
+          "evidence_label": "PriceCharting lists Zapdos G #12 for Pokemon Arceus."
+        },
+        {
+          "source_key": "thepricedex_price_list",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.thepricedex.com/set/pl4/arceus/price-list",
+          "evidence_label": "ThePriceDex Arceus price list participates in the existing Master Index evidence."
+        }
+      ],
+      "live_same_number_candidates": [
+        {
+          "card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos G",
+          "rarity": "Rare Holo",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finishes": [
+            "holo",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mappings": [
+            {
+              "source": "justtcg",
+              "external_id": "pokemon-arceus-zapdos-g-holo-rare"
+            },
+            {
+              "source": "tcgdex",
+              "external_id": "pl4-12"
+            },
+            {
+              "source": "tcgplayer",
+              "external_id": "90726"
+            }
+          ],
+          "vault_item_count": 0,
+          "is_prefix_collision": false,
+          "has_target_finish": true
+        },
+        {
+          "card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "rarity": "Rare",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SH",
+          "finishes": [
+            "holo",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mappings": [
+            {
+              "source": "tcgdex",
+              "external_id": "pl4-SH12"
+            }
+          ],
+          "vault_item_count": 0,
+          "is_prefix_collision": true,
+          "has_target_finish": true
+        }
+      ],
+      "mapping_transfer_candidates": [
+        {
+          "source": "tcgplayer",
+          "external_id": "90726",
+          "from_card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "to_card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "reason": "TCGplayer product is Zapdos G #12, not Shinx SH12."
+        },
+        {
+          "source": "justtcg",
+          "external_id": "pokemon-arceus-zapdos-g-holo-rare",
+          "from_card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "to_card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "reason": "JustTCG slug is Zapdos G holo rare, not Shinx SH12."
+        }
+      ],
+      "preserve_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "pl4-SH12",
+          "card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "reason": "Shinx SH12 is a distinct shiny subset identity and must remain on the Shinx parent."
+        }
+      ]
+    }
+  ],
+  "mapping_transfer_candidates": [
+    {
+      "source": "tcgplayer",
+      "external_id": "90726",
+      "from_card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+      "to_card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+      "reason": "TCGplayer product is Zapdos G #12, not Shinx SH12.",
+      "set_key": "pl4",
+      "card_number": "12",
+      "canonical_name": "Zapdos G"
+    },
+    {
+      "source": "justtcg",
+      "external_id": "pokemon-arceus-zapdos-g-holo-rare",
+      "from_card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+      "to_card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+      "reason": "JustTCG slug is Zapdos G holo rare, not Shinx SH12.",
+      "set_key": "pl4",
+      "card_number": "12",
+      "canonical_name": "Zapdos G"
+    }
+  ],
+  "stop_findings": []
+}

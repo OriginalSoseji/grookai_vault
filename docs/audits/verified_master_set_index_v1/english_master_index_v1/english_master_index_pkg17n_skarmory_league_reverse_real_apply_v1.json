@@ -1,0 +1,179 @@
+{
+  "generated_at": "2026-06-12T23:01:19.266Z",
+  "version": "english_master_index_pkg17n_skarmory_league_reverse_real_apply_v1",
+  "package_id": "PKG-17N-SKARMORY-LEAGUE-REVERSE-PARENT-INSERT",
+  "package_fingerprint_sha256": "031c6b4ea104ee30b207bf2790501de68e199e22feaac9633cd4d7b1f5ccf993",
+  "dry_run_proof_sha256": "08cc7999bf902d3db779fb085cf63ae99927c76c5aaf2fc6a587272ee3b71f7d",
+  "approval_text_required": "Approve real PKG-17N-SKARMORY-LEAGUE-REVERSE-PARENT-INSERT apply only. Fingerprint: 031c6b4ea104ee30b207bf2790501de68e199e22feaac9633cd4d7b1f5ccf993. Scope: 1 stamped parent inserts, 1 identity inserts, 1 child printing inserts; finishes reverse=1; stamp labels League Stamp=1; sets pl3=1. Dry-run proof: b5e6959bce8717329bee110d363fa477a4f8f3a39aabec4f02b29836e1d6f526 == b5e6959bce8717329bee110d363fa477a4f8f3a39aabec4f02b29836e1d6f526. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+  "apply_status": "pkg17n_real_apply_committed",
+  "committed": true,
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17n_skarmory_league_reverse_guarded_dry_run_v1.json",
+  "db_writes_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "write_counts": {
+    "parent_inserts": 1,
+    "identity_inserts": 1,
+    "child_inserts": 1,
+    "deletes": 0,
+    "merges": 0
+  },
+  "guard": {
+    "target_count": 1,
+    "target_parent_count": 1,
+    "target_child_count": 1,
+    "missing_base_count": 0,
+    "inactive_finish_count": 0,
+    "missing_base_finish_count": 0,
+    "parent_collision_count": 0,
+    "child_collision_count": 0,
+    "identity_target_collision_count": 0,
+    "ready_identity_projection_count": 1,
+    "identity_hash_collision_count": 0
+  },
+  "proof": {
+    "package_id": "PKG-17N-SKARMORY-LEAGUE-REVERSE-PARENT-INSERT",
+    "package_fingerprint": "031c6b4ea104ee30b207bf2790501de68e199e22feaac9633cd4d7b1f5ccf993",
+    "target_rows": 1,
+    "inserted_parent_rows": 1,
+    "inserted_parent_modifier_rows": 1,
+    "inserted_identity_rows": 1,
+    "inserted_child_rows": 1,
+    "forbidden_stamped_child_rows": 0
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-12T23:01:18.262Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "e155c180-ac03-461e-ab3e-a7024f268713",
+        "set_code": "pl3",
+        "number": "83",
+        "number_plain": "83",
+        "name": "Skarmory FB",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "b5e6959bce8717329bee110d363fa477a4f8f3a39aabec4f02b29836e1d6f526",
+    "counts": {
+      "base_parent": 1
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-12T23:01:19.183Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "e155c180-ac03-461e-ab3e-a7024f268713",
+        "set_code": "pl3",
+        "number": "83",
+        "number_plain": "83",
+        "name": "Skarmory FB",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "f046a0e2-8153-4842-9433-11a221cc2102",
+        "set_code": "pl3",
+        "number": "83",
+        "number_plain": "83",
+        "name": "Skarmory FB",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": "league_stamp",
+        "finish_key": "reverse",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "8f6073e4-f505-4d66-a466-76dd8e7f26b9",
+        "set_code": "pl3",
+        "number": "83",
+        "number_plain": "83",
+        "name": "Skarmory FB",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": "league_stamp",
+        "finish_key": null,
+        "identity_key_hash": "fd18a7f7d8dc1283a3024299d8f15e99c14424f4b79585a426f40b3b514b7bc7"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ce541d42-01ae-49ec-b37f-fded2d7cfea9",
+        "set_code": "pl3",
+        "number": "83",
+        "number_plain": "83",
+        "name": "Skarmory FB",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": "league_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "3feec298f67e0d817f26e6c22b26c75a3e567997760e9f3d78d8b852de6b9f7d",
+    "counts": {
+      "base_parent": 1,
+      "target_child": 1,
+      "target_identity": 1,
+      "target_parent": 1
+    }
+  },
+  "scope": {
+    "target_count": 1,
+    "by_set": {
+      "pl3": 1
+    },
+    "by_finish": {
+      "reverse": 1
+    },
+    "by_stamp_label": {
+      "League Stamp": 1
+    },
+    "targets": [
+      {
+        "target_parent_id": "ce541d42-01ae-49ec-b37f-fded2d7cfea9",
+        "target_child_id": "f046a0e2-8153-4842-9433-11a221cc2102",
+        "base_parent_id": "e155c180-ac03-461e-ab3e-a7024f268713",
+        "set_key": "pl3",
+        "set_name": "Supreme Victors",
+        "card_number": "83",
+        "card_name": "Skarmory FB",
+        "target_finish_key": "reverse",
+        "target_variant_key": "league_stamp",
+        "target_printed_identity_modifier": "league_stamp",
+        "stamp_label": "League Stamp",
+        "source_url": "https://pokecardvalues.co.uk/cards/skarmory-fb-83-147-reverse-holo-league-promo-supreme-victors/pl3-83-3-41/",
+        "evidence_label": "3 exact sources support Skarmory FB League Stamp reverse",
+        "evidence": {
+          "readiness_package_id": "PKG-17M-SKARMORY-LEAGUE-REVERSE-READINESS",
+          "readiness_fingerprint_sha256": "bd3d987e03f7f21e64122d037a3a31abc0074f349817a80034b0e62face314c4",
+          "source_keys": [
+            "beckett_skarmory_league_crosshatch_holo",
+            "pokecardvalues_skarmory_league_reverse",
+            "pricecharting_web_skarmory_league_reverse"
+          ],
+          "source_urls": [
+            "https://pokecardvalues.co.uk/cards/skarmory-fb-83-147-reverse-holo-league-promo-supreme-victors/pl3-83-3-41/",
+            "https://www.beckett.com/pokemon/2010/pokemon-tcg-promos/83-skarmory-fb-crosshatch-holo-upokmon-league-thorton-season-march-2010-participation-prize-32991916",
+            "https://www.pricecharting.com/game/pokemon-supreme-victors/skarmory-fb-reverse-holo-league-promo-83"
+          ],
+          "evidence_label": "3 exact sources support Skarmory FB League Stamp reverse",
+          "raw_snapshot_ref": "pkg17m:pl3:83:league_stamp:reverse",
+          "stamp_label": "League Stamp",
+          "variant_key": "league_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      }
+    ]
+  },
+  "stop_findings": []
+}

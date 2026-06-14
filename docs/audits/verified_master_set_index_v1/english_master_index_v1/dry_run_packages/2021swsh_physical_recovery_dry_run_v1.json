@@ -1,0 +1,4557 @@
+{
+  "generated_at": "2026-06-09T12:51:25.210Z",
+  "version": "2021swsh_physical_recovery_dry_run_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "target_set_key": "2021swsh",
+  "target_set_name": "McDonald's Collection 2021",
+  "dry_run_package_status": "ready_for_review_no_write",
+  "write_ready_now": 0,
+  "write_allowed_from_this_package": false,
+  "summary": {
+    "candidate_card_prints": 25,
+    "candidate_printing_rows": 50,
+    "by_supported_finish": {
+      "holo": 25,
+      "normal": 25
+    },
+    "blocked_rows": 0,
+    "db_snapshot_available": true,
+    "db_card_prints_found": 25,
+    "db_card_printings_found": 50,
+    "external_mappings_referencing_targets": 25,
+    "identity_rows_referencing_targets": 25,
+    "trait_rows_referencing_targets": 25,
+    "vault_items_referencing_targets": 0
+  },
+  "safety": {
+    "rule": "This artifact is a dry-run package only. It is not an apply package and does not authorize DB writes.",
+    "stop_rules": [
+      "Stop if any target row is missing from the before-state snapshot.",
+      "Stop if child-printing count differs from package expectation.",
+      "Stop if unsupported finishes appear in the target rows.",
+      "Stop if identity, ownership, vault, or provenance impact cannot be explained.",
+      "Stop if rollback artifact is incomplete."
+    ]
+  },
+  "db_snapshot": {
+    "available": true,
+    "reason": null,
+    "target_set": [
+      {
+        "id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+        "code": "2021swsh",
+        "game": "pokemon",
+        "name": "Macdonald's Collection 2021",
+        "source": {
+          "tcgdex": {
+            "id": "2021swsh",
+            "raw": {
+              "id": "2021swsh",
+              "name": "Macdonald's Collection 2021",
+              "symbol": "https://assets.tcgdex.net/univ/mc/2021swsh/symbol",
+              "cardCount": {
+                "total": 25,
+                "official": 25
+              }
+            },
+            "name": "Macdonald's Collection 2021",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "tcgdex_set": {
+            "id": "2021swsh",
+            "name": "Macdonald's Collection 2021",
+            "cardCount": {
+              "total": 25,
+              "official": 25
+            }
+          }
+        },
+        "logo_url": null,
+        "set_role": "promotion_umbrella",
+        "created_at": "2025-11-19T22:08:17.30208+00:00",
+        "symbol_url": null,
+        "updated_at": "2026-03-26T22:05:48.774+00:00",
+        "release_date": null,
+        "printed_total": 25,
+        "hero_image_url": null,
+        "identity_model": "standard",
+        "last_synced_at": "2026-02-25T04:03:21.401451+00:00",
+        "hero_image_source": null,
+        "printed_set_abbrev": "MCD",
+        "identity_domain_default": "pokemon_eng_standard"
+      }
+    ],
+    "rows": [
+      {
+        "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+        "card_print": {
+          "id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+          "name": "Bulbasaur",
+          "gv_id": "GV-PK-MCD-1",
+          "artist": null,
+          "number": "1",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/1/high.webp",
+          "created_at": "2026-03-27T03:01:31.139189+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:31.139189+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-1"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "1",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:1:bulbasaur",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "beb79a29-4561-415b-a5e0-433a9b9f1d4b",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:31.41336+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-1-HOLO",
+            "provenance_ref": "2021swsh-1",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "52c965a2-34cc-47f9-9ee1-d3be13bd22d5",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:31.322034+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-1-STD",
+            "provenance_ref": "2021swsh-1",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "9421cd5e-2640-44c5-8044-47aaa7a7954a",
+        "card_print": {
+          "id": "9421cd5e-2640-44c5-8044-47aaa7a7954a",
+          "name": "Charmander",
+          "gv_id": "GV-PK-MCD-9",
+          "artist": null,
+          "number": "9",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/9/high.webp",
+          "created_at": "2026-03-27T03:01:39.097565+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:39.097565+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "The flame on its tail indicates Charmander’s life force. If it is healthy, the flame burns brightly."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-9"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "9",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:9:charmander",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "21fb158f-5a6e-45e6-9370-67d79082828c",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:39.374843+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9421cd5e-2640-44c5-8044-47aaa7a7954a",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-9-HOLO",
+            "provenance_ref": "2021swsh-9",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "900b7fbf-33f5-4e48-9078-ca25284c91b6",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:39.281499+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9421cd5e-2640-44c5-8044-47aaa7a7954a",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-9-STD",
+            "provenance_ref": "2021swsh-9",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "e95d8646-b98f-4c8c-a01d-2e499c02aa82",
+        "card_print": {
+          "id": "e95d8646-b98f-4c8c-a01d-2e499c02aa82",
+          "name": "Chespin",
+          "gv_id": "GV-PK-MCD-6",
+          "artist": null,
+          "number": "6",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/6/high.webp",
+          "created_at": "2026-03-27T03:01:36.277508+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:36.277508+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "The quills on its head are usually soft. When it flexes them, the points become so hard and sharp that they can pierce rock."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-6"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "6",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:6:chespin",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "68f2fca6-4784-46a4-b78d-cc740f953739",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:36.599404+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "e95d8646-b98f-4c8c-a01d-2e499c02aa82",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-6-HOLO",
+            "provenance_ref": "2021swsh-6",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "7d241921-77ad-4478-8ae1-92229a7fc20b",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:36.474898+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "e95d8646-b98f-4c8c-a01d-2e499c02aa82",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-6-STD",
+            "provenance_ref": "2021swsh-6",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "987099f7-59e9-4c0a-9bbb-a0b8fa24a086",
+        "card_print": {
+          "id": "987099f7-59e9-4c0a-9bbb-a0b8fa24a086",
+          "name": "Chikorita",
+          "gv_id": "GV-PK-MCD-2",
+          "artist": null,
+          "number": "2",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/2/high.webp",
+          "created_at": "2026-03-27T03:01:32.096657+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:32.096657+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "It uses the leaf on its head to determine the temperature and humidity. It loves to sunbathe."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-2"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "2",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:2:chikorita",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "a319243b-b3b1-4cc1-a5ee-3f0cb35af2db",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:32.407929+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "987099f7-59e9-4c0a-9bbb-a0b8fa24a086",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-2-HOLO",
+            "provenance_ref": "2021swsh-2",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "ed7525ae-2aa0-4141-9f82-2342855bf6cf",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:32.299451+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "987099f7-59e9-4c0a-9bbb-a0b8fa24a086",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-2-STD",
+            "provenance_ref": "2021swsh-2",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "cefedf7b-f1c0-42f7-af7d-e6e9279358f3",
+        "card_print": {
+          "id": "cefedf7b-f1c0-42f7-af7d-e6e9279358f3",
+          "name": "Chimchar",
+          "gv_id": "GV-PK-MCD-12",
+          "artist": null,
+          "number": "12",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/12/high.webp",
+          "created_at": "2026-03-27T03:01:42.200927+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:42.200927+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "The gas made in its belly burns from its rear end. The fire burns weakly when it feels sick."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-12"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "12",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:12:chimchar",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "0b96a44b-1e01-4eac-8969-3813bc7f5665",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:42.457224+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "cefedf7b-f1c0-42f7-af7d-e6e9279358f3",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-12-HOLO",
+            "provenance_ref": "2021swsh-12",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "051fcff8-94d4-4c04-8c80-c6caadba28c6",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:42.373221+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "cefedf7b-f1c0-42f7-af7d-e6e9279358f3",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-12-STD",
+            "provenance_ref": "2021swsh-12",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "ac9e8297-6e39-419f-8fa0-f58e90c80c01",
+        "card_print": {
+          "id": "ac9e8297-6e39-419f-8fa0-f58e90c80c01",
+          "name": "Cyndaquil",
+          "gv_id": "GV-PK-MCD-10",
+          "artist": null,
+          "number": "10",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/10/high.webp",
+          "created_at": "2026-03-27T03:01:40.099572+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:40.099572+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "It has a timid nature. If it is startled, the flames on its back burn more vigorously."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-10"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "10",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:10:cyndaquil",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "dac3c11e-6ec4-4db0-9f21-cf0ff8c38868",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:40.452943+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "ac9e8297-6e39-419f-8fa0-f58e90c80c01",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-10-HOLO",
+            "provenance_ref": "2021swsh-10",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "4fd92688-34ad-4c0e-9dbf-eb9d62f44972",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:40.335085+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "ac9e8297-6e39-419f-8fa0-f58e90c80c01",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-10-STD",
+            "provenance_ref": "2021swsh-10",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "0980ca25-d2fb-43a3-a74f-789e6a0f8f51",
+        "card_print": {
+          "id": "0980ca25-d2fb-43a3-a74f-789e6a0f8f51",
+          "name": "Fennekin",
+          "gv_id": "GV-PK-MCD-14",
+          "artist": null,
+          "number": "14",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/14/high.webp",
+          "created_at": "2026-03-27T03:01:43.994513+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:43.994513+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "Eating a twig fills it with energy, and its roomy ears give vent to air hotter than 390 degrees Fahrenheit."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-14"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "14",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:14:fennekin",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "8569699c-9019-4699-a3fa-e3aad0b25c2f",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:44.284612+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0980ca25-d2fb-43a3-a74f-789e6a0f8f51",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-14-HOLO",
+            "provenance_ref": "2021swsh-14",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "e296a9ad-0476-41ef-a611-fbad7e43cf1c",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:44.193138+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0980ca25-d2fb-43a3-a74f-789e6a0f8f51",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-14-STD",
+            "provenance_ref": "2021swsh-14",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2",
+        "card_print": {
+          "id": "3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2",
+          "name": "Froakie",
+          "gv_id": "GV-PK-MCD-22",
+          "artist": null,
+          "number": "22",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/22/high.webp",
+          "created_at": "2026-03-27T03:01:51.84456+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:51.84456+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "It secretes flexible bubbles from its chest and back. The bubbles reduce the damage it would otherwise take when attacked."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-22"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "22",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:22:froakie",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "e662e497-00fb-4f20-a73b-777dc82b40a0",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:52.107656+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-22-HOLO",
+            "provenance_ref": "2021swsh-22",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "7ca3f3ea-4009-4777-bb92-6395b8f6d802",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:52.019952+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-22-STD",
+            "provenance_ref": "2021swsh-22",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "6613c2ff-8bad-465b-b186-78c6ac7b9c26",
+        "card_print": {
+          "id": "6613c2ff-8bad-465b-b186-78c6ac7b9c26",
+          "name": "Grookey",
+          "gv_id": "GV-PK-MCD-8",
+          "artist": null,
+          "number": "8",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/8/high.webp",
+          "created_at": "2026-03-27T03:01:38.1625+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:38.1625+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "When it uses its special stick to strike up a beat, the sound waves produced carry revitalizing energy to the plants and flowers in the area."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-8"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "8",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:8:grookey",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "a2adf336-66b9-4fd6-a256-4d477807f3d1",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:38.442725+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "6613c2ff-8bad-465b-b186-78c6ac7b9c26",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-8-HOLO",
+            "provenance_ref": "2021swsh-8",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "df38e89a-50e5-4765-8e26-8b5aeffe4fd4",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:38.353146+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "6613c2ff-8bad-465b-b186-78c6ac7b9c26",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-8-STD",
+            "provenance_ref": "2021swsh-8",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "229d3337-9150-428f-9259-36ee0a0636e2",
+        "card_print": {
+          "id": "229d3337-9150-428f-9259-36ee0a0636e2",
+          "name": "Litten",
+          "gv_id": "GV-PK-MCD-15",
+          "artist": null,
+          "number": "15",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/15/high.webp",
+          "created_at": "2026-03-27T03:01:44.998384+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:44.998384+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "While grooming itself, it builds up fur inside its stomach. It sets the fur alight and spews fiery attacks, which change based on how it coughs."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-15"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "15",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:15:litten",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "6d918c95-779e-4783-8f92-590c165b3833",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:45.366514+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "229d3337-9150-428f-9259-36ee0a0636e2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-15-HOLO",
+            "provenance_ref": "2021swsh-15",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "40ca4d45-ac2d-4987-a242-56cb1b3f94e2",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:45.266019+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "229d3337-9150-428f-9259-36ee0a0636e2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-15-STD",
+            "provenance_ref": "2021swsh-15",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "29d1fb6e-f0be-4ce1-a0b2-458845d33cad",
+        "card_print": {
+          "id": "29d1fb6e-f0be-4ce1-a0b2-458845d33cad",
+          "name": "Mudkip",
+          "gv_id": "GV-PK-MCD-19",
+          "artist": null,
+          "number": "19",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/19/high.webp",
+          "created_at": "2026-03-27T03:01:48.84063+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:48.84063+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "To alert it, the fin on its head senses the flow of water. It has the strength to heft boulders."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-19"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "19",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:19:mudkip",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "9512dffe-e757-4ff4-b853-06e29e804e03",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:49.096134+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "29d1fb6e-f0be-4ce1-a0b2-458845d33cad",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-19-HOLO",
+            "provenance_ref": "2021swsh-19",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "07045182-69da-4b68-b4a5-b3f9ba8b544f",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:49.010957+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "29d1fb6e-f0be-4ce1-a0b2-458845d33cad",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-19-STD",
+            "provenance_ref": "2021swsh-19",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "c9dbc8fc-b83a-4edb-acbe-d50c05e8a4f1",
+        "card_print": {
+          "id": "c9dbc8fc-b83a-4edb-acbe-d50c05e8a4f1",
+          "name": "Oshawott",
+          "gv_id": "GV-PK-MCD-21",
+          "artist": null,
+          "number": "21",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/21/high.webp",
+          "created_at": "2026-03-27T03:01:50.982749+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:50.982749+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "It fights using the scalchop on its stomach. In response to an attack, it retaliates immediately by slashing."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-21"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "21",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:21:oshawott",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "ae169e38-5dcd-4f15-abe5-b87c763f8642",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:51.233259+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "c9dbc8fc-b83a-4edb-acbe-d50c05e8a4f1",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-21-HOLO",
+            "provenance_ref": "2021swsh-21",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "83f1a602-07a7-494f-9e73-e8bdaa02fa7d",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:51.150121+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "c9dbc8fc-b83a-4edb-acbe-d50c05e8a4f1",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-21-STD",
+            "provenance_ref": "2021swsh-21",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "be9b1912-c62b-46d9-9081-acaefe8cf0c2",
+        "card_print": {
+          "id": "be9b1912-c62b-46d9-9081-acaefe8cf0c2",
+          "name": "Pikachu",
+          "gv_id": "GV-PK-MCD-25",
+          "artist": null,
+          "number": "25",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/25/high.webp",
+          "created_at": "2026-03-27T03:01:54.627809+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:54.627809+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "Its nature is to store up electricity. Forests where nests of Pikachu live are dangerous, since the trees are so often struck by lightning."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-25"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "25",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:25:pikachu",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "7a7fe4a9-2e69-404b-8eee-0d25f1b879f8",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:54.947333+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "be9b1912-c62b-46d9-9081-acaefe8cf0c2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-25-HOLO",
+            "provenance_ref": "2021swsh-25",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "7dcb9c68-0292-4bf8-858a-a25002acd3ca",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:54.820475+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "be9b1912-c62b-46d9-9081-acaefe8cf0c2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-25-STD",
+            "provenance_ref": "2021swsh-25",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "f36b29e8-8e24-4e0b-810a-5945738a1df7",
+        "card_print": {
+          "id": "f36b29e8-8e24-4e0b-810a-5945738a1df7",
+          "name": "Piplup",
+          "gv_id": "GV-PK-MCD-20",
+          "artist": null,
+          "number": "20",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/20/high.webp",
+          "created_at": "2026-03-27T03:01:49.702946+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:49.702946+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "Because it is very proud, it hates accepting food from people. Its thick down guards it from cold."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-20"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "20",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:20:piplup",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "2f4192e2-3cd4-4caf-baa4-3e86fd566d8f",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:50.054855+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "f36b29e8-8e24-4e0b-810a-5945738a1df7",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-20-HOLO",
+            "provenance_ref": "2021swsh-20",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "22f3ff85-3b71-453a-8052-f29e8b1bbc10",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:49.932262+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "f36b29e8-8e24-4e0b-810a-5945738a1df7",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-20-STD",
+            "provenance_ref": "2021swsh-20",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "dd92a89a-084a-424a-b073-d1564e113919",
+        "card_print": {
+          "id": "dd92a89a-084a-424a-b073-d1564e113919",
+          "name": "Popplio",
+          "gv_id": "GV-PK-MCD-23",
+          "artist": null,
+          "number": "23",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/23/high.webp",
+          "created_at": "2026-03-27T03:01:52.742208+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:52.742208+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "This Pokémon snorts body fluids from its nose, blowing balloons to smash into its foes. It’s famous for being a hard worker."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-23"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "23",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:23:popplio",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "b58da499-110c-4318-8f33-c73ab2637030",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:53.006147+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "dd92a89a-084a-424a-b073-d1564e113919",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-23-HOLO",
+            "provenance_ref": "2021swsh-23",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "c9b13804-3b59-4f00-80e5-ed91045eb010",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:52.91504+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "dd92a89a-084a-424a-b073-d1564e113919",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-23-STD",
+            "provenance_ref": "2021swsh-23",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "cb3e5ff6-ace4-44ca-99e0-91098dff5bba",
+        "card_print": {
+          "id": "cb3e5ff6-ace4-44ca-99e0-91098dff5bba",
+          "name": "Rowlet",
+          "gv_id": "GV-PK-MCD-7",
+          "artist": null,
+          "number": "7",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/7/high.webp",
+          "created_at": "2026-03-27T03:01:37.252361+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:37.252361+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "This wary Pokémon uses photosynthesis to store up energy during the day, while becoming active at night."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-7"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "7",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:7:rowlet",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "c74ae9f3-36b9-410e-88a8-62b7c4bcf6a7",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:37.529423+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "cb3e5ff6-ace4-44ca-99e0-91098dff5bba",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-7-HOLO",
+            "provenance_ref": "2021swsh-7",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "021d5544-cfea-4f4b-94db-64a15970f5ec",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:37.440233+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "cb3e5ff6-ace4-44ca-99e0-91098dff5bba",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-7-STD",
+            "provenance_ref": "2021swsh-7",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "d74fe432-2990-49c2-b908-9c0fcec9eefa",
+        "card_print": {
+          "id": "d74fe432-2990-49c2-b908-9c0fcec9eefa",
+          "name": "Scorbunny",
+          "gv_id": "GV-PK-MCD-16",
+          "artist": null,
+          "number": "16",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/16/high.webp",
+          "created_at": "2026-03-27T03:01:46.151861+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:46.151861+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "A warm-up of running around gets fire energy coursing through this Pokémon’s body. Once that happens, it’s ready to fight at full power."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-16"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "16",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:16:scorbunny",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "97d5e45f-2af5-4bcb-9f11-1da0adc1c578",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:46.409003+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d74fe432-2990-49c2-b908-9c0fcec9eefa",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-16-HOLO",
+            "provenance_ref": "2021swsh-16",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "545566ea-939c-49f6-a2d1-0b7c88f5c959",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:46.321568+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d74fe432-2990-49c2-b908-9c0fcec9eefa",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-16-STD",
+            "provenance_ref": "2021swsh-16",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "99449877-8fd5-4651-bd39-2321b2bffff5",
+        "card_print": {
+          "id": "99449877-8fd5-4651-bd39-2321b2bffff5",
+          "name": "Snivy",
+          "gv_id": "GV-PK-MCD-5",
+          "artist": null,
+          "number": "5",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/5/high.webp",
+          "created_at": "2026-03-27T03:01:34.947753+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:34.947753+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "It is very intelligent and calm. Being exposed to lots of sunlight makes its movements swifter."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-5"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "5",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:5:snivy",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "46355fac-391d-426b-9d89-74f78a410dea",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:35.426879+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "99449877-8fd5-4651-bd39-2321b2bffff5",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-5-HOLO",
+            "provenance_ref": "2021swsh-5",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "0e35ac30-2155-445a-aad2-6be98591fe6a",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:35.290219+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "99449877-8fd5-4651-bd39-2321b2bffff5",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-5-STD",
+            "provenance_ref": "2021swsh-5",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "63ce9abe-eb16-4e0b-8a24-caa5cf820a82",
+        "card_print": {
+          "id": "63ce9abe-eb16-4e0b-8a24-caa5cf820a82",
+          "name": "Sobble",
+          "gv_id": "GV-PK-MCD-24",
+          "artist": null,
+          "number": "24",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/24/high.webp",
+          "created_at": "2026-03-27T03:01:53.669208+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:53.669208+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "When scared, this Pokémon cries. Its tears pack the chemical punch of 100 onions, and attackers won’t be able to resist weeping."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-24"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "24",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:24:sobble",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "7adb01db-9938-4d43-b89e-d762447a0d9c",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:53.96902+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "63ce9abe-eb16-4e0b-8a24-caa5cf820a82",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-24-HOLO",
+            "provenance_ref": "2021swsh-24",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "4de9f855-6bf8-41d6-ab25-58875be337f4",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:53.885159+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "63ce9abe-eb16-4e0b-8a24-caa5cf820a82",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-24-STD",
+            "provenance_ref": "2021swsh-24",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "0bc143c0-b558-447e-864c-c71c02e3c2b2",
+        "card_print": {
+          "id": "0bc143c0-b558-447e-864c-c71c02e3c2b2",
+          "name": "Squirtle",
+          "gv_id": "GV-PK-MCD-17",
+          "artist": null,
+          "number": "17",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/17/high.webp",
+          "created_at": "2026-03-27T03:01:47.043767+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:47.043767+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "It shelters itself in its shell, then strikes back with spouts of water at every opportunity."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-17"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "17",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:17:squirtle",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "b371f9ef-e35c-452f-b12a-2d28c6a60ab1",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:47.300603+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0bc143c0-b558-447e-864c-c71c02e3c2b2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-17-HOLO",
+            "provenance_ref": "2021swsh-17",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "dc665289-237e-4dcd-b049-18dd9ec4914c",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:47.215266+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0bc143c0-b558-447e-864c-c71c02e3c2b2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-17-STD",
+            "provenance_ref": "2021swsh-17",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "43d5432d-7152-40de-9660-dd2893847b8a",
+        "card_print": {
+          "id": "43d5432d-7152-40de-9660-dd2893847b8a",
+          "name": "Tepig",
+          "gv_id": "GV-PK-MCD-13",
+          "artist": null,
+          "number": "13",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/13/high.webp",
+          "created_at": "2026-03-27T03:01:43.080842+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:43.080842+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "It blows fire through its nose. When it catches a cold, the fire becomes pitch-black smoke instead."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-13"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "13",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:13:tepig",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "b024b45b-73bf-41c0-946c-3a83b8473a48",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:43.358087+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "43d5432d-7152-40de-9660-dd2893847b8a",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-13-HOLO",
+            "provenance_ref": "2021swsh-13",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "dad4f6b6-5a06-436f-97db-78fc1ef9ebeb",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:43.259619+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "43d5432d-7152-40de-9660-dd2893847b8a",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-13-STD",
+            "provenance_ref": "2021swsh-13",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "c13e4ceb-5988-4215-8462-fc378bbe5e46",
+        "card_print": {
+          "id": "c13e4ceb-5988-4215-8462-fc378bbe5e46",
+          "name": "Torchic",
+          "gv_id": "GV-PK-MCD-11",
+          "artist": null,
+          "number": "11",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/11/high.webp",
+          "created_at": "2026-03-27T03:01:41.316807+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:41.316807+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "A fire burns inside, so it feels very warm to hug. It launches fireballs of 1,800 degrees Fahrenheit."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-11"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "11",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:11:torchic",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "4dc9088a-ce28-40c2-8cf4-a9871fd3da64",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:41.576264+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "c13e4ceb-5988-4215-8462-fc378bbe5e46",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-11-HOLO",
+            "provenance_ref": "2021swsh-11",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "88391011-477c-4fc6-b023-f919a452a5de",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:41.490463+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "c13e4ceb-5988-4215-8462-fc378bbe5e46",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-11-STD",
+            "provenance_ref": "2021swsh-11",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "12a7e22b-6d1a-4833-a2fd-c2f020ef0007",
+        "card_print": {
+          "id": "12a7e22b-6d1a-4833-a2fd-c2f020ef0007",
+          "name": "Totodile",
+          "gv_id": "GV-PK-MCD-18",
+          "artist": null,
+          "number": "18",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/18/high.webp",
+          "created_at": "2026-03-27T03:01:47.980122+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:47.980122+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "It is small but rough and tough. It won’t hesitate to take a bite out of anything that moves."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-18"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "18",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:18:totodile",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "c1d07f6b-370d-471a-9169-361c08d05210",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:48.239712+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "12a7e22b-6d1a-4833-a2fd-c2f020ef0007",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-18-HOLO",
+            "provenance_ref": "2021swsh-18",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "1af4eed0-5bd7-41ca-ba54-d6f5570356bf",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:48.153935+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "12a7e22b-6d1a-4833-a2fd-c2f020ef0007",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-18-STD",
+            "provenance_ref": "2021swsh-18",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "ac2987ab-7972-4e0a-bd34-eecdc494b8b9",
+        "card_print": {
+          "id": "ac2987ab-7972-4e0a-bd34-eecdc494b8b9",
+          "name": "Treecko",
+          "gv_id": "GV-PK-MCD-3",
+          "artist": null,
+          "number": "3",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/3/high.webp",
+          "created_at": "2026-03-27T03:01:33.048373+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:33.048373+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "Small hooks on the bottom of its feet catch on walls and ceilings. That is how it can hang from above."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-3"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "3",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:3:treecko",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "1ee0eeac-06ff-4096-a33b-1f45064df23a",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:33.31775+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "ac2987ab-7972-4e0a-bd34-eecdc494b8b9",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-3-HOLO",
+            "provenance_ref": "2021swsh-3",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "60e6ba1d-f431-4ca2-8681-9793ca9e0edc",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:33.228739+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "ac2987ab-7972-4e0a-bd34-eecdc494b8b9",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-3-STD",
+            "provenance_ref": "2021swsh-3",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "53ab14f5-7e43-4098-8eb6-77beb4450c99",
+        "card_print": {
+          "id": "53ab14f5-7e43-4098-8eb6-77beb4450c99",
+          "name": "Turtwig",
+          "gv_id": "GV-PK-MCD-4",
+          "artist": null,
+          "number": "4",
+          "rarity": "None",
+          "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/mc/2021swsh/4/high.webp",
+          "created_at": "2026-03-27T03:01:33.964814+00:00",
+          "image_hash": null,
+          "image_note": "card_image_backfill_v1: deterministic TCGdex asset URL from source mapping",
+          "image_path": null,
+          "updated_at": "2026-03-27T03:01:33.964814+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "It undertakes photosynthesis with its body, making oxygen. The leaf on its head wilts if it is thirsty."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "2021swsh-4"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "4",
+          "tcgplayer_id": null,
+          "image_alt_url": null,
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": "2021swsh:4:turtwig",
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "28c050a2-948e-4c4f-ae12-08051ebebc91",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:34.233998+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "53ab14f5-7e43-4098-8eb6-77beb4450c99",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-4-HOLO",
+            "provenance_ref": "2021swsh-4",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "b58f3dd4-aa2e-4f56-9241-3520ba8cab3f",
+            "image_url": null,
+            "created_at": "2026-03-27T03:01:34.144413+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "53ab14f5-7e43-4098-8eb6-77beb4450c99",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": "GV-PK-MCD-4-STD",
+            "provenance_ref": "2021swsh-4",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "impact_counts": {
+      "card_prints_found": 25,
+      "card_printings_found": 50,
+      "external_mappings_found": 25,
+      "identity_rows_found": 25,
+      "trait_rows_found": 25,
+      "vault_items_found": 0
+    }
+  },
+  "package_rows": [
+    {
+      "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+      "current_grookai_name": "Bulbasaur",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "1",
+      "target_card_name": "Bulbasaur",
+      "source_external_id": "2021swsh-1",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-1",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "1",
+        "number_plain": "1",
+        "name": "Bulbasaur"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-1",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-1",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-1",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-1",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-1",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-1",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "987099f7-59e9-4c0a-9bbb-a0b8fa24a086",
+      "current_grookai_name": "Chikorita",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "2",
+      "target_card_name": "Chikorita",
+      "source_external_id": "2021swsh-2",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-2",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "2",
+        "number_plain": "2",
+        "name": "Chikorita"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-2",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-2",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-2",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-2",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-2",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-2",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "ac2987ab-7972-4e0a-bd34-eecdc494b8b9",
+      "current_grookai_name": "Treecko",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "3",
+      "target_card_name": "Treecko",
+      "source_external_id": "2021swsh-3",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-3",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "3",
+        "number_plain": "3",
+        "name": "Treecko"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-3",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-3",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-3",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-3",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-3",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-3",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "53ab14f5-7e43-4098-8eb6-77beb4450c99",
+      "current_grookai_name": "Turtwig",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "4",
+      "target_card_name": "Turtwig",
+      "source_external_id": "2021swsh-4",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-4",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Turtwig"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-4",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-4",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-4",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-4",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-4",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-4",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "99449877-8fd5-4651-bd39-2321b2bffff5",
+      "current_grookai_name": "Snivy",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "5",
+      "target_card_name": "Snivy",
+      "source_external_id": "2021swsh-5",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-5",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "5",
+        "number_plain": "5",
+        "name": "Snivy"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-5",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-5",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-5",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-5",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-5",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-5",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "e95d8646-b98f-4c8c-a01d-2e499c02aa82",
+      "current_grookai_name": "Chespin",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "6",
+      "target_card_name": "Chespin",
+      "source_external_id": "2021swsh-6",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-6",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "6",
+        "number_plain": "6",
+        "name": "Chespin"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-6",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-6",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-6",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-6",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-6",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-6",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "cb3e5ff6-ace4-44ca-99e0-91098dff5bba",
+      "current_grookai_name": "Rowlet",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "7",
+      "target_card_name": "Rowlet",
+      "source_external_id": "2021swsh-7",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-7",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "7",
+        "number_plain": "7",
+        "name": "Rowlet"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-7",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-7",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-7",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-7",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-7",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-7",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "6613c2ff-8bad-465b-b186-78c6ac7b9c26",
+      "current_grookai_name": "Grookey",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "8",
+      "target_card_name": "Grookey",
+      "source_external_id": "2021swsh-8",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-8",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Grookey"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-8",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-8",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-8",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-8",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-8",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-8",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "9421cd5e-2640-44c5-8044-47aaa7a7954a",
+      "current_grookai_name": "Charmander",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "9",
+      "target_card_name": "Charmander",
+      "source_external_id": "2021swsh-9",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-9",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "9",
+        "number_plain": "9",
+        "name": "Charmander"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-9",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-9",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-9",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-9",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-9",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-9",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "ac9e8297-6e39-419f-8fa0-f58e90c80c01",
+      "current_grookai_name": "Cyndaquil",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "10",
+      "target_card_name": "Cyndaquil",
+      "source_external_id": "2021swsh-10",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-10",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "10",
+        "number_plain": "10",
+        "name": "Cyndaquil"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-10",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-10",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-10",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-10",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-10",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-10",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "c13e4ceb-5988-4215-8462-fc378bbe5e46",
+      "current_grookai_name": "Torchic",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "11",
+      "target_card_name": "Torchic",
+      "source_external_id": "2021swsh-11",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-11",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "11",
+        "number_plain": "11",
+        "name": "Torchic"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-11",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-11",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-11",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-11",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-11",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-11",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "cefedf7b-f1c0-42f7-af7d-e6e9279358f3",
+      "current_grookai_name": "Chimchar",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "12",
+      "target_card_name": "Chimchar",
+      "source_external_id": "2021swsh-12",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-12",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "12",
+        "number_plain": "12",
+        "name": "Chimchar"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-12",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-12",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-12",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-12",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-12",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-12",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "43d5432d-7152-40de-9660-dd2893847b8a",
+      "current_grookai_name": "Tepig",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "13",
+      "target_card_name": "Tepig",
+      "source_external_id": "2021swsh-13",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-13",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "13",
+        "number_plain": "13",
+        "name": "Tepig"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-13",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-13",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-13",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-13",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-13",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-13",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "0980ca25-d2fb-43a3-a74f-789e6a0f8f51",
+      "current_grookai_name": "Fennekin",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "14",
+      "target_card_name": "Fennekin",
+      "source_external_id": "2021swsh-14",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-14",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "14",
+        "number_plain": "14",
+        "name": "Fennekin"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-14",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-14",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-14",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-14",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-14",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-14",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "229d3337-9150-428f-9259-36ee0a0636e2",
+      "current_grookai_name": "Litten",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "15",
+      "target_card_name": "Litten",
+      "source_external_id": "2021swsh-15",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-15",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "15",
+        "number_plain": "15",
+        "name": "Litten"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-15",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-15",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-15",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-15",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-15",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-15",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "d74fe432-2990-49c2-b908-9c0fcec9eefa",
+      "current_grookai_name": "Scorbunny",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "16",
+      "target_card_name": "Scorbunny",
+      "source_external_id": "2021swsh-16",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-16",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "16",
+        "number_plain": "16",
+        "name": "Scorbunny"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-16",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-16",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-16",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-16",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-16",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-16",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "0bc143c0-b558-447e-864c-c71c02e3c2b2",
+      "current_grookai_name": "Squirtle",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "17",
+      "target_card_name": "Squirtle",
+      "source_external_id": "2021swsh-17",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-17",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "17",
+        "number_plain": "17",
+        "name": "Squirtle"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-17",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-17",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-17",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-17",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-17",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-17",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "12a7e22b-6d1a-4833-a2fd-c2f020ef0007",
+      "current_grookai_name": "Totodile",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "18",
+      "target_card_name": "Totodile",
+      "source_external_id": "2021swsh-18",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-18",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "18",
+        "number_plain": "18",
+        "name": "Totodile"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-18",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-18",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-18",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-18",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-18",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-18",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "29d1fb6e-f0be-4ce1-a0b2-458845d33cad",
+      "current_grookai_name": "Mudkip",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "19",
+      "target_card_name": "Mudkip",
+      "source_external_id": "2021swsh-19",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-19",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "19",
+        "number_plain": "19",
+        "name": "Mudkip"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-19",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-19",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-19",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-19",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-19",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-19",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "f36b29e8-8e24-4e0b-810a-5945738a1df7",
+      "current_grookai_name": "Piplup",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "20",
+      "target_card_name": "Piplup",
+      "source_external_id": "2021swsh-20",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-20",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "20",
+        "number_plain": "20",
+        "name": "Piplup"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-20",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-20",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-20",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-20",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-20",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-20",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "c9dbc8fc-b83a-4edb-acbe-d50c05e8a4f1",
+      "current_grookai_name": "Oshawott",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "21",
+      "target_card_name": "Oshawott",
+      "source_external_id": "2021swsh-21",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-21",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "21",
+        "number_plain": "21",
+        "name": "Oshawott"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-21",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-21",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-21",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-21",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-21",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-21",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2",
+      "current_grookai_name": "Froakie",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "22",
+      "target_card_name": "Froakie",
+      "source_external_id": "2021swsh-22",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-22",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "22",
+        "number_plain": "22",
+        "name": "Froakie"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-22",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-22",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-22",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-22",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-22",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-22",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "dd92a89a-084a-424a-b073-d1564e113919",
+      "current_grookai_name": "Popplio",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "23",
+      "target_card_name": "Popplio",
+      "source_external_id": "2021swsh-23",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-23",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "23",
+        "number_plain": "23",
+        "name": "Popplio"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-23",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-23",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-23",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-23",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-23",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-23",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "63ce9abe-eb16-4e0b-8a24-caa5cf820a82",
+      "current_grookai_name": "Sobble",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "24",
+      "target_card_name": "Sobble",
+      "source_external_id": "2021swsh-24",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-24",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "24",
+        "number_plain": "24",
+        "name": "Sobble"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-24",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-24",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-24",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-24",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-24",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-24",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "be9b1912-c62b-46d9-9081-acaefe8cf0c2",
+      "current_grookai_name": "Pikachu",
+      "target_set_key": "2021swsh",
+      "target_set_name": "McDonald's Collection 2021",
+      "target_card_number": "25",
+      "target_card_name": "Pikachu",
+      "source_external_id": "2021swsh-25",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-25",
+      "target_parent_fields": {
+        "set_code": "2021swsh",
+        "number": "25",
+        "number_plain": "25",
+        "name": "Pikachu"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-25",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-25",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-25",
+            "https://reverseholo.app/sets/2021swsh",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/mcd21-25",
+            "https://api.tcgdex.net/v2/en/cards/2021swsh-25",
+            "https://prices.pokemontcg.io/tcgplayer/mcd21-25",
+            "https://www.thepricedex.com/set/mcd21/mcdonalds-collection-2021/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    }
+  ],
+  "planned_sql_preview": "-- DRY-RUN PREVIEW ONLY. Do not execute until a separate approved apply package exists.\n-- Parent recovery shape under review:\nwith approved(card_print_id, set_code, number, number_plain, name) as (\n  values\n    ('d34033e2-a8e8-4e72-b1e9-2033445e8f00'::uuid, '2021swsh', '1', '1', 'Bulbasaur'),\n    ('987099f7-59e9-4c0a-9bbb-a0b8fa24a086'::uuid, '2021swsh', '2', '2', 'Chikorita'),\n    ('ac2987ab-7972-4e0a-bd34-eecdc494b8b9'::uuid, '2021swsh', '3', '3', 'Treecko'),\n    ('53ab14f5-7e43-4098-8eb6-77beb4450c99'::uuid, '2021swsh', '4', '4', 'Turtwig'),\n    ('99449877-8fd5-4651-bd39-2321b2bffff5'::uuid, '2021swsh', '5', '5', 'Snivy'),\n    ('e95d8646-b98f-4c8c-a01d-2e499c02aa82'::uuid, '2021swsh', '6', '6', 'Chespin'),\n    ('cb3e5ff6-ace4-44ca-99e0-91098dff5bba'::uuid, '2021swsh', '7', '7', 'Rowlet'),\n    ('6613c2ff-8bad-465b-b186-78c6ac7b9c26'::uuid, '2021swsh', '8', '8', 'Grookey'),\n    ('9421cd5e-2640-44c5-8044-47aaa7a7954a'::uuid, '2021swsh', '9', '9', 'Charmander'),\n    ('ac9e8297-6e39-419f-8fa0-f58e90c80c01'::uuid, '2021swsh', '10', '10', 'Cyndaquil'),\n    ('c13e4ceb-5988-4215-8462-fc378bbe5e46'::uuid, '2021swsh', '11', '11', 'Torchic'),\n    ('cefedf7b-f1c0-42f7-af7d-e6e9279358f3'::uuid, '2021swsh', '12', '12', 'Chimchar'),\n    ('43d5432d-7152-40de-9660-dd2893847b8a'::uuid, '2021swsh', '13', '13', 'Tepig'),\n    ('0980ca25-d2fb-43a3-a74f-789e6a0f8f51'::uuid, '2021swsh', '14', '14', 'Fennekin'),\n    ('229d3337-9150-428f-9259-36ee0a0636e2'::uuid, '2021swsh', '15', '15', 'Litten'),\n    ('d74fe432-2990-49c2-b908-9c0fcec9eefa'::uuid, '2021swsh', '16', '16', 'Scorbunny'),\n    ('0bc143c0-b558-447e-864c-c71c02e3c2b2'::uuid, '2021swsh', '17', '17', 'Squirtle'),\n    ('12a7e22b-6d1a-4833-a2fd-c2f020ef0007'::uuid, '2021swsh', '18', '18', 'Totodile'),\n    ('29d1fb6e-f0be-4ce1-a0b2-458845d33cad'::uuid, '2021swsh', '19', '19', 'Mudkip'),\n    ('f36b29e8-8e24-4e0b-810a-5945738a1df7'::uuid, '2021swsh', '20', '20', 'Piplup'),\n    ('c9dbc8fc-b83a-4edb-acbe-d50c05e8a4f1'::uuid, '2021swsh', '21', '21', 'Oshawott'),\n    ('3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2'::uuid, '2021swsh', '22', '22', 'Froakie'),\n    ('dd92a89a-084a-424a-b073-d1564e113919'::uuid, '2021swsh', '23', '23', 'Popplio'),\n    ('63ce9abe-eb16-4e0b-8a24-caa5cf820a82'::uuid, '2021swsh', '24', '24', 'Sobble'),\n    ('be9b1912-c62b-46d9-9081-acaefe8cf0c2'::uuid, '2021swsh', '25', '25', 'Pikachu')\n)\nselect cp.id, cp.set_code as before_set_code, approved.set_code as after_set_code,\n       cp.number as before_number, approved.number as after_number,\n       cp.name as before_name, approved.name as after_name\nfrom public.card_prints cp\njoin approved on approved.card_print_id = cp.id;",
+  "rollback_requirements": [
+    "Capture full before-state snapshot for every target card_print row before any apply.",
+    "Capture child card_printings for every target card_print row before any apply.",
+    "Rollback must restore only approved target row IDs and must not touch blocked remainder rows.",
+    "Rollback must preserve vault ownership and provenance references.",
+    "Rollback must be reviewed before any write path is executed."
+  ],
+  "post_apply_verification_queries": [
+    {
+      "name": "target_parent_rows_resolved_to_set",
+      "sql": "select count(*)::int as matching_rows\nfrom public.card_prints\nwhere id = any(array['d34033e2-a8e8-4e72-b1e9-2033445e8f00'::uuid, '987099f7-59e9-4c0a-9bbb-a0b8fa24a086'::uuid, 'ac2987ab-7972-4e0a-bd34-eecdc494b8b9'::uuid, '53ab14f5-7e43-4098-8eb6-77beb4450c99'::uuid, '99449877-8fd5-4651-bd39-2321b2bffff5'::uuid, 'e95d8646-b98f-4c8c-a01d-2e499c02aa82'::uuid, 'cb3e5ff6-ace4-44ca-99e0-91098dff5bba'::uuid, '6613c2ff-8bad-465b-b186-78c6ac7b9c26'::uuid, '9421cd5e-2640-44c5-8044-47aaa7a7954a'::uuid, 'ac9e8297-6e39-419f-8fa0-f58e90c80c01'::uuid, 'c13e4ceb-5988-4215-8462-fc378bbe5e46'::uuid, 'cefedf7b-f1c0-42f7-af7d-e6e9279358f3'::uuid, '43d5432d-7152-40de-9660-dd2893847b8a'::uuid, '0980ca25-d2fb-43a3-a74f-789e6a0f8f51'::uuid, '229d3337-9150-428f-9259-36ee0a0636e2'::uuid, 'd74fe432-2990-49c2-b908-9c0fcec9eefa'::uuid, '0bc143c0-b558-447e-864c-c71c02e3c2b2'::uuid, '12a7e22b-6d1a-4833-a2fd-c2f020ef0007'::uuid, '29d1fb6e-f0be-4ce1-a0b2-458845d33cad'::uuid, 'f36b29e8-8e24-4e0b-810a-5945738a1df7'::uuid, 'c9dbc8fc-b83a-4edb-acbe-d50c05e8a4f1'::uuid, '3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2'::uuid, 'dd92a89a-084a-424a-b073-d1564e113919'::uuid, '63ce9abe-eb16-4e0b-8a24-caa5cf820a82'::uuid, 'be9b1912-c62b-46d9-9081-acaefe8cf0c2'::uuid])\n  and lower(coalesce(set_code, '')) = '2021swsh';",
+      "expected": 25
+    },
+    {
+      "name": "target_child_printing_count_unchanged",
+      "sql": "select count(*)::int as child_printings\nfrom public.card_printings\nwhere card_print_id = any(array['d34033e2-a8e8-4e72-b1e9-2033445e8f00'::uuid, '987099f7-59e9-4c0a-9bbb-a0b8fa24a086'::uuid, 'ac2987ab-7972-4e0a-bd34-eecdc494b8b9'::uuid, '53ab14f5-7e43-4098-8eb6-77beb4450c99'::uuid, '99449877-8fd5-4651-bd39-2321b2bffff5'::uuid, 'e95d8646-b98f-4c8c-a01d-2e499c02aa82'::uuid, 'cb3e5ff6-ace4-44ca-99e0-91098dff5bba'::uuid, '6613c2ff-8bad-465b-b186-78c6ac7b9c26'::uuid, '9421cd5e-2640-44c5-8044-47aaa7a7954a'::uuid, 'ac9e8297-6e39-419f-8fa0-f58e90c80c01'::uuid, 'c13e4ceb-5988-4215-8462-fc378bbe5e46'::uuid, 'cefedf7b-f1c0-42f7-af7d-e6e9279358f3'::uuid, '43d5432d-7152-40de-9660-dd2893847b8a'::uuid, '0980ca25-d2fb-43a3-a74f-789e6a0f8f51'::uuid, '229d3337-9150-428f-9259-36ee0a0636e2'::uuid, 'd74fe432-2990-49c2-b908-9c0fcec9eefa'::uuid, '0bc143c0-b558-447e-864c-c71c02e3c2b2'::uuid, '12a7e22b-6d1a-4833-a2fd-c2f020ef0007'::uuid, '29d1fb6e-f0be-4ce1-a0b2-458845d33cad'::uuid, 'f36b29e8-8e24-4e0b-810a-5945738a1df7'::uuid, 'c9dbc8fc-b83a-4edb-acbe-d50c05e8a4f1'::uuid, '3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2'::uuid, 'dd92a89a-084a-424a-b073-d1564e113919'::uuid, '63ce9abe-eb16-4e0b-8a24-caa5cf820a82'::uuid, 'be9b1912-c62b-46d9-9081-acaefe8cf0c2'::uuid]);",
+      "expected": 50
+    },
+    {
+      "name": "unsupported_finish_rows_absent_from_package",
+      "sql": "select cp.id, cpr.finish_key\nfrom public.card_prints cp\njoin public.card_printings cpr on cpr.card_print_id = cp.id\nwhere cp.id = any(array['d34033e2-a8e8-4e72-b1e9-2033445e8f00'::uuid, '987099f7-59e9-4c0a-9bbb-a0b8fa24a086'::uuid, 'ac2987ab-7972-4e0a-bd34-eecdc494b8b9'::uuid, '53ab14f5-7e43-4098-8eb6-77beb4450c99'::uuid, '99449877-8fd5-4651-bd39-2321b2bffff5'::uuid, 'e95d8646-b98f-4c8c-a01d-2e499c02aa82'::uuid, 'cb3e5ff6-ace4-44ca-99e0-91098dff5bba'::uuid, '6613c2ff-8bad-465b-b186-78c6ac7b9c26'::uuid, '9421cd5e-2640-44c5-8044-47aaa7a7954a'::uuid, 'ac9e8297-6e39-419f-8fa0-f58e90c80c01'::uuid, 'c13e4ceb-5988-4215-8462-fc378bbe5e46'::uuid, 'cefedf7b-f1c0-42f7-af7d-e6e9279358f3'::uuid, '43d5432d-7152-40de-9660-dd2893847b8a'::uuid, '0980ca25-d2fb-43a3-a74f-789e6a0f8f51'::uuid, '229d3337-9150-428f-9259-36ee0a0636e2'::uuid, 'd74fe432-2990-49c2-b908-9c0fcec9eefa'::uuid, '0bc143c0-b558-447e-864c-c71c02e3c2b2'::uuid, '12a7e22b-6d1a-4833-a2fd-c2f020ef0007'::uuid, '29d1fb6e-f0be-4ce1-a0b2-458845d33cad'::uuid, 'f36b29e8-8e24-4e0b-810a-5945738a1df7'::uuid, 'c9dbc8fc-b83a-4edb-acbe-d50c05e8a4f1'::uuid, '3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2'::uuid, 'dd92a89a-084a-424a-b073-d1564e113919'::uuid, '63ce9abe-eb16-4e0b-8a24-caa5cf820a82'::uuid, 'be9b1912-c62b-46d9-9081-acaefe8cf0c2'::uuid])\n  and cpr.finish_key not in ('normal', 'reverse');",
+      "expected": "0 rows"
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "generated_at": "2026-06-10T20:27:10.140Z",
+  "version": "english_master_index_pkg10a_cracked_ice_finish_taxonomy_real_apply_v1",
+  "package_id": "PKG-10A-CRACKED-ICE-FINISH-TAXONOMY-ACTIVATION",
+  "apply_status": "pkg10a_cracked_ice_finish_taxonomy_committed",
+  "apply_error": null,
+  "approval_text_matched": true,
+  "package_fingerprint_sha256": "883bd24d352b7029e8e9fed6241ca058f1ec1ed12cb82ec37e247a188d4bf1e5",
+  "source_readiness_fingerprint_sha256": "382e2fab7154d290b90f4f0bda40941b4b353e8844459c4d03a7225b158d026b",
+  "rollback_sql_hash_sha256": "246fa3965d7dc87fbd3f8104d4d5b3bdaf004062c7fbe7c3c6183ee6feb1fbc8",
+  "real_sql_hash_sha256": "a5187f5e2e42156f677b16330d7d7ac80ad768781478461b64f9aff8d2c24fed",
+  "target_finish_key": {
+    "key": "cracked_ice",
+    "label": "Cracked Ice Holo",
+    "sort_order": 36,
+    "is_active": true
+  },
+  "candidate_printings_unlocked_later": 131,
+  "affected_sets": 53,
+  "before_snapshot": {
+    "captured_at": "2026-06-10T20:27:09.908Z",
+    "rows": [
+      {
+        "key": "normal",
+        "label": "Normal",
+        "sort_order": 10,
+        "is_active": true,
+        "meta": {}
+      },
+      {
+        "key": "reverse",
+        "label": "Reverse Holo",
+        "sort_order": 20,
+        "is_active": true,
+        "meta": {}
+      },
+      {
+        "key": "holo",
+        "label": "Holo",
+        "sort_order": 30,
+        "is_active": true,
+        "meta": {}
+      },
+      {
+        "key": "cosmos",
+        "label": "Cosmos Holo",
+        "sort_order": 35,
+        "is_active": true,
+        "meta": {
+          "notes": "Special holo finish used by source-backed Ascended Heroes promo/product variants.",
+          "source_contract": "VERIFIED_MASTER_SET_INDEX_V1"
+        }
+      },
+      {
+        "key": "pokeball",
+        "label": "Poké Ball",
+        "sort_order": 40,
+        "is_active": true,
+        "meta": {}
+      },
+      {
+        "key": "rocket_reverse",
+        "label": "Rocket Reverse",
+        "sort_order": 45,
+        "is_active": true,
+        "meta": {
+          "notes": "Team Rocket R reverse lane used by source-backed Ascended Heroes Team Rocket Pokemon.",
+          "source_contract": "VERIFIED_MASTER_SET_INDEX_V1"
+        }
+      },
+      {
+        "key": "masterball",
+        "label": "Master Ball",
+        "sort_order": 50,
+        "is_active": true,
+        "meta": {}
+      }
+    ],
+    "hash_sha256": "27dba3a506f6bc71246fe55bcc83fa4a7e83b5a92bf8b5d9ec6d541beda8dc61",
+    "cracked_ice_row": null,
+    "counts": {
+      "total_finish_keys": 7,
+      "active_finish_keys": 7,
+      "cracked_ice_rows": 0,
+      "cracked_ice_active_rows": 0
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-10T20:27:10.062Z",
+    "rows": [
+      {
+        "key": "normal",
+        "label": "Normal",
+        "sort_order": 10,
+        "is_active": true,
+        "meta": {}
+      },
+      {
+        "key": "reverse",
+        "label": "Reverse Holo",
+        "sort_order": 20,
+        "is_active": true,
+        "meta": {}
+      },
+      {
+        "key": "holo",
+        "label": "Holo",
+        "sort_order": 30,
+        "is_active": true,
+        "meta": {}
+      },
+      {
+        "key": "cosmos",
+        "label": "Cosmos Holo",
+        "sort_order": 35,
+        "is_active": true,
+        "meta": {
+          "notes": "Special holo finish used by source-backed Ascended Heroes promo/product variants.",
+          "source_contract": "VERIFIED_MASTER_SET_INDEX_V1"
+        }
+      },
+      {
+        "key": "cracked_ice",
+        "label": "Cracked Ice Holo",
+        "sort_order": 36,
+        "is_active": true,
+        "meta": {
+          "notes": "Source-backed cracked ice holo finish used by verified English Master Index printings. Taxonomy activation only; no child printings are inserted by this package.",
+          "source_package": "PKG-10A-CRACKED-ICE-FINISH-TAXONOMY-ACTIVATION",
+          "source_contract": "VERIFIED_MASTER_SET_INDEX_V1",
+          "source_readiness_fingerprint": "382e2fab7154d290b90f4f0bda40941b4b353e8844459c4d03a7225b158d026b"
+        }
+      },
+      {
+        "key": "pokeball",
+        "label": "Poké Ball",
+        "sort_order": 40,
+        "is_active": true,
+        "meta": {}
+      },
+      {
+        "key": "rocket_reverse",
+        "label": "Rocket Reverse",
+        "sort_order": 45,
+        "is_active": true,
+        "meta": {
+          "notes": "Team Rocket R reverse lane used by source-backed Ascended Heroes Team Rocket Pokemon.",
+          "source_contract": "VERIFIED_MASTER_SET_INDEX_V1"
+        }
+      },
+      {
+        "key": "masterball",
+        "label": "Master Ball",
+        "sort_order": 50,
+        "is_active": true,
+        "meta": {}
+      }
+    ],
+    "hash_sha256": "9c5b4fabba7b0ad3abfb7aa80af596bb8fc6a68a583a7c6bd7688b851235b6b3",
+    "cracked_ice_row": {
+      "key": "cracked_ice",
+      "label": "Cracked Ice Holo",
+      "sort_order": 36,
+      "is_active": true,
+      "meta": {
+        "notes": "Source-backed cracked ice holo finish used by verified English Master Index printings. Taxonomy activation only; no child printings are inserted by this package.",
+        "source_package": "PKG-10A-CRACKED-ICE-FINISH-TAXONOMY-ACTIVATION",
+        "source_contract": "VERIFIED_MASTER_SET_INDEX_V1",
+        "source_readiness_fingerprint": "382e2fab7154d290b90f4f0bda40941b4b353e8844459c4d03a7225b158d026b"
+      }
+    },
+    "counts": {
+      "total_finish_keys": 8,
+      "active_finish_keys": 8,
+      "cracked_ice_rows": 1,
+      "cracked_ice_active_rows": 1
+    }
+  },
+  "commit_proof_rows": [
+    {
+      "package_id": "PKG-10A-CRACKED-ICE-FINISH-TAXONOMY-ACTIVATION",
+      "source_readiness_fingerprint": "382e2fab7154d290b90f4f0bda40941b4b353e8844459c4d03a7225b158d026b",
+      "package_fingerprint": "883bd24d352b7029e8e9fed6241ca058f1ec1ed12cb82ec37e247a188d4bf1e5",
+      "finish_key": "cracked_ice",
+      "finish_label": "Cracked Ice Holo",
+      "finish_sort_order": 36,
+      "activated_finish_rows": 1,
+      "cracked_ice_candidate_rows": 131
+    }
+  ],
+  "db_writes_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "child_printing_inserts": false,
+  "parent_writes": false,
+  "deletes_or_merges": false,
+  "unsupported_cleanup_performed": false,
+  "global_apply_performed": false,
+  "stop_findings": [],
+  "pass": true
+}

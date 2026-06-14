@@ -1,0 +1,1195 @@
+{
+  "generated_at": "2026-06-11T03:45:46.098Z",
+  "version": "english_master_index_pkg08t_non_tcgdex_parent_child_insert_real_apply_v1",
+  "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+  "source_readiness_fingerprint_sha256": "cba7fe096f8d122decdec0cc5656e6fb00e2337caaeb259ce768d62753070f6b",
+  "package_fingerprint_sha256": "6f173353f1e455e1eef8d67f3d577183b939a4dcea4a5c719bcb61623933a341",
+  "db_write_committed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_artifacts": {
+    "guarded_dry_run": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg08t_non_tcgdex_parent_child_insert_guarded_dry_run_v1.json"
+  },
+  "dry_run_proof": {
+    "before_hash": "2116311d42d31a693a757f4f24ae32f8eb55138eac8de6de77542fb785cb6e3a",
+    "after_hash": "2116311d42d31a693a757f4f24ae32f8eb55138eac8de6de77542fb785cb6e3a",
+    "rollback_verified": true
+  },
+  "scope": {
+    "target_parent_rows": 34,
+    "target_child_rows": 34,
+    "target_external_mappings": 34,
+    "by_set": {
+      "bw11": 20,
+      "bwp": 2,
+      "mep": 6,
+      "svp": 6
+    },
+    "by_finish": {
+      "holo": 28,
+      "normal": 6
+    },
+    "by_mapping_source": {
+      "pokemonapi": 23,
+      "tcgplayer": 11
+    }
+  },
+  "execution": {
+    "apply_status": "pkg08t_non_tcgdex_parent_child_insert_real_apply_committed",
+    "committed": true,
+    "before_snapshot": {
+      "captured_at": "2026-06-11T03:45:43.506Z",
+      "rows": [
+        {
+          "row_type": "target_set",
+          "row_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+          "set_code": "bw11",
+          "card_number": null,
+          "card_name": "Legendary Treasures",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "target_set",
+          "row_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+          "set_code": "bwp",
+          "card_number": null,
+          "card_name": "BW Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "target_set",
+          "row_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "set_code": "mep",
+          "card_number": null,
+          "card_name": "MEP Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "target_set",
+          "row_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+          "set_code": "svp",
+          "card_number": null,
+          "card_name": "Scarlet & Violet Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        }
+      ],
+      "hash_sha256": "2116311d42d31a693a757f4f24ae32f8eb55138eac8de6de77542fb785cb6e3a",
+      "counts": {
+        "target_set_rows": 4,
+        "existing_parent_exact_rows": 0,
+        "existing_child_exact_rows": 0,
+        "external_mapping_collision_rows": 0,
+        "total_rows": 4
+      }
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-11T03:45:46.097Z",
+      "rows": [
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "63e84c58-8f49-4dcc-8df8-311f5113fb0c",
+          "set_code": "bw11",
+          "card_number": "1",
+          "card_name": "Snivy",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "282b0d27-8fd4-42bc-a1eb-cdae43f2c8e8",
+          "set_code": "bw11",
+          "card_number": "10",
+          "card_name": "Gardevoir",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "0ed01524-3770-4bd3-a834-a7902116db99",
+          "set_code": "bw11",
+          "card_number": "12",
+          "card_name": "Stunfisk",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "1248d1cf-495b-4498-8e71-9c0b1fc41d72",
+          "set_code": "bw11",
+          "card_number": "13",
+          "card_name": "Purrloin",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "705d5768-cea2-424d-be30-41384f1585a6",
+          "set_code": "bw11",
+          "card_number": "14",
+          "card_name": "Eevee",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "cb1a62a9-3229-47da-97a3-750c7cb34660",
+          "set_code": "bw11",
+          "card_number": "15",
+          "card_name": "Teddiursa",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "3837b283-74c2-4ff4-b417-c52339740ac7",
+          "set_code": "bw11",
+          "card_number": "16",
+          "card_name": "Ursaring",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "a4e8e5a7-3593-4b33-a2be-ec03a7cf15b5",
+          "set_code": "bw11",
+          "card_number": "18",
+          "card_name": "Minccino",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "be5d634e-9511-491a-b76e-b8147968263f",
+          "set_code": "bw11",
+          "card_number": "19",
+          "card_name": "Cinccino",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "98fb05cf-2986-4c9a-90b7-9d9a65977501",
+          "set_code": "bw11",
+          "card_number": "20",
+          "card_name": "Elesa",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "8abc8667-4f9d-4384-a907-da28a7884831",
+          "set_code": "bw11",
+          "card_number": "21",
+          "card_name": "Shaymin-EX",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "4caa8e4d-f0d3-4e6b-811b-25dd5da66f27",
+          "set_code": "bw11",
+          "card_number": "22",
+          "card_name": "Reshiram",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "303900b5-d856-4c69-bb89-b05a3730d593",
+          "set_code": "bw11",
+          "card_number": "23",
+          "card_name": "Emolga",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "07394da3-8f8a-4ef9-8b52-093ad2aff6e0",
+          "set_code": "bw11",
+          "card_number": "24",
+          "card_name": "Mew-EX",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "c33face1-5115-4a9c-907c-2525fa1d5795",
+          "set_code": "bw11",
+          "card_number": "3",
+          "card_name": "Serperior",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "1890b382-af69-47c7-82c5-b15ac8681639",
+          "set_code": "bw11",
+          "card_number": "4",
+          "card_name": "Growlithe",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "7787f9bd-e74d-491c-bb0b-564294f67005",
+          "set_code": "bw11",
+          "card_number": "5",
+          "card_name": "Torchic",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "4f758511-61d4-41c3-8feb-a5cdfbb3cbb0",
+          "set_code": "bw11",
+          "card_number": "6",
+          "card_name": "Piplup",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "0af79381-c8e6-44bb-997e-f0cd194d3c93",
+          "set_code": "bw11",
+          "card_number": "7",
+          "card_name": "Pikachu",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "4e85426b-5b1d-4c47-883a-867eccb0371b",
+          "set_code": "bw11",
+          "card_number": "9",
+          "card_name": "Kirlia",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "6a024cc4-6446-42be-a92e-d9952692bc96",
+          "set_code": "bwp",
+          "card_number": "004",
+          "card_name": "Reshiram",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "77941160-6342-466b-9bd9-f20cecfd4e85",
+          "set_code": "bwp",
+          "card_number": "005",
+          "card_name": "Zekrom",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "11d3198c-661b-4dd7-b45c-a53c9d28b47a",
+          "set_code": "mep",
+          "card_number": "71",
+          "card_name": "Mega Zygarde ex",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "30393dfa-60af-4e11-a26f-158a82b1331e",
+          "set_code": "mep",
+          "card_number": "74",
+          "card_name": "Delphox",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "9c510f5c-23e9-4509-b5be-f0db3a970e28",
+          "set_code": "mep",
+          "card_number": "75",
+          "card_name": "Ampharos",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "ca6fd530-ebc7-47ee-8213-7679b1427d61",
+          "set_code": "mep",
+          "card_number": "76",
+          "card_name": "Crobat",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "e71e1cf9-2b55-4de3-8bcd-b302caf26883",
+          "set_code": "mep",
+          "card_number": "77",
+          "card_name": "Goodra",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "85367f10-2d1e-4314-ba84-b23bd09cd423",
+          "set_code": "mep",
+          "card_number": "80",
+          "card_name": "Fennekin",
+          "finish_key": "holo",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "d7838edc-1456-43a8-8c33-2c4c4f399122",
+          "set_code": "svp",
+          "card_number": "219",
+          "card_name": "Black Belt's Training",
+          "finish_key": "normal",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "00dda9be-0a8f-4a64-b64d-e6b40e256d6b",
+          "set_code": "svp",
+          "card_number": "220",
+          "card_name": "Black Belt's Training",
+          "finish_key": "normal",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "8f31080c-1eb8-4c23-8eb9-a874167ab5b5",
+          "set_code": "svp",
+          "card_number": "221",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "8ce18a76-6d7d-4d54-98c4-81880f36d180",
+          "set_code": "svp",
+          "card_number": "222",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "3efa3e0b-8214-46b5-b786-32f61d805ffb",
+          "set_code": "svp",
+          "card_number": "223",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_child_exact",
+          "row_id": "8bbc59fd-b806-4582-a7ef-ba9a32da8985",
+          "set_code": "svp",
+          "card_number": "85",
+          "card_name": "Pikachu with Grey Felt Hat",
+          "finish_key": "normal",
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "7acb6ae7-9749-49c6-bdc4-128e0fda1ebe",
+          "set_code": "bw11",
+          "card_number": "1",
+          "card_name": "Snivy",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "9ff063db-4121-456f-839a-f79822b7c7e0",
+          "set_code": "bw11",
+          "card_number": "10",
+          "card_name": "Gardevoir",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "ae5f8da5-8739-423f-a909-a4b35ef1f0f7",
+          "set_code": "bw11",
+          "card_number": "12",
+          "card_name": "Stunfisk",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "32e149cf-89c2-4786-9b59-fd20fecfd746",
+          "set_code": "bw11",
+          "card_number": "13",
+          "card_name": "Purrloin",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "2b3996ed-c314-4ccf-9c60-d3e7c13f6d62",
+          "set_code": "bw11",
+          "card_number": "14",
+          "card_name": "Eevee",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "f8d2770e-13a8-48ab-8fdd-f2134fcb43dc",
+          "set_code": "bw11",
+          "card_number": "15",
+          "card_name": "Teddiursa",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "64593d79-0242-4354-93d8-4fa5d27be758",
+          "set_code": "bw11",
+          "card_number": "16",
+          "card_name": "Ursaring",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "5cd07513-7d98-4952-accb-13efc906441a",
+          "set_code": "bw11",
+          "card_number": "18",
+          "card_name": "Minccino",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "25c0588d-9275-4b49-9b1d-1a590cc29f5c",
+          "set_code": "bw11",
+          "card_number": "19",
+          "card_name": "Cinccino",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "3b203a61-0bb1-486d-be32-32c724e71a7f",
+          "set_code": "bw11",
+          "card_number": "20",
+          "card_name": "Elesa",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "8f425977-bcfe-4a9f-bb2b-7d972a613ccb",
+          "set_code": "bw11",
+          "card_number": "21",
+          "card_name": "Shaymin-EX",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "2a03720e-a769-4898-b16b-aee0e6501ccd",
+          "set_code": "bw11",
+          "card_number": "22",
+          "card_name": "Reshiram",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "e9a99417-070e-4e70-9dc2-ddbbb907e03e",
+          "set_code": "bw11",
+          "card_number": "23",
+          "card_name": "Emolga",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "7b64eeaf-63e5-491e-b70e-893ba616e6eb",
+          "set_code": "bw11",
+          "card_number": "24",
+          "card_name": "Mew-EX",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "74c5fba4-3cae-43d2-9770-24dd1a4991f2",
+          "set_code": "bw11",
+          "card_number": "3",
+          "card_name": "Serperior",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "ba6a6c23-fd10-4715-b698-3a266c95b7ae",
+          "set_code": "bw11",
+          "card_number": "4",
+          "card_name": "Growlithe",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "efa15a49-a1f9-46b0-bd69-85111388328e",
+          "set_code": "bw11",
+          "card_number": "5",
+          "card_name": "Torchic",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "93bc63a0-3285-4360-8eb8-965d81bd26e8",
+          "set_code": "bw11",
+          "card_number": "6",
+          "card_name": "Piplup",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "fca222fa-9629-4b95-8e3e-c156871f1131",
+          "set_code": "bw11",
+          "card_number": "7",
+          "card_name": "Pikachu",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "def3b50f-4d4d-45f4-a4c0-29f91b8dbb0f",
+          "set_code": "bw11",
+          "card_number": "9",
+          "card_name": "Kirlia",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "7c7206cd-30ce-4729-94c0-6a8d9396530b",
+          "set_code": "bwp",
+          "card_number": "004",
+          "card_name": "Reshiram",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "a6eb05aa-ada9-4f59-b0eb-0a73df81c201",
+          "set_code": "bwp",
+          "card_number": "005",
+          "card_name": "Zekrom",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "e8cae0fa-408a-475d-ac20-860250c3e838",
+          "set_code": "mep",
+          "card_number": "71",
+          "card_name": "Mega Zygarde ex",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "22049e2c-19b2-449f-ac36-3a6d801f276f",
+          "set_code": "mep",
+          "card_number": "74",
+          "card_name": "Delphox",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "a34a0d78-3091-4392-9a44-376125594ad1",
+          "set_code": "mep",
+          "card_number": "75",
+          "card_name": "Ampharos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "defafd1e-6f85-4f09-824b-c3caf29c94aa",
+          "set_code": "mep",
+          "card_number": "76",
+          "card_name": "Crobat",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "1669919e-5ac8-4ece-be9c-f8e8aa4adacc",
+          "set_code": "mep",
+          "card_number": "77",
+          "card_name": "Goodra",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "af929a84-3070-4ea4-a06f-0ea765eb37d4",
+          "set_code": "mep",
+          "card_number": "80",
+          "card_name": "Fennekin",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "5d990d10-c5bf-4027-a429-163c259e123e",
+          "set_code": "svp",
+          "card_number": "219",
+          "card_name": "Black Belt's Training",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "2be3d16d-39fe-4d46-b5ec-e737a777624c",
+          "set_code": "svp",
+          "card_number": "220",
+          "card_name": "Black Belt's Training",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "8d542ecd-ada6-4270-8cc8-883458ff3b84",
+          "set_code": "svp",
+          "card_number": "221",
+          "card_name": "Professor's Research",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "9578935b-26af-4bb8-b928-fd653e205dc6",
+          "set_code": "svp",
+          "card_number": "222",
+          "card_name": "Professor's Research",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "584be210-439b-4ff0-9cb2-964d66e1f231",
+          "set_code": "svp",
+          "card_number": "223",
+          "card_name": "Professor's Research",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "existing_parent_exact",
+          "row_id": "797add1a-99fc-41f6-a061-c36add0b20a9",
+          "set_code": "svp",
+          "card_number": "85",
+          "card_name": "Pikachu with Grey Felt Hat",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122097",
+          "set_code": "bw11",
+          "card_number": "1",
+          "card_name": "Snivy",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC1"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122104",
+          "set_code": "bw11",
+          "card_number": "10",
+          "card_name": "Gardevoir",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC10"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122105",
+          "set_code": "bw11",
+          "card_number": "12",
+          "card_name": "Stunfisk",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC12"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122106",
+          "set_code": "bw11",
+          "card_number": "13",
+          "card_name": "Purrloin",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC13"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122107",
+          "set_code": "bw11",
+          "card_number": "14",
+          "card_name": "Eevee",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC14"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122108",
+          "set_code": "bw11",
+          "card_number": "15",
+          "card_name": "Teddiursa",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC15"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122109",
+          "set_code": "bw11",
+          "card_number": "16",
+          "card_name": "Ursaring",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC16"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122110",
+          "set_code": "bw11",
+          "card_number": "18",
+          "card_name": "Minccino",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC18"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122111",
+          "set_code": "bw11",
+          "card_number": "19",
+          "card_name": "Cinccino",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC19"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122112",
+          "set_code": "bw11",
+          "card_number": "20",
+          "card_name": "Elesa",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC20"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122113",
+          "set_code": "bw11",
+          "card_number": "21",
+          "card_name": "Shaymin-EX",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC21"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122114",
+          "set_code": "bw11",
+          "card_number": "22",
+          "card_name": "Reshiram",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC22"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122115",
+          "set_code": "bw11",
+          "card_number": "23",
+          "card_name": "Emolga",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC23"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122116",
+          "set_code": "bw11",
+          "card_number": "24",
+          "card_name": "Mew-EX",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC24"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122098",
+          "set_code": "bw11",
+          "card_number": "3",
+          "card_name": "Serperior",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC3"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122099",
+          "set_code": "bw11",
+          "card_number": "4",
+          "card_name": "Growlithe",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC4"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122100",
+          "set_code": "bw11",
+          "card_number": "5",
+          "card_name": "Torchic",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC5"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122101",
+          "set_code": "bw11",
+          "card_number": "6",
+          "card_name": "Piplup",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC6"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122102",
+          "set_code": "bw11",
+          "card_number": "7",
+          "card_name": "Pikachu",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC7"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122103",
+          "set_code": "bw11",
+          "card_number": "9",
+          "card_name": "Kirlia",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bw11-RC9"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122095",
+          "set_code": "bwp",
+          "card_number": "004",
+          "card_name": "Reshiram",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bwp-BW004"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122096",
+          "set_code": "bwp",
+          "card_number": "005",
+          "card_name": "Zekrom",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "bwp-BW005"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122089",
+          "set_code": "mep",
+          "card_number": "71",
+          "card_name": "Mega Zygarde ex",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "695311"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122090",
+          "set_code": "mep",
+          "card_number": "74",
+          "card_name": "Delphox",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "694680"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122091",
+          "set_code": "mep",
+          "card_number": "75",
+          "card_name": "Ampharos",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "694682"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122092",
+          "set_code": "mep",
+          "card_number": "76",
+          "card_name": "Crobat",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "694687"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122093",
+          "set_code": "mep",
+          "card_number": "77",
+          "card_name": "Goodra",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "694689"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122094",
+          "set_code": "mep",
+          "card_number": "80",
+          "card_name": "Fennekin",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "694695"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122118",
+          "set_code": "svp",
+          "card_number": "219",
+          "card_name": "Black Belt's Training",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "664825"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122119",
+          "set_code": "svp",
+          "card_number": "220",
+          "card_name": "Black Belt's Training",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "664824"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122120",
+          "set_code": "svp",
+          "card_number": "221",
+          "card_name": "Professor's Research",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "664829"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122121",
+          "set_code": "svp",
+          "card_number": "222",
+          "card_name": "Professor's Research",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "664827"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122122",
+          "set_code": "svp",
+          "card_number": "223",
+          "card_name": "Professor's Research",
+          "finish_key": null,
+          "source": "tcgplayer",
+          "external_id": "664828"
+        },
+        {
+          "row_type": "external_mapping_collision",
+          "row_id": "122117",
+          "set_code": "svp",
+          "card_number": "85",
+          "card_name": "Pikachu with Grey Felt Hat",
+          "finish_key": null,
+          "source": "pokemonapi",
+          "external_id": "svp-85"
+        },
+        {
+          "row_type": "target_set",
+          "row_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+          "set_code": "bw11",
+          "card_number": null,
+          "card_name": "Legendary Treasures",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "target_set",
+          "row_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+          "set_code": "bwp",
+          "card_number": null,
+          "card_name": "BW Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "target_set",
+          "row_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+          "set_code": "mep",
+          "card_number": null,
+          "card_name": "MEP Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        },
+        {
+          "row_type": "target_set",
+          "row_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+          "set_code": "svp",
+          "card_number": null,
+          "card_name": "Scarlet & Violet Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        }
+      ],
+      "hash_sha256": "505b26f840469cd24052cbc4c88802e8f0efb0fab9f8bccc6e4c5936e9427bf6",
+      "counts": {
+        "target_set_rows": 4,
+        "existing_parent_exact_rows": 34,
+        "existing_child_exact_rows": 34,
+        "external_mapping_collision_rows": 34,
+        "total_rows": 106
+      }
+    },
+    "proof_rows": [
+      {
+        "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+        "package_fingerprint": "6f173353f1e455e1eef8d67f3d577183b939a4dcea4a5c719bcb61623933a341",
+        "planned_parent_rows": 34,
+        "planned_child_rows": 34,
+        "planned_mapping_rows": 34
+      }
+    ],
+    "guard": {
+      "parent_rows": 34,
+      "child_rows": 34,
+      "mapping_rows": 34,
+      "child_without_parent": 0,
+      "inactive_finish_rows": 0,
+      "parent_collisions": 0,
+      "child_collisions": 0,
+      "mapping_collisions": 0
+    },
+    "write_counts": {
+      "parent_inserts": 34,
+      "child_inserts": 34,
+      "external_mapping_inserts": 34,
+      "deletes": 0,
+      "merges": 0
+    },
+    "stop_findings": []
+  }
+}

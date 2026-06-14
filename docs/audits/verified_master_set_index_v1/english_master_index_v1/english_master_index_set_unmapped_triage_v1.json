@@ -1,15 +1,15 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SET_UNMAPPED_TRIAGE_V1",
-  "generated_at": "2026-06-08T18:24:41.247Z",
+  "generated_at": "2026-06-12T08:27:20.983Z",
   "audit_only": true,
   "db_writes": false,
   "source_report": "english_master_index_grookai_audit_v1.json",
   "rule": "Set-unmapped rows are set identity/audit-scope issues first. Do not judge printing truth until the set category is resolved.",
   "summary": {
-    "total_set_unmapped": 11176,
+    "total_set_unmapped": 10462,
     "by_category": {
       "legacy_orphan": 16,
-      "missing_set_code": 5733,
+      "missing_set_code": 5019,
       "out_of_scope_pocket": 5427
     }
   },
@@ -202,14 +202,14 @@
       ]
     },
     "missing_set_code": {
-      "count": 5733,
+      "count": 5019,
       "by_set_code": {
-        "unknown": 5733
+        "unknown": 5019
       },
       "by_finish": {
-        "holo": 1998,
-        "normal": 1812,
-        "reverse": 1923
+        "holo": 1688,
+        "normal": 1626,
+        "reverse": 1705
       },
       "sample_rows": [
         {

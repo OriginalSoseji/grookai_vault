@@ -2,218 +2,136 @@
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
-Generated: 2026-06-08T12:50:58.458Z
+Generated: 2026-06-12T04:47:36.930Z
 
 ## Summary
 
 | metric | value |
 | --- | --- |
-| target_facts | 1056 |
+| target_facts | 118 |
 | blueprint_rows | 75009 |
-| records_generated | 470 |
-| fixture_files_written | 30 |
+| records_generated | 7 |
+| fixture_files_written | 3 |
 
 ## Result Sample
 
 | set | number | name | finish | status | source |
 | --- | --- | --- | --- | --- | --- |
-| neo1 | 105 | Recycle Energy | holo | no_exact_match |  |
-| ecard2 | 103 | Porygon | normal | no_exact_match |  |
-| ecard2 | 103 | Porygon | reverse | no_exact_match |  |
-| ex1 | 93 | Darkness Energy | cosmos | no_exact_match |  |
-| ex4 | 24 | Team Aqua's Cacnea | stamped | no_exact_match |  |
-| ex6 | 98 | Prof. Oak's Research | stamped | no_exact_match |  |
-| ex14 | 42 | Wartortle | stamped | no_exact_match |  |
-| dp1 | 112 | Professor Rowan | stamped | no_exact_match |  |
-| dp3 | 106 | Shellos East Sea | stamped | no_exact_match |  |
-| dp5 | 92 | Call Energy | stamped | generated | https://www.cardtrader.com/en/cards/262486-call-energy-league-promo-reverse-holo-league-promos |
-| pl1 | 112 | PlusPower | stamped | no_exact_match |  |
-| pl2 | 92 | Lucian's Assignment | stamped | no_exact_match |  |
-| pl2 | 102 | Upper Energy | stamped | no_exact_match |  |
-| hgss1 | 98 | Pokémon Communication | stamped | no_exact_match |  |
-| hgss1 | 104 | Rainbow Energy | stamped | no_exact_match |  |
-| hgss2 | 83 | Super Scoop Up | stamped | no_exact_match |  |
-| hgss4 | 87 | Junk Arm | stamped | no_exact_match |  |
-| col1 | 91 | Lightning Energy | stamped | no_exact_match |  |
-| bw2 | 40 | Scolipede | holo | no_exact_match |  |
-| bw3 | 91 | Eviolite | stamped | no_exact_match |  |
-| bw5 | 94 | Enhanced Hammer | stamped | no_exact_match |  |
-| bw6 | 98 | Hydreigon | holo | no_exact_match |  |
-| bw6 | 117 | Blend Energy GrassFirePsychicDarkness | stamped | no_exact_match |  |
-| bw6 | 118 | Blend Energy WaterLightningFightingMetal | stamped | no_exact_match |  |
-| bw8 | 94 | Druddigon | holo | no_exact_match |  |
-| bw9 | 106 | Plasma Energy | stamped | no_exact_match |  |
-| xyp | XY176 | Champions Festival | normal | no_exact_match |  |
-| xyp | XY202 | Pikachu | holo | no_exact_match |  |
-| xy2 | 31 | Avalugg | stamped | no_exact_match |  |
-| xy3 | 102 | Training Center | stamped | no_exact_match |  |
-| xy4 | 93 | Dimension Valley | stamped | no_exact_match |  |
-| xy8 | 103 | Florges | stamped | no_exact_match |  |
-| xy9 | 104 | Misty's Determination | stamped | generated | https://www.cardtrader.com/en/cards/110612-misty-s-determination-staff-regional-championships-104-122-breakpoint-promos |
-| xy9 | 110 | Reverse Valley | stamped | generated | https://www.cardtrader.com/en/cards/110616-reverse-valley-staff-state-championships-110-122-league-promos |
-| xy9 | 113 | Splash Energy | stamped | no_exact_match |  |
-| smp | SM198 | Bulbasaur | cosmos | no_exact_match |  |
-| smp | SM199 | Psyduck | cosmos | no_exact_match |  |
-| smp | SM200 | Snubbull | cosmos | no_exact_match |  |
-| sm1 | 90 | Snubbull | stamped | no_exact_match |  |
-| sm2 | 126 | Hala | stamped | no_exact_match |  |
-| sm3 | 28 | Alolan Ninetales | holo | no_exact_match |  |
-| sm4 | 75 | Jangmo-o | cosmos | no_exact_match |  |
-| sm7 | 127 | Copycat | stamped | generated | https://www.cardtrader.com/en/cards/112856-copycat-staff-regional-championships-127-168-celestial-storm-promos |
-| sm8 | 187 | Net Ball | stamped | no_exact_match |  |
-| sm8 | 188 | Professor Elm's Lecture | stamped | generated | https://www.cardtrader.com/en/cards/122731-professor-elm-s-lecture-staff-regional-championships-188-214-lost-thunder-promos |
-| sm10 | 60 | Zeraora | holo | no_exact_match |  |
-| swsh1 | 31 | Scorbunny | holo | no_exact_match |  |
-| swsh1 | 178 | Professor's Research (Professor Magnolia) | stamped | no_exact_match |  |
-| swsh2 | 39 | Magikarp | cosmos | no_exact_match |  |
-| swsh3.5 | 62 | Professor's Research (Professor Magnolia) | normal | no_exact_match |  |
-| swsh4 | 71 | Dusknoir | stamped | no_exact_match |  |
-| swsh7 | 80 | Marshadow | stamped | no_exact_match |  |
-| cel25 | 24 | _____'s Pikachu | holo | no_exact_match |  |
-| swsh10 | 156 | Trekking Shoes | stamped | no_exact_match |  |
-| swsh11 | 162 | Lost Vacuum | stamped | no_exact_match |  |
-| sv03.5 | 7 | Squirtle | stamped | no_exact_match |  |
-| sv03.5 | 45 | Vileplume | normal | no_exact_match |  |
-| sv03.5 | 146 | Moltres | normal | no_exact_match |  |
-| ex9 | 107 | Farfetch'd | normal | generated | https://www.cardtrader.com/en/cards/115934-farfetch-d-secret-rare-107-106-ex-emerald |
-| neo1 | 20 | Cleffa | first_edition_holo | no_exact_match |  |
-| ex1 | 94 | Metal Energy | holo | no_exact_match |  |
-| ex1 | 96 | Chansey ex | normal | no_exact_match |  |
-| ex1 | 97 | Electabuzz ex | normal | no_exact_match |  |
-| ex1 | 98 | Hitmonchan ex | normal | no_exact_match |  |
-| ex1 | 99 | Lapras ex | normal | no_exact_match |  |
-| ex1 | 100 | Magmar ex | normal | no_exact_match |  |
-| ex1 | 101 | Mewtwo ex | normal | no_exact_match |  |
-| ex1 | 102 | Scyther ex | normal | no_exact_match |  |
-| ex1 | 103 | Sneasel ex | normal | no_exact_match |  |
-| ex4 | 90 | Cradily ex | normal | no_exact_match |  |
-| ex4 | 91 | Entei ex | normal | no_exact_match |  |
-| ex4 | 92 | Raikou ex | normal | no_exact_match |  |
-| ex4 | 93 | Sceptile ex | normal | no_exact_match |  |
-| ex6 | 1 | Beedrill | normal | no_exact_match |  |
-| ex6 | 2 | Butterfree | normal | no_exact_match |  |
-| ex6 | 3 | Dewgong | normal | no_exact_match |  |
-| ex6 | 5 | Exeggutor | normal | no_exact_match |  |
-| ex6 | 6 | Kangaskhan | normal | no_exact_match |  |
-| ex6 | 7 | Marowak | normal | no_exact_match |  |
-| ex6 | 9 | Nidoqueen | normal | no_exact_match |  |
-| ex6 | 10 | Pidgeot | normal | no_exact_match |  |
-| ex6 | 13 | Rapidash | normal | no_exact_match |  |
-| ex6 | 14 | Slowbro | normal | no_exact_match |  |
-| ex6 | 15 | Snorlax | normal | no_exact_match |  |
-| ex6 | 16 | Tauros | normal | no_exact_match |  |
-| ex6 | 17 | Victreebel | normal | no_exact_match |  |
-| ex6 | 106 | Clefable ex | normal | no_exact_match |  |
-| ex6 | 107 | Electrode ex | normal | no_exact_match |  |
-| ex6 | 109 | Gyarados ex | normal | no_exact_match |  |
-| ex6 | 110 | Mr. Mime ex | normal | no_exact_match |  |
-| ex6 | 111 | Mr. Mime ex | normal | no_exact_match |  |
-| ex6 | 18 | Arcanine | holo | no_exact_match |  |
-| ex6 | 19 | Chansey | holo | no_exact_match |  |
-| ex6 | 20 | Cloyster | holo | no_exact_match |  |
-| ex6 | 21 | Dodrio | holo | no_exact_match |  |
-| ex6 | 22 | Dugtrio | holo | no_exact_match |  |
-| ex6 | 23 | Farfetch'd | holo | no_exact_match |  |
-| ex6 | 24 | Fearow | holo | no_exact_match |  |
-| ex6 | 25 | Hypno | holo | no_exact_match |  |
-| ex6 | 26 | Kingler | holo | no_exact_match |  |
-| ex6 | 27 | Magneton | holo | no_exact_match |  |
-| ex6 | 28 | Primeape | holo | no_exact_match |  |
-| ex6 | 29 | Scyther | holo | no_exact_match |  |
-| ex6 | 30 | Tangela | holo | no_exact_match |  |
-| ex6 | 31 | Charmeleon | holo | no_exact_match |  |
-| ex6 | 32 | Drowzee | holo | no_exact_match |  |
-| ex6 | 33 | Exeggcute | holo | no_exact_match |  |
-| ex6 | 34 | Haunter | holo | no_exact_match |  |
-| ex6 | 35 | Ivysaur | holo | no_exact_match |  |
-| ex6 | 36 | Kakuna | holo | no_exact_match |  |
-| ex6 | 37 | Lickitung | holo | no_exact_match |  |
-| ex6 | 38 | Mankey | holo | no_exact_match |  |
-| ex6 | 39 | Metapod | holo | no_exact_match |  |
-| ex6 | 40 | Nidorina | holo | no_exact_match |  |
-| ex6 | 41 | Nidorino | holo | no_exact_match |  |
-| ex6 | 42 | Onix | holo | no_exact_match |  |
-| ex6 | 43 | Parasect | holo | no_exact_match |  |
-| ex6 | 44 | Persian | holo | no_exact_match |  |
-| ex6 | 45 | Pidgeotto | holo | no_exact_match |  |
-| ex6 | 46 | Poliwhirl | holo | no_exact_match |  |
-| ex6 | 47 | Porygon | holo | no_exact_match |  |
-| ex6 | 48 | Raticate | holo | no_exact_match |  |
-| ex6 | 49 | Venomoth | holo | no_exact_match |  |
-| ex6 | 50 | Wartortle | holo | no_exact_match |  |
-| ex6 | 51 | Weepinbell | holo | no_exact_match |  |
-| ex6 | 52 | Wigglytuff | holo | no_exact_match |  |
-| ex6 | 53 | Bellsprout | holo | no_exact_match |  |
-| ex6 | 54 | Bulbasaur | holo | no_exact_match |  |
-| ex6 | 55 | Bulbasaur | holo | no_exact_match |  |
-| ex6 | 56 | Caterpie | holo | no_exact_match |  |
-| ex6 | 57 | Charmander | holo | no_exact_match |  |
-| ex6 | 58 | Charmander | holo | no_exact_match |  |
-| ex6 | 59 | Clefairy | holo | no_exact_match |  |
-| ex6 | 60 | Cubone | holo | no_exact_match |  |
-| ex6 | 61 | Diglett | holo | no_exact_match |  |
-| ex6 | 62 | Doduo | holo | no_exact_match |  |
-| ex6 | 63 | Gastly | holo | no_exact_match |  |
-| ex6 | 64 | Growlithe | holo | no_exact_match |  |
-| ex6 | 65 | Jigglypuff | holo | no_exact_match |  |
-| ex6 | 66 | Krabby | holo | no_exact_match |  |
-| ex6 | 67 | Magikarp | holo | no_exact_match |  |
-| ex6 | 68 | Magnemite | holo | no_exact_match |  |
-| ex6 | 69 | Meowth | holo | no_exact_match |  |
-| ex6 | 70 | Nidoran♀ | holo | no_exact_match |  |
-| ex6 | 71 | Nidoran♂ | holo | no_exact_match |  |
-| ex6 | 72 | Paras | holo | no_exact_match |  |
-| ex6 | 73 | Pidgey | holo | no_exact_match |  |
-| ex6 | 74 | Pikachu | holo | no_exact_match |  |
-| ex6 | 75 | Poliwag | holo | no_exact_match |  |
-| ex6 | 76 | Ponyta | holo | no_exact_match |  |
-| ex6 | 77 | Rattata | holo | no_exact_match |  |
-| ex6 | 78 | Seel | holo | no_exact_match |  |
-| ex6 | 79 | Shellder | holo | no_exact_match |  |
-| ex6 | 80 | Slowpoke | holo | no_exact_match |  |
-| ex6 | 81 | Spearow | holo | no_exact_match |  |
-| ex6 | 82 | Squirtle | holo | no_exact_match |  |
-| ex6 | 83 | Squirtle | holo | no_exact_match |  |
-| ex6 | 84 | Venonat | holo | no_exact_match |  |
-| ex6 | 85 | Voltorb | holo | no_exact_match |  |
-| ex6 | 86 | Weedle | holo | no_exact_match |  |
-| ex6 | 87 | Bill's Maintenance | holo | no_exact_match |  |
-| ex6 | 88 | Celio's Network | holo | no_exact_match |  |
-| ex6 | 89 | Energy Removal 2 | holo | no_exact_match |  |
-| ex6 | 90 | Energy Switch | holo | no_exact_match |  |
-| ex6 | 91 | EXP. ALL | holo | no_exact_match |  |
-| ex6 | 92 | Great Ball | holo | no_exact_match |  |
-| ex6 | 93 | Life Herb | holo | no_exact_match |  |
-| ex6 | 94 | Mt. Moon | holo | no_exact_match |  |
-| ex6 | 95 | Poké Ball | holo | no_exact_match |  |
-| ex6 | 96 | PokéDex (HANDY909) | holo | no_exact_match |  |
-| ex6 | 97 | Pokémon Reversal | holo | no_exact_match |  |
-| ex6 | 98 | Prof. Oak's Research | holo | no_exact_match |  |
-| ex6 | 99 | Super Scoop Up | holo | no_exact_match |  |
-| ex6 | 100 | VS Seeker | holo | no_exact_match |  |
-| ex6 | 101 | Potion | holo | no_exact_match |  |
-| ex6 | 102 | Switch | holo | no_exact_match |  |
-| ex6 | 103 | Multi Energy | holo | no_exact_match |  |
-| ex9 | 2 | Deoxys | normal | no_exact_match |  |
-| ex9 | 3 | Exploud | normal | no_exact_match |  |
-| ex9 | 5 | Groudon | normal | no_exact_match |  |
-| ex9 | 6 | Kyogre | normal | no_exact_match |  |
-| ex9 | 8 | Milotic | normal | no_exact_match |  |
-| ex9 | 9 | Rayquaza | normal | no_exact_match |  |
-| ex9 | 91 | Cacturne ex | normal | no_exact_match |  |
-| ex9 | 92 | Camerupt ex | normal | no_exact_match |  |
-| ex9 | 95 | Medicham ex | normal | no_exact_match |  |
-| ex9 | 101 | Grass Energy | normal | no_exact_match |  |
-| ex9 | 102 | Fire Energy | normal | no_exact_match |  |
-| ex9 | 103 | Water Energy | normal | no_exact_match |  |
-| ex9 | 104 | Lightning Energy | normal | no_exact_match |  |
-| ex9 | 105 | Psychic Energy | normal | no_exact_match |  |
-| ex9 | 106 | Fighting Energy | normal | no_exact_match |  |
-| ex9 | 12 | Chimecho | holo | no_exact_match |  |
-| ex9 | 13 | Glalie | holo | no_exact_match |  |
-| ex9 | 14 | Groudon | holo | no_exact_match |  |
-| ex9 | 15 | Kyogre | holo | no_exact_match |  |
-| ex9 | 16 | Manectric | holo | no_exact_match |  |
-| ex9 | 17 | Nosepass | holo | no_exact_match |  |
-| ex9 | 18 | Relicanth | holo | no_exact_match |  |
-| ex9 | 19 | Rhydon | holo | no_exact_match |  |
+| sv03 | 13 | Rowlet | cosmos | no_exact_match |  |
+| sv03 | 14 | Dartrix | cosmos | no_exact_match |  |
+| sv03 | 16 | Bounsweet | cosmos | no_exact_match |  |
+| sv03 | 22 | Toedscruel ex | stamped | no_exact_match |  |
+| sv03 | 25 | Scovillain | cosmos | no_exact_match |  |
+| sv03 | 40 | Larvesta | stamped | no_exact_match |  |
+| sv03 | 41 | Volcarona | stamped | no_exact_match |  |
+| sv03 | 42 | Eiscue ex | stamped | no_exact_match |  |
+| sv03 | 56 | Froakie | cosmos | no_exact_match |  |
+| sv03 | 57 | Frogadier | cosmos | no_exact_match |  |
+| sv03 | 62 | Palafin | cosmos | no_exact_match |  |
+| sv03 | 66 | Tyranitar ex | stamped | no_exact_match |  |
+| sv03 | 72 | Toxtricity | normal | no_exact_match |  |
+| sv03 | 85 | Togekiss | normal | no_exact_match |  |
+| sv03 | 85 | Togekiss | cosmos | no_exact_match |  |
+| sv03 | 86 | Espeon | stamped | no_exact_match |  |
+| sv03 | 92 | Lunatone | stamped | no_exact_match |  |
+| sv03 | 95 | Claydol | stamped | no_exact_match |  |
+| sv03 | 100 | Greavard | cosmos | no_exact_match |  |
+| sv03 | 105 | Larvitar | cosmos | no_exact_match |  |
+| sv03 | 106 | Pupitar | cosmos | no_exact_match |  |
+| sv03 | 125 | Charizard ex | stamped | no_exact_match |  |
+| sv03 | 130 | Umbreon | stamped | no_exact_match |  |
+| sv03 | 131 | Houndour | stamped | no_exact_match |  |
+| sv03 | 133 | Houndoom | stamped | no_exact_match |  |
+| sv03 | 136 | Darkrai | cosmos | no_exact_match |  |
+| sv03 | 136 | Darkrai | stamped | no_exact_match |  |
+| sv03 | 139 | Salandit | stamped | no_exact_match |  |
+| sv03 | 140 | Salazzle | stamped | no_exact_match |  |
+| sv03 | 141 | Scizor | cosmos | no_exact_match |  |
+| sv03 | 141 | Scizor | stamped | no_exact_match |  |
+| sv03 | 148 | Pawniard | cosmos | no_exact_match |  |
+| sv03 | 149 | Bisharp | cosmos | no_exact_match |  |
+| sv03 | 164 | Pidgeot ex | stamped | no_exact_match |  |
+| sv03 | 188 | Geeta | stamped | no_exact_match |  |
+| sv03 | 189 | Letter of Encouragement | stamped | no_exact_match |  |
+| sv03 | 196 | Town Store | stamped | no_exact_match |  |
+| sv05 | 85 | Drilbur | cosmos | no_exact_match |  |
+| sv05 | 129 | Dudunsparce | cosmos | no_exact_match |  |
+| sv05 | 142 | Bianca's Devotion | cosmos | no_exact_match |  |
+| sv07 | 50 | Joltik | cosmos | no_exact_match |  |
+| sv07 | 132 | Briar | cosmos | no_exact_match |  |
+| swsh10 | 43 | Hisuian Basculin | cosmos | no_exact_match |  |
+| swsh10 | 136 | Canceling Cologne | cosmos | no_exact_match |  |
+| swsh10 | 141 | Feather Ball | cosmos | no_exact_match |  |
+| swsh10 | 146 | Hisuian Heavy Ball | cosmos | no_exact_match |  |
+| swsh10 | 154 | Switch Cart | cosmos | no_exact_match |  |
+| swsh11 | 50 | Cramorant | cosmos | no_exact_match |  |
+| swsh11 | 70 | Sableye | cosmos | no_exact_match |  |
+| swsh11 | 156 | Damage Pump | cosmos | no_exact_match |  |
+| swsh11 | 163 | Mirage Gate | cosmos | no_exact_match |  |
+| swsh9 | 7 | Grotle | cosmos | no_exact_match |  |
+| swsh9 | 146 | Pot Helmet | cosmos | no_exact_match |  |
+| sv10 | 36 | Ethan's Magcargo | normal | no_exact_match |  |
+| swsh10 | 62 | Gallade | normal | no_exact_match |  |
+| swsh10 | 68 | Diancie | normal | no_exact_match |  |
+| swsh10 | 130 | Regigigas | normal | no_exact_match |  |
+| swsh11 | 143 | Snorlax | normal | no_exact_match |  |
+| swsh2 | 113 | Galarian Weezing | normal | no_exact_match |  |
+| swsh5 | 65 | Orbeetle | normal | no_exact_match |  |
+| swsh5 | 91 | Crobat | normal | no_exact_match |  |
+| swsh6 | 36 | Froslass | normal | no_exact_match |  |
+| swsh6 | 87 | Lycanroc | normal | no_exact_match |  |
+| swsh6 | 108 | Single Strike Urshifu | normal | no_exact_match |  |
+| swsh7 | 34 | Ludicolo | normal | no_exact_match |  |
+| swsh7 | 112 | Dialga | normal | no_exact_match |  |
+| swsh7 | 116 | Kyurem | normal | no_exact_match |  |
+| swsh7 | 124 | Regidrago | normal | no_exact_match |  |
+| swsh9 | 109 | Garchomp | normal | no_exact_match |  |
+| basep | 11 | Eevee | normal | no_exact_match |  |
+| sv05 | 108 | Farigiraf ex | cosmos | no_exact_match |  |
+| sv05 | 148 | Full Metal Lab | cosmos | no_exact_match |  |
+| sv05 | 156 | Perilous Jungle | cosmos | no_exact_match |  |
+| sv05 | 162 | Neo Upper Energy | cosmos | no_exact_match |  |
+| swsh11 | 161 | Lost City | cosmos | no_exact_match |  |
+| swsh12 | 167 | Worker | cosmos | no_exact_match |  |
+| bw1 | 107 | Water Energy | reverse | no_exact_match |  |
+| swsh9 | 151 | Double Turbo Energy | cosmos | no_exact_match |  |
+| basep | 18 | Team Rocket's Meowth | holo | no_exact_match |  |
+| bw1 | 6 | Serperior | normal | no_exact_match |  |
+| bw1 | 20 | Emboar | normal | no_exact_match |  |
+| bw1 | 26 | Reshiram | normal | no_exact_match |  |
+| bw1 | 32 | Samurott | normal | no_exact_match |  |
+| bw1 | 47 | Zekrom | normal | no_exact_match |  |
+| bw1 | 57 | Reuniclus | normal | no_exact_match |  |
+| bw1 | 65 | Krookodile | normal | no_exact_match |  |
+| bw1 | 76 | Klinklang | normal | no_exact_match |  |
+| sv03 | 013 | Rowlet | holo | no_exact_match |  |
+| sv03 | 014 | Dartrix | holo | no_exact_match |  |
+| sv03 | 056 | Froakie | holo | no_exact_match |  |
+| sv03 | 057 | Frogadier | holo | no_exact_match |  |
+| sv03 | 086 | Espeon | holo | no_exact_match |  |
+| sv03 | 100 | Greavard | holo | no_exact_match |  |
+| sv03 | 106 | Pupitar | holo | no_exact_match |  |
+| sv03 | 149 | Bisharp | holo | no_exact_match |  |
+| sv05 | 024 | Rabsca | holo | no_exact_match |  |
+| sv05 | 077 | Scream Tail | holo | no_exact_match |  |
+| sv05 | 079 | Iron Valiant | holo | no_exact_match |  |
+| sv05 | 126 | Hoothoot | holo | no_exact_match |  |
+| sv05 | 127 | Noctowl | holo | no_exact_match |  |
+| sv05 | 142 | Bianca's Devotion | holo | no_exact_match |  |
+| sv05 | 144 | Buddy-Buddy Poffin | holo | no_exact_match |  |
+| sv05 | 145 | Ciphermaniac's Codebreaking | holo | no_exact_match |  |
+| sv05 | 147 | Explorer's Guidance | holo | no_exact_match |  |
+| sv05 | 148 | Full Metal Lab | holo | no_exact_match |  |
+| sv05 | 156 | Perilous Jungle | holo | no_exact_match |  |
+| sv05 | 159 | Rescue Board | holo | no_exact_match |  |
+| sv05 | 162 | Neo Upper Energy | normal | no_exact_match |  |
+| sv07 | 16 | Lokix | holo | no_exact_match |  |
+| sv10 | 024 | Rellor | holo | no_exact_match |  |
+| sv10 | 087 | Team Rocket's Mimikyu | holo | no_exact_match |  |
+| bw1 | 113 | Reshiram | normal | generated | https://www.cardtrader.com/en/cards/111619-reshiram-ultra-rare-113-114-black-white |
+| bw1 | 114 | Zekrom | normal | generated | https://www.cardtrader.com/en/cards/111620-zekrom-ultra-rare-114-114-black-white |
+| bw1 | 115 | Pikachu | normal | generated | https://www.cardtrader.com/en/cards/111621-pikachu-secret-rare-115-114-black-white |
+| swsh7 | 184 | Sylveon V | normal | generated | https://www.cardtrader.com/en/cards/166422-sylveon-v-ultra-rare-184-203-evolving-skies |
+| swsh7 | 94 | Umbreon V | normal | generated | https://www.cardtrader.com/en/cards/166332-umbreon-v-ultra-rare-094-203-evolving-skies |
+| sv03 | 026 | Charmander | holo | generated | https://www.cardtrader.com/en/cards/255586-charmander-non-holo-026-197-obsidian-flames |
+| sv03 | 027 | Charmeleon | holo | generated | https://www.cardtrader.com/en/cards/255587-charmeleon-non-holo-027-197-obsidian-flames |

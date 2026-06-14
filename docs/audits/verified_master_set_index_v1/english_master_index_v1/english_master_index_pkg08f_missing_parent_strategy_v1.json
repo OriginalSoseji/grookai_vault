@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-06-11T11:11:26.260Z",
+  "version": "english_master_index_pkg08f_missing_parent_strategy_v1",
+  "package_id": "PKG-08F-MISSING-PARENT-STRATEGY",
+  "package_fingerprint_sha256": "a919007bde3c65851b42eab845879c8a0b7932532a5d2abc870e951ea78e1956",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "live_read": {
+    "available": true,
+    "reason": null,
+    "live_sets_read": 0,
+    "live_parents_read": 0,
+    "live_tcgdex_mappings_read": 0
+  },
+  "summary": {
+    "source_rows": 0,
+    "classified_rows": 0,
+    "by_strategy_lane": {},
+    "top_sets_by_strategy_lane": {},
+    "true_parent_insert_candidates": 0,
+    "blocked_or_recheck_rows": 0,
+    "by_finish_for_true_parent_insert_candidates": {},
+    "by_set_for_true_parent_insert_candidates": {}
+  },
+  "recommended_next_packages": [
+    {
+      "package_id": "PKG-08G",
+      "scope": "true_parent_insert_candidate",
+      "candidate_rows": 0,
+      "allowed_write_shape": "parent inserts + child inserts + tcgdex external mappings only",
+      "status": "blocked_no_candidates"
+    },
+    {
+      "package_id": "PKG-08H",
+      "scope": "blocked_external_mapping_collision",
+      "candidate_rows": 0,
+      "allowed_write_shape": "read-only adjudication first",
+      "status": "blocked_until_mapping_adjudication"
+    },
+    {
+      "package_id": "PKG-08I",
+      "scope": "blocked_same_number_identity_adjudication",
+      "candidate_rows": 0,
+      "allowed_write_shape": "read-only identity strategy first",
+      "status": "blocked_until_identity_adjudication"
+    }
+  ],
+  "rows": []
+}

@@ -8,10 +8,10 @@ This is an audit-only evidence canonicalization report. No DB writes, migrations
 
 | metric | count |
 | --- | --- |
-| evidence_rows_examined | 304368 |
-| evidence_rows_after_dedupe | 234268 |
+| evidence_rows_examined | 304305 |
+| evidence_rows_after_dedupe | 234546 |
 | evidence_rows_remapped | 908 |
-| duplicate_rows_collapsed | 70100 |
+| duplicate_rows_collapsed | 69759 |
 | unresolved_evidence_rows | 0 |
 | ambiguous_aliases | 0 |
 | source_availability_rows_remapped | 0 |

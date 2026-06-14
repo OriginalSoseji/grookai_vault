@@ -1,0 +1,334 @@
+{
+  "version": "english_master_index_source_delta_audit_v1",
+  "generated_at": "2026-06-12T08:22:53.643Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_key": "justinbasil_prize_pack_finish",
+  "source_kind": "human_readable_checklist",
+  "inputs": {
+    "gaps_path": "docs/audits/english_master_index_source_exhaustion_v1/english_master_index_remaining_gap_facts_v1.json",
+    "report_path": null,
+    "fixture_dir": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_justinbasil_prize_pack_finish_v1",
+    "master_index_dir": "docs/audits/verified_master_set_index_v1/english_master_index_v1",
+    "current_cards_path": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_cards_v1.json",
+    "current_printings_path": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_printings_v1.json"
+  },
+  "rule": "New sources are evaluated as isolated candidate lanes against current remaining gaps before any guarded global rebuild.",
+  "promotion_rule": "Delta evidence may reduce a gap only after source independence and exact fact matching are confirmed; this report does not promote truth by itself.",
+  "no_global_rebuild_required_for_discovery": true,
+  "summary": {
+    "current_gap_facts": 1658,
+    "candidate_records_loaded": 18,
+    "matched_gap_facts": 4,
+    "useful_candidate_matches": 0,
+    "already_in_current_index": 14,
+    "unmatched_candidate_records": 0,
+    "by_delta_status": {
+      "same_source_or_authority": 4
+    },
+    "by_gap_type": {
+      "finish_second_source_needed": 4
+    },
+    "by_unmatched_reason": {
+      "already_in_current_index_master_verified": 14
+    },
+    "top_sets": {
+      "sv02|Paldea Evolved": 2,
+      "sv05|Temporal Forces": 2
+    },
+    "next_step": "No useful gap-closing evidence found; do not run a global rebuild for this source."
+  },
+  "useful_matches": [],
+  "all_matches": [
+    {
+      "delta_status": "same_source_or_authority",
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "71",
+      "card_name": "Luxray",
+      "finish_key": "normal",
+      "current_status": "human_source_verified",
+      "existing_sources": [
+        "justinbasil_prize_pack_finish"
+      ],
+      "existing_authorities": [
+        "justinbasil.com"
+      ],
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps4",
+      "evidence_label": "JustInBasil Prize Pack Series 4: S (non-holo) Luxray PAL 71"
+    },
+    {
+      "delta_status": "same_source_or_authority",
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "89",
+      "card_name": "Spiritomb",
+      "finish_key": "cosmos",
+      "current_status": "human_source_verified",
+      "existing_sources": [
+        "justinbasil_prize_pack_finish"
+      ],
+      "existing_authorities": [
+        "justinbasil.com"
+      ],
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps4",
+      "evidence_label": "JustInBasil Prize Pack Series 4: H (cosmos holofoil) Spiritomb PAL 89"
+    },
+    {
+      "delta_status": "same_source_or_authority",
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "108",
+      "card_name": "Farigiraf ex",
+      "finish_key": "cosmos",
+      "current_status": "human_source_verified",
+      "existing_sources": [
+        "justinbasil_prize_pack_finish"
+      ],
+      "existing_authorities": [
+        "justinbasil.com"
+      ],
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps5",
+      "evidence_label": "JustInBasil Prize Pack Series 5: H (cosmos holofoil) Farigiraf ex TEF 108"
+    },
+    {
+      "delta_status": "same_source_or_authority",
+      "gap_type": "finish_second_source_needed",
+      "fact_type": "printing_finish",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "162",
+      "card_name": "Neo Upper Energy",
+      "finish_key": "cosmos",
+      "current_status": "human_source_verified",
+      "existing_sources": [
+        "justinbasil_prize_pack_finish"
+      ],
+      "existing_authorities": [
+        "justinbasil.com"
+      ],
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps5",
+      "evidence_label": "JustInBasil Prize Pack Series 5: H (cosmos holofoil) Neo Upper Energy TEF 162"
+    }
+  ],
+  "already_in_current_index": [
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "181",
+      "card_name": "Fighting Au Lait",
+      "finish_key": "normal",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps4",
+      "evidence_label": "JustInBasil Prize Pack Series 4: S (non-holo) Fighting Au Lait PAL 181"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "21",
+      "card_name": "Brambleghast",
+      "finish_key": "normal",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps5",
+      "evidence_label": "JustInBasil Prize Pack Series 5: S (non-holo) Brambleghast TEF 21"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "24",
+      "card_name": "Rabsca",
+      "finish_key": "normal",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps5",
+      "evidence_label": "JustInBasil Prize Pack Series 5: S (non-holo) Rabsca TEF 24"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "97",
+      "card_name": "Great Tusk",
+      "finish_key": "normal",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps6",
+      "evidence_label": "JustInBasil Prize Pack Series 6: S (non-holo) Great Tusk TEF 97"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "148",
+      "card_name": "Full Metal Lab",
+      "finish_key": "cosmos",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps5",
+      "evidence_label": "JustInBasil Prize Pack Series 5: H (cosmos holofoil) Full Metal Lab TEF 148"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "151",
+      "card_name": "Heavy Baton",
+      "finish_key": "normal",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps5",
+      "evidence_label": "JustInBasil Prize Pack Series 5: S (non-holo) Heavy Baton TEF 151"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "155",
+      "card_name": "Morty's Conviction",
+      "finish_key": "normal",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps5",
+      "evidence_label": "JustInBasil Prize Pack Series 5: S (non-holo) Morty's Conviction TEF 155"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "156",
+      "card_name": "Perilous Jungle",
+      "finish_key": "cosmos",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps5",
+      "evidence_label": "JustInBasil Prize Pack Series 5: H (cosmos holofoil) Perilous Jungle TEF 156"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "160",
+      "card_name": "Salvatore",
+      "finish_key": "normal",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps5",
+      "evidence_label": "JustInBasil Prize Pack Series 5: S (non-holo) Salvatore TEF 160"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "153",
+      "card_name": "Arezu",
+      "finish_key": "normal",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps4",
+      "evidence_label": "JustInBasil Prize Pack Series 4: S (non-holo) Arezu LOR 153"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "161",
+      "card_name": "Lost City",
+      "finish_key": "cosmos",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps4",
+      "evidence_label": "JustInBasil Prize Pack Series 4: H (cosmos holofoil) Lost City LOR 161"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "swsh12",
+      "set_name": "Silver Tempest",
+      "card_number": "155",
+      "card_name": "Emergency Jelly",
+      "finish_key": "normal",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps4",
+      "evidence_label": "JustInBasil Prize Pack Series 4: S (non-holo) Emergency Jelly SIT 155"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "swsh12",
+      "set_name": "Silver Tempest",
+      "card_number": "156",
+      "card_name": "Forest Seal Stone",
+      "finish_key": "normal",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps4",
+      "evidence_label": "JustInBasil Prize Pack Series 4: S (non-holo) Forest Seal Stone SIT 156"
+    },
+    {
+      "unmatched_reason": "already_in_current_index_master_verified",
+      "current_status": "master_verified",
+      "set_key": "swsh12",
+      "set_name": "Silver Tempest",
+      "card_number": "167",
+      "card_name": "Worker",
+      "finish_key": "cosmos",
+      "candidate_source_key": "justinbasil_prize_pack_finish",
+      "candidate_source_kind": "collector_reference",
+      "candidate_authority": "justinbasil.com",
+      "candidate_url": "https://www.justinbasil.com/set-lists/pps4",
+      "evidence_label": "JustInBasil Prize Pack Series 4: H (cosmos holofoil) Worker SIT 167"
+    }
+  ],
+  "unmatched_candidate_sample": []
+}

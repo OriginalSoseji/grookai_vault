@@ -1,0 +1,3616 @@
+{
+  "generated_at": "2026-06-13T00:02:02.090Z",
+  "version": "pkg17i3_pricecharting_stamp_label_acquisition_v1",
+  "package_id": "PKG-17I3-PRICECHARTING-STAMP-LABEL-ACQUISITION",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "write_ready_now": 0,
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17a_stamped_remaining_action_queue_v1.json",
+  "csv_path": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+  "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pricecharting_stamp_label_v1/pricecharting_stamp_label_candidates_v1.json",
+  "fingerprint_sha256": "3e50fec1740185366c585baa61c8db88d17b5bf4add860395cdc0214b4c31b37",
+  "summary": {
+    "target_rows": 178,
+    "csv_rows_reviewed": 73212,
+    "candidate_rows": 42,
+    "blocked_rows": 136,
+    "fixture_records_written": 42,
+    "by_status": {
+      "blocked_no_pricecharting_stamp_label_candidate": 128,
+      "candidate_pricecharting_exact_stamp_label": 42,
+      "blocked_conflicting_pricecharting_stamp_label_candidates": 8
+    },
+    "by_candidate_stamp_label": {
+      "Prize Pack Stamp": 10,
+      "Staff Stamp": 9,
+      "Toys R Us Stamp": 9,
+      "Build-A-Bear Workshop Stamp": 8,
+      "League Stamp": 3,
+      "Winner Stamp": 2,
+      "GameStop Stamp": 1
+    },
+    "by_set": {
+      "svp": 26,
+      "sv02": 18,
+      "sv09": 11,
+      "dp2": 9,
+      "dp1": 7,
+      "sv05": 7,
+      "bwp": 6,
+      "col1": 6,
+      "dp5": 6,
+      "g1": 6,
+      "mep": 6,
+      "bw1": 4,
+      "sm1": 4,
+      "sv07": 4,
+      "dp4": 3,
+      "sm12": 3,
+      "sm4": 3,
+      "smp": 3,
+      "swsh6": 3,
+      "swsh7": 3,
+      "bog": 2,
+      "bw5": 2,
+      "dp3": 2,
+      "me01": 2,
+      "sm3": 2,
+      "swsh3": 2,
+      "xy7": 2,
+      "xyp": 2,
+      "basep": 1,
+      "bw10": 1,
+      "bw11": 1,
+      "dp6": 1,
+      "ex3": 1,
+      "hgss1": 1,
+      "np": 1,
+      "pl1": 1,
+      "pl3": 1,
+      "pop6": 1,
+      "pop9": 1,
+      "sm2": 1,
+      "sm5": 1,
+      "sv10": 1,
+      "swsh1": 1,
+      "swsh10": 1,
+      "swsh11": 1,
+      "swsh12": 1,
+      "swsh8": 1,
+      "xy12": 1,
+      "xy2": 1,
+      "xy5": 1,
+      "xy6": 1,
+      "xy9": 1
+    },
+    "by_block_reason": {
+      "no_exact_product_with_stamp_label": 128,
+      "conflicting_stamp_labels": 8
+    }
+  },
+  "results": [
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "51",
+      "card_name": "Rapidash",
+      "finish_key": "normal",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72665,
+        "name_mismatch": 545,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "bog",
+      "set_name": "Best of Game",
+      "card_number": "4",
+      "card_name": "Rocket's Scizor",
+      "finish_key": "normal",
+      "accepted_stamp_label": "Winner Stamp",
+      "accepted_variant_key": "winner_stamp",
+      "accepted_product_name": "Rocket's Scizor [Winner] #4",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Rocket's Scizor [Winner] #4",
+          "source_url": "https://www.pricecharting.com/game/pokemon-best-of-game/rockets-scizor-winner-4"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-best-of-game/rockets-scizor-winner-4",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Rocket's Scizor [Winner] #4",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "bog",
+      "set_name": "Best of Game",
+      "card_number": "5",
+      "card_name": "Rocket's Sneasel",
+      "finish_key": "normal",
+      "accepted_stamp_label": "Winner Stamp",
+      "accepted_variant_key": "winner_stamp",
+      "accepted_product_name": "Rocket's Sneasel [Winner] #5",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Rocket's Sneasel [Winner] #5",
+          "source_url": "https://www.pricecharting.com/game/pokemon-best-of-game/rockets-sneasel-winner-5"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-best-of-game/rockets-sneasel-winner-5",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Rocket's Sneasel [Winner] #5",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "108",
+      "card_name": "Lightning Energy",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72972,
+        "name_mismatch": 235,
+        "no_stamp_label_in_product_title": 3,
+        "set_mismatch": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "109",
+      "card_name": "Psychic Energy",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72957,
+        "name_mismatch": 252,
+        "no_stamp_label_in_product_title": 2,
+        "set_mismatch": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "110",
+      "card_name": "Fighting Energy",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72982,
+        "name_mismatch": 226,
+        "no_stamp_label_in_product_title": 3,
+        "set_mismatch": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "112",
+      "card_name": "Metal Energy",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72990,
+        "name_mismatch": 220,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "bw10",
+      "set_name": "Plasma Blast",
+      "card_number": "14",
+      "card_name": "Squirtle",
+      "finish_key": null,
+      "accepted_stamp_label": "Build-A-Bear Workshop Stamp",
+      "accepted_variant_key": "build_a_bear_workshop_stamp",
+      "accepted_product_name": "Squirtle [Build A Bear] #14",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Squirtle [Build A Bear] #14",
+          "source_url": "https://www.pricecharting.com/game/pokemon-plasma-blast/squirtle-build-a-bear-14"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-plasma-blast/squirtle-build-a-bear-14",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Squirtle [Build A Bear] #14",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "17",
+      "card_name": "Charmander",
+      "finish_key": null,
+      "accepted_stamp_label": "Build-A-Bear Workshop Stamp",
+      "accepted_variant_key": "build_a_bear_workshop_stamp",
+      "accepted_product_name": "Charmander [Build-a-Bear] #17",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Charmander [Build-a-Bear] #17",
+          "source_url": "https://www.pricecharting.com/game/pokemon-legendary-treasures/charmander-build-a-bear-17"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-legendary-treasures/charmander-build-a-bear-17",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Charmander [Build-a-Bear] #17",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "1",
+      "card_name": "Bulbasaur",
+      "finish_key": null,
+      "accepted_stamp_label": "Build-A-Bear Workshop Stamp",
+      "accepted_variant_key": "build_a_bear_workshop_stamp",
+      "accepted_product_name": "Bulbasaur [Build A Bear] #1",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Bulbasaur [Build A Bear] #1",
+          "source_url": "https://www.pricecharting.com/game/pokemon-dark-explorers/bulbasaur-build-a-bear-1"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-dark-explorers/bulbasaur-build-a-bear-1",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Bulbasaur [Build A Bear] #1",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "60",
+      "card_name": "Umbreon",
+      "finish_key": null,
+      "accepted_stamp_label": "Staff Stamp",
+      "accepted_variant_key": "staff_stamp",
+      "accepted_product_name": "Umbreon [Regional Staff] #60",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Umbreon [Regional Staff] #60",
+          "source_url": "https://www.pricecharting.com/game/pokemon-dark-explorers/umbreon-regional-staff-60"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-dark-explorers/umbreon-regional-staff-60",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Umbreon [Regional Staff] #60",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW29",
+      "card_name": "Victory Cup",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73211,
+        "no_stamp_label_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW30",
+      "card_name": "Victory Cup",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73211,
+        "no_stamp_label_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW31",
+      "card_name": "Victory Cup",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73211,
+        "no_stamp_label_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW53",
+      "card_name": "Flygon",
+      "finish_key": null,
+      "accepted_stamp_label": "Staff Stamp",
+      "accepted_variant_key": "staff_stamp",
+      "accepted_product_name": "Flygon [Staff] #BW53",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Flygon [Staff] #BW53",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/flygon-staff-bw53"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/flygon-staff-bw53",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Flygon [Staff] #BW53",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW84",
+      "card_name": "Porygon-Z",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73211,
+        "no_stamp_label_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "card_number": "BW96",
+      "card_name": "Tornadus-EX",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73210,
+        "no_stamp_label_in_product_title": 1,
+        "multiple_stamp_labels_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "89",
+      "card_name": "Fire Energy",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72840,
+        "name_mismatch": 370,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "90",
+      "card_name": "Water Energy",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72842,
+        "name_mismatch": 368,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "92",
+      "card_name": "Psychic Energy",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72867,
+        "name_mismatch": 343,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "93",
+      "card_name": "Fighting Energy",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72872,
+        "name_mismatch": 338,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "94",
+      "card_name": "Darkness Energy",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72876,
+        "name_mismatch": 332,
+        "no_stamp_label_in_product_title": 2,
+        "set_mismatch": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "95",
+      "card_name": "Metal Energy",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72884,
+        "name_mismatch": 322,
+        "no_stamp_label_in_product_title": 2,
+        "set_mismatch": 4
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "61",
+      "card_name": "Riolu",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72695,
+        "name_mismatch": 514,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "76",
+      "card_name": "Chimchar",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72762,
+        "name_mismatch": 444,
+        "set_mismatch": 1,
+        "no_stamp_label_in_product_title": 5
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "83",
+      "card_name": "Glameow",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72814,
+        "name_mismatch": 396,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "93",
+      "card_name": "Piplup",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72872,
+        "name_mismatch": 334,
+        "set_mismatch": 2,
+        "no_stamp_label_in_product_title": 4
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "99",
+      "card_name": "Skorupi",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72917,
+        "name_mismatch": 293,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "102",
+      "card_name": "Stunky",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72944,
+        "name_mismatch": 265,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "103",
+      "card_name": "Turtwig",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72954,
+        "name_mismatch": 253,
+        "set_mismatch": 1,
+        "no_stamp_label_in_product_title": 4
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "19",
+      "card_name": "Abomasnow",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72562,
+        "name_mismatch": 648,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "42",
+      "card_name": "Chingling",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72670,
+        "name_mismatch": 540,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "52",
+      "card_name": "Happiny",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72660,
+        "name_mismatch": 548,
+        "no_stamp_label_in_product_title": 4
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "73",
+      "card_name": "Bidoof",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72758,
+        "name_mismatch": 452,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "74",
+      "card_name": "Bronzor",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72764,
+        "name_mismatch": 445,
+        "set_mismatch": 1,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "86",
+      "card_name": "Kricketot",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72818,
+        "name_mismatch": 392,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "94",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72876,
+        "name_mismatch": 333,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "98",
+      "card_name": "Shinx",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72910,
+        "name_mismatch": 294,
+        "set_mismatch": 5,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "101",
+      "card_name": "Snover",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72936,
+        "name_mismatch": 274,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "card_number": "40",
+      "card_name": "Weavile",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72643,
+        "name_mismatch": 565,
+        "set_mismatch": 2,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "card_number": "78",
+      "card_name": "Burmy Plant Cloak",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72772,
+        "name_mismatch": 440
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp4",
+      "set_name": "Great Encounters",
+      "card_number": "16",
+      "card_name": "Dialga",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72540,
+        "name_mismatch": 668,
+        "no_stamp_label_in_product_title": 4
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp4",
+      "set_name": "Great Encounters",
+      "card_number": "37",
+      "card_name": "Floatzel",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72643,
+        "name_mismatch": 567,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp4",
+      "set_name": "Great Encounters",
+      "card_number": "61",
+      "card_name": "Buizel",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72695,
+        "name_mismatch": 515,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "20",
+      "card_name": "Glaceon",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72563,
+        "name_mismatch": 645,
+        "no_stamp_label_in_product_title": 4
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "57",
+      "card_name": "Chimchar",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72688,
+        "name_mismatch": 522,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "59",
+      "card_name": "Combee",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72684,
+        "name_mismatch": 526,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "68",
+      "card_name": "Munchlax",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72734,
+        "name_mismatch": 475,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "72",
+      "card_name": "Piplup",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72751,
+        "name_mismatch": 458,
+        "set_mismatch": 1,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "78",
+      "card_name": "Turtwig",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72772,
+        "name_mismatch": 437,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "43",
+      "card_name": "Uxie",
+      "finish_key": null,
+      "accepted_stamp_label": "League Stamp",
+      "accepted_variant_key": "league_stamp",
+      "accepted_product_name": "Uxie [League] #43",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Uxie [League] #43",
+          "source_url": "https://www.pricecharting.com/game/pokemon-legends-awakened/uxie-league-43"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-legends-awakened/uxie-league-43",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Uxie [League] #43",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "ex3",
+      "set_name": "Dragon",
+      "card_number": "50",
+      "card_name": "Bagon",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72683,
+        "name_mismatch": 524,
+        "no_stamp_label_in_product_title": 2,
+        "set_mismatch": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "8",
+      "card_name": "Tangela",
+      "finish_key": null,
+      "accepted_stamp_label": "Toys R Us Stamp",
+      "accepted_variant_key": "toys_r_us_stamp",
+      "accepted_product_name": "Tangela [Toys R Us] #8",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Tangela [Toys R Us] #8",
+          "source_url": "https://www.pricecharting.com/game/pokemon-generations/tangela-toys-r-us-8"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-generations/tangela-toys-r-us-8",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Tangela [Toys R Us] #8",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "22",
+      "card_name": "Magikarp",
+      "finish_key": null,
+      "accepted_stamp_label": "Toys R Us Stamp",
+      "accepted_variant_key": "toys_r_us_stamp",
+      "accepted_product_name": "Magikarp [Toys R Us] #22",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Magikarp [Toys R Us] #22",
+          "source_url": "https://www.pricecharting.com/game/pokemon-generations/magikarp-toys-r-us-22"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-generations/magikarp-toys-r-us-22",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Magikarp [Toys R Us] #22",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "26",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "accepted_stamp_label": "Toys R Us Stamp",
+      "accepted_variant_key": "toys_r_us_stamp",
+      "accepted_product_name": "Pikachu [Toys R Us] #26",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Pikachu [Toys R Us] #26",
+          "source_url": "https://www.pricecharting.com/game/pokemon-generations/pikachu-toys-r-us-26"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-generations/pikachu-toys-r-us-26",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Pikachu [Toys R Us] #26",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "32",
+      "card_name": "Slowpoke",
+      "finish_key": null,
+      "accepted_stamp_label": "Toys R Us Stamp",
+      "accepted_variant_key": "toys_r_us_stamp",
+      "accepted_product_name": "Slowpoke [Toys R Us] #32",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Slowpoke [Toys R Us] #32",
+          "source_url": "https://www.pricecharting.com/game/pokemon-generations/slowpoke-toys-r-us-32"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-generations/slowpoke-toys-r-us-32",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Slowpoke [Toys R Us] #32",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "50",
+      "card_name": "Clefairy",
+      "finish_key": null,
+      "accepted_stamp_label": "Toys R Us Stamp",
+      "accepted_variant_key": "toys_r_us_stamp",
+      "accepted_product_name": "Clefairy [Toys R Us] #50",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Clefairy [Toys R Us] #50",
+          "source_url": "https://www.pricecharting.com/game/pokemon-generations/clefairy-toys-r-us-50"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-generations/clefairy-toys-r-us-50",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Clefairy [Toys R Us] #50",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "53",
+      "card_name": "Meowth",
+      "finish_key": null,
+      "accepted_stamp_label": "Toys R Us Stamp",
+      "accepted_variant_key": "toys_r_us_stamp",
+      "accepted_product_name": "Meowth [Toys R Us] #53",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Meowth [Toys R Us] #53",
+          "source_url": "https://www.pricecharting.com/game/pokemon-generations/meowth-toys-r-us-53"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-generations/meowth-toys-r-us-53",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Meowth [Toys R Us] #53",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "90",
+      "card_name": "Copycat",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72842,
+        "name_mismatch": 367,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "me01",
+      "set_name": "Mega Evolution",
+      "card_number": "104",
+      "card_name": "Mega Kangaskhan ex",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72960,
+        "name_mismatch": 252
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "me01",
+      "set_name": "Mega Evolution",
+      "card_number": "133",
+      "card_name": "Bulbasaur",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73055,
+        "name_mismatch": 156,
+        "no_stamp_label_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "9",
+      "card_name": "Alakazam",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72471,
+        "name_mismatch": 739,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "10",
+      "card_name": "Riolu",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72498,
+        "name_mismatch": 712,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "22",
+      "card_name": "Charcadet",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72605,
+        "name_mismatch": 605,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "31",
+      "card_name": "N's Zekrom",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72645,
+        "name_mismatch": 565,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "70",
+      "card_name": "Tyrunt",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72741,
+        "name_mismatch": 469,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "80",
+      "card_name": "Fennekin",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72785,
+        "name_mismatch": 425,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "np",
+      "set_name": "Nintendo Black Star Promos",
+      "card_number": "12",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72510,
+        "name_mismatch": 697,
+        "set_mismatch": 3,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_number": "91",
+      "card_name": "Riolu",
+      "finish_key": null,
+      "accepted_stamp_label": "Staff Stamp",
+      "accepted_variant_key": "staff_stamp",
+      "accepted_product_name": "Riolu [Staff] #91",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Riolu [Staff] #91",
+          "source_url": "https://www.pricecharting.com/game/pokemon-platinum/riolu-staff-91"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-platinum/riolu-staff-91",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Riolu [Staff] #91",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_number": "56",
+      "card_name": "Dragonite FB",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72688,
+        "name_mismatch": 521,
+        "no_stamp_label_in_product_title": 2,
+        "multiple_stamp_labels_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "pop6",
+      "set_name": "POP Series 6",
+      "card_number": "9",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72471,
+        "name_mismatch": 736,
+        "set_mismatch": 1,
+        "no_stamp_label_in_product_title": 4
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "pop9",
+      "set_name": "POP Series 9",
+      "card_number": "15",
+      "card_name": "Pikachu",
+      "finish_key": "normal",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72514,
+        "name_mismatch": 693,
+        "set_mismatch": 3,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "26",
+      "card_name": "Incineroar",
+      "finish_key": null,
+      "accepted_stamp_label": "League Stamp",
+      "accepted_variant_key": "league_stamp",
+      "accepted_product_name": "Incineroar [Pokemon League] #26",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Incineroar [Pokemon League] #26",
+          "source_url": "https://www.pricecharting.com/game/pokemon-sun-and-moon/incineroar-pokemon-league-26"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-sun-and-moon/incineroar-pokemon-league-26",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Incineroar [Pokemon League] #26",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "28",
+      "card_name": "Psyduck",
+      "finish_key": null,
+      "accepted_stamp_label": "Build-A-Bear Workshop Stamp",
+      "accepted_variant_key": "build_a_bear_workshop_stamp",
+      "accepted_product_name": "Psyduck [Build-A-Bear] #28",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Psyduck [Build-A-Bear] #28",
+          "source_url": "https://www.pricecharting.com/game/pokemon-sun-and-moon/psyduck-build-a-bear-28"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-sun-and-moon/psyduck-build-a-bear-28",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Psyduck [Build-A-Bear] #28",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "64",
+      "card_name": "Cosmog",
+      "finish_key": null,
+      "accepted_stamp_label": "Toys R Us Stamp",
+      "accepted_variant_key": "toys_r_us_stamp",
+      "accepted_product_name": "Cosmog [Toys R Us Promo] #64",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Cosmog [Toys R Us Promo] #64",
+          "source_url": "https://www.pricecharting.com/game/pokemon-sun-and-moon/cosmog-toys-r-us-promo-64"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-sun-and-moon/cosmog-toys-r-us-promo-64",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Cosmog [Toys R Us Promo] #64",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "90",
+      "card_name": "Snubbull",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72842,
+        "name_mismatch": 367,
+        "set_mismatch": 1,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "card_number": "99",
+      "card_name": "Cosmog",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72917,
+        "name_mismatch": 292,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "card_number": "101",
+      "card_name": "Cosmoem",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72936,
+        "name_mismatch": 273,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "card_number": "102",
+      "card_name": "Lunala",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72944,
+        "name_mismatch": 265,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_conflicting_pricecharting_stamp_label_candidates",
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "card_number": "21",
+      "card_name": "Alolan Vulpix",
+      "finish_key": null,
+      "match_count": 2,
+      "candidate_products": [
+        {
+          "product_name": "Alolan Vulpix [Build-a-Bear] #21",
+          "stamp_label": "Build-A-Bear Workshop Stamp",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-guardians-rising/alolan-vulpix-build-a-bear-21"
+        },
+        {
+          "product_name": "Alolan Vulpix [Toys 'R Us] #21",
+          "stamp_label": "Toys R Us Stamp",
+          "variant_key": "toys_r_us_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-guardians-rising/alolan-vulpix-toys-r-us-21"
+        }
+      ],
+      "block_reason": "conflicting_stamp_labels",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72591,
+        "name_mismatch": 616,
+        "no_stamp_label_in_product_title": 2,
+        "set_mismatch": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "18",
+      "card_name": "Charmander",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72571,
+        "name_mismatch": 636,
+        "set_mismatch": 2,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "110",
+      "card_name": "Stufful",
+      "finish_key": null,
+      "accepted_stamp_label": "Toys R Us Stamp",
+      "accepted_variant_key": "toys_r_us_stamp",
+      "accepted_product_name": "Stufful [Toys R Us] #110",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Stufful [Toys R Us] #110",
+          "source_url": "https://www.pricecharting.com/game/pokemon-burning-shadows/stufful-toys-r-us-110"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-burning-shadows/stufful-toys-r-us-110",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Stufful [Toys R Us] #110",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "71",
+      "card_name": "Jigglypuff",
+      "finish_key": null,
+      "accepted_stamp_label": "Build-A-Bear Workshop Stamp",
+      "accepted_variant_key": "build_a_bear_workshop_stamp",
+      "accepted_product_name": "Jigglypuff [Build-A-Bear] #71",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Jigglypuff [Build-A-Bear] #71",
+          "source_url": "https://www.pricecharting.com/game/pokemon-crimson-invasion/jigglypuff-build-a-bear-71"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-crimson-invasion/jigglypuff-build-a-bear-71",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Jigglypuff [Build-A-Bear] #71",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_conflicting_pricecharting_stamp_label_candidates",
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "75",
+      "card_name": "Jangmo-o",
+      "finish_key": null,
+      "match_count": 2,
+      "candidate_products": [
+        {
+          "product_name": "Jangmo-O [EB Games] #75",
+          "stamp_label": "EB Games Stamp",
+          "variant_key": "eb_games_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-crimson-invasion/jangmo-o-eb-games-75"
+        },
+        {
+          "product_name": "Jangmo-o [Toys R Us] #75",
+          "stamp_label": "Toys R Us Stamp",
+          "variant_key": "toys_r_us_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-crimson-invasion/jangmo-o-toys-r-us-75"
+        }
+      ],
+      "block_reason": "conflicting_stamp_labels",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72765,
+        "name_mismatch": 442,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "84",
+      "card_name": "Regigigas",
+      "finish_key": null,
+      "accepted_stamp_label": "League Stamp",
+      "accepted_variant_key": "league_stamp",
+      "accepted_product_name": "Regigigas [1st Place League] #84",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Regigigas [1st Place League] #84",
+          "source_url": "https://www.pricecharting.com/game/pokemon-crimson-invasion/regigigas-1st-place-league-84"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-crimson-invasion/regigigas-1st-place-league-84",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Regigigas [1st Place League] #84",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_conflicting_pricecharting_stamp_label_candidates",
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "32",
+      "card_name": "Piplup",
+      "finish_key": null,
+      "match_count": 2,
+      "candidate_products": [
+        {
+          "product_name": "Piplup [Build-A-Bear] #32",
+          "stamp_label": "Build-A-Bear Workshop Stamp",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-ultra-prism/piplup-build-a-bear-32"
+        },
+        {
+          "product_name": "Piplup [ToysRUs] #32",
+          "stamp_label": "Toys R Us Stamp",
+          "variant_key": "toys_r_us_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-ultra-prism/piplup-toysrus-32"
+        }
+      ],
+      "block_reason": "conflicting_stamp_labels",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72637,
+        "name_mismatch": 571,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM78",
+      "card_name": "Champions Festival",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73207,
+        "no_stamp_label_in_product_title": 5
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM199",
+      "card_name": "Psyduck",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73210,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM200",
+      "card_name": "Snubbull",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73210,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "12",
+      "card_name": "Sprigatito",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72510,
+        "name_mismatch": 697,
+        "set_mismatch": 2,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "36",
+      "card_name": "Crocalor",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72648,
+        "name_mismatch": 562,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "39",
+      "card_name": "Charcadet",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72663,
+        "name_mismatch": 545,
+        "no_stamp_label_in_product_title": 2,
+        "set_mismatch": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "46",
+      "card_name": "Delibird",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72668,
+        "name_mismatch": 541,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "50",
+      "card_name": "Quaxly",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72683,
+        "name_mismatch": 523,
+        "no_stamp_label_in_product_title": 3,
+        "set_mismatch": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "60",
+      "card_name": "Baxcalibur",
+      "finish_key": null,
+      "accepted_stamp_label": "Prize Pack Stamp",
+      "accepted_variant_key": "prize_pack_stamp",
+      "accepted_product_name": "Baxcalibur [Prize Pack] #60",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Baxcalibur [Prize Pack] #60",
+          "source_url": "https://www.pricecharting.com/game/pokemon-paldea-evolved/baxcalibur-prize-pack-60"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-paldea-evolved/baxcalibur-prize-pack-60",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Baxcalibur [Prize Pack] #60",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "62",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72686,
+        "name_mismatch": 522,
+        "no_stamp_label_in_product_title": 3,
+        "set_mismatch": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "63",
+      "card_name": "Pikachu ex",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72702,
+        "name_mismatch": 508,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "67",
+      "card_name": "Electrode",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72746,
+        "name_mismatch": 464,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "76",
+      "card_name": "Pawmot",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72762,
+        "name_mismatch": 445,
+        "no_stamp_label_in_product_title": 2,
+        "set_mismatch": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "82",
+      "card_name": "Kilowattrel",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72807,
+        "name_mismatch": 403,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "88",
+      "card_name": "Mismagius",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72827,
+        "name_mismatch": 382,
+        "no_stamp_label_in_product_title": 2,
+        "set_mismatch": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "105",
+      "card_name": "Tinkaton",
+      "finish_key": null,
+      "accepted_stamp_label": "GameStop Stamp",
+      "accepted_variant_key": "gamestop_stamp",
+      "accepted_product_name": "Tinkaton [GameStop] #105",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Tinkaton [GameStop] #105",
+          "source_url": "https://www.pricecharting.com/game/pokemon-paldea-evolved/tinkaton-gamestop-105"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-paldea-evolved/tinkaton-gamestop-105",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Tinkaton [GameStop] #105",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "131",
+      "card_name": "Murkrow",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73045,
+        "name_mismatch": 164,
+        "no_stamp_label_in_product_title": 2,
+        "set_mismatch": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "135",
+      "card_name": "Tyranitar",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73049,
+        "name_mismatch": 159,
+        "no_stamp_label_in_product_title": 4
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "137",
+      "card_name": "Seviper",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73056,
+        "name_mismatch": 154,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "183",
+      "card_name": "Great Ball",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73134,
+        "name_mismatch": 76,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_conflicting_pricecharting_stamp_label_candidates",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "185",
+      "card_name": "Iono",
+      "finish_key": null,
+      "match_count": 3,
+      "candidate_products": [
+        {
+          "product_name": "Iono [Prize Pack Cosmos Holo] #185",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-paldea-evolved/iono-prize-pack-cosmos-holo-185"
+        },
+        {
+          "product_name": "Iono [Prize Pack] #185",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-paldea-evolved/iono-prize-pack-185"
+        },
+        {
+          "product_name": "Iono [Regional Championship] #185",
+          "stamp_label": "Regional Championships Stamp",
+          "variant_key": "regional_championships_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-paldea-evolved/iono-regional-championship-185"
+        }
+      ],
+      "block_reason": "conflicting_stamp_labels",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73136,
+        "name_mismatch": 67,
+        "no_stamp_label_in_product_title": 4,
+        "multiple_stamp_labels_in_product_title": 1,
+        "set_mismatch": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "51",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72665,
+        "name_mismatch": 543,
+        "no_stamp_label_in_product_title": 4
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "81",
+      "card_name": "Iron Crown ex",
+      "finish_key": "holo",
+      "accepted_stamp_label": "Prize Pack Stamp",
+      "accepted_variant_key": "prize_pack_stamp",
+      "accepted_product_name": "Iron Crown Ex [Prize Pack] #81",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Iron Crown Ex [Prize Pack] #81",
+          "source_url": "https://www.pricecharting.com/game/pokemon-temporal-forces/iron-crown-ex-prize-pack-81"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-temporal-forces/iron-crown-ex-prize-pack-81",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Iron Crown Ex [Prize Pack] #81",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "102",
+      "card_name": "Gastly",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72944,
+        "name_mismatch": 266,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "103",
+      "card_name": "Haunter",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72954,
+        "name_mismatch": 256,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_conflicting_pricecharting_stamp_label_candidates",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "119",
+      "card_name": "Koraidon",
+      "finish_key": null,
+      "match_count": 3,
+      "candidate_products": [
+        {
+          "product_name": "Koraidon [EB Games] #119",
+          "stamp_label": "EB Games Stamp",
+          "variant_key": "eb_games_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-temporal-forces/koraidon-eb-games-119"
+        },
+        {
+          "product_name": "Koraidon [GameStop] #119",
+          "stamp_label": "GameStop Stamp",
+          "variant_key": "gamestop_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-temporal-forces/koraidon-gamestop-119"
+        },
+        {
+          "product_name": "Koraidon [Prize Pack] #119",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-temporal-forces/koraidon-prize-pack-119"
+        }
+      ],
+      "block_reason": "conflicting_stamp_labels",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73014,
+        "name_mismatch": 189,
+        "no_stamp_label_in_product_title": 5,
+        "multiple_stamp_labels_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "121",
+      "card_name": "Miraidon",
+      "finish_key": null,
+      "accepted_stamp_label": "Prize Pack Stamp",
+      "accepted_variant_key": "prize_pack_stamp",
+      "accepted_product_name": "Miraidon [Prize Pack] #121",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Miraidon [Prize Pack] #121",
+          "source_url": "https://www.pricecharting.com/game/pokemon-temporal-forces/miraidon-prize-pack-121"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-temporal-forces/miraidon-prize-pack-121",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Miraidon [Prize Pack] #121",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "139",
+      "card_name": "Iron Jugulis",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73071,
+        "name_mismatch": 139,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "card_number": "31",
+      "card_name": "Lapras",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72645,
+        "name_mismatch": 560,
+        "set_mismatch": 4,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_conflicting_pricecharting_stamp_label_candidates",
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "card_number": "107",
+      "card_name": "Archaludon",
+      "finish_key": null,
+      "match_count": 5,
+      "candidate_products": [
+        {
+          "product_name": "Archaludon [Cosmos Holo Gamestop] #107",
+          "stamp_label": "GameStop Stamp",
+          "variant_key": "gamestop_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/archaludon-cosmos-holo-gamestop-107"
+        },
+        {
+          "product_name": "Archaludon [EB Games] #107",
+          "stamp_label": "EB Games Stamp",
+          "variant_key": "eb_games_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/archaludon-eb-games-107"
+        },
+        {
+          "product_name": "Archaludon [GameStop] #107",
+          "stamp_label": "GameStop Stamp",
+          "variant_key": "gamestop_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/archaludon-gamestop-107"
+        },
+        {
+          "product_name": "Archaludon [Prize Pack Cosmos Holo] #107",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/archaludon-prize-pack-cosmos-holo-107"
+        },
+        {
+          "product_name": "Archaludon [Prize Pack] #107",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/archaludon-prize-pack-107"
+        }
+      ],
+      "block_reason": "conflicting_stamp_labels",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72951,
+        "name_mismatch": 252,
+        "no_stamp_label_in_product_title": 4
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "card_number": "119",
+      "card_name": "Bouffalant",
+      "finish_key": null,
+      "accepted_stamp_label": "Prize Pack Stamp",
+      "accepted_variant_key": "prize_pack_stamp",
+      "accepted_product_name": "Bouffalant [Prize Pack Cosmos Holo] #119",
+      "matched_product_count": 2,
+      "matched_products": [
+        {
+          "product_name": "Bouffalant [Prize Pack Cosmos Holo] #119",
+          "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/bouffalant-prize-pack-cosmos-holo-119"
+        },
+        {
+          "product_name": "Bouffalant [Prize Pack] #119",
+          "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/bouffalant-prize-pack-119"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/bouffalant-prize-pack-cosmos-holo-119",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Bouffalant [Prize Pack Cosmos Holo] #119",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "card_number": "149",
+      "card_name": "Crabominable",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73074,
+        "name_mismatch": 136,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "27",
+      "card_name": "N's Darmanitan",
+      "finish_key": null,
+      "accepted_stamp_label": "Prize Pack Stamp",
+      "accepted_variant_key": "prize_pack_stamp",
+      "accepted_product_name": "N's Darmanitan [Prize Pack] #27",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "N's Darmanitan [Prize Pack] #27",
+          "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/ns-darmanitan-prize-pack-27"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/ns-darmanitan-prize-pack-27",
+      "evidence_label": "PriceCharting CSV exact product title candidate: N's Darmanitan [Prize Pack] #27",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "30",
+      "card_name": "Reshiram ex",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72618,
+        "name_mismatch": 591,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "55",
+      "card_name": "Iono's Kilowattrel",
+      "finish_key": null,
+      "accepted_stamp_label": "Prize Pack Stamp",
+      "accepted_variant_key": "prize_pack_stamp",
+      "accepted_product_name": "Iono's Kilowattrel [Prize Pack] #55",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Iono's Kilowattrel [Prize Pack] #55",
+          "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/ionos-kilowattrel-prize-pack-55"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/ionos-kilowattrel-prize-pack-55",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Iono's Kilowattrel [Prize Pack] #55",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "67",
+      "card_name": "Lillie's Ribombee",
+      "finish_key": null,
+      "accepted_stamp_label": "Prize Pack Stamp",
+      "accepted_variant_key": "prize_pack_stamp",
+      "accepted_product_name": "Lillie's Ribombee [Prize Pack Cosmos Holo] #67",
+      "matched_product_count": 2,
+      "matched_products": [
+        {
+          "product_name": "Lillie's Ribombee [Prize Pack Cosmos Holo] #67",
+          "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/lillies-ribombee-prize-pack-cosmos-holo-67"
+        },
+        {
+          "product_name": "Lillie's Ribombee [Prize Pack] #67",
+          "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/lillies-ribombee-prize-pack-67"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/lillies-ribombee-prize-pack-cosmos-holo-67",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Lillie's Ribombee [Prize Pack Cosmos Holo] #67",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "69",
+      "card_name": "Mimikyu ex",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72741,
+        "name_mismatch": 470,
+        "no_stamp_label_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "75",
+      "card_name": "Alcremie ex",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72765,
+        "name_mismatch": 445,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "114",
+      "card_name": "Salamence ex",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73002,
+        "name_mismatch": 207,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "116",
+      "card_name": "N's Reshiram",
+      "finish_key": null,
+      "accepted_stamp_label": "Prize Pack Stamp",
+      "accepted_variant_key": "prize_pack_stamp",
+      "accepted_product_name": "N's Reshiram [Prize Pack Cosmos Holo] #116",
+      "matched_product_count": 2,
+      "matched_products": [
+        {
+          "product_name": "N's Reshiram [Prize Pack Cosmos Holo] #116",
+          "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/ns-reshiram-prize-pack-cosmos-holo-116"
+        },
+        {
+          "product_name": "N's Reshiram [Prize Pack] #116",
+          "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/ns-reshiram-prize-pack-116"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/ns-reshiram-prize-pack-cosmos-holo-116",
+      "evidence_label": "PriceCharting CSV exact product title candidate: N's Reshiram [Prize Pack Cosmos Holo] #116",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_conflicting_pricecharting_stamp_label_candidates",
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "117",
+      "card_name": "Hop's Snorlax",
+      "finish_key": null,
+      "match_count": 4,
+      "candidate_products": [
+        {
+          "product_name": "Hop's Snorlax [EB Games] #117",
+          "stamp_label": "EB Games Stamp",
+          "variant_key": "eb_games_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/hops-snorlax-eb-games-117"
+        },
+        {
+          "product_name": "Hop's Snorlax [Gamestop] #117",
+          "stamp_label": "GameStop Stamp",
+          "variant_key": "gamestop_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/hops-snorlax-gamestop-117"
+        },
+        {
+          "product_name": "Hop's Snorlax [Prize Pack Cosmos Holo] #117",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/hops-snorlax-prize-pack-cosmos-holo-117"
+        },
+        {
+          "product_name": "Hop's Snorlax [Prize Pack] #117",
+          "stamp_label": "Prize Pack Stamp",
+          "variant_key": "prize_pack_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/hops-snorlax-prize-pack-117"
+        }
+      ],
+      "block_reason": "conflicting_stamp_labels",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73023,
+        "name_mismatch": 182,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "150",
+      "card_name": "Levincia",
+      "finish_key": null,
+      "accepted_stamp_label": "Prize Pack Stamp",
+      "accepted_variant_key": "prize_pack_stamp",
+      "accepted_product_name": "Levincia [Prize Pack Cosmo Holo] #150",
+      "matched_product_count": 2,
+      "matched_products": [
+        {
+          "product_name": "Levincia [Prize Pack Cosmo Holo] #150",
+          "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/levincia-prize-pack-cosmo-holo-150"
+        },
+        {
+          "product_name": "Levincia [Prize Pack] #150",
+          "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/levincia-prize-pack-150"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/levincia-prize-pack-cosmo-holo-150",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Levincia [Prize Pack Cosmo Holo] #150",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "card_number": "167",
+      "card_name": "N's Reshiram",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73107,
+        "name_mismatch": 103,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "20",
+      "card_name": "Team Rocket's Spidops",
+      "finish_key": null,
+      "accepted_stamp_label": "Prize Pack Stamp",
+      "accepted_variant_key": "prize_pack_stamp",
+      "accepted_product_name": "Team Rocket's Spidops [Prize Pack Cosmos Holo] #20",
+      "matched_product_count": 2,
+      "matched_products": [
+        {
+          "product_name": "Team Rocket's Spidops [Prize Pack Cosmos Holo] #20",
+          "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/team-rockets-spidops-prize-pack-cosmos-holo-20"
+        },
+        {
+          "product_name": "Team Rocket's Spidops [Prize Pack] #20",
+          "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/team-rockets-spidops-prize-pack-20"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/team-rockets-spidops-prize-pack-cosmos-holo-20",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Team Rocket's Spidops [Prize Pack Cosmos Holo] #20",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "13",
+      "card_name": "Miraidon",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72510,
+        "name_mismatch": 700,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "14",
+      "card_name": "Koraidon",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72517,
+        "name_mismatch": 693,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "27",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72618,
+        "name_mismatch": 583,
+        "set_mismatch": 7,
+        "no_stamp_label_in_product_title": 4
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "44",
+      "card_name": "Charmander",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72667,
+        "name_mismatch": 543,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "51",
+      "card_name": "Snorlax",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72665,
+        "name_mismatch": 544,
+        "set_mismatch": 1,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "58",
+      "card_name": "Iron Bundle",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72686,
+        "name_mismatch": 525,
+        "no_stamp_label_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "65",
+      "card_name": "Scream Tail",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72732,
+        "name_mismatch": 478,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "66",
+      "card_name": "Iron Bundle",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72729,
+        "name_mismatch": 481,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "91",
+      "card_name": "Koraidon",
+      "finish_key": null,
+      "accepted_stamp_label": "Staff Stamp",
+      "accepted_variant_key": "staff_stamp",
+      "accepted_product_name": "Koraidon [Staff] #91",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Koraidon [Staff] #91",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/koraidon-staff-91"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/koraidon-staff-91",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Koraidon [Staff] #91",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "92",
+      "card_name": "Miraidon",
+      "finish_key": null,
+      "accepted_stamp_label": "Staff Stamp",
+      "accepted_variant_key": "staff_stamp",
+      "accepted_product_name": "Miraidon [Staff] #92",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Miraidon [Staff] #92",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/miraidon-staff-92"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/miraidon-staff-92",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Miraidon [Staff] #92",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "97",
+      "card_name": "Flutter Mane",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72897,
+        "name_mismatch": 313,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "98",
+      "card_name": "Iron Thorns",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72910,
+        "name_mismatch": 300,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "107",
+      "card_name": "Mareep",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72951,
+        "name_mismatch": 256,
+        "set_mismatch": 4,
+        "no_stamp_label_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "108",
+      "card_name": "Flaaffy",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72972,
+        "name_mismatch": 236,
+        "set_mismatch": 3,
+        "no_stamp_label_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "109",
+      "card_name": "Ampharos",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72957,
+        "name_mismatch": 252,
+        "set_mismatch": 2,
+        "no_stamp_label_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "114",
+      "card_name": "Picnicker",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73002,
+        "name_mismatch": 209,
+        "no_stamp_label_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "118",
+      "card_name": "Tatsugiri",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73011,
+        "name_mismatch": 199,
+        "no_stamp_label_in_product_title": 1,
+        "multiple_stamp_labels_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "123",
+      "card_name": "Teal Mask Ogerpon",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73008,
+        "name_mismatch": 202,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "129",
+      "card_name": "Pecharunt",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73042,
+        "name_mismatch": 168,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "141",
+      "card_name": "Noctowl",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73071,
+        "name_mismatch": 139,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "148",
+      "card_name": "Miraidon",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73078,
+        "name_mismatch": 133,
+        "no_stamp_label_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "153",
+      "card_name": "Magneton",
+      "finish_key": null,
+      "accepted_stamp_label": "Staff Stamp",
+      "accepted_variant_key": "staff_stamp",
+      "accepted_product_name": "Magneton [Staff] #153",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Magneton [Staff] #153",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/magneton-staff-153"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/magneton-staff-153",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Magneton [Staff] #153",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "159",
+      "card_name": "Magneton",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73099,
+        "name_mismatch": 111,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "173",
+      "card_name": "Eevee",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73123,
+        "name_mismatch": 87,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "189",
+      "card_name": "N's Zorua",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73141,
+        "name_mismatch": 69,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "203",
+      "card_name": "Team Rocket's Wobbuffet",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73161,
+        "name_mismatch": 49,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "48",
+      "card_name": "Lapras",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72665,
+        "name_mismatch": 544,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "card_number": "125",
+      "card_name": "Stantler",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 73020,
+        "name_mismatch": 189,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "51",
+      "card_name": "Glastrier",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72665,
+        "name_mismatch": 544,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "swsh12",
+      "set_name": "Silver Tempest",
+      "card_number": "49",
+      "card_name": "Pikachu",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72671,
+        "name_mismatch": 534,
+        "set_mismatch": 4,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "49",
+      "card_name": "Beartic",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72671,
+        "name_mismatch": 538,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "111",
+      "card_name": "Hoopa",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72993,
+        "name_mismatch": 217,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "10",
+      "card_name": "Abomasnow",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72498,
+        "name_mismatch": 708,
+        "no_stamp_label_in_product_title": 3,
+        "set_mismatch": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "32",
+      "card_name": "Delibird",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72637,
+        "name_mismatch": 572,
+        "no_stamp_label_in_product_title": 3
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "97",
+      "card_name": "Galarian Moltres V",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72897,
+        "name_mismatch": 313,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "8",
+      "card_name": "Leafeon VMAX",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72468,
+        "name_mismatch": 742,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "30",
+      "card_name": "Vaporeon VMAX",
+      "finish_key": "holo",
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72618,
+        "name_mismatch": 592,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "106",
+      "card_name": "Altaria",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72971,
+        "name_mismatch": 239,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "237",
+      "card_name": "Quick Ball",
+      "finish_key": null,
+      "accepted_stamp_label": "Staff Stamp",
+      "accepted_variant_key": "staff_stamp",
+      "accepted_product_name": "Quick Ball [North America Championships Staff] #237",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Quick Ball [North America Championships Staff] #237",
+          "source_url": "https://www.pricecharting.com/game/pokemon-fusion-strike/quick-ball-north-america-championships-staff-237"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-fusion-strike/quick-ball-north-america-championships-staff-237",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Quick Ball [North America Championships Staff] #237",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "xy12",
+      "set_name": "Evolutions",
+      "card_number": "41",
+      "card_name": "Electabuzz",
+      "finish_key": null,
+      "accepted_stamp_label": "Toys R Us Stamp",
+      "accepted_variant_key": "toys_r_us_stamp",
+      "accepted_product_name": "Electabuzz [Toys R Us] #41",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Electabuzz [Toys R Us] #41",
+          "source_url": "https://www.pricecharting.com/game/pokemon-evolutions/electabuzz-toys-r-us-41"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-evolutions/electabuzz-toys-r-us-41",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Electabuzz [Toys R Us] #41",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "xy2",
+      "set_name": "Flashfire",
+      "card_number": "80",
+      "card_name": "Snorlax",
+      "finish_key": null,
+      "accepted_stamp_label": "Build-A-Bear Workshop Stamp",
+      "accepted_variant_key": "build_a_bear_workshop_stamp",
+      "accepted_product_name": "Snorlax [Build-a-Bear] #80",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Snorlax [Build-a-Bear] #80",
+          "source_url": "https://www.pricecharting.com/game/pokemon-flashfire/snorlax-build-a-bear-80"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-flashfire/snorlax-build-a-bear-80",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Snorlax [Build-a-Bear] #80",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "xy5",
+      "set_name": "Primal Clash",
+      "card_number": "20",
+      "card_name": "Vulpix",
+      "finish_key": null,
+      "accepted_stamp_label": "Build-A-Bear Workshop Stamp",
+      "accepted_variant_key": "build_a_bear_workshop_stamp",
+      "accepted_product_name": "Vulpix [Build-a-Bear] #20",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Vulpix [Build-a-Bear] #20",
+          "source_url": "https://www.pricecharting.com/game/pokemon-primal-clash/vulpix-build-a-bear-20"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-primal-clash/vulpix-build-a-bear-20",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Vulpix [Build-a-Bear] #20",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "xy6",
+      "set_name": "Roaring Skies",
+      "card_number": "67",
+      "card_name": "Meowth",
+      "finish_key": null,
+      "accepted_stamp_label": "Build-A-Bear Workshop Stamp",
+      "accepted_variant_key": "build_a_bear_workshop_stamp",
+      "accepted_product_name": "Meowth [Build-A-Bear] #67",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Meowth [Build-A-Bear] #67",
+          "source_url": "https://www.pricecharting.com/game/pokemon-roaring-skies/meowth-build-a-bear-67"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-roaring-skies/meowth-build-a-bear-67",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Meowth [Build-A-Bear] #67",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "xy7",
+      "set_name": "Ancient Origins",
+      "card_number": "63",
+      "card_name": "Eevee",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72702,
+        "name_mismatch": 500,
+        "no_stamp_label_in_product_title": 2,
+        "set_mismatch": 8
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_conflicting_pricecharting_stamp_label_candidates",
+      "set_key": "xy7",
+      "set_name": "Ancient Origins",
+      "card_number": "69",
+      "card_name": "Ace Trainer",
+      "finish_key": null,
+      "match_count": 2,
+      "candidate_products": [
+        {
+          "product_name": "Ace Trainer [International Challenge Staff] #69",
+          "stamp_label": "Staff Stamp",
+          "variant_key": "staff_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-ancient-origins/ace-trainer-international-challenge-staff-69"
+        },
+        {
+          "product_name": "Ace Trainer [Regional Championships] #69",
+          "stamp_label": "Regional Championships Stamp",
+          "variant_key": "regional_championships_stamp",
+          "source_url": "https://www.pricecharting.com/game/pokemon-ancient-origins/ace-trainer-regional-championships-69"
+        }
+      ],
+      "block_reason": "conflicting_stamp_labels",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72741,
+        "name_mismatch": 465,
+        "no_stamp_label_in_product_title": 3,
+        "multiple_stamp_labels_in_product_title": 1
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "blocked_no_pricecharting_stamp_label_candidate",
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "card_number": "113",
+      "card_name": "Splash Energy",
+      "finish_key": null,
+      "match_count": 0,
+      "candidate_products": [],
+      "block_reason": "no_exact_product_with_stamp_label",
+      "sampled_reject_reasons": {
+        "number_mismatch": 72992,
+        "name_mismatch": 218,
+        "no_stamp_label_in_product_title": 2
+      },
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY91",
+      "card_name": "Champions Festival",
+      "finish_key": null,
+      "accepted_stamp_label": "Staff Stamp",
+      "accepted_variant_key": "staff_stamp",
+      "accepted_product_name": "Champions Festival [Staff] #XY91",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Champions Festival [Staff] #XY91",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/champions-festival-staff-xy91"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/champions-festival-staff-xy91",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Champions Festival [Staff] #XY91",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    },
+    {
+      "status": "candidate_pricecharting_exact_stamp_label",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY176",
+      "card_name": "Champions Festival",
+      "finish_key": null,
+      "accepted_stamp_label": "Staff Stamp",
+      "accepted_variant_key": "staff_stamp",
+      "accepted_product_name": "Champions Festival [Staff] #XY176",
+      "matched_product_count": 1,
+      "matched_products": [
+        {
+          "product_name": "Champions Festival [Staff] #XY176",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/champions-festival-staff-xy176"
+        }
+      ],
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/champions-festival-staff-xy176",
+      "evidence_label": "PriceCharting CSV exact product title candidate: Champions Festival [Staff] #XY176",
+      "notes": "Candidate-only stamp label extracted from exact set/name/number PriceCharting product title. Requires separate readiness review before any write.",
+      "write_ready_now": 0
+    }
+  ]
+}

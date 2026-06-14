@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcdb_checklist_bw1",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcdb.com",
+  "source_status": "available_generated",
+  "set_key": "bw1",
+  "set_name": "Black & White",
+  "retrieved_at": "2026-06-12T04:47:58.082Z",
+  "raw_snapshot_ref": "generated_fixture:tcdb:bw1:2026-06-12T04:47:58.082Z",
+  "generation_note": "Generated from TCDB checklist pages. Finish evidence is emitted only when TCDB set title explicitly names the finish/variant.",
+  "records": [
+    {
+      "source_key": "tcdb_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcdb.com/ViewCard.cfm/sid/255676/cid/15772397/2011-Pokemon-Black-&-White---Reverse-Holo-107/114-Water-Energy?PageIndex=2",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "107",
+      "card_name": "Water Energy",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCDB checklist 2011 Pokemon Black & White - Reverse Holo 107 Water Energy",
+      "language": "en",
+      "retrieved_at": "2026-06-12T04:47:58.082Z",
+      "raw_snapshot_ref": "tcdb:255676:107:reverse",
+      "notes": "Exact card-level finish evidence from a TCDB checklist whose set title explicitly names this finish/variant. No era, rarity, or default-finish inference was used."
+    }
+  ]
+}

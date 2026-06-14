@@ -1,0 +1,27 @@
+{
+  "package_id": "PKG-33B-LEGACY-ORPHAN-SPECIES-PARENT-CHILD-DELETE",
+  "generated_at": "2026-06-13T20:45:13.662Z",
+  "fingerprint": "2def6522202e4fab393ceaf63a18cfb55797da0328a01cd1091d65c32eb19b37",
+  "sql_hash": "e795e41a1d534007441b44f6f19266baeffcb0b4d9443987fcc62a45b266cf79",
+  "artifact_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg33b_legacy_orphan_species_parent_child_delete_dry_run_artifact_v1.json",
+  "safety": {
+    "db_writes_committed": false,
+    "migrations_created": false,
+    "real_apply_authorized": false
+  },
+  "execution": {
+    "dry_run_executed": true,
+    "committed": false,
+    "sql_hash": "e795e41a1d534007441b44f6f19266baeffcb0b4d9443987fcc62a45b266cf79",
+    "result_count": 5,
+    "notices": [
+      "PKG-33B-LEGACY-ORPHAN-SPECIES-PARENT-CHILD-DELETE dry-run passed: species mappings deleted 14, children deleted 14, parents deleted 14, fingerprint 2def6522202e4fab393ceaf63a18cfb55797da0328a01cd1091d65c32eb19b37"
+    ]
+  },
+  "summary": {
+    "target_rows": 14,
+    "species_mapping_deletes_in_dry_run": 14,
+    "child_deletes_in_dry_run": 14,
+    "parent_deletes_in_dry_run": 14
+  }
+}

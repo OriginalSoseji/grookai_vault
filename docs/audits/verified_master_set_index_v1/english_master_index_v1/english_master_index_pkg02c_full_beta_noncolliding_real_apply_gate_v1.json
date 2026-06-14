@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-06-09T17:59:23.409Z",
+  "version": "english_master_index_pkg02c_full_beta_noncolliding_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-02C-FULL-BETA-NONCOLLIDING",
+    "parent_package_id": "PKG-02B-FULL-BETA",
+    "package_fingerprint_sha256": "53ede43043c67f519a9d786cc91145647efb093d2c4af1cfaf924e81ac2b430d",
+    "card_print_updates": 343,
+    "child_printings_preserved": 542,
+    "vault_references_accepted": 4,
+    "collision_rows_excluded": 79,
+    "collision_child_printings_excluded": 101,
+    "parent_table": "public.card_prints",
+    "child_table": "public.card_printings",
+    "allowed_parent_field_changes": [
+      "set_code",
+      "number",
+      "name"
+    ],
+    "child_mutations_allowed": false,
+    "delete_mutations_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_execution_status": "pkg02c_full_beta_noncolliding_guarded_dry_run_passed_rolled_back_no_durable_change",
+    "sql_artifact_ref": "docs/sql/english_master_index_pkg02c_full_beta_noncolliding_guarded_dry_run_transaction_v1.sql",
+    "sql_artifact_hash_sha256": "502106d224b747bc573f9448bdacbc4c47aee42b68c4f2db87564ba9f1327941",
+    "contains_commit_statement": false,
+    "contains_rollback_statement": true,
+    "contains_delete_statement": false,
+    "before_hash_sha256": "744955f913d2d7f31c00b883ee3fbf9ba948f0dc93e5f2aa0c308326f91ccf51",
+    "after_hash_sha256": "744955f913d2d7f31c00b883ee3fbf9ba948f0dc93e5f2aa0c308326f91ccf51",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "artifact_fresh_snapshot_matches_before_snapshot": true,
+    "stop_findings": []
+  },
+  "collision_proof": {
+    "collision_audit_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg02b_full_beta_collision_audit_v1.json",
+    "blocked_collision_rows": 79,
+    "blocked_collision_child_printings": 101,
+    "blocked_rows_remain_excluded": true,
+    "merge_dedupe_authorized": false
+  },
+  "rollback_proof": {
+    "rollback_matrix_available": true,
+    "rollback_rows": 343,
+    "source_artifact_snapshot_hash_sha256": "744955f913d2d7f31c00b883ee3fbf9ba948f0dc93e5f2aa0c308326f91ccf51",
+    "source_artifact_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg02c_full_beta_noncolliding_transaction_artifact_v1.json"
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-02C-FULL-BETA-NONCOLLIDING apply only. Fingerprint: 53ede43043c67f519a9d786cc91145647efb093d2c4af1cfaf924e81ac2b430d. Scope: 343 non-colliding card_print updates, 542 child printings preserved, 4 vault references accepted, 79 collision rows excluded. Dry-run proof: 744955f913d2d7f31c00b883ee3fbf9ba948f0dc93e5f2aa0c308326f91ccf51 == 744955f913d2d7f31c00b883ee3fbf9ba948f0dc93e5f2aa0c308326f91ccf51. No global apply. No migrations.",
+    "approval_effect": "This would authorize preparing and running the durable PKG-02C apply path only, scoped to 343 non-colliding parent card_print updates. It does not authorize global apply or any collision-row merge/dedupe/delete work.",
+    "approval_must_reference": {
+      "package_id": "PKG-02C-FULL-BETA-NONCOLLIDING",
+      "package_fingerprint_sha256": "53ede43043c67f519a9d786cc91145647efb093d2c4af1cfaf924e81ac2b430d",
+      "card_print_updates": 343,
+      "child_printings_preserved": 542,
+      "vault_references_accepted": 4,
+      "collision_rows_excluded": 79,
+      "dry_run_before_hash_sha256": "744955f913d2d7f31c00b883ee3fbf9ba948f0dc93e5f2aa0c308326f91ccf51",
+      "dry_run_after_hash_sha256": "744955f913d2d7f31c00b883ee3fbf9ba948f0dc93e5f2aa0c308326f91ccf51"
+    }
+  },
+  "next_step_if_approved_later": [
+    "Capture one more final fresh DB snapshot immediately before durable apply.",
+    "Verify the same 343 parent rows, 542 child printings, 4 vault refs, and 79 excluded collision rows.",
+    "Execute a durable transaction with COMMIT only after this exact real-apply approval is present.",
+    "Capture post-apply readback and compare PKG-02C rows to the Master Index target fields.",
+    "Run post-apply collision and migration checks, then write a checkpoint."
+  ],
+  "explicit_non_authorizations": [
+    "This gate is not a real apply.",
+    "This gate does not record approval.",
+    "This gate does not run SQL.",
+    "This gate does not write to the database.",
+    "This gate does not create a migration.",
+    "This gate does not authorize global apply.",
+    "This gate does not authorize collision-row merge, dedupe, delete, or quarantine.",
+    "This gate does not authorize child printing mutations."
+  ],
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg02c_full_beta_noncolliding_guarded_dry_run_execution_v1.json",
+    "final_snapshot_transaction_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg02c_full_beta_noncolliding_transaction_artifact_v1.json",
+    "collision_audit": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg02b_full_beta_collision_audit_v1.json"
+  },
+  "stop_findings": [],
+  "pass": true
+}

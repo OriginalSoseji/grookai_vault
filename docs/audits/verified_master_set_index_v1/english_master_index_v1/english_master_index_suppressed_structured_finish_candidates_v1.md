@@ -1,6 +1,6 @@
 # Suppressed Structured Finish Candidates V1
 
-Generated: 2026-06-08T18:24:41.247Z
+Generated: 2026-06-12T08:27:20.983Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -12,17 +12,17 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 
 | metric | count |
 | --- | --- |
-| suppressed rows | 1619 |
+| suppressed rows | 1615 |
 
 ## By Set
 
 | set_key | count |
 | --- | --- |
-| ex6 | 104 |
+| ex6 | 103 |
 | swsh4.5 | 97 |
-| ex8 | 93 |
+| ex8 | 95 |
 | ex7 | 92 |
-| ex9 | 92 |
+| ex9 | 91 |
 | pl3 | 86 |
 | ex5 | 76 |
 | bw11 | 48 |
@@ -55,12 +55,12 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | xy1 | 17 |
 | bw6 | 16 |
 | bw9 | 16 |
-| me01 | 14 |
-| sv05 | 14 |
-| sv09 | 14 |
 | bw4 | 13 |
 | bw8 | 13 |
+| me01 | 13 |
 | sm3.5 | 13 |
+| sv05 | 13 |
+| sv09 | 13 |
 | xy2 | 13 |
 | xy3 | 13 |
 | bw5 | 12 |
@@ -104,7 +104,6 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex13 | 1 |
 | ex14 | 1 |
 | ex2 | 1 |
-| hgss2 | 1 |
 | hgss3 | 1 |
 | me02 | 1 |
 | neo1 | 1 |
@@ -118,6 +117,7 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | tk-dp-m | 1 |
 | tk-ex-latia | 1 |
 | tk-ex-latio | 1 |
+| tk-ex-m | 1 |
 
 ## Sample Rows
 
@@ -279,7 +279,6 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex6 | FireRed & LeafGreen | 16 | Tauros | normal | pokemontcg_api | holo, reverse |
 | ex6 | FireRed & LeafGreen | 17 | Victreebel | normal | pokemontcg_api | holo, reverse |
 | ex6 | FireRed & LeafGreen | 106 | Clefable ex | normal | pokemontcg_api | holo |
-| ex6 | FireRed & LeafGreen | 107 | Electrode ex | normal | pokemontcg_api | holo |
 | ex6 | FireRed & LeafGreen | 109 | Gyarados ex | normal | pokemontcg_api | holo |
 | ex6 | FireRed & LeafGreen | 110 | Mr. Mime ex | normal | pokemontcg_api | holo |
 | ex6 | FireRed & LeafGreen | 111 | Mr. Mime ex | normal | pokemontcg_api | holo |
@@ -373,6 +372,7 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex7 | Team Rocket Returns | 4 | Dark Electrode | normal | pokemontcg_api | holo, reverse |
 | ex7 | Team Rocket Returns | 6 | Dark Hypno | normal | pokemontcg_api | holo, reverse |
 | ex7 | Team Rocket Returns | 8 | Dark Octillery | normal | pokemontcg_api | holo, reverse |
+| ex7 | Team Rocket Returns | 9 | Dark Slowking | normal | pokemontcg_api | holo, reverse |
 | ex7 | Team Rocket Returns | 10 | Dark Steelix | normal | pokemontcg_api | holo, reverse |
 | ex7 | Team Rocket Returns | 11 | Jumpluff | normal | pokemontcg_api | holo, reverse |
 | ex7 | Team Rocket Returns | 13 | Piloswine | normal | pokemontcg_api | holo, reverse |
@@ -402,7 +402,6 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex7 | Team Rocket Returns | 34 | Dark Golbat | holo | tcgdex | normal, reverse |
 | ex7 | Team Rocket Returns | 35 | Dark Golduck | holo | tcgdex | normal, reverse |
 | ex7 | Team Rocket Returns | 36 | Dark Gyarados | holo | tcgdex | normal, reverse |
-| ex7 | Team Rocket Returns | 37 | Dark Houndoom | holo | tcgdex | normal, reverse, stamped |
 | ex7 | Team Rocket Returns | 38 | Dark Magcargo | holo | tcgdex | normal, reverse |
 | ex7 | Team Rocket Returns | 39 | Dark Magneton | holo | tcgdex | normal, reverse |
 | ex7 | Team Rocket Returns | 40 | Dark Pupitar | holo | tcgdex | normal, reverse |
@@ -467,12 +466,14 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex8 | Deoxys | 6 | Crawdaunt | normal | pokemontcg_api | holo, reverse |
 | ex8 | Deoxys | 7 | Dusclops | normal | pokemontcg_api | holo, reverse |
 | ex8 | Deoxys | 8 | Gyarados | normal | pokemontcg_api | holo, reverse |
+| ex8 | Deoxys | 9 | Jirachi | normal | pokemontcg_api | holo, reverse |
 | ex8 | Deoxys | 10 | Ludicolo | normal | pokemontcg_api | holo, reverse |
 | ex8 | Deoxys | 11 | Metagross | normal | pokemontcg_api | holo, reverse |
 | ex8 | Deoxys | 12 | Mightyena | normal | pokemontcg_api | holo, reverse |
 | ex8 | Deoxys | 13 | Ninjask | normal | pokemontcg_api | holo, reverse |
 | ex8 | Deoxys | 99 | Deoxys ex | normal | pokemontcg_api | holo |
 | ex8 | Deoxys | 100 | Hariyama ex | normal | pokemontcg_api | holo |
+| ex8 | Deoxys | 102 | Rayquaza ex | normal | pokemontcg_api | holo |
 | ex8 | Deoxys | 103 | Salamence ex | normal | pokemontcg_api | holo |
 | ex8 | Deoxys | 107 | Rayquaza ★ | normal | pokemontcg_api | holo |
 | ex8 | Deoxys | 17 | Deoxys | holo | tcgdex | normal, reverse |
@@ -622,4 +623,3 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex9 | Emerald | 63 | Shroomish | holo | tcgdex | normal, reverse |
 | ex9 | Emerald | 64 | Snorunt | holo | tcgdex | normal, reverse |
 | ex9 | Emerald | 65 | Spoink | holo | tcgdex | normal, reverse |
-| ex9 | Emerald | 66 | Spoink | holo | tcgdex | normal, reverse |

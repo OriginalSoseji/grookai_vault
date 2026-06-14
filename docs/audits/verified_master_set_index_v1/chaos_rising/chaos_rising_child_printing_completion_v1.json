@@ -1,0 +1,3862 @@
+{
+  "generated_at": "2026-06-09T21:16:04.709Z",
+  "package": "PKG-04A-CHAOS-RISING-CHILD-PRINTING-COMPLETION",
+  "apply": true,
+  "set_key": "me04",
+  "set_name": "Chaos Rising",
+  "summary": {
+    "master_index_printings": 247,
+    "master_index_printings_by_finish": {
+      "normal": 113,
+      "reverse": 76,
+      "holo": 58
+    },
+    "live_parent_rows": 122,
+    "live_child_printings_before": 0,
+    "live_child_printings_before_by_finish": {},
+    "planned_insertions": 247,
+    "inserted_printings": 247,
+    "missing_parent_rows": 0,
+    "duplicate_parent_groups": 0,
+    "errors": 0
+  },
+  "rows": [
+    {
+      "card_print_id": "5632ebcd-9237-4c27-8197-a49beb74f4ff",
+      "card_number": "001",
+      "card_name": "Weedle",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:1:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "5632ebcd-9237-4c27-8197-a49beb74f4ff",
+      "card_number": "1",
+      "card_name": "Weedle",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:1:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "d6e5324b-2d7f-46ec-b33e-e08fd8f06598",
+      "card_number": "002",
+      "card_name": "Kakuna",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:2:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "d6e5324b-2d7f-46ec-b33e-e08fd8f06598",
+      "card_number": "2",
+      "card_name": "Kakuna",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:2:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "69b72912-bd78-49d8-9993-aa9b22f8d8cf",
+      "card_number": "3",
+      "card_name": "Beedrill ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:3:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "69b72912-bd78-49d8-9993-aa9b22f8d8cf",
+      "card_number": "003",
+      "card_name": "Beedrill ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:3:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "25c14166-1f77-4537-b465-505d24f8cb5d",
+      "card_number": "004",
+      "card_name": "Carnivine",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:4:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "25c14166-1f77-4537-b465-505d24f8cb5d",
+      "card_number": "4",
+      "card_name": "Carnivine",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:4:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "2992b0c7-c2e3-4c3c-83b2-d9de66cf2d76",
+      "card_number": "005",
+      "card_name": "Chespin",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:5:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "2992b0c7-c2e3-4c3c-83b2-d9de66cf2d76",
+      "card_number": "5",
+      "card_name": "Chespin",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:5:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "21522770-ce55-4c93-aec0-2d79edad0211",
+      "card_number": "006",
+      "card_name": "Quilladin",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:6:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "21522770-ce55-4c93-aec0-2d79edad0211",
+      "card_number": "6",
+      "card_name": "Quilladin",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:6:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "602367e9-3702-4f30-b3a7-bdf499d1feaf",
+      "card_number": "7",
+      "card_name": "Chesnaught",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:7:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "602367e9-3702-4f30-b3a7-bdf499d1feaf",
+      "card_number": "7",
+      "card_name": "Chesnaught",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:7:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "57d2f56a-3307-461c-92fd-6f43339086a0",
+      "card_number": "008",
+      "card_name": "Vulpix",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:8:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "57d2f56a-3307-461c-92fd-6f43339086a0",
+      "card_number": "8",
+      "card_name": "Vulpix",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:8:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "aa99233f-feb9-41e2-848e-3de6712f6ba1",
+      "card_number": "009",
+      "card_name": "Ninetales",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:9:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "aa99233f-feb9-41e2-848e-3de6712f6ba1",
+      "card_number": "9",
+      "card_name": "Ninetales",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:9:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "12fb2641-c506-46ca-89cd-51c816a2fbda",
+      "card_number": "10",
+      "card_name": "Ho-Oh",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:10:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "12fb2641-c506-46ca-89cd-51c816a2fbda",
+      "card_number": "10",
+      "card_name": "Ho-Oh",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:10:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "bb2821cf-1a83-49be-8227-eef739a3bc23",
+      "card_number": "011",
+      "card_name": "Fennekin",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:11:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "bb2821cf-1a83-49be-8227-eef739a3bc23",
+      "card_number": "11",
+      "card_name": "Fennekin",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:11:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "72607c3e-d9ca-4da2-882b-2897d276f098",
+      "card_number": "012",
+      "card_name": "Braixen",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:12:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "72607c3e-d9ca-4da2-882b-2897d276f098",
+      "card_number": "12",
+      "card_name": "Braixen",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:12:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "6d75f988-1c09-4781-9731-af6c2e66f026",
+      "card_number": "13",
+      "card_name": "Delphox",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:13:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "6d75f988-1c09-4781-9731-af6c2e66f026",
+      "card_number": "013",
+      "card_name": "Delphox",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:13:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_build_battle_product",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "6d75f988-1c09-4781-9731-af6c2e66f026",
+      "card_number": "13",
+      "card_name": "Delphox",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:13:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "239737dc-6abe-4915-be90-5c127b3a226d",
+      "card_number": "014",
+      "card_name": "Litleo",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:14:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "239737dc-6abe-4915-be90-5c127b3a226d",
+      "card_number": "14",
+      "card_name": "Litleo",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:14:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "418f5189-cc68-4bf6-9ae1-119139e04802",
+      "card_number": "15",
+      "card_name": "Mega Pyroar ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:15:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "418f5189-cc68-4bf6-9ae1-119139e04802",
+      "card_number": "015",
+      "card_name": "Mega Pyroar ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:15:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "ba3329dc-2081-4baf-8729-0f19299777be",
+      "card_number": "016",
+      "card_name": "Remoraid",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:16:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "ba3329dc-2081-4baf-8729-0f19299777be",
+      "card_number": "16",
+      "card_name": "Remoraid",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:16:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a2d6f9d8-bd96-45b8-8b40-3143d7906e70",
+      "card_number": "017",
+      "card_name": "Octillery",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:17:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a2d6f9d8-bd96-45b8-8b40-3143d7906e70",
+      "card_number": "17",
+      "card_name": "Octillery",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:17:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "77da6741-c081-478b-9219-3bb2e3f6a076",
+      "card_number": "018",
+      "card_name": "Delibird",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:18:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "77da6741-c081-478b-9219-3bb2e3f6a076",
+      "card_number": "18",
+      "card_name": "Delibird",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:18:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "38fad2df-cf4f-4f94-95e0-7690cd38c07d",
+      "card_number": "19",
+      "card_name": "Keldeo",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:19:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "38fad2df-cf4f-4f94-95e0-7690cd38c07d",
+      "card_number": "19",
+      "card_name": "Keldeo",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:19:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a145e78e-26ed-48cc-993b-03ff08235806",
+      "card_number": "020",
+      "card_name": "Froakie",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:20:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a145e78e-26ed-48cc-993b-03ff08235806",
+      "card_number": "20",
+      "card_name": "Froakie",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:20:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a3972b27-b832-49f7-b010-9e1eeb142f39",
+      "card_number": "021",
+      "card_name": "Frogadier",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:21:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a3972b27-b832-49f7-b010-9e1eeb142f39",
+      "card_number": "21",
+      "card_name": "Frogadier",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:21:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a80defe9-f814-4b04-a17c-89edea092694",
+      "card_number": "22",
+      "card_name": "Mega Greninja ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:22:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a80defe9-f814-4b04-a17c-89edea092694",
+      "card_number": "022",
+      "card_name": "Mega Greninja ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:22:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "5e3d10d1-305a-414a-ae20-a25c845b0110",
+      "card_number": "023",
+      "card_name": "Bergmite",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:23:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "5e3d10d1-305a-414a-ae20-a25c845b0110",
+      "card_number": "23",
+      "card_name": "Bergmite",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:23:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "2c4969e1-7ce1-4091-841c-ce80876a3445",
+      "card_number": "024",
+      "card_name": "Avalugg",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:24:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "2c4969e1-7ce1-4091-841c-ce80876a3445",
+      "card_number": "24",
+      "card_name": "Avalugg",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:24:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "3ed6773a-5134-4398-99b8-4861a706d418",
+      "card_number": "025",
+      "card_name": "Wimpod",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:25:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "3ed6773a-5134-4398-99b8-4861a706d418",
+      "card_number": "25",
+      "card_name": "Wimpod",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:25:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "721358ce-6f90-4611-9d53-9ec1e8bbe5f2",
+      "card_number": "026",
+      "card_name": "Golisopod",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:26:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "721358ce-6f90-4611-9d53-9ec1e8bbe5f2",
+      "card_number": "26",
+      "card_name": "Golisopod",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:26:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "beafbf3b-a77a-475e-a854-be88854d1eb3",
+      "card_number": "027",
+      "card_name": "Mareep",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:27:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "beafbf3b-a77a-475e-a854-be88854d1eb3",
+      "card_number": "27",
+      "card_name": "Mareep",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:27:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "c07dce61-8960-40c7-af73-8b507683235d",
+      "card_number": "028",
+      "card_name": "Flaaffy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:28:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "c07dce61-8960-40c7-af73-8b507683235d",
+      "card_number": "28",
+      "card_name": "Flaaffy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:28:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "26844eb8-507f-477f-904f-baae6ec3bb68",
+      "card_number": "29",
+      "card_name": "Ampharos",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:29:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "26844eb8-507f-477f-904f-baae6ec3bb68",
+      "card_number": "029",
+      "card_name": "Ampharos",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:29:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_build_battle_product",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "26844eb8-507f-477f-904f-baae6ec3bb68",
+      "card_number": "29",
+      "card_name": "Ampharos",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:29:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "55fc7e34-9699-4f98-b566-87bd3565d32b",
+      "card_number": "030",
+      "card_name": "Emolga",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:30:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "55fc7e34-9699-4f98-b566-87bd3565d32b",
+      "card_number": "30",
+      "card_name": "Emolga",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:30:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "729e4135-7571-4967-bb88-469beaa3f708",
+      "card_number": "031",
+      "card_name": "Deoxys",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:31:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "729e4135-7571-4967-bb88-469beaa3f708",
+      "card_number": "31",
+      "card_name": "Deoxys",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:31:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "0227a17d-af47-46e6-81b6-8128a7717f61",
+      "card_number": "032",
+      "card_name": "Deoxys",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:32:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "0227a17d-af47-46e6-81b6-8128a7717f61",
+      "card_number": "32",
+      "card_name": "Deoxys",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:32:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "285dfb40-dea6-406c-a65a-9b2a195ff5d3",
+      "card_number": "033",
+      "card_name": "Deoxys",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:33:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "285dfb40-dea6-406c-a65a-9b2a195ff5d3",
+      "card_number": "33",
+      "card_name": "Deoxys",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:33:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "7291f5c1-cd89-4097-a94f-fea99058d1ae",
+      "card_number": "034",
+      "card_name": "Deoxys",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:34:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "7291f5c1-cd89-4097-a94f-fea99058d1ae",
+      "card_number": "34",
+      "card_name": "Deoxys",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:34:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "3ab9fff0-56a7-459b-85bc-abafa4ba05de",
+      "card_number": "35",
+      "card_name": "Mega Floette ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:35:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "3ab9fff0-56a7-459b-85bc-abafa4ba05de",
+      "card_number": "035",
+      "card_name": "Mega Floette ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:35:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a423d68a-9574-479e-bdcb-42c5df77b1d3",
+      "card_number": "036",
+      "card_name": "Espurr",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:36:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a423d68a-9574-479e-bdcb-42c5df77b1d3",
+      "card_number": "36",
+      "card_name": "Espurr",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:36:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "b3606fa9-447c-4f99-9800-ad08376c35ca",
+      "card_number": "037",
+      "card_name": "Meowstic",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:37:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "b3606fa9-447c-4f99-9800-ad08376c35ca",
+      "card_number": "37",
+      "card_name": "Meowstic",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:37:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "57978119-6d5f-4ea6-84a3-143b5c12ba83",
+      "card_number": "038",
+      "card_name": "Phantump",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:38:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "57978119-6d5f-4ea6-84a3-143b5c12ba83",
+      "card_number": "38",
+      "card_name": "Phantump",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:38:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "47d33ebb-d21c-4bcd-af8f-ccfddfeb35f9",
+      "card_number": "39",
+      "card_name": "Trevenant",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:39:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "47d33ebb-d21c-4bcd-af8f-ccfddfeb35f9",
+      "card_number": "39",
+      "card_name": "Trevenant",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:39:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "0f51fc36-ba48-40b7-b1a8-f125b07979e8",
+      "card_number": "040",
+      "card_name": "Pumpkaboo",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:40:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "0f51fc36-ba48-40b7-b1a8-f125b07979e8",
+      "card_number": "40",
+      "card_name": "Pumpkaboo",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:40:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "65f1e889-376e-436c-9a16-1114a7fb98b9",
+      "card_number": "41",
+      "card_name": "Gourgeist ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:41:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "65f1e889-376e-436c-9a16-1114a7fb98b9",
+      "card_number": "041",
+      "card_name": "Gourgeist ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:41:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "fe436e7a-5e22-46c9-aefc-1f0830d349a4",
+      "card_number": "42",
+      "card_name": "Xerneas",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:42:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "fe436e7a-5e22-46c9-aefc-1f0830d349a4",
+      "card_number": "42",
+      "card_name": "Xerneas",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:42:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a18f1598-ce66-4089-8281-da942c331f01",
+      "card_number": "043",
+      "card_name": "Sudowoodo",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:43:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a18f1598-ce66-4089-8281-da942c331f01",
+      "card_number": "43",
+      "card_name": "Sudowoodo",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:43:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "e1e7bf02-9884-4a7a-8f5a-925739473a28",
+      "card_number": "044",
+      "card_name": "Phanpy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:44:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "e1e7bf02-9884-4a7a-8f5a-925739473a28",
+      "card_number": "44",
+      "card_name": "Phanpy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:44:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "4b8b643a-4936-46f2-a5af-df1c463a5db6",
+      "card_number": "045",
+      "card_name": "Donphan",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:45:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "4b8b643a-4936-46f2-a5af-df1c463a5db6",
+      "card_number": "45",
+      "card_name": "Donphan",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:45:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "298bccf1-451b-49c5-82dc-67ea0e349b7a",
+      "card_number": "046",
+      "card_name": "Baltoy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:46:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "298bccf1-451b-49c5-82dc-67ea0e349b7a",
+      "card_number": "46",
+      "card_name": "Baltoy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:46:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a4676a21-a5af-4b75-98c8-8e6a11241b10",
+      "card_number": "047",
+      "card_name": "Claydol",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:47:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a4676a21-a5af-4b75-98c8-8e6a11241b10",
+      "card_number": "47",
+      "card_name": "Claydol",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:47:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "e42e7db3-f8f9-4d3a-90e0-e3b19575f8dc",
+      "card_number": "48",
+      "card_name": "Mega Gallade ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:48:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "e42e7db3-f8f9-4d3a-90e0-e3b19575f8dc",
+      "card_number": "048",
+      "card_name": "Mega Gallade ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:48:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "99c496d9-b8ab-423a-a69b-75c120d516f8",
+      "card_number": "049",
+      "card_name": "Zubat",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:49:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "99c496d9-b8ab-423a-a69b-75c120d516f8",
+      "card_number": "49",
+      "card_name": "Zubat",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:49:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "6f6c59fe-7cc4-4241-9526-8c7e86ce5676",
+      "card_number": "050",
+      "card_name": "Golbat",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:50:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "6f6c59fe-7cc4-4241-9526-8c7e86ce5676",
+      "card_number": "50",
+      "card_name": "Golbat",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:50:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "b4432089-42de-49f9-b37c-ce99a0025403",
+      "card_number": "51",
+      "card_name": "Crobat",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:51:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "b4432089-42de-49f9-b37c-ce99a0025403",
+      "card_number": "051",
+      "card_name": "Crobat",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:51:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_build_battle_product",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "b4432089-42de-49f9-b37c-ce99a0025403",
+      "card_number": "51",
+      "card_name": "Crobat",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:51:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "64c7c6c7-b620-4e39-a442-aa64524c23d0",
+      "card_number": "052",
+      "card_name": "Qwilfish",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:52:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "64c7c6c7-b620-4e39-a442-aa64524c23d0",
+      "card_number": "52",
+      "card_name": "Qwilfish",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:52:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "7b5b89de-cc12-4229-a9ac-3322090bce1a",
+      "card_number": "053",
+      "card_name": "Stunky",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:53:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "7b5b89de-cc12-4229-a9ac-3322090bce1a",
+      "card_number": "53",
+      "card_name": "Stunky",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:53:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "d46fff75-6ebe-401e-858f-c607302e7d31",
+      "card_number": "054",
+      "card_name": "Skuntank",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:54:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "d46fff75-6ebe-401e-858f-c607302e7d31",
+      "card_number": "54",
+      "card_name": "Skuntank",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:54:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "f5da839a-ff04-40f8-9118-61c0bf4d2abc",
+      "card_number": "55",
+      "card_name": "Krookodile ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:55:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "f5da839a-ff04-40f8-9118-61c0bf4d2abc",
+      "card_number": "055",
+      "card_name": "Krookodile ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:55:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "7d04ca27-1f96-493f-b254-215c5e8288f7",
+      "card_number": "056",
+      "card_name": "Trubbish",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:56:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "7d04ca27-1f96-493f-b254-215c5e8288f7",
+      "card_number": "56",
+      "card_name": "Trubbish",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:56:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "8c8a9ae9-164c-476f-82d4-1c89aa868ebd",
+      "card_number": "057",
+      "card_name": "Garbodor",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:57:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "8c8a9ae9-164c-476f-82d4-1c89aa868ebd",
+      "card_number": "57",
+      "card_name": "Garbodor",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:57:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "7504b839-5975-484b-9e90-4861e6a9ff10",
+      "card_number": "058",
+      "card_name": "Skrelp",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:58:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "7504b839-5975-484b-9e90-4861e6a9ff10",
+      "card_number": "58",
+      "card_name": "Skrelp",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:58:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "479317e1-8a29-49e3-b5a2-bacd9903d4c0",
+      "card_number": "059",
+      "card_name": "Beldum",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:59:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "479317e1-8a29-49e3-b5a2-bacd9903d4c0",
+      "card_number": "59",
+      "card_name": "Beldum",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:59:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "6b0d6814-4a11-4e10-a48f-4bf15a79ab2a",
+      "card_number": "060",
+      "card_name": "Metang",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:60:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "6b0d6814-4a11-4e10-a48f-4bf15a79ab2a",
+      "card_number": "60",
+      "card_name": "Metang",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:60:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "450eda9e-7407-4509-adce-23980fe054e4",
+      "card_number": "061",
+      "card_name": "Metagross",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:61:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "450eda9e-7407-4509-adce-23980fe054e4",
+      "card_number": "61",
+      "card_name": "Metagross",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:61:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "ac642ed9-aaf7-434c-8bb4-1478a2368c5c",
+      "card_number": "062",
+      "card_name": "Ferroseed",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:62:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "ac642ed9-aaf7-434c-8bb4-1478a2368c5c",
+      "card_number": "62",
+      "card_name": "Ferroseed",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:62:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "8742c60a-437e-4280-a5f9-946163e5bfb3",
+      "card_number": "063",
+      "card_name": "Ferrothorn",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:63:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "8742c60a-437e-4280-a5f9-946163e5bfb3",
+      "card_number": "63",
+      "card_name": "Ferrothorn",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:63:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "c7079543-5f1a-475c-ac71-5098d60211e7",
+      "card_number": "64",
+      "card_name": "Cobalion ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:64:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "c7079543-5f1a-475c-ac71-5098d60211e7",
+      "card_number": "064",
+      "card_name": "Cobalion ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:64:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "42b85360-f4d3-489d-b01f-88476cab5201",
+      "card_number": "65",
+      "card_name": "Mega Dragalge ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:65:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "42b85360-f4d3-489d-b01f-88476cab5201",
+      "card_number": "065",
+      "card_name": "Mega Dragalge ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:65:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "032f0a11-0c34-498b-8dfb-c8776340a6c3",
+      "card_number": "066",
+      "card_name": "Goomy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:66:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "032f0a11-0c34-498b-8dfb-c8776340a6c3",
+      "card_number": "66",
+      "card_name": "Goomy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:66:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "2f8f67ea-49dc-4b92-8341-d4d32b41c6dc",
+      "card_number": "067",
+      "card_name": "Sliggoo",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:67:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "2f8f67ea-49dc-4b92-8341-d4d32b41c6dc",
+      "card_number": "67",
+      "card_name": "Sliggoo",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:67:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "c379a507-1c03-4773-a4ee-b835e8ab8a11",
+      "card_number": "68",
+      "card_name": "Goodra",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:68:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "c379a507-1c03-4773-a4ee-b835e8ab8a11",
+      "card_number": "068",
+      "card_name": "Goodra",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:68:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "bulbapedia_build_battle_product",
+        "bulbapedia_set_list",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "c379a507-1c03-4773-a4ee-b835e8ab8a11",
+      "card_number": "68",
+      "card_name": "Goodra",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:68:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "e1f3d64b-6b0e-4a1d-a3ae-bdd9fb42d2e9",
+      "card_number": "069",
+      "card_name": "Tauros",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:69:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "e1f3d64b-6b0e-4a1d-a3ae-bdd9fb42d2e9",
+      "card_number": "69",
+      "card_name": "Tauros",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:69:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "ce3eca68-09ff-42c8-9257-bafa47bfc4b5",
+      "card_number": "070",
+      "card_name": "Patrat",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:70:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "ce3eca68-09ff-42c8-9257-bafa47bfc4b5",
+      "card_number": "70",
+      "card_name": "Patrat",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:70:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "4b56b0fe-b142-48c0-be9a-fe5c86b280bc",
+      "card_number": "071",
+      "card_name": "Watchog",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:71:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "4b56b0fe-b142-48c0-be9a-fe5c86b280bc",
+      "card_number": "71",
+      "card_name": "Watchog",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:71:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "9c62bf7e-8064-46fd-b471-f4e42facabcf",
+      "card_number": "072",
+      "card_name": "Minccino",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:72:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "9c62bf7e-8064-46fd-b471-f4e42facabcf",
+      "card_number": "72",
+      "card_name": "Minccino",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:72:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "7d202491-3e3b-4c4b-a7b2-a6e112c2ed73",
+      "card_number": "73",
+      "card_name": "Cinccino ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:73:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "7d202491-3e3b-4c4b-a7b2-a6e112c2ed73",
+      "card_number": "073",
+      "card_name": "Cinccino ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:73:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "13d32698-f1f8-4afe-8745-b8eae65b251c",
+      "card_number": "074",
+      "card_name": "Adversity Policy",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:74:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "13d32698-f1f8-4afe-8745-b8eae65b251c",
+      "card_number": "74",
+      "card_name": "Adversity Policy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:74:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "94cb1db2-6a61-4918-aaea-4eb6700d4c0d",
+      "card_number": "075",
+      "card_name": "Ange Floette",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:75:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "94cb1db2-6a61-4918-aaea-4eb6700d4c0d",
+      "card_number": "75",
+      "card_name": "Ange Floette",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:75:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "2299fde1-9656-4acd-820c-2ca6df694513",
+      "card_number": "076",
+      "card_name": "AZ's Tranquility",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:76:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "2299fde1-9656-4acd-820c-2ca6df694513",
+      "card_number": "76",
+      "card_name": "AZ's Tranquility",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:76:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a8a49186-a116-4ef1-b97a-8da1624857cb",
+      "card_number": "077",
+      "card_name": "Emma",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:77:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a8a49186-a116-4ef1-b97a-8da1624857cb",
+      "card_number": "77",
+      "card_name": "Emma",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:77:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "1827973d-0e3f-44ba-80be-531ecb6e4f4d",
+      "card_number": "078",
+      "card_name": "Great Haul Net",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:78:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "1827973d-0e3f-44ba-80be-531ecb6e4f4d",
+      "card_number": "78",
+      "card_name": "Great Haul Net",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:78:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "1f5f0f5b-ea62-418c-9a76-82921c9bd226",
+      "card_number": "079",
+      "card_name": "Philippe",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:79:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "1f5f0f5b-ea62-418c-9a76-82921c9bd226",
+      "card_number": "79",
+      "card_name": "Philippe",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:79:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "e36739b8-3b1f-497a-b1e0-81e9989e5e46",
+      "card_number": "080",
+      "card_name": "Prism Tower",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:80:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "e36739b8-3b1f-497a-b1e0-81e9989e5e46",
+      "card_number": "80",
+      "card_name": "Prism Tower",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:80:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "50b9d648-fc80-4624-bddc-f1744265eaf2",
+      "card_number": "081",
+      "card_name": "Roxie's Performance",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:81:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "50b9d648-fc80-4624-bddc-f1744265eaf2",
+      "card_number": "81",
+      "card_name": "Roxie's Performance",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:81:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "163a400c-74d4-48ee-b247-0c86ad7ba4ba",
+      "card_number": "082",
+      "card_name": "Special Red Card",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:82:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "163a400c-74d4-48ee-b247-0c86ad7ba4ba",
+      "card_number": "82",
+      "card_name": "Special Red Card",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:82:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "551c815e-f2d9-469e-aa2c-79d0e6e2a8e8",
+      "card_number": "083",
+      "card_name": "Transformation Tome",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:83:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "551c815e-f2d9-469e-aa2c-79d0e6e2a8e8",
+      "card_number": "83",
+      "card_name": "Transformation Tome",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:83:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "00c404f1-9f5b-47ae-a32c-5e236d9ba8b8",
+      "card_number": "84",
+      "card_name": "Bubbly Water Energy",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:84:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "00c404f1-9f5b-47ae-a32c-5e236d9ba8b8",
+      "card_number": "84",
+      "card_name": "Bubbly Water Energy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:84:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "ca1ffcfd-526f-44b2-a275-14a57638e2e5",
+      "card_number": "85",
+      "card_name": "Magnetic Metal Energy",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:85:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "ca1ffcfd-526f-44b2-a275-14a57638e2e5",
+      "card_number": "85",
+      "card_name": "Magnetic Metal Energy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:85:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "f3f343d6-26d4-4d3a-a96d-751ada237971",
+      "card_number": "86",
+      "card_name": "Nitro Fire Energy",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:86:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "f3f343d6-26d4-4d3a-a96d-751ada237971",
+      "card_number": "86",
+      "card_name": "Nitro Fire Energy",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:86:reverse",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "55c9715d-eaca-4fc4-bb2e-d5b7cc955b6f",
+      "card_number": "87",
+      "card_name": "Chespin",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:87:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "55c9715d-eaca-4fc4-bb2e-d5b7cc955b6f",
+      "card_number": "087",
+      "card_name": "Chespin",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:87:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "1b029576-98b7-40b7-a191-7ca9a8cce059",
+      "card_number": "88",
+      "card_name": "Froakie",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:88:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "1b029576-98b7-40b7-a191-7ca9a8cce059",
+      "card_number": "088",
+      "card_name": "Froakie",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:88:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "7fed39f9-ab04-40cc-8193-0ab73c14e9b0",
+      "card_number": "89",
+      "card_name": "Frogadier",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:89:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "7fed39f9-ab04-40cc-8193-0ab73c14e9b0",
+      "card_number": "089",
+      "card_name": "Frogadier",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:89:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "806a5994-3933-49c9-a001-1ed5d1b36e3e",
+      "card_number": "90",
+      "card_name": "Ampharos",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:90:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "806a5994-3933-49c9-a001-1ed5d1b36e3e",
+      "card_number": "090",
+      "card_name": "Ampharos",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:90:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "20175b77-73bc-4ab9-a23b-d1c8b231b80f",
+      "card_number": "91",
+      "card_name": "Xerneas",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:91:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "20175b77-73bc-4ab9-a23b-d1c8b231b80f",
+      "card_number": "091",
+      "card_name": "Xerneas",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:91:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "71fdfdb1-0af3-471f-8a56-9cd247790872",
+      "card_number": "92",
+      "card_name": "Claydol",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:92:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "71fdfdb1-0af3-471f-8a56-9cd247790872",
+      "card_number": "092",
+      "card_name": "Claydol",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:92:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "0ff5e630-499f-4ede-9151-60da2438293a",
+      "card_number": "93",
+      "card_name": "Crobat",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:93:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "0ff5e630-499f-4ede-9151-60da2438293a",
+      "card_number": "093",
+      "card_name": "Crobat",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:93:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "3e173afd-76da-483b-a88e-8e45bf6b1eae",
+      "card_number": "94",
+      "card_name": "Metang",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:94:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "3e173afd-76da-483b-a88e-8e45bf6b1eae",
+      "card_number": "094",
+      "card_name": "Metang",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:94:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "16c0a1ea-ecb7-46bf-865f-bde448632d98",
+      "card_number": "95",
+      "card_name": "Sliggoo",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:95:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "16c0a1ea-ecb7-46bf-865f-bde448632d98",
+      "card_number": "095",
+      "card_name": "Sliggoo",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:95:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "9b770e4c-3a55-4dc1-ae6e-7b67873a3157",
+      "card_number": "96",
+      "card_name": "Tauros",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:96:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "9b770e4c-3a55-4dc1-ae6e-7b67873a3157",
+      "card_number": "096",
+      "card_name": "Tauros",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:96:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "8d74ee7b-085a-4e06-8d6b-b835a4abab3f",
+      "card_number": "97",
+      "card_name": "Watchog",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:97:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "8d74ee7b-085a-4e06-8d6b-b835a4abab3f",
+      "card_number": "097",
+      "card_name": "Watchog",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:97:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "19d6094b-4e29-4b9a-8379-64edcf20c54a",
+      "card_number": "98",
+      "card_name": "Beedrill ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:98:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "19d6094b-4e29-4b9a-8379-64edcf20c54a",
+      "card_number": "098",
+      "card_name": "Beedrill ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:98:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "e3412012-751f-4f27-8c4b-de817c4b6bcd",
+      "card_number": "99",
+      "card_name": "Mega Pyroar ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:99:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "e3412012-751f-4f27-8c4b-de817c4b6bcd",
+      "card_number": "099",
+      "card_name": "Mega Pyroar ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:99:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "8bd79b10-1e61-497a-9802-7c56c259602a",
+      "card_number": "100",
+      "card_name": "Mega Greninja ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:100:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "8bd79b10-1e61-497a-9802-7c56c259602a",
+      "card_number": "100",
+      "card_name": "Mega Greninja ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:100:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "3e350284-9d94-489c-84c1-72f24a399f33",
+      "card_number": "101",
+      "card_name": "Mega Floette ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:101:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "3e350284-9d94-489c-84c1-72f24a399f33",
+      "card_number": "101",
+      "card_name": "Mega Floette ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:101:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "f9869bba-9768-42d3-94b1-9e6858fd9e2e",
+      "card_number": "102",
+      "card_name": "Gourgeist ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:102:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "f9869bba-9768-42d3-94b1-9e6858fd9e2e",
+      "card_number": "102",
+      "card_name": "Gourgeist ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:102:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "284bf182-b625-4c88-8154-851f8da55240",
+      "card_number": "103",
+      "card_name": "Cobalion ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:103:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "284bf182-b625-4c88-8154-851f8da55240",
+      "card_number": "103",
+      "card_name": "Cobalion ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:103:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "86c7c7ca-6b46-4ea4-977b-013d8949af11",
+      "card_number": "104",
+      "card_name": "Mega Dragalge ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:104:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "86c7c7ca-6b46-4ea4-977b-013d8949af11",
+      "card_number": "104",
+      "card_name": "Mega Dragalge ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:104:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "0793b910-d4e4-41d8-9e6c-ab93bca06644",
+      "card_number": "105",
+      "card_name": "Cinccino ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:105:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "0793b910-d4e4-41d8-9e6c-ab93bca06644",
+      "card_number": "105",
+      "card_name": "Cinccino ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:105:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "6bf04af6-e680-4e79-9c6f-a64af96a5443",
+      "card_number": "106",
+      "card_name": "AZ's Tranquility",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:106:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "6bf04af6-e680-4e79-9c6f-a64af96a5443",
+      "card_number": "106",
+      "card_name": "AZ's Tranquility",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:106:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "78da1683-b7a6-4172-8f1c-66b0ca21c052",
+      "card_number": "107",
+      "card_name": "Emma",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:107:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "78da1683-b7a6-4172-8f1c-66b0ca21c052",
+      "card_number": "107",
+      "card_name": "Emma",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:107:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "58824837-674e-46a2-9828-cbe16f3f0c35",
+      "card_number": "108",
+      "card_name": "Energy Retrieval",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:108:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "58824837-674e-46a2-9828-cbe16f3f0c35",
+      "card_number": "108",
+      "card_name": "Energy Retrieval",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:108:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "8b2e2e93-daa0-49e6-ba81-4a4c8ad06c3b",
+      "card_number": "109",
+      "card_name": "Jumbo Ice Cream",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:109:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "2c505075-7776-449c-8d26-dfb0f8e0c7e1",
+      "card_number": "110",
+      "card_name": "Philippe",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:110:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "2c505075-7776-449c-8d26-dfb0f8e0c7e1",
+      "card_number": "110",
+      "card_name": "Philippe",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:110:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "45712cf9-885d-4240-ba07-6a31dd18acf8",
+      "card_number": "111",
+      "card_name": "Prism Tower",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:111:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "45712cf9-885d-4240-ba07-6a31dd18acf8",
+      "card_number": "111",
+      "card_name": "Prism Tower",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:111:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "4eb74445-6a7f-422b-9ce4-202cfaace0d8",
+      "card_number": "112",
+      "card_name": "Roxie's Performance",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:112:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "4eb74445-6a7f-422b-9ce4-202cfaace0d8",
+      "card_number": "112",
+      "card_name": "Roxie's Performance",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:112:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "33ee7d1b-9610-4c47-ac39-ee01827b28f7",
+      "card_number": "113",
+      "card_name": "Special Red Card",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:113:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "33ee7d1b-9610-4c47-ac39-ee01827b28f7",
+      "card_number": "113",
+      "card_name": "Special Red Card",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:113:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "3bd01ad7-4478-4360-bf1c-bb50e74ee151",
+      "card_number": "114",
+      "card_name": "Surfing Beach",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:114:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "3bd01ad7-4478-4360-bf1c-bb50e74ee151",
+      "card_number": "114",
+      "card_name": "Surfing Beach",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:114:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "f288f5a8-1527-4969-98bc-fca5e934d8e4",
+      "card_number": "115",
+      "card_name": "Tool Scrapper",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:115:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "f288f5a8-1527-4969-98bc-fca5e934d8e4",
+      "card_number": "115",
+      "card_name": "Tool Scrapper",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:115:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "f4a99179-8978-4498-a4a9-504fdb1e3d9d",
+      "card_number": "116",
+      "card_name": "Mega Greninja ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:116:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "f4a99179-8978-4498-a4a9-504fdb1e3d9d",
+      "card_number": "116",
+      "card_name": "Mega Greninja ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:116:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "390d0ece-2848-4e97-adbd-5782e57af18d",
+      "card_number": "117",
+      "card_name": "Mega Floette ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:117:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "390d0ece-2848-4e97-adbd-5782e57af18d",
+      "card_number": "117",
+      "card_name": "Mega Floette ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:117:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "8a2548d3-845a-478b-8d12-286a780ac020",
+      "card_number": "118",
+      "card_name": "Mega Dragalge ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:118:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "8a2548d3-845a-478b-8d12-286a780ac020",
+      "card_number": "118",
+      "card_name": "Mega Dragalge ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:118:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a11894e4-2423-4950-8733-8f30188c4b7a",
+      "card_number": "119",
+      "card_name": "Cinccino ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:119:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "a11894e4-2423-4950-8733-8f30188c4b7a",
+      "card_number": "119",
+      "card_name": "Cinccino ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:119:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "4a055191-0338-4731-8a18-6bc0ef6209be",
+      "card_number": "120",
+      "card_name": "AZ's Tranquility",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:120:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "4a055191-0338-4731-8a18-6bc0ef6209be",
+      "card_number": "120",
+      "card_name": "AZ's Tranquility",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:120:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "dc0fbf2c-c105-4cfb-8cbc-c346f5365a9a",
+      "card_number": "121",
+      "card_name": "Roxie's Performance",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:121:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "dc0fbf2c-c105-4cfb-8cbc-c346f5365a9a",
+      "card_number": "121",
+      "card_name": "Roxie's Performance",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:121:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "cdba556b-f250-4ac7-a8ad-8b6c89dbdc14",
+      "card_number": "122",
+      "card_name": "Mega Greninja ex",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:122:holo",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "status": "would_insert"
+    },
+    {
+      "card_print_id": "cdba556b-f250-4ac7-a8ad-8b6c89dbdc14",
+      "card_number": "122",
+      "card_name": "Mega Greninja ex",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_set_index_v1",
+      "provenance_ref": "me04:122:normal",
+      "created_by": "pkg04a_chaos_rising_child_printing_completion_v1",
+      "source_count": 2,
+      "sources": [
+        "cardtrader_blueprint_index",
+        "tcgdex"
+      ],
+      "status": "would_insert"
+    }
+  ],
+  "duplicate_parent_groups": [],
+  "missing_parent_rows": [],
+  "db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false
+}

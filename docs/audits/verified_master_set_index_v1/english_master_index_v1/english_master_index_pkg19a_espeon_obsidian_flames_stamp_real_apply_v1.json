@@ -1,0 +1,179 @@
+{
+  "generated_at": "2026-06-13T00:35:04.697Z",
+  "version": "english_master_index_pkg19a_espeon_obsidian_flames_stamp_real_apply_v1",
+  "package_id": "PKG-19A-ESPEON-OBSIDIAN-FLAMES-STAMP-PARENT-INSERT",
+  "package_fingerprint_sha256": "002bd396758bb0c42ca1eb84daef818c608d94a58eea345d3d68e30dbd72e60a",
+  "dry_run_proof_sha256": "d023daded9f34e32822b686c9c5526b7a121edd62e16fb0c4d49dcdcc4126766",
+  "approval_text_required": "Approve real PKG-19A-ESPEON-OBSIDIAN-FLAMES-STAMP-PARENT-INSERT apply only. Fingerprint: 002bd396758bb0c42ca1eb84daef818c608d94a58eea345d3d68e30dbd72e60a. Scope: 1 stamped parent inserts, 1 identity inserts, 1 child printing inserts; finishes reverse=1; stamp labels Obsidian Flames Stamp=1; sets sv03=1. Dry-run proof: 29669a23e21d7a9514d1904919a04947e7429dd84455358bcd5b51898150175b == 29669a23e21d7a9514d1904919a04947e7429dd84455358bcd5b51898150175b. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+  "apply_status": "pkg19a_real_apply_committed",
+  "committed": true,
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg19a_espeon_obsidian_flames_stamp_guarded_dry_run_v1.json",
+  "db_writes_performed": true,
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "write_counts": {
+    "parent_inserts": 1,
+    "identity_inserts": 1,
+    "child_inserts": 1,
+    "deletes": 0,
+    "merges": 0
+  },
+  "guard": {
+    "target_count": 1,
+    "target_parent_count": 1,
+    "target_child_count": 1,
+    "missing_base_count": 0,
+    "inactive_finish_count": 0,
+    "missing_base_finish_count": 0,
+    "parent_collision_count": 0,
+    "child_collision_count": 0,
+    "identity_target_collision_count": 0,
+    "ready_identity_projection_count": 1,
+    "identity_hash_collision_count": 0
+  },
+  "proof": {
+    "package_id": "PKG-19A-ESPEON-OBSIDIAN-FLAMES-STAMP-PARENT-INSERT",
+    "package_fingerprint": "002bd396758bb0c42ca1eb84daef818c608d94a58eea345d3d68e30dbd72e60a",
+    "target_rows": 1,
+    "inserted_parent_rows": 1,
+    "inserted_parent_modifier_rows": 1,
+    "inserted_identity_rows": 1,
+    "inserted_child_rows": 1,
+    "forbidden_stamped_child_rows": 0
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-13T00:35:03.627Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "067019a2-583e-4829-b498-5eb6e795ba8d",
+        "set_code": "sv03",
+        "number": "086",
+        "number_plain": "086",
+        "name": "Espeon",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "29669a23e21d7a9514d1904919a04947e7429dd84455358bcd5b51898150175b",
+    "counts": {
+      "base_parent": 1
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-13T00:35:04.577Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "067019a2-583e-4829-b498-5eb6e795ba8d",
+        "set_code": "sv03",
+        "number": "086",
+        "number_plain": "086",
+        "name": "Espeon",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "finish_key": null,
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_child",
+        "row_id": "a91f86f6-af5b-4645-9f72-2fca3d786eb1",
+        "set_code": "sv03",
+        "number": "086",
+        "number_plain": "086",
+        "name": "Espeon",
+        "variant_key": "obsidian_flames_stamp",
+        "printed_identity_modifier": "obsidian_flames_stamp",
+        "finish_key": "reverse",
+        "identity_key_hash": null
+      },
+      {
+        "row_type": "target_identity",
+        "row_id": "bee96457-f1cc-40e7-b006-9c0beba7fadd",
+        "set_code": "sv03",
+        "number": "086",
+        "number_plain": "086",
+        "name": "Espeon",
+        "variant_key": "obsidian_flames_stamp",
+        "printed_identity_modifier": "obsidian_flames_stamp",
+        "finish_key": null,
+        "identity_key_hash": "b41bb408d4b66476240f611a947e789d6bf087313e1808d1fe81c0cfd7dd0e9d"
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "48b0a8ed-c49c-445e-a5bb-c2827433f72b",
+        "set_code": "sv03",
+        "number": "086",
+        "number_plain": "086",
+        "name": "Espeon",
+        "variant_key": "obsidian_flames_stamp",
+        "printed_identity_modifier": "obsidian_flames_stamp",
+        "finish_key": null,
+        "identity_key_hash": null
+      }
+    ],
+    "hash_sha256": "0a106497fb1dab78ef24057b91750afacc3f60b7c9b04244d9490958da62be21",
+    "counts": {
+      "base_parent": 1,
+      "target_child": 1,
+      "target_identity": 1,
+      "target_parent": 1
+    }
+  },
+  "scope": {
+    "target_count": 1,
+    "by_set": {
+      "sv03": 1
+    },
+    "by_finish": {
+      "reverse": 1
+    },
+    "by_stamp_label": {
+      "Obsidian Flames Stamp": 1
+    },
+    "targets": [
+      {
+        "target_parent_id": "48b0a8ed-c49c-445e-a5bb-c2827433f72b",
+        "target_child_id": "a91f86f6-af5b-4645-9f72-2fca3d786eb1",
+        "base_parent_id": "067019a2-583e-4829-b498-5eb6e795ba8d",
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "card_number": "086",
+        "card_name": "Espeon",
+        "target_finish_key": "reverse",
+        "target_variant_key": "obsidian_flames_stamp",
+        "target_printed_identity_modifier": "obsidian_flames_stamp",
+        "stamp_label": "Obsidian Flames Stamp",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_%28TCG%29",
+        "evidence_label": "Bulbapedia Additional Cards lists Reverse Holo Obsidian Flames stamp Best Buy gift with purchase exclusive; TCGCollector and ThePriceDex support Obsidian Flames Stamp variant.",
+        "evidence": {
+          "readiness_package_id": "PKG-19A-ESPEON-OBSIDIAN-FLAMES-STAMP-PARENT-INSERT",
+          "readiness_fingerprint_sha256": "2026-06-13T00:22:11.756Z",
+          "source_keys": [
+            "bulbapedia_catalog_compare",
+            "tcgcollector_card_variants",
+            "thepricedex_price_list"
+          ],
+          "source_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_%28TCG%29",
+            "https://www.tcgcollector.com/cards/42195/espeon-obsidian-flames-086-197",
+            "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+          ],
+          "evidence_label": "Reverse Holo Obsidian Flames stamp Best Buy gift with purchase exclusive.",
+          "raw_snapshot_ref": "bulbapedia_catalog_compare_v1:name_mismatch.csv:sv03:086:Espeon:Additional Cards",
+          "stamp_label": "Obsidian Flames Stamp",
+          "variant_key": "obsidian_flames_stamp",
+          "active_child_finish_key": "reverse"
+        }
+      }
+    ]
+  },
+  "stop_findings": []
+}

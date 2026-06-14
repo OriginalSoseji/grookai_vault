@@ -1,0 +1,546 @@
+{
+  "generated_at": "2026-06-11T03:19:55.132Z",
+  "version": "english_master_index_pkg11a_stamped_parent_identity_guarded_dry_run_v1",
+  "package_id": "PKG-11A-STAMPED-CANONICAL-PARENT-IDENTITY-PILOT",
+  "package_fingerprint_sha256": "bfd77c554ba3ee32c18f523b1211d95aa7442dda6fccfeee2c0ebeea958fe6ea",
+  "source_readiness_fingerprint_sha256": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1",
+  "dry_run_status": "pkg11a_stamped_parent_identity_completed_rolled_back_no_durable_change",
+  "error_message": null,
+  "audit_only": true,
+  "durable_db_writes_performed": false,
+  "db_writes_committed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "merges_performed": false,
+  "stamped_finish_activation_performed": false,
+  "rollback_proof_equal": true,
+  "before_snapshot": {
+    "captured_at": "2026-06-11T03:19:54.076Z",
+    "rows": [],
+    "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "counts": {
+      "target_parent_rows": 0,
+      "target_child_rows": 0,
+      "proposed_parent_collision_rows": 0,
+      "total_rows": 0
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-11T03:19:55.051Z",
+    "rows": [],
+    "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "counts": {
+      "target_parent_rows": 0,
+      "target_child_rows": 0,
+      "proposed_parent_collision_rows": 0,
+      "total_rows": 0
+    }
+  },
+  "rollback_proof_rows": [
+    {
+      "package_id": "PKG-11A-STAMPED-CANONICAL-PARENT-IDENTITY-PILOT",
+      "package_fingerprint": "bfd77c554ba3ee32c18f523b1211d95aa7442dda6fccfeee2c0ebeea958fe6ea",
+      "target_rows": 16,
+      "inserted_parent_rows": 16,
+      "inserted_child_rows": 16
+    }
+  ],
+  "guard": {
+    "target_count": 16,
+    "target_parent_count": 16,
+    "target_child_count": 16,
+    "missing_base_count": 0,
+    "inactive_finish_count": 0,
+    "parent_collision_count": 0,
+    "child_collision_count": 0
+  },
+  "simulated_write_counts": {
+    "parent_inserts": 16,
+    "child_inserts": 16,
+    "deletes": 0,
+    "merges": 0
+  },
+  "scope": {
+    "target_parent_rows": 16,
+    "target_child_rows": 16,
+    "by_set": {
+      "mep": 8,
+      "svp": 1,
+      "swsh1": 1,
+      "swsh10": 1,
+      "swsh2": 1,
+      "swsh6": 2,
+      "swsh8": 1,
+      "swshp": 1
+    },
+    "by_variant_key": {
+      "battle_academy_deck_mark": 2,
+      "gym_stamp": 1,
+      "play_pokemon_stamp": 1,
+      "snowflake_stamp": 2,
+      "snowflake_stamped": 1,
+      "staff_stamp": 8,
+      "world_championships_2025_staff_stamp": 1
+    },
+    "by_child_finish": {
+      "holo": 15,
+      "normal": 1
+    },
+    "targets": [
+      {
+        "target_parent_id": "e2a7b9b5-9f7c-4e61-90e6-b7a3607dd193",
+        "target_child_id": "54851df1-483b-47c8-852c-df9d0306b4db",
+        "base_parent_id": "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+        "set_key": "mep",
+        "card_number": "1",
+        "card_name": "Meganium",
+        "target_finish_key": "holo",
+        "target_variant_key": "staff_stamp",
+        "stamp_label": "Staff Stamp",
+        "target_number_plain": "1",
+        "evidence": {
+          "sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://binderbuilder.app/sets/mep",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ],
+          "stamp_confidence": "exact_label",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "9feaa16d-defb-4fba-9fc4-ab9196e1f565",
+        "target_child_id": "e294e1ec-e5e7-4fb2-9d9a-4252f0122e47",
+        "base_parent_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+        "set_key": "mep",
+        "card_number": "2",
+        "card_name": "Inteleon",
+        "target_finish_key": "holo",
+        "target_variant_key": "staff_stamp",
+        "stamp_label": "Staff Stamp",
+        "target_number_plain": "2",
+        "evidence": {
+          "sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://binderbuilder.app/sets/mep",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ],
+          "stamp_confidence": "exact_label",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "490a6e0a-4eff-463d-b6aa-ca2d1642304e",
+        "target_child_id": "37cf75ab-b0fa-42f0-b323-601670c8481f",
+        "base_parent_id": "718508f6-7825-43e8-98e1-a57b58dd490f",
+        "set_key": "mep",
+        "card_number": "3",
+        "card_name": "Alakazam",
+        "target_finish_key": "holo",
+        "target_variant_key": "staff_stamp",
+        "stamp_label": "Staff Stamp",
+        "target_number_plain": "3",
+        "evidence": {
+          "sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://binderbuilder.app/sets/mep",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ],
+          "stamp_confidence": "exact_label",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "f6a62fbe-ffa3-45fb-a7cb-ddc82b83d6b8",
+        "target_child_id": "94f8f719-9a1a-4626-b8d4-822e422dc472",
+        "base_parent_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+        "set_key": "mep",
+        "card_number": "4",
+        "card_name": "Lunatone",
+        "target_finish_key": "holo",
+        "target_variant_key": "staff_stamp",
+        "stamp_label": "Staff Stamp",
+        "target_number_plain": "4",
+        "evidence": {
+          "sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://binderbuilder.app/sets/mep",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ],
+          "stamp_confidence": "exact_label",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "7665585c-809c-4e13-a482-69514f778330",
+        "target_child_id": "cb222219-753c-4038-b4f0-e71a4005711d",
+        "base_parent_id": "a2061f9b-477e-417c-b887-fa1588e65841",
+        "set_key": "mep",
+        "card_number": "14",
+        "card_name": "Ceruledge",
+        "target_finish_key": "holo",
+        "target_variant_key": "staff_stamp",
+        "stamp_label": "Staff Stamp",
+        "target_number_plain": "14",
+        "evidence": {
+          "sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://binderbuilder.app/sets/mep",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ],
+          "stamp_confidence": "exact_label",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "fcdcef21-aa7b-42c5-bd39-65a7986690e4",
+        "target_child_id": "44e0ca7e-d044-4dbb-9d83-f236ad08b4a7",
+        "base_parent_id": "42a3071c-64a2-4fe2-a6fe-9597914c0cfb",
+        "set_key": "mep",
+        "card_number": "15",
+        "card_name": "Zacian",
+        "target_finish_key": "holo",
+        "target_variant_key": "staff_stamp",
+        "stamp_label": "Staff Stamp",
+        "target_number_plain": "15",
+        "evidence": {
+          "sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://binderbuilder.app/sets/mep",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ],
+          "stamp_confidence": "exact_label",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "01989462-d1c4-4689-82a2-0cd7575bd55c",
+        "target_child_id": "651a02e6-09ce-4ad1-88ba-2334422b0425",
+        "base_parent_id": "a8798fd0-faa6-4eb4-8bc7-8de9d902a9b0",
+        "set_key": "mep",
+        "card_number": "16",
+        "card_name": "Flygon",
+        "target_finish_key": "holo",
+        "target_variant_key": "staff_stamp",
+        "stamp_label": "Staff Stamp",
+        "target_number_plain": "16",
+        "evidence": {
+          "sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://binderbuilder.app/sets/mep",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ],
+          "stamp_confidence": "exact_label",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "893cdd13-1815-41df-9972-079881ae43ed",
+        "target_child_id": "30534f8f-be0c-4941-802b-edd3b6111d37",
+        "base_parent_id": "fe0655fe-23c2-464a-a37a-c6b04b11e9e4",
+        "set_key": "mep",
+        "card_number": "17",
+        "card_name": "Toxtricity",
+        "target_finish_key": "holo",
+        "target_variant_key": "staff_stamp",
+        "stamp_label": "Staff Stamp",
+        "target_number_plain": "17",
+        "evidence": {
+          "sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "binderbuilder_set_variant",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://binderbuilder.app/sets/mep",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ],
+          "stamp_confidence": "exact_label",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "b6adf0cb-5c62-446b-96f4-5c2fc2994591",
+        "target_child_id": "d069ce66-a42c-4ba0-b7af-e1d6a8a3f1ac",
+        "base_parent_id": "63cd75f3-8f5f-4958-ada7-026aa61ac338",
+        "set_key": "swshp",
+        "card_number": "SWSH065",
+        "card_name": "Eevee V",
+        "target_finish_key": "holo",
+        "target_variant_key": "battle_academy_deck_mark",
+        "stamp_label": "Battle Academy Deck Mark",
+        "target_number_plain": "65",
+        "evidence": {
+          "sources": [
+            "bulbapedia_card_page_release_info",
+            "bulbapedia_set_list",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "bulbapedia_card_page_release_info",
+            "bulbapedia_set_list",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Eevee_V_(SWSH_Promo_65)",
+            "https://www.thepricedex.com/set/swshp/swsh-black-star-promos/price-list"
+          ],
+          "stamp_confidence": "derived_from_product_rule",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "0a54475d-4c52-4eab-bc39-6fa9d034d466",
+        "target_child_id": "5d439bf8-40f0-43f1-a434-6556ce4f5778",
+        "base_parent_id": "5280b2a0-7b64-4c22-ae38-2f252cc57c02",
+        "set_key": "swsh1",
+        "card_number": "139",
+        "card_name": "Zamazenta V",
+        "target_finish_key": "holo",
+        "target_variant_key": "play_pokemon_stamp",
+        "stamp_label": "Play! Pokemon Stamp",
+        "target_number_plain": "139",
+        "evidence": {
+          "sources": [
+            "tcgcsv_prize_pack_catalog",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "tcgcsv_prize_pack_catalog",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/476065/pokemon-prize-pack-series-cards-zamazenta-v-139-202",
+            "https://www.thepricedex.com/set/swsh1/sword-and-shield/price-list"
+          ],
+          "stamp_confidence": "derived_from_prize_pack_league_promo",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "2893511f-2613-4633-815a-013a24b4920d",
+        "target_child_id": "40bd061b-c069-4653-84bc-1764321f794f",
+        "base_parent_id": "b047e09a-1054-49e2-98d3-588b4747db6d",
+        "set_key": "swsh2",
+        "card_number": "55",
+        "card_name": "Eiscue V",
+        "target_finish_key": "holo",
+        "target_variant_key": "snowflake_stamp",
+        "stamp_label": "Snowflake Stamp",
+        "target_number_plain": "55",
+        "evidence": {
+          "sources": [
+            "doubleholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "doubleholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://doubleholo.com/sets/pokemon-rebel-clash",
+            "https://www.thepricedex.com/set/swsh2/rebel-clash/price-list"
+          ],
+          "stamp_confidence": "exact_label",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "bdc2a66f-ae36-4efe-a705-8ea8296420a9",
+        "target_child_id": "de3d79c5-2d9b-4232-afd1-167f212c8fee",
+        "base_parent_id": "3888b300-08ae-4702-95ef-44a29071a417",
+        "set_key": "swsh6",
+        "card_number": "45",
+        "card_name": "Ice Rider Calyrex V",
+        "target_finish_key": "holo",
+        "target_variant_key": "snowflake_stamp",
+        "stamp_label": "Snowflake Stamp",
+        "target_number_plain": "45",
+        "evidence": {
+          "sources": [
+            "doubleholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "doubleholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://doubleholo.com/sets/pokemon-chilling-reign",
+            "https://www.thepricedex.com/set/swsh6/chilling-reign/price-list"
+          ],
+          "stamp_confidence": "exact_label",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "cfcc7050-5851-40a1-95e0-8ad51b21aac3",
+        "target_child_id": "93fd779b-206a-4a8b-b015-617ca8195fc4",
+        "base_parent_id": "cc781ada-3ea0-4d0e-89c3-2d97f1bbc051",
+        "set_key": "swsh6",
+        "card_number": "46",
+        "card_name": "Ice Rider Calyrex VMAX",
+        "target_finish_key": "holo",
+        "target_variant_key": "snowflake_stamped",
+        "stamp_label": "Snowflake Stamped",
+        "target_number_plain": "46",
+        "evidence": {
+          "sources": [
+            "doubleholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "doubleholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://doubleholo.com/sets/pokemon-chilling-reign",
+            "https://www.thepricedex.com/set/swsh6/chilling-reign/price-list"
+          ],
+          "stamp_confidence": "exact_label",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "b9175707-7cc0-427d-8869-0733aab5d29b",
+        "target_child_id": "5eb2b52a-6d86-4fed-ad2d-89c5f2efe577",
+        "base_parent_id": "651fa060-9087-46b7-84d9-bf5fb5868c96",
+        "set_key": "swsh8",
+        "card_number": "43",
+        "card_name": "Cinderace V",
+        "target_finish_key": "holo",
+        "target_variant_key": "battle_academy_deck_mark",
+        "stamp_label": "Battle Academy Deck Mark",
+        "target_number_plain": "43",
+        "evidence": {
+          "sources": [
+            "bulbapedia_battle_academy_product",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "bulbapedia_battle_academy_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+            "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+          ],
+          "stamp_confidence": "derived_from_product_rule",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "9f57a5fc-726b-4e69-bb2c-6863642a64f2",
+        "target_child_id": "210018d1-af8c-46cb-ab47-026685b82436",
+        "base_parent_id": "942bd678-5492-4f14-a79b-00503ac19aee",
+        "set_key": "swsh10",
+        "card_number": "46",
+        "card_name": "Radiant Greninja",
+        "target_finish_key": "holo",
+        "target_variant_key": "gym_stamp",
+        "stamp_label": "Gym Stamp",
+        "target_number_plain": "46",
+        "evidence": {
+          "sources": [
+            "doubleholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "doubleholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://doubleholo.com/sets/pokemon-astral-radiance",
+            "https://www.thepricedex.com/set/swsh10/astral-radiance/price-list"
+          ],
+          "stamp_confidence": "exact_label",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      },
+      {
+        "target_parent_id": "4b575fd9-1e87-4992-bae5-826795a4bfbd",
+        "target_child_id": "3a677dcd-8d59-430c-8116-51fb5926234c",
+        "base_parent_id": "dae7e1ad-487c-4923-84f8-6a2408a51514",
+        "set_key": "svp",
+        "card_number": "224",
+        "card_name": "Paradise Resort",
+        "target_finish_key": "normal",
+        "target_variant_key": "world_championships_2025_staff_stamp",
+        "stamp_label": "World Championships 2025 Staff Stamp",
+        "target_number_plain": "224",
+        "evidence": {
+          "sources": [
+            "pricecharting_csv_product_stamp",
+            "thepricedex_price_list"
+          ],
+          "preserved_evidence_sources": [
+            "pricecharting_csv_product_stamp",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-promo/paradise-resort-world-championships-2025-staff-224",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ],
+          "stamp_confidence": "exact_label",
+          "readiness_fingerprint": "e3de2e00b4d5109174eaeaf31b20fc4e3961f058a608570762ca723f4c7466b1"
+        }
+      }
+    ]
+  },
+  "stop_findings": [],
+  "recommended_real_apply_approval_text": "Approve real PKG-11A-STAMPED-CANONICAL-PARENT-IDENTITY-PILOT apply only. Fingerprint: bfd77c554ba3ee32c18f523b1211d95aa7442dda6fccfeee2c0ebeea958fe6ea. Scope: 16 stamped canonical parent inserts and 16 child printing inserts using unambiguous base child finishes; child finishes holo=15, normal=1; no stamped finish activation; no deletes; no merges; no unsupported cleanup. Dry-run proof: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 == 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945. No global apply. No migrations."
+}

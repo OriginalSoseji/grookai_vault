@@ -1,6 +1,6 @@
 # English Master Index Name Mismatch Triage V1
 
-Generated: 2026-06-08T18:24:41.247Z
+Generated: 2026-06-12T08:27:20.983Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -10,45 +10,45 @@ Name mismatches are review classifications only. Do not rewrite identity or prin
 
 | category | count |
 | --- | --- |
-| diacritic_punctuation_only | 3 |
+| diacritic_punctuation_only | 7 |
 | lvx_suffix_style | 6 |
-| parenthetical_qualifier | 8 |
-| subset_number_collision_arceus_ar_subset | 9 |
-| subset_number_collision_call_of_legends_shiny | 12 |
-| subset_number_collision_crown_zenith_galarian_gallery | 25 |
-| subset_number_collision_dp_secret_shiny | 4 |
+| parenthetical_qualifier | 11 |
+| possible_identity_conflict | 19 |
+| subset_number_collision_arceus_ar_subset | 17 |
+| subset_number_collision_call_of_legends_shiny | 24 |
+| subset_number_collision_dp_secret_shiny | 6 |
 | subset_number_collision_generations_radiant_collection | 52 |
-| subset_number_collision_legendary_treasures_radiant_collection | 10 |
-| subset_number_collision_platinum_secret_shiny | 2 |
-| subset_number_collision_rising_rivals_rotom | 7 |
-| subset_number_collision_supreme_victors_secret_shiny | 1 |
+| subset_number_collision_legendary_treasures_radiant_collection | 17 |
+| subset_number_collision_platinum_secret_shiny | 4 |
+| subset_number_collision_rising_rivals_rotom | 10 |
+| subset_number_collision_supreme_victors_secret_shiny | 3 |
 
 ## Summary By Set
 
 | set_code | count |
 | --- | --- |
-| bw11 | 10 |
-| col1 | 12 |
+| bw11 | 17 |
+| col1 | 24 |
 | dp1 | 3 |
 | dp2 | 3 |
-| dp7 | 4 |
+| dp7 | 6 |
 | g1 | 52 |
-| me03 | 3 |
-| pl1 | 2 |
-| pl2 | 7 |
-| pl3 | 1 |
-| pl4 | 9 |
-| sv01 | 4 |
-| sv02 | 4 |
-| swsh12.5 | 25 |
+| me03 | 7 |
+| pl1 | 4 |
+| pl2 | 10 |
+| pl3 | 3 |
+| pl4 | 17 |
+| sm115 | 19 |
+| sv01 | 6 |
+| sv02 | 5 |
 
 ## Summary By Finish
 
 | finish | count |
 | --- | --- |
-| holo | 62 |
-| normal | 26 |
-| reverse | 51 |
+| holo | 77 |
+| normal | 30 |
+| reverse | 69 |
 
 ## Review Rows
 
@@ -57,12 +57,19 @@ Name mismatches are review classifications only. Do not rewrite identity or prin
 | diacritic_punctuation_only | me03 | 080 | reverse | Poke Ball | Poké Ball |
 | diacritic_punctuation_only | me03 | 081 | reverse | Poke Pad | Poké Pad |
 | diacritic_punctuation_only | me03 | 082 | reverse | Pokemon Catcher | Pokémon Catcher |
+| diacritic_punctuation_only | me03 | 080 | normal | Poke Ball | Poké Ball |
+| diacritic_punctuation_only | me03 | 081 | normal | Poke Pad | Poké Pad |
+| diacritic_punctuation_only | me03 | 082 | normal | Pokemon Catcher | Pokémon Catcher |
+| diacritic_punctuation_only | me03 | 113 | holo | Poke Pad | Poké Pad |
 | lvx_suffix_style | dp2 | 121 | reverse | Electivire LV.X | Electivire |
 | lvx_suffix_style | dp1 | 120 | reverse | Empoleon LV.X | Empoleon |
 | lvx_suffix_style | dp1 | 121 | reverse | Infernape LV.X | Infernape |
 | lvx_suffix_style | dp1 | 122 | reverse | Torterra LV.X | Torterra |
 | lvx_suffix_style | dp2 | 122 | reverse | Lucario LV.X | Lucario |
 | lvx_suffix_style | dp2 | 123 | reverse | Magmortar LV.X | Magmortar |
+| parenthetical_qualifier | sv01 | 189 | reverse | Professor's Research | Professor's Research (Professor Sada) |
+| parenthetical_qualifier | sv01 | 190 | reverse | Professor's Research | Professor's Research (Professor Turo) |
+| parenthetical_qualifier | sv02 | 172 | normal | Boss's Orders | Boss's Orders (Ghetsis) |
 | parenthetical_qualifier | sv01 | 189 | holo | Professor's Research | Professor's Research (Professor Sada) |
 | parenthetical_qualifier | sv02 | 172 | holo | Boss's Orders | Boss's Orders (Ghetsis) |
 | parenthetical_qualifier | sv02 | 265 | holo | Boss's Orders | Boss's Orders (Ghetsis) |
@@ -71,7 +78,34 @@ Name mismatches are review classifications only. Do not rewrite identity or prin
 | parenthetical_qualifier | sv01 | 240 | holo | Professor's Research | Professor's Research (Professor Sada) |
 | parenthetical_qualifier | sv01 | 241 | holo | Professor's Research | Professor's Research (Professor Turo) |
 | parenthetical_qualifier | sv02 | 172 | reverse | Boss's Orders | Boss's Orders (Ghetsis) |
+| possible_identity_conflict | sm115 | 6 | holo | Charmander | Pinsir-GX |
+| possible_identity_conflict | sm115 | 9 | holo | Wooper | Charizard-GX |
+| possible_identity_conflict | sm115 | 14 | holo | Xurkitree | Starmie-GX |
+| possible_identity_conflict | sm115 | 16 | holo | Shuppet | Gyarados-GX |
+| possible_identity_conflict | sm115 | 18 | holo | Malamar | Vaporeon |
+| possible_identity_conflict | sm115 | 20 | holo | Sudowoodo | Raichu-GX |
+| possible_identity_conflict | sm115 | 24 | holo | Buzzwole | Zapdos |
+| possible_identity_conflict | sm115 | 31 | holo | Metang | Mewtwo-GX |
+| possible_identity_conflict | sm115 | 36 | holo | Diancie | Onix-GX |
+| possible_identity_conflict | sm115 | 42 | holo | Swablu | Wigglytuff-GX |
+| possible_identity_conflict | sm115 | 44 | holo | Oranguru | Moltres & Zapdos & Articuno-GX |
+| possible_identity_conflict | sm115 | 48 | holo | Golisopod-GX | Eevee |
+| possible_identity_conflict | sm115 | 55 | holo | Glaceon-GX | Brock's Training |
+| possible_identity_conflict | sm115 | 58 | holo | Xurkitree-GX | Jessie & James |
+| possible_identity_conflict | sm115 | 63 | holo | Naganadel-GX | Misty's Water Command |
+| possible_identity_conflict | sm115 | 66 | holo | Lycanroc-GX | Moltres & Zapdos & Articuno-GX |
+| possible_identity_conflict | sm115 | 67 | holo | Lycanroc-GX | Giovanni's Exile |
+| possible_identity_conflict | sm115 | 68 | holo | Buzzwole-GX | Jessie & James |
+| possible_identity_conflict | sm115 | 69 | holo | Umbreon-GX | Moltres & Zapdos & Articuno-GX |
 | subset_number_collision_arceus_ar_subset | pl4 | 1 | holo | Arceus | Charizard |
+| subset_number_collision_arceus_ar_subset | pl4 | 2 | holo | Arceus | Froslass |
+| subset_number_collision_arceus_ar_subset | pl4 | 3 | holo | Arceus | Heatran |
+| subset_number_collision_arceus_ar_subset | pl4 | 5 | holo | Arceus | Luxray |
+| subset_number_collision_arceus_ar_subset | pl4 | 7 | holo | Arceus | Probopass |
+| subset_number_collision_arceus_ar_subset | pl4 | 10 | reverse | Bagon | Tangrowth |
+| subset_number_collision_arceus_ar_subset | pl4 | 11 | reverse | Ponyta | Toxicroak |
+| subset_number_collision_arceus_ar_subset | pl4 | 4 | holo | Arceus | Kabutops |
+| subset_number_collision_arceus_ar_subset | pl4 | 8 | holo | Arceus | Salamence |
 | subset_number_collision_arceus_ar_subset | pl4 | 1 | reverse | Arceus | Charizard |
 | subset_number_collision_arceus_ar_subset | pl4 | 12 | reverse | Shinx | Zapdos; Zapdos G |
 | subset_number_collision_arceus_ar_subset | pl4 | 12 | holo | Shinx | Zapdos; Zapdos G |
@@ -92,31 +126,20 @@ Name mismatches are review classifications only. Do not rewrite identity or prin
 | subset_number_collision_call_of_legends_shiny | col1 | 8 | normal | Palkia | Hitmontop |
 | subset_number_collision_call_of_legends_shiny | col1 | 8 | reverse | Palkia | Hitmontop |
 | subset_number_collision_call_of_legends_shiny | col1 | 8 | holo | Palkia | Hitmontop |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 13 | holo | Diancie | Leafeon V |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 14 | holo | Comfey | Leafeon VSTAR |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 16 | holo | Absol | Zarude |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 17 | holo | Thievul | Calyrex |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 18 | holo | Magnezone | Charizard V |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 19 | holo | Altaria | Charizard VSTAR |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 20 | holo | Latias | Radiant Charizard |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 21 | holo | Hisuian Goodra | Entei |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 22 | holo | Ditto | Simisear V |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 23 | holo | Dunsparce | Simisear VSTAR |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 26 | holo | Riolu | Volcanion |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 36 | holo | Entei V | Kyogre |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 37 | holo | Simisear VSTAR | Kyogre V |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 38 | holo | Suicune V | Glaceon V |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 45 | holo | Deoxys VMAX | Rotom V |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 46 | holo | Deoxys VSTAR | Rotom VSTAR |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 51 | holo | Hisuian Samurott V | Radiant Charjabug |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 53 | holo | Hoopa V | Zeraora V |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 54 | holo | Zamazenta V | Zeraora VMAX |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 55 | holo | Regigigas VSTAR | Zeraora VSTAR |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 59 | holo | Colress's Experiment | Mewtwo |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 60 | holo | Cynthia's Ambition | Mew V |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 64 | holo | Melony | Tapu Lele |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 65 | holo | Raihan | Hatterene V |
-| subset_number_collision_crown_zenith_galarian_gallery | swsh12.5 | 66 | holo | Roxanne | Hatterene VMAX |
+| subset_number_collision_call_of_legends_shiny | col1 | 2 | reverse | Dialga | Deoxys |
+| subset_number_collision_call_of_legends_shiny | col1 | 2 | holo | Dialga | Deoxys |
+| subset_number_collision_call_of_legends_shiny | col1 | 3 | reverse | Entei | Dialga |
+| subset_number_collision_call_of_legends_shiny | col1 | 3 | holo | Entei | Dialga |
+| subset_number_collision_call_of_legends_shiny | col1 | 4 | reverse | Groudon | Espeon |
+| subset_number_collision_call_of_legends_shiny | col1 | 4 | holo | Groudon | Espeon |
+| subset_number_collision_call_of_legends_shiny | col1 | 7 | reverse | Lugia | Gyarados |
+| subset_number_collision_call_of_legends_shiny | col1 | 7 | holo | Lugia | Gyarados |
+| subset_number_collision_call_of_legends_shiny | col1 | 9 | reverse | Raikou | Ho-Oh |
+| subset_number_collision_call_of_legends_shiny | col1 | 9 | holo | Raikou | Ho-Oh |
+| subset_number_collision_call_of_legends_shiny | col1 | 11 | reverse | Suicune | Jirachi |
+| subset_number_collision_call_of_legends_shiny | col1 | 11 | holo | Suicune | Jirachi |
+| subset_number_collision_dp_secret_shiny | dp7 | 1 | reverse | Drifloon | Dusknoir |
+| subset_number_collision_dp_secret_shiny | dp7 | 1 | holo | Drifloon | Dusknoir |
 | subset_number_collision_dp_secret_shiny | dp7 | 2 | reverse | Duskull | Empoleon |
 | subset_number_collision_dp_secret_shiny | dp7 | 2 | holo | Duskull | Empoleon |
 | subset_number_collision_dp_secret_shiny | dp7 | 3 | reverse | Voltorb | Infernape |
@@ -179,12 +202,24 @@ Name mismatches are review classifications only. Do not rewrite identity or prin
 | subset_number_collision_legendary_treasures_radiant_collection | bw11 | 25 | normal | Meloetta-EX | Tepig |
 | subset_number_collision_legendary_treasures_radiant_collection | bw11 | 8 | reverse | Ralts | Serperior |
 | subset_number_collision_legendary_treasures_radiant_collection | bw11 | 2 | reverse | Servine | Tangrowth |
+| subset_number_collision_legendary_treasures_radiant_collection | bw11 | 12 | holo | Stunfisk | Leavanny |
+| subset_number_collision_legendary_treasures_radiant_collection | bw11 | 15 | holo | Teddiursa | Virizion |
+| subset_number_collision_legendary_treasures_radiant_collection | bw11 | 16 | holo | Ursaring | Genesect |
+| subset_number_collision_legendary_treasures_radiant_collection | bw11 | 19 | holo | Cinccino | Charizard |
+| subset_number_collision_legendary_treasures_radiant_collection | bw11 | 22 | holo | Reshiram | Moltres |
+| subset_number_collision_legendary_treasures_radiant_collection | bw11 | 23 | holo | Emolga | Victini |
+| subset_number_collision_legendary_treasures_radiant_collection | bw11 | 24 | holo | Mew-EX | Victini-EX |
 | subset_number_collision_legendary_treasures_radiant_collection | bw11 | 25 | reverse | Meloetta-EX | Tepig |
 | subset_number_collision_legendary_treasures_radiant_collection | bw11 | 17 | reverse | Audino | Charmander |
 | subset_number_collision_legendary_treasures_radiant_collection | bw11 | 11 | reverse | Meloetta-EX | Swadloon |
 | subset_number_collision_legendary_treasures_radiant_collection | bw11 | 8 | holo | Ralts | Serperior |
+| subset_number_collision_platinum_secret_shiny | pl1 | 5 | reverse | Swablu | Dialga |
+| subset_number_collision_platinum_secret_shiny | pl1 | 4 | reverse | Lotad | Delcatty |
 | subset_number_collision_platinum_secret_shiny | pl1 | 6 | reverse | Vulpix | Dialga |
 | subset_number_collision_platinum_secret_shiny | pl1 | 6 | holo | Vulpix | Dialga |
+| subset_number_collision_rising_rivals_rotom | pl2 | 2 | reverse | Frost Rotom | Bastiodon GL |
+| subset_number_collision_rising_rivals_rotom | pl2 | 4 | reverse | Mow Rotom | Floatzel GL |
+| subset_number_collision_rising_rivals_rotom | pl2 | 6 | reverse | Charon's Choice | Froslass GL |
 | subset_number_collision_rising_rivals_rotom | pl2 | 1 | reverse | Fan Rotom | Arcanine |
 | subset_number_collision_rising_rivals_rotom | pl2 | 1 | holo | Fan Rotom | Arcanine |
 | subset_number_collision_rising_rivals_rotom | pl2 | 3 | reverse | Heat Rotom | Darkrai G |
@@ -193,3 +228,5 @@ Name mismatches are review classifications only. Do not rewrite identity or prin
 | subset_number_collision_rising_rivals_rotom | pl2 | 5 | reverse | Wash Rotom | Flygon |
 | subset_number_collision_rising_rivals_rotom | pl2 | 5 | holo | Wash Rotom | Flygon |
 | subset_number_collision_supreme_victors_secret_shiny | pl3 | 7 | reverse | Milotic | Metagross |
+| subset_number_collision_supreme_victors_secret_shiny | pl3 | 8 | reverse | Relicanth | Rayquaza C |
+| subset_number_collision_supreme_victors_secret_shiny | pl3 | 9 | reverse | Yanma | Regigigas FB |

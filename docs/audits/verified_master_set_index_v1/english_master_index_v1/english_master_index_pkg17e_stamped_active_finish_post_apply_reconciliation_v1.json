@@ -1,0 +1,792 @@
+{
+  "generated_at": "2026-06-12T21:26:57.721Z",
+  "version": "english_master_index_pkg17e_stamped_active_finish_post_apply_reconciliation_v1",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17e_stamped_active_finish_web_evidence_v1.json",
+  "apply_artifacts": {
+    "pkg17e1": {
+      "package_id": "PKG-17E1-STAMPED-ACTIVE-FINISH-PARENT-INSERTS",
+      "apply_status": "pkg17e1_real_apply_committed",
+      "package_fingerprint_sha256": "c676b6adc30ea0202a563677ee646314d7ad1f45c31a47633c4faf04ff69e7c7",
+      "write_counts": {
+        "parent_inserts": 6,
+        "identity_inserts": 6,
+        "child_inserts": 6,
+        "deletes": 0,
+        "merges": 0
+      }
+    },
+    "pkg17e2": {
+      "package_id": "PKG-17E2-BASE-COSMOS-CHILD-PRINTING-INSERTS",
+      "apply_status": "pkg17e2_real_apply_committed",
+      "package_fingerprint_sha256": "c96a24654788b7ed26116ebd423c35cd872528680d765d515e178a4b2b65e4f6",
+      "write_counts": {
+        "child_inserts": 4,
+        "parent_writes": 0,
+        "identity_writes": 0,
+        "deletes": 0,
+        "merges": 0
+      }
+    },
+    "pkg17e3": {
+      "package_id": "PKG-17E3-STAMPED-ACTIVE-FINISH-PARENT-INSERTS",
+      "apply_status": "pkg17e3_real_apply_committed",
+      "package_fingerprint_sha256": "58d86cb908c60697280c5d8080112fecb8c99807c37afd4752c6bf6fe41dd979",
+      "write_counts": {
+        "parent_inserts": 4,
+        "identity_inserts": 4,
+        "child_inserts": 4,
+        "deletes": 0,
+        "merges": 0
+      }
+    }
+  },
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "summary": {
+    "source_rows": 25,
+    "ready_source_rows": 10,
+    "closed_verified_in_db": 10,
+    "ready_source_not_closed_in_db": 0,
+    "blocked_or_review_rows": 15,
+    "forbidden_stamped_child_rows": 0,
+    "by_reconciliation_status": {
+      "blocked_no_exact_active_finish_evidence": 14,
+      "blocked_single_source_family_review": 1,
+      "closed_verified_in_db": 10
+    },
+    "by_source_status": {
+      "blocked_no_exact_active_finish_evidence": 14,
+      "ready_for_guarded_dry_run": 10,
+      "review_only_single_source_family": 1
+    },
+    "by_set_for_closed": {
+      "sv03.5": 4,
+      "sv06.5": 1,
+      "swsh12.5": 5
+    },
+    "by_set_for_open": {
+      "sv03.5": 4,
+      "sv06.5": 2,
+      "swsh12.5": 2,
+      "swsh3.5": 4,
+      "swsh4.5": 3
+    }
+  },
+  "rows": [
+    {
+      "source_row_index": 0,
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "1",
+      "card_name": "Bulbasaur",
+      "variant_key": null,
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "710a201e-69bd-4769-ae3d-e4bf48bb3236",
+      "live_base_parent_child_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 4,
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "100",
+      "card_name": "Voltorb",
+      "variant_key": "professor_program_stamp",
+      "accepted_finish_key": "reverse",
+      "source_status": "review_only_single_source_family",
+      "source_families": [
+        "pricecharting"
+      ],
+      "evidence_count": 1,
+      "selected_base_parent_id": "134fe801-b7cd-4adc-a40b-e8744e666eb0",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_single_source_family_review",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 5,
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "132",
+      "card_name": "Ditto",
+      "variant_key": "prize_pack_stamp",
+      "accepted_finish_key": "holo",
+      "source_status": "ready_for_guarded_dry_run",
+      "source_families": [
+        "ebay",
+        "tcgplayer"
+      ],
+      "evidence_count": 2,
+      "selected_base_parent_id": "9bc544ad-f07f-4c7c-b806-7ab465c5726d",
+      "live_base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": "55c8c4d7-10e0-46ee-b2a7-dc87dc0544d8",
+      "live_variant_key": "prize_pack_stamp",
+      "live_printed_identity_modifier": "prize_pack_stamp",
+      "live_identity_rows": 1,
+      "live_child_rows": 1,
+      "live_variant_child_finishes": [
+        "holo"
+      ],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "closed_verified_in_db",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 6,
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "133",
+      "card_name": "Eevee",
+      "variant_key": null,
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "af6d0f14-06db-4264-8778-39ecc4314a73",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 7,
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "151",
+      "card_name": "Mew ex",
+      "variant_key": "prize_pack_stamp",
+      "accepted_finish_key": "holo",
+      "source_status": "ready_for_guarded_dry_run",
+      "source_families": [
+        "pricecharting",
+        "tcgplayer"
+      ],
+      "evidence_count": 2,
+      "selected_base_parent_id": "3d304f62-3d2c-409e-86ee-2b9b757ed7d0",
+      "live_base_parent_child_finishes": [
+        "holo"
+      ],
+      "variant_parent_id": "811b0adc-8f9e-4b60-835f-c554f1091af9",
+      "live_variant_key": "prize_pack_stamp",
+      "live_printed_identity_modifier": "prize_pack_stamp",
+      "live_identity_rows": 1,
+      "live_child_rows": 1,
+      "live_variant_child_finishes": [
+        "holo"
+      ],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "closed_verified_in_db",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 3,
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "16",
+      "card_name": "Pidgey",
+      "variant_key": null,
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "dff29d13-664d-4180-aa2a-fca46bae2eb9",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 1,
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "4",
+      "card_name": "Charmander",
+      "variant_key": "eb_games_stamp",
+      "accepted_finish_key": "reverse",
+      "source_status": "ready_for_guarded_dry_run",
+      "source_families": [
+        "pokecardvalues",
+        "pricecharting"
+      ],
+      "evidence_count": 2,
+      "selected_base_parent_id": "7dd08fd2-3546-43fc-8da5-a8daa086055b",
+      "live_base_parent_child_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": "a828bea3-8870-4b80-9c1f-2f1a20eb71b6",
+      "live_variant_key": "eb_games_stamp",
+      "live_printed_identity_modifier": "eb_games_stamp",
+      "live_identity_rows": 1,
+      "live_child_rows": 1,
+      "live_variant_child_finishes": [
+        "reverse"
+      ],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "closed_verified_in_db",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 2,
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "7",
+      "card_name": "Squirtle",
+      "variant_key": "pokemon_center_stamp",
+      "accepted_finish_key": "reverse",
+      "source_status": "ready_for_guarded_dry_run",
+      "source_families": [
+        "pokecardvalues",
+        "pricecharting",
+        "tcgplayer"
+      ],
+      "evidence_count": 3,
+      "selected_base_parent_id": "7ce3c2bd-8980-4b5c-8270-9914a30c2206",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": "40f953a9-d1df-4414-9d53-ccc5493daad5",
+      "live_variant_key": "pokemon_center_stamp",
+      "live_printed_identity_modifier": "pokemon_center_stamp",
+      "live_identity_rows": 1,
+      "live_child_rows": 1,
+      "live_variant_child_finishes": [
+        "reverse"
+      ],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "closed_verified_in_db",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 8,
+      "set_key": "sv06.5",
+      "set_name": "Shrouded Fable",
+      "card_number": "2",
+      "card_name": "Galvantula",
+      "variant_key": "prize_pack_stamp",
+      "accepted_finish_key": "cosmos",
+      "source_status": "ready_for_guarded_dry_run",
+      "source_families": [
+        "ebay",
+        "pricecharting"
+      ],
+      "evidence_count": 2,
+      "selected_base_parent_id": "dd251220-bc75-49f5-b80b-146ec6a839c0",
+      "live_base_parent_child_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": "b7753e3b-adc9-4e92-a596-445633519f99",
+      "live_variant_key": "prize_pack_stamp",
+      "live_printed_identity_modifier": "prize_pack_stamp",
+      "live_identity_rows": 1,
+      "live_child_rows": 1,
+      "live_variant_child_finishes": [
+        "cosmos"
+      ],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "closed_verified_in_db",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 9,
+      "set_key": "sv06.5",
+      "set_name": "Shrouded Fable",
+      "card_number": "38",
+      "card_name": "Fezandipiti ex",
+      "variant_key": null,
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "47677f6c-0789-49e3-ac8a-b26ee0afb0a5",
+      "live_base_parent_child_finishes": [
+        "holo"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 10,
+      "set_key": "sv06.5",
+      "set_name": "Shrouded Fable",
+      "card_number": "61",
+      "card_name": "Night Stretcher",
+      "variant_key": "prize_pack_stamp",
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "c2572a85-d90f-4558-b67d-b6610cbe5361",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 12,
+      "set_key": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "card_number": "130",
+      "card_name": "Friends in Hisui",
+      "variant_key": null,
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "2348a2dd-b60c-4432-ad98-fdf5f8439faf",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 13,
+      "set_key": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "card_number": "131",
+      "card_name": "Friends in Sinnoh",
+      "variant_key": "professor_program_stamp",
+      "accepted_finish_key": "reverse",
+      "source_status": "ready_for_guarded_dry_run",
+      "source_families": [
+        "dextcg",
+        "pricecharting"
+      ],
+      "evidence_count": 2,
+      "selected_base_parent_id": "1e69f61d-a08b-4c75-9f87-3899cc131198",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": "ab7b0a26-2a90-49b5-adc7-886dd37881d0",
+      "live_variant_key": "professor_program_stamp",
+      "live_printed_identity_modifier": "professor_program_stamp",
+      "live_identity_rows": 1,
+      "live_child_rows": 1,
+      "live_variant_child_finishes": [
+        "reverse"
+      ],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "closed_verified_in_db",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 14,
+      "set_key": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "card_number": "135",
+      "card_name": "Lost Vacuum",
+      "variant_key": "prize_pack_stamp",
+      "accepted_finish_key": "cosmos",
+      "source_status": "ready_for_guarded_dry_run",
+      "source_families": [
+        "ebay",
+        "pricecharting"
+      ],
+      "evidence_count": 2,
+      "selected_base_parent_id": "d1455a62-d371-4ae7-b24c-4411b61c19e0",
+      "live_base_parent_child_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": "2e8554c3-61c5-43e6-866b-eb7d9deeefc3",
+      "live_variant_key": "prize_pack_stamp",
+      "live_printed_identity_modifier": "prize_pack_stamp",
+      "live_identity_rows": 1,
+      "live_child_rows": 1,
+      "live_variant_child_finishes": [
+        "cosmos"
+      ],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "closed_verified_in_db",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 15,
+      "set_key": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "card_number": "143",
+      "card_name": "Sky Seal Stone",
+      "variant_key": "prize_pack_stamp",
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "6c667925-910c-41d8-abbd-7f4122f271eb",
+      "live_base_parent_child_finishes": [
+        "holo"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 16,
+      "set_key": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "card_number": "145",
+      "card_name": "Trekking Shoes",
+      "variant_key": "prize_pack_stamp",
+      "accepted_finish_key": "cosmos",
+      "source_status": "ready_for_guarded_dry_run",
+      "source_families": [
+        "ebay",
+        "pricecharting"
+      ],
+      "evidence_count": 2,
+      "selected_base_parent_id": "947dbf04-4e65-4206-bc80-d702e7b93109",
+      "live_base_parent_child_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": "caa0c597-4b97-414d-aaf5-a7ee4ee9c431",
+      "live_variant_key": "prize_pack_stamp",
+      "live_printed_identity_modifier": "prize_pack_stamp",
+      "live_identity_rows": 1,
+      "live_child_rows": 1,
+      "live_variant_child_finishes": [
+        "cosmos"
+      ],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "closed_verified_in_db",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 17,
+      "set_key": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "card_number": "146",
+      "card_name": "Ultra Ball",
+      "variant_key": "prize_pack_stamp",
+      "accepted_finish_key": "cosmos",
+      "source_status": "ready_for_guarded_dry_run",
+      "source_families": [
+        "ebay",
+        "pricecharting"
+      ],
+      "evidence_count": 2,
+      "selected_base_parent_id": "6ec60f4d-c8ae-42f5-8941-47ab73aab6f1",
+      "live_base_parent_child_finishes": [
+        "cosmos",
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": "7e22ed5c-0c1f-4b5a-a26b-a0e569e60242",
+      "live_variant_key": "prize_pack_stamp",
+      "live_printed_identity_modifier": "prize_pack_stamp",
+      "live_identity_rows": 1,
+      "live_child_rows": 1,
+      "live_variant_child_finishes": [
+        "cosmos"
+      ],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "closed_verified_in_db",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 11,
+      "set_key": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "card_number": "36",
+      "card_name": "Kyogre",
+      "variant_key": "prize_pack_stamp",
+      "accepted_finish_key": "cosmos",
+      "source_status": "ready_for_guarded_dry_run",
+      "source_families": [
+        "pricecharting",
+        "tcgplayer"
+      ],
+      "evidence_count": 2,
+      "selected_base_parent_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+      "live_base_parent_child_finishes": [
+        "cosmos",
+        "holo",
+        "reverse"
+      ],
+      "variant_parent_id": "89c2b689-cf66-4d58-8752-356cded22db5",
+      "live_variant_key": "prize_pack_stamp",
+      "live_printed_identity_modifier": "prize_pack_stamp",
+      "live_identity_rows": 1,
+      "live_child_rows": 1,
+      "live_variant_child_finishes": [
+        "cosmos"
+      ],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "closed_verified_in_db",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 19,
+      "set_key": "swsh3.5",
+      "set_name": "Champion's Path",
+      "card_number": "18",
+      "card_name": "Hatenna",
+      "variant_key": null,
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "5b5cc58e-66f7-4305-89e3-8f13d881933a",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 20,
+      "set_key": "swsh3.5",
+      "set_name": "Champion's Path",
+      "card_number": "35",
+      "card_name": "Galarian Zigzagoon",
+      "variant_key": "battle_academy_deck_mark",
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "78149430-cd54-491e-9890-5c4857a12c3b",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 21,
+      "set_key": "swsh3.5",
+      "set_name": "Champion's Path",
+      "card_number": "36",
+      "card_name": "Galarian Linoone",
+      "variant_key": "battle_academy_deck_mark",
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "1c6a2058-6fe8-44a5-b97a-4874e333ad86",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 18,
+      "set_key": "swsh3.5",
+      "set_name": "Champion's Path",
+      "card_number": "7",
+      "card_name": "Victini",
+      "variant_key": "battle_academy_deck_mark",
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "6314f1ec-9a0e-45a5-9b6e-8bd737f26e81",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 22,
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "58",
+      "card_name": "Boss's Orders",
+      "variant_key": "prize_pack_stamp",
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "1adc8c40-9657-4152-b792-f2349c582981",
+      "live_base_parent_child_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 23,
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "59",
+      "card_name": "Gym Trainer",
+      "variant_key": "professor_program_stamp",
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "d04a6b76-26f1-4a33-99ae-6920f7a501da",
+      "live_base_parent_child_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    },
+    {
+      "source_row_index": 24,
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "60",
+      "card_name": "Professor's Research",
+      "variant_key": "prize_pack_stamp",
+      "accepted_finish_key": null,
+      "source_status": "blocked_no_exact_active_finish_evidence",
+      "source_families": [],
+      "evidence_count": 0,
+      "selected_base_parent_id": "1d04ea71-3ba1-430c-a926-34e5764dc0c4",
+      "live_base_parent_child_finishes": [
+        "cosmos",
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "variant_parent_id": null,
+      "live_variant_key": null,
+      "live_printed_identity_modifier": null,
+      "live_identity_rows": 0,
+      "live_child_rows": 0,
+      "live_variant_child_finishes": [],
+      "forbidden_stamped_child_rows": 0,
+      "reconciliation_status": "blocked_no_exact_active_finish_evidence",
+      "reconciliation_blockers": []
+    }
+  ],
+  "next_recommended_step": "PKG-17E write lane is closed. Move to the remaining stamped evidence blockers or refresh the global stamped identity readiness report."
+}

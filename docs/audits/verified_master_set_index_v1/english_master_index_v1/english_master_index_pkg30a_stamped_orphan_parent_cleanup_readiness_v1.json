@@ -1,0 +1,353 @@
+{
+  "package_id": "PKG-30A-STAMPED-ORPHAN-PARENT-CLEANUP-READINESS",
+  "generated_at": "2026-06-13T19:14:28.154Z",
+  "source_inputs": {
+    "lanes_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_current_unsupported_reconciliation_lanes_v1.json"
+  },
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "deletes_authorized": false,
+    "real_apply_authorized": false
+  },
+  "snapshot": {
+    "available": true,
+    "reason": null,
+    "parent_rows_read": 6
+  },
+  "summary": {
+    "target_rows": 6,
+    "blocked_rows": 6,
+    "by_classification": {
+      "blocked_parent_has_dependencies_or_identity": 6
+    },
+    "by_set": {
+      "swsh12.5": 4,
+      "sv03": 1,
+      "sv06.5": 1
+    },
+    "by_variant": {
+      "prize_pack_stamp": 5,
+      "play_pokemon_stamp": 1
+    },
+    "by_action": {
+      "do_not_apply": 6
+    }
+  },
+  "rows": [
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+      "set_code": "sv03",
+      "card_number": "196",
+      "number": "196",
+      "number_plain": "196",
+      "card_name": "Town Store",
+      "printed_identity_modifier": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "card_printing_id": "fe7c011c-6d09-44d1-9c3f-3d52b829e80c",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv03",
+      "child_identity_key": "sv03|196|town store|cosmos|play pokemon stamp|play pokemon stamp",
+      "live_number_candidates": [
+        "196"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "18fbf76a-a9c5-4247-9ea5-0d8d2207ad65",
+        "set_code": "sv03",
+        "number": "196",
+        "number_plain": "196",
+        "name": "Town Store",
+        "printed_identity_modifier": "play_pokemon_stamp",
+        "variant_key": "play_pokemon_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "fe7c011c-6d09-44d1-9c3f-3d52b829e80c",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 1,
+        "external_mapping_count": 1,
+        "species_count": 0,
+        "warehouse_parent_refs": 1
+      },
+      "classification": "blocked_parent_has_dependencies_or_identity",
+      "action": "do_not_apply",
+      "reason": "parent has identity or dependency references and needs a separate transfer/preserve strategy"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "b7753e3b-adc9-4e92-a596-445633519f99",
+      "set_code": "sv06.5",
+      "card_number": "002",
+      "number": "002",
+      "number_plain": "002",
+      "card_name": "Galvantula",
+      "printed_identity_modifier": "prize_pack_stamp",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "464e14d0-1688-4e31-aacb-e5be49d5ce71",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "sv06.5",
+      "child_identity_key": "sv06 5|2|galvantula|cosmos|prize pack stamp|prize pack stamp",
+      "live_number_candidates": [
+        "2"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "b7753e3b-adc9-4e92-a596-445633519f99",
+        "set_code": "sv06.5",
+        "number": "002",
+        "number_plain": "002",
+        "name": "Galvantula",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "464e14d0-1688-4e31-aacb-e5be49d5ce71",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 1,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "blocked_parent_has_dependencies_or_identity",
+      "action": "do_not_apply",
+      "reason": "parent has identity or dependency references and needs a separate transfer/preserve strategy"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "cosmos",
+        "holo",
+        "reverse"
+      ],
+      "card_print_id": "89c2b689-cf66-4d58-8752-356cded22db5",
+      "set_code": "swsh12.5",
+      "card_number": "036",
+      "number": "036",
+      "number_plain": "036",
+      "card_name": "Kyogre",
+      "printed_identity_modifier": "prize_pack_stamp",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "5b2b84a3-5836-46df-a960-996f113a7893",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh12.5",
+      "child_identity_key": "swsh12 5|36|kyogre|cosmos|prize pack stamp|prize pack stamp",
+      "live_number_candidates": [
+        "36"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "89c2b689-cf66-4d58-8752-356cded22db5",
+        "set_code": "swsh12.5",
+        "number": "036",
+        "number_plain": "036",
+        "name": "Kyogre",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "5b2b84a3-5836-46df-a960-996f113a7893",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 1,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "blocked_parent_has_dependencies_or_identity",
+      "action": "do_not_apply",
+      "reason": "parent has identity or dependency references and needs a separate transfer/preserve strategy"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "2e8554c3-61c5-43e6-866b-eb7d9deeefc3",
+      "set_code": "swsh12.5",
+      "card_number": "135",
+      "number": "135",
+      "number_plain": "135",
+      "card_name": "Lost Vacuum",
+      "printed_identity_modifier": "prize_pack_stamp",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "7a763209-a7c6-42d1-b988-2b89cff0677b",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh12.5",
+      "child_identity_key": "swsh12 5|135|lost vacuum|cosmos|prize pack stamp|prize pack stamp",
+      "live_number_candidates": [
+        "135"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "2e8554c3-61c5-43e6-866b-eb7d9deeefc3",
+        "set_code": "swsh12.5",
+        "number": "135",
+        "number_plain": "135",
+        "name": "Lost Vacuum",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "7a763209-a7c6-42d1-b988-2b89cff0677b",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 1,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "blocked_parent_has_dependencies_or_identity",
+      "action": "do_not_apply",
+      "reason": "parent has identity or dependency references and needs a separate transfer/preserve strategy"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "caa0c597-4b97-414d-aaf5-a7ee4ee9c431",
+      "set_code": "swsh12.5",
+      "card_number": "145",
+      "number": "145",
+      "number_plain": "145",
+      "card_name": "Trekking Shoes",
+      "printed_identity_modifier": "prize_pack_stamp",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "eaf64005-eafd-4689-bdc5-7b2045dab2ef",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh12.5",
+      "child_identity_key": "swsh12 5|145|trekking shoes|cosmos|prize pack stamp|prize pack stamp",
+      "live_number_candidates": [
+        "145"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "caa0c597-4b97-414d-aaf5-a7ee4ee9c431",
+        "set_code": "swsh12.5",
+        "number": "145",
+        "number_plain": "145",
+        "name": "Trekking Shoes",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "eaf64005-eafd-4689-bdc5-7b2045dab2ef",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 1,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "blocked_parent_has_dependencies_or_identity",
+      "action": "do_not_apply",
+      "reason": "parent has identity or dependency references and needs a separate transfer/preserve strategy"
+    },
+    {
+      "lane": "known_card_unsupported_finish_review",
+      "cleanup_readiness": "blocked",
+      "known_index_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "card_print_id": "7e22ed5c-0c1f-4b5a-a26b-a0e569e60242",
+      "set_code": "swsh12.5",
+      "card_number": "146",
+      "number": "146",
+      "number_plain": "146",
+      "card_name": "Ultra Ball",
+      "printed_identity_modifier": "prize_pack_stamp",
+      "variant_key": "prize_pack_stamp",
+      "card_printing_id": "464beb1a-db7d-4432-98b7-baf7dce40d36",
+      "finish_key": "cosmos",
+      "vault_item_instance_refs": 0,
+      "external_printing_mapping_refs": 0,
+      "canon_warehouse_candidate_refs": 0,
+      "truth_review_refs": 0,
+      "justtcg_mapping_refs": 0,
+      "canonical_set_key": "swsh12.5",
+      "child_identity_key": "swsh12 5|146|ultra ball|cosmos|prize pack stamp|prize pack stamp",
+      "live_number_candidates": [
+        "146"
+      ],
+      "child_dependency_total": 0,
+      "parent_snapshot": {
+        "card_print_id": "7e22ed5c-0c1f-4b5a-a26b-a0e569e60242",
+        "set_code": "swsh12.5",
+        "number": "146",
+        "number_plain": "146",
+        "name": "Ultra Ball",
+        "printed_identity_modifier": "prize_pack_stamp",
+        "variant_key": "prize_pack_stamp",
+        "child_count": 1,
+        "children": [
+          {
+            "id": "464beb1a-db7d-4432-98b7-baf7dce40d36",
+            "finish_key": "cosmos"
+          }
+        ],
+        "active_identity_count": 1,
+        "external_mapping_count": 0,
+        "species_count": 0,
+        "warehouse_parent_refs": 0
+      },
+      "classification": "blocked_parent_has_dependencies_or_identity",
+      "action": "do_not_apply",
+      "reason": "parent has identity or dependency references and needs a separate transfer/preserve strategy"
+    }
+  ],
+  "fingerprint": "6c1199a5dba229a2a085db024ff206d91d575f43a16fa78814d9e7a022ed6584"
+}

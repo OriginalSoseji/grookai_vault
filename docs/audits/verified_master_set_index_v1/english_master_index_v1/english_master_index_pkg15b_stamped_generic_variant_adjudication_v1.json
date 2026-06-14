@@ -1,0 +1,35 @@
+{
+  "generated_at": "2026-06-11T19:57:48.522Z",
+  "version": "english_master_index_pkg15b_stamped_generic_variant_adjudication_v1",
+  "package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "pkg15_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15_stamped_explicit_finish_readiness_v1.json",
+    "stamped_identity_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_stamped_identity_readiness_v1.json"
+  },
+  "summary": {
+    "candidate_generic_rows_seen": 299,
+    "candidate_generic_rows_with_adjudication_rule": 0,
+    "reviewed_rows": 0,
+    "ready_rows_after_adjudication": 0,
+    "blocked_rows_after_adjudication": 0,
+    "false_holo_parser_claims_corrected": 0,
+    "by_adjudication_status": {},
+    "by_target_variant_key": {},
+    "by_target_finish_key": {}
+  },
+  "governance_rules": [
+    "Do not promote generic variant_key=stamped.",
+    "Do not parse source/site names such as Double Holo as finish=holo.",
+    "Burger King Collection 2008 Diamond & Pearl stamped rows route to variant_key=diamond_pearl_stamp and child finish=reverse when exact card evidence exists.",
+    "Burger King Collection 2009 Platinum stamped rows route to variant_key=platinum_stamped_burger_king_2009 and child finish=reverse when exact card evidence exists."
+  ],
+  "rows": [],
+  "fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+}

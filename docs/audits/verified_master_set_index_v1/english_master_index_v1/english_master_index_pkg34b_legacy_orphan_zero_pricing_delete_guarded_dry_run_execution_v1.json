@@ -1,0 +1,28 @@
+{
+  "package_id": "PKG-34B-LEGACY-ORPHAN-ZERO-PRICING-DELETE",
+  "generated_at": "2026-06-13T21:08:34.067Z",
+  "fingerprint": "cf3b0e774dc617aff711c67826c4ade5485e6beb2e18c396bdbc603a2099997b",
+  "sql_hash": "a00c8e21d85fc49ba606610975e843424f50b6715541a52a620e7028b90c923f",
+  "artifact_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg34b_legacy_orphan_zero_pricing_delete_dry_run_artifact_v1.json",
+  "safety": {
+    "db_writes_committed": false,
+    "migrations_created": false,
+    "real_apply_authorized": false
+  },
+  "execution": {
+    "dry_run_executed": true,
+    "committed": false,
+    "sql_hash": "a00c8e21d85fc49ba606610975e843424f50b6715541a52a620e7028b90c923f",
+    "result_count": 5,
+    "notices": [
+      "PKG-34B-LEGACY-ORPHAN-ZERO-PRICING-DELETE dry-run passed: pricing rows deleted 8, species 2, children 2, parents 2, fingerprint cf3b0e774dc617aff711c67826c4ade5485e6beb2e18c396bdbc603a2099997b"
+    ]
+  },
+  "summary": {
+    "target_rows": 2,
+    "pricing_dependency_deletes_in_dry_run": 8,
+    "species_mapping_deletes_in_dry_run": 2,
+    "child_deletes_in_dry_run": 2,
+    "parent_deletes_in_dry_run": 2
+  }
+}

@@ -1,0 +1,1322 @@
+{
+  "generated_at": "2026-06-10T13:01:29.536Z",
+  "version": "english_master_index_pkg08d_duplicate_parent_dependency_strategy_v1",
+  "package_id": "PKG-08D-DUPLICATE-PARENT-DEPENDENCY-STRATEGY",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "merge_performed": false,
+  "delete_performed": false,
+  "apply_paths_executed": false,
+  "audit_status": "pkg08d_duplicate_parent_dependency_strategy_complete_no_write",
+  "package_fingerprint_sha256": "182e5ab576a0bcb90963c5ef9c8d9f07e4214ff43032da5b61de74a9c245fdb7",
+  "source_artifacts": {
+    "duplicate_parent_transfer_plan": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg08c_duplicate_parent_transfer_plan_v1.json"
+  },
+  "allowed_transfer_tables": [
+    "canon_warehouse_candidates",
+    "card_print_species",
+    "external_mappings",
+    "justtcg_variant_price_snapshots",
+    "justtcg_variant_prices_latest",
+    "justtcg_variants"
+  ],
+  "summary": {
+    "strategy_rows": 38,
+    "by_readiness": {
+      "dry_run_artifact_candidate_with_dependency_transfer": 38
+    },
+    "dry_run_candidate_groups": 38,
+    "dry_run_candidate_blocked_parent_rows": 39,
+    "planned_updates": {
+      "external_mappings": 39,
+      "card_print_species_transfer": 0,
+      "card_print_species_redundant_left_for_parent_delete_cascade": 36,
+      "canon_warehouse_candidates": 39,
+      "justtcg_variants": 215,
+      "justtcg_variant_prices_latest": 215,
+      "justtcg_variant_price_snapshots": 20640
+    },
+    "by_set": [
+      {
+        "set_key": "sv10",
+        "count": 7
+      },
+      {
+        "set_key": "sv01",
+        "count": 6
+      },
+      {
+        "set_key": "smp",
+        "count": 3
+      },
+      {
+        "set_key": "sv05",
+        "count": 3
+      },
+      {
+        "set_key": "sv04",
+        "count": 2
+      },
+      {
+        "set_key": "swsh11",
+        "count": 2
+      },
+      {
+        "set_key": "swsh7",
+        "count": 2
+      },
+      {
+        "set_key": "ex12",
+        "count": 1
+      },
+      {
+        "set_key": "ex3",
+        "count": 1
+      },
+      {
+        "set_key": "ex5",
+        "count": 1
+      },
+      {
+        "set_key": "ex7",
+        "count": 1
+      },
+      {
+        "set_key": "ex8",
+        "count": 1
+      },
+      {
+        "set_key": "ex9",
+        "count": 1
+      },
+      {
+        "set_key": "me01",
+        "count": 1
+      },
+      {
+        "set_key": "sv02",
+        "count": 1
+      },
+      {
+        "set_key": "sv03.5",
+        "count": 1
+      },
+      {
+        "set_key": "sv06",
+        "count": 1
+      },
+      {
+        "set_key": "sv07",
+        "count": 1
+      },
+      {
+        "set_key": "swsh10",
+        "count": 1
+      },
+      {
+        "set_key": "swsh9",
+        "count": 1
+      }
+    ]
+  },
+  "dependency_strategies": [
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "ex3",
+      "set_name": "Dragon",
+      "card_number": "19",
+      "card_name": "Salamence",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "survivor_card_print_id": "1bf5dbe7-81a5-4e2e-8dad-585073c2c5ae",
+      "blocked_card_print_ids": [
+        "127e4fd8-9199-4dfb-8ccd-55221fbac5c0",
+        "88905c59-919f-41ea-adf9-41f63879c33a"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "127e4fd8-9199-4dfb-8ccd-55221fbac5c0",
+          "survivor_card_print_id": "1bf5dbe7-81a5-4e2e-8dad-585073c2c5ae",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        },
+        {
+          "blocked_card_print_id": "88905c59-919f-41ea-adf9-41f63879c33a",
+          "survivor_card_print_id": "1bf5dbe7-81a5-4e2e-8dad-585073c2c5ae",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 984,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "ex5",
+      "set_name": "Hidden Legends",
+      "card_number": "50",
+      "card_name": "Swalot",
+      "finish_keys_needed": [
+        "reverse"
+      ],
+      "survivor_card_print_id": "a04082c2-0a6d-47f4-bd24-843ff7bbc72d",
+      "blocked_card_print_ids": [
+        "ac43bf72-1e09-4415-8153-d9658e534188"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "ac43bf72-1e09-4415-8153-d9658e534188",
+          "survivor_card_print_id": "a04082c2-0a6d-47f4-bd24-843ff7bbc72d",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "ex7",
+      "set_name": "Team Rocket Returns",
+      "card_number": "37",
+      "card_name": "Dark Houndoom",
+      "finish_keys_needed": [
+        "reverse"
+      ],
+      "survivor_card_print_id": "41385b05-89d1-434a-819a-355a61ae1e69",
+      "blocked_card_print_ids": [
+        "4681202c-00b3-4245-a3dc-f5d721ba4035"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "4681202c-00b3-4245-a3dc-f5d721ba4035",
+          "survivor_card_print_id": "41385b05-89d1-434a-819a-355a61ae1e69",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "card_number": "38",
+      "card_name": "Manectric",
+      "finish_keys_needed": [
+        "reverse"
+      ],
+      "survivor_card_print_id": "55b5f96b-5ebd-458a-a7f6-17da38e4728a",
+      "blocked_card_print_ids": [
+        "0381d41b-87ed-4d43-adf0-1a85f04627a2"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "0381d41b-87ed-4d43-adf0-1a85f04627a2",
+          "survivor_card_print_id": "55b5f96b-5ebd-458a-a7f6-17da38e4728a",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "29",
+      "card_name": "Grumpig",
+      "finish_keys_needed": [
+        "reverse"
+      ],
+      "survivor_card_print_id": "bfd0c432-a09e-4a89-9efe-97260f780656",
+      "blocked_card_print_ids": [
+        "58374d21-274d-45dd-aada-47f9d93f4f90"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "58374d21-274d-45dd-aada-47f9d93f4f90",
+          "survivor_card_print_id": "bfd0c432-a09e-4a89-9efe-97260f780656",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
+      "card_number": "45",
+      "card_name": "Tentacruel",
+      "finish_keys_needed": [
+        "reverse"
+      ],
+      "survivor_card_print_id": "48139214-02b3-4b38-ab5a-34021c3aca30",
+      "blocked_card_print_ids": [
+        "a0da1a62-f9e8-4545-991f-a916185085db"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "a0da1a62-f9e8-4545-991f-a916185085db",
+          "survivor_card_print_id": "48139214-02b3-4b38-ab5a-34021c3aca30",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM198",
+      "card_name": "Bulbasaur",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "survivor_card_print_id": "0dff140a-e128-4137-a521-342c9a402c2e",
+      "blocked_card_print_ids": [
+        "7199362c-b4a7-40c4-a7cb-1508a5f3911a"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "7199362c-b4a7-40c4-a7cb-1508a5f3911a",
+          "survivor_card_print_id": "0dff140a-e128-4137-a521-342c9a402c2e",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM199",
+      "card_name": "Psyduck",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "survivor_card_print_id": "0a1c41ff-c58d-4d2f-9512-599e710a784b",
+      "blocked_card_print_ids": [
+        "2b4e4ff4-4295-482c-aa50-9c0195a22461"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "2b4e4ff4-4295-482c-aa50-9c0195a22461",
+          "survivor_card_print_id": "0a1c41ff-c58d-4d2f-9512-599e710a784b",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM200",
+      "card_name": "Snubbull",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "survivor_card_print_id": "5d97bf40-e235-4a96-acfa-50d29785274f",
+      "blocked_card_print_ids": [
+        "cdaa3f83-6d5f-40a9-b157-6c52d344a40c"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "cdaa3f83-6d5f-40a9-b157-6c52d344a40c",
+          "survivor_card_print_id": "5d97bf40-e235-4a96-acfa-50d29785274f",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "112",
+      "card_name": "Dialga",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "survivor_card_print_id": "0e419a5c-140e-4bf7-b70e-a5ba62dc349c",
+      "blocked_card_print_ids": [
+        "3f6b58d9-8a30-4ad4-afa1-ddacd1a2ef65"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "3f6b58d9-8a30-4ad4-afa1-ddacd1a2ef65",
+          "survivor_card_print_id": "0e419a5c-140e-4bf7-b70e-a5ba62dc349c",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "124",
+      "card_name": "Regidrago",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "survivor_card_print_id": "e9a1e9f3-5c50-401a-925e-320da68239e8",
+      "blocked_card_print_ids": [
+        "e51a28bf-febc-4aa9-a1bb-ff959f051955"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "e51a28bf-febc-4aa9-a1bb-ff959f051955",
+          "survivor_card_print_id": "e9a1e9f3-5c50-401a-925e-320da68239e8",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "card_number": "147",
+      "card_name": "Professor's Research",
+      "finish_keys_needed": [
+        "normal"
+      ],
+      "survivor_card_print_id": "f484d2c5-14e6-42be-804d-33a41a49c70f",
+      "blocked_card_print_ids": [
+        "f0fcc467-328d-4a6b-b0de-6e7d3153f0e1"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "f0fcc467-328d-4a6b-b0de-6e7d3153f0e1",
+          "survivor_card_print_id": "f484d2c5-14e6-42be-804d-33a41a49c70f",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 0,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 10,
+          "justtcg_latest_update_rows": 10,
+          "justtcg_snapshot_update_rows": 960,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 982,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "card_number": "147",
+      "card_name": "Irida",
+      "finish_keys_needed": [
+        "normal"
+      ],
+      "survivor_card_print_id": "36875b74-dce5-4e37-b4d4-1b26115f177b",
+      "blocked_card_print_ids": [
+        "8ad3820a-d318-4d6c-afe3-20409fe4e2c2"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "8ad3820a-d318-4d6c-afe3-20409fe4e2c2",
+          "survivor_card_print_id": "36875b74-dce5-4e37-b4d4-1b26115f177b",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 0,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "66",
+      "card_name": "Gengar",
+      "finish_keys_needed": [
+        "holo"
+      ],
+      "survivor_card_print_id": "09335fad-6bd8-4c5e-9f82-533f3447d99e",
+      "blocked_card_print_ids": [
+        "21ce1b75-1ca6-4a0f-a9e0-78e887aa023d"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "21ce1b75-1ca6-4a0f-a9e0-78e887aa023d",
+          "survivor_card_print_id": "09335fad-6bd8-4c5e-9f82-533f3447d99e",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "84",
+      "card_name": "Hisuian Arcanine",
+      "finish_keys_needed": [
+        "normal"
+      ],
+      "survivor_card_print_id": "90e29952-bf73-46c0-900c-d7be40e426f3",
+      "blocked_card_print_ids": [
+        "b2ab4d44-23b9-4646-a909-ae889d4d716d"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "b2ab4d44-23b9-4646-a909-ae889d4d716d",
+          "survivor_card_print_id": "90e29952-bf73-46c0-900c-d7be40e426f3",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv01",
+      "set_name": "Scarlet & Violet",
+      "card_number": "54",
+      "card_name": "Quaquaval",
+      "finish_keys_needed": [
+        "reverse"
+      ],
+      "survivor_card_print_id": "8aa19ef4-2383-4860-8b33-40926220cb8b",
+      "blocked_card_print_ids": [
+        "8a648bf8-1703-49ed-b6f7-ecab24a2442a"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "8a648bf8-1703-49ed-b6f7-ecab24a2442a",
+          "survivor_card_print_id": "8aa19ef4-2383-4860-8b33-40926220cb8b",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv01",
+      "set_name": "Scarlet & Violet",
+      "card_number": "61",
+      "card_name": "Dondozo",
+      "finish_keys_needed": [
+        "reverse"
+      ],
+      "survivor_card_print_id": "c8e1771d-5cc2-460a-8652-c47513fc1055",
+      "blocked_card_print_ids": [
+        "b75a518d-a4f1-4765-91aa-2036c5f86027"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "b75a518d-a4f1-4765-91aa-2036c5f86027",
+          "survivor_card_print_id": "c8e1771d-5cc2-460a-8652-c47513fc1055",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 10,
+          "justtcg_latest_update_rows": 10,
+          "justtcg_snapshot_update_rows": 960,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 982,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv01",
+      "set_name": "Scarlet & Violet",
+      "card_number": "76",
+      "card_name": "Pawmot",
+      "finish_keys_needed": [
+        "reverse"
+      ],
+      "survivor_card_print_id": "88614c6c-1760-4e62-8a90-4572f2514c18",
+      "blocked_card_print_ids": [
+        "161894ab-543c-435b-af80-7333912a990d"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "161894ab-543c-435b-af80-7333912a990d",
+          "survivor_card_print_id": "88614c6c-1760-4e62-8a90-4572f2514c18",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv01",
+      "set_name": "Scarlet & Violet",
+      "card_number": "96",
+      "card_name": "Klefki",
+      "finish_keys_needed": [
+        "reverse"
+      ],
+      "survivor_card_print_id": "8b7df965-aff6-43c2-afc1-eedf2f7f48a4",
+      "blocked_card_print_ids": [
+        "05c961ad-c08f-4521-ae46-c88b1e0b3a18"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "05c961ad-c08f-4521-ae46-c88b1e0b3a18",
+          "survivor_card_print_id": "8b7df965-aff6-43c2-afc1-eedf2f7f48a4",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 10,
+          "justtcg_latest_update_rows": 10,
+          "justtcg_snapshot_update_rows": 960,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 982,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv01",
+      "set_name": "Scarlet & Violet",
+      "card_number": "109",
+      "card_name": "Annihilape",
+      "finish_keys_needed": [
+        "reverse"
+      ],
+      "survivor_card_print_id": "4c8c4bbe-7d43-4079-b982-0cb6a2828c35",
+      "blocked_card_print_ids": [
+        "04080343-a4bc-4f28-9590-f80f3e308cdf"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "04080343-a4bc-4f28-9590-f80f3e308cdf",
+          "survivor_card_print_id": "4c8c4bbe-7d43-4079-b982-0cb6a2828c35",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv01",
+      "set_name": "Scarlet & Violet",
+      "card_number": "118",
+      "card_name": "Hawlucha",
+      "finish_keys_needed": [
+        "reverse"
+      ],
+      "survivor_card_print_id": "01aec74e-316e-4627-a844-cd45e0da6a3e",
+      "blocked_card_print_ids": [
+        "7026595e-752d-4fd2-9661-7702d4049818"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "7026595e-752d-4fd2-9661-7702d4049818",
+          "survivor_card_print_id": "01aec74e-316e-4627-a844-cd45e0da6a3e",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "card_number": "135",
+      "card_name": "Tyranitar",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "survivor_card_print_id": "dacf0fbd-89e1-42aa-987e-591e91775fcb",
+      "blocked_card_print_ids": [
+        "eab48e1a-2344-4aa5-8d54-ef317e8bff47"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "eab48e1a-2344-4aa5-8d54-ef317e8bff47",
+          "survivor_card_print_id": "dacf0fbd-89e1-42aa-987e-591e91775fcb",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "132",
+      "card_name": "Ditto",
+      "finish_keys_needed": [
+        "normal"
+      ],
+      "survivor_card_print_id": "9bc544ad-f07f-4c7c-b806-7ab465c5726d",
+      "blocked_card_print_ids": [
+        "9390f6f1-ef10-434f-ab84-0ccc048be581"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "9390f6f1-ef10-434f-ab84-0ccc048be581",
+          "survivor_card_print_id": "9bc544ad-f07f-4c7c-b806-7ab465c5726d",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv04",
+      "set_name": "Paradox Rift",
+      "card_number": "104",
+      "card_name": "Garganacl",
+      "finish_keys_needed": [
+        "reverse"
+      ],
+      "survivor_card_print_id": "a582bdb5-4e56-4348-8b5d-035a9fb0792f",
+      "blocked_card_print_ids": [
+        "8bc20a50-7661-4601-b38c-8d1aab05ef84"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "8bc20a50-7661-4601-b38c-8d1aab05ef84",
+          "survivor_card_print_id": "a582bdb5-4e56-4348-8b5d-035a9fb0792f",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv04",
+      "set_name": "Paradox Rift",
+      "card_number": "123",
+      "card_name": "Brute Bonnet",
+      "finish_keys_needed": [
+        "reverse"
+      ],
+      "survivor_card_print_id": "2b9af948-67ba-406f-835a-d75ff9fb3c0d",
+      "blocked_card_print_ids": [
+        "90b77bf6-3051-4da4-9dfd-0de90a7a636b"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "90b77bf6-3051-4da4-9dfd-0de90a7a636b",
+          "survivor_card_print_id": "2b9af948-67ba-406f-835a-d75ff9fb3c0d",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "129",
+      "card_name": "Dudunsparce",
+      "finish_keys_needed": [
+        "normal"
+      ],
+      "survivor_card_print_id": "37c0ac6b-0b69-4a8f-ab2b-87d8ea92448e",
+      "blocked_card_print_ids": [
+        "148c3963-3ff7-4b3c-8088-0a02c2e608af"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "148c3963-3ff7-4b3c-8088-0a02c2e608af",
+          "survivor_card_print_id": "37c0ac6b-0b69-4a8f-ab2b-87d8ea92448e",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "24",
+      "card_name": "Rabsca",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "survivor_card_print_id": "0207f568-d0ce-405a-969d-80c7f2e56809",
+      "blocked_card_print_ids": [
+        "8894ca68-34af-4346-b509-dac7a9e60ded"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "8894ca68-34af-4346-b509-dac7a9e60ded",
+          "survivor_card_print_id": "0207f568-d0ce-405a-969d-80c7f2e56809",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "118",
+      "card_name": "Iron Treads",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "survivor_card_print_id": "49775e0d-e6f2-417d-9a58-18d96917357d",
+      "blocked_card_print_ids": [
+        "ae60fada-fe43-464d-82b5-9346359d5159"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "ae60fada-fe43-464d-82b5-9346359d5159",
+          "survivor_card_print_id": "49775e0d-e6f2-417d-9a58-18d96917357d",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv06",
+      "set_name": "Twilight Masquerade",
+      "card_number": "111",
+      "card_name": "Okidogi",
+      "finish_keys_needed": [
+        "normal"
+      ],
+      "survivor_card_print_id": "a524d59b-26b4-4be2-8839-338585171310",
+      "blocked_card_print_ids": [
+        "22178b82-3b06-4abb-8b44-adf0edb0b7c3"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "22178b82-3b06-4abb-8b44-adf0edb0b7c3",
+          "survivor_card_print_id": "a524d59b-26b4-4be2-8839-338585171310",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "card_number": "119",
+      "card_name": "Bouffalant",
+      "finish_keys_needed": [
+        "normal"
+      ],
+      "survivor_card_print_id": "1dd005a1-ce85-4088-9cb1-99185d961506",
+      "blocked_card_print_ids": [
+        "0e31158e-5c60-477d-8a70-bb3a55a49b8b"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "0e31158e-5c60-477d-8a70-bb3a55a49b8b",
+          "survivor_card_print_id": "1dd005a1-ce85-4088-9cb1-99185d961506",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 10,
+          "justtcg_latest_update_rows": 10,
+          "justtcg_snapshot_update_rows": 960,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 982,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "020",
+      "card_name": "Team Rocket's Spidops",
+      "finish_keys_needed": [
+        "normal"
+      ],
+      "survivor_card_print_id": "0f4e2409-f4d7-4243-aebd-e1335f680b9a",
+      "blocked_card_print_ids": [
+        "cdba0afe-8462-4200-aa54-50de6db3d456"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "cdba0afe-8462-4200-aa54-50de6db3d456",
+          "survivor_card_print_id": "0f4e2409-f4d7-4243-aebd-e1335f680b9a",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 10,
+          "justtcg_latest_update_rows": 10,
+          "justtcg_snapshot_update_rows": 960,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 982,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "034",
+      "card_name": "Ethan's Typhlosion",
+      "finish_keys_needed": [
+        "normal"
+      ],
+      "survivor_card_print_id": "816d4e8a-a675-4355-be76-38537ac17364",
+      "blocked_card_print_ids": [
+        "754de6c8-92cf-48f5-a9ca-1fd5e10d8761"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "754de6c8-92cf-48f5-a9ca-1fd5e10d8761",
+          "survivor_card_print_id": "816d4e8a-a675-4355-be76-38537ac17364",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "051",
+      "card_name": "Team Rocket's Articuno",
+      "finish_keys_needed": [
+        "cosmos",
+        "normal"
+      ],
+      "survivor_card_print_id": "e60efc97-6e90-426e-a681-61b33a026bb2",
+      "blocked_card_print_ids": [
+        "31a4d0b3-fde0-483f-82c8-928b2d427251"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "31a4d0b3-fde0-483f-82c8-928b2d427251",
+          "survivor_card_print_id": "e60efc97-6e90-426e-a681-61b33a026bb2",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 0,
+          "justtcg_latest_update_rows": 0,
+          "justtcg_snapshot_update_rows": 0,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 2,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "36",
+      "card_name": "Ethan's Magcargo",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "survivor_card_print_id": "030d432b-54fb-4512-861c-1a768923d20b",
+      "blocked_card_print_ids": [
+        "711581ed-55d7-47b3-9448-aadd92e36504"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "711581ed-55d7-47b3-9448-aadd92e36504",
+          "survivor_card_print_id": "030d432b-54fb-4512-861c-1a768923d20b",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "70",
+      "card_name": "Team Rocket's Zapdos",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "survivor_card_print_id": "7ea78370-117e-43d3-a5a9-c8ec87e81bee",
+      "blocked_card_print_ids": [
+        "34daf81d-77b6-49c1-9f73-23085ad8d694"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "34daf81d-77b6-49c1-9f73-23085ad8d694",
+          "survivor_card_print_id": "7ea78370-117e-43d3-a5a9-c8ec87e81bee",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "103",
+      "card_name": "Cynthia's Gabite",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "survivor_card_print_id": "c478d96a-a186-441e-af16-c8fcc1471ccb",
+      "blocked_card_print_ids": [
+        "30fb09bf-b3f5-4097-976a-be86fee9505d"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "30fb09bf-b3f5-4097-976a-be86fee9505d",
+          "survivor_card_print_id": "c478d96a-a186-441e-af16-c8fcc1471ccb",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "card_number": "174",
+      "card_name": "Team Rocket's Giovanni",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "survivor_card_print_id": "9ec45c4c-3e58-491b-bb85-e6799935ed63",
+      "blocked_card_print_ids": [
+        "656146e4-40d2-4c0a-8cfb-3c62c0a54e03"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "656146e4-40d2-4c0a-8cfb-3c62c0a54e03",
+          "survivor_card_print_id": "9ec45c4c-3e58-491b-bb85-e6799935ed63",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 0,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    },
+    {
+      "readiness": "dry_run_artifact_candidate_with_dependency_transfer",
+      "recommended_next_step": "prepare_rollback_only_dependency_transfer_dry_run_artifact",
+      "set_key": "me01",
+      "set_name": "Mega Evolution",
+      "card_number": "104",
+      "card_name": "Mega Kangaskhan ex",
+      "finish_keys_needed": [
+        "holo"
+      ],
+      "survivor_card_print_id": "1de01a51-cfa0-4bfe-90c2-a75942e88932",
+      "blocked_card_print_ids": [
+        "c09ddb18-a83c-4fac-92bc-43588bca9d0d"
+      ],
+      "blocked_rows": [
+        {
+          "blocked_card_print_id": "c09ddb18-a83c-4fac-92bc-43588bca9d0d",
+          "survivor_card_print_id": "1de01a51-cfa0-4bfe-90c2-a75942e88932",
+          "external_mappings_update_rows": 1,
+          "card_print_species_transfer_rows": 0,
+          "card_print_species_redundant_rows": 1,
+          "canon_warehouse_candidates_update_rows": 1,
+          "justtcg_variants_update_rows": 5,
+          "justtcg_latest_update_rows": 5,
+          "justtcg_snapshot_update_rows": 480,
+          "unsupported_dependency_tables": []
+        }
+      ],
+      "total_update_rows_before_parent_delete": 492,
+      "unsupported_dependency_tables": []
+    }
+  ],
+  "stop_findings": [],
+  "pass": true
+}

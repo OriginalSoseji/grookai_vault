@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-24T23:19:10.654Z",
+  "generated_at": "2026-06-09T12:50:17.007Z",
   "version": "english_master_index_provenance_source_alias_map_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -7,12 +7,12 @@
   "cleanup_performed": false,
   "quarantine_performed": false,
   "summary": {
-    "queue_items": 2163,
-    "printing_rows_represented": 5733,
-    "source_alias_rows": 37,
+    "queue_items": 2158,
+    "printing_rows_represented": 5720,
+    "source_alias_rows": 36,
     "by_lane": {
       "pocket_scope_exclusion_candidate": 1341,
-      "physical_tcg_alias_recovery_candidate": 807,
+      "physical_tcg_alias_recovery_candidate": 802,
       "marketplace_id_lookup_required": 5,
       "manual_provenance_review": 10
     },
@@ -46,7 +46,6 @@
       "pl1": 9,
       "pl3": 9,
       "dp7": 8,
-      "fut2020": 5,
       "cel25": 4,
       "ex10": 3,
       "bw9": 2,
@@ -56,16 +55,16 @@
       "xy9": 1
     },
     "by_matched_set": {
-      "sv8pt5": 180,
-      "sv4pt5": 108,
-      "me1": 83,
+      "sv08.5": 180,
+      "sv04.5": 108,
+      "me01": 83,
       "svp": 73,
       "xyp": 61,
-      "sv6pt5": 52,
+      "sv06.5": 52,
       "pl2": 37,
-      "pgo": 34,
+      "swsh10.5": 34,
+      "2021swsh": 25,
       "bw11": 25,
-      "mcd21": 25,
       "pl4": 20,
       "xy4": 16,
       "ecard3": 15,
@@ -75,11 +74,10 @@
       "pl1": 9,
       "pl3": 9,
       "dp7": 8,
-      "fut2020": 5,
       "cel25": 4,
       "ex10": 3,
       "bw9": 2,
-      "swsh45": 2,
+      "swsh4.5": 2,
       "swsh2": 1,
       "xy9": 1
     },
@@ -113,7 +111,7 @@
       "card_print_count": 180,
       "printing_count": 440,
       "matched_master_index_set": {
-        "internal_set_key": "sv8pt5",
+        "internal_set_key": "sv08.5",
         "set_name": "Prismatic Evolutions",
         "source_key": "tcgdex",
         "source_alias": "sv08.5",
@@ -202,7 +200,7 @@
       "card_print_count": 108,
       "printing_count": 148,
       "matched_master_index_set": {
-        "internal_set_key": "sv4pt5",
+        "internal_set_key": "sv04.5",
         "set_name": "Paldean Fates",
         "source_key": "tcgdex",
         "source_alias": "sv04.5",
@@ -291,7 +289,7 @@
       "card_print_count": 83,
       "printing_count": 168,
       "matched_master_index_set": {
-        "internal_set_key": "me1",
+        "internal_set_key": "me01",
         "set_name": "Mega Evolution",
         "source_key": "tcgdex",
         "source_alias": "me01",
@@ -558,7 +556,7 @@
       "card_print_count": 52,
       "printing_count": 69,
       "matched_master_index_set": {
-        "internal_set_key": "sv6pt5",
+        "internal_set_key": "sv06.5",
         "set_name": "Shrouded Fable",
         "source_key": "tcgdex",
         "source_alias": "sv06.5",
@@ -736,7 +734,7 @@
       "card_print_count": 34,
       "printing_count": 42,
       "matched_master_index_set": {
-        "internal_set_key": "pgo",
+        "internal_set_key": "swsh10.5",
         "set_name": "Pokémon GO",
         "source_key": "tcgdex",
         "source_alias": "swsh10.5",
@@ -825,7 +823,7 @@
       "card_print_count": 25,
       "printing_count": 50,
       "matched_master_index_set": {
-        "internal_set_key": "mcd21",
+        "internal_set_key": "2021swsh",
         "set_name": "McDonald's Collection 2021",
         "source_key": "tcgdex",
         "source_alias": "2021swsh",
@@ -1770,60 +1768,6 @@
     },
     {
       "source": "tcgdex",
-      "source_set_alias": "fut2020",
-      "source_set_url": "https://api.tcgdex.net/v2/en/sets/fut2020",
-      "lane": "physical_tcg_alias_recovery_candidate",
-      "card_print_count": 5,
-      "printing_count": 13,
-      "matched_master_index_set": {
-        "internal_set_key": "fut2020",
-        "set_name": "Pokémon Futsal 2020",
-        "source_key": "tcgdex",
-        "source_alias": "fut2020",
-        "source_status": "available",
-        "source_url": "https://api.tcgdex.net/v2/en/sets/fut2020"
-      },
-      "pocket_scope_candidate": false,
-      "sample_cards": [
-        {
-          "card_print_id": "2f2942c8-6019-4446-806c-593dd351af98",
-          "card_name": "Eevee on the Ball",
-          "finish_profile": "holo|normal|reverse",
-          "external_id": "fut2020-2",
-          "source_card_url": "https://api.tcgdex.net/v2/en/cards/fut2020-2"
-        },
-        {
-          "card_print_id": "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
-          "card_name": "Grookey on the Ball",
-          "finish_profile": "holo|normal|reverse",
-          "external_id": "fut2020-3",
-          "source_card_url": "https://api.tcgdex.net/v2/en/cards/fut2020-3"
-        },
-        {
-          "card_print_id": "53919228-7560-480c-9bdb-da99ad67250a",
-          "card_name": "Scorbunny on the Ball",
-          "finish_profile": "holo|normal|reverse",
-          "external_id": "fut2020-4",
-          "source_card_url": "https://api.tcgdex.net/v2/en/cards/fut2020-4"
-        },
-        {
-          "card_print_id": "82ebefc5-51bc-4dbd-ba14-a9a60186aa61",
-          "card_name": "Sobble on the Ball",
-          "finish_profile": "holo|normal|reverse",
-          "external_id": "fut2020-5",
-          "source_card_url": "https://api.tcgdex.net/v2/en/cards/fut2020-5"
-        },
-        {
-          "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
-          "card_name": "Pikachu on the Ball",
-          "finish_profile": "holo",
-          "external_id": "fut2020-1",
-          "source_card_url": "https://api.tcgdex.net/v2/en/cards/fut2020-1"
-        }
-      ]
-    },
-    {
-      "source": "tcgdex",
       "source_set_alias": "cel25",
       "source_set_url": "https://api.tcgdex.net/v2/en/sets/cel25",
       "lane": "physical_tcg_alias_recovery_candidate",
@@ -1950,7 +1894,7 @@
       "card_print_count": 2,
       "printing_count": 4,
       "matched_master_index_set": {
-        "internal_set_key": "swsh45",
+        "internal_set_key": "swsh4.5",
         "set_name": "Shining Fates",
         "source_key": "tcgdex",
         "source_alias": "swsh4.5",

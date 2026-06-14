@@ -1,6 +1,6 @@
 # English Master Index Missing From Grookai Triage V1
 
-Generated: 2026-06-08T18:24:41.247Z
+Generated: 2026-06-12T08:27:20.983Z
 
 Audit only. No DB writes, migrations, inserts, cleanup, quarantine, or public hiding were performed.
 
@@ -10,196 +10,168 @@ Missing-from-Grookai rows are not insertion authority. Only controlled per-set p
 
 | category | count |
 | --- | --- |
-| human_source_verified_missing | 4 |
-| master_verified_missing | 7313 |
+| human_source_verified_missing | 22 |
+| master_verified_missing | 4542 |
 
 ## Summary By Index Status
 
 | index_status | count |
 | --- | --- |
-| human_source_verified | 4 |
-| master_verified | 7313 |
+| human_source_verified | 22 |
+| master_verified | 4542 |
 
 ## Summary By Source Count
 
 | source_count | count |
 | --- | --- |
-| 1 | 4 |
-| 2 | 4596 |
-| 3 | 2182 |
-| 4 | 292 |
-| 5 | 243 |
+| 1 | 22 |
+| 2 | 3258 |
+| 3 | 904 |
+| 4 | 239 |
+| 5 | 141 |
 
 ## Summary By Set
 
 | set_key | count |
 | --- | --- |
-| 2011bw | 2 |
-| 2012bw | 5 |
-| 2015xy | 3 |
-| 2017sm | 6 |
-| 2018sm | 1 |
-| 2019sm | 8 |
-| 2021swsh | 25 |
-| 2022swsh | 6 |
-| 2023sv | 15 |
-| 2024sv | 15 |
 | base1 | 103 |
-| base2 | 67 |
-| base3 | 65 |
+| base2 | 66 |
+| base3 | 64 |
 | base4 | 2 |
-| base5 | 87 |
-| basep | 8 |
+| base5 | 86 |
+| basep | 4 |
 | bog | 6 |
-| bw1 | 34 |
-| bw10 | 6 |
-| bw11 | 41 |
-| bw2 | 10 |
-| bw3 | 13 |
-| bw4 | 12 |
-| bw5 | 14 |
-| bw6 | 11 |
-| bw7 | 11 |
-| bw8 | 5 |
-| bw9 | 7 |
+| bw1 | 18 |
+| bw10 | 2 |
+| bw11 | 28 |
+| bw2 | 3 |
+| bw3 | 8 |
+| bw4 | 1 |
+| bw5 | 10 |
+| bw6 | 4 |
+| bw7 | 2 |
+| bw8 | 3 |
+| bw9 | 4 |
 | bwp | 123 |
-| cel25 | 3 |
-| cel25c | 25 |
-| col1 | 44 |
-| dp1 | 28 |
-| dp2 | 19 |
-| dp3 | 12 |
-| dp4 | 13 |
+| cel25 | 25 |
+| col1 | 31 |
+| dp1 | 21 |
+| dp2 | 13 |
+| dp3 | 9 |
+| dp4 | 11 |
 | dp5 | 19 |
-| dp6 | 17 |
-| dp7 | 18 |
+| dp6 | 16 |
+| dp7 | 8 |
 | dpp | 78 |
-| dv1 | 10 |
-| ecard2 | 50 |
-| ecard3 | 42 |
-| ex1 | 17 |
-| ex10 | 104 |
-| ex11 | 110 |
-| ex12 | 85 |
-| ex13 | 100 |
-| ex14 | 93 |
-| ex15 | 91 |
-| ex16 | 108 |
-| ex2 | 3 |
-| ex3 | 9 |
-| ex4 | 11 |
-| ex5 | 96 |
-| ex6 | 107 |
-| ex7 | 97 |
-| ex8 | 100 |
-| ex9 | 97 |
-| exu | 28 |
-| fut20 | 1 |
-| fut2020 | 5 |
+| dv1 | 8 |
+| ecard2 | 16 |
+| ecard3 | 14 |
+| ex1 | 6 |
+| ex10 | 30 |
+| ex11 | 3 |
+| ex12 | 3 |
+| ex13 | 1 |
+| ex14 | 5 |
+| ex15 | 2 |
+| ex16 | 1 |
+| ex2 | 2 |
+| ex3 | 7 |
+| ex4 | 5 |
+| ex5 | 5 |
+| ex6 | 2 |
+| ex7 | 1 |
+| ex8 | 4 |
+| ex9 | 8 |
 | g1 | 42 |
 | gym1 | 134 |
 | gym2 | 133 |
-| hgss1 | 23 |
-| hgss2 | 18 |
-| hgss3 | 8 |
-| hgss4 | 21 |
+| hgss1 | 10 |
+| hgss2 | 10 |
+| hgss3 | 4 |
+| hgss4 | 4 |
 | hgssp | 27 |
-| me01 | 39 |
-| me02 | 4 |
-| me03 | 128 |
-| me04 | 247 |
-| mee | 16 |
-| mep | 85 |
-| mfb | 34 |
-| neo1 | 113 |
+| me01 | 31 |
+| me02 | 1 |
+| me03 | 8 |
+| mep | 23 |
+| neo1 | 111 |
 | neo2 | 75 |
-| neo3 | 68 |
-| neo4 | 122 |
+| neo3 | 66 |
+| neo4 | 114 |
 | np | 2 |
-| pl1 | 17 |
-| pl2 | 56 |
-| pl3 | 141 |
-| pl4 | 29 |
-| pop2 | 3 |
-| pop3 | 14 |
-| pop4 | 10 |
-| pop5 | 7 |
-| pop6 | 11 |
-| pop7 | 2 |
-| pop8 | 13 |
-| pop9 | 6 |
-| ru1 | 3 |
-| si1 | 6 |
-| sm1 | 32 |
-| sm10 | 6 |
-| sm11 | 11 |
+| pl1 | 8 |
+| pl2 | 34 |
+| pl3 | 16 |
+| pl4 | 19 |
+| pop6 | 1 |
+| pop9 | 1 |
+| sm1 | 15 |
+| sm10 | 2 |
+| sm11 | 6 |
 | sm115 | 103 |
-| sm12 | 6 |
-| sm2 | 11 |
-| sm3 | 12 |
-| sm3.5 | 3 |
-| sm4 | 15 |
-| sm5 | 13 |
-| sm6 | 11 |
-| sm7 | 12 |
+| sm12 | 4 |
+| sm2 | 7 |
+| sm3 | 9 |
+| sm4 | 9 |
+| sm5 | 11 |
+| sm6 | 8 |
+| sm7 | 7 |
 | sm7.5 | 2 |
-| sm8 | 23 |
-| sm9 | 5 |
+| sm8 | 13 |
+| sm9 | 2 |
 | sma | 188 |
 | smp | 316 |
-| sv01 | 22 |
-| sv02 | 66 |
-| sv03.5 | 24 |
-| sv04 | 25 |
-| sv05 | 50 |
-| sv06 | 6 |
+| sv01 | 6 |
+| sv02 | 47 |
+| sv03 | 36 |
+| sv03.5 | 10 |
+| sv05 | 37 |
 | sv06.5 | 13 |
-| sv07 | 28 |
-| sv08 | 3 |
-| sv08.5 | 33 |
-| sv09 | 33 |
-| sv10 | 48 |
+| sv07 | 21 |
+| sv08.5 | 24 |
+| sv09 | 27 |
+| sv10 | 32 |
 | sv10.5b | 2 |
 | sv10.5w | 1 |
-| sve | 63 |
-| svp | 88 |
-| swsh1 | 62 |
-| swsh10 | 77 |
-| swsh10.5 | 5 |
+| sve | 16 |
+| svp | 71 |
+| swsh1 | 35 |
+| swsh10 | 66 |
+| swsh10.5 | 2 |
 | swsh10tg | 30 |
-| swsh11 | 74 |
+| swsh11 | 70 |
 | swsh11tg | 30 |
-| swsh12 | 62 |
-| swsh12.5 | 84 |
+| swsh12 | 58 |
+| swsh12.5 | 83 |
 | swsh12pt5gg | 70 |
 | swsh12tg | 30 |
-| swsh2 | 38 |
-| swsh3 | 33 |
+| swsh2 | 18 |
+| swsh3 | 24 |
 | swsh3.5 | 8 |
-| swsh4 | 32 |
-| swsh4.5 | 158 |
+| swsh4 | 16 |
+| swsh4.5 | 150 |
 | swsh45sv | 122 |
-| swsh5 | 42 |
-| swsh6 | 56 |
-| swsh7 | 105 |
-| swsh8 | 49 |
-| swsh9 | 86 |
+| swsh5 | 35 |
+| swsh6 | 39 |
+| swsh7 | 45 |
+| swsh8 | 41 |
+| swsh9 | 76 |
 | swsh9tg | 30 |
 | swshp | 357 |
 | wp | 7 |
 | xy0 | 3 |
-| xy1 | 21 |
-| xy10 | 13 |
-| xy11 | 9 |
-| xy12 | 9 |
-| xy2 | 9 |
-| xy3 | 18 |
-| xy4 | 13 |
-| xy5 | 5 |
-| xy6 | 7 |
-| xy7 | 13 |
-| xy8 | 17 |
-| xy9 | 15 |
+| xy1 | 9 |
+| xy10 | 9 |
+| xy11 | 6 |
+| xy12 | 7 |
+| xy2 | 6 |
+| xy3 | 7 |
+| xy4 | 4 |
+| xy5 | 1 |
+| xy6 | 4 |
+| xy7 | 3 |
+| xy8 | 7 |
+| xy9 | 10 |
 | xya | 6 |
 | xyp | 230 |
 
@@ -207,23 +179,24 @@ Missing-from-Grookai rows are not insertion authority. Only controlled per-set p
 
 | finish | count |
 | --- | --- |
-| cosmos | 320 |
-| cracked_ice | 131 |
+| cosmos | 25 |
+| cracked_ice | 4 |
 | first_edition_holo | 180 |
 | first_edition_normal | 762 |
-| holo | 2339 |
-| normal | 801 |
-| reverse | 1413 |
-| stamped | 1371 |
+| holo | 1876 |
+| normal | 252 |
+| reverse | 74 |
+| stamped | 1391 |
 
 ## human_source_verified_missing
 
-Rows: 4
+Rows: 22
 
 ### Top Sets
 
 | set_key | count |
 | --- | --- |
+| sv03 | 18 |
 | ex9 | 1 |
 | sm8 | 1 |
 | sv03.5 | 1 |
@@ -235,12 +208,30 @@ Rows: 4
 | --- | --- | --- | --- | --- | --- | --- |
 | sm8 | 187 | Net Ball | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
 | swsh3.5 | 62 | Professor's Research (Professor Magnolia) | normal | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 22 | Toedscruel ex | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 40 | Larvesta | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 41 | Volcarona | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 42 | Eiscue ex | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 66 | Tyranitar ex | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 92 | Lunatone | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 95 | Claydol | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 125 | Charizard ex | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 131 | Houndour | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 133 | Houndoom | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 136 | Darkrai | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 139 | Salandit | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 140 | Salazzle | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 141 | Scizor | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 164 | Pidgeot ex | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 188 | Geeta | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 189 | Letter of Encouragement | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| sv03 | 196 | Town Store | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
 | sv03.5 | 146 | Moltres | normal | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
 | ex9 | 107 | Farfetch'd | normal | human_source_verified | cardtrader_blueprint_index | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
 
 ## master_verified_missing
 
-Rows: 7313
+Rows: 4542
 
 ### Top Sets
 
@@ -248,76 +239,76 @@ Rows: 7313
 | --- | --- |
 | swshp | 357 |
 | smp | 316 |
-| me04 | 247 |
 | xyp | 230 |
 | sma | 188 |
-| swsh4.5 | 158 |
-| pl3 | 141 |
+| swsh4.5 | 150 |
 | gym1 | 134 |
 | gym2 | 133 |
-| me03 | 128 |
 | bwp | 123 |
-| neo4 | 122 |
 | swsh45sv | 122 |
-| neo1 | 113 |
-| ex11 | 110 |
-| ex16 | 108 |
-| ex6 | 107 |
-| swsh7 | 105 |
-| ex10 | 104 |
+| neo4 | 114 |
+| neo1 | 111 |
 | base1 | 103 |
+| sm115 | 103 |
+| base5 | 86 |
+| swsh12.5 | 83 |
+| dpp | 78 |
+| swsh9 | 76 |
+| neo2 | 75 |
+| svp | 71 |
+| swsh11 | 70 |
 
 ### Sample Rows
 
 | set | number | Index name | finish | index status | sources | reason |
 | --- | --- | --- | --- | --- | --- | --- |
-| 2023sv | 1 | Sprigatito | holo | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 2 | Fuecoco | holo | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 3 | Quaxly | holo | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 4 | Cetoddle | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 5 | Cetitan | holo | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 6 | Pikachu | holo | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 7 | Pawmi | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 8 | Kilowattrel | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 9 | Flittle | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 10 | Sandaconda | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 11 | Klawf | holo | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 12 | Blissey | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 13 | Tandemaus | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 14 | Cyclizar | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2023sv | 15 | Kirlia | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 1 | Charizard | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 2 | Pikachu | holo | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 3 | Miraidon | holo | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 4 | Jigglypuff | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 5 | Hatenna | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 6 | Dragapult | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 7 | Quagsire | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 8 | Koraidon | holo | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 9 | Umbreon | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 10 | Hydreigon | holo | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 11 | Roaring Moon | holo | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 12 | Dragonite | holo | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 13 | Eevee | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 14 | Rayquaza | normal | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| 2024sv | 15 | Drampa | holo | master_verified | tcgcsv_tcgplayer_catalog, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 001 | Basic Grass Energy | normal | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 001 | Basic Grass Energy | reverse | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 002 | Basic Fire Energy | normal | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 002 | Basic Fire Energy | reverse | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 003 | Basic Water Energy | normal | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 003 | Basic Water Energy | reverse | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 004 | Basic Lightning Energy | normal | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 004 | Basic Lightning Energy | reverse | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 005 | Basic Psychic Energy | normal | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 005 | Basic Psychic Energy | reverse | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 006 | Basic Fighting Energy | normal | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 006 | Basic Fighting Energy | reverse | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 007 | Basic Darkness Energy | normal | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 007 | Basic Darkness Energy | reverse | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 008 | Basic Metal Energy | normal | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mee | 008 | Basic Metal Energy | reverse | master_verified | pricecharting_csv_mee_energy, pricecharting_csv_product, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mep | 001 | Meganium | holo | master_verified | reverseholo_set_checklist, tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mep | 002 | Inteleon | holo | master_verified | reverseholo_set_checklist, tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mep | 003 | Alakazam | holo | master_verified | reverseholo_set_checklist, tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| mep | 004 | Lunatone | holo | master_verified | reverseholo_set_checklist, tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 1 | Meganium | stamped | master_verified | binderbuilder_set_variant, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 2 | Inteleon | stamped | master_verified | binderbuilder_set_variant, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 3 | Alakazam | stamped | master_verified | binderbuilder_set_variant, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 4 | Lunatone | stamped | master_verified | binderbuilder_set_variant, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 9 | Alakazam | stamped | master_verified | bulbapedia_card_page_release_info, bulbapedia_set_list, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 10 | Riolu | stamped | master_verified | bulbapedia_card_page_release_info, bulbapedia_set_list, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 14 | Ceruledge | stamped | master_verified | binderbuilder_set_variant, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 15 | Zacian | stamped | master_verified | binderbuilder_set_variant, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 16 | Flygon | stamped | master_verified | binderbuilder_set_variant, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 17 | Toxtricity | stamped | master_verified | binderbuilder_set_variant, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 22 | Charcadet | stamped | master_verified | bulbapedia_card_page_release_info, bulbapedia_set_list, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 28 | Celebratory Fanfare | stamped | master_verified | binderbuilder_set_variant, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 31 | N's Zekrom | stamped | master_verified | bulbapedia_card_page_release_info, bulbapedia_set_list, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 64 | Serperior | stamped | master_verified | bulbapedia_card_page_release_info, bulbapedia_set_list, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 65 | Barbaracle | stamped | master_verified | bulbapedia_card_page_release_info, bulbapedia_set_list, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 66 | Tyrantrum | stamped | master_verified | bulbapedia_card_page_release_info, bulbapedia_set_list, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 67 | Doublade | stamped | master_verified | bulbapedia_card_page_release_info, bulbapedia_set_list, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 70 | Tyrunt | stamped | master_verified | bulbapedia_card_page_release_info, bulbapedia_set_list, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 74 | Delphox | stamped | master_verified | cardtrader_blueprint_index, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 75 | Ampharos | stamped | master_verified | cardtrader_blueprint_index, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 76 | Crobat | stamped | master_verified | cardtrader_blueprint_index, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 77 | Goodra | stamped | master_verified | cardtrader_blueprint_index, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 80 | Fennekin | stamped | master_verified | bulbapedia_card_page_release_info, bulbapedia_set_list, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| xya | 24a | M Manectric-EX | normal | master_verified | pkmncollectors_xya, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
+| xya | 28a | Jolteon-EX | normal | master_verified | pkmncollectors_xya, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
+| xya | 54a | Zygarde-EX | normal | master_verified | pkmncollectors_xya, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
+| xya | 55a | M Lucario-EX | normal | master_verified | pkmncollectors_xya, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
+| xya | 92a | Trainers’ Mail | normal | master_verified | tcgcollector_card_variants, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
+| xya | 107a | Professor Sycamore | normal | master_verified | tcgcollector_card_variants, tcgdex | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 1 | Alakazam | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 2 | Blastoise | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 3 | Chansey | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 4 | Charizard | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 5 | Clefairy | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 6 | Gyarados | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 7 | Hitmonchan | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 8 | Machamp | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 9 | Magneton | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 10 | Mewtwo | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 11 | Nidoking | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 12 | Ninetales | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 13 | Poliwrath | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 14 | Raichu | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 15 | Venusaur | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 16 | Zapdos | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 17 | Beedrill | first_edition_normal | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 18 | Dragonair | first_edition_normal | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 19 | Dugtrio | first_edition_normal | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 20 | Electabuzz | first_edition_normal | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 21 | Electrode | first_edition_normal | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |

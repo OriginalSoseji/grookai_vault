@@ -1,0 +1,544 @@
+{
+  "generated_at": "2026-06-13T00:03:51.944Z",
+  "version": "english_master_index_pkg17i_stamped_remaining_blocker_triage_v1",
+  "package_id": "PKG-17I-STAMPED-REMAINING-BLOCKER-TRIAGE",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "stamped_remaining_action_queue": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17a_stamped_remaining_action_queue_v1.json",
+    "active_finish_source_acquisition": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17b_stamped_active_finish_source_acquisition_v1.json",
+    "base_parent_resolution_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg17d_stamped_base_parent_resolution_readiness_v1.json",
+    "prize_pack_current_queue_acquisition": "docs/audits/english_master_index_source_exhaustion_v1/pkg17h_prize_pack_active_finish_current_queue_acquisition_v1/pkg17h_prize_pack_active_finish_current_queue_acquisition_v1.json"
+  },
+  "fingerprint_sha256": "74f02db91953ec31a50aea5f5d278752f61ddde672f6344c885a4662d220fc61",
+  "summary": {
+    "queue_rows": 579,
+    "current_queue_by_status": {
+      "active_finish_required": 312,
+      "stamp_identity_label_needed": 178,
+      "base_parent_missing": 45,
+      "blocked_second_independent_source_needed": 18,
+      "base_parent_ambiguous": 14,
+      "blocked_battle_academy_display_metadata_strategy": 5,
+      "active_finish_required_with_dependency_awareness": 4,
+      "blocked_conflicting_finish_observation": 3
+    },
+    "decision_bucket_count": 8,
+    "decision_bucket_memberships": 642,
+    "decision_bucket_memberships_note": "Decision buckets include sub-analyses such as Prize Pack current queue, so memberships can exceed unique queue rows.",
+    "immediate_write_ready_rows": 0,
+    "stamped_finish_key_rows_allowed": 0,
+    "current_source_attempts": {
+      "pkg17b_useful_current_gap_matches": 0,
+      "pkg17b_useful_unabsorbed_source_lanes": 0,
+      "pkg17h_ready_two_source_exact_active_finish": 0,
+      "pkg17d_insert_dry_run_candidates": 0
+    }
+  },
+  "decision_buckets": [
+    {
+      "bucket_id": "active_finish_required",
+      "rows": 312,
+      "current_result": "blocked_after_source_attempt",
+      "write_ready_now": 0,
+      "evidence_status": "4 source lanes attempted; 0 useful current-gap matches.",
+      "top_sets": [
+        {
+          "key": "swsh1",
+          "count": 21
+        },
+        {
+          "key": "swsh5",
+          "count": 21
+        },
+        {
+          "key": "swsh8",
+          "count": 18
+        },
+        {
+          "key": "swsh3",
+          "count": 12
+        },
+        {
+          "key": "swshp",
+          "count": 12
+        },
+        {
+          "key": "swsh6",
+          "count": 11
+        },
+        {
+          "key": "swsh9",
+          "count": 11
+        },
+        {
+          "key": "sm8",
+          "count": 10
+        },
+        {
+          "key": "sm1",
+          "count": 9
+        },
+        {
+          "key": "swsh2",
+          "count": 9
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "key": "league_stamp",
+          "count": 70
+        },
+        {
+          "key": "prize_pack_stamp",
+          "count": 63
+        },
+        {
+          "key": "battle_academy_deck_mark",
+          "count": 56
+        },
+        {
+          "key": "pikachu_jack_o_lantern_stamp",
+          "count": 27
+        },
+        {
+          "key": "prerelease_stamp",
+          "count": 12
+        },
+        {
+          "key": "professor_program_stamp",
+          "count": 12
+        },
+        {
+          "key": "league_cup_staff_stamp",
+          "count": 8
+        },
+        {
+          "key": "staff_stamp",
+          "count": 6
+        },
+        {
+          "key": "play_pok_mon_thank_you_stamp",
+          "count": 5
+        },
+        {
+          "key": "dragon_vault_stamp",
+          "count": 4
+        }
+      ],
+      "recommended_next_action": "Continue with new source families or variant-specific adjudication. Do not write active-finish rows from the exhausted source lanes."
+    },
+    {
+      "bucket_id": "active_finish_required_with_dependency_awareness",
+      "rows": 4,
+      "current_result": "blocked_until_dependency_aware_finish_evidence",
+      "write_ready_now": 0,
+      "evidence_status": "Requires exact active finish evidence and a dependency-aware package.",
+      "top_sets": [
+        {
+          "key": "sv10",
+          "count": 2
+        },
+        {
+          "key": "ex10",
+          "count": 1
+        },
+        {
+          "key": "sm115",
+          "count": 1
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "key": "battle_academy_deck_mark",
+          "count": 1
+        },
+        {
+          "key": "league_stamp",
+          "count": 1
+        },
+        {
+          "key": "pokemon_rocks_america_stamped_2005",
+          "count": 1
+        },
+        {
+          "key": "staff_stamp",
+          "count": 1
+        }
+      ],
+      "recommended_next_action": "Keep separate from bulk stamped packages; prepare only after exact evidence and dependency map exist."
+    },
+    {
+      "bucket_id": "prize_pack_active_finish_current_queue",
+      "rows": 63,
+      "current_result": "blocked_after_prize_pack_attempt",
+      "write_ready_now": 0,
+      "evidence_status": "0 two-source exact rows; 25 conflicting rows; 34 single-source-family rows.",
+      "top_sets": [
+        {
+          "key": "swsh5",
+          "count": 17
+        },
+        {
+          "key": "swsh1",
+          "count": 10
+        },
+        {
+          "key": "swsh6",
+          "count": 9
+        },
+        {
+          "key": "swsh9",
+          "count": 8
+        },
+        {
+          "key": "swsh7",
+          "count": 7
+        },
+        {
+          "key": "swsh2",
+          "count": 4
+        },
+        {
+          "key": "swsh3",
+          "count": 2
+        },
+        {
+          "key": "swshp",
+          "count": 2
+        },
+        {
+          "key": "bw2",
+          "count": 1
+        },
+        {
+          "key": "bw9",
+          "count": 1
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "key": "review_only_single_source_family",
+          "count": 34
+        },
+        {
+          "key": "blocked_conflicting_finish_evidence",
+          "count": 25
+        },
+        {
+          "key": "blocked_no_exact_prize_pack_source_match",
+          "count": 4
+        }
+      ],
+      "recommended_next_action": "Do not infer from Prize Pack product family. Build a product-series rule only if it can distinguish Standard Set from Standard Set Foil at card level."
+    },
+    {
+      "bucket_id": "stamp_identity_label_needed",
+      "rows": 178,
+      "current_result": "source_label_needed",
+      "write_ready_now": 0,
+      "evidence_status": "Current evidence says stamped but does not prove exact stamp label or deterministic variant key.",
+      "top_sets": [
+        {
+          "key": "svp",
+          "count": 26
+        },
+        {
+          "key": "sv02",
+          "count": 18
+        },
+        {
+          "key": "sv09",
+          "count": 11
+        },
+        {
+          "key": "dp2",
+          "count": 9
+        },
+        {
+          "key": "dp1",
+          "count": 7
+        },
+        {
+          "key": "sv05",
+          "count": 7
+        },
+        {
+          "key": "bwp",
+          "count": 6
+        },
+        {
+          "key": "col1",
+          "count": 6
+        },
+        {
+          "key": "dp5",
+          "count": 6
+        },
+        {
+          "key": "g1",
+          "count": 6
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "key": "unknown",
+          "count": 178
+        }
+      ],
+      "recommended_next_action": "Attack with exact checklist/product pages that name the stamp label; generic stamped claims remain blocked."
+    },
+    {
+      "bucket_id": "base_parent_resolution",
+      "rows": 59,
+      "current_result": "no_insert_candidates_after_live_db_read",
+      "write_ready_now": 0,
+      "evidence_status": "0 parent insert candidates; 35 stale/return rows; 24 blocked rows.",
+      "top_sets": [
+        {
+          "key": "sv08.5",
+          "count": 10
+        },
+        {
+          "key": "sv03.5",
+          "count": 8
+        },
+        {
+          "key": "swsh12.5",
+          "count": 7
+        },
+        {
+          "key": "wp",
+          "count": 7
+        },
+        {
+          "key": "swsh3.5",
+          "count": 4
+        },
+        {
+          "key": "base5",
+          "count": 3
+        },
+        {
+          "key": "sv06.5",
+          "count": 3
+        },
+        {
+          "key": "swsh11",
+          "count": 3
+        },
+        {
+          "key": "swsh4.5",
+          "count": 3
+        },
+        {
+          "key": "base2",
+          "count": 2
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "key": "stale_stamped_parent_now_exists",
+          "count": 20
+        },
+        {
+          "key": "blocked_missing_or_inactive_base_finish",
+          "count": 19
+        },
+        {
+          "key": "stale_unstamped_base_parent_now_exists",
+          "count": 15
+        },
+        {
+          "key": "blocked_multiple_base_parent_candidates",
+          "count": 4
+        },
+        {
+          "key": "blocked_same_number_different_name",
+          "count": 1
+        }
+      ],
+      "recommended_next_action": "Regenerate queue after recent writes and route stale rows back through stamped readiness before preparing any parent package."
+    },
+    {
+      "bucket_id": "blocked_second_independent_source_needed",
+      "rows": 18,
+      "current_result": "single_source_only",
+      "write_ready_now": 0,
+      "evidence_status": "One exact source exists, but source law requires independent confirmation before promotion.",
+      "top_sets": [
+        {
+          "key": "bw5",
+          "count": 3
+        },
+        {
+          "key": "dp1",
+          "count": 3
+        },
+        {
+          "key": "bw3",
+          "count": 2
+        },
+        {
+          "key": "sm1",
+          "count": 2
+        },
+        {
+          "key": "xy1",
+          "count": 2
+        },
+        {
+          "key": "me02",
+          "count": 1
+        },
+        {
+          "key": "sm4",
+          "count": 1
+        },
+        {
+          "key": "sm5",
+          "count": 1
+        },
+        {
+          "key": "sm6",
+          "count": 1
+        },
+        {
+          "key": "xy10",
+          "count": 1
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "key": "regional_championships_staff_stamp",
+          "count": 5
+        },
+        {
+          "key": "city_championships_staff_stamp",
+          "count": 3
+        },
+        {
+          "key": "national_championships_staff_stamp",
+          "count": 2
+        },
+        {
+          "key": "states_championships_staff_stamp",
+          "count": 2
+        },
+        {
+          "key": "eb_games_stamp",
+          "count": 1
+        },
+        {
+          "key": "europe_championships_staff_stamp",
+          "count": 1
+        },
+        {
+          "key": "league_staff_stamp",
+          "count": 1
+        },
+        {
+          "key": "national_championships_stamp",
+          "count": 1
+        },
+        {
+          "key": "regional_championships_stamp",
+          "count": 1
+        },
+        {
+          "key": "staff_prerelease_stamp",
+          "count": 1
+        }
+      ],
+      "recommended_next_action": "Target rows individually with independent checklist/product evidence. Do not bulk promote from one source family."
+    },
+    {
+      "bucket_id": "blocked_conflicting_finish_observation",
+      "rows": 3,
+      "current_result": "conflict_blocked",
+      "write_ready_now": 0,
+      "evidence_status": "Source observations contradict the active finish.",
+      "top_sets": [
+        {
+          "key": "bw5",
+          "count": 1
+        },
+        {
+          "key": "me02",
+          "count": 1
+        },
+        {
+          "key": "xy1",
+          "count": 1
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "key": "gamestop_stamp",
+          "count": 1
+        },
+        {
+          "key": "regional_championships_staff_stamp",
+          "count": 1
+        },
+        {
+          "key": "regional_championships_stamp",
+          "count": 1
+        }
+      ],
+      "recommended_next_action": "Adjudicate conflicts manually; fail closed until resolved."
+    },
+    {
+      "bucket_id": "blocked_battle_academy_display_metadata_strategy",
+      "rows": 5,
+      "current_result": "governance_blocked",
+      "write_ready_now": 0,
+      "evidence_status": "Battle Academy markings are likely display/deck metadata, not canonical finish truth.",
+      "top_sets": [
+        {
+          "key": "swsh6",
+          "count": 5
+        }
+      ],
+      "top_variant_keys": [
+        {
+          "key": "battle_academy_deck_mark",
+          "count": 5
+        }
+      ],
+      "recommended_next_action": "Define display metadata strategy outside card_printings finish truth."
+    }
+  ],
+  "next_work_plan": [
+    {
+      "priority": 2,
+      "package_id": "PKG-17I2-STAMP-LABEL-SOURCE-ACQUISITION",
+      "action_type": "audit_only_source_acquisition",
+      "target_bucket": "stamp_identity_label_needed",
+      "reason": "Largest non-finish-source bucket; exact stamp labels unlock deterministic parent identity.",
+      "write_authorized": false
+    },
+    {
+      "priority": 3,
+      "package_id": "PKG-17I3-ACTIVE-FINISH-VARIANT-SOURCE-PLAN",
+      "action_type": "audit_only_source_acquisition",
+      "target_bucket": "active_finish_required",
+      "reason": "Current broad source lanes are exhausted; remaining work needs variant-family-specific evidence.",
+      "write_authorized": false
+    },
+    {
+      "priority": 4,
+      "package_id": "PKG-17I4-PRIZE-PACK-PRODUCT-RULE-ADJUDICATION",
+      "action_type": "manual_governance",
+      "target_bucket": "prize_pack_active_finish_current_queue",
+      "reason": "Prize Pack evidence currently shows single-source-family and conflicting Standard Set versus Standard Set Foil observations.",
+      "write_authorized": false
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-06-12T19:29:43.308Z",
+  "version": "english_master_index_sv03_play_pokemon_ex_holo_child_insert_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "SV03-PLAY-POKEMON-EX-HOLO-CHILD-INSERT",
+    "package_fingerprint_sha256": "b33838c9f31d9b693bf8be33940c814cfe31fb78335dd87b18ec67864b8a13db",
+    "source_adjudication_fingerprint": "70b4789bd1fd340131545ee4a1cbff1c3cc4bce7b6798aa8c721eb071115a974",
+    "target_child_inserts": 2,
+    "target_parent_writes": 0,
+    "target_identity_writes": 0,
+    "target_deletes": 0,
+    "target_merges": 0,
+    "update_scope": "existing_stamped_parent_child_printing_insert_only",
+    "parent_writes_allowed": false,
+    "identity_writes_allowed": false,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false,
+    "quarantine_allowed": false,
+    "global_apply_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_status": "sv03_play_pokemon_ex_holo_child_insert_completed_rolled_back_no_durable_change",
+    "before_hash_sha256": "7e67b633de699c6bde73b95abf7484aa801ac59c573d5bbee7739247dca95a35",
+    "after_hash_sha256": "7e67b633de699c6bde73b95abf7484aa801ac59c573d5bbee7739247dca95a35",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "transient_after_snapshot_differs_from_before_snapshot": true
+  },
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_play_pokemon_ex_holo_child_insert_guarded_dry_run_v1.json",
+    "source_adjudication": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_sv03_play_pokemon_ex_holo_source_adjudication_v1.json"
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real SV03-PLAY-POKEMON-EX-HOLO-CHILD-INSERT apply only. Fingerprint: b33838c9f31d9b693bf8be33940c814cfe31fb78335dd87b18ec67864b8a13db. Scope: 2 child-only card_printing inserts for sv03/Obsidian Flames Play Pokemon stamped parents Toedscruel ex #22 and Tyranitar ex #66, finish holo; parent writes=0, identity writes=0, deletes=0, merges=0. Dry-run proof: 7e67b633de699c6bde73b95abf7484aa801ac59c573d5bbee7739247dca95a35 == 7e67b633de699c6bde73b95abf7484aa801ac59c573d5bbee7739247dca95a35. No global apply. No migrations. No cleanup. No quarantine."
+  },
+  "stop_findings": [],
+  "pass": true
+}

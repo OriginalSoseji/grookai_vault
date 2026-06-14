@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-06-11T02:07:54.346Z",
+  "version": "english_master_index_pkg08y_host_subset_relocation_cleanup_real_apply_gate_v1",
+  "package_id": "PKG-08Y-HOST-SUBSET-RELOCATION-CLEANUP",
+  "package_fingerprint_sha256": "c315ae87967cdde2c6e81343cefe0953c78e958c25ba6f372b52daa99c193ce6",
+  "source_dry_run_status": "pkg08y_host_subset_relocation_cleanup_completed_rolled_back_no_durable_change",
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "real_apply_authorized": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "gates": {
+    "dry_run_passed": true,
+    "stop_findings_zero": true,
+    "rollback_hash_matched": true,
+    "parent_relocations_25": true,
+    "normal_children_preserved_25": true,
+    "extra_child_delete_simulation_50": true,
+    "durable_db_writes_performed_false": true,
+    "migrations_created_false": true
+  },
+  "recommended_real_apply_approval_text": "Approve real PKG-08Y-HOST-SUBSET-RELOCATION-CLEANUP apply only. Fingerprint: c315ae87967cdde2c6e81343cefe0953c78e958c25ba6f372b52daa99c193ce6. Scope: 25 parent relocations from swsh45sv to swsh4.5, 25 normal child printings preserved, 50 unsupported extra child printings deleted (holo=25, reverse=25), existing external mappings preserved. Dry-run proof: 2e6509a775673e06289018353f9908835dcddb4f646dd2d06f2c1023f8da12aa == 2e6509a775673e06289018353f9908835dcddb4f646dd2d06f2c1023f8da12aa. No global apply. No migrations. No merges. No quarantine.",
+  "source_summary": {
+    "parent_relocations": 25,
+    "normal_children_preserved": 25,
+    "extra_child_delete_simulation": 50,
+    "extra_child_deletes_by_finish": {
+      "holo": 25,
+      "reverse": 25
+    },
+    "before_hash": "2e6509a775673e06289018353f9908835dcddb4f646dd2d06f2c1023f8da12aa",
+    "after_hash": "2e6509a775673e06289018353f9908835dcddb4f646dd2d06f2c1023f8da12aa"
+  }
+}

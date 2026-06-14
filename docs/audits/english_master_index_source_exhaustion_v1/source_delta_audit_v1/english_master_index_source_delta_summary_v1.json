@@ -1,6 +1,6 @@
 {
   "version": "english_master_index_source_delta_summary_v1",
-  "generated_at": "2026-06-08T18:49:13.232Z",
+  "generated_at": "2026-06-13T00:03:35.295Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -8,23 +8,23 @@
   "quarantine_performed": false,
   "rule": "Existing source lanes are delta-tested against current remaining gaps before any global rebuild or new acquisition work.",
   "summary": {
-    "sources_reviewed": 37,
-    "candidate_records_loaded": 106525,
-    "matched_gap_facts": 78,
-    "useful_candidate_matches": 1,
-    "already_in_current_index": 100738,
-    "unmatched_candidate_records": 5709,
-    "useful_unabsorbed_source_lanes": 1,
-    "conclusion": "Review useful source lanes before any guarded rebuild."
+    "sources_reviewed": 46,
+    "candidate_records_loaded": 106904,
+    "matched_gap_facts": 113,
+    "useful_candidate_matches": 0,
+    "already_in_current_index": 101080,
+    "unmatched_candidate_records": 5711,
+    "useful_unabsorbed_source_lanes": 0,
+    "conclusion": "Existing generated source lanes do not contain useful unabsorbed evidence for current gaps; continue with new or retried source acquisition."
   },
   "by_delta_status": {
-    "same_source_or_authority": 59,
-    "potential_conflict_finish_absence": 18,
-    "suppressed_claim_review_evidence": 1
+    "same_source_or_authority": 94,
+    "candidate_context": 1,
+    "potential_conflict_finish_absence": 18
   },
   "by_unmatched_reason": {
-    "already_in_current_index_master_verified": 100738,
-    "not_in_remaining_gaps_or_current_index": 5709
+    "already_in_current_index_master_verified": 101080,
+    "not_in_remaining_gaps_or_current_index": 5711
   },
   "sources": [
     {
@@ -58,6 +58,36 @@
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
+      "source_key": "bulbapedia_prize_pack_current_gap_finish",
+      "candidate_records_loaded": 164,
+      "matched_gap_facts": 0,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 164,
+      "unmatched_candidate_records": 0,
+      "delta_report": "bulbapedia_prize_pack_current_gap_finish_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
+      "source_key": "bulbapedia_prize_pack_normal",
+      "candidate_records_loaded": 77,
+      "matched_gap_facts": 15,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 62,
+      "unmatched_candidate_records": 0,
+      "delta_report": "bulbapedia_prize_pack_normal_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
+      "source_key": "bulbapedia_sv03_additional_stamped_active_finish",
+      "candidate_records_loaded": 4,
+      "matched_gap_facts": 0,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 3,
+      "unmatched_candidate_records": 1,
+      "delta_report": "bulbapedia_sv03_additional_stamped_active_finish_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
       "source_key": "cardtrader_blueprint_index",
       "candidate_records_loaded": 1297,
       "matched_gap_facts": 1,
@@ -65,6 +95,16 @@
       "already_in_current_index": 1185,
       "unmatched_candidate_records": 111,
       "delta_report": "cardtrader_blueprint_index_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
+      "source_key": "cardtrader_stamped_finish",
+      "candidate_records_loaded": 2,
+      "matched_gap_facts": 0,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 1,
+      "unmatched_candidate_records": 1,
+      "delta_report": "cardtrader_stamped_finish_source_delta_audit_v1.json",
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
@@ -95,6 +135,16 @@
       "already_in_current_index": 169,
       "unmatched_candidate_records": 0,
       "delta_report": "eyevo_identity_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
+      "source_key": "justinbasil_prize_pack_finish",
+      "candidate_records_loaded": 18,
+      "matched_gap_facts": 4,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 14,
+      "unmatched_candidate_records": 0,
+      "delta_report": "justinbasil_prize_pack_finish_source_delta_audit_v1.json",
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
@@ -218,6 +268,16 @@
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
+      "source_key": "pokecardvalues_stamped_finish",
+      "candidate_records_loaded": 31,
+      "matched_gap_facts": 0,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 31,
+      "unmatched_candidate_records": 0,
+      "delta_report": "pokecardvalues_stamped_finish_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
       "source_key": "pokellector_set_checklist",
       "candidate_records_loaded": 2,
       "matched_gap_facts": 0,
@@ -229,10 +289,10 @@
     },
     {
       "source_key": "pokemoncard_io_price_breakdown",
-      "candidate_records_loaded": 17,
+      "candidate_records_loaded": 18,
       "matched_gap_facts": 0,
       "useful_candidate_matches": 0,
-      "already_in_current_index": 2,
+      "already_in_current_index": 3,
       "unmatched_candidate_records": 15,
       "delta_report": "pokemoncard_io_price_breakdown_source_delta_audit_v1.json",
       "status": "no_useful_unabsorbed_gap_evidence"
@@ -318,6 +378,16 @@
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
+      "source_key": "prize_pack_current_gap_cross_source",
+      "candidate_records_loaded": 24,
+      "matched_gap_facts": 16,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 8,
+      "unmatched_candidate_records": 0,
+      "delta_report": "prize_pack_current_gap_cross_source_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
       "source_key": "reverseholo_set_checklist",
       "candidate_records_loaded": 23765,
       "matched_gap_facts": 0,
@@ -329,23 +399,23 @@
     },
     {
       "source_key": "tcdb_checklist",
-      "candidate_records_loaded": 4,
+      "candidate_records_loaded": 5,
       "matched_gap_facts": 0,
       "useful_candidate_matches": 0,
-      "already_in_current_index": 2,
+      "already_in_current_index": 3,
       "unmatched_candidate_records": 2,
       "delta_report": "tcdb_checklist_source_delta_audit_v1.json",
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
       "source_key": "tcgcollector_card_variants",
-      "candidate_records_loaded": 1493,
-      "matched_gap_facts": 1,
-      "useful_candidate_matches": 1,
-      "already_in_current_index": 1140,
+      "candidate_records_loaded": 1533,
+      "matched_gap_facts": 0,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 1181,
       "unmatched_candidate_records": 352,
       "delta_report": "tcgcollector_card_variants_source_delta_audit_v1.json",
-      "status": "candidate_review_needed"
+      "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
       "source_key": "tcgcsv_prize_pack_catalog",
@@ -355,6 +425,26 @@
       "already_in_current_index": 7,
       "unmatched_candidate_records": 0,
       "delta_report": "tcgcsv_prize_pack_catalog_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
+      "source_key": "tcgcsv_prize_pack_title_finish",
+      "candidate_records_loaded": 1,
+      "matched_gap_facts": 1,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 0,
+      "unmatched_candidate_records": 0,
+      "delta_report": "tcgcsv_prize_pack_title_finish_source_delta_audit_v1.json",
+      "status": "no_useful_unabsorbed_gap_evidence"
+    },
+    {
+      "source_key": "tcgcsv_stamped_subtype",
+      "candidate_records_loaded": 15,
+      "matched_gap_facts": 0,
+      "useful_candidate_matches": 0,
+      "already_in_current_index": 15,
+      "unmatched_candidate_records": 0,
+      "delta_report": "tcgcsv_stamped_subtype_source_delta_audit_v1.json",
       "status": "no_useful_unabsorbed_gap_evidence"
     },
     {
@@ -369,10 +459,10 @@
     },
     {
       "source_key": "tcgcsv_tcgplayer_catalog",
-      "candidate_records_loaded": 1359,
+      "candidate_records_loaded": 1360,
       "matched_gap_facts": 0,
       "useful_candidate_matches": 0,
-      "already_in_current_index": 1034,
+      "already_in_current_index": 1035,
       "unmatched_candidate_records": 325,
       "delta_report": "tcgcsv_tcgplayer_catalog_source_delta_audit_v1.json",
       "status": "no_useful_unabsorbed_gap_evidence"

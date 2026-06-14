@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SOURCE_AGREEMENT_V1",
-  "generated_at": "2026-06-08T18:24:41.247Z",
+  "generated_at": "2026-06-12T08:27:20.983Z",
   "audit_only": true,
   "db_writes": false,
   "source_overlap": [
@@ -47,6 +47,18 @@
     {
       "source_key": "bulbapedia_player_rewards_release_info",
       "evidence_rows": 4
+    },
+    {
+      "source_key": "bulbapedia_prize_pack_current_gap_finish",
+      "evidence_rows": 19
+    },
+    {
+      "source_key": "bulbapedia_prize_pack_foil",
+      "evidence_rows": 16
+    },
+    {
+      "source_key": "bulbapedia_prize_pack_normal",
+      "evidence_rows": 77
     },
     {
       "source_key": "bulbapedia_set_list",
@@ -103,6 +115,10 @@
     {
       "source_key": "cardtrader_blueprint_index",
       "evidence_rows": 1186
+    },
+    {
+      "source_key": "cardtrader_stamped_finish",
+      "evidence_rows": 2
     },
     {
       "source_key": "crazygamer_ascended_heroes_diglett_100",
@@ -281,6 +297,14 @@
       "evidence_rows": 10
     },
     {
+      "source_key": "justinbasil_prize_pack_current_gap_finish",
+      "evidence_rows": 4
+    },
+    {
+      "source_key": "justinbasil_prize_pack_finish",
+      "evidence_rows": 18
+    },
+    {
       "source_key": "lockett_labs_ascended_heroes_dugtrio_101",
       "evidence_rows": 1
     },
@@ -333,6 +357,10 @@
       "evidence_rows": 5
     },
     {
+      "source_key": "pokecardvalues_stamped_finish",
+      "evidence_rows": 34
+    },
+    {
       "source_key": "pokellector_ascended_heroes_murkrow_126",
       "evidence_rows": 1
     },
@@ -346,11 +374,11 @@
     },
     {
       "source_key": "pokemoncard_io_price_breakdown",
-      "evidence_rows": 17
+      "evidence_rows": 18
     },
     {
       "source_key": "pokemontcg_api",
-      "evidence_rows": 51708
+      "evidence_rows": 51710
     },
     {
       "source_key": "pokemonwizard_variant_exact",
@@ -474,7 +502,7 @@
     },
     {
       "source_key": "tcdb_checklist",
-      "evidence_rows": 5
+      "evidence_rows": 6
     },
     {
       "source_key": "tcgalbum_card_page",
@@ -482,15 +510,23 @@
     },
     {
       "source_key": "tcgcollector_card_variants",
-      "evidence_rows": 1493
+      "evidence_rows": 1534
     },
     {
       "source_key": "tcgcsv_prize_pack_catalog",
       "evidence_rows": 122
     },
     {
+      "source_key": "tcgcsv_prize_pack_title_finish",
+      "evidence_rows": 1
+    },
+    {
+      "source_key": "tcgcsv_stamped_subtype",
+      "evidence_rows": 15
+    },
+    {
       "source_key": "tcgcsv_tcgplayer_catalog",
-      "evidence_rows": 1034
+      "evidence_rows": 1035
     },
     {
       "source_key": "tcgcsv_tcgplayer_catalog_identity",
@@ -498,11 +534,11 @@
     },
     {
       "source_key": "tcgdex",
-      "evidence_rows": 47032
+      "evidence_rows": 47038
     },
     {
       "source_key": "tcgplayer_price_guide",
-      "evidence_rows": 21354
+      "evidence_rows": 21358
     },
     {
       "source_key": "tcgplayer_product_675813",
@@ -2846,7 +2882,7 @@
     },
     {
       "source_key": "thepricedex_price_list",
-      "evidence_rows": 57709
+      "evidence_rows": 57749
     },
     {
       "source_key": "vendortools_ascended_heroes_spidops_019",
@@ -2858,14 +2894,14 @@
     "master_verified": 21511
   },
   "printings_by_status": {
-    "human_source_verified": 5,
-    "master_verified": 38841
+    "human_source_verified": 39,
+    "master_verified": 38893
   },
   "finish_disagreement": [],
   "reverse_holo_disagreement": [],
   "row_counts": {
     "api_agreed_printings": 0,
-    "master_verified_printings": 38841,
+    "master_verified_printings": 38893,
     "candidate_printings": 0,
     "manual_review": 5
   },
@@ -2907,7 +2943,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-1"
           },
           {
@@ -2959,7 +2995,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-2"
           },
           {
@@ -3011,7 +3047,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-3"
           },
           {
@@ -3063,7 +3099,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-4"
           },
           {
@@ -3115,7 +3151,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-5"
           },
           {
@@ -3167,7 +3203,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-6"
           },
           {
@@ -3219,7 +3255,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-7"
           },
           {
@@ -3271,7 +3307,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-8"
           },
           {
@@ -3323,7 +3359,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-9"
           },
           {
@@ -3375,7 +3411,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-10"
           },
           {
@@ -3427,7 +3463,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-11"
           },
           {
@@ -3479,7 +3515,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-12"
           },
           {
@@ -3531,7 +3567,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-13"
           },
           {
@@ -3583,7 +3619,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-14"
           },
           {
@@ -3635,7 +3671,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-15"
           },
           {
@@ -3687,7 +3723,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-16"
           },
           {
@@ -3739,7 +3775,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-17"
           },
           {
@@ -3791,7 +3827,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-18"
           },
           {
@@ -3843,7 +3879,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-19"
           },
           {
@@ -3895,7 +3931,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-20"
           },
           {
@@ -3947,7 +3983,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-21"
           },
           {
@@ -3999,7 +4035,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-22"
           },
           {
@@ -4051,7 +4087,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-23"
           },
           {
@@ -4103,7 +4139,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-24"
           },
           {
@@ -4155,7 +4191,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-25"
           },
           {
@@ -4207,7 +4243,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-26"
           },
           {
@@ -4259,7 +4295,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-27"
           },
           {
@@ -4311,7 +4347,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-28"
           },
           {
@@ -4363,7 +4399,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-e-29"
           },
           {
@@ -4415,7 +4451,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-1"
           },
           {
@@ -4467,7 +4503,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-2"
           },
           {
@@ -4519,7 +4555,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-3"
           },
           {
@@ -4571,7 +4607,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-4"
           },
           {
@@ -4623,7 +4659,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-5"
           },
           {
@@ -4675,7 +4711,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-6"
           },
           {
@@ -4727,7 +4763,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-7"
           },
           {
@@ -4779,7 +4815,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-8"
           },
           {
@@ -4831,7 +4867,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-9"
           },
           {
@@ -4883,7 +4919,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-10"
           },
           {
@@ -4935,7 +4971,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-11"
           },
           {
@@ -4987,7 +5023,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-12"
           },
           {
@@ -5039,7 +5075,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-13"
           },
           {
@@ -5091,7 +5127,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-14"
           },
           {
@@ -5143,7 +5179,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-15"
           },
           {
@@ -5195,7 +5231,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-16"
           },
           {
@@ -5247,7 +5283,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-17"
           },
           {
@@ -5299,7 +5335,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-18"
           },
           {
@@ -5351,7 +5387,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-19"
           },
           {
@@ -5403,7 +5439,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-20"
           },
           {
@@ -5455,7 +5491,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-21"
           },
           {
@@ -5507,7 +5543,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-22"
           },
           {
@@ -5559,7 +5595,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-23"
           },
           {
@@ -5611,7 +5647,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-24"
           },
           {
@@ -5663,7 +5699,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-25"
           },
           {
@@ -5715,7 +5751,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-26"
           },
           {
@@ -5767,7 +5803,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-27"
           },
           {
@@ -5819,7 +5855,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-28"
           },
           {
@@ -5871,7 +5907,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-bw-z-29"
           },
           {
@@ -5923,7 +5959,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-l-1"
           },
           {
@@ -5975,7 +6011,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-l-2"
           },
           {
@@ -6027,7 +6063,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-l-4"
           },
           {
@@ -6079,7 +6115,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-l-5"
           },
           {
@@ -6131,7 +6167,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-l-6"
           },
           {
@@ -6183,7 +6219,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-l-7"
           },
           {
@@ -6235,7 +6271,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-l-8"
           },
           {
@@ -6287,7 +6323,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-l-9"
           },
           {
@@ -6339,7 +6375,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-l-10"
           },
           {
@@ -6391,7 +6427,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-l-11"
           },
           {
@@ -6443,7 +6479,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-m-1"
           },
           {
@@ -6495,7 +6531,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-m-2"
           },
           {
@@ -6547,7 +6583,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-m-3"
           },
           {
@@ -6599,7 +6635,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-m-5"
           },
           {
@@ -6651,7 +6687,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-m-6"
           },
           {
@@ -6703,7 +6739,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-m-7"
           },
           {
@@ -6755,7 +6791,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-m-8"
           },
           {
@@ -6807,7 +6843,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-m-9"
           },
           {
@@ -6859,7 +6895,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-m-10"
           },
           {
@@ -6911,7 +6947,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-m-11"
           },
           {
@@ -6963,7 +6999,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-dp-m-12"
           },
           {
@@ -7016,7 +7052,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-hs-g-20"
           },
           {
@@ -7069,7 +7105,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:tk-hs-r-19"
           },
           {
@@ -7122,7 +7158,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-1"
           },
           {
@@ -7175,7 +7211,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-2"
           },
           {
@@ -7228,7 +7264,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-3"
           },
           {
@@ -7281,7 +7317,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-4"
           },
           {
@@ -7334,7 +7370,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-5"
           },
           {
@@ -7387,7 +7423,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-6"
           },
           {
@@ -7440,7 +7476,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-7"
           },
           {
@@ -7493,7 +7529,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-8"
           },
           {
@@ -7546,7 +7582,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-9"
           },
           {
@@ -7599,7 +7635,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-10"
           },
           {
@@ -7652,7 +7688,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-11"
           },
           {
@@ -7705,7 +7741,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-12"
           },
           {
@@ -7758,7 +7794,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-13"
           },
           {
@@ -7811,7 +7847,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-14"
           },
           {
@@ -7864,7 +7900,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2023sv-15"
           },
           {
@@ -7917,7 +7953,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-1"
           },
           {
@@ -7970,7 +8006,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-2"
           },
           {
@@ -8023,7 +8059,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-3"
           },
           {
@@ -8076,7 +8112,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-4"
           },
           {
@@ -8129,7 +8165,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-5"
           },
           {
@@ -8182,7 +8218,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-6"
           },
           {
@@ -8235,7 +8271,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-7"
           },
           {
@@ -8288,7 +8324,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-8"
           },
           {
@@ -8341,7 +8377,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-9"
           },
           {
@@ -8394,7 +8430,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-10"
           },
           {
@@ -8447,7 +8483,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-11"
           },
           {
@@ -8500,7 +8536,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-12"
           },
           {
@@ -8553,7 +8589,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-13"
           },
           {
@@ -8606,7 +8642,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-14"
           },
           {
@@ -8659,7 +8695,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:2024sv-15"
           },
           {
@@ -8712,7 +8748,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-001"
           },
           {
@@ -8777,7 +8813,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-001"
           },
           {
@@ -8842,7 +8878,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-002"
           },
           {
@@ -8907,7 +8943,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-002"
           },
           {
@@ -8972,7 +9008,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-003"
           },
           {
@@ -9037,7 +9073,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-003"
           },
           {
@@ -9102,7 +9138,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-004"
           },
           {
@@ -9167,7 +9203,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-004"
           },
           {
@@ -9232,7 +9268,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-005"
           },
           {
@@ -9297,7 +9333,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-005"
           },
           {
@@ -9362,7 +9398,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-006"
           },
           {
@@ -9427,7 +9463,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-006"
           },
           {
@@ -9492,7 +9528,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-007"
           },
           {
@@ -9557,7 +9593,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-007"
           },
           {
@@ -9622,7 +9658,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-008"
           },
           {
@@ -9687,7 +9723,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Common",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mee-008"
           },
           {
@@ -9755,7 +9791,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-001"
           },
           {
@@ -9767,7 +9803,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-1:holofoil"
           },
           {
@@ -9823,7 +9859,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-002"
           },
           {
@@ -9835,7 +9871,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-2:holofoil"
           },
           {
@@ -9891,7 +9927,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-003"
           },
           {
@@ -9903,7 +9939,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-3:holofoil"
           },
           {
@@ -9959,7 +9995,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-004"
           },
           {
@@ -9971,7 +10007,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-4:holofoil"
           },
           {
@@ -10027,7 +10063,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-005"
           },
           {
@@ -10039,7 +10075,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-5:holofoil"
           },
           {
@@ -10095,7 +10131,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-006"
           },
           {
@@ -10107,7 +10143,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-6:holofoil"
           },
           {
@@ -10163,7 +10199,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-007"
           },
           {
@@ -10175,7 +10211,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-7:holofoil"
           },
           {
@@ -10231,7 +10267,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-008"
           },
           {
@@ -10243,7 +10279,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-8:holofoil"
           },
           {
@@ -10299,7 +10335,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-009"
           },
           {
@@ -10311,7 +10347,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-9:holofoil"
           },
           {
@@ -10367,7 +10403,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-010"
           },
           {
@@ -10379,7 +10415,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-10:holofoil"
           },
           {
@@ -10435,7 +10471,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-011"
           },
           {
@@ -10447,7 +10483,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-11:holofoil"
           },
           {
@@ -10503,7 +10539,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-012"
           },
           {
@@ -10515,7 +10551,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-12:holofoil"
           },
           {
@@ -10571,7 +10607,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-013"
           },
           {
@@ -10583,7 +10619,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-13:holofoil"
           },
           {
@@ -10636,7 +10672,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Uncommon",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-014"
           },
           {
@@ -10648,7 +10684,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-14:holofoil"
           }
         ]
@@ -10689,7 +10725,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Rare",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-015"
           },
           {
@@ -10701,7 +10737,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-15:holofoil"
           }
         ]
@@ -10742,7 +10778,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-016"
           },
           {
@@ -10754,7 +10790,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-16:holofoil"
           }
         ]
@@ -10795,7 +10831,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "Rare",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-017"
           },
           {
@@ -10807,7 +10843,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-17:holofoil"
           }
         ]
@@ -10851,7 +10887,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-018"
           },
           {
@@ -10863,7 +10899,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-18:holofoil"
           },
           {
@@ -10919,7 +10955,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-019"
           },
           {
@@ -10931,7 +10967,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-19:holofoil"
           },
           {
@@ -10987,7 +11023,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-020"
           },
           {
@@ -10999,7 +11035,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-20:holofoil"
           },
           {
@@ -11055,7 +11091,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-021"
           },
           {
@@ -11067,7 +11103,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-21:holofoil"
           },
           {
@@ -11123,7 +11159,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-022"
           },
           {
@@ -11135,7 +11171,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-22:holofoil"
           },
           {
@@ -11191,7 +11227,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-023"
           },
           {
@@ -11203,7 +11239,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-23:holofoil"
           },
           {
@@ -11259,7 +11295,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-024"
           },
           {
@@ -11271,7 +11307,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-24:holofoil"
           },
           {
@@ -11327,7 +11363,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-025"
           },
           {
@@ -11339,7 +11375,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-25:holofoil"
           },
           {
@@ -11395,7 +11431,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-026"
           },
           {
@@ -11407,7 +11443,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-26:holofoil"
           },
           {
@@ -11463,7 +11499,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-027"
           },
           {
@@ -11475,7 +11511,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-27:holofoil"
           },
           {
@@ -11527,7 +11563,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-028"
           },
           {
@@ -11583,7 +11619,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-029"
           },
           {
@@ -11595,7 +11631,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-29:holofoil"
           },
           {
@@ -11651,7 +11687,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-030"
           },
           {
@@ -11663,7 +11699,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-30:holofoil"
           },
           {
@@ -11716,7 +11752,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-031"
           },
           {
@@ -11728,7 +11764,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-31:holofoil"
           }
         ]
@@ -11772,7 +11808,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-032"
           },
           {
@@ -11784,7 +11820,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-32:holofoil"
           },
           {
@@ -11840,7 +11876,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-033"
           },
           {
@@ -11852,7 +11888,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-33:holofoil"
           },
           {
@@ -11908,7 +11944,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-034"
           },
           {
@@ -11920,7 +11956,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-34:holofoil"
           },
           {
@@ -11976,7 +12012,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-035"
           },
           {
@@ -11988,7 +12024,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-35:holofoil"
           },
           {
@@ -12044,7 +12080,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-036"
           },
           {
@@ -12056,7 +12092,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-36:holofoil"
           },
           {
@@ -12112,7 +12148,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-037"
           },
           {
@@ -12124,7 +12160,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-37:holofoil"
           },
           {
@@ -12180,7 +12216,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-038"
           },
           {
@@ -12192,7 +12228,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-38:holofoil"
           },
           {
@@ -12248,7 +12284,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-039"
           },
           {
@@ -12260,7 +12296,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-39:holofoil"
           },
           {
@@ -12316,7 +12352,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-040"
           },
           {
@@ -12328,7 +12364,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-40:holofoil"
           },
           {
@@ -12384,7 +12420,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-041"
           },
           {
@@ -12396,7 +12432,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-41:holofoil"
           },
           {
@@ -12452,7 +12488,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-042"
           },
           {
@@ -12464,7 +12500,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-42:holofoil"
           },
           {
@@ -12520,7 +12556,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-043"
           },
           {
@@ -12532,7 +12568,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-43:holofoil"
           },
           {
@@ -12588,7 +12624,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-044"
           },
           {
@@ -12600,7 +12636,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-44:holofoil"
           },
           {
@@ -12656,7 +12692,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-045"
           },
           {
@@ -12668,7 +12704,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-45:holofoil"
           },
           {
@@ -12724,7 +12760,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-064"
           },
           {
@@ -12736,7 +12772,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-64:holofoil"
           },
           {
@@ -12792,7 +12828,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-065"
           },
           {
@@ -12804,7 +12840,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-65:holofoil"
           },
           {
@@ -12860,7 +12896,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-066"
           },
           {
@@ -12872,7 +12908,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-66:holofoil"
           },
           {
@@ -12928,7 +12964,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-067"
           },
           {
@@ -12940,7 +12976,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-67:holofoil"
           },
           {
@@ -12992,7 +13028,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-068"
           },
           {
@@ -13044,7 +13080,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-069"
           },
           {
@@ -13100,7 +13136,7 @@
             "finish_key_raw": null,
             "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
             "rarity": "None",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "tcgdex:mep-070"
           },
           {
@@ -13112,7 +13148,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-70:holofoil"
           },
           {
@@ -13164,7 +13200,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-1:staffStamp"
           },
           {
@@ -13216,7 +13252,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-2:staffStamp"
           },
           {
@@ -13268,7 +13304,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-3:staffStamp"
           },
           {
@@ -13320,7 +13356,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-4:staffStamp"
           },
           {
@@ -13373,7 +13409,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-9:pokemonCenterStamp"
           },
           {
@@ -13438,7 +13474,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-10:pokemonCenterStamp"
           },
           {
@@ -13502,7 +13538,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-14:staffStamp"
           },
           {
@@ -13554,7 +13590,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-15:staffStamp"
           },
           {
@@ -13606,7 +13642,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-16:staffStamp"
           },
           {
@@ -13658,7 +13694,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-17:staffStamp"
           },
           {
@@ -13711,7 +13747,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-22:pokemonCenterStamp"
           },
           {
@@ -13775,7 +13811,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-28:asiaChampionshipStamp"
           },
           {
@@ -13828,7 +13864,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-31:pokemonCenterStamp"
           },
           {
@@ -13893,7 +13929,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-64:staffStamp"
           },
           {
@@ -13958,7 +13994,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-65:staffStamp"
           },
           {
@@ -14023,7 +14059,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-66:staffStamp"
           },
           {
@@ -14088,7 +14124,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-67:staffStamp"
           },
           {
@@ -14151,7 +14187,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-68:cosmosHolofoil"
           },
           {
@@ -14202,7 +14238,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-69:cosmosHolofoil"
           },
           {
@@ -14255,7 +14291,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-70:pokemonCenterStamp"
           },
           {
@@ -14318,7 +14354,7 @@
             "finish_key_raw": null,
             "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
             "rarity": "Promo",
-            "retrieved_at": "2026-06-08T18:24:41.247Z",
+            "retrieved_at": "2026-06-12T08:27:20.983Z",
             "raw_snapshot_ref": "thepricedex:mep:mep-71:holofoil"
           },
           {

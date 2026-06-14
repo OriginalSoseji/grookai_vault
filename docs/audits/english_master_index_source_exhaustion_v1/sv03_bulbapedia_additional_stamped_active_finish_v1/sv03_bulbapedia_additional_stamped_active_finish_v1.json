@@ -1,0 +1,579 @@
+{
+  "version": "sv03_bulbapedia_additional_stamped_active_finish_v1",
+  "generated_at": "2026-06-12T16:31:00.624Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "dry_run": false,
+  "source_key": "bulbapedia_sv03_additional_stamped_active_finish",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)",
+  "raw_source_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Obsidian_Flames_(TCG)&action=raw",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_stamped_active_finish_closure_queue_v1.json",
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_sv03_bulbapedia_additional_stamped_active_finish_v1",
+  "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_sv03_bulbapedia_additional_stamped_active_finish_v1/sv03.json",
+  "fingerprint_sha256": "20c8bfaaa462c9800069c13e22f5afcea2fe55d19f07edec121a8dba8b00806e",
+  "summary": {
+    "target_rows": 18,
+    "bulbapedia_entries_matched": 18,
+    "accepted_active_finish_identity_candidates": 4,
+    "fixture_records_generated": 4,
+    "write_ready_now": 0,
+    "by_status": {
+      "identity_only_no_active_finish": 14,
+      "accepted_active_finish_and_stamped_identity_review_candidate": 3,
+      "active_finish_only_identity_not_proven": 1
+    },
+    "by_accepted_finish": {
+      "cosmos": 2,
+      "reverse": 2
+    }
+  },
+  "results": [
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "22",
+      "card_name": "Toedscruel ex",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "play_pokemon_stamp",
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "evidence_label": "Pokémon TCG Gym stamped Present Pack exclusive (Malaysia/Singapore) | \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "pokemon_tcg_gym_present_pack_stamp"
+          ],
+          "evidence_label": "Pokémon TCG Gym stamped Present Pack exclusive (Malaysia/Singapore)",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        },
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "\"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "40",
+      "card_name": "Larvesta",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "battle_academy_deck_stamp"
+      ],
+      "evidence_label": "\"31\" Armarouge Deck stamp Battle Academy 2024 exclusive | \"44\" Armarouge Deck stamp Battle Academy 2024 exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "battle_academy_deck_stamp"
+          ],
+          "evidence_label": "\"31\" Armarouge Deck stamp Battle Academy 2024 exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        },
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "battle_academy_deck_stamp"
+          ],
+          "evidence_label": "\"44\" Armarouge Deck stamp Battle Academy 2024 exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "41",
+      "card_name": "Volcarona",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "battle_academy_deck_stamp"
+      ],
+      "evidence_label": "\"46\" Armarouge Deck stamp Battle Academy 2024 exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "battle_academy_deck_stamp"
+          ],
+          "evidence_label": "\"46\" Armarouge Deck stamp Battle Academy 2024 exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "42",
+      "card_name": "Eiscue ex",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "snowflake_symbol"
+      ],
+      "evidence_label": "Snowflake Symbol Holiday Calendar 2024 exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "snowflake_symbol"
+          ],
+          "evidence_label": "Snowflake Symbol Holiday Calendar 2024 exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "66",
+      "card_name": "Tyranitar ex",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "play_pokemon_stamp"
+      ],
+      "evidence_label": "\"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "\"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "92",
+      "card_name": "Lunatone",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "play_pokemon_stamp"
+      ],
+      "evidence_label": "\"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "\"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "95",
+      "card_name": "Claydol",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "play_pokemon_stamp"
+      ],
+      "evidence_label": "\"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "\"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "125",
+      "card_name": "Charizard ex",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "jumbo_stamp",
+        "play_pokemon_stamp"
+      ],
+      "evidence_label": "Jumbo \"Obsidian Flames\" stamp gift with purchase exclusive (Europe) | \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive; \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Five exclusive; \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Six exclusive",
+      "observations": [
+        {
+          "status": "blocked_jumbo_or_display_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "jumbo_stamp"
+          ],
+          "evidence_label": "Jumbo \"Obsidian Flames\" stamp gift with purchase exclusive (Europe)",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        },
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "\"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive; \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Five exclusive; \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Six exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "131",
+      "card_name": "Houndour",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "pikachu_jack_o_lantern_stamp"
+      ],
+      "evidence_label": "Pikachu jack-o'-lantern stamp Trick or Trade BOOster Bundle 2024 exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "pikachu_jack_o_lantern_stamp"
+          ],
+          "evidence_label": "Pikachu jack-o'-lantern stamp Trick or Trade BOOster Bundle 2024 exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "133",
+      "card_name": "Houndoom",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "pikachu_jack_o_lantern_stamp"
+      ],
+      "evidence_label": "Pikachu jack-o'-lantern stamp Trick or Trade BOOster Bundle 2024 exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "pikachu_jack_o_lantern_stamp"
+          ],
+          "evidence_label": "Pikachu jack-o'-lantern stamp Trick or Trade BOOster Bundle 2024 exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "136",
+      "card_name": "Darkrai",
+      "closure_lane": "active_finish_observed_identity_still_required",
+      "status": "accepted_active_finish_and_stamped_identity_review_candidate",
+      "accepted_finish_key": "cosmos",
+      "stamp_identity_keys": [
+        "pikachu_jack_o_lantern_stamp"
+      ],
+      "evidence_label": "Cosmos Holo Triple Whammy Tins Exclusive | Cosmos Holo Pikachu jack-o'-lantern stamp Trick or Trade BOOster Bundle 2024 exclusive",
+      "observations": [
+        {
+          "status": "active_finish_only_identity_not_proven",
+          "accepted_finish_key": "cosmos",
+          "stamp_identity_keys": [],
+          "evidence_label": "Cosmos Holo Triple Whammy Tins Exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        },
+        {
+          "status": "accepted_active_finish_and_stamped_identity_review_candidate",
+          "accepted_finish_key": "cosmos",
+          "stamp_identity_keys": [
+            "pikachu_jack_o_lantern_stamp"
+          ],
+          "evidence_label": "Cosmos Holo Pikachu jack-o'-lantern stamp Trick or Trade BOOster Bundle 2024 exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "139",
+      "card_name": "Salandit",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "battle_academy_deck_stamp"
+      ],
+      "evidence_label": "Darkrai Deck stamp Battle Academy 2024 exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "battle_academy_deck_stamp"
+          ],
+          "evidence_label": "Darkrai Deck stamp Battle Academy 2024 exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "140",
+      "card_name": "Salazzle",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "battle_academy_deck_stamp"
+      ],
+      "evidence_label": "Darkrai Deck stamp Battle Academy 2024 exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "battle_academy_deck_stamp"
+          ],
+          "evidence_label": "Darkrai Deck stamp Battle Academy 2024 exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "141",
+      "card_name": "Scizor",
+      "closure_lane": "active_finish_observed_identity_still_required",
+      "status": "active_finish_only_identity_not_proven",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "evidence_label": "Pokémon TCG Gym stamped Present Pack exclusive (Malaysia/Singapore) | Cosmos Holo Meddling Sparks Premium Collection exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "pokemon_tcg_gym_present_pack_stamp"
+          ],
+          "evidence_label": "Pokémon TCG Gym stamped Present Pack exclusive (Malaysia/Singapore)",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        },
+        {
+          "status": "active_finish_only_identity_not_proven",
+          "accepted_finish_key": "cosmos",
+          "stamp_identity_keys": [],
+          "evidence_label": "Cosmos Holo Meddling Sparks Premium Collection exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "164",
+      "card_name": "Pidgeot ex",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "great_ball_league_promo",
+        "play_pokemon_stamp",
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "evidence_label": "Pokémon TCG Gym stamped Present Pack exclusive (Malaysia/Singapore) | Great Ball League Promo (Malaysia/Singapore/Philippines) | \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive; \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Five exclusive; \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Six exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "pokemon_tcg_gym_present_pack_stamp"
+          ],
+          "evidence_label": "Pokémon TCG Gym stamped Present Pack exclusive (Malaysia/Singapore)",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        },
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "great_ball_league_promo"
+          ],
+          "evidence_label": "Great Ball League Promo (Malaysia/Singapore/Philippines)",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        },
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "\"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive; \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Five exclusive; \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Six exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "188",
+      "card_name": "Geeta",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "accepted_active_finish_and_stamped_identity_review_candidate",
+      "accepted_finish_key": "reverse",
+      "stamp_identity_keys": [
+        "regionals_2023_promo",
+        "regionals_2023_staff_promo"
+      ],
+      "evidence_label": "Reverse Holo Regionals 2023 promo | Reverse Holo Regionals 2023 Staff promo",
+      "observations": [
+        {
+          "status": "accepted_active_finish_and_stamped_identity_review_candidate",
+          "accepted_finish_key": "reverse",
+          "stamp_identity_keys": [
+            "regionals_2023_promo"
+          ],
+          "evidence_label": "Reverse Holo Regionals 2023 promo",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        },
+        {
+          "status": "accepted_active_finish_and_stamped_identity_review_candidate",
+          "accepted_finish_key": "reverse",
+          "stamp_identity_keys": [
+            "regionals_2023_staff_promo"
+          ],
+          "evidence_label": "Reverse Holo Regionals 2023 Staff promo",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "189",
+      "card_name": "Letter of Encouragement",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "identity_only_no_active_finish",
+      "accepted_finish_key": null,
+      "stamp_identity_keys": [
+        "play_pokemon_stamp",
+        "pokemon_tcg_gym_present_pack_stamp"
+      ],
+      "evidence_label": "Pokémon TCG Gym stamped Present Pack exclusive (Malaysia/Singapore) | \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive",
+      "observations": [
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "pokemon_tcg_gym_present_pack_stamp"
+          ],
+          "evidence_label": "Pokémon TCG Gym stamped Present Pack exclusive (Malaysia/Singapore)",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        },
+        {
+          "status": "identity_only_no_active_finish",
+          "accepted_finish_key": null,
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "\"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Four exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "196",
+      "card_name": "Town Store",
+      "closure_lane": "active_finish_source_acquisition_required",
+      "status": "accepted_active_finish_and_stamped_identity_review_candidate",
+      "accepted_finish_key": "cosmos",
+      "stamp_identity_keys": [
+        "play_pokemon_stamp"
+      ],
+      "evidence_label": "Cosmos Holo \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Six exclusive",
+      "observations": [
+        {
+          "status": "accepted_active_finish_and_stamped_identity_review_candidate",
+          "accepted_finish_key": "cosmos",
+          "stamp_identity_keys": [
+            "play_pokemon_stamp"
+          ],
+          "evidence_label": "Cosmos Holo \"Play! Pokémon\" Stamp Play! Pokémon Prize Pack Series Six exclusive",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        }
+      ],
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+    }
+  ],
+  "safety_confirmation": {
+    "audit_only": true,
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "write_ready_now": 0
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "package_id": "PKG-31B-EXTERNAL-ID-RELOCATION-CHILD-DELETE",
+  "generated_at": "2026-06-13T20:12:57.902Z",
+  "fingerprint": "3c7f3c848dae292c9fdd9fa0236b7455266bfa0e92a41038066377e08a93d911",
+  "artifact_json": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg31b_external_id_relocation_child_delete_guarded_dry_run_v1.json",
+  "safety": {
+    "no_global_apply": true,
+    "migrations_created": false,
+    "parent_writes": false,
+    "merges": false,
+    "quarantine": false
+  },
+  "summary": {
+    "mapping_transfers": 40,
+    "source_child_deletes": 40,
+    "by_target_rule": {
+      "h_number_external_id": 20,
+      "trainer_gallery_external_id": 20
+    }
+  },
+  "execution": {
+    "apply_status": "pkg31b_real_apply_committed",
+    "committed": true,
+    "dry_run_sql_hash": "3a65a8e5b08c61eb7ec23d815d7d2dd0be13aa028400a7ae20f3db076bfdb4a8",
+    "real_apply_sql_hash": "53fbe95d46280bd767860592e6164a9c8ce22a92cb8b1a595a134729d16095eb",
+    "result_count": 5,
+    "notices": [
+      "PKG-31B-EXTERNAL-ID-RELOCATION-CHILD-DELETE dry-run passed: mappings transferred 40, source children deleted 40, fingerprint 3c7f3c848dae292c9fdd9fa0236b7455266bfa0e92a41038066377e08a93d911"
+    ],
+    "post_apply_proof": {
+      "source_children_remaining": 0,
+      "target_children_present": 40,
+      "mappings_moved_to_targets": 40,
+      "mappings_remaining_on_source_children": 0,
+      "mappings_with_pkg31b_meta": 40
+    }
+  }
+}

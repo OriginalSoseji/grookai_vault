@@ -1,0 +1,2041 @@
+{
+  "generated_at": "2026-06-11T03:49:09.196Z",
+  "version": "english_master_index_pkg08b_parent_identity_adjudication_v1",
+  "package_id": "PKG-08B-PARENT-IDENTITY-ADJUDICATION",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "live_read": {
+    "available": true,
+    "reason": null,
+    "live_parent_rows_read": 24976
+  },
+  "summary": {
+    "source_rows": 46,
+    "adjudicated_rows": 46,
+    "by_adjudication_lane": {
+      "same_number_name_mismatch": 46
+    },
+    "top_sets_by_lane": {
+      "same_number_name_mismatch": [
+        {
+          "key": "bw11",
+          "count": 10
+        },
+        {
+          "key": "col1",
+          "count": 6
+        },
+        {
+          "key": "me03",
+          "count": 7
+        },
+        {
+          "key": "pl2",
+          "count": 19
+        },
+        {
+          "key": "pl4",
+          "count": 4
+        }
+      ]
+    },
+    "by_identity_pattern": {
+      "multiple_same_number_candidates": 2,
+      "unresolved_name_mismatch": 44
+    },
+    "top_sets_by_identity_pattern": {
+      "multiple_same_number_candidates": [
+        {
+          "key": "pl4",
+          "count": 2
+        }
+      ],
+      "unresolved_name_mismatch": [
+        {
+          "key": "bw11",
+          "count": 10
+        },
+        {
+          "key": "col1",
+          "count": 6
+        },
+        {
+          "key": "me03",
+          "count": 7
+        },
+        {
+          "key": "pl2",
+          "count": 19
+        },
+        {
+          "key": "pl4",
+          "count": 2
+        }
+      ]
+    },
+    "target_finish_present_on_same_number_candidate": 42,
+    "vault_referenced_rows": 0
+  },
+  "rows": [
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "16",
+      "card_name": "Bronzong 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "2552ac51-9214-4017-b2ed-ba165631338e",
+          "set_code": "pl2",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Bronzong E4",
+          "rarity": "Rare",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-16",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "17",
+      "card_name": "Drapion 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "ba220027-ac17-4275-abee-67dda9805044",
+          "set_code": "pl2",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Drapion E4",
+          "rarity": "Rare",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-17",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "18",
+      "card_name": "Espeon 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "4a88d956-5f65-4eeb-afef-38213e983283",
+          "set_code": "pl2",
+          "number": "18",
+          "number_plain": "18",
+          "name": "Espeon E4",
+          "rarity": "Rare",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-18",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "20",
+      "card_name": "Gallade 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "0fdb9d12-93e2-49c1-9808-b549b6140910",
+          "set_code": "pl2",
+          "number": "20",
+          "number_plain": "20",
+          "name": "Gallade E4",
+          "rarity": "Rare",
+          "finishes": [
+            "cosmos",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-20",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "23",
+      "card_name": "Golem 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "39ed3b66-9cd7-4408-a8f6-b516ad516748",
+          "set_code": "pl2",
+          "number": "23",
+          "number_plain": "23",
+          "name": "Golem E4",
+          "rarity": "Rare",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-23",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "24",
+      "card_name": "Heracross 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "49472547-a8ec-40f2-a7cf-02f5f2c6d1cb",
+          "set_code": "pl2",
+          "number": "24",
+          "number_plain": "24",
+          "name": "Heracross E4",
+          "rarity": "Rare",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-24",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "28",
+      "card_name": "Mr. Mime 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "e6210a44-e44d-493c-9881-830291830e5e",
+          "set_code": "pl2",
+          "number": "28",
+          "number_plain": "28",
+          "name": "Mr. Mime E4",
+          "rarity": "Rare",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-28",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "32",
+      "card_name": "Rhyperior 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "11e2a93f-811f-48a9-a4c6-81a835711554",
+          "set_code": "pl2",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Rhyperior E4",
+          "rarity": "Rare",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-32",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "35",
+      "card_name": "Vespiquen 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "1decc8b2-0cf2-4179-9832-61e34d6cffaa",
+          "set_code": "pl2",
+          "number": "35",
+          "number_plain": "35",
+          "name": "Vespiquen E4",
+          "rarity": "Rare",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-35",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "37",
+      "card_name": "Yanmega 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "2eb41fa2-8722-4058-a482-aa119ac76085",
+          "set_code": "pl2",
+          "number": "37",
+          "number_plain": "37",
+          "name": "Yanmega E4",
+          "rarity": "Rare",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-37",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "38",
+      "card_name": "Alakazam 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "7963fb5b-b97c-469b-b2f9-be03ce3cf2f4",
+          "set_code": "pl2",
+          "number": "38",
+          "number_plain": "38",
+          "name": "Alakazam E4",
+          "rarity": "Uncommon",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-38",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "42",
+      "card_name": "Hippowdon 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "249bd976-5328-4776-8a4a-80d10da8cb93",
+          "set_code": "pl2",
+          "number": "42",
+          "number_plain": "42",
+          "name": "Hippowdon E4",
+          "rarity": "Uncommon",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-42",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "43",
+      "card_name": "Infernape 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "70264f85-14f5-4286-955e-e09abc63fe1f",
+          "set_code": "pl2",
+          "number": "43",
+          "number_plain": "43",
+          "name": "Infernape E4",
+          "rarity": "Uncommon",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-43",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "47",
+      "card_name": "Rapidash 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "8dcd0887-b4a3-40e9-9634-dd9caea49a90",
+          "set_code": "pl2",
+          "number": "47",
+          "number_plain": "47",
+          "name": "Rapidash E4",
+          "rarity": "Uncommon",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-47",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "48",
+      "card_name": "Scizor 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "9b3c0b77-e9a6-43e3-b0b9-c6474c31e0ed",
+          "set_code": "pl2",
+          "number": "48",
+          "number_plain": "48",
+          "name": "Scizor E4",
+          "rarity": "Uncommon",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-48",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "54",
+      "card_name": "Whiscash 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "f6debf35-d35f-4df7-bc1c-a263bdf54992",
+          "set_code": "pl2",
+          "number": "54",
+          "number_plain": "54",
+          "name": "Whiscash E4",
+          "rarity": "Uncommon",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-54",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "60",
+      "card_name": "Flareon 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "915a6f3a-8075-46d5-9c32-c992a8581c60",
+          "set_code": "pl2",
+          "number": "60",
+          "number_plain": "60",
+          "name": "Flareon E4",
+          "rarity": "Common",
+          "finishes": [
+            "cracked_ice",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-60",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "62",
+      "card_name": "Gliscor 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "3a8e4066-b4b0-41b8-bffc-8d69d321183b",
+          "set_code": "pl2",
+          "number": "62",
+          "number_plain": "62",
+          "name": "Gliscor E4",
+          "rarity": "Common",
+          "finishes": [
+            "cracked_ice",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-62",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "65",
+      "card_name": "Houndoom 4",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "f3bc2983-3597-4bd7-a437-fe7fe4570fbb",
+          "set_code": "pl2",
+          "number": "65",
+          "number_plain": "65",
+          "name": "Houndoom E4",
+          "rarity": "Common",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl2-65",
+        "https://reverseholo.app/sets/pl2"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "multiple_same_number_candidates",
+      "identity_pattern_reason": "More than one live parent has the same set and number.",
+      "confidence": "blocked",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "12",
+      "card_name": "Zapdos G",
+      "finish_key": "holo",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 2,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos",
+          "rarity": "Rare Holo",
+          "finishes": [
+            "holo",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        },
+        {
+          "card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "rarity": "Rare",
+          "finishes": [
+            "holo",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 3,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/pl4-12",
+        "https://www.thepricedex.com/set/pl4/arceus/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "multiple_same_number_candidates",
+      "identity_pattern_reason": "More than one live parent has the same set and number.",
+      "confidence": "blocked",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "12",
+      "card_name": "Zapdos G",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 2,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "set_code": "pl4",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Zapdos",
+          "rarity": "Rare Holo",
+          "finishes": [
+            "holo",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        },
+        {
+          "card_print_id": "6b44fbe5-21e8-4ee9-9065-195f24d74eb8",
+          "set_code": "pl4",
+          "number": "SH12",
+          "number_plain": "12",
+          "name": "Shinx",
+          "rarity": "Rare",
+          "finishes": [
+            "holo",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 3,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/pl4-12",
+        "https://www.thepricedex.com/set/pl4/arceus/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "26",
+      "card_name": "Porygon-Z",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "177d5026-d94e-4662-a008-cf20d6a35ef0",
+          "set_code": "pl4",
+          "number": "26",
+          "number_plain": "26",
+          "name": "Porygon-Z G",
+          "rarity": "Rare",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 2,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl4-26",
+        "https://reverseholo.app/sets/pl4"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_number": "53",
+      "card_name": "Beedrill",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "6d6576aa-99bf-4381-96b1-af58ab28d5c2",
+          "set_code": "pl4",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Beedrill G",
+          "rarity": "Common",
+          "finishes": [
+            "normal",
+            "reverse"
+          ],
+          "child_count": 2,
+          "external_mapping_count": 2,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/pl4-53",
+        "https://reverseholo.app/sets/pl4"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "1",
+      "card_name": "Clefable",
+      "finish_key": "holo",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+          "set_code": "col1",
+          "number": "SL1",
+          "number_plain": "1",
+          "name": "Deoxys",
+          "rarity": "Rare Holo",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 3,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/col1-1",
+        "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "1",
+      "card_name": "Clefable",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+          "set_code": "col1",
+          "number": "SL1",
+          "number_plain": "1",
+          "name": "Deoxys",
+          "rarity": "Rare Holo",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 3,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/col1-1",
+        "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "5",
+      "card_name": "Forretress",
+      "finish_key": "holo",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+          "set_code": "col1",
+          "number": "SL5",
+          "number_plain": "5",
+          "name": "Ho-Oh",
+          "rarity": "Rare Holo",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 3,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/col1-5",
+        "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "5",
+      "card_name": "Forretress",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+          "set_code": "col1",
+          "number": "SL5",
+          "number_plain": "5",
+          "name": "Ho-Oh",
+          "rarity": "Rare Holo",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 3,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/col1-5",
+        "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "10",
+      "card_name": "Houndoom",
+      "finish_key": "holo",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "5a3c4254-5da6-40c9-9025-335e01d542f0",
+          "set_code": "col1",
+          "number": "SL10",
+          "number_plain": "10",
+          "name": "Rayquaza",
+          "rarity": "Rare Holo",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 3,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/col1-10",
+        "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "10",
+      "card_name": "Houndoom",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "5a3c4254-5da6-40c9-9025-335e01d542f0",
+          "set_code": "col1",
+          "number": "SL10",
+          "number_plain": "10",
+          "name": "Rayquaza",
+          "rarity": "Rare Holo",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 3,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/col1-10",
+        "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "2",
+      "card_name": "Tangrowth",
+      "finish_key": "normal",
+      "source_count": 4,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "89837790-de7e-4c54-9c94-6a7295c96b79",
+          "set_code": "bw11",
+          "number": "RC2",
+          "number_plain": "2",
+          "name": "Servine",
+          "rarity": "Common",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/bw11-2",
+        "https://api.tcgdex.net/v2/en/cards/bw11-2",
+        "https://prices.pokemontcg.io/tcgplayer/bw11-2",
+        "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "2",
+      "card_name": "Tangrowth",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "89837790-de7e-4c54-9c94-6a7295c96b79",
+          "set_code": "bw11",
+          "number": "RC2",
+          "number_plain": "2",
+          "name": "Servine",
+          "rarity": "Common",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/bw11-2",
+        "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "8",
+      "card_name": "Serperior",
+      "finish_key": "holo",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "cbcaa8a7-8321-4230-bdea-73a31e27f898",
+          "set_code": "bw11",
+          "number": "RC8",
+          "number_plain": "8",
+          "name": "Ralts",
+          "rarity": "Common",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/bw11-8",
+        "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "8",
+      "card_name": "Serperior",
+      "finish_key": "reverse",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "cbcaa8a7-8321-4230-bdea-73a31e27f898",
+          "set_code": "bw11",
+          "number": "RC8",
+          "number_plain": "8",
+          "name": "Ralts",
+          "rarity": "Common",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/bw11-8",
+        "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "11",
+      "card_name": "Swadloon",
+      "finish_key": "normal",
+      "source_count": 4,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "4b71e349-537f-42eb-a529-04491544d650",
+          "set_code": "bw11",
+          "number": "RC11",
+          "number_plain": "11",
+          "name": "Meloetta-EX",
+          "rarity": "Rare",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/bw11-11",
+        "https://api.tcgdex.net/v2/en/cards/bw11-11",
+        "https://prices.pokemontcg.io/tcgplayer/bw11-11",
+        "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "11",
+      "card_name": "Swadloon",
+      "finish_key": "reverse",
+      "source_count": 3,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "4b71e349-537f-42eb-a529-04491544d650",
+          "set_code": "bw11",
+          "number": "RC11",
+          "number_plain": "11",
+          "name": "Meloetta-EX",
+          "rarity": "Rare",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/bw11-11",
+        "https://reverseholo.app/sets/bw11",
+        "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "17",
+      "card_name": "Charmander",
+      "finish_key": "normal",
+      "source_count": 4,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "72398f5c-8931-4eec-8243-86d11ea4231b",
+          "set_code": "bw11",
+          "number": "RC17",
+          "number_plain": "17",
+          "name": "Audino",
+          "rarity": "Common",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/bw11-17",
+        "https://api.tcgdex.net/v2/en/cards/bw11-17",
+        "https://prices.pokemontcg.io/tcgplayer/bw11-17",
+        "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "17",
+      "card_name": "Charmander",
+      "finish_key": "reverse",
+      "source_count": 3,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "72398f5c-8931-4eec-8243-86d11ea4231b",
+          "set_code": "bw11",
+          "number": "RC17",
+          "number_plain": "17",
+          "name": "Audino",
+          "rarity": "Common",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/bw11-17",
+        "https://reverseholo.app/sets/bw11",
+        "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "25",
+      "card_name": "Tepig",
+      "finish_key": "normal",
+      "source_count": 4,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "3628261c-3aef-4c27-93b6-64144552b6bf",
+          "set_code": "bw11",
+          "number": "RC25",
+          "number_plain": "25",
+          "name": "Meloetta-EX",
+          "rarity": "Rare Ultra",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/bw11-25",
+        "https://api.tcgdex.net/v2/en/cards/bw11-25",
+        "https://prices.pokemontcg.io/tcgplayer/bw11-25",
+        "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "25",
+      "card_name": "Tepig",
+      "finish_key": "reverse",
+      "source_count": 3,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "3628261c-3aef-4c27-93b6-64144552b6bf",
+          "set_code": "bw11",
+          "number": "RC25",
+          "number_plain": "25",
+          "name": "Meloetta-EX",
+          "rarity": "Rare Ultra",
+          "finishes": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "child_count": 3,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/bw11-25",
+        "https://reverseholo.app/sets/bw11",
+        "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "me03",
+      "set_name": "Perfect Order",
+      "card_number": "080",
+      "card_name": "Poké Ball",
+      "finish_key": "normal",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": false,
+      "same_number_candidates": [
+        {
+          "card_print_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+          "set_code": "me03",
+          "number": "080",
+          "number_plain": "080",
+          "name": "Poke Ball",
+          "rarity": "Common",
+          "finishes": [
+            "reverse"
+          ],
+          "child_count": 1,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/me03-080",
+        "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "me03",
+      "set_name": "Perfect Order",
+      "card_number": "080",
+      "card_name": "Poké Ball",
+      "finish_key": "reverse",
+      "source_count": 3,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+          "set_code": "me03",
+          "number": "080",
+          "number_plain": "080",
+          "name": "Poke Ball",
+          "rarity": "Common",
+          "finishes": [
+            "reverse"
+          ],
+          "child_count": 1,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/me03-080",
+        "https://reverseholo.app/sets/me03",
+        "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "me03",
+      "set_name": "Perfect Order",
+      "card_number": "081",
+      "card_name": "Poké Pad",
+      "finish_key": "normal",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": false,
+      "same_number_candidates": [
+        {
+          "card_print_id": "377086c4-b968-4335-aa44-54b0b518e913",
+          "set_code": "me03",
+          "number": "081",
+          "number_plain": "081",
+          "name": "Poke Pad",
+          "rarity": "Uncommon",
+          "finishes": [
+            "reverse"
+          ],
+          "child_count": 1,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/me03-081",
+        "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "me03",
+      "set_name": "Perfect Order",
+      "card_number": "081",
+      "card_name": "Poké Pad",
+      "finish_key": "reverse",
+      "source_count": 3,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "377086c4-b968-4335-aa44-54b0b518e913",
+          "set_code": "me03",
+          "number": "081",
+          "number_plain": "081",
+          "name": "Poke Pad",
+          "rarity": "Uncommon",
+          "finishes": [
+            "reverse"
+          ],
+          "child_count": 1,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/me03-081",
+        "https://reverseholo.app/sets/me03",
+        "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "me03",
+      "set_name": "Perfect Order",
+      "card_number": "082",
+      "card_name": "Pokémon Catcher",
+      "finish_key": "normal",
+      "source_count": 2,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": false,
+      "same_number_candidates": [
+        {
+          "card_print_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+          "set_code": "me03",
+          "number": "082",
+          "number_plain": "082",
+          "name": "Pokemon Catcher",
+          "rarity": "Common",
+          "finishes": [
+            "reverse"
+          ],
+          "child_count": 1,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/me03-082",
+        "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "me03",
+      "set_name": "Perfect Order",
+      "card_number": "082",
+      "card_name": "Pokémon Catcher",
+      "finish_key": "reverse",
+      "source_count": 3,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": true,
+      "same_number_candidates": [
+        {
+          "card_print_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+          "set_code": "me03",
+          "number": "082",
+          "number_plain": "082",
+          "name": "Pokemon Catcher",
+          "rarity": "Common",
+          "finishes": [
+            "reverse"
+          ],
+          "child_count": 1,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/me03-082",
+        "https://reverseholo.app/sets/me03",
+        "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+      ]
+    },
+    {
+      "adjudication_lane": "same_number_name_mismatch",
+      "recommended_next_action": "Manual identity review required before parent update, merge, or child insertion.",
+      "identity_pattern": "unresolved_name_mismatch",
+      "identity_pattern_reason": "The live same-number parent name is not equivalent under the current safe normalization rules.",
+      "confidence": "manual_review_required",
+      "set_key": "me03",
+      "set_name": "Perfect Order",
+      "card_number": "113",
+      "card_name": "Poké Pad",
+      "finish_key": "holo",
+      "source_count": 3,
+      "exact_parent_match_count": 0,
+      "same_number_candidate_count": 1,
+      "same_number_candidate_has_target_finish": false,
+      "same_number_candidates": [
+        {
+          "card_print_id": "6254904f-1f84-4f58-99c6-d4a06731adc0",
+          "set_code": "me03",
+          "number": "113",
+          "number_plain": "113",
+          "name": "Poke Pad",
+          "rarity": "Ultra Rare",
+          "finishes": [],
+          "child_count": 0,
+          "external_mapping_count": 1,
+          "vault_item_count": 0
+        }
+      ],
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/me03-113",
+        "https://reverseholo.app/sets/me03",
+        "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+      ]
+    }
+  ]
+}

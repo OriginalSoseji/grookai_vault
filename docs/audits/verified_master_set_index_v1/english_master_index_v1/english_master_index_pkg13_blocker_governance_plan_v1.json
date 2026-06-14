@@ -1,0 +1,417 @@
+{
+  "generated_at": "2026-06-11T13:27:40.852Z",
+  "version": "english_master_index_pkg13_blocker_governance_plan_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "mapping_sources": {
+    "available": true,
+    "rows": [
+      {
+        "source": "tcgdex",
+        "rows": 22669
+      },
+      {
+        "source": "justtcg",
+        "rows": 19989
+      },
+      {
+        "source": "tcgplayer",
+        "rows": 14118
+      },
+      {
+        "source": "pokemonapi",
+        "rows": 7856
+      },
+      {
+        "source": "tcgcollector",
+        "rows": 104
+      }
+    ]
+  },
+  "remaining_summary": {
+    "master_verified_printings": 38841,
+    "reconciliation_master_verified_printings": 38451,
+    "remaining_missing_rows": 1346,
+    "by_lane": {
+      "blocked_finish_taxonomy": 1346
+    },
+    "top_sets_by_lane": {
+      "blocked_finish_taxonomy": [
+        {
+          "key": "svp",
+          "count": 70
+        },
+        {
+          "key": "smp",
+          "count": 59
+        },
+        {
+          "key": "swsh9",
+          "count": 46
+        },
+        {
+          "key": "swshp",
+          "count": 46
+        },
+        {
+          "key": "swsh7",
+          "count": 45
+        },
+        {
+          "key": "sv02",
+          "count": 42
+        },
+        {
+          "key": "swsh11",
+          "count": 40
+        },
+        {
+          "key": "swsh8",
+          "count": 40
+        },
+        {
+          "key": "sv05",
+          "count": 37
+        },
+        {
+          "key": "swsh6",
+          "count": 37
+        },
+        {
+          "key": "swsh10",
+          "count": 35
+        },
+        {
+          "key": "swsh5",
+          "count": 35
+        },
+        {
+          "key": "swsh1",
+          "count": 34
+        },
+        {
+          "key": "sv10",
+          "count": 32
+        },
+        {
+          "key": "me01",
+          "count": 31
+        },
+        {
+          "key": "swsh12",
+          "count": 28
+        },
+        {
+          "key": "sv09",
+          "count": 27
+        },
+        {
+          "key": "sv08.5",
+          "count": 24
+        },
+        {
+          "key": "swsh3",
+          "count": 24
+        },
+        {
+          "key": "sv07",
+          "count": 21
+        }
+      ]
+    },
+    "by_finish": {
+      "stamped": 1346
+    }
+  },
+  "non_tcgdex_parent_insert_readiness_summary": {
+    "source_rows": 4,
+    "classified_rows": 4,
+    "by_readiness_status": {
+      "blocked_mapping_source_governance_required": 2,
+      "blocked_no_stable_card_external_id": 2
+    },
+    "top_sets_by_readiness_status": {
+      "blocked_mapping_source_governance_required": [
+        {
+          "key": "mep",
+          "count": 2
+        }
+      ],
+      "blocked_no_stable_card_external_id": [
+        {
+          "key": "svp",
+          "count": 2
+        }
+      ]
+    },
+    "ready_for_non_tcgdex_parent_insert_dry_run": 0,
+    "blocked_mapping_source_governance_required": 2,
+    "blocked_no_stable_card_external_id": 2,
+    "blocked_existing_external_mapping_collision": 0,
+    "ready_rows_by_preferred_source": {},
+    "ready_rows_by_set": {}
+  },
+  "remaining_parent_blockers": [],
+  "tcgdex_live_checks": [],
+  "stamped_summary": {
+    "stamped_blocker_rows": 1346,
+    "preserved_fixture_stamped_records": 3134,
+    "rows_with_preserved_fixture_evidence": 1339,
+    "ready_for_guarded_parent_identity_insert": 187,
+    "ready_with_dependency_awareness": 4,
+    "blocked_or_review_rows": 1155,
+    "by_readiness_status": {
+      "blocked_manual_review": 1016,
+      "ready_for_guarded_parent_identity_insert": 187,
+      "blocked_base_parent_missing": 89,
+      "already_has_stamped_variant_collision": 26,
+      "blocked_base_parent_ambiguous": 24,
+      "ready_for_guarded_parent_identity_insert_with_dependency_awareness": 4
+    },
+    "by_stamp_confidence": {
+      "generic_stamped_only": 1108,
+      "exact_label": 147,
+      "derived_from_product_rule": 67,
+      "derived_from_prize_pack_league_promo": 17,
+      "missing_stamp_phrase": 7
+    },
+    "by_proposed_variant_key": {
+      "unknown": 1115,
+      "staff_stamp": 73,
+      "battle_academy_deck_mark": 67,
+      "play_pokemon_stamp": 26,
+      "prerelease_stamp": 20,
+      "stamped": 11,
+      "pikachu_stamp": 4,
+      "professor_program_stamped_2004_2005": 4,
+      "platinum_stamped_burger_king_2009": 2,
+      "snowflake_stamp": 2,
+      "17_cinderace_stamped": 1,
+      "31_cinderace_stamped": 1,
+      "42_cinderace_stamp": 1,
+      "alolan_raichu_half_deck_14_stamp": 1,
+      "cinderace_stamp": 1,
+      "games_expo_stamped_2007": 1,
+      "gym_challenge_stamped_2006_2007": 1,
+      "gym_stamp": 1,
+      "indianapolis_gencon_stamped_2005": 1,
+      "jr_stamp_rally": 1,
+      "origins_game_fair_stamped_200": 1,
+      "pikachu_pumpkin_stamp": 1,
+      "pok_ball_stamped_player_rewards_promo_2009_2010": 1,
+      "pokemon_10th_anniversary_stamped": 1,
+      "pokemon_rocks_america_stamped_2005": 1,
+      "professor_program_stamped_2006_2007": 1,
+      "professor_program_stamped_march_2011": 1,
+      "professor_program_stamped_promo_january_2013": 1,
+      "san_diego_comic_con_international_stamped_2005": 1,
+      "snowflake_stamped": 1,
+      "winner_stamped_e_league_mar_2004": 1,
+      "world_championships_2025_staff_stamp": 1
+    },
+    "by_set": {
+      "svp": 71,
+      "smp": 57,
+      "swshp": 47,
+      "swsh9": 46,
+      "swsh7": 44,
+      "sv02": 40,
+      "swsh8": 40,
+      "swsh11": 39,
+      "swsh6": 39,
+      "sv05": 37,
+      "swsh1": 35,
+      "swsh10": 35,
+      "swsh5": 35,
+      "sv10": 32,
+      "me01": 31,
+      "swsh12": 28,
+      "sv09": 27,
+      "sv08.5": 24,
+      "swsh3": 24,
+      "mep": 23,
+      "sv07": 21,
+      "xyp": 19,
+      "bw1": 18,
+      "swsh2": 17,
+      "sve": 16,
+      "swsh4": 16,
+      "dp1": 15,
+      "sm1": 15,
+      "dp5": 13,
+      "sv06.5": 13,
+      "swsh12.5": 13,
+      "bwp": 12,
+      "pl3": 12,
+      "sm8": 12,
+      "sm5": 11,
+      "dp2": 10,
+      "hgss2": 10,
+      "bw5": 9,
+      "col1": 9,
+      "hgss1": 9,
+      "sm115": 9,
+      "sm3": 9,
+      "sv03.5": 9,
+      "xy1": 9,
+      "bw3": 8,
+      "dp6": 8,
+      "dv1": 8,
+      "pl2": 8,
+      "sm4": 8,
+      "sm6": 8,
+      "dp3": 7,
+      "ex9": 7,
+      "g1": 7,
+      "sm7": 7,
+      "swsh3.5": 7,
+      "wp": 7,
+      "xy12": 7,
+      "xy9": 7,
+      "bog": 6,
+      "dp4": 6,
+      "sm11": 6,
+      "sm2": 6,
+      "xy11": 6,
+      "xy3": 6,
+      "xy8": 6,
+      "ex1": 5,
+      "ex14": 5,
+      "ex3": 5,
+      "ex5": 5,
+      "pl1": 5,
+      "xy10": 5,
+      "xy2": 5,
+      "bw9": 4,
+      "ex8": 4,
+      "hgss3": 4,
+      "hgss4": 4,
+      "sm12": 4,
+      "base5": 3,
+      "basep": 3,
+      "bw11": 3,
+      "bw2": 3,
+      "bw8": 3,
+      "dpp": 3,
+      "ex11": 3,
+      "ex12": 3,
+      "pl4": 3,
+      "swsh4.5": 3,
+      "xy0": 3,
+      "base2": 2,
+      "base3": 2,
+      "bw10": 2,
+      "bw6": 2,
+      "bw7": 2,
+      "dp7": 2,
+      "ex10": 2,
+      "ex15": 2,
+      "ex6": 2,
+      "gym1": 2,
+      "np": 2,
+      "sm10": 2,
+      "sm7.5": 2,
+      "sm9": 2,
+      "sv10.5b": 2,
+      "swsh10.5": 2,
+      "xy4": 2,
+      "xy6": 2,
+      "xy7": 2,
+      "base1": 1,
+      "base4": 1,
+      "bw4": 1,
+      "ex13": 1,
+      "ex16": 1,
+      "ex2": 1,
+      "ex4": 1,
+      "ex7": 1,
+      "gym2": 1,
+      "me02": 1,
+      "pop6": 1,
+      "pop9": 1,
+      "sv10.5w": 1,
+      "xy5": 1
+    }
+  },
+  "stamped_routing_summary": {
+    "candidate_rows_reviewed": 191,
+    "exact_label_routed_rows": 0,
+    "single_base_finish_rows": 0,
+    "blocked_rows": 191,
+    "by_routing_status": {
+      "blocked_missing_exact_finish_phrase": 183,
+      "blocked_claimed_finish_not_on_base_parent": 8
+    },
+    "by_target_finish_key": {},
+    "by_set": {
+      "svp": 19,
+      "swsh8": 17,
+      "smp": 11,
+      "sm115": 9,
+      "swsh1": 9,
+      "pl3": 8,
+      "dp5": 6,
+      "dp6": 6,
+      "sm11": 6,
+      "ex1": 5,
+      "sm1": 5,
+      "xyp": 5,
+      "bw1": 4,
+      "dp1": 4,
+      "hgss2": 4,
+      "sm8": 4,
+      "sv10": 4,
+      "xy12": 4,
+      "bwp": 3,
+      "ex11": 3,
+      "ex9": 3,
+      "pl4": 3,
+      "sm5": 3,
+      "dp7": 2,
+      "ex10": 2,
+      "ex12": 2,
+      "ex15": 2,
+      "ex8": 2,
+      "hgss1": 2,
+      "swsh4": 2,
+      "swsh6": 2,
+      "basep": 1,
+      "bw2": 1,
+      "bw3": 1,
+      "bw4": 1,
+      "bw5": 1,
+      "col1": 1,
+      "dp2": 1,
+      "dp3": 1,
+      "dp4": 1,
+      "ex13": 1,
+      "ex14": 1,
+      "ex16": 1,
+      "ex2": 1,
+      "ex4": 1,
+      "ex5": 1,
+      "ex6": 1,
+      "hgss3": 1,
+      "hgss4": 1,
+      "me01": 1,
+      "pl1": 1,
+      "pl2": 1,
+      "sm10": 1,
+      "sm3": 1,
+      "sm9": 1,
+      "swsh3": 1,
+      "swsh5": 1,
+      "swsh9": 1,
+      "swshp": 1,
+      "xy1": 1,
+      "xy11": 1
+    }
+  },
+  "stop_findings": [
+    "stamped_finish_routing_not_write_ready"
+  ]
+}

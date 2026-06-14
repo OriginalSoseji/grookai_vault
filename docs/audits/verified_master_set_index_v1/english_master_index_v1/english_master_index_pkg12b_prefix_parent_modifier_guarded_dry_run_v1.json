@@ -1,0 +1,1012 @@
+{
+  "generated_at": "2026-06-11T04:20:05.986Z",
+  "version": "english_master_index_pkg12b_prefix_parent_modifier_guarded_dry_run_v1",
+  "package_id": "PKG-12B-PREFIX-PARENT-MODIFIER-BACKFILL",
+  "source_strategy_fingerprint_sha256": "c5751c15f7f66c9fb10e5fb69069134821bcdf9bd6d471721dea9e2811fc1e26",
+  "package_fingerprint_sha256": "8ed6e275500a4b1395a22a5edeaac47dfb82434220bc6a49323d4deb5cef3a71",
+  "rollback_only": true,
+  "dry_run_status": "pkg12b_prefix_parent_modifier_completed_rolled_back_no_durable_change",
+  "durable_db_writes_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_authorized": false,
+  "scope": {
+    "target_update_rows": 8,
+    "by_prefix": {
+      "RC": 5,
+      "SL": 3
+    },
+    "by_set": {
+      "bw11": 5,
+      "col1": 3
+    },
+    "target_rows": [
+      {
+        "card_print_id": "4b71e349-537f-42eb-a529-04491544d650",
+        "set_key": "bw11",
+        "card_number": "RC11",
+        "expected_number_plain": "11",
+        "card_name": "Meloetta-EX",
+        "prefix": "RC",
+        "target_printed_identity_modifier": "number_prefix:RC",
+        "protected_for_master_rows": [
+          {
+            "set_key": "bw11",
+            "card_number": "11",
+            "card_name": "Swadloon",
+            "finish_key": "normal"
+          },
+          {
+            "set_key": "bw11",
+            "card_number": "11",
+            "card_name": "Swadloon",
+            "finish_key": "reverse"
+          }
+        ]
+      },
+      {
+        "card_print_id": "72398f5c-8931-4eec-8243-86d11ea4231b",
+        "set_key": "bw11",
+        "card_number": "RC17",
+        "expected_number_plain": "17",
+        "card_name": "Audino",
+        "prefix": "RC",
+        "target_printed_identity_modifier": "number_prefix:RC",
+        "protected_for_master_rows": [
+          {
+            "set_key": "bw11",
+            "card_number": "17",
+            "card_name": "Charmander",
+            "finish_key": "normal"
+          },
+          {
+            "set_key": "bw11",
+            "card_number": "17",
+            "card_name": "Charmander",
+            "finish_key": "reverse"
+          }
+        ]
+      },
+      {
+        "card_print_id": "89837790-de7e-4c54-9c94-6a7295c96b79",
+        "set_key": "bw11",
+        "card_number": "RC2",
+        "expected_number_plain": "2",
+        "card_name": "Servine",
+        "prefix": "RC",
+        "target_printed_identity_modifier": "number_prefix:RC",
+        "protected_for_master_rows": [
+          {
+            "set_key": "bw11",
+            "card_number": "2",
+            "card_name": "Tangrowth",
+            "finish_key": "normal"
+          },
+          {
+            "set_key": "bw11",
+            "card_number": "2",
+            "card_name": "Tangrowth",
+            "finish_key": "reverse"
+          }
+        ]
+      },
+      {
+        "card_print_id": "3628261c-3aef-4c27-93b6-64144552b6bf",
+        "set_key": "bw11",
+        "card_number": "RC25",
+        "expected_number_plain": "25",
+        "card_name": "Meloetta-EX",
+        "prefix": "RC",
+        "target_printed_identity_modifier": "number_prefix:RC",
+        "protected_for_master_rows": [
+          {
+            "set_key": "bw11",
+            "card_number": "25",
+            "card_name": "Tepig",
+            "finish_key": "normal"
+          },
+          {
+            "set_key": "bw11",
+            "card_number": "25",
+            "card_name": "Tepig",
+            "finish_key": "reverse"
+          }
+        ]
+      },
+      {
+        "card_print_id": "cbcaa8a7-8321-4230-bdea-73a31e27f898",
+        "set_key": "bw11",
+        "card_number": "RC8",
+        "expected_number_plain": "8",
+        "card_name": "Ralts",
+        "prefix": "RC",
+        "target_printed_identity_modifier": "number_prefix:RC",
+        "protected_for_master_rows": [
+          {
+            "set_key": "bw11",
+            "card_number": "8",
+            "card_name": "Serperior",
+            "finish_key": "holo"
+          },
+          {
+            "set_key": "bw11",
+            "card_number": "8",
+            "card_name": "Serperior",
+            "finish_key": "reverse"
+          }
+        ]
+      },
+      {
+        "card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+        "set_key": "col1",
+        "card_number": "SL1",
+        "expected_number_plain": "1",
+        "card_name": "Deoxys",
+        "prefix": "SL",
+        "target_printed_identity_modifier": "number_prefix:SL",
+        "protected_for_master_rows": [
+          {
+            "set_key": "col1",
+            "card_number": "1",
+            "card_name": "Clefable",
+            "finish_key": "holo"
+          },
+          {
+            "set_key": "col1",
+            "card_number": "1",
+            "card_name": "Clefable",
+            "finish_key": "reverse"
+          }
+        ]
+      },
+      {
+        "card_print_id": "5a3c4254-5da6-40c9-9025-335e01d542f0",
+        "set_key": "col1",
+        "card_number": "SL10",
+        "expected_number_plain": "10",
+        "card_name": "Rayquaza",
+        "prefix": "SL",
+        "target_printed_identity_modifier": "number_prefix:SL",
+        "protected_for_master_rows": [
+          {
+            "set_key": "col1",
+            "card_number": "10",
+            "card_name": "Houndoom",
+            "finish_key": "holo"
+          },
+          {
+            "set_key": "col1",
+            "card_number": "10",
+            "card_name": "Houndoom",
+            "finish_key": "reverse"
+          }
+        ]
+      },
+      {
+        "card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+        "set_key": "col1",
+        "card_number": "SL5",
+        "expected_number_plain": "5",
+        "card_name": "Ho-Oh",
+        "prefix": "SL",
+        "target_printed_identity_modifier": "number_prefix:SL",
+        "protected_for_master_rows": [
+          {
+            "set_key": "col1",
+            "card_number": "5",
+            "card_name": "Forretress",
+            "finish_key": "holo"
+          },
+          {
+            "set_key": "col1",
+            "card_number": "5",
+            "card_name": "Forretress",
+            "finish_key": "reverse"
+          }
+        ]
+      }
+    ]
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-11T04:20:05.056Z",
+    "rows": [
+      {
+        "row_type": "child",
+        "row_id": "552f4493-67fc-466d-aad5-44b76cf1d252",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC11",
+        "number_plain": "11",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "1df326f4-ff6e-41ff-a3f4-327cc8b81eb8",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC11",
+        "number_plain": "11",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "ff323200-bf2e-4880-9a75-c21923f0db96",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC11",
+        "number_plain": "11",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "9d5821c4-b916-48d1-b68a-bf79cc2280ec",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC17",
+        "number_plain": "17",
+        "printed_identity_modifier": null,
+        "name": "Audino",
+        "variant_key": "rc",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "5aa57ae6-6cfc-4bf2-bcab-41c61434fa8f",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC17",
+        "number_plain": "17",
+        "printed_identity_modifier": null,
+        "name": "Audino",
+        "variant_key": "rc",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "f5a3bc68-800a-4b2d-98fe-99fec5fb1730",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC17",
+        "number_plain": "17",
+        "printed_identity_modifier": null,
+        "name": "Audino",
+        "variant_key": "rc",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "6355b0eb-a441-4278-bf6a-21ff8cb12ab9",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC2",
+        "number_plain": "2",
+        "printed_identity_modifier": null,
+        "name": "Servine",
+        "variant_key": "rc",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "2ecf6002-0236-4c1b-965a-b5c85fbb570c",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC2",
+        "number_plain": "2",
+        "printed_identity_modifier": null,
+        "name": "Servine",
+        "variant_key": "rc",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "89facb19-beb8-40ac-988c-d9fb596ec0b8",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC2",
+        "number_plain": "2",
+        "printed_identity_modifier": null,
+        "name": "Servine",
+        "variant_key": "rc",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "b5e6c515-0883-4e03-858f-d1d7a72003db",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC25",
+        "number_plain": "25",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "afab849a-e23d-46f4-94a1-33b8dab7a315",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC25",
+        "number_plain": "25",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "3f9b974d-c37c-44cf-80eb-f69ee0b75e37",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC25",
+        "number_plain": "25",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "015d5d69-ee83-4041-be85-2aa2c690d9a7",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC8",
+        "number_plain": "8",
+        "printed_identity_modifier": null,
+        "name": "Ralts",
+        "variant_key": "rc",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "e78e5b19-ecb0-4685-9e70-0d8adefd45df",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC8",
+        "number_plain": "8",
+        "printed_identity_modifier": null,
+        "name": "Ralts",
+        "variant_key": "rc",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "fb8b3d25-e1f8-4571-a476-218bec78d756",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC8",
+        "number_plain": "8",
+        "printed_identity_modifier": null,
+        "name": "Ralts",
+        "variant_key": "rc",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "df2b7bee-82a0-48bd-9202-fe0b8f08af7b",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL1",
+        "number_plain": "1",
+        "printed_identity_modifier": null,
+        "name": "Deoxys",
+        "variant_key": "",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "cfa6b1c0-4d39-4c3d-bd30-3e6c246a5d7a",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL1",
+        "number_plain": "1",
+        "printed_identity_modifier": null,
+        "name": "Deoxys",
+        "variant_key": "",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "a964bcef-6230-4be2-9b04-66daa670bcdd",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL1",
+        "number_plain": "1",
+        "printed_identity_modifier": null,
+        "name": "Deoxys",
+        "variant_key": "",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "2617a2c7-dc2d-4714-8cfd-afbd37aaec23",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL10",
+        "number_plain": "10",
+        "printed_identity_modifier": null,
+        "name": "Rayquaza",
+        "variant_key": "",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "c2b126cb-9242-45b6-bf0f-775917983f0a",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL10",
+        "number_plain": "10",
+        "printed_identity_modifier": null,
+        "name": "Rayquaza",
+        "variant_key": "",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "376bb187-3a0d-4a00-8542-a88b15fa5d56",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL10",
+        "number_plain": "10",
+        "printed_identity_modifier": null,
+        "name": "Rayquaza",
+        "variant_key": "",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "26d37eda-88b0-4a0f-a5fb-732638b41a9c",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL5",
+        "number_plain": "5",
+        "printed_identity_modifier": null,
+        "name": "Ho-Oh",
+        "variant_key": "",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "51f8754b-a32b-418b-814e-be197d3aaccb",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL5",
+        "number_plain": "5",
+        "printed_identity_modifier": null,
+        "name": "Ho-Oh",
+        "variant_key": "",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "779a7295-36ee-4ba8-80aa-ba1bbfd0ac1d",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL5",
+        "number_plain": "5",
+        "printed_identity_modifier": null,
+        "name": "Ho-Oh",
+        "variant_key": "",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "parent",
+        "row_id": "4b71e349-537f-42eb-a529-04491544d650",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC11",
+        "number_plain": "11",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "72398f5c-8931-4eec-8243-86d11ea4231b",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC17",
+        "number_plain": "17",
+        "printed_identity_modifier": null,
+        "name": "Audino",
+        "variant_key": "rc",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "89837790-de7e-4c54-9c94-6a7295c96b79",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC2",
+        "number_plain": "2",
+        "printed_identity_modifier": null,
+        "name": "Servine",
+        "variant_key": "rc",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "3628261c-3aef-4c27-93b6-64144552b6bf",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC25",
+        "number_plain": "25",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "cbcaa8a7-8321-4230-bdea-73a31e27f898",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC8",
+        "number_plain": "8",
+        "printed_identity_modifier": null,
+        "name": "Ralts",
+        "variant_key": "rc",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL1",
+        "number_plain": "1",
+        "printed_identity_modifier": null,
+        "name": "Deoxys",
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "5a3c4254-5da6-40c9-9025-335e01d542f0",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL10",
+        "number_plain": "10",
+        "printed_identity_modifier": null,
+        "name": "Rayquaza",
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL5",
+        "number_plain": "5",
+        "printed_identity_modifier": null,
+        "name": "Ho-Oh",
+        "variant_key": "",
+        "finish_key": null
+      }
+    ],
+    "hash_sha256": "63389e0108926bae2a5adc245260e53fcfaaf5b60431271729b5d8f1a42592d1",
+    "counts": {
+      "parent_rows": 8,
+      "child_rows": 24,
+      "total_rows": 32
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-11T04:20:05.986Z",
+    "rows": [
+      {
+        "row_type": "child",
+        "row_id": "552f4493-67fc-466d-aad5-44b76cf1d252",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC11",
+        "number_plain": "11",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "1df326f4-ff6e-41ff-a3f4-327cc8b81eb8",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC11",
+        "number_plain": "11",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "ff323200-bf2e-4880-9a75-c21923f0db96",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC11",
+        "number_plain": "11",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "9d5821c4-b916-48d1-b68a-bf79cc2280ec",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC17",
+        "number_plain": "17",
+        "printed_identity_modifier": null,
+        "name": "Audino",
+        "variant_key": "rc",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "5aa57ae6-6cfc-4bf2-bcab-41c61434fa8f",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC17",
+        "number_plain": "17",
+        "printed_identity_modifier": null,
+        "name": "Audino",
+        "variant_key": "rc",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "f5a3bc68-800a-4b2d-98fe-99fec5fb1730",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC17",
+        "number_plain": "17",
+        "printed_identity_modifier": null,
+        "name": "Audino",
+        "variant_key": "rc",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "6355b0eb-a441-4278-bf6a-21ff8cb12ab9",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC2",
+        "number_plain": "2",
+        "printed_identity_modifier": null,
+        "name": "Servine",
+        "variant_key": "rc",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "2ecf6002-0236-4c1b-965a-b5c85fbb570c",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC2",
+        "number_plain": "2",
+        "printed_identity_modifier": null,
+        "name": "Servine",
+        "variant_key": "rc",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "89facb19-beb8-40ac-988c-d9fb596ec0b8",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC2",
+        "number_plain": "2",
+        "printed_identity_modifier": null,
+        "name": "Servine",
+        "variant_key": "rc",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "b5e6c515-0883-4e03-858f-d1d7a72003db",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC25",
+        "number_plain": "25",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "afab849a-e23d-46f4-94a1-33b8dab7a315",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC25",
+        "number_plain": "25",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "3f9b974d-c37c-44cf-80eb-f69ee0b75e37",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC25",
+        "number_plain": "25",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "015d5d69-ee83-4041-be85-2aa2c690d9a7",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC8",
+        "number_plain": "8",
+        "printed_identity_modifier": null,
+        "name": "Ralts",
+        "variant_key": "rc",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "e78e5b19-ecb0-4685-9e70-0d8adefd45df",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC8",
+        "number_plain": "8",
+        "printed_identity_modifier": null,
+        "name": "Ralts",
+        "variant_key": "rc",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "fb8b3d25-e1f8-4571-a476-218bec78d756",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC8",
+        "number_plain": "8",
+        "printed_identity_modifier": null,
+        "name": "Ralts",
+        "variant_key": "rc",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "df2b7bee-82a0-48bd-9202-fe0b8f08af7b",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL1",
+        "number_plain": "1",
+        "printed_identity_modifier": null,
+        "name": "Deoxys",
+        "variant_key": "",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "cfa6b1c0-4d39-4c3d-bd30-3e6c246a5d7a",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL1",
+        "number_plain": "1",
+        "printed_identity_modifier": null,
+        "name": "Deoxys",
+        "variant_key": "",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "a964bcef-6230-4be2-9b04-66daa670bcdd",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL1",
+        "number_plain": "1",
+        "printed_identity_modifier": null,
+        "name": "Deoxys",
+        "variant_key": "",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "2617a2c7-dc2d-4714-8cfd-afbd37aaec23",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL10",
+        "number_plain": "10",
+        "printed_identity_modifier": null,
+        "name": "Rayquaza",
+        "variant_key": "",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "c2b126cb-9242-45b6-bf0f-775917983f0a",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL10",
+        "number_plain": "10",
+        "printed_identity_modifier": null,
+        "name": "Rayquaza",
+        "variant_key": "",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "376bb187-3a0d-4a00-8542-a88b15fa5d56",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL10",
+        "number_plain": "10",
+        "printed_identity_modifier": null,
+        "name": "Rayquaza",
+        "variant_key": "",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "child",
+        "row_id": "26d37eda-88b0-4a0f-a5fb-732638b41a9c",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL5",
+        "number_plain": "5",
+        "printed_identity_modifier": null,
+        "name": "Ho-Oh",
+        "variant_key": "",
+        "finish_key": "holo"
+      },
+      {
+        "row_type": "child",
+        "row_id": "51f8754b-a32b-418b-814e-be197d3aaccb",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL5",
+        "number_plain": "5",
+        "printed_identity_modifier": null,
+        "name": "Ho-Oh",
+        "variant_key": "",
+        "finish_key": "normal"
+      },
+      {
+        "row_type": "child",
+        "row_id": "779a7295-36ee-4ba8-80aa-ba1bbfd0ac1d",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL5",
+        "number_plain": "5",
+        "printed_identity_modifier": null,
+        "name": "Ho-Oh",
+        "variant_key": "",
+        "finish_key": "reverse"
+      },
+      {
+        "row_type": "parent",
+        "row_id": "4b71e349-537f-42eb-a529-04491544d650",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC11",
+        "number_plain": "11",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "72398f5c-8931-4eec-8243-86d11ea4231b",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC17",
+        "number_plain": "17",
+        "printed_identity_modifier": null,
+        "name": "Audino",
+        "variant_key": "rc",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "89837790-de7e-4c54-9c94-6a7295c96b79",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC2",
+        "number_plain": "2",
+        "printed_identity_modifier": null,
+        "name": "Servine",
+        "variant_key": "rc",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "3628261c-3aef-4c27-93b6-64144552b6bf",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC25",
+        "number_plain": "25",
+        "printed_identity_modifier": null,
+        "name": "Meloetta-EX",
+        "variant_key": "rc",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "cbcaa8a7-8321-4230-bdea-73a31e27f898",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "number": "RC8",
+        "number_plain": "8",
+        "printed_identity_modifier": null,
+        "name": "Ralts",
+        "variant_key": "rc",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL1",
+        "number_plain": "1",
+        "printed_identity_modifier": null,
+        "name": "Deoxys",
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "5a3c4254-5da6-40c9-9025-335e01d542f0",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL10",
+        "number_plain": "10",
+        "printed_identity_modifier": null,
+        "name": "Rayquaza",
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "parent",
+        "row_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "number": "SL5",
+        "number_plain": "5",
+        "printed_identity_modifier": null,
+        "name": "Ho-Oh",
+        "variant_key": "",
+        "finish_key": null
+      }
+    ],
+    "hash_sha256": "63389e0108926bae2a5adc245260e53fcfaaf5b60431271729b5d8f1a42592d1",
+    "counts": {
+      "parent_rows": 8,
+      "child_rows": 24,
+      "total_rows": 32
+    }
+  },
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "rollback_proof_rows": [
+    {
+      "package_id": "PKG-12B-PREFIX-PARENT-MODIFIER-BACKFILL",
+      "package_fingerprint": "8ed6e275500a4b1395a22a5edeaac47dfb82434220bc6a49323d4deb5cef3a71",
+      "planned_update_rows": 8
+    }
+  ],
+  "stop_findings": [],
+  "recommended_real_apply_approval_text": "Approve real PKG-12B-PREFIX-PARENT-MODIFIER-BACKFILL apply only. Fingerprint: 8ed6e275500a4b1395a22a5edeaac47dfb82434220bc6a49323d4deb5cef3a71. Scope: 8 protected RC/SL parent printed_identity_modifier updates, prefixes RC=5, SL=3. Dry-run proof: 63389e0108926bae2a5adc245260e53fcfaaf5b60431271729b5d8f1a42592d1 == 63389e0108926bae2a5adc245260e53fcfaaf5b60431271729b5d8f1a42592d1. No global apply. No migrations. No child writes. No deletes. No merges. No unsupported cleanup."
+}

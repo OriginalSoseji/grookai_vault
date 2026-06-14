@@ -383,7 +383,7 @@ ${artifact.safety.stop_rules.map((item) => `- ${item}`).join('\n')}
 }
 
 async function main() {
-  const setKey = normalizeText(argValue('--set', DEFAULT_SET_KEY));
+  const setKey = String(argValue('--set', DEFAULT_SET_KEY)).trim();
   const exactMatch = await readJson('english_master_index_physical_recovery_exact_match_v1.json');
   const printingsArtifact = await readJson('english_master_index_printings_v1.json');
   const packageRows = buildPackageRows({ setKey, exactMatch, printingsArtifact });

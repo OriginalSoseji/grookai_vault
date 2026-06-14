@@ -1,0 +1,816 @@
+{
+  "generated_at": "2026-06-11T19:55:00.111Z",
+  "version": "english_master_index_pkg15h_battle_academy_exact_finish_extraction_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "pkg11b_stamped_finish_routing_readiness": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json",
+    "english_master_index_sets": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sets_v1.json",
+    "bulbapedia_battle_academy_cache": "docs/audits/english_master_index_source_exhaustion_v1/bulbapedia_battle_academy_acquisition_v1/cache"
+  },
+  "fingerprint_sha256": "2954ac27b5db918eac0e9cd43529606c7f8c3d08e01a03b8de028793df8f185e",
+  "summary": {
+    "battle_academy_rows_reviewed": 58,
+    "extracted_exact_non_holo_facts": 2,
+    "accepted_rows_still_in_queue": 0,
+    "extracted_exact_facts_not_in_remaining_queue": 2,
+    "exhausted_rows": 58,
+    "by_status": {
+      "blocked_decklist_membership_only": 58,
+      "exact_evidence_not_in_remaining_queue": 2
+    }
+  },
+  "extracted_evidence": [
+    {
+      "evidence_source_shape": "explicit_product_non_holo_bullet",
+      "source_file": "Battle_Academy_2020__TCG_.txt",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+      "source_line": 29,
+      "source_set_label": "Dragon Majesty",
+      "tcg_id_set_label": "Dragon Majesty",
+      "card_name": "Charizard",
+      "card_number": "3",
+      "target_finish_key": "normal",
+      "evidence_label": "Bulbapedia Battle Academy explicit Non Holofoil bullet: Dragon Majesty Charizard #3",
+      "set_key": "sm7.5",
+      "status": "exact_evidence_not_in_remaining_queue",
+      "raw_snapshot_ref": "bulbapedia_battle_academy_cache:Battle_Academy_2020__TCG_.txt:29"
+    },
+    {
+      "evidence_source_shape": "explicit_product_non_holo_bullet",
+      "source_file": "Battle_Academy_2020__TCG_.txt",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+      "source_line": 30,
+      "source_set_label": "SM Black Star Promos",
+      "tcg_id_set_label": "SM Promo",
+      "card_name": "Alolan Raichu",
+      "card_number": "SM65",
+      "target_finish_key": "normal",
+      "evidence_label": "Bulbapedia Battle Academy explicit Non Holofoil bullet: SM Black Star Promos Alolan Raichu #65",
+      "set_key": "smp",
+      "status": "exact_evidence_not_in_remaining_queue",
+      "raw_snapshot_ref": "bulbapedia_battle_academy_cache:Battle_Academy_2020__TCG_.txt:30"
+    }
+  ],
+  "rows": [
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "119",
+      "card_name": "Great Ball",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+      ]
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "120",
+      "card_name": "Hau",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+      ]
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "126",
+      "card_name": "Pokémon Catcher",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+      ]
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "127",
+      "card_name": "Potion",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+      ]
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "132",
+      "card_name": "Switch",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+      ]
+    },
+    {
+      "set_key": "sm10",
+      "set_name": "Unbroken Bonds",
+      "card_number": "189",
+      "card_name": "Welder",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm10/unbroken-bonds/price-list"
+      ]
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "card_number": "34",
+      "card_name": "Salazzle",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm11/unified-minds/price-list"
+      ]
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "card_number": "84",
+      "card_name": "Mesprit",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm11/unified-minds/price-list"
+      ]
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "card_number": "87",
+      "card_name": "Cresselia",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm11/unified-minds/price-list"
+      ]
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "card_number": "97",
+      "card_name": "Toxapex",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm11/unified-minds/price-list"
+      ]
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "card_number": "164",
+      "card_name": "Tauros",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm11/unified-minds/price-list"
+      ]
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "card_number": "189",
+      "card_name": "Bug Catcher",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm11/unified-minds/price-list"
+      ]
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "8",
+      "card_name": "Charmeleon",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm115/hidden-fates/price-list"
+      ]
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "9",
+      "card_name": "Charizard-GX",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm115/hidden-fates/price-list"
+      ]
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "19",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm115/hidden-fates/price-list"
+      ]
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "20",
+      "card_name": "Raichu-GX",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm115/hidden-fates/price-list"
+      ]
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "31",
+      "card_name": "Mewtwo-GX",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm115/hidden-fates/price-list"
+      ]
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "32",
+      "card_name": "Mew",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm115/hidden-fates/price-list"
+      ]
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "46",
+      "card_name": "Chansey",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm115/hidden-fates/price-list"
+      ]
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "49",
+      "card_name": "Eevee",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm115/hidden-fates/price-list"
+      ]
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "card_number": "50",
+      "card_name": "Snorlax",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm115/hidden-fates/price-list"
+      ]
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "43",
+      "card_name": "Electivire",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm3/burning-shadows/price-list"
+      ]
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "25",
+      "card_name": "Salandit",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm5/ultra-prism/price-list"
+      ]
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "43",
+      "card_name": "Electabuzz",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm5/ultra-prism/price-list"
+      ]
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "133",
+      "card_name": "Pokémon Fan Club",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm5/ultra-prism/price-list"
+      ]
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "38",
+      "card_name": "Moltres",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
+      ]
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "81",
+      "card_name": "Blitzle",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
+      ]
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "89",
+      "card_name": "Espeon",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
+      ]
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "105",
+      "card_name": "Mareanie",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
+      ]
+    },
+    {
+      "set_key": "sm9",
+      "set_name": "Team Up",
+      "card_number": "45",
+      "card_name": "Zebstrika",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/sm9/team-up/price-list"
+      ]
+    },
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM86",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "alolan_raichu_half_deck_14_stamp",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Alolan_Raichu_Half_Deck_14)",
+        "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+      ]
+    },
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM186",
+      "card_name": "Flareon",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2020_(TCG)",
+        "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "29",
+      "card_name": "Turtonator",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh1/sword-and-shield/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "74",
+      "card_name": "Yamper",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh1/sword-and-shield/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "76",
+      "card_name": "Boltund",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh1/sword-and-shield/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "160",
+      "card_name": "Energy Retrieval",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh1/sword-and-shield/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "165",
+      "card_name": "Hop",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh1/sword-and-shield/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "183",
+      "card_name": "Switch",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh1/sword-and-shield/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "card_number": "165",
+      "card_name": "Piers",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh3/darkness-ablaze/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "card_number": "53",
+      "card_name": "Blitzle",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh4/vivid-voltage/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "card_number": "54",
+      "card_name": "Zebstrika",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh4/vivid-voltage/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "card_number": "124",
+      "card_name": "Energy Recycler",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh5/battle-styles/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "30",
+      "card_name": "Ninetales",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "49",
+      "card_name": "Centiskorch",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "91",
+      "card_name": "Shinx",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "92",
+      "card_name": "Luxio",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "93",
+      "card_name": "Luxray",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "102",
+      "card_name": "Zeraora",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "109",
+      "card_name": "Morpeko",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "162",
+      "card_name": "Carvanha",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "163",
+      "card_name": "Sharpedo",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "167",
+      "card_name": "Darkrai",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "170",
+      "card_name": "Zorua",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "171",
+      "card_name": "Zoroark",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "226",
+      "card_name": "Bug Catcher",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "228",
+      "card_name": "Cook",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "240",
+      "card_name": "Shauna",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+      ]
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH193",
+      "card_name": "Galarian Obstagoon",
+      "proposed_variant_key": "battle_academy_deck_mark",
+      "status": "blocked_decklist_membership_only",
+      "blocked_reason": "Bulbapedia Battle Academy source proves deck/stamp identity for this row but does not provide explicit card-level active-finish wording.",
+      "preserved_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_(TCG)",
+        "https://www.thepricedex.com/set/swshp/swsh-black-star-promos/price-list"
+      ]
+    }
+  ]
+}

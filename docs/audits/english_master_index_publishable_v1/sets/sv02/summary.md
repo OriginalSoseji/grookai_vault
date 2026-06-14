@@ -6,15 +6,15 @@ Status: publishable_complete
 
 - set_key: sv02
 - cards: 282/282
-- printings: 517/517
+- printings: 519/519
 - completion_score: 100
 
 ## Finish Counts
 
 | finish_key | count |
 | --- | --- |
-| cosmos | 12 |
+| cosmos | 13 |
 | holo | 131 |
-| normal | 156 |
+| normal | 157 |
 | reverse | 176 |
 | stamped | 42 |

@@ -1,0 +1,32 @@
+{
+  "source_key": "pokecardvalues_stamped_finish_bw3",
+  "source_kind": "collector_reference",
+  "source_url": "https://pokecardvalues.co.uk/cards/cryogonal-32-101-reverse-holo-league-promo-noble-victories/bw3-32-3-41/",
+  "source_status": "available_generated_fixture",
+  "generated_at": "2026-06-13T00:02:20.623Z",
+  "retrieved_at": "2026-06-13T00:02:20.623Z",
+  "raw_snapshot_ref": "generated_fixture:pokecardvalues_stamped_finish:bw3:2026-06-13T00:02:20.623Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "generation_note": "Generated from Poke Card Values structured set/card titles for remaining stamped finish blockers only.",
+  "records": [
+    {
+      "source_key": "pokecardvalues_stamped_finish",
+      "source_kind": "collector_reference",
+      "source_url": "https://pokecardvalues.co.uk/cards/cryogonal-32-101-reverse-holo-league-promo-noble-victories/bw3-32-3-41/",
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "32",
+      "card_name": "Cryogonal",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Poke Card Values exact stamped finish: Cryogonal - 32/101 - Reverse Holo - League Promo - Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-13T00:02:20.623Z",
+      "raw_snapshot_ref": "pokecardvalues:bw3:32:league_stamp:reverse",
+      "notes": "Accepted only when the Poke Card Values set index had one exact set/card/number/stamp-family match and the active finish was explicit in the card title."
+    }
+  ]
+}

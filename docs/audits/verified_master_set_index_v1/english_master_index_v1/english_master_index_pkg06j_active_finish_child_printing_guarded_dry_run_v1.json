@@ -1,0 +1,2902 @@
+{
+  "generated_at": "2026-06-10T04:31:15.818Z",
+  "version": "english_master_index_pkg06j_active_finish_child_printing_guarded_dry_run_v1",
+  "package_id": "PKG-06J-ACTIVE-FINISH-CHILD-PRINTING-INSERTS",
+  "source_readiness_fingerprint_sha256": "6063892190519f7b48b87f46e4c7d556ad12333655ab0c2aef3149d1da2764f7",
+  "package_fingerprint_sha256": "5bae5af1da3258540c9d010c88023fa4ea668bacde0db12bc454e0a4ec6f2879",
+  "sql_artifact_path": "C:\\grookai_vault\\docs\\sql\\english_master_index_pkg06j_active_finish_child_printing_guarded_dry_run_transaction_v1.sql",
+  "sql_hash_sha256": "e5e6b0713a3bb4c42e23eaf90091799c52bc57b11b35f91f7f10af1fb91bd14b",
+  "live_finish_keys": [
+    {
+      "key": "cosmos",
+      "label": "Cosmos Holo",
+      "is_active": true
+    },
+    {
+      "key": "holo",
+      "label": "Holo",
+      "is_active": true
+    },
+    {
+      "key": "masterball",
+      "label": "Master Ball",
+      "is_active": true
+    },
+    {
+      "key": "normal",
+      "label": "Normal",
+      "is_active": true
+    },
+    {
+      "key": "pokeball",
+      "label": "Poké Ball",
+      "is_active": true
+    },
+    {
+      "key": "reverse",
+      "label": "Reverse Holo",
+      "is_active": true
+    },
+    {
+      "key": "rocket_reverse",
+      "label": "Rocket Reverse",
+      "is_active": true
+    }
+  ],
+  "scope": {
+    "child_printing_rows": 68,
+    "target_parent_rows": 65,
+    "set_count": 10,
+    "set_counts": {
+      "2017sm": 6,
+      "2022swsh": 6,
+      "bw7": 7,
+      "dp1": 7,
+      "hgss1": 7,
+      "pop5": 7,
+      "swsh3": 7,
+      "swsh5": 7,
+      "swsh9": 7,
+      "xy4": 7
+    },
+    "set_names": {
+      "bw7": "Boundaries Crossed",
+      "dp1": "Diamond & Pearl",
+      "hgss1": "HeartGold & SoulSilver",
+      "pop5": "POP Series 5",
+      "swsh3": "Darkness Ablaze",
+      "swsh5": "Battle Styles",
+      "swsh9": "Brilliant Stars",
+      "xy4": "Phantom Forces",
+      "2017sm": "McDonald's Collection 2017",
+      "2022swsh": "McDonald's Collection 2022"
+    },
+    "finish_counts": {
+      "cosmos": 30,
+      "holo": 17,
+      "normal": 18,
+      "reverse": 3
+    },
+    "rows": [
+      {
+        "card_printing_id": "4bcc20dd-43d3-4466-addb-5a7b02742915",
+        "card_print_id": "2c5d16d6-8cdc-4035-a390-5098ca9c6194",
+        "set_key": "2017sm",
+        "set_name": "McDonald's Collection 2017",
+        "card_number": "1",
+        "card_name": "Rowlet",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2017sm:1:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/2017sm-1",
+          "https://www.thepricedex.com/set/mcd17/mcdonalds-collection-2017/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "414df941-ae62-434d-b375-4c247e8c354a",
+        "card_print_id": "ddd31e27-9b06-48b1-8147-270a9690ef66",
+        "set_key": "2017sm",
+        "set_name": "McDonald's Collection 2017",
+        "card_number": "3",
+        "card_name": "Litten",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2017sm:3:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/2017sm-3",
+          "https://www.thepricedex.com/set/mcd17/mcdonalds-collection-2017/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "7424a98a-6db6-4b03-a389-8b5bb11acc99",
+        "card_print_id": "d9dae53e-9683-4c01-b587-10590e0d121d",
+        "set_key": "2017sm",
+        "set_name": "McDonald's Collection 2017",
+        "card_number": "8",
+        "card_name": "Alolan Meowth",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2017sm:8:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/2017sm-8",
+          "https://www.thepricedex.com/set/mcd17/mcdonalds-collection-2017/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "47fc46cf-2e1d-49d3-ab75-0ba20f3e16fe",
+        "card_print_id": "40b70c25-20b6-4888-8cf0-88bc6da7cfce",
+        "set_key": "2017sm",
+        "set_name": "McDonald's Collection 2017",
+        "card_number": "10",
+        "card_name": "Cutiefly",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2017sm:10:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/2017sm-10",
+          "https://www.thepricedex.com/set/mcd17/mcdonalds-collection-2017/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "bdbde8d1-90c8-4d57-89b6-163dae2686b8",
+        "card_print_id": "5b720829-30a0-42cf-9203-6e01fa50fff7",
+        "set_key": "2017sm",
+        "set_name": "McDonald's Collection 2017",
+        "card_number": "11",
+        "card_name": "Pikipek",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2017sm:11:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/2017sm-11",
+          "https://www.thepricedex.com/set/mcd17/mcdonalds-collection-2017/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "a7e6c358-8347-40c7-b7a3-1b06e6f3e3c0",
+        "card_print_id": "abc1a7d0-5bc6-46f9-a2ef-76d156c9c719",
+        "set_key": "2017sm",
+        "set_name": "McDonald's Collection 2017",
+        "card_number": "12",
+        "card_name": "Yungoos",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2017sm:12:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/2017sm-12",
+          "https://www.thepricedex.com/set/mcd17/mcdonalds-collection-2017/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "edddd688-e64b-40eb-9e1c-04a933663c6e",
+        "card_print_id": "d09c0912-9a8d-45dd-a276-09da28bab494",
+        "set_key": "2022swsh",
+        "set_name": "McDonald's Collection 2022",
+        "card_number": "2",
+        "card_name": "Rowlet",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2022swsh:2:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 4,
+        "sources": [
+          "pokemontcg_api",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/mcd22-2",
+          "https://api.tcgdex.net/v2/en/cards/2022swsh-2",
+          "https://prices.pokemontcg.io/tcgplayer/mcd22-2",
+          "https://www.thepricedex.com/set/mcd22/mcdonalds-collection-2022/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "2d97e430-2a72-4ee6-97a1-6af98218146d",
+        "card_print_id": "1c4759db-9b50-45d0-9c0b-655977006168",
+        "set_key": "2022swsh",
+        "set_name": "McDonald's Collection 2022",
+        "card_number": "3",
+        "card_name": "Gossifleur",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2022swsh:3:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 4,
+        "sources": [
+          "pokemontcg_api",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/mcd22-3",
+          "https://api.tcgdex.net/v2/en/cards/2022swsh-3",
+          "https://prices.pokemontcg.io/tcgplayer/mcd22-3",
+          "https://www.thepricedex.com/set/mcd22/mcdonalds-collection-2022/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "337bbe0a-6d13-44e4-9237-e0d6765fec6c",
+        "card_print_id": "98b5e8e1-99c6-4c6e-9d89-ed1accb2dfb6",
+        "set_key": "2022swsh",
+        "set_name": "McDonald's Collection 2022",
+        "card_number": "4",
+        "card_name": "Growlithe",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2022swsh:4:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 4,
+        "sources": [
+          "pokemontcg_api",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/mcd22-4",
+          "https://api.tcgdex.net/v2/en/cards/2022swsh-4",
+          "https://prices.pokemontcg.io/tcgplayer/mcd22-4",
+          "https://www.thepricedex.com/set/mcd22/mcdonalds-collection-2022/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "648cf97f-8254-4206-9644-4a92d35218cd",
+        "card_print_id": "60efdde4-8b1e-4d21-b2d5-c8163d93691d",
+        "set_key": "2022swsh",
+        "set_name": "McDonald's Collection 2022",
+        "card_number": "5",
+        "card_name": "Victini",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2022swsh:5:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 4,
+        "sources": [
+          "pokemontcg_api",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/mcd22-5",
+          "https://api.tcgdex.net/v2/en/cards/2022swsh-5",
+          "https://prices.pokemontcg.io/tcgplayer/mcd22-5",
+          "https://www.thepricedex.com/set/mcd22/mcdonalds-collection-2022/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "29c5c104-57ad-41ff-b342-bc7cbcfe07bf",
+        "card_print_id": "f16bd0f6-341f-4085-8047-8c84238bf8e4",
+        "set_key": "2022swsh",
+        "set_name": "McDonald's Collection 2022",
+        "card_number": "7",
+        "card_name": "Pikachu",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2022swsh:7:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 4,
+        "sources": [
+          "pokemontcg_api",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/mcd22-7",
+          "https://api.tcgdex.net/v2/en/cards/2022swsh-7",
+          "https://prices.pokemontcg.io/tcgplayer/mcd22-7",
+          "https://www.thepricedex.com/set/mcd22/mcdonalds-collection-2022/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "0dadc64e-7400-4c2d-81b1-b1848eab8480",
+        "card_print_id": "fd2f7b7c-1dcc-47b8-9fe3-df9deccba773",
+        "set_key": "2022swsh",
+        "set_name": "McDonald's Collection 2022",
+        "card_number": "15",
+        "card_name": "Smeargle",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "2022swsh:15:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 4,
+        "sources": [
+          "pokemontcg_api",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/mcd22-15",
+          "https://api.tcgdex.net/v2/en/cards/2022swsh-15",
+          "https://prices.pokemontcg.io/tcgplayer/mcd22-15",
+          "https://www.thepricedex.com/set/mcd22/mcdonalds-collection-2022/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "ce27edb5-5496-4ad4-abb4-a98ae5f6f1e4",
+        "card_print_id": "85c15e81-c19e-4904-a923-0a1782e901d9",
+        "set_key": "bw7",
+        "set_name": "Boundaries Crossed",
+        "card_number": "13",
+        "card_name": "Serperior",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw7:13:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/6386/serperior-boundaries-crossed-13-149",
+          "https://www.thepricedex.com/set/bw7/boundaries-crossed/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "b0f5bf1a-8ab8-4249-a70c-2e01a6a39d2f",
+        "card_print_id": "bc9dfb62-bf0b-460c-9d25-3e3a80ad3964",
+        "set_key": "bw7",
+        "set_name": "Boundaries Crossed",
+        "card_number": "20",
+        "card_name": "Charizard",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw7:20:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/6393/charizard-boundaries-crossed-20-149",
+          "https://www.thepricedex.com/set/bw7/boundaries-crossed/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "4a4a512f-ee1b-47eb-9ea0-6a0d446d6f5a",
+        "card_print_id": "52b4fc4f-d6da-43f0-a13b-71b52445adbb",
+        "set_key": "bw7",
+        "set_name": "Boundaries Crossed",
+        "card_number": "26",
+        "card_name": "Emboar",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw7:26:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/6399/emboar-boundaries-crossed-26-149",
+          "https://www.thepricedex.com/set/bw7/boundaries-crossed/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "0d271504-9c4c-438d-9936-0e2f55f2ebc0",
+        "card_print_id": "2ed1ec29-d8bb-4933-bec2-ee9a48de871b",
+        "set_key": "bw7",
+        "set_name": "Boundaries Crossed",
+        "card_number": "41",
+        "card_name": "Samurott",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw7:41:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/6414/samurott-boundaries-crossed-41-149",
+          "https://www.thepricedex.com/set/bw7/boundaries-crossed/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "0a9a812b-50a3-4933-a8bd-075f78503b7c",
+        "card_print_id": "61800823-eef1-4db4-a539-c4f508734134",
+        "set_key": "bw7",
+        "set_name": "Boundaries Crossed",
+        "card_number": "54",
+        "card_name": "Electivire",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw7:54:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/6427/electivire-boundaries-crossed-54-149",
+          "https://www.thepricedex.com/set/bw7/boundaries-crossed/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "5a70fc03-7661-4767-afca-8d50d8cb44b2",
+        "card_print_id": "9b2cedd8-24bd-424d-af71-e138f75dbd3b",
+        "set_key": "bw7",
+        "set_name": "Boundaries Crossed",
+        "card_number": "63",
+        "card_name": "Dusknoir",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw7:63:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/6436/dusknoir-boundaries-crossed-63-149",
+          "https://www.thepricedex.com/set/bw7/boundaries-crossed/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "7bd823dc-93be-47b6-9334-bdb3ff4eb038",
+        "card_print_id": "077bea43-80cb-414b-b58d-5bb533a7d73d",
+        "set_key": "bw7",
+        "set_name": "Boundaries Crossed",
+        "card_number": "94",
+        "card_name": "Scizor",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "bw7:94:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/6466/scizor-boundaries-crossed-94-149",
+          "https://www.thepricedex.com/set/bw7/boundaries-crossed/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "11c7edcd-5ab0-451d-8389-1c5a11e785fe",
+        "card_print_id": "c9c6edad-1ca7-4a9f-b45c-b88a83a17988",
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "card_number": "76",
+        "card_name": "Chimchar",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "dp1:76:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/3629/chimchar-diamond-and-pearl-76-130",
+          "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "2f98bd69-b221-44a6-b766-d8eb3ebd7036",
+        "card_print_id": "2d26dcd1-d42b-4e77-9654-7f9b4297b916",
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "card_number": "93",
+        "card_name": "Piplup",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "dp1:93:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/3646/piplup-diamond-and-pearl-93-130",
+          "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "2f0bbdda-f8b1-4958-a86f-80a30d6617ea",
+        "card_print_id": "e6183f85-c1c8-4f93-82b5-38964a5a4c39",
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "card_number": "103",
+        "card_name": "Turtwig",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "dp1:103:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/3656/turtwig-diamond-and-pearl-103-130",
+          "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "06e5fe87-15d7-45c8-9c36-edca0c1d8e8b",
+        "card_print_id": "7b071c37-8c72-4364-8df6-9b450c4ddf1c",
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "card_number": "112",
+        "card_name": "Professor Rowan",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "dp1:112:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/3665/professor-rowan-diamond-and-pearl-112-130",
+          "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "4500171e-bffb-43c6-847e-760c0a39ad1a",
+        "card_print_id": "d501fbcc-245b-4f08-8303-4ea4d2a48ae1",
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "card_number": "120",
+        "card_name": "Empoleon LV.X",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "dp1:120:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/dp1-120",
+          "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "d9124075-c1be-4579-87e4-8ab759917d6f",
+        "card_print_id": "ad7f2469-1682-4695-9322-1a27823346c5",
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "card_number": "121",
+        "card_name": "Infernape LV.X",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "dp1:121:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/dp1-121",
+          "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "74d72aca-d92b-422e-abac-5f77b0c46a96",
+        "card_print_id": "9c7cd6e8-9881-45e0-b8d8-8b8763dc4147",
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "card_number": "122",
+        "card_name": "Torterra LV.X",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "dp1:122:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/dp1-122",
+          "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "3edf0555-5536-417a-b5bf-23f36772d6ab",
+        "card_print_id": "dc19feb4-ef22-489d-92a0-2b8a2f6e0156",
+        "set_key": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "card_number": "20",
+        "card_name": "Feraligatr",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "hgss1:20:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/5057/feraligatr-heartgold-and-soulsilver-20-123",
+          "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "6cadbf53-fa25-48a9-a8d3-e6edc0fa199e",
+        "card_print_id": "61bfff2c-ecad-4b47-833d-44b2454153cd",
+        "set_key": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "card_number": "26",
+        "card_name": "Meganium",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "hgss1:26:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/5063/meganium-heartgold-and-soulsilver-26-123",
+          "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "73a95060-b83f-4dfc-9cb5-6ffb29592a1e",
+        "card_print_id": "127526a1-a4c1-4066-ae0f-264e08d71984",
+        "set_key": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "card_number": "32",
+        "card_name": "Typhlosion",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "hgss1:32:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/5069/typhlosion-heartgold-and-soulsilver-32-123",
+          "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "b951885d-8306-4ff7-897e-7c0c1bff46f1",
+        "card_print_id": "260439c9-4180-447f-bd74-71604ebfad43",
+        "set_key": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "card_number": "115",
+        "card_name": "Grass Energy",
+        "finish_key": "reverse",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "hgss1:115:reverse",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 3,
+        "sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/hgss1-115",
+          "https://reverseholo.app/sets/hgss1",
+          "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "c6b6eba4-0097-4945-9f2b-338a0d295e46",
+        "card_print_id": "35fbe785-6b30-427f-94cd-4726d5976fb2",
+        "set_key": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "card_number": "117",
+        "card_name": "Water Energy",
+        "finish_key": "reverse",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "hgss1:117:reverse",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "reverseholo_set_checklist",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://reverseholo.app/sets/hgss1",
+          "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "a7ec5205-bbb0-43d4-90ca-ed677504578a",
+        "card_print_id": "df2bd576-1864-477f-bbbf-7905b19a8ff7",
+        "set_key": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "card_number": "118",
+        "card_name": "Lightning Energy",
+        "finish_key": "reverse",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "hgss1:118:reverse",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/hgss1-118",
+          "https://reverseholo.app/sets/hgss1"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "f750c6c0-8e9c-4b9e-a9a4-9ffd676f45ca",
+        "card_print_id": "675d93c2-f6ea-4012-b660-0a7f3d2174a9",
+        "set_key": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "card_number": "ONE",
+        "card_name": "Alph Lithograph",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "hgss1:ONE:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 3,
+        "sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/hgss1-ONE",
+          "https://reverseholo.app/sets/hgss1",
+          "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "d5a404f5-0c83-4144-bcf1-9992e6600988",
+        "card_print_id": "a6c6d0e4-2e5a-413d-9ddb-52b0b8f230bf",
+        "set_key": "pop5",
+        "set_name": "POP Series 5",
+        "card_number": "3",
+        "card_name": "Mew δ",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "pop5:3:holo",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/pop5-3",
+          "https://www.thepricedex.com/set/pop5/pop-series-5/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "6d9e576c-b6ac-42d2-9913-f2abbec82a5a",
+        "card_print_id": "7a8f665c-eae5-4a82-9e31-593c16ff46b8",
+        "set_key": "pop5",
+        "set_name": "POP Series 5",
+        "card_number": "5",
+        "card_name": "Charmeleon δ",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "pop5:5:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/pop5-5",
+          "https://www.thepricedex.com/set/pop5/pop-series-5/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "0dd45a7a-f346-4891-a5e7-99a4369e3fd1",
+        "card_print_id": "fc1a7b29-311d-4ca9-a366-2ff4107f99b4",
+        "set_key": "pop5",
+        "set_name": "POP Series 5",
+        "card_number": "9",
+        "card_name": "δ Rainbow Energy",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "pop5:9:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/pop5-9",
+          "https://www.thepricedex.com/set/pop5/pop-series-5/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "268171a1-2486-4d42-97b5-9bfe1f522821",
+        "card_print_id": "c7dcdfaf-71b0-4861-a440-c5deb84ba120",
+        "set_key": "pop5",
+        "set_name": "POP Series 5",
+        "card_number": "10",
+        "card_name": "Charmander δ",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "pop5:10:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/pop5-10",
+          "https://www.thepricedex.com/set/pop5/pop-series-5/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "b3ec949a-4ddc-4915-b0c2-fafcc28a54d2",
+        "card_print_id": "08768cac-b79b-45c9-864f-006e813de941",
+        "set_key": "pop5",
+        "set_name": "POP Series 5",
+        "card_number": "14",
+        "card_name": "Pelipper δ",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "pop5:14:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/pop5-14",
+          "https://www.thepricedex.com/set/pop5/pop-series-5/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "36d810c1-e476-4be8-a1c0-d3bb3497bc5d",
+        "card_print_id": "491b4eca-6526-483e-9bdc-c8952f5b0279",
+        "set_key": "pop5",
+        "set_name": "POP Series 5",
+        "card_number": "16",
+        "card_name": "Espeon ★",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "pop5:16:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/pop5-16",
+          "https://www.thepricedex.com/set/pop5/pop-series-5/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "8975ff76-8a94-4bf8-b376-a1ff9ec09d8c",
+        "card_print_id": "5a43a87e-3f87-4e6f-b3d2-a16df3d6e54e",
+        "set_key": "pop5",
+        "set_name": "POP Series 5",
+        "card_number": "17",
+        "card_name": "Umbreon ★",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "pop5:17:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/pop5-17",
+          "https://www.thepricedex.com/set/pop5/pop-series-5/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "a125dcaf-660b-47c7-b720-2856f392c77d",
+        "card_print_id": "cb567ce9-8f96-4c4c-8bd1-f3cae82d7679",
+        "set_key": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "card_number": "37",
+        "card_name": "Suicune",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh3:37:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/15799/suicune-darkness-ablaze-037-189",
+          "https://www.thepricedex.com/set/swsh3/darkness-ablaze/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "323a8f58-b2e1-430a-85b5-030ea2cdff59",
+        "card_print_id": "a5ae1948-cf64-4cc8-bb7a-83e28decd066",
+        "set_key": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "card_number": "61",
+        "card_name": "Tapu Koko",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh3:61:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "bulbapedia_build_battle_product",
+          "bulbapedia_set_list",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Darkness_Ablaze_Build_%26_Battle_Box_(TCG)",
+          "https://www.thepricedex.com/set/swsh3/darkness-ablaze/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "42faa767-dcce-4a8f-9277-5ac59a9da9b5",
+        "card_print_id": "d5056dc5-c229-47bd-98ea-246c015c0b92",
+        "set_key": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "card_number": "63",
+        "card_name": "Toxtricity",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh3:63:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/15825/toxtricity-darkness-ablaze-063-189",
+          "https://www.thepricedex.com/set/swsh3/darkness-ablaze/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "5333737b-2d62-48dd-a65f-6890fd96b738",
+        "card_print_id": "2c33244b-390e-4ca0-b2dc-43fe03787db1",
+        "set_key": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "card_number": "81",
+        "card_name": "Mimikyu",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh3:81:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/15842/mimikyu-darkness-ablaze-081-189",
+          "https://www.thepricedex.com/set/swsh3/darkness-ablaze/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "04b229a8-4ee6-4fff-8ad7-07cdc8eb6da6",
+        "card_print_id": "84243b89-8306-4401-bac1-01497f6a7f15",
+        "set_key": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "card_number": "105",
+        "card_name": "Darkrai",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh3:105:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/15866/darkrai-darkness-ablaze-105-189",
+          "https://www.thepricedex.com/set/swsh3/darkness-ablaze/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "30d3150d-ca57-4f8d-97c8-d66b835c670a",
+        "card_print_id": "84243b89-8306-4401-bac1-01497f6a7f15",
+        "set_key": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "card_number": "105",
+        "card_name": "Darkrai",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh3:105:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "bulbapedia_build_battle_product",
+          "bulbapedia_set_list",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Darkness_Ablaze_Build_%26_Battle_Box_(TCG)",
+          "https://www.thepricedex.com/set/swsh3/darkness-ablaze/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "d5db0a8b-1f67-4aba-a166-a913545feab4",
+        "card_print_id": "3adb4263-64fd-49c2-b22a-b7bb4abb605a",
+        "set_key": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "card_number": "133",
+        "card_name": "Kangaskhan",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh3:133:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "bulbapedia_build_battle_product",
+          "bulbapedia_set_list",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Darkness_Ablaze_Build_%26_Battle_Box_(TCG)",
+          "https://www.thepricedex.com/set/swsh3/darkness-ablaze/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "8e2aea49-eab2-49ce-8d0e-7887959102af",
+        "card_print_id": "08a6b53a-5a2e-4b9d-87a4-615ba6c5ab2c",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "8",
+        "card_name": "Cherrim",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh5:8:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "binderbuilder_set_variant",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://binderbuilder.app/sets/swsh5",
+          "https://www.thepricedex.com/set/swsh5/battle-styles/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "bed66f74-6d94-4567-a7c6-c41d5f421d4b",
+        "card_print_id": "4c3296ee-ec4b-4d95-afb3-b64ebab1bb31",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "16",
+        "card_name": "Tapu Bulu",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh5:16:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "binderbuilder_set_variant",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://binderbuilder.app/sets/swsh5",
+          "https://www.thepricedex.com/set/swsh5/battle-styles/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "4c7c4c4c-7397-4069-b42a-a8751b325d32",
+        "card_print_id": "35c0ea2a-444d-4dbe-b7ae-a0551e57efb7",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "23",
+        "card_name": "Tepig",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh5:23:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/33852/tepig-battle-styles-023-163",
+          "https://www.thepricedex.com/set/swsh5/battle-styles/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "0b459464-610e-4e22-9a99-02d6c87e66c9",
+        "card_print_id": "54f1a687-e471-426c-a866-a5142a8a1b81",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "37",
+        "card_name": "Octillery",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh5:37:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "bulbapedia_build_battle_product",
+          "bulbapedia_set_list",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Battle_Styles_Build_%26_Battle_Box_(TCG)",
+          "https://www.thepricedex.com/set/swsh5/battle-styles/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "098f22af-e99d-4a8c-9a0c-02a821b3b9c2",
+        "card_print_id": "e4e54d9e-52ce-4ab3-943e-c58b531ac314",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "46",
+        "card_name": "Shinx",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh5:46:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/33875/shinx-battle-styles-046-163",
+          "https://www.thepricedex.com/set/swsh5/battle-styles/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "5077c564-53f3-4b13-8588-cb38abde8310",
+        "card_print_id": "b42407d8-754c-4e86-b7e5-c4953b914398",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "82",
+        "card_name": "Sandaconda",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh5:82:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/33911/sandaconda-battle-styles-082-163",
+          "https://www.thepricedex.com/set/swsh5/battle-styles/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "fbe4ce13-0906-452b-8f37-4015547183a2",
+        "card_print_id": "9d438332-6e28-4104-ac18-47d90a0224be",
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "card_number": "96",
+        "card_name": "Houndoom",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh5:96:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "bulbapedia_build_battle_product",
+          "bulbapedia_set_list",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Battle_Styles_Build_%26_Battle_Box_(TCG)",
+          "https://www.thepricedex.com/set/swsh5/battle-styles/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "4b418c54-77c9-4107-9704-515849c23214",
+        "card_print_id": "ebfadb7f-c6ee-4a8d-a386-b6ac91d88f44",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "21",
+        "card_name": "Moltres",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh9:21:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/37078/moltres-brilliant-stars-021-172",
+          "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "c693e2c8-2d2c-4b72-8d36-ba21762786eb",
+        "card_print_id": "ebfadb7f-c6ee-4a8d-a386-b6ac91d88f44",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "21",
+        "card_name": "Moltres",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh9:21:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "binderbuilder_set_variant",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://binderbuilder.app/sets/swsh9",
+          "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "eb5cfa63-f2f8-410a-8e44-28fffa1e5024",
+        "card_print_id": "ceb1964f-ae8c-440b-b0f6-c15a2839c3cd",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "26",
+        "card_name": "Infernape",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh9:26:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "bulbapedia_build_battle_product",
+          "bulbapedia_set_list",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Brilliant_Stars_Build_%26_Battle_Box_(TCG)",
+          "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "1e68407c-4121-4cd8-ba38-13c1af14a370",
+        "card_print_id": "d7b63842-99f6-4410-93d9-d0cdd5a7304e",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "37",
+        "card_name": "Empoleon",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh9:37:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/37094/empoleon-brilliant-stars-037-172",
+          "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "ff74efd4-4526-4e51-8e3f-ad5b9f8a8adb",
+        "card_print_id": "8168ddc5-6f20-4f0f-8881-33855060c9ca",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "121",
+        "card_name": "Bibarel",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh9:121:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "bulbapedia_build_battle_product",
+          "bulbapedia_set_list",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Brilliant_Stars_Build_%26_Battle_Box_(TCG)",
+          "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "01592a3a-355f-47df-920b-8cc17200e634",
+        "card_print_id": "9f7b802d-1371-4278-a235-112831588fb5",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "132",
+        "card_name": "Boss's Orders",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh9:132:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/37189/bosss-orders-brilliant-stars-132-172",
+          "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "798b558d-9f9e-4b76-91ca-c6fcebe2d4cf",
+        "card_print_id": "9f7b802d-1371-4278-a235-112831588fb5",
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "132",
+        "card_name": "Boss's Orders",
+        "finish_key": "normal",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "swsh9:132:normal",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/37189/bosss-orders-brilliant-stars-132-172",
+          "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "dfda8d6e-95a7-4022-8ed4-365268af3f3a",
+        "card_print_id": "95721191-f1f9-40c2-8f86-fa0a6c407140",
+        "set_key": "xy4",
+        "set_name": "Phantom Forces",
+        "card_number": "12",
+        "card_name": "Pyroar",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "xy4:12:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/7667/pyroar-phantom-forces-12-119",
+          "https://www.thepricedex.com/set/xy4/phantom-forces/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "f388cee6-9d87-45c6-b112-f9f952b0d9ce",
+        "card_print_id": "08674e72-ea29-4351-b4d5-8ac47f8da171",
+        "set_key": "xy4",
+        "set_name": "Phantom Forces",
+        "card_number": "17",
+        "card_name": "Feraligatr",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "xy4:17:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/7672/feraligatr-phantom-forces-17-119",
+          "https://www.thepricedex.com/set/xy4/phantom-forces/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "a2f963cb-7e18-4392-b716-86e510fb26dd",
+        "card_print_id": "e0247407-b6ec-4955-8b3f-e9bd25ff6c17",
+        "set_key": "xy4",
+        "set_name": "Phantom Forces",
+        "card_number": "33",
+        "card_name": "Crobat",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "xy4:33:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/7688/crobat-phantom-forces-33-119",
+          "https://www.thepricedex.com/set/xy4/phantom-forces/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "e2de7fbe-862e-437b-922e-3511938ac577",
+        "card_print_id": "27ec3e1d-c8af-49f2-82a0-264358c5b694",
+        "set_key": "xy4",
+        "set_name": "Phantom Forces",
+        "card_number": "43",
+        "card_name": "Chandelure",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "xy4:43:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/7698/chandelure-phantom-forces-43-119",
+          "https://www.thepricedex.com/set/xy4/phantom-forces/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "1060ed6e-81bf-4755-8695-c73ee39581f2",
+        "card_print_id": "19c2cea5-e1c7-4de2-b768-db283cb71abb",
+        "set_key": "xy4",
+        "set_name": "Phantom Forces",
+        "card_number": "74",
+        "card_name": "Hydreigon",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "xy4:74:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/7729/hydreigon-phantom-forces-74-119",
+          "https://www.thepricedex.com/set/xy4/phantom-forces/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "0d97de8b-e728-4afb-a530-6381df00424f",
+        "card_print_id": "d5d3ed43-39a0-4265-a219-4b5f91870dba",
+        "set_key": "xy4",
+        "set_name": "Phantom Forces",
+        "card_number": "77",
+        "card_name": "Goodra",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "xy4:77:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 2,
+        "sources": [
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.tcgcollector.com/cards/7732/goodra-phantom-forces-77-119",
+          "https://www.thepricedex.com/set/xy4/phantom-forces/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      },
+      {
+        "card_printing_id": "803035b2-19a6-4cef-84d5-5f51a3d7a8d4",
+        "card_print_id": "ca19c3fe-9583-436b-a7b1-9b5c75001b43",
+        "set_key": "xy4",
+        "set_name": "Phantom Forces",
+        "card_number": "81",
+        "card_name": "Blissey",
+        "finish_key": "cosmos",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "xy4:81:cosmos",
+        "created_by": "pkg06j_active_finish_child_printing_dry_run_v1",
+        "source_count": 3,
+        "sources": [
+          "pricecharting_csv_product",
+          "pricecharting_product_page",
+          "tcgcollector_card_variants",
+          "thepricedex_price_list"
+        ],
+        "evidence_urls": [
+          "https://www.pricecharting.com/game/pokemon-phantom-forces/blissey-cosmos-holo-81",
+          "https://www.tcgcollector.com/cards/7736/blissey-phantom-forces-81-119",
+          "https://www.thepricedex.com/set/xy4/phantom-forces/price-list"
+        ],
+        "readiness_classification": "eligible_child_printing_insert_only",
+        "live_parent_match_count": 1
+      }
+    ]
+  },
+  "dry_run_execution_status": "pkg06j_active_finish_child_printing_completed_rolled_back_no_durable_change",
+  "error_message": null,
+  "before_snapshot": {
+    "captured_at": "2026-06-10T04:31:15.644Z",
+    "rows": [
+      {
+        "row_type": "target_parent",
+        "row_id": "85c15e81-c19e-4904-a923-0a1782e901d9",
+        "set_code": "bw7",
+        "card_number": "13",
+        "card_name": "Serperior",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "bc9dfb62-bf0b-460c-9d25-3e3a80ad3964",
+        "set_code": "bw7",
+        "card_number": "20",
+        "card_name": "Charizard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "52b4fc4f-d6da-43f0-a13b-71b52445adbb",
+        "set_code": "bw7",
+        "card_number": "26",
+        "card_name": "Emboar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "2ed1ec29-d8bb-4933-bec2-ee9a48de871b",
+        "set_code": "bw7",
+        "card_number": "41",
+        "card_name": "Samurott",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "61800823-eef1-4db4-a539-c4f508734134",
+        "set_code": "bw7",
+        "card_number": "54",
+        "card_name": "Electivire",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "9b2cedd8-24bd-424d-af71-e138f75dbd3b",
+        "set_code": "bw7",
+        "card_number": "63",
+        "card_name": "Dusknoir",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "077bea43-80cb-414b-b58d-5bb533a7d73d",
+        "set_code": "bw7",
+        "card_number": "94",
+        "card_name": "Scizor",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e6183f85-c1c8-4f93-82b5-38964a5a4c39",
+        "set_code": "dp1",
+        "card_number": "103",
+        "card_name": "Turtwig",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "7b071c37-8c72-4364-8df6-9b450c4ddf1c",
+        "set_code": "dp1",
+        "card_number": "112",
+        "card_name": "Professor Rowan",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d501fbcc-245b-4f08-8303-4ea4d2a48ae1",
+        "set_code": "dp1",
+        "card_number": "120",
+        "card_name": "Empoleon LV.X",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ad7f2469-1682-4695-9322-1a27823346c5",
+        "set_code": "dp1",
+        "card_number": "121",
+        "card_name": "Infernape LV.X",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "9c7cd6e8-9881-45e0-b8d8-8b8763dc4147",
+        "set_code": "dp1",
+        "card_number": "122",
+        "card_name": "Torterra LV.X",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c9c6edad-1ca7-4a9f-b45c-b88a83a17988",
+        "set_code": "dp1",
+        "card_number": "76",
+        "card_name": "Chimchar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "2d26dcd1-d42b-4e77-9654-7f9b4297b916",
+        "set_code": "dp1",
+        "card_number": "93",
+        "card_name": "Piplup",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "260439c9-4180-447f-bd74-71604ebfad43",
+        "set_code": "hgss1",
+        "card_number": "115",
+        "card_name": "Grass Energy",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "35fbe785-6b30-427f-94cd-4726d5976fb2",
+        "set_code": "hgss1",
+        "card_number": "117",
+        "card_name": "Water Energy",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "df2bd576-1864-477f-bbbf-7905b19a8ff7",
+        "set_code": "hgss1",
+        "card_number": "118",
+        "card_name": "Lightning Energy",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "dc19feb4-ef22-489d-92a0-2b8a2f6e0156",
+        "set_code": "hgss1",
+        "card_number": "20",
+        "card_name": "Feraligatr",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "61bfff2c-ecad-4b47-833d-44b2454153cd",
+        "set_code": "hgss1",
+        "card_number": "26",
+        "card_name": "Meganium",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "127526a1-a4c1-4066-ae0f-264e08d71984",
+        "set_code": "hgss1",
+        "card_number": "32",
+        "card_name": "Typhlosion",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "675d93c2-f6ea-4012-b660-0a7f3d2174a9",
+        "set_code": "hgss1",
+        "card_number": "ONE",
+        "card_name": "Alph Lithograph",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "2c5d16d6-8cdc-4035-a390-5098ca9c6194",
+        "set_code": "mcd17",
+        "card_number": "1",
+        "card_name": "Rowlet",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "40b70c25-20b6-4888-8cf0-88bc6da7cfce",
+        "set_code": "mcd17",
+        "card_number": "10",
+        "card_name": "Cutiefly",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "5b720829-30a0-42cf-9203-6e01fa50fff7",
+        "set_code": "mcd17",
+        "card_number": "11",
+        "card_name": "Pikipek",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "abc1a7d0-5bc6-46f9-a2ef-76d156c9c719",
+        "set_code": "mcd17",
+        "card_number": "12",
+        "card_name": "Yungoos",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ddd31e27-9b06-48b1-8147-270a9690ef66",
+        "set_code": "mcd17",
+        "card_number": "3",
+        "card_name": "Litten",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d9dae53e-9683-4c01-b587-10590e0d121d",
+        "set_code": "mcd17",
+        "card_number": "8",
+        "card_name": "Alolan Meowth",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "fd2f7b7c-1dcc-47b8-9fe3-df9deccba773",
+        "set_code": "mcd22",
+        "card_number": "15",
+        "card_name": "Smeargle",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d09c0912-9a8d-45dd-a276-09da28bab494",
+        "set_code": "mcd22",
+        "card_number": "2",
+        "card_name": "Rowlet",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "1c4759db-9b50-45d0-9c0b-655977006168",
+        "set_code": "mcd22",
+        "card_number": "3",
+        "card_name": "Gossifleur",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "98b5e8e1-99c6-4c6e-9d89-ed1accb2dfb6",
+        "set_code": "mcd22",
+        "card_number": "4",
+        "card_name": "Growlithe",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "60efdde4-8b1e-4d21-b2d5-c8163d93691d",
+        "set_code": "mcd22",
+        "card_number": "5",
+        "card_name": "Victini",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f16bd0f6-341f-4085-8047-8c84238bf8e4",
+        "set_code": "mcd22",
+        "card_number": "7",
+        "card_name": "Pikachu",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c7dcdfaf-71b0-4861-a440-c5deb84ba120",
+        "set_code": "pop5",
+        "card_number": "10",
+        "card_name": "Charmander δ",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "08768cac-b79b-45c9-864f-006e813de941",
+        "set_code": "pop5",
+        "card_number": "14",
+        "card_name": "Pelipper δ",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "491b4eca-6526-483e-9bdc-c8952f5b0279",
+        "set_code": "pop5",
+        "card_number": "16",
+        "card_name": "Espeon ★",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "5a43a87e-3f87-4e6f-b3d2-a16df3d6e54e",
+        "set_code": "pop5",
+        "card_number": "17",
+        "card_name": "Umbreon ★",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "a6c6d0e4-2e5a-413d-9ddb-52b0b8f230bf",
+        "set_code": "pop5",
+        "card_number": "3",
+        "card_name": "Mew δ",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "7a8f665c-eae5-4a82-9e31-593c16ff46b8",
+        "set_code": "pop5",
+        "card_number": "5",
+        "card_name": "Charmeleon δ",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "fc1a7b29-311d-4ca9-a366-2ff4107f99b4",
+        "set_code": "pop5",
+        "card_number": "9",
+        "card_name": "δ Rainbow Energy",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "84243b89-8306-4401-bac1-01497f6a7f15",
+        "set_code": "swsh3",
+        "card_number": "105",
+        "card_name": "Darkrai",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "3adb4263-64fd-49c2-b22a-b7bb4abb605a",
+        "set_code": "swsh3",
+        "card_number": "133",
+        "card_name": "Kangaskhan",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "cb567ce9-8f96-4c4c-8bd1-f3cae82d7679",
+        "set_code": "swsh3",
+        "card_number": "37",
+        "card_name": "Suicune",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "a5ae1948-cf64-4cc8-bb7a-83e28decd066",
+        "set_code": "swsh3",
+        "card_number": "61",
+        "card_name": "Tapu Koko",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d5056dc5-c229-47bd-98ea-246c015c0b92",
+        "set_code": "swsh3",
+        "card_number": "63",
+        "card_name": "Toxtricity",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "2c33244b-390e-4ca0-b2dc-43fe03787db1",
+        "set_code": "swsh3",
+        "card_number": "81",
+        "card_name": "Mimikyu",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4c3296ee-ec4b-4d95-afb3-b64ebab1bb31",
+        "set_code": "swsh5",
+        "card_number": "16",
+        "card_name": "Tapu Bulu",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "35c0ea2a-444d-4dbe-b7ae-a0551e57efb7",
+        "set_code": "swsh5",
+        "card_number": "23",
+        "card_name": "Tepig",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "54f1a687-e471-426c-a866-a5142a8a1b81",
+        "set_code": "swsh5",
+        "card_number": "37",
+        "card_name": "Octillery",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e4e54d9e-52ce-4ab3-943e-c58b531ac314",
+        "set_code": "swsh5",
+        "card_number": "46",
+        "card_name": "Shinx",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "08a6b53a-5a2e-4b9d-87a4-615ba6c5ab2c",
+        "set_code": "swsh5",
+        "card_number": "8",
+        "card_name": "Cherrim",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "b42407d8-754c-4e86-b7e5-c4953b914398",
+        "set_code": "swsh5",
+        "card_number": "82",
+        "card_name": "Sandaconda",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "9d438332-6e28-4104-ac18-47d90a0224be",
+        "set_code": "swsh5",
+        "card_number": "96",
+        "card_name": "Houndoom",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "8168ddc5-6f20-4f0f-8881-33855060c9ca",
+        "set_code": "swsh9",
+        "card_number": "121",
+        "card_name": "Bibarel",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "9f7b802d-1371-4278-a235-112831588fb5",
+        "set_code": "swsh9",
+        "card_number": "132",
+        "card_name": "Boss's Orders",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ebfadb7f-c6ee-4a8d-a386-b6ac91d88f44",
+        "set_code": "swsh9",
+        "card_number": "21",
+        "card_name": "Moltres",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ceb1964f-ae8c-440b-b0f6-c15a2839c3cd",
+        "set_code": "swsh9",
+        "card_number": "26",
+        "card_name": "Infernape",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d7b63842-99f6-4410-93d9-d0cdd5a7304e",
+        "set_code": "swsh9",
+        "card_number": "37",
+        "card_name": "Empoleon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "95721191-f1f9-40c2-8f86-fa0a6c407140",
+        "set_code": "xy4",
+        "card_number": "12",
+        "card_name": "Pyroar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "08674e72-ea29-4351-b4d5-8ac47f8da171",
+        "set_code": "xy4",
+        "card_number": "17",
+        "card_name": "Feraligatr",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e0247407-b6ec-4955-8b3f-e9bd25ff6c17",
+        "set_code": "xy4",
+        "card_number": "33",
+        "card_name": "Crobat",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "27ec3e1d-c8af-49f2-82a0-264358c5b694",
+        "set_code": "xy4",
+        "card_number": "43",
+        "card_name": "Chandelure",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "19c2cea5-e1c7-4de2-b768-db283cb71abb",
+        "set_code": "xy4",
+        "card_number": "74",
+        "card_name": "Hydreigon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d5d3ed43-39a0-4265-a219-4b5f91870dba",
+        "set_code": "xy4",
+        "card_number": "77",
+        "card_name": "Goodra",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ca19c3fe-9583-436b-a7b1-9b5c75001b43",
+        "set_code": "xy4",
+        "card_number": "81",
+        "card_name": "Blissey",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "aae9dbaf88d6d12c6a0c0d3f6ec18a7e15872056a3745e99878bb902216638c8",
+    "counts": {
+      "target_parent_rows": 65,
+      "existing_target_child_rows": 0,
+      "planned_id_collision_rows": 0,
+      "total_rows": 65
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-10T04:31:15.817Z",
+    "rows": [
+      {
+        "row_type": "target_parent",
+        "row_id": "85c15e81-c19e-4904-a923-0a1782e901d9",
+        "set_code": "bw7",
+        "card_number": "13",
+        "card_name": "Serperior",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "bc9dfb62-bf0b-460c-9d25-3e3a80ad3964",
+        "set_code": "bw7",
+        "card_number": "20",
+        "card_name": "Charizard",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "52b4fc4f-d6da-43f0-a13b-71b52445adbb",
+        "set_code": "bw7",
+        "card_number": "26",
+        "card_name": "Emboar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "2ed1ec29-d8bb-4933-bec2-ee9a48de871b",
+        "set_code": "bw7",
+        "card_number": "41",
+        "card_name": "Samurott",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "61800823-eef1-4db4-a539-c4f508734134",
+        "set_code": "bw7",
+        "card_number": "54",
+        "card_name": "Electivire",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "9b2cedd8-24bd-424d-af71-e138f75dbd3b",
+        "set_code": "bw7",
+        "card_number": "63",
+        "card_name": "Dusknoir",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "077bea43-80cb-414b-b58d-5bb533a7d73d",
+        "set_code": "bw7",
+        "card_number": "94",
+        "card_name": "Scizor",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e6183f85-c1c8-4f93-82b5-38964a5a4c39",
+        "set_code": "dp1",
+        "card_number": "103",
+        "card_name": "Turtwig",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "7b071c37-8c72-4364-8df6-9b450c4ddf1c",
+        "set_code": "dp1",
+        "card_number": "112",
+        "card_name": "Professor Rowan",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d501fbcc-245b-4f08-8303-4ea4d2a48ae1",
+        "set_code": "dp1",
+        "card_number": "120",
+        "card_name": "Empoleon LV.X",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ad7f2469-1682-4695-9322-1a27823346c5",
+        "set_code": "dp1",
+        "card_number": "121",
+        "card_name": "Infernape LV.X",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "9c7cd6e8-9881-45e0-b8d8-8b8763dc4147",
+        "set_code": "dp1",
+        "card_number": "122",
+        "card_name": "Torterra LV.X",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c9c6edad-1ca7-4a9f-b45c-b88a83a17988",
+        "set_code": "dp1",
+        "card_number": "76",
+        "card_name": "Chimchar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "2d26dcd1-d42b-4e77-9654-7f9b4297b916",
+        "set_code": "dp1",
+        "card_number": "93",
+        "card_name": "Piplup",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "260439c9-4180-447f-bd74-71604ebfad43",
+        "set_code": "hgss1",
+        "card_number": "115",
+        "card_name": "Grass Energy",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "35fbe785-6b30-427f-94cd-4726d5976fb2",
+        "set_code": "hgss1",
+        "card_number": "117",
+        "card_name": "Water Energy",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "df2bd576-1864-477f-bbbf-7905b19a8ff7",
+        "set_code": "hgss1",
+        "card_number": "118",
+        "card_name": "Lightning Energy",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "dc19feb4-ef22-489d-92a0-2b8a2f6e0156",
+        "set_code": "hgss1",
+        "card_number": "20",
+        "card_name": "Feraligatr",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "61bfff2c-ecad-4b47-833d-44b2454153cd",
+        "set_code": "hgss1",
+        "card_number": "26",
+        "card_name": "Meganium",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "127526a1-a4c1-4066-ae0f-264e08d71984",
+        "set_code": "hgss1",
+        "card_number": "32",
+        "card_name": "Typhlosion",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "675d93c2-f6ea-4012-b660-0a7f3d2174a9",
+        "set_code": "hgss1",
+        "card_number": "ONE",
+        "card_name": "Alph Lithograph",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "2c5d16d6-8cdc-4035-a390-5098ca9c6194",
+        "set_code": "mcd17",
+        "card_number": "1",
+        "card_name": "Rowlet",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "40b70c25-20b6-4888-8cf0-88bc6da7cfce",
+        "set_code": "mcd17",
+        "card_number": "10",
+        "card_name": "Cutiefly",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "5b720829-30a0-42cf-9203-6e01fa50fff7",
+        "set_code": "mcd17",
+        "card_number": "11",
+        "card_name": "Pikipek",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "abc1a7d0-5bc6-46f9-a2ef-76d156c9c719",
+        "set_code": "mcd17",
+        "card_number": "12",
+        "card_name": "Yungoos",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ddd31e27-9b06-48b1-8147-270a9690ef66",
+        "set_code": "mcd17",
+        "card_number": "3",
+        "card_name": "Litten",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d9dae53e-9683-4c01-b587-10590e0d121d",
+        "set_code": "mcd17",
+        "card_number": "8",
+        "card_name": "Alolan Meowth",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "fd2f7b7c-1dcc-47b8-9fe3-df9deccba773",
+        "set_code": "mcd22",
+        "card_number": "15",
+        "card_name": "Smeargle",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d09c0912-9a8d-45dd-a276-09da28bab494",
+        "set_code": "mcd22",
+        "card_number": "2",
+        "card_name": "Rowlet",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "1c4759db-9b50-45d0-9c0b-655977006168",
+        "set_code": "mcd22",
+        "card_number": "3",
+        "card_name": "Gossifleur",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "98b5e8e1-99c6-4c6e-9d89-ed1accb2dfb6",
+        "set_code": "mcd22",
+        "card_number": "4",
+        "card_name": "Growlithe",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "60efdde4-8b1e-4d21-b2d5-c8163d93691d",
+        "set_code": "mcd22",
+        "card_number": "5",
+        "card_name": "Victini",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "f16bd0f6-341f-4085-8047-8c84238bf8e4",
+        "set_code": "mcd22",
+        "card_number": "7",
+        "card_name": "Pikachu",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "c7dcdfaf-71b0-4861-a440-c5deb84ba120",
+        "set_code": "pop5",
+        "card_number": "10",
+        "card_name": "Charmander δ",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "08768cac-b79b-45c9-864f-006e813de941",
+        "set_code": "pop5",
+        "card_number": "14",
+        "card_name": "Pelipper δ",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "491b4eca-6526-483e-9bdc-c8952f5b0279",
+        "set_code": "pop5",
+        "card_number": "16",
+        "card_name": "Espeon ★",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "5a43a87e-3f87-4e6f-b3d2-a16df3d6e54e",
+        "set_code": "pop5",
+        "card_number": "17",
+        "card_name": "Umbreon ★",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "a6c6d0e4-2e5a-413d-9ddb-52b0b8f230bf",
+        "set_code": "pop5",
+        "card_number": "3",
+        "card_name": "Mew δ",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "7a8f665c-eae5-4a82-9e31-593c16ff46b8",
+        "set_code": "pop5",
+        "card_number": "5",
+        "card_name": "Charmeleon δ",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "fc1a7b29-311d-4ca9-a366-2ff4107f99b4",
+        "set_code": "pop5",
+        "card_number": "9",
+        "card_name": "δ Rainbow Energy",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "84243b89-8306-4401-bac1-01497f6a7f15",
+        "set_code": "swsh3",
+        "card_number": "105",
+        "card_name": "Darkrai",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "3adb4263-64fd-49c2-b22a-b7bb4abb605a",
+        "set_code": "swsh3",
+        "card_number": "133",
+        "card_name": "Kangaskhan",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "cb567ce9-8f96-4c4c-8bd1-f3cae82d7679",
+        "set_code": "swsh3",
+        "card_number": "37",
+        "card_name": "Suicune",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "a5ae1948-cf64-4cc8-bb7a-83e28decd066",
+        "set_code": "swsh3",
+        "card_number": "61",
+        "card_name": "Tapu Koko",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d5056dc5-c229-47bd-98ea-246c015c0b92",
+        "set_code": "swsh3",
+        "card_number": "63",
+        "card_name": "Toxtricity",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "2c33244b-390e-4ca0-b2dc-43fe03787db1",
+        "set_code": "swsh3",
+        "card_number": "81",
+        "card_name": "Mimikyu",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "4c3296ee-ec4b-4d95-afb3-b64ebab1bb31",
+        "set_code": "swsh5",
+        "card_number": "16",
+        "card_name": "Tapu Bulu",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "35c0ea2a-444d-4dbe-b7ae-a0551e57efb7",
+        "set_code": "swsh5",
+        "card_number": "23",
+        "card_name": "Tepig",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "54f1a687-e471-426c-a866-a5142a8a1b81",
+        "set_code": "swsh5",
+        "card_number": "37",
+        "card_name": "Octillery",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e4e54d9e-52ce-4ab3-943e-c58b531ac314",
+        "set_code": "swsh5",
+        "card_number": "46",
+        "card_name": "Shinx",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "08a6b53a-5a2e-4b9d-87a4-615ba6c5ab2c",
+        "set_code": "swsh5",
+        "card_number": "8",
+        "card_name": "Cherrim",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "b42407d8-754c-4e86-b7e5-c4953b914398",
+        "set_code": "swsh5",
+        "card_number": "82",
+        "card_name": "Sandaconda",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "9d438332-6e28-4104-ac18-47d90a0224be",
+        "set_code": "swsh5",
+        "card_number": "96",
+        "card_name": "Houndoom",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "8168ddc5-6f20-4f0f-8881-33855060c9ca",
+        "set_code": "swsh9",
+        "card_number": "121",
+        "card_name": "Bibarel",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "9f7b802d-1371-4278-a235-112831588fb5",
+        "set_code": "swsh9",
+        "card_number": "132",
+        "card_name": "Boss's Orders",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ebfadb7f-c6ee-4a8d-a386-b6ac91d88f44",
+        "set_code": "swsh9",
+        "card_number": "21",
+        "card_name": "Moltres",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ceb1964f-ae8c-440b-b0f6-c15a2839c3cd",
+        "set_code": "swsh9",
+        "card_number": "26",
+        "card_name": "Infernape",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d7b63842-99f6-4410-93d9-d0cdd5a7304e",
+        "set_code": "swsh9",
+        "card_number": "37",
+        "card_name": "Empoleon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "95721191-f1f9-40c2-8f86-fa0a6c407140",
+        "set_code": "xy4",
+        "card_number": "12",
+        "card_name": "Pyroar",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "08674e72-ea29-4351-b4d5-8ac47f8da171",
+        "set_code": "xy4",
+        "card_number": "17",
+        "card_name": "Feraligatr",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "e0247407-b6ec-4955-8b3f-e9bd25ff6c17",
+        "set_code": "xy4",
+        "card_number": "33",
+        "card_name": "Crobat",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "27ec3e1d-c8af-49f2-82a0-264358c5b694",
+        "set_code": "xy4",
+        "card_number": "43",
+        "card_name": "Chandelure",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "19c2cea5-e1c7-4de2-b768-db283cb71abb",
+        "set_code": "xy4",
+        "card_number": "74",
+        "card_name": "Hydreigon",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "d5d3ed43-39a0-4265-a219-4b5f91870dba",
+        "set_code": "xy4",
+        "card_number": "77",
+        "card_name": "Goodra",
+        "finish_key": null,
+        "target_card_printing_id": null
+      },
+      {
+        "row_type": "target_parent",
+        "row_id": "ca19c3fe-9583-436b-a7b1-9b5c75001b43",
+        "set_code": "xy4",
+        "card_number": "81",
+        "card_name": "Blissey",
+        "finish_key": null,
+        "target_card_printing_id": null
+      }
+    ],
+    "hash_sha256": "aae9dbaf88d6d12c6a0c0d3f6ec18a7e15872056a3745e99878bb902216638c8",
+    "counts": {
+      "target_parent_rows": 65,
+      "existing_target_child_rows": 0,
+      "planned_id_collision_rows": 0,
+      "total_rows": 65
+    }
+  },
+  "rollback_proof_rows": [
+    {
+      "package_id": "PKG-06J-ACTIVE-FINISH-CHILD-PRINTING-INSERTS",
+      "source_readiness_fingerprint": "6063892190519f7b48b87f46e4c7d556ad12333655ab0c2aef3149d1da2764f7",
+      "package_fingerprint": "5bae5af1da3258540c9d010c88023fa4ea668bacde0db12bc454e0a4ec6f2879",
+      "planned_sets": 10,
+      "target_parent_rows": 65,
+      "planned_child_rows": 68
+    }
+  ],
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_authorized": false,
+  "parent_writes": false,
+  "deletes_or_merges": false,
+  "write_ready_now": 0,
+  "stop_findings": [],
+  "next_allowed_step": "Prepare a real-apply gate for PKG-06J only if separately requested."
+}

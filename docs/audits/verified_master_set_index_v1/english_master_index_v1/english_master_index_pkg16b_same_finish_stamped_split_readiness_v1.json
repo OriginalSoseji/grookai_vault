@@ -1,0 +1,1205 @@
+{
+  "generated_at": "2026-06-12T21:49:46.368Z",
+  "version": "english_master_index_pkg16b_same_finish_stamped_split_readiness_v1",
+  "package_id": "PKG-16B-SAME-FINISH-STAMPED-SPLIT-READINESS",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "same_finish_ambiguous_adjudication": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15i_stamped_same_finish_ambiguous_adjudication_v1.json",
+    "manual_web_stamped_finish_review": "docs/audits/english_master_index_source_exhaustion_v1/manual_web_stamped_finish_review_v1/manual_web_stamped_finish_review_v1.json",
+    "manual_web_same_finish_split_review": "docs/audits/english_master_index_source_exhaustion_v1/manual_web_same_finish_split_review_v1/manual_web_same_finish_split_review_v1.json",
+    "post_apply_reconciliations": [
+      "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15o_post_apply_reconciliation_v1.json",
+      "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15p_post_apply_reconciliation_v1.json",
+      "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg16f_post_apply_reconciliation_v1.json"
+    ]
+  },
+  "fingerprint_sha256": "d2ef7b3bf998f85ce0b38ae33be8de4496b377be6f75087c0e73c4264f4bc9a4",
+  "summary": {
+    "ambiguous_source_rows": 21,
+    "split_candidate_rows": 43,
+    "already_applied_verified": 17,
+    "second_source_needed": 18,
+    "conflict_blocked": 3,
+    "metadata_strategy_blocked": 5,
+    "ready_for_future_guarded_split_insert": 0,
+    "by_status": {
+      "blocked_second_independent_source_needed": 18,
+      "already_applied_verified": 17,
+      "blocked_battle_academy_display_metadata_strategy": 5,
+      "blocked_conflicting_finish_observation": 3
+    },
+    "by_finish_key": {
+      "reverse": 32,
+      "normal": 9,
+      "holo": 2
+    },
+    "by_variant_key": {
+      "regional_championships_staff_stamp": 10,
+      "regional_championships_stamp": 9,
+      "battle_academy_deck_mark": 5,
+      "city_championships_staff_stamp": 3,
+      "city_championships_stamp": 3,
+      "national_championships_staff_stamp": 2,
+      "national_championships_stamp": 2,
+      "states_championships_staff_stamp": 2,
+      "eb_games_stamp": 1,
+      "europe_championships_staff_stamp": 1,
+      "gamestop_stamp": 1,
+      "league_staff_stamp": 1,
+      "league_stamp": 1,
+      "oceania_championships_staff_stamp": 1,
+      "staff_prerelease_stamp": 1
+    }
+  },
+  "governance": {
+    "rule": "Do not collapse multiple source variant labels into one generic stamped parent. Each exact label must either map to its own deterministic variant key or remain blocked.",
+    "apply_boundary": "Rows marked ready_for_future_guarded_split_insert still require a separate DB-readiness and rollback-only dry-run package before any real apply.",
+    "forbidden": [
+      "finish_key=stamped",
+      "generic stamped child printing",
+      "collapsing staff and non-staff variants without explicit governance",
+      "using one source as final truth"
+    ]
+  },
+  "rows": [
+    {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "80",
+      "card_name": "Escavalier",
+      "variant_key": "national_championships_stamp",
+      "stamp_label": "National Championships Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "National Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/escavalier-80-101-reverse-holo-national-championships-noble-victories/bw3-80-3-45/",
+          "evidence_label": "Escavalier - 80/101 - Reverse Holo - National Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "80",
+      "card_name": "Escavalier",
+      "variant_key": "national_championships_staff_stamp",
+      "stamp_label": "National Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff National Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/escavalier-80-101-reverse-holo-staff-national-championships-noble-victories/bw3-80-3-80/",
+          "evidence_label": "Escavalier - 80/101 - Reverse Holo - Staff National Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff Regional Championships Promo",
+      "status": "blocked_conflicting_finish_observation",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/vaporeon-25-108-reverse-holo-staff-regional-championships-dark-explorers/bw5-25-3-83/",
+          "evidence_label": "Vaporeon - 25/108 - Reverse Holo - Staff Regional Championships - Promo"
+        }
+      ],
+      "conflict_rows": [
+        {
+          "source_key": "pricecharting_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-dark-explorers/vaporeon-championship-25",
+          "set_key": "bw5",
+          "card_number": "25",
+          "card_name": "Vaporeon",
+          "variant_key": "regional_championships_staff_stamp",
+          "current_pkg16b_finish_key": "reverse",
+          "observed_finish_key": "holo",
+          "evidence_type": "conflicting_finish_observation",
+          "evidence_label": "Vaporeon Championship page/sales text uses Holo/Crosshatch Championship wording, not exact Reverse Holo.",
+          "notes": "Do not promote Vaporeon reverse split rows from this source without finish adjudication.",
+          "retrieved_at": "2026-06-12T01:02:57.240Z"
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "25",
+      "card_name": "Vaporeon",
+      "variant_key": "states_championships_staff_stamp",
+      "stamp_label": "States Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff States Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/vaporeon-25-108-reverse-holo-staff-states-championships-dark-explorers/bw5-25-3-84/",
+          "evidence_label": "Vaporeon - 25/108 - Reverse Holo - Staff States Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "37",
+      "card_name": "Jolteon",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Regional Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/jolteon-37-108-reverse-holo-regional-championships-dark-explorers/bw5-37-3-60/",
+          "evidence_label": "Jolteon - 37/108 - Reverse Holo - Regional Championships - Promo"
+        },
+        {
+          "source_key": "pricecharting_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-dark-explorers/jolteon-regional-championship-37",
+          "evidence_label": "Jolteon [Regional Championship] #37 page includes Reverse Foils pricing lane."
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "37",
+      "card_name": "Jolteon",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff Regional Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/jolteon-37-108-reverse-holo-staff-regional-championships-dark-explorers/bw5-37-3-83/",
+          "evidence_label": "Jolteon - 37/108 - Reverse Holo - Staff Regional Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "84",
+      "card_name": "Eevee",
+      "variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "City Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/eevee-84-108-reverse-holo-city-championships-dark-explorers/bw5-84-3-23/",
+          "evidence_label": "Eevee - 84/108 - Reverse Holo - City Championships - Promo"
+        },
+        {
+          "source_key": "tcgplayer_league_championship_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/209530/pokemon-league-and-championship-cards-eevee-84-108-city-championships",
+          "evidence_label": "Eevee - 84/108 (City Championships) has Reverse Holofoil listing."
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "84",
+      "card_name": "Eevee",
+      "variant_key": "city_championships_staff_stamp",
+      "stamp_label": "City Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff City Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/eevee-84-108-reverse-holo-staff-city-championships-dark-explorers/bw5-84-3-75/",
+          "evidence_label": "Eevee - 84/108 - Reverse Holo - Staff City Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "52",
+      "card_name": "Luxio",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "finish_key": "normal",
+      "source_variant_label": "Staff Prerelease Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/luxio-52-130-non-holo-staff-prerelease-diamond-pearl/dp1-52-2-82/",
+          "evidence_label": "Luxio - 52/130 - Non-Holo - Staff Prerelease - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "52",
+      "card_name": "Luxio",
+      "variant_key": "states_championships_staff_stamp",
+      "stamp_label": "States Championships Staff Stamp",
+      "finish_key": "normal",
+      "source_variant_label": "Staff States Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/luxio-52-130-non-holo-staff-states-championships-diamond-pearl/dp1-52-2-84/",
+          "evidence_label": "Luxio - 52/130 - Non-Holo - Staff States Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "98",
+      "card_name": "Shinx",
+      "variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "finish_key": "normal",
+      "source_variant_label": "City Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/shinx-98-130-non-holo-city-championships-diamond-pearl/dp1-98-2-23/",
+          "evidence_label": "Shinx - 98/130 - Non-Holo - City Championships - Promo"
+        },
+        {
+          "source_key": "pokumon_promo_database",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/shinx-98-130-city-championships-special-print/",
+          "evidence_label": "Shinx (98/130 City Championships Special Print) - Non-holo City Championships promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "98",
+      "card_name": "Shinx",
+      "variant_key": "city_championships_staff_stamp",
+      "stamp_label": "City Championships Staff Stamp",
+      "finish_key": "normal",
+      "source_variant_label": "Staff City Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/shinx-98-130-non-holo-staff-city-championships-diamond-pearl/dp1-98-2-75/",
+          "evidence_label": "Shinx - 98/130 - Non-Holo - Staff City Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "me02",
+      "set_name": "Phantasmal Flames",
+      "card_number": "26",
+      "card_name": "Suicune",
+      "variant_key": "eb_games_stamp",
+      "stamp_label": "EB Games Stamp",
+      "finish_key": "holo",
+      "source_variant_label": "EB Games Stamp Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/suicune-026-094-holo-eb-games-stamp-phantasmal-flames/me2-026-1-106/",
+          "evidence_label": "Suicune - 026/094 - Holo - GameStop Stamp - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "me02",
+      "set_name": "Phantasmal Flames",
+      "card_number": "26",
+      "card_name": "Suicune",
+      "variant_key": "gamestop_stamp",
+      "stamp_label": "GameStop Stamp",
+      "finish_key": "holo",
+      "source_variant_label": "GameStop Stamp Promo",
+      "status": "blocked_conflicting_finish_observation",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/suicune-026-094-holo-gamestop-stamp-phantasmal-flames/me2-026-1-104/",
+          "evidence_label": "Suicune - 026/094 - Holo - EB Games Stamp - Promo"
+        }
+      ],
+      "conflict_rows": [
+        {
+          "source_key": "tcgplayer_misc_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/666533/pokemon-miscellaneous-cards-and-products-suicune-cosmos-holo-gamestop-exclusive",
+          "set_key": "me02",
+          "set_name": "Phantasmal Flames",
+          "card_number": "026",
+          "card_name": "Suicune",
+          "expanded_variant_key": "gamestop_stamp",
+          "current_pkg15k_finish_key": "holo",
+          "observed_finish_key": "cosmos",
+          "evidence_type": "conflicting_finish_observation",
+          "evidence_label": "Suicune (Cosmos Holo) (Gamestop Exclusive), #026/094",
+          "notes": "This conflicts with the current PKG-15K plain holo candidate and must block plain-holo promotion until adjudicated.",
+          "retrieved_at": "2026-06-11T23:31:05.698Z",
+          "raw_snapshot_ref": null
+        },
+        {
+          "source_key": "pokescope_variant_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokescope.app/card/me2-26/",
+          "set_key": "me02",
+          "set_name": "Phantasmal Flames",
+          "card_number": "026",
+          "card_name": "Suicune",
+          "expanded_variant_key": "gamestop_stamp",
+          "current_pkg15k_finish_key": "holo",
+          "observed_finish_key": "cosmos",
+          "evidence_type": "conflicting_finish_observation",
+          "evidence_label": "Suicune Phantasmal Flames GameStop Cosmos Holo Promo 026/094",
+          "notes": "This supports treating GameStop Suicune as a cosmos/stamped identity review row rather than a plain holo child insertion.",
+          "retrieved_at": "2026-06-11T23:31:05.698Z",
+          "raw_snapshot_ref": null
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "128",
+      "card_name": "Professor Kukui",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Regional Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/professor-kukui-128-149-reverse-holo-regional-championships-sun-moon/sm1-128-3-60/",
+          "evidence_label": "Professor Kukui - 128/149 - Reverse Holo - Regional Championships - Promo"
+        },
+        {
+          "source_key": "pricecharting_historic_sales_title",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-sun-%26-moon/professor-kukui-reverse-holo-128",
+          "evidence_label": "Professor Kukui reverse holo page includes Regional Championship Promo sales title."
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "128",
+      "card_name": "Professor Kukui",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff Regional Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/professor-kukui-128-149-reverse-holo-staff-regional-championships-sun-moon/sm1-128-3-83/",
+          "evidence_label": "Professor Kukui - 128/149 - Reverse Holo - Staff Regional Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "europe_championships_staff_stamp",
+      "stamp_label": "Europe Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff Europe Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/ultra-ball-135-149-reverse-holo-staff-europe-championships-sun-moon/sm1-135-3-77/",
+          "evidence_label": "Ultra Ball - 135/149 - Reverse Holo - Staff Europe Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "135",
+      "card_name": "Ultra Ball",
+      "variant_key": "oceania_championships_staff_stamp",
+      "stamp_label": "Oceania Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff Oceania Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/ultra-ball-135-149-reverse-holo-staff-oceania-championships-sun-moon/sm1-135-3-81/",
+          "evidence_label": "Ultra Ball - 135/149 - Reverse Holo - Staff Oceania Championships - Promo"
+        },
+        {
+          "source_key": "pokumon_promo_database",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/oceania-championships-staff-ultra-ball-135-149-international-championships-oceania-special-print/",
+          "evidence_label": "Oceania Championships Staff Ultra Ball (135/149 International Championships Oceania Special Print) - Reverse Holo Staff promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "95",
+      "card_name": "Gladion",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Regional Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/gladion-95-111-reverse-holo-regional-championships-crimson-invasion/sm4-95-3-60/",
+          "evidence_label": "Gladion - 95/111 - Reverse Holo - Regional Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "95",
+      "card_name": "Gladion",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff Regional Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/gladion-95-111-reverse-holo-staff-regional-championships-crimson-invasion/sm4-95-3-83/",
+          "evidence_label": "Gladion - 95/111 - Reverse Holo - Staff Regional Championships - Promo"
+        },
+        {
+          "source_key": "nobleknight_league_championship_cards",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148463577/Gladion---95-111-Regional-Championships-Staff-P-095-111-Reverse-Holo",
+          "evidence_label": "Gladion - 95/111 (Regional Championships) [Staff] (P) #095/111 (Reverse Holo)"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "119",
+      "card_name": "Cynthia",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Regional Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/cynthia-119-156-reverse-holo-regional-championships-ultra-prism/sm5-119-3-60/",
+          "evidence_label": "Cynthia - 119/156 - Reverse Holo - Regional Championships - Promo"
+        },
+        {
+          "source_key": "pokumon_promo_database",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/cynthia-119a-156-regional-championships-special-print/",
+          "evidence_label": "Cynthia (119a/156 Regional Championships Special Print) - Reverse Holo Regional Championships promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "card_number": "119",
+      "card_name": "Cynthia",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff Regional Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/cynthia-119-156-reverse-holo-staff-regional-championships-ultra-prism/sm5-119-3-83/",
+          "evidence_label": "Cynthia - 119/156 - Reverse Holo - Staff Regional Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "102",
+      "card_name": "Beast Ring",
+      "variant_key": "league_stamp",
+      "stamp_label": "League Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "League Promo Promo",
+      "status": "already_applied_verified",
+      "source_count": 3,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/beast-ring-102-131-reverse-holo-league-promo-forbidden-light/sm6-102-3-41/",
+          "evidence_label": "Beast Ring - 102/131 - Reverse Holo - League Promo - Promo"
+        },
+        {
+          "source_key": "bulbapedia_forbidden_light_set_list",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_(TCG)",
+          "evidence_label": "102/131 Beast Ring - Reverse Holo Pokemon League Forbidden Light Season 3 promo (July 2018)"
+        },
+        {
+          "source_key": "nobleknight_league_championship_cards",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148463626/Beast-Ring---102-131-Pokemon-League-P-102-131-Reverse-Holo",
+          "evidence_label": "Beast Ring - 102/131 (Pokemon League) (P) #102/131 (Reverse Holo)"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "102",
+      "card_name": "Beast Ring",
+      "variant_key": "league_staff_stamp",
+      "stamp_label": "League Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff League Promo Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/beast-ring-102-131-reverse-holo-staff-league-promo-forbidden-light/sm6-102-3-78/",
+          "evidence_label": "Beast Ring - 102/131 - Reverse Holo - Staff League Promo - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "105",
+      "card_name": "Diantha",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Regional Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 3,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/diantha-105-131-reverse-holo-regional-championships-forbidden-light/sm6-105-3-60/",
+          "evidence_label": "Diantha - 105/131 - Reverse Holo - Regional Championships - Promo"
+        },
+        {
+          "source_key": "bulbapedia_forbidden_light_set_list",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_(TCG)",
+          "evidence_label": "105/131 Diantha - Reverse Holo Forbidden Light Season Regional Championships promo"
+        },
+        {
+          "source_key": "nobleknight_league_championship_cards",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148463390/Diantha---105-131-Regional-Championships-P-105-131-Reverse-Holo",
+          "evidence_label": "Diantha - 105/131 (Regional Championships) (P) #105/131 (Reverse Holo)"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "105",
+      "card_name": "Diantha",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff Regional Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/diantha-105-131-reverse-holo-staff-regional-championships-forbidden-light/sm6-105-3-83/",
+          "evidence_label": "Diantha - 105/131 - Reverse Holo - Staff Regional Championships - Promo"
+        },
+        {
+          "source_key": "bulbapedia_forbidden_light_set_list",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_(TCG)",
+          "evidence_label": "105/131 Diantha - Reverse Holo Forbidden Light Season Regional Championships Staff promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "card_number": "150",
+      "card_name": "Roxanne",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Regional Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/Roxanne-150-189-Reverse-Holo-Regional-Championships-Astral-Radiance/swsh10-150-3-60/",
+          "evidence_label": "Roxanne - 150/189 - Reverse Holo - Regional Championships - Promo"
+        },
+        {
+          "source_key": "pricecharting_historic_sales_title",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/roxanne-regional-championships-150",
+          "evidence_label": "Pokemon Reverse Holo Roxanne 150/189 Regional Promo Card Astral Radiance"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "card_number": "150",
+      "card_name": "Roxanne",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff Regional Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/Roxanne-150-189-Reverse-Holo-Staff-Regional-Championships-Astral-Radiance/swsh10-150-3-83/",
+          "evidence_label": "Roxanne - 150/189 - Reverse Holo - Staff Regional Championships - Promo"
+        },
+        {
+          "source_key": "tcgplayer_league_championship_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/282283/pokemon-league-and-championship-cards-roxanne-150-189-regional-championships-staff",
+          "evidence_label": "Roxanne - 150/189 (Regional Championships) [Staff] lists Reverse Holofoil condition."
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "23",
+      "card_name": "Larvesta",
+      "variant_key": "battle_academy_deck_mark",
+      "stamp_label": "Battle Academy Deck Mark",
+      "finish_key": "normal",
+      "source_variant_label": "19 Battle Academy Stamp Promo",
+      "status": "blocked_battle_academy_display_metadata_strategy",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/Larvesta-023-198-Non-Holo-19-Battle-Academy-Stamp-Chilling-Reign/swsh6-23-2-108/",
+          "evidence_label": "Larvesta - 023/198 - Non-Holo - 19 - Battle Academy Stamp - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "23",
+      "card_name": "Larvesta",
+      "variant_key": "battle_academy_deck_mark",
+      "stamp_label": "Battle Academy Deck Mark",
+      "finish_key": "normal",
+      "source_variant_label": "36 Battle Academy Stamp Promo",
+      "status": "blocked_battle_academy_display_metadata_strategy",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/Larvesta-023-198-Non-Holo-36-Battle-Academy-Stamp-Chilling-Reign/swsh6-23-2-109/",
+          "evidence_label": "Larvesta - 023/198 - Non-Holo - 36 - Battle Academy Stamp - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "23",
+      "card_name": "Larvesta",
+      "variant_key": "battle_academy_deck_mark",
+      "stamp_label": "Battle Academy Deck Mark",
+      "finish_key": "normal",
+      "source_variant_label": "46 Battle Academy Stamp Promo",
+      "status": "blocked_battle_academy_display_metadata_strategy",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/Larvesta-023-198-Non-Holo-46-Battle-Academy-Stamp-Chilling-Reign/swsh6-23-2-110/",
+          "evidence_label": "Larvesta - 023/198 - Non-Holo - 46 - Battle Academy Stamp - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "24",
+      "card_name": "Volcarona",
+      "variant_key": "battle_academy_deck_mark",
+      "stamp_label": "Battle Academy Deck Mark",
+      "finish_key": "normal",
+      "source_variant_label": "27 Battle Academy Stamp Promo",
+      "status": "blocked_battle_academy_display_metadata_strategy",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/Volcarona-024-198-Non-Holo-27-Battle-Academy-Stamp-Chilling-Reign/swsh6-24-2-111/",
+          "evidence_label": "Volcarona - 024/198 - Non-Holo - 27 - Battle Academy Stamp - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "card_number": "24",
+      "card_name": "Volcarona",
+      "variant_key": "battle_academy_deck_mark",
+      "stamp_label": "Battle Academy Deck Mark",
+      "finish_key": "normal",
+      "source_variant_label": "44 Battle Academy Stamp Promo",
+      "status": "blocked_battle_academy_display_metadata_strategy",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/Volcarona-024-198-Non-Holo-44-Battle-Academy-Stamp-Chilling-Reign/swsh6-24-2-112/",
+          "evidence_label": "Volcarona - 024/198 - Non-Holo - 44 - Battle Academy Stamp - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "83",
+      "card_name": "Honedge",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Regional Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/honedge-83-146-reverse-holo-regional-championships-xy/xy1-83-3-60/",
+          "evidence_label": "Honedge - 83/146 - Reverse Holo - Regional Championships - Promo"
+        },
+        {
+          "source_key": "nobleknight_league_championship_cards",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148463359/Honedge---83-146-Regional-Championships-P-083-146-Reverse-Holo",
+          "evidence_label": "Honedge - 83/146 (Regional Championships) (P) #083/146 (Reverse Holo)"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "83",
+      "card_name": "Honedge",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff Regional Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/honedge-83-146-reverse-holo-staff-regional-championships-xy/xy1-83-3-83/",
+          "evidence_label": "Honedge - 83/146 - Reverse Holo - Staff Regional Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "84",
+      "card_name": "Doublade",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Regional Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 3,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/doublade-84-146-reverse-holo-regional-championships-xy/xy1-84-3-60/",
+          "evidence_label": "Doublade - 84/146 - Reverse Holo - Regional Championships - Promo"
+        },
+        {
+          "source_key": "tcgplayer_league_championship_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/209556/pokemon-league-and-championship-cards-doublade-84-146-regional-championships",
+          "evidence_label": "Doublade - 84/146 (Regional Championships) page includes Reverse Holofoil pricing."
+        },
+        {
+          "source_key": "card_cavern_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.cardcaverntradingcards.com/products/doublade-84-146-regionalchampionshippromo-reverseholo",
+          "evidence_label": "Doublade - 84/146 - Regional Championship Promo - Reverse Holo."
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "84",
+      "card_name": "Doublade",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff Regional Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/doublade-84-146-reverse-holo-staff-regional-championships-xy/xy1-84-3-83/",
+          "evidence_label": "Doublade - 84/146 - Reverse Holo - Staff Regional Championships - Promo"
+        },
+        {
+          "source_key": "moonshot_game_store_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://moonshotgamestore.com/products/pr-doublade-84-146-regional-championships-staff-reverse-holofoil",
+          "evidence_label": "Doublade - 84/146 (Regional Championships) [Staff] (Reverse Holofoil)."
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "85",
+      "card_name": "Aegislash",
+      "variant_key": "regional_championships_stamp",
+      "stamp_label": "Regional Championships Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Regional Championships Promo",
+      "status": "blocked_conflicting_finish_observation",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/aegislash-85-146-reverse-holo-regional-championships-xy/xy1-85-3-60/",
+          "evidence_label": "Aegislash - 85/146 - Reverse Holo - Regional Championships - Promo"
+        }
+      ],
+      "conflict_rows": [
+        {
+          "source_key": "pricecharting_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-xy/aegislash-85",
+          "set_key": "xy1",
+          "card_number": "85",
+          "card_name": "Aegislash",
+          "variant_key": "regional_championships_stamp",
+          "current_pkg16b_finish_key": "reverse",
+          "observed_finish_key": "holo",
+          "evidence_type": "conflicting_finish_observation",
+          "evidence_label": "Aegislash page/sales text uses Crosshatch Holo Regional Championships wording.",
+          "notes": "Do not promote Aegislash reverse split rows from this source without finish adjudication.",
+          "retrieved_at": "2026-06-12T01:02:57.240Z"
+        }
+      ],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "85",
+      "card_name": "Aegislash",
+      "variant_key": "regional_championships_staff_stamp",
+      "stamp_label": "Regional Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff Regional Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/aegislash-85-146-reverse-holo-staff-regional-championships-xy/xy1-85-3-83/",
+          "evidence_label": "Aegislash - 85/146 - Reverse Holo - Staff Regional Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "card_number": "94",
+      "card_name": "Chaos Tower",
+      "variant_key": "national_championships_stamp",
+      "stamp_label": "National Championships Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "National Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/chaos-tower-94-124-reverse-holo-national-championships-fates-collide/xy10-94-3-45/",
+          "evidence_label": "Chaos Tower - 94/124 - Reverse Holo - National Championships - Promo"
+        },
+        {
+          "source_key": "pokumon_promo_database",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/chaos-tower-94-124-national-championships-special-print/",
+          "evidence_label": "Chaos Tower (94/124 National Championships Special Print) - Reverse Holo National Championships promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "card_number": "94",
+      "card_name": "Chaos Tower",
+      "variant_key": "national_championships_staff_stamp",
+      "stamp_label": "National Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff National Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/chaos-tower-94-124-reverse-holo-staff-national-championships-fates-collide/xy10-94-3-80/",
+          "evidence_label": "Chaos Tower - 94/124 - Reverse Holo - Staff National Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "145",
+      "card_name": "Parallel City",
+      "variant_key": "city_championships_stamp",
+      "stamp_label": "City Championships Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "City Championships Promo",
+      "status": "already_applied_verified",
+      "source_count": 2,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/parallel-city-145-162-reverse-holo-city-championships-breakthrough/xy8-145-3-23/",
+          "evidence_label": "Parallel City - 145/162 - Reverse Holo - City Championships - Promo"
+        },
+        {
+          "source_key": "pokumon_promo_database",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/parallel-city-145-162-city-championships-special-print/",
+          "evidence_label": "Parallel City (145/162 City Championships Special Print) - Reverse Holo City Championships promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "145",
+      "card_name": "Parallel City",
+      "variant_key": "city_championships_staff_stamp",
+      "stamp_label": "City Championships Staff Stamp",
+      "finish_key": "reverse",
+      "source_variant_label": "Staff City Championships Promo",
+      "status": "blocked_second_independent_source_needed",
+      "source_count": 1,
+      "source_rows": [
+        {
+          "source_key": "pokecardvalues_same_finish_ambiguous",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/parallel-city-145-162-reverse-holo-staff-city-championships-breakthrough/xy8-145-3-75/",
+          "evidence_label": "Parallel City - 145/162 - Reverse Holo - Staff City Championships - Promo"
+        }
+      ],
+      "conflict_rows": [],
+      "write_ready_now": 0
+    }
+  ]
+}

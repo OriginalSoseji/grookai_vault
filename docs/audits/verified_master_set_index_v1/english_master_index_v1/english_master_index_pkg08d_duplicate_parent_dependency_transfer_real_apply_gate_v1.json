@@ -1,0 +1,81 @@
+{
+  "generated_at": "2026-06-10T13:04:15.658Z",
+  "version": "english_master_index_pkg08d_duplicate_parent_dependency_transfer_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "merge_performed": false,
+  "delete_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-08D-DUPLICATE-PARENT-DEPENDENCY-TRANSFER",
+    "package_fingerprint_sha256": "b0c474d462d824e14197629a108f7b6868e87cab38c0fc4155dff9ad77d126c8",
+    "duplicate_parent_rows": 39,
+    "groups": 38,
+    "planned_updates": {
+      "external_mappings": 39,
+      "card_print_species_transfer": 0,
+      "card_print_species_redundant_left_for_parent_delete_cascade": 36,
+      "canon_warehouse_candidates": 39,
+      "justtcg_variants": 215,
+      "justtcg_variant_prices_latest": 215,
+      "justtcg_variant_price_snapshots": 20640
+    },
+    "global_apply_included": false
+  },
+  "dry_run_proof": {
+    "dry_run_execution_status": "pkg08d_duplicate_parent_dependency_transfer_guarded_dry_run_passed_rolled_back_no_durable_change",
+    "sql_artifact_ref": "docs/sql/english_master_index_pkg08d_duplicate_parent_dependency_transfer_guarded_dry_run_transaction_v1.sql",
+    "sql_artifact_hash_sha256": "1cef89020ae8aaf4323843cb2895d7ede0b04712ab8818708170810635ddc936",
+    "before_hash_sha256": "71b385cde98720adcda0e1db1357b371e036c31efcb072d969b316ed6d0a80a2",
+    "after_hash_sha256": "71b385cde98720adcda0e1db1357b371e036c31efcb072d969b316ed6d0a80a2",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "artifact_fresh_snapshot_matches_before_snapshot": true,
+    "stop_findings": []
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-08D-DUPLICATE-PARENT-DEPENDENCY-TRANSFER apply only. Fingerprint: b0c474d462d824e14197629a108f7b6868e87cab38c0fc4155dff9ad77d126c8. SQL hash: 1cef89020ae8aaf4323843cb2895d7ede0b04712ab8818708170810635ddc936. Scope: 38 groups, 39 duplicate parent dependency transfers. Dry-run proof: 71b385cde98720adcda0e1db1357b371e036c31efcb072d969b316ed6d0a80a2 == 71b385cde98720adcda0e1db1357b371e036c31efcb072d969b316ed6d0a80a2. No global apply. No migrations.",
+    "approval_effect": "This would authorize a durable PKG-08D apply only, scoped to dependency transfer and deletion of the 39 duplicate parent rows after one more final fresh snapshot.",
+    "approval_must_reference": {
+      "package_id": "PKG-08D-DUPLICATE-PARENT-DEPENDENCY-TRANSFER",
+      "package_fingerprint_sha256": "b0c474d462d824e14197629a108f7b6868e87cab38c0fc4155dff9ad77d126c8",
+      "sql_hash_sha256": "1cef89020ae8aaf4323843cb2895d7ede0b04712ab8818708170810635ddc936",
+      "duplicate_parent_rows": 39,
+      "groups": 38,
+      "dry_run_before_hash_sha256": "71b385cde98720adcda0e1db1357b371e036c31efcb072d969b316ed6d0a80a2",
+      "dry_run_after_hash_sha256": "71b385cde98720adcda0e1db1357b371e036c31efcb072d969b316ed6d0a80a2"
+    }
+  },
+  "next_step_if_approved_later": [
+    "Capture one more final fresh DB snapshot immediately before durable apply.",
+    "Verify the same 39 duplicate parent rows still have zero child rows and only allowed dependencies.",
+    "Execute a durable transaction with COMMIT only after exact real-apply approval is present.",
+    "Capture post-apply readback and verify duplicate parents are removed, survivor parents remain, and dependencies moved.",
+    "Run post-apply preflight and checkpoint."
+  ],
+  "explicit_non_authorizations": [
+    "This gate is not a real apply.",
+    "This gate does not record approval.",
+    "This gate does not run SQL.",
+    "This gate does not write to the database.",
+    "This gate does not create a migration.",
+    "This gate does not authorize global apply."
+  ],
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg08d_duplicate_parent_dependency_transfer_guarded_dry_run_execution_v1.json",
+    "dry_run_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg08d_duplicate_parent_dependency_transfer_dry_run_artifact_v1.json"
+  },
+  "stop_findings": [],
+  "pass": true
+}

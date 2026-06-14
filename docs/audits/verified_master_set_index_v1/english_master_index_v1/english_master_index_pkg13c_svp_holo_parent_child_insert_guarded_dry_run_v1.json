@@ -1,0 +1,255 @@
+{
+  "generated_at": "2026-06-11T05:11:10.134Z",
+  "version": "english_master_index_pkg13c_svp_holo_parent_child_insert_guarded_dry_run_v1",
+  "package_id": "PKG-13C-SVP-HOLO-PARENT-CHILD-INSERTS",
+  "package_fingerprint_sha256": "18b29ce632a171dd3b2e01d84e49b5d720a3d55617346ddcb3e1eacea8c077d4",
+  "rollback_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_conflict_documented": true,
+  "scope": {
+    "target_parent_rows": 2,
+    "target_child_rows": 2,
+    "target_external_mappings": 2,
+    "by_set": {
+      "svp": 2
+    },
+    "by_finish": {
+      "holo": 2
+    },
+    "by_mapping_source": {
+      "tcgplayer": 2
+    },
+    "parent_rows": [
+      {
+        "card_print_id": "92e847c5-792a-40d9-8f5e-0539ffb55cb9",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "live_set_code": "svp",
+        "set_key": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "card_number": "175",
+        "number_plain": "175",
+        "printed_identity_modifier": null,
+        "card_name": "Espeon ex",
+        "rarity": "Promo",
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "655095"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-13C-SVP-HOLO-PARENT-CHILD-INSERTS",
+          "finish_adjudication": "human_marketplace_holo_over_tcgdx_normal_conflict",
+          "evidence_note": "Exact marketplace/price-list evidence supports SVP 175 Espeon ex as holo; TCGdex currently reports normal and is recorded as a conflicting structured finish claim.",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/655095/pokemon-sv-scarlet-and-violet-promo-cards-espeon-ex-175",
+            "https://www.pricecharting.com/game/pokemon-promo/espeon-ex-175",
+            "https://reverseholo.app/sets/svp",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ],
+          "conflicting_structured_source": {
+            "source": "tcgdex",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/svp-175",
+            "claimed_finish": "normal",
+            "handling": "not used as finish authority for this insert"
+          }
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/655095/pokemon-sv-scarlet-and-violet-promo-cards-espeon-ex-175",
+          "https://www.pricecharting.com/game/pokemon-promo/espeon-ex-175",
+          "https://reverseholo.app/sets/svp",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "mapping": {
+          "source": "tcgplayer",
+          "external_id": "655095",
+          "source_url": "https://www.tcgplayer.com/product/655095/pokemon-sv-scarlet-and-violet-promo-cards-espeon-ex-175"
+        },
+        "tcgdex_conflict_url": "https://api.tcgdex.net/v2/en/cards/svp-175"
+      },
+      {
+        "card_print_id": "56b171e7-1ff0-4593-b10d-51520b884528",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "live_set_code": "svp",
+        "set_key": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "card_number": "176",
+        "number_plain": "176",
+        "printed_identity_modifier": null,
+        "card_name": "Umbreon ex",
+        "rarity": "Promo",
+        "variant_key": "",
+        "external_ids": {
+          "tcgplayer": "655094"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "PKG-13C-SVP-HOLO-PARENT-CHILD-INSERTS",
+          "finish_adjudication": "human_marketplace_holo_over_tcgdx_normal_conflict",
+          "evidence_note": "Exact marketplace/price-list evidence supports SVP 176 Umbreon ex as holo; TCGdex currently reports normal and is recorded as a conflicting structured finish claim.",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/655094/pokemon-sv-scarlet-and-violet-promo-cards-umbreon-ex-176",
+            "https://www.pricecharting.com/game/pokemon-promo/umbreon-ex-176",
+            "https://reverseholo.app/sets/svp",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ],
+          "conflicting_structured_source": {
+            "source": "tcgdex",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/svp-176",
+            "claimed_finish": "normal",
+            "handling": "not used as finish authority for this insert"
+          }
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/655094/pokemon-sv-scarlet-and-violet-promo-cards-umbreon-ex-176",
+          "https://www.pricecharting.com/game/pokemon-promo/umbreon-ex-176",
+          "https://reverseholo.app/sets/svp",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ],
+        "mapping": {
+          "source": "tcgplayer",
+          "external_id": "655094",
+          "source_url": "https://www.tcgplayer.com/product/655094/pokemon-sv-scarlet-and-violet-promo-cards-umbreon-ex-176"
+        },
+        "tcgdex_conflict_url": "https://api.tcgdex.net/v2/en/cards/svp-176"
+      }
+    ],
+    "child_rows": [
+      {
+        "card_printing_id": "3bbbf3d5-64c4-48c2-bdfe-a64fff156b33",
+        "card_print_id": "92e847c5-792a-40d9-8f5e-0539ffb55cb9",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "card_number": "175",
+        "card_name": "Espeon ex",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "svp:175:holo",
+        "created_by": "pkg13c_svp_holo_parent_child_insert_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "d9f60554-2a1d-4245-98bc-b45bc9093f8e",
+        "card_print_id": "56b171e7-1ff0-4593-b10d-51520b884528",
+        "set_key": "svp",
+        "live_set_code": "svp",
+        "card_number": "176",
+        "card_name": "Umbreon ex",
+        "finish_key": "holo",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "svp:176:holo",
+        "created_by": "pkg13c_svp_holo_parent_child_insert_guarded_dry_run_v1"
+      }
+    ],
+    "external_mapping_rows": [
+      {
+        "source": "tcgplayer",
+        "external_id": "655095",
+        "card_print_id": "92e847c5-792a-40d9-8f5e-0539ffb55cb9",
+        "meta": {
+          "package_id": "PKG-13C-SVP-HOLO-PARENT-CHILD-INSERTS",
+          "set_key": "svp",
+          "live_set_code": "svp",
+          "card_name": "Espeon ex",
+          "card_number": "175",
+          "source_url": "https://www.tcgplayer.com/product/655095/pokemon-sv-scarlet-and-violet-promo-cards-espeon-ex-175",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/655095/pokemon-sv-scarlet-and-violet-promo-cards-espeon-ex-175",
+            "https://www.pricecharting.com/game/pokemon-promo/espeon-ex-175",
+            "https://reverseholo.app/sets/svp",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ],
+          "tcgdex_conflict_url": "https://api.tcgdex.net/v2/en/cards/svp-175"
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "655094",
+        "card_print_id": "56b171e7-1ff0-4593-b10d-51520b884528",
+        "meta": {
+          "package_id": "PKG-13C-SVP-HOLO-PARENT-CHILD-INSERTS",
+          "set_key": "svp",
+          "live_set_code": "svp",
+          "card_name": "Umbreon ex",
+          "card_number": "176",
+          "source_url": "https://www.tcgplayer.com/product/655094/pokemon-sv-scarlet-and-violet-promo-cards-umbreon-ex-176",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/655094/pokemon-sv-scarlet-and-violet-promo-cards-umbreon-ex-176",
+            "https://www.pricecharting.com/game/pokemon-promo/umbreon-ex-176",
+            "https://reverseholo.app/sets/svp",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ],
+          "tcgdex_conflict_url": "https://api.tcgdex.net/v2/en/cards/svp-176"
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "pkg13c_svp_holo_parent_child_insert_completed_rolled_back_no_durable_change",
+    "before_snapshot": {
+      "captured_at": "2026-06-11T05:11:08.821Z",
+      "rows": [
+        {
+          "row_type": "target_set",
+          "row_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+          "set_code": "svp",
+          "card_number": null,
+          "card_name": "Scarlet & Violet Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        }
+      ],
+      "hash_sha256": "5207f8f1b5fd652c3224d90073fd8bf394d29e69ef7e5e4cca16f3a5c0f632e4",
+      "counts": {
+        "target_set": 1
+      }
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-11T05:11:10.134Z",
+      "rows": [
+        {
+          "row_type": "target_set",
+          "row_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+          "set_code": "svp",
+          "card_number": null,
+          "card_name": "Scarlet & Violet Black Star Promos",
+          "finish_key": null,
+          "source": null,
+          "external_id": null
+        }
+      ],
+      "hash_sha256": "5207f8f1b5fd652c3224d90073fd8bf394d29e69ef7e5e4cca16f3a5c0f632e4",
+      "counts": {
+        "target_set": 1
+      }
+    },
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "guard": {
+      "parent_rows": 2,
+      "child_rows": 2,
+      "mapping_rows": 2,
+      "inactive_finish_rows": 0,
+      "parent_collisions": 0,
+      "child_collisions": 0,
+      "mapping_collisions": 0
+    },
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-13C-SVP-HOLO-PARENT-CHILD-INSERTS",
+        "package_fingerprint": "18b29ce632a171dd3b2e01d84e49b5d720a3d55617346ddcb3e1eacea8c077d4",
+        "planned_parent_rows": 2,
+        "planned_child_rows": 2,
+        "planned_mapping_rows": 2
+      }
+    ],
+    "attempted_insert_counts": {
+      "parent_inserts": 2,
+      "child_inserts": 2,
+      "external_mapping_inserts": 2
+    },
+    "stop_findings": []
+  }
+}

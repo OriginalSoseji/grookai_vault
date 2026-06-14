@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-06-11T01:56:19.691Z",
+  "version": "english_master_index_pkg08v_tcgcollector_parent_child_insert_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "source_governance_fingerprint_sha256": "dac1d78017087e84e389f6b0ba2f06a8763bbdab68fb3666c8589a03cfd58089",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-08V-TCGCOLLECTOR-PARENT-CHILD-INSERTS",
+    "package_fingerprint_sha256": "e538746b24e91247a72c604e0b8c10d71ff698c52caad48aa99396cbd1b1b021",
+    "target_parent_rows": 104,
+    "target_child_rows": 104,
+    "target_external_mappings": 104,
+    "by_set": {
+      "ecard2": 5,
+      "ecard3": 5,
+      "sm115": 94
+    },
+    "by_finish": {
+      "holo": 104
+    },
+    "by_mapping_source": {
+      "tcgcollector": 104
+    },
+    "updates_allowed": false,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false,
+    "global_apply_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_status": "pkg08v_tcgcollector_parent_child_insert_completed_rolled_back_no_durable_change",
+    "before_hash_sha256": "2076d3f38f8234aac3dcdf764b87e3527d1953d750717f18b7230320fd22ecc4",
+    "after_hash_sha256": "2076d3f38f8234aac3dcdf764b87e3527d1953d750717f18b7230320fd22ecc4",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "rollback_proof_rows": [
+      {
+        "package_id": "PKG-08V-TCGCOLLECTOR-PARENT-CHILD-INSERTS",
+        "package_fingerprint": "e538746b24e91247a72c604e0b8c10d71ff698c52caad48aa99396cbd1b1b021",
+        "planned_parent_rows": 104,
+        "planned_child_rows": 104,
+        "planned_mapping_rows": 104
+      }
+    ]
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-08V-TCGCOLLECTOR-PARENT-CHILD-INSERTS apply only. Fingerprint: e538746b24e91247a72c604e0b8c10d71ff698c52caad48aa99396cbd1b1b021. Scope: 104 parent card_print inserts, 104 child card_printing inserts, 104 TCGCollector external mappings across 3 sets; finishes holo=104. Dry-run proof: 2076d3f38f8234aac3dcdf764b87e3527d1953d750717f18b7230320fd22ecc4 == 2076d3f38f8234aac3dcdf764b87e3527d1953d750717f18b7230320fd22ecc4. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+  },
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg08v_tcgcollector_parent_child_insert_guarded_dry_run_v1.json"
+  },
+  "stop_findings": [],
+  "pass": true
+}

@@ -1,0 +1,1014 @@
+{
+  "version": "english_master_index_sv03_stamped_active_finish_closure_queue_v1",
+  "generated_at": "2026-06-12T16:19:59.580Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "grookai_reconciliation_performed": false,
+  "write_ready_now": 0,
+  "promotion_safe_now": 0,
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_stamped_taxonomy_review_v1.json",
+  "fingerprint_sha256": "a3f54c072541aed4dfcd7ecd93db916f81de8548ec84b3864014beb9ad8cd242",
+  "summary": {
+    "target_rows": 18,
+    "write_ready_now": 0,
+    "promotion_safe_now": 0,
+    "rows_with_active_finish_observation": 2,
+    "rows_requiring_active_finish_acquisition": 16,
+    "by_closure_lane": {
+      "active_finish_source_acquisition_required": 16,
+      "active_finish_observed_identity_still_required": 2
+    },
+    "by_proposed_active_finish": {
+      "cosmos": 2
+    }
+  },
+  "lanes": [
+    {
+      "lane_id": "SV03-STAMPED-ACTIVE-FINISH-OBSERVED-IDENTITY-REVIEW",
+      "target_rows": 2,
+      "lane_type": "manual_identity_source_review",
+      "write_ready_now": 0,
+      "safety": "audit_only",
+      "rule": "Active finish observation is not enough. The stamped identity still needs exact independent evidence before any DB package."
+    },
+    {
+      "lane_id": "SV03-STAMPED-ACTIVE-FINISH-SOURCE-ACQUISITION",
+      "target_rows": 16,
+      "lane_type": "source_acquisition",
+      "write_ready_now": 0,
+      "safety": "audit_only",
+      "rule": "Search only exact sources proving set, number, card name, stamp identity, and active finish. Ambiguous title evidence remains blocked."
+    }
+  ],
+  "rows": [
+    {
+      "gap_key": "sv03|printing_finish|22|Toedscruel ex|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "22",
+      "card_name": "Toedscruel ex",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|40|Larvesta|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "40",
+      "card_name": "Larvesta",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|41|Volcarona|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "41",
+      "card_name": "Volcarona",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|42|Eiscue ex|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "42",
+      "card_name": "Eiscue ex",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|66|Tyranitar ex|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "66",
+      "card_name": "Tyranitar ex",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|92|Lunatone|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "92",
+      "card_name": "Lunatone",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|95|Claydol|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "95",
+      "card_name": "Claydol",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|125|Charizard ex|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "125",
+      "card_name": "Charizard ex",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|131|Houndour|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "131",
+      "card_name": "Houndour",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|133|Houndoom|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "133",
+      "card_name": "Houndoom",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|136|Darkrai|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "136",
+      "card_name": "Darkrai",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_url": "https://www.tcgcollector.com/cards/42245/darkrai-obsidian-flames-136-197",
+          "finish_key": "cosmos",
+          "evidence_label": "TCGCollector card variant Cosmos Holo",
+          "notes": "Accepted from source delta audit with status candidate_second_finish_source. This is exact gap-matched evidence only; broad source fixture rows remain excluded from direct promotion."
+        }
+      ],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_observed_identity_still_required",
+      "proposed_active_finish_keys": [
+        "cosmos"
+      ],
+      "next_action": "Find exact independent stamped identity evidence for this card, then prepare guarded dry-run only if active finish and stamped identity both remain non-conflicting.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|139|Salandit|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "139",
+      "card_name": "Salandit",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|140|Salazzle|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "140",
+      "card_name": "Salazzle",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|141|Scizor|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "141",
+      "card_name": "Scizor",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_url": "https://www.tcgcollector.com/cards/42250/scizor-obsidian-flames-141-197",
+          "finish_key": "cosmos",
+          "evidence_label": "TCGCollector card variant Cosmos Holo",
+          "notes": "Accepted from source delta audit with status candidate_second_finish_source. This is exact gap-matched evidence only; broad source fixture rows remain excluded from direct promotion."
+        }
+      ],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_observed_identity_still_required",
+      "proposed_active_finish_keys": [
+        "cosmos"
+      ],
+      "next_action": "Find exact independent stamped identity evidence for this card, then prepare guarded dry-run only if active finish and stamped identity both remain non-conflicting.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|164|Pidgeot ex|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "164",
+      "card_name": "Pidgeot ex",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|188|Geeta|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "188",
+      "card_name": "Geeta",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|189|Letter of Encouragement|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "189",
+      "card_name": "Letter of Encouragement",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    },
+    {
+      "gap_key": "sv03|printing_finish|196|Town Store|stamped",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "card_number": "196",
+      "card_name": "Town Store",
+      "current_finish_key": "stamped",
+      "current_status": "human_source_verified",
+      "current_sources": [
+        "thepricedex_price_list"
+      ],
+      "current_source_authorities": [
+        "thepricedex.com"
+      ],
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3/obsidian-flames/price-list"
+      ],
+      "attempted_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp",
+        "tcdb_checklist",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "evidence_sources_found_in_attempts": [
+        "cardtrader_blueprint_index",
+        "tcgcollector_card_variants",
+        "tcgcsv_tcgplayer_catalog"
+      ],
+      "no_exact_match_sources": [
+        "cardtrader_blueprint_index",
+        "doubleholo_set_checklist",
+        "pokemoncard_io_price_breakdown",
+        "pricecharting_csv_product_stamp"
+      ],
+      "blocked_or_unavailable_sources": [],
+      "alternate_active_finish_observations": [],
+      "classification": "blocked_stamped_child_finish_taxonomy",
+      "blocker_reason": "The current fact is modeled as finish_key=stamped, but stamped is not a safe child finish. It must be represented as parent identity/stamp variant plus an independently proven active child finish.",
+      "required_evidence_to_close": [
+        "Exact independent source proving the stamped identity for this set/card/number/name.",
+        "Exact source evidence proving the active child finish that the stamped card carries: normal, holo, reverse, cosmos, or cracked_ice.",
+        "A guarded staging pass that converts this from child finish_key=stamped into parent identity plus active child finish without broad inference."
+      ],
+      "promotion_safe_now": false,
+      "closure_lane": "active_finish_source_acquisition_required",
+      "proposed_active_finish_keys": [],
+      "next_action": "Acquire exact source evidence proving the active finish carried by the stamped variant; do not infer from Prize Pack or product-family rules.",
+      "write_ready_now": 0
+    }
+  ],
+  "safety_confirmation": {
+    "audit_only": true,
+    "db_writes_performed": false,
+    "durable_db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "write_ready_now": 0
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T19:45:00.399Z",
+  "generated_at": "2026-06-12T08:58:58.715Z",
   "version": "english_master_index_source_exhaustion_ledger_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -9,10 +9,14 @@
   "grookai_reconciliation_performed": false,
   "rule": "A set is not exhausted while unresolved gaps remain or while source lanes remain unattempted. This ledger is audit-only and cannot authorize writes.",
   "summary": {
-    "total_sets_in_ledger": 0,
-    "by_exhaustion_status": {},
-    "by_primary_lane": {},
-    "total_remaining_gap_facts": 1624,
+    "total_sets_in_ledger": 11,
+    "by_exhaustion_status": {
+      "not_exhausted": 11
+    },
+    "by_primary_lane": {
+      "finish_human_checklist_evidence": 11
+    },
+    "total_remaining_gap_facts": 1654,
     "db_writes_performed": false,
     "migrations_created": false
   },
@@ -226,5 +230,831 @@
       "finish_truth_limit": "Does not become master truth alone; must be paired with another independent source."
     }
   ],
-  "sets": []
+  "sets": [
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.38,
+      "total_gap_count": 18,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 18,
+      "primary_lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "source_statuses": {
+        "pokemontcg_api": {
+          "runtime_status": "collected",
+          "evidence_rows": 636,
+          "source_alias": "sv3",
+          "error": null
+        },
+        "tcgdex": {
+          "runtime_status": "collected",
+          "evidence_rows": 647,
+          "source_alias": "sv03",
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 681,
+          "source_alias": "sv3",
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "source_alias": "Obsidian_Flames_(TCG)",
+          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+        },
+        "tcgplayer_price_guide": {
+          "runtime_status": "collected",
+          "evidence_rows": 406,
+          "source_alias": null,
+          "error": null
+        }
+      },
+      "attempted_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list",
+        "bulbapedia_set_list",
+        "tcgplayer_price_guide"
+      ],
+      "next_source_lanes": [
+        "thepricedex_price_list",
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "remaining_unattempted_source_lanes": [
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "exhaustion_status": "not_exhausted",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.62,
+      "total_gap_count": 4,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 4,
+      "primary_lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "source_statuses": {
+        "pokemontcg_api": {
+          "runtime_status": "collected",
+          "evidence_rows": 606,
+          "source_alias": "swsh7",
+          "error": null
+        },
+        "tcgdex": {
+          "runtime_status": "collected",
+          "evidence_rows": 553,
+          "source_alias": "swsh7",
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 665,
+          "source_alias": "swsh7",
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 237,
+          "source_alias": "Evolving_Skies_(TCG)",
+          "error": null
+        },
+        "tcgplayer_price_guide": {
+          "runtime_status": "collected",
+          "evidence_rows": 315,
+          "source_alias": null,
+          "error": null
+        }
+      },
+      "attempted_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list",
+        "bulbapedia_set_list",
+        "tcgplayer_price_guide"
+      ],
+      "next_source_lanes": [
+        "thepricedex_price_list",
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "remaining_unattempted_source_lanes": [
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "exhaustion_status": "not_exhausted",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.72,
+      "total_gap_count": 3,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 3,
+      "primary_lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "source_statuses": {
+        "pokemontcg_api": {
+          "runtime_status": "collected",
+          "evidence_rows": 560,
+          "source_alias": "swsh10",
+          "error": null
+        },
+        "tcgdex": {
+          "runtime_status": "collected",
+          "evidence_rows": 620,
+          "source_alias": "swsh10",
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 674,
+          "source_alias": "swsh10",
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 216,
+          "source_alias": "Astral_Radiance_(TCG)",
+          "error": null
+        },
+        "tcgplayer_price_guide": {
+          "runtime_status": "collected",
+          "evidence_rows": 344,
+          "source_alias": null,
+          "error": null
+        }
+      },
+      "attempted_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list",
+        "bulbapedia_set_list",
+        "tcgplayer_price_guide"
+      ],
+      "next_source_lanes": [
+        "thepricedex_price_list",
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "remaining_unattempted_source_lanes": [
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "exhaustion_status": "not_exhausted",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.72,
+      "total_gap_count": 3,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 3,
+      "primary_lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "source_statuses": {
+        "pokemontcg_api": {
+          "runtime_status": "collected",
+          "evidence_rows": 602,
+          "source_alias": "swsh6",
+          "error": null
+        },
+        "tcgdex": {
+          "runtime_status": "collected",
+          "evidence_rows": 596,
+          "source_alias": "swsh6",
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 662,
+          "source_alias": "swsh6",
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 233,
+          "source_alias": "Chilling_Reign_(TCG)",
+          "error": null
+        },
+        "tcgplayer_price_guide": {
+          "runtime_status": "collected",
+          "evidence_rows": 363,
+          "source_alias": null,
+          "error": null
+        }
+      },
+      "attempted_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list",
+        "bulbapedia_set_list",
+        "tcgplayer_price_guide"
+      ],
+      "next_source_lanes": [
+        "thepricedex_price_list",
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "remaining_unattempted_source_lanes": [
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "exhaustion_status": "not_exhausted",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.84,
+      "total_gap_count": 2,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 2,
+      "primary_lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "source_statuses": {
+        "pokemontcg_api": {
+          "runtime_status": "collected",
+          "evidence_rows": 734,
+          "source_alias": "sv2",
+          "error": null
+        },
+        "tcgdex": {
+          "runtime_status": "collected",
+          "evidence_rows": 430,
+          "source_alias": "sv02",
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 822,
+          "source_alias": "sv2",
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "source_alias": "Paldea_Evolved_(TCG)",
+          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Paldea_Evolved_(TCG)"
+        },
+        "tcgplayer_price_guide": {
+          "runtime_status": "collected",
+          "evidence_rows": 151,
+          "source_alias": null,
+          "error": null
+        }
+      },
+      "attempted_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list",
+        "bulbapedia_set_list",
+        "tcgplayer_price_guide"
+      ],
+      "next_source_lanes": [
+        "thepricedex_price_list",
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "remaining_unattempted_source_lanes": [
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "exhaustion_status": "not_exhausted",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.81,
+      "total_gap_count": 2,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 2,
+      "primary_lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "source_statuses": {
+        "pokemontcg_api": {
+          "runtime_status": "collected",
+          "evidence_rows": 576,
+          "source_alias": "sv5",
+          "error": null
+        },
+        "tcgdex": {
+          "runtime_status": "collected",
+          "evidence_rows": 597,
+          "source_alias": "sv05",
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 640,
+          "source_alias": "sv5",
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "source_alias": "Temporal_Forces_(TCG)",
+          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Temporal_Forces_(TCG)"
+        },
+        "tcgplayer_price_guide": {
+          "runtime_status": "collected",
+          "evidence_rows": 358,
+          "source_alias": null,
+          "error": null
+        }
+      },
+      "attempted_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list",
+        "bulbapedia_set_list",
+        "tcgplayer_price_guide"
+      ],
+      "next_source_lanes": [
+        "thepricedex_price_list",
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "remaining_unattempted_source_lanes": [
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "exhaustion_status": "not_exhausted",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.8,
+      "total_gap_count": 2,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 2,
+      "primary_lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "source_statuses": {
+        "pokemontcg_api": {
+          "runtime_status": "collected",
+          "evidence_rows": 496,
+          "source_alias": "swsh9",
+          "error": null
+        },
+        "tcgdex": {
+          "runtime_status": "collected",
+          "evidence_rows": 557,
+          "source_alias": "swsh9",
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 630,
+          "source_alias": "swsh9",
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "source_alias": "Brilliant_Stars_(TCG)",
+          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Brilliant_Stars_(TCG)"
+        },
+        "tcgplayer_price_guide": {
+          "runtime_status": "collected",
+          "evidence_rows": 310,
+          "source_alias": null,
+          "error": null
+        }
+      },
+      "attempted_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list",
+        "bulbapedia_set_list",
+        "tcgplayer_price_guide"
+      ],
+      "next_source_lanes": [
+        "thepricedex_price_list",
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "remaining_unattempted_source_lanes": [
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "exhaustion_status": "not_exhausted",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.91,
+      "total_gap_count": 1,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 1,
+      "primary_lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "source_statuses": {
+        "pokemontcg_api": {
+          "runtime_status": "collected",
+          "evidence_rows": 653,
+          "source_alias": "sv10",
+          "error": null
+        },
+        "tcgdex": {
+          "runtime_status": "collected",
+          "evidence_rows": 660,
+          "source_alias": "sv10",
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 706,
+          "source_alias": "sv10",
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "source_alias": "Destined_Rivals_(TCG)",
+          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Destined_Rivals_(TCG)"
+        },
+        "tcgplayer_price_guide": {
+          "runtime_status": "collected",
+          "evidence_rows": 409,
+          "source_alias": null,
+          "error": null
+        }
+      },
+      "attempted_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list",
+        "bulbapedia_set_list",
+        "tcgplayer_price_guide"
+      ],
+      "next_source_lanes": [
+        "thepricedex_price_list",
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "remaining_unattempted_source_lanes": [
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "exhaustion_status": "not_exhausted",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.91,
+      "total_gap_count": 1,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 1,
+      "primary_lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "source_statuses": {
+        "pokemontcg_api": {
+          "runtime_status": "collected",
+          "evidence_rows": 583,
+          "source_alias": "swsh11",
+          "error": null
+        },
+        "tcgdex": {
+          "runtime_status": "collected",
+          "evidence_rows": 643,
+          "source_alias": "swsh11",
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 699,
+          "source_alias": "swsh11",
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "source_alias": "Lost_Origin_(TCG)",
+          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Lost_Origin_(TCG)"
+        },
+        "tcgplayer_price_guide": {
+          "runtime_status": "collected",
+          "evidence_rows": 364,
+          "source_alias": null,
+          "error": null
+        }
+      },
+      "attempted_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list",
+        "bulbapedia_set_list",
+        "tcgplayer_price_guide"
+      ],
+      "next_source_lanes": [
+        "thepricedex_price_list",
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "remaining_unattempted_source_lanes": [
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "exhaustion_status": "not_exhausted",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.9,
+      "total_gap_count": 1,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 1,
+      "primary_lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "source_statuses": {
+        "pokemontcg_api": {
+          "runtime_status": "collected",
+          "evidence_rows": 569,
+          "source_alias": "swsh2",
+          "error": null
+        },
+        "tcgdex": {
+          "runtime_status": "collected",
+          "evidence_rows": 565,
+          "source_alias": "swsh2",
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 609,
+          "source_alias": "swsh2",
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 207,
+          "source_alias": "Rebel_Clash_(TCG)",
+          "error": null
+        },
+        "tcgplayer_price_guide": {
+          "runtime_status": "collected",
+          "evidence_rows": 352,
+          "source_alias": null,
+          "error": null
+        }
+      },
+      "attempted_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list",
+        "bulbapedia_set_list",
+        "tcgplayer_price_guide"
+      ],
+      "next_source_lanes": [
+        "thepricedex_price_list",
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "remaining_unattempted_source_lanes": [
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "exhaustion_status": "not_exhausted",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.88,
+      "total_gap_count": 1,
+      "card_identity_gap_count": 0,
+      "printing_finish_gap_count": 1,
+      "primary_lanes": [
+        "finish_human_checklist_evidence"
+      ],
+      "required_evidence": [
+        "Human-readable/checklist exact finish evidence with second-source agreement."
+      ],
+      "source_statuses": {
+        "pokemontcg_api": {
+          "runtime_status": "collected",
+          "evidence_rows": 489,
+          "source_alias": "swsh5",
+          "error": null
+        },
+        "tcgdex": {
+          "runtime_status": "collected",
+          "evidence_rows": 489,
+          "source_alias": "swsh5",
+          "error": null
+        },
+        "thepricedex_price_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 541,
+          "source_alias": "swsh5",
+          "error": null
+        },
+        "bulbapedia_set_list": {
+          "runtime_status": "collected",
+          "evidence_rows": 183,
+          "source_alias": "Battle_Styles_(TCG)",
+          "error": null
+        },
+        "tcgplayer_price_guide": {
+          "runtime_status": "collected",
+          "evidence_rows": 306,
+          "source_alias": null,
+          "error": null
+        }
+      },
+      "attempted_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list",
+        "bulbapedia_set_list",
+        "tcgplayer_price_guide"
+      ],
+      "next_source_lanes": [
+        "thepricedex_price_list",
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "remaining_unattempted_source_lanes": [
+        "official_pokemon_checklist",
+        "tcgplayer_product_or_checklist",
+        "pricecharting",
+        "collectr_or_pokellector_style_checklist",
+        "cardmarket_cardtrader_marketplace",
+        "graded_registry_or_cert_population",
+        "reddit_forum_or_photo_evidence"
+      ],
+      "exhaustion_status": "not_exhausted",
+      "mutation_authority": "not mutation authority"
+    }
+  ]
 }

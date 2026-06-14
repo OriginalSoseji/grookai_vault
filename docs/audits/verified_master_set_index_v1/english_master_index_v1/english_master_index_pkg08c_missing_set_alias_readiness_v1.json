@@ -1,0 +1,1074 @@
+{
+  "generated_at": "2026-06-10T22:22:52.473Z",
+  "version": "english_master_index_pkg08c_missing_set_alias_readiness_v1",
+  "package_id": "PKG-08C-MISSING-SET-ALIAS-READINESS",
+  "package_fingerprint_sha256": "51cdbe61260a4a39fbd63aa3e32389ec3f986ee3cf475e69407ce701cf2ec048",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "real_apply_authorized": false,
+  "summary": {
+    "source_rows": 28,
+    "expected_set_inserts": 0,
+    "expected_parent_inserts": 28,
+    "expected_child_inserts": 28,
+    "expected_external_mapping_inserts": 28,
+    "by_set": {
+      "exu": 28
+    },
+    "by_finish": {
+      "holo": 28
+    }
+  },
+  "live_checks": {
+    "available": true,
+    "reason": null,
+    "matching_live_sets": 1,
+    "matching_live_set_rows": [
+      {
+        "id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "code": "exu",
+        "name": "Unseen Forces Unown Collection"
+      }
+    ],
+    "tcgdex_mapping_collisions": 27,
+    "tcgdex_mapping_collision_rows": [
+      {
+        "id": "59394",
+        "source": "tcgdex",
+        "external_id": "exu-!",
+        "card_print_id": "065aa0f7-6b66-4383-809f-328492ad139e",
+        "set_code": "ex10",
+        "number": "!",
+        "name": "Unown"
+      },
+      {
+        "id": "59389",
+        "source": "tcgdex",
+        "external_id": "exu-A",
+        "card_print_id": "0281feb6-13e9-4464-8f76-cc0dd779b59b",
+        "set_code": "ex10",
+        "number": "A",
+        "name": "Unown"
+      },
+      {
+        "id": "59391",
+        "source": "tcgdex",
+        "external_id": "exu-B",
+        "card_print_id": "97709389-fbf1-4790-925e-5e95e89a80a0",
+        "set_code": "ex10",
+        "number": "B",
+        "name": "Unown"
+      },
+      {
+        "id": "59392",
+        "source": "tcgdex",
+        "external_id": "exu-C",
+        "card_print_id": "c5f69fc5-805d-4e06-b629-fe6f13d3c8d3",
+        "set_code": "ex10",
+        "number": "C",
+        "name": "Unown"
+      },
+      {
+        "id": "59395",
+        "source": "tcgdex",
+        "external_id": "exu-D",
+        "card_print_id": "eff73c3c-568f-4b56-9130-bbd84f763f7a",
+        "set_code": "ex10",
+        "number": "D",
+        "name": "Unown"
+      },
+      {
+        "id": "59396",
+        "source": "tcgdex",
+        "external_id": "exu-E",
+        "card_print_id": "83dc8f5d-06fd-4007-bb9c-d096baa6f3da",
+        "set_code": "ex10",
+        "number": "E",
+        "name": "Unown"
+      },
+      {
+        "id": "59397",
+        "source": "tcgdex",
+        "external_id": "exu-F",
+        "card_print_id": "038765c9-66bc-4d95-95d2-8ce16c65a0de",
+        "set_code": "ex10",
+        "number": "F",
+        "name": "Unown"
+      },
+      {
+        "id": "59398",
+        "source": "tcgdex",
+        "external_id": "exu-G",
+        "card_print_id": "e6954d97-cab9-4479-99a9-7fa10c8c411d",
+        "set_code": "ex10",
+        "number": "G",
+        "name": "Unown"
+      },
+      {
+        "id": "59399",
+        "source": "tcgdex",
+        "external_id": "exu-H",
+        "card_print_id": "98b680f3-4158-498e-9c68-4c45801f544d",
+        "set_code": "ex10",
+        "number": "H",
+        "name": "Unown"
+      },
+      {
+        "id": "59390",
+        "source": "tcgdex",
+        "external_id": "exu-I",
+        "card_print_id": "7a1d0396-aadc-4333-8652-b97a8c9f7791",
+        "set_code": "ex10",
+        "number": "I",
+        "name": "Unown"
+      },
+      {
+        "id": "59400",
+        "source": "tcgdex",
+        "external_id": "exu-J",
+        "card_print_id": "dd3d341b-09f5-445b-9a01-56d67d3b641c",
+        "set_code": "ex10",
+        "number": "J",
+        "name": "Unown"
+      },
+      {
+        "id": "59401",
+        "source": "tcgdex",
+        "external_id": "exu-K",
+        "card_print_id": "7c6ee0f1-e058-4fed-bc16-18ce9a985458",
+        "set_code": "ex10",
+        "number": "K",
+        "name": "Unown"
+      },
+      {
+        "id": "59402",
+        "source": "tcgdex",
+        "external_id": "exu-L",
+        "card_print_id": "d5d21cf6-579d-4dfb-a15a-e32cd29dc7fa",
+        "set_code": "ex10",
+        "number": "L",
+        "name": "Unown"
+      },
+      {
+        "id": "59403",
+        "source": "tcgdex",
+        "external_id": "exu-M",
+        "card_print_id": "8665ed72-9bfe-46c9-b140-fd707c887175",
+        "set_code": "ex10",
+        "number": "M",
+        "name": "Unown"
+      },
+      {
+        "id": "59404",
+        "source": "tcgdex",
+        "external_id": "exu-N",
+        "card_print_id": "e9b7843f-74e6-4418-a9f1-49ae2582a78b",
+        "set_code": "ex10",
+        "number": "N",
+        "name": "Unown"
+      },
+      {
+        "id": "59405",
+        "source": "tcgdex",
+        "external_id": "exu-O",
+        "card_print_id": "d1100eaa-7dc2-4882-bc8f-70f74935b7bf",
+        "set_code": "ex10",
+        "number": "O",
+        "name": "Unown"
+      },
+      {
+        "id": "59406",
+        "source": "tcgdex",
+        "external_id": "exu-P",
+        "card_print_id": "70de2f4b-a7ec-4b06-a98e-360582af0cfe",
+        "set_code": "ex10",
+        "number": "P",
+        "name": "Unown"
+      },
+      {
+        "id": "59407",
+        "source": "tcgdex",
+        "external_id": "exu-Q",
+        "card_print_id": "d5ee93fa-14a4-46ae-8649-087001a36eb7",
+        "set_code": "ex10",
+        "number": "Q",
+        "name": "Unown"
+      },
+      {
+        "id": "59408",
+        "source": "tcgdex",
+        "external_id": "exu-R",
+        "card_print_id": "99756d62-8124-456c-84fd-a1b74ac2240e",
+        "set_code": "ex10",
+        "number": "R",
+        "name": "Unown"
+      },
+      {
+        "id": "59409",
+        "source": "tcgdex",
+        "external_id": "exu-S",
+        "card_print_id": "73d84339-5997-4844-a144-32d469dc4666",
+        "set_code": "ex10",
+        "number": "S",
+        "name": "Unown"
+      },
+      {
+        "id": "59410",
+        "source": "tcgdex",
+        "external_id": "exu-T",
+        "card_print_id": "1746053b-155f-4557-97c4-dc4c254d5638",
+        "set_code": "ex10",
+        "number": "T",
+        "name": "Unown"
+      },
+      {
+        "id": "59411",
+        "source": "tcgdex",
+        "external_id": "exu-U",
+        "card_print_id": "14128686-13dc-41e1-8d30-f49552616f32",
+        "set_code": "ex10",
+        "number": "U",
+        "name": "Unown"
+      },
+      {
+        "id": "59412",
+        "source": "tcgdex",
+        "external_id": "exu-V",
+        "card_print_id": "0a372480-c960-47f4-be0a-fa3cf7b20004",
+        "set_code": "ex10",
+        "number": "V",
+        "name": "Unown"
+      },
+      {
+        "id": "59413",
+        "source": "tcgdex",
+        "external_id": "exu-W",
+        "card_print_id": "4fcde912-14d7-47ab-a8af-9e5a1cb0370b",
+        "set_code": "ex10",
+        "number": "W",
+        "name": "Unown"
+      },
+      {
+        "id": "59414",
+        "source": "tcgdex",
+        "external_id": "exu-X",
+        "card_print_id": "837b59cc-5cf6-496e-9ce7-e604236e0825",
+        "set_code": "ex10",
+        "number": "X",
+        "name": "Unown"
+      },
+      {
+        "id": "59415",
+        "source": "tcgdex",
+        "external_id": "exu-Y",
+        "card_print_id": "faf577b9-9178-4074-963d-0098bd272b66",
+        "set_code": "ex10",
+        "number": "Y",
+        "name": "Unown"
+      },
+      {
+        "id": "59416",
+        "source": "tcgdex",
+        "external_id": "exu-Z",
+        "card_print_id": "5c5de53e-e4fb-4eee-96d4-1b37bf260e42",
+        "set_code": "ex10",
+        "number": "Z",
+        "name": "Unown"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "!",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-!",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-!"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "%3F",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-%253F",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-%3F"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "A",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-A",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-A"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "B",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-B",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-B"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "C",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-C",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-C"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "D",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-D",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-D"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "E",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-E",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-E"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "F",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-F",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-F"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "G",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-G",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-G"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "H",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-H",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-H"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "I",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-I",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-I"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "J",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-J",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-J"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "K",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-K",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-K"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "L",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-L",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-L"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "M",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-M",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-M"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "N",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-N",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-N"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "O",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-O",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-O"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "P",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-P",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-P"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "Q",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-Q",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-Q"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "R",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-R",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-R"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "S",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-S",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-S"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "T",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-T",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-T"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "U",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-U",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-U"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "V",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-V",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-V"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "W",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-W",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-W"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "X",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-X",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-X"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "Y",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-Y",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-Y"
+    },
+    {
+      "lane": "missing_set_or_set_alias",
+      "reason": "No live card_print set_code matched the Master Index set key.",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "Z",
+      "card_name": "Unown",
+      "finish_key": "holo",
+      "source_count": 2,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/exu-Z",
+        "https://reverseholo.app/sets/exu"
+      ],
+      "set_aliases_checked": [
+        "exu",
+        "unseen forces unown collection",
+        "unseen forces unown collection tcg"
+      ],
+      "matched_parent_alias": null,
+      "exact_parent_match_count": 0,
+      "matched_set_alias": null,
+      "same_number_live_names": [],
+      "tcgdex_external_id": "exu-Z"
+    }
+  ],
+  "stop_findings": [
+    "live_set_alias_already_exists",
+    "tcgdex_external_mapping_collision"
+  ],
+  "next_step": "Resolve stop findings before any dry-run or apply package."
+}

@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-06-12T18:45:09.216Z",
+  "version": "english_master_index_sv03_existing_stamped_parent_identity_backfill_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "SV03-EXISTING-STAMPED-PARENT-IDENTITY-BACKFILL",
+    "package_fingerprint_sha256": "0481ed86bac219a6b2f8c150610c8bce59d8f4352b950874119f911148c7ab8f",
+    "source_readiness_fingerprint": "457ee3e7f4fe33f038beb2f26ee579ad0d173453f50c5f6f8a9abb5f4f982f6b",
+    "target_parent_updates": 3,
+    "target_identity_inserts": 3,
+    "target_child_inserts": 0,
+    "target_deletes": 0,
+    "target_merges": 0,
+    "by_child_action_status": {
+      "identity_backfill_first_then_child_insert_dry_run_candidate": 1,
+      "manual_adjudication_required_before_child_insert": 2
+    },
+    "by_evidence_tier": {
+      "multi_lane": 1,
+      "product_family_only": 2
+    },
+    "update_scope": "existing_parent_printed_identity_modifier_plus_active_card_print_identity_insert_only",
+    "child_inserts_allowed": false,
+    "deletes_allowed": false,
+    "merges_allowed": false,
+    "unsupported_cleanup_allowed": false,
+    "quarantine_allowed": false,
+    "global_apply_allowed": false
+  },
+  "dry_run_proof": {
+    "dry_run_status": "sv03_existing_stamped_parent_identity_backfill_completed_rolled_back_no_durable_change",
+    "before_hash_sha256": "d5a110f24a7ef099b8470d3c7697cf098b49ae0fc860fdad43ecd90c80fd7e2f",
+    "after_hash_sha256": "d5a110f24a7ef099b8470d3c7697cf098b49ae0fc860fdad43ecd90c80fd7e2f",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "transient_after_snapshot_differs_from_before_snapshot": true
+  },
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sv03_existing_stamped_parent_identity_backfill_guarded_dry_run_v1.json",
+    "source_readiness": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_sv03_existing_stamped_parent_identity_backfill_readiness_v1.json"
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real SV03-EXISTING-STAMPED-PARENT-IDENTITY-BACKFILL apply only. Fingerprint: 0481ed86bac219a6b2f8c150610c8bce59d8f4352b950874119f911148c7ab8f. Scope: 3 existing SV03 stamped parent identity backfills, 3 parent printed_identity_modifier updates, 3 active card_print_identity inserts, 0 child inserts, 0 deletes, 0 merges. Dry-run proof: d5a110f24a7ef099b8470d3c7697cf098b49ae0fc860fdad43ecd90c80fd7e2f == d5a110f24a7ef099b8470d3c7697cf098b49ae0fc860fdad43ecd90c80fd7e2f. No global apply. No migrations. No cleanup. No quarantine."
+  },
+  "stop_findings": [],
+  "pass": true
+}

@@ -1,0 +1,36 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pricecharting_svp_winner_variant_preservation_v1",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/game/pokemon-promo/pikachu-world-championships-winner-225",
+  "source_status": "available_generated_preservation",
+  "set_key": "source_preservation",
+  "set_name": "pricecharting_svp_winner_variant preservation",
+  "retrieved_at": "2026-06-12T03:50:22.244Z",
+  "raw_snapshot_ref": "generated_fixture:source_preservation:pricecharting_svp_winner_variant:2026-06-09T12:23:15.511Z:2026-06-12T03:50:22.244Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "generation_note": "Generated from the last promoted English Master Index to preserve pricecharting_svp_winner_variant evidence against broad fixture volatility. Rows intentionally retain source_key pricecharting_svp_winner_variant; they are not new independent evidence.",
+  "records": [
+    {
+      "source_key": "pricecharting_svp_winner_variant",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/pikachu-world-championships-winner-225",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "225",
+      "card_name": "Pikachu",
+      "finish_key": "stamped",
+      "rarity": "Promo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "pricecharting_svp_winner_variant preserved finish evidence from last promoted Master Index",
+      "language": "en",
+      "retrieved_at": "2026-06-12T03:50:22.244Z",
+      "raw_snapshot_ref": "source_preservation:pricecharting_svp_winner_variant:2026-06-09T12:23:15.511Z:svp:225:stamped",
+      "notes": "Audit-only preservation row. This preserves previously promoted pricecharting_svp_winner_variant evidence under the same source authority; it is not a new independent source."
+    }
+  ]
+}

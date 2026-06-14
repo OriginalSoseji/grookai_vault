@@ -1,0 +1,264 @@
+{
+  "generated_at": "2026-06-10T21:21:59.016Z",
+  "version": "english_master_index_pkg08c_duplicate_parent_transfer_plan_v1",
+  "package_id": "PKG-08C-DUPLICATE-PARENT-TRANSFER-PLAN",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "merge_performed": false,
+  "delete_performed": false,
+  "apply_paths_executed": false,
+  "audit_status": "pkg08c_duplicate_parent_transfer_plan_complete_no_write",
+  "package_fingerprint_sha256": "75c3054692052e87be8dbae35aaadb54d2ac87dca83c969c9025fb8f139a86f7",
+  "source_artifacts": {
+    "parent_identity_adjudication": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg08b_parent_identity_adjudication_v1.json"
+  },
+  "reference_surface": {
+    "database_available": true,
+    "parent_foreign_keys": 45,
+    "child_foreign_keys": 3
+  },
+  "summary": {
+    "source_duplicate_rows": 1,
+    "grouped_duplicate_parent_cases": 1,
+    "by_readiness": {
+      "blocked_vault_or_ownership_dependency_review_required": 1
+    },
+    "dry_run_candidate_groups": 0,
+    "dry_run_candidate_blocked_parent_rows": 0,
+    "dry_run_candidate_survivor_parent_rows": 0,
+    "blocked_groups": 1,
+    "groups_with_vault_or_ownership_refs": 1,
+    "dependency_transfer_strategy_required_groups": 0,
+    "dependency_tables": [],
+    "by_set": [
+      {
+        "set_key": "sv03.5",
+        "count": 1
+      }
+    ]
+  },
+  "transfer_plans": [
+    {
+      "group_key": "sv03 5|25|pikachu",
+      "readiness": "blocked_vault_or_ownership_dependency_review_required",
+      "recommended_next_step": "review_references_before_any_transfer_artifact",
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "25",
+      "card_name": "Pikachu",
+      "finish_keys_needed": [
+        "cosmos"
+      ],
+      "source_row_count": 1,
+      "survivor_card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d",
+      "blocked_card_print_ids": [
+        "a058c87e-0779-4e90-b60e-81d8c90b0b50"
+      ],
+      "candidates": [
+        {
+          "card_print_id": "85d64fe0-be9a-4760-a1a6-51dadcc88a7d",
+          "set_code": "sv03.5",
+          "number": "025",
+          "number_plain": "025",
+          "name": "Pikachu",
+          "rarity": "Common",
+          "child_count": 3,
+          "finishes": [
+            "cosmos",
+            "normal",
+            "reverse"
+          ],
+          "external_mapping_count": 2,
+          "parent_refs": {
+            "total_refs": 1026,
+            "by_table": [
+              {
+                "table": "card_print_species",
+                "column": "card_print_id",
+                "refs": 1,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+              },
+              {
+                "table": "card_print_traits",
+                "column": "card_print_id",
+                "refs": 1,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+              },
+              {
+                "table": "card_printings",
+                "column": "card_print_id",
+                "refs": 3,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+              },
+              {
+                "table": "external_discovery_candidates",
+                "column": "card_print_id",
+                "refs": 1,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+              },
+              {
+                "table": "external_mappings",
+                "column": "card_print_id",
+                "refs": 2,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+              },
+              {
+                "table": "justtcg_variant_price_snapshots",
+                "column": "card_print_id",
+                "refs": 994,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+              },
+              {
+                "table": "justtcg_variant_prices_latest",
+                "column": "card_print_id",
+                "refs": 10,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+              },
+              {
+                "table": "justtcg_variants",
+                "column": "card_print_id",
+                "refs": 10,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+              },
+              {
+                "table": "pricing_watch",
+                "column": "card_print_id",
+                "refs": 1,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+              },
+              {
+                "table": "vault_item_instances",
+                "column": "card_print_id",
+                "refs": 2,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+              },
+              {
+                "table": "vault_items",
+                "column": "card_id",
+                "refs": 1,
+                "constraint_def": "FOREIGN KEY (card_id) REFERENCES card_prints(id) DEFERRABLE INITIALLY DEFERRED"
+              }
+            ]
+          },
+          "child_refs_total": 2,
+          "ownership_or_vault_refs": true
+        },
+        {
+          "card_print_id": "a058c87e-0779-4e90-b60e-81d8c90b0b50",
+          "set_code": "sv03.5",
+          "number": "025",
+          "number_plain": "025",
+          "name": "Pikachu",
+          "rarity": null,
+          "child_count": 0,
+          "finishes": [],
+          "external_mapping_count": 2,
+          "parent_refs": {
+            "total_refs": 508,
+            "by_table": [
+              {
+                "table": "canon_warehouse_candidates",
+                "column": "promoted_card_print_id",
+                "refs": 1,
+                "constraint_def": "FOREIGN KEY (promoted_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+              },
+              {
+                "table": "card_feed_events",
+                "column": "card_print_id",
+                "refs": 1,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+              },
+              {
+                "table": "card_print_species",
+                "column": "card_print_id",
+                "refs": 1,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+              },
+              {
+                "table": "external_discovery_candidates",
+                "column": "card_print_id",
+                "refs": 1,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+              },
+              {
+                "table": "external_mappings",
+                "column": "card_print_id",
+                "refs": 2,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+              },
+              {
+                "table": "justtcg_variant_price_snapshots",
+                "column": "card_print_id",
+                "refs": 488,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+              },
+              {
+                "table": "justtcg_variant_prices_latest",
+                "column": "card_print_id",
+                "refs": 5,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+              },
+              {
+                "table": "justtcg_variants",
+                "column": "card_print_id",
+                "refs": 5,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+              },
+              {
+                "table": "pricing_watch",
+                "column": "card_print_id",
+                "refs": 1,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+              },
+              {
+                "table": "shared_cards",
+                "column": "card_id",
+                "refs": 1,
+                "constraint_def": "FOREIGN KEY (card_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+              },
+              {
+                "table": "vault_item_instances",
+                "column": "card_print_id",
+                "refs": 1,
+                "constraint_def": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+              },
+              {
+                "table": "vault_items",
+                "column": "card_id",
+                "refs": 1,
+                "constraint_def": "FOREIGN KEY (card_id) REFERENCES card_prints(id) DEFERRABLE INITIALLY DEFERRED"
+              }
+            ]
+          },
+          "child_refs_total": 0,
+          "ownership_or_vault_refs": true
+        }
+      ],
+      "blocked_dependency_tables": [
+        "canon_warehouse_candidates",
+        "card_feed_events",
+        "card_print_species",
+        "external_discovery_candidates",
+        "external_mappings",
+        "justtcg_variant_price_snapshots",
+        "justtcg_variant_prices_latest",
+        "justtcg_variants",
+        "pricing_watch",
+        "shared_cards",
+        "vault_item_instances",
+        "vault_items"
+      ],
+      "safety_notes": [
+        "This plan is read-only and does not authorize merge/delete/apply.",
+        "Survivor choice is automatic only when exactly one populated parent exists and the rest are empty.",
+        "Rows with ownership, vault, child dependency, non-trivial parent dependency, or multiple populated candidates are blocked from simple dry-run artifact generation."
+      ]
+    }
+  ],
+  "stop_findings": [],
+  "pass": true
+}

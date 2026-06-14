@@ -1,0 +1,3093 @@
+{
+  "generated_at": "2026-06-10T21:32:45.242Z",
+  "version": "english_master_index_pkg10ba_first_edition_parent_identity_guarded_dry_run_v1",
+  "package_id": "PKG-10B-A-FIRST-EDITION-PARENT-IDENTITY-DRY-RUN-PILOT",
+  "source_package_id": "PKG-10B-FIRST-EDITION-CANONICAL-PARENT-READINESS",
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_pkg10b_first_edition_canonical_parent_readiness_v1.json",
+  "target_set_key": "base2",
+  "target_set_name": "Jungle",
+  "package_fingerprint_sha256": "e8fd374f201c0a18dd971fa2889f32883a2cc620565088f4926b59f8268707f1",
+  "source_readiness_fingerprint_sha256": "7b7c9692e664b5a9b026b3d78b51b1ff8849421667ba427e2bd7f688c9ebb81b",
+  "rollback_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "parent_strategy": {
+    "printed_identity_modifier": "edition:first_edition",
+    "source_finish_keys_not_activated": [
+      "first_edition_normal",
+      "first_edition_holo"
+    ],
+    "child_finish_decomposition": {
+      "first_edition_normal": "normal",
+      "first_edition_holo": "holo"
+    }
+  },
+  "summary": {
+    "target_parent_rows": 64,
+    "target_child_rows": 64,
+    "external_mapping_rows": 0,
+    "by_finish": {
+      "normal": 48,
+      "holo": 16
+    },
+    "by_source_finish": {
+      "first_edition_normal": 48,
+      "first_edition_holo": 16
+    },
+    "name_alias_rows": 0
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-10T21:32:43.738Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+        "set_code": "base2",
+        "number": "1",
+        "number_plain": "1",
+        "name": "Clefable",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "77dcdb70-4912-4574-b790-17e613cecb98",
+        "set_code": "base2",
+        "number": "10",
+        "number_plain": "10",
+        "name": "Scyther",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "8b3cc33b-bb52-4b52-a731-70f3516345e7",
+        "set_code": "base2",
+        "number": "11",
+        "number_plain": "11",
+        "name": "Snorlax",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "b575fc44-4d9e-460d-9977-8f19fc0a1b4b",
+        "set_code": "base2",
+        "number": "12",
+        "number_plain": "12",
+        "name": "Vaporeon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "59544cf4-177c-4c83-bd16-44b68733b06f",
+        "set_code": "base2",
+        "number": "13",
+        "number_plain": "13",
+        "name": "Venomoth",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "786ed86f-d6f0-43d7-92dc-22eadd69a620",
+        "set_code": "base2",
+        "number": "14",
+        "number_plain": "14",
+        "name": "Victreebel",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "99f177ea-8920-43cb-9e8d-f6063054fc3d",
+        "set_code": "base2",
+        "number": "15",
+        "number_plain": "15",
+        "name": "Vileplume",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "8a9af34f-25c2-497b-a6e1-740f8821de4e",
+        "set_code": "base2",
+        "number": "16",
+        "number_plain": "16",
+        "name": "Wigglytuff",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "7bf4c9f2-4713-40df-a462-7f36164c6391",
+        "set_code": "base2",
+        "number": "17",
+        "number_plain": "17",
+        "name": "Clefable",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "139df386-af8f-4e58-8f0a-23da7988c90f",
+        "set_code": "base2",
+        "number": "18",
+        "number_plain": "18",
+        "name": "Electrode",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "f7b186ea-c27d-4ddb-83c9-248691747105",
+        "set_code": "base2",
+        "number": "19",
+        "number_plain": "19",
+        "name": "Flareon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "8eb4813c-0b90-4764-8709-16aa9d5a0d9e",
+        "set_code": "base2",
+        "number": "2",
+        "number_plain": "2",
+        "name": "Electrode",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "c6071c50-bd9a-418c-b2c6-116ff72faf49",
+        "set_code": "base2",
+        "number": "20",
+        "number_plain": "20",
+        "name": "Jolteon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "2c0c2b45-edba-4f37-81e5-a0d197518a2a",
+        "set_code": "base2",
+        "number": "21",
+        "number_plain": "21",
+        "name": "Kangaskhan",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "1b169d02-6793-4d8b-9d77-c9cdeb26ee9e",
+        "set_code": "base2",
+        "number": "22",
+        "number_plain": "22",
+        "name": "Mr. Mime",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "4bffb982-60d9-477a-9ff7-9ae335dda4e2",
+        "set_code": "base2",
+        "number": "23",
+        "number_plain": "23",
+        "name": "Nidoqueen",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "01aeb0d6-4e41-404e-b96f-549aecc7f3b1",
+        "set_code": "base2",
+        "number": "24",
+        "number_plain": "24",
+        "name": "Pidgeot",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "a6bffe64-1c11-4247-b772-21c5ad0dc2a5",
+        "set_code": "base2",
+        "number": "25",
+        "number_plain": "25",
+        "name": "Pinsir",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "08c949df-eee8-46f2-9b92-a5ec2e287e75",
+        "set_code": "base2",
+        "number": "26",
+        "number_plain": "26",
+        "name": "Scyther",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "19d64ad6-bb32-43ab-a7ca-99f480cea84f",
+        "set_code": "base2",
+        "number": "27",
+        "number_plain": "27",
+        "name": "Snorlax",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "bb8526cb-3ebe-4faa-b0cd-d0178660b0fc",
+        "set_code": "base2",
+        "number": "28",
+        "number_plain": "28",
+        "name": "Vaporeon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "a91c528e-9e42-4519-b777-3361bd9b7a58",
+        "set_code": "base2",
+        "number": "29",
+        "number_plain": "29",
+        "name": "Venomoth",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "a89425a0-6abc-4c95-872f-6a433087939f",
+        "set_code": "base2",
+        "number": "3",
+        "number_plain": "3",
+        "name": "Flareon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "d84484b4-b616-4a30-a323-0de3aecfef9f",
+        "set_code": "base2",
+        "number": "30",
+        "number_plain": "30",
+        "name": "Victreebel",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "eca69a92-d4c0-47f2-abea-5b34cf04d64f",
+        "set_code": "base2",
+        "number": "31",
+        "number_plain": "31",
+        "name": "Vileplume",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "575b90b7-8f37-446e-828b-8511c87ef653",
+        "set_code": "base2",
+        "number": "32",
+        "number_plain": "32",
+        "name": "Wigglytuff",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "2085f7ed-0882-455b-b5ce-059f7584817e",
+        "set_code": "base2",
+        "number": "33",
+        "number_plain": "33",
+        "name": "Butterfree",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "e8b20660-7604-4e8d-a8d6-6a2e6d2586fd",
+        "set_code": "base2",
+        "number": "34",
+        "number_plain": "34",
+        "name": "Dodrio",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "b0f2586f-d020-441a-b302-fd3835fb8125",
+        "set_code": "base2",
+        "number": "35",
+        "number_plain": "35",
+        "name": "Exeggutor",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "03e13c16-3e82-4292-9cdb-20fe0c6273a2",
+        "set_code": "base2",
+        "number": "36",
+        "number_plain": "36",
+        "name": "Fearow",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "8ced4da3-a6c2-4818-84a5-70cc04aa0874",
+        "set_code": "base2",
+        "number": "37",
+        "number_plain": "37",
+        "name": "Gloom",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "4f2d7d94-56f2-4cd4-b893-c77ff6f3f6e5",
+        "set_code": "base2",
+        "number": "38",
+        "number_plain": "38",
+        "name": "Lickitung",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "8ef2ef96-4b3f-46b0-9db8-94e33f312d73",
+        "set_code": "base2",
+        "number": "39",
+        "number_plain": "39",
+        "name": "Marowak",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "44867e4d-aa59-4fef-a33c-4ede1be99495",
+        "set_code": "base2",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Jolteon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "864b6e07-b926-4508-8a88-e7dad594eaab",
+        "set_code": "base2",
+        "number": "40",
+        "number_plain": "40",
+        "name": "Nidorina",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "fd3dbbd0-5893-4ae3-9c50-53c071364292",
+        "set_code": "base2",
+        "number": "41",
+        "number_plain": "41",
+        "name": "Parasect",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "1296473c-ae5e-40b8-9661-2d496472d40b",
+        "set_code": "base2",
+        "number": "42",
+        "number_plain": "42",
+        "name": "Persian",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "692ff7e5-b8ad-484c-b658-50e3710c4755",
+        "set_code": "base2",
+        "number": "43",
+        "number_plain": "43",
+        "name": "Primeape",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "453a73dc-05af-47ab-a57b-1d17c205a68a",
+        "set_code": "base2",
+        "number": "44",
+        "number_plain": "44",
+        "name": "Rapidash",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "d881f3d7-b441-4d90-8ab6-e464078af7dd",
+        "set_code": "base2",
+        "number": "45",
+        "number_plain": "45",
+        "name": "Rhydon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "c2ff129b-4dcc-401b-a7be-b3a19b14da46",
+        "set_code": "base2",
+        "number": "46",
+        "number_plain": "46",
+        "name": "Seaking",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "13ac80d3-7edf-4742-9301-1df119f1da5f",
+        "set_code": "base2",
+        "number": "47",
+        "number_plain": "47",
+        "name": "Tauros",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "acda77bf-61d9-4157-82d9-6fc84f066e0f",
+        "set_code": "base2",
+        "number": "48",
+        "number_plain": "48",
+        "name": "Weepinbell",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "fb34fab5-728e-46db-a9e8-ec15439af3f9",
+        "set_code": "base2",
+        "number": "49",
+        "number_plain": "49",
+        "name": "Bellsprout",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "43c6f019-7fc4-4f5f-93e2-7f28ee798180",
+        "set_code": "base2",
+        "number": "5",
+        "number_plain": "5",
+        "name": "Kangaskhan",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "f1f0462c-805f-4a17-bddc-bf9bf09ad3d0",
+        "set_code": "base2",
+        "number": "50",
+        "number_plain": "50",
+        "name": "Cubone",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "60fedecd-1fd8-402a-ad46-a8d407608bf9",
+        "set_code": "base2",
+        "number": "51",
+        "number_plain": "51",
+        "name": "Eevee",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "6bb7f047-4192-4e1a-866b-6b1863de6873",
+        "set_code": "base2",
+        "number": "52",
+        "number_plain": "52",
+        "name": "Exeggcute",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "70a81042-5668-48e4-80e6-54ba4909a1ec",
+        "set_code": "base2",
+        "number": "53",
+        "number_plain": "53",
+        "name": "Goldeen",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "9bdf1ee6-5db0-4738-b695-e6281637a525",
+        "set_code": "base2",
+        "number": "54",
+        "number_plain": "54",
+        "name": "Jigglypuff",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "90da3a73-d141-4cc4-8db0-808fc7876fe0",
+        "set_code": "base2",
+        "number": "55",
+        "number_plain": "55",
+        "name": "Mankey",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "1977d1fa-1593-4372-b905-21eaf988d704",
+        "set_code": "base2",
+        "number": "56",
+        "number_plain": "56",
+        "name": "Meowth",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "29c35216-ec8e-4230-ad89-cb71ea70b3b5",
+        "set_code": "base2",
+        "number": "57",
+        "number_plain": "57",
+        "name": "Nidoran ♀",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "10d87586-94eb-4256-9215-d81f3404ca16",
+        "set_code": "base2",
+        "number": "58",
+        "number_plain": "58",
+        "name": "Oddish",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "b310769e-9df2-470b-86df-e6cd64c70a19",
+        "set_code": "base2",
+        "number": "59",
+        "number_plain": "59",
+        "name": "Paras",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "b35e8af0-bec3-4bb7-bbaf-d623553e4474",
+        "set_code": "base2",
+        "number": "6",
+        "number_plain": "6",
+        "name": "Mr. Mime",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "4738ca2e-3071-4e80-90a7-0e615e132482",
+        "set_code": "base2",
+        "number": "60",
+        "number_plain": "60",
+        "name": "Pikachu",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "1f7d182d-b78b-4a1c-8c51-a3c30bed848a",
+        "set_code": "base2",
+        "number": "61",
+        "number_plain": "61",
+        "name": "Rhyhorn",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "11ba2c21-4244-4dc3-83ca-b9d1af604e84",
+        "set_code": "base2",
+        "number": "62",
+        "number_plain": "62",
+        "name": "Spearow",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "e9b344c4-0cdb-4248-8dfe-fe2dbbb1618f",
+        "set_code": "base2",
+        "number": "63",
+        "number_plain": "63",
+        "name": "Venonat",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "89132b0b-a65f-41db-a6f7-de8d23661958",
+        "set_code": "base2",
+        "number": "64",
+        "number_plain": "64",
+        "name": "Poké Ball",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "8148c1b4-3104-4a36-962f-cab78bb67a89",
+        "set_code": "base2",
+        "number": "7",
+        "number_plain": "7",
+        "name": "Nidoqueen",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "bb7ceaa7-dd12-45f1-848f-5091c83ee0f0",
+        "set_code": "base2",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Pidgeot",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "49fa39dd-d4ff-41a7-80dc-03db65aeb4a7",
+        "set_code": "base2",
+        "number": "9",
+        "number_plain": "9",
+        "name": "Pinsir",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      }
+    ],
+    "hash_sha256": "9d9a0307e87357cd79110c51345866bf41890704c602813b87f20b00be3e8df7",
+    "counts": {
+      "base_parent_rows": 64,
+      "proposed_parent_collision_rows": 0,
+      "proposed_child_collision_rows": 0,
+      "total_rows": 64
+    }
+  },
+  "dry_run": {
+    "ok": true,
+    "guard": {
+      "target_count": 64,
+      "set_count": 1,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0
+    },
+    "inserted": {
+      "inserted_parent_count": 64,
+      "inserted_child_count": 64
+    },
+    "rolled_back": true
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-10T21:32:45.084Z",
+    "rows": [
+      {
+        "row_type": "base_parent",
+        "row_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+        "set_code": "base2",
+        "number": "1",
+        "number_plain": "1",
+        "name": "Clefable",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "77dcdb70-4912-4574-b790-17e613cecb98",
+        "set_code": "base2",
+        "number": "10",
+        "number_plain": "10",
+        "name": "Scyther",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "8b3cc33b-bb52-4b52-a731-70f3516345e7",
+        "set_code": "base2",
+        "number": "11",
+        "number_plain": "11",
+        "name": "Snorlax",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "b575fc44-4d9e-460d-9977-8f19fc0a1b4b",
+        "set_code": "base2",
+        "number": "12",
+        "number_plain": "12",
+        "name": "Vaporeon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "59544cf4-177c-4c83-bd16-44b68733b06f",
+        "set_code": "base2",
+        "number": "13",
+        "number_plain": "13",
+        "name": "Venomoth",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "786ed86f-d6f0-43d7-92dc-22eadd69a620",
+        "set_code": "base2",
+        "number": "14",
+        "number_plain": "14",
+        "name": "Victreebel",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "99f177ea-8920-43cb-9e8d-f6063054fc3d",
+        "set_code": "base2",
+        "number": "15",
+        "number_plain": "15",
+        "name": "Vileplume",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "8a9af34f-25c2-497b-a6e1-740f8821de4e",
+        "set_code": "base2",
+        "number": "16",
+        "number_plain": "16",
+        "name": "Wigglytuff",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "7bf4c9f2-4713-40df-a462-7f36164c6391",
+        "set_code": "base2",
+        "number": "17",
+        "number_plain": "17",
+        "name": "Clefable",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "139df386-af8f-4e58-8f0a-23da7988c90f",
+        "set_code": "base2",
+        "number": "18",
+        "number_plain": "18",
+        "name": "Electrode",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "f7b186ea-c27d-4ddb-83c9-248691747105",
+        "set_code": "base2",
+        "number": "19",
+        "number_plain": "19",
+        "name": "Flareon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "8eb4813c-0b90-4764-8709-16aa9d5a0d9e",
+        "set_code": "base2",
+        "number": "2",
+        "number_plain": "2",
+        "name": "Electrode",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "c6071c50-bd9a-418c-b2c6-116ff72faf49",
+        "set_code": "base2",
+        "number": "20",
+        "number_plain": "20",
+        "name": "Jolteon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "2c0c2b45-edba-4f37-81e5-a0d197518a2a",
+        "set_code": "base2",
+        "number": "21",
+        "number_plain": "21",
+        "name": "Kangaskhan",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "1b169d02-6793-4d8b-9d77-c9cdeb26ee9e",
+        "set_code": "base2",
+        "number": "22",
+        "number_plain": "22",
+        "name": "Mr. Mime",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "4bffb982-60d9-477a-9ff7-9ae335dda4e2",
+        "set_code": "base2",
+        "number": "23",
+        "number_plain": "23",
+        "name": "Nidoqueen",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "01aeb0d6-4e41-404e-b96f-549aecc7f3b1",
+        "set_code": "base2",
+        "number": "24",
+        "number_plain": "24",
+        "name": "Pidgeot",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "a6bffe64-1c11-4247-b772-21c5ad0dc2a5",
+        "set_code": "base2",
+        "number": "25",
+        "number_plain": "25",
+        "name": "Pinsir",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "08c949df-eee8-46f2-9b92-a5ec2e287e75",
+        "set_code": "base2",
+        "number": "26",
+        "number_plain": "26",
+        "name": "Scyther",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "19d64ad6-bb32-43ab-a7ca-99f480cea84f",
+        "set_code": "base2",
+        "number": "27",
+        "number_plain": "27",
+        "name": "Snorlax",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "bb8526cb-3ebe-4faa-b0cd-d0178660b0fc",
+        "set_code": "base2",
+        "number": "28",
+        "number_plain": "28",
+        "name": "Vaporeon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "a91c528e-9e42-4519-b777-3361bd9b7a58",
+        "set_code": "base2",
+        "number": "29",
+        "number_plain": "29",
+        "name": "Venomoth",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "a89425a0-6abc-4c95-872f-6a433087939f",
+        "set_code": "base2",
+        "number": "3",
+        "number_plain": "3",
+        "name": "Flareon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "d84484b4-b616-4a30-a323-0de3aecfef9f",
+        "set_code": "base2",
+        "number": "30",
+        "number_plain": "30",
+        "name": "Victreebel",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "eca69a92-d4c0-47f2-abea-5b34cf04d64f",
+        "set_code": "base2",
+        "number": "31",
+        "number_plain": "31",
+        "name": "Vileplume",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "575b90b7-8f37-446e-828b-8511c87ef653",
+        "set_code": "base2",
+        "number": "32",
+        "number_plain": "32",
+        "name": "Wigglytuff",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "2085f7ed-0882-455b-b5ce-059f7584817e",
+        "set_code": "base2",
+        "number": "33",
+        "number_plain": "33",
+        "name": "Butterfree",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "e8b20660-7604-4e8d-a8d6-6a2e6d2586fd",
+        "set_code": "base2",
+        "number": "34",
+        "number_plain": "34",
+        "name": "Dodrio",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "b0f2586f-d020-441a-b302-fd3835fb8125",
+        "set_code": "base2",
+        "number": "35",
+        "number_plain": "35",
+        "name": "Exeggutor",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "03e13c16-3e82-4292-9cdb-20fe0c6273a2",
+        "set_code": "base2",
+        "number": "36",
+        "number_plain": "36",
+        "name": "Fearow",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "8ced4da3-a6c2-4818-84a5-70cc04aa0874",
+        "set_code": "base2",
+        "number": "37",
+        "number_plain": "37",
+        "name": "Gloom",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "4f2d7d94-56f2-4cd4-b893-c77ff6f3f6e5",
+        "set_code": "base2",
+        "number": "38",
+        "number_plain": "38",
+        "name": "Lickitung",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "8ef2ef96-4b3f-46b0-9db8-94e33f312d73",
+        "set_code": "base2",
+        "number": "39",
+        "number_plain": "39",
+        "name": "Marowak",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "44867e4d-aa59-4fef-a33c-4ede1be99495",
+        "set_code": "base2",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Jolteon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "864b6e07-b926-4508-8a88-e7dad594eaab",
+        "set_code": "base2",
+        "number": "40",
+        "number_plain": "40",
+        "name": "Nidorina",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "fd3dbbd0-5893-4ae3-9c50-53c071364292",
+        "set_code": "base2",
+        "number": "41",
+        "number_plain": "41",
+        "name": "Parasect",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "1296473c-ae5e-40b8-9661-2d496472d40b",
+        "set_code": "base2",
+        "number": "42",
+        "number_plain": "42",
+        "name": "Persian",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "692ff7e5-b8ad-484c-b658-50e3710c4755",
+        "set_code": "base2",
+        "number": "43",
+        "number_plain": "43",
+        "name": "Primeape",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "453a73dc-05af-47ab-a57b-1d17c205a68a",
+        "set_code": "base2",
+        "number": "44",
+        "number_plain": "44",
+        "name": "Rapidash",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "d881f3d7-b441-4d90-8ab6-e464078af7dd",
+        "set_code": "base2",
+        "number": "45",
+        "number_plain": "45",
+        "name": "Rhydon",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "c2ff129b-4dcc-401b-a7be-b3a19b14da46",
+        "set_code": "base2",
+        "number": "46",
+        "number_plain": "46",
+        "name": "Seaking",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "13ac80d3-7edf-4742-9301-1df119f1da5f",
+        "set_code": "base2",
+        "number": "47",
+        "number_plain": "47",
+        "name": "Tauros",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "acda77bf-61d9-4157-82d9-6fc84f066e0f",
+        "set_code": "base2",
+        "number": "48",
+        "number_plain": "48",
+        "name": "Weepinbell",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "fb34fab5-728e-46db-a9e8-ec15439af3f9",
+        "set_code": "base2",
+        "number": "49",
+        "number_plain": "49",
+        "name": "Bellsprout",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "43c6f019-7fc4-4f5f-93e2-7f28ee798180",
+        "set_code": "base2",
+        "number": "5",
+        "number_plain": "5",
+        "name": "Kangaskhan",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "f1f0462c-805f-4a17-bddc-bf9bf09ad3d0",
+        "set_code": "base2",
+        "number": "50",
+        "number_plain": "50",
+        "name": "Cubone",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "60fedecd-1fd8-402a-ad46-a8d407608bf9",
+        "set_code": "base2",
+        "number": "51",
+        "number_plain": "51",
+        "name": "Eevee",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "6bb7f047-4192-4e1a-866b-6b1863de6873",
+        "set_code": "base2",
+        "number": "52",
+        "number_plain": "52",
+        "name": "Exeggcute",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "70a81042-5668-48e4-80e6-54ba4909a1ec",
+        "set_code": "base2",
+        "number": "53",
+        "number_plain": "53",
+        "name": "Goldeen",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "9bdf1ee6-5db0-4738-b695-e6281637a525",
+        "set_code": "base2",
+        "number": "54",
+        "number_plain": "54",
+        "name": "Jigglypuff",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "90da3a73-d141-4cc4-8db0-808fc7876fe0",
+        "set_code": "base2",
+        "number": "55",
+        "number_plain": "55",
+        "name": "Mankey",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "1977d1fa-1593-4372-b905-21eaf988d704",
+        "set_code": "base2",
+        "number": "56",
+        "number_plain": "56",
+        "name": "Meowth",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "29c35216-ec8e-4230-ad89-cb71ea70b3b5",
+        "set_code": "base2",
+        "number": "57",
+        "number_plain": "57",
+        "name": "Nidoran ♀",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "10d87586-94eb-4256-9215-d81f3404ca16",
+        "set_code": "base2",
+        "number": "58",
+        "number_plain": "58",
+        "name": "Oddish",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "b310769e-9df2-470b-86df-e6cd64c70a19",
+        "set_code": "base2",
+        "number": "59",
+        "number_plain": "59",
+        "name": "Paras",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "b35e8af0-bec3-4bb7-bbaf-d623553e4474",
+        "set_code": "base2",
+        "number": "6",
+        "number_plain": "6",
+        "name": "Mr. Mime",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "4738ca2e-3071-4e80-90a7-0e615e132482",
+        "set_code": "base2",
+        "number": "60",
+        "number_plain": "60",
+        "name": "Pikachu",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "1f7d182d-b78b-4a1c-8c51-a3c30bed848a",
+        "set_code": "base2",
+        "number": "61",
+        "number_plain": "61",
+        "name": "Rhyhorn",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "11ba2c21-4244-4dc3-83ca-b9d1af604e84",
+        "set_code": "base2",
+        "number": "62",
+        "number_plain": "62",
+        "name": "Spearow",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "e9b344c4-0cdb-4248-8dfe-fe2dbbb1618f",
+        "set_code": "base2",
+        "number": "63",
+        "number_plain": "63",
+        "name": "Venonat",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "89132b0b-a65f-41db-a6f7-de8d23661958",
+        "set_code": "base2",
+        "number": "64",
+        "number_plain": "64",
+        "name": "Poké Ball",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "8148c1b4-3104-4a36-962f-cab78bb67a89",
+        "set_code": "base2",
+        "number": "7",
+        "number_plain": "7",
+        "name": "Nidoqueen",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "bb7ceaa7-dd12-45f1-848f-5091c83ee0f0",
+        "set_code": "base2",
+        "number": "8",
+        "number_plain": "8",
+        "name": "Pidgeot",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      },
+      {
+        "row_type": "base_parent",
+        "row_id": "49fa39dd-d4ff-41a7-80dc-03db65aeb4a7",
+        "set_code": "base2",
+        "number": "9",
+        "number_plain": "9",
+        "name": "Pinsir",
+        "printed_identity_modifier": null,
+        "variant_key": "",
+        "finish_key": null
+      }
+    ],
+    "hash_sha256": "9d9a0307e87357cd79110c51345866bf41890704c602813b87f20b00be3e8df7",
+    "counts": {
+      "base_parent_rows": 64,
+      "proposed_parent_collision_rows": 0,
+      "proposed_child_collision_rows": 0,
+      "total_rows": 64
+    }
+  },
+  "rollback_proof_equal": true,
+  "sql_artifact": "C:\\grookai_vault\\docs\\sql\\english_master_index_pkg10ba_first_edition_parent_identity_guarded_dry_run_transaction_v1.sql",
+  "targets": [
+    {
+      "target_parent_id": "8166b2e2-4b31-4ea2-9cb1-39147d2ed201",
+      "target_child_id": "e68c3c2b-5e53-49d5-9299-bda6b4dde7ac",
+      "base_parent_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "1",
+      "source_card_name": "Clefable",
+      "target_card_name": "Clefable",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "1",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-1",
+        "https://api.tcgdex.net/v2/en/cards/base2-1",
+        "https://prices.pokemontcg.io/tcgplayer/base2-1",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "0408ff9b-353a-4699-b352-3e80ab65d0e9",
+      "target_child_id": "5213f0a4-91a3-4a94-ab03-7b46e6dbccb7",
+      "base_parent_id": "8eb4813c-0b90-4764-8709-16aa9d5a0d9e",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "2",
+      "source_card_name": "Electrode",
+      "target_card_name": "Electrode",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "2",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-2",
+        "https://api.tcgdex.net/v2/en/cards/base2-2",
+        "https://prices.pokemontcg.io/tcgplayer/base2-2",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "64ccf86a-a72e-4a7d-8798-4908c288372f",
+      "target_child_id": "482021db-5b64-4e2e-8058-cf4dae0b68a4",
+      "base_parent_id": "a89425a0-6abc-4c95-872f-6a433087939f",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "3",
+      "source_card_name": "Flareon",
+      "target_card_name": "Flareon",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "3",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-3",
+        "https://api.tcgdex.net/v2/en/cards/base2-3",
+        "https://prices.pokemontcg.io/tcgplayer/base2-3",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "7663a8f4-2a07-4662-9af1-ab8c2da1c84e",
+      "target_child_id": "0119d023-12f7-4eb1-b99f-c316c9691c5f",
+      "base_parent_id": "44867e4d-aa59-4fef-a33c-4ede1be99495",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "4",
+      "source_card_name": "Jolteon",
+      "target_card_name": "Jolteon",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "4",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-4",
+        "https://api.tcgdex.net/v2/en/cards/base2-4",
+        "https://prices.pokemontcg.io/tcgplayer/base2-4",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "d4dffb25-3868-4c75-a82b-1e008577fd95",
+      "target_child_id": "2fe99693-4c77-493a-91df-0ffdbf1909ac",
+      "base_parent_id": "43c6f019-7fc4-4f5f-93e2-7f28ee798180",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "5",
+      "source_card_name": "Kangaskhan",
+      "target_card_name": "Kangaskhan",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "5",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-5",
+        "https://api.tcgdex.net/v2/en/cards/base2-5",
+        "https://prices.pokemontcg.io/tcgplayer/base2-5",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "64f16d5f-216e-49f8-b72b-111d466538b7",
+      "target_child_id": "a9b81d86-87bb-4466-9f8d-30744d894459",
+      "base_parent_id": "b35e8af0-bec3-4bb7-bbaf-d623553e4474",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "6",
+      "source_card_name": "Mr. Mime",
+      "target_card_name": "Mr. Mime",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "6",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-6",
+        "https://api.tcgdex.net/v2/en/cards/base2-6",
+        "https://prices.pokemontcg.io/tcgplayer/base2-6",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "e3ebf1a5-732d-4b1f-aa1e-8f7769e9b09d",
+      "target_child_id": "ef926ff8-9d5d-4883-8f03-8c391190bdaa",
+      "base_parent_id": "8148c1b4-3104-4a36-962f-cab78bb67a89",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "7",
+      "source_card_name": "Nidoqueen",
+      "target_card_name": "Nidoqueen",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "7",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-7",
+        "https://api.tcgdex.net/v2/en/cards/base2-7",
+        "https://prices.pokemontcg.io/tcgplayer/base2-7",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "7879fe9d-3c6b-4816-b455-d0b4a9529dd6",
+      "target_child_id": "2c770d7f-a22c-4dd5-b25d-c78924947c0e",
+      "base_parent_id": "bb7ceaa7-dd12-45f1-848f-5091c83ee0f0",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "8",
+      "source_card_name": "Pidgeot",
+      "target_card_name": "Pidgeot",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "8",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-8",
+        "https://api.tcgdex.net/v2/en/cards/base2-8",
+        "https://prices.pokemontcg.io/tcgplayer/base2-8",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "1b23d24d-0f89-4cd7-bde9-d6e6ab7c5f0e",
+      "target_child_id": "f8e77af1-b389-4068-b87b-cf748a9d767a",
+      "base_parent_id": "49fa39dd-d4ff-41a7-80dc-03db65aeb4a7",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "9",
+      "source_card_name": "Pinsir",
+      "target_card_name": "Pinsir",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "9",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-9",
+        "https://api.tcgdex.net/v2/en/cards/base2-9",
+        "https://prices.pokemontcg.io/tcgplayer/base2-9",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "cb60acf0-9b9f-448f-ae70-64bd2867149c",
+      "target_child_id": "44d30395-56b9-4753-9a52-1dd82d28388c",
+      "base_parent_id": "77dcdb70-4912-4574-b790-17e613cecb98",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "10",
+      "source_card_name": "Scyther",
+      "target_card_name": "Scyther",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "10",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-10",
+        "https://api.tcgdex.net/v2/en/cards/base2-10",
+        "https://prices.pokemontcg.io/tcgplayer/base2-10",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "2a1d6530-4cdc-4597-82cf-f3c24d7a725c",
+      "target_child_id": "9f86c47c-be49-4d69-b81a-5feb5002bc5d",
+      "base_parent_id": "8b3cc33b-bb52-4b52-a731-70f3516345e7",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "11",
+      "source_card_name": "Snorlax",
+      "target_card_name": "Snorlax",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "11",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-11",
+        "https://api.tcgdex.net/v2/en/cards/base2-11",
+        "https://prices.pokemontcg.io/tcgplayer/base2-11",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "4fa69012-0b67-42bd-afc1-a5d03d0c3b25",
+      "target_child_id": "b7239b62-ffe0-4ec8-afa9-0982d8cb93e7",
+      "base_parent_id": "b575fc44-4d9e-460d-9977-8f19fc0a1b4b",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "12",
+      "source_card_name": "Vaporeon",
+      "target_card_name": "Vaporeon",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "12",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-12",
+        "https://api.tcgdex.net/v2/en/cards/base2-12",
+        "https://prices.pokemontcg.io/tcgplayer/base2-12",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "981654af-5a3c-442d-b299-dbd17f69f5ca",
+      "target_child_id": "e05a8896-9aba-4fa4-acc4-e7a490557a31",
+      "base_parent_id": "59544cf4-177c-4c83-bd16-44b68733b06f",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "13",
+      "source_card_name": "Venomoth",
+      "target_card_name": "Venomoth",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "13",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-13",
+        "https://api.tcgdex.net/v2/en/cards/base2-13",
+        "https://prices.pokemontcg.io/tcgplayer/base2-13",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "f0df47f7-cc32-45c4-a5a3-0304d891b266",
+      "target_child_id": "15ccc402-424e-4e6d-bb45-2e93f939f6b8",
+      "base_parent_id": "786ed86f-d6f0-43d7-92dc-22eadd69a620",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "14",
+      "source_card_name": "Victreebel",
+      "target_card_name": "Victreebel",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "14",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-14",
+        "https://api.tcgdex.net/v2/en/cards/base2-14",
+        "https://prices.pokemontcg.io/tcgplayer/base2-14",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "6dccf01b-d4d5-4acb-830a-0927dacea088",
+      "target_child_id": "0bc07a65-2345-479a-b489-e5fb298e69a9",
+      "base_parent_id": "99f177ea-8920-43cb-9e8d-f6063054fc3d",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "15",
+      "source_card_name": "Vileplume",
+      "target_card_name": "Vileplume",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "15",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-15",
+        "https://api.tcgdex.net/v2/en/cards/base2-15",
+        "https://prices.pokemontcg.io/tcgplayer/base2-15",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "26e05b3b-fed4-417f-a7cd-cd46de9ba736",
+      "target_child_id": "b77815d8-03bf-4656-a042-8c28090bd446",
+      "base_parent_id": "8a9af34f-25c2-497b-a6e1-740f8821de4e",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "16",
+      "source_card_name": "Wigglytuff",
+      "target_card_name": "Wigglytuff",
+      "source_finish_key": "first_edition_holo",
+      "target_finish_key": "holo",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "16",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/base2-16",
+        "https://api.tcgdex.net/v2/en/cards/base2-16",
+        "https://prices.pokemontcg.io/tcgplayer/base2-16",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "e6c83895-27a4-4cbb-9676-8db21742be1f",
+      "target_child_id": "4f34cb65-1215-447a-a703-d2f2691b3605",
+      "base_parent_id": "7bf4c9f2-4713-40df-a462-7f36164c6391",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "17",
+      "source_card_name": "Clefable",
+      "target_card_name": "Clefable",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "17",
+      "evidence_urls": [
+        "https://www.tcgcollector.com/cards/239/clefable-jungle-17-64",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgcollector_card_variants",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "cc0f5a75-6b43-4c22-a09a-2d579830bff4",
+      "target_child_id": "b41ed337-667f-450a-a272-55d046e13199",
+      "base_parent_id": "139df386-af8f-4e58-8f0a-23da7988c90f",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "18",
+      "source_card_name": "Electrode",
+      "target_card_name": "Electrode",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "18",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-18",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "b4832da7-63ad-4641-b287-bc4ddb221342",
+      "target_child_id": "3a2964d0-0512-4240-a335-fcb0557238a4",
+      "base_parent_id": "f7b186ea-c27d-4ddb-83c9-248691747105",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "19",
+      "source_card_name": "Flareon",
+      "target_card_name": "Flareon",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "19",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-19",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "f5f6ec2a-2603-40fd-8b29-8baa8be9a77a",
+      "target_child_id": "549d3db6-c486-4d88-be89-5230fa3a6471",
+      "base_parent_id": "c6071c50-bd9a-418c-b2c6-116ff72faf49",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "20",
+      "source_card_name": "Jolteon",
+      "target_card_name": "Jolteon",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "20",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-20",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "337c3296-9e72-446e-9705-3ac9ad525cac",
+      "target_child_id": "5e0d637d-da18-496d-88b9-e482a37bca6a",
+      "base_parent_id": "2c0c2b45-edba-4f37-81e5-a0d197518a2a",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "21",
+      "source_card_name": "Kangaskhan",
+      "target_card_name": "Kangaskhan",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "21",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-21",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "9e9e06de-2da7-48a4-8501-3ce9bc3e3932",
+      "target_child_id": "e34d2ca8-eeec-4101-b92b-59cb368bd106",
+      "base_parent_id": "1b169d02-6793-4d8b-9d77-c9cdeb26ee9e",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "22",
+      "source_card_name": "Mr. Mime",
+      "target_card_name": "Mr. Mime",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "22",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-22",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "321f60ca-a7bc-44b3-8994-d989815d2a1c",
+      "target_child_id": "80737df4-9ee0-4d09-8582-990a0b0f909a",
+      "base_parent_id": "4bffb982-60d9-477a-9ff7-9ae335dda4e2",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "23",
+      "source_card_name": "Nidoqueen",
+      "target_card_name": "Nidoqueen",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "23",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-23",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "6e0521c2-f743-4597-a7ad-5a6a67d7d52f",
+      "target_child_id": "a3f194a8-2fc2-4b86-b4af-e956d13893ed",
+      "base_parent_id": "01aeb0d6-4e41-404e-b96f-549aecc7f3b1",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "24",
+      "source_card_name": "Pidgeot",
+      "target_card_name": "Pidgeot",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "24",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-24",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "a8b54a0c-0026-4e3b-b397-bab6e19aab96",
+      "target_child_id": "745ef305-be6d-4c75-b2da-9df78ece02f8",
+      "base_parent_id": "a6bffe64-1c11-4247-b772-21c5ad0dc2a5",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "25",
+      "source_card_name": "Pinsir",
+      "target_card_name": "Pinsir",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "25",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-25",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "10560f32-3ef9-4aaf-90df-f1f319a90e4d",
+      "target_child_id": "d759026c-b2e7-4249-aedc-bf2ce6528b9d",
+      "base_parent_id": "08c949df-eee8-46f2-9b92-a5ec2e287e75",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "26",
+      "source_card_name": "Scyther",
+      "target_card_name": "Scyther",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "26",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-26",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "d4a62a82-a951-4586-8467-44a5df6b88a1",
+      "target_child_id": "29ef23eb-fc7e-4965-8bfd-7b20d6a37536",
+      "base_parent_id": "19d64ad6-bb32-43ab-a7ca-99f480cea84f",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "27",
+      "source_card_name": "Snorlax",
+      "target_card_name": "Snorlax",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "27",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-27",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "3f2d7d60-c1fd-42f7-9cbd-716243d7465a",
+      "target_child_id": "6532bd7d-479a-4c0f-95b0-0ca26d0c7b67",
+      "base_parent_id": "bb8526cb-3ebe-4faa-b0cd-d0178660b0fc",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "28",
+      "source_card_name": "Vaporeon",
+      "target_card_name": "Vaporeon",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "28",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-28",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "ed842dc0-185a-47c7-b5d0-04861f96159a",
+      "target_child_id": "af3c1b34-91ce-4ec2-a97c-3a2e57636f32",
+      "base_parent_id": "a91c528e-9e42-4519-b777-3361bd9b7a58",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "29",
+      "source_card_name": "Venomoth",
+      "target_card_name": "Venomoth",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "29",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-29",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "3ec83f43-437a-40db-817a-08bb868c63a1",
+      "target_child_id": "a5e8931b-a974-4768-a665-260aea01b0b8",
+      "base_parent_id": "d84484b4-b616-4a30-a323-0de3aecfef9f",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "30",
+      "source_card_name": "Victreebel",
+      "target_card_name": "Victreebel",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "30",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-30",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "0956a121-d8a6-4b1a-873d-8e99c4e69f9e",
+      "target_child_id": "88284b92-5b3c-4ce7-a28e-21a537e5d389",
+      "base_parent_id": "eca69a92-d4c0-47f2-abea-5b34cf04d64f",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "31",
+      "source_card_name": "Vileplume",
+      "target_card_name": "Vileplume",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "31",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-31",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "8b49a770-0bba-478f-b3c1-349d926d431b",
+      "target_child_id": "3bb4303b-9d15-45f2-8aa3-ddebe59deeb3",
+      "base_parent_id": "575b90b7-8f37-446e-828b-8511c87ef653",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "32",
+      "source_card_name": "Wigglytuff",
+      "target_card_name": "Wigglytuff",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "32",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-32",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "e3de69fc-0097-466e-b357-a31bf4c67fb6",
+      "target_child_id": "e4e56f91-5035-4a65-81cb-842b41f42699",
+      "base_parent_id": "2085f7ed-0882-455b-b5ce-059f7584817e",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "33",
+      "source_card_name": "Butterfree",
+      "target_card_name": "Butterfree",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "33",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-33",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "c28b8a47-a608-4238-8ec5-e87e9d09d9e5",
+      "target_child_id": "7b3871fa-2685-438a-8993-81c806583114",
+      "base_parent_id": "e8b20660-7604-4e8d-a8d6-6a2e6d2586fd",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "34",
+      "source_card_name": "Dodrio",
+      "target_card_name": "Dodrio",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "34",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-34",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "e00bc4de-d6a5-49be-87a2-2ef7aca2bdf8",
+      "target_child_id": "668ab5b5-022d-45c1-9ae1-45a7fc4f0a6e",
+      "base_parent_id": "b0f2586f-d020-441a-b302-fd3835fb8125",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "35",
+      "source_card_name": "Exeggutor",
+      "target_card_name": "Exeggutor",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "35",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-35",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "ed039a17-9bbf-48f5-9256-5247e77bab01",
+      "target_child_id": "57b86b00-9572-4281-8ab9-66f7bb49b448",
+      "base_parent_id": "03e13c16-3e82-4292-9cdb-20fe0c6273a2",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "36",
+      "source_card_name": "Fearow",
+      "target_card_name": "Fearow",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "36",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-36",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "7cb4507b-5e4d-4219-9c8e-acbe0eeb44fa",
+      "target_child_id": "cfdcf5bf-7b9c-49e4-82cb-2d2ed7e4e483",
+      "base_parent_id": "8ced4da3-a6c2-4818-84a5-70cc04aa0874",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "37",
+      "source_card_name": "Gloom",
+      "target_card_name": "Gloom",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "37",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-37",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "9c326e23-09bd-456e-8832-7860e1632a64",
+      "target_child_id": "934575ac-67bd-49a8-886a-a5262afd06ef",
+      "base_parent_id": "4f2d7d94-56f2-4cd4-b893-c77ff6f3f6e5",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "38",
+      "source_card_name": "Lickitung",
+      "target_card_name": "Lickitung",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "38",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-38",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "d80a6cfa-dc10-459b-a795-dcec59025fe0",
+      "target_child_id": "6f94f70d-091c-4fb0-8d5b-402f1dbf928a",
+      "base_parent_id": "8ef2ef96-4b3f-46b0-9db8-94e33f312d73",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "39",
+      "source_card_name": "Marowak",
+      "target_card_name": "Marowak",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "39",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-39",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "e136ef49-fab5-481c-8167-ea966019a619",
+      "target_child_id": "6742f072-a387-4451-9669-47e6bff25ece",
+      "base_parent_id": "864b6e07-b926-4508-8a88-e7dad594eaab",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "40",
+      "source_card_name": "Nidorina",
+      "target_card_name": "Nidorina",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "40",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-40",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "cb172ffb-3ed0-4159-a994-aabb093a62ec",
+      "target_child_id": "a1100d4e-32f7-491b-8152-86aa416d2f04",
+      "base_parent_id": "fd3dbbd0-5893-4ae3-9c50-53c071364292",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "41",
+      "source_card_name": "Parasect",
+      "target_card_name": "Parasect",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "41",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-41",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "6d85696b-2eca-42b8-9ec2-732a35dddf83",
+      "target_child_id": "eb60055d-ab7f-41b5-8b7e-9dead540451b",
+      "base_parent_id": "1296473c-ae5e-40b8-9661-2d496472d40b",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "42",
+      "source_card_name": "Persian",
+      "target_card_name": "Persian",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "42",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-42",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "eae1fed9-3489-4761-8147-b34d948ca0f3",
+      "target_child_id": "7e0cd4e2-5166-4424-a29a-ef14e31ec312",
+      "base_parent_id": "692ff7e5-b8ad-484c-b658-50e3710c4755",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "43",
+      "source_card_name": "Primeape",
+      "target_card_name": "Primeape",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "43",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-43",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "021bbb83-e1dc-48c6-a801-fa2a79dd610d",
+      "target_child_id": "def285c7-bf03-4a94-b3b7-96305d863167",
+      "base_parent_id": "453a73dc-05af-47ab-a57b-1d17c205a68a",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "44",
+      "source_card_name": "Rapidash",
+      "target_card_name": "Rapidash",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "44",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-44",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "e76cf9ef-25f4-45ff-9f23-dae7d0196396",
+      "target_child_id": "af1860d3-5c70-4f6e-97d9-b293eae49553",
+      "base_parent_id": "d881f3d7-b441-4d90-8ab6-e464078af7dd",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "45",
+      "source_card_name": "Rhydon",
+      "target_card_name": "Rhydon",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "45",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-45",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "bcc40e6a-c6a0-446c-9b46-2b8d113e9033",
+      "target_child_id": "07566973-db49-4648-bd01-010918fd0221",
+      "base_parent_id": "c2ff129b-4dcc-401b-a7be-b3a19b14da46",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "46",
+      "source_card_name": "Seaking",
+      "target_card_name": "Seaking",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "46",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-46",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "b57ae891-8af1-4210-8137-f9cdcd088a02",
+      "target_child_id": "18263147-c26d-4679-b06f-ec4dd7493d4e",
+      "base_parent_id": "13ac80d3-7edf-4742-9301-1df119f1da5f",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "47",
+      "source_card_name": "Tauros",
+      "target_card_name": "Tauros",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "47",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-47",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "c9d3fa85-9d95-4079-b0aa-4725ad2804c6",
+      "target_child_id": "65c2fdf4-19d4-4af8-9051-efea72a5785a",
+      "base_parent_id": "acda77bf-61d9-4157-82d9-6fc84f066e0f",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "48",
+      "source_card_name": "Weepinbell",
+      "target_card_name": "Weepinbell",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "48",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-48",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "9ff402e6-14a6-4b9d-97e6-9b2db0c94893",
+      "target_child_id": "ac36acdb-d27c-4d99-afb3-2391a887350d",
+      "base_parent_id": "fb34fab5-728e-46db-a9e8-ec15439af3f9",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "49",
+      "source_card_name": "Bellsprout",
+      "target_card_name": "Bellsprout",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "49",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-49",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "11bc04d5-1083-4957-9099-1150ad3f4df3",
+      "target_child_id": "8b652443-126f-4f54-93ad-d1a7a365da3d",
+      "base_parent_id": "f1f0462c-805f-4a17-bddc-bf9bf09ad3d0",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "50",
+      "source_card_name": "Cubone",
+      "target_card_name": "Cubone",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "50",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-50",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "e5e59ece-e0cd-407c-8ba5-288198eaea73",
+      "target_child_id": "1b8be1d9-cf6d-4fa5-917c-f8cb1394ae27",
+      "base_parent_id": "60fedecd-1fd8-402a-ad46-a8d407608bf9",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "51",
+      "source_card_name": "Eevee",
+      "target_card_name": "Eevee",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "51",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-51",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "2f385267-d556-4174-a5f8-eb6b60a10fd1",
+      "target_child_id": "c90e8aee-2061-4d91-95d2-d1c927928259",
+      "base_parent_id": "6bb7f047-4192-4e1a-866b-6b1863de6873",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "52",
+      "source_card_name": "Exeggcute",
+      "target_card_name": "Exeggcute",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "52",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-52",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "7d226c91-6076-4f5e-93fb-fcd27c807619",
+      "target_child_id": "ab0c63bb-a164-46b4-938c-637ee07c9211",
+      "base_parent_id": "70a81042-5668-48e4-80e6-54ba4909a1ec",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "53",
+      "source_card_name": "Goldeen",
+      "target_card_name": "Goldeen",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "53",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-53",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "ad368c93-6d14-4faf-9be3-e5e7809fcb88",
+      "target_child_id": "707119a9-565a-4df4-bc25-e26f849a3f62",
+      "base_parent_id": "9bdf1ee6-5db0-4738-b695-e6281637a525",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "54",
+      "source_card_name": "Jigglypuff",
+      "target_card_name": "Jigglypuff",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "54",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-54",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "8e1a90a3-b415-462a-9073-9a3705bb8f0e",
+      "target_child_id": "c14fd117-6f23-4d36-87e6-08be48504a9e",
+      "base_parent_id": "90da3a73-d141-4cc4-8db0-808fc7876fe0",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "55",
+      "source_card_name": "Mankey",
+      "target_card_name": "Mankey",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "55",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-55",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "18c57b0c-f585-4114-8c83-ca269b87bfc3",
+      "target_child_id": "0b53af0f-a334-4cff-9243-df1bf9cc3d2b",
+      "base_parent_id": "1977d1fa-1593-4372-b905-21eaf988d704",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "56",
+      "source_card_name": "Meowth",
+      "target_card_name": "Meowth",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "56",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-56",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "b0fe6289-d06e-4073-8d74-a58f30915eaf",
+      "target_child_id": "6c94473c-ce34-4f6a-af93-715755d29598",
+      "base_parent_id": "29c35216-ec8e-4230-ad89-cb71ea70b3b5",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "57",
+      "source_card_name": "Nidoran♀",
+      "target_card_name": "Nidoran ♀",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "57",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-57",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "11174ca4-926f-41f1-86c4-4a8ce939cad5",
+      "target_child_id": "d949e8ad-df9c-42bf-ab2d-34fa3149737a",
+      "base_parent_id": "10d87586-94eb-4256-9215-d81f3404ca16",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "58",
+      "source_card_name": "Oddish",
+      "target_card_name": "Oddish",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "58",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-58",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "6493748b-f022-4b1b-b4c1-1b8ecb53ef86",
+      "target_child_id": "7e469cde-4ea2-4865-a6f8-5e69b7811238",
+      "base_parent_id": "b310769e-9df2-470b-86df-e6cd64c70a19",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "59",
+      "source_card_name": "Paras",
+      "target_card_name": "Paras",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "59",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-59",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "ef10cd2c-f954-4100-ac75-516fee7dc4fe",
+      "target_child_id": "29d2a62e-ac09-46ee-8b65-25e2239582d0",
+      "base_parent_id": "4738ca2e-3071-4e80-90a7-0e615e132482",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "60",
+      "source_card_name": "Pikachu",
+      "target_card_name": "Pikachu",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "60",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-60",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "37451848-cd10-4686-9010-206fc3986294",
+      "target_child_id": "691a6db7-821f-497c-9abe-a3dcfdd4e371",
+      "base_parent_id": "1f7d182d-b78b-4a1c-8c51-a3c30bed848a",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "61",
+      "source_card_name": "Rhyhorn",
+      "target_card_name": "Rhyhorn",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "61",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-61",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "5b801485-f317-4fb5-9307-9c660ed0e3a4",
+      "target_child_id": "c4322a14-92af-4a9b-91dd-188eb2c052cb",
+      "base_parent_id": "11ba2c21-4244-4dc3-83ca-b9d1af604e84",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "62",
+      "source_card_name": "Spearow",
+      "target_card_name": "Spearow",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "62",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-62",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "192e4b3b-fadf-4b3c-b9cd-972047e26e82",
+      "target_child_id": "cfcb8e73-e0a1-4392-8478-8ba1f5e6beb2",
+      "base_parent_id": "e9b344c4-0cdb-4248-8dfe-fe2dbbb1618f",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "63",
+      "source_card_name": "Venonat",
+      "target_card_name": "Venonat",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "63",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-63",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    },
+    {
+      "target_parent_id": "e69acb87-4758-42ba-91c3-816d80ecc5bb",
+      "target_child_id": "0014d98e-64a3-4469-bb66-db550bf6b625",
+      "base_parent_id": "89132b0b-a65f-41db-a6f7-de8d23661958",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "64",
+      "source_card_name": "Poké Ball",
+      "target_card_name": "Poké Ball",
+      "source_finish_key": "first_edition_normal",
+      "target_finish_key": "normal",
+      "target_printed_identity_modifier": "edition:first_edition",
+      "target_variant_key": null,
+      "proposed_number_plain": "64",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/base2-64",
+        "https://www.thepricedex.com/set/base2/jungle/price-list"
+      ],
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "name_alias_applied": false
+    }
+  ]
+}

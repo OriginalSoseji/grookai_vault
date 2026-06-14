@@ -4,11 +4,11 @@
 
 - audit_status: complete_to_pkg01_split_one_set_pilot_boundary_no_write
 - entire_audit_completed_to_current_evidence_boundary: true
-- master_index_complete: true
+- master_index_complete: false
 - ready_for_db_writes: false
-- reason: The completed Master Index now has PKG-01 split into one-set pilot PKG-01A and blocked remainder PKG-01B. The pilot package is ready for explicit operator decision, but writes still need recorded pilot approval, a final fresh snapshot, an actual guarded execution artifact, and transactional verification.
-- strongest_positive_finding: PKG-01A isolates one low-blast-radius fut2020 row / one child printing from the 106-row PKG-01 package; PKG-01B keeps the remaining 105 rows blocked until pilot verification.
-- main_blocker: PKG-01A is ready for explicit operator decision, but approval is not recorded and no executable guarded transaction artifact exists for the one-set pilot.
+- reason: The completed Master Index has refreshed DB-vs-index planning after FUT2020. The current physical-recovery package set is blocked from apply design readiness because 3 package review finding(s) remain, including 4 vault item reference(s).
+- strongest_positive_finding: FUT2020 is reconciled as verified_by_index after apply, and the refreshed recovery queue excludes FUT2020 while preserving 18 dry-run package(s) for future review.
+- main_blocker: Resolve or split out package stop findings before apply design can proceed: 3 finding(s), 4 vault item reference(s).
 
 ## Safety
 
@@ -21,7 +21,7 @@
 
 ## Immediate Next Non-Write Work
 
-- Operator decision is now scoped to PKG-01A only: approve the fut2020 one-set pilot for final snapshot/execution-artifact preparation, reject it, or request changes. PKG-01B remains blocked.
+- Split the refreshed dry-run package set into a no-vault-reference safe subset and a vault-reference blocked subset; only the safe subset may move toward final snapshot and guarded dry-run artifact preparation.
 - Capture a final fresh before-state snapshot for the pilot rows immediately before any future execution artifact is created.
 - Create the actual guarded execution artifact only for explicitly approved pilot rows after approval and a fresh snapshot.
 - Keep blocked remainder rows out of any future execution package.

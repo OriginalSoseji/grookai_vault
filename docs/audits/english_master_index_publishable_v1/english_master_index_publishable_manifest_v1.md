@@ -16,15 +16,16 @@ Only `publishable_complete` sets are eligible for public complete-list display.
 ## Summary
 
 - total_sets: 201
-- publishable_complete_sets: 199
-- not_publishable_sets: 2
-- publishable_card_facts: 21520
-- publishable_printing_facts: 38841
+- publishable_complete_sets: 189
+- not_publishable_sets: 12
+- publishable_card_facts: 19254
+- publishable_printing_facts: 34732
 
 | publishability_status | sets |
 | --- | --- |
 | non_standard_not_double_verified | 2 |
-| publishable_complete | 199 |
+| not_publishable_finish_gaps | 10 |
+| publishable_complete | 189 |
 
 ## Publishable Sets
 
@@ -46,9 +47,9 @@ Only `publishable_complete` sets are eligible for public complete-list display.
 | base3 | Fossil | 62/62 | 127/127 |
 | base4 | Base Set 2 | 131/131 | 132/132 |
 | base5 | Team Rocket | 83/83 | 170/170 |
-| basep | Wizards Black Star Promos | 53/53 | 58/58 |
+| basep | Wizards Black Star Promos | 53/53 | 59/59 |
 | bog | Best of Game | 9/9 | 15/15 |
-| bw1 | Black & White | 115/115 | 261/261 |
+| bw1 | Black & White | 115/115 | 262/262 |
 | bw10 | Plasma Blast | 105/105 | 209/209 |
 | bw11 | Legendary Treasures | 140/140 | 268/268 |
 | bw2 | Emerging Powers | 98/98 | 207/207 |
@@ -90,20 +91,20 @@ Only `publishable_complete` sets are eligible for public complete-list display.
 | ex4 | Team Magma vs Team Aqua | 99/99 | 200/200 |
 | ex5 | Hidden Legends | 102/102 | 202/202 |
 | ex6 | FireRed & LeafGreen | 116/116 | 223/223 |
-| ex7 | Team Rocket Returns | 111/111 | 212/212 |
+| ex7 | Team Rocket Returns | 111/111 | 213/213 |
 | ex8 | Deoxys | 108/108 | 212/212 |
-| ex9 | Emerald | 107/107 | 208/208 |
+| ex9 | Emerald | 107/107 | 209/209 |
 | fut20 | Pokémon Futsal Collection | 5/5 | 5/5 |
 | g1 | Generations | 117/117 | 194/194 |
 | gym1 | Gym Heroes | 132/132 | 266/266 |
 | gym2 | Gym Challenge | 132/132 | 265/265 |
 | hgss1 | HeartGold & SoulSilver | 125/125 | 255/255 |
-| hgss2 | HS—Unleashed | 96/96 | 198/198 |
+| hgss2 | HS—Unleashed | 96/96 | 199/199 |
 | hgss3 | HS—Undaunted | 91/91 | 183/183 |
 | hgss4 | HS—Triumphant | 103/103 | 203/203 |
 | hgssp | HGSS Black Star Promos | 25/25 | 27/27 |
 | lc | Legendary Collection | 110/110 | 223/223 |
-| me01 | Mega Evolution | 188/188 | 350/350 |
+| me01 | Mega Evolution | 188/188 | 351/351 |
 | me02 | Phantasmal Flames | 130/130 | 221/221 |
 | me03 | Perfect Order | 124/124 | 204/204 |
 | me04 | Chaos Rising | 122/122 | 247/247 |
@@ -146,44 +147,34 @@ Only `publishable_complete` sets are eligible for public complete-list display.
 | sma | Hidden Fates Shiny Vault | 94/94 | 188/188 |
 | smp | SM Black Star Promos | 251/251 | 316/316 |
 | sv01 | Scarlet & Violet | 262/262 | 446/446 |
-| sv02 | Paldea Evolved | 282/282 | 517/517 |
-| sv03 | Obsidian Flames | 230/230 | 409/409 |
+| sv02 | Paldea Evolved | 282/282 | 519/519 |
 | sv03.5 | 151 | 207/207 | 382/382 |
 | sv04 | Paradox Rift | 266/266 | 428/428 |
 | sv04.5 | Paldean Fates | 245/245 | 326/326 |
-| sv05 | Temporal Forces | 218/218 | 414/414 |
 | sv06 | Twilight Masquerade | 226/226 | 379/379 |
 | sv06.5 | Shrouded Fable | 99/99 | 167/167 |
-| sv07 | Stellar Crown | 175/175 | 328/328 |
+| sv07 | Stellar Crown | 175/175 | 330/330 |
 | sv08 | Surging Sparks | 252/252 | 420/420 |
 | sv08.5 | Prismatic Evolutions | 180/180 | 313/313 |
-| sv09 | Journey Together | 190/190 | 368/368 |
-| sv10 | Destined Rivals | 244/244 | 457/457 |
+| sv09 | Journey Together | 190/190 | 369/369 |
 | sv10.5b | Black Bolt | 172/172 | 255/255 |
 | sv10.5w | White Flare | 173/173 | 256/256 |
 | sve | Scarlet & Violet Energies | 24/24 | 79/79 |
 | svp | Scarlet & Violet Black Star Promos | 226/226 | 305/305 |
 | swsh1 | Sword & Shield | 216/216 | 442/442 |
-| swsh10 | Astral Radiance | 246/246 | 421/421 |
 | swsh10.5 | Pokémon GO | 88/88 | 150/150 |
 | swsh10tg | Astral Radiance Trainer Gallery | 30/30 | 30/30 |
-| swsh11 | Lost Origin | 247/247 | 440/440 |
 | swsh11tg | Lost Origin Trainer Gallery | 30/30 | 30/30 |
-| swsh12 | Silver Tempest | 245/245 | 419/419 |
+| swsh12 | Silver Tempest | 245/245 | 420/420 |
 | swsh12.5 | Crown Zenith | 230/230 | 356/356 |
 | swsh12pt5gg | Crown Zenith Galarian Gallery | 70/70 | 70/70 |
 | swsh12tg | Silver Tempest Trainer Gallery | 30/30 | 30/30 |
-| swsh2 | Rebel Clash | 212/212 | 394/394 |
 | swsh3 | Darkness Ablaze | 201/201 | 389/389 |
 | swsh3.5 | Champion's Path | 80/80 | 141/141 |
 | swsh4 | Vivid Voltage | 203/203 | 377/377 |
 | swsh4.5 | Shining Fates | 197/197 | 277/277 |
 | swsh45sv | Shining Fates Shiny Vault | 122/122 | 122/122 |
-| swsh5 | Battle Styles | 183/183 | 348/348 |
-| swsh6 | Chilling Reign | 233/233 | 419/419 |
-| swsh7 | Evolving Skies | 237/237 | 422/422 |
 | swsh8 | Fusion Strike | 284/284 | 563/563 |
-| swsh9 | Brilliant Stars | 216/216 | 397/397 |
 | swsh9tg | Brilliant Stars Trainer Gallery | 30/30 | 30/30 |
 | swshp | SWSH Black Star Promos | 306/306 | 357/357 |
 | tk-ex-latia | EX Trainer Kit Latias | 10/10 | 10/10 |
@@ -234,5 +225,15 @@ Only `publishable_complete` sets are eligible for public complete-list display.
 
 | set_key | set_name | status | card_gaps | finish_gaps | blocker |
 | --- | --- | --- | --- | --- | --- |
+| sv10 | Destined Rivals | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| swsh11 | Lost Origin | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sv05 | Temporal Forces | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| swsh2 | Rebel Clash | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| swsh9 | Brilliant Stars | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| swsh5 | Battle Styles | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| swsh10 | Astral Radiance | not_publishable_finish_gaps | 0 | 3 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| swsh6 | Chilling Reign | not_publishable_finish_gaps | 0 | 3 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| swsh7 | Evolving Skies | not_publishable_finish_gaps | 0 | 4 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sv03 | Obsidian Flames | not_publishable_finish_gaps | 0 | 18 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | jumbo | Jumbo cards | non_standard_not_double_verified | 0 | 0 | Non-standard reference lane; not double verified and not normal Master Index completion authority. |
 | sp | Sample | non_standard_not_double_verified | 0 | 0 | Non-standard reference lane; not double verified and not normal Master Index completion authority. |

@@ -1,0 +1,245 @@
+{
+  "version": 1,
+  "package_id": "SV03-PLAY-POKEMON-EX-HOLO-SOURCE-ADJUDICATION-V1",
+  "generated_at": "2026-06-12T19:26:40.280Z",
+  "audit_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_artifact": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_sv03_existing_stamped_parent_collision_audit_v1.json",
+  "source_collision_audit_fingerprint": "43bc87f63d467a609d5a706cc4dc5b785d4e152b6ad895e7737205f6324d4d0a",
+  "fingerprint_sha256": "70b4789bd1fd340131545ee4a1cbff1c3cc4bce7b6798aa8c721eb071115a974",
+  "summary": {
+    "target_rows": 2,
+    "accepted_rows": 2,
+    "blocked_rows": 0,
+    "by_status": {
+      "accepted_exact_holo_play_pokemon_stamp_ready_for_child_insert_dry_run": 2
+    },
+    "by_blocker": {}
+  },
+  "rows": [
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "source_card_number": "22",
+      "source_number_plain": "22",
+      "card_name": "Toedscruel ex",
+      "target_variant_key": "play_pokemon_stamp",
+      "target_finish_key": "holo",
+      "evidence_tier": "product_family_only",
+      "source_readiness_status": "review_ready_product_family_only",
+      "base_parent_id": "2ffec4d7-5896-4343-92ba-19adec2572c2",
+      "expected_target_parent_id": "e989a533-5b12-45bd-adfd-71992ac64b73",
+      "expected_target_child_id": "5e8873f0-dce9-436f-9984-2ac5280324f8",
+      "existing_parent_id": "25d66424-5250-4d77-b9b3-d8e82bca20a4",
+      "existing_parent_number": "022",
+      "existing_parent_number_plain": "022",
+      "existing_parent_variant_key": "play_pokemon_stamp",
+      "existing_parent_printed_identity_modifier": "play_pokemon_stamp",
+      "existing_parent_gv_id": "GV-PK-OBF-022-PLAY-POKEMON-STAMP",
+      "child_printing_count": 0,
+      "child_printings": [],
+      "target_child_finish_count": 0,
+      "forbidden_stamped_child_count": 0,
+      "active_identity_count": 1,
+      "identities": [
+        {
+          "id": "b49e4f44-527b-4e39-b635-fefe5d97361c",
+          "is_active": true,
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "466d584b30a3072ea0de2fa369b9482acb64c8cddc399cad1eba08aac6898671",
+          "identity_key_version": "pokemon_eng_standard:v1"
+        }
+      ],
+      "active_external_mapping_count": 1,
+      "vault_parent_ref_count": 0,
+      "vault_target_child_ref_count": 0,
+      "collision_status": "existing_parent_missing_target_child_finish_blocked",
+      "blockers": [],
+      "prior_blockers": [
+        "product_family_only_requires_manual_adjudication_before_child_action"
+      ],
+      "evidence_rows": [
+        {
+          "source_key": "pokumon",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/holofoil-play-pokemon-toedscruel-ex-022-197-play-pokemon-prize-pack-series-4-special-print/",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Holofoil Play Pokemon Toedscruel ex (022/197 Play Pokemon Prize Pack Series 4 Special Print)",
+          "proves_exact_finish": true,
+          "proves_exact_stamp_identity": true,
+          "proves_exact_card_identity": true,
+          "finish_key": "holo"
+        },
+        {
+          "source_key": "tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/538743/pokemon-prize-pack-series-cards-toedscruel-ex",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Toedscruel ex - Prize Pack Series Cards / 022/197 / Double Rare / Holofoil",
+          "proves_exact_finish": true,
+          "proves_exact_stamp_identity": false,
+          "proves_exact_card_identity": true,
+          "finish_key": "holo"
+        },
+        {
+          "source_key": "bulbapedia_obsidian_flames_additional_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)",
+          "evidence_type": "checklist_entry",
+          "evidence_label": "Toedscruel ex 22/197 listed as \"Play! Pokemon\" Stamp Play! Pokemon Prize Pack Series Four exclusive in Obsidian Flames additional cards.",
+          "proves_exact_finish": false,
+          "proves_exact_stamp_identity": true,
+          "proves_exact_card_identity": true,
+          "finish_key": null
+        },
+        {
+          "source_key": "tcgcollector_prize_pack_series_four",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/sets/1220/play-pokemon-prize-pack-series-four",
+          "evidence_type": "checklist_entry",
+          "evidence_label": "Toedscruel ex (Obsidian Flames 22/197) appears in Play! Pokemon Prize Pack Series Four checklist.",
+          "proves_exact_finish": false,
+          "proves_exact_stamp_identity": true,
+          "proves_exact_card_identity": true,
+          "finish_key": null
+        },
+        {
+          "source_key": "ebay_product_catalog",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/p/19067890392",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Toedscruel ex - Prize Pack Series Cards / 022/197 / Double Rare / Holofoil",
+          "proves_exact_finish": true,
+          "proves_exact_stamp_identity": false,
+          "proves_exact_card_identity": true,
+          "finish_key": "holo"
+        }
+      ],
+      "source_counts": {
+        "exact_finish_sources": 3,
+        "exact_stamp_sources": 3,
+        "exact_card_sources": 5,
+        "total_sources": 5
+      },
+      "adjudication_status": "accepted_exact_holo_play_pokemon_stamp_ready_for_child_insert_dry_run"
+    },
+    {
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "source_card_number": "66",
+      "source_number_plain": "66",
+      "card_name": "Tyranitar ex",
+      "target_variant_key": "play_pokemon_stamp",
+      "target_finish_key": "holo",
+      "evidence_tier": "product_family_only",
+      "source_readiness_status": "review_ready_product_family_only",
+      "base_parent_id": "213e9306-602a-4f85-8908-6625a802a380",
+      "expected_target_parent_id": "d2d4a235-b53c-4871-97cf-38bbceae1419",
+      "expected_target_child_id": "d2442062-f601-4c87-b4e6-23aa1e3dafa0",
+      "existing_parent_id": "3bfdd7db-f5d8-4275-85b8-bb64130860e6",
+      "existing_parent_number": "066",
+      "existing_parent_number_plain": "066",
+      "existing_parent_variant_key": "play_pokemon_stamp",
+      "existing_parent_printed_identity_modifier": "play_pokemon_stamp",
+      "existing_parent_gv_id": "GV-PK-OBF-066-PLAY-POKEMON-STAMP",
+      "child_printing_count": 0,
+      "child_printings": [],
+      "target_child_finish_count": 0,
+      "forbidden_stamped_child_count": 0,
+      "active_identity_count": 1,
+      "identities": [
+        {
+          "id": "686b64da-fdda-4597-9030-c785a8eae6b6",
+          "is_active": true,
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "b1073277d4739b5157fc89c164c0fd8e1c6cdd8a74c0e40f812cd47f2ac9c1a2",
+          "identity_key_version": "pokemon_eng_standard:v1"
+        }
+      ],
+      "active_external_mapping_count": 1,
+      "vault_parent_ref_count": 0,
+      "vault_target_child_ref_count": 0,
+      "collision_status": "existing_parent_missing_target_child_finish_blocked",
+      "blockers": [],
+      "prior_blockers": [
+        "product_family_only_requires_manual_adjudication_before_child_action"
+      ],
+      "evidence_rows": [
+        {
+          "source_key": "pokumon",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/holofoil-play-pokemon-tyranitar-ex-066-197-play-pokemon-prize-pack-series-4-special-print/",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Holofoil Play Pokemon Tyranitar ex (066/197 Play Pokemon Prize Pack Series 4 Special Print)",
+          "proves_exact_finish": true,
+          "proves_exact_stamp_identity": true,
+          "proves_exact_card_identity": true,
+          "finish_key": "holo"
+        },
+        {
+          "source_key": "tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/538744/pokemon-prize-pack-series-cards-tyranitar-ex",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Tyranitar ex - Prize Pack Series Cards / 066/197 / Double Rare / Holofoil",
+          "proves_exact_finish": true,
+          "proves_exact_stamp_identity": false,
+          "proves_exact_card_identity": true,
+          "finish_key": "holo"
+        },
+        {
+          "source_key": "bulbapedia_obsidian_flames_additional_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)",
+          "evidence_type": "checklist_entry",
+          "evidence_label": "Tyranitar ex 66/197 listed as \"Play! Pokemon\" Stamp Play! Pokemon Prize Pack Series Four exclusive in Obsidian Flames additional cards.",
+          "proves_exact_finish": false,
+          "proves_exact_stamp_identity": true,
+          "proves_exact_card_identity": true,
+          "finish_key": null
+        },
+        {
+          "source_key": "tcgcollector_prize_pack_series_four",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/sets/1220/play-pokemon-prize-pack-series-four",
+          "evidence_type": "checklist_entry",
+          "evidence_label": "Tyranitar ex (Obsidian Flames 66/197) appears in Play! Pokemon Prize Pack Series Four checklist.",
+          "proves_exact_finish": false,
+          "proves_exact_stamp_identity": true,
+          "proves_exact_card_identity": true,
+          "finish_key": null
+        },
+        {
+          "source_key": "ebay_product_catalog",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.ebay.com/p/7067898600",
+          "evidence_type": "finish_presence",
+          "evidence_label": "Tyranitar ex - Prize Pack Series Cards / 066/197 / Double Rare / Holofoil",
+          "proves_exact_finish": true,
+          "proves_exact_stamp_identity": false,
+          "proves_exact_card_identity": true,
+          "finish_key": "holo"
+        }
+      ],
+      "source_counts": {
+        "exact_finish_sources": 3,
+        "exact_stamp_sources": 3,
+        "exact_card_sources": 5,
+        "total_sources": 5
+      },
+      "adjudication_status": "accepted_exact_holo_play_pokemon_stamp_ready_for_child_insert_dry_run"
+    }
+  ],
+  "safety_confirmation": {
+    "no_db_writes_performed": true,
+    "no_migrations_created": true,
+    "no_cleanup_or_quarantine_performed": true,
+    "source_adjudication_only": true
+  }
+}

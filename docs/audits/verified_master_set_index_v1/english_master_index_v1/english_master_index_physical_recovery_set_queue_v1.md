@@ -12,54 +12,46 @@ This report keeps the recoverable physical TCG rows grouped by matched master se
 
 ## Summary
 
-- physical_candidate_sets: 26
-- physical_candidate_card_prints: 807
-- physical_candidate_printing_rows: 1685
+- physical_candidate_sets: 25
+- physical_candidate_card_prints: 802
+- physical_candidate_printing_rows: 1672
 
 ## Sample Card Queue
 
 | set_key | set_name | readiness_lane | card_print_id | card_name | finish_profile | source_aliases |
 | --- | --- | --- | --- | --- | --- | --- |
-| sv4pt5 | Paldean Fates | proof_loop_candidate_after_card_match | 435c0599-12c2-4042-9401-8290af312bf6 | Annihilape | holo\|reverse | sv04.5 |
-| sv4pt5 | Paldean Fates | proof_loop_candidate_after_card_match | 5b3fb3aa-2b58-4997-841f-d6771ec3ebc6 | Armarouge | holo\|reverse | sv04.5 |
-| sv4pt5 | Paldean Fates | proof_loop_candidate_after_card_match | 8cf2db86-e98d-4d06-8882-39e8a6c68d30 | Ceruledge | holo\|reverse | sv04.5 |
-| sv4pt5 | Paldean Fates | proof_loop_candidate_after_card_match | 8a71b7c8-ef01-4c87-b5a6-4974984b14d6 | Charcadet | normal\|reverse | sv04.5 |
-| sv4pt5 | Paldean Fates | proof_loop_candidate_after_card_match | 3729104f-71b2-4242-801a-bec9dc31369b | Charmander | normal\|reverse | sv04.5 |
-| sv4pt5 | Paldean Fates | proof_loop_candidate_after_card_match | 39599b5f-9417-4d67-9d4f-630e413256a2 | Charmeleon | normal\|reverse | sv04.5 |
-| sv4pt5 | Paldean Fates | proof_loop_candidate_after_card_match | be8f9f47-28a4-4d25-abd5-527f3cf13549 | Clive | normal\|reverse | sv04.5 |
-| sv4pt5 | Paldean Fates | proof_loop_candidate_after_card_match | 3d5d4c62-83d0-4996-878b-e3a61872f4ac | Cyclizar | holo\|reverse | sv04.5 |
-| sv6pt5 | Shrouded Fable | proof_loop_candidate_after_card_match | 75dee3a0-eba6-4da0-91a2-67d806af9656 | Bewear | normal\|reverse | sv06.5 |
-| sv6pt5 | Shrouded Fable | proof_loop_candidate_after_card_match | 560786bd-0eab-4bae-871a-2292db4153c0 | Cassiopeia | normal\|reverse | sv06.5 |
-| sv6pt5 | Shrouded Fable | proof_loop_candidate_after_card_match | 62b9c8cd-4be6-483c-b5b8-6cd7bd1aeb5e | Colress's Tenacity | normal\|reverse | sv06.5 |
-| sv6pt5 | Shrouded Fable | proof_loop_candidate_after_card_match | 132bd56e-d03e-4d50-98e5-defab35ebff1 | Cresselia | holo\|reverse | sv06.5 |
-| sv6pt5 | Shrouded Fable | proof_loop_candidate_after_card_match | c51bea66-e243-4d68-a673-c33150bdecdb | Cufant | normal\|reverse | sv06.5 |
-| sv6pt5 | Shrouded Fable | proof_loop_candidate_after_card_match | c6afa971-a1cb-4f45-ab5e-bbc407fc5af1 | Dusclops | normal\|reverse | sv06.5 |
-| sv6pt5 | Shrouded Fable | proof_loop_candidate_after_card_match | adb529a0-8a7e-4339-a517-b21f1f0081b6 | Dusknoir | holo\|reverse | sv06.5 |
-| sv6pt5 | Shrouded Fable | proof_loop_candidate_after_card_match | 8684a96e-9a74-4e36-ae2b-18f85dc7a42a | Duskull | normal\|reverse | sv06.5 |
-| mcd21 | McDonald's Collection 2021 | proof_loop_candidate_after_card_match | d34033e2-a8e8-4e72-b1e9-2033445e8f00 | Bulbasaur | holo\|normal | 2021swsh |
-| mcd21 | McDonald's Collection 2021 | proof_loop_candidate_after_card_match | 9421cd5e-2640-44c5-8044-47aaa7a7954a | Charmander | holo\|normal | 2021swsh |
-| mcd21 | McDonald's Collection 2021 | proof_loop_candidate_after_card_match | e95d8646-b98f-4c8c-a01d-2e499c02aa82 | Chespin | holo\|normal | 2021swsh |
-| mcd21 | McDonald's Collection 2021 | proof_loop_candidate_after_card_match | 987099f7-59e9-4c0a-9bbb-a0b8fa24a086 | Chikorita | holo\|normal | 2021swsh |
-| mcd21 | McDonald's Collection 2021 | proof_loop_candidate_after_card_match | cefedf7b-f1c0-42f7-af7d-e6e9279358f3 | Chimchar | holo\|normal | 2021swsh |
-| mcd21 | McDonald's Collection 2021 | proof_loop_candidate_after_card_match | ac9e8297-6e39-419f-8fa0-f58e90c80c01 | Cyndaquil | holo\|normal | 2021swsh |
-| mcd21 | McDonald's Collection 2021 | proof_loop_candidate_after_card_match | 0980ca25-d2fb-43a3-a74f-789e6a0f8f51 | Fennekin | holo\|normal | 2021swsh |
-| mcd21 | McDonald's Collection 2021 | proof_loop_candidate_after_card_match | 3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2 | Froakie | holo\|normal | 2021swsh |
-| sv8pt5 | Prismatic Evolutions | high_volume_recovery_candidate | 29357eff-81f7-4232-93ac-49f1226abfd2 | Amarys | holo\|normal\|reverse | sv08.5 |
-| sv8pt5 | Prismatic Evolutions | high_volume_recovery_candidate | 6196ac6e-1301-451f-9bcf-1349cdafb4f8 | Applin | holo\|normal\|reverse | sv08.5 |
-| sv8pt5 | Prismatic Evolutions | high_volume_recovery_candidate | c8f1da98-202e-46aa-9a85-8649ebf8d399 | Area Zero Underdepths | holo\|normal\|reverse | sv08.5 |
-| sv8pt5 | Prismatic Evolutions | high_volume_recovery_candidate | 3c97af9d-aa95-49f6-90b0-706b88b76443 | Aromatisse | holo\|normal\|reverse | sv08.5 |
-| sv8pt5 | Prismatic Evolutions | high_volume_recovery_candidate | 77851af6-8d91-43c5-beae-b9e23d5d3713 | Binding Mochi | holo\|normal\|reverse | sv08.5 |
-| sv8pt5 | Prismatic Evolutions | high_volume_recovery_candidate | 3da65e78-0221-4651-9467-4d0e4f85b652 | Black Belt's Training | holo\|normal\|reverse | sv08.5 |
-| sv8pt5 | Prismatic Evolutions | high_volume_recovery_candidate | 2f0e9e03-7ac5-45bd-9add-eac460ea6432 | Black Belt's Training | holo\|normal\|reverse | sv08.5 |
-| sv8pt5 | Prismatic Evolutions | high_volume_recovery_candidate | 21d069c6-f6b7-41d6-8300-37f28e5ce9ae | Black Belt's Training | holo\|normal\|reverse | sv08.5 |
-| pgo | Pokémon GO | proof_loop_candidate_after_card_match | 0eafc514-6bba-4629-ba75-1a95493bc819 | Pikachu | holo\|normal\|reverse | swsh10.5 |
-| pgo | Pokémon GO | proof_loop_candidate_after_card_match | 6206fc08-7415-414f-9c22-c2cf57493c1e | Blanche | normal\|reverse | swsh10.5 |
-| pgo | Pokémon GO | proof_loop_candidate_after_card_match | fc394554-fa86-4510-8a81-79f48df255c6 | Candela | normal\|reverse | swsh10.5 |
-| pgo | Pokémon GO | proof_loop_candidate_after_card_match | d2f87992-4951-464e-9976-4e2caef7e497 | Egg Incubator | normal\|reverse | swsh10.5 |
-| pgo | Pokémon GO | proof_loop_candidate_after_card_match | b45c87d9-4eef-493b-8bc7-3dd19021a7c2 | Lure Module | normal\|reverse | swsh10.5 |
-| pgo | Pokémon GO | proof_loop_candidate_after_card_match | 067bbc12-ce47-4e7a-bfbb-a9d1ac21f0d4 | Pikachu | normal\|reverse | swsh10.5 |
-| pgo | Pokémon GO | proof_loop_candidate_after_card_match | e44d13e5-a6ac-4016-8b81-b6305ea3414b | Spark | normal\|reverse | swsh10.5 |
-| pgo | Pokémon GO | proof_loop_candidate_after_card_match | 4b809146-f6ac-4b99-81e1-f593b115a1aa | Alolan Exeggutor V | holo | swsh10.5 |
+| sv04.5 | Paldean Fates | proof_loop_candidate_after_card_match | 435c0599-12c2-4042-9401-8290af312bf6 | Annihilape | holo\|reverse | sv04.5 |
+| sv04.5 | Paldean Fates | proof_loop_candidate_after_card_match | 5b3fb3aa-2b58-4997-841f-d6771ec3ebc6 | Armarouge | holo\|reverse | sv04.5 |
+| sv04.5 | Paldean Fates | proof_loop_candidate_after_card_match | 8cf2db86-e98d-4d06-8882-39e8a6c68d30 | Ceruledge | holo\|reverse | sv04.5 |
+| sv04.5 | Paldean Fates | proof_loop_candidate_after_card_match | 8a71b7c8-ef01-4c87-b5a6-4974984b14d6 | Charcadet | normal\|reverse | sv04.5 |
+| sv04.5 | Paldean Fates | proof_loop_candidate_after_card_match | 3729104f-71b2-4242-801a-bec9dc31369b | Charmander | normal\|reverse | sv04.5 |
+| sv04.5 | Paldean Fates | proof_loop_candidate_after_card_match | 39599b5f-9417-4d67-9d4f-630e413256a2 | Charmeleon | normal\|reverse | sv04.5 |
+| sv04.5 | Paldean Fates | proof_loop_candidate_after_card_match | be8f9f47-28a4-4d25-abd5-527f3cf13549 | Clive | normal\|reverse | sv04.5 |
+| sv04.5 | Paldean Fates | proof_loop_candidate_after_card_match | 3d5d4c62-83d0-4996-878b-e3a61872f4ac | Cyclizar | holo\|reverse | sv04.5 |
+| sv06.5 | Shrouded Fable | proof_loop_candidate_after_card_match | 75dee3a0-eba6-4da0-91a2-67d806af9656 | Bewear | normal\|reverse | sv06.5 |
+| sv06.5 | Shrouded Fable | proof_loop_candidate_after_card_match | 560786bd-0eab-4bae-871a-2292db4153c0 | Cassiopeia | normal\|reverse | sv06.5 |
+| sv06.5 | Shrouded Fable | proof_loop_candidate_after_card_match | 62b9c8cd-4be6-483c-b5b8-6cd7bd1aeb5e | Colress's Tenacity | normal\|reverse | sv06.5 |
+| sv06.5 | Shrouded Fable | proof_loop_candidate_after_card_match | 132bd56e-d03e-4d50-98e5-defab35ebff1 | Cresselia | holo\|reverse | sv06.5 |
+| sv06.5 | Shrouded Fable | proof_loop_candidate_after_card_match | c51bea66-e243-4d68-a673-c33150bdecdb | Cufant | normal\|reverse | sv06.5 |
+| sv06.5 | Shrouded Fable | proof_loop_candidate_after_card_match | c6afa971-a1cb-4f45-ab5e-bbc407fc5af1 | Dusclops | normal\|reverse | sv06.5 |
+| sv06.5 | Shrouded Fable | proof_loop_candidate_after_card_match | adb529a0-8a7e-4339-a517-b21f1f0081b6 | Dusknoir | holo\|reverse | sv06.5 |
+| sv06.5 | Shrouded Fable | proof_loop_candidate_after_card_match | 8684a96e-9a74-4e36-ae2b-18f85dc7a42a | Duskull | normal\|reverse | sv06.5 |
+| me01 | Mega Evolution | proof_loop_candidate_after_card_match | f7c0bdb9-b762-4c56-b698-4907376db02d | Cinderace | holo\|normal\|reverse | me01 |
+| me01 | Mega Evolution | proof_loop_candidate_after_card_match | 4faab1bd-e8ce-4fe8-8fda-cd2167875850 | Hariyama | holo\|normal\|reverse | me01 |
+| me01 | Mega Evolution | proof_loop_candidate_after_card_match | 4800e647-2f2b-4ebc-931e-ef4b672788e2 | Kirlia | holo\|normal\|reverse | me01 |
+| me01 | Mega Evolution | proof_loop_candidate_after_card_match | 711a2789-6c0b-4c7b-8e5a-15c865deb444 | Meganium | holo\|normal\|reverse | me01 |
+| me01 | Mega Evolution | proof_loop_candidate_after_card_match | 569f605f-b7e2-4e7d-9182-459287edda7a | Ralts | holo\|normal\|reverse | me01 |
+| me01 | Mega Evolution | proof_loop_candidate_after_card_match | 6a389901-dd1b-480a-88fc-ca3d1ee02128 | Riolu | holo\|normal\|reverse | me01 |
+| me01 | Mega Evolution | proof_loop_candidate_after_card_match | 6968d365-f435-4047-9c47-8c9f274f92e6 | Solrock | holo\|normal\|reverse | me01 |
+| me01 | Mega Evolution | proof_loop_candidate_after_card_match | e003f060-6249-47f6-b31b-e2cb4cac5611 | Xerneas | holo\|normal\|reverse | me01 |
+| swsh10.5 | Pokémon GO | proof_loop_candidate_after_card_match | 0eafc514-6bba-4629-ba75-1a95493bc819 | Pikachu | holo\|normal\|reverse | swsh10.5 |
+| swsh10.5 | Pokémon GO | proof_loop_candidate_after_card_match | 6206fc08-7415-414f-9c22-c2cf57493c1e | Blanche | normal\|reverse | swsh10.5 |
+| swsh10.5 | Pokémon GO | proof_loop_candidate_after_card_match | fc394554-fa86-4510-8a81-79f48df255c6 | Candela | normal\|reverse | swsh10.5 |
+| swsh10.5 | Pokémon GO | proof_loop_candidate_after_card_match | d2f87992-4951-464e-9976-4e2caef7e497 | Egg Incubator | normal\|reverse | swsh10.5 |
+| swsh10.5 | Pokémon GO | proof_loop_candidate_after_card_match | b45c87d9-4eef-493b-8bc7-3dd19021a7c2 | Lure Module | normal\|reverse | swsh10.5 |
+| swsh10.5 | Pokémon GO | proof_loop_candidate_after_card_match | 067bbc12-ce47-4e7a-bfbb-a9d1ac21f0d4 | Pikachu | normal\|reverse | swsh10.5 |
+| swsh10.5 | Pokémon GO | proof_loop_candidate_after_card_match | e44d13e5-a6ac-4016-8b81-b6305ea3414b | Spark | normal\|reverse | swsh10.5 |
+| swsh10.5 | Pokémon GO | proof_loop_candidate_after_card_match | 4b809146-f6ac-4b99-81e1-f593b115a1aa | Alolan Exeggutor V | holo | swsh10.5 |
 | swsh2 | Rebel Clash | proof_loop_candidate_after_card_match | 9cf48b11-bf42-4aa3-861b-c2ca5543877e | Boss's Orders (Giovanni) | holo\|reverse | swsh2 |
 | ecard3 | Skyridge | proof_loop_candidate_after_card_match | d0270c83-13c1-4d2b-ae50-19830be9d134 | Articuno | normal\|reverse | ecard3 |
 | ecard3 | Skyridge | proof_loop_candidate_after_card_match | 36a0af86-f863-4ff0-967c-285a67272dcb | Crobat | normal\|reverse | ecard3 |
@@ -117,6 +109,8 @@ This report keeps the recoverable physical TCG rows grouped by matched master se
 | xy4 | Phantom Forces | legacy_caution_review | 4057e212-ac7d-4ecf-a3f0-40b396bbfe09 | Florges EX | holo\|normal\|reverse | xy4 |
 | xy4 | Phantom Forces | legacy_caution_review | e7bc4b52-6e1b-412a-a121-d27b63c497f9 | Gengar EX | holo\|normal\|reverse | xy4 |
 | xy4 | Phantom Forces | legacy_caution_review | 2257ea5d-92bf-483b-8f40-8aaddfd7259c | Gengar EX | holo\|normal\|reverse | xy4 |
+| swsh4.5 | Shining Fates | manual_priority_review | 5ee8ddf9-81b3-43e0-94b5-951ac0386eb8 | Boss's Orders (Lysandre) | normal\|reverse | swsh4.5 |
+| swsh4.5 | Shining Fates | manual_priority_review | 17cd3179-b844-47a8-a197-ae123ca4b583 | Professor's Research (Professor Juniper) | normal\|reverse | swsh4.5 |
 | pl4 | Arceus | proof_loop_candidate_after_card_match | 3059259e-c28b-49d6-9f31-64e178e87f28 | Swalot | holo\|normal\|reverse | pl4 |
 | pl4 | Arceus | proof_loop_candidate_after_card_match | 227298d6-9bec-4197-98c6-7ede8ae05cf9 | Beedrill | normal\|reverse | pl4 |
 | pl4 | Arceus | proof_loop_candidate_after_card_match | a02f871c-fe3e-432b-944d-6decea0eecdf | Charizard | holo\|reverse | pl4 |
@@ -125,10 +119,26 @@ This report keeps the recoverable physical TCG rows grouped by matched master se
 | pl4 | Arceus | proof_loop_candidate_after_card_match | 8716f287-3497-49b2-a499-9c1e026a6a94 | Zapdos | holo\|reverse | pl4 |
 | pl4 | Arceus | proof_loop_candidate_after_card_match | cf859f9b-f1d6-41ec-9e38-c7fd27743777 | Arceus | holo | pl4 |
 | pl4 | Arceus | proof_loop_candidate_after_card_match | 8b2c91cf-bd7c-4564-84ca-5863e1414257 | Arceus | holo | pl4 |
+| 2021swsh | McDonald's Collection 2021 | source_acquisition_required | d34033e2-a8e8-4e72-b1e9-2033445e8f00 | Bulbasaur | holo\|normal | 2021swsh |
+| 2021swsh | McDonald's Collection 2021 | source_acquisition_required | 9421cd5e-2640-44c5-8044-47aaa7a7954a | Charmander | holo\|normal | 2021swsh |
+| 2021swsh | McDonald's Collection 2021 | source_acquisition_required | e95d8646-b98f-4c8c-a01d-2e499c02aa82 | Chespin | holo\|normal | 2021swsh |
+| 2021swsh | McDonald's Collection 2021 | source_acquisition_required | 987099f7-59e9-4c0a-9bbb-a0b8fa24a086 | Chikorita | holo\|normal | 2021swsh |
+| 2021swsh | McDonald's Collection 2021 | source_acquisition_required | cefedf7b-f1c0-42f7-af7d-e6e9279358f3 | Chimchar | holo\|normal | 2021swsh |
+| 2021swsh | McDonald's Collection 2021 | source_acquisition_required | ac9e8297-6e39-419f-8fa0-f58e90c80c01 | Cyndaquil | holo\|normal | 2021swsh |
+| 2021swsh | McDonald's Collection 2021 | source_acquisition_required | 0980ca25-d2fb-43a3-a74f-789e6a0f8f51 | Fennekin | holo\|normal | 2021swsh |
+| 2021swsh | McDonald's Collection 2021 | source_acquisition_required | 3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2 | Froakie | holo\|normal | 2021swsh |
 | cel25 | Celebrations | promo_family_caution_review | aedd9f51-0d41-48de-a35d-2df67bb72046 | Claydol | holo | cel25 |
 | cel25 | Celebrations | promo_family_caution_review | 8e4958ab-1e4e-4636-87e1-4650ae938086 | Here Comes Team Rocket! | holo | cel25 |
 | cel25 | Celebrations | promo_family_caution_review | d7e84443-dae0-4d48-b32a-b2719ec4d670 | Rocket's Zapdos | holo | cel25 |
 | cel25 | Celebrations | promo_family_caution_review | 90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0 | Venusaur | holo | cel25 |
+| sv08.5 | Prismatic Evolutions | source_acquisition_required | 29357eff-81f7-4232-93ac-49f1226abfd2 | Amarys | holo\|normal\|reverse | sv08.5 |
+| sv08.5 | Prismatic Evolutions | source_acquisition_required | 6196ac6e-1301-451f-9bcf-1349cdafb4f8 | Applin | holo\|normal\|reverse | sv08.5 |
+| sv08.5 | Prismatic Evolutions | source_acquisition_required | c8f1da98-202e-46aa-9a85-8649ebf8d399 | Area Zero Underdepths | holo\|normal\|reverse | sv08.5 |
+| sv08.5 | Prismatic Evolutions | source_acquisition_required | 3c97af9d-aa95-49f6-90b0-706b88b76443 | Aromatisse | holo\|normal\|reverse | sv08.5 |
+| sv08.5 | Prismatic Evolutions | source_acquisition_required | 77851af6-8d91-43c5-beae-b9e23d5d3713 | Binding Mochi | holo\|normal\|reverse | sv08.5 |
+| sv08.5 | Prismatic Evolutions | source_acquisition_required | 3da65e78-0221-4651-9467-4d0e4f85b652 | Black Belt's Training | holo\|normal\|reverse | sv08.5 |
+| sv08.5 | Prismatic Evolutions | source_acquisition_required | 2f0e9e03-7ac5-45bd-9add-eac460ea6432 | Black Belt's Training | holo\|normal\|reverse | sv08.5 |
+| sv08.5 | Prismatic Evolutions | source_acquisition_required | 21d069c6-f6b7-41d6-8300-37f28e5ce9ae | Black Belt's Training | holo\|normal\|reverse | sv08.5 |
 | bw11 | Legendary Treasures | legacy_caution_review | bef9f1a1-27d7-4e71-ab9e-64aab82e30bf | Charmander | holo\|normal\|reverse | bw11 |
 | bw11 | Legendary Treasures | legacy_caution_review | 58b916a9-9516-4988-b05b-d91803b7a223 | Cinccino | holo\|normal\|reverse | bw11 |
 | bw11 | Legendary Treasures | legacy_caution_review | d57d16ff-5e21-4e58-9cf2-791d3130d57e | Eevee | holo\|normal\|reverse | bw11 |
@@ -170,13 +180,3 @@ This report keeps the recoverable physical TCG rows grouped by matched master se
 | xyp | XY Black Star Promos | source_acquisition_required | 880bf738-91f8-44f0-9026-5517058e9cbe | Absol EX | holo\|normal\|reverse | xyp |
 | xyp | XY Black Star Promos | source_acquisition_required | 4f7b83ca-6291-4f21-bc09-add8bb57e266 | Aerodactyl EX | holo\|normal\|reverse | xyp |
 | xyp | XY Black Star Promos | source_acquisition_required | 7193b9ae-ed5b-457e-b67f-efef355afb96 | Ash Greninja EX | holo\|normal\|reverse | xyp |
-| xyp | XY Black Star Promos | source_acquisition_required | d159fd8a-4a12-4109-8200-36416c2a2ad2 | Aurorus EX | holo\|normal\|reverse | xyp |
-| xyp | XY Black Star Promos | source_acquisition_required | ce148dc6-45fe-460e-b3c5-cf3483b494b5 | Beedrill EX | holo\|normal\|reverse | xyp |
-| xyp | XY Black Star Promos | source_acquisition_required | e8e43d13-0ee1-4433-91ef-fbe866b48e57 | Blastoise EX | holo\|normal\|reverse | xyp |
-| xyp | XY Black Star Promos | source_acquisition_required | f46d7286-3522-4a9c-9d02-bb1e2aac838d | Blastoise EX | holo\|normal\|reverse | xyp |
-| xyp | XY Black Star Promos | source_acquisition_required | 199e8699-1e8d-42dd-93d3-ac67f7e247be | Blaziken EX | holo\|normal\|reverse | xyp |
-| fut2020 | Pokémon Futsal 2020 | source_acquisition_required | 2f2942c8-6019-4446-806c-593dd351af98 | Eevee on the Ball | holo\|normal\|reverse | fut2020 |
-| fut2020 | Pokémon Futsal 2020 | source_acquisition_required | 5029b53f-a1dd-4fe0-ae0c-b38021dd52c2 | Grookey on the Ball | holo\|normal\|reverse | fut2020 |
-| fut2020 | Pokémon Futsal 2020 | source_acquisition_required | 53919228-7560-480c-9bdb-da99ad67250a | Scorbunny on the Ball | holo\|normal\|reverse | fut2020 |
-| fut2020 | Pokémon Futsal 2020 | source_acquisition_required | 82ebefc5-51bc-4dbd-ba14-a9a60186aa61 | Sobble on the Ball | holo\|normal\|reverse | fut2020 |
-| fut2020 | Pokémon Futsal 2020 | source_acquisition_required | a676888d-19e0-4064-89aa-e67019af5b95 | Pikachu on the Ball | holo | fut2020 |

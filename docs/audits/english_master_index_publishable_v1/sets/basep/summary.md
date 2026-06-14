@@ -6,7 +6,7 @@ Status: publishable_complete
 
 - set_key: basep
 - cards: 53/53
-- printings: 58/58
+- printings: 59/59
 - completion_score: 100
 
 ## Finish Counts
@@ -15,6 +15,6 @@ Status: publishable_complete
 | --- | --- |
 | first_edition_normal | 1 |
 | holo | 7 |
-| normal | 44 |
+| normal | 45 |
 | reverse | 3 |
 | stamped | 3 |
