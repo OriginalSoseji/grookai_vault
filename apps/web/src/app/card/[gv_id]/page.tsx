@@ -53,6 +53,12 @@ import { getOwnedObjectSummaryForCard, type OwnedObjectSummary } from "@/lib/vau
 
 type DetailItem = { label: string; value: string };
 
+const PRINTED_TOTAL_FALLBACK_BY_SET_CODE: Record<string, number> = {
+  // Chaos Rising was reconciled as a complete 122-card English physical set,
+  // but production set metadata may lag the canonical card rows.
+  me04: 122,
+};
+
 function formatPrintedTotal(number: string, printedTotal?: number) {
   if (!number || typeof printedTotal !== "number") return undefined;
   const prefix = number.match(/^[A-Za-z]+/)?.[0] ?? "";
@@ -82,10 +88,16 @@ function formatCollectorIdentity({
   if (!normalizedNumber) return undefined;
 
   const normalizedAbbrev = printedSetAbbrev?.trim().toUpperCase();
-  const normalizedTotal = formatPrintedTotal(normalizedNumber, printedTotal) ?? "xxx";
-  return [normalizedAbbrev, `${normalizedNumber}/${normalizedTotal}`]
+  const normalizedTotal = formatPrintedTotal(normalizedNumber, printedTotal);
+  const normalizedPrintedNumber = normalizedTotal ? `${normalizedNumber}/${normalizedTotal}` : normalizedNumber;
+  return [normalizedAbbrev, normalizedPrintedNumber]
     .filter((value): value is string => Boolean(value))
     .join(" ");
+}
+
+function getPrintedTotalFallback(card: { set_code?: string }) {
+  const normalizedSetCode = card.set_code?.trim().toLowerCase();
+  return normalizedSetCode ? PRINTED_TOTAL_FALLBACK_BY_SET_CODE[normalizedSetCode] : undefined;
 }
 
 function formatReleaseDate(releaseDate?: string) {
@@ -424,7 +436,7 @@ export default async function CardPage({
   const collectorNumberLine = formatCollectorIdentity({
     printedSetAbbrev: printedSetAbbrevLabel,
     printedNumber: displayIdentity.displayPrintedNumber,
-    printedTotal: resolvedCard.printed_total,
+    printedTotal: resolvedCard.printed_total ?? getPrintedTotalFallback(resolvedCard),
   });
   const releaseDateLabel = formatReleaseDate(resolvedCard.release_date);
   const variantLabels = getVariantLabels(resolvedCard, 3);
