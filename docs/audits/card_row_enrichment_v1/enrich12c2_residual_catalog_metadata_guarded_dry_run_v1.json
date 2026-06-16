@@ -1,0 +1,77 @@
+{
+  "version": "ENRICH12C2_RESIDUAL_CATALOG_METADATA_GUARDED_DRY_RUN_V1",
+  "package_id": "ENRICH-12C2-RESIDUAL-CATALOG-METADATA-RETRY",
+  "generated_at": "2026-06-16T03:37:22.345Z",
+  "package_fingerprint_sha256": "f84b783ea41d19e3578c889075584ba778e7491449c069d7abb722e8fc0dcd4f",
+  "scope": {
+    "candidate_catalog_metadata_gap_rows": 0,
+    "target_parent_rows": 0,
+    "blocked_candidate_rows": 0,
+    "writes_simulated_then_rolled_back": [
+      "card_prints rarity/artist/regulation_mark/variants null-only updates"
+    ],
+    "durable_db_writes_performed": false,
+    "migrations_created": false,
+    "forbidden": [
+      "non-null overwrites",
+      "child writes",
+      "identity writes",
+      "external mapping writes",
+      "species writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ]
+  },
+  "acquisition": {
+    "accepted_by_set_top_25": {},
+    "blocked_by_reason": {},
+    "blocked_samples": []
+  },
+  "preflight": {
+    "target_count": 0,
+    "distinct_target_count": 0,
+    "no_metadata_target_count": 0,
+    "missing_parent_count": 0,
+    "non_null_metadata_overwrite_count": 0,
+    "non_english_target_count": 0
+  },
+  "execution": {
+    "before_snapshot": {
+      "captured_at": "2026-06-16T03:37:21.894Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "row_count": 0
+    },
+    "inside_transaction_proof": {
+      "updated_parent_rows": 0,
+      "guard_blocked": true,
+      "guard": {
+        "target_count": 0,
+        "distinct_target_count": 0,
+        "no_metadata_target_count": 0,
+        "missing_parent_count": 0,
+        "non_null_metadata_overwrite_count": 0,
+        "non_english_target_count": 0
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-16T03:37:22.345Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "row_count": 0
+    },
+    "dry_run_status": "completed_rolled_back_no_durable_change"
+  },
+  "accepted_targets": [],
+  "stop_findings": [
+    "no_targets",
+    "preflight_guard_failed",
+    "dry_run_guard_blocked",
+    "matching_metadata_count_mismatch"
+  ],
+  "pass": false,
+  "recommended_approval_text": null
+}

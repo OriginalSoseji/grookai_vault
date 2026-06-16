@@ -1,0 +1,81 @@
+{
+  "generated_at": "2026-06-14T22:22:59.196Z",
+  "package_id": "IMG-05C-TCGPLAYER-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-UPLOAD-APPLY",
+  "mode": "real_apply",
+  "db_writes_performed": true,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "fingerprint": "87e08646836993a88b53e5326881717dbd1c9bace42dfbd12a5a7b7409069087",
+  "storage_uploaded_rows": 6,
+  "db_updated_rows": 6,
+  "committed": true,
+  "uploaded_storage_paths": [
+    "warehouse-derived/image-truth-v1/img05a-tcgplayer-representative/sve/f096181f-30db-4541-9285-bc3d2fab9581/f2b3bbdddf2f375b75476897.jpg",
+    "warehouse-derived/image-truth-v1/img05a-tcgplayer-representative/sve/673bed60-6219-4134-bd1e-06354dd66758/8df08431cad4ddba86052eb1.jpg",
+    "warehouse-derived/image-truth-v1/img05a-tcgplayer-representative/sve/23a1a125-eef5-44c7-afab-bd3166c4722f/da854af718d6332c1f1b44a1.jpg",
+    "warehouse-derived/image-truth-v1/img05a-tcgplayer-representative/sve/562d3ce6-23cb-4321-a241-869e175bd31e/476129c6b6f0e6721f3e2b00.jpg",
+    "warehouse-derived/image-truth-v1/img05a-tcgplayer-representative/sve/9f812de1-58c9-4bb7-a95c-30702b793385/2baf77a10427407542ebeeda.jpg",
+    "warehouse-derived/image-truth-v1/img05a-tcgplayer-representative/sve/660bb736-d831-4b85-9113-f07814798c95/1e35101172e2e9bf20f53354.jpg"
+  ],
+  "rows": [
+    {
+      "card_printing_id": "f096181f-30db-4541-9285-bc3d2fab9581",
+      "set_code": "sve",
+      "card_name": "Basic Grass Energy",
+      "number": "017",
+      "finish_key": "reverse",
+      "image_path": "warehouse-derived/image-truth-v1/img05a-tcgplayer-representative/sve/f096181f-30db-4541-9285-bc3d2fab9581/f2b3bbdddf2f375b75476897.jpg",
+      "source_url": "https://www.tcgplayer.com/product/645286/pokemon-sve-scarlet-and-violet-energies-basic-grass-energy-017"
+    },
+    {
+      "card_printing_id": "673bed60-6219-4134-bd1e-06354dd66758",
+      "set_code": "sve",
+      "card_name": "Basic Fire Energy",
+      "number": "018",
+      "finish_key": "reverse",
+      "image_path": "warehouse-derived/image-truth-v1/img05a-tcgplayer-representative/sve/673bed60-6219-4134-bd1e-06354dd66758/8df08431cad4ddba86052eb1.jpg",
+      "source_url": "https://www.tcgplayer.com/product/645287/pokemon-sve-scarlet-and-violet-energies-basic-fire-energy-018"
+    },
+    {
+      "card_printing_id": "23a1a125-eef5-44c7-afab-bd3166c4722f",
+      "set_code": "sve",
+      "card_name": "Basic Water Energy",
+      "number": "019",
+      "finish_key": "reverse",
+      "image_path": "warehouse-derived/image-truth-v1/img05a-tcgplayer-representative/sve/23a1a125-eef5-44c7-afab-bd3166c4722f/da854af718d6332c1f1b44a1.jpg",
+      "source_url": "https://www.tcgplayer.com/product/645288/pokemon-sve-scarlet-and-violet-energies-basic-water-energy-019"
+    },
+    {
+      "card_printing_id": "562d3ce6-23cb-4321-a241-869e175bd31e",
+      "set_code": "sve",
+      "card_name": "Basic Lightning Energy",
+      "number": "020",
+      "finish_key": "reverse",
+      "image_path": "warehouse-derived/image-truth-v1/img05a-tcgplayer-representative/sve/562d3ce6-23cb-4321-a241-869e175bd31e/476129c6b6f0e6721f3e2b00.jpg",
+      "source_url": "https://www.tcgplayer.com/product/645289/pokemon-sve-scarlet-and-violet-energies-basic-lightning-energy-020"
+    },
+    {
+      "card_printing_id": "9f812de1-58c9-4bb7-a95c-30702b793385",
+      "set_code": "sve",
+      "card_name": "Basic Fighting Energy",
+      "number": "022",
+      "finish_key": "reverse",
+      "image_path": "warehouse-derived/image-truth-v1/img05a-tcgplayer-representative/sve/9f812de1-58c9-4bb7-a95c-30702b793385/2baf77a10427407542ebeeda.jpg",
+      "source_url": "https://www.tcgplayer.com/product/645302/pokemon-sve-scarlet-and-violet-energies-basic-fighting-energy-022"
+    },
+    {
+      "card_printing_id": "660bb736-d831-4b85-9113-f07814798c95",
+      "set_code": "sve",
+      "card_name": "Basic Darkness Energy",
+      "number": "023",
+      "finish_key": "reverse",
+      "image_path": "warehouse-derived/image-truth-v1/img05a-tcgplayer-representative/sve/660bb736-d831-4b85-9113-f07814798c95/1e35101172e2e9bf20f53354.jpg",
+      "source_url": "https://www.tcgplayer.com/product/645303/pokemon-sve-scarlet-and-violet-energies-basic-darkness-energy-023"
+    }
+  ],
+  "proof_hash": "a763668547a11e5fb95dd51caea287c64ad2b641324c7f6f2facda0d05d0ba42"
+}

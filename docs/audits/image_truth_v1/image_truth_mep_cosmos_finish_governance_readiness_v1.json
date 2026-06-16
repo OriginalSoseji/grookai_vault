@@ -1,0 +1,340 @@
+{
+  "generated_at": "2026-06-14T16:59:48.007Z",
+  "audit_only": true,
+  "rollback_only_dry_run": true,
+  "db_writes_persisted": false,
+  "db_writes_performed": false,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "package_id": "IMG-FINISH-01A-MEP-COSMOS-FINISH-GOVERNANCE-READINESS",
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "source_reports": {
+    "blocker_audit": "docs\\audits\\image_truth_v1\\image_truth_mep_blocker_governance_audit_v1.json",
+    "source_evidence": "docs\\audits\\image_truth_v1\\image_truth_mep_cosmos_source_evidence_v1.json"
+  },
+  "source_rows": 5,
+  "cosmos_finish_key_active": true,
+  "rollback_finish_update_verified_rows": 4,
+  "blocked_rows": 1,
+  "blocked_by_reason": {
+    "blocked_unique_finish_collision_existing_cosmos_child": 1
+  },
+  "governance_warnings_by_reason": {
+    "master_index_governance_probe_lacks_cosmos_master_verified": 1
+  },
+  "master_index_governance_required_rows": 0,
+  "dry_run_ready_for_real_apply": false,
+  "ready_for_real_apply_gate": true,
+  "dry_run_ready_for_real_apply_reason": "This readiness report does not authorize real apply. It can only make a separate fingerprinted four-row real-apply gate eligible.",
+  "rollback_completed": true,
+  "proof_hash": "65bdaa117f9d0cf699b1eb3eb1284d180d0180cec0402fe18a33f41e22c11bb1",
+  "proof": {
+    "package_id": "IMG-FINISH-01A-MEP-COSMOS-FINISH-GOVERNANCE-READINESS",
+    "target_table": "card_printings",
+    "parent_overwrite_allowed": false,
+    "rollback_completed": true,
+    "cosmos_finish_key_active": true,
+    "source_row_count": 5,
+    "rollback_finish_update_verified_rows": 4,
+    "blocked_rows": 1,
+    "rows": [
+      {
+        "card_printing_id": "51ef414d-6a4a-4538-b2e2-d98506117619",
+        "card_print_id": "5cd7a18c-0d2f-4e57-82e1-5d03f06942d4",
+        "set_code": "mep",
+        "number": "018",
+        "card_name": "Cottonee",
+        "before_finish_key": "holo",
+        "after_finish_key": "cosmos",
+        "source_evidence_urls": [
+          "https://www.tcgplayer.com/product/664051/pokemon-me-mega-evolution-promo-cottonee-cosmos-holo",
+          "https://www.gamenerdz.com/cottonee-cosmos-holo-18-me-mega-evolution-promo-holofoil"
+        ],
+        "mutation_preview": {
+          "type": "update_card_printing_finish_key",
+          "card_printing_id": "51ef414d-6a4a-4538-b2e2-d98506117619",
+          "card_print_id": "5cd7a18c-0d2f-4e57-82e1-5d03f06942d4",
+          "before_finish_key": "holo",
+          "after_finish_key": "cosmos",
+          "parent_writes": 0,
+          "image_writes": 0,
+          "deletes": 0,
+          "merges": 0
+        }
+      },
+      {
+        "card_printing_id": "30be20e8-4e02-46de-ba0b-feddefc3ce90",
+        "card_print_id": "13b5596f-2b70-4948-90ad-134c22220630",
+        "set_code": "mep",
+        "number": "019",
+        "card_name": "Whimsicott",
+        "before_finish_key": "holo",
+        "after_finish_key": "cosmos",
+        "source_evidence_urls": [
+          "https://www.tcgplayer.com/product/664054/pokemon-me-mega-evolution-promo-whimsicott-cosmos-holo",
+          "https://www.fullgripgames.com/catalog/pokemon_singles-pokemon_promos-mega_evolution_promos/whimsicott__mep019__mep_black_star_promos__cosmos_holo/639896"
+        ],
+        "mutation_preview": {
+          "type": "update_card_printing_finish_key",
+          "card_printing_id": "30be20e8-4e02-46de-ba0b-feddefc3ce90",
+          "card_print_id": "13b5596f-2b70-4948-90ad-134c22220630",
+          "before_finish_key": "holo",
+          "after_finish_key": "cosmos",
+          "parent_writes": 0,
+          "image_writes": 0,
+          "deletes": 0,
+          "merges": 0
+        }
+      },
+      {
+        "card_printing_id": "244bfdb6-7e01-4933-b85a-aa89e7548363",
+        "card_print_id": "93a96678-3d0c-4060-928d-244c3ab152f0",
+        "set_code": "mep",
+        "number": "020",
+        "card_name": "Sneasel",
+        "before_finish_key": "holo",
+        "after_finish_key": "cosmos",
+        "source_evidence_urls": [
+          "https://www.tcgplayer.com/product/664055/pokemon-me-mega-evolution-promo-sneasel-cosmos-holo",
+          "https://jafcomics.tcgplayerpro.com/catalog/pokemon/me-mega-evolution-promo/sneasel-cosmos-holo/664055"
+        ],
+        "mutation_preview": {
+          "type": "update_card_printing_finish_key",
+          "card_printing_id": "244bfdb6-7e01-4933-b85a-aa89e7548363",
+          "card_print_id": "93a96678-3d0c-4060-928d-244c3ab152f0",
+          "before_finish_key": "holo",
+          "after_finish_key": "cosmos",
+          "parent_writes": 0,
+          "image_writes": 0,
+          "deletes": 0,
+          "merges": 0
+        }
+      },
+      {
+        "card_printing_id": "aeda9f7c-40b5-486a-8043-491c7330aacc",
+        "card_print_id": "db786f44-3b3c-42e2-a070-600d9cfad951",
+        "set_code": "mep",
+        "number": "021",
+        "card_name": "Weavile",
+        "before_finish_key": "holo",
+        "after_finish_key": "cosmos",
+        "source_evidence_urls": [
+          "https://www.tcgplayer.com/product/664063/pokemon-me-mega-evolution-promo-weavile-cosmos-holo",
+          "https://www.nobleknight.com/P/2148382534/Weavile-Cosmos-Holo-HR-021-Holo"
+        ],
+        "mutation_preview": {
+          "type": "update_card_printing_finish_key",
+          "card_printing_id": "aeda9f7c-40b5-486a-8043-491c7330aacc",
+          "card_print_id": "db786f44-3b3c-42e2-a070-600d9cfad951",
+          "before_finish_key": "holo",
+          "after_finish_key": "cosmos",
+          "parent_writes": 0,
+          "image_writes": 0,
+          "deletes": 0,
+          "merges": 0
+        }
+      }
+    ]
+  },
+  "rows": [
+    {
+      "card_printing_id": "51ef414d-6a4a-4538-b2e2-d98506117619",
+      "card_print_id": "5cd7a18c-0d2f-4e57-82e1-5d03f06942d4",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "018",
+      "card_name": "Cottonee",
+      "current_finish_key": "holo",
+      "proposed_finish_key": "cosmos",
+      "source_supported_finish_label": "Cosmos Holo",
+      "source_evidence_count": 2,
+      "source_evidence_urls": [
+        "https://www.tcgplayer.com/product/664051/pokemon-me-mega-evolution-promo-cottonee-cosmos-holo",
+        "https://www.gamenerdz.com/cottonee-cosmos-holo-18-me-mega-evolution-promo-holofoil"
+      ],
+      "master_index_finishes_before": [
+        "holo"
+      ],
+      "db_sibling_finish_keys_before": [
+        "holo"
+      ],
+      "validation_errors": [],
+      "validation_warnings": [],
+      "parent_overwrite_allowed": false,
+      "target_table": "card_printings",
+      "dry_run_status": "rollback_finish_update_verified",
+      "dry_run_reason": null,
+      "mutation_preview": {
+        "type": "update_card_printing_finish_key",
+        "card_printing_id": "51ef414d-6a4a-4538-b2e2-d98506117619",
+        "card_print_id": "5cd7a18c-0d2f-4e57-82e1-5d03f06942d4",
+        "before_finish_key": "holo",
+        "after_finish_key": "cosmos",
+        "parent_writes": 0,
+        "image_writes": 0,
+        "deletes": 0,
+        "merges": 0
+      }
+    },
+    {
+      "card_printing_id": "30be20e8-4e02-46de-ba0b-feddefc3ce90",
+      "card_print_id": "13b5596f-2b70-4948-90ad-134c22220630",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "019",
+      "card_name": "Whimsicott",
+      "current_finish_key": "holo",
+      "proposed_finish_key": "cosmos",
+      "source_supported_finish_label": "Cosmos Holo",
+      "source_evidence_count": 2,
+      "source_evidence_urls": [
+        "https://www.tcgplayer.com/product/664054/pokemon-me-mega-evolution-promo-whimsicott-cosmos-holo",
+        "https://www.fullgripgames.com/catalog/pokemon_singles-pokemon_promos-mega_evolution_promos/whimsicott__mep019__mep_black_star_promos__cosmos_holo/639896"
+      ],
+      "master_index_finishes_before": [
+        "holo"
+      ],
+      "db_sibling_finish_keys_before": [
+        "holo"
+      ],
+      "validation_errors": [],
+      "validation_warnings": [],
+      "parent_overwrite_allowed": false,
+      "target_table": "card_printings",
+      "dry_run_status": "rollback_finish_update_verified",
+      "dry_run_reason": null,
+      "mutation_preview": {
+        "type": "update_card_printing_finish_key",
+        "card_printing_id": "30be20e8-4e02-46de-ba0b-feddefc3ce90",
+        "card_print_id": "13b5596f-2b70-4948-90ad-134c22220630",
+        "before_finish_key": "holo",
+        "after_finish_key": "cosmos",
+        "parent_writes": 0,
+        "image_writes": 0,
+        "deletes": 0,
+        "merges": 0
+      }
+    },
+    {
+      "card_printing_id": "244bfdb6-7e01-4933-b85a-aa89e7548363",
+      "card_print_id": "93a96678-3d0c-4060-928d-244c3ab152f0",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "020",
+      "card_name": "Sneasel",
+      "current_finish_key": "holo",
+      "proposed_finish_key": "cosmos",
+      "source_supported_finish_label": "Cosmos Holo",
+      "source_evidence_count": 2,
+      "source_evidence_urls": [
+        "https://www.tcgplayer.com/product/664055/pokemon-me-mega-evolution-promo-sneasel-cosmos-holo",
+        "https://jafcomics.tcgplayerpro.com/catalog/pokemon/me-mega-evolution-promo/sneasel-cosmos-holo/664055"
+      ],
+      "master_index_finishes_before": [
+        "holo"
+      ],
+      "db_sibling_finish_keys_before": [
+        "holo"
+      ],
+      "validation_errors": [],
+      "validation_warnings": [],
+      "parent_overwrite_allowed": false,
+      "target_table": "card_printings",
+      "dry_run_status": "rollback_finish_update_verified",
+      "dry_run_reason": null,
+      "mutation_preview": {
+        "type": "update_card_printing_finish_key",
+        "card_printing_id": "244bfdb6-7e01-4933-b85a-aa89e7548363",
+        "card_print_id": "93a96678-3d0c-4060-928d-244c3ab152f0",
+        "before_finish_key": "holo",
+        "after_finish_key": "cosmos",
+        "parent_writes": 0,
+        "image_writes": 0,
+        "deletes": 0,
+        "merges": 0
+      }
+    },
+    {
+      "card_printing_id": "aeda9f7c-40b5-486a-8043-491c7330aacc",
+      "card_print_id": "db786f44-3b3c-42e2-a070-600d9cfad951",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "021",
+      "card_name": "Weavile",
+      "current_finish_key": "holo",
+      "proposed_finish_key": "cosmos",
+      "source_supported_finish_label": "Cosmos Holo",
+      "source_evidence_count": 2,
+      "source_evidence_urls": [
+        "https://www.tcgplayer.com/product/664063/pokemon-me-mega-evolution-promo-weavile-cosmos-holo",
+        "https://www.nobleknight.com/P/2148382534/Weavile-Cosmos-Holo-HR-021-Holo"
+      ],
+      "master_index_finishes_before": [
+        "holo"
+      ],
+      "db_sibling_finish_keys_before": [
+        "holo"
+      ],
+      "validation_errors": [],
+      "validation_warnings": [],
+      "parent_overwrite_allowed": false,
+      "target_table": "card_printings",
+      "dry_run_status": "rollback_finish_update_verified",
+      "dry_run_reason": null,
+      "mutation_preview": {
+        "type": "update_card_printing_finish_key",
+        "card_printing_id": "aeda9f7c-40b5-486a-8043-491c7330aacc",
+        "card_print_id": "db786f44-3b3c-42e2-a070-600d9cfad951",
+        "before_finish_key": "holo",
+        "after_finish_key": "cosmos",
+        "parent_writes": 0,
+        "image_writes": 0,
+        "deletes": 0,
+        "merges": 0
+      }
+    },
+    {
+      "card_printing_id": "e0521254-0ac6-4731-b6ef-2ae7cfdec997",
+      "card_print_id": "307545d2-7a82-4c60-8dfe-1b18bc2a092e",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "069",
+      "card_name": "Chikorita",
+      "current_finish_key": "holo",
+      "proposed_finish_key": "cosmos",
+      "source_supported_finish_label": "Cosmos Holo",
+      "source_evidence_count": 2,
+      "source_evidence_urls": [
+        "https://www.tcgplayer.com/product/686342/pokemon-me-mega-evolution-promo-chikorita-cosmos-holo",
+        "https://pokescope.app/card/mep-69/"
+      ],
+      "master_index_finishes_before": [
+        "cosmos",
+        "holo"
+      ],
+      "db_sibling_finish_keys_before": [
+        "cosmos",
+        "holo"
+      ],
+      "validation_errors": [
+        "blocked_unique_finish_collision_existing_cosmos_child"
+      ],
+      "validation_warnings": [
+        "master_index_governance_probe_lacks_cosmos_master_verified"
+      ],
+      "parent_overwrite_allowed": false,
+      "target_table": "card_printings",
+      "dry_run_status": "blocked",
+      "dry_run_reason": "blocked_unique_finish_collision_existing_cosmos_child",
+      "mutation_preview": null
+    }
+  ],
+  "recommended_next_steps": [
+    "Prepare a separate fingerprinted real-apply gate for the four non-colliding MEP 018-021 child finish updates.",
+    "Keep Chikorita MEP 069 out of a finish-update package because a cosmos child already exists; resolve the extra holo child separately if later classified unsupported.",
+    "Then run image fill against the resulting cosmos child rows, not against stale holo targets."
+  ]
+}

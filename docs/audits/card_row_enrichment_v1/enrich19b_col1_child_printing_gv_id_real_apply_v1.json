@@ -1,0 +1,195 @@
+{
+  "version": "ENRICH19B_COL1_CHILD_PRINTING_GV_ID_REAL_APPLY_V1",
+  "package_id": "ENRICH-19B-COL1-CHILD-PRINTING-GV-ID-BACKFILL",
+  "generated_at": "2026-06-16T01:27:14.291Z",
+  "package_fingerprint_sha256": "8cc0f8b8856064ca6c7bd5f98b325db6f65be31f6873863ac8a6b4f4fff1786f",
+  "expected_fingerprint_sha256": "8cc0f8b8856064ca6c7bd5f98b325db6f65be31f6873863ac8a6b4f4fff1786f",
+  "expected_dry_run_proof_sha256": "3a625dc9f22591208e7e079f1fa0e6ee243a4b682093a022ed2192263e95e693",
+  "approval_text": "Approve real ENRICH-19B-COL1-CHILD-PRINTING-GV-ID-BACKFILL apply only. Fingerprint: 8cc0f8b8856064ca6c7bd5f98b325db6f65be31f6873863ac8a6b4f4fff1786f. Scope: 6 Call of Legends child card_printing printing_gv_id updates using governed finish suffixes holo=HOLO, reverse=RH. Dry-run proof: 3a625dc9f22591208e7e079f1fa0e6ee243a4b682093a022ed2192263e95e693 == 3a625dc9f22591208e7e079f1fa0e6ee243a4b682093a022ed2192263e95e693. No parent writes. No identity writes. No external mapping writes. No species writes. No deletes. No merges. No migrations. No image writes. No global apply.",
+  "scope": {
+    "target_rows": 6,
+    "writes_performed": [
+      "card_printings.printing_gv_id"
+    ],
+    "forbidden": [
+      "parent writes",
+      "identity writes",
+      "external mapping writes",
+      "species writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ],
+    "migrations_created": false
+  },
+  "dry_run_validation_findings": [],
+  "approval_validation_findings": [],
+  "apply_result": {
+    "before_snapshot": {
+      "rows": [
+        {
+          "card_printing_id": "1b8fd4ac-770d-468e-9226-8fca59f12f2e",
+          "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+          "set_code": "col1",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Clefable",
+          "parent_gv_id": "GV-PK-COL-1",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "a0826639-2a6e-44b8-bf22-c8e28c77dc58",
+          "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+          "set_code": "col1",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Clefable",
+          "parent_gv_id": "GV-PK-COL-1",
+          "finish_key": "reverse",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "c6af0731-5d64-43b3-8306-85e1d10f39a2",
+          "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+          "set_code": "col1",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Houndoom",
+          "parent_gv_id": "GV-PK-COL-10",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "f3ee8b9a-d050-457d-a748-2fbf99824e78",
+          "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+          "set_code": "col1",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Houndoom",
+          "parent_gv_id": "GV-PK-COL-10",
+          "finish_key": "reverse",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "3a1f4d7c-f7ce-41ea-a6d8-6f9fde054329",
+          "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+          "set_code": "col1",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Forretress",
+          "parent_gv_id": "GV-PK-COL-5",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "5af6910b-0dd4-4b34-bc27-22a27a8aefdb",
+          "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+          "set_code": "col1",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Forretress",
+          "parent_gv_id": "GV-PK-COL-5",
+          "finish_key": "reverse",
+          "printing_gv_id": null
+        }
+      ],
+      "hash_sha256": "3a625dc9f22591208e7e079f1fa0e6ee243a4b682093a022ed2192263e95e693",
+      "counts": {
+        "target_rows": 6,
+        "captured_rows": 6,
+        "rows_with_printing_gv_id": 0,
+        "rows_without_printing_gv_id": 6
+      }
+    },
+    "update_proof": {
+      "updated_rows": 6,
+      "proof": {
+        "target_count": 6,
+        "matching_printing_gv_count": 6,
+        "duplicate_printing_gv_id_exists": 0
+      }
+    },
+    "after_snapshot": {
+      "rows": [
+        {
+          "card_printing_id": "1b8fd4ac-770d-468e-9226-8fca59f12f2e",
+          "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+          "set_code": "col1",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Clefable",
+          "parent_gv_id": "GV-PK-COL-1",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-COL-1-HOLO"
+        },
+        {
+          "card_printing_id": "a0826639-2a6e-44b8-bf22-c8e28c77dc58",
+          "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+          "set_code": "col1",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Clefable",
+          "parent_gv_id": "GV-PK-COL-1",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-COL-1-RH"
+        },
+        {
+          "card_printing_id": "c6af0731-5d64-43b3-8306-85e1d10f39a2",
+          "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+          "set_code": "col1",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Houndoom",
+          "parent_gv_id": "GV-PK-COL-10",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-COL-10-HOLO"
+        },
+        {
+          "card_printing_id": "f3ee8b9a-d050-457d-a748-2fbf99824e78",
+          "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+          "set_code": "col1",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Houndoom",
+          "parent_gv_id": "GV-PK-COL-10",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-COL-10-RH"
+        },
+        {
+          "card_printing_id": "3a1f4d7c-f7ce-41ea-a6d8-6f9fde054329",
+          "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+          "set_code": "col1",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Forretress",
+          "parent_gv_id": "GV-PK-COL-5",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-COL-5-HOLO"
+        },
+        {
+          "card_printing_id": "5af6910b-0dd4-4b34-bc27-22a27a8aefdb",
+          "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+          "set_code": "col1",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Forretress",
+          "parent_gv_id": "GV-PK-COL-5",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-COL-5-RH"
+        }
+      ],
+      "hash_sha256": "102814400d1630a8306f0fbf57e8d80e25e6cd337d9c2f98a0ed9ce39b5deb8f",
+      "counts": {
+        "target_rows": 6,
+        "captured_rows": 6,
+        "rows_with_printing_gv_id": 6,
+        "rows_without_printing_gv_id": 0
+      }
+    }
+  },
+  "stop_findings": [],
+  "pass": true
+}

@@ -1,0 +1,17 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_CANDIDATE_UNCONFIRMED_TRIAGE_V1",
+  "generated_at": "2026-06-14T16:58:08.647Z",
+  "audit_only": true,
+  "db_writes": false,
+  "source_report": "english_master_index_grookai_audit_v1.json",
+  "rule": "Candidate-unconfirmed rows match the current index from one source only. They are not cleanup authority, insertion authority, or master truth.",
+  "summary": {
+    "total_candidate_unconfirmed_by_index": 0,
+    "by_category": {},
+    "by_source_key": {},
+    "by_source_and_finish": {},
+    "by_set_code": {},
+    "by_finish": {}
+  },
+  "categories": {}
+}

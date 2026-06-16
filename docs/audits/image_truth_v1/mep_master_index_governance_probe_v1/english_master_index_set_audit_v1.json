@@ -1,0 +1,119 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_SET_AUDIT_V1",
+  "generated_at": "2026-06-14T16:58:08.647Z",
+  "audit_only": true,
+  "db_writes": false,
+  "sets": [
+    {
+      "key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "pokemontcg": null,
+      "tcgdex": "mep",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "mep",
+        "official_checklist_pdf": null,
+        "official_pokemon_checklist": null,
+        "thepricedex": "mep",
+        "thepricedex_price_list": "mep",
+        "pkmncards": "mep-black-star-promos",
+        "bulbapedia": "MEP_Black_Star_Promos_(TCG)",
+        "bulbapedia_set_list": "MEP_Black_Star_Promos_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available",
+        "official_checklist_pdf": "unavailable",
+        "official_pokemon_checklist": "unavailable",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 0,
+          "total": 52
+        }
+      },
+      "evidence_rows": 243,
+      "card_status_counts": {
+        "human_source_verified": 8,
+        "master_verified": 52
+      },
+      "printing_status_counts": {
+        "human_source_verified": 33,
+        "master_verified": 49
+      },
+      "source_availability": [
+        {
+          "set_key": "mep",
+          "set_name": "MEP Black Star Promos",
+          "source_key": "pokemontcg_api",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
+        },
+        {
+          "set_key": "mep",
+          "set_name": "MEP Black Star Promos",
+          "source_key": "tcgdex",
+          "source_alias": "mep",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 104,
+          "error": null
+        },
+        {
+          "set_key": "mep",
+          "set_name": "MEP Black Star Promos",
+          "source_key": "thepricedex_price_list",
+          "source_alias": "mep",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 143,
+          "error": null
+        },
+        {
+          "set_key": "mep",
+          "set_name": "MEP Black Star Promos",
+          "source_key": "pkmncards",
+          "source_alias": "mep-black-star-promos",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/mep-black-star-promos/"
+        },
+        {
+          "set_key": "mep",
+          "set_name": "MEP Black Star Promos",
+          "source_key": "bulbapedia_set_list",
+          "source_alias": "MEP_Black_Star_Promos_(TCG)",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
+          "evidence_rows": 0,
+          "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)"
+        },
+        {
+          "set_key": "mep",
+          "set_name": "MEP Black Star Promos",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

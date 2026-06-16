@@ -23,6 +23,8 @@ export const MCD_NAMESPACE_YEAR_BY_SET_CODE_V1 = Object.freeze({
   '2018sm': '2018',
   '2019sm': '2019',
   '2021swsh': '2021',
+  '2023sv': '2023',
+  '2024sv': '2024',
   'mcd11': '2011',
   'mcd12': '2012',
   'mcd14': '2014',
@@ -33,6 +35,8 @@ export const MCD_NAMESPACE_YEAR_BY_SET_CODE_V1 = Object.freeze({
   'mcd19': '2019',
   'mcd21': '2021',
   'mcd22': '2022',
+  'mcd23': '2023',
+  'mcd24': '2024',
 });
 const MCD_NAMESPACE_YEAR_REGISTRY_V1 = new Map(Object.entries(MCD_NAMESPACE_YEAR_BY_SET_CODE_V1));
 const CONTROLLED_SUFFIX_REGISTRY_V2 = new Map([

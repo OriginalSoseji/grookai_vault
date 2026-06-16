@@ -1,0 +1,607 @@
+{
+  "version": "ENRICH_13C_RADIANT_COLLECTION_PREFIX_GOVERNANCE_V1",
+  "generated_at": "2026-06-15T18:10:46.219Z",
+  "mode": "read_only_governance_plan",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "source_file": "docs\\audits\\card_row_enrichment_v1\\enrich13_core_identity_resolution_readiness_v1.json",
+  "summary": {
+    "target_rows": 20,
+    "set_code": "bw11",
+    "set_name": "Legendary Treasures",
+    "non_rc_bw11_collision_rows": 0,
+    "write_ready_now": false,
+    "recommended_identity_strategy": "preserve_RC_card_number_and_add_number_prefix_RC_identity_modifier_before_any_identity_backfill"
+  },
+  "dependency_totals": {
+    "child_count": 60,
+    "active_identity_count": 20,
+    "active_mapping_count": 20,
+    "trait_count": 20,
+    "species_count": 19
+  },
+  "collision_explanation": {
+    "observed_problem": "The RC-prefixed source numbers currently collide with main Legendary Treasures numeric rows when the prefix is stripped into number_plain.",
+    "required_identity_law": "Radiant Collection prefix is identity-bearing. RC19 is not the same parent identity as 19.",
+    "recommended_parent_fields_if_later_approved": {
+      "set_code": "bw11",
+      "number": "RC#",
+      "number_plain": "#",
+      "printed_identity_modifier": "number_prefix:RC"
+    },
+    "forbidden": [
+      "do not overwrite numeric Legendary Treasures parent rows",
+      "do not merge RC rows into main-set numeric rows",
+      "do not delete collision owners",
+      "do not mint GV IDs until the modifier-aware identity contract is proven"
+    ]
+  },
+  "proposed_future_package_shape": {
+    "package_id": "ENRICH-13C1-RADIANT-COLLECTION-PREFIX-IDENTITY-DRY-RUN",
+    "current_status": "not_write_ready_dry_run_required",
+    "expected_scope_if_later_approved": [
+      "20 parent core identity updates for bw11 RC-prefixed rows",
+      "printed_identity_modifier=number_prefix:RC",
+      "modifier-aware active identity backfill or update plan",
+      "no child writes unless separately proven necessary"
+    ],
+    "excluded_from_scope": [
+      "deletes",
+      "merges",
+      "main-set numeric parent writes",
+      "external mapping transfers",
+      "image writes",
+      "migrations"
+    ],
+    "required_before_real_apply": [
+      "modifier-aware identity uniqueness dry-run",
+      "collision owners unchanged proof",
+      "active identity replacement/backfill proof",
+      "rollback artifact for parent fields and identity rows"
+    ]
+  },
+  "rows": [
+    {
+      "card_print_id": "9d14ba0c-b863-4d49-8f0b-10d978e25171",
+      "card_name": "Snivy",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC1",
+      "proposed_number_plain": "1",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC1",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "4aeac519-f09c-4b9a-a138-84c1c5705597",
+          "owner_name": "Tangela",
+          "owner_set_code": "bw11",
+          "owner_number": "1",
+          "owner_gv_id": "GV-PK-LTR-1",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "d8ce6d2f-2025-49fa-83d7-bc575a791b31",
+      "card_name": "Serperior",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC3",
+      "proposed_number_plain": "3",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC3",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "09bc6b67-8b9b-4af2-b499-65af3ffdb69d",
+          "owner_name": "Shuckle",
+          "owner_set_code": "bw11",
+          "owner_number": "3",
+          "owner_gv_id": "GV-PK-LTR-3",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "974f95cf-ed5b-4021-adaf-3135bd6a851d",
+      "card_name": "Growlithe",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC4",
+      "proposed_number_plain": "4",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC4",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "1d6c7dca-6ffa-465f-a2cf-d256ea2d23f0",
+          "owner_name": "Cherubi",
+          "owner_set_code": "bw11",
+          "owner_number": "4",
+          "owner_gv_id": "GV-PK-LTR-4",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "559eefb2-df85-4aca-b573-ee9b1f1061be",
+      "card_name": "Torchic",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC5",
+      "proposed_number_plain": "5",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC5",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "3b6b3545-f7bc-431c-bc44-10af1a09c75a",
+          "owner_name": "Carnivine",
+          "owner_set_code": "bw11",
+          "owner_number": "5",
+          "owner_gv_id": "GV-PK-LTR-5",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "dc8bbc07-d0f6-41f4-bbde-5b1f18e80b0f",
+      "card_name": "Piplup",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC6",
+      "proposed_number_plain": "6",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC6",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "5de2e252-4ad4-4174-aec7-5a13bac2ead4",
+          "owner_name": "Snivy",
+          "owner_set_code": "bw11",
+          "owner_number": "6",
+          "owner_gv_id": "GV-PK-LTR-6",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "96a74c90-395c-4f46-a5d9-f2d7cd70351c",
+      "card_name": "Pikachu",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC7",
+      "proposed_number_plain": "7",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC7",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "7648a9f5-bf1d-460d-86f5-9657fedd0c28",
+          "owner_name": "Servine",
+          "owner_set_code": "bw11",
+          "owner_number": "7",
+          "owner_gv_id": "GV-PK-LTR-7",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "bac974e4-c472-4f27-9acd-f18d4bb6f60e",
+      "card_name": "Kirlia",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC9",
+      "proposed_number_plain": "9",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC9",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "a15128c3-8cd0-492b-8b0f-21cdad45287a",
+          "owner_name": "Sewaddle",
+          "owner_set_code": "bw11",
+          "owner_number": "9",
+          "owner_gv_id": "GV-PK-LTR-9",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "a53e052b-7854-4044-91eb-a3b7695f5a7b",
+      "card_name": "Gardevoir",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC10",
+      "proposed_number_plain": "10",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC10",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "4adb7f07-5a80-4a2a-9ba9-8e2a66d93f1c",
+          "owner_name": "Sewaddle",
+          "owner_set_code": "bw11",
+          "owner_number": "10",
+          "owner_gv_id": "GV-PK-LTR-10",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "5ff4a1fd-d1ec-4907-bb7e-0071c6ea302f",
+      "card_name": "Stunfisk",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC12",
+      "proposed_number_plain": "12",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC12",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "6a71b567-6e0a-43a8-9601-c05b53ae1c63",
+          "owner_name": "Leavanny",
+          "owner_set_code": "bw11",
+          "owner_number": "12",
+          "owner_gv_id": "GV-PK-LTR-12",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "22e8f1e4-b75b-4c0d-a17a-1f2d03490479",
+      "card_name": "Purrloin",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC13",
+      "proposed_number_plain": "13",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC13",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "0b30c18b-e315-493e-893d-237ab051630a",
+          "owner_name": "Dwebble",
+          "owner_set_code": "bw11",
+          "owner_number": "13",
+          "owner_gv_id": "GV-PK-LTR-13",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "d57d16ff-5e21-4e58-9cf2-791d3130d57e",
+      "card_name": "Eevee",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC14",
+      "proposed_number_plain": "14",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC14",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "5d575979-1cd8-432c-bf09-a2e307723328",
+          "owner_name": "Crustle",
+          "owner_set_code": "bw11",
+          "owner_number": "14",
+          "owner_gv_id": "GV-PK-LTR-14",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "f819c23d-5ba7-45bd-8b10-611e09404df7",
+      "card_name": "Teddiursa",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC15",
+      "proposed_number_plain": "15",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC15",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "b3c0a9f8-5d91-46c3-8c19-0aa1cbb53ff4",
+          "owner_name": "Virizion",
+          "owner_set_code": "bw11",
+          "owner_number": "15",
+          "owner_gv_id": "GV-PK-LTR-15",
+          "owner_child_count": 3,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "85f3e3cc-88c3-4764-af10-15f925f84fff",
+      "card_name": "Ursaring",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC16",
+      "proposed_number_plain": "16",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC16",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "3e150bbf-19f2-4f9e-801a-63e7be147af3",
+          "owner_name": "Genesect",
+          "owner_set_code": "bw11",
+          "owner_number": "16",
+          "owner_gv_id": "GV-PK-LTR-16",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "d73f7221-4dfa-4bfb-8f50-8ab81a78244f",
+      "card_name": "Minccino",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC18",
+      "proposed_number_plain": "18",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC18",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "698012da-4a6d-425b-84ad-abe80105a139",
+          "owner_name": "Charmeleon",
+          "owner_set_code": "bw11",
+          "owner_number": "18",
+          "owner_gv_id": "GV-PK-LTR-18",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "58b916a9-9516-4988-b05b-d91803b7a223",
+      "card_name": "Cinccino",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC19",
+      "proposed_number_plain": "19",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC19",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "dfd3361e-95fe-47c1-b586-352ad9086be5",
+          "owner_name": "Charizard",
+          "owner_set_code": "bw11",
+          "owner_number": "19",
+          "owner_gv_id": "GV-PK-LTR-19",
+          "owner_child_count": 3,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "d56ed317-6505-4578-9aa5-40fd5fc84f69",
+      "card_name": "Elesa",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC20",
+      "proposed_number_plain": "20",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC20",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 0,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "25773263-237c-4bc2-8488-23570684ec6b",
+          "owner_name": "Vulpix",
+          "owner_set_code": "bw11",
+          "owner_number": "20",
+          "owner_gv_id": "GV-PK-LTR-20",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "9dfbd0bf-2397-47e2-94ce-bd99258755ce",
+      "card_name": "Shaymin-EX",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC21",
+      "proposed_number_plain": "21",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC21",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "b36b2baa-4d95-4ac3-8512-8c4ca5cd5c05",
+          "owner_name": "Ninetales",
+          "owner_set_code": "bw11",
+          "owner_number": "21",
+          "owner_gv_id": "GV-PK-LTR-21",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "40e81e35-2fb5-4ee0-852a-3579e2dfcea9",
+      "card_name": "Reshiram",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC22",
+      "proposed_number_plain": "22",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC22",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "00951a25-9790-4d54-89a0-52d89fd5ee32",
+          "owner_name": "Moltres",
+          "owner_set_code": "bw11",
+          "owner_number": "22",
+          "owner_gv_id": "GV-PK-LTR-22",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "5fc644f5-26c9-4f5c-aecb-4dbb703010b4",
+      "card_name": "Emolga",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC23",
+      "proposed_number_plain": "23",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC23",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "9be33a34-c81a-46e6-bca3-d8e2acca8090",
+          "owner_name": "Victini",
+          "owner_set_code": "bw11",
+          "owner_number": "23",
+          "owner_gv_id": "GV-PK-LTR-23",
+          "owner_child_count": 3,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "6ccd25fb-8fd1-4588-a380-fd75b97295e6",
+      "card_name": "Mew-EX",
+      "proposed_set_code": "bw11",
+      "proposed_number": "RC24",
+      "proposed_number_plain": "24",
+      "proposed_identity_modifier": "number_prefix:RC",
+      "source_external_id": "bw11-RC24",
+      "current_child_count": 3,
+      "current_active_identity_count": 1,
+      "current_active_mapping_count": 1,
+      "current_trait_count": 1,
+      "current_species_count": 1,
+      "collision_owner_count": 1,
+      "collision_owner_samples": [
+        {
+          "owner_card_print_id": "3ab9ecf5-ecc3-4905-91de-fac0dbe034d2",
+          "owner_name": "Victini-EX",
+          "owner_set_code": "bw11",
+          "owner_number": "24",
+          "owner_gv_id": "GV-PK-LTR-24",
+          "owner_child_count": 2,
+          "owner_active_identity_count": 1,
+          "owner_active_mapping_count": 2
+        }
+      ]
+    }
+  ],
+  "fingerprint_sha256": "5ac44de965375de89178bdb6efa718fc312062c09a83057b82295b24dfb7227f"
+}

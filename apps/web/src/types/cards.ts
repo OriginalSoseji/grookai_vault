@@ -5,7 +5,11 @@ export type CardPrinting = {
   finish_name?: string;
   finish_sort_order?: number;
   image_url?: string;
+  image_status?: string;
+  image_note?: string;
+  image_source?: string;
   display_image_url?: string;
+  display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
   display_finish?: string | null;
   is_display_fallback?: boolean;
   owned_count?: number;
@@ -52,7 +56,7 @@ export interface CardSummary {
   image_note?: string;
   image_source?: string;
   display_image_url?: string;
-  display_image_kind?: "exact" | "representative" | "missing";
+  display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
 }
 
 export interface RelatedCardPrint extends CardSummary {

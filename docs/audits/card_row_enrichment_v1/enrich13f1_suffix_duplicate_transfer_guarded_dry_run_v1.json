@@ -1,0 +1,2645 @@
+{
+  "version": "ENRICH_13F1_SUFFIX_DUPLICATE_TRANSFER_GUARDED_DRY_RUN_V1",
+  "generated_at": "2026-06-15T20:36:13.376Z",
+  "package_id": "ENRICH-13F1-SUFFIX-DUPLICATE-TRANSFER-DRY-RUN",
+  "dry_run_execution_status": "enrich13f1_guarded_dry_run_passed_rolled_back_no_durable_change",
+  "pass": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "real_apply_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "image_writes_performed": false,
+  "package_fingerprint_sha256": "8d363c0d4eff9389606fa452090e234830c207438057cbf48733f110e67cdc5b",
+  "package_scope": {
+    "duplicate_target_rows": 4,
+    "blocked_base_rows": 4,
+    "sets": [
+      "xy4",
+      "xyp"
+    ],
+    "duplicate_child_printings": 12,
+    "duplicate_external_mappings": 4,
+    "duplicate_identity_rows": 1,
+    "duplicate_trait_rows": 4,
+    "duplicate_species_rows": 3
+  },
+  "sql_artifact": {
+    "path": "docs\\sql\\enrich13f1_suffix_duplicate_transfer_guarded_dry_run_v1.sql",
+    "sha256": "4b8b0a01d14d2b84efae86cc73799dc7e5427da9937dce502b348e9faa41e4bd",
+    "contains_commit_statement": false,
+    "contains_rollback_statement": true
+  },
+  "target_rows": [
+    {
+      "duplicate_card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+      "canonical_owner_card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+      "set_code": "xy4",
+      "number": "65a",
+      "base_number": "65",
+      "suffix": "a",
+      "duplicate_name": "Aegislash EX",
+      "canonical_owner_name": "Aegislash-EX",
+      "source_external_id": "xy4-65a"
+    },
+    {
+      "duplicate_card_print_id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+      "canonical_owner_card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+      "set_code": "xyp",
+      "number": "XY150a",
+      "base_number": "XY150",
+      "suffix": "a",
+      "duplicate_name": "Yveltal-EX",
+      "canonical_owner_name": "Yveltal-EX",
+      "source_external_id": "xyp-XY150a"
+    },
+    {
+      "duplicate_card_print_id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+      "canonical_owner_card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+      "set_code": "xyp",
+      "number": "XY177a",
+      "base_number": "XY177",
+      "suffix": "a",
+      "duplicate_name": "Karen",
+      "canonical_owner_name": "Karen",
+      "source_external_id": "xyp-XY177a"
+    },
+    {
+      "duplicate_card_print_id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+      "canonical_owner_card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+      "set_code": "xyp",
+      "number": "XY198a",
+      "base_number": "XY198",
+      "suffix": "a",
+      "duplicate_name": "M Camerupt-EX",
+      "canonical_owner_name": "M Camerupt-EX",
+      "source_external_id": "xyp-XY198a"
+    }
+  ],
+  "blocked_base_rows": [
+    {
+      "lane": "base_number_collides_with_suffix_parent_requires_split_governance",
+      "source_card_print_id": "21840232-9191-4566-8e3e-046f74841288",
+      "existing_owner_card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+      "set_code": "xy4",
+      "set_name": "Phantom Forces",
+      "proposed_number": "65",
+      "proposed_base_number": "65",
+      "proposed_suffix": null,
+      "source_name": "Aegislash EX",
+      "source_external_id": "xy4-65",
+      "owner_number": "65a",
+      "owner_base_number": "65",
+      "owner_suffix": "a",
+      "owner_name": "Aegislash-EX",
+      "owner_gv_id": "GV-PK-PHF-65A",
+      "source_dependencies": {
+        "child_count": 3,
+        "active_identity_count": 1,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 1,
+        "vault_instance_count": 0
+      },
+      "owner_dependencies": {
+        "child_count": 1,
+        "active_identity_count": 1,
+        "active_mapping_count": 2
+      },
+      "proposed_modifier_strategy": "base_number_preserved_separate_from_number_suffix:a"
+    },
+    {
+      "lane": "base_number_collides_with_suffix_parent_requires_split_governance",
+      "source_card_print_id": "a6d34131-d056-49ae-a8b7-21d808e351f6",
+      "existing_owner_card_print_id": "a87052f9-4976-43c7-9820-2c4e028875e4",
+      "set_code": "xy9",
+      "set_name": "BREAKpoint",
+      "proposed_number": "98",
+      "proposed_base_number": "98",
+      "proposed_suffix": null,
+      "source_name": "Delinquent",
+      "source_external_id": "xy9-98",
+      "owner_number": "98a",
+      "owner_base_number": "98",
+      "owner_suffix": "a",
+      "owner_name": "Delinquent",
+      "owner_gv_id": "GV-PK-BKP-98A",
+      "source_dependencies": {
+        "child_count": 3,
+        "active_identity_count": 1,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 0,
+        "vault_instance_count": 0
+      },
+      "owner_dependencies": {
+        "child_count": 2,
+        "active_identity_count": 1,
+        "active_mapping_count": 1
+      },
+      "proposed_modifier_strategy": "base_number_preserved_separate_from_number_suffix:a"
+    },
+    {
+      "lane": "base_number_collides_with_suffix_parent_requires_split_governance",
+      "source_card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+      "existing_owner_card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "proposed_number": "XY150",
+      "proposed_base_number": "XY150",
+      "proposed_suffix": null,
+      "source_name": "Yveltal EX",
+      "source_external_id": "xyp-XY150",
+      "owner_number": "XY150a",
+      "owner_base_number": "XY150",
+      "owner_suffix": "a",
+      "owner_name": "Yveltal-EX",
+      "owner_gv_id": "GV-PK-PR-XY-XY150A",
+      "source_dependencies": {
+        "child_count": 3,
+        "active_identity_count": 1,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 1,
+        "vault_instance_count": 0
+      },
+      "owner_dependencies": {
+        "child_count": 1,
+        "active_identity_count": 1,
+        "active_mapping_count": 2
+      },
+      "proposed_modifier_strategy": "base_number_preserved_separate_from_number_suffix:a"
+    },
+    {
+      "lane": "base_number_collides_with_suffix_parent_requires_split_governance",
+      "source_card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+      "existing_owner_card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "proposed_number": "XY198",
+      "proposed_base_number": "XY198",
+      "proposed_suffix": null,
+      "source_name": "M Camerupt-EX",
+      "source_external_id": "xyp-XY198",
+      "owner_number": "XY198a",
+      "owner_base_number": "XY198",
+      "owner_suffix": "a",
+      "owner_name": "M Camerupt-EX",
+      "owner_gv_id": "GV-PK-PR-XY-XY198A",
+      "source_dependencies": {
+        "child_count": 3,
+        "active_identity_count": 1,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 1,
+        "vault_instance_count": 0
+      },
+      "owner_dependencies": {
+        "child_count": 1,
+        "active_identity_count": 1,
+        "active_mapping_count": 2
+      },
+      "proposed_modifier_strategy": "base_number_preserved_separate_from_number_suffix:a"
+    }
+  ],
+  "execution_result": {
+    "connected": true,
+    "execution_status": "guarded_dry_run_transaction_completed_and_rolled_back",
+    "error_message": null,
+    "before_snapshot": {
+      "captured_at": "2026-06-15T20:36:12.473Z",
+      "rows": [
+        {
+          "id": "6f632392-0999-4a74-84ec-9346caf17d24",
+          "card_print": {
+            "id": "6f632392-0999-4a74-84ec-9346caf17d24",
+            "name": "Aegislash-EX",
+            "gv_id": "GV-PK-PHF-65A",
+            "artist": "Ayaka Yoshida",
+            "number": "65a",
+            "rarity": "Rare Ultra",
+            "set_id": "0e1365e3-04d5-4300-9973-9696ae6b6fa4",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "xy4",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://assets.tcgdex.net/en/xy/xy4/65/high.webp",
+            "created_at": "2025-11-16T06:32:35.437741+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2025-11-01T19:15:38.215257+00:00",
+            "ai_metadata": {
+              "pokemonapi": {
+                "legalities": {
+                  "expanded": "Legal",
+                  "unlimited": "Legal"
+                },
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "pokemonapi": "xy4-65a"
+            },
+            "image_source": "tcgdex",
+            "image_status": "exact",
+            "number_plain": "65",
+            "tcgplayer_id": null,
+            "image_alt_url": "https://images.pokemontcg.io/xy4/65.png",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": {
+              "legacy_image_url": "https://images.pokemontcg.io/xy4/65_hires.png",
+              "pokemontcg_legacy": true
+            },
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "0cf5e33c-069a-4d8a-b220-d6eee9221781",
+              "image_url": null,
+              "created_at": "2026-03-03T04:03:38.310355+00:00",
+              "created_by": null,
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-PHF-65A-HOLO",
+              "provenance_ref": null,
+              "provenance_source": null
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 1921,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:49:22.268836+00:00",
+              "external_id": "xy4-65",
+              "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24"
+            },
+            {
+              "id": 1922,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:49:22.787118+00:00",
+              "external_id": "xy4-65a",
+              "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "b17c8eee-2ae7-4488-8aca-a0fc8d03d81e",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+              "printed_number": "65a",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_total": 119,
+                "printed_set_abbrev": "PHF",
+                "variant_key_current": "base"
+              },
+              "identity_key_hash": "70416aa45ab498bd32ea923ff835a0d1624707b3f935437ed612c78121cf1575",
+              "set_code_identity": "xy4",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "aegislash-ex"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 170,
+              "id": 6311,
+              "types": [
+                "Metal"
+              ],
+              "rarity": "Rare Ultra",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2025-11-17T23:23:33.248+00:00",
+              "trait_type": "pokemon:legal",
+              "trait_value": "expanded",
+              "national_dex": 681,
+              "card_category": "Basic",
+              "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+              "legacy_rarity": "Rare Holo EX"
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "585e61b0-44b4-43e4-bb10-eef04f76d755",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Aegislash-EX",
+                "supertype": "Pokémon",
+                "card_category": "Basic",
+                "matched_token": "aegislash"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "ed521022-94f0-4865-8bfa-5949c7bab756",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+          "card_print": {
+            "id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+            "name": "Yveltal-EX",
+            "gv_id": "GV-PK-PR-XY-XY150A",
+            "artist": "Eske Yoshinob",
+            "number": "XY150a",
+            "rarity": "Promo",
+            "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "xyp",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/xyp/XY150_hires.png",
+            "created_at": "2025-11-16T06:32:35.437741+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2025-11-01T19:35:59.31684+00:00",
+            "ai_metadata": {
+              "pokemonapi": {
+                "legalities": {
+                  "expanded": "Legal",
+                  "unlimited": "Legal"
+                },
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "pokemonapi": "xyp-XY150a"
+            },
+            "image_source": "pokemonapi",
+            "image_status": "exact",
+            "number_plain": "150",
+            "tcgplayer_id": null,
+            "image_alt_url": "https://images.pokemontcg.io/xyp/XY150.png",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": {
+              "legacy_image_url": "https://images.pokemontcg.io/xyp/XY150_hires.png",
+              "pokemontcg_legacy": true
+            },
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "6add8f55-b4c6-41eb-9e22-cfa69ce09ef4",
+              "image_url": null,
+              "created_at": "2026-03-03T04:03:38.310355+00:00",
+              "created_by": null,
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-PR-XY-XY150A-HOLO",
+              "provenance_ref": null,
+              "provenance_source": null
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 1566,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:46:09.16467+00:00",
+              "external_id": "xyp-XY150",
+              "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1"
+            },
+            {
+              "id": 1567,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:46:09.651708+00:00",
+              "external_id": "xyp-XY150a",
+              "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "bb6b31a6-b2ca-476b-aaf5-85258fc82fb2",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+              "printed_number": "XY150a",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_total": 211,
+                "printed_set_abbrev": "PR-XY",
+                "variant_key_current": "base"
+              },
+              "identity_key_hash": "bf4b1ba5d9d8927f68b0c5eeb4e7c257187f51836b39868a127590ffe039a48e",
+              "set_code_identity": "xyp",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "yveltal-ex"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 170,
+              "id": 4918,
+              "types": [
+                "Darkness"
+              ],
+              "rarity": "Promo",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2025-11-17T23:15:52.595+00:00",
+              "trait_type": "pokemon:legal",
+              "trait_value": "expanded",
+              "national_dex": 717,
+              "card_category": "Basic",
+              "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "01b6696b-94e1-4cab-b713-9e38c8c55074",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Yveltal-EX",
+                "supertype": "Pokémon",
+                "card_category": "Basic",
+                "matched_token": "yveltal"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "263627f8-f572-4fff-a7a8-4762519f2654",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+          "card_print": {
+            "id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+            "name": "Karen",
+            "gv_id": "GV-PK-PR-XY-XY177A",
+            "artist": "You Iribi",
+            "number": "XY177a",
+            "rarity": "Promo",
+            "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "xyp",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/xyp/XY177_hires.png",
+            "created_at": "2025-11-16T06:32:35.437741+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2025-11-01T19:35:59.31684+00:00",
+            "ai_metadata": {
+              "pokemonapi": {
+                "legalities": {
+                  "expanded": "Legal",
+                  "unlimited": "Legal"
+                },
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "pokemonapi": "xyp-XY177a"
+            },
+            "image_source": "pokemonapi",
+            "image_status": "exact",
+            "number_plain": "177",
+            "tcgplayer_id": null,
+            "image_alt_url": "https://images.pokemontcg.io/xyp/XY177.png",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": {
+              "legacy_image_url": "https://images.pokemontcg.io/xyp/XY177_hires.png",
+              "pokemontcg_legacy": true
+            },
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "3e9e9892-1857-4229-9745-45c61fd5f96a",
+              "image_url": null,
+              "created_at": "2026-03-03T04:03:38.310355+00:00",
+              "created_by": null,
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-PR-XY-XY177A-HOLO",
+              "provenance_ref": null,
+              "provenance_source": null
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 1595,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:46:23.87053+00:00",
+              "external_id": "xyp-XY177a",
+              "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "08f7e03c-5c39-47f9-af3b-2f5ff8c44675",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+              "printed_number": "XY177a",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_total": 211,
+                "printed_set_abbrev": "PR-XY",
+                "variant_key_current": "base"
+              },
+              "identity_key_hash": "2197606aa53d527ef1356b0ede6c43d25c37a6d294b31d4ac3b8c4db3c596630",
+              "set_code_identity": "xyp",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "karen"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": null,
+              "id": 5033,
+              "types": null,
+              "rarity": "Promo",
+              "source": "pokemonapi",
+              "supertype": "Trainer",
+              "confidence": null,
+              "created_at": "2025-11-17T23:16:28.573+00:00",
+              "trait_type": "pokemon:legal",
+              "trait_value": "expanded",
+              "national_dex": null,
+              "card_category": "Supporter",
+              "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": []
+        },
+        {
+          "id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+          "card_print": {
+            "id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+            "name": "M Camerupt-EX",
+            "gv_id": "GV-PK-PR-XY-XY198A",
+            "artist": "5ban Graphics",
+            "number": "XY198a",
+            "rarity": "Promo",
+            "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "xyp",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/xyp/XY198_hires.png",
+            "created_at": "2025-11-16T06:32:35.437741+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2025-11-01T19:37:59.684618+00:00",
+            "ai_metadata": {
+              "pokemonapi": {
+                "legalities": {
+                  "expanded": "Legal",
+                  "unlimited": "Legal"
+                },
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "pokemonapi": "xyp-XY198a"
+            },
+            "image_source": "pokemonapi",
+            "image_status": "exact",
+            "number_plain": "198",
+            "tcgplayer_id": null,
+            "image_alt_url": "https://images.pokemontcg.io/xyp/XY198.png",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": {
+              "legacy_image_url": "https://images.pokemontcg.io/xyp/XY198_hires.png",
+              "pokemontcg_legacy": true
+            },
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "614a338d-d333-47c2-835f-d52af8940b92",
+              "image_url": null,
+              "created_at": "2026-03-03T04:03:38.310355+00:00",
+              "created_by": null,
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-PR-XY-XY198A-HOLO",
+              "provenance_ref": null,
+              "provenance_source": null
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 1616,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:46:35.18672+00:00",
+              "external_id": "xyp-XY198",
+              "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b"
+            },
+            {
+              "id": 1617,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:46:35.712364+00:00",
+              "external_id": "xyp-XY198a",
+              "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "a5ba0449-3906-404d-bf26-2713f4d1ee5e",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+              "printed_number": "XY198a",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_total": 211,
+                "printed_set_abbrev": "PR-XY",
+                "variant_key_current": "base"
+              },
+              "identity_key_hash": "6349a0f422af5140ccac2264b828ad3b5c9e5573e2a81d54a8e601995eff6b89",
+              "set_code_identity": "xyp",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "m camerupt-ex"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 230,
+              "id": 5119,
+              "types": [
+                "Fire"
+              ],
+              "rarity": "Promo",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2025-11-17T23:16:56.446+00:00",
+              "trait_type": "pokemon:legal",
+              "trait_value": "expanded",
+              "national_dex": 323,
+              "card_category": null,
+              "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "8de43253-9ca2-458e-9991-71378fcf3919",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "M Camerupt-EX",
+                "supertype": "Pokémon",
+                "card_category": null,
+                "matched_token": "camerupt"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "a0760f42-fa13-4706-96fb-d30032848c0d",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+          "card_print": {
+            "id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+            "name": "Aegislash EX",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Rare",
+            "set_id": "0e1365e3-04d5-4300-9973-9696ae6b6fa4",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://assets.tcgdex.net/en/xy/xy4/65a/high.webp",
+            "created_at": "2026-03-27T00:48:27.110236+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T00:48:27.110236+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "xy4-65a"
+            },
+            "image_source": "tcgdex",
+            "image_status": "exact",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": "https://assets.tcgdex.net/en/xy/xy4/65a",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "774ede24-bbda-4628-8edc-4b554b2a9e46",
+              "image_url": null,
+              "created_at": "2026-03-27T00:48:27.440555+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xy4-65a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "83de8efb-e8de-4a40-b29d-2307c79cbb46",
+              "image_url": null,
+              "created_at": "2026-03-27T00:48:27.350501+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "normal",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xy4-65a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "991e07d0-28ec-4f4a-9d02-d658a3ca5c29",
+              "image_url": null,
+              "created_at": "2026-03-27T00:48:27.543761+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "reverse",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xy4-65a",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 62101,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2026-02-26T05:42:43.437135+00:00",
+              "external_id": "xy4-65a",
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "282baf89-8409-4442-92c2-e5cbf30ee512",
+              "is_active": true,
+              "created_at": "2026-04-03T18:02:50.808535+00:00",
+              "updated_at": "2026-04-03T18:02:50.808535+00:00",
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+              "printed_number": "65a",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_total": 119,
+                "printed_set_abbrev": "PHF"
+              },
+              "identity_key_hash": "4e4bf2d31d185601db3fafbc0fc6b3c9fa1126f20a0837c9fdbc968e74e5c15e",
+              "set_code_identity": "xy4",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "aegislash ex"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 170,
+              "id": 39665,
+              "types": [
+                "Metal"
+              ],
+              "rarity": "Rare",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T00:48:27.752654+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 681,
+              "card_category": "Basic",
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "ede319e4-4c23-40be-a358-90657b079707",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Aegislash EX",
+                "supertype": "Pokemon",
+                "card_category": "Basic",
+                "matched_token": "aegislash"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "ed521022-94f0-4865-8bfa-5949c7bab756",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+          "card_print": {
+            "id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+            "name": "Karen",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Common",
+            "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://assets.tcgdex.net/en/xy/xyp/XY177a/high.webp",
+            "created_at": "2026-03-27T00:44:10.929945+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T00:44:10.929945+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "xyp-XY177a"
+            },
+            "image_source": "tcgdex",
+            "image_status": "exact",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": "https://assets.tcgdex.net/en/xy/xyp/XY177a",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "3dac3701-00e5-45e1-aece-72dc32fc38f9",
+              "image_url": null,
+              "created_at": "2026-03-27T00:44:11.200884+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY177a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "dadbfcd5-ea0b-4adf-a33e-9fd46731079a",
+              "image_url": null,
+              "created_at": "2026-03-27T00:44:11.109551+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "normal",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY177a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "9ccd5531-c8c6-4239-b5e9-1ee3145410a6",
+              "image_url": null,
+              "created_at": "2026-03-27T00:44:11.292909+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "reverse",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY177a",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 42689,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2025-12-08T19:12:04.297896+00:00",
+              "external_id": "xyp-XY177a",
+              "card_print_id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": null,
+              "id": 39416,
+              "types": null,
+              "rarity": "Common",
+              "source": "tcgdex",
+              "supertype": "Trainer",
+              "confidence": null,
+              "created_at": "2026-03-27T00:44:11.464233+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": []
+        },
+        {
+          "id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+          "card_print": {
+            "id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+            "name": "M Camerupt-EX",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Common",
+            "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://assets.tcgdex.net/en/xy/xyp/XY198a/high.webp",
+            "created_at": "2026-03-27T00:44:36.153456+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T00:44:36.153456+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "xyp-XY198a"
+            },
+            "image_source": "tcgdex",
+            "image_status": "exact",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": "https://assets.tcgdex.net/en/xy/xyp/XY198a",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "c35b98b6-55a7-43d8-b29f-3ed6343ce699",
+              "image_url": null,
+              "created_at": "2026-03-27T00:44:36.441561+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY198a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "e03da06b-8831-4ea1-900c-8119f947b361",
+              "image_url": null,
+              "created_at": "2026-03-27T00:44:36.339628+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "normal",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY198a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "a04adbce-fdf3-492b-9e4a-f1575dcaf280",
+              "image_url": null,
+              "created_at": "2026-03-27T00:44:36.53174+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "reverse",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY198a",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 42712,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2025-12-08T19:12:13.327538+00:00",
+              "external_id": "xyp-XY198a",
+              "card_print_id": "0fa596a5-2124-410e-9faa-50f7fc970134"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": 230,
+              "id": 39440,
+              "types": [
+                "Fire"
+              ],
+              "rarity": "Common",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T00:44:36.806153+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 323,
+              "card_category": "MEGA",
+              "card_print_id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "3e0a34d4-ec60-4263-86b3-be81a37c1690",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "M Camerupt-EX",
+                "supertype": "Pokemon",
+                "card_category": "MEGA",
+                "matched_token": "camerupt"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "a0760f42-fa13-4706-96fb-d30032848c0d",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+          "card_print": {
+            "id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+            "name": "Yveltal-EX",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Rare",
+            "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://assets.tcgdex.net/en/xy/xyp/XY150a/high.webp",
+            "created_at": "2026-03-27T00:43:39.533861+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T00:43:39.533861+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "xyp-XY150a"
+            },
+            "image_source": "tcgdex",
+            "image_status": "exact",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": "https://assets.tcgdex.net/en/xy/xyp/XY150a",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "e0302e24-fc3d-42d1-8417-8c2caaf23526",
+              "image_url": null,
+              "created_at": "2026-03-27T00:43:39.810824+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY150a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "06438f68-3c27-4d08-bce1-2648afbfbbaa",
+              "image_url": null,
+              "created_at": "2026-03-27T00:43:39.716735+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "normal",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY150a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "363e046f-55d7-4420-bcbd-98eb7af91bb3",
+              "image_url": null,
+              "created_at": "2026-03-27T00:43:39.921411+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "reverse",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY150a",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 42660,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2025-12-08T19:11:51.952042+00:00",
+              "external_id": "xyp-XY150a",
+              "card_print_id": "6b99ca2c-6f45-4089-b566-7f2927aa101f"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": 170,
+              "id": 39386,
+              "types": [
+                "Darkness"
+              ],
+              "rarity": "Rare",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T00:43:40.116636+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 717,
+              "card_category": null,
+              "card_print_id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "9f41dd73-8081-49c8-9fb0-15e6967ca3d2",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Yveltal-EX",
+                "supertype": "Pokemon",
+                "card_category": null,
+                "matched_token": "yveltal"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "263627f8-f572-4fff-a7a8-4762519f2654",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+              "counts_for_completion": true
+            }
+          ]
+        }
+      ],
+      "hash_sha256": "d8014a20e205855785e81263413eb2ce35632fa78cef975c2bb2b89cc33b37fe",
+      "impact_counts": {
+        "card_prints_found": 8,
+        "duplicate_parents_present": 4,
+        "owner_parents_present": 4,
+        "duplicate_child_printings": 12,
+        "owner_child_printings": 4,
+        "duplicate_external_mappings": 4,
+        "duplicate_identity_rows": 1,
+        "duplicate_trait_rows": 4,
+        "duplicate_species_rows": 3,
+        "duplicate_external_printing_refs": 0,
+        "duplicate_vault_printing_refs": 0,
+        "duplicate_warehouse_printing_refs": 0
+      }
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-15T20:36:13.290Z",
+      "rows": [
+        {
+          "id": "6f632392-0999-4a74-84ec-9346caf17d24",
+          "card_print": {
+            "id": "6f632392-0999-4a74-84ec-9346caf17d24",
+            "name": "Aegislash-EX",
+            "gv_id": "GV-PK-PHF-65A",
+            "artist": "Ayaka Yoshida",
+            "number": "65a",
+            "rarity": "Rare Ultra",
+            "set_id": "0e1365e3-04d5-4300-9973-9696ae6b6fa4",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "xy4",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://assets.tcgdex.net/en/xy/xy4/65/high.webp",
+            "created_at": "2025-11-16T06:32:35.437741+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2025-11-01T19:15:38.215257+00:00",
+            "ai_metadata": {
+              "pokemonapi": {
+                "legalities": {
+                  "expanded": "Legal",
+                  "unlimited": "Legal"
+                },
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "pokemonapi": "xy4-65a"
+            },
+            "image_source": "tcgdex",
+            "image_status": "exact",
+            "number_plain": "65",
+            "tcgplayer_id": null,
+            "image_alt_url": "https://images.pokemontcg.io/xy4/65.png",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": {
+              "legacy_image_url": "https://images.pokemontcg.io/xy4/65_hires.png",
+              "pokemontcg_legacy": true
+            },
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "0cf5e33c-069a-4d8a-b220-d6eee9221781",
+              "image_url": null,
+              "created_at": "2026-03-03T04:03:38.310355+00:00",
+              "created_by": null,
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-PHF-65A-HOLO",
+              "provenance_ref": null,
+              "provenance_source": null
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 1921,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:49:22.268836+00:00",
+              "external_id": "xy4-65",
+              "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24"
+            },
+            {
+              "id": 1922,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:49:22.787118+00:00",
+              "external_id": "xy4-65a",
+              "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "b17c8eee-2ae7-4488-8aca-a0fc8d03d81e",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+              "printed_number": "65a",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_total": 119,
+                "printed_set_abbrev": "PHF",
+                "variant_key_current": "base"
+              },
+              "identity_key_hash": "70416aa45ab498bd32ea923ff835a0d1624707b3f935437ed612c78121cf1575",
+              "set_code_identity": "xy4",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "aegislash-ex"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 170,
+              "id": 6311,
+              "types": [
+                "Metal"
+              ],
+              "rarity": "Rare Ultra",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2025-11-17T23:23:33.248+00:00",
+              "trait_type": "pokemon:legal",
+              "trait_value": "expanded",
+              "national_dex": 681,
+              "card_category": "Basic",
+              "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+              "legacy_rarity": "Rare Holo EX"
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "585e61b0-44b4-43e4-bb10-eef04f76d755",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Aegislash-EX",
+                "supertype": "Pokémon",
+                "card_category": "Basic",
+                "matched_token": "aegislash"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "ed521022-94f0-4865-8bfa-5949c7bab756",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+          "card_print": {
+            "id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+            "name": "Yveltal-EX",
+            "gv_id": "GV-PK-PR-XY-XY150A",
+            "artist": "Eske Yoshinob",
+            "number": "XY150a",
+            "rarity": "Promo",
+            "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "xyp",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/xyp/XY150_hires.png",
+            "created_at": "2025-11-16T06:32:35.437741+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2025-11-01T19:35:59.31684+00:00",
+            "ai_metadata": {
+              "pokemonapi": {
+                "legalities": {
+                  "expanded": "Legal",
+                  "unlimited": "Legal"
+                },
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "pokemonapi": "xyp-XY150a"
+            },
+            "image_source": "pokemonapi",
+            "image_status": "exact",
+            "number_plain": "150",
+            "tcgplayer_id": null,
+            "image_alt_url": "https://images.pokemontcg.io/xyp/XY150.png",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": {
+              "legacy_image_url": "https://images.pokemontcg.io/xyp/XY150_hires.png",
+              "pokemontcg_legacy": true
+            },
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "6add8f55-b4c6-41eb-9e22-cfa69ce09ef4",
+              "image_url": null,
+              "created_at": "2026-03-03T04:03:38.310355+00:00",
+              "created_by": null,
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-PR-XY-XY150A-HOLO",
+              "provenance_ref": null,
+              "provenance_source": null
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 1566,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:46:09.16467+00:00",
+              "external_id": "xyp-XY150",
+              "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1"
+            },
+            {
+              "id": 1567,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:46:09.651708+00:00",
+              "external_id": "xyp-XY150a",
+              "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "bb6b31a6-b2ca-476b-aaf5-85258fc82fb2",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+              "printed_number": "XY150a",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_total": 211,
+                "printed_set_abbrev": "PR-XY",
+                "variant_key_current": "base"
+              },
+              "identity_key_hash": "bf4b1ba5d9d8927f68b0c5eeb4e7c257187f51836b39868a127590ffe039a48e",
+              "set_code_identity": "xyp",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "yveltal-ex"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 170,
+              "id": 4918,
+              "types": [
+                "Darkness"
+              ],
+              "rarity": "Promo",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2025-11-17T23:15:52.595+00:00",
+              "trait_type": "pokemon:legal",
+              "trait_value": "expanded",
+              "national_dex": 717,
+              "card_category": "Basic",
+              "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "01b6696b-94e1-4cab-b713-9e38c8c55074",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Yveltal-EX",
+                "supertype": "Pokémon",
+                "card_category": "Basic",
+                "matched_token": "yveltal"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "263627f8-f572-4fff-a7a8-4762519f2654",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+          "card_print": {
+            "id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+            "name": "Karen",
+            "gv_id": "GV-PK-PR-XY-XY177A",
+            "artist": "You Iribi",
+            "number": "XY177a",
+            "rarity": "Promo",
+            "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "xyp",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/xyp/XY177_hires.png",
+            "created_at": "2025-11-16T06:32:35.437741+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2025-11-01T19:35:59.31684+00:00",
+            "ai_metadata": {
+              "pokemonapi": {
+                "legalities": {
+                  "expanded": "Legal",
+                  "unlimited": "Legal"
+                },
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "pokemonapi": "xyp-XY177a"
+            },
+            "image_source": "pokemonapi",
+            "image_status": "exact",
+            "number_plain": "177",
+            "tcgplayer_id": null,
+            "image_alt_url": "https://images.pokemontcg.io/xyp/XY177.png",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": {
+              "legacy_image_url": "https://images.pokemontcg.io/xyp/XY177_hires.png",
+              "pokemontcg_legacy": true
+            },
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "3e9e9892-1857-4229-9745-45c61fd5f96a",
+              "image_url": null,
+              "created_at": "2026-03-03T04:03:38.310355+00:00",
+              "created_by": null,
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-PR-XY-XY177A-HOLO",
+              "provenance_ref": null,
+              "provenance_source": null
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 1595,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:46:23.87053+00:00",
+              "external_id": "xyp-XY177a",
+              "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "08f7e03c-5c39-47f9-af3b-2f5ff8c44675",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+              "printed_number": "XY177a",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_total": 211,
+                "printed_set_abbrev": "PR-XY",
+                "variant_key_current": "base"
+              },
+              "identity_key_hash": "2197606aa53d527ef1356b0ede6c43d25c37a6d294b31d4ac3b8c4db3c596630",
+              "set_code_identity": "xyp",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "karen"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": null,
+              "id": 5033,
+              "types": null,
+              "rarity": "Promo",
+              "source": "pokemonapi",
+              "supertype": "Trainer",
+              "confidence": null,
+              "created_at": "2025-11-17T23:16:28.573+00:00",
+              "trait_type": "pokemon:legal",
+              "trait_value": "expanded",
+              "national_dex": null,
+              "card_category": "Supporter",
+              "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": []
+        },
+        {
+          "id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+          "card_print": {
+            "id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+            "name": "M Camerupt-EX",
+            "gv_id": "GV-PK-PR-XY-XY198A",
+            "artist": "5ban Graphics",
+            "number": "XY198a",
+            "rarity": "Promo",
+            "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "xyp",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/xyp/XY198_hires.png",
+            "created_at": "2025-11-16T06:32:35.437741+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2025-11-01T19:37:59.684618+00:00",
+            "ai_metadata": {
+              "pokemonapi": {
+                "legalities": {
+                  "expanded": "Legal",
+                  "unlimited": "Legal"
+                },
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "pokemonapi": "xyp-XY198a"
+            },
+            "image_source": "pokemonapi",
+            "image_status": "exact",
+            "number_plain": "198",
+            "tcgplayer_id": null,
+            "image_alt_url": "https://images.pokemontcg.io/xyp/XY198.png",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": {
+              "legacy_image_url": "https://images.pokemontcg.io/xyp/XY198_hires.png",
+              "pokemontcg_legacy": true
+            },
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "614a338d-d333-47c2-835f-d52af8940b92",
+              "image_url": null,
+              "created_at": "2026-03-03T04:03:38.310355+00:00",
+              "created_by": null,
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-PR-XY-XY198A-HOLO",
+              "provenance_ref": null,
+              "provenance_source": null
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 1616,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:46:35.18672+00:00",
+              "external_id": "xyp-XY198",
+              "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b"
+            },
+            {
+              "id": 1617,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T06:46:35.712364+00:00",
+              "external_id": "xyp-XY198a",
+              "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "a5ba0449-3906-404d-bf26-2713f4d1ee5e",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+              "printed_number": "XY198a",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_total": 211,
+                "printed_set_abbrev": "PR-XY",
+                "variant_key_current": "base"
+              },
+              "identity_key_hash": "6349a0f422af5140ccac2264b828ad3b5c9e5573e2a81d54a8e601995eff6b89",
+              "set_code_identity": "xyp",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "m camerupt-ex"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 230,
+              "id": 5119,
+              "types": [
+                "Fire"
+              ],
+              "rarity": "Promo",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2025-11-17T23:16:56.446+00:00",
+              "trait_type": "pokemon:legal",
+              "trait_value": "expanded",
+              "national_dex": 323,
+              "card_category": null,
+              "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "8de43253-9ca2-458e-9991-71378fcf3919",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "M Camerupt-EX",
+                "supertype": "Pokémon",
+                "card_category": null,
+                "matched_token": "camerupt"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "a0760f42-fa13-4706-96fb-d30032848c0d",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+          "card_print": {
+            "id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+            "name": "Aegislash EX",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Rare",
+            "set_id": "0e1365e3-04d5-4300-9973-9696ae6b6fa4",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://assets.tcgdex.net/en/xy/xy4/65a/high.webp",
+            "created_at": "2026-03-27T00:48:27.110236+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T00:48:27.110236+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "xy4-65a"
+            },
+            "image_source": "tcgdex",
+            "image_status": "exact",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": "https://assets.tcgdex.net/en/xy/xy4/65a",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "774ede24-bbda-4628-8edc-4b554b2a9e46",
+              "image_url": null,
+              "created_at": "2026-03-27T00:48:27.440555+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xy4-65a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "83de8efb-e8de-4a40-b29d-2307c79cbb46",
+              "image_url": null,
+              "created_at": "2026-03-27T00:48:27.350501+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "normal",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xy4-65a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "991e07d0-28ec-4f4a-9d02-d658a3ca5c29",
+              "image_url": null,
+              "created_at": "2026-03-27T00:48:27.543761+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "reverse",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xy4-65a",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 62101,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2026-02-26T05:42:43.437135+00:00",
+              "external_id": "xy4-65a",
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "282baf89-8409-4442-92c2-e5cbf30ee512",
+              "is_active": true,
+              "created_at": "2026-04-03T18:02:50.808535+00:00",
+              "updated_at": "2026-04-03T18:02:50.808535+00:00",
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+              "printed_number": "65a",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_total": 119,
+                "printed_set_abbrev": "PHF"
+              },
+              "identity_key_hash": "4e4bf2d31d185601db3fafbc0fc6b3c9fa1126f20a0837c9fdbc968e74e5c15e",
+              "set_code_identity": "xy4",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "aegislash ex"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 170,
+              "id": 39665,
+              "types": [
+                "Metal"
+              ],
+              "rarity": "Rare",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T00:48:27.752654+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 681,
+              "card_category": "Basic",
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "ede319e4-4c23-40be-a358-90657b079707",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Aegislash EX",
+                "supertype": "Pokemon",
+                "card_category": "Basic",
+                "matched_token": "aegislash"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "ed521022-94f0-4865-8bfa-5949c7bab756",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+          "card_print": {
+            "id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+            "name": "Karen",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Common",
+            "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://assets.tcgdex.net/en/xy/xyp/XY177a/high.webp",
+            "created_at": "2026-03-27T00:44:10.929945+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T00:44:10.929945+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "xyp-XY177a"
+            },
+            "image_source": "tcgdex",
+            "image_status": "exact",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": "https://assets.tcgdex.net/en/xy/xyp/XY177a",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "3dac3701-00e5-45e1-aece-72dc32fc38f9",
+              "image_url": null,
+              "created_at": "2026-03-27T00:44:11.200884+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY177a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "dadbfcd5-ea0b-4adf-a33e-9fd46731079a",
+              "image_url": null,
+              "created_at": "2026-03-27T00:44:11.109551+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "normal",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY177a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "9ccd5531-c8c6-4239-b5e9-1ee3145410a6",
+              "image_url": null,
+              "created_at": "2026-03-27T00:44:11.292909+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "reverse",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY177a",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 42689,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2025-12-08T19:12:04.297896+00:00",
+              "external_id": "xyp-XY177a",
+              "card_print_id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": null,
+              "id": 39416,
+              "types": null,
+              "rarity": "Common",
+              "source": "tcgdex",
+              "supertype": "Trainer",
+              "confidence": null,
+              "created_at": "2026-03-27T00:44:11.464233+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": []
+        },
+        {
+          "id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+          "card_print": {
+            "id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+            "name": "M Camerupt-EX",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Common",
+            "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://assets.tcgdex.net/en/xy/xyp/XY198a/high.webp",
+            "created_at": "2026-03-27T00:44:36.153456+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T00:44:36.153456+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "xyp-XY198a"
+            },
+            "image_source": "tcgdex",
+            "image_status": "exact",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": "https://assets.tcgdex.net/en/xy/xyp/XY198a",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "c35b98b6-55a7-43d8-b29f-3ed6343ce699",
+              "image_url": null,
+              "created_at": "2026-03-27T00:44:36.441561+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY198a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "e03da06b-8831-4ea1-900c-8119f947b361",
+              "image_url": null,
+              "created_at": "2026-03-27T00:44:36.339628+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "normal",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY198a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "a04adbce-fdf3-492b-9e4a-f1575dcaf280",
+              "image_url": null,
+              "created_at": "2026-03-27T00:44:36.53174+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "reverse",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY198a",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 42712,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2025-12-08T19:12:13.327538+00:00",
+              "external_id": "xyp-XY198a",
+              "card_print_id": "0fa596a5-2124-410e-9faa-50f7fc970134"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": 230,
+              "id": 39440,
+              "types": [
+                "Fire"
+              ],
+              "rarity": "Common",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T00:44:36.806153+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 323,
+              "card_category": "MEGA",
+              "card_print_id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "3e0a34d4-ec60-4263-86b3-be81a37c1690",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "M Camerupt-EX",
+                "supertype": "Pokemon",
+                "card_category": "MEGA",
+                "matched_token": "camerupt"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "a0760f42-fa13-4706-96fb-d30032848c0d",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "0fa596a5-2124-410e-9faa-50f7fc970134",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+          "card_print": {
+            "id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+            "name": "Yveltal-EX",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Rare",
+            "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://assets.tcgdex.net/en/xy/xyp/XY150a/high.webp",
+            "created_at": "2026-03-27T00:43:39.533861+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T00:43:39.533861+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "xyp-XY150a"
+            },
+            "image_source": "tcgdex",
+            "image_status": "exact",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": "https://assets.tcgdex.net/en/xy/xyp/XY150a",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "e0302e24-fc3d-42d1-8417-8c2caaf23526",
+              "image_url": null,
+              "created_at": "2026-03-27T00:43:39.810824+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY150a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "06438f68-3c27-4d08-bce1-2648afbfbbaa",
+              "image_url": null,
+              "created_at": "2026-03-27T00:43:39.716735+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "normal",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY150a",
+              "provenance_source": "tcgdex"
+            },
+            {
+              "id": "363e046f-55d7-4420-bcbd-98eb7af91bb3",
+              "image_url": null,
+              "created_at": "2026-03-27T00:43:39.921411+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "reverse",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "xyp-XY150a",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 42660,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2025-12-08T19:11:51.952042+00:00",
+              "external_id": "xyp-XY150a",
+              "card_print_id": "6b99ca2c-6f45-4089-b566-7f2927aa101f"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": 170,
+              "id": 39386,
+              "types": [
+                "Darkness"
+              ],
+              "rarity": "Rare",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T00:43:40.116636+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 717,
+              "card_category": null,
+              "card_print_id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "9f41dd73-8081-49c8-9fb0-15e6967ca3d2",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Yveltal-EX",
+                "supertype": "Pokemon",
+                "card_category": null,
+                "matched_token": "yveltal"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "263627f8-f572-4fff-a7a8-4762519f2654",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+              "counts_for_completion": true
+            }
+          ]
+        }
+      ],
+      "hash_sha256": "d8014a20e205855785e81263413eb2ce35632fa78cef975c2bb2b89cc33b37fe",
+      "impact_counts": {
+        "card_prints_found": 8,
+        "duplicate_parents_present": 4,
+        "owner_parents_present": 4,
+        "duplicate_child_printings": 12,
+        "owner_child_printings": 4,
+        "duplicate_external_mappings": 4,
+        "duplicate_identity_rows": 1,
+        "duplicate_trait_rows": 4,
+        "duplicate_species_rows": 3,
+        "duplicate_external_printing_refs": 0,
+        "duplicate_vault_printing_refs": 0,
+        "duplicate_warehouse_printing_refs": 0
+      }
+    }
+  },
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "stop_findings": [],
+  "required_real_apply_approval_text": "Approve real ENRICH-13F1-SUFFIX-DUPLICATE-TRANSFER apply only. Fingerprint: 8d363c0d4eff9389606fa452090e234830c207438057cbf48733f110e67cdc5b. SQL hash: 4b8b0a01d14d2b84efae86cc73799dc7e5427da9937dce502b348e9faa41e4bd. Scope: 4 duplicate suffix parent dependency transfers, 12 child printings deduped/transferred, 4 external mappings handled; 4 base-number rows remain blocked. Dry-run proof: d8014a20e205855785e81263413eb2ce35632fa78cef975c2bb2b89cc33b37fe == d8014a20e205855785e81263413eb2ce35632fa78cef975c2bb2b89cc33b37fe. No global apply. No migrations. No image writes."
+}

@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../services/identity/display_identity.dart';
+import '../../services/identity/image_presentation.dart';
 import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
@@ -180,6 +181,10 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           number: data.number,
           rarity: data.rarity,
           imageUrl: data.imageUrl,
+          canonicalImageUrl: data.canonicalImageUrl,
+          representativeImageUrl: data.representativeImageUrl,
+          imageStatus: data.imageStatus,
+          imageNote: data.imageNote,
           variantKey: data.variantKey,
           printedIdentityModifier: data.printedIdentityModifier,
           setIdentityModel: data.setIdentityModel,
@@ -244,6 +249,10 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           number: data.number,
           rarity: data.rarity,
           imageUrl: data.imageUrl,
+          canonicalImageUrl: data.canonicalImageUrl,
+          representativeImageUrl: data.representativeImageUrl,
+          imageStatus: data.imageStatus,
+          imageNote: data.imageNote,
           variantKey: data.variantKey,
           printedIdentityModifier: data.printedIdentityModifier,
           setIdentityModel: data.setIdentityModel,
@@ -351,6 +360,10 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           number: data.number,
           rarity: data.rarity,
           imageUrl: data.imageUrl,
+          canonicalImageUrl: data.canonicalImageUrl,
+          representativeImageUrl: data.representativeImageUrl,
+          imageStatus: data.imageStatus,
+          imageNote: data.imageNote,
           variantKey: data.variantKey,
           printedIdentityModifier: data.printedIdentityModifier,
           setIdentityModel: data.setIdentityModel,
@@ -444,6 +457,10 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           number: data.number,
           rarity: data.rarity,
           imageUrl: data.imageUrl,
+          canonicalImageUrl: data.canonicalImageUrl,
+          representativeImageUrl: data.representativeImageUrl,
+          imageStatus: data.imageStatus,
+          imageNote: data.imageNote,
           variantKey: data.variantKey,
           printedIdentityModifier: data.printedIdentityModifier,
           setIdentityModel: data.setIdentityModel,
@@ -777,6 +794,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
       if ((data.number ?? '').isNotEmpty) '#${data.number}',
     ];
     final displayIdentity = _manageCardDisplayIdentity(data);
+    final imagePresentation = _manageCardImagePresentation(data);
     final heroPrice = _pricing?.visibleValue == null
         ? null
         : CardSurfacePricePill(
@@ -792,8 +810,29 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         children: [
           Align(
             alignment: Alignment.center,
-            child: _CardThumb(imageUrl: data.imageUrl, size: 176),
+            child: Stack(
+              children: [
+                _CardThumb(imageUrl: data.imageUrl, size: 176),
+                if (imagePresentation.compactBadgeLabel != null)
+                  Positioned(
+                    left: 8,
+                    right: 8,
+                    bottom: 8,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: _ManageImageStatusBadge(
+                        label: imagePresentation.compactBadgeLabel!,
+                        strong: imagePresentation.isCollisionRepresentative,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
+          if (imagePresentation.detailNote != null) ...[
+            const SizedBox(height: 10),
+            _ManageImageTruthNote(note: imagePresentation.detailNote!),
+          ],
           const SizedBox(height: 10),
           _PillLabel(
             label: data.isShared ? 'On Wall' : 'Private',
@@ -863,8 +902,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     }
 
     final mixTags = <Widget>[
-      if (data.inPlayCount > 0)
-        _InlineTag(label: '${data.inPlayCount} Public'),
+      if (data.inPlayCount > 0) _InlineTag(label: '${data.inPlayCount} Public'),
       for (final option in kVaultIntentOptions)
         if (option.value != 'hold')
           if ((copyIntentCounts[option.value] ?? 0) > 0)
@@ -1089,10 +1127,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
               isDense: true,
             ),
             items: [
-              const DropdownMenuItem<String>(
-                value: '',
-                child: Text('None'),
-              ),
+              const DropdownMenuItem<String>(value: '', child: Text('None')),
               ...kWallCategoryOptions.map(
                 (option) => DropdownMenuItem<String>(
                   value: option.value,
@@ -1428,6 +1463,22 @@ class _ManageSurface extends StatelessWidget {
   }
 }
 
+ResolvedImagePresentation _manageCardImagePresentation(
+  VaultManageCardData data,
+) {
+  final normalizedStatus = (data.imageStatus ?? '').trim().toLowerCase();
+  return resolveImagePresentationFromFields(
+    imageUrl: data.canonicalImageUrl,
+    representativeImageUrl: data.representativeImageUrl,
+    displayImageUrl: data.imageUrl,
+    displayImageKind: normalizedStatus.startsWith('representative_')
+        ? 'representative'
+        : null,
+    imageStatus: data.imageStatus,
+    imageNote: data.imageNote,
+  );
+}
+
 class _CardThumb extends StatelessWidget {
   const _CardThumb({required this.imageUrl, required this.size});
 
@@ -1473,6 +1524,80 @@ class _CardThumb extends StatelessWidget {
                   child: const Center(child: Icon(Icons.broken_image)),
                 ),
               ),
+      ),
+    );
+  }
+}
+
+class _ManageImageStatusBadge extends StatelessWidget {
+  const _ManageImageStatusBadge({required this.label, this.strong = false});
+
+  final String label;
+  final bool strong;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final backgroundColor = strong
+        ? colorScheme.tertiaryContainer.withValues(alpha: 0.92)
+        : colorScheme.surface.withValues(alpha: 0.94);
+    final borderColor = strong
+        ? colorScheme.tertiary.withValues(alpha: 0.22)
+        : colorScheme.outline.withValues(alpha: 0.12);
+    final textColor = strong
+        ? colorScheme.onTertiaryContainer
+        : colorScheme.onSurface.withValues(alpha: 0.78);
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: borderColor),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+        child: Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: textColor,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 0.2,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ManageImageTruthNote extends StatelessWidget {
+  const _ManageImageTruthNote({required this.note});
+
+  final String note;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.tertiaryContainer.withValues(alpha: 0.38),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: colorScheme.tertiary.withValues(alpha: 0.14)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+        child: Text(
+          note,
+          textAlign: TextAlign.center,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: colorScheme.onTertiaryContainer,
+            height: 1.32,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
     );
   }

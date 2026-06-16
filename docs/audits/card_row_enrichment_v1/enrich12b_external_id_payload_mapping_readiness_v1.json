@@ -1,0 +1,584 @@
+{
+  "version": "ENRICH12B_EXTERNAL_ID_PAYLOAD_MAPPING_READINESS_V1",
+  "package_id": "ENRICH-12B-EXTERNAL-ID-PAYLOAD-MAPPING-READINESS",
+  "generated_at": "2026-06-16T03:37:38.609Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "allowed_sources": [
+    "pokemonapi",
+    "tcgdex"
+  ],
+  "fingerprint_sha256": "c7cf5406b6730fed04e04436c121322a12041c5e418abc81033edc3a000073a2",
+  "totals": {
+    "candidate_parent_rows": 14,
+    "candidate_mapping_rows": 15,
+    "ready_mapping_rows": 0,
+    "blocked_mapping_rows": 15,
+    "existing_owner_rows": 15
+  },
+  "by_readiness_status": {
+    "blocked_variant_source_id_owned_by_base_parent": 11,
+    "blocked_existing_source_external_owner": 4
+  },
+  "by_source": {
+    "tcgdex": 13,
+    "pokemonapi": 2
+  },
+  "by_set_top_25": {
+    "sv8pt5": 4,
+    "bw1": 3,
+    "swshp": 2,
+    "bw2": 1,
+    "bw3": 1,
+    "hgss1": 1,
+    "sv02": 1,
+    "sv03": 1,
+    "sv05": 1
+  },
+  "ready_rows": [],
+  "blocked_rows": [
+    {
+      "card_print_id": "44852672-52b9-48e4-aa78-4f49278481d9",
+      "set_code": "sv02",
+      "set_name": "Paldea Evolved",
+      "number": "61",
+      "number_plain": "61",
+      "card_name": "Chien-Pao ex",
+      "printed_identity_modifier": "prize_pack_stamp",
+      "external_ids": {
+        "pokemonapi": "sv2-61"
+      },
+      "source": "pokemonapi",
+      "external_id": "sv2-61",
+      "value_type": "string",
+      "readiness_status": "blocked_variant_source_id_owned_by_base_parent",
+      "existing_owners": [
+        {
+          "target_card_print_id": "44852672-52b9-48e4-aa78-4f49278481d9",
+          "source": "pokemonapi",
+          "external_id": "sv2-61",
+          "target_set_code": "sv02",
+          "target_number": "61",
+          "target_number_plain": "61",
+          "target_card_name": "Chien-Pao ex",
+          "target_printed_identity_modifier": "prize_pack_stamp",
+          "existing_mapping_id": "28952",
+          "existing_card_print_id": "db71ab6f-2bfd-408e-ae62-6f343c72235c",
+          "existing_set_code": "sv02",
+          "existing_number": "61",
+          "existing_number_plain": "61",
+          "existing_card_name": "Chien-Pao ex",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "4b357bb7-2b35-48a7-903e-28b6bfae0874",
+      "set_code": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "number": "SWSH167",
+      "number_plain": "167",
+      "card_name": "Professor Burnet",
+      "printed_identity_modifier": "professor_program_stamp",
+      "external_ids": {
+        "tcgdex": "swshp-SWSH167",
+        "pokemonapi": "swshp-SWSH167"
+      },
+      "source": "pokemonapi",
+      "external_id": "swshp-SWSH167",
+      "value_type": "string",
+      "readiness_status": "blocked_variant_source_id_owned_by_base_parent",
+      "existing_owners": [
+        {
+          "target_card_print_id": "4b357bb7-2b35-48a7-903e-28b6bfae0874",
+          "source": "pokemonapi",
+          "external_id": "swshp-SWSH167",
+          "target_set_code": "swshp",
+          "target_number": "SWSH167",
+          "target_number_plain": "167",
+          "target_card_name": "Professor Burnet",
+          "target_printed_identity_modifier": "professor_program_stamp",
+          "existing_mapping_id": "4545",
+          "existing_card_print_id": "e84bba1a-1d8f-4a14-bb65-12c2ebfa04b5",
+          "existing_set_code": "swshp",
+          "existing_number": "SWSH167",
+          "existing_number_plain": "167",
+          "existing_card_name": "Professor Burnet",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "46c3ad1f-90ed-45e2-8997-ee2bcc7fe8ec",
+      "set_code": "bw1",
+      "set_name": "Black & White",
+      "number": "53",
+      "number_plain": "53",
+      "card_name": "Whirlipede",
+      "printed_identity_modifier": "league_stamp",
+      "external_ids": {
+        "tcgdex": "bw1-53"
+      },
+      "source": "tcgdex",
+      "external_id": "bw1-53",
+      "value_type": "string",
+      "readiness_status": "blocked_variant_source_id_owned_by_base_parent",
+      "existing_owners": [
+        {
+          "target_card_print_id": "46c3ad1f-90ed-45e2-8997-ee2bcc7fe8ec",
+          "source": "tcgdex",
+          "external_id": "bw1-53",
+          "target_set_code": "bw1",
+          "target_number": "53",
+          "target_number_plain": "53",
+          "target_card_name": "Whirlipede",
+          "target_printed_identity_modifier": "league_stamp",
+          "existing_mapping_id": "30261",
+          "existing_card_print_id": "68600d39-7fbd-4d1e-97ae-684955e53e05",
+          "existing_set_code": "bw1",
+          "existing_number": "53",
+          "existing_number_plain": "53",
+          "existing_card_name": "Whirlipede",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "1583719c-b09d-43e4-b806-e5ef906d1511",
+      "set_code": "bw1",
+      "set_name": "Black & White",
+      "number": "79",
+      "number_plain": "79",
+      "card_name": "Watchog",
+      "printed_identity_modifier": "league_stamp",
+      "external_ids": {
+        "tcgdex": "bw1-79"
+      },
+      "source": "tcgdex",
+      "external_id": "bw1-79",
+      "value_type": "string",
+      "readiness_status": "blocked_variant_source_id_owned_by_base_parent",
+      "existing_owners": [
+        {
+          "target_card_print_id": "1583719c-b09d-43e4-b806-e5ef906d1511",
+          "source": "tcgdex",
+          "external_id": "bw1-79",
+          "target_set_code": "bw1",
+          "target_number": "79",
+          "target_number_plain": "79",
+          "target_card_name": "Watchog",
+          "target_printed_identity_modifier": "league_stamp",
+          "existing_mapping_id": "30287",
+          "existing_card_print_id": "e67ff8fa-b1c0-4be4-9989-3783e8d3d7e8",
+          "existing_set_code": "bw1",
+          "existing_number": "79",
+          "existing_number_plain": "79",
+          "existing_card_name": "Watchog",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "9df3e0aa-cfb3-449d-92d5-a7a3c5f8cbcf",
+      "set_code": "bw1",
+      "set_name": "Black & White",
+      "number": "81",
+      "number_plain": "81",
+      "card_name": "Lillipup",
+      "printed_identity_modifier": "league_stamp",
+      "external_ids": {
+        "tcgdex": "bw1-81"
+      },
+      "source": "tcgdex",
+      "external_id": "bw1-81",
+      "value_type": "string",
+      "readiness_status": "blocked_variant_source_id_owned_by_base_parent",
+      "existing_owners": [
+        {
+          "target_card_print_id": "9df3e0aa-cfb3-449d-92d5-a7a3c5f8cbcf",
+          "source": "tcgdex",
+          "external_id": "bw1-81",
+          "target_set_code": "bw1",
+          "target_number": "81",
+          "target_number_plain": "81",
+          "target_card_name": "Lillipup",
+          "target_printed_identity_modifier": "league_stamp",
+          "existing_mapping_id": "30289",
+          "existing_card_print_id": "23f77e4a-186b-46f5-bdee-e832ca467f12",
+          "existing_set_code": "bw1",
+          "existing_number": "81",
+          "existing_number_plain": "81",
+          "existing_card_name": "Lillipup",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "6f4c117e-30b4-4ed4-996e-3f29131b24e6",
+      "set_code": "bw2",
+      "set_name": "Emerging Powers",
+      "number": "82",
+      "number_plain": "82",
+      "card_name": "Unfezant",
+      "printed_identity_modifier": "league_stamp",
+      "external_ids": {
+        "tcgdex": "bw2-82"
+      },
+      "source": "tcgdex",
+      "external_id": "bw2-82",
+      "value_type": "string",
+      "readiness_status": "blocked_variant_source_id_owned_by_base_parent",
+      "existing_owners": [
+        {
+          "target_card_print_id": "6f4c117e-30b4-4ed4-996e-3f29131b24e6",
+          "source": "tcgdex",
+          "external_id": "bw2-82",
+          "target_set_code": "bw2",
+          "target_number": "82",
+          "target_number_plain": "82",
+          "target_card_name": "Unfezant",
+          "target_printed_identity_modifier": "league_stamp",
+          "existing_mapping_id": "30519",
+          "existing_card_print_id": "d5e557e6-186e-4c57-95f6-85373517711b",
+          "existing_set_code": "bw2",
+          "existing_number": "82",
+          "existing_number_plain": "82",
+          "existing_card_name": "Unfezant",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "642b428d-8a06-4bcb-a4bd-edd9a33b83fe",
+      "set_code": "bw3",
+      "set_name": "Noble Victories",
+      "number": "32",
+      "number_plain": "32",
+      "card_name": "Cryogonal",
+      "printed_identity_modifier": "league_stamp",
+      "external_ids": {
+        "tcgdex": "bw3-32"
+      },
+      "source": "tcgdex",
+      "external_id": "bw3-32",
+      "value_type": "string",
+      "readiness_status": "blocked_variant_source_id_owned_by_base_parent",
+      "existing_owners": [
+        {
+          "target_card_print_id": "642b428d-8a06-4bcb-a4bd-edd9a33b83fe",
+          "source": "tcgdex",
+          "external_id": "bw3-32",
+          "target_set_code": "bw3",
+          "target_number": "32",
+          "target_number_plain": "32",
+          "target_card_name": "Cryogonal",
+          "target_printed_identity_modifier": "league_stamp",
+          "existing_mapping_id": "30565",
+          "existing_card_print_id": "e6a84ebc-2184-42db-ad04-f19c762133f6",
+          "existing_set_code": "bw3",
+          "existing_number": "32",
+          "existing_number_plain": "32",
+          "existing_card_name": "Cryogonal",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "c2d8b50a-f752-4d7f-9362-f212b3d10b98",
+      "set_code": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "number": "39",
+      "number_plain": "39",
+      "card_name": "Delibird",
+      "printed_identity_modifier": "league_stamp",
+      "external_ids": {
+        "tcgdex": "hgss1-39"
+      },
+      "source": "tcgdex",
+      "external_id": "hgss1-39",
+      "value_type": "string",
+      "readiness_status": "blocked_variant_source_id_owned_by_base_parent",
+      "existing_owners": [
+        {
+          "target_card_print_id": "c2d8b50a-f752-4d7f-9362-f212b3d10b98",
+          "source": "tcgdex",
+          "external_id": "hgss1-39",
+          "target_set_code": "hgss1",
+          "target_number": "39",
+          "target_number_plain": "39",
+          "target_card_name": "Delibird",
+          "target_printed_identity_modifier": "league_stamp",
+          "existing_mapping_id": "34296",
+          "existing_card_print_id": "5fb7382a-f366-42ed-bd64-6a9c91e98a32",
+          "existing_set_code": "hgss1",
+          "existing_number": "39",
+          "existing_number_plain": "39",
+          "existing_card_name": "Delibird",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "48b0a8ed-c49c-445e-a5bb-c2827433f72b",
+      "set_code": "sv03",
+      "set_name": "Obsidian Flames",
+      "number": "086",
+      "number_plain": "086",
+      "card_name": "Espeon",
+      "printed_identity_modifier": "obsidian_flames_stamp",
+      "external_ids": {
+        "tcgdex": "sv03-086"
+      },
+      "source": "tcgdex",
+      "external_id": "sv03-086",
+      "value_type": "string",
+      "readiness_status": "blocked_variant_source_id_owned_by_base_parent",
+      "existing_owners": [
+        {
+          "target_card_print_id": "48b0a8ed-c49c-445e-a5bb-c2827433f72b",
+          "source": "tcgdex",
+          "external_id": "sv03-086",
+          "target_set_code": "sv03",
+          "target_number": "086",
+          "target_number_plain": "086",
+          "target_card_name": "Espeon",
+          "target_printed_identity_modifier": "obsidian_flames_stamp",
+          "existing_mapping_id": "24761",
+          "existing_card_print_id": "067019a2-583e-4829-b498-5eb6e795ba8d",
+          "existing_set_code": "sv03",
+          "existing_number": "086",
+          "existing_number_plain": "086",
+          "existing_card_name": "Espeon",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "cabde3d3-c349-497f-9254-64a5ad653fb1",
+      "set_code": "sv05",
+      "set_name": "Temporal Forces",
+      "number": "123",
+      "number_plain": "123",
+      "card_name": "Raging Bolt ex",
+      "printed_identity_modifier": "prize_pack_stamp",
+      "external_ids": {
+        "tcgdex": "sv05-123"
+      },
+      "source": "tcgdex",
+      "external_id": "sv05-123",
+      "value_type": "string",
+      "readiness_status": "blocked_variant_source_id_owned_by_base_parent",
+      "existing_owners": [
+        {
+          "target_card_print_id": "cabde3d3-c349-497f-9254-64a5ad653fb1",
+          "source": "tcgdex",
+          "external_id": "sv05-123",
+          "target_set_code": "sv05",
+          "target_number": "123",
+          "target_number_plain": "123",
+          "target_card_name": "Raging Bolt ex",
+          "target_printed_identity_modifier": "prize_pack_stamp",
+          "existing_mapping_id": "55869",
+          "existing_card_print_id": "56d2fd64-e008-4d3a-996e-705322f3ff84",
+          "existing_set_code": "sv05",
+          "existing_number": "123",
+          "existing_number_plain": "123",
+          "existing_card_name": "Raging Bolt ex",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "3162a7f3-b6f7-427a-9f81-599a3ce440d9",
+      "set_code": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "number": "122",
+      "number_plain": "122",
+      "card_name": "Professor's Research",
+      "printed_identity_modifier": null,
+      "external_ids": {
+        "tcgdex": "sv08.5-122"
+      },
+      "source": "tcgdex",
+      "external_id": "sv08.5-122",
+      "value_type": "string",
+      "readiness_status": "blocked_existing_source_external_owner",
+      "existing_owners": [
+        {
+          "target_card_print_id": "3162a7f3-b6f7-427a-9f81-599a3ce440d9",
+          "source": "tcgdex",
+          "external_id": "sv08.5-122",
+          "target_set_code": "sv8pt5",
+          "target_number": "122",
+          "target_number_plain": "122",
+          "target_card_name": "Professor's Research",
+          "target_printed_identity_modifier": null,
+          "existing_mapping_id": "58398",
+          "existing_card_print_id": "4e5c03dd-6337-4c96-8061-2397e8558f4f",
+          "existing_set_code": "sv08.5",
+          "existing_number": "122",
+          "existing_number_plain": "122",
+          "existing_card_name": "Professor's Research",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "984a16d4-e369-4f74-ae0a-1f3d0dc58c54",
+      "set_code": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "number": "123",
+      "number_plain": "123",
+      "card_name": "Professor's Research",
+      "printed_identity_modifier": null,
+      "external_ids": {
+        "tcgdex": "sv08.5-123"
+      },
+      "source": "tcgdex",
+      "external_id": "sv08.5-123",
+      "value_type": "string",
+      "readiness_status": "blocked_existing_source_external_owner",
+      "existing_owners": [
+        {
+          "target_card_print_id": "984a16d4-e369-4f74-ae0a-1f3d0dc58c54",
+          "source": "tcgdex",
+          "external_id": "sv08.5-123",
+          "target_set_code": "sv8pt5",
+          "target_number": "123",
+          "target_number_plain": "123",
+          "target_card_name": "Professor's Research",
+          "target_printed_identity_modifier": null,
+          "existing_mapping_id": "58399",
+          "existing_card_print_id": "6e877e52-ef76-4778-8162-9fbe5a81093b",
+          "existing_set_code": "sv08.5",
+          "existing_number": "123",
+          "existing_number_plain": "123",
+          "existing_card_name": "Professor's Research",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "c3905c5e-87b0-4694-be72-803230ea6a51",
+      "set_code": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "number": "124",
+      "number_plain": "124",
+      "card_name": "Professor's Research",
+      "printed_identity_modifier": null,
+      "external_ids": {
+        "tcgdex": "sv08.5-124"
+      },
+      "source": "tcgdex",
+      "external_id": "sv08.5-124",
+      "value_type": "string",
+      "readiness_status": "blocked_existing_source_external_owner",
+      "existing_owners": [
+        {
+          "target_card_print_id": "c3905c5e-87b0-4694-be72-803230ea6a51",
+          "source": "tcgdex",
+          "external_id": "sv08.5-124",
+          "target_set_code": "sv8pt5",
+          "target_number": "124",
+          "target_number_plain": "124",
+          "target_card_name": "Professor's Research",
+          "target_printed_identity_modifier": null,
+          "existing_mapping_id": "58400",
+          "existing_card_print_id": "321e5906-9e70-4c1f-b92f-9d5d5096e45c",
+          "existing_set_code": "sv08.5",
+          "existing_number": "124",
+          "existing_number_plain": "124",
+          "existing_card_name": "Professor's Research",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "ab4abeaf-c348-4081-82d8-09f77dae782b",
+      "set_code": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "number": "125",
+      "number_plain": "125",
+      "card_name": "Professor's Research",
+      "printed_identity_modifier": null,
+      "external_ids": {
+        "tcgdex": "sv08.5-125"
+      },
+      "source": "tcgdex",
+      "external_id": "sv08.5-125",
+      "value_type": "string",
+      "readiness_status": "blocked_existing_source_external_owner",
+      "existing_owners": [
+        {
+          "target_card_print_id": "ab4abeaf-c348-4081-82d8-09f77dae782b",
+          "source": "tcgdex",
+          "external_id": "sv08.5-125",
+          "target_set_code": "sv8pt5",
+          "target_number": "125",
+          "target_number_plain": "125",
+          "target_card_name": "Professor's Research",
+          "target_printed_identity_modifier": null,
+          "existing_mapping_id": "58401",
+          "existing_card_print_id": "89b167bd-5293-44ff-819b-b8eb9499f3e9",
+          "existing_set_code": "sv08.5",
+          "existing_number": "125",
+          "existing_number_plain": "125",
+          "existing_card_name": "Professor's Research",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    },
+    {
+      "card_print_id": "4b357bb7-2b35-48a7-903e-28b6bfae0874",
+      "set_code": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "number": "SWSH167",
+      "number_plain": "167",
+      "card_name": "Professor Burnet",
+      "printed_identity_modifier": "professor_program_stamp",
+      "external_ids": {
+        "tcgdex": "swshp-SWSH167",
+        "pokemonapi": "swshp-SWSH167"
+      },
+      "source": "tcgdex",
+      "external_id": "swshp-SWSH167",
+      "value_type": "string",
+      "readiness_status": "blocked_variant_source_id_owned_by_base_parent",
+      "existing_owners": [
+        {
+          "target_card_print_id": "4b357bb7-2b35-48a7-903e-28b6bfae0874",
+          "source": "tcgdex",
+          "external_id": "swshp-SWSH167",
+          "target_set_code": "swshp",
+          "target_number": "SWSH167",
+          "target_number_plain": "167",
+          "target_card_name": "Professor Burnet",
+          "target_printed_identity_modifier": "professor_program_stamp",
+          "existing_mapping_id": "40929",
+          "existing_card_print_id": "e84bba1a-1d8f-4a14-bb65-12c2ebfa04b5",
+          "existing_set_code": "swshp",
+          "existing_number": "SWSH167",
+          "existing_number_plain": "167",
+          "existing_card_name": "Professor Burnet",
+          "existing_printed_identity_modifier": null
+        }
+      ]
+    }
+  ],
+  "recommended_next_step": "Do not create external_mappings from these payloads. All candidate source/external IDs are already actively owned elsewhere; resolve ownership or leave payloads as non-authoritative references.",
+  "safety": {
+    "writes_performed": [],
+    "forbidden": [
+      "external_mappings inserts",
+      "parent writes",
+      "child writes",
+      "identity writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ]
+  }
+}

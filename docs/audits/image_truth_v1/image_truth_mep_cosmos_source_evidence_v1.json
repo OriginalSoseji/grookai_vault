@@ -1,0 +1,120 @@
+{
+  "generated_at": "2026-06-14T00:00:00.000Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "scope": "MEP Black Star Promos finish-label governance for Image Truth V1 blockers",
+  "rule": "Do not image-fill a child printing when the source evidence says Cosmos Holo but the current target child finish is holo. Finish governance must resolve the child printing first.",
+  "rows": [
+    {
+      "set_code": "mep",
+      "number": "018",
+      "card_name": "Cottonee",
+      "current_target_finish_key": "holo",
+      "source_supported_finish_label": "Cosmos Holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_catalog_live",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/664051/pokemon-me-mega-evolution-promo-cottonee-cosmos-holo",
+          "evidence_label": "TCGplayer product title: Cottonee (Cosmos Holo)"
+        },
+        {
+          "source_key": "gamenerdz_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.gamenerdz.com/cottonee-cosmos-holo-18-me-mega-evolution-promo-holofoil",
+          "evidence_label": "GameNerdz product title: Cottonee (Cosmos Holo) 18 - ME Mega Evolution Promo Holofoil"
+        }
+      ]
+    },
+    {
+      "set_code": "mep",
+      "number": "019",
+      "card_name": "Whimsicott",
+      "current_target_finish_key": "holo",
+      "source_supported_finish_label": "Cosmos Holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_catalog_live",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/664054/pokemon-me-mega-evolution-promo-whimsicott-cosmos-holo",
+          "evidence_label": "TCGplayer product title: Whimsicott (Cosmos Holo)"
+        },
+        {
+          "source_key": "full_grip_games_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.fullgripgames.com/catalog/pokemon_singles-pokemon_promos-mega_evolution_promos/whimsicott__mep019__mep_black_star_promos__cosmos_holo/639896",
+          "evidence_label": "Full Grip Games product title/details: Whimsicott - MEP019 - MEP Black Star Promos - Cosmos Holo"
+        }
+      ]
+    },
+    {
+      "set_code": "mep",
+      "number": "020",
+      "card_name": "Sneasel",
+      "current_target_finish_key": "holo",
+      "source_supported_finish_label": "Cosmos Holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_catalog_live",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/664055/pokemon-me-mega-evolution-promo-sneasel-cosmos-holo",
+          "evidence_label": "TCGplayer product title: Sneasel (Cosmos Holo)"
+        },
+        {
+          "source_key": "tcgplayer_pro_catalog_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://jafcomics.tcgplayerpro.com/catalog/pokemon/me-mega-evolution-promo/sneasel-cosmos-holo/664055",
+          "evidence_label": "TCGplayerPro catalog title: Sneasel (Cosmos Holo)"
+        }
+      ]
+    },
+    {
+      "set_code": "mep",
+      "number": "021",
+      "card_name": "Weavile",
+      "current_target_finish_key": "holo",
+      "source_supported_finish_label": "Cosmos Holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_catalog_live",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/664063/pokemon-me-mega-evolution-promo-weavile-cosmos-holo",
+          "evidence_label": "TCGplayer product title: Weavile (Cosmos Holo)"
+        },
+        {
+          "source_key": "noble_knight_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.nobleknight.com/P/2148382534/Weavile-Cosmos-Holo-HR-021-Holo",
+          "evidence_label": "Noble Knight product title: Weavile (Cosmos Holo) (HR) #021 (Holo)"
+        }
+      ]
+    },
+    {
+      "set_code": "mep",
+      "number": "069",
+      "card_name": "Chikorita",
+      "current_target_finish_key": "holo",
+      "source_supported_finish_label": "Cosmos Holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_catalog_live",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/686342/pokemon-me-mega-evolution-promo-chikorita-cosmos-holo",
+          "evidence_label": "TCGplayer product title: Chikorita (Cosmos Holo)"
+        },
+        {
+          "source_key": "pokescope_card_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokescope.app/card/mep-69/",
+          "evidence_label": "PokeScope card page references Chikorita (Cosmos Holo) sold/listing evidence for MEP 069"
+        }
+      ]
+    }
+  ]
+}

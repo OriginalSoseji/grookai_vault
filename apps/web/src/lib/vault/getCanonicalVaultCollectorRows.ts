@@ -92,7 +92,7 @@ export type CanonicalVaultCollectorRow = {
   canonical_image_note: string | null;
   canonical_image_source: string | null;
   canonical_display_image_url: string | null;
-  canonical_display_image_kind: "exact" | "representative" | "missing";
+  canonical_display_image_kind: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
   created_at: string | null;
   is_slab: boolean;
   grader: string | null;

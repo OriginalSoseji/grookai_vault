@@ -1,0 +1,814 @@
+{
+  "version": "ENRICH10_POKEMONTCG_SNAPSHOT_RARITY_REAL_APPLY_V1",
+  "package_id": "ENRICH-10-POKEMONTCG-SNAPSHOT-RARITY-BACKFILL",
+  "generated_at": "2026-06-15T15:51:19.154Z",
+  "approved_text": "Approve real ENRICH-10-POKEMONTCG-SNAPSHOT-RARITY-BACKFILL apply only. Fingerprint: 374dde70fa829a159a61041193445e16b857e50d7aa8ec557115ff983d58ac40. Scope: 26 null-only card_prints.rarity updates from preserved PokemonTCG snapshot exact source IDs. Dry-run proof: 07f25c3238ade95521a13ec0c00ac5ae1f2029058dab24565348b1bb2f3b9f1e == 07f25c3238ade95521a13ec0c00ac5ae1f2029058dab24565348b1bb2f3b9f1e. No non-null overwrites. No artist writes. No regulation_mark writes. No variants writes. No child writes. No identity writes. No external mapping writes. No species writes. No deletes. No merges. No migrations. No image writes. No global apply.",
+  "package_fingerprint_sha256": "374dde70fa829a159a61041193445e16b857e50d7aa8ec557115ff983d58ac40",
+  "dry_run_proof": "07f25c3238ade95521a13ec0c00ac5ae1f2029058dab24565348b1bb2f3b9f1e == 07f25c3238ade95521a13ec0c00ac5ae1f2029058dab24565348b1bb2f3b9f1e",
+  "source_file": "docs\\audits\\card_row_enrichment_v1\\enrich10_pokemontcg_snapshot_rarity_guarded_dry_run_v1.json",
+  "source_snapshot": {
+    "file": "docs/audits/verified_master_set_index_v1/source_snapshots/pokemontcg_api_source_snapshot_v1.json.gz",
+    "generated_at": "2026-05-26T18:18:45.298Z"
+  },
+  "scope": {
+    "target_parent_rows": 26,
+    "writes_performed": [
+      "card_prints.rarity null-only updates"
+    ],
+    "durable_db_writes_performed": true,
+    "non_null_overwrites": false,
+    "artist_writes": false,
+    "regulation_mark_writes": false,
+    "variants_writes": false,
+    "child_writes": false,
+    "identity_writes": false,
+    "external_mapping_writes": false,
+    "species_writes": false,
+    "deletes": false,
+    "merges": false,
+    "migrations_created": false,
+    "image_writes": false,
+    "global_apply": false
+  },
+  "by_set": {
+    "bw11": 20,
+    "col1": 3,
+    "bwp": 2,
+    "svp": 1
+  },
+  "execution": {
+    "before_snapshot": {
+      "captured_at": "2026-06-15T15:51:18.377Z",
+      "rows": [
+        {
+          "card_print_id": "7acb6ae7-9749-49c6-bdc4-128e0fda1ebe",
+          "set_code": "bw11",
+          "number": "RC1",
+          "number_plain": "1",
+          "card_name": "Snivy",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "9ff063db-4121-456f-839a-f79822b7c7e0",
+          "set_code": "bw11",
+          "number": "RC10",
+          "number_plain": "10",
+          "card_name": "Gardevoir",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "ae5f8da5-8739-423f-a909-a4b35ef1f0f7",
+          "set_code": "bw11",
+          "number": "RC12",
+          "number_plain": "12",
+          "card_name": "Stunfisk",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "32e149cf-89c2-4786-9b59-fd20fecfd746",
+          "set_code": "bw11",
+          "number": "RC13",
+          "number_plain": "13",
+          "card_name": "Purrloin",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "2b3996ed-c314-4ccf-9c60-d3e7c13f6d62",
+          "set_code": "bw11",
+          "number": "RC14",
+          "number_plain": "14",
+          "card_name": "Eevee",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "f8d2770e-13a8-48ab-8fdd-f2134fcb43dc",
+          "set_code": "bw11",
+          "number": "RC15",
+          "number_plain": "15",
+          "card_name": "Teddiursa",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "64593d79-0242-4354-93d8-4fa5d27be758",
+          "set_code": "bw11",
+          "number": "RC16",
+          "number_plain": "16",
+          "card_name": "Ursaring",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "5cd07513-7d98-4952-accb-13efc906441a",
+          "set_code": "bw11",
+          "number": "RC18",
+          "number_plain": "18",
+          "card_name": "Minccino",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "25c0588d-9275-4b49-9b1d-1a590cc29f5c",
+          "set_code": "bw11",
+          "number": "RC19",
+          "number_plain": "19",
+          "card_name": "Cinccino",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "3b203a61-0bb1-486d-be32-32c724e71a7f",
+          "set_code": "bw11",
+          "number": "RC20",
+          "number_plain": "20",
+          "card_name": "Elesa",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "8f425977-bcfe-4a9f-bb2b-7d972a613ccb",
+          "set_code": "bw11",
+          "number": "RC21",
+          "number_plain": "21",
+          "card_name": "Shaymin-EX",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "2a03720e-a769-4898-b16b-aee0e6501ccd",
+          "set_code": "bw11",
+          "number": "RC22",
+          "number_plain": "22",
+          "card_name": "Reshiram",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "e9a99417-070e-4e70-9dc2-ddbbb907e03e",
+          "set_code": "bw11",
+          "number": "RC23",
+          "number_plain": "23",
+          "card_name": "Emolga",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "7b64eeaf-63e5-491e-b70e-893ba616e6eb",
+          "set_code": "bw11",
+          "number": "RC24",
+          "number_plain": "24",
+          "card_name": "Mew-EX",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "74c5fba4-3cae-43d2-9770-24dd1a4991f2",
+          "set_code": "bw11",
+          "number": "RC3",
+          "number_plain": "3",
+          "card_name": "Serperior",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "ba6a6c23-fd10-4715-b698-3a266c95b7ae",
+          "set_code": "bw11",
+          "number": "RC4",
+          "number_plain": "4",
+          "card_name": "Growlithe",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "efa15a49-a1f9-46b0-bd69-85111388328e",
+          "set_code": "bw11",
+          "number": "RC5",
+          "number_plain": "5",
+          "card_name": "Torchic",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "93bc63a0-3285-4360-8eb8-965d81bd26e8",
+          "set_code": "bw11",
+          "number": "RC6",
+          "number_plain": "6",
+          "card_name": "Piplup",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "fca222fa-9629-4b95-8e3e-c156871f1131",
+          "set_code": "bw11",
+          "number": "RC7",
+          "number_plain": "7",
+          "card_name": "Pikachu",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "def3b50f-4d4d-45f4-a4c0-29f91b8dbb0f",
+          "set_code": "bw11",
+          "number": "RC9",
+          "number_plain": "9",
+          "card_name": "Kirlia",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "7c7206cd-30ce-4729-94c0-6a8d9396530b",
+          "set_code": "bwp",
+          "number": "BW004",
+          "number_plain": "004",
+          "card_name": "Reshiram",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "a6eb05aa-ada9-4f59-b0eb-0a73df81c201",
+          "set_code": "bwp",
+          "number": "BW005",
+          "number_plain": "005",
+          "card_name": "Zekrom",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+          "set_code": "col1",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Clefable",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+          "set_code": "col1",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Houndoom",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+          "set_code": "col1",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Forretress",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "797add1a-99fc-41f6-a061-c36add0b20a9",
+          "set_code": "svp",
+          "number": "85",
+          "number_plain": "85",
+          "card_name": "Pikachu with Grey Felt Hat",
+          "rarity": null,
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        }
+      ],
+      "hash_sha256": "07f25c3238ade95521a13ec0c00ac5ae1f2029058dab24565348b1bb2f3b9f1e",
+      "row_count": 26
+    },
+    "apply_proof": {
+      "updated_parent_rows": 26,
+      "updated_samples": [
+        {
+          "card_print_id": "7acb6ae7-9749-49c6-bdc4-128e0fda1ebe",
+          "set_code": "bw11",
+          "number": "RC1",
+          "card_name": "Snivy",
+          "rarity": "Common"
+        },
+        {
+          "card_print_id": "9ff063db-4121-456f-839a-f79822b7c7e0",
+          "set_code": "bw11",
+          "number": "RC10",
+          "card_name": "Gardevoir",
+          "rarity": "Uncommon"
+        },
+        {
+          "card_print_id": "ae5f8da5-8739-423f-a909-a4b35ef1f0f7",
+          "set_code": "bw11",
+          "number": "RC12",
+          "card_name": "Stunfisk",
+          "rarity": "Uncommon"
+        },
+        {
+          "card_print_id": "32e149cf-89c2-4786-9b59-fd20fecfd746",
+          "set_code": "bw11",
+          "number": "RC13",
+          "card_name": "Purrloin",
+          "rarity": "Uncommon"
+        },
+        {
+          "card_print_id": "2b3996ed-c314-4ccf-9c60-d3e7c13f6d62",
+          "set_code": "bw11",
+          "number": "RC14",
+          "card_name": "Eevee",
+          "rarity": "Uncommon"
+        },
+        {
+          "card_print_id": "f8d2770e-13a8-48ab-8fdd-f2134fcb43dc",
+          "set_code": "bw11",
+          "number": "RC15",
+          "card_name": "Teddiursa",
+          "rarity": "Common"
+        },
+        {
+          "card_print_id": "64593d79-0242-4354-93d8-4fa5d27be758",
+          "set_code": "bw11",
+          "number": "RC16",
+          "card_name": "Ursaring",
+          "rarity": "Common"
+        },
+        {
+          "card_print_id": "5cd07513-7d98-4952-accb-13efc906441a",
+          "set_code": "bw11",
+          "number": "RC18",
+          "card_name": "Minccino",
+          "rarity": "Common"
+        },
+        {
+          "card_print_id": "25c0588d-9275-4b49-9b1d-1a590cc29f5c",
+          "set_code": "bw11",
+          "number": "RC19",
+          "card_name": "Cinccino",
+          "rarity": "Uncommon"
+        },
+        {
+          "card_print_id": "3b203a61-0bb1-486d-be32-32c724e71a7f",
+          "set_code": "bw11",
+          "number": "RC20",
+          "card_name": "Elesa",
+          "rarity": "Common"
+        },
+        {
+          "card_print_id": "8f425977-bcfe-4a9f-bb2b-7d972a613ccb",
+          "set_code": "bw11",
+          "number": "RC21",
+          "card_name": "Shaymin-EX",
+          "rarity": "Rare Ultra"
+        },
+        {
+          "card_print_id": "2a03720e-a769-4898-b16b-aee0e6501ccd",
+          "set_code": "bw11",
+          "number": "RC22",
+          "card_name": "Reshiram",
+          "rarity": "Rare Ultra"
+        },
+        {
+          "card_print_id": "e9a99417-070e-4e70-9dc2-ddbbb907e03e",
+          "set_code": "bw11",
+          "number": "RC23",
+          "card_name": "Emolga",
+          "rarity": "Rare Ultra"
+        },
+        {
+          "card_print_id": "7b64eeaf-63e5-491e-b70e-893ba616e6eb",
+          "set_code": "bw11",
+          "number": "RC24",
+          "card_name": "Mew-EX",
+          "rarity": "Rare Ultra"
+        },
+        {
+          "card_print_id": "74c5fba4-3cae-43d2-9770-24dd1a4991f2",
+          "set_code": "bw11",
+          "number": "RC3",
+          "card_name": "Serperior",
+          "rarity": "Uncommon"
+        },
+        {
+          "card_print_id": "ba6a6c23-fd10-4715-b698-3a266c95b7ae",
+          "set_code": "bw11",
+          "number": "RC4",
+          "card_name": "Growlithe",
+          "rarity": "Uncommon"
+        },
+        {
+          "card_print_id": "efa15a49-a1f9-46b0-bd69-85111388328e",
+          "set_code": "bw11",
+          "number": "RC5",
+          "card_name": "Torchic",
+          "rarity": "Common"
+        },
+        {
+          "card_print_id": "93bc63a0-3285-4360-8eb8-965d81bd26e8",
+          "set_code": "bw11",
+          "number": "RC6",
+          "card_name": "Piplup",
+          "rarity": "Uncommon"
+        },
+        {
+          "card_print_id": "fca222fa-9629-4b95-8e3e-c156871f1131",
+          "set_code": "bw11",
+          "number": "RC7",
+          "card_name": "Pikachu",
+          "rarity": "Uncommon"
+        },
+        {
+          "card_print_id": "def3b50f-4d4d-45f4-a4c0-29f91b8dbb0f",
+          "set_code": "bw11",
+          "number": "RC9",
+          "card_name": "Kirlia",
+          "rarity": "Common"
+        },
+        {
+          "card_print_id": "7c7206cd-30ce-4729-94c0-6a8d9396530b",
+          "set_code": "bwp",
+          "number": "BW004",
+          "card_name": "Reshiram",
+          "rarity": "Promo"
+        },
+        {
+          "card_print_id": "a6eb05aa-ada9-4f59-b0eb-0a73df81c201",
+          "set_code": "bwp",
+          "number": "BW005",
+          "card_name": "Zekrom",
+          "rarity": "Promo"
+        },
+        {
+          "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+          "set_code": "col1",
+          "number": "1",
+          "card_name": "Clefable",
+          "rarity": "Rare Holo"
+        },
+        {
+          "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+          "set_code": "col1",
+          "number": "10",
+          "card_name": "Houndoom",
+          "rarity": "Rare Holo"
+        },
+        {
+          "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+          "set_code": "col1",
+          "number": "5",
+          "card_name": "Forretress",
+          "rarity": "Rare Holo"
+        }
+      ],
+      "proof": {
+        "target_count": 26,
+        "matching_rarity_count": 26,
+        "unexpected_metadata_write_count": 0
+      }
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-15T15:51:19.153Z",
+      "rows": [
+        {
+          "card_print_id": "7acb6ae7-9749-49c6-bdc4-128e0fda1ebe",
+          "set_code": "bw11",
+          "number": "RC1",
+          "number_plain": "1",
+          "card_name": "Snivy",
+          "rarity": "Common",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "9ff063db-4121-456f-839a-f79822b7c7e0",
+          "set_code": "bw11",
+          "number": "RC10",
+          "number_plain": "10",
+          "card_name": "Gardevoir",
+          "rarity": "Uncommon",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "ae5f8da5-8739-423f-a909-a4b35ef1f0f7",
+          "set_code": "bw11",
+          "number": "RC12",
+          "number_plain": "12",
+          "card_name": "Stunfisk",
+          "rarity": "Uncommon",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "32e149cf-89c2-4786-9b59-fd20fecfd746",
+          "set_code": "bw11",
+          "number": "RC13",
+          "number_plain": "13",
+          "card_name": "Purrloin",
+          "rarity": "Uncommon",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "2b3996ed-c314-4ccf-9c60-d3e7c13f6d62",
+          "set_code": "bw11",
+          "number": "RC14",
+          "number_plain": "14",
+          "card_name": "Eevee",
+          "rarity": "Uncommon",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "f8d2770e-13a8-48ab-8fdd-f2134fcb43dc",
+          "set_code": "bw11",
+          "number": "RC15",
+          "number_plain": "15",
+          "card_name": "Teddiursa",
+          "rarity": "Common",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "64593d79-0242-4354-93d8-4fa5d27be758",
+          "set_code": "bw11",
+          "number": "RC16",
+          "number_plain": "16",
+          "card_name": "Ursaring",
+          "rarity": "Common",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "5cd07513-7d98-4952-accb-13efc906441a",
+          "set_code": "bw11",
+          "number": "RC18",
+          "number_plain": "18",
+          "card_name": "Minccino",
+          "rarity": "Common",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "25c0588d-9275-4b49-9b1d-1a590cc29f5c",
+          "set_code": "bw11",
+          "number": "RC19",
+          "number_plain": "19",
+          "card_name": "Cinccino",
+          "rarity": "Uncommon",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "3b203a61-0bb1-486d-be32-32c724e71a7f",
+          "set_code": "bw11",
+          "number": "RC20",
+          "number_plain": "20",
+          "card_name": "Elesa",
+          "rarity": "Common",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "8f425977-bcfe-4a9f-bb2b-7d972a613ccb",
+          "set_code": "bw11",
+          "number": "RC21",
+          "number_plain": "21",
+          "card_name": "Shaymin-EX",
+          "rarity": "Rare Ultra",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "2a03720e-a769-4898-b16b-aee0e6501ccd",
+          "set_code": "bw11",
+          "number": "RC22",
+          "number_plain": "22",
+          "card_name": "Reshiram",
+          "rarity": "Rare Ultra",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "e9a99417-070e-4e70-9dc2-ddbbb907e03e",
+          "set_code": "bw11",
+          "number": "RC23",
+          "number_plain": "23",
+          "card_name": "Emolga",
+          "rarity": "Rare Ultra",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "7b64eeaf-63e5-491e-b70e-893ba616e6eb",
+          "set_code": "bw11",
+          "number": "RC24",
+          "number_plain": "24",
+          "card_name": "Mew-EX",
+          "rarity": "Rare Ultra",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "74c5fba4-3cae-43d2-9770-24dd1a4991f2",
+          "set_code": "bw11",
+          "number": "RC3",
+          "number_plain": "3",
+          "card_name": "Serperior",
+          "rarity": "Uncommon",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "ba6a6c23-fd10-4715-b698-3a266c95b7ae",
+          "set_code": "bw11",
+          "number": "RC4",
+          "number_plain": "4",
+          "card_name": "Growlithe",
+          "rarity": "Uncommon",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "efa15a49-a1f9-46b0-bd69-85111388328e",
+          "set_code": "bw11",
+          "number": "RC5",
+          "number_plain": "5",
+          "card_name": "Torchic",
+          "rarity": "Common",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "93bc63a0-3285-4360-8eb8-965d81bd26e8",
+          "set_code": "bw11",
+          "number": "RC6",
+          "number_plain": "6",
+          "card_name": "Piplup",
+          "rarity": "Uncommon",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "fca222fa-9629-4b95-8e3e-c156871f1131",
+          "set_code": "bw11",
+          "number": "RC7",
+          "number_plain": "7",
+          "card_name": "Pikachu",
+          "rarity": "Uncommon",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "def3b50f-4d4d-45f4-a4c0-29f91b8dbb0f",
+          "set_code": "bw11",
+          "number": "RC9",
+          "number_plain": "9",
+          "card_name": "Kirlia",
+          "rarity": "Common",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "7c7206cd-30ce-4729-94c0-6a8d9396530b",
+          "set_code": "bwp",
+          "number": "BW004",
+          "number_plain": "004",
+          "card_name": "Reshiram",
+          "rarity": "Promo",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "a6eb05aa-ada9-4f59-b0eb-0a73df81c201",
+          "set_code": "bwp",
+          "number": "BW005",
+          "number_plain": "005",
+          "card_name": "Zekrom",
+          "rarity": "Promo",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+          "set_code": "col1",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Clefable",
+          "rarity": "Rare Holo",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+          "set_code": "col1",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Houndoom",
+          "rarity": "Rare Holo",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+          "set_code": "col1",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Forretress",
+          "rarity": "Rare Holo",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        },
+        {
+          "card_print_id": "797add1a-99fc-41f6-a061-c36add0b20a9",
+          "set_code": "svp",
+          "number": "85",
+          "number_plain": "85",
+          "card_name": "Pikachu with Grey Felt Hat",
+          "rarity": "Promo",
+          "artist": null,
+          "regulation_mark": null,
+          "variants": null
+        }
+      ],
+      "hash_sha256": "a928f271d7fe706b26bbc0c942b04de65251f74254bb12378b5b94b84c86d863",
+      "row_count": 26
+    }
+  },
+  "stop_findings": [],
+  "pass": true
+}

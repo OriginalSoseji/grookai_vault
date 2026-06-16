@@ -1,0 +1,191 @@
+{
+  "generated_at": "2026-06-14T17:48:50.504Z",
+  "package_id": "IMG-09C-MEP-TCGCSV-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-UPLOAD-APPLY",
+  "mode": "real_apply",
+  "db_writes_performed": true,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "fingerprint": "c1cd2bd061858d07cc43a8c57bd1ccfdf8d7ad904776a9568a40ec56bddf4f7b",
+  "storage_uploaded_rows": 17,
+  "db_updated_rows": 17,
+  "committed": true,
+  "uploaded_storage_paths": [
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/e6a54462-6d5e-4217-9a74-fccbe1be08ce/10fa3f519d43e793b00fefa8.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/cdd39b99-58f6-46ce-b8ca-d3b6605f8d0f/9c99dbe57a55343ec8f7e207.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/1990b1cd-63b3-42ba-8913-1fdb247bca01/b5156118f6ec13ccd5289c83.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/79a55f77-1746-4a55-8a75-5f87e983f333/9052d5c54896d9f84c7d38c1.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/43473b80-43d1-4433-9cfc-895e4703ca2b/0ffd6ed927d05f86eaf49909.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/4d1b3038-360c-43f1-bd9e-44895389a3fb/33c35c145b4c396020908e12.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/fa52b2fe-cb54-49e2-a97c-350a8954bb94/72c10049fb646b48139f2d2e.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/ed980bbd-e46d-4c75-b03c-cbd87ad8eebd/869a114d98439f1d94cb90d9.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/182a4ff4-c69a-400b-83c8-a782cffb4945/a8e158cc6c4a7166d6d21833.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/985d953d-a624-4a38-a22d-ae4dea45de6c/31139d87576834212b84e6ca.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/a93e64f3-8b39-447b-b233-b428abc09299/e13750811ac46b2780f4829f.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/f99678a3-d141-4ad5-a443-b39b593a45c9/7b5e20593d0c4323bd6298de.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/f5800572-5dbc-466f-8467-93b8fcc1eb4b/91362d6c8b8880544da483c9.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/fe9852cf-3d6d-429f-b590-82e5679ad17e/3150be3f71585a9b7de999dc.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/b6276cd5-a477-4e7c-869a-d8a45c109ec1/9cd56f1884565b0397087ea7.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/7cc8e470-9201-459e-8571-601f48ccce17/315fb4e8b2602e4b97b5d70c.jpg",
+    "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/7c26980c-cae2-421b-946a-017bee625fe4/971fe2595e11d80eaff28c1a.jpg"
+  ],
+  "rows": [
+    {
+      "card_printing_id": "e6a54462-6d5e-4217-9a74-fccbe1be08ce",
+      "set_code": "mep",
+      "card_name": "Charcadet",
+      "number": "022",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/e6a54462-6d5e-4217-9a74-fccbe1be08ce/10fa3f519d43e793b00fefa8.jpg",
+      "source_url": "https://www.tcgplayer.com/product/666538/pokemon-me-mega-evolution-promo-charcadet-022"
+    },
+    {
+      "card_printing_id": "cdd39b99-58f6-46ce-b8ca-d3b6605f8d0f",
+      "set_code": "mep",
+      "card_name": "Mega Charizard X ex",
+      "number": "023",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/cdd39b99-58f6-46ce-b8ca-d3b6605f8d0f/9c99dbe57a55343ec8f7e207.jpg",
+      "source_url": "https://www.tcgplayer.com/product/659612/pokemon-me-mega-evolution-promo-mega-charizard-x-ex-023"
+    },
+    {
+      "card_printing_id": "1990b1cd-63b3-42ba-8913-1fdb247bca01",
+      "set_code": "mep",
+      "card_name": "Oricorio ex",
+      "number": "024",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/1990b1cd-63b3-42ba-8913-1fdb247bca01/b5156118f6ec13ccd5289c83.jpg",
+      "source_url": "https://www.tcgplayer.com/product/664010/pokemon-me-mega-evolution-promo-oricorio-ex-024"
+    },
+    {
+      "card_printing_id": "79a55f77-1746-4a55-8a75-5f87e983f333",
+      "set_code": "mep",
+      "card_name": "Mega Kangaskhan ex",
+      "number": "025",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/79a55f77-1746-4a55-8a75-5f87e983f333/9052d5c54896d9f84c7d38c1.jpg",
+      "source_url": "https://www.tcgplayer.com/product/668509/pokemon-me-mega-evolution-promo-mega-kangaskhan-ex-025"
+    },
+    {
+      "card_printing_id": "43473b80-43d1-4433-9cfc-895e4703ca2b",
+      "set_code": "mep",
+      "card_name": "Meloetta",
+      "number": "026",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/43473b80-43d1-4433-9cfc-895e4703ca2b/0ffd6ed927d05f86eaf49909.jpg",
+      "source_url": "https://www.tcgplayer.com/product/659231/pokemon-me-mega-evolution-promo-meloetta-026"
+    },
+    {
+      "card_printing_id": "4d1b3038-360c-43f1-bd9e-44895389a3fb",
+      "set_code": "mep",
+      "card_name": "Haunter",
+      "number": "027",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/4d1b3038-360c-43f1-bd9e-44895389a3fb/33c35c145b4c396020908e12.jpg",
+      "source_url": "https://www.tcgplayer.com/product/659232/pokemon-me-mega-evolution-promo-haunter-027"
+    },
+    {
+      "card_printing_id": "fa52b2fe-cb54-49e2-a97c-350a8954bb94",
+      "set_code": "mep",
+      "card_name": "Mega Charizard X ex",
+      "number": "029",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/fa52b2fe-cb54-49e2-a97c-350a8954bb94/72c10049fb646b48139f2d2e.jpg",
+      "source_url": "https://www.tcgplayer.com/product/680639/pokemon-me-mega-evolution-promo-mega-charizard-x-ex-029"
+    },
+    {
+      "card_printing_id": "ed980bbd-e46d-4c75-b03c-cbd87ad8eebd",
+      "set_code": "mep",
+      "card_name": "Mega Charizard Y ex",
+      "number": "030",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/ed980bbd-e46d-4c75-b03c-cbd87ad8eebd/869a114d98439f1d94cb90d9.jpg",
+      "source_url": "https://www.tcgplayer.com/product/680640/pokemon-me-mega-evolution-promo-mega-charizard-y-ex-030"
+    },
+    {
+      "card_printing_id": "182a4ff4-c69a-400b-83c8-a782cffb4945",
+      "set_code": "mep",
+      "card_name": "Mega Gardevoir ex",
+      "number": "032",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/182a4ff4-c69a-400b-83c8-a782cffb4945/a8e158cc6c4a7166d6d21833.jpg",
+      "source_url": "https://www.tcgplayer.com/product/685510/pokemon-me-mega-evolution-promo-mega-gardevoir-ex-032"
+    },
+    {
+      "card_printing_id": "985d953d-a624-4a38-a22d-ae4dea45de6c",
+      "set_code": "mep",
+      "card_name": "Mega Lucario ex",
+      "number": "033",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/985d953d-a624-4a38-a22d-ae4dea45de6c/31139d87576834212b84e6ca.jpg",
+      "source_url": "https://www.tcgplayer.com/product/685511/pokemon-me-mega-evolution-promo-mega-lucario-ex-033"
+    },
+    {
+      "card_printing_id": "a93e64f3-8b39-447b-b233-b428abc09299",
+      "set_code": "mep",
+      "card_name": "Mega Meganium ex",
+      "number": "034",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/a93e64f3-8b39-447b-b233-b428abc09299/e13750811ac46b2780f4829f.jpg",
+      "source_url": "https://www.tcgplayer.com/product/692120/pokemon-me-mega-evolution-promo-mega-meganium-ex-034"
+    },
+    {
+      "card_printing_id": "f99678a3-d141-4ad5-a443-b39b593a45c9",
+      "set_code": "mep",
+      "card_name": "Mega Emboar ex",
+      "number": "035",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/f99678a3-d141-4ad5-a443-b39b593a45c9/7b5e20593d0c4323bd6298de.jpg",
+      "source_url": "https://www.tcgplayer.com/product/692119/pokemon-me-mega-evolution-promo-mega-emboar-ex-035"
+    },
+    {
+      "card_printing_id": "f5800572-5dbc-466f-8467-93b8fcc1eb4b",
+      "set_code": "mep",
+      "card_name": "Mega Feraligatr ex",
+      "number": "036",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/f5800572-5dbc-466f-8467-93b8fcc1eb4b/91362d6c8b8880544da483c9.jpg",
+      "source_url": "https://www.tcgplayer.com/product/692118/pokemon-me-mega-evolution-promo-mega-feraligatr-ex-036"
+    },
+    {
+      "card_printing_id": "fe9852cf-3d6d-429f-b590-82e5679ad17e",
+      "set_code": "mep",
+      "card_name": "Barbaracle",
+      "number": "065",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/fe9852cf-3d6d-429f-b590-82e5679ad17e/3150be3f71585a9b7de999dc.jpg",
+      "source_url": "https://www.tcgplayer.com/product/685495/pokemon-me-mega-evolution-promo-barbaracle-065"
+    },
+    {
+      "card_printing_id": "b6276cd5-a477-4e7c-869a-d8a45c109ec1",
+      "set_code": "mep",
+      "card_name": "Tyrantrum",
+      "number": "066",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/b6276cd5-a477-4e7c-869a-d8a45c109ec1/9cd56f1884565b0397087ea7.jpg",
+      "source_url": "https://www.tcgplayer.com/product/685496/pokemon-me-mega-evolution-promo-tyrantrum-066"
+    },
+    {
+      "card_printing_id": "7cc8e470-9201-459e-8571-601f48ccce17",
+      "set_code": "mep",
+      "card_name": "Makuhita",
+      "number": "068",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/7cc8e470-9201-459e-8571-601f48ccce17/315fb4e8b2602e4b97b5d70c.jpg",
+      "source_url": "https://www.tcgplayer.com/product/686275/pokemon-me-mega-evolution-promo-makuhita-068"
+    },
+    {
+      "card_printing_id": "7c26980c-cae2-421b-946a-017bee625fe4",
+      "set_code": "mep",
+      "card_name": "Tyrunt",
+      "number": "070",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/7c26980c-cae2-421b-946a-017bee625fe4/971fe2595e11d80eaff28c1a.jpg",
+      "source_url": "https://www.tcgplayer.com/product/685562/pokemon-me-mega-evolution-promo-tyrunt-070"
+    }
+  ],
+  "proof_hash": "dd50e588a4df5235b669fbcb2f14acccce626643a0fcd782d3a5407b9a7b9ab5"
+}

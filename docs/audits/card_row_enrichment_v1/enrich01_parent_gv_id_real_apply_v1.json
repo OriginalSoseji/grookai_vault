@@ -1,0 +1,147 @@
+{
+  "version": "ENRICH01_PARENT_GV_ID_REAL_APPLY_V1",
+  "package_id": "ENRICH-01-PARENT-GV-ID-BACKFILL",
+  "generated_at": "2026-06-16T02:45:45.122Z",
+  "approved_text": "Approve real ENRICH-01-PARENT-GV-ID-BACKFILL apply only. Fingerprint: f44013314489f50ac3f6f21781b0c534218297af15b681ac7d793b7af5fe843c. Scope: 4 parent card_print gv_id updates. Dry-run proof: 7457fa55f5e7c7951e7e4e1230966c23f918e0597d9c41f3b4087b36fdaf1307 == 7457fa55f5e7c7951e7e4e1230966c23f918e0597d9c41f3b4087b36fdaf1307. No child writes. No identity writes. No deletes. No merges. No migrations. No image writes. No global apply.",
+  "package_fingerprint_sha256": "f44013314489f50ac3f6f21781b0c534218297af15b681ac7d793b7af5fe843c",
+  "dry_run_proof": "7457fa55f5e7c7951e7e4e1230966c23f918e0597d9c41f3b4087b36fdaf1307 == 7457fa55f5e7c7951e7e4e1230966c23f918e0597d9c41f3b4087b36fdaf1307",
+  "source_candidate_file": "docs\\audits\\card_row_enrichment_v1\\parent_gv_id_backfill_candidates_v1.json",
+  "dry_run_file": "docs\\audits\\card_row_enrichment_v1\\enrich01_parent_gv_id_guarded_dry_run_v1.json",
+  "scope": {
+    "target_rows": 4,
+    "writes_performed": [
+      "card_prints.gv_id"
+    ],
+    "forbidden": [
+      "child writes",
+      "identity writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ],
+    "migrations_created": false
+  },
+  "execution": {
+    "before_snapshot": {
+      "captured_at": "2026-06-16T02:45:44.354Z",
+      "rows": [
+        {
+          "card_print_id": "21840232-9191-4566-8e3e-046f74841288",
+          "set_code": "xy4",
+          "number": "65",
+          "number_plain": "65",
+          "card_name": "Aegislash EX",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "a6d34131-d056-49ae-a8b7-21d808e351f6",
+          "set_code": "xy9",
+          "number": "98",
+          "number_plain": "98",
+          "card_name": "Delinquent",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+          "set_code": "xyp",
+          "number": "XY150",
+          "number_plain": "150",
+          "card_name": "Yveltal EX",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+          "set_code": "xyp",
+          "number": "XY198",
+          "number_plain": "198",
+          "card_name": "M Camerupt-EX",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        }
+      ],
+      "hash_sha256": "7457fa55f5e7c7951e7e4e1230966c23f918e0597d9c41f3b4087b36fdaf1307",
+      "counts": {
+        "target_rows": 4,
+        "captured_rows": 4,
+        "rows_with_gv_id": 0,
+        "rows_without_gv_id": 4
+      }
+    },
+    "update_proof": {
+      "updated_rows": 4,
+      "proof": {
+        "target_count": 4,
+        "matching_gv_count": 4,
+        "duplicate_gv_id_exists": 0
+      }
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-16T02:45:45.122Z",
+      "rows": [
+        {
+          "card_print_id": "21840232-9191-4566-8e3e-046f74841288",
+          "set_code": "xy4",
+          "number": "65",
+          "number_plain": "65",
+          "card_name": "Aegislash EX",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-PHF-65"
+        },
+        {
+          "card_print_id": "a6d34131-d056-49ae-a8b7-21d808e351f6",
+          "set_code": "xy9",
+          "number": "98",
+          "number_plain": "98",
+          "card_name": "Delinquent",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-BKP-98"
+        },
+        {
+          "card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+          "set_code": "xyp",
+          "number": "XY150",
+          "number_plain": "150",
+          "card_name": "Yveltal EX",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-PR-XY-XY150"
+        },
+        {
+          "card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+          "set_code": "xyp",
+          "number": "XY198",
+          "number_plain": "198",
+          "card_name": "M Camerupt-EX",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-PR-XY-XY198"
+        }
+      ],
+      "hash_sha256": "f2e01853f944ab6894c9f593720cafd85a39173ce2bdd5765496e7410ada4d1f",
+      "counts": {
+        "target_rows": 4,
+        "captured_rows": 4,
+        "rows_with_gv_id": 4,
+        "rows_without_gv_id": 0
+      }
+    }
+  },
+  "by_set_top_25": {
+    "xyp": 2,
+    "xy4": 1,
+    "xy9": 1
+  },
+  "stop_findings": [],
+  "pass": true
+}

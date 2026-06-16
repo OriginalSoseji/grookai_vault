@@ -1,0 +1,443 @@
+{
+  "version": "ENRICH_13G_CELEBRATIONS_SUBSET_ALIAS_GOVERNANCE_V1",
+  "generated_at": "2026-06-15T19:31:59.779Z",
+  "mode": "read_only_governance_plan",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "source_file": "docs\\audits\\card_row_enrichment_v1\\enrich13_core_identity_resolution_readiness_v1.json",
+  "master_sources": {
+    "cards": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_cards_v1.json",
+    "printings": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_printings_v1.json"
+  },
+  "live_database_read": true,
+  "live_database_read_reason": null,
+  "summary": {
+    "target_rows": 4,
+    "source_set_code": "cel25",
+    "canonical_subset_set_code": "cel25c",
+    "target_source_numbers": [
+      "15A1",
+      "15A2",
+      "15A3",
+      "15A4"
+    ],
+    "write_ready_now": false,
+    "recommended_strategy": "do_not_backfill_cel25_15A_aliases_as_host_physical_identity"
+  },
+  "governance_decision": {
+    "decision": "classic_collection_rows_are_subset_governed",
+    "reason": "Existing Master Index suppression governance treats Celebrations Classic Collection as subset cel25c. TCGdex-like cel25 15A# aliases should not be written as host-set parent identity until a subset relocation/suppression dry-run proves the right owner and dependency behavior.",
+    "deterministic_law": [
+      "15A# source aliases are source evidence, not direct public parent numbers",
+      "canonical subset set_code is cel25c",
+      "canonical subset number is derived from the numeric prefix before A",
+      "host cel25 duplicate evidence must be suppressed from DB reconciliation or relocated to the subset owner"
+    ],
+    "forbidden": [
+      "do not backfill card_prints.set_code=cel25 and number=15A# as final English physical identity",
+      "do not create new host-set Classic Collection parents without subset proof",
+      "do not merge distinct Classic Collection names just because they share canonical number 15",
+      "do not delete source rows without dependency transfer proof"
+    ]
+  },
+  "proposed_future_package_shape": {
+    "package_id": "ENRICH-13G1-CELEBRATIONS-CLASSIC-COLLECTION-SUBSET-ALIAS-DRY-RUN",
+    "current_status": "not_write_ready_dry_run_required",
+    "expected_scope_if_later_approved": [
+      "4 cel25 15A# alias rows",
+      "resolve each alias against cel25c subset identity",
+      "simulate relocation, mapping transfer, or source-evidence suppression",
+      "prove child, trait, species, active identity, and external mapping behavior"
+    ],
+    "excluded_from_scope": [
+      "real apply",
+      "global apply",
+      "migrations",
+      "image writes",
+      "unsupported cleanup",
+      "host cel25 public identity creation for 15A# aliases"
+    ],
+    "required_before_real_apply": [
+      "fresh dependency snapshot",
+      "subset owner existence proof",
+      "active identity uniqueness proof",
+      "external mapping transfer or suppression proof",
+      "rollback artifact"
+    ]
+  },
+  "rows": [
+    {
+      "card_print_id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+      "source_set_code": "cel25",
+      "source_set_name": "Celebrations",
+      "source_number": "15A1",
+      "source_number_plain": "151",
+      "source_external_id": "cel25-15A1",
+      "card_name": "Venusaur",
+      "dependency_counts": {
+        "child_count": 1,
+        "active_identity_count": 0,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 1,
+        "vault_instance_count": 0
+      },
+      "canonical_subset_set_code": "cel25c",
+      "canonical_subset_number": "15",
+      "recommended_resolution": "subset_alias_relocation_or_suppression_dry_run_required",
+      "master_cards": [
+        {
+          "set_key": "cel25c",
+          "set_name": "Celebrations: Classic Collection",
+          "card_number": "15",
+          "card_name": "Venusaur",
+          "status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "finish_key": null
+        },
+        {
+          "set_key": "cel25",
+          "set_name": "Celebrations",
+          "card_number": "15",
+          "card_name": "Venusaur",
+          "status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "pkmncards",
+            "thepricedex_price_list"
+          ],
+          "finish_key": null
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "cel25",
+          "set_name": "Celebrations",
+          "card_number": "15",
+          "card_name": "Venusaur",
+          "status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "tcgcollector_card_variants",
+            "thepricedex_price_list"
+          ],
+          "finish_key": "holo"
+        },
+        {
+          "set_key": "cel25c",
+          "set_name": "Celebrations: Classic Collection",
+          "card_number": "15",
+          "card_name": "Venusaur",
+          "status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ],
+          "finish_key": "holo"
+        }
+      ],
+      "live_matches": [
+        {
+          "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+          "set_code": "cel25c",
+          "set_name": "Celebrations: Classic Collection",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Venusaur",
+          "gv_id": "GV-PK-CEL-15CC",
+          "printed_identity_modifier": null,
+          "child_count": 1,
+          "active_identity_count": 1,
+          "active_mapping_count": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "8e4958ab-1e4e-4636-87e1-4650ae938086",
+      "source_set_code": "cel25",
+      "source_set_name": "Celebrations",
+      "source_number": "15A2",
+      "source_number_plain": "152",
+      "source_external_id": "cel25-15A2",
+      "card_name": "Here Comes Team Rocket!",
+      "dependency_counts": {
+        "child_count": 1,
+        "active_identity_count": 0,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 0,
+        "vault_instance_count": 0
+      },
+      "canonical_subset_set_code": "cel25c",
+      "canonical_subset_number": "15",
+      "recommended_resolution": "subset_alias_relocation_or_suppression_dry_run_required",
+      "master_cards": [
+        {
+          "set_key": "cel25c",
+          "set_name": "Celebrations: Classic Collection",
+          "card_number": "15",
+          "card_name": "Here Comes Team Rocket!",
+          "status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "finish_key": null
+        },
+        {
+          "set_key": "cel25",
+          "set_name": "Celebrations",
+          "card_number": "15",
+          "card_name": "Here Comes Team Rocket!",
+          "status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "pkmncards",
+            "thepricedex_price_list"
+          ],
+          "finish_key": null
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "cel25",
+          "set_name": "Celebrations",
+          "card_number": "15",
+          "card_name": "Here Comes Team Rocket!",
+          "status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "tcgcollector_card_variants",
+            "thepricedex_price_list"
+          ],
+          "finish_key": "holo"
+        },
+        {
+          "set_key": "cel25c",
+          "set_name": "Celebrations: Classic Collection",
+          "card_number": "15",
+          "card_name": "Here Comes Team Rocket!",
+          "status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ],
+          "finish_key": "holo"
+        }
+      ],
+      "live_matches": [
+        {
+          "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+          "set_code": "cel25c",
+          "set_name": "Celebrations: Classic Collection",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Here Comes Team Rocket!",
+          "gv_id": "GV-PK-CEL-15CC-HERE-COMES-TEAM-ROCKET",
+          "printed_identity_modifier": null,
+          "child_count": 1,
+          "active_identity_count": 1,
+          "active_mapping_count": 2
+        }
+      ]
+    },
+    {
+      "card_print_id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+      "source_set_code": "cel25",
+      "source_set_name": "Celebrations",
+      "source_number": "15A3",
+      "source_number_plain": "153",
+      "source_external_id": "cel25-15A3",
+      "card_name": "Rocket's Zapdos",
+      "dependency_counts": {
+        "child_count": 1,
+        "active_identity_count": 0,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 1,
+        "vault_instance_count": 0
+      },
+      "canonical_subset_set_code": "cel25c",
+      "canonical_subset_number": "15",
+      "recommended_resolution": "subset_alias_relocation_or_suppression_dry_run_required",
+      "master_cards": [
+        {
+          "set_key": "cel25c",
+          "set_name": "Celebrations: Classic Collection",
+          "card_number": "15",
+          "card_name": "Rocket's Zapdos",
+          "status": "master_verified",
+          "source_count": 3,
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "finish_key": null
+        },
+        {
+          "set_key": "cel25",
+          "set_name": "Celebrations",
+          "card_number": "15",
+          "card_name": "Rocket's Zapdos",
+          "status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "pkmncards",
+            "thepricedex_price_list"
+          ],
+          "finish_key": null
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "cel25",
+          "set_name": "Celebrations",
+          "card_number": "15",
+          "card_name": "Rocket's Zapdos",
+          "status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "tcgcollector_card_variants",
+            "thepricedex_price_list"
+          ],
+          "finish_key": "holo"
+        },
+        {
+          "set_key": "cel25c",
+          "set_name": "Celebrations: Classic Collection",
+          "card_number": "15",
+          "card_name": "Rocket's Zapdos",
+          "status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ],
+          "finish_key": "holo"
+        }
+      ],
+      "live_matches": [
+        {
+          "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+          "set_code": "cel25c",
+          "set_name": "Celebrations: Classic Collection",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Rocket's Zapdos",
+          "gv_id": "GV-PK-CEL-15CC-ROCKET-S-ZAPDOS",
+          "printed_identity_modifier": null,
+          "child_count": 1,
+          "active_identity_count": 1,
+          "active_mapping_count": 1
+        }
+      ]
+    },
+    {
+      "card_print_id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+      "source_set_code": "cel25",
+      "source_set_name": "Celebrations",
+      "source_number": "15A4",
+      "source_number_plain": "154",
+      "source_external_id": "cel25-15A4",
+      "card_name": "Claydol",
+      "dependency_counts": {
+        "child_count": 1,
+        "active_identity_count": 0,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 1,
+        "vault_instance_count": 0
+      },
+      "canonical_subset_set_code": "cel25c",
+      "canonical_subset_number": "15",
+      "recommended_resolution": "subset_alias_relocation_or_suppression_dry_run_required",
+      "master_cards": [
+        {
+          "set_key": "cel25c",
+          "set_name": "Celebrations: Classic Collection",
+          "card_number": "15",
+          "card_name": "Claydol",
+          "status": "master_verified",
+          "source_count": 4,
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "finish_key": null
+        },
+        {
+          "set_key": "cel25",
+          "set_name": "Celebrations",
+          "card_number": "15",
+          "card_name": "Claydol",
+          "status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "pkmncards",
+            "thepricedex_price_list"
+          ],
+          "finish_key": null
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "cel25",
+          "set_name": "Celebrations",
+          "card_number": "15",
+          "card_name": "Claydol",
+          "status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "tcgcollector_card_variants",
+            "thepricedex_price_list"
+          ],
+          "finish_key": "holo"
+        },
+        {
+          "set_key": "cel25c",
+          "set_name": "Celebrations: Classic Collection",
+          "card_number": "15",
+          "card_name": "Claydol",
+          "status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ],
+          "finish_key": "holo"
+        }
+      ],
+      "live_matches": [
+        {
+          "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+          "set_code": "cel25c",
+          "set_name": "Celebrations: Classic Collection",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Claydol",
+          "gv_id": "GV-PK-CEL-15CC-CLAYDOL",
+          "printed_identity_modifier": null,
+          "child_count": 1,
+          "active_identity_count": 1,
+          "active_mapping_count": 1
+        }
+      ]
+    }
+  ],
+  "fingerprint_sha256": "aa7789b7dca3f97eb3bc1cba224bd4f9bc698737a9e62889d841b8d672f91f86"
+}

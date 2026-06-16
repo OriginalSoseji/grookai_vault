@@ -193,3 +193,29 @@ Write readiness requires a separate controlled apply plan, rollback path, and po
 - `docs/audits/english_master_index_completion_v1/english_master_index_adjudicated_excluded_printings_v1.json`
 - `docs/audits/english_master_index_publishable_v1/english_master_index_publishable_manifest_v1.json`
 - `docs/checkpoints/master_index/20260608_english_master_index_completion_checkpoint_v1.md`
+- `docs/checkpoints/master_index/20260614_english_canon_completion_retrospective_v1.md`
+- `docs/checkpoints/image_truth/IMAGE_TRUTH_DISPLAY_COVERAGE_COMPLETION_20260616.md`
+
+## Later Canon Follow-Up
+
+On 2026-06-16, the same governance pattern was extended from printing truth to Image Truth V1.
+
+English physical image display coverage reached:
+
+| metric | value |
+| --- | ---: |
+| english_physical_child_printings | 38,111 |
+| english_physical_display_covered_rows | 38,111 |
+| english_physical_missing_display_rows | 0 |
+| english_physical_exact_rows | 23,178 |
+| english_physical_representative_rows | 432 |
+| english_physical_missing_variant_visual_rows | 14,501 |
+
+The Image Truth follow-up did not change the Master Index standard. It confirmed a related rule:
+
+```text
+Incomplete but honest is acceptable.
+Confident but fake is not.
+```
+
+Representative images are allowed only when labeled honestly. Exact images require exact visual-variant proof.

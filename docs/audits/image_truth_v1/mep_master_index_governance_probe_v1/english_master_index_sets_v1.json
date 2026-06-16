@@ -1,0 +1,48 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_SETS_V1",
+  "generated_at": "2026-06-14T16:58:08.647Z",
+  "audit_only": true,
+  "db_writes": false,
+  "sets": [
+    {
+      "key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "pokemontcg": null,
+      "tcgdex": "mep",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "mep",
+        "official_checklist_pdf": null,
+        "official_pokemon_checklist": null,
+        "thepricedex": "mep",
+        "thepricedex_price_list": "mep",
+        "pkmncards": "mep-black-star-promos",
+        "bulbapedia": "MEP_Black_Star_Promos_(TCG)",
+        "bulbapedia_set_list": "MEP_Black_Star_Promos_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available",
+        "official_checklist_pdf": "unavailable",
+        "official_pokemon_checklist": "unavailable",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 0,
+          "total": 52
+        }
+      }
+    }
+  ]
+}

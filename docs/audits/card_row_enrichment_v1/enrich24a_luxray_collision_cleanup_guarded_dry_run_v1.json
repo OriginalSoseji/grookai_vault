@@ -1,0 +1,508 @@
+{
+  "version": "ENRICH24A_LUXRAY_COLLISION_CLEANUP_GUARDED_DRY_RUN_V1",
+  "package_id": "ENRICH-24A-LUXRAY-GL-LVX-COLLISION-CLEANUP",
+  "generated_at": "2026-06-16T02:54:52.572Z",
+  "mode": "rollback_only_dry_run",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "package_fingerprint_sha256": "76d425f0d117ded96b6286cc51213a46d4dbd7439203e28fc887e90a5856a447",
+  "source_evidence": [
+    {
+      "source": "official_pokemon",
+      "source_url": "https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/pl2/109/",
+      "evidence_label": "Official Pokemon card page for series pl2 card 109 shows Luxray [GL] LV.X."
+    },
+    {
+      "source": "bulbapedia",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Luxray_GL_LV.X_(Rising_Rivals_109)",
+      "evidence_label": "Bulbapedia page identifies Rising Rivals 109 as Luxray GL LV.X."
+    },
+    {
+      "source": "pricecharting",
+      "source_url": "https://www.pricecharting.com/game/pokemon-rising-rivals/luxray-gl-lvx-109",
+      "evidence_label": "PriceCharting product page identifies Pokemon Rising Rivals #109 as Luxray GL LV.X."
+    }
+  ],
+  "scope": {
+    "duplicate_card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+    "canonical_owner_card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+    "duplicate_row": "Luxray GL with tcgdex pl2-109",
+    "canonical_owner_row": "Luxray GL LV.X pl2 #109",
+    "writes_simulated_then_rolled_back": [
+      "external_mappings.card_print_id transfer",
+      "card_print_identity delete for duplicate parent",
+      "card_print_traits.card_print_id transfer",
+      "duplicate card_print_species delete",
+      "duplicate card_printings delete",
+      "duplicate card_prints delete"
+    ],
+    "forbidden": [
+      "canonical owner parent overwrite",
+      "GV-ID writes",
+      "image writes",
+      "migrations",
+      "global apply"
+    ]
+  },
+  "preflight": {
+    "target_row": {
+      "duplicate_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+      "duplicate_set_code": null,
+      "duplicate_number": null,
+      "duplicate_name": "Luxray GL",
+      "duplicate_tcgdex_id": "pl2-109",
+      "owner_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+      "owner_set_code": "pl2",
+      "owner_number": "109",
+      "owner_name": "Luxray GL LV.X",
+      "owner_gv_id": "GV-PK-RR-109"
+    },
+    "dependencies": {
+      "duplicate_child_ids": [
+        "3146c1c7-ec44-4a73-901b-c0f84f1e8540",
+        "35853efd-9dc4-47f0-a8d0-52f2c4c10f58"
+      ],
+      "child_dependency_counts": {
+        "external_printing_mappings": 0,
+        "vault_item_instances": 0,
+        "canon_warehouse_candidates": 0
+      },
+      "disallowed_parent_refs": []
+    },
+    "findings": []
+  },
+  "execution": {
+    "before_snapshot": {
+      "captured_at": "2026-06-16T02:54:46.058Z",
+      "parents": [
+        {
+          "id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+          "set_code": "pl2",
+          "number": "109",
+          "number_plain": "109",
+          "name": "Luxray GL LV.X",
+          "gv_id": "GV-PK-RR-109",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "identity_domain": "pokemon_eng_standard",
+          "external_ids": {},
+          "child_count": 1,
+          "active_identity_count": 1,
+          "active_mapping_count": 2,
+          "trait_count": 0,
+          "species_count": 1
+        },
+        {
+          "id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "set_code": null,
+          "number": null,
+          "number_plain": null,
+          "name": "Luxray GL",
+          "gv_id": null,
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "identity_domain": "pokemon_eng_standard",
+          "external_ids": {
+            "tcgdex": "pl2-109"
+          },
+          "child_count": 2,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1
+        }
+      ],
+      "children": [
+        {
+          "card_printing_id": "bd0bd5ff-6154-49c2-9118-a65bed53fd77",
+          "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+          "parent_name": "Luxray GL LV.X",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-RR-109-HOLO",
+          "image_status": null,
+          "has_image_url": false,
+          "has_image_path": false
+        },
+        {
+          "card_printing_id": "3146c1c7-ec44-4a73-901b-c0f84f1e8540",
+          "card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "parent_name": "Luxray GL",
+          "finish_key": "holo",
+          "printing_gv_id": null,
+          "image_status": null,
+          "has_image_url": false,
+          "has_image_path": false
+        },
+        {
+          "card_printing_id": "35853efd-9dc4-47f0-a8d0-52f2c4c10f58",
+          "card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "parent_name": "Luxray GL",
+          "finish_key": "normal",
+          "printing_gv_id": null,
+          "image_status": null,
+          "has_image_url": false,
+          "has_image_path": false
+        }
+      ],
+      "mappings": [
+        {
+          "id": "82667",
+          "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+          "source": "justtcg",
+          "external_id": "pokemon-rising-rivals-luxray-gl-lv-x-ultra-rare",
+          "active": true
+        },
+        {
+          "id": "70662",
+          "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+          "source": "tcgplayer",
+          "external_id": "86952",
+          "active": true
+        },
+        {
+          "id": "35247",
+          "card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "source": "tcgdex",
+          "external_id": "pl2-109",
+          "active": true
+        }
+      ],
+      "identities": [
+        {
+          "id": "901bf633-2289-4661-9a7b-83f209443f5c",
+          "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+          "is_active": true,
+          "identity_domain": "pokemon_eng_standard",
+          "set_code_identity": "pl2",
+          "printed_number": "109",
+          "normalized_printed_name": "luxray gl lv.x",
+          "identity_key_hash": "e7017e14e9c6981a9013683806e84fc895504ae9c6ceed155152e8d5121fda30",
+          "identity_payload": {
+            "printed_total": 111,
+            "printed_set_abbrev": "RR",
+            "variant_key_current": "base"
+          }
+        },
+        {
+          "id": "764463c1-314f-49a1-a37d-fd4248d98975",
+          "card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "is_active": true,
+          "identity_domain": "pokemon_eng_standard",
+          "set_code_identity": "pl2",
+          "printed_number": "109",
+          "normalized_printed_name": "luxray gl",
+          "identity_key_hash": "12f89f605e376e9cdd12df4fb8ff58cd7a50926410181eacf76179abf264f2cc",
+          "identity_payload": {
+            "printed_total": 111,
+            "printed_set_abbrev": "RR"
+          }
+        }
+      ],
+      "traits": [
+        {
+          "id": "37189",
+          "card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "trait_type": "pokemon:stats",
+          "trait_value": "tcgdex",
+          "source": "tcgdex"
+        }
+      ],
+      "species": [
+        {
+          "id": "bd7ecdd8-8a81-4e66-be08-3d6902b57121",
+          "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+          "species_id": "09e52737-f872-4296-afe7-3acc34922339",
+          "role": "primary",
+          "source": "grookai_dex_name_rule_v1",
+          "active": true
+        },
+        {
+          "id": "78ac8b92-ca4d-4810-b94c-c5e70a61920a",
+          "card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "species_id": "09e52737-f872-4296-afe7-3acc34922339",
+          "role": "primary",
+          "source": "grookai_dex_name_rule_v1",
+          "active": true
+        }
+      ],
+      "global_guards": {
+        "active_identity_duplicate_groups": 0,
+        "active_external_mapping_duplicate_groups": 0
+      },
+      "hash_sha256": "be1e7c323cdf73feda0e5da4afaef7dbe6360b3413f834b2e5d5f7106355a841"
+    },
+    "inside_transaction_proof": {
+      "duplicate_mapping_deletes": 0,
+      "external_mapping_transfers": 1,
+      "identity_deletes": 1,
+      "duplicate_trait_deletes": 0,
+      "trait_transfers": 1,
+      "duplicate_species_deletes": 1,
+      "species_transfers": 0,
+      "child_printing_deletes": 2,
+      "parent_deletes": 1,
+      "after_inside_snapshot": {
+        "captured_at": "2026-06-16T02:54:51.862Z",
+        "parents": [
+          {
+            "id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+            "set_code": "pl2",
+            "number": "109",
+            "number_plain": "109",
+            "name": "Luxray GL LV.X",
+            "gv_id": "GV-PK-RR-109",
+            "variant_key": "",
+            "printed_identity_modifier": null,
+            "identity_domain": "pokemon_eng_standard",
+            "external_ids": {},
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 3,
+            "trait_count": 1,
+            "species_count": 1
+          }
+        ],
+        "children": [
+          {
+            "card_printing_id": "bd0bd5ff-6154-49c2-9118-a65bed53fd77",
+            "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+            "parent_name": "Luxray GL LV.X",
+            "finish_key": "holo",
+            "printing_gv_id": "GV-PK-RR-109-HOLO",
+            "image_status": null,
+            "has_image_url": false,
+            "has_image_path": false
+          }
+        ],
+        "mappings": [
+          {
+            "id": "82667",
+            "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+            "source": "justtcg",
+            "external_id": "pokemon-rising-rivals-luxray-gl-lv-x-ultra-rare",
+            "active": true
+          },
+          {
+            "id": "35247",
+            "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+            "source": "tcgdex",
+            "external_id": "pl2-109",
+            "active": true
+          },
+          {
+            "id": "70662",
+            "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+            "source": "tcgplayer",
+            "external_id": "86952",
+            "active": true
+          }
+        ],
+        "identities": [
+          {
+            "id": "901bf633-2289-4661-9a7b-83f209443f5c",
+            "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+            "is_active": true,
+            "identity_domain": "pokemon_eng_standard",
+            "set_code_identity": "pl2",
+            "printed_number": "109",
+            "normalized_printed_name": "luxray gl lv.x",
+            "identity_key_hash": "e7017e14e9c6981a9013683806e84fc895504ae9c6ceed155152e8d5121fda30",
+            "identity_payload": {
+              "printed_total": 111,
+              "printed_set_abbrev": "RR",
+              "variant_key_current": "base"
+            }
+          }
+        ],
+        "traits": [
+          {
+            "id": "37189",
+            "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "source": "tcgdex"
+          }
+        ],
+        "species": [
+          {
+            "id": "bd7ecdd8-8a81-4e66-be08-3d6902b57121",
+            "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+            "species_id": "09e52737-f872-4296-afe7-3acc34922339",
+            "role": "primary",
+            "source": "grookai_dex_name_rule_v1",
+            "active": true
+          }
+        ],
+        "global_guards": {
+          "active_identity_duplicate_groups": 0,
+          "active_external_mapping_duplicate_groups": 0
+        },
+        "hash_sha256": "67aa84ba527c02dbce7888d798c37fddfcb4dc6af5ad7b28a6a731b07429ee0b"
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-16T02:54:52.572Z",
+      "parents": [
+        {
+          "id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+          "set_code": "pl2",
+          "number": "109",
+          "number_plain": "109",
+          "name": "Luxray GL LV.X",
+          "gv_id": "GV-PK-RR-109",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "identity_domain": "pokemon_eng_standard",
+          "external_ids": {},
+          "child_count": 1,
+          "active_identity_count": 1,
+          "active_mapping_count": 2,
+          "trait_count": 0,
+          "species_count": 1
+        },
+        {
+          "id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "set_code": null,
+          "number": null,
+          "number_plain": null,
+          "name": "Luxray GL",
+          "gv_id": null,
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "identity_domain": "pokemon_eng_standard",
+          "external_ids": {
+            "tcgdex": "pl2-109"
+          },
+          "child_count": 2,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1
+        }
+      ],
+      "children": [
+        {
+          "card_printing_id": "bd0bd5ff-6154-49c2-9118-a65bed53fd77",
+          "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+          "parent_name": "Luxray GL LV.X",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-RR-109-HOLO",
+          "image_status": null,
+          "has_image_url": false,
+          "has_image_path": false
+        },
+        {
+          "card_printing_id": "3146c1c7-ec44-4a73-901b-c0f84f1e8540",
+          "card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "parent_name": "Luxray GL",
+          "finish_key": "holo",
+          "printing_gv_id": null,
+          "image_status": null,
+          "has_image_url": false,
+          "has_image_path": false
+        },
+        {
+          "card_printing_id": "35853efd-9dc4-47f0-a8d0-52f2c4c10f58",
+          "card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "parent_name": "Luxray GL",
+          "finish_key": "normal",
+          "printing_gv_id": null,
+          "image_status": null,
+          "has_image_url": false,
+          "has_image_path": false
+        }
+      ],
+      "mappings": [
+        {
+          "id": "82667",
+          "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+          "source": "justtcg",
+          "external_id": "pokemon-rising-rivals-luxray-gl-lv-x-ultra-rare",
+          "active": true
+        },
+        {
+          "id": "70662",
+          "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+          "source": "tcgplayer",
+          "external_id": "86952",
+          "active": true
+        },
+        {
+          "id": "35247",
+          "card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "source": "tcgdex",
+          "external_id": "pl2-109",
+          "active": true
+        }
+      ],
+      "identities": [
+        {
+          "id": "901bf633-2289-4661-9a7b-83f209443f5c",
+          "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+          "is_active": true,
+          "identity_domain": "pokemon_eng_standard",
+          "set_code_identity": "pl2",
+          "printed_number": "109",
+          "normalized_printed_name": "luxray gl lv.x",
+          "identity_key_hash": "e7017e14e9c6981a9013683806e84fc895504ae9c6ceed155152e8d5121fda30",
+          "identity_payload": {
+            "printed_total": 111,
+            "printed_set_abbrev": "RR",
+            "variant_key_current": "base"
+          }
+        },
+        {
+          "id": "764463c1-314f-49a1-a37d-fd4248d98975",
+          "card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "is_active": true,
+          "identity_domain": "pokemon_eng_standard",
+          "set_code_identity": "pl2",
+          "printed_number": "109",
+          "normalized_printed_name": "luxray gl",
+          "identity_key_hash": "12f89f605e376e9cdd12df4fb8ff58cd7a50926410181eacf76179abf264f2cc",
+          "identity_payload": {
+            "printed_total": 111,
+            "printed_set_abbrev": "RR"
+          }
+        }
+      ],
+      "traits": [
+        {
+          "id": "37189",
+          "card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "trait_type": "pokemon:stats",
+          "trait_value": "tcgdex",
+          "source": "tcgdex"
+        }
+      ],
+      "species": [
+        {
+          "id": "bd7ecdd8-8a81-4e66-be08-3d6902b57121",
+          "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+          "species_id": "09e52737-f872-4296-afe7-3acc34922339",
+          "role": "primary",
+          "source": "grookai_dex_name_rule_v1",
+          "active": true
+        },
+        {
+          "id": "78ac8b92-ca4d-4810-b94c-c5e70a61920a",
+          "card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "species_id": "09e52737-f872-4296-afe7-3acc34922339",
+          "role": "primary",
+          "source": "grookai_dex_name_rule_v1",
+          "active": true
+        }
+      ],
+      "global_guards": {
+        "active_identity_duplicate_groups": 0,
+        "active_external_mapping_duplicate_groups": 0
+      },
+      "hash_sha256": "be1e7c323cdf73feda0e5da4afaef7dbe6360b3413f834b2e5d5f7106355a841"
+    },
+    "dry_run_status": "completed_rolled_back_no_durable_change"
+  },
+  "stop_findings": [],
+  "pass": true,
+  "recommended_approval_text": "Approve real ENRICH-24A-LUXRAY-GL-LVX-COLLISION-CLEANUP apply only. Fingerprint: 76d425f0d117ded96b6286cc51213a46d4dbd7439203e28fc887e90a5856a447. Scope: 1 Luxray GL duplicate parent cleanup for tcgdex pl2-109; transfer 1 external mapping to canonical Luxray GL LV.X owner, delete 1 duplicate active identity, transfer 1 trait, delete 1 duplicate species mapping, delete 2 unsupported duplicate child printings, delete 1 duplicate parent. Dry-run proof: be1e7c323cdf73feda0e5da4afaef7dbe6360b3413f834b2e5d5f7106355a841 == be1e7c323cdf73feda0e5da4afaef7dbe6360b3413f834b2e5d5f7106355a841. No canonical owner parent overwrite. No GV-ID writes. No image writes. No migrations. No global apply."
+}

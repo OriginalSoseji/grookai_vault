@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-06-15T01:43:21.429Z",
+  "package_id": "IMG-12B-PRICECHARTING-EXACT-VARIANT-CHILD-IMAGE-UPLOAD-APPLY",
+  "mode": "real_apply",
+  "db_writes_performed": true,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "fingerprint": "4923d97fad636651a6a4d84ab6fcdf9ce92029bf7ebf40f557969b3786deaf8b",
+  "storage_uploaded_rows": 5,
+  "db_updated_rows": 5,
+  "committed": true,
+  "rows": [
+    {
+      "card_printing_id": "4c3e383f-883a-4094-83a6-a89965d73971",
+      "set_code": "swsh1",
+      "number": "65",
+      "card_name": "Pikachu",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12b-pricecharting-exact-variant/swsh1/4c3e383f-883a-4094-83a6-a89965d73971/e38a2ed30585745ae3a81bab.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-sword-and-shield/pikachu-reverse-cosmos-holo-65"
+    },
+    {
+      "card_printing_id": "04901fd5-8a23-464e-ae2d-b60f32c6cec8",
+      "set_code": "swsh10",
+      "number": "92",
+      "card_name": "Hisuian Sneasel",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12b-pricecharting-exact-variant/swsh10/04901fd5-8a23-464e-ae2d-b60f32c6cec8/723d0785d52efb06b742a859.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/hisuian-sneasel-cosmos-holo-92"
+    },
+    {
+      "card_printing_id": "e80289f2-fdcc-46bd-b7f8-a354a6ba80b8",
+      "set_code": "swsh4",
+      "number": "130",
+      "card_name": "Eevee",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12b-pricecharting-exact-variant/swsh4/e80289f2-fdcc-46bd-b7f8-a354a6ba80b8/e0e9ee51cd86fe7d9e472ebc.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-vivid-voltage/eevee-reverse-cosmos-holo-130"
+    },
+    {
+      "card_printing_id": "1f17e32b-458c-4dfc-b9e6-7309eaf7ec99",
+      "set_code": "swsh8",
+      "number": "161",
+      "card_name": "Galarian Obstagoon",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12b-pricecharting-exact-variant/swsh8/1f17e32b-458c-4dfc-b9e6-7309eaf7ec99/585c0a522e3f62cafb21b9cd.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-fusion-strike/galarian-obstagoon-cosmos-holo-161"
+    },
+    {
+      "card_printing_id": "eb42099b-1a00-4cdd-988b-1e75f36caf0c",
+      "set_code": "xy8",
+      "number": "60",
+      "card_name": "Gengar",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12b-pricecharting-exact-variant/xy8/eb42099b-1a00-4cdd-988b-1e75f36caf0c/02a085fb2ea534debe91ff5f.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/gengar-cosmos-holo-60"
+    }
+  ],
+  "proof_hash": "ce1ea92044b72e56025819ba3e35e9fb4d7d9ad1f7d30ccb520188c56bc325f2"
+}

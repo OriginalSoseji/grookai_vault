@@ -176,9 +176,13 @@ async function mapCardPrintings(rows?: PublicCardRow["card_printings"]): Promise
           getCardPrintingFinishLabel({
             finishKey: printing.finish_key,
             finishLabel: finishRecord?.label,
-          }) ?? undefined,
+        }) ?? undefined,
         image_url: imageFields.image_url ?? undefined,
+        image_status: imageFields.image_status ?? undefined,
+        image_note: imageFields.image_note ?? undefined,
+        image_source: imageFields.image_source ?? undefined,
         display_image_url: imageFields.display_image_url ?? undefined,
+        display_image_kind: imageFields.display_image_kind,
         is_display_fallback: imageFields.display_image_kind !== "exact",
         finish_sort_order: typeof finishRecord?.sort_order === "number" ? finishRecord.sort_order : undefined,
       } satisfies CardPrinting;

@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-06-16T05:25:34.935Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "scope": {
+    "image_scope": "english_physical",
+    "target_table": "card_printings",
+    "parent_overwrite_allowed": false,
+    "source_url_required": true,
+    "source_image_url_required_before_normalization": true,
+    "normalized_asset_required_before_dry_run": true,
+    "dry_run_required_before_db_write": true
+  },
+  "source_rows": 2,
+  "source_image_url_preserved_count": 0,
+  "representative_image_url_preserved_count": 2,
+  "blocked_asset_count": 0,
+  "dry_run_ready_count": 0,
+  "rows": [
+    {
+      "card_printing_id": "673d0e32-6748-4f2c-8de6-f76a3f3698d5",
+      "printing_gv_id": "GV-PK-MFB-33-STD",
+      "card_print_id": "3184e491-41eb-466c-a456-dcea8ff79403",
+      "parent_gv_id": "GV-PK-MFB-33",
+      "image_scope": "english_physical",
+      "target_table": "card_printings",
+      "parent_overwrite_allowed": false,
+      "db_write_allowed": false,
+      "dry_run_ready": false,
+      "set_code": "mfb",
+      "set_name": "My First Battle",
+      "card_name": "Potion",
+      "number": "33",
+      "finish_key": "normal",
+      "source_status": "representative_source_url_preserved",
+      "source_url": "https://www.tcgcollector.com/cards/42807/potion-my-first-battle-squirtle-no-010",
+      "source_key": "tcgcollector_mfb_representative_card_page",
+      "source_kind": "collector_reference",
+      "source_attempts": [
+        {
+          "source_key": "tcgcollector_mfb_representative_card_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/42807/potion-my-first-battle-squirtle-no-010",
+          "asset_status": "representative_image_url_preserved",
+          "reason": "TCGCollector card page and image matched the exact card identity. Stored as representative because the Grookai row is the generic My First Battle trainer row while source imagery is deck-specific."
+        }
+      ],
+      "asset_status": "representative_image_url_preserved",
+      "asset_url": "https://static.tcgcollector.com/content/images/93/94/9a/93949a37c6bce0729b8acadcd8ea2bd74b61c3a2bb1c530ab0bc4d1c1f18d366.jpg",
+      "image_alt": "Potion (My First Battle (Squirtle) No. 010) - TCG Collector",
+      "image_confidence": "representative",
+      "block_reason": "TCGCollector card page and image matched the exact card identity. Stored as representative because the Grookai row is the generic My First Battle trainer row while source imagery is deck-specific."
+    },
+    {
+      "card_printing_id": "3df8a13f-4fb7-45db-a8b7-d174a4895f6a",
+      "printing_gv_id": "GV-PK-MFB-34-STD",
+      "card_print_id": "056c0faf-05d0-455b-a576-bb1089414821",
+      "parent_gv_id": "GV-PK-MFB-34",
+      "image_scope": "english_physical",
+      "target_table": "card_printings",
+      "parent_overwrite_allowed": false,
+      "db_write_allowed": false,
+      "dry_run_ready": false,
+      "set_code": "mfb",
+      "set_name": "My First Battle",
+      "card_name": "Switch",
+      "number": "34",
+      "finish_key": "normal",
+      "source_status": "representative_source_url_preserved",
+      "source_url": "https://www.tcgcollector.com/cards/42808/switch-my-first-battle-squirtle-no-011",
+      "source_key": "tcgcollector_mfb_representative_card_page",
+      "source_kind": "collector_reference",
+      "source_attempts": [
+        {
+          "source_key": "tcgcollector_mfb_representative_card_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/42808/switch-my-first-battle-squirtle-no-011",
+          "asset_status": "representative_image_url_preserved",
+          "reason": "TCGCollector card page and image matched the exact card identity. Stored as representative because the Grookai row is the generic My First Battle trainer row while source imagery is deck-specific."
+        }
+      ],
+      "asset_status": "representative_image_url_preserved",
+      "asset_url": "https://static.tcgcollector.com/content/images/b5/85/2b/b5852b142843af94406599c6f6c81088785705fe6a2b95ad8bb9a813fdd265e1.jpg",
+      "image_alt": "Switch (My First Battle (Squirtle) No. 011) - TCG Collector",
+      "image_confidence": "representative",
+      "block_reason": "TCGCollector card page and image matched the exact card identity. Stored as representative because the Grookai row is the generic My First Battle trainer row while source imagery is deck-specific."
+    }
+  ]
+}

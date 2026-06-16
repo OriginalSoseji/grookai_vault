@@ -1,0 +1,15 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_NAME_MISMATCH_TRIAGE_V1",
+  "generated_at": "2026-06-14T16:58:08.647Z",
+  "audit_only": true,
+  "db_writes": false,
+  "source_report": "english_master_index_grookai_audit_v1.json",
+  "rule": "Name mismatches are review classifications only. Do not rewrite identity or printings from this report.",
+  "summary": {
+    "total_name_mismatch": 0,
+    "by_category": {},
+    "by_set_code": {},
+    "by_finish": {}
+  },
+  "categories": {}
+}

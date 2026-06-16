@@ -1,0 +1,139 @@
+{
+  "generated_at": "2026-06-15T01:39:18.981Z",
+  "package_id": "IMG-12A-PRICECHARTING-EXACT-VARIANT-CHILD-IMAGE-UPLOAD-APPLY",
+  "mode": "real_apply",
+  "db_writes_performed": true,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "fingerprint": "60cec71851902d8c2f474285469eb7279f56a7a2c47314c2c0c5a5d836308858",
+  "storage_uploaded_rows": 12,
+  "db_updated_rows": 12,
+  "committed": true,
+  "rows": [
+    {
+      "card_printing_id": "4d7e770c-364c-47f9-a4ce-aea0ea7c93c4",
+      "set_code": "sm1",
+      "number": "39",
+      "card_name": "Popplio",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12a-pricecharting-exact-variant/sm1/4d7e770c-364c-47f9-a4ce-aea0ea7c93c4/96701e367382090a1b76fc9a.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-sun-&-moon/popplio-cosmos-holo-39"
+    },
+    {
+      "card_printing_id": "bbd049b4-6300-48d1-912b-24e57c14a794",
+      "set_code": "sv03.5",
+      "number": "001",
+      "card_name": "Bulbasaur",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12a-pricecharting-exact-variant/sv03.5/bbd049b4-6300-48d1-912b-24e57c14a794/3ed0b60ea8e3b8d46d94e349.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-151/bulbasaur-cosmos-holo-1"
+    },
+    {
+      "card_printing_id": "35253029-3888-433d-87b7-9b8180c38dd6",
+      "set_code": "sv03.5",
+      "number": "005",
+      "card_name": "Charmeleon",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12a-pricecharting-exact-variant/sv03.5/35253029-3888-433d-87b7-9b8180c38dd6/2c7d0f6e5a927e7bff4a2bf4.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-151/charmeleon-cosmos-holo-5"
+    },
+    {
+      "card_printing_id": "c4ce6242-1226-4749-aea6-acbb90e31746",
+      "set_code": "sv03.5",
+      "number": "026",
+      "card_name": "Raichu",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12a-pricecharting-exact-variant/sv03.5/c4ce6242-1226-4749-aea6-acbb90e31746/2fba06a0837654702f8e336b.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-151/raichu-cosmos-holo-26"
+    },
+    {
+      "card_printing_id": "bb9b0d52-5103-4694-95db-ce758d5ab272",
+      "set_code": "sv03.5",
+      "number": "068",
+      "card_name": "Machamp",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12a-pricecharting-exact-variant/sv03.5/bb9b0d52-5103-4694-95db-ce758d5ab272/08d877da705f03962ab192ad.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-151/machamp-cosmos-holo-68"
+    },
+    {
+      "card_printing_id": "a680cc36-3cd6-44b0-9dcc-ef88bbcadd47",
+      "set_code": "sv03.5",
+      "number": "094",
+      "card_name": "Gengar",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12a-pricecharting-exact-variant/sv03.5/a680cc36-3cd6-44b0-9dcc-ef88bbcadd47/d231e5ca295ea3e28173afa5.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-151/gengar-cosmos-holo-94"
+    },
+    {
+      "card_printing_id": "c4d23519-fb9d-4d0d-ae51-3d1cc987fcec",
+      "set_code": "sv03.5",
+      "number": "149",
+      "card_name": "Dragonite",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12a-pricecharting-exact-variant/sv03.5/c4d23519-fb9d-4d0d-ae51-3d1cc987fcec/88e2ea7953240ea319efd51f.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-151/dragonite-cosmos-holo-149"
+    },
+    {
+      "card_printing_id": "7ed77924-121d-46cc-8a19-f757ee7f7384",
+      "set_code": "sve",
+      "number": "1",
+      "card_name": "Basic Grass Energy",
+      "finish_key": "reverse",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12a-pricecharting-exact-variant/sve/7ed77924-121d-46cc-8a19-f757ee7f7384/baf8b50cbc6d4fb117335aef.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-energy/basic-grass-energy-reverse-holo-1"
+    },
+    {
+      "card_printing_id": "9b7e506d-340e-455c-900c-63deb408b46f",
+      "set_code": "xy1",
+      "number": "114",
+      "card_name": "Furfrou",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12a-pricecharting-exact-variant/xy1/9b7e506d-340e-455c-900c-63deb408b46f/8269d5b687575fd6f81f6012.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-xy/furfrou-cosmos-holo-114"
+    },
+    {
+      "card_printing_id": "36caa9a9-9719-4803-b68d-2e353d48c95e",
+      "set_code": "xy4",
+      "number": "27",
+      "card_name": "Galvantula",
+      "finish_key": "cracked_ice",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12a-pricecharting-exact-variant/xy4/36caa9a9-9719-4803-b68d-2e353d48c95e/40396ba9d8d75839fd48b8bb.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-phantom-forces/galvantula-cracked-ice-holo-27"
+    },
+    {
+      "card_printing_id": "803035b2-19a6-4cef-84d5-5f51a3d7a8d4",
+      "set_code": "xy4",
+      "number": "81",
+      "card_name": "Blissey",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12a-pricecharting-exact-variant/xy4/803035b2-19a6-4cef-84d5-5f51a3d7a8d4/4954877a3e17077264b15ec9.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-phantom-forces/blissey-cosmos-holo-81"
+    },
+    {
+      "card_printing_id": "5920c3a9-b6d2-4ac2-8ab7-ca3a3d11aa82",
+      "set_code": "xy6",
+      "number": "52",
+      "card_name": "Dragonite",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img12a-pricecharting-exact-variant/xy6/5920c3a9-b6d2-4ac2-8ab7-ca3a3d11aa82/3f267eaf3c956bf436689fc6.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-roaring-skies/dragonite-cosmos-holo-52"
+    }
+  ],
+  "proof_hash": "af5c798381ef1fb9c6e9af01af4627c5766bd9418ff7d04bfb1f2abd783c9160"
+}

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
+  MCD_NAMESPACE_YEAR_BY_SET_CODE_V1,
   PROMO_PREFIX_IDENTITY_RULE_V1,
   buildCardPrintGvIdV1,
   resolvePromoNumberV1,
@@ -67,5 +68,48 @@ test('non-smp promo families keep current behavior in this repair scope', () => 
       variantKey: 'prerelease_stamp',
     }),
     'GV-PK-PR-BLW-51-PRERELEASE-STAMP',
+  );
+});
+
+test('modern mcdonalds collection aliases use governed MCD year namespaces', () => {
+  assert.equal(MCD_NAMESPACE_YEAR_BY_SET_CODE_V1['2023sv'], '2023');
+  assert.equal(MCD_NAMESPACE_YEAR_BY_SET_CODE_V1['2024sv'], '2024');
+
+  assert.equal(
+    buildCardPrintGvIdV1({
+      setCode: '2023sv',
+      number: '6',
+      numberPlain: '6',
+    }),
+    'GV-PK-MCD-2023-6',
+  );
+
+  assert.equal(
+    buildCardPrintGvIdV1({
+      setCode: '2024sv',
+      number: '14',
+      numberPlain: '14',
+    }),
+    'GV-PK-MCD-2024-14',
+  );
+});
+
+test('special deck and energy mini sets use default base namespace tokens', () => {
+  assert.equal(
+    buildCardPrintGvIdV1({
+      setCode: 'mfb',
+      number: '16',
+      numberPlain: '16',
+    }),
+    'GV-PK-MFB-16',
+  );
+
+  assert.equal(
+    buildCardPrintGvIdV1({
+      setCode: 'mee',
+      number: '001',
+      numberPlain: '001',
+    }),
+    'GV-PK-MEE-001',
   );
 });

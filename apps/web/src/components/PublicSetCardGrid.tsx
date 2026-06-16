@@ -11,6 +11,7 @@ import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
 import ShareCardButton from "@/components/ShareCardButton";
 import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
+import { getPrintingPublicReference } from "@/lib/cards/printingSelection";
 import {
   resolveDisplayIdentity,
   resolveDisplayIdentitySubtitleForContext,
@@ -112,7 +113,6 @@ export default function PublicSetCardGrid({
       <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
         {cards.map((card, index) => {
           const displayIdentity = resolveDisplayIdentity(card);
-          const imagePresentation = resolveCardImagePresentation(card);
           const setLabel = setCode.toUpperCase();
           const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
             identitySubtitle: displayIdentity.suffix,
@@ -122,6 +122,21 @@ export default function PublicSetCardGrid({
           const selectedPrintingId = selectedPrintingByGvId[card.gv_id] ?? getDefaultPrintingId(card);
           const selectedPrinting = (card.printings ?? []).find((printing) => printing.id === selectedPrintingId) ?? null;
           const selectedImageUrl = selectedPrinting?.display_image_url ?? selectedPrinting?.image_url ?? null;
+          const cardFallbackImageUrl = card.display_image_url ?? card.image_url ?? null;
+          const selectedPrintingUsesBaseImage = Boolean(selectedPrinting && !selectedImageUrl && cardFallbackImageUrl);
+          const displayedImageTruthSource = selectedPrintingUsesBaseImage
+            ? {
+                ...selectedPrinting,
+                display_image_kind: "missing_variant_visual" as const,
+                image_status: selectedPrinting?.image_status ?? "missing_variant_visual",
+                image_note:
+                  selectedPrinting?.image_note ??
+                  "Correct printing. Image may not show exact finish, stamp, or parallel.",
+              }
+            : selectedImageUrl
+              ? selectedPrinting
+              : card;
+          const imagePresentation = resolveCardImagePresentation(displayedImageTruthSource);
           const finishLabels = (card.printings ?? []).map((printing) => printing.finish_name).filter((label): label is string => Boolean(label));
           const badgeLabels = [...variantLabels];
           const selectedFinishLabel = selectedPrinting?.finish_name ?? null;
@@ -130,21 +145,27 @@ export default function PublicSetCardGrid({
             <PokemonCardGridTile
               key={card.gv_id}
               utility={<CompareCardButton gvId={card.gv_id} variant="compact" />}
-              imageSrc={selectedImageUrl ?? card.display_image_url ?? card.image_url}
-              imageAlt={getCardImageAltText(displayIdentity.display_name, card)}
-              imageHref={buildCardHref(card.gv_id, selectedPrinting?.id)}
+              imageSrc={selectedImageUrl ?? cardFallbackImageUrl ?? undefined}
+              imageAlt={getCardImageAltText(displayIdentity.display_name, displayedImageTruthSource)}
+              imageHref={buildCardHref(card.gv_id, getPrintingPublicReference(selectedPrinting))}
               imageLoading={index < 12 ? "eager" : "lazy"}
               imageOverlay={
                 imagePresentation.compactBadgeLabel ? (
                   <CardImageTruthBadge
                     label={imagePresentation.compactBadgeLabel}
-                    emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                    emphasis={
+                      imagePresentation.isCollisionRepresentative ||
+                      imagePresentation.isMissingVariantVisual ||
+                      imagePresentation.isBlocked
+                        ? "strong"
+                        : "default"
+                    }
                   />
                 ) : null
               }
               title={
                 <Link
-                  href={buildCardHref(card.gv_id, selectedPrinting?.id)}
+                  href={buildCardHref(card.gv_id, getPrintingPublicReference(selectedPrinting))}
                   className="block transition hover:text-slate-700"
                 >
                   <span className="block truncate">{displayIdentity.base_name}</span>

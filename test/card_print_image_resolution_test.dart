@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/models/card_print.dart';
+import 'package:grookai_vault/services/identity/image_presentation.dart';
 
 void main() {
   test('display_image_url is preferred over legacy image fields', () {
@@ -69,5 +70,48 @@ void main() {
     });
 
     expect(card.displayImage, isNull);
+  });
+
+  test('representative image presentation is explicit and honest', () {
+    final presentation = resolveImagePresentationFromFields(
+      representativeImageUrl: 'https://example.com/representative.webp',
+      displayImageKind: 'representative',
+      imageStatus: 'representative_same_card',
+    );
+
+    expect(presentation.compactBadgeLabel, 'Representative Image');
+    expect(presentation.detailBadgeLabel, 'Representative Image');
+    expect(
+      presentation.detailNote,
+      'Correct printing. Image may not show exact finish, stamp, or parallel.',
+    );
+  });
+
+  test('missing variant visual image presentation is explicit', () {
+    final presentation = resolveImagePresentationFromFields(
+      representativeImageUrl: 'https://example.com/base.webp',
+      displayImageKind: 'missing_variant_visual',
+    );
+
+    expect(presentation.isRepresentative, isTrue);
+    expect(presentation.isMissingVariantVisual, isTrue);
+    expect(presentation.compactBadgeLabel, 'Variant Image Pending');
+    expect(presentation.detailBadgeLabel, 'Variant Image Pending');
+    expect(
+      presentation.detailNote,
+      'This is the printing, but not the correct variant image.',
+    );
+  });
+
+  test('blocked image presentation is not treated as exact', () {
+    final presentation = resolveImagePresentationFromFields(
+      representativeImageUrl: 'https://example.com/review.webp',
+      imageStatus: 'blocked_source_identity_conflict',
+    );
+
+    expect(presentation.isBlocked, isTrue);
+    expect(presentation.isRepresentative, isFalse);
+    expect(presentation.compactBadgeLabel, 'Image Under Review');
+    expect(presentation.detailBadgeLabel, 'Image Under Review');
   });
 }

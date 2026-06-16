@@ -1,0 +1,230 @@
+{
+  "generated_at": "2026-06-14T17:01:00.971Z",
+  "audit_only": true,
+  "rollback_only_dry_run": true,
+  "db_writes_persisted": false,
+  "db_writes_performed": false,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "package_id": "IMG-FINISH-01B-MEP-COSMOS-FINISH-UPDATE",
+  "package_fingerprint": "0281e5ea0b40896e7a9d171e823a6f02b25953cb0a6064a1ab2d362f18feb692",
+  "dry_run_proof_hash": "a6a014f5aadee2a1f9ce40a1f97612ab4ec0916a7415f15df2cb176e82f1c8b1",
+  "ready_for_real_apply": true,
+  "ready_for_real_apply_requires_operator_approval": true,
+  "recommended_approval_text": "Approve real IMG-FINISH-01B-MEP-COSMOS-FINISH-UPDATE apply only. Fingerprint: 0281e5ea0b40896e7a9d171e823a6f02b25953cb0a6064a1ab2d362f18feb692. Scope: 4 child card_printing finish_key updates for MEP Black Star Promos #018 Cottonee, #019 Whimsicott, #020 Sneasel, and #021 Weavile from holo to cosmos. Dry-run proof: a6a014f5aadee2a1f9ce40a1f97612ab4ec0916a7415f15df2cb176e82f1c8b1 == a6a014f5aadee2a1f9ce40a1f97612ab4ec0916a7415f15df2cb176e82f1c8b1. No image writes. No parent writes. No deletes. No merges. No migrations. No global apply.",
+  "package_scope": {
+    "package_id": "IMG-FINISH-01B-MEP-COSMOS-FINISH-UPDATE",
+    "scope": "MEP 018-021 child card_printings finish update from holo to cosmos",
+    "target_table": "card_printings",
+    "target_rows": 4,
+    "parent_writes": 0,
+    "image_writes": 0,
+    "deletes": 0,
+    "merges": 0,
+    "migrations": 0,
+    "before_finish_key": "holo",
+    "after_finish_key": "cosmos",
+    "card_printing_ids": [
+      "244bfdb6-7e01-4933-b85a-aa89e7548363",
+      "30be20e8-4e02-46de-ba0b-feddefc3ce90",
+      "51ef414d-6a4a-4538-b2e2-d98506117619",
+      "aeda9f7c-40b5-486a-8043-491c7330aacc"
+    ]
+  },
+  "dry_run_proof": {
+    "package_id": "IMG-FINISH-01B-MEP-COSMOS-FINISH-UPDATE",
+    "package_fingerprint": "0281e5ea0b40896e7a9d171e823a6f02b25953cb0a6064a1ab2d362f18feb692",
+    "target_rows": 4,
+    "updated_rows": 4,
+    "after_verified": true,
+    "rollback_completed": true,
+    "targets": [
+      {
+        "card_printing_id": "51ef414d-6a4a-4538-b2e2-d98506117619",
+        "card_print_id": "5cd7a18c-0d2f-4e57-82e1-5d03f06942d4",
+        "set_code": "mep",
+        "number": "018",
+        "card_name": "Cottonee",
+        "before_finish_key": "holo",
+        "after_finish_key": "cosmos",
+        "source_evidence_urls": [
+          "https://www.tcgplayer.com/product/664051/pokemon-me-mega-evolution-promo-cottonee-cosmos-holo",
+          "https://www.gamenerdz.com/cottonee-cosmos-holo-18-me-mega-evolution-promo-holofoil"
+        ]
+      },
+      {
+        "card_printing_id": "30be20e8-4e02-46de-ba0b-feddefc3ce90",
+        "card_print_id": "13b5596f-2b70-4948-90ad-134c22220630",
+        "set_code": "mep",
+        "number": "019",
+        "card_name": "Whimsicott",
+        "before_finish_key": "holo",
+        "after_finish_key": "cosmos",
+        "source_evidence_urls": [
+          "https://www.tcgplayer.com/product/664054/pokemon-me-mega-evolution-promo-whimsicott-cosmos-holo",
+          "https://www.fullgripgames.com/catalog/pokemon_singles-pokemon_promos-mega_evolution_promos/whimsicott__mep019__mep_black_star_promos__cosmos_holo/639896"
+        ]
+      },
+      {
+        "card_printing_id": "244bfdb6-7e01-4933-b85a-aa89e7548363",
+        "card_print_id": "93a96678-3d0c-4060-928d-244c3ab152f0",
+        "set_code": "mep",
+        "number": "020",
+        "card_name": "Sneasel",
+        "before_finish_key": "holo",
+        "after_finish_key": "cosmos",
+        "source_evidence_urls": [
+          "https://www.tcgplayer.com/product/664055/pokemon-me-mega-evolution-promo-sneasel-cosmos-holo",
+          "https://jafcomics.tcgplayerpro.com/catalog/pokemon/me-mega-evolution-promo/sneasel-cosmos-holo/664055"
+        ]
+      },
+      {
+        "card_printing_id": "aeda9f7c-40b5-486a-8043-491c7330aacc",
+        "card_print_id": "db786f44-3b3c-42e2-a070-600d9cfad951",
+        "set_code": "mep",
+        "number": "021",
+        "card_name": "Weavile",
+        "before_finish_key": "holo",
+        "after_finish_key": "cosmos",
+        "source_evidence_urls": [
+          "https://www.tcgplayer.com/product/664063/pokemon-me-mega-evolution-promo-weavile-cosmos-holo",
+          "https://www.nobleknight.com/P/2148382534/Weavile-Cosmos-Holo-HR-021-Holo"
+        ]
+      }
+    ]
+  },
+  "before_rows": [
+    {
+      "card_printing_id": "51ef414d-6a4a-4538-b2e2-d98506117619",
+      "card_print_id": "5cd7a18c-0d2f-4e57-82e1-5d03f06942d4",
+      "finish_key": "holo",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "set_code": "mep",
+      "number": "018",
+      "card_name": "Cottonee",
+      "printed_identity_modifier": null,
+      "sibling_finish_keys": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "30be20e8-4e02-46de-ba0b-feddefc3ce90",
+      "card_print_id": "13b5596f-2b70-4948-90ad-134c22220630",
+      "finish_key": "holo",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "set_code": "mep",
+      "number": "019",
+      "card_name": "Whimsicott",
+      "printed_identity_modifier": null,
+      "sibling_finish_keys": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "244bfdb6-7e01-4933-b85a-aa89e7548363",
+      "card_print_id": "93a96678-3d0c-4060-928d-244c3ab152f0",
+      "finish_key": "holo",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "set_code": "mep",
+      "number": "020",
+      "card_name": "Sneasel",
+      "printed_identity_modifier": null,
+      "sibling_finish_keys": [
+        "holo"
+      ]
+    },
+    {
+      "card_printing_id": "aeda9f7c-40b5-486a-8043-491c7330aacc",
+      "card_print_id": "db786f44-3b3c-42e2-a070-600d9cfad951",
+      "finish_key": "holo",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "set_code": "mep",
+      "number": "021",
+      "card_name": "Weavile",
+      "printed_identity_modifier": null,
+      "sibling_finish_keys": [
+        "holo"
+      ]
+    }
+  ],
+  "after_rows": [
+    {
+      "card_printing_id": "51ef414d-6a4a-4538-b2e2-d98506117619",
+      "card_print_id": "5cd7a18c-0d2f-4e57-82e1-5d03f06942d4",
+      "finish_key": "cosmos",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "set_code": "mep",
+      "number": "018",
+      "card_name": "Cottonee",
+      "printed_identity_modifier": null,
+      "sibling_finish_keys": [
+        "cosmos"
+      ]
+    },
+    {
+      "card_printing_id": "30be20e8-4e02-46de-ba0b-feddefc3ce90",
+      "card_print_id": "13b5596f-2b70-4948-90ad-134c22220630",
+      "finish_key": "cosmos",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "set_code": "mep",
+      "number": "019",
+      "card_name": "Whimsicott",
+      "printed_identity_modifier": null,
+      "sibling_finish_keys": [
+        "cosmos"
+      ]
+    },
+    {
+      "card_printing_id": "244bfdb6-7e01-4933-b85a-aa89e7548363",
+      "card_print_id": "93a96678-3d0c-4060-928d-244c3ab152f0",
+      "finish_key": "cosmos",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "set_code": "mep",
+      "number": "020",
+      "card_name": "Sneasel",
+      "printed_identity_modifier": null,
+      "sibling_finish_keys": [
+        "cosmos"
+      ]
+    },
+    {
+      "card_printing_id": "aeda9f7c-40b5-486a-8043-491c7330aacc",
+      "card_print_id": "db786f44-3b3c-42e2-a070-600d9cfad951",
+      "finish_key": "cosmos",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "set_code": "mep",
+      "number": "021",
+      "card_name": "Weavile",
+      "printed_identity_modifier": null,
+      "sibling_finish_keys": [
+        "cosmos"
+      ]
+    }
+  ]
+}

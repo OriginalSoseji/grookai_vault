@@ -1,0 +1,259 @@
+{
+  "generated_at": "2026-06-15T03:31:06.467Z",
+  "package_id": "IMG-13A-CARDTRADER-EXACT-VARIANT-CHILD-IMAGE-UPLOAD-APPLY",
+  "mode": "real_apply",
+  "db_writes_performed": true,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "fingerprint": "bf1050b53028400da9d554b40bd1525c21fe45f7b02df40156f80ce65f0c5f05",
+  "storage_uploaded_rows": 24,
+  "db_updated_rows": 24,
+  "committed": true,
+  "rows": [
+    {
+      "card_printing_id": "9fad6267-ac17-48ea-9ced-d755444879fa",
+      "set_code": "basep",
+      "number": "11",
+      "card_name": "Eevee",
+      "finish_key": "normal",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/basep/9fad6267-ac17-48ea-9ced-d755444879fa/f20f899d743b455d5e2de080.png",
+      "source_url": "https://www.cardtrader.com/en/cards/388476-eevee-non-holo-jr-stamp-rally-11-wizards-black-star-promos"
+    },
+    {
+      "card_printing_id": "4bb66207-970f-4f33-8577-c51e8db86ffe",
+      "set_code": "bw9",
+      "number": "116",
+      "card_name": "Professor Juniper",
+      "finish_key": "normal",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/bw9/4bb66207-970f-4f33-8577-c51e8db86ffe/8058923e63bc09ec130018f6.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/125138-professor-juniper-ultra-rare-116-116-plasma-freeze"
+    },
+    {
+      "card_printing_id": "abc66805-0151-4763-ada8-dce83190bf9a",
+      "set_code": "dp1",
+      "number": "112",
+      "card_name": "Professor Rowan",
+      "finish_key": "holo",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/dp1/abc66805-0151-4763-ada8-dce83190bf9a/17cf1bdca3c26f6a48f9708b.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/114224-professor-rowan-holo-promo-112-130-diamond-pearl-promos"
+    },
+    {
+      "card_printing_id": "cea150af-fc8f-4b30-aa18-9a7a8af2a7c0",
+      "set_code": "sm1",
+      "number": "148",
+      "card_name": "Professor Kukui",
+      "finish_key": "normal",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sm1/cea150af-fc8f-4b30-aa18-9a7a8af2a7c0/6e0046284388c8d3702e0480.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/128580-professor-kukui-ultra-rare-148-149-sun-moon"
+    },
+    {
+      "card_printing_id": "54a863e0-7122-4035-a206-858eaf9f90ab",
+      "set_code": "sm12",
+      "number": "233",
+      "card_name": "Professor Oak's Setup",
+      "finish_key": "normal",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sm12/54a863e0-7122-4035-a206-858eaf9f90ab/1daeb3688c932ec3b068bf7b.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/113287-professor-oak-s-setup-ultra-rare-233-236-cosmic-eclipse"
+    },
+    {
+      "card_printing_id": "dd6e9eb3-e663-4621-a382-a035a1871fca",
+      "set_code": "sm8",
+      "number": "213",
+      "card_name": "Professor Elm's Lecture",
+      "finish_key": "normal",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sm8/dd6e9eb3-e663-4621-a382-a035a1871fca/4c231faece8aa8798d212420.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/122678-professor-elm-s-lecture-ultra-rare-213-214-lost-thunder"
+    },
+    {
+      "card_printing_id": "dd90a17b-0941-4ae9-a6cc-40b6f7edf987",
+      "set_code": "sve",
+      "number": "1",
+      "card_name": "Basic Grass Energy",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/dd90a17b-0941-4ae9-a6cc-40b6f7edf987/58c034b1546b9053b0bbd047.png",
+      "source_url": "https://www.cardtrader.com/en/cards/266687-basic-grass-energy-cosmos-holo-sve001-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "ca1ce619-dcec-4f39-9ae7-ec9fac8d8e42",
+      "set_code": "sve",
+      "number": "10",
+      "card_name": "Basic Fire Energy",
+      "finish_key": "cracked_ice",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/ca1ce619-dcec-4f39-9ae7-ec9fac8d8e42/a85936b8a3cc74e74d5c6f82.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/319553-basic-fire-energy-cracked-ice-holo-terapagos-ultra-premium-collection-sve-010-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "b2758770-a048-45ce-a941-98e242efc951",
+      "set_code": "sve",
+      "number": "11",
+      "card_name": "Basic Water Energy",
+      "finish_key": "cracked_ice",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/b2758770-a048-45ce-a941-98e242efc951/aa7fe5a309188475aaa4819c.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/319535-basic-water-energy-cracked-ice-holo-terapagos-ultra-premium-collection-sve-011-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "4220b7a1-b0e1-417d-a469-6d450afb5312",
+      "set_code": "sve",
+      "number": "12",
+      "card_name": "Basic Lightning Energy",
+      "finish_key": "cracked_ice",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/4220b7a1-b0e1-417d-a469-6d450afb5312/7d11d8d0b48376c05cf0da08.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/319552-basic-lightning-energy-cracked-ice-holo-terapagos-ultra-premium-collection-sve-012-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "c7b77cee-81f8-421f-9ec1-50c69ee75b90",
+      "set_code": "sve",
+      "number": "13",
+      "card_name": "Basic Psychic Energy",
+      "finish_key": "cracked_ice",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/c7b77cee-81f8-421f-9ec1-50c69ee75b90/6b5b5a1b3afd7c33402c7af2.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/319551-basic-psychic-energy-cracked-ice-holo-terapagos-ultra-premium-collection-sve-013-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "6b390cd6-8aee-494f-8df4-31c5cd8e42e1",
+      "set_code": "sve",
+      "number": "14",
+      "card_name": "Basic Fighting Energy",
+      "finish_key": "cracked_ice",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/6b390cd6-8aee-494f-8df4-31c5cd8e42e1/ce59f9dbe04b58dd891a6bf6.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/319538-basic-fighting-energy-cracked-ice-holo-terapagos-ultra-premium-collection-sve-014-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "a13da591-71eb-41fe-873b-bce3fdb47098",
+      "set_code": "sve",
+      "number": "15",
+      "card_name": "Basic Darkness Energy",
+      "finish_key": "cracked_ice",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/a13da591-71eb-41fe-873b-bce3fdb47098/aaabe5526c1928f1030573b2.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/319537-basic-darkness-energy-cracked-ice-holo-terapagos-ultra-premium-collection-sve-015-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "e08d65a3-98ce-4a41-bf7b-c6bbcd10f825",
+      "set_code": "sve",
+      "number": "16",
+      "card_name": "Basic Metal Energy",
+      "finish_key": "cracked_ice",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/e08d65a3-98ce-4a41-bf7b-c6bbcd10f825/4d4a052d3010fc5d4f27ac3e.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/319536-basic-metal-energy-cracked-ice-holo-terapagos-ultra-premium-collection-sve-016-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "7f605228-ca6f-451e-a7bf-36b4a064dca9",
+      "set_code": "sve",
+      "number": "2",
+      "card_name": "Basic Fire Energy",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/7f605228-ca6f-451e-a7bf-36b4a064dca9/8b001844f2ce463dab3296c4.png",
+      "source_url": "https://www.cardtrader.com/en/cards/266680-basic-fire-energy-cosmos-holo-sve002-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "bc24d5cf-7d26-4642-9d8e-b448e505dba8",
+      "set_code": "sve",
+      "number": "3",
+      "card_name": "Basic Water Energy",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/bc24d5cf-7d26-4642-9d8e-b448e505dba8/4a82711c0ce2fd24dbb92c2b.png",
+      "source_url": "https://www.cardtrader.com/en/cards/266681-basic-water-energy-cosmos-holo-sve003-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "b0e201f3-cd89-461d-9dd9-d881ed58e6ba",
+      "set_code": "sve",
+      "number": "4",
+      "card_name": "Basic Lightning Energy",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/b0e201f3-cd89-461d-9dd9-d881ed58e6ba/38001b767901895f5bc8f09f.png",
+      "source_url": "https://www.cardtrader.com/en/cards/266682-basic-lightning-energy-cosmos-holo-sve004-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "2c5ebd92-b108-4531-bfe2-53120b785bd2",
+      "set_code": "sve",
+      "number": "5",
+      "card_name": "Basic Psychic Energy",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/2c5ebd92-b108-4531-bfe2-53120b785bd2/4339bd74f1f783371794e9a3.png",
+      "source_url": "https://www.cardtrader.com/en/cards/266683-basic-psychic-energy-cosmos-holo-sve005-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "d2c9866d-68bc-4dbb-8088-09f8e874b16e",
+      "set_code": "sve",
+      "number": "6",
+      "card_name": "Basic Fighting Energy",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/d2c9866d-68bc-4dbb-8088-09f8e874b16e/2d6584a44c6feb4ca6581be4.png",
+      "source_url": "https://www.cardtrader.com/en/cards/266684-basic-fighting-energy-cosmos-holo-sve006-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "d98e4625-33aa-415f-84d6-822015fecebf",
+      "set_code": "sve",
+      "number": "7",
+      "card_name": "Basic Darkness Energy",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/d98e4625-33aa-415f-84d6-822015fecebf/dfc0f57bbe2f34e2f0a2b636.png",
+      "source_url": "https://www.cardtrader.com/en/cards/266685-basic-darkness-energy-cosmos-holo-sve007-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "b2c22297-53fa-4cf2-ba1f-9da59cb2c513",
+      "set_code": "sve",
+      "number": "8",
+      "card_name": "Basic Metal Energy",
+      "finish_key": "cosmos",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/b2c22297-53fa-4cf2-ba1f-9da59cb2c513/06b586571ceede886c82de18.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/266686-basic-metal-energy-cosmos-holo-sve008-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "a9a907ac-68a5-4ea6-a642-15e4a36719c2",
+      "set_code": "sve",
+      "number": "9",
+      "card_name": "Basic Grass Energy",
+      "finish_key": "cracked_ice",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/sve/a9a907ac-68a5-4ea6-a642-15e4a36719c2/3586b626bf3efa70df16de4e.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/319557-basic-grass-energy-cracked-ice-holo-terapagos-ultra-premium-collection-sve-009-scarlet-violet-energies"
+    },
+    {
+      "card_printing_id": "24b0306a-53a4-41cc-90b6-3548734d27ba",
+      "set_code": "xy11",
+      "number": "114",
+      "card_name": "Professor Sycamore",
+      "finish_key": "normal",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/xy11/24b0306a-53a4-41cc-90b6-3548734d27ba/67e5bdd62d00a612c8ff2d6f.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/128080-professor-sycamore-ultra-rare-114-114-steam-siege"
+    },
+    {
+      "card_printing_id": "5676f0c8-8024-43ff-848f-d4310c2c3855",
+      "set_code": "xy5",
+      "number": "159",
+      "card_name": "Professor Birch's Observations",
+      "finish_key": "normal",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img13a-cardtrader-exact-variant/xy5/5676f0c8-8024-43ff-848f-d4310c2c3855/1e5324b8583846156395f992.jpg",
+      "source_url": "https://www.cardtrader.com/en/cards/126219-professor-birch-s-observations-ultra-rare-159-160-primal-clash"
+    }
+  ],
+  "proof_hash": "ad0c088f8fde9022aa75aca9dfc3b5daa0f0e9f27ee1045ab52005df238abed8"
+}

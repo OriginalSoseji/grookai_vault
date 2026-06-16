@@ -1,0 +1,177 @@
+{
+  "version": "ENRICH_13H_CORE_IDENTITY_GOVERNANCE_CONSOLIDATED_PLAN_V1",
+  "mode": "read_only_consolidated_governance_plan",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "image_writes_performed": false,
+  "source_reports": {
+    "pocket": "docs\\audits\\card_row_enrichment_v1\\enrich13b_pocket_domain_exclusion_plan_v1.json",
+    "radiantCollection": "docs\\audits\\card_row_enrichment_v1\\enrich13c_radiant_collection_prefix_governance_v1.json",
+    "xyPromoDuplicates": "docs\\audits\\card_row_enrichment_v1\\enrich13d_promo_prefix_duplicate_adjudication_v1.json",
+    "nameAliasCollisions": "docs\\audits\\card_row_enrichment_v1\\enrich13e_name_alias_collision_governance_v1.json",
+    "suffixVariants": "docs\\audits\\card_row_enrichment_v1\\enrich13f_suffix_variant_collision_governance_v1.json",
+    "celebrationsAliases": "docs\\audits\\card_row_enrichment_v1\\enrich13g_celebrations_subset_alias_governance_v1.json"
+  },
+  "summary": {
+    "total_governed_rows": 232,
+    "dry_run_candidate_rows": 28,
+    "blocked_or_contract_required_rows": 204,
+    "immediate_write_ready_rows": 0,
+    "deterministic_duplicate_transfer_rows": 0,
+    "modifier_or_subset_identity_rows": 28,
+    "pocket_domain_rows": 203,
+    "manual_review_rows": 1,
+    "write_ready_now": false
+  },
+  "consolidation_law": {
+    "decision": "core_identity_blockers_are_governed_but_not_immediate_write_ready",
+    "reason": "ENRICH-13B through ENRICH-13G convert the 332 core identity blockers into deterministic lanes, but each lane still requires either a dedicated contract or a rollback-only package dry-run before any real apply.",
+    "hard_rules": [
+      "Pocket rows are not English physical enrichment rows until a domain contract exists.",
+      "RC prefixes and suffix letters are identity-bearing when source-backed.",
+      "Generic name normalization cannot merge materially distinct identities.",
+      "Celebrations Classic Collection aliases are subset-governed and must not become host cel25 public identities.",
+      "No bucket is authorized for real apply by this report."
+    ]
+  },
+  "buckets": [
+    {
+      "bucket_id": "ENRICH-13B",
+      "name": "Pocket / non-physical domain exclusion",
+      "source_report": "docs\\audits\\card_row_enrichment_v1\\enrich13b_pocket_domain_exclusion_plan_v1.json",
+      "rows": 203,
+      "category": "contract_blocked",
+      "recommended_status": "blocked_contract_required",
+      "proposed_future_package": "ENRICH-13B1-TCG-POCKET-DOMAIN-RECLASSIFICATION-READINESS",
+      "next_action": "Create a dedicated Pocket/non-physical domain contract before any dry-run.",
+      "write_ready_now": false,
+      "reason": "Rows belong to TCG Pocket-like source IDs and were previously policy-blocked from public physical GV-ID backfill. Current sets still have pokemon_eng_standard identity defaults, so applying physical enrichment would mix non-physical rows into the English physical canon."
+    },
+    {
+      "bucket_id": "ENRICH-13C",
+      "name": "Radiant Collection RC prefix identity",
+      "source_report": "docs\\audits\\card_row_enrichment_v1\\enrich13c_radiant_collection_prefix_governance_v1.json",
+      "rows": 20,
+      "category": "modifier_identity_dry_run_candidate",
+      "recommended_status": "dry_run_required",
+      "proposed_future_package": "ENRICH-13C1-RADIANT-COLLECTION-PREFIX-IDENTITY-DRY-RUN",
+      "next_action": "Prepare modifier-aware rollback-only dry-run for number_prefix:RC parent identity.",
+      "write_ready_now": false,
+      "reason": "Radiant Collection prefix is identity-bearing. RC19 is not the same parent identity as 19."
+    },
+    {
+      "bucket_id": "ENRICH-13D",
+      "name": "XY promo duplicate parent adjudication",
+      "source_report": "docs\\audits\\card_row_enrichment_v1\\enrich13d_promo_prefix_duplicate_adjudication_v1.json",
+      "rows": 0,
+      "category": "duplicate_dependency_transfer_dry_run_candidate",
+      "recommended_status": "dry_run_required",
+      "proposed_future_package": "ENRICH-13D1-XYP-DUPLICATE-DEPENDENCY-TRANSFER-DRY-RUN",
+      "next_action": "Prepare dependency-transfer dry-run for deterministic duplicate XY promo parents.",
+      "write_ready_now": false,
+      "reason": "Each target row already has an existing canonical owner with the same XY promo number and a normalized equivalent name. Updating the duplicate parent into that identity would collide; the safe future path is dependency-aware duplicate adjudication."
+    },
+    {
+      "bucket_id": "ENRICH-13E",
+      "name": "Name / alias collision governance",
+      "source_report": "docs\\audits\\card_row_enrichment_v1\\enrich13e_name_alias_collision_governance_v1.json",
+      "rows": 1,
+      "category": "mixed_duplicate_and_manual_review",
+      "recommended_status": "split_dry_run_from_manual_review",
+      "proposed_future_package": "ENRICH-13E1-NAME-ALIAS-DUPLICATE-TRANSFER-DRY-RUN",
+      "next_action": "Prepare dry-run for deterministic aliases only; keep Luxray GL vs Luxray GL LV.X blocked.",
+      "write_ready_now": false,
+      "deterministic_rows": 0,
+      "blocked_rows": 1,
+      "reason": "Most rows are punctuation, gender-symbol, EX hyphenation, or known Platinum owner-name source alias differences. Luxray GL versus Luxray GL LV.X is materially different card-name text and must remain blocked until source evidence proves whether the duplicate row is wrong or incomplete."
+    },
+    {
+      "bucket_id": "ENRICH-13F",
+      "name": "Suffix variant collision governance",
+      "source_report": "docs\\audits\\card_row_enrichment_v1\\enrich13f_suffix_variant_collision_governance_v1.json",
+      "rows": 4,
+      "category": "suffix_identity_dry_run_candidate",
+      "recommended_status": "dry_run_required_with_split_lanes",
+      "proposed_future_package": "ENRICH-13F1-SUFFIX-VARIANT-SPLIT-AND-DUPLICATE-DRY-RUN",
+      "next_action": "Prepare suffix-aware dry-run that separates duplicate suffix transfers from base-vs-suffix split proof.",
+      "write_ready_now": false,
+      "duplicate_suffix_rows": 0,
+      "base_suffix_collision_rows": 4,
+      "reason": "A printed number suffix such as 65a or XY150a is not a decorative spelling difference. Base-number rows and suffix-number rows must not be merged unless a later source audit proves one side is invalid."
+    },
+    {
+      "bucket_id": "ENRICH-13G",
+      "name": "Celebrations Classic Collection subset alias governance",
+      "source_report": "docs\\audits\\card_row_enrichment_v1\\enrich13g_celebrations_subset_alias_governance_v1.json",
+      "rows": 4,
+      "category": "subset_alias_dry_run_candidate",
+      "recommended_status": "dry_run_required",
+      "proposed_future_package": "ENRICH-13G1-CELEBRATIONS-CLASSIC-COLLECTION-SUBSET-ALIAS-DRY-RUN",
+      "next_action": "Prepare subset-aware dry-run; do not backfill cel25 15A# aliases as host-set identities.",
+      "write_ready_now": false,
+      "reason": "Existing Master Index suppression governance treats Celebrations Classic Collection as subset cel25c. TCGdex-like cel25 15A# aliases should not be written as host-set parent identity until a subset relocation/suppression dry-run proves the right owner and dependency behavior."
+    }
+  ],
+  "recommended_sequence": [
+    {
+      "order": 1,
+      "package_id": "ENRICH-13D1-XYP-DUPLICATE-DEPENDENCY-TRANSFER-DRY-RUN",
+      "rows": 0,
+      "mode": "rollback_only_dry_run",
+      "why_first": "Deterministic duplicate parent adjudication with suffix rows already excluded.",
+      "approval_required_before_execution": true
+    },
+    {
+      "order": 2,
+      "package_id": "ENRICH-13E1-NAME-ALIAS-DUPLICATE-TRANSFER-DRY-RUN",
+      "rows": 0,
+      "mode": "rollback_only_dry_run",
+      "why_first": "Alias duplicate rows are separated from the one manual identity conflict.",
+      "approval_required_before_execution": true
+    },
+    {
+      "order": 3,
+      "package_id": "ENRICH-13C1-RADIANT-COLLECTION-PREFIX-IDENTITY-DRY-RUN",
+      "rows": 20,
+      "mode": "rollback_only_dry_run",
+      "why_first": "RC prefix is a deterministic identity modifier, but needs modifier-aware uniqueness proof.",
+      "approval_required_before_execution": true
+    },
+    {
+      "order": 4,
+      "package_id": "ENRICH-13F1-SUFFIX-VARIANT-SPLIT-AND-DUPLICATE-DRY-RUN",
+      "rows": 4,
+      "mode": "rollback_only_dry_run",
+      "why_first": "Suffix rows are identity-bearing and require split-lane proof.",
+      "approval_required_before_execution": true
+    },
+    {
+      "order": 5,
+      "package_id": "ENRICH-13G1-CELEBRATIONS-CLASSIC-COLLECTION-SUBSET-ALIAS-DRY-RUN",
+      "rows": 4,
+      "mode": "rollback_only_dry_run",
+      "why_first": "Subset aliases must resolve to cel25c owners or suppression before any write.",
+      "approval_required_before_execution": true
+    },
+    {
+      "order": 6,
+      "package_id": "ENRICH-13B1-TCG-POCKET-DOMAIN-RECLASSIFICATION-READINESS",
+      "rows": 203,
+      "mode": "contract_first_readiness",
+      "why_first": "Pocket rows are non-physical domain governance, not English physical enrichment.",
+      "approval_required_before_execution": true
+    }
+  ],
+  "safety_confirmation": {
+    "imports_database_client": false,
+    "imports_apply_runner": false,
+    "writes_sql": false,
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false
+  },
+  "generated_at": "2026-06-16T01:55:30.611Z",
+  "fingerprint": "388dbbe7c053af2c0275dc24fae105be23dbbe3b4bbd68b013dafe29481c8ee4"
+}

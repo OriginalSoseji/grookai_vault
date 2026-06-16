@@ -1,0 +1,313 @@
+{
+  "version": "ENRICH15A_SET_IDENTITY_DOMAIN_GUARDED_DRY_RUN_V1",
+  "package_id": "ENRICH-15A-SET-IDENTITY-DOMAIN-BACKFILL",
+  "generated_at": "2026-06-15T21:59:02.939Z",
+  "mode": "guarded_dry_run_rollback_only",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "target_domain": "pokemon_eng_standard",
+  "target_set_codes": [
+    "2023sv",
+    "2024sv",
+    "me03",
+    "me04",
+    "mee",
+    "mfb"
+  ],
+  "targets": [
+    {
+      "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "identity_domain_default": null,
+      "parent_rows": 15,
+      "child_printing_rows": 15,
+      "missing_parent_gv_id": 15,
+      "missing_active_identity": 15,
+      "active_mapped_parent_rows": 15
+    },
+    {
+      "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "identity_domain_default": null,
+      "parent_rows": 15,
+      "child_printing_rows": 15,
+      "missing_parent_gv_id": 15,
+      "missing_active_identity": 15,
+      "active_mapped_parent_rows": 15
+    },
+    {
+      "set_id": "b6470b05-c00c-4414-a51e-124fd69a31a3",
+      "set_code": "me03",
+      "set_name": "Perfect Order",
+      "identity_domain_default": null,
+      "parent_rows": 126,
+      "child_printing_rows": 190,
+      "missing_parent_gv_id": 0,
+      "missing_active_identity": 126,
+      "active_mapped_parent_rows": 124
+    },
+    {
+      "set_id": "66b57b5c-89ee-4a2e-b3a3-46168e5ebe34",
+      "set_code": "me04",
+      "set_name": "Chaos Rising",
+      "identity_domain_default": null,
+      "parent_rows": 122,
+      "child_printing_rows": 247,
+      "missing_parent_gv_id": 122,
+      "missing_active_identity": 122,
+      "active_mapped_parent_rows": 122
+    },
+    {
+      "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+      "set_code": "mee",
+      "set_name": "Mega Evolution Energy",
+      "identity_domain_default": null,
+      "parent_rows": 8,
+      "child_printing_rows": 16,
+      "missing_parent_gv_id": 8,
+      "missing_active_identity": 8,
+      "active_mapped_parent_rows": 8
+    },
+    {
+      "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+      "set_code": "mfb",
+      "set_name": "My First Battle",
+      "identity_domain_default": null,
+      "parent_rows": 34,
+      "child_printing_rows": 34,
+      "missing_parent_gv_id": 34,
+      "missing_active_identity": 34,
+      "active_mapped_parent_rows": 34
+    }
+  ],
+  "summary": {
+    "target_set_count": 6,
+    "dry_run_updated_sets": 6,
+    "affected_parent_rows": 320,
+    "affected_child_printing_rows": 517
+  },
+  "dry_run": {
+    "pass": true,
+    "updated_rows": [
+      {
+        "set_id": "b6470b05-c00c-4414-a51e-124fd69a31a3",
+        "set_code": "me03",
+        "set_name": "Perfect Order",
+        "identity_domain_default": "pokemon_eng_standard"
+      },
+      {
+        "set_id": "66b57b5c-89ee-4a2e-b3a3-46168e5ebe34",
+        "set_code": "me04",
+        "set_name": "Chaos Rising",
+        "identity_domain_default": "pokemon_eng_standard"
+      },
+      {
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "identity_domain_default": "pokemon_eng_standard"
+      },
+      {
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "identity_domain_default": "pokemon_eng_standard"
+      },
+      {
+        "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+        "set_code": "mee",
+        "set_name": "Mega Evolution Energy",
+        "identity_domain_default": "pokemon_eng_standard"
+      },
+      {
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "set_name": "My First Battle",
+        "identity_domain_default": "pokemon_eng_standard"
+      }
+    ],
+    "before_targets": [
+      {
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "identity_domain_default": null,
+        "parent_rows": 15,
+        "child_printing_rows": 15,
+        "missing_parent_gv_id": 15,
+        "missing_active_identity": 15,
+        "active_mapped_parent_rows": 15
+      },
+      {
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "identity_domain_default": null,
+        "parent_rows": 15,
+        "child_printing_rows": 15,
+        "missing_parent_gv_id": 15,
+        "missing_active_identity": 15,
+        "active_mapped_parent_rows": 15
+      },
+      {
+        "set_id": "b6470b05-c00c-4414-a51e-124fd69a31a3",
+        "set_code": "me03",
+        "set_name": "Perfect Order",
+        "identity_domain_default": null,
+        "parent_rows": 126,
+        "child_printing_rows": 190,
+        "missing_parent_gv_id": 0,
+        "missing_active_identity": 126,
+        "active_mapped_parent_rows": 124
+      },
+      {
+        "set_id": "66b57b5c-89ee-4a2e-b3a3-46168e5ebe34",
+        "set_code": "me04",
+        "set_name": "Chaos Rising",
+        "identity_domain_default": null,
+        "parent_rows": 122,
+        "child_printing_rows": 247,
+        "missing_parent_gv_id": 122,
+        "missing_active_identity": 122,
+        "active_mapped_parent_rows": 122
+      },
+      {
+        "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+        "set_code": "mee",
+        "set_name": "Mega Evolution Energy",
+        "identity_domain_default": null,
+        "parent_rows": 8,
+        "child_printing_rows": 16,
+        "missing_parent_gv_id": 8,
+        "missing_active_identity": 8,
+        "active_mapped_parent_rows": 8
+      },
+      {
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "set_name": "My First Battle",
+        "identity_domain_default": null,
+        "parent_rows": 34,
+        "child_printing_rows": 34,
+        "missing_parent_gv_id": 34,
+        "missing_active_identity": 34,
+        "active_mapped_parent_rows": 34
+      }
+    ],
+    "after_targets": [
+      {
+        "set_id": "02a0e8fa-acc7-4093-b1c8-399468ae82a6",
+        "set_code": "2023sv",
+        "set_name": "McDonald's Collection 2023",
+        "identity_domain_default": "pokemon_eng_standard",
+        "parent_rows": 15,
+        "child_printing_rows": 15,
+        "missing_parent_gv_id": 15,
+        "missing_active_identity": 15,
+        "active_mapped_parent_rows": 15
+      },
+      {
+        "set_id": "74f082df-35b6-4b08-af89-4e5d6c7d53bc",
+        "set_code": "2024sv",
+        "set_name": "McDonald's Collection 2024",
+        "identity_domain_default": "pokemon_eng_standard",
+        "parent_rows": 15,
+        "child_printing_rows": 15,
+        "missing_parent_gv_id": 15,
+        "missing_active_identity": 15,
+        "active_mapped_parent_rows": 15
+      },
+      {
+        "set_id": "b6470b05-c00c-4414-a51e-124fd69a31a3",
+        "set_code": "me03",
+        "set_name": "Perfect Order",
+        "identity_domain_default": "pokemon_eng_standard",
+        "parent_rows": 126,
+        "child_printing_rows": 190,
+        "missing_parent_gv_id": 0,
+        "missing_active_identity": 126,
+        "active_mapped_parent_rows": 124
+      },
+      {
+        "set_id": "66b57b5c-89ee-4a2e-b3a3-46168e5ebe34",
+        "set_code": "me04",
+        "set_name": "Chaos Rising",
+        "identity_domain_default": "pokemon_eng_standard",
+        "parent_rows": 122,
+        "child_printing_rows": 247,
+        "missing_parent_gv_id": 122,
+        "missing_active_identity": 122,
+        "active_mapped_parent_rows": 122
+      },
+      {
+        "set_id": "1f0996bd-cb77-40c2-9a2b-121849099003",
+        "set_code": "mee",
+        "set_name": "Mega Evolution Energy",
+        "identity_domain_default": "pokemon_eng_standard",
+        "parent_rows": 8,
+        "child_printing_rows": 16,
+        "missing_parent_gv_id": 8,
+        "missing_active_identity": 8,
+        "active_mapped_parent_rows": 8
+      },
+      {
+        "set_id": "6c43360a-bfd9-4df7-b6d5-7b7f2f874c18",
+        "set_code": "mfb",
+        "set_name": "My First Battle",
+        "identity_domain_default": "pokemon_eng_standard",
+        "parent_rows": 34,
+        "child_printing_rows": 34,
+        "missing_parent_gv_id": 34,
+        "missing_active_identity": 34,
+        "active_mapped_parent_rows": 34
+      }
+    ],
+    "before_segments": [
+      {
+        "segment": "english_physical",
+        "parent_rows": 22962,
+        "child_printing_rows": 38205
+      },
+      {
+        "segment": "excluded_or_other",
+        "parent_rows": 2947,
+        "child_printing_rows": 8841
+      },
+      {
+        "segment": "unclassified_identity_domain",
+        "parent_rows": 320,
+        "child_printing_rows": 517
+      }
+    ],
+    "after_segments": [
+      {
+        "segment": "english_physical",
+        "parent_rows": 23282,
+        "child_printing_rows": 38722
+      },
+      {
+        "segment": "excluded_or_other",
+        "parent_rows": 2947,
+        "child_printing_rows": 8841
+      }
+    ],
+    "proof_hash_sha256": "3f778632b7489b6c4156f5e0b6956dea2d1ac741b734714ce3f0203a97fc6696",
+    "stop_findings": []
+  },
+  "stop_findings": [],
+  "forbidden": [
+    "card_prints writes",
+    "card_printings writes",
+    "card_print_identity writes",
+    "external_mappings writes",
+    "deletes",
+    "merges",
+    "migrations",
+    "image writes",
+    "global apply"
+  ],
+  "fingerprint_sha256": "291200956a4305e69804cf2309660ba0e8ac79cbd2795743ae7831569879fe74"
+}

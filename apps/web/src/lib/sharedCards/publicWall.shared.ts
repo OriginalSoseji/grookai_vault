@@ -32,6 +32,11 @@ export type PublicWallCard = {
   image_url?: string;
   canonical_image_url?: string;
   back_image_url?: string;
+  representative_image_url?: string;
+  image_status?: string;
+  image_note?: string;
+  display_image_url?: string;
+  display_image_kind?: string | null;
   public_note?: string;
   owned_count?: number;
   raw_count?: number;

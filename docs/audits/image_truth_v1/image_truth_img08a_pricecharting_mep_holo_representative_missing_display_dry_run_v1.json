@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-06-14T16:19:41.199Z",
+  "audit_only": true,
+  "rollback_only_dry_run": true,
+  "db_writes_persisted": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "package_id": "IMG-08A-PRICECHARTING-MEP-HOLO-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-DRY-RUN",
+  "source_manifest": "docs\\audits\\image_truth_v1\\image_truth_missing_display_source_packet_v1.json",
+  "nonproduction_staging_asset_dir": "tmp/nonproduction_image_staging/image_truth_v1/img08a",
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "source_rows": 0,
+  "normalized_asset_rows": 0,
+  "rollback_update_verified_rows": 0,
+  "blocked_rows": 0,
+  "dry_run_ready_for_real_apply": false,
+  "rollback_completed": true,
+  "proof_hash": "2d0a1f246b5e677f4c30e99ad9b5dc6297eeef68f0be549300e0f26a15402bd6",
+  "proof": {
+    "package_id": "IMG-08A-PRICECHARTING-MEP-HOLO-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-DRY-RUN",
+    "row_count": 0,
+    "ready_row_count": 0,
+    "blocked_row_count": 0,
+    "target_table": "card_printings",
+    "parent_overwrite_allowed": false,
+    "rollback_completed": true,
+    "rows": []
+  },
+  "rows": []
+}

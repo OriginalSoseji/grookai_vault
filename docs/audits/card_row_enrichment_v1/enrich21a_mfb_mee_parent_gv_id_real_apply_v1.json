@@ -1,0 +1,904 @@
+{
+  "version": "ENRICH21A_MFB_MEE_PARENT_GV_ID_REAL_APPLY_V1",
+  "package_id": "ENRICH-21A-MFB-MEE-PARENT-GV-ID-BACKFILL",
+  "generated_at": "2026-06-16T01:48:52.610Z",
+  "package_fingerprint_sha256": "9049c608b87e41ecbf617de26875fe83a0f0f7b88b46a816e9140e89824fa32b",
+  "expected_fingerprint_sha256": "9049c608b87e41ecbf617de26875fe83a0f0f7b88b46a816e9140e89824fa32b",
+  "expected_dry_run_proof_sha256": "df27b5998b09500d94a8878aa1bb69e23105de39a028167f632555eb2a5926df",
+  "approval_text": "Approve real ENRICH-21A-MFB-MEE-PARENT-GV-ID-BACKFILL apply only. Fingerprint: 9049c608b87e41ecbf617de26875fe83a0f0f7b88b46a816e9140e89824fa32b. Scope: 42 parent card_print gv_id updates for mfb/My First Battle and mee/Mega Evolution Energy using governed default namespace tokens MFB and MEE. Dry-run proof: df27b5998b09500d94a8878aa1bb69e23105de39a028167f632555eb2a5926df == df27b5998b09500d94a8878aa1bb69e23105de39a028167f632555eb2a5926df. No child writes. No identity writes. No external mapping writes. No species writes. No deletes. No merges. No migrations. No image writes. No global apply.",
+  "scope": {
+    "target_rows": 42,
+    "writes_performed": [
+      "card_prints.gv_id"
+    ],
+    "forbidden": [
+      "child writes",
+      "identity writes",
+      "external mapping writes",
+      "species writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ],
+    "migrations_created": false
+  },
+  "dry_run_validation_findings": [],
+  "approval_validation_findings": [],
+  "target_validation_findings": [],
+  "apply_result": {
+    "before_snapshot": {
+      "rows": [
+        {
+          "card_print_id": "6a28431f-8e78-45ee-adce-46ccde297389",
+          "set_code": "mee",
+          "number": "001",
+          "number_plain": "001",
+          "card_name": "Basic Grass Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "fa0fa953-2e87-4dfc-8bd9-ebda84a53a12",
+          "set_code": "mee",
+          "number": "002",
+          "number_plain": "002",
+          "card_name": "Basic Fire Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "fd2dbb1c-728d-48de-9324-6b4e16947e67",
+          "set_code": "mee",
+          "number": "003",
+          "number_plain": "003",
+          "card_name": "Basic Water Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "69ceec8e-8bbc-4faa-b70a-bac1556429b1",
+          "set_code": "mee",
+          "number": "004",
+          "number_plain": "004",
+          "card_name": "Basic Lightning Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "f1a590b0-3795-4145-9d68-93dcbb73f3c6",
+          "set_code": "mee",
+          "number": "005",
+          "number_plain": "005",
+          "card_name": "Basic Psychic Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "f2342804-4844-409a-9b95-ddf10b09bee6",
+          "set_code": "mee",
+          "number": "006",
+          "number_plain": "006",
+          "card_name": "Basic Fighting Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "c4df4bea-9e6a-46d7-8fbc-2a3293ef58d6",
+          "set_code": "mee",
+          "number": "007",
+          "number_plain": "007",
+          "card_name": "Basic Darkness Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "fe393cc0-6c1c-4a90-922d-08ef60599c15",
+          "set_code": "mee",
+          "number": "008",
+          "number_plain": "008",
+          "card_name": "Basic Metal Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "49d6a794-5703-4de0-aa70-c6b2438ed1c5",
+          "set_code": "mfb",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Bulbasaur",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "31c39836-62b4-4d44-a898-6ba37a148004",
+          "set_code": "mfb",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Charmeleon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "f62c0bf4-ab0e-451d-a149-c312dd95c51e",
+          "set_code": "mfb",
+          "number": "11",
+          "number_plain": "11",
+          "card_name": "Vulpix",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "db309a53-3ed8-4be0-b3f2-b096a64c2f3f",
+          "set_code": "mfb",
+          "number": "12",
+          "number_plain": "12",
+          "card_name": "Ninetales",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "eb4d8953-9d05-43b4-be64-b529162ce221",
+          "set_code": "mfb",
+          "number": "13",
+          "number_plain": "13",
+          "card_name": "Growlithe",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "f7865250-5030-4f54-be6b-aed423100717",
+          "set_code": "mfb",
+          "number": "14",
+          "number_plain": "14",
+          "card_name": "Arcanine",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "37047df4-d52c-4a32-8cb3-c77f565128bc",
+          "set_code": "mfb",
+          "number": "15",
+          "number_plain": "15",
+          "card_name": "Magmar",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "ece0e2a1-74d8-4b8e-bb65-ffd15cd1bbca",
+          "set_code": "mfb",
+          "number": "16",
+          "number_plain": "16",
+          "card_name": "Fire Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "f57348f5-9b22-4d47-adbd-1dfc08f8ef95",
+          "set_code": "mfb",
+          "number": "17",
+          "number_plain": "17",
+          "card_name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "e9a443af-8d01-4369-8395-b25d6de7ea75",
+          "set_code": "mfb",
+          "number": "18",
+          "number_plain": "18",
+          "card_name": "Raichu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "6b496428-8d58-48a8-ba35-a89db7bb4d1a",
+          "set_code": "mfb",
+          "number": "19",
+          "number_plain": "19",
+          "card_name": "Magnemite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "09af1718-5dbb-4490-8a1e-a71c17584a43",
+          "set_code": "mfb",
+          "number": "2",
+          "number_plain": "2",
+          "card_name": "Ivysaur",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "4457f5d7-c979-493f-8a32-6790a91fb1d5",
+          "set_code": "mfb",
+          "number": "20",
+          "number_plain": "20",
+          "card_name": "Magneton",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "454211cf-bd3f-495a-973c-ef4ac787b7d5",
+          "set_code": "mfb",
+          "number": "21",
+          "number_plain": "21",
+          "card_name": "Voltorb",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "87796913-485e-4003-ad35-c47ec7490d00",
+          "set_code": "mfb",
+          "number": "22",
+          "number_plain": "22",
+          "card_name": "Electrode",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "c76cb0ce-6fde-47f4-a136-c54db8cf59ab",
+          "set_code": "mfb",
+          "number": "23",
+          "number_plain": "23",
+          "card_name": "Electabuzz",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "648e1d4b-8564-43eb-9596-71fbf48c017b",
+          "set_code": "mfb",
+          "number": "24",
+          "number_plain": "24",
+          "card_name": "Lightning Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "49305424-a284-4bd5-a0af-3fd355db549b",
+          "set_code": "mfb",
+          "number": "25",
+          "number_plain": "25",
+          "card_name": "Squirtle",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "f63065d2-d77c-494d-9831-cf594600f7ae",
+          "set_code": "mfb",
+          "number": "26",
+          "number_plain": "26",
+          "card_name": "Wartortle",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "9e71eb08-b0c5-4e15-a581-f97f31120bf0",
+          "set_code": "mfb",
+          "number": "27",
+          "number_plain": "27",
+          "card_name": "Poliwag",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "d0c72906-4ded-475b-8319-c9a8cd7dbdd8",
+          "set_code": "mfb",
+          "number": "28",
+          "number_plain": "28",
+          "card_name": "Poliwhirl",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "0e3a69cb-81e6-4f3f-97e8-da5c4bf063f9",
+          "set_code": "mfb",
+          "number": "29",
+          "number_plain": "29",
+          "card_name": "Magikarp",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "15da4897-1148-4a9f-9e18-961cb696f249",
+          "set_code": "mfb",
+          "number": "3",
+          "number_plain": "3",
+          "card_name": "Oddish",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "b894bb8d-1ad3-4824-a8ca-0900941ec7cc",
+          "set_code": "mfb",
+          "number": "30",
+          "number_plain": "30",
+          "card_name": "Gyarados",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "cd03d17c-b61f-4d31-b52a-27ff45bcd2de",
+          "set_code": "mfb",
+          "number": "31",
+          "number_plain": "31",
+          "card_name": "Lapras",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "dece707c-a7c1-49b3-ac3b-51959227b4b5",
+          "set_code": "mfb",
+          "number": "32",
+          "number_plain": "32",
+          "card_name": "Water Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "3184e491-41eb-466c-a456-dcea8ff79403",
+          "set_code": "mfb",
+          "number": "33",
+          "number_plain": "33",
+          "card_name": "Potion",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "056c0faf-05d0-455b-a576-bb1089414821",
+          "set_code": "mfb",
+          "number": "34",
+          "number_plain": "34",
+          "card_name": "Switch",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "dcf3403e-8108-45e7-b4c8-c8f3fdb8d73d",
+          "set_code": "mfb",
+          "number": "4",
+          "number_plain": "4",
+          "card_name": "Gloom",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "74061f6a-223a-4dd0-a6a7-f8b0f341fe26",
+          "set_code": "mfb",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Exeggcute",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "ef1b1771-5477-4c48-b577-e8ded6e641d0",
+          "set_code": "mfb",
+          "number": "6",
+          "number_plain": "6",
+          "card_name": "Exeggutor",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "7981f4c1-055a-4eff-bae1-49fb428e3fdf",
+          "set_code": "mfb",
+          "number": "7",
+          "number_plain": "7",
+          "card_name": "Scyther",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "a6ece9a6-4e33-4879-b5c8-f09274cef1a7",
+          "set_code": "mfb",
+          "number": "8",
+          "number_plain": "8",
+          "card_name": "Grass Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "1c4ae32e-714c-4aa2-8c35-7826cfe759b3",
+          "set_code": "mfb",
+          "number": "9",
+          "number_plain": "9",
+          "card_name": "Charmander",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        }
+      ],
+      "hash_sha256": "df27b5998b09500d94a8878aa1bb69e23105de39a028167f632555eb2a5926df",
+      "counts": {
+        "target_rows": 42,
+        "captured_rows": 42,
+        "rows_with_gv_id": 0,
+        "rows_without_gv_id": 42
+      }
+    },
+    "update_proof": {
+      "updated_rows": 42,
+      "proof": {
+        "target_count": 42,
+        "matching_gv_count": 42,
+        "duplicate_gv_id_exists": 0
+      }
+    },
+    "after_snapshot": {
+      "rows": [
+        {
+          "card_print_id": "6a28431f-8e78-45ee-adce-46ccde297389",
+          "set_code": "mee",
+          "number": "001",
+          "number_plain": "001",
+          "card_name": "Basic Grass Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MEE-001"
+        },
+        {
+          "card_print_id": "fa0fa953-2e87-4dfc-8bd9-ebda84a53a12",
+          "set_code": "mee",
+          "number": "002",
+          "number_plain": "002",
+          "card_name": "Basic Fire Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MEE-002"
+        },
+        {
+          "card_print_id": "fd2dbb1c-728d-48de-9324-6b4e16947e67",
+          "set_code": "mee",
+          "number": "003",
+          "number_plain": "003",
+          "card_name": "Basic Water Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MEE-003"
+        },
+        {
+          "card_print_id": "69ceec8e-8bbc-4faa-b70a-bac1556429b1",
+          "set_code": "mee",
+          "number": "004",
+          "number_plain": "004",
+          "card_name": "Basic Lightning Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MEE-004"
+        },
+        {
+          "card_print_id": "f1a590b0-3795-4145-9d68-93dcbb73f3c6",
+          "set_code": "mee",
+          "number": "005",
+          "number_plain": "005",
+          "card_name": "Basic Psychic Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MEE-005"
+        },
+        {
+          "card_print_id": "f2342804-4844-409a-9b95-ddf10b09bee6",
+          "set_code": "mee",
+          "number": "006",
+          "number_plain": "006",
+          "card_name": "Basic Fighting Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MEE-006"
+        },
+        {
+          "card_print_id": "c4df4bea-9e6a-46d7-8fbc-2a3293ef58d6",
+          "set_code": "mee",
+          "number": "007",
+          "number_plain": "007",
+          "card_name": "Basic Darkness Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MEE-007"
+        },
+        {
+          "card_print_id": "fe393cc0-6c1c-4a90-922d-08ef60599c15",
+          "set_code": "mee",
+          "number": "008",
+          "number_plain": "008",
+          "card_name": "Basic Metal Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MEE-008"
+        },
+        {
+          "card_print_id": "49d6a794-5703-4de0-aa70-c6b2438ed1c5",
+          "set_code": "mfb",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Bulbasaur",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-1"
+        },
+        {
+          "card_print_id": "31c39836-62b4-4d44-a898-6ba37a148004",
+          "set_code": "mfb",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Charmeleon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-10"
+        },
+        {
+          "card_print_id": "f62c0bf4-ab0e-451d-a149-c312dd95c51e",
+          "set_code": "mfb",
+          "number": "11",
+          "number_plain": "11",
+          "card_name": "Vulpix",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-11"
+        },
+        {
+          "card_print_id": "db309a53-3ed8-4be0-b3f2-b096a64c2f3f",
+          "set_code": "mfb",
+          "number": "12",
+          "number_plain": "12",
+          "card_name": "Ninetales",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-12"
+        },
+        {
+          "card_print_id": "eb4d8953-9d05-43b4-be64-b529162ce221",
+          "set_code": "mfb",
+          "number": "13",
+          "number_plain": "13",
+          "card_name": "Growlithe",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-13"
+        },
+        {
+          "card_print_id": "f7865250-5030-4f54-be6b-aed423100717",
+          "set_code": "mfb",
+          "number": "14",
+          "number_plain": "14",
+          "card_name": "Arcanine",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-14"
+        },
+        {
+          "card_print_id": "37047df4-d52c-4a32-8cb3-c77f565128bc",
+          "set_code": "mfb",
+          "number": "15",
+          "number_plain": "15",
+          "card_name": "Magmar",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-15"
+        },
+        {
+          "card_print_id": "ece0e2a1-74d8-4b8e-bb65-ffd15cd1bbca",
+          "set_code": "mfb",
+          "number": "16",
+          "number_plain": "16",
+          "card_name": "Fire Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-16"
+        },
+        {
+          "card_print_id": "f57348f5-9b22-4d47-adbd-1dfc08f8ef95",
+          "set_code": "mfb",
+          "number": "17",
+          "number_plain": "17",
+          "card_name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-17"
+        },
+        {
+          "card_print_id": "e9a443af-8d01-4369-8395-b25d6de7ea75",
+          "set_code": "mfb",
+          "number": "18",
+          "number_plain": "18",
+          "card_name": "Raichu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-18"
+        },
+        {
+          "card_print_id": "6b496428-8d58-48a8-ba35-a89db7bb4d1a",
+          "set_code": "mfb",
+          "number": "19",
+          "number_plain": "19",
+          "card_name": "Magnemite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-19"
+        },
+        {
+          "card_print_id": "09af1718-5dbb-4490-8a1e-a71c17584a43",
+          "set_code": "mfb",
+          "number": "2",
+          "number_plain": "2",
+          "card_name": "Ivysaur",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-2"
+        },
+        {
+          "card_print_id": "4457f5d7-c979-493f-8a32-6790a91fb1d5",
+          "set_code": "mfb",
+          "number": "20",
+          "number_plain": "20",
+          "card_name": "Magneton",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-20"
+        },
+        {
+          "card_print_id": "454211cf-bd3f-495a-973c-ef4ac787b7d5",
+          "set_code": "mfb",
+          "number": "21",
+          "number_plain": "21",
+          "card_name": "Voltorb",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-21"
+        },
+        {
+          "card_print_id": "87796913-485e-4003-ad35-c47ec7490d00",
+          "set_code": "mfb",
+          "number": "22",
+          "number_plain": "22",
+          "card_name": "Electrode",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-22"
+        },
+        {
+          "card_print_id": "c76cb0ce-6fde-47f4-a136-c54db8cf59ab",
+          "set_code": "mfb",
+          "number": "23",
+          "number_plain": "23",
+          "card_name": "Electabuzz",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-23"
+        },
+        {
+          "card_print_id": "648e1d4b-8564-43eb-9596-71fbf48c017b",
+          "set_code": "mfb",
+          "number": "24",
+          "number_plain": "24",
+          "card_name": "Lightning Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-24"
+        },
+        {
+          "card_print_id": "49305424-a284-4bd5-a0af-3fd355db549b",
+          "set_code": "mfb",
+          "number": "25",
+          "number_plain": "25",
+          "card_name": "Squirtle",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-25"
+        },
+        {
+          "card_print_id": "f63065d2-d77c-494d-9831-cf594600f7ae",
+          "set_code": "mfb",
+          "number": "26",
+          "number_plain": "26",
+          "card_name": "Wartortle",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-26"
+        },
+        {
+          "card_print_id": "9e71eb08-b0c5-4e15-a581-f97f31120bf0",
+          "set_code": "mfb",
+          "number": "27",
+          "number_plain": "27",
+          "card_name": "Poliwag",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-27"
+        },
+        {
+          "card_print_id": "d0c72906-4ded-475b-8319-c9a8cd7dbdd8",
+          "set_code": "mfb",
+          "number": "28",
+          "number_plain": "28",
+          "card_name": "Poliwhirl",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-28"
+        },
+        {
+          "card_print_id": "0e3a69cb-81e6-4f3f-97e8-da5c4bf063f9",
+          "set_code": "mfb",
+          "number": "29",
+          "number_plain": "29",
+          "card_name": "Magikarp",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-29"
+        },
+        {
+          "card_print_id": "15da4897-1148-4a9f-9e18-961cb696f249",
+          "set_code": "mfb",
+          "number": "3",
+          "number_plain": "3",
+          "card_name": "Oddish",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-3"
+        },
+        {
+          "card_print_id": "b894bb8d-1ad3-4824-a8ca-0900941ec7cc",
+          "set_code": "mfb",
+          "number": "30",
+          "number_plain": "30",
+          "card_name": "Gyarados",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-30"
+        },
+        {
+          "card_print_id": "cd03d17c-b61f-4d31-b52a-27ff45bcd2de",
+          "set_code": "mfb",
+          "number": "31",
+          "number_plain": "31",
+          "card_name": "Lapras",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-31"
+        },
+        {
+          "card_print_id": "dece707c-a7c1-49b3-ac3b-51959227b4b5",
+          "set_code": "mfb",
+          "number": "32",
+          "number_plain": "32",
+          "card_name": "Water Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-32"
+        },
+        {
+          "card_print_id": "3184e491-41eb-466c-a456-dcea8ff79403",
+          "set_code": "mfb",
+          "number": "33",
+          "number_plain": "33",
+          "card_name": "Potion",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-33"
+        },
+        {
+          "card_print_id": "056c0faf-05d0-455b-a576-bb1089414821",
+          "set_code": "mfb",
+          "number": "34",
+          "number_plain": "34",
+          "card_name": "Switch",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-34"
+        },
+        {
+          "card_print_id": "dcf3403e-8108-45e7-b4c8-c8f3fdb8d73d",
+          "set_code": "mfb",
+          "number": "4",
+          "number_plain": "4",
+          "card_name": "Gloom",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-4"
+        },
+        {
+          "card_print_id": "74061f6a-223a-4dd0-a6a7-f8b0f341fe26",
+          "set_code": "mfb",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Exeggcute",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-5"
+        },
+        {
+          "card_print_id": "ef1b1771-5477-4c48-b577-e8ded6e641d0",
+          "set_code": "mfb",
+          "number": "6",
+          "number_plain": "6",
+          "card_name": "Exeggutor",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-6"
+        },
+        {
+          "card_print_id": "7981f4c1-055a-4eff-bae1-49fb428e3fdf",
+          "set_code": "mfb",
+          "number": "7",
+          "number_plain": "7",
+          "card_name": "Scyther",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-7"
+        },
+        {
+          "card_print_id": "a6ece9a6-4e33-4879-b5c8-f09274cef1a7",
+          "set_code": "mfb",
+          "number": "8",
+          "number_plain": "8",
+          "card_name": "Grass Energy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-8"
+        },
+        {
+          "card_print_id": "1c4ae32e-714c-4aa2-8c35-7826cfe759b3",
+          "set_code": "mfb",
+          "number": "9",
+          "number_plain": "9",
+          "card_name": "Charmander",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-MFB-9"
+        }
+      ],
+      "hash_sha256": "0b636d8b99b5db6ca8c170425e01e39ae6201517c8d4614cc2bf611db26ce0cc",
+      "counts": {
+        "target_rows": 42,
+        "captured_rows": 42,
+        "rows_with_gv_id": 42,
+        "rows_without_gv_id": 0
+      }
+    }
+  },
+  "stop_findings": [],
+  "pass": true
+}

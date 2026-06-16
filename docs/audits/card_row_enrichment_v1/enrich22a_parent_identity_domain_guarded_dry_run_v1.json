@@ -1,0 +1,720 @@
+{
+  "version": "ENRICH22A_PARENT_IDENTITY_DOMAIN_GUARDED_DRY_RUN_V1",
+  "package_id": "ENRICH-22A-PARENT-IDENTITY-DOMAIN-BACKFILL",
+  "generated_at": "2026-06-16T02:13:38.706Z",
+  "mode": "guarded_dry_run_rollback_only",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "target_domain": "pokemon_eng_standard",
+  "expected_target_rows": 1115,
+  "summary": {
+    "target_rows": 1115,
+    "target_sets": 70,
+    "inheritable_standard_rows": 1115,
+    "set_domain_null_rows": 0,
+    "nonstandard_set_domain_rows": 0,
+    "with_active_identity_rows": 1115,
+    "without_active_identity_rows": 0,
+    "with_child_printing_rows": 527,
+    "with_active_mapping_rows": 1100
+  },
+  "targets_by_set": [
+    {
+      "set_code": "me03",
+      "set_name": "Perfect Order",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 126,
+      "with_active_identity_rows": 126,
+      "with_child_printing_rows": 114,
+      "with_active_mapping_rows": 124
+    },
+    {
+      "set_code": "me04",
+      "set_name": "Chaos Rising",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 122,
+      "with_active_identity_rows": 122,
+      "with_child_printing_rows": 122,
+      "with_active_mapping_rows": 122
+    },
+    {
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 97,
+      "with_active_identity_rows": 97,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 97
+    },
+    {
+      "set_code": "sm115",
+      "set_name": "Hidden Fates",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 94,
+      "with_active_identity_rows": 94,
+      "with_child_printing_rows": 94,
+      "with_active_mapping_rows": 94
+    },
+    {
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 63,
+      "with_active_identity_rows": 63,
+      "with_child_printing_rows": 50,
+      "with_active_mapping_rows": 50
+    },
+    {
+      "set_code": "mfb",
+      "set_name": "My First Battle",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 34,
+      "with_active_identity_rows": 34,
+      "with_child_printing_rows": 34,
+      "with_active_mapping_rows": 34
+    },
+    {
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 30,
+      "with_active_identity_rows": 30,
+      "with_child_printing_rows": 2,
+      "with_active_mapping_rows": 30
+    },
+    {
+      "set_code": "swsh10",
+      "set_name": "Astral Radiance",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 29,
+      "with_active_identity_rows": 29,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 29
+    },
+    {
+      "set_code": "me01",
+      "set_name": "Mega Evolution",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 28,
+      "with_active_identity_rows": 28,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 28
+    },
+    {
+      "set_code": "sv06",
+      "set_name": "Twilight Masquerade",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 28,
+      "with_active_identity_rows": 28,
+      "with_child_printing_rows": 4,
+      "with_active_mapping_rows": 28
+    },
+    {
+      "set_code": "sv05",
+      "set_name": "Temporal Forces",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 25,
+      "with_active_identity_rows": 25,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 25
+    },
+    {
+      "set_code": "sv04",
+      "set_name": "Paradox Rift",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 24,
+      "with_active_identity_rows": 24,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 24
+    },
+    {
+      "set_code": "swsh9",
+      "set_name": "Brilliant Stars",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 24,
+      "with_active_identity_rows": 24,
+      "with_child_printing_rows": 1,
+      "with_active_mapping_rows": 24
+    },
+    {
+      "set_code": "swsh11",
+      "set_name": "Lost Origin",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 21,
+      "with_active_identity_rows": 21,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 21
+    },
+    {
+      "set_code": "bw11",
+      "set_name": "Legendary Treasures",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 20,
+      "with_active_identity_rows": 20,
+      "with_child_printing_rows": 20,
+      "with_active_mapping_rows": 20
+    },
+    {
+      "set_code": "swsh8",
+      "set_name": "Fusion Strike",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 20,
+      "with_active_identity_rows": 20,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 20
+    },
+    {
+      "set_code": "sv01",
+      "set_name": "Scarlet & Violet",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 19,
+      "with_active_identity_rows": 19,
+      "with_child_printing_rows": 1,
+      "with_active_mapping_rows": 19
+    },
+    {
+      "set_code": "sv08",
+      "set_name": "Surging Sparks",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 19,
+      "with_active_identity_rows": 19,
+      "with_child_printing_rows": 1,
+      "with_active_mapping_rows": 19
+    },
+    {
+      "set_code": "sv07",
+      "set_name": "Stellar Crown",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 18,
+      "with_active_identity_rows": 18,
+      "with_child_printing_rows": 1,
+      "with_active_mapping_rows": 18
+    },
+    {
+      "set_code": "sv10",
+      "set_name": "Destined Rivals",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 18,
+      "with_active_identity_rows": 18,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 18
+    },
+    {
+      "set_code": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 15,
+      "with_active_identity_rows": 15,
+      "with_child_printing_rows": 15,
+      "with_active_mapping_rows": 15
+    },
+    {
+      "set_code": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 15,
+      "with_active_identity_rows": 15,
+      "with_child_printing_rows": 15,
+      "with_active_mapping_rows": 15
+    },
+    {
+      "set_code": "sv02",
+      "set_name": "Paldea Evolved",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 15,
+      "with_active_identity_rows": 15,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 15
+    },
+    {
+      "set_code": "swsh12",
+      "set_name": "Silver Tempest",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 15,
+      "with_active_identity_rows": 15,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 15
+    },
+    {
+      "set_code": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 14,
+      "with_active_identity_rows": 14,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 14
+    },
+    {
+      "set_code": "sv6pt5",
+      "set_name": "Shrouded Fable",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 13,
+      "with_active_identity_rows": 13,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 13
+    },
+    {
+      "set_code": "sve",
+      "set_name": "Scarlet & Violet Energies",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 12,
+      "with_active_identity_rows": 12,
+      "with_child_printing_rows": 12,
+      "with_active_mapping_rows": 12
+    },
+    {
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 12,
+      "with_active_identity_rows": 12,
+      "with_child_printing_rows": 8,
+      "with_active_mapping_rows": 12
+    },
+    {
+      "set_code": "np",
+      "set_name": "Nintendo Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 11,
+      "with_active_identity_rows": 11,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 11
+    },
+    {
+      "set_code": "swsh6",
+      "set_name": "Chilling Reign",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 10,
+      "with_active_identity_rows": 10,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 10
+    },
+    {
+      "set_code": "mee",
+      "set_name": "Mega Evolution Energy",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 8,
+      "with_active_identity_rows": 8,
+      "with_child_printing_rows": 8,
+      "with_active_mapping_rows": 8
+    },
+    {
+      "set_code": "sv09",
+      "set_name": "Journey Together",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 8,
+      "with_active_identity_rows": 8,
+      "with_child_printing_rows": 1,
+      "with_active_mapping_rows": 8
+    },
+    {
+      "set_code": "sv10.5b",
+      "set_name": "Black Bolt",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 8,
+      "with_active_identity_rows": 8,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 8
+    },
+    {
+      "set_code": "swsh5",
+      "set_name": "Battle Styles",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 8,
+      "with_active_identity_rows": 8,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 8
+    },
+    {
+      "set_code": "swsh7",
+      "set_name": "Evolving Skies",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 8,
+      "with_active_identity_rows": 8,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 8
+    },
+    {
+      "set_code": "sv03",
+      "set_name": "Obsidian Flames",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 7,
+      "with_active_identity_rows": 7,
+      "with_child_printing_rows": 1,
+      "with_active_mapping_rows": 7
+    },
+    {
+      "set_code": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 6,
+      "with_active_identity_rows": 6,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 6
+    },
+    {
+      "set_code": "xya",
+      "set_name": "Yello A Alternate",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 6,
+      "with_active_identity_rows": 6,
+      "with_child_printing_rows": 6,
+      "with_active_mapping_rows": 6
+    },
+    {
+      "set_code": "ecard2",
+      "set_name": "Aquapolis",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 5,
+      "with_active_identity_rows": 5,
+      "with_child_printing_rows": 5,
+      "with_active_mapping_rows": 5
+    },
+    {
+      "set_code": "ecard3",
+      "set_name": "Skyridge",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 5,
+      "with_active_identity_rows": 5,
+      "with_child_printing_rows": 5,
+      "with_active_mapping_rows": 5
+    },
+    {
+      "set_code": "sv10.5w",
+      "set_name": "White Flare",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 4,
+      "with_active_identity_rows": 4,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 4
+    },
+    {
+      "set_code": "col1",
+      "set_name": "Call of Legends",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 3,
+      "with_active_identity_rows": 3,
+      "with_child_printing_rows": 3,
+      "with_active_mapping_rows": 3
+    },
+    {
+      "set_code": "sv4pt5",
+      "set_name": "Paldean Fates",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 3,
+      "with_active_identity_rows": 3,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 3
+    },
+    {
+      "set_code": "swsh3.5",
+      "set_name": "Champion's Path",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 3,
+      "with_active_identity_rows": 3,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 3
+    },
+    {
+      "set_code": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 3,
+      "with_active_identity_rows": 3,
+      "with_child_printing_rows": 1,
+      "with_active_mapping_rows": 3
+    },
+    {
+      "set_code": "bw1",
+      "set_name": "Black & White",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "bw3",
+      "set_name": "Noble Victories",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "bw4",
+      "set_name": "Next Destinies",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "dp1",
+      "set_name": "Diamond & Pearl",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "dp2",
+      "set_name": "Mysterious Treasures",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "dp3",
+      "set_name": "Secret Wonders",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "dp7",
+      "set_name": "Stormfront",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "g1",
+      "set_name": "Generations",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 1,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "pgo",
+      "set_name": "Pokémon GO",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "pl1",
+      "set_name": "Platinum",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "pl2",
+      "set_name": "Rising Rivals",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "pl3",
+      "set_name": "Supreme Victors",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "swsh1",
+      "set_name": "Sword & Shield",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 2,
+      "with_active_identity_rows": 2,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 2
+    },
+    {
+      "set_code": "base3",
+      "set_name": "Fossil",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 1,
+      "with_active_identity_rows": 1,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 1
+    },
+    {
+      "set_code": "dp5",
+      "set_name": "Majestic Dawn",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 1,
+      "with_active_identity_rows": 1,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 1
+    },
+    {
+      "set_code": "dpp",
+      "set_name": "DP Black Star Promos",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 1,
+      "with_active_identity_rows": 1,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 1
+    },
+    {
+      "set_code": "ex3",
+      "set_name": "Dragon",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 1,
+      "with_active_identity_rows": 1,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 1
+    },
+    {
+      "set_code": "hgss3",
+      "set_name": "HS—Undaunted",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 1,
+      "with_active_identity_rows": 1,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 1
+    },
+    {
+      "set_code": "me02",
+      "set_name": "Phantasmal Flames",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 1,
+      "with_active_identity_rows": 1,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 1
+    },
+    {
+      "set_code": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 1,
+      "with_active_identity_rows": 1,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 1
+    },
+    {
+      "set_code": "sm4",
+      "set_name": "Crimson Invasion",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 1,
+      "with_active_identity_rows": 1,
+      "with_child_printing_rows": 1,
+      "with_active_mapping_rows": 1
+    },
+    {
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 1,
+      "with_active_identity_rows": 1,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 1
+    },
+    {
+      "set_code": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 1,
+      "with_active_identity_rows": 1,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 1
+    },
+    {
+      "set_code": "xy7",
+      "set_name": "Ancient Origins",
+      "identity_domain_default": "pokemon_eng_standard",
+      "parent_rows": 1,
+      "with_active_identity_rows": 1,
+      "with_child_printing_rows": 1,
+      "with_active_mapping_rows": 1
+    }
+  ],
+  "dry_run": {
+    "pass": true,
+    "updated_rows_count": 1115,
+    "before_summary": {
+      "target_rows": 1115,
+      "target_sets": 70,
+      "inheritable_standard_rows": 1115,
+      "set_domain_null_rows": 0,
+      "nonstandard_set_domain_rows": 0,
+      "with_active_identity_rows": 1115,
+      "without_active_identity_rows": 0,
+      "with_child_printing_rows": 527,
+      "with_active_mapping_rows": 1100
+    },
+    "after_summary": {
+      "target_rows": 0,
+      "target_sets": 0,
+      "inheritable_standard_rows": 0,
+      "set_domain_null_rows": 0,
+      "nonstandard_set_domain_rows": 0,
+      "with_active_identity_rows": 0,
+      "without_active_identity_rows": 0,
+      "with_child_printing_rows": 0,
+      "with_active_mapping_rows": 0
+    },
+    "before_domain_inventory": [
+      {
+        "identity_domain": "<null>",
+        "parent_rows": 1115
+      },
+      {
+        "identity_domain": "pokemon_eng_standard",
+        "parent_rows": 21964
+      },
+      {
+        "identity_domain": "tcg_pocket_excluded",
+        "parent_rows": 3150
+      }
+    ],
+    "after_domain_inventory": [
+      {
+        "identity_domain": "pokemon_eng_standard",
+        "parent_rows": 23079
+      },
+      {
+        "identity_domain": "tcg_pocket_excluded",
+        "parent_rows": 3150
+      }
+    ],
+    "proof_hash_sha256": "50cf4cfa1f3f238220285048805923ce9c64c3f83a82b629996bb0034fc1d370",
+    "stop_findings": []
+  },
+  "stop_findings": [],
+  "forbidden": [
+    "card_printings writes",
+    "card_print_identity writes",
+    "external_mappings writes",
+    "card_print_species writes",
+    "card_print_traits writes",
+    "deletes",
+    "merges",
+    "migrations",
+    "image writes",
+    "global apply"
+  ],
+  "fingerprint_sha256": "be0295df8c26e2bb202e62c9bacc21b770b73da648a05c0e0943ce05f5650ee2"
+}

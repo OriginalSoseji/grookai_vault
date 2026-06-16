@@ -1,0 +1,417 @@
+{
+  "version": "ENRICH12C_TCGDEX_CATALOG_METADATA_REAL_APPLY_V1",
+  "package_id": "ENRICH-12C2-RESIDUAL-CATALOG-METADATA-RETRY",
+  "generated_at": "2026-06-15T17:50:40.452Z",
+  "package_fingerprint_sha256": "3be12029a643045cd1a0904bbf366953fd58e122f14d5e3496735469ab17e897",
+  "approval_text_required": "Approve real ENRICH-12C2-RESIDUAL-CATALOG-METADATA-RETRY apply only. Fingerprint: 3be12029a643045cd1a0904bbf366953fd58e122f14d5e3496735469ab17e897. Scope: 8 null-only card_prints catalog metadata updates from exact active TCGdex source mappings. Dry-run proof: 729aa6b0b50fedc7d865a96e95b2356e4e12aa9ff43856847445072a911c3aa9 == 729aa6b0b50fedc7d865a96e95b2356e4e12aa9ff43856847445072a911c3aa9. No non-null overwrites. No child writes. No identity writes. No external mapping writes. No species writes. No deletes. No merges. No migrations. No image writes. No global apply.",
+  "scope": {
+    "target_parent_rows": 8,
+    "writes_performed": [
+      "card_prints rarity/artist/regulation_mark/variants null-only updates"
+    ],
+    "migrations_created": false,
+    "forbidden": [
+      "non-null overwrites",
+      "card_printings writes",
+      "card_print_identity writes",
+      "external_mappings writes",
+      "card_print_species writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ]
+  },
+  "dry_run_reference": {
+    "dry_run_json": "docs\\audits\\card_row_enrichment_v1\\enrich12c2_residual_catalog_metadata_guarded_dry_run_v1.json",
+    "dry_run_proof": "729aa6b0b50fedc7d865a96e95b2356e4e12aa9ff43856847445072a911c3aa9 == 729aa6b0b50fedc7d865a96e95b2356e4e12aa9ff43856847445072a911c3aa9"
+  },
+  "guard": {
+    "target_count": 8,
+    "distinct_target_count": 8,
+    "no_metadata_target_count": 0,
+    "missing_parent_count": 0,
+    "non_null_metadata_overwrite_count": 0,
+    "non_english_target_count": 0
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-15T17:50:39.473Z",
+    "rows": [
+      {
+        "card_print_id": "846771e7-8f59-4e3b-bab6-d6a330052441",
+        "set_code": "sve",
+        "number": "017",
+        "number_plain": "017",
+        "card_name": "Basic Grass Energy",
+        "rarity": null,
+        "artist": null,
+        "regulation_mark": null,
+        "variants": null
+      },
+      {
+        "card_print_id": "c660832a-9eb5-4b2a-9c9b-a0fab19d5d6a",
+        "set_code": "sve",
+        "number": "018",
+        "number_plain": "018",
+        "card_name": "Basic Fire Energy",
+        "rarity": null,
+        "artist": null,
+        "regulation_mark": null,
+        "variants": null
+      },
+      {
+        "card_print_id": "16fb638f-0a6e-4ec8-8a2b-77fe6f047ce5",
+        "set_code": "sve",
+        "number": "019",
+        "number_plain": "019",
+        "card_name": "Basic Water Energy",
+        "rarity": null,
+        "artist": null,
+        "regulation_mark": null,
+        "variants": null
+      },
+      {
+        "card_print_id": "9bd7388f-1393-4c59-87ca-af0e9b2261cf",
+        "set_code": "sve",
+        "number": "020",
+        "number_plain": "020",
+        "card_name": "Basic Lightning Energy",
+        "rarity": null,
+        "artist": null,
+        "regulation_mark": null,
+        "variants": null
+      },
+      {
+        "card_print_id": "e00a8dbd-375b-487c-86cf-e59bef8f9d2d",
+        "set_code": "sve",
+        "number": "021",
+        "number_plain": "021",
+        "card_name": "Basic Psychic Energy",
+        "rarity": null,
+        "artist": null,
+        "regulation_mark": null,
+        "variants": null
+      },
+      {
+        "card_print_id": "e8cd3c68-f7b9-4014-9bf0-05db1653b4a7",
+        "set_code": "sve",
+        "number": "022",
+        "number_plain": "022",
+        "card_name": "Basic Fighting Energy",
+        "rarity": null,
+        "artist": null,
+        "regulation_mark": null,
+        "variants": null
+      },
+      {
+        "card_print_id": "47a5d12d-9d45-4070-b213-d2530ee3b10f",
+        "set_code": "sve",
+        "number": "023",
+        "number_plain": "023",
+        "card_name": "Basic Darkness Energy",
+        "rarity": null,
+        "artist": null,
+        "regulation_mark": null,
+        "variants": null
+      },
+      {
+        "card_print_id": "5dbda36a-ecef-4414-bd88-2c9e76006c54",
+        "set_code": "sve",
+        "number": "024",
+        "number_plain": "024",
+        "card_name": "Basic Metal Energy",
+        "rarity": null,
+        "artist": null,
+        "regulation_mark": null,
+        "variants": null
+      }
+    ],
+    "hash_sha256": "729aa6b0b50fedc7d865a96e95b2356e4e12aa9ff43856847445072a911c3aa9",
+    "row_count": 8
+  },
+  "apply_proof": {
+    "updated_parent_rows": 8,
+    "updated_samples": [
+      {
+        "card_print_id": "846771e7-8f59-4e3b-bab6-d6a330052441",
+        "set_code": "sve",
+        "number": "017",
+        "card_name": "Basic Grass Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "c660832a-9eb5-4b2a-9c9b-a0fab19d5d6a",
+        "set_code": "sve",
+        "number": "018",
+        "card_name": "Basic Fire Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "16fb638f-0a6e-4ec8-8a2b-77fe6f047ce5",
+        "set_code": "sve",
+        "number": "019",
+        "card_name": "Basic Water Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "9bd7388f-1393-4c59-87ca-af0e9b2261cf",
+        "set_code": "sve",
+        "number": "020",
+        "card_name": "Basic Lightning Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "e00a8dbd-375b-487c-86cf-e59bef8f9d2d",
+        "set_code": "sve",
+        "number": "021",
+        "card_name": "Basic Psychic Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "e8cd3c68-f7b9-4014-9bf0-05db1653b4a7",
+        "set_code": "sve",
+        "number": "022",
+        "card_name": "Basic Fighting Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "47a5d12d-9d45-4070-b213-d2530ee3b10f",
+        "set_code": "sve",
+        "number": "023",
+        "card_name": "Basic Darkness Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "5dbda36a-ecef-4414-bd88-2c9e76006c54",
+        "set_code": "sve",
+        "number": "024",
+        "card_name": "Basic Metal Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      }
+    ],
+    "proof": {
+      "target_count": 8,
+      "matching_metadata_count": 8
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-15T17:50:40.373Z",
+    "rows": [
+      {
+        "card_print_id": "846771e7-8f59-4e3b-bab6-d6a330052441",
+        "set_code": "sve",
+        "number": "017",
+        "number_plain": "017",
+        "card_name": "Basic Grass Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "c660832a-9eb5-4b2a-9c9b-a0fab19d5d6a",
+        "set_code": "sve",
+        "number": "018",
+        "number_plain": "018",
+        "card_name": "Basic Fire Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "16fb638f-0a6e-4ec8-8a2b-77fe6f047ce5",
+        "set_code": "sve",
+        "number": "019",
+        "number_plain": "019",
+        "card_name": "Basic Water Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "9bd7388f-1393-4c59-87ca-af0e9b2261cf",
+        "set_code": "sve",
+        "number": "020",
+        "number_plain": "020",
+        "card_name": "Basic Lightning Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "e00a8dbd-375b-487c-86cf-e59bef8f9d2d",
+        "set_code": "sve",
+        "number": "021",
+        "number_plain": "021",
+        "card_name": "Basic Psychic Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "e8cd3c68-f7b9-4014-9bf0-05db1653b4a7",
+        "set_code": "sve",
+        "number": "022",
+        "number_plain": "022",
+        "card_name": "Basic Fighting Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "47a5d12d-9d45-4070-b213-d2530ee3b10f",
+        "set_code": "sve",
+        "number": "023",
+        "number_plain": "023",
+        "card_name": "Basic Darkness Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      },
+      {
+        "card_print_id": "5dbda36a-ecef-4414-bd88-2c9e76006c54",
+        "set_code": "sve",
+        "number": "024",
+        "number_plain": "024",
+        "card_name": "Basic Metal Energy",
+        "rarity": "Common",
+        "artist": null,
+        "regulation_mark": null,
+        "variants": {
+          "holo": false,
+          "normal": true,
+          "wPromo": false,
+          "reverse": false,
+          "firstEdition": false
+        }
+      }
+    ],
+    "hash_sha256": "0c190d49953b03befd3631b9bb3f40493b4e0d1039a866dc4a581858def67a1f",
+    "row_count": 8
+  },
+  "by_set_top_25": {
+    "sve": 8
+  },
+  "pass": true
+}

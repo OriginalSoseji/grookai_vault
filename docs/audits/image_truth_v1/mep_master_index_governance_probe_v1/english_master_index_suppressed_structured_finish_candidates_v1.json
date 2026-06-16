@@ -1,0 +1,332 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_SUPPRESSED_STRUCTURED_FINISH_CANDIDATES_V1",
+  "generated_at": "2026-06-14T16:58:08.647Z",
+  "audit_only": true,
+  "db_writes": false,
+  "rule": "Single structured-source finish claims are excluded when exact human/checklist variant evidence exists for the same card and does not list that finish.",
+  "suppressed": [
+    {
+      "source_key": "tcgdex",
+      "source_kind": "structured_api",
+      "source_url": "https://api.tcgdex.net/v2/en/cards/mep-028",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "028",
+      "card_name": "Celebratory Fanfare",
+      "rarity": "None",
+      "language": "en",
+      "retrieved_at": "2026-06-14T16:58:08.647Z",
+      "raw_snapshot_ref": "tcgdex:mep-028",
+      "source_card_name": "Celebratory Fanfare",
+      "source_set_name": "MEP Black Star Promos",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGdex variants holo",
+      "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+      "suppressed_at": "2026-06-14T16:58:08.647Z",
+      "suppression_status": "structured_only_unsupported_by_exact_checklist",
+      "supported_checklist_finishes_for_card": [
+        "stamped"
+      ],
+      "suppression_reason": "The card has exact human/checklist variant evidence, but this single structured-source finish is not listed by that checklist lane. It is excluded from working Master Index truth and retained in this audit report."
+    },
+    {
+      "source_key": "tcgdex",
+      "source_kind": "structured_api",
+      "source_url": "https://api.tcgdex.net/v2/en/cards/mep-068",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "068",
+      "card_name": "Makuhita",
+      "rarity": "None",
+      "language": "en",
+      "retrieved_at": "2026-06-14T16:58:08.647Z",
+      "raw_snapshot_ref": "tcgdex:mep-068",
+      "source_card_name": "Makuhita",
+      "source_set_name": "MEP Black Star Promos",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGdex variants holo",
+      "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+      "suppressed_at": "2026-06-14T16:58:08.647Z",
+      "suppression_status": "structured_only_unsupported_by_exact_checklist",
+      "supported_checklist_finishes_for_card": [
+        "cosmos"
+      ],
+      "suppression_reason": "The card has exact human/checklist variant evidence, but this single structured-source finish is not listed by that checklist lane. It is excluded from working Master Index truth and retained in this audit report."
+    },
+    {
+      "source_key": "tcgdex",
+      "source_kind": "structured_api",
+      "source_url": "https://api.tcgdex.net/v2/en/cards/mep-069",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "069",
+      "card_name": "Chikorita",
+      "rarity": "None",
+      "language": "en",
+      "retrieved_at": "2026-06-14T16:58:08.647Z",
+      "raw_snapshot_ref": "tcgdex:mep-069",
+      "source_card_name": "Chikorita",
+      "source_set_name": "MEP Black Star Promos",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGdex variants holo",
+      "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+      "suppressed_at": "2026-06-14T16:58:08.647Z",
+      "suppression_status": "structured_only_unsupported_by_exact_checklist",
+      "supported_checklist_finishes_for_card": [
+        "cosmos"
+      ],
+      "suppression_reason": "The card has exact human/checklist variant evidence, but this single structured-source finish is not listed by that checklist lane. It is excluded from working Master Index truth and retained in this audit report."
+    },
+    {
+      "source_key": "tcgdex",
+      "source_kind": "structured_api",
+      "source_url": "https://api.tcgdex.net/v2/en/cards/mep-018",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "018",
+      "card_name": "Cottonee",
+      "rarity": "None",
+      "language": "en",
+      "retrieved_at": "2026-06-14T16:58:08.647Z",
+      "raw_snapshot_ref": "tcgdex:mep-018",
+      "source_card_name": "Cottonee",
+      "source_set_name": "MEP Black Star Promos",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGdex variants holo",
+      "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+      "suppressed_at": "2026-06-14T16:58:08.647Z",
+      "suppression_status": "stale_holo_label_replaced_by_exact_cosmos_holo_evidence",
+      "suppression_reason": "Image Truth source acquisition found exact Cosmos Holo labels for this MEP promo. The generic HOLO checklist/API label is treated as a stale broad label for governance planning and must not be used for image-fill targets.",
+      "suppression_fixture_file": "mep_cosmos_finish_governance_v1.json",
+      "replacement_finish_key": "cosmos",
+      "supported_checklist_finishes_for_card": [
+        "cosmos"
+      ],
+      "suppression_evidence_urls": [
+        "https://www.tcgplayer.com/product/664051/pokemon-me-mega-evolution-promo-cottonee-cosmos-holo",
+        "https://www.gamenerdz.com/cottonee-cosmos-holo-18-me-mega-evolution-promo-holofoil"
+      ]
+    },
+    {
+      "source_key": "tcgdex",
+      "source_kind": "structured_api",
+      "source_url": "https://api.tcgdex.net/v2/en/cards/mep-019",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "019",
+      "card_name": "Whimsicott",
+      "rarity": "None",
+      "language": "en",
+      "retrieved_at": "2026-06-14T16:58:08.647Z",
+      "raw_snapshot_ref": "tcgdex:mep-019",
+      "source_card_name": "Whimsicott",
+      "source_set_name": "MEP Black Star Promos",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGdex variants holo",
+      "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+      "suppressed_at": "2026-06-14T16:58:08.647Z",
+      "suppression_status": "stale_holo_label_replaced_by_exact_cosmos_holo_evidence",
+      "suppression_reason": "Image Truth source acquisition found exact Cosmos Holo labels for this MEP promo. The generic HOLO checklist/API label is treated as a stale broad label for governance planning and must not be used for image-fill targets.",
+      "suppression_fixture_file": "mep_cosmos_finish_governance_v1.json",
+      "replacement_finish_key": "cosmos",
+      "supported_checklist_finishes_for_card": [
+        "cosmos"
+      ],
+      "suppression_evidence_urls": [
+        "https://www.tcgplayer.com/product/664054/pokemon-me-mega-evolution-promo-whimsicott-cosmos-holo",
+        "https://www.fullgripgames.com/catalog/pokemon_singles-pokemon_promos-mega_evolution_promos/whimsicott__mep019__mep_black_star_promos__cosmos_holo/639896"
+      ]
+    },
+    {
+      "source_key": "tcgdex",
+      "source_kind": "structured_api",
+      "source_url": "https://api.tcgdex.net/v2/en/cards/mep-020",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "020",
+      "card_name": "Sneasel",
+      "rarity": "None",
+      "language": "en",
+      "retrieved_at": "2026-06-14T16:58:08.647Z",
+      "raw_snapshot_ref": "tcgdex:mep-020",
+      "source_card_name": "Sneasel",
+      "source_set_name": "MEP Black Star Promos",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGdex variants holo",
+      "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+      "suppressed_at": "2026-06-14T16:58:08.647Z",
+      "suppression_status": "stale_holo_label_replaced_by_exact_cosmos_holo_evidence",
+      "suppression_reason": "Image Truth source acquisition found exact Cosmos Holo labels for this MEP promo. The generic HOLO checklist/API label is treated as a stale broad label for governance planning and must not be used for image-fill targets.",
+      "suppression_fixture_file": "mep_cosmos_finish_governance_v1.json",
+      "replacement_finish_key": "cosmos",
+      "supported_checklist_finishes_for_card": [
+        "cosmos"
+      ],
+      "suppression_evidence_urls": [
+        "https://www.tcgplayer.com/product/664055/pokemon-me-mega-evolution-promo-sneasel-cosmos-holo",
+        "https://jafcomics.tcgplayerpro.com/catalog/pokemon/me-mega-evolution-promo/sneasel-cosmos-holo/664055"
+      ]
+    },
+    {
+      "source_key": "tcgdex",
+      "source_kind": "structured_api",
+      "source_url": "https://api.tcgdex.net/v2/en/cards/mep-021",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "021",
+      "card_name": "Weavile",
+      "rarity": "None",
+      "language": "en",
+      "retrieved_at": "2026-06-14T16:58:08.647Z",
+      "raw_snapshot_ref": "tcgdex:mep-021",
+      "source_card_name": "Weavile",
+      "source_set_name": "MEP Black Star Promos",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGdex variants holo",
+      "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+      "suppressed_at": "2026-06-14T16:58:08.647Z",
+      "suppression_status": "stale_holo_label_replaced_by_exact_cosmos_holo_evidence",
+      "suppression_reason": "Image Truth source acquisition found exact Cosmos Holo labels for this MEP promo. The generic HOLO checklist/API label is treated as a stale broad label for governance planning and must not be used for image-fill targets.",
+      "suppression_fixture_file": "mep_cosmos_finish_governance_v1.json",
+      "replacement_finish_key": "cosmos",
+      "supported_checklist_finishes_for_card": [
+        "cosmos"
+      ],
+      "suppression_evidence_urls": [
+        "https://www.tcgplayer.com/product/664063/pokemon-me-mega-evolution-promo-weavile-cosmos-holo",
+        "https://www.nobleknight.com/P/2148382534/Weavile-Cosmos-Holo-HR-021-Holo"
+      ]
+    },
+    {
+      "source_key": "thepricedex_price_list",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "18",
+      "card_name": "Cottonee",
+      "rarity": "Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-14T16:58:08.647Z",
+      "raw_snapshot_ref": "thepricedex:mep:mep-18:holofoil",
+      "source_card_name": "Cottonee",
+      "source_set_name": "Mega Evolution Black Star Promos",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "ThePriceDex price-list variant holofoil",
+      "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+      "suppressed_at": "2026-06-14T16:58:08.647Z",
+      "suppression_status": "stale_holo_label_replaced_by_exact_cosmos_holo_evidence",
+      "suppression_reason": "Image Truth source acquisition found exact Cosmos Holo labels for this MEP promo. The generic HOLO checklist/API label is treated as a stale broad label for governance planning and must not be used for image-fill targets.",
+      "suppression_fixture_file": "mep_cosmos_finish_governance_v1.json",
+      "replacement_finish_key": "cosmos",
+      "supported_checklist_finishes_for_card": [
+        "cosmos"
+      ],
+      "suppression_evidence_urls": [
+        "https://www.tcgplayer.com/product/664051/pokemon-me-mega-evolution-promo-cottonee-cosmos-holo",
+        "https://www.gamenerdz.com/cottonee-cosmos-holo-18-me-mega-evolution-promo-holofoil"
+      ]
+    },
+    {
+      "source_key": "thepricedex_price_list",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "19",
+      "card_name": "Whimsicott",
+      "rarity": "Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-14T16:58:08.647Z",
+      "raw_snapshot_ref": "thepricedex:mep:mep-19:holofoil",
+      "source_card_name": "Whimsicott",
+      "source_set_name": "Mega Evolution Black Star Promos",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "ThePriceDex price-list variant holofoil",
+      "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+      "suppressed_at": "2026-06-14T16:58:08.647Z",
+      "suppression_status": "stale_holo_label_replaced_by_exact_cosmos_holo_evidence",
+      "suppression_reason": "Image Truth source acquisition found exact Cosmos Holo labels for this MEP promo. The generic HOLO checklist/API label is treated as a stale broad label for governance planning and must not be used for image-fill targets.",
+      "suppression_fixture_file": "mep_cosmos_finish_governance_v1.json",
+      "replacement_finish_key": "cosmos",
+      "supported_checklist_finishes_for_card": [
+        "cosmos"
+      ],
+      "suppression_evidence_urls": [
+        "https://www.tcgplayer.com/product/664054/pokemon-me-mega-evolution-promo-whimsicott-cosmos-holo",
+        "https://www.fullgripgames.com/catalog/pokemon_singles-pokemon_promos-mega_evolution_promos/whimsicott__mep019__mep_black_star_promos__cosmos_holo/639896"
+      ]
+    },
+    {
+      "source_key": "thepricedex_price_list",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "20",
+      "card_name": "Sneasel",
+      "rarity": "Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-14T16:58:08.647Z",
+      "raw_snapshot_ref": "thepricedex:mep:mep-20:holofoil",
+      "source_card_name": "Sneasel",
+      "source_set_name": "Mega Evolution Black Star Promos",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "ThePriceDex price-list variant holofoil",
+      "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+      "suppressed_at": "2026-06-14T16:58:08.647Z",
+      "suppression_status": "stale_holo_label_replaced_by_exact_cosmos_holo_evidence",
+      "suppression_reason": "Image Truth source acquisition found exact Cosmos Holo labels for this MEP promo. The generic HOLO checklist/API label is treated as a stale broad label for governance planning and must not be used for image-fill targets.",
+      "suppression_fixture_file": "mep_cosmos_finish_governance_v1.json",
+      "replacement_finish_key": "cosmos",
+      "supported_checklist_finishes_for_card": [
+        "cosmos"
+      ],
+      "suppression_evidence_urls": [
+        "https://www.tcgplayer.com/product/664055/pokemon-me-mega-evolution-promo-sneasel-cosmos-holo",
+        "https://jafcomics.tcgplayerpro.com/catalog/pokemon/me-mega-evolution-promo/sneasel-cosmos-holo/664055"
+      ]
+    },
+    {
+      "source_key": "thepricedex_price_list",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "21",
+      "card_name": "Weavile",
+      "rarity": "Promo",
+      "language": "en",
+      "retrieved_at": "2026-06-14T16:58:08.647Z",
+      "raw_snapshot_ref": "thepricedex:mep:mep-21:holofoil",
+      "source_card_name": "Weavile",
+      "source_set_name": "Mega Evolution Black Star Promos",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "ThePriceDex price-list variant holofoil",
+      "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+      "suppressed_at": "2026-06-14T16:58:08.647Z",
+      "suppression_status": "stale_holo_label_replaced_by_exact_cosmos_holo_evidence",
+      "suppression_reason": "Image Truth source acquisition found exact Cosmos Holo labels for this MEP promo. The generic HOLO checklist/API label is treated as a stale broad label for governance planning and must not be used for image-fill targets.",
+      "suppression_fixture_file": "mep_cosmos_finish_governance_v1.json",
+      "replacement_finish_key": "cosmos",
+      "supported_checklist_finishes_for_card": [
+        "cosmos"
+      ],
+      "suppression_evidence_urls": [
+        "https://www.tcgplayer.com/product/664063/pokemon-me-mega-evolution-promo-weavile-cosmos-holo",
+        "https://www.nobleknight.com/P/2148382534/Weavile-Cosmos-Holo-HR-021-Holo"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_UNSUPPORTED_TRIAGE_V1",
+  "generated_at": "2026-06-14T16:58:08.647Z",
+  "audit_only": true,
+  "db_writes": false,
+  "source_report": "english_master_index_grookai_audit_v1.json",
+  "rule": "Unsupported-by-current-index rows are not deletion authority. They must be split into source coverage gaps, alias/subset issues, and finish overgeneration candidates before any controlled set repair.",
+  "summary": {
+    "total_unsupported_by_current_index": 0,
+    "by_category": {},
+    "by_set_code": {},
+    "by_finish": {}
+  },
+  "categories": {}
+}

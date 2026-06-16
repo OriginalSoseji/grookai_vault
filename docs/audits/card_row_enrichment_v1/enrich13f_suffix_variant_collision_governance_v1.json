@@ -1,0 +1,216 @@
+{
+  "version": "ENRICH_13F_SUFFIX_VARIANT_COLLISION_GOVERNANCE_V1",
+  "generated_at": "2026-06-16T02:35:09.164Z",
+  "mode": "read_only_governance_plan",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "source_file": "docs\\audits\\card_row_enrichment_v1\\enrich13_core_identity_resolution_readiness_v1.json",
+  "precedent": {
+    "checkpoint": "docs/checkpoints/master_index/20260610_pkg08m_suffix_parent_split_real_apply_checkpoint_v1.md",
+    "rule": "Existing base parents were preserved while suffix parents were introduced separately."
+  },
+  "summary": {
+    "target_rows": 4,
+    "duplicate_suffix_dependency_transfer_candidates": 0,
+    "base_number_suffix_collision_rows": 4,
+    "manual_review_rows": 0,
+    "lane_counts": {
+      "base_number_collides_with_suffix_parent_requires_split_governance": 4
+    },
+    "set_counts": {
+      "xyp": 2,
+      "xy4": 1,
+      "xy9": 1
+    },
+    "write_ready_now": false,
+    "recommended_strategy": "split_suffix_parent_governance_from_duplicate_suffix_dependency_transfer"
+  },
+  "dependency_totals": {
+    "base_number_collides_with_suffix_parent_requires_split_governance": {
+      "source": {
+        "child_count": 12,
+        "active_identity_count": 4,
+        "active_mapping_count": 4,
+        "trait_count": 4,
+        "species_count": 3,
+        "vault_instance_count": 0
+      },
+      "owner": {
+        "child_count": 11,
+        "active_identity_count": 4,
+        "active_mapping_count": 10
+      }
+    }
+  },
+  "governance_decision": {
+    "decision": "suffix_letter_is_identity_bearing_when_source_backed",
+    "reason": "A printed number suffix such as 65a or XY150a is not a decorative spelling difference. Base-number rows and suffix-number rows must not be merged unless a later source audit proves one side is invalid.",
+    "deterministic_lanes": [
+      "duplicate suffix rows can become dependency-transfer candidates only when proposed number equals existing suffix owner number",
+      "base-number rows colliding with suffix owners require split governance and source proof before write planning"
+    ],
+    "forbidden": [
+      "do not merge base rows into suffix owners",
+      "do not delete suffix owners while base rows exist",
+      "do not overwrite suffix owner parent identity",
+      "do not mint or backfill GV IDs until suffix identity uniqueness is proven",
+      "do not include these rows in 13D or 13E duplicate-transfer packages"
+    ]
+  },
+  "proposed_future_package_shape": {
+    "package_id": "ENRICH-13F1-SUFFIX-VARIANT-SPLIT-AND-DUPLICATE-DRY-RUN",
+    "current_status": "not_write_ready_dry_run_required",
+    "expected_scope_if_later_approved": [
+      "0 duplicate suffix dependency-transfer simulations",
+      "4 base-versus-suffix split governance simulations",
+      "modifier-aware active identity uniqueness proof",
+      "external mapping ownership proof",
+      "child printing dedupe proof by parent and finish"
+    ],
+    "excluded_from_scope": [
+      "real apply",
+      "global apply",
+      "migrations",
+      "image writes",
+      "unsupported cleanup without separate proof",
+      "base-to-suffix merge"
+    ],
+    "required_before_real_apply": [
+      "fresh dependency snapshot",
+      "source proof that base and suffix are distinct or one side is invalid",
+      "guarded rollback-only dry-run",
+      "rollback artifact",
+      "post-dry-run identity uniqueness proof"
+    ]
+  },
+  "duplicate_suffix_rows": [],
+  "base_number_suffix_collision_rows": [
+    {
+      "lane": "base_number_collides_with_suffix_parent_requires_split_governance",
+      "source_card_print_id": "21840232-9191-4566-8e3e-046f74841288",
+      "existing_owner_card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+      "set_code": "xy4",
+      "set_name": "Phantom Forces",
+      "proposed_number": "65",
+      "proposed_base_number": "65",
+      "proposed_suffix": null,
+      "source_name": "Aegislash EX",
+      "source_external_id": "xy4-65",
+      "owner_number": "65a",
+      "owner_base_number": "65",
+      "owner_suffix": "a",
+      "owner_name": "Aegislash-EX",
+      "owner_gv_id": "GV-PK-PHF-65A",
+      "source_dependencies": {
+        "child_count": 3,
+        "active_identity_count": 1,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 1,
+        "vault_instance_count": 0
+      },
+      "owner_dependencies": {
+        "child_count": 3,
+        "active_identity_count": 1,
+        "active_mapping_count": 3
+      },
+      "proposed_modifier_strategy": "base_number_preserved_separate_from_number_suffix:a"
+    },
+    {
+      "lane": "base_number_collides_with_suffix_parent_requires_split_governance",
+      "source_card_print_id": "a6d34131-d056-49ae-a8b7-21d808e351f6",
+      "existing_owner_card_print_id": "a87052f9-4976-43c7-9820-2c4e028875e4",
+      "set_code": "xy9",
+      "set_name": "BREAKpoint",
+      "proposed_number": "98",
+      "proposed_base_number": "98",
+      "proposed_suffix": null,
+      "source_name": "Delinquent",
+      "source_external_id": "xy9-98",
+      "owner_number": "98a",
+      "owner_base_number": "98",
+      "owner_suffix": "a",
+      "owner_name": "Delinquent",
+      "owner_gv_id": "GV-PK-BKP-98A",
+      "source_dependencies": {
+        "child_count": 3,
+        "active_identity_count": 1,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 0,
+        "vault_instance_count": 0
+      },
+      "owner_dependencies": {
+        "child_count": 2,
+        "active_identity_count": 1,
+        "active_mapping_count": 1
+      },
+      "proposed_modifier_strategy": "base_number_preserved_separate_from_number_suffix:a"
+    },
+    {
+      "lane": "base_number_collides_with_suffix_parent_requires_split_governance",
+      "source_card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+      "existing_owner_card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "proposed_number": "XY150",
+      "proposed_base_number": "XY150",
+      "proposed_suffix": null,
+      "source_name": "Yveltal EX",
+      "source_external_id": "xyp-XY150",
+      "owner_number": "XY150a",
+      "owner_base_number": "XY150",
+      "owner_suffix": "a",
+      "owner_name": "Yveltal-EX",
+      "owner_gv_id": "GV-PK-PR-XY-XY150A",
+      "source_dependencies": {
+        "child_count": 3,
+        "active_identity_count": 1,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 1,
+        "vault_instance_count": 0
+      },
+      "owner_dependencies": {
+        "child_count": 3,
+        "active_identity_count": 1,
+        "active_mapping_count": 3
+      },
+      "proposed_modifier_strategy": "base_number_preserved_separate_from_number_suffix:a"
+    },
+    {
+      "lane": "base_number_collides_with_suffix_parent_requires_split_governance",
+      "source_card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+      "existing_owner_card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "proposed_number": "XY198",
+      "proposed_base_number": "XY198",
+      "proposed_suffix": null,
+      "source_name": "M Camerupt-EX",
+      "source_external_id": "xyp-XY198",
+      "owner_number": "XY198a",
+      "owner_base_number": "XY198",
+      "owner_suffix": "a",
+      "owner_name": "M Camerupt-EX",
+      "owner_gv_id": "GV-PK-PR-XY-XY198A",
+      "source_dependencies": {
+        "child_count": 3,
+        "active_identity_count": 1,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 1,
+        "vault_instance_count": 0
+      },
+      "owner_dependencies": {
+        "child_count": 3,
+        "active_identity_count": 1,
+        "active_mapping_count": 3
+      },
+      "proposed_modifier_strategy": "base_number_preserved_separate_from_number_suffix:a"
+    }
+  ],
+  "manual_review_rows": [],
+  "fingerprint_sha256": "6a5171e7d93c0266ff3a7a18bebb34fda335c0a58cc1553241f99312b91826d5"
+}

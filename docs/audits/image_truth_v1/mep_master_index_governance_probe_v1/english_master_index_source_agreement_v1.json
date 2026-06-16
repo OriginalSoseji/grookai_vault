@@ -1,0 +1,2652 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_SOURCE_AGREEMENT_V1",
+  "generated_at": "2026-06-14T16:58:08.647Z",
+  "audit_only": true,
+  "db_writes": false,
+  "source_overlap": [
+    {
+      "source_key": "full_grip_games_product_page",
+      "evidence_rows": 1
+    },
+    {
+      "source_key": "gamenerdz_product_page",
+      "evidence_rows": 1
+    },
+    {
+      "source_key": "noble_knight_product_page",
+      "evidence_rows": 1
+    },
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog_live",
+      "evidence_rows": 4
+    },
+    {
+      "source_key": "tcgdex",
+      "evidence_rows": 97
+    },
+    {
+      "source_key": "tcgplayer_pro_catalog_page",
+      "evidence_rows": 1
+    },
+    {
+      "source_key": "thepricedex_price_list",
+      "evidence_rows": 138
+    }
+  ],
+  "cards_by_status": {
+    "human_source_verified": 8,
+    "master_verified": 52
+  },
+  "printings_by_status": {
+    "human_source_verified": 33,
+    "master_verified": 49
+  },
+  "finish_disagreement": [],
+  "reverse_holo_disagreement": [],
+  "row_counts": {
+    "api_agreed_printings": 0,
+    "master_verified_printings": 49,
+    "candidate_printings": 0,
+    "manual_review": 0
+  },
+  "samples": {
+    "api_agreed_printings": [],
+    "master_verified_printings": [
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|1|meganium|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "001",
+        "card_name": "Meganium",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-001",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-001"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-1:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|2|inteleon|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "002",
+        "card_name": "Inteleon",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-002",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-002"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-2:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|3|alakazam|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "003",
+        "card_name": "Alakazam",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-003",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-003"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-3:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|4|lunatone|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "004",
+        "card_name": "Lunatone",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-004",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-004"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-4:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|5|drifloon|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "005",
+        "card_name": "Drifloon",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-005",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-005"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-5:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|6|drifblim|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "006",
+        "card_name": "Drifblim",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-006",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-006"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-6:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|7|psyduck|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "007",
+        "card_name": "Psyduck",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-007",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-007"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-7:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|8|golduck|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "008",
+        "card_name": "Golduck",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-008",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-008"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-8:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|9|alakazam|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "009",
+        "card_name": "Alakazam",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-009",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-009"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-9:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|10|riolu|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "010",
+        "card_name": "Riolu",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-010",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-010"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-10:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|11|mega latias ex|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "011",
+        "card_name": "Mega Latias ex",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-011",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-011"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-11:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|12|mega lucario ex|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "012",
+        "card_name": "Mega Lucario ex",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-012",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-012"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-12:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|13|mega venusaur ex|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "013",
+        "card_name": "Mega Venusaur ex",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-013",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-013"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-13:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|14|ceruledge|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "014",
+        "card_name": "Ceruledge",
+        "finish_key": "holo",
+        "rarity_values": [
+          "Promo",
+          "Uncommon"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-014",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "Uncommon",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-014"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-14:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|15|zacian|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "015",
+        "card_name": "Zacian",
+        "finish_key": "holo",
+        "rarity_values": [
+          "Promo",
+          "Rare"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-015",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "Rare",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-015"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-15:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|16|flygon|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "016",
+        "card_name": "Flygon",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-016",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-016"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-16:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|17|toxtricity|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "017",
+        "card_name": "Toxtricity",
+        "finish_key": "holo",
+        "rarity_values": [
+          "Promo",
+          "Rare"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-017",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "Rare",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-017"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-17:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|22|charcadet|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "022",
+        "card_name": "Charcadet",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-022",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-022"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-22:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|23|mega charizard x ex|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "023",
+        "card_name": "Mega Charizard X ex",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-023",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-023"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-23:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|24|oricorio ex|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "024",
+        "card_name": "Oricorio ex",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-024",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-024"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-24:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|25|mega kangaskhan ex|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "025",
+        "card_name": "Mega Kangaskhan ex",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-025",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-025"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-25:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|26|meloetta|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "026",
+        "card_name": "Meloetta",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-026",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-026"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-26:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|27|haunter|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "027",
+        "card_name": "Haunter",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-027",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-027"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-27:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|29|mega charizard x ex|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "029",
+        "card_name": "Mega Charizard X ex",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-029",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-029"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-29:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|30|mega charizard y ex|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "030",
+        "card_name": "Mega Charizard Y ex",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-030",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-030"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-30:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|31|n s zekrom|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "031",
+        "card_name": "N's Zekrom",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-031",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-031"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-31:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|32|mega gardevoir ex|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "032",
+        "card_name": "Mega Gardevoir ex",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-032",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-032"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-32:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|33|mega lucario ex|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "033",
+        "card_name": "Mega Lucario ex",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-033",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-033"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-33:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|34|mega meganium ex|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "034",
+        "card_name": "Mega Meganium ex",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-034",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-034"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-34:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|35|mega emboar ex|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "035",
+        "card_name": "Mega Emboar ex",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-035",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-035"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-35:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|36|mega feraligatr ex|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "036",
+        "card_name": "Mega Feraligatr ex",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-036",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-036"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-36:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|37|bulbasaur|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "037",
+        "card_name": "Bulbasaur",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-037",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-037"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-37:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|38|charmander|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "038",
+        "card_name": "Charmander",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-038",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-038"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-38:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|39|squirtle|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "039",
+        "card_name": "Squirtle",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-039",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-039"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-39:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|40|turtwig|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "040",
+        "card_name": "Turtwig",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-040",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-040"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-40:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|41|chimchar|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "041",
+        "card_name": "Chimchar",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-041",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-041"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-41:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|42|piplup|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "042",
+        "card_name": "Piplup",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-042",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-042"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-42:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|43|rowlet|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "043",
+        "card_name": "Rowlet",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-043",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-043"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-43:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|44|litten|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "044",
+        "card_name": "Litten",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-044",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-044"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-44:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|45|popplio|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "045",
+        "card_name": "Popplio",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-045",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-045"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-45:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|64|serperior|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "064",
+        "card_name": "Serperior",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-064",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-064"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-64:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|65|barbaracle|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "065",
+        "card_name": "Barbaracle",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-065",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-065"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-65:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|66|tyrantrum|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "066",
+        "card_name": "Tyrantrum",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-066",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-066"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-66:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|67|doublade|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "067",
+        "card_name": "Doublade",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-067",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-067"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-67:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|70|tyrunt|holo",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "070",
+        "card_name": "Tyrunt",
+        "finish_key": "holo",
+        "rarity_values": [
+          "None",
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgdex",
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net",
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgdex",
+            "source_kind": "structured_api",
+            "source_url": "https://api.tcgdex.net/v2/en/cards/mep-070",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGdex variants holo",
+            "finish_key_raw": null,
+            "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
+            "rarity": "None",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "tcgdex:mep-070"
+          },
+          {
+            "source_key": "thepricedex_price_list",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list",
+            "evidence_type": "finish_presence",
+            "evidence_label": "ThePriceDex price-list variant holofoil",
+            "finish_key_raw": null,
+            "notes": "Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:58:08.647Z",
+            "raw_snapshot_ref": "thepricedex:mep:mep-70:holofoil"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|18|cottonee|cosmos",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "18",
+        "card_name": "Cottonee",
+        "finish_key": "cosmos",
+        "rarity_values": [
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "gamenerdz_product_page",
+          "tcgcsv_tcgplayer_catalog_live"
+        ],
+        "source_authorities": [
+          "gamenerdz.com",
+          "tcgplayer.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgcsv_tcgplayer_catalog_live",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.tcgplayer.com/product/664051/pokemon-me-mega-evolution-promo-cottonee-cosmos-holo",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGplayer product title: Cottonee (Cosmos Holo)",
+            "finish_key_raw": "cosmos",
+            "notes": "Accepted from Image Truth V1 MEP cosmos-vs-holo governance. Exact set, number, name, and Cosmos Holo source label are required; this fixture does not authorize DB writes.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:57:25.291Z",
+            "raw_snapshot_ref": "generated_fixture:image_truth:mep_cosmos_finish_governance_v1"
+          },
+          {
+            "source_key": "gamenerdz_product_page",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.gamenerdz.com/cottonee-cosmos-holo-18-me-mega-evolution-promo-holofoil",
+            "evidence_type": "finish_presence",
+            "evidence_label": "GameNerdz product title: Cottonee (Cosmos Holo) 18 - ME Mega Evolution Promo Holofoil",
+            "finish_key_raw": "cosmos",
+            "notes": "Accepted from Image Truth V1 MEP cosmos-vs-holo governance. Exact set, number, name, and Cosmos Holo source label are required; this fixture does not authorize DB writes.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:57:25.291Z",
+            "raw_snapshot_ref": "generated_fixture:image_truth:mep_cosmos_finish_governance_v1"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|19|whimsicott|cosmos",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "19",
+        "card_name": "Whimsicott",
+        "finish_key": "cosmos",
+        "rarity_values": [
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "full_grip_games_product_page",
+          "tcgcsv_tcgplayer_catalog_live"
+        ],
+        "source_authorities": [
+          "fullgripgames.com",
+          "tcgplayer.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgcsv_tcgplayer_catalog_live",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.tcgplayer.com/product/664054/pokemon-me-mega-evolution-promo-whimsicott-cosmos-holo",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGplayer product title: Whimsicott (Cosmos Holo)",
+            "finish_key_raw": "cosmos",
+            "notes": "Accepted from Image Truth V1 MEP cosmos-vs-holo governance. Exact set, number, name, and Cosmos Holo source label are required; this fixture does not authorize DB writes.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:57:25.291Z",
+            "raw_snapshot_ref": "generated_fixture:image_truth:mep_cosmos_finish_governance_v1"
+          },
+          {
+            "source_key": "full_grip_games_product_page",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.fullgripgames.com/catalog/pokemon_singles-pokemon_promos-mega_evolution_promos/whimsicott__mep019__mep_black_star_promos__cosmos_holo/639896",
+            "evidence_type": "finish_presence",
+            "evidence_label": "Full Grip Games product title/details: Whimsicott - MEP019 - MEP Black Star Promos - Cosmos Holo",
+            "finish_key_raw": "cosmos",
+            "notes": "Accepted from Image Truth V1 MEP cosmos-vs-holo governance. Exact set, number, name, and Cosmos Holo source label are required; this fixture does not authorize DB writes.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:57:25.291Z",
+            "raw_snapshot_ref": "generated_fixture:image_truth:mep_cosmos_finish_governance_v1"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|20|sneasel|cosmos",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "20",
+        "card_name": "Sneasel",
+        "finish_key": "cosmos",
+        "rarity_values": [
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "tcgcsv_tcgplayer_catalog_live",
+          "tcgplayer_pro_catalog_page"
+        ],
+        "source_authorities": [
+          "jafcomics.tcgplayerpro.com",
+          "tcgplayer.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgcsv_tcgplayer_catalog_live",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.tcgplayer.com/product/664055/pokemon-me-mega-evolution-promo-sneasel-cosmos-holo",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGplayer product title: Sneasel (Cosmos Holo)",
+            "finish_key_raw": "cosmos",
+            "notes": "Accepted from Image Truth V1 MEP cosmos-vs-holo governance. Exact set, number, name, and Cosmos Holo source label are required; this fixture does not authorize DB writes.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:57:25.291Z",
+            "raw_snapshot_ref": "generated_fixture:image_truth:mep_cosmos_finish_governance_v1"
+          },
+          {
+            "source_key": "tcgplayer_pro_catalog_page",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://jafcomics.tcgplayerpro.com/catalog/pokemon/me-mega-evolution-promo/sneasel-cosmos-holo/664055",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGplayerPro catalog title: Sneasel (Cosmos Holo)",
+            "finish_key_raw": "cosmos",
+            "notes": "Accepted from Image Truth V1 MEP cosmos-vs-holo governance. Exact set, number, name, and Cosmos Holo source label are required; this fixture does not authorize DB writes.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:57:25.291Z",
+            "raw_snapshot_ref": "generated_fixture:image_truth:mep_cosmos_finish_governance_v1"
+          }
+        ]
+      },
+      {
+        "fact_type": "printing_finish",
+        "key": "mep black star promos|21|weavile|cosmos",
+        "status": "master_verified",
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "card_number": "21",
+        "card_name": "Weavile",
+        "finish_key": "cosmos",
+        "rarity_values": [
+          "Promo"
+        ],
+        "source_count": 2,
+        "sources": [
+          "noble_knight_product_page",
+          "tcgcsv_tcgplayer_catalog_live"
+        ],
+        "source_authorities": [
+          "nobleknight.com",
+          "tcgplayer.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence": [
+          {
+            "source_key": "tcgcsv_tcgplayer_catalog_live",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.tcgplayer.com/product/664063/pokemon-me-mega-evolution-promo-weavile-cosmos-holo",
+            "evidence_type": "finish_presence",
+            "evidence_label": "TCGplayer product title: Weavile (Cosmos Holo)",
+            "finish_key_raw": "cosmos",
+            "notes": "Accepted from Image Truth V1 MEP cosmos-vs-holo governance. Exact set, number, name, and Cosmos Holo source label are required; this fixture does not authorize DB writes.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:57:25.291Z",
+            "raw_snapshot_ref": "generated_fixture:image_truth:mep_cosmos_finish_governance_v1"
+          },
+          {
+            "source_key": "noble_knight_product_page",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.nobleknight.com/P/2148382534/Weavile-Cosmos-Holo-HR-021-Holo",
+            "evidence_type": "finish_presence",
+            "evidence_label": "Noble Knight product title: Weavile (Cosmos Holo) (HR) #021 (Holo)",
+            "finish_key_raw": "cosmos",
+            "notes": "Accepted from Image Truth V1 MEP cosmos-vs-holo governance. Exact set, number, name, and Cosmos Holo source label are required; this fixture does not authorize DB writes.",
+            "rarity": "Promo",
+            "retrieved_at": "2026-06-14T16:57:25.291Z",
+            "raw_snapshot_ref": "generated_fixture:image_truth:mep_cosmos_finish_governance_v1"
+          }
+        ]
+      }
+    ],
+    "candidate_printings": [],
+    "manual_review": []
+  },
+  "artifact_refs": {
+    "printings": "english_master_index_printings_v1.json",
+    "manual_review": "english_master_index_manual_review_v1.json"
+  }
+}

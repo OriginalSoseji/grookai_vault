@@ -24,6 +24,8 @@ export type PublicWallCardViewRow = {
   image_url?: string | null;
   image_alt_url?: string | null;
   representative_image_url?: string | null;
+  image_status?: string | null;
+  image_note?: string | null;
   display_image_url?: string | null;
   display_image_kind?: string | null;
   public_note?: string | null;
@@ -98,6 +100,11 @@ function toBasePublicWallCard(row: PublicWallCardViewRow): PublicWallCard | null
     number: normalizeOptionalText(row.number) ?? "—",
     image_url: displayImageUrl,
     canonical_image_url: displayImageUrl,
+    representative_image_url: normalizeOptionalText(row.representative_image_url) ?? undefined,
+    image_status: normalizeOptionalText(row.image_status) ?? undefined,
+    image_note: normalizeOptionalText(row.image_note) ?? undefined,
+    display_image_url: normalizeOptionalText(row.display_image_url) ?? displayImageUrl,
+    display_image_kind: normalizeOptionalText(row.display_image_kind),
     public_note: normalizeOptionalText(row.public_note) ?? undefined,
     vault_item_id: normalizeOptionalText(row.vault_item_id) ?? undefined,
     intent: normalizeDiscoverableVaultIntent(row.intent) ?? undefined,

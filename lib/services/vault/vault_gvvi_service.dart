@@ -30,6 +30,10 @@ class PublicGvviData {
     required this.isGraded,
     required this.pricingMode,
     this.imageUrl,
+    this.canonicalImageUrl,
+    this.representativeImageUrl,
+    this.imageStatus,
+    this.imageNote,
     this.frontImageUrl,
     this.backImageUrl,
     this.imageDisplayMode = GvviImageDisplayMode.canonical,
@@ -62,6 +66,10 @@ class PublicGvviData {
   final bool isDiscoverable;
   final bool isGraded;
   final String? imageUrl;
+  final String? canonicalImageUrl;
+  final String? representativeImageUrl;
+  final String? imageStatus;
+  final String? imageNote;
   final String? frontImageUrl;
   final String? backImageUrl;
   final GvviImageDisplayMode imageDisplayMode;
@@ -169,6 +177,10 @@ class VaultGvviData {
     required this.vaultSharingEnabled,
     required this.outcomes,
     this.imageUrl,
+    this.canonicalImageUrl,
+    this.representativeImageUrl,
+    this.imageStatus,
+    this.imageNote,
     this.frontImageUrl,
     this.backImageUrl,
     this.frontImagePath,
@@ -206,6 +218,10 @@ class VaultGvviData {
   final String? printedIdentityModifier;
   final String? setIdentityModel;
   final String? imageUrl;
+  final String? canonicalImageUrl;
+  final String? representativeImageUrl;
+  final String? imageStatus;
+  final String? imageNote;
   final String? frontImageUrl;
   final String? backImageUrl;
   final String? frontImagePath;
@@ -281,6 +297,10 @@ class VaultGvviData {
       printedIdentityModifier: printedIdentityModifier,
       setIdentityModel: setIdentityModel,
       imageUrl: imageUrl,
+      canonicalImageUrl: canonicalImageUrl,
+      representativeImageUrl: representativeImageUrl,
+      imageStatus: imageStatus,
+      imageNote: imageNote,
       frontImageUrl: clearFrontImageUrl
           ? null
           : frontImageUrl ?? this.frontImageUrl,
@@ -326,6 +346,10 @@ class VaultGvviService {
       String? printedIdentityModifier,
       String? setIdentityModel,
       String? displayImageUrl,
+      String? canonicalImageUrl,
+      String? representativeImageUrl,
+      String? imageStatus,
+      String? imageNote,
     })?
   >
   _fetchCardIdentity({
@@ -341,7 +365,7 @@ class VaultGvviService {
       final row = await client
           .from('card_prints')
           .select(
-            'variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,sets(identity_model)',
+            'variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,image_status,image_note,sets(identity_model)',
           )
           .eq('id', normalizedCardPrintId)
           .maybeSingle();
@@ -358,6 +382,12 @@ class VaultGvviService {
         ),
         setIdentityModel: _nullable(setRecord?['identity_model']),
         displayImageUrl: _displayImageUrl(normalizedRow),
+        canonicalImageUrl: _nullable(normalizedRow['image_url']),
+        representativeImageUrl: _nullable(
+          normalizedRow['representative_image_url'],
+        ),
+        imageStatus: _nullable(normalizedRow['image_status']),
+        imageNote: _nullable(normalizedRow['image_note']),
       );
     } catch (_) {
       return null;
@@ -424,6 +454,10 @@ class VaultGvviService {
             primary: data['card_image_url'],
             fallback: data['card_image_alt_url'],
           ),
+      canonicalImageUrl: identity?.canonicalImageUrl,
+      representativeImageUrl: identity?.representativeImageUrl,
+      imageStatus: identity?.imageStatus,
+      imageNote: identity?.imageNote,
       frontImageUrl: resolveMediaUrl(_nullable(data['image_url'])),
       backImageUrl: resolveMediaUrl(_nullable(data['image_back_url'])),
       imageDisplayMode: _normalizeImageDisplayMode(data['image_display_mode']),
@@ -511,6 +545,10 @@ class VaultGvviService {
             primary: data['card_image_url'],
             fallback: data['card_image_alt_url'],
           ),
+      canonicalImageUrl: identity?.canonicalImageUrl,
+      representativeImageUrl: identity?.representativeImageUrl,
+      imageStatus: identity?.imageStatus,
+      imageNote: identity?.imageNote,
       frontImagePath: _nullable(data['image_url']),
       backImagePath: _nullable(data['image_back_url']),
       frontImageUrl: resolveMediaUrl(_nullable(data['image_url'])),

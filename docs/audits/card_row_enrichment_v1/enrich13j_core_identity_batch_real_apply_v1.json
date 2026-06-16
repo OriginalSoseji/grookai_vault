@@ -1,0 +1,390 @@
+{
+  "version": "ENRICH_13J_CORE_IDENTITY_BATCH_REAL_APPLY_V1",
+  "package_id": "ENRICH-13J-CORE-IDENTITY-BATCH",
+  "approval_text": "Approve real ENRICH-13J-CORE-IDENTITY-BATCH apply only. Batch fingerprint: 4f5268be40ce76f3569a81b7a86bb85fea7ecb2863d761dbdab70f10bdbad69f. Scope: 124 parent dependency/identity rows across 5 proven packages, 343 child printings handled, 124 external mappings handled. Package fingerprints: ENRICH-13D1=9715c745f549bff135a0f8f18718e8d89dbcbc185309f11a5c474f68181368c2, ENRICH-13E1=17fffbc2ffe5831de01ed152c47c668e4c94c92ff36601e1f1cc7651b4dafc02, ENRICH-13C1=6336e52e453641b1041a54e61313178e0998016f58a2c2df0e8a706f370e4566, ENRICH-13F1=8d363c0d4eff9389606fa452090e234830c207438057cbf48733f110e67cdc5b, ENRICH-13G1=2a55568422b6a513dbfe6ca64ea662274acc697a3f6955e249e23c781b6641ac. SQL hashes: ENRICH-13D1=00319a0bea1ef96671d82c6c019fdc36c8ec38060bb21ac795798f8199097212, ENRICH-13E1=bb7cef1d447bca9d2d1e373b078f7bd73b8a60b40447e40aa6e43021a9195c0d, ENRICH-13C1=43665f6292dc8269b6b24c846a00d144131aa4b33f65f7f099eb608bd4111ffc, ENRICH-13F1=4b8b0a01d14d2b84efae86cc73799dc7e5427da9937dce502b348e9faa41e4bd, ENRICH-13G1=a9b4550e4e3343dfee547af686468bb141f5d4dc2ad593809f1e7a96772c3a05. Blocked rows excluded: 208. No global apply. No migrations. No image writes. No cleanup outside the listed package scopes.",
+  "batch_fingerprint_sha256": "4f5268be40ce76f3569a81b7a86bb85fea7ecb2863d761dbdab70f10bdbad69f",
+  "db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "image_writes_performed": false,
+  "global_apply_performed": false,
+  "summary": {
+    "packages_applied": 5,
+    "parent_rows_in_batch": 124,
+    "child_printings_handled_in_batch": 343,
+    "external_mappings_handled_in_batch": 124,
+    "blocked_rows_excluded": 208,
+    "stop_findings_count": 0
+  },
+  "applied_packages": [
+    {
+      "key": "ENRICH-13D1",
+      "sql_path": "docs\\sql\\enrich13d1_xyp_duplicate_dependency_transfer_guarded_dry_run_v1.sql",
+      "source_sql_hash": "00319a0bea1ef96671d82c6c019fdc36c8ec38060bb21ac795798f8199097212",
+      "real_apply_sql_hash": "6e4041c70985924960c78ccb2d2d9016f7ff232fba2a84749c0ed99c46b0dd7c"
+    },
+    {
+      "key": "ENRICH-13E1",
+      "sql_path": "docs\\sql\\enrich13e1_name_alias_duplicate_transfer_guarded_dry_run_v1.sql",
+      "source_sql_hash": "bb7cef1d447bca9d2d1e373b078f7bd73b8a60b40447e40aa6e43021a9195c0d",
+      "real_apply_sql_hash": "10dbf6edf96a98a099a82ab15a1384bc6c656ee07ad2d3be3daef82d67f75e33"
+    },
+    {
+      "key": "ENRICH-13C1",
+      "sql_path": "docs\\sql\\enrich13c1_radiant_collection_duplicate_transfer_guarded_dry_run_v1.sql",
+      "source_sql_hash": "43665f6292dc8269b6b24c846a00d144131aa4b33f65f7f099eb608bd4111ffc",
+      "real_apply_sql_hash": "2e98c3f054b2f6c337a5b5e37ee6ca16fae04ff36c0b228068f6709aa84c8af4"
+    },
+    {
+      "key": "ENRICH-13F1",
+      "sql_path": "docs\\sql\\enrich13f1_suffix_duplicate_transfer_guarded_dry_run_v1.sql",
+      "source_sql_hash": "4b8b0a01d14d2b84efae86cc73799dc7e5427da9937dce502b348e9faa41e4bd",
+      "real_apply_sql_hash": "1bcc074c5ed66e71191fcd7d7041183985537675c2ea1446c4cb41a10567fa63"
+    },
+    {
+      "key": "ENRICH-13G1",
+      "sql_path": "docs\\sql\\enrich13g1_celebrations_subset_alias_transfer_guarded_dry_run_v1.sql",
+      "source_sql_hash": "a9b4550e4e3343dfee547af686468bb141f5d4dc2ad593809f1e7a96772c3a05",
+      "real_apply_sql_hash": "e9426a48f20567759fbcac6841d57dc67bc9c83513a00b68d5eddca06a9deb1d"
+    }
+  ],
+  "package_results": [
+    {
+      "key": "ENRICH-13D1",
+      "apply_order": 1,
+      "target_rows": 56,
+      "child_printings_handled": 168,
+      "external_mappings_handled": 56,
+      "before_snapshot": {
+        "key": "ENRICH-13D1",
+        "duplicate_ids": [],
+        "owner_ids": [],
+        "duplicate_dependency_counts": {
+          "external_mappings": 0,
+          "card_print_identity": 0,
+          "card_print_traits": 0,
+          "card_print_species": 0,
+          "card_printings": 0,
+          "card_prints": 0
+        },
+        "owner_rows_present": 0,
+        "hash_sha256": "8d2d6a06a70def4d35d673b5e5d3c7cf19ba2c5c2ecf382fbabb5fb345a82914"
+      },
+      "after_snapshot": {
+        "key": "ENRICH-13D1",
+        "duplicate_ids": [],
+        "owner_ids": [],
+        "duplicate_dependency_counts": {
+          "external_mappings": 0,
+          "card_print_identity": 0,
+          "card_print_traits": 0,
+          "card_print_species": 0,
+          "card_printings": 0,
+          "card_prints": 0
+        },
+        "owner_rows_present": 0,
+        "hash_sha256": "8d2d6a06a70def4d35d673b5e5d3c7cf19ba2c5c2ecf382fbabb5fb345a82914"
+      },
+      "duplicate_dependencies_cleared": true,
+      "owner_rows_present_after": 0
+    },
+    {
+      "key": "ENRICH-13E1",
+      "apply_order": 2,
+      "target_rows": 40,
+      "child_printings_handled": 99,
+      "external_mappings_handled": 40,
+      "before_snapshot": {
+        "key": "ENRICH-13E1",
+        "duplicate_ids": [],
+        "owner_ids": [],
+        "duplicate_dependency_counts": {
+          "external_mappings": 0,
+          "card_print_identity": 0,
+          "card_print_traits": 0,
+          "card_print_species": 0,
+          "card_printings": 0,
+          "card_prints": 0
+        },
+        "owner_rows_present": 0,
+        "hash_sha256": "5f2a07e5ce743a0b59e20c910072c3054160cf4102fe139e5a493498be2b9846"
+      },
+      "after_snapshot": {
+        "key": "ENRICH-13E1",
+        "duplicate_ids": [],
+        "owner_ids": [],
+        "duplicate_dependency_counts": {
+          "external_mappings": 0,
+          "card_print_identity": 0,
+          "card_print_traits": 0,
+          "card_print_species": 0,
+          "card_printings": 0,
+          "card_prints": 0
+        },
+        "owner_rows_present": 0,
+        "hash_sha256": "5f2a07e5ce743a0b59e20c910072c3054160cf4102fe139e5a493498be2b9846"
+      },
+      "duplicate_dependencies_cleared": true,
+      "owner_rows_present_after": 0
+    },
+    {
+      "key": "ENRICH-13C1",
+      "apply_order": 3,
+      "target_rows": 20,
+      "child_printings_handled": 60,
+      "external_mappings_handled": 20,
+      "before_snapshot": {
+        "key": "ENRICH-13C1",
+        "duplicate_ids": [
+          "9d14ba0c-b863-4d49-8f0b-10d978e25171",
+          "d8ce6d2f-2025-49fa-83d7-bc575a791b31",
+          "974f95cf-ed5b-4021-adaf-3135bd6a851d",
+          "559eefb2-df85-4aca-b573-ee9b1f1061be",
+          "dc8bbc07-d0f6-41f4-bbde-5b1f18e80b0f",
+          "96a74c90-395c-4f46-a5d9-f2d7cd70351c",
+          "bac974e4-c472-4f27-9acd-f18d4bb6f60e",
+          "a53e052b-7854-4044-91eb-a3b7695f5a7b",
+          "5ff4a1fd-d1ec-4907-bb7e-0071c6ea302f",
+          "22e8f1e4-b75b-4c0d-a17a-1f2d03490479",
+          "d57d16ff-5e21-4e58-9cf2-791d3130d57e",
+          "f819c23d-5ba7-45bd-8b10-611e09404df7",
+          "85f3e3cc-88c3-4764-af10-15f925f84fff",
+          "d73f7221-4dfa-4bfb-8f50-8ab81a78244f",
+          "58b916a9-9516-4988-b05b-d91803b7a223",
+          "d56ed317-6505-4578-9aa5-40fd5fc84f69",
+          "9dfbd0bf-2397-47e2-94ce-bd99258755ce",
+          "40e81e35-2fb5-4ee0-852a-3579e2dfcea9",
+          "5fc644f5-26c9-4f5c-aecb-4dbb703010b4",
+          "6ccd25fb-8fd1-4588-a380-fd75b97295e6"
+        ],
+        "owner_ids": [
+          "7acb6ae7-9749-49c6-bdc4-128e0fda1ebe",
+          "74c5fba4-3cae-43d2-9770-24dd1a4991f2",
+          "ba6a6c23-fd10-4715-b698-3a266c95b7ae",
+          "efa15a49-a1f9-46b0-bd69-85111388328e",
+          "93bc63a0-3285-4360-8eb8-965d81bd26e8",
+          "fca222fa-9629-4b95-8e3e-c156871f1131",
+          "def3b50f-4d4d-45f4-a4c0-29f91b8dbb0f",
+          "9ff063db-4121-456f-839a-f79822b7c7e0",
+          "ae5f8da5-8739-423f-a909-a4b35ef1f0f7",
+          "32e149cf-89c2-4786-9b59-fd20fecfd746",
+          "2b3996ed-c314-4ccf-9c60-d3e7c13f6d62",
+          "f8d2770e-13a8-48ab-8fdd-f2134fcb43dc",
+          "64593d79-0242-4354-93d8-4fa5d27be758",
+          "5cd07513-7d98-4952-accb-13efc906441a",
+          "25c0588d-9275-4b49-9b1d-1a590cc29f5c",
+          "3b203a61-0bb1-486d-be32-32c724e71a7f",
+          "8f425977-bcfe-4a9f-bb2b-7d972a613ccb",
+          "2a03720e-a769-4898-b16b-aee0e6501ccd",
+          "e9a99417-070e-4e70-9dc2-ddbbb907e03e",
+          "7b64eeaf-63e5-491e-b70e-893ba616e6eb"
+        ],
+        "duplicate_dependency_counts": {
+          "external_mappings": 20,
+          "card_print_identity": 20,
+          "card_print_traits": 20,
+          "card_print_species": 19,
+          "card_printings": 60,
+          "card_prints": 20
+        },
+        "owner_rows_present": 20,
+        "hash_sha256": "460bc3225c89579df05a53a53da98f1c322113fad377c73a49f17508734cd494"
+      },
+      "after_snapshot": {
+        "key": "ENRICH-13C1",
+        "duplicate_ids": [
+          "9d14ba0c-b863-4d49-8f0b-10d978e25171",
+          "d8ce6d2f-2025-49fa-83d7-bc575a791b31",
+          "974f95cf-ed5b-4021-adaf-3135bd6a851d",
+          "559eefb2-df85-4aca-b573-ee9b1f1061be",
+          "dc8bbc07-d0f6-41f4-bbde-5b1f18e80b0f",
+          "96a74c90-395c-4f46-a5d9-f2d7cd70351c",
+          "bac974e4-c472-4f27-9acd-f18d4bb6f60e",
+          "a53e052b-7854-4044-91eb-a3b7695f5a7b",
+          "5ff4a1fd-d1ec-4907-bb7e-0071c6ea302f",
+          "22e8f1e4-b75b-4c0d-a17a-1f2d03490479",
+          "d57d16ff-5e21-4e58-9cf2-791d3130d57e",
+          "f819c23d-5ba7-45bd-8b10-611e09404df7",
+          "85f3e3cc-88c3-4764-af10-15f925f84fff",
+          "d73f7221-4dfa-4bfb-8f50-8ab81a78244f",
+          "58b916a9-9516-4988-b05b-d91803b7a223",
+          "d56ed317-6505-4578-9aa5-40fd5fc84f69",
+          "9dfbd0bf-2397-47e2-94ce-bd99258755ce",
+          "40e81e35-2fb5-4ee0-852a-3579e2dfcea9",
+          "5fc644f5-26c9-4f5c-aecb-4dbb703010b4",
+          "6ccd25fb-8fd1-4588-a380-fd75b97295e6"
+        ],
+        "owner_ids": [
+          "7acb6ae7-9749-49c6-bdc4-128e0fda1ebe",
+          "74c5fba4-3cae-43d2-9770-24dd1a4991f2",
+          "ba6a6c23-fd10-4715-b698-3a266c95b7ae",
+          "efa15a49-a1f9-46b0-bd69-85111388328e",
+          "93bc63a0-3285-4360-8eb8-965d81bd26e8",
+          "fca222fa-9629-4b95-8e3e-c156871f1131",
+          "def3b50f-4d4d-45f4-a4c0-29f91b8dbb0f",
+          "9ff063db-4121-456f-839a-f79822b7c7e0",
+          "ae5f8da5-8739-423f-a909-a4b35ef1f0f7",
+          "32e149cf-89c2-4786-9b59-fd20fecfd746",
+          "2b3996ed-c314-4ccf-9c60-d3e7c13f6d62",
+          "f8d2770e-13a8-48ab-8fdd-f2134fcb43dc",
+          "64593d79-0242-4354-93d8-4fa5d27be758",
+          "5cd07513-7d98-4952-accb-13efc906441a",
+          "25c0588d-9275-4b49-9b1d-1a590cc29f5c",
+          "3b203a61-0bb1-486d-be32-32c724e71a7f",
+          "8f425977-bcfe-4a9f-bb2b-7d972a613ccb",
+          "2a03720e-a769-4898-b16b-aee0e6501ccd",
+          "e9a99417-070e-4e70-9dc2-ddbbb907e03e",
+          "7b64eeaf-63e5-491e-b70e-893ba616e6eb"
+        ],
+        "duplicate_dependency_counts": {
+          "external_mappings": 0,
+          "card_print_identity": 0,
+          "card_print_traits": 0,
+          "card_print_species": 0,
+          "card_printings": 0,
+          "card_prints": 0
+        },
+        "owner_rows_present": 20,
+        "hash_sha256": "0ce3560e8f265ac2ae740cfd043d1527cf6a88d3f02ed8d8fbe399e7c1c80c52"
+      },
+      "duplicate_dependencies_cleared": true,
+      "owner_rows_present_after": 20
+    },
+    {
+      "key": "ENRICH-13F1",
+      "apply_order": 4,
+      "target_rows": 4,
+      "child_printings_handled": 12,
+      "external_mappings_handled": 4,
+      "before_snapshot": {
+        "key": "ENRICH-13F1",
+        "duplicate_ids": [
+          "6922b72a-f472-4bea-9c3b-e4320f11924e",
+          "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+          "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+          "0fa596a5-2124-410e-9faa-50f7fc970134"
+        ],
+        "owner_ids": [
+          "6f632392-0999-4a74-84ec-9346caf17d24",
+          "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+          "79d4fa29-4137-46de-bf72-14ee8fe96119",
+          "2170847e-7ce9-482c-ac4f-02122ba3538b"
+        ],
+        "duplicate_dependency_counts": {
+          "external_mappings": 4,
+          "card_print_identity": 1,
+          "card_print_traits": 4,
+          "card_print_species": 3,
+          "card_printings": 12,
+          "card_prints": 4
+        },
+        "owner_rows_present": 4,
+        "hash_sha256": "2fa4e68170cfbfb0a2fef888ca91027ab885fb84196acc9b12fe2d2ac8a1f7ef"
+      },
+      "after_snapshot": {
+        "key": "ENRICH-13F1",
+        "duplicate_ids": [
+          "6922b72a-f472-4bea-9c3b-e4320f11924e",
+          "6b99ca2c-6f45-4089-b566-7f2927aa101f",
+          "33e0cfc8-8036-472a-bebd-1aed68e22ba0",
+          "0fa596a5-2124-410e-9faa-50f7fc970134"
+        ],
+        "owner_ids": [
+          "6f632392-0999-4a74-84ec-9346caf17d24",
+          "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+          "79d4fa29-4137-46de-bf72-14ee8fe96119",
+          "2170847e-7ce9-482c-ac4f-02122ba3538b"
+        ],
+        "duplicate_dependency_counts": {
+          "external_mappings": 0,
+          "card_print_identity": 0,
+          "card_print_traits": 0,
+          "card_print_species": 0,
+          "card_printings": 0,
+          "card_prints": 0
+        },
+        "owner_rows_present": 4,
+        "hash_sha256": "cf0e13a74d551a617f6b747090f5e0a60d5a223ab567cf25dad0d7ed9ea2fa90"
+      },
+      "duplicate_dependencies_cleared": true,
+      "owner_rows_present_after": 4
+    },
+    {
+      "key": "ENRICH-13G1",
+      "apply_order": 5,
+      "target_rows": 4,
+      "child_printings_handled": 4,
+      "external_mappings_handled": 4,
+      "before_snapshot": {
+        "key": "ENRICH-13G1",
+        "duplicate_ids": [],
+        "owner_ids": [],
+        "duplicate_dependency_counts": {
+          "external_mappings": 0,
+          "card_print_identity": 0,
+          "card_print_traits": 0,
+          "card_print_species": 0,
+          "card_printings": 0,
+          "card_prints": 0
+        },
+        "owner_rows_present": 0,
+        "hash_sha256": "602fc657f72eec620783bea4f749b42e409aa4f813b41d30efa0ac50b537525d"
+      },
+      "after_snapshot": {
+        "key": "ENRICH-13G1",
+        "duplicate_ids": [],
+        "owner_ids": [],
+        "duplicate_dependency_counts": {
+          "external_mappings": 0,
+          "card_print_identity": 0,
+          "card_print_traits": 0,
+          "card_print_species": 0,
+          "card_printings": 0,
+          "card_prints": 0
+        },
+        "owner_rows_present": 0,
+        "hash_sha256": "602fc657f72eec620783bea4f749b42e409aa4f813b41d30efa0ac50b537525d"
+      },
+      "duplicate_dependencies_cleared": true,
+      "owner_rows_present_after": 0
+    }
+  ],
+  "global_guards": {
+    "before": {
+      "active_identity_duplicate_groups": 0,
+      "active_external_mapping_duplicate_groups": 0,
+      "child_printing_duplicate_groups": 0
+    },
+    "after": {
+      "active_identity_duplicate_groups": 0,
+      "active_external_mapping_duplicate_groups": 0,
+      "child_printing_duplicate_groups": 0
+    }
+  },
+  "blocked_lanes_preserved": [
+    {
+      "key": "ENRICH-13B1",
+      "label": "Pocket/non-physical domain exclusion",
+      "report_path": "docs\\audits\\card_row_enrichment_v1\\enrich13b_pocket_domain_exclusion_plan_v1.json",
+      "rows": 203,
+      "status": "blocked_domain_contract_required"
+    },
+    {
+      "key": "ENRICH-13E-MANUAL-LUXRAY",
+      "label": "Luxray GL versus Luxray GL LV.X manual review",
+      "report_path": "docs\\audits\\card_row_enrichment_v1\\enrich13e_name_alias_collision_governance_v1.json",
+      "rows": 1,
+      "status": "blocked_manual_review"
+    },
+    {
+      "key": "ENRICH-13F-BASE-VS-SUFFIX",
+      "label": "Base-number versus suffix owner split proof required",
+      "report_path": "docs\\audits\\card_row_enrichment_v1\\enrich13f_suffix_variant_collision_governance_v1.json",
+      "rows": 4,
+      "status": "blocked_split_owner_proof_required"
+    }
+  ],
+  "stop_findings": [],
+  "generated_at": "2026-06-15T20:59:24.898Z",
+  "proof_hash_sha256": "2ae81edff0109cb3dcc008ae4ffafef07260b1bcefcbf2f09648a3324d003c02"
+}

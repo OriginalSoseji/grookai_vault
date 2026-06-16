@@ -1,0 +1,78 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_SOURCE_AVAILABILITY_V1",
+  "generated_at": "2026-06-14T16:58:08.647Z",
+  "audit_only": true,
+  "db_writes": false,
+  "source_availability": [
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "source_key": "pokemontcg_api",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "source_key": "tcgdex",
+      "source_alias": "mep",
+      "configured_status": "available",
+      "runtime_status": "collected",
+      "evidence_rows": 104,
+      "error": null
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "source_key": "thepricedex_price_list",
+      "source_alias": "mep",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 143,
+      "error": null
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "source_key": "pkmncards",
+      "source_alias": "mep-black-star-promos",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/mep-black-star-promos/"
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "MEP_Black_Star_Promos_(TCG)",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)"
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "human_fixtures",
+      "set_name": "Human-readable fixture lane",
+      "source_key": "human_fixtures",
+      "source_alias": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_image_truth_mep_cosmos_finish_governance_v1",
+      "configured_status": "available",
+      "runtime_status": "collected",
+      "evidence_rows": 8,
+      "error": null
+    }
+  ]
+}

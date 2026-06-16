@@ -1,0 +1,119 @@
+{
+  "version": "ENRICH_13E_NAME_ALIAS_COLLISION_GOVERNANCE_V1",
+  "generated_at": "2026-06-16T02:03:59.097Z",
+  "mode": "read_only_governance_plan",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "source_file": "docs\\audits\\card_row_enrichment_v1\\enrich13_core_identity_resolution_readiness_v1.json",
+  "summary": {
+    "target_rows": 1,
+    "deterministic_alias_rows": 0,
+    "manual_blocked_rows": 1,
+    "bucket_counts": {
+      "manual_collision_adjudication_required": 1
+    },
+    "set_counts": {
+      "pl2": 1
+    },
+    "write_ready_now": false,
+    "recommended_strategy": "split_deterministic_alias_duplicate_transfer_from_manual_identity_review"
+  },
+  "dependency_totals": {
+    "deterministic": {
+      "duplicate": {},
+      "canonical_owner": {}
+    },
+    "manual_blocked": {
+      "duplicate": {
+        "child_count": 2,
+        "active_identity_count": 1,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 1,
+        "vault_instance_count": 0
+      },
+      "canonical_owner": {
+        "child_count": 1,
+        "active_identity_count": 1,
+        "active_mapping_count": 2
+      }
+    }
+  },
+  "governance_decision": {
+    "deterministic_decision": "duplicate_alias_rows_can_become_dependency_transfer_candidates_after_dry_run",
+    "manual_decision": "manual_identity_difference_must_not_be_auto_merged",
+    "reason": "Most rows are punctuation, gender-symbol, EX hyphenation, or known Platinum owner-name source alias differences. Luxray GL versus Luxray GL LV.X is materially different card-name text and must remain blocked until source evidence proves whether the duplicate row is wrong or incomplete.",
+    "required_dry_run_law": [
+      "canonical owner row must stay",
+      "duplicate dependencies must be transferred or proven zero before delete",
+      "active identity uniqueness must remain zero-conflict",
+      "source mappings must end on canonical owner only",
+      "manual-blocked rows must be excluded"
+    ],
+    "forbidden": [
+      "do not overwrite canonical owner parent rows",
+      "do not merge Luxray GL into Luxray GL LV.X without explicit evidence",
+      "do not use normalized names alone for materially different suffixes",
+      "do not delete dependency-bearing duplicate parents without transfer proof",
+      "do not mint GV IDs for duplicate parents"
+    ]
+  },
+  "proposed_future_package_shape": {
+    "package_id": "ENRICH-13E1-NAME-ALIAS-DUPLICATE-TRANSFER-DRY-RUN",
+    "current_status": "not_write_ready_dry_run_required",
+    "expected_scope_if_later_approved": [
+      "0 deterministic alias duplicate adjudications",
+      "dependency transfer simulation from duplicate parent to canonical owner",
+      "child printing dedupe simulation by target owner and finish",
+      "active identity cleanup or deactivation simulation",
+      "empty duplicate parent delete simulation only after all dependencies are transferred"
+    ],
+    "excluded_from_scope": [
+      "1 manual identity review row",
+      "parent core identity updates",
+      "GV-ID writes",
+      "image writes",
+      "migrations",
+      "global apply"
+    ],
+    "required_before_real_apply": [
+      "fresh dependency snapshot",
+      "guarded rollback-only dry-run",
+      "before/after active identity uniqueness proof",
+      "before/after external mapping uniqueness proof",
+      "child printing duplicate proof",
+      "rollback artifact"
+    ]
+  },
+  "manual_blocked_rows": [
+    {
+      "bucket": "manual_collision_adjudication_required",
+      "duplicate_card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+      "canonical_owner_card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+      "set_code": "pl2",
+      "set_name": "Rising Rivals",
+      "number": "109",
+      "number_plain": "109",
+      "duplicate_name": "Luxray GL",
+      "canonical_owner_name": "Luxray GL LV.X",
+      "source_external_id": "pl2-109",
+      "duplicate_dependencies": {
+        "child_count": 2,
+        "active_identity_count": 1,
+        "active_mapping_count": 1,
+        "trait_count": 1,
+        "species_count": 1,
+        "vault_instance_count": 0
+      },
+      "canonical_owner_dependencies": {
+        "child_count": 1,
+        "active_identity_count": 1,
+        "active_mapping_count": 2
+      },
+      "proposed_resolution": "blocked_manual_card_name_identity_review_required"
+    }
+  ],
+  "deterministic_rows": [],
+  "fingerprint_sha256": "5e20e8466cd9a1509d22c2e23c5c393972754165523663cbeddf690f46209313"
+}

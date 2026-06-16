@@ -1,0 +1,78 @@
+{
+  "version": "ENRICH03_ACTIVE_IDENTITY_GUARDED_DRY_RUN_V1",
+  "package_id": "ENRICH-03-ACTIVE-IDENTITY-BACKFILL",
+  "generated_at": "2026-06-15T23:23:03.902Z",
+  "package_fingerprint_sha256": "f3a3740d69fbc7d6e481f228c092786ba21ffbae1ba3cd1c455bcaf204313321",
+  "source_candidate_file": "docs\\audits\\card_row_enrichment_v1\\active_identity_backfill_candidates_v1.json",
+  "source_fingerprint_basis": "46080279e06b703b73a68c236fa6e2bbd2c36f34b0789d0bb17720f75d5074f1",
+  "projection_function": "public.card_print_identity_backfill_projection_v1",
+  "scope": {
+    "target_rows": 0,
+    "writes_simulated_then_rolled_back": [
+      "card_print_identity inserts"
+    ],
+    "forbidden": [
+      "parent writes",
+      "child writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ],
+    "durable_db_writes_performed": false,
+    "migrations_created": false
+  },
+  "preflight": {
+    "target_count": 0,
+    "distinct_target_count": 0,
+    "distinct_identity_hash_count": 0,
+    "projection_not_ready_count": 0,
+    "missing_identity_hash_count": 0,
+    "missing_parent_count": 0,
+    "target_active_identity_collision_count": 0,
+    "existing_identity_hash_collision_count": 0,
+    "batch_duplicate_identity_hash_count": 0,
+    "target_fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "execution": {
+    "before_snapshot": {
+      "captured_at": "2026-06-15T23:23:03.128Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "counts": {
+        "target_rows": 0,
+        "parent_rows": 0,
+        "active_identity_rows": 0,
+        "total_rows": 0
+      }
+    },
+    "inside_transaction_proof": {
+      "inserted_rows": 0,
+      "proof": {
+        "target_count": 0,
+        "matching_active_identity_count": 0,
+        "duplicate_active_identity_hash_exists": 0
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-15T23:23:03.902Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "counts": {
+        "target_rows": 0,
+        "parent_rows": 0,
+        "active_identity_rows": 0,
+        "total_rows": 0
+      }
+    },
+    "dry_run_status": "completed_rolled_back_no_durable_change"
+  },
+  "by_set_top_25": {},
+  "target_samples": [],
+  "stop_findings": [
+    "target_count_drift:0"
+  ],
+  "pass": false,
+  "recommended_approval_text": null
+}

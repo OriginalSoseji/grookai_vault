@@ -3,7 +3,7 @@ import "server-only";
 import { resolveCanonImageV1, type CanonImageLike } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 
-export type CardDisplayImageKind = "exact" | "representative" | "missing";
+export type CardDisplayImageKind = "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
 
 export type CardImageLike = CanonImageLike & {
   representative_image_url?: string | null;
@@ -28,6 +28,9 @@ const TARGET_IMAGE_STATUSES = new Set([
   "representative_shared",
   "representative_shared_collision",
   "representative_shared_stamp",
+  "missing_variant_visual",
+  "representative_missing_variant_visual",
+  "blocked",
   "missing",
   "unresolved",
 ]);

@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PokemonCardGridTile, { PokemonCardGridBadge } from "@/components/cards/PokemonCardGridTile";
 import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemonCardGridLayout";
+import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import {
@@ -47,6 +49,7 @@ export function PublicCollectionGrid({
             const cardHref = getPublicWallCardHref(card, viewerUserId, ownerUserId) ?? `/card/${card.gv_id}`;
             const gvviId = getPublicWallCardPrimaryGvviId(card);
             const displayIdentity = resolveDisplayIdentity(card);
+            const imagePresentation = resolveCardImagePresentation(card);
             const cardKey = card.gv_vi_id ?? card.vault_item_id ?? card.card_print_id ?? card.gv_id;
 
             return (
@@ -61,6 +64,12 @@ export function PublicCollectionGrid({
                 imageOverlay={
                   <>
                     <div className="flex min-w-0 flex-wrap gap-1.5">
+                      {imagePresentation.compactBadgeLabel ? (
+                        <CardImageTruthBadge
+                          label={imagePresentation.compactBadgeLabel}
+                          emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                        />
+                      ) : null}
                       {card.is_slab ? <PokemonCardGridBadge tone="warm">Slab</PokemonCardGridBadge> : null}
                     </div>
                     {ownedCount > 1 ? <PokemonCardGridBadge tone="neutral">Qty {ownedCount}</PokemonCardGridBadge> : <span />}

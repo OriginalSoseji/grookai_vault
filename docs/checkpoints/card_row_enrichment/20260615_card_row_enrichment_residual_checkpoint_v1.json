@@ -1,0 +1,84 @@
+{
+  "checkpoint": "CARD_ROW_ENRICHMENT_RESIDUAL_CHECKPOINT_V1",
+  "generated_date": "2026-06-15",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "image_work_deferred": true,
+  "source_reports": [
+    "docs/audits/card_row_enrichment_v1/card_row_enrichment_status_v1.json",
+    "docs/audits/card_row_enrichment_v1/enrich12_residual_source_audit_v1.json",
+    "docs/audits/card_row_enrichment_v1/enrich12b_external_id_payload_mapping_readiness_v1.json",
+    "docs/audits/card_row_enrichment_v1/enrich12c2_residual_catalog_metadata_guarded_dry_run_v1.json"
+  ],
+  "row_universe": {
+    "all_parent_rows": 26353,
+    "all_child_printing_rows": 47720,
+    "english_physical_parent_rows": 23086,
+    "english_physical_child_printing_rows": 38362,
+    "tcg_pocket_excluded_parent_rows": 2947,
+    "tcg_pocket_excluded_child_printing_rows": 8841,
+    "unclassified_identity_domain_parent_rows": 320,
+    "unclassified_identity_domain_child_printing_rows": 517
+  },
+  "english_physical_parent_gap_counts": {
+    "species_link": 3701,
+    "child_printings": 1075,
+    "traits": 996,
+    "external_mapping": 706,
+    "gv_id": 617,
+    "core_identity": 572,
+    "display_image": 150,
+    "catalog_metadata": 147,
+    "active_identity": 9
+  },
+  "english_physical_child_gap_counts": {
+    "provenance": 13428,
+    "printing_gv_id": 1492,
+    "display_image": 191
+  },
+  "species_gap_classification": {
+    "trainer_not_species_applicable": 2919,
+    "energy_not_species_applicable": 521,
+    "blocked_missing_traits": 180,
+    "blocked_core_identity_missing": 80,
+    "fossil_object_not_species_applicable": 1,
+    "write_candidate_rows": 0
+  },
+  "blocked_lanes": {
+    "ENRICH-12B-EXTERNAL-ID-PAYLOAD-MAPPING-READINESS": {
+      "candidate_parent_rows": 14,
+      "candidate_mapping_rows": 15,
+      "ready_mapping_rows": 0,
+      "blocked_mapping_rows": 15,
+      "blocked_by_reason": {
+        "blocked_variant_source_id_owned_by_base_parent": 11,
+        "blocked_existing_owner_incomplete_identity": 4
+      }
+    },
+    "ENRICH-12C2-RESIDUAL-CATALOG-METADATA-RETRY": {
+      "candidate_catalog_metadata_gap_rows": 8,
+      "target_parent_rows": 0,
+      "blocked_candidate_rows": 8,
+      "blocked_by_reason": {
+        "source_name_mismatch": 8
+      }
+    },
+    "ENRICH-12D-SPECIES-RULE-REVIEW": {
+      "candidate_parent_rows": 0,
+      "status": "no_species_rule_review_rows"
+    }
+  },
+  "next_safe_work": [
+    "Build residual enrichment decision dashboard/report for app and website visibility.",
+    "Create focused identity/provenance plan for gv_id, active_identity, printing_gv_id, and provenance gaps.",
+    "Keep child image work separate under Image Truth V1.",
+    "Do not promote external mapping payloads unless source ownership is resolved.",
+    "Do not relax source name matching for catalog metadata without a governed alias rule."
+  ],
+  "verification": {
+    "preflight_status": "PASS_WITH_DEFERRED_DEBT",
+    "critical_failures": 0,
+    "migrations_status_clean": true
+  }
+}

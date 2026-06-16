@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-06-16T05:26:59.472Z",
+  "package_id": "IMG-02C-MISSING-DISPLAY-REPRESENTATIVE-CHILD-IMAGE-UPLOAD-APPLY",
+  "mode": "real_apply",
+  "db_writes_performed": true,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "fingerprint": "b9f5c26004b84e33111611d76d9d6596b0d924d06096d0421a27c986882242d8",
+  "storage_uploaded_rows": 2,
+  "db_updated_rows": 2,
+  "committed": true,
+  "uploaded_storage_paths": [
+    "warehouse-derived/image-truth-v1/img02a-missing-display-representative/mfb/673d0e32-6748-4f2c-8de6-f76a3f3698d5/4cce9b1f132297acc8d5c2a6.jpg",
+    "warehouse-derived/image-truth-v1/img02a-missing-display-representative/mfb/3df8a13f-4fb7-45db-a8b7-d174a4895f6a/68d097055b9e0ca1315e46fd.jpg"
+  ],
+  "rows": [
+    {
+      "card_printing_id": "673d0e32-6748-4f2c-8de6-f76a3f3698d5",
+      "set_code": "mfb",
+      "card_name": "Potion",
+      "number": "33",
+      "finish_key": "normal",
+      "image_path": "warehouse-derived/image-truth-v1/img02a-missing-display-representative/mfb/673d0e32-6748-4f2c-8de6-f76a3f3698d5/4cce9b1f132297acc8d5c2a6.jpg",
+      "source_url": "https://www.tcgcollector.com/cards/42807/potion-my-first-battle-squirtle-no-010"
+    },
+    {
+      "card_printing_id": "3df8a13f-4fb7-45db-a8b7-d174a4895f6a",
+      "set_code": "mfb",
+      "card_name": "Switch",
+      "number": "34",
+      "finish_key": "normal",
+      "image_path": "warehouse-derived/image-truth-v1/img02a-missing-display-representative/mfb/3df8a13f-4fb7-45db-a8b7-d174a4895f6a/68d097055b9e0ca1315e46fd.jpg",
+      "source_url": "https://www.tcgcollector.com/cards/42808/switch-my-first-battle-squirtle-no-011"
+    }
+  ],
+  "proof_hash": "c9877e2816f07abe849c3fded0374a34bc32ca78eb0a7b6fba921bf36d5b35bf"
+}

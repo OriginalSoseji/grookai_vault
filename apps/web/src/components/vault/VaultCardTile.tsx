@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import VariantBadge from "@/components/cards/VariantBadge";
+import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import {
   resolveDisplayIdentity,
   resolveDisplayIdentitySubtitleForContext,
@@ -79,6 +81,10 @@ export type VaultCardData = {
   effective_price: number | null;
   image_url?: string;
   canonical_image_url?: string;
+  canonical_image_status?: string | null;
+  canonical_image_note?: string | null;
+  canonical_display_image_url?: string | null;
+  canonical_display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
   created_at: string | null;
   is_slab: boolean;
   grader: string | null;
@@ -170,6 +176,19 @@ export function VaultCardTile({
     activeMessageCount: item.active_message_count,
   });
   const previewCopies = item.copy_items.slice(0, 2);
+  const displayedCanonicalImage =
+    !item.image_url ||
+    item.image_url === item.canonical_display_image_url ||
+    item.image_url === item.canonical_image_url;
+  const imagePresentation = resolveCardImagePresentation(
+    displayedCanonicalImage
+      ? {
+          display_image_kind: item.canonical_display_image_kind,
+          image_status: item.canonical_image_status,
+          image_note: item.canonical_image_note,
+        }
+      : null,
+  );
 
   const closedSummary = (
     <div className="space-y-3">
@@ -303,6 +322,14 @@ export function VaultCardTile({
       imageAlt={displayIdentity.display_name}
       imageHref={`/card/${item.gv_id}`}
       imageFallbackLabel={displayIdentity.display_name}
+      imageOverlay={
+        imagePresentation.compactBadgeLabel ? (
+          <CardImageTruthBadge
+            label={imagePresentation.compactBadgeLabel}
+            emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+          />
+        ) : null
+      }
       imageClassName={[
         tileDensity === "large" ? "max-w-[260px]" : undefined,
         "drop-shadow-[0_16px_28px_rgba(15,23,42,0.14)]",

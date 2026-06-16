@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import PrintingChip from "@/components/cards/PrintingChip";
+import { findPrintingByReference, isPrintingReferenceMatch } from "@/lib/cards/printingSelection";
+import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import type { CardPrinting } from "@/types/cards";
 
 type PrintingSelectorProps = {
@@ -74,7 +76,9 @@ export default function PrintingSelector({
       return;
     }
 
-    const selectedStillExists = displayablePrintings.some((printing) => printing.id === effectiveSelectedPrintingId);
+    const selectedStillExists = displayablePrintings.some((printing) =>
+      isPrintingReferenceMatch(printing, effectiveSelectedPrintingId),
+    );
     if (!selectedStillExists) {
       const fallbackPrinting = displayablePrintings.find((printing) => printing.id === getDefaultPrintingId(displayablePrintings));
       setInternalSelectedPrintingId(fallbackPrinting?.id ?? "");
@@ -89,17 +93,20 @@ export default function PrintingSelector({
   }
 
   const selectedPrinting =
-    displayablePrintings.find((printing) => printing.id === effectiveSelectedPrintingId) ?? displayablePrintings[0];
+    findPrintingByReference(displayablePrintings, effectiveSelectedPrintingId) ?? displayablePrintings[0];
   const hiddenCount = Math.max(0, displayablePrintings.length - MAX_COLLAPSED_PRINTINGS);
   const visiblePrintings = expanded
     ? displayablePrintings
     : displayablePrintings.slice(0, MAX_COLLAPSED_PRINTINGS);
   const selectedOwnedCount = selectedPrinting.owned_count ?? 0;
   const selectedOwnershipLabel = selectedOwnedCount > 0 ? `Owned: ${selectedOwnedCount}` : "Not in vault";
+  const selectedImagePresentation = resolveCardImagePresentation(selectedPrinting);
+  const selectedUsesRepresentativeImage = showImageFallbackNotice && selectedImagePresentation.isRepresentative;
   const selectedUsesBaseImage =
     showImageFallbackNotice &&
     (selectedPrinting.is_display_fallback || (!selectedPrinting.display_image_url && !selectedPrinting.image_url));
-  const imageSuggestionHref = selectedUsesBaseImage ? getImageSuggestionHref?.(selectedPrinting) ?? null : null;
+  const selectedNeedsImageNotice = selectedUsesRepresentativeImage || selectedUsesBaseImage;
+  const imageSuggestionHref = selectedNeedsImageNotice ? getImageSuggestionHref?.(selectedPrinting) ?? null : null;
 
   return (
     <section className={`space-y-4 rounded-[16px] border border-slate-200 bg-white shadow-sm ${compact ? "p-4" : "p-6"}`}>
@@ -153,12 +160,17 @@ export default function PrintingSelector({
             {selectedOwnershipLabel}
           </span>
         </div>
-        {selectedUsesBaseImage ? (
+        {selectedNeedsImageNotice ? (
           <div className="mt-3 rounded-[12px] border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-950">
-            <p className="font-medium">Using base image</p>
+            <p className="font-medium">
+              {selectedImagePresentation.detailBadgeLabel ??
+                (selectedUsesRepresentativeImage ? "Representative image" : "Using base image")}
+            </p>
             <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
               <span>
-                {selectedPrinting.is_display_fallback
+                {selectedUsesRepresentativeImage
+                  ? selectedImagePresentation.detailNote
+                  : selectedPrinting.is_display_fallback
                   ? "No finish-specific versions are cataloged for this card yet."
                   : "This selected version does not have a reviewed image yet."}
               </span>

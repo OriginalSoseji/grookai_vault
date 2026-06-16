@@ -1,6 +1,7 @@
 # English Canon Completion Retrospective V1
 
 Date: 2026-06-14
+Last updated: 2026-06-16
 
 ## Status
 
@@ -210,3 +211,64 @@ external evidence -> governed reference -> safe reconciliation -> verified canon
 ```
 
 Future catalog expansion should preserve that discipline.
+
+## Image Truth Addendum
+
+Date: 2026-06-16
+
+Catalog truth alone was not enough.
+
+After English physical canon reconciliation, the next trust risk was image truth. A correct row with a missing image is incomplete, and a correct row with the wrong variant image can still mislead collectors.
+
+The Image Truth V1 work extended the same governance model from printings to child-printing display images:
+
+```text
+source evidence -> staged asset -> dry-run proof -> child-only apply -> post-apply audit
+```
+
+The important rule was that image coverage must be honest. If Grookai cannot prove the exact visual variant, it may still show a representative image only when the row clearly records that the image is representative and not exact.
+
+Final English physical image display state:
+
+| metric | value |
+| --- | ---: |
+| english_physical_child_printings | 38,111 |
+| english_physical_display_covered_rows | 38,111 |
+| english_physical_missing_display_rows | 0 |
+| english_physical_exact_rows | 23,178 |
+| english_physical_representative_rows | 432 |
+| english_physical_missing_variant_visual_rows | 14,501 |
+
+The final two missing-display rows were MFB Potion #33 and MFB Switch #34. They were closed as `representative_shared`, not exact, using TCGCollector card-page evidence with source URLs preserved.
+
+Source URLs:
+
+```text
+Potion: https://www.tcgcollector.com/cards/42807/potion-my-first-battle-squirtle-no-010
+Switch: https://www.tcgcollector.com/cards/42808/switch-my-first-battle-squirtle-no-011
+```
+
+PriceCharting generic list pages for those rows were explicitly rejected because they did not prove safe product-page image identity.
+
+Image Truth rules that should carry forward:
+
+- Target child `card_printings`, not parent image overwrites.
+- Preserve source URL, source key, image URL, confidence, and notes.
+- Use `exact` only when the source proves the exact visual variant.
+- Use representative imagery only when the UI can be honest about it.
+- Do not guess stamps, parallels, deck variants, Master Ball, Poke Ball, cracked ice, cosmos, or other visual variants from text alone.
+- Missing variant visuals are acceptable when labeled correctly; fake exact imagery is not.
+
+What this changed:
+
+- English physical catalog truth is complete.
+- English physical display coverage is complete.
+- Exact-variant image acquisition remains a quality-improvement lane, not a blocker for display coverage.
+- The remaining 14,501 `missing_variant_visual` rows should be improved through exact source acquisition, not by weakening image confidence.
+
+Image Truth proved the same lesson as the Master Index:
+
+```text
+Incomplete but honest is acceptable.
+Confident but fake is not.
+```

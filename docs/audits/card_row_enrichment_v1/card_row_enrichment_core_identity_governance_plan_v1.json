@@ -1,0 +1,2449 @@
+{
+  "version": "CARD_ROW_ENRICHMENT_CORE_IDENTITY_GOVERNANCE_PLAN_V1",
+  "generated_at": "2026-06-15T18:04:32.404Z",
+  "mode": "read_only_report_only",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "source_file": "docs\\audits\\card_row_enrichment_v1\\enrich13_core_identity_resolution_readiness_v1.json",
+  "summary": {
+    "total_core_identity_gap_rows": 332,
+    "pocket_domain_rows": 203,
+    "proposed_identity_collision_rows": 125,
+    "subset_alias_rows": 4,
+    "write_ready_rows_now": 0
+  },
+  "pocket_domain_governance": {
+    "status": "exclude_from_english_physical_enrichment_until_pocket_domain_decision",
+    "groups": [
+      {
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "count": 103
+      },
+      {
+        "set_code": "P-A",
+        "set_name": "Promos-A",
+        "count": 100
+      }
+    ],
+    "recommended_next_action": "Create a separate Pocket/non-physical governance lane. Do not backfill these as English physical rows.",
+    "samples": [
+      {
+        "card_print_id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Aerodactyl",
+        "external_ids": {
+          "tcgdex": "A3a-098"
+        },
+        "proposed_number": "098",
+        "proposed_number_plain": "098",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "576946b5-8ab3-49c2-8d7b-eaa50e7f822d",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Aerodactyl ex",
+        "external_ids": {
+          "tcgdex": "A3a-101"
+        },
+        "proposed_number": "101",
+        "proposed_number_plain": "101",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "560fde08-0ef0-489d-b8f7-ee0d994cd070",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Aggron",
+        "external_ids": {
+          "tcgdex": "A3a-050"
+        },
+        "proposed_number": "050",
+        "proposed_number_plain": "050",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "dc70d730-3f95-4164-a280-f8c8463017e5",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Alolan Diglett",
+        "external_ids": {
+          "tcgdex": "A3a-046"
+        },
+        "proposed_number": "046",
+        "proposed_number_plain": "046",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "02e39451-bfa3-4427-9a13-40e7a7721d66",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Alolan Dugtrio ex",
+        "external_ids": {
+          "tcgdex": "A3a-087"
+        },
+        "proposed_number": "087",
+        "proposed_number_plain": "087",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "145e93dc-2599-4674-8e1e-135b622b507c",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Alolan Dugtrio ex",
+        "external_ids": {
+          "tcgdex": "A3a-047"
+        },
+        "proposed_number": "047",
+        "proposed_number_plain": "047",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "52d26452-166f-482a-b35a-fe8008a67b75",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Alolan Dugtrio ex",
+        "external_ids": {
+          "tcgdex": "A3a-080"
+        },
+        "proposed_number": "080",
+        "proposed_number_plain": "080",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "4ef56ba4-e705-467c-9ffe-cd64e2ddd51c",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Alolan Meowth",
+        "external_ids": {
+          "tcgdex": "A3a-073"
+        },
+        "proposed_number": "073",
+        "proposed_number_plain": "073",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "df85125b-e129-4d4f-8dcb-2dd0294b873b",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Alolan Meowth",
+        "external_ids": {
+          "tcgdex": "A3a-037"
+        },
+        "proposed_number": "037",
+        "proposed_number_plain": "037",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "970f0229-fde0-45f6-8555-2789d475cfcc",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Alolan Persian",
+        "external_ids": {
+          "tcgdex": "A3a-038"
+        },
+        "proposed_number": "038",
+        "proposed_number_plain": "038",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "06a3b76b-23bf-4766-a7a4-c94c02993970",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Arcanine",
+        "external_ids": {
+          "tcgdex": "A3a-090"
+        },
+        "proposed_number": "090",
+        "proposed_number_plain": "090",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "7e1c6a1e-705d-4ac3-917e-af7f53271711",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Arcanine ex",
+        "external_ids": {
+          "tcgdex": "A3a-100"
+        },
+        "proposed_number": "100",
+        "proposed_number_plain": "100",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "32d268f1-cc72-4874-a8f4-b2a428ee017b",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Aron",
+        "external_ids": {
+          "tcgdex": "A3a-048"
+        },
+        "proposed_number": "048",
+        "proposed_number_plain": "048",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "0e4565be-c2a2-42f7-948b-d2f7ad530bf7",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Baltoy",
+        "external_ids": {
+          "tcgdex": "A3a-030"
+        },
+        "proposed_number": "030",
+        "proposed_number_plain": "030",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "f823220a-056d-45fd-9e33-cf4a2d03c3be",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Beast Wall",
+        "external_ids": {
+          "tcgdex": "A3a-063"
+        },
+        "proposed_number": "063",
+        "proposed_number_plain": "063",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 0,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "0f1a11a0-515f-4d0f-ad9d-e02fdd5f13f7",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Beastite",
+        "external_ids": {
+          "tcgdex": "A3a-066"
+        },
+        "proposed_number": "066",
+        "proposed_number_plain": "066",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 0,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "5908f640-18f3-4f6a-b2bb-480d45446bea",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Bewear",
+        "external_ids": {
+          "tcgdex": "A3a-058"
+        },
+        "proposed_number": "058",
+        "proposed_number_plain": "058",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "4e13a8fb-11fe-482a-8920-dac9781b2a0e",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Blacephalon",
+        "external_ids": {
+          "tcgdex": "A3a-072"
+        },
+        "proposed_number": "072",
+        "proposed_number_plain": "072",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "a23822fc-0e74-42ac-9ca3-6fb9f6cbb23d",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Blacephalon",
+        "external_ids": {
+          "tcgdex": "A3a-009"
+        },
+        "proposed_number": "009",
+        "proposed_number_plain": "009",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "f96a248a-f003-49ea-bd8a-fc7e083a6ebd",
+        "set_code": "A3a",
+        "set_name": "Extradimensional Crisis",
+        "card_name": "Blitzle",
+        "external_ids": {
+          "tcgdex": "A3a-016"
+        },
+        "proposed_number": "016",
+        "proposed_number_plain": "016",
+        "proposed_updates": {
+          "set_code": "A3a",
+          "number": null,
+          "number_plain": null
+        },
+        "dependency_counts": {
+          "child_count": 3,
+          "active_identity_count": 1,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      }
+    ]
+  },
+  "subset_alias_governance": {
+    "status": "needs_subset_alias_decision_before_core_identity_write",
+    "recommended_next_action": "Resolve Celebrations Classic Collection alias strategy before core identity updates.",
+    "rows": [
+      {
+        "card_print_id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+        "set_code": "cel25",
+        "set_name": "Celebrations",
+        "card_name": "Claydol",
+        "external_ids": {
+          "tcgdex": "cel25-15A4"
+        },
+        "proposed_number": "15A4",
+        "proposed_number_plain": "154",
+        "proposed_updates": {
+          "set_code": "cel25",
+          "number": "15A4",
+          "number_plain": "154"
+        },
+        "dependency_counts": {
+          "child_count": 1,
+          "active_identity_count": 0,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "8e4958ab-1e4e-4636-87e1-4650ae938086",
+        "set_code": "cel25",
+        "set_name": "Celebrations",
+        "card_name": "Here Comes Team Rocket!",
+        "external_ids": {
+          "tcgdex": "cel25-15A2"
+        },
+        "proposed_number": "15A2",
+        "proposed_number_plain": "152",
+        "proposed_updates": {
+          "set_code": "cel25",
+          "number": "15A2",
+          "number_plain": "152"
+        },
+        "dependency_counts": {
+          "child_count": 1,
+          "active_identity_count": 0,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 0,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+        "set_code": "cel25",
+        "set_name": "Celebrations",
+        "card_name": "Rocket's Zapdos",
+        "external_ids": {
+          "tcgdex": "cel25-15A3"
+        },
+        "proposed_number": "15A3",
+        "proposed_number_plain": "153",
+        "proposed_updates": {
+          "set_code": "cel25",
+          "number": "15A3",
+          "number_plain": "153"
+        },
+        "dependency_counts": {
+          "child_count": 1,
+          "active_identity_count": 0,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      },
+      {
+        "card_print_id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+        "set_code": "cel25",
+        "set_name": "Celebrations",
+        "card_name": "Venusaur",
+        "external_ids": {
+          "tcgdex": "cel25-15A1"
+        },
+        "proposed_number": "15A1",
+        "proposed_number_plain": "151",
+        "proposed_updates": {
+          "set_code": "cel25",
+          "number": "15A1",
+          "number_plain": "151"
+        },
+        "dependency_counts": {
+          "child_count": 1,
+          "active_identity_count": 0,
+          "active_mapping_count": 1,
+          "trait_count": 1,
+          "species_count": 1,
+          "vault_instance_count": 0
+        },
+        "collision_owner_count": 0,
+        "owner_sample": null
+      }
+    ]
+  },
+  "collision_governance": {
+    "status": "needs_bucket_specific_adjudication_before_write",
+    "by_bucket": [
+      {
+        "bucket": "promo_prefix_duplicate_name_normalization",
+        "count": 58
+      },
+      {
+        "bucket": "same_name_same_number_duplicate_collision",
+        "count": 22
+      },
+      {
+        "bucket": "radiant_collection_prefix_identity_governance",
+        "count": 20
+      },
+      {
+        "bucket": "platinum_owner_shorthand_alias_collision",
+        "count": 19
+      },
+      {
+        "bucket": "number_suffix_variant_collision",
+        "count": 3
+      },
+      {
+        "bucket": "platinum_g_suffix_name_alias_collision",
+        "count": 2
+      },
+      {
+        "bucket": "manual_collision_adjudication_required",
+        "count": 1
+      }
+    ],
+    "by_set": [
+      {
+        "set_code": "xyp",
+        "set_name": "XY Black Star Promos",
+        "count": 61
+      },
+      {
+        "set_code": "bw11",
+        "set_name": "Legendary Treasures",
+        "count": 20
+      },
+      {
+        "set_code": "pl2",
+        "set_name": "Rising Rivals",
+        "count": 20
+      },
+      {
+        "set_code": "xy4",
+        "set_name": "Phantom Forces",
+        "count": 16
+      },
+      {
+        "set_code": "col1",
+        "set_name": "Call of Legends",
+        "count": 3
+      },
+      {
+        "set_code": "bw9",
+        "set_name": "Plasma Freeze",
+        "count": 2
+      },
+      {
+        "set_code": "pl4",
+        "set_name": "Arceus",
+        "count": 2
+      },
+      {
+        "set_code": "xy9",
+        "set_name": "BREAKpoint",
+        "count": 1
+      }
+    ],
+    "samples_by_bucket": {
+      "promo_prefix_duplicate_name_normalization": [
+        {
+          "card_print_id": "880bf738-91f8-44f0-9026-5517058e9cbe",
+          "set_code": "xyp",
+          "set_name": "XY Black Star Promos",
+          "card_name": "Absol EX",
+          "external_ids": {
+            "tcgdex": "xyp-XY62"
+          },
+          "proposed_number": "XY62",
+          "proposed_number_plain": "62",
+          "proposed_updates": {
+            "set_code": "xyp",
+            "number": "XY62",
+            "number_plain": "62"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "ff324c30-a3ca-4b8b-8c4e-8049f33b9e19",
+            "name": "Absol-EX",
+            "number": "XY62",
+            "number_plain": "62",
+            "gv_id": "GV-PK-PR-XY-XY62",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "promo_prefix_duplicate_name_normalization"
+        },
+        {
+          "card_print_id": "4f7b83ca-6291-4f21-bc09-add8bb57e266",
+          "set_code": "xyp",
+          "set_name": "XY Black Star Promos",
+          "card_name": "Aerodactyl EX",
+          "external_ids": {
+            "tcgdex": "xyp-XY97"
+          },
+          "proposed_number": "XY97",
+          "proposed_number_plain": "97",
+          "proposed_updates": {
+            "set_code": "xyp",
+            "number": "XY97",
+            "number_plain": "97"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "1896918c-c20f-4e65-8642-d61d1eb84aff",
+            "name": "Aerodactyl-EX",
+            "number": "XY97",
+            "number_plain": "97",
+            "gv_id": "GV-PK-PR-XY-XY97",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "promo_prefix_duplicate_name_normalization"
+        },
+        {
+          "card_print_id": "7193b9ae-ed5b-457e-b67f-efef355afb96",
+          "set_code": "xyp",
+          "set_name": "XY Black Star Promos",
+          "card_name": "Ash Greninja EX",
+          "external_ids": {
+            "tcgdex": "xyp-XY133"
+          },
+          "proposed_number": "XY133",
+          "proposed_number_plain": "133",
+          "proposed_updates": {
+            "set_code": "xyp",
+            "number": "XY133",
+            "number_plain": "133"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "9e4886e0-b28d-49a2-91c6-a4f56a8d5463",
+            "name": "Ash-Greninja-EX",
+            "number": "XY133",
+            "number_plain": "133",
+            "gv_id": "GV-PK-PR-XY-XY133",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "promo_prefix_duplicate_name_normalization"
+        },
+        {
+          "card_print_id": "d159fd8a-4a12-4109-8200-36416c2a2ad2",
+          "set_code": "xyp",
+          "set_name": "XY Black Star Promos",
+          "card_name": "Aurorus EX",
+          "external_ids": {
+            "tcgdex": "xyp-XY102"
+          },
+          "proposed_number": "XY102",
+          "proposed_number_plain": "102",
+          "proposed_updates": {
+            "set_code": "xyp",
+            "number": "XY102",
+            "number_plain": "102"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "eedbb474-00a4-41fe-857d-17109102658b",
+            "name": "Aurorus-EX",
+            "number": "XY102",
+            "number_plain": "102",
+            "gv_id": "GV-PK-PR-XY-XY102",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "promo_prefix_duplicate_name_normalization"
+        },
+        {
+          "card_print_id": "ce148dc6-45fe-460e-b3c5-cf3483b494b5",
+          "set_code": "xyp",
+          "set_name": "XY Black Star Promos",
+          "card_name": "Beedrill EX",
+          "external_ids": {
+            "tcgdex": "xyp-XY157"
+          },
+          "proposed_number": "XY157",
+          "proposed_number_plain": "157",
+          "proposed_updates": {
+            "set_code": "xyp",
+            "number": "XY157",
+            "number_plain": "157"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "ef28e6f7-269a-4190-88ec-33ba5ccba6e6",
+            "name": "Beedrill-EX",
+            "number": "XY157",
+            "number_plain": "157",
+            "gv_id": "GV-PK-PR-XY-XY157",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "promo_prefix_duplicate_name_normalization"
+        },
+        {
+          "card_print_id": "e8e43d13-0ee1-4433-91ef-fbe866b48e57",
+          "set_code": "xyp",
+          "set_name": "XY Black Star Promos",
+          "card_name": "Blastoise EX",
+          "external_ids": {
+            "tcgdex": "xyp-XY122"
+          },
+          "proposed_number": "XY122",
+          "proposed_number_plain": "122",
+          "proposed_updates": {
+            "set_code": "xyp",
+            "number": "XY122",
+            "number_plain": "122"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "013f6060-be7c-45e3-ae65-610f5bae7822",
+            "name": "Blastoise-EX",
+            "number": "XY122",
+            "number_plain": "122",
+            "gv_id": "GV-PK-PR-XY-XY122",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "promo_prefix_duplicate_name_normalization"
+        },
+        {
+          "card_print_id": "f46d7286-3522-4a9c-9d02-bb1e2aac838d",
+          "set_code": "xyp",
+          "set_name": "XY Black Star Promos",
+          "card_name": "Blastoise EX",
+          "external_ids": {
+            "tcgdex": "xyp-XY30"
+          },
+          "proposed_number": "XY30",
+          "proposed_number_plain": "30",
+          "proposed_updates": {
+            "set_code": "xyp",
+            "number": "XY30",
+            "number_plain": "30"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "0a407511-8a6c-41f9-83b7-ffbe0f7d4ff9",
+            "name": "Blastoise-EX",
+            "number": "XY30",
+            "number_plain": "30",
+            "gv_id": "GV-PK-PR-XY-XY30",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "promo_prefix_duplicate_name_normalization"
+        },
+        {
+          "card_print_id": "199e8699-1e8d-42dd-93d3-ac67f7e247be",
+          "set_code": "xyp",
+          "set_name": "XY Black Star Promos",
+          "card_name": "Blaziken EX",
+          "external_ids": {
+            "tcgdex": "xyp-XY54"
+          },
+          "proposed_number": "XY54",
+          "proposed_number_plain": "54",
+          "proposed_updates": {
+            "set_code": "xyp",
+            "number": "XY54",
+            "number_plain": "54"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "10f41a7c-3990-42b8-a186-57defe900734",
+            "name": "Blaziken-EX",
+            "number": "XY54",
+            "number_plain": "54",
+            "gv_id": "GV-PK-PR-XY-XY54",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "promo_prefix_duplicate_name_normalization"
+        },
+        {
+          "card_print_id": "21224447-ada6-4b08-b43e-0ff7143821f2",
+          "set_code": "xyp",
+          "set_name": "XY Black Star Promos",
+          "card_name": "Charizard EX",
+          "external_ids": {
+            "tcgdex": "xyp-XY17"
+          },
+          "proposed_number": "XY17",
+          "proposed_number_plain": "17",
+          "proposed_updates": {
+            "set_code": "xyp",
+            "number": "XY17",
+            "number_plain": "17"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "79ba62da-08f3-428a-b452-438b0492cf77",
+            "name": "Charizard-EX",
+            "number": "XY17",
+            "number_plain": "17",
+            "gv_id": "GV-PK-PR-XY-XY17",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "promo_prefix_duplicate_name_normalization"
+        },
+        {
+          "card_print_id": "611c81d5-427a-4d06-af47-683a9328d408",
+          "set_code": "xyp",
+          "set_name": "XY Black Star Promos",
+          "card_name": "Charizard EX",
+          "external_ids": {
+            "tcgdex": "xyp-XY29"
+          },
+          "proposed_number": "XY29",
+          "proposed_number_plain": "29",
+          "proposed_updates": {
+            "set_code": "xyp",
+            "number": "XY29",
+            "number_plain": "29"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "d9257ce8-437f-4313-8188-6f808632ba03",
+            "name": "Charizard-EX",
+            "number": "XY29",
+            "number_plain": "29",
+            "gv_id": "GV-PK-PR-XY-XY29",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "promo_prefix_duplicate_name_normalization"
+        }
+      ],
+      "same_name_same_number_duplicate_collision": [
+        {
+          "card_print_id": "7df8528c-c8f8-4110-890d-0fb32bc0fbf3",
+          "set_code": "bw9",
+          "set_name": "Plasma Freeze",
+          "card_name": "Nidoran♀",
+          "external_ids": {
+            "tcgdex": "bw9-40"
+          },
+          "proposed_number": "40",
+          "proposed_number_plain": "40",
+          "proposed_updates": {
+            "set_code": "bw9",
+            "number": "40",
+            "number_plain": "40"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "54c7a89d-53f0-43f7-8e39-0ce10eb58558",
+            "name": "Nidoran ♀",
+            "number": "40",
+            "number_plain": "40",
+            "gv_id": "GV-PK-PLF-40",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 0
+          },
+          "governance_bucket": "same_name_same_number_duplicate_collision"
+        },
+        {
+          "card_print_id": "c0b41c1b-2d6f-4c5f-bf85-ccae2c731d46",
+          "set_code": "bw9",
+          "set_name": "Plasma Freeze",
+          "card_name": "Nidoran♂",
+          "external_ids": {
+            "tcgdex": "bw9-43"
+          },
+          "proposed_number": "43",
+          "proposed_number_plain": "43",
+          "proposed_updates": {
+            "set_code": "bw9",
+            "number": "43",
+            "number_plain": "43"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "57e87ed1-769c-4f1e-8b06-a1070cfccbd0",
+            "name": "Nidoran ♂",
+            "number": "43",
+            "number_plain": "43",
+            "gv_id": "GV-PK-PLF-43",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 0
+          },
+          "governance_bucket": "same_name_same_number_duplicate_collision"
+        },
+        {
+          "card_print_id": "57560dcd-655d-4dc8-bef2-d5e453b97029",
+          "set_code": "col1",
+          "set_name": "Call of Legends",
+          "card_name": "Clefable",
+          "external_ids": {
+            "tcgdex": "col1-1"
+          },
+          "proposed_number": "1",
+          "proposed_number_plain": "1",
+          "proposed_updates": {
+            "set_code": "col1",
+            "number": "1",
+            "number_plain": "1"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+            "name": "Clefable",
+            "number": "1",
+            "number_plain": "1",
+            "gv_id": null,
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "same_name_same_number_duplicate_collision"
+        },
+        {
+          "card_print_id": "d74643a3-162e-47e2-9c82-79f9a297156f",
+          "set_code": "col1",
+          "set_name": "Call of Legends",
+          "card_name": "Forretress",
+          "external_ids": {
+            "tcgdex": "col1-5"
+          },
+          "proposed_number": "5",
+          "proposed_number_plain": "5",
+          "proposed_updates": {
+            "set_code": "col1",
+            "number": "5",
+            "number_plain": "5"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+            "name": "Forretress",
+            "number": "5",
+            "number_plain": "5",
+            "gv_id": null,
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "same_name_same_number_duplicate_collision"
+        },
+        {
+          "card_print_id": "a9203bf3-0a2f-4ef5-af3f-3dbdc6bf8bce",
+          "set_code": "col1",
+          "set_name": "Call of Legends",
+          "card_name": "Houndoom",
+          "external_ids": {
+            "tcgdex": "col1-10"
+          },
+          "proposed_number": "10",
+          "proposed_number_plain": "10",
+          "proposed_updates": {
+            "set_code": "col1",
+            "number": "10",
+            "number_plain": "10"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+            "name": "Houndoom",
+            "number": "10",
+            "number_plain": "10",
+            "gv_id": null,
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "same_name_same_number_duplicate_collision"
+        },
+        {
+          "card_print_id": "29ab165f-342c-467e-993f-ea98d49ba788",
+          "set_code": "xy4",
+          "set_name": "Phantom Forces",
+          "card_name": "Dialga EX",
+          "external_ids": {
+            "tcgdex": "xy4-62"
+          },
+          "proposed_number": "62",
+          "proposed_number_plain": "62",
+          "proposed_updates": {
+            "set_code": "xy4",
+            "number": "62",
+            "number_plain": "62"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "7f3c81c5-21ae-4360-8ae9-d7961b1e03d7",
+            "name": "Dialga-EX",
+            "number": "62",
+            "number_plain": "62",
+            "gv_id": "GV-PK-PHF-62",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "same_name_same_number_duplicate_collision"
+        },
+        {
+          "card_print_id": "77ebedc5-b9f3-4312-993b-bdf0d6cc9391",
+          "set_code": "xy4",
+          "set_name": "Phantom Forces",
+          "card_name": "Dialga EX",
+          "external_ids": {
+            "tcgdex": "xy4-122"
+          },
+          "proposed_number": "122",
+          "proposed_number_plain": "122",
+          "proposed_updates": {
+            "set_code": "xy4",
+            "number": "122",
+            "number_plain": "122"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "bdb8f826-87b8-49f5-99a2-00bc1da15493",
+            "name": "Dialga-EX",
+            "number": "122",
+            "number_plain": "122",
+            "gv_id": "GV-PK-PHF-122",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "same_name_same_number_duplicate_collision"
+        },
+        {
+          "card_print_id": "367a9aa6-3ec4-471f-a173-9e292e3a28d9",
+          "set_code": "xy4",
+          "set_name": "Phantom Forces",
+          "card_name": "Florges EX",
+          "external_ids": {
+            "tcgdex": "xy4-67"
+          },
+          "proposed_number": "67",
+          "proposed_number_plain": "67",
+          "proposed_updates": {
+            "set_code": "xy4",
+            "number": "67",
+            "number_plain": "67"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "c3958b10-bdfe-4034-ac39-a99bda88cee5",
+            "name": "Florges-EX",
+            "number": "67",
+            "number_plain": "67",
+            "gv_id": "GV-PK-PHF-67",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "same_name_same_number_duplicate_collision"
+        },
+        {
+          "card_print_id": "4057e212-ac7d-4ecf-a3f0-40b396bbfe09",
+          "set_code": "xy4",
+          "set_name": "Phantom Forces",
+          "card_name": "Florges EX",
+          "external_ids": {
+            "tcgdex": "xy4-116"
+          },
+          "proposed_number": "116",
+          "proposed_number_plain": "116",
+          "proposed_updates": {
+            "set_code": "xy4",
+            "number": "116",
+            "number_plain": "116"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "2d3c5888-7463-4f87-b379-6235e90c3aa3",
+            "name": "Florges-EX",
+            "number": "116",
+            "number_plain": "116",
+            "gv_id": "GV-PK-PHF-116",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "same_name_same_number_duplicate_collision"
+        },
+        {
+          "card_print_id": "2257ea5d-92bf-483b-8f40-8aaddfd7259c",
+          "set_code": "xy4",
+          "set_name": "Phantom Forces",
+          "card_name": "Gengar EX",
+          "external_ids": {
+            "tcgdex": "xy4-114"
+          },
+          "proposed_number": "114",
+          "proposed_number_plain": "114",
+          "proposed_updates": {
+            "set_code": "xy4",
+            "number": "114",
+            "number_plain": "114"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "d51f58a8-f814-44ac-a2ce-8064c14ed4cc",
+            "name": "Gengar-EX",
+            "number": "114",
+            "number_plain": "114",
+            "gv_id": "GV-PK-PHF-114",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "same_name_same_number_duplicate_collision"
+        }
+      ],
+      "radiant_collection_prefix_identity_governance": [
+        {
+          "card_print_id": "58b916a9-9516-4988-b05b-d91803b7a223",
+          "set_code": "bw11",
+          "set_name": "Legendary Treasures",
+          "card_name": "Cinccino",
+          "external_ids": {
+            "tcgdex": "bw11-RC19"
+          },
+          "proposed_number": "RC19",
+          "proposed_number_plain": "19",
+          "proposed_updates": {
+            "set_code": "bw11",
+            "number": "RC19",
+            "number_plain": "19"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "dfd3361e-95fe-47c1-b586-352ad9086be5",
+            "name": "Charizard",
+            "number": "19",
+            "number_plain": "19",
+            "gv_id": "GV-PK-LTR-19",
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "radiant_collection_prefix_identity_governance"
+        },
+        {
+          "card_print_id": "d57d16ff-5e21-4e58-9cf2-791d3130d57e",
+          "set_code": "bw11",
+          "set_name": "Legendary Treasures",
+          "card_name": "Eevee",
+          "external_ids": {
+            "tcgdex": "bw11-RC14"
+          },
+          "proposed_number": "RC14",
+          "proposed_number_plain": "14",
+          "proposed_updates": {
+            "set_code": "bw11",
+            "number": "RC14",
+            "number_plain": "14"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "5d575979-1cd8-432c-bf09-a2e307723328",
+            "name": "Crustle",
+            "number": "14",
+            "number_plain": "14",
+            "gv_id": "GV-PK-LTR-14",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "radiant_collection_prefix_identity_governance"
+        },
+        {
+          "card_print_id": "d56ed317-6505-4578-9aa5-40fd5fc84f69",
+          "set_code": "bw11",
+          "set_name": "Legendary Treasures",
+          "card_name": "Elesa",
+          "external_ids": {
+            "tcgdex": "bw11-RC20"
+          },
+          "proposed_number": "RC20",
+          "proposed_number_plain": "20",
+          "proposed_updates": {
+            "set_code": "bw11",
+            "number": "RC20",
+            "number_plain": "20"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 0,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "25773263-237c-4bc2-8488-23570684ec6b",
+            "name": "Vulpix",
+            "number": "20",
+            "number_plain": "20",
+            "gv_id": "GV-PK-LTR-20",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "radiant_collection_prefix_identity_governance"
+        },
+        {
+          "card_print_id": "5fc644f5-26c9-4f5c-aecb-4dbb703010b4",
+          "set_code": "bw11",
+          "set_name": "Legendary Treasures",
+          "card_name": "Emolga",
+          "external_ids": {
+            "tcgdex": "bw11-RC23"
+          },
+          "proposed_number": "RC23",
+          "proposed_number_plain": "23",
+          "proposed_updates": {
+            "set_code": "bw11",
+            "number": "RC23",
+            "number_plain": "23"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "9be33a34-c81a-46e6-bca3-d8e2acca8090",
+            "name": "Victini",
+            "number": "23",
+            "number_plain": "23",
+            "gv_id": "GV-PK-LTR-23",
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "radiant_collection_prefix_identity_governance"
+        },
+        {
+          "card_print_id": "a53e052b-7854-4044-91eb-a3b7695f5a7b",
+          "set_code": "bw11",
+          "set_name": "Legendary Treasures",
+          "card_name": "Gardevoir",
+          "external_ids": {
+            "tcgdex": "bw11-RC10"
+          },
+          "proposed_number": "RC10",
+          "proposed_number_plain": "10",
+          "proposed_updates": {
+            "set_code": "bw11",
+            "number": "RC10",
+            "number_plain": "10"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "4adb7f07-5a80-4a2a-9ba9-8e2a66d93f1c",
+            "name": "Sewaddle",
+            "number": "10",
+            "number_plain": "10",
+            "gv_id": "GV-PK-LTR-10",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "radiant_collection_prefix_identity_governance"
+        },
+        {
+          "card_print_id": "974f95cf-ed5b-4021-adaf-3135bd6a851d",
+          "set_code": "bw11",
+          "set_name": "Legendary Treasures",
+          "card_name": "Growlithe",
+          "external_ids": {
+            "tcgdex": "bw11-RC4"
+          },
+          "proposed_number": "RC4",
+          "proposed_number_plain": "4",
+          "proposed_updates": {
+            "set_code": "bw11",
+            "number": "RC4",
+            "number_plain": "4"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "1d6c7dca-6ffa-465f-a2cf-d256ea2d23f0",
+            "name": "Cherubi",
+            "number": "4",
+            "number_plain": "4",
+            "gv_id": "GV-PK-LTR-4",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "radiant_collection_prefix_identity_governance"
+        },
+        {
+          "card_print_id": "bac974e4-c472-4f27-9acd-f18d4bb6f60e",
+          "set_code": "bw11",
+          "set_name": "Legendary Treasures",
+          "card_name": "Kirlia",
+          "external_ids": {
+            "tcgdex": "bw11-RC9"
+          },
+          "proposed_number": "RC9",
+          "proposed_number_plain": "9",
+          "proposed_updates": {
+            "set_code": "bw11",
+            "number": "RC9",
+            "number_plain": "9"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "a15128c3-8cd0-492b-8b0f-21cdad45287a",
+            "name": "Sewaddle",
+            "number": "9",
+            "number_plain": "9",
+            "gv_id": "GV-PK-LTR-9",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "radiant_collection_prefix_identity_governance"
+        },
+        {
+          "card_print_id": "6ccd25fb-8fd1-4588-a380-fd75b97295e6",
+          "set_code": "bw11",
+          "set_name": "Legendary Treasures",
+          "card_name": "Mew-EX",
+          "external_ids": {
+            "tcgdex": "bw11-RC24"
+          },
+          "proposed_number": "RC24",
+          "proposed_number_plain": "24",
+          "proposed_updates": {
+            "set_code": "bw11",
+            "number": "RC24",
+            "number_plain": "24"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "3ab9ecf5-ecc3-4905-91de-fac0dbe034d2",
+            "name": "Victini-EX",
+            "number": "24",
+            "number_plain": "24",
+            "gv_id": "GV-PK-LTR-24",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "radiant_collection_prefix_identity_governance"
+        },
+        {
+          "card_print_id": "d73f7221-4dfa-4bfb-8f50-8ab81a78244f",
+          "set_code": "bw11",
+          "set_name": "Legendary Treasures",
+          "card_name": "Minccino",
+          "external_ids": {
+            "tcgdex": "bw11-RC18"
+          },
+          "proposed_number": "RC18",
+          "proposed_number_plain": "18",
+          "proposed_updates": {
+            "set_code": "bw11",
+            "number": "RC18",
+            "number_plain": "18"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "698012da-4a6d-425b-84ad-abe80105a139",
+            "name": "Charmeleon",
+            "number": "18",
+            "number_plain": "18",
+            "gv_id": "GV-PK-LTR-18",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "radiant_collection_prefix_identity_governance"
+        },
+        {
+          "card_print_id": "96a74c90-395c-4f46-a5d9-f2d7cd70351c",
+          "set_code": "bw11",
+          "set_name": "Legendary Treasures",
+          "card_name": "Pikachu",
+          "external_ids": {
+            "tcgdex": "bw11-RC7"
+          },
+          "proposed_number": "RC7",
+          "proposed_number_plain": "7",
+          "proposed_updates": {
+            "set_code": "bw11",
+            "number": "RC7",
+            "number_plain": "7"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "7648a9f5-bf1d-460d-86f5-9657fedd0c28",
+            "name": "Servine",
+            "number": "7",
+            "number_plain": "7",
+            "gv_id": "GV-PK-LTR-7",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 3
+          },
+          "governance_bucket": "radiant_collection_prefix_identity_governance"
+        }
+      ],
+      "platinum_owner_shorthand_alias_collision": [
+        {
+          "card_print_id": "ea5af9d8-3a57-4483-8fc2-5d13323bd144",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "card_name": "Alakazam 4",
+          "external_ids": {
+            "tcgdex": "pl2-38"
+          },
+          "proposed_number": "38",
+          "proposed_number_plain": "38",
+          "proposed_updates": {
+            "set_code": "pl2",
+            "number": "38",
+            "number_plain": "38"
+          },
+          "dependency_counts": {
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "7963fb5b-b97c-469b-b2f9-be03ce3cf2f4",
+            "name": "Alakazam E4",
+            "number": "38",
+            "number_plain": "38",
+            "gv_id": "GV-PK-RR-38",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "platinum_owner_shorthand_alias_collision"
+        },
+        {
+          "card_print_id": "6d87f138-46ab-49a4-8f84-5f3f7aee1cca",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "card_name": "Bronzong 4",
+          "external_ids": {
+            "tcgdex": "pl2-16"
+          },
+          "proposed_number": "16",
+          "proposed_number_plain": "16",
+          "proposed_updates": {
+            "set_code": "pl2",
+            "number": "16",
+            "number_plain": "16"
+          },
+          "dependency_counts": {
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "2552ac51-9214-4017-b2ed-ba165631338e",
+            "name": "Bronzong E4",
+            "number": "16",
+            "number_plain": "16",
+            "gv_id": "GV-PK-RR-16",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "platinum_owner_shorthand_alias_collision"
+        },
+        {
+          "card_print_id": "333a3f96-f983-4ffb-8fc9-e439de00f466",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "card_name": "Drapion 4",
+          "external_ids": {
+            "tcgdex": "pl2-17"
+          },
+          "proposed_number": "17",
+          "proposed_number_plain": "17",
+          "proposed_updates": {
+            "set_code": "pl2",
+            "number": "17",
+            "number_plain": "17"
+          },
+          "dependency_counts": {
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "ba220027-ac17-4275-abee-67dda9805044",
+            "name": "Drapion E4",
+            "number": "17",
+            "number_plain": "17",
+            "gv_id": "GV-PK-RR-17",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "platinum_owner_shorthand_alias_collision"
+        },
+        {
+          "card_print_id": "c157b2e8-69e6-4d78-9d39-0e605e179991",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "card_name": "Espeon 4",
+          "external_ids": {
+            "tcgdex": "pl2-18"
+          },
+          "proposed_number": "18",
+          "proposed_number_plain": "18",
+          "proposed_updates": {
+            "set_code": "pl2",
+            "number": "18",
+            "number_plain": "18"
+          },
+          "dependency_counts": {
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "4a88d956-5f65-4eeb-afef-38213e983283",
+            "name": "Espeon E4",
+            "number": "18",
+            "number_plain": "18",
+            "gv_id": "GV-PK-RR-18",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "platinum_owner_shorthand_alias_collision"
+        },
+        {
+          "card_print_id": "d36e276b-06bb-46a3-8a72-4f6d544d9da3",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "card_name": "Flareon 4",
+          "external_ids": {
+            "tcgdex": "pl2-60"
+          },
+          "proposed_number": "60",
+          "proposed_number_plain": "60",
+          "proposed_updates": {
+            "set_code": "pl2",
+            "number": "60",
+            "number_plain": "60"
+          },
+          "dependency_counts": {
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "915a6f3a-8075-46d5-9c32-c992a8581c60",
+            "name": "Flareon E4",
+            "number": "60",
+            "number_plain": "60",
+            "gv_id": "GV-PK-RR-60",
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "platinum_owner_shorthand_alias_collision"
+        },
+        {
+          "card_print_id": "338cff03-124b-42ea-9b25-e8bf25017e71",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "card_name": "Gallade 4",
+          "external_ids": {
+            "tcgdex": "pl2-20"
+          },
+          "proposed_number": "20",
+          "proposed_number_plain": "20",
+          "proposed_updates": {
+            "set_code": "pl2",
+            "number": "20",
+            "number_plain": "20"
+          },
+          "dependency_counts": {
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "0fdb9d12-93e2-49c1-9808-b549b6140910",
+            "name": "Gallade E4",
+            "number": "20",
+            "number_plain": "20",
+            "gv_id": "GV-PK-RR-20",
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "platinum_owner_shorthand_alias_collision"
+        },
+        {
+          "card_print_id": "37f22309-ab0c-4e46-901d-87bec9f18a36",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "card_name": "Gliscor 4",
+          "external_ids": {
+            "tcgdex": "pl2-62"
+          },
+          "proposed_number": "62",
+          "proposed_number_plain": "62",
+          "proposed_updates": {
+            "set_code": "pl2",
+            "number": "62",
+            "number_plain": "62"
+          },
+          "dependency_counts": {
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "3a8e4066-b4b0-41b8-bffc-8d69d321183b",
+            "name": "Gliscor E4",
+            "number": "62",
+            "number_plain": "62",
+            "gv_id": "GV-PK-RR-62",
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "platinum_owner_shorthand_alias_collision"
+        },
+        {
+          "card_print_id": "fb696830-60f0-43cd-b9e9-8d4fac84ba49",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "card_name": "Golem 4",
+          "external_ids": {
+            "tcgdex": "pl2-23"
+          },
+          "proposed_number": "23",
+          "proposed_number_plain": "23",
+          "proposed_updates": {
+            "set_code": "pl2",
+            "number": "23",
+            "number_plain": "23"
+          },
+          "dependency_counts": {
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "39ed3b66-9cd7-4408-a8f6-b516ad516748",
+            "name": "Golem E4",
+            "number": "23",
+            "number_plain": "23",
+            "gv_id": "GV-PK-RR-23",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "platinum_owner_shorthand_alias_collision"
+        },
+        {
+          "card_print_id": "d94a146c-9368-4125-8af1-c1f783d5d7da",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "card_name": "Heracross 4",
+          "external_ids": {
+            "tcgdex": "pl2-24"
+          },
+          "proposed_number": "24",
+          "proposed_number_plain": "24",
+          "proposed_updates": {
+            "set_code": "pl2",
+            "number": "24",
+            "number_plain": "24"
+          },
+          "dependency_counts": {
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "49472547-a8ec-40f2-a7cf-02f5f2c6d1cb",
+            "name": "Heracross E4",
+            "number": "24",
+            "number_plain": "24",
+            "gv_id": "GV-PK-RR-24",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "platinum_owner_shorthand_alias_collision"
+        },
+        {
+          "card_print_id": "653f25f9-edff-4927-a029-0d28ed267d6d",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "card_name": "Hippowdon 4",
+          "external_ids": {
+            "tcgdex": "pl2-42"
+          },
+          "proposed_number": "42",
+          "proposed_number_plain": "42",
+          "proposed_updates": {
+            "set_code": "pl2",
+            "number": "42",
+            "number_plain": "42"
+          },
+          "dependency_counts": {
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "249bd976-5328-4776-8a4a-80d10da8cb93",
+            "name": "Hippowdon E4",
+            "number": "42",
+            "number_plain": "42",
+            "gv_id": "GV-PK-RR-42",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "platinum_owner_shorthand_alias_collision"
+        }
+      ],
+      "number_suffix_variant_collision": [
+        {
+          "card_print_id": "21840232-9191-4566-8e3e-046f74841288",
+          "set_code": "xy4",
+          "set_name": "Phantom Forces",
+          "card_name": "Aegislash EX",
+          "external_ids": {
+            "tcgdex": "xy4-65"
+          },
+          "proposed_number": "65",
+          "proposed_number_plain": "65",
+          "proposed_updates": {
+            "set_code": "xy4",
+            "number": "65",
+            "number_plain": "65"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+            "name": "Aegislash-EX",
+            "number": "65a",
+            "number_plain": "65",
+            "gv_id": "GV-PK-PHF-65A",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "number_suffix_variant_collision"
+        },
+        {
+          "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+          "set_code": "xy4",
+          "set_name": "Phantom Forces",
+          "card_name": "Aegislash EX",
+          "external_ids": {
+            "tcgdex": "xy4-65a"
+          },
+          "proposed_number": "65a",
+          "proposed_number_plain": "65",
+          "proposed_updates": {
+            "set_code": "xy4",
+            "number": "65a",
+            "number_plain": "65"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+            "name": "Aegislash-EX",
+            "number": "65a",
+            "number_plain": "65",
+            "gv_id": "GV-PK-PHF-65A",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "number_suffix_variant_collision"
+        },
+        {
+          "card_print_id": "a6d34131-d056-49ae-a8b7-21d808e351f6",
+          "set_code": "xy9",
+          "set_name": "BREAKpoint",
+          "card_name": "Delinquent",
+          "external_ids": {
+            "tcgdex": "xy9-98"
+          },
+          "proposed_number": "98",
+          "proposed_number_plain": "98",
+          "proposed_updates": {
+            "set_code": "xy9",
+            "number": "98",
+            "number_plain": "98"
+          },
+          "dependency_counts": {
+            "child_count": 3,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 0,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "a87052f9-4976-43c7-9820-2c4e028875e4",
+            "name": "Delinquent",
+            "number": "98a",
+            "number_plain": "98",
+            "gv_id": "GV-PK-BKP-98A",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1
+          },
+          "governance_bucket": "number_suffix_variant_collision"
+        }
+      ],
+      "platinum_g_suffix_name_alias_collision": [
+        {
+          "card_print_id": "227298d6-9bec-4197-98c6-7ede8ae05cf9",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "card_name": "Beedrill",
+          "external_ids": {
+            "tcgdex": "pl4-53"
+          },
+          "proposed_number": "53",
+          "proposed_number_plain": "53",
+          "proposed_updates": {
+            "set_code": "pl4",
+            "number": "53",
+            "number_plain": "53"
+          },
+          "dependency_counts": {
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "6d6576aa-99bf-4381-96b1-af58ab28d5c2",
+            "name": "Beedrill G",
+            "number": "53",
+            "number_plain": "53",
+            "gv_id": "GV-PK-AR-53",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "platinum_g_suffix_name_alias_collision"
+        },
+        {
+          "card_print_id": "45ce6c25-7aba-4bf7-8cff-ce1dd9030fb3",
+          "set_code": "pl4",
+          "set_name": "Arceus",
+          "card_name": "Porygon-Z",
+          "external_ids": {
+            "tcgdex": "pl4-26"
+          },
+          "proposed_number": "26",
+          "proposed_number_plain": "26",
+          "proposed_updates": {
+            "set_code": "pl4",
+            "number": "26",
+            "number_plain": "26"
+          },
+          "dependency_counts": {
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 2,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "177d5026-d94e-4662-a008-cf20d6a35ef0",
+            "name": "Porygon-Z G",
+            "number": "26",
+            "number_plain": "26",
+            "gv_id": "GV-PK-AR-26",
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "platinum_g_suffix_name_alias_collision"
+        }
+      ],
+      "manual_collision_adjudication_required": [
+        {
+          "card_print_id": "c0a6e954-c650-4dd5-a9fd-653ab30369c1",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "card_name": "Luxray GL",
+          "external_ids": {
+            "tcgdex": "pl2-109"
+          },
+          "proposed_number": "109",
+          "proposed_number_plain": "109",
+          "proposed_updates": {
+            "set_code": "pl2",
+            "number": "109",
+            "number_plain": "109"
+          },
+          "dependency_counts": {
+            "child_count": 2,
+            "active_identity_count": 1,
+            "active_mapping_count": 1,
+            "trait_count": 1,
+            "species_count": 1,
+            "vault_instance_count": 0
+          },
+          "collision_owner_count": 1,
+          "owner_sample": {
+            "card_print_id": "039cfe62-71d0-4f13-ab98-d1836026b991",
+            "name": "Luxray GL LV.X",
+            "number": "109",
+            "number_plain": "109",
+            "gv_id": "GV-PK-RR-109",
+            "child_count": 1,
+            "active_identity_count": 1,
+            "active_mapping_count": 2
+          },
+          "governance_bucket": "manual_collision_adjudication_required"
+        }
+      ]
+    }
+  },
+  "recommended_package_order": [
+    {
+      "package_id": "ENRICH-13B-POCKET-DOMAIN-EXCLUSION-PLAN",
+      "mode": "governance_only_first",
+      "rows": 203,
+      "reason": "These rows are not safe to mutate as English physical enrichment.",
+      "writes_ready_now": false
+    },
+    {
+      "package_id": "ENRICH-13C-RADIANT-COLLECTION-PREFIX-GOVERNANCE",
+      "mode": "design_then_dry_run",
+      "rows": 20,
+      "reason": "RC-prefixed numbers collide with main-set numeric rows unless prefix identity is governed.",
+      "writes_ready_now": false
+    },
+    {
+      "package_id": "ENRICH-13D-PROMO-PREFIX-DUPLICATE-ADJUDICATION",
+      "mode": "design_then_dry_run",
+      "rows": 58,
+      "reason": "Promo rows appear to be duplicate/name-normalization collisions and require dependency-aware adjudication.",
+      "writes_ready_now": false
+    },
+    {
+      "package_id": "ENRICH-13E-NAME-ALIAS-COLLISION-ADJUDICATION",
+      "mode": "design_then_dry_run",
+      "rows": 43,
+      "reason": "Rows are blocked by name-style differences or same-name duplicates; dependency transfer/delete must be proven separately.",
+      "writes_ready_now": false
+    },
+    {
+      "package_id": "ENRICH-13F-SUFFIX-VARIANT-COLLISION-ADJUDICATION",
+      "mode": "design_then_dry_run",
+      "rows": 3,
+      "reason": "Suffix variants need explicit identity modifier/parent split rules.",
+      "writes_ready_now": false
+    }
+  ],
+  "fingerprint_sha256": "58c1bb3c132c917acfaf905f697e9a2d1e4d05447ed06f9fecdc28998ee548e4"
+}

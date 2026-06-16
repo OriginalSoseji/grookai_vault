@@ -1,0 +1,163 @@
+{
+  "version": "CARD_ROW_ENRICHMENT_CONSUMER_READINESS_V1",
+  "generated_at": "2026-06-16T03:44:24.197Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "source_reports": {
+    "status": "docs\\audits\\card_row_enrichment_v1\\card_row_enrichment_status_v1.json",
+    "checkpoint": "docs/checkpoints/card_row_enrichment/20260616_card_row_enrichment_completion_checkpoint_v1.json",
+    "image_exhaustion": "docs/audits/image_truth_v1/image_truth_source_exhaustion_decision_v1.json",
+    "image_confidence_contract": "docs/contracts/IMAGE_CONFIDENCE_CONTRACT_V1.md"
+  },
+  "row_universe": {
+    "english_physical_parent_rows": 23078,
+    "english_physical_child_printing_rows": 38111,
+    "english_physical_parent_gap_rows": 5469,
+    "english_physical_child_gap_rows": 13692
+  },
+  "core_display_readiness": {
+    "parent_identity": {
+      "active_identity_missing_for_english_physical": 0,
+      "core_identity_gap_rows": 0
+    },
+    "printing_truth": {
+      "finish_key_coverage_percent": 100,
+      "active_finish_key_coverage_percent": 100,
+      "non_provisional_percent": 100
+    },
+    "image_truth": {
+      "current_display_missing_rows": 0,
+      "exact_variant_backlog_rows": 13831,
+      "exact_promote_ready_rows_now": 0,
+      "representative_or_blocked_rows": 13825
+    }
+  },
+  "surfaces": [
+    {
+      "surface": "public_card_identity",
+      "status": "ready",
+      "db_basis": "English physical core identity gaps are 0; no active identity backfill candidates remain.",
+      "use_now": [
+        "card name",
+        "set",
+        "number",
+        "active card_print_identity",
+        "printed_identity_modifier"
+      ],
+      "guardrails": [
+        "Do not derive identity from external_ids payloads.",
+        "Do not treat provenance payloads as active external mappings."
+      ]
+    },
+    {
+      "surface": "printing_selector",
+      "status": "ready",
+      "db_basis": "Every child printing has finish_key and active_finish_key coverage.",
+      "use_now": [
+        "card_printings.finish_key",
+        "child printing rows",
+        "canonical parent identity"
+      ],
+      "guardrails": [
+        "Do not invent finish labels from parent metadata.",
+        "Do not hide verified child printings because exact image is missing."
+      ]
+    },
+    {
+      "surface": "image_display",
+      "status": "ready_with_labeling_guardrails",
+      "db_basis": "Image Truth reports current display missing rows as 0, but exact variant image backlog remains.",
+      "use_now": [
+        "child image when present",
+        "parent or representative fallback image",
+        "image_confidence",
+        "image status/source fields"
+      ],
+      "guardrails": [
+        "Show representative or missing_variant_visual labels when image is not exact.",
+        "Never label representative image as exact.",
+        "Do not overwrite parent image fields to repair child image truth."
+      ]
+    },
+    {
+      "surface": "catalog_metadata",
+      "status": "ready_with_labeling_guardrails",
+      "db_basis": "139 English physical catalog metadata gaps remain, but no exact source-mapped write package is safe.",
+      "use_now": [
+        "rarity when present",
+        "artist when present",
+        "regulation_mark when present",
+        "variants when present"
+      ],
+      "guardrails": [
+        "Treat blank metadata as unknown, not false.",
+        "Do not infer rarity/artist/regulation mark from sibling rows unless a future guarded package proves it."
+      ]
+    },
+    {
+      "surface": "species_and_traits",
+      "status": "ready_with_labeling_guardrails",
+      "db_basis": "Species and trait residuals are source-limited or not-applicable classes, not broad write queues.",
+      "use_now": [
+        "traits when present",
+        "species links when present"
+      ],
+      "guardrails": [
+        "Do not require species for trainer/energy/object cards.",
+        "Do not block card display because species or traits are absent."
+      ]
+    },
+    {
+      "surface": "external_source_links",
+      "status": "admin_only_or_hidden",
+      "db_basis": "External mapping payload governance found 0 ready mapping rows; verified_master_index_v1 payloads are provenance, not active source mappings.",
+      "use_now": [
+        "active external_mappings only",
+        "Master Index provenance only in admin/review surfaces"
+      ],
+      "guardrails": [
+        "Do not expose raw verified_master_index_v1 payloads publicly.",
+        "Do not convert payload source IDs into active mappings without source-specific dry-run proof."
+      ]
+    },
+    {
+      "surface": "public_provenance",
+      "status": "not_public_ready",
+      "db_basis": "Master Index provenance surface plan says 592 rows are internal-admin ready and 0 are public-surface ready.",
+      "use_now": [
+        "internal admin provenance review"
+      ],
+      "guardrails": [
+        "Build a stable public attribution UI contract before exposing provenance.",
+        "Do not expose review payload rows as public truth."
+      ]
+    }
+  ],
+  "implementation_next_steps": [
+    {
+      "step": "Ensure website and app consume child-printing-level finish truth.",
+      "reason": "The reconciled DB truth lives at card_printings for finishes and display image confidence."
+    },
+    {
+      "step": "Make image confidence visible wherever a non-exact image can appear.",
+      "reason": "Representative coverage is allowed only when the UI is honest about exact variant uncertainty."
+    },
+    {
+      "step": "Hide or admin-scope raw Master Index provenance payloads.",
+      "reason": "They are governance/evidence context, not public source mappings."
+    },
+    {
+      "step": "Treat blank enrichment fields as unknown.",
+      "reason": "Remaining catalog metadata, species, and trait residuals are not safe inference targets."
+    }
+  ],
+  "forbidden_for_consumers": [
+    "Do not infer missing printings or finishes in UI.",
+    "Do not label representative images as exact.",
+    "Do not require exact child image before displaying a verified printing.",
+    "Do not expose raw provenance payloads as public source links.",
+    "Do not use external_ids payloads as active mappings."
+  ],
+  "fingerprint_sha256": "b7766d5aacaa1d0d0cc910d9fb907f05bfb202aa9ac54c78b4671735ed60797a"
+}

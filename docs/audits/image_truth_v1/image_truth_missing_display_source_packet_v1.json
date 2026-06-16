@@ -1,0 +1,121 @@
+{
+  "generated_at": "2026-06-16T05:24:06.629Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "scope": {
+    "image_scope": "english_physical",
+    "target_table": "card_printings",
+    "parent_overwrite_allowed": false,
+    "source_url_required": true,
+    "confidence_allowed": [
+      "exact",
+      "representative",
+      "missing_variant_visual"
+    ],
+    "guessed_confidence_allowed": false,
+    "dry_run_required_before_db_write": true
+  },
+  "source_fixture_records_loaded": 77028,
+  "full_english_physical_missing_display_rows": 2,
+  "target_count": 2,
+  "exact_required_target_count": 0,
+  "display_only_target_count": 2,
+  "source_url_preserved_count": 0,
+  "source_url_needed_count": 2,
+  "dry_run_ready_count": 0,
+  "rows": [
+    {
+      "card_printing_id": "673d0e32-6748-4f2c-8de6-f76a3f3698d5",
+      "printing_gv_id": "GV-PK-MFB-33-STD",
+      "card_print_id": "3184e491-41eb-466c-a456-dcea8ff79403",
+      "parent_gv_id": "GV-PK-MFB-33",
+      "image_scope": "english_physical",
+      "set_code": "mfb",
+      "set_name": "My First Battle",
+      "card_name": "Potion",
+      "number": "33",
+      "finish_key": "normal",
+      "image_coverage_status": "missing_display_image",
+      "source_queue": "display_only_missing_display",
+      "exact_child_image_required": false,
+      "input_image_confidence": "missing",
+      "target_table": "card_printings",
+      "parent_overwrite_allowed": false,
+      "db_write_allowed": false,
+      "source_status": "representative_source_url_preserved",
+      "image_confidence": "representative",
+      "dry_run_ready": false,
+      "notes": "Preserved source URL proves exact card identity only. Any image from this source may be representative, not exact finish truth.",
+      "live_source_rejection": null,
+      "preserved_source_urls": [
+        {
+          "source_key": "tcgcollector_mfb_representative_card_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/42807/potion-my-first-battle-squirtle-no-010",
+          "source_image_url": "https://static.tcgcollector.com/content/images/93/94/9a/93949a37c6bce0729b8acadcd8ea2bd74b61c3a2bb1c530ab0bc4d1c1f18d366.jpg",
+          "evidence_type": "card_identity",
+          "evidence_label": "Potion (My First Battle (Squirtle) No. 010) - TCG Collector",
+          "raw_snapshot_ref": "tcgcollector_mfb_representative:2026-06-16T05:24:04.826Z:mfb:33:normal",
+          "fixture_file": null
+        },
+        {
+          "source_key": "pricecharting_mfb_representative_card_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-my-first-battle/potion-squirtle",
+          "source_image_url": null,
+          "evidence_type": "card_identity",
+          "evidence_label": "Potion [Squirtle] Prices | Pokemon My First Battle | Pokemon Cards",
+          "raw_snapshot_ref": "pricecharting_mfb_representative:2026-06-16T05:24:05.622Z:mfb:33:normal",
+          "fixture_file": null
+        }
+      ]
+    },
+    {
+      "card_printing_id": "3df8a13f-4fb7-45db-a8b7-d174a4895f6a",
+      "printing_gv_id": "GV-PK-MFB-34-STD",
+      "card_print_id": "056c0faf-05d0-455b-a576-bb1089414821",
+      "parent_gv_id": "GV-PK-MFB-34",
+      "image_scope": "english_physical",
+      "set_code": "mfb",
+      "set_name": "My First Battle",
+      "card_name": "Switch",
+      "number": "34",
+      "finish_key": "normal",
+      "image_coverage_status": "missing_display_image",
+      "source_queue": "display_only_missing_display",
+      "exact_child_image_required": false,
+      "input_image_confidence": "missing",
+      "target_table": "card_printings",
+      "parent_overwrite_allowed": false,
+      "db_write_allowed": false,
+      "source_status": "representative_source_url_preserved",
+      "image_confidence": "representative",
+      "dry_run_ready": false,
+      "notes": "Preserved source URL proves exact card identity only. Any image from this source may be representative, not exact finish truth.",
+      "live_source_rejection": null,
+      "preserved_source_urls": [
+        {
+          "source_key": "tcgcollector_mfb_representative_card_page",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/42808/switch-my-first-battle-squirtle-no-011",
+          "source_image_url": "https://static.tcgcollector.com/content/images/b5/85/2b/b5852b142843af94406599c6f6c81088785705fe6a2b95ad8bb9a813fdd265e1.jpg",
+          "evidence_type": "card_identity",
+          "evidence_label": "Switch (My First Battle (Squirtle) No. 011) - TCG Collector",
+          "raw_snapshot_ref": "tcgcollector_mfb_representative:2026-06-16T05:24:05.622Z:mfb:34:normal",
+          "fixture_file": null
+        },
+        {
+          "source_key": "pricecharting_mfb_representative_card_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-my-first-battle/switch-bulbasaur",
+          "source_image_url": null,
+          "evidence_type": "card_identity",
+          "evidence_label": "Switch [Bulbasaur] Prices | Pokemon My First Battle | Pokemon Cards",
+          "raw_snapshot_ref": "pricecharting_mfb_representative:2026-06-16T05:24:06.629Z:mfb:34:normal",
+          "fixture_file": null
+        }
+      ]
+    }
+  ]
+}

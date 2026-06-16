@@ -1,0 +1,191 @@
+{
+  "generated_at": "2026-06-14T22:22:54.037Z",
+  "package_id": "IMG-04C-REVERSEHOLO-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-UPLOAD-APPLY",
+  "mode": "real_apply",
+  "db_writes_performed": true,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "fingerprint": "a8e16dc535a70e59e942bd0948e4dc1b837ce7d595d35452d802eb3ed3d29930",
+  "storage_uploaded_rows": 17,
+  "db_updated_rows": 17,
+  "committed": true,
+  "uploaded_storage_paths": [
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/8ba7b459-268a-4a97-a1c9-125d9d68098f/c8b696cc92b3b6b2af3a3954.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/47c3e31b-135c-41ea-869f-b44c9938424f/af85470a7ee010f2958295b1.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/226aa282-6003-4a96-828c-5af49e4e5969/54362f048dc1d21fd262f51e.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/8728eb2c-27a2-4b4a-a631-63bf473feb30/f8f200fbb40516ffa3a84e36.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/5d053ec8-113a-4b86-af22-23d1a0acef0c/c4f53240cabdb0b04090d859.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/ec0c1ae1-75ae-46cb-b9d2-1f421395309f/021e672df2b783054876245e.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/e0473ce0-004b-4d42-86d0-fb4ea26afeac/e72a57053fc0e378e2bf6657.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/61459221-74ca-4c4c-9f37-268b824ad6c7/e8203e3d3e2f18273c9a509b.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/f2a21288-d52d-4ae1-81da-291f4f75eb41/22b1bc9235d04a918fa337bf.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/9a102312-771c-42cc-8770-7c03e84bca80/8e3746c152b0d0c568f774b9.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/35aa8262-4d06-4911-b86d-0c8083d021f3/c85ffbd14892d3a38d566e18.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/1e4ae78b-7b51-49d0-baad-e85c40da3bab/ec3dc0d8b8df6510ab59afe2.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/22e05866-ed00-4c2d-9e00-e5e149b0e0b3/4eefbdf0423cd8945d576a53.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/61f04ccb-66ab-447b-adee-0fbfdc1369e6/b4de70da9187ea7e89edc91f.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/006a9879-7c33-4a37-9a9f-5ad2e121d465/09ac6622f76cb951bbfd51b9.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/1a439348-63cd-4e56-97c2-a3857c585fbd/9948522da14535627300d84e.jpg",
+    "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/4441bc40-8668-4dcb-ab14-4ad1b818aaa7/0915ce5d5ab2592d3bdf62f5.jpg"
+  ],
+  "rows": [
+    {
+      "card_printing_id": "8ba7b459-268a-4a97-a1c9-125d9d68098f",
+      "set_code": "mep",
+      "card_name": "Mega Latias ex",
+      "number": "011",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/8ba7b459-268a-4a97-a1c9-125d9d68098f/c8b696cc92b3b6b2af3a3954.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "47c3e31b-135c-41ea-869f-b44c9938424f",
+      "set_code": "mep",
+      "card_name": "Mega Lucario ex",
+      "number": "012",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/47c3e31b-135c-41ea-869f-b44c9938424f/af85470a7ee010f2958295b1.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "226aa282-6003-4a96-828c-5af49e4e5969",
+      "set_code": "mep",
+      "card_name": "Mega Venusaur ex",
+      "number": "013",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/226aa282-6003-4a96-828c-5af49e4e5969/54362f048dc1d21fd262f51e.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "8728eb2c-27a2-4b4a-a631-63bf473feb30",
+      "set_code": "mep",
+      "card_name": "Ceruledge",
+      "number": "014",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/8728eb2c-27a2-4b4a-a631-63bf473feb30/f8f200fbb40516ffa3a84e36.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "5d053ec8-113a-4b86-af22-23d1a0acef0c",
+      "set_code": "mep",
+      "card_name": "Zacian",
+      "number": "015",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/5d053ec8-113a-4b86-af22-23d1a0acef0c/c4f53240cabdb0b04090d859.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "ec0c1ae1-75ae-46cb-b9d2-1f421395309f",
+      "set_code": "mep",
+      "card_name": "Flygon",
+      "number": "016",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/ec0c1ae1-75ae-46cb-b9d2-1f421395309f/021e672df2b783054876245e.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "e0473ce0-004b-4d42-86d0-fb4ea26afeac",
+      "set_code": "mep",
+      "card_name": "Toxtricity",
+      "number": "017",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/e0473ce0-004b-4d42-86d0-fb4ea26afeac/e72a57053fc0e378e2bf6657.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "61459221-74ca-4c4c-9f37-268b824ad6c7",
+      "set_code": "mep",
+      "card_name": "Celebratory Fanfare",
+      "number": "028",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/61459221-74ca-4c4c-9f37-268b824ad6c7/e8203e3d3e2f18273c9a509b.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "f2a21288-d52d-4ae1-81da-291f4f75eb41",
+      "set_code": "mep",
+      "card_name": "Bulbasaur",
+      "number": "037",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/f2a21288-d52d-4ae1-81da-291f4f75eb41/22b1bc9235d04a918fa337bf.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "9a102312-771c-42cc-8770-7c03e84bca80",
+      "set_code": "mep",
+      "card_name": "Charmander",
+      "number": "038",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/9a102312-771c-42cc-8770-7c03e84bca80/8e3746c152b0d0c568f774b9.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "35aa8262-4d06-4911-b86d-0c8083d021f3",
+      "set_code": "mep",
+      "card_name": "Squirtle",
+      "number": "039",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/35aa8262-4d06-4911-b86d-0c8083d021f3/c85ffbd14892d3a38d566e18.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "1e4ae78b-7b51-49d0-baad-e85c40da3bab",
+      "set_code": "mep",
+      "card_name": "Turtwig",
+      "number": "040",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/1e4ae78b-7b51-49d0-baad-e85c40da3bab/ec3dc0d8b8df6510ab59afe2.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "22e05866-ed00-4c2d-9e00-e5e149b0e0b3",
+      "set_code": "mep",
+      "card_name": "Chimchar",
+      "number": "041",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/22e05866-ed00-4c2d-9e00-e5e149b0e0b3/4eefbdf0423cd8945d576a53.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "61f04ccb-66ab-447b-adee-0fbfdc1369e6",
+      "set_code": "mep",
+      "card_name": "Piplup",
+      "number": "042",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/61f04ccb-66ab-447b-adee-0fbfdc1369e6/b4de70da9187ea7e89edc91f.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "006a9879-7c33-4a37-9a9f-5ad2e121d465",
+      "set_code": "mep",
+      "card_name": "Rowlet",
+      "number": "043",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/006a9879-7c33-4a37-9a9f-5ad2e121d465/09ac6622f76cb951bbfd51b9.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "1a439348-63cd-4e56-97c2-a3857c585fbd",
+      "set_code": "mep",
+      "card_name": "Litten",
+      "number": "044",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/1a439348-63cd-4e56-97c2-a3857c585fbd/9948522da14535627300d84e.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    },
+    {
+      "card_printing_id": "4441bc40-8668-4dcb-ab14-4ad1b818aaa7",
+      "set_code": "mep",
+      "card_name": "Popplio",
+      "number": "045",
+      "finish_key": "holo",
+      "image_path": "warehouse-derived/image-truth-v1/img04a-reverseholo-representative/mep/4441bc40-8668-4dcb-ab14-4ad1b818aaa7/0915ce5d5ab2592d3bdf62f5.jpg",
+      "source_url": "https://reverseholo.app/sets/mep"
+    }
+  ],
+  "proof_hash": "84475b18c888e530f1cf70f775608cc2e82a3f998cdee18a6d078191f6be34a3"
+}

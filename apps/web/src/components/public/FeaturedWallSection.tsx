@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PublicCardImage from "@/components/PublicCardImage";
+import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { getPublicWallCardHref, type PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 
@@ -37,6 +39,7 @@ function FeaturedWallCard({
   ownerUserId?: string | null;
 }) {
   const displayIdentity = resolveDisplayIdentity(card);
+  const imagePresentation = resolveCardImagePresentation(card);
   const mixedSummary = getMixedOwnershipSummary(card);
   const cardHref = getPublicWallCardHref(card, viewerUserId, ownerUserId) ?? `/card/${card.gv_id}`;
 
@@ -48,14 +51,24 @@ function FeaturedWallCard({
       <div className="grid min-h-full gap-0 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         <div className="bg-[linear-gradient(180deg,rgba(248,250,252,0.95),rgba(241,245,249,0.9))] p-4 sm:p-5">
           <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white/80">
-            <PublicCardImage
-              src={card.image_url}
-              fallbackSrc={card.canonical_image_url}
-              alt={displayIdentity.display_name}
-              imageClassName="aspect-[3/4] w-full object-contain bg-slate-50 p-5 transition duration-200 group-hover:scale-[1.02]"
-              fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
-              fallbackLabel={displayIdentity.display_name}
-            />
+            <div className="relative">
+              <PublicCardImage
+                src={card.image_url}
+                fallbackSrc={card.canonical_image_url}
+                alt={displayIdentity.display_name}
+                imageClassName="aspect-[3/4] w-full object-contain bg-slate-50 p-5 transition duration-200 group-hover:scale-[1.02]"
+                fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
+                fallbackLabel={displayIdentity.display_name}
+              />
+              {imagePresentation.compactBadgeLabel ? (
+                <div className="pointer-events-none absolute inset-x-0 top-0 flex p-3">
+                  <CardImageTruthBadge
+                    label={imagePresentation.compactBadgeLabel}
+                    emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                  />
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
         <div className="flex min-h-full flex-col gap-4 p-5 sm:p-6">

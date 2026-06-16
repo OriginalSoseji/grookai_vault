@@ -72,6 +72,9 @@ class PublicCollectorCard {
     this.setCode,
     this.rarity,
     this.imageUrl,
+    this.imageStatus,
+    this.imageNote,
+    this.displayImageKind,
     this.conditionLabel,
     this.intent,
     this.variantKey,
@@ -95,6 +98,9 @@ class PublicCollectorCard {
   final String? setCode;
   final String? rarity;
   final String? imageUrl;
+  final String? imageStatus;
+  final String? imageNote;
+  final String? displayImageKind;
   final String? conditionLabel;
   final String? intent;
   final String? variantKey;
@@ -562,7 +568,7 @@ class PublicCollectorService {
         .from('v_wall_cards_v1')
         // LOCK: Wall cards use public-safe instance rows and display_image_url first.
         .select(
-          'instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,public_note',
+          'instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,public_note',
         )
         .eq('owner_slug', normalizedSlug)
         .order('created_at', ascending: false);
@@ -590,7 +596,7 @@ class PublicCollectorService {
         .from('v_section_cards_v1')
         // LOCK: Section cards are exact-copy public rows and load on demand.
         .select(
-          'section_id,section_name,section_position,instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,section_added_at,instance_created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,public_note',
+          'section_id,section_name,section_position,instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,section_added_at,instance_created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,public_note',
         )
         .eq('owner_slug', normalizedSlug)
         .eq('section_id', normalizedSectionId)
@@ -939,6 +945,9 @@ class PublicCollectorService {
           ? _cleanText(row['number'])
           : '—',
       imageUrl: _displayImageUrl(row),
+      imageStatus: _normalizeOptionalText(row['image_status']),
+      imageNote: _normalizeOptionalText(row['image_note']),
+      displayImageKind: _normalizeOptionalText(row['display_image_kind']),
       conditionLabel: _normalizeOptionalText(row['condition_label']),
       intent: intent,
       pricing: pricing,
@@ -984,6 +993,9 @@ class PublicCollectorService {
       'set_name': card.setName,
       'number': card.number,
       'image_url': card.imageUrl,
+      'image_status': card.imageStatus,
+      'image_note': card.imageNote,
+      'display_image_kind': card.displayImageKind,
       'condition_label': card.conditionLabel,
       'intent': card.intent,
       'vault_item_id': card.vaultItemId,
@@ -1030,7 +1042,7 @@ class PublicCollectorService {
       client
           .from('card_prints')
           .select(
-            'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,set:sets(name,identity_model)',
+            'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,image_status,image_note,set:sets(name,identity_model)',
           )
           .inFilter('id', cardPrintIds),
       CardSurfacePricingService.fetchByCardPrintIds(
@@ -1108,6 +1120,11 @@ class PublicCollectorService {
               (cardPrint['set'] as Map?)?['identity_model'],
             ),
             imageUrl: _displayImageUrl(cardPrint),
+            imageStatus: _normalizeOptionalText(cardPrint['image_status']),
+            imageNote: _normalizeOptionalText(cardPrint['image_note']),
+            displayImageKind: _normalizeOptionalText(
+              cardPrint['display_image_kind'],
+            ),
             pricing: pricingById[row.cardPrintId],
             priceDisplayMode: row.priceDisplayMode,
             askingPriceAmount: manualPrice?.askingPriceAmount,
@@ -1160,7 +1177,7 @@ class PublicCollectorService {
       client
           .from('card_prints')
           .select(
-            'id,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,set:sets(identity_model)',
+            'id,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,image_status,image_note,set:sets(identity_model)',
           )
           .inFilter('id', cardPrintIds),
       CardSurfacePricingService.fetchByCardPrintIds(
@@ -1251,6 +1268,15 @@ class PublicCollectorService {
           imageAltUrl: cardPrint?['image_alt_url'],
           representativeImageUrl: cardPrint?['representative_image_url'],
         ),
+        imageStatus:
+            _normalizeOptionalText(row['image_status']) ??
+            _normalizeOptionalText(cardPrint?['image_status']),
+        imageNote:
+            _normalizeOptionalText(row['image_note']) ??
+            _normalizeOptionalText(cardPrint?['image_note']),
+        displayImageKind:
+            _normalizeOptionalText(row['display_image_kind']) ??
+            _normalizeOptionalText(cardPrint?['display_image_kind']),
         conditionLabel: _normalizeOptionalText(row['condition_label']),
         intent: _normalizePublicIntent(row['intent']),
         pricing: pricingById[cardPrintId],

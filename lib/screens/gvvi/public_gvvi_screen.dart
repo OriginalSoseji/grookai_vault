@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../models/ownership_state.dart';
+import '../../services/identity/image_presentation.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
@@ -534,20 +535,136 @@ class _PublicGvviHero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final imagePresentation = _publicGvviImagePresentation(data);
     return Center(
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 250),
-        child: AspectRatio(
-          aspectRatio: 3 / 4,
-          child: CardSurfaceArtwork(
-            label: data.cardName,
-            imageUrl: data.primaryImageUrl ?? data.fallbackImageUrl,
-            borderRadius: 22,
-            padding: const EdgeInsets.all(8),
-            showZoomAffordance:
-                (data.primaryImageUrl ?? data.fallbackImageUrl ?? '')
-                    .trim()
-                    .isNotEmpty,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AspectRatio(
+              aspectRatio: 3 / 4,
+              child: CardSurfaceArtwork(
+                label: data.cardName,
+                imageUrl: data.primaryImageUrl ?? data.fallbackImageUrl,
+                borderRadius: 22,
+                padding: const EdgeInsets.all(8),
+                showZoomAffordance:
+                    (data.primaryImageUrl ?? data.fallbackImageUrl ?? '')
+                        .trim()
+                        .isNotEmpty,
+              ),
+            ),
+            if (imagePresentation.compactBadgeLabel != null) ...[
+              const SizedBox(height: 10),
+              _GvviImageStatusBadge(
+                label:
+                    imagePresentation.detailBadgeLabel ??
+                    imagePresentation.compactBadgeLabel!,
+                strong: imagePresentation.isCollisionRepresentative,
+              ),
+            ],
+            if (imagePresentation.detailNote != null) ...[
+              const SizedBox(height: 8),
+              _GvviImageTruthNote(note: imagePresentation.detailNote!),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+ResolvedImagePresentation _publicGvviImagePresentation(PublicGvviData data) {
+  final uploadedFront = (data.frontImageUrl ?? '').trim();
+  if (data.imageDisplayMode == GvviImageDisplayMode.uploaded &&
+      uploadedFront.isNotEmpty) {
+    return resolveImagePresentationFromFields(
+      imageUrl: uploadedFront,
+      displayImageKind: 'exact',
+    );
+  }
+
+  final normalizedStatus = (data.imageStatus ?? '').trim().toLowerCase();
+  return resolveImagePresentationFromFields(
+    imageUrl: data.canonicalImageUrl,
+    representativeImageUrl: data.representativeImageUrl,
+    displayImageUrl: data.imageUrl,
+    displayImageKind: normalizedStatus.startsWith('representative_')
+        ? 'representative'
+        : null,
+    imageStatus: data.imageStatus,
+    imageNote: data.imageNote,
+  );
+}
+
+class _GvviImageStatusBadge extends StatelessWidget {
+  const _GvviImageStatusBadge({required this.label, this.strong = false});
+
+  final String label;
+  final bool strong;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final backgroundColor = strong
+        ? colorScheme.tertiaryContainer.withValues(alpha: 0.92)
+        : colorScheme.surface.withValues(alpha: 0.94);
+    final borderColor = strong
+        ? colorScheme.tertiary.withValues(alpha: 0.22)
+        : colorScheme.outline.withValues(alpha: 0.12);
+    final textColor = strong
+        ? colorScheme.onTertiaryContainer
+        : colorScheme.onSurface.withValues(alpha: 0.78);
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: borderColor),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        child: Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: textColor,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 0.2,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _GvviImageTruthNote extends StatelessWidget {
+  const _GvviImageTruthNote({required this.note});
+
+  final String note;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.tertiaryContainer.withValues(alpha: 0.42),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: colorScheme.tertiary.withValues(alpha: 0.16)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+        child: Text(
+          note,
+          textAlign: TextAlign.center,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: colorScheme.onTertiaryContainer,
+            height: 1.32,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),

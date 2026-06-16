@@ -20,6 +20,9 @@ const FINISH_LABELS: Record<string, string> = {
   reverse: "Reverse Holo",
   pokeball: "Poké Ball",
   masterball: "Master Ball",
+  cosmos: "Cosmos Holo",
+  cracked_ice: "Cracked Ice Holo",
+  rocket_reverse: "Rocket Reverse Holo",
 };
 
 const VARIANT_LABELS: Record<string, string> = {
@@ -32,8 +35,8 @@ const VARIANT_LABELS: Record<string, string> = {
   staff: "Staff Prerelease Stamp",
   staff_stamp: "Staff Stamp",
   staff_prerelease_stamp: "Staff Prerelease Stamp",
-  play_pokemon_stamp: "Play Pokemon Stamp",
-  pokemon_together_stamp: "Pokemon Together Stamp",
+  play_pokemon_stamp: "Play Pokémon Stamp",
+  pokemon_together_stamp: "Pokémon Together Stamp",
   e_league_stamp: "E-League Stamp",
   e_league_winner_stamp: "E-League Winner Stamp",
   illustration_rare: "Illustration Rare",
@@ -42,6 +45,7 @@ const VARIANT_LABELS: Record<string, string> = {
 
 const PRINTED_IDENTITY_MODIFIER_LABELS: Record<string, string> = {
   delta_species: "Delta Species",
+  first_edition: "First Edition",
 };
 
 function normalizeKey(value?: string | null) {

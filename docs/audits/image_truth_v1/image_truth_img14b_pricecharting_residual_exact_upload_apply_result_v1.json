@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-06-16T05:07:42.102Z",
+  "package_id": "IMG-14B-PRICECHARTING-RESIDUAL-EXACT-CHILD-IMAGE-UPLOAD-APPLY",
+  "mode": "real_apply",
+  "db_writes_performed": true,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "fingerprint": "4bcdea0b57ec89c3be50ed91bf6a1214c554cf9c74f2d1982901073d72808ab9",
+  "storage_uploaded_rows": 1,
+  "db_updated_rows": 1,
+  "committed": true,
+  "rows": [
+    {
+      "card_printing_id": "12f911d9-0ec0-4c33-ba88-404499c92852",
+      "set_code": "xy9",
+      "number": "107a",
+      "card_name": "Professor Sycamore",
+      "finish_key": "normal",
+      "image_status": "exact",
+      "image_path": "warehouse-derived/image-truth-v1/img14a-pricecharting-residual-exact/xy9/12f911d9-0ec0-4c33-ba88-404499c92852/56b819f906cc7e0bcf79c51e.jpg",
+      "source_url": "https://www.pricecharting.com/game/pokemon-breakpoint/professor-sycamore-107a"
+    }
+  ],
+  "proof_hash": "99f25836fafbef423c41f29479e97a4c5c18c0d477071b062199bd61f749e11b"
+}

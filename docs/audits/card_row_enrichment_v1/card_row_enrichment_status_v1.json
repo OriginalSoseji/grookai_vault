@@ -1,0 +1,707 @@
+{
+  "generated_at": "2026-06-16T03:37:57.685Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "target_tables": [
+    "card_prints",
+    "card_printings",
+    "card_print_identity",
+    "external_mappings",
+    "card_print_active_prices",
+    "card_print_traits",
+    "card_print_species",
+    "card_print_cameos"
+  ],
+  "parent_rows": 26228,
+  "child_printing_rows": 47561,
+  "parent_rows_by_segment": {
+    "english_physical": 23078,
+    "tcg_pocket_excluded": 3150
+  },
+  "child_printing_rows_by_segment": {
+    "english_physical": 38111,
+    "tcg_pocket_excluded": 9450
+  },
+  "english_physical_parent_rows": 23078,
+  "english_physical_child_printing_rows": 38111,
+  "parent_coverage": {
+    "name": {
+      "present": 26228,
+      "missing": 0,
+      "percent": 100
+    },
+    "set_id": {
+      "present": 26228,
+      "missing": 0,
+      "percent": 100
+    },
+    "set_code": {
+      "present": 24887,
+      "missing": 1341,
+      "percent": 94.89
+    },
+    "number": {
+      "present": 25090,
+      "missing": 1138,
+      "percent": 95.66
+    },
+    "number_plain": {
+      "present": 25090,
+      "missing": 1138,
+      "percent": 95.66
+    },
+    "gv_id": {
+      "present": 22953,
+      "missing": 3275,
+      "percent": 87.51
+    },
+    "active_identity": {
+      "present": 23078,
+      "missing": 3150,
+      "percent": 87.99
+    },
+    "child_printings": {
+      "present": 25141,
+      "missing": 1087,
+      "percent": 95.86
+    },
+    "active_external_mapping": {
+      "present": 24385,
+      "missing": 1843,
+      "percent": 92.97
+    },
+    "rarity": {
+      "present": 26074,
+      "missing": 154,
+      "percent": 99.41
+    },
+    "artist": {
+      "present": 21094,
+      "missing": 5134,
+      "percent": 80.43
+    },
+    "regulation_mark": {
+      "present": 5627,
+      "missing": 20601,
+      "percent": 21.45
+    },
+    "parent_or_representative_image": {
+      "present": 25911,
+      "missing": 317,
+      "percent": 98.79
+    },
+    "any_child_image": {
+      "present": 139,
+      "missing": 26089,
+      "percent": 0.53
+    },
+    "active_price": {
+      "present": 26228,
+      "missing": 0,
+      "percent": 100
+    },
+    "traits": {
+      "present": 24000,
+      "missing": 2228,
+      "percent": 91.51
+    },
+    "species_link": {
+      "present": 22234,
+      "missing": 3994,
+      "percent": 84.77
+    },
+    "cameos": {
+      "present": 846,
+      "missing": 25382,
+      "percent": 3.23
+    }
+  },
+  "child_coverage": {
+    "finish_key": {
+      "present": 47561,
+      "missing": 0,
+      "percent": 100
+    },
+    "active_finish_key": {
+      "present": 47561,
+      "missing": 0,
+      "percent": 100
+    },
+    "printing_gv_id": {
+      "present": 37982,
+      "missing": 9579,
+      "percent": 79.86
+    },
+    "provenance": {
+      "present": 30719,
+      "missing": 16842,
+      "percent": 64.59
+    },
+    "child_display_image": {
+      "present": 152,
+      "missing": 47409,
+      "percent": 0.32
+    },
+    "child_or_parent_display_image": {
+      "present": 47251,
+      "missing": 310,
+      "percent": 99.35
+    },
+    "image_source_when_child_image_present": {
+      "present": 152,
+      "missing": 0,
+      "percent": 100
+    },
+    "image_status_when_child_image_present": {
+      "present": 152,
+      "missing": 0,
+      "percent": 100
+    },
+    "non_provisional": {
+      "present": 47561,
+      "missing": 0,
+      "percent": 100
+    }
+  },
+  "parent_gap_counts": {
+    "species_link": 3994,
+    "gv_id": 3275,
+    "active_identity": 3150,
+    "traits": 2228,
+    "external_mapping": 1843,
+    "core_identity": 1341,
+    "child_printings": 1087,
+    "display_image": 218,
+    "catalog_metadata": 139
+  },
+  "child_gap_counts": {
+    "provenance": 16842,
+    "printing_gv_id": 9579,
+    "display_image": 310
+  },
+  "english_physical_parent_gap_counts": {
+    "species_link": 3752,
+    "traits": 1090,
+    "child_printings": 1087,
+    "external_mapping": 706,
+    "display_image": 191,
+    "catalog_metadata": 139,
+    "gv_id": 125
+  },
+  "english_physical_child_gap_counts": {
+    "provenance": 13428,
+    "display_image": 229,
+    "printing_gv_id": 129
+  },
+  "parent_gap_rows": 8619,
+  "child_gap_rows": 23142,
+  "english_physical_parent_gap_rows": 5469,
+  "english_physical_child_gap_rows": 13692,
+  "parent_gaps_by_set": [
+    {
+      "key": "unknown",
+      "rows": 1341
+    },
+    {
+      "key": "B1",
+      "rows": 331
+    },
+    {
+      "key": "A1",
+      "rows": 286
+    },
+    {
+      "key": "A4",
+      "rows": 241
+    },
+    {
+      "key": "A3",
+      "rows": 239
+    },
+    {
+      "key": "A2",
+      "rows": 207
+    },
+    {
+      "key": "sv8pt5",
+      "rows": 194
+    },
+    {
+      "key": "me01",
+      "rows": 151
+    },
+    {
+      "key": "me03",
+      "rows": 126
+    },
+    {
+      "key": "svp",
+      "rows": 124
+    },
+    {
+      "key": "smp",
+      "rows": 123
+    },
+    {
+      "key": "sv6pt5",
+      "rows": 112
+    },
+    {
+      "key": "A2b",
+      "rows": 111
+    },
+    {
+      "key": "sm115",
+      "rows": 111
+    },
+    {
+      "key": "A3b",
+      "rows": 107
+    },
+    {
+      "key": "A4a",
+      "rows": 105
+    },
+    {
+      "key": "swsh10",
+      "rows": 105
+    },
+    {
+      "key": "swsh6",
+      "rows": 99
+    },
+    {
+      "key": "swsh11",
+      "rows": 97
+    },
+    {
+      "key": "A2a",
+      "rows": 96
+    },
+    {
+      "key": "pgo",
+      "rows": 90
+    },
+    {
+      "key": "swsh9",
+      "rows": 88
+    },
+    {
+      "key": "A1a",
+      "rows": 86
+    },
+    {
+      "key": "swsh7",
+      "rows": 80
+    },
+    {
+      "key": "swsh12",
+      "rows": 75
+    },
+    {
+      "key": "swsh8",
+      "rows": 75
+    },
+    {
+      "key": "sv10",
+      "rows": 74
+    },
+    {
+      "key": "sv05",
+      "rows": 71
+    },
+    {
+      "key": "sv06",
+      "rows": 69
+    },
+    {
+      "key": "sv01",
+      "rows": 68
+    }
+  ],
+  "child_gaps_by_set": [
+    {
+      "key": "unknown",
+      "rows": 4023
+    },
+    {
+      "key": "B1",
+      "rows": 993
+    },
+    {
+      "key": "A1",
+      "rows": 858
+    },
+    {
+      "key": "A4",
+      "rows": 723
+    },
+    {
+      "key": "A3",
+      "rows": 717
+    },
+    {
+      "key": "A2",
+      "rows": 621
+    },
+    {
+      "key": "me02.5",
+      "rows": 603
+    },
+    {
+      "key": "sm12",
+      "rows": 429
+    },
+    {
+      "key": "sm8",
+      "rows": 386
+    },
+    {
+      "key": "sm10",
+      "rows": 362
+    },
+    {
+      "key": "A2b",
+      "rows": 333
+    },
+    {
+      "key": "sv4pt5",
+      "rows": 326
+    },
+    {
+      "key": "A3b",
+      "rows": 321
+    },
+    {
+      "key": "A4a",
+      "rows": 315
+    },
+    {
+      "key": "swsh7",
+      "rows": 312
+    },
+    {
+      "key": "sm7",
+      "rows": 295
+    },
+    {
+      "key": "xy8",
+      "rows": 290
+    },
+    {
+      "key": "A2a",
+      "rows": 288
+    },
+    {
+      "key": "bw11",
+      "rows": 282
+    },
+    {
+      "key": "sv8pt5",
+      "rows": 280
+    },
+    {
+      "key": "sm5",
+      "rows": 279
+    },
+    {
+      "key": "bw8",
+      "rows": 273
+    },
+    {
+      "key": "swsh12.5",
+      "rows": 272
+    },
+    {
+      "key": "me01",
+      "rows": 270
+    },
+    {
+      "key": "sm3",
+      "rows": 259
+    },
+    {
+      "key": "A1a",
+      "rows": 258
+    },
+    {
+      "key": "pl1",
+      "rows": 258
+    },
+    {
+      "key": "sm2",
+      "rows": 255
+    },
+    {
+      "key": "bw9",
+      "rows": 243
+    },
+    {
+      "key": "xy4",
+      "rows": 237
+    }
+  ],
+  "english_physical_parent_gaps_by_set": [
+    {
+      "key": "sv8pt5",
+      "rows": 194
+    },
+    {
+      "key": "me01",
+      "rows": 151
+    },
+    {
+      "key": "me03",
+      "rows": 126
+    },
+    {
+      "key": "svp",
+      "rows": 124
+    },
+    {
+      "key": "smp",
+      "rows": 123
+    },
+    {
+      "key": "sv6pt5",
+      "rows": 112
+    },
+    {
+      "key": "sm115",
+      "rows": 111
+    },
+    {
+      "key": "swsh10",
+      "rows": 105
+    },
+    {
+      "key": "swsh6",
+      "rows": 99
+    },
+    {
+      "key": "swsh11",
+      "rows": 97
+    },
+    {
+      "key": "pgo",
+      "rows": 90
+    },
+    {
+      "key": "swsh9",
+      "rows": 88
+    },
+    {
+      "key": "swsh7",
+      "rows": 80
+    },
+    {
+      "key": "swsh12",
+      "rows": 75
+    },
+    {
+      "key": "swsh8",
+      "rows": 75
+    },
+    {
+      "key": "sv10",
+      "rows": 74
+    },
+    {
+      "key": "sv05",
+      "rows": 71
+    },
+    {
+      "key": "sv06",
+      "rows": 69
+    },
+    {
+      "key": "sv01",
+      "rows": 68
+    },
+    {
+      "key": "sv02",
+      "rows": 68
+    },
+    {
+      "key": "sv04",
+      "rows": 67
+    },
+    {
+      "key": "sv08",
+      "rows": 64
+    },
+    {
+      "key": "swshp",
+      "rows": 64
+    },
+    {
+      "key": "sv08.5",
+      "rows": 57
+    },
+    {
+      "key": "swsh1",
+      "rows": 57
+    },
+    {
+      "key": "swsh5",
+      "rows": 57
+    },
+    {
+      "key": "me02.5",
+      "rows": 52
+    },
+    {
+      "key": "swsh12.5",
+      "rows": 48
+    },
+    {
+      "key": "sm7",
+      "rows": 46
+    },
+    {
+      "key": "sm8",
+      "rows": 46
+    }
+  ],
+  "english_physical_child_gaps_by_set": [
+    {
+      "key": "me02.5",
+      "rows": 603
+    },
+    {
+      "key": "sm12",
+      "rows": 429
+    },
+    {
+      "key": "sm8",
+      "rows": 386
+    },
+    {
+      "key": "sm10",
+      "rows": 362
+    },
+    {
+      "key": "sv4pt5",
+      "rows": 326
+    },
+    {
+      "key": "swsh7",
+      "rows": 312
+    },
+    {
+      "key": "sm7",
+      "rows": 295
+    },
+    {
+      "key": "xy8",
+      "rows": 290
+    },
+    {
+      "key": "bw11",
+      "rows": 282
+    },
+    {
+      "key": "sv8pt5",
+      "rows": 280
+    },
+    {
+      "key": "sm5",
+      "rows": 279
+    },
+    {
+      "key": "bw8",
+      "rows": 273
+    },
+    {
+      "key": "swsh12.5",
+      "rows": 272
+    },
+    {
+      "key": "me01",
+      "rows": 270
+    },
+    {
+      "key": "sm3",
+      "rows": 259
+    },
+    {
+      "key": "pl1",
+      "rows": 258
+    },
+    {
+      "key": "sm2",
+      "rows": 255
+    },
+    {
+      "key": "bw9",
+      "rows": 243
+    },
+    {
+      "key": "xy4",
+      "rows": 237
+    },
+    {
+      "key": "sm6",
+      "rows": 233
+    },
+    {
+      "key": "sv04",
+      "rows": 230
+    },
+    {
+      "key": "sv08",
+      "rows": 229
+    },
+    {
+      "key": "pl2",
+      "rows": 223
+    },
+    {
+      "key": "sv10",
+      "rows": 219
+    },
+    {
+      "key": "pl3",
+      "rows": 215
+    },
+    {
+      "key": "xyp",
+      "rows": 211
+    },
+    {
+      "key": "dp7",
+      "rows": 206
+    },
+    {
+      "key": "sm4",
+      "rows": 206
+    },
+    {
+      "key": "bw10",
+      "rows": 203
+    },
+    {
+      "key": "xy3",
+      "rows": 203
+    }
+  ],
+  "external_source_coverage": {
+    "tcgdex": 22663,
+    "justtcg": 19754,
+    "tcgplayer": 14118,
+    "pokemonapi": 7783,
+    "tcgcollector": 104
+  },
+  "child_finish_distribution": {
+    "normal": 18091,
+    "reverse": 16688,
+    "holo": 11992,
+    "cosmos": 352,
+    "pokeball": 230,
+    "cracked_ice": 131,
+    "masterball": 67,
+    "rocket_reverse": 10
+  },
+  "fingerprint": "d0acda14bf8826a1bf800ce6d3ef46e51d754f414017bc9f94a23b8651ffb81f"
+}

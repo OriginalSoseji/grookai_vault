@@ -1,0 +1,123 @@
+{
+  "generated_at": "2026-06-16T05:08:01.252Z",
+  "package_id": "IMG-14A-PRICECHARTING-RESIDUAL-EXACT-VARIANT-PROBE",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "storage_uploads_performed": false,
+  "nonproduction_assets_staged": 0,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "summary": {
+    "source_rows": 6,
+    "exact_ready_rows": 0,
+    "blocked_rows": 6,
+    "by_status": {
+      "blocked": 6
+    },
+    "by_reason": {
+      "pricecharting_exact_image_alt_not_found": 6
+    }
+  },
+  "rows": [
+    {
+      "card_printing_id": "aa91ccf3-3860-4435-ade8-2d9bcfd53bf7",
+      "card_print_id": "7dd08fd2-3546-43fc-8da5-a8daa086055b",
+      "set_code": "sv03.5",
+      "number": "004",
+      "card_name": "Charmander",
+      "finish_key": "cosmos",
+      "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-151/charmander-cosmos-holo-4",
+      "source_key": "pricecharting_csv_product",
+      "status": "blocked",
+      "reason": "pricecharting_exact_image_alt_not_found",
+      "page_title": "Charmander Cosmos Holo 4 Prices | Charmander Cosmos Holo 4 List",
+      "image_alt": null,
+      "asset_url": null,
+      "asset": null
+    },
+    {
+      "card_printing_id": "dd73286d-1363-46c1-8bdf-d786df131324",
+      "card_print_id": "4594353e-6ac8-47b0-bc6c-9f3575677969",
+      "set_code": "sve",
+      "number": "3",
+      "card_name": "Basic Water Energy",
+      "finish_key": "reverse",
+      "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-energy/basic-water-energy-reverse-holo-3",
+      "source_key": "pricecharting_csv_product",
+      "status": "blocked",
+      "reason": "pricecharting_exact_image_alt_not_found",
+      "page_title": "Basic Water Energy Reverse Holo 3 Prices | Basic Water Energy Reverse Holo 3 List",
+      "image_alt": null,
+      "asset_url": null,
+      "asset": null
+    },
+    {
+      "card_printing_id": "4079a4ef-3eb5-4208-a04c-06add5be06b8",
+      "card_print_id": "bbcf0e8e-e2f9-4229-9f56-040935519d0c",
+      "set_code": "sve",
+      "number": "5",
+      "card_name": "Basic Psychic Energy",
+      "finish_key": "reverse",
+      "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-energy/basic-psychic-energy-reverse-holo-5",
+      "source_key": "pricecharting_csv_product",
+      "status": "blocked",
+      "reason": "pricecharting_exact_image_alt_not_found",
+      "page_title": "Basic Psychic Energy Reverse Holo 5 Prices | Basic Psychic Energy Reverse Holo 5 List",
+      "image_alt": null,
+      "asset_url": null,
+      "asset": null
+    },
+    {
+      "card_printing_id": "3a29d550-9261-4ca6-8405-a0014d2ea76a",
+      "card_print_id": "33d6f6eb-3a84-459f-ae8f-1d03533485e0",
+      "set_code": "sve",
+      "number": "6",
+      "card_name": "Basic Fighting Energy",
+      "finish_key": "reverse",
+      "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-energy/basic-fighting-energy-reverse-holo-6",
+      "source_key": "pricecharting_csv_product",
+      "status": "blocked",
+      "reason": "pricecharting_exact_image_alt_not_found",
+      "page_title": "Basic Fighting Energy Reverse Holo 6 Prices | Basic Fighting Energy Reverse Holo 6 List",
+      "image_alt": null,
+      "asset_url": null,
+      "asset": null
+    },
+    {
+      "card_printing_id": "d2686174-b14e-4dfc-9e35-51461d1c6464",
+      "card_print_id": "1d04ea71-3ba1-430c-a926-34e5764dc0c4",
+      "set_code": "swsh4.5",
+      "number": "60",
+      "card_name": "Professor's Research",
+      "finish_key": "holo",
+      "source_url": "https://www.pricecharting.com/game/pokemon-shining-fates/professors-research-holo-60",
+      "source_key": "pricecharting_csv_product",
+      "status": "blocked",
+      "reason": "pricecharting_exact_image_alt_not_found",
+      "page_title": "Professors Research Holo 60 Prices | Professors Research Holo 60 List",
+      "image_alt": null,
+      "asset_url": null,
+      "asset": null
+    },
+    {
+      "card_printing_id": "d63aff49-0991-4170-b173-8967f7a8ee32",
+      "card_print_id": "1d161aed-2ab6-4707-9db2-3e300d658729",
+      "set_code": "xy8",
+      "number": "146a",
+      "card_name": "Professor's Letter",
+      "finish_key": "normal",
+      "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/professors-letter-146a",
+      "source_key": "pricecharting_csv_base_product",
+      "status": "blocked",
+      "reason": "pricecharting_exact_image_alt_not_found",
+      "page_title": "Professors Letter 146a Prices | Professors Letter 146a List",
+      "image_alt": null,
+      "asset_url": null,
+      "asset": null
+    }
+  ],
+  "fingerprint": "4141edff474bc9c71992db65cf946401fd747f9e49e6af44f9dd40b883c7a743"
+}

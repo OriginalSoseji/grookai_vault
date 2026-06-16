@@ -1,0 +1,211 @@
+{
+  "generated_at": "2026-06-14T16:02:41.347Z",
+  "audit_only": true,
+  "rollback_only_dry_run": true,
+  "db_writes_persisted": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "package_id": "IMG-07A-CARDTRADER-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-DRY-RUN",
+  "source_manifest": "docs\\audits\\image_truth_v1\\image_truth_missing_display_asset_manifest_v1.json",
+  "nonproduction_staging_asset_dir": "tmp/nonproduction_image_staging/image_truth_v1/img07a",
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "source_rows": 2,
+  "normalized_asset_rows": 2,
+  "rollback_update_verified_rows": 2,
+  "blocked_rows": 0,
+  "dry_run_ready_for_real_apply": true,
+  "rollback_completed": true,
+  "proof_hash": "5da4efe695ac4fb7cf80e664c6f23ec7b796c36050d3ac1ce5fbc85cbaa42369",
+  "proof": {
+    "package_id": "IMG-07A-CARDTRADER-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-DRY-RUN",
+    "row_count": 2,
+    "ready_row_count": 2,
+    "blocked_row_count": 0,
+    "target_table": "card_printings",
+    "parent_overwrite_allowed": false,
+    "rollback_completed": true,
+    "rows": [
+      {
+        "card_printing_id": "50fb9836-a3a0-4742-a29a-09671121fa56",
+        "planned_normalized_front_storage_path": "warehouse-derived/image-truth-v1/img07a-cardtrader-representative/mep/50fb9836-a3a0-4742-a29a-09671121fa56/f44de6d49655b6a2276dcc15.jpg",
+        "normalized_sha256": "f44de6d49655b6a2276dcc150ae530eb64c9fd54fa2a436096d0c516110a3850",
+        "source_url": "https://www.cardtrader.com/en/cards/383014-makuhita-cosmos-holo-mep-068-mep-black-star-promos",
+        "asset_url": "https://www.cardtrader.com/uploads/blueprints/image/383014/makuhita-cosmos-holo-mep-068-mep-black-star-promos.png",
+        "image_alt": "CardTrader blueprint image for Makuhita 068 cosmos",
+        "image_confidence": "representative",
+        "mutation_preview": {
+          "type": "update_card_printing_identity_image",
+          "card_printing_id": "50fb9836-a3a0-4742-a29a-09671121fa56",
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img07a-cardtrader-representative/mep/50fb9836-a3a0-4742-a29a-09671121fa56/f44de6d49655b6a2276dcc15.jpg",
+          "image_url": null,
+          "image_alt_url": null,
+          "image_status": "representative_shared",
+          "image_note": "IMG-07A-CARDTRADER-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-DRY-RUN:cardtrader_blueprint_index:https://www.cardtrader.com/en/cards/383014-makuhita-cosmos-holo-mep-068-mep-black-star-promos"
+        }
+      },
+      {
+        "card_printing_id": "8c4676e9-100d-4cf1-bee5-7fcbc475eade",
+        "planned_normalized_front_storage_path": "warehouse-derived/image-truth-v1/img07a-cardtrader-representative/mep/8c4676e9-100d-4cf1-bee5-7fcbc475eade/7f7d6b1ec6ed5a5719c990c8.jpg",
+        "normalized_sha256": "7f7d6b1ec6ed5a5719c990c8daccec19e3d9bf021c8dded791c92159f87bd68e",
+        "source_url": "https://www.cardtrader.com/en/cards/383013-chikorita-cosmos-holo-mep-069-mep-black-star-promos",
+        "asset_url": "https://www.cardtrader.com/uploads/blueprints/image/383013/chikorita-cosmos-holo-mep-069-mep-black-star-promos.png",
+        "image_alt": "CardTrader blueprint image for Chikorita 069 cosmos",
+        "image_confidence": "representative",
+        "mutation_preview": {
+          "type": "update_card_printing_identity_image",
+          "card_printing_id": "8c4676e9-100d-4cf1-bee5-7fcbc475eade",
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img07a-cardtrader-representative/mep/8c4676e9-100d-4cf1-bee5-7fcbc475eade/7f7d6b1ec6ed5a5719c990c8.jpg",
+          "image_url": null,
+          "image_alt_url": null,
+          "image_status": "representative_shared",
+          "image_note": "IMG-07A-CARDTRADER-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-DRY-RUN:cardtrader_blueprint_index:https://www.cardtrader.com/en/cards/383013-chikorita-cosmos-holo-mep-069-mep-black-star-promos"
+        }
+      }
+    ]
+  },
+  "rows": [
+    {
+      "card_printing_id": "50fb9836-a3a0-4742-a29a-09671121fa56",
+      "printing_gv_id": null,
+      "card_print_id": "45589393-ca82-4b9c-88c7-d477aaeb45b1",
+      "parent_gv_id": null,
+      "image_scope": "english_physical",
+      "target_table": "card_printings",
+      "parent_overwrite_allowed": false,
+      "db_write_allowed": false,
+      "dry_run_ready": false,
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_name": "Makuhita",
+      "number": "068",
+      "finish_key": "cosmos",
+      "source_status": "source_url_preserved",
+      "source_url": "https://www.cardtrader.com/en/cards/383014-makuhita-cosmos-holo-mep-068-mep-black-star-promos",
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_attempts": [
+        {
+          "source_key": "pricecharting_live_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/makuhita-cosmos-holo-68",
+          "asset_status": "asset_not_found_or_not_exact",
+          "reason": "No PriceCharting product image with exact alt text was found."
+        },
+        {
+          "source_key": "cardtrader_blueprint_index",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.cardtrader.com/en/cards/383014-makuhita-cosmos-holo-mep-068-mep-black-star-promos",
+          "asset_status": "representative_image_url_preserved",
+          "reason": "CardTrader blueprint image URL matched the exact card and finish source row. It is treated as representative because visual finish texture is not independently proven from the image alone."
+        }
+      ],
+      "asset_status": "representative_image_url_preserved",
+      "asset_url": "https://www.cardtrader.com/uploads/blueprints/image/383014/makuhita-cosmos-holo-mep-068-mep-black-star-promos.png",
+      "image_alt": "CardTrader blueprint image for Makuhita 068 cosmos",
+      "image_confidence": "representative",
+      "block_reason": "CardTrader blueprint image URL matched the exact card and finish source row. It is treated as representative because visual finish texture is not independently proven from the image alone.",
+      "dry_run_status": "rollback_update_verified",
+      "validation_errors": [],
+      "parent_image_fields_unchanged": true,
+      "mutation_preview": {
+        "type": "update_card_printing_identity_image",
+        "card_printing_id": "50fb9836-a3a0-4742-a29a-09671121fa56",
+        "image_source": "identity",
+        "image_path": "warehouse-derived/image-truth-v1/img07a-cardtrader-representative/mep/50fb9836-a3a0-4742-a29a-09671121fa56/f44de6d49655b6a2276dcc15.jpg",
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared",
+        "image_note": "IMG-07A-CARDTRADER-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-DRY-RUN:cardtrader_blueprint_index:https://www.cardtrader.com/en/cards/383014-makuhita-cosmos-holo-mep-068-mep-black-star-promos"
+      },
+      "before_child_image_fields": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "normalized_asset": {
+        "source_sha256": "f44de6d49655b6a2276dcc150ae530eb64c9fd54fa2a436096d0c516110a3850",
+        "normalized_sha256": "f44de6d49655b6a2276dcc150ae530eb64c9fd54fa2a436096d0c516110a3850",
+        "normalized_size_bytes": 1726687,
+        "local_nonproduction_asset_path": "tmp/nonproduction_image_staging/image_truth_v1/img07a/mep_68_cosmos_50fb9836_f44de6d49655b6a2.jpg",
+        "planned_normalized_front_storage_path": "warehouse-derived/image-truth-v1/img07a-cardtrader-representative/mep/50fb9836-a3a0-4742-a29a-09671121fa56/f44de6d49655b6a2276dcc15.jpg"
+      }
+    },
+    {
+      "card_printing_id": "8c4676e9-100d-4cf1-bee5-7fcbc475eade",
+      "printing_gv_id": null,
+      "card_print_id": "307545d2-7a82-4c60-8dfe-1b18bc2a092e",
+      "parent_gv_id": null,
+      "image_scope": "english_physical",
+      "target_table": "card_printings",
+      "parent_overwrite_allowed": false,
+      "db_write_allowed": false,
+      "dry_run_ready": false,
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_name": "Chikorita",
+      "number": "069",
+      "finish_key": "cosmos",
+      "source_status": "source_url_preserved",
+      "source_url": "https://www.cardtrader.com/en/cards/383013-chikorita-cosmos-holo-mep-069-mep-black-star-promos",
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_attempts": [
+        {
+          "source_key": "pricecharting_live_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/chikorita-cosmos-holo-69",
+          "asset_status": "asset_not_found_or_not_exact",
+          "reason": "No PriceCharting product image with exact alt text was found."
+        },
+        {
+          "source_key": "cardtrader_blueprint_index",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.cardtrader.com/en/cards/383013-chikorita-cosmos-holo-mep-069-mep-black-star-promos",
+          "asset_status": "representative_image_url_preserved",
+          "reason": "CardTrader blueprint image URL matched the exact card and finish source row. It is treated as representative because visual finish texture is not independently proven from the image alone."
+        }
+      ],
+      "asset_status": "representative_image_url_preserved",
+      "asset_url": "https://www.cardtrader.com/uploads/blueprints/image/383013/chikorita-cosmos-holo-mep-069-mep-black-star-promos.png",
+      "image_alt": "CardTrader blueprint image for Chikorita 069 cosmos",
+      "image_confidence": "representative",
+      "block_reason": "CardTrader blueprint image URL matched the exact card and finish source row. It is treated as representative because visual finish texture is not independently proven from the image alone.",
+      "dry_run_status": "rollback_update_verified",
+      "validation_errors": [],
+      "parent_image_fields_unchanged": true,
+      "mutation_preview": {
+        "type": "update_card_printing_identity_image",
+        "card_printing_id": "8c4676e9-100d-4cf1-bee5-7fcbc475eade",
+        "image_source": "identity",
+        "image_path": "warehouse-derived/image-truth-v1/img07a-cardtrader-representative/mep/8c4676e9-100d-4cf1-bee5-7fcbc475eade/7f7d6b1ec6ed5a5719c990c8.jpg",
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared",
+        "image_note": "IMG-07A-CARDTRADER-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-DRY-RUN:cardtrader_blueprint_index:https://www.cardtrader.com/en/cards/383013-chikorita-cosmos-holo-mep-069-mep-black-star-promos"
+      },
+      "before_child_image_fields": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "normalized_asset": {
+        "source_sha256": "7f7d6b1ec6ed5a5719c990c8daccec19e3d9bf021c8dded791c92159f87bd68e",
+        "normalized_sha256": "7f7d6b1ec6ed5a5719c990c8daccec19e3d9bf021c8dded791c92159f87bd68e",
+        "normalized_size_bytes": 1622940,
+        "local_nonproduction_asset_path": "tmp/nonproduction_image_staging/image_truth_v1/img07a/mep_69_cosmos_8c4676e9_7f7d6b1ec6ed5a57.jpg",
+        "planned_normalized_front_storage_path": "warehouse-derived/image-truth-v1/img07a-cardtrader-representative/mep/8c4676e9-100d-4cf1-bee5-7fcbc475eade/7f7d6b1ec6ed5a5719c990c8.jpg"
+      }
+    }
+  ]
+}

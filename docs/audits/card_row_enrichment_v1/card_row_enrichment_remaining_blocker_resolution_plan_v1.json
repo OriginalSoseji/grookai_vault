@@ -1,0 +1,220 @@
+{
+  "version": "CARD_ROW_ENRICHMENT_REMAINING_BLOCKER_RESOLUTION_PLAN_V1",
+  "generated_at": "2026-06-16T02:49:03.614Z",
+  "mode": "read_only_report_only",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "summary": {
+    "write_ready_packages_now": 0,
+    "remaining_blocker_lanes": 10,
+    "next_best_work": "governance_adjudication_for_core_identity_and_external_mapping_collisions"
+  },
+  "blocker_lanes": [
+    {
+      "lane": "core_identity",
+      "rows": 1,
+      "status": "blocked_governance_required",
+      "reason": "Pocket-like exclusions, proposed identity collisions, and subset alias governance have zero ready rows.",
+      "next_action": "Split into Pocket cleanup/exclusion decision, collision ownership adjudication, and subset alias governance packages.",
+      "write_ready_now": false
+    },
+    {
+      "lane": "parent_gv_id",
+      "rows": 126,
+      "status": "blocked_by_core_identity_and_collisions",
+      "reason": "All parent GV-ID candidates are blocked by missing set_code/number or existing GV-ID collisions.",
+      "next_action": "Resolve core identity and duplicate/collision ownership before another parent GV-ID package.",
+      "write_ready_now": false
+    },
+    {
+      "lane": "child_printing_gv_id",
+      "rows": 131,
+      "status": "blocked_by_parent_gv_id",
+      "reason": "All remaining child printing GV-ID candidates are missing parent gv_id.",
+      "next_action": "Resume after parent GV-ID blockers are reduced.",
+      "write_ready_now": false
+    },
+    {
+      "lane": "active_identity",
+      "rows": 0,
+      "status": "blocked_projection_or_duplicate_hash",
+      "reason": "Projection is not ready for 7 rows and 2 rows collide in the identity hash batch.",
+      "next_action": "Resolve identity projection readiness and duplicate hash ownership before insert package.",
+      "write_ready_now": false
+    },
+    {
+      "lane": "external_mapping",
+      "rows": 706,
+      "status": "blocked_by_existing_owner_collision",
+      "reason": "Payload mapping candidates are all blocked by existing source/external ownership or variant/base ownership ambiguity.",
+      "next_action": "Build source-specific transfer/adjudication plans; do not bulk insert mappings.",
+      "write_ready_now": false
+    },
+    {
+      "lane": "no_child_parent",
+      "rows": 1087,
+      "status": "blocked_dependency_bearing",
+      "reason": "Every childless parent has dependencies; zero empty-delete and zero source-mapped child-insert targets are currently ready.",
+      "next_action": "Resolve duplicate/mapping ownership first, then reassess whether a child insert or non-delete preservation package exists.",
+      "write_ready_now": false
+    },
+    {
+      "lane": "traits",
+      "rows": 1091,
+      "status": "source_exhausted_for_current_rules",
+      "reason": "Active source-mapped retry lanes are cleared; residual rows need new source/rule acquisition.",
+      "next_action": "Add rule/source acquisition for unmapped trait gaps only where exact identity is preserved.",
+      "write_ready_now": false
+    },
+    {
+      "lane": "species",
+      "rows": 3752,
+      "status": "rule_unmapped",
+      "reason": "Species name-rule dry-run scanned all missing-species parents and produced zero targets.",
+      "next_action": "Design a richer species extraction/adjudication rule; do not infer species from card names yet.",
+      "write_ready_now": false
+    },
+    {
+      "lane": "catalog_metadata",
+      "rows": 139,
+      "status": "source_exhausted_for_current_rules",
+      "reason": "Source-mapped null-only catalog metadata retry lanes are cleared.",
+      "next_action": "Find additional exact source mappings or payload evidence before another metadata package.",
+      "write_ready_now": false
+    },
+    {
+      "lane": "child_display_image",
+      "rows": 229,
+      "status": "explicitly_deferred",
+      "reason": "Deferred by scope; do not mix image cleanup with row enrichment.",
+      "next_action": "Resume Image Truth separately.",
+      "write_ready_now": false
+    }
+  ],
+  "source_snapshots": {
+    "cleanup_totals": {
+      "english_physical_parent_rows": 23079,
+      "parent_gv_id_candidates": 126,
+      "parent_gv_id_ready": 0,
+      "child_printing_gv_id_candidates": 131,
+      "child_printing_gv_id_ready": 0,
+      "active_identity_candidates": 0,
+      "active_identity_ready": 0,
+      "core_identity_gap_rows": 1,
+      "external_mapping_gap_rows": 706,
+      "no_child_printing_parent_rows": 1087,
+      "trait_gaps": 1091,
+      "species_gaps": 3752,
+      "catalog_metadata_gaps": 139
+    },
+    "core_identity_summary": {
+      "total_core_identity_gap_rows": 1,
+      "ready_for_guarded_dry_run_preparation": 0,
+      "blocked_rows": 1,
+      "by_classification": {
+        "blocked_proposed_identity_collision": 1
+      },
+      "by_blocker": {
+        "proposed_identity_existing_owner_collision": 1
+      },
+      "by_set_top_25": {
+        "pl2": 1
+      },
+      "ready_by_set_top_25": {}
+    },
+    "external_mapping_readiness_totals": {
+      "candidate_parent_rows": 14,
+      "candidate_mapping_rows": 15,
+      "ready_mapping_rows": 0,
+      "blocked_mapping_rows": 15,
+      "existing_owner_rows": 15
+    },
+    "external_mapping_adjudication_summary": {
+      "input_package_id": "ENRICH-07-EXTERNAL-MAPPING-PAYLOAD-BACKFILL",
+      "input_package_pass": false,
+      "input_package_fingerprint_sha256": "e9a1e6b7f09e7cca3694edd9702dd28077706605e4a80507b62e98070086b382",
+      "target_rows": 15,
+      "collision_rows": 15,
+      "by_source": {
+        "tcgdex": 13,
+        "pokemonapi": 2
+      },
+      "by_adjudication_classification": {
+        "external_id_shared_across_modifier_or_variant_manual_review": 11,
+        "external_id_conflicts_with_different_card_manual_review": 4
+      },
+      "same_core_identity_rows": 11,
+      "same_modifier_identity_rows": 4,
+      "target_empty_rows": 0,
+      "target_dependency_bearing_rows": 15,
+      "owner_dependency_bearing_rows": 15
+    },
+    "residual_source_totals": {
+      "english_physical_parent_rows": 23282,
+      "trait_gaps": 1091,
+      "species_gaps": 3770,
+      "catalog_metadata_gaps": 139,
+      "external_mapping_gaps": 706
+    },
+    "no_child_parent_summary": {
+      "total_no_child_parent_rows": 1075,
+      "by_adjudication_classification": {
+        "dependency_bearing_childless_parent_manual_review": 641,
+        "mapping_transfer_or_duplicate_resolution_required": 433,
+        "vault_referenced_childless_parent_manual_review": 1
+      },
+      "by_set_top_25": {
+        "smp": 97,
+        "swsh10": 56,
+        "swsh9": 52,
+        "swsh11": 49,
+        "sv10": 39,
+        "sv05": 38,
+        "swsh12": 37,
+        "swsh7": 36,
+        "swsh8": 36,
+        "swsh6": 34,
+        "me01": 32,
+        "bwp": 28,
+        "sv02": 27,
+        "sv04": 24,
+        "sv06": 24,
+        "sv07": 20,
+        "swsh5": 20,
+        "sv01": 18,
+        "sv08": 18,
+        "sv09": 18,
+        "mep": 17,
+        "swsh1": 15,
+        "sv8pt5": 14,
+        "sv6pt5": 13,
+        "bw1": 11
+      },
+      "by_dependency_shape": {
+        "zero_dependency_rows": 0,
+        "dependency_bearing_rows": 1075,
+        "stale_gv_collision_lane_rows": 0,
+        "sibling_owner_rows": 929,
+        "master_index_supported_rows": 822
+      }
+    },
+    "active_identity_classifications": {},
+    "active_identity_blockers": {},
+    "parent_gv_classifications": {
+      "blocked_parent_gv_id_backfill": 126
+    },
+    "parent_gv_blockers": {
+      "proposed_gv_id_existing_collision": 125,
+      "missing_parent_set_code": 1,
+      "missing_printed_number": 1
+    },
+    "child_gv_classifications": {
+      "blocked_child_printing_gv_id_backfill": 131
+    },
+    "child_gv_blockers": {
+      "missing_parent_gv_id": 131
+    }
+  },
+  "fingerprint_sha256": "f4f3322bdb87c84dedb79cd105c9530789761b44511600cdf3b71039a2cec54e"
+}

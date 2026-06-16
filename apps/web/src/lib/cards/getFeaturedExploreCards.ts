@@ -49,7 +49,7 @@ export type FeaturedExploreCard = {
   image_note?: string;
   image_source?: string;
   display_image_url?: string;
-  display_image_kind?: "exact" | "representative" | "missing";
+  display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
 };
 
 const FEATURED_EXPLORE_CARD_COUNT = 10;

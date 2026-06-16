@@ -1,0 +1,2528 @@
+{
+  "version": "ENRICH_13G1_CELEBRATIONS_SUBSET_ALIAS_TRANSFER_GUARDED_DRY_RUN_V1",
+  "generated_at": "2026-06-15T20:45:25.911Z",
+  "package_id": "ENRICH-13G1-CELEBRATIONS-SUBSET-ALIAS-TRANSFER-DRY-RUN",
+  "dry_run_execution_status": "enrich13g1_guarded_dry_run_passed_rolled_back_no_durable_change",
+  "pass": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "real_apply_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "image_writes_performed": false,
+  "package_fingerprint_sha256": "2a55568422b6a513dbfe6ca64ea662274acc697a3f6955e249e23c781b6641ac",
+  "package_scope": {
+    "target_rows": 4,
+    "source_set_code": "cel25",
+    "canonical_subset_set_code": "cel25c",
+    "alias_child_printings": 4,
+    "alias_external_mappings": 4,
+    "alias_identity_rows": 0,
+    "alias_trait_rows": 4,
+    "alias_species_rows": 3,
+    "subset_owner_match_count": 4
+  },
+  "sql_artifact": {
+    "path": "docs\\sql\\enrich13g1_celebrations_subset_alias_transfer_guarded_dry_run_v1.sql",
+    "sha256": "a9b4550e4e3343dfee547af686468bb141f5d4dc2ad593809f1e7a96772c3a05",
+    "contains_commit_statement": false,
+    "contains_rollback_statement": true,
+    "contains_parent_update_statement": false
+  },
+  "target_rows": [
+    {
+      "alias_card_print_id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+      "subset_owner_card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+      "source_set_code": "cel25",
+      "source_number": "15A1",
+      "canonical_subset_set_code": "cel25c",
+      "canonical_subset_number": "15",
+      "card_name": "Venusaur",
+      "source_external_id": "cel25-15A1",
+      "live_match_count": 1
+    },
+    {
+      "alias_card_print_id": "8e4958ab-1e4e-4636-87e1-4650ae938086",
+      "subset_owner_card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+      "source_set_code": "cel25",
+      "source_number": "15A2",
+      "canonical_subset_set_code": "cel25c",
+      "canonical_subset_number": "15",
+      "card_name": "Here Comes Team Rocket!",
+      "source_external_id": "cel25-15A2",
+      "live_match_count": 1
+    },
+    {
+      "alias_card_print_id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+      "subset_owner_card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+      "source_set_code": "cel25",
+      "source_number": "15A3",
+      "canonical_subset_set_code": "cel25c",
+      "canonical_subset_number": "15",
+      "card_name": "Rocket's Zapdos",
+      "source_external_id": "cel25-15A3",
+      "live_match_count": 1
+    },
+    {
+      "alias_card_print_id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+      "subset_owner_card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+      "source_set_code": "cel25",
+      "source_number": "15A4",
+      "canonical_subset_set_code": "cel25c",
+      "canonical_subset_number": "15",
+      "card_name": "Claydol",
+      "source_external_id": "cel25-15A4",
+      "live_match_count": 1
+    }
+  ],
+  "execution_result": {
+    "connected": true,
+    "execution_status": "guarded_dry_run_transaction_completed_and_rolled_back",
+    "error_message": null,
+    "before_snapshot": {
+      "captured_at": "2026-06-15T20:45:23.550Z",
+      "rows": [
+        {
+          "id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+          "card_print": {
+            "id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+            "name": "Claydol",
+            "gv_id": "GV-PK-CEL-15CC-CLAYDOL",
+            "artist": null,
+            "number": "15",
+            "rarity": "Classic Collection",
+            "set_id": "3be64773-d30e-48af-af8c-3563b57e5e4a",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "cel25c",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/cel25c/17_A.png",
+            "created_at": "2026-03-10T22:26:17.123601+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-10T22:26:17.123601+00:00",
+            "ai_metadata": null,
+            "variant_key": "cc",
+            "external_ids": {
+              "pokemonapi": "cel25c-15_A4"
+            },
+            "image_source": null,
+            "image_status": "exact",
+            "number_plain": "15",
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": "cel25c:15:claydol",
+            "printed_set_abbrev": null,
+            "set_identity_model": "reprint_anthology",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "07752071-a0db-4766-8d35-0c4b54e3ad00",
+              "image_url": null,
+              "created_at": "2026-06-10T19:48:41.784881+00:00",
+              "created_by": "pkg09a_alias_subset_bulk_convergence_guarded_dry_run_v1",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-CEL-15CC-CLAYDOL-HOLO",
+              "provenance_ref": "cel25c:15:holo",
+              "provenance_source": "verified_master_set_index_v1"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 5493,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T07:21:50.413654+00:00",
+              "external_id": "cel25c-15_A4",
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "fbc39d32-8f2b-4adf-898f-e8da565700d8",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "printed_number": "15",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_set_abbrev": "CEL",
+                "variant_key_current": "cc"
+              },
+              "identity_key_hash": "d71f26f5b5ddf235fc08c94265521e99771e697cf0c88f153217f72c990db571",
+              "set_code_identity": "cel25c",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "claydol"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 80,
+              "id": 63222,
+              "types": [
+                "Fighting"
+              ],
+              "rarity": "Classic Collection",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2026-06-15T16:40:45.597851+00:00",
+              "trait_type": "pokemon:national_dex",
+              "trait_value": "344",
+              "national_dex": 344,
+              "card_category": "Stage 1",
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "legacy_rarity": "Classic Collection"
+            },
+            {
+              "hp": 80,
+              "id": 63218,
+              "types": [
+                "Fighting"
+              ],
+              "rarity": "Classic Collection",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2026-06-15T16:40:45.597851+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "pokemonapi",
+              "national_dex": 344,
+              "card_category": "Stage 1",
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "legacy_rarity": "Classic Collection"
+            },
+            {
+              "hp": null,
+              "id": 63221,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:40:45.597851+00:00",
+              "trait_type": "pokemon:subtype",
+              "trait_value": "Stage 1",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "legacy_rarity": null
+            },
+            {
+              "hp": null,
+              "id": 63220,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:40:45.597851+00:00",
+              "trait_type": "pokemon:supertype",
+              "trait_value": "Pokémon",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "legacy_rarity": null
+            },
+            {
+              "hp": null,
+              "id": 63219,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:40:45.597851+00:00",
+              "trait_type": "pokemon:type",
+              "trait_value": "Fighting",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "0ebd3523-b386-4887-94d2-66f9fc682998",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Claydol",
+                "supertype": null,
+                "card_category": null,
+                "matched_token": "claydol"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "b28c1b9f-0a87-4cdd-9eed-ed4126c15f14",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+          "card_print": {
+            "id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+            "name": "Here Comes Team Rocket!",
+            "gv_id": "GV-PK-CEL-15CC-HERE-COMES-TEAM-ROCKET",
+            "artist": null,
+            "number": "15",
+            "rarity": "Classic Collection",
+            "set_id": "3be64773-d30e-48af-af8c-3563b57e5e4a",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "cel25c",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/cel25c/15_A.png",
+            "created_at": "2026-03-10T22:22:38.03403+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-10T22:22:38.03403+00:00",
+            "ai_metadata": null,
+            "variant_key": "cc",
+            "external_ids": {
+              "pokemonapi": "cel25c-15_A2"
+            },
+            "image_source": null,
+            "image_status": "exact",
+            "number_plain": "15",
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": "cel25c:15:here-comes-team-rocket",
+            "printed_set_abbrev": null,
+            "set_identity_model": "reprint_anthology",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "15c26d52-1719-40be-b29f-5169263e923b",
+              "image_url": null,
+              "created_at": "2026-06-10T19:48:41.784881+00:00",
+              "created_by": "pkg09a_alias_subset_bulk_convergence_guarded_dry_run_v1",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-CEL-15CC-HERE-COMES-TEAM-ROCKET-HOLO",
+              "provenance_ref": "cel25c:15:holo",
+              "provenance_source": "verified_master_set_index_v1"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 93807,
+              "meta": {
+                "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+                "justtcg_name": "Here Comes Team Rocket!",
+                "resolved_via": "justtcg_direct_structure_exact",
+                "justtcg_number": "15/82",
+                "justtcg_rarity": "Classic Collection",
+                "justtcg_set_id": "celebrations-classic-collection-pokemon",
+                "override_reason": null,
+                "justtcg_set_name": "Celebrations: Classic Collection",
+                "set_alignment_method": "exact_raw_name",
+                "set_alignment_status": "exact_aligned",
+                "justtcg_query_number_used": "15",
+                "justtcg_query_variant_used": "raw",
+                "justtcg_query_variants_tried": [
+                  "15"
+                ]
+              },
+              "active": true,
+              "source": "justtcg",
+              "synced_at": "2026-03-23T04:42:31.196+00:00",
+              "external_id": "pokemon-celebrations-classic-collection-here-comes-team-rocket-classic-collection",
+              "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977"
+            },
+            {
+              "id": 5492,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T07:21:49.810568+00:00",
+              "external_id": "cel25c-15_A2",
+              "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "522a98a7-3e43-4642-9fc2-205aa355e545",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+              "printed_number": "15",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_set_abbrev": "CEL",
+                "variant_key_current": "cc"
+              },
+              "identity_key_hash": "09e74f8dda4023e8b6bb7993526ccb39d2792660b7d592ac99d530dff226c535",
+              "set_code_identity": "cel25c",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "here comes team rocket!"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": null,
+              "id": 65064,
+              "types": [],
+              "rarity": "Classic Collection",
+              "source": "pokemonapi",
+              "supertype": "Trainer",
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "pokemonapi",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+              "legacy_rarity": "Classic Collection"
+            },
+            {
+              "hp": null,
+              "id": 65065,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:supertype",
+              "trait_value": "Trainer",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": []
+        },
+        {
+          "id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+          "card_print": {
+            "id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+            "name": "Rocket's Zapdos",
+            "gv_id": "GV-PK-CEL-15CC-ROCKET-S-ZAPDOS",
+            "artist": null,
+            "number": "15",
+            "rarity": "Classic Collection",
+            "set_id": "3be64773-d30e-48af-af8c-3563b57e5e4a",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "cel25c",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/cel25c/16_A.png",
+            "created_at": "2026-03-10T22:25:01.254327+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-10T22:25:01.254327+00:00",
+            "ai_metadata": null,
+            "variant_key": "cc",
+            "external_ids": {
+              "pokemonapi": "cel25c-15_A3"
+            },
+            "image_source": null,
+            "image_status": "exact",
+            "number_plain": "15",
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": "cel25c:15:rocket-s-zapdos",
+            "printed_set_abbrev": null,
+            "set_identity_model": "reprint_anthology",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "34045915-eefa-43ef-a621-72b965c4f53e",
+              "image_url": null,
+              "created_at": "2026-06-10T19:48:41.784881+00:00",
+              "created_by": "pkg09a_alias_subset_bulk_convergence_guarded_dry_run_v1",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-CEL-15CC-ROCKET-S-ZAPDOS-HOLO",
+              "provenance_ref": "cel25c:15:holo",
+              "provenance_source": "verified_master_set_index_v1"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 5494,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T07:21:51.009838+00:00",
+              "external_id": "cel25c-15_A3",
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "1fe05839-2f03-41e0-9a32-4d435c3854ea",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "printed_number": "15",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_set_abbrev": "CEL",
+                "variant_key_current": "cc"
+              },
+              "identity_key_hash": "a49fb92ce0c1dcd2b0533a2500bf6fe2015c6c95f4bc909aa06e9a06b96f8dea",
+              "set_code_identity": "cel25c",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "rocket's zapdos"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 70,
+              "id": 65070,
+              "types": [
+                "Lightning"
+              ],
+              "rarity": "Classic Collection",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:national_dex",
+              "trait_value": "145",
+              "national_dex": 145,
+              "card_category": "Basic",
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "legacy_rarity": "Classic Collection"
+            },
+            {
+              "hp": 70,
+              "id": 65066,
+              "types": [
+                "Lightning"
+              ],
+              "rarity": "Classic Collection",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "pokemonapi",
+              "national_dex": 145,
+              "card_category": "Basic",
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "legacy_rarity": "Classic Collection"
+            },
+            {
+              "hp": null,
+              "id": 65069,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:subtype",
+              "trait_value": "Basic",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "legacy_rarity": null
+            },
+            {
+              "hp": null,
+              "id": 65068,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:supertype",
+              "trait_value": "Pokémon",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "legacy_rarity": null
+            },
+            {
+              "hp": null,
+              "id": 65067,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:type",
+              "trait_value": "Lightning",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "e74273a8-b56a-49cc-9de7-f2142b513e54",
+              "role": "trainer_owned",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Rocket's Zapdos",
+                "supertype": null,
+                "card_category": null,
+                "matched_token": "zapdos"
+              },
+              "confidence": 0.72,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "c489f42a-4b94-4cf9-a494-ece32d4085df",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+          "card_print": {
+            "id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+            "name": "Venusaur",
+            "gv_id": "GV-PK-CEL-15CC",
+            "artist": "Mitsuhiro Arita",
+            "number": "15",
+            "rarity": "Classic Collection",
+            "set_id": "3be64773-d30e-48af-af8c-3563b57e5e4a",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "cel25c",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/cel25c/15_A.png",
+            "created_at": "2025-11-16T06:32:35.437741+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2025-09-04T18:21:25.317338+00:00",
+            "ai_metadata": {
+              "pokemonapi": {
+                "legalities": {
+                  "unlimited": "Legal"
+                },
+                "flavor_text": null
+              }
+            },
+            "variant_key": "cc",
+            "external_ids": {
+              "pokemonapi": "cel25c-15_A1"
+            },
+            "image_source": "pokemonapi",
+            "image_status": "exact",
+            "number_plain": "15",
+            "tcgplayer_id": null,
+            "image_alt_url": "https://images.pokemontcg.io/cel25c/15_A.png",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": {
+              "legacy_image_url": "https://images.pokemontcg.io/cel25c/15_A_hires.png",
+              "pokemontcg_legacy": true
+            },
+            "print_identity_key": "cel25c:15:venusaur",
+            "printed_set_abbrev": null,
+            "set_identity_model": "reprint_anthology",
+            "image_last_checked_at": "2025-12-19T22:55:26.307842+00:00",
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "d2605d80-b14b-41e9-9080-2da94ebe577f",
+              "image_url": null,
+              "created_at": "2026-03-27T03:12:50.34767+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-CEL-15CC-HOLO",
+              "provenance_ref": "cel25-15A",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 93876,
+              "meta": {
+                "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+                "justtcg_name": "Venusaur",
+                "resolved_via": "justtcg_direct_structure_exact",
+                "justtcg_number": "15/102",
+                "justtcg_rarity": "Classic Collection",
+                "justtcg_set_id": "celebrations-classic-collection-pokemon",
+                "override_reason": null,
+                "justtcg_set_name": "Celebrations: Classic Collection",
+                "set_alignment_method": "exact_raw_name",
+                "set_alignment_status": "exact_aligned",
+                "justtcg_query_number_used": "15",
+                "justtcg_query_variant_used": "raw",
+                "justtcg_query_variants_tried": [
+                  "15"
+                ]
+              },
+              "active": true,
+              "source": "justtcg",
+              "synced_at": "2026-03-23T04:45:34.212+00:00",
+              "external_id": "pokemon-celebrations-classic-collection-venusaur-classic-collection",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3"
+            },
+            {
+              "id": 5491,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T07:21:49.177912+00:00",
+              "external_id": "cel25c-15_A1",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3"
+            },
+            {
+              "id": 114430,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2026-03-27T03:12:50.193239+00:00",
+              "external_id": "cel25-15A",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "922a286a-5fb3-4096-8510-bd4b65b08b43",
+              "is_active": true,
+              "created_at": "2026-04-03T18:02:50.808535+00:00",
+              "updated_at": "2026-04-08T13:29:08.847552+00:00",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+              "printed_number": "15A",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_total": 25,
+                "printed_set_abbrev": "CEL"
+              },
+              "identity_key_hash": "d2452884fc929fbaaf5eb88aeba92baaadd00fb863f76cb22b150509aa20a14d",
+              "set_code_identity": "cel25",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "venusaur"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 100,
+              "id": 53755,
+              "types": [
+                "Grass"
+              ],
+              "rarity": "Classic Collection",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T03:12:50.64061+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 3,
+              "card_category": "Stage2",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+              "legacy_rarity": null
+            },
+            {
+              "hp": 100,
+              "id": 21373,
+              "types": [
+                "Lightning"
+              ],
+              "rarity": "Classic Collection",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2025-11-18T01:49:44.738+00:00",
+              "trait_type": "pokemon:subtype",
+              "trait_value": "Basic",
+              "national_dex": 3,
+              "card_category": "Basic",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "2197e8f3-10e9-47b8-ac96-4aef9212b319",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Venusaur",
+                "supertype": "Pokemon",
+                "card_category": "Stage2",
+                "matched_token": "venusaur"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "32e8ac8e-a20e-4e31-a11e-e16b5d58fc5c",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+          "card_print": {
+            "id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+            "name": "Claydol",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Classic Collection",
+            "set_id": "928b540a-49ea-4eb5-8a21-21361dd7c709",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": null,
+            "created_at": "2026-03-27T03:12:53.922085+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T03:12:53.922085+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "cel25-15A4"
+            },
+            "image_source": null,
+            "image_status": "missing",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "1f1e5ec3-db59-4a79-9485-66225a327f53",
+              "image_url": null,
+              "created_at": "2026-03-27T03:12:54.139085+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "cel25-15A4",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 114434,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2026-03-27T03:12:54.043938+00:00",
+              "external_id": "cel25-15A4",
+              "card_print_id": "aedd9f51-0d41-48de-a35d-2df67bb72046"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": 80,
+              "id": 46662,
+              "types": [
+                "Fighting"
+              ],
+              "rarity": "Classic Collection",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T03:12:54.339464+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 344,
+              "card_category": "Stage1",
+              "card_print_id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "987ac697-745d-44ba-9756-39ce9e003508",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Claydol",
+                "supertype": "Pokemon",
+                "card_category": "Stage1",
+                "matched_token": "claydol"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "b28c1b9f-0a87-4cdd-9eed-ed4126c15f14",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "8e4958ab-1e4e-4636-87e1-4650ae938086",
+          "card_print": {
+            "id": "8e4958ab-1e4e-4636-87e1-4650ae938086",
+            "name": "Here Comes Team Rocket!",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Classic Collection",
+            "set_id": "928b540a-49ea-4eb5-8a21-21361dd7c709",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": null,
+            "created_at": "2026-03-27T03:12:54.975258+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T03:12:54.975258+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "cel25-15A2"
+            },
+            "image_source": null,
+            "image_status": "missing",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "898898dd-d576-481a-bd03-809557cea5c3",
+              "image_url": null,
+              "created_at": "2026-03-27T03:12:55.23779+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "8e4958ab-1e4e-4636-87e1-4650ae938086",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "cel25-15A2",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 114435,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2026-03-27T03:12:55.090552+00:00",
+              "external_id": "cel25-15A2",
+              "card_print_id": "8e4958ab-1e4e-4636-87e1-4650ae938086"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": null,
+              "id": 46663,
+              "types": null,
+              "rarity": "Classic Collection",
+              "source": "tcgdex",
+              "supertype": "Trainer",
+              "confidence": null,
+              "created_at": "2026-03-27T03:12:55.517234+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "8e4958ab-1e4e-4636-87e1-4650ae938086",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": []
+        },
+        {
+          "id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+          "card_print": {
+            "id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+            "name": "Rocket's Zapdos",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Classic Collection",
+            "set_id": "928b540a-49ea-4eb5-8a21-21361dd7c709",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": null,
+            "created_at": "2026-03-27T03:12:52.984651+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T03:12:52.984651+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "cel25-15A3"
+            },
+            "image_source": null,
+            "image_status": "missing",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "c720e681-a3f4-40cf-8c99-ad99cd86fcfb",
+              "image_url": null,
+              "created_at": "2026-03-27T03:12:53.18666+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "cel25-15A3",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 114433,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2026-03-27T03:12:53.094397+00:00",
+              "external_id": "cel25-15A3",
+              "card_print_id": "d7e84443-dae0-4d48-b32a-b2719ec4d670"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": 70,
+              "id": 46661,
+              "types": [
+                "Lightning"
+              ],
+              "rarity": "Classic Collection",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T03:12:53.382133+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 145,
+              "card_category": "Basic",
+              "card_print_id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "6c6a9308-87fa-40cb-ad4f-f4826c98b317",
+              "role": "trainer_owned",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Rocket's Zapdos",
+                "supertype": "Pokemon",
+                "card_category": "Basic",
+                "matched_token": "zapdos"
+              },
+              "confidence": 0.72,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "c489f42a-4b94-4cf9-a494-ece32d4085df",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+          "card_print": {
+            "id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+            "name": "Venusaur",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Classic Collection",
+            "set_id": "928b540a-49ea-4eb5-8a21-21361dd7c709",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": null,
+            "created_at": "2026-03-27T03:12:52.035879+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T03:12:52.035879+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "cel25-15A1"
+            },
+            "image_source": null,
+            "image_status": "missing",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "e93840f1-febc-456d-baf4-db5b72111aff",
+              "image_url": null,
+              "created_at": "2026-03-27T03:12:52.232897+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "cel25-15A1",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 114432,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2026-03-27T03:12:52.138488+00:00",
+              "external_id": "cel25-15A1",
+              "card_print_id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": 100,
+              "id": 46660,
+              "types": [
+                "Grass"
+              ],
+              "rarity": "Classic Collection",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T03:12:52.451045+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 3,
+              "card_category": "Stage2",
+              "card_print_id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "e8d5a90b-aa85-40d0-accc-9903eb2c9280",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Venusaur",
+                "supertype": "Pokemon",
+                "card_category": "Stage2",
+                "matched_token": "venusaur"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "32e8ac8e-a20e-4e31-a11e-e16b5d58fc5c",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+              "counts_for_completion": true
+            }
+          ]
+        }
+      ],
+      "hash_sha256": "483ee05f1b7958bab55b086e1bb747f3618b548981bad815aa1f75ee310f4ce3",
+      "impact_counts": {
+        "card_prints_found": 8,
+        "alias_parents_present": 4,
+        "owner_parents_present": 4,
+        "alias_child_printings": 4,
+        "owner_child_printings": 4,
+        "alias_external_mappings": 4,
+        "alias_identity_rows": 0,
+        "alias_trait_rows": 4,
+        "alias_species_rows": 3,
+        "alias_external_printing_refs": 0,
+        "alias_vault_printing_refs": 0,
+        "alias_warehouse_printing_refs": 0
+      }
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-15T20:45:25.825Z",
+      "rows": [
+        {
+          "id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+          "card_print": {
+            "id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+            "name": "Claydol",
+            "gv_id": "GV-PK-CEL-15CC-CLAYDOL",
+            "artist": null,
+            "number": "15",
+            "rarity": "Classic Collection",
+            "set_id": "3be64773-d30e-48af-af8c-3563b57e5e4a",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "cel25c",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/cel25c/17_A.png",
+            "created_at": "2026-03-10T22:26:17.123601+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-10T22:26:17.123601+00:00",
+            "ai_metadata": null,
+            "variant_key": "cc",
+            "external_ids": {
+              "pokemonapi": "cel25c-15_A4"
+            },
+            "image_source": null,
+            "image_status": "exact",
+            "number_plain": "15",
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": "cel25c:15:claydol",
+            "printed_set_abbrev": null,
+            "set_identity_model": "reprint_anthology",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "07752071-a0db-4766-8d35-0c4b54e3ad00",
+              "image_url": null,
+              "created_at": "2026-06-10T19:48:41.784881+00:00",
+              "created_by": "pkg09a_alias_subset_bulk_convergence_guarded_dry_run_v1",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-CEL-15CC-CLAYDOL-HOLO",
+              "provenance_ref": "cel25c:15:holo",
+              "provenance_source": "verified_master_set_index_v1"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 5493,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T07:21:50.413654+00:00",
+              "external_id": "cel25c-15_A4",
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "fbc39d32-8f2b-4adf-898f-e8da565700d8",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "printed_number": "15",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_set_abbrev": "CEL",
+                "variant_key_current": "cc"
+              },
+              "identity_key_hash": "d71f26f5b5ddf235fc08c94265521e99771e697cf0c88f153217f72c990db571",
+              "set_code_identity": "cel25c",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "claydol"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 80,
+              "id": 63222,
+              "types": [
+                "Fighting"
+              ],
+              "rarity": "Classic Collection",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2026-06-15T16:40:45.597851+00:00",
+              "trait_type": "pokemon:national_dex",
+              "trait_value": "344",
+              "national_dex": 344,
+              "card_category": "Stage 1",
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "legacy_rarity": "Classic Collection"
+            },
+            {
+              "hp": 80,
+              "id": 63218,
+              "types": [
+                "Fighting"
+              ],
+              "rarity": "Classic Collection",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2026-06-15T16:40:45.597851+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "pokemonapi",
+              "national_dex": 344,
+              "card_category": "Stage 1",
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "legacy_rarity": "Classic Collection"
+            },
+            {
+              "hp": null,
+              "id": 63221,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:40:45.597851+00:00",
+              "trait_type": "pokemon:subtype",
+              "trait_value": "Stage 1",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "legacy_rarity": null
+            },
+            {
+              "hp": null,
+              "id": 63220,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:40:45.597851+00:00",
+              "trait_type": "pokemon:supertype",
+              "trait_value": "Pokémon",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "legacy_rarity": null
+            },
+            {
+              "hp": null,
+              "id": 63219,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:40:45.597851+00:00",
+              "trait_type": "pokemon:type",
+              "trait_value": "Fighting",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "0ebd3523-b386-4887-94d2-66f9fc682998",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Claydol",
+                "supertype": null,
+                "card_category": null,
+                "matched_token": "claydol"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "b28c1b9f-0a87-4cdd-9eed-ed4126c15f14",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "a130c820-cd75-4f2e-8acf-dfc77beb63eb",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+          "card_print": {
+            "id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+            "name": "Here Comes Team Rocket!",
+            "gv_id": "GV-PK-CEL-15CC-HERE-COMES-TEAM-ROCKET",
+            "artist": null,
+            "number": "15",
+            "rarity": "Classic Collection",
+            "set_id": "3be64773-d30e-48af-af8c-3563b57e5e4a",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "cel25c",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/cel25c/15_A.png",
+            "created_at": "2026-03-10T22:22:38.03403+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-10T22:22:38.03403+00:00",
+            "ai_metadata": null,
+            "variant_key": "cc",
+            "external_ids": {
+              "pokemonapi": "cel25c-15_A2"
+            },
+            "image_source": null,
+            "image_status": "exact",
+            "number_plain": "15",
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": "cel25c:15:here-comes-team-rocket",
+            "printed_set_abbrev": null,
+            "set_identity_model": "reprint_anthology",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "15c26d52-1719-40be-b29f-5169263e923b",
+              "image_url": null,
+              "created_at": "2026-06-10T19:48:41.784881+00:00",
+              "created_by": "pkg09a_alias_subset_bulk_convergence_guarded_dry_run_v1",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-CEL-15CC-HERE-COMES-TEAM-ROCKET-HOLO",
+              "provenance_ref": "cel25c:15:holo",
+              "provenance_source": "verified_master_set_index_v1"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 93807,
+              "meta": {
+                "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+                "justtcg_name": "Here Comes Team Rocket!",
+                "resolved_via": "justtcg_direct_structure_exact",
+                "justtcg_number": "15/82",
+                "justtcg_rarity": "Classic Collection",
+                "justtcg_set_id": "celebrations-classic-collection-pokemon",
+                "override_reason": null,
+                "justtcg_set_name": "Celebrations: Classic Collection",
+                "set_alignment_method": "exact_raw_name",
+                "set_alignment_status": "exact_aligned",
+                "justtcg_query_number_used": "15",
+                "justtcg_query_variant_used": "raw",
+                "justtcg_query_variants_tried": [
+                  "15"
+                ]
+              },
+              "active": true,
+              "source": "justtcg",
+              "synced_at": "2026-03-23T04:42:31.196+00:00",
+              "external_id": "pokemon-celebrations-classic-collection-here-comes-team-rocket-classic-collection",
+              "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977"
+            },
+            {
+              "id": 5492,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T07:21:49.810568+00:00",
+              "external_id": "cel25c-15_A2",
+              "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "522a98a7-3e43-4642-9fc2-205aa355e545",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+              "printed_number": "15",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_set_abbrev": "CEL",
+                "variant_key_current": "cc"
+              },
+              "identity_key_hash": "09e74f8dda4023e8b6bb7993526ccb39d2792660b7d592ac99d530dff226c535",
+              "set_code_identity": "cel25c",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "here comes team rocket!"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": null,
+              "id": 65064,
+              "types": [],
+              "rarity": "Classic Collection",
+              "source": "pokemonapi",
+              "supertype": "Trainer",
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "pokemonapi",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+              "legacy_rarity": "Classic Collection"
+            },
+            {
+              "hp": null,
+              "id": 65065,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:supertype",
+              "trait_value": "Trainer",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": []
+        },
+        {
+          "id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+          "card_print": {
+            "id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+            "name": "Rocket's Zapdos",
+            "gv_id": "GV-PK-CEL-15CC-ROCKET-S-ZAPDOS",
+            "artist": null,
+            "number": "15",
+            "rarity": "Classic Collection",
+            "set_id": "3be64773-d30e-48af-af8c-3563b57e5e4a",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "cel25c",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/cel25c/16_A.png",
+            "created_at": "2026-03-10T22:25:01.254327+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-10T22:25:01.254327+00:00",
+            "ai_metadata": null,
+            "variant_key": "cc",
+            "external_ids": {
+              "pokemonapi": "cel25c-15_A3"
+            },
+            "image_source": null,
+            "image_status": "exact",
+            "number_plain": "15",
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": "cel25c:15:rocket-s-zapdos",
+            "printed_set_abbrev": null,
+            "set_identity_model": "reprint_anthology",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "34045915-eefa-43ef-a621-72b965c4f53e",
+              "image_url": null,
+              "created_at": "2026-06-10T19:48:41.784881+00:00",
+              "created_by": "pkg09a_alias_subset_bulk_convergence_guarded_dry_run_v1",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-CEL-15CC-ROCKET-S-ZAPDOS-HOLO",
+              "provenance_ref": "cel25c:15:holo",
+              "provenance_source": "verified_master_set_index_v1"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 5494,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T07:21:51.009838+00:00",
+              "external_id": "cel25c-15_A3",
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "1fe05839-2f03-41e0-9a32-4d435c3854ea",
+              "is_active": true,
+              "created_at": "2026-06-15T05:13:03.711116+00:00",
+              "updated_at": "2026-06-15T05:13:03.711116+00:00",
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "printed_number": "15",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_set_abbrev": "CEL",
+                "variant_key_current": "cc"
+              },
+              "identity_key_hash": "a49fb92ce0c1dcd2b0533a2500bf6fe2015c6c95f4bc909aa06e9a06b96f8dea",
+              "set_code_identity": "cel25c",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "rocket's zapdos"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 70,
+              "id": 65070,
+              "types": [
+                "Lightning"
+              ],
+              "rarity": "Classic Collection",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:national_dex",
+              "trait_value": "145",
+              "national_dex": 145,
+              "card_category": "Basic",
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "legacy_rarity": "Classic Collection"
+            },
+            {
+              "hp": 70,
+              "id": 65066,
+              "types": [
+                "Lightning"
+              ],
+              "rarity": "Classic Collection",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "pokemonapi",
+              "national_dex": 145,
+              "card_category": "Basic",
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "legacy_rarity": "Classic Collection"
+            },
+            {
+              "hp": null,
+              "id": 65069,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:subtype",
+              "trait_value": "Basic",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "legacy_rarity": null
+            },
+            {
+              "hp": null,
+              "id": 65068,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:supertype",
+              "trait_value": "Pokémon",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "legacy_rarity": null
+            },
+            {
+              "hp": null,
+              "id": 65067,
+              "types": null,
+              "rarity": null,
+              "source": "pokemonapi",
+              "supertype": null,
+              "confidence": null,
+              "created_at": "2026-06-15T16:53:26.746045+00:00",
+              "trait_type": "pokemon:type",
+              "trait_value": "Lightning",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "e74273a8-b56a-49cc-9de7-f2142b513e54",
+              "role": "trainer_owned",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Rocket's Zapdos",
+                "supertype": null,
+                "card_category": null,
+                "matched_token": "zapdos"
+              },
+              "confidence": 0.72,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "c489f42a-4b94-4cf9-a494-ece32d4085df",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "3eb0cb6b-15f1-4f62-8cd5-97fa08ec8734",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+          "card_print": {
+            "id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+            "name": "Venusaur",
+            "gv_id": "GV-PK-CEL-15CC",
+            "artist": "Mitsuhiro Arita",
+            "number": "15",
+            "rarity": "Classic Collection",
+            "set_id": "3be64773-d30e-48af-af8c-3563b57e5e4a",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": "cel25c",
+            "variants": null,
+            "image_res": null,
+            "image_url": "https://images.pokemontcg.io/cel25c/15_A.png",
+            "created_at": "2025-11-16T06:32:35.437741+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2025-09-04T18:21:25.317338+00:00",
+            "ai_metadata": {
+              "pokemonapi": {
+                "legalities": {
+                  "unlimited": "Legal"
+                },
+                "flavor_text": null
+              }
+            },
+            "variant_key": "cc",
+            "external_ids": {
+              "pokemonapi": "cel25c-15_A1"
+            },
+            "image_source": "pokemonapi",
+            "image_status": "exact",
+            "number_plain": "15",
+            "tcgplayer_id": null,
+            "image_alt_url": "https://images.pokemontcg.io/cel25c/15_A.png",
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": {
+              "legacy_image_url": "https://images.pokemontcg.io/cel25c/15_A_hires.png",
+              "pokemontcg_legacy": true
+            },
+            "print_identity_key": "cel25c:15:venusaur",
+            "printed_set_abbrev": null,
+            "set_identity_model": "reprint_anthology",
+            "image_last_checked_at": "2025-12-19T22:55:26.307842+00:00",
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "d2605d80-b14b-41e9-9080-2da94ebe577f",
+              "image_url": null,
+              "created_at": "2026-03-27T03:12:50.34767+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": "GV-PK-CEL-15CC-HOLO",
+              "provenance_ref": "cel25-15A",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 93876,
+              "meta": {
+                "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+                "justtcg_name": "Venusaur",
+                "resolved_via": "justtcg_direct_structure_exact",
+                "justtcg_number": "15/102",
+                "justtcg_rarity": "Classic Collection",
+                "justtcg_set_id": "celebrations-classic-collection-pokemon",
+                "override_reason": null,
+                "justtcg_set_name": "Celebrations: Classic Collection",
+                "set_alignment_method": "exact_raw_name",
+                "set_alignment_status": "exact_aligned",
+                "justtcg_query_number_used": "15",
+                "justtcg_query_variant_used": "raw",
+                "justtcg_query_variants_tried": [
+                  "15"
+                ]
+              },
+              "active": true,
+              "source": "justtcg",
+              "synced_at": "2026-03-23T04:45:34.212+00:00",
+              "external_id": "pokemon-celebrations-classic-collection-venusaur-classic-collection",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3"
+            },
+            {
+              "id": 5491,
+              "meta": null,
+              "active": true,
+              "source": "pokemonapi",
+              "synced_at": "2025-11-18T07:21:49.177912+00:00",
+              "external_id": "cel25c-15_A1",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3"
+            },
+            {
+              "id": 114430,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2026-03-27T03:12:50.193239+00:00",
+              "external_id": "cel25-15A",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3"
+            }
+          ],
+          "card_print_identity": [
+            {
+              "id": "922a286a-5fb3-4096-8510-bd4b65b08b43",
+              "is_active": true,
+              "created_at": "2026-04-03T18:02:50.808535+00:00",
+              "updated_at": "2026-04-08T13:29:08.847552+00:00",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+              "printed_number": "15A",
+              "identity_domain": "pokemon_eng_standard",
+              "source_name_raw": null,
+              "identity_payload": {
+                "printed_total": 25,
+                "printed_set_abbrev": "CEL"
+              },
+              "identity_key_hash": "d2452884fc929fbaaf5eb88aeba92baaadd00fb863f76cb22b150509aa20a14d",
+              "set_code_identity": "cel25",
+              "identity_key_version": "pokemon_eng_standard:v1",
+              "normalized_printed_name": "venusaur"
+            }
+          ],
+          "card_print_traits": [
+            {
+              "hp": 100,
+              "id": 53755,
+              "types": [
+                "Grass"
+              ],
+              "rarity": "Classic Collection",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T03:12:50.64061+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 3,
+              "card_category": "Stage2",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+              "legacy_rarity": null
+            },
+            {
+              "hp": 100,
+              "id": 21373,
+              "types": [
+                "Lightning"
+              ],
+              "rarity": "Classic Collection",
+              "source": "pokemonapi",
+              "supertype": "Pokémon",
+              "confidence": null,
+              "created_at": "2025-11-18T01:49:44.738+00:00",
+              "trait_type": "pokemon:subtype",
+              "trait_value": "Basic",
+              "national_dex": 3,
+              "card_category": "Basic",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "2197e8f3-10e9-47b8-ac96-4aef9212b319",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Venusaur",
+                "supertype": "Pokemon",
+                "card_category": "Stage2",
+                "matched_token": "venusaur"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "32e8ac8e-a20e-4e31-a11e-e16b5d58fc5c",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+          "card_print": {
+            "id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+            "name": "Claydol",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Classic Collection",
+            "set_id": "928b540a-49ea-4eb5-8a21-21361dd7c709",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": null,
+            "created_at": "2026-03-27T03:12:53.922085+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T03:12:53.922085+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "cel25-15A4"
+            },
+            "image_source": null,
+            "image_status": "missing",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "1f1e5ec3-db59-4a79-9485-66225a327f53",
+              "image_url": null,
+              "created_at": "2026-03-27T03:12:54.139085+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "cel25-15A4",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 114434,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2026-03-27T03:12:54.043938+00:00",
+              "external_id": "cel25-15A4",
+              "card_print_id": "aedd9f51-0d41-48de-a35d-2df67bb72046"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": 80,
+              "id": 46662,
+              "types": [
+                "Fighting"
+              ],
+              "rarity": "Classic Collection",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T03:12:54.339464+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 344,
+              "card_category": "Stage1",
+              "card_print_id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "987ac697-745d-44ba-9756-39ce9e003508",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Claydol",
+                "supertype": "Pokemon",
+                "card_category": "Stage1",
+                "matched_token": "claydol"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "b28c1b9f-0a87-4cdd-9eed-ed4126c15f14",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "8e4958ab-1e4e-4636-87e1-4650ae938086",
+          "card_print": {
+            "id": "8e4958ab-1e4e-4636-87e1-4650ae938086",
+            "name": "Here Comes Team Rocket!",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Classic Collection",
+            "set_id": "928b540a-49ea-4eb5-8a21-21361dd7c709",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": null,
+            "created_at": "2026-03-27T03:12:54.975258+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T03:12:54.975258+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "cel25-15A2"
+            },
+            "image_source": null,
+            "image_status": "missing",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "898898dd-d576-481a-bd03-809557cea5c3",
+              "image_url": null,
+              "created_at": "2026-03-27T03:12:55.23779+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "8e4958ab-1e4e-4636-87e1-4650ae938086",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "cel25-15A2",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 114435,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2026-03-27T03:12:55.090552+00:00",
+              "external_id": "cel25-15A2",
+              "card_print_id": "8e4958ab-1e4e-4636-87e1-4650ae938086"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": null,
+              "id": 46663,
+              "types": null,
+              "rarity": "Classic Collection",
+              "source": "tcgdex",
+              "supertype": "Trainer",
+              "confidence": null,
+              "created_at": "2026-03-27T03:12:55.517234+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": null,
+              "card_category": null,
+              "card_print_id": "8e4958ab-1e4e-4636-87e1-4650ae938086",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": []
+        },
+        {
+          "id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+          "card_print": {
+            "id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+            "name": "Rocket's Zapdos",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Classic Collection",
+            "set_id": "928b540a-49ea-4eb5-8a21-21361dd7c709",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": null,
+            "created_at": "2026-03-27T03:12:52.984651+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T03:12:52.984651+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "cel25-15A3"
+            },
+            "image_source": null,
+            "image_status": "missing",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "c720e681-a3f4-40cf-8c99-ad99cd86fcfb",
+              "image_url": null,
+              "created_at": "2026-03-27T03:12:53.18666+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "cel25-15A3",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 114433,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2026-03-27T03:12:53.094397+00:00",
+              "external_id": "cel25-15A3",
+              "card_print_id": "d7e84443-dae0-4d48-b32a-b2719ec4d670"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": 70,
+              "id": 46661,
+              "types": [
+                "Lightning"
+              ],
+              "rarity": "Classic Collection",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T03:12:53.382133+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 145,
+              "card_category": "Basic",
+              "card_print_id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "6c6a9308-87fa-40cb-ad4f-f4826c98b317",
+              "role": "trainer_owned",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Rocket's Zapdos",
+                "supertype": "Pokemon",
+                "card_category": "Basic",
+                "matched_token": "zapdos"
+              },
+              "confidence": 0.72,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "c489f42a-4b94-4cf9-a494-ece32d4085df",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+              "counts_for_completion": true
+            }
+          ]
+        },
+        {
+          "id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+          "card_print": {
+            "id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+            "name": "Venusaur",
+            "gv_id": null,
+            "artist": null,
+            "number": null,
+            "rarity": "Classic Collection",
+            "set_id": "928b540a-49ea-4eb5-8a21-21361dd7c709",
+            "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+            "set_code": null,
+            "variants": null,
+            "image_res": null,
+            "image_url": null,
+            "created_at": "2026-03-27T03:12:52.035879+00:00",
+            "image_hash": null,
+            "image_note": null,
+            "image_path": null,
+            "updated_at": "2026-03-27T03:12:52.035879+00:00",
+            "ai_metadata": {
+              "tcgdex": {
+                "legalities": {},
+                "flavor_text": null
+              }
+            },
+            "variant_key": "",
+            "external_ids": {
+              "tcgdex": "cel25-15A1"
+            },
+            "image_source": null,
+            "image_status": "missing",
+            "number_plain": null,
+            "tcgplayer_id": null,
+            "image_alt_url": null,
+            "printed_total": null,
+            "last_synced_at": null,
+            "identity_domain": "pokemon_eng_standard",
+            "regulation_mark": null,
+            "data_quality_flags": null,
+            "print_identity_key": null,
+            "printed_set_abbrev": null,
+            "set_identity_model": "standard",
+            "image_last_checked_at": null,
+            "representative_image_url": null,
+            "printed_identity_modifier": null
+          },
+          "card_printings": [
+            {
+              "id": "e93840f1-febc-456d-baf4-db5b72111aff",
+              "image_url": null,
+              "created_at": "2026-03-27T03:12:52.232897+00:00",
+              "created_by": "printing_ingestion_v2",
+              "finish_key": "holo",
+              "image_note": null,
+              "image_path": null,
+              "image_source": null,
+              "image_status": null,
+              "card_print_id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+              "image_alt_url": null,
+              "is_provisional": false,
+              "printing_gv_id": null,
+              "provenance_ref": "cel25-15A1",
+              "provenance_source": "tcgdex"
+            }
+          ],
+          "external_mappings": [
+            {
+              "id": 114432,
+              "meta": null,
+              "active": true,
+              "source": "tcgdex",
+              "synced_at": "2026-03-27T03:12:52.138488+00:00",
+              "external_id": "cel25-15A1",
+              "card_print_id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0"
+            }
+          ],
+          "card_print_identity": [],
+          "card_print_traits": [
+            {
+              "hp": 100,
+              "id": 46660,
+              "types": [
+                "Grass"
+              ],
+              "rarity": "Classic Collection",
+              "source": "tcgdex",
+              "supertype": "Pokemon",
+              "confidence": null,
+              "created_at": "2026-03-27T03:12:52.451045+00:00",
+              "trait_type": "pokemon:stats",
+              "trait_value": "tcgdex",
+              "national_dex": 3,
+              "card_category": "Stage2",
+              "card_print_id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+              "legacy_rarity": null
+            }
+          ],
+          "card_print_species": [
+            {
+              "id": "e8d5a90b-aa85-40d0-accc-9903eb2c9280",
+              "role": "primary",
+              "active": true,
+              "source": "grookai_dex_name_rule_v1",
+              "evidence": {
+                "card_name": "Venusaur",
+                "supertype": "Pokemon",
+                "card_category": "Stage2",
+                "matched_token": "venusaur"
+              },
+              "confidence": 0.82,
+              "created_at": "2026-05-18T10:14:32.614406+00:00",
+              "species_id": "32e8ac8e-a20e-4e31-a11e-e16b5d58fc5c",
+              "updated_at": "2026-05-18T10:14:32.614406+00:00",
+              "card_print_id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+              "counts_for_completion": true
+            }
+          ]
+        }
+      ],
+      "hash_sha256": "483ee05f1b7958bab55b086e1bb747f3618b548981bad815aa1f75ee310f4ce3",
+      "impact_counts": {
+        "card_prints_found": 8,
+        "alias_parents_present": 4,
+        "owner_parents_present": 4,
+        "alias_child_printings": 4,
+        "owner_child_printings": 4,
+        "alias_external_mappings": 4,
+        "alias_identity_rows": 0,
+        "alias_trait_rows": 4,
+        "alias_species_rows": 3,
+        "alias_external_printing_refs": 0,
+        "alias_vault_printing_refs": 0,
+        "alias_warehouse_printing_refs": 0
+      }
+    }
+  },
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "stop_findings": [],
+  "required_real_apply_approval_text": "Approve real ENRICH-13G1-CELEBRATIONS-SUBSET-ALIAS-TRANSFER apply only. Fingerprint: 2a55568422b6a513dbfe6ca64ea662274acc697a3f6955e249e23c781b6641ac. SQL hash: a9b4550e4e3343dfee547af686468bb141f5d4dc2ad593809f1e7a96772c3a05. Scope: 4 cel25 15A# source-alias transfers to cel25c subset owners, 4 child printings deduped/transferred, 4 external mappings handled. Dry-run proof: 483ee05f1b7958bab55b086e1bb747f3618b548981bad815aa1f75ee310f4ce3 == 483ee05f1b7958bab55b086e1bb747f3618b548981bad815aa1f75ee310f4ce3. No host cel25 15A# parent identity creation. No global apply. No migrations. No image writes."
+}

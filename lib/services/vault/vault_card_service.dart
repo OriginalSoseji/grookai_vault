@@ -12,6 +12,10 @@ class VaultCardIdentity {
     required this.setName,
     this.number,
     this.imageUrl,
+    this.canonicalImageUrl,
+    this.representativeImageUrl,
+    this.imageStatus,
+    this.imageNote,
     this.variantKey,
     this.printedIdentityModifier,
     this.setIdentityModel,
@@ -23,6 +27,10 @@ class VaultCardIdentity {
   final String setName;
   final String? number;
   final String? imageUrl;
+  final String? canonicalImageUrl;
+  final String? representativeImageUrl;
+  final String? imageStatus;
+  final String? imageNote;
   final String? variantKey;
   final String? printedIdentityModifier;
   final String? setIdentityModel;
@@ -39,6 +47,10 @@ class VaultCardIdentity {
       setName: setName,
       number: json['number_plain']?.toString() ?? json['number']?.toString(),
       imageUrl: imageUrl,
+      canonicalImageUrl: _trimmedOrNull(json['image_url']),
+      representativeImageUrl: _trimmedOrNull(json['representative_image_url']),
+      imageStatus: _trimmedOrNull(json['image_status']),
+      imageNote: _trimmedOrNull(json['image_note']),
       variantKey: _trimmedOrNull(json['variant_key']),
       printedIdentityModifier: _trimmedOrNull(
         json['printed_identity_modifier'],
@@ -224,6 +236,10 @@ class VaultManageCardData {
     this.number,
     this.rarity,
     this.imageUrl,
+    this.canonicalImageUrl,
+    this.representativeImageUrl,
+    this.imageStatus,
+    this.imageNote,
     this.variantKey,
     this.printedIdentityModifier,
     this.setIdentityModel,
@@ -245,6 +261,10 @@ class VaultManageCardData {
   final String? number;
   final String? rarity;
   final String? imageUrl;
+  final String? canonicalImageUrl;
+  final String? representativeImageUrl;
+  final String? imageStatus;
+  final String? imageNote;
   final String? variantKey;
   final String? printedIdentityModifier;
   final String? setIdentityModel;
@@ -460,6 +480,7 @@ class VaultCardService {
     String? fallbackName,
     String? fallbackSetName,
     String? fallbackImageUrl,
+    String? cardPrintingId,
   }) async {
     final qtyDelta = deltaQty < 1 ? 1 : deltaQty;
     debugPrint('vault.mobile.add.begin: $cardId');
@@ -474,6 +495,8 @@ class VaultCardService {
         'name': fallbackName,
         'set_name': fallbackSetName,
         'photo_url': fallbackImageUrl,
+        if (_trimmedOrNull(cardPrintingId) != null)
+          'card_printing_id': _trimmedOrNull(cardPrintingId),
       },
     );
 
@@ -484,7 +507,9 @@ class VaultCardService {
     final responseData = response.data;
     final result = responseData is Map
         ? Map<String, dynamic>.from(
-            (responseData['result'] is Map ? responseData['result'] : responseData)
+            (responseData['result'] is Map
+                    ? responseData['result']
+                    : responseData)
                 as Map,
           )
         : null;
@@ -713,6 +738,10 @@ class VaultCardService {
       number: number,
       rarity: _trimmedOrNull(canonicalRow?['rarity']),
       imageUrl: imageUrl,
+      canonicalImageUrl: _trimmedOrNull(identity?.canonicalImageUrl),
+      representativeImageUrl: _trimmedOrNull(identity?.representativeImageUrl),
+      imageStatus: _trimmedOrNull(identity?.imageStatus),
+      imageNote: _trimmedOrNull(identity?.imageNote),
       variantKey: _trimmedOrNull(identity?.variantKey),
       printedIdentityModifier: _trimmedOrNull(
         identity?.printedIdentityModifier,

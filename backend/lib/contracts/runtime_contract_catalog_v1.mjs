@@ -350,6 +350,27 @@ export const CONTRACT_RUNTIME_CATALOG_V1 = {
     gaps: 'Proof remains worker-scoped, not schema-scoped.',
     next_action: 'Promote to a DB-safe derived proof only after coverage stabilizes.',
   },
+  IMAGE_CONFIDENCE_CONTRACT_V1: {
+    status: 'Active',
+    authority_class: 'enrichment',
+    domain: 'image',
+    canon_affecting: true,
+    conflict_behavior:
+      'Image confidence labels must not claim exactness when the image is only representative or missing a known variant visual.',
+    enforcement_points: {
+      db: ['public.card_prints image fields', 'public.card_printings image fields'],
+      worker: ['backend/images/source_image_enrichment_worker_v1.mjs'],
+      audit: ['docs/audits/image_truth_v1'],
+      checkpoint: ['CONTRACT_RUNTIME_LAYER_V1'],
+      quarantine_behavior: 'Ambiguous or conflicting image candidates block exact promotion and remain review-only.',
+      post_write_proof_query:
+        'Image write proofs must preserve target row, source URL, confidence status, and no parent overwrite for child-image repair.',
+    },
+    current_enforcement_status: 'partially_enforced',
+    gaps: 'Existing image_status schema does not yet encode the full confidence vocabulary.',
+    next_action:
+      'Use audit/report labels immediately; add schema/UI support only through a later dry-run-proven image package.',
+  },
   PRICING_ENGINE_V1: {
     status: 'Active',
     authority_class: 'pricing',

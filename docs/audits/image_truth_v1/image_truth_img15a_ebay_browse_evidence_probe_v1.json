@@ -1,0 +1,467 @@
+{
+  "generated_at": "2026-06-15T04:28:46.583Z",
+  "package_id": "IMG-15A-EBAY-BROWSE-EVIDENCE-ONLY-PROBE",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_inputs": {
+    "residual_probe_json": "docs\\audits\\image_truth_v1\\image_truth_img14a_pricecharting_residual_exact_probe_v1.json",
+    "readiness_json": "docs\\audits\\image_truth_v1\\image_truth_exact_variant_readiness_v1.json"
+  },
+  "ebay_policy": {
+    "evidence_only": true,
+    "listing_images_used": false,
+    "canonical_image_promotion_allowed": false,
+    "budget_rpc_consumed": false,
+    "listing_metadata_preserved": true
+  },
+  "summary": {
+    "source_rows": 6,
+    "searched_rows": 6,
+    "source_unavailable_rows": 0,
+    "title_evidence_candidate_rows": 3,
+    "no_title_evidence_rows": 3,
+    "listings_seen": 27
+  },
+  "rows": [
+    {
+      "card_printing_id": "aa91ccf3-3860-4435-ade8-2d9bcfd53bf7",
+      "set_code": "sv03.5",
+      "number": "004",
+      "card_name": "Charmander",
+      "finish_key": "cosmos",
+      "query": "Pokemon 151 Charmander cosmos holo 004",
+      "status": "evidence_candidate_title_only",
+      "reason": "ebay_listing_title_matches_identity_finish_but_images_excluded",
+      "title_evidence_matches": 5,
+      "listings": [
+        {
+          "item_id": "v1|137409098121|0",
+          "title": "Charmander 004/165 Scarlet & Violet 151 Cosmos Holo Rare Pokemon Card NM",
+          "item_web_url": "https://www.ebay.com/itm/137409098121?_skw=Pokemon+151+Charmander+cosmos+holo+004&hash=item1ffe387189:g:ltAAAeSwVnxqLLPI",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "3.49",
+          "currency": "USD",
+          "title_evidence_match": true,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|147201475874|0",
+          "title": "Charmander 004/165 Reverse Cosmos Holo (Costco): 151 Pokemon TCG Near Mint",
+          "item_web_url": "https://www.ebay.com/itm/147201475874?_skw=Pokemon+151+Charmander+cosmos+holo+004&hash=item2245e44522:g:s3QAAeSwVZdps632",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "4.99",
+          "currency": "USD",
+          "title_evidence_match": true,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|287393963962|0",
+          "title": "Charmander - 004/165 - Pokemon 151 Reverse Cosmos Holo Rare Card",
+          "item_web_url": "https://www.ebay.com/itm/287393963962?_skw=Pokemon+151+Charmander+cosmos+holo+004&hash=item42ea03dfba:g:oJMAAeSwrOpqLlRv",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "2.00",
+          "currency": "USD",
+          "title_evidence_match": true,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|197759387705|0",
+          "title": "Charmander ~2x Swirl~ 004/165 Scarlet & Violet 151 Cosmos Holo Pokemon TCG NM",
+          "item_web_url": "https://www.ebay.com/itm/197759387705?_skw=Pokemon+151+Charmander+cosmos+holo+004&hash=item2e0b60c839:g:KUoAAeSw7Uho55cI&amdata=enc%3AAQALAAABAACCtXRWQnOEpyOqnQQ8KGbVDC6soASzem7vDn6w%2B1I%2FQ%2FPY%2FJpcZ%2B%2BPEXGmEpAcP9v7MsbOI2izdqwQS7UTxoZ40FcmCRaHilNnGgmGWyopW3o8zowguY8kOvNSHTSXyQZvwRXrFhuAviGjfFk1T%2BkwEJRc8Huzo%2BkoVz98UwRc7KL75hf5B7LQ%2BSQMYc%2FxFKT3Rqblz3V%2FvAuCRJL6Yu9BHx5Mgv1j6m31qCZKt6ZFcA9ZoDS2GQfIaqDm2nIVI0DE0la%2BALSXf5IFHC1Z10s%2F86IZ0%2FjGOd3VnmVH%2FDeotuXmaNeZABD9L0SemFinMo8OXoJWERGK3nbPuhF1XcE%3D",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "price": "88.00",
+          "currency": "USD",
+          "title_evidence_match": true,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|197759384520|0",
+          "title": "Charmander ~Swirl~ 004/165 Scarlet & Violet 151 Cosmos Holo Pokemon TCG NM",
+          "item_web_url": "https://www.ebay.com/itm/197759384520?_skw=Pokemon+151+Charmander+cosmos+holo+004&hash=item2e0b60bbc8:g:T7EAAeSwMSRo55ZJ&amdata=enc%3AAQALAAABAACCtXRWQnOEpyOqnQQ8KGbnmdEUCxcOPXHGaBcEci4LqDkaEzD9Tqf23kfw6VZtwb3sCmtBbP5ueHoAqpNCKv9xs90HsYJQhZey5gVjKF7%2BMfGxxRZErE2FxiElqv%2FI7cyMrffd09UnmugnMkBGUjfiMZ6UQgXcVvzvK%2B8h%2FGPRGnuxxLpQLi8m0XYeMBfyG3Vn8ey7TdaFXWcz3ucg5%2Bod0SbeusQtaVOnw0vkwuNYeL8udp%2F4UfIkBgvJNPHfH9G9M8BaAZekGkuFl02DAqpFIey%2Bqav4qtEROo60pbgS9nLPY8U9%2BJxShHhajASm0eBJX8WdkJCfWO5vVzTZBQk%3D",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "price": "40.00",
+          "currency": "USD",
+          "title_evidence_match": true,
+          "image_policy": "ignored_for_canonical_image_truth"
+        }
+      ]
+    },
+    {
+      "card_printing_id": "dd73286d-1363-46c1-8bdf-d786df131324",
+      "set_code": "sve",
+      "number": "3",
+      "card_name": "Basic Water Energy",
+      "finish_key": "reverse",
+      "query": "Pokemon scarlet violet energy Basic Water Energy reverse holo 3",
+      "status": "evidence_candidate_title_only",
+      "reason": "ebay_listing_title_matches_identity_finish_but_images_excluded",
+      "title_evidence_matches": 2,
+      "listings": [
+        {
+          "item_id": "v1|287395623513|0",
+          "title": "Basic Water Energy 019 Scarlet & Violet Energies Pokemon Reverse Holo Near Mint",
+          "item_web_url": "https://www.ebay.com/itm/287395623513?_skw=Pokemon+scarlet+violet+energy+Basic+Water+Energy+reverse+holo+3&hash=item42ea1d3259:g:evMAAeSwPZZqL2kg",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.99",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|127918813809|0",
+          "title": "Basic Water Energy 019 Scarlet & Violet Energies Pokemon Reverse Holo Near Mint",
+          "item_web_url": "https://www.ebay.com/itm/127918813809?_skw=Pokemon+scarlet+violet+energy+Basic+Water+Energy+reverse+holo+3&hash=item1dc88e3271:g:hNYAAeSwTYtqLFwF",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.96",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|227384521660|0",
+          "title": "Basic Water Energy 003 C Scarlet & Violet Energies Pokemon Reverse Holo NM/M",
+          "item_web_url": "https://www.ebay.com/itm/227384521660?_skw=Pokemon+scarlet+violet+energy+Basic+Water+Energy+reverse+holo+3&hash=item34f12c73bc:g:VnIAAeSw9JZqK2fl",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.99",
+          "currency": "USD",
+          "title_evidence_match": true,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|358542264147|0",
+          "title": "Basic Water Energy - Common SVE: Scarlet & Violet Energies 003 NM Reverse Holo",
+          "item_web_url": "https://www.ebay.com/itm/358542264147?_skw=Pokemon+scarlet+violet+energy+Basic+Water+Energy+reverse+holo+3&hash=item537ac8c753:g:0V0AAeSwv5dqATGv&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGbPySoe7Z%2B5vs6IVXqJAzGB63NwvHl%2Be8oEaXMzmG2ECAwl6tH%2B5xAd61XBP66dCeS2uQQLgb%2F82%2F9f%2B4bGtP6sPtQpTsgoDW6WAUMA0FlmB%2FPzz0CvsFR6CHIi2g%2F0psctaPHFyrwaA9FVLu%2BUe1ObkHuoRoTeTiR3vxswlAWWgyCMkyxjyYBfqBI3IoPWOtNeKPlIgqZQw3T8%2BUUZ5hKcOANCDR9LvaPqyg4UwV5257VGKxjESZc230CuD8dF8Pxi%2BW9aXe9pi0KjWw4FZD8qKyTwPw8vbyqy4Ve1NI2HUvJtYd1iOrVRx6xI9cUdpMtLIUiFgLoXeHTMv8FF4Oav4g%2BuQRVWDv4Mf%2Blz0FGLAA%3D%3D",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "price": "13.00",
+          "currency": "USD",
+          "title_evidence_match": true,
+          "image_policy": "ignored_for_canonical_image_truth"
+        }
+      ]
+    },
+    {
+      "card_printing_id": "4079a4ef-3eb5-4208-a04c-06add5be06b8",
+      "set_code": "sve",
+      "number": "5",
+      "card_name": "Basic Psychic Energy",
+      "finish_key": "reverse",
+      "query": "Pokemon scarlet violet energy Basic Psychic Energy reverse holo 5",
+      "status": "no_exact_title_evidence",
+      "reason": "no_listing_title_matched_exact_identity_finish",
+      "title_evidence_matches": 0,
+      "listings": [
+        {
+          "item_id": "v1|287395623507|0",
+          "title": "Basic Psychic Energy 021 Scarlet & Violet Energies Pokemon Reverse Holo NM",
+          "item_web_url": "https://www.ebay.com/itm/287395623507?_skw=Pokemon+scarlet+violet+energy+Basic+Psychic+Energy+reverse+holo+5&hash=item42ea1d3253:g:oysAAeSw95xqL2mX",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.99",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|127901769312|0",
+          "title": "Basic Psychic Energy 021 Scarlet & Violet Energies Pokemon Reverse Holo NM",
+          "item_web_url": "https://www.ebay.com/itm/127901769312?_skw=Pokemon+scarlet+violet+energy+Basic+Psychic+Energy+reverse+holo+5&hash=item1dc78a1e60:g:ouUAAeSwdbJqIIIn",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.79",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|127918813806|0",
+          "title": "Basic Psychic Energy 021 Scarlet & Violet Energies Pokemon Reverse Holo NM",
+          "item_web_url": "https://www.ebay.com/itm/127918813806?_skw=Pokemon+scarlet+violet+energy+Basic+Psychic+Energy+reverse+holo+5&hash=item1dc88e326e:g:qs4AAeSw8n5qLFvJ",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.96",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|206312707431|0",
+          "title": "Pokemon Basic Psychic Energy 021/SVE Scarlet & Violet Reverse Holo NM",
+          "item_web_url": "https://www.ebay.com/itm/206312707431?_skw=Pokemon+scarlet+violet+energy+Basic+Psychic+Energy+reverse+holo+5&hash=item3009321567:g:H~0AAeSwCftqHLSZ",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "price": "1.43",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|318297822010|0",
+          "title": "Basic Psychic Energy 021 Scarlet & Violet Energies Pokemon Reverse Holo NM",
+          "item_web_url": "https://www.ebay.com/itm/318297822010?_skw=Pokemon+scarlet+violet+energy+Basic+Psychic+Energy+reverse+holo+5&hash=item4a1c07533a:g:LyIAAeSwA9FqBNVM",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.58",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        }
+      ]
+    },
+    {
+      "card_printing_id": "3a29d550-9261-4ca6-8405-a0014d2ea76a",
+      "set_code": "sve",
+      "number": "6",
+      "card_name": "Basic Fighting Energy",
+      "finish_key": "reverse",
+      "query": "Pokemon scarlet violet energy Basic Fighting Energy reverse holo 6",
+      "status": "no_exact_title_evidence",
+      "reason": "no_listing_title_matched_exact_identity_finish",
+      "title_evidence_matches": 0,
+      "listings": [
+        {
+          "item_id": "v1|398043594423|0",
+          "title": "Basic Fighting Energy 022 Scarlet & Violet Energies Pokemon Reverse Holo NM",
+          "item_web_url": "https://www.ebay.com/itm/398043594423?_skw=Pokemon+scarlet+violet+energy+Basic+Fighting+Energy+reverse+holo+6&hash=item5cad3f3eb7:g:4vYAAeSwtvZqJ5kX",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.49",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|358669404494|0",
+          "title": "Basic Fighting Energy 022 Scarlet & Violet Energies Pokemon Reverse Holo NM",
+          "item_web_url": "https://www.ebay.com/itm/358669404494?_skw=Pokemon+scarlet+violet+energy+Basic+Fighting+Energy+reverse+holo+6&hash=item53825cc94e:g:S3oAAeSwNvVqK4RG",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.99",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|287395623479|0",
+          "title": "Basic Fighting Energy 022 Scarlet & Violet Energies Pokemon Reverse Holo NM",
+          "item_web_url": "https://www.ebay.com/itm/287395623479?_skw=Pokemon+scarlet+violet+energy+Basic+Fighting+Energy+reverse+holo+6&hash=item42ea1d3237:g:dp8AAeSwsa1qL2kf",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.99",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|227350546240|0",
+          "title": "Basic Fighting Energy 022 Scarlet & Violet Energies Pokemon Reverse Holo NM/M",
+          "item_web_url": "https://www.ebay.com/itm/227350546240?_skw=Pokemon+scarlet+violet+energy+Basic+Fighting+Energy+reverse+holo+6&hash=item34ef260740:g:LHQAAeSwEJpqDN12",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.79",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|127901769296|0",
+          "title": "Basic Fighting Energy 022 Scarlet & Violet Energies Pokemon Reverse Holo NM",
+          "item_web_url": "https://www.ebay.com/itm/127901769296?_skw=Pokemon+scarlet+violet+energy+Basic+Fighting+Energy+reverse+holo+6&hash=item1dc78a1e50:g:JqEAAeSw1XFqIIIv",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.79",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        }
+      ]
+    },
+    {
+      "card_printing_id": "d2686174-b14e-4dfc-9e35-51461d1c6464",
+      "set_code": "swsh4.5",
+      "number": "60",
+      "card_name": "Professor's Research",
+      "finish_key": "holo",
+      "query": "Pokemon shining fates Professor's Research holo 60",
+      "status": "evidence_candidate_title_only",
+      "reason": "ebay_listing_title_matches_identity_finish_but_images_excluded",
+      "title_evidence_matches": 3,
+      "listings": [
+        {
+          "item_id": "v1|334869570275|0",
+          "title": "Professor's Research 60/72 - COSMO HOLO RARE - EXCLUSIVE - Shining Fates - NM",
+          "item_web_url": "https://www.ebay.com/itm/334869570275?_skw=Pokemon+shining+fates+Professor%27s+Research+holo+60&hash=item4df7c822e3:g:cC0AAOSwWdVkXTeS",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.49",
+          "currency": "USD",
+          "title_evidence_match": true,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|397702501857|666030967492",
+          "title": "Pokemon TCG. Shining Fates Reverse Holos. 100% Authentic",
+          "item_web_url": "https://www.ebay.com/itm/397702501857?_skw=Pokemon+shining+fates+Professor%27s+Research+holo+60&hash=item5c98ea95e1:g:6ZkAAeSw7v1paDey",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "0.99",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|358410956087|0",
+          "title": "x4 Professor's Research Cosmos Holo Rare - 060/072 - Shining Fates Pokemon 2021",
+          "item_web_url": "https://www.ebay.com/itm/358410956087?_skw=Pokemon+shining+fates+Professor%27s+Research+holo+60&hash=item5372f52d37:g:3DUAAeSw0SNp0Vdj",
+          "condition": "Used",
+          "buying_options": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "price": "4.99",
+          "currency": "USD",
+          "title_evidence_match": true,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|137158577507|0",
+          "title": "Pokemon Shining Fates No. 60/72 Professor's Research Reverse Holo English",
+          "item_web_url": "https://www.ebay.com/itm/137158577507?_skw=Pokemon+shining+fates+Professor%27s+Research+holo+60&hash=item1fef49cd63:g:H5cAAeSwLW1pwK8n&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGa%2F8a%2FsmkVV8Ed10FVp59WPOMbWNbNVR38W54l4wcoyRbT6c%2FvT%2BriKP%2FzKuxwVOs7nUq6dKEiVQ8Zn%2FlMxJy%2B%2BdCnHjg2py1T3PcCryXbrA0oIeypyvqBdLytSUNsdz%2FFEc0YPjNebfyEoTGJGEeXaH85WYjzojUSJPqXJM4XsNAIjUacR%2B26KezNzOc6lzlGWhVdF81rnIpv4zu0Ov%2BjKYoSb3lHuLaaUOkYNgpBWJZf49thdMNWL8mlvWCcrKw%2BwxycFFKhjIeS%2Br%2BPYrtkA6NjhfiV%2FcRTUhpCuwliZEPBS8C5qyXGiyrHX2IC9E1mAAzXnYmXWVheKjX1VWnyv",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "8.04",
+          "currency": "USD",
+          "title_evidence_match": true,
+          "image_policy": "ignored_for_canonical_image_truth"
+        }
+      ]
+    },
+    {
+      "card_printing_id": "d63aff49-0991-4170-b173-8967f7a8ee32",
+      "set_code": "xy8",
+      "number": "146a",
+      "card_name": "Professor's Letter",
+      "finish_key": "normal",
+      "query": "Pokemon breakthrough Professor's Letter 146a",
+      "status": "no_exact_title_evidence",
+      "reason": "no_listing_title_matched_exact_identity_finish",
+      "title_evidence_matches": 0,
+      "listings": [
+        {
+          "item_id": "v1|257566249899|0",
+          "title": "Professor's Letter [BKT - 146/162] XY - BREAKthrough - LP",
+          "item_web_url": "https://www.ebay.com/itm/257566249899?_skw=Pokemon+breakthrough+Professor%27s+Letter+146a&hash=item3bf82513ab:g:apIAAeSwvLpqL3Rz",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.99",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|198426825374|0",
+          "title": "Professor's Letter 146/162 BREAKthrough Graphics",
+          "item_web_url": "https://www.ebay.com/itm/198426825374?_skw=Pokemon+breakthrough+Professor%27s+Letter+146a&hash=item2e3329129e:g:0lAAAeSwt1ZqL3zL",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "1.79",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|398064418161|0",
+          "title": "Professor's Letter 146/162 Uncommon BREAKthrough Pokemon Reverse Holo LP",
+          "item_web_url": "https://www.ebay.com/itm/398064418161?_skw=Pokemon+breakthrough+Professor%27s+Letter+146a&hash=item5cae7cfd71:g:2lAAAeSwpfdqLtZM",
+          "condition": "Ungraded",
+          "buying_options": [
+            "FIXED_PRICE"
+          ],
+          "price": "2.25",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        },
+        {
+          "item_id": "v1|317257041339|0",
+          "title": "Professor's Letter 146/162 XY Breakthrough - x6 Trainer Pokemon - Playset GLC",
+          "item_web_url": "https://www.ebay.com/itm/317257041339?_skw=Pokemon+breakthrough+Professor%27s+Letter+146a&hash=item49ddfe45bb:g:iAIAAeSwtSRovzzz&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGaIZvy41ndWJVYB6hKxBMb9dnf7y0e%2FEWQ7lFOLR%2FX%2FMZrPdcoYFRB3vfex5gYOTOG1PPNXF363RmgNqGiatLZeyrlAbA7sXB6ISN9mjnXj4vV8bq9UUSa3CDAwkuol7j8gniUvmZ8FPid99l3lNy4a7LBzo0zyzBlmVEp4EcfQLWaHl%2FUc33pZVSoHaiI0b%2FG106KF3jlbHhc8aJV%2BF1zw%2Fs284ueUhEpXXK%2FoPRNqvzzjmuIzZ8CtKo6bdixGwQcu9GKOcS8WymCbvRLhrX5a6ckJzXpPBIkGLZlw0IFQXBlqfKOnaddLJO7xcaQ64xxzCDDAzTXFKFiYQv7VL%2Ban",
+          "condition": "Used",
+          "buying_options": [
+            "FIXED_PRICE",
+            "BEST_OFFER"
+          ],
+          "price": "7.49",
+          "currency": "USD",
+          "title_evidence_match": false,
+          "image_policy": "ignored_for_canonical_image_truth"
+        }
+      ]
+    }
+  ],
+  "fingerprint": "36ed55969624a13fb207e7546a96b3f31a02d7b1245d62e6c30aef1a8a6a6247"
+}

@@ -1,0 +1,104 @@
+{
+  "version": "CARD_ROW_ENRICHMENT_COMPLETION_CHECKPOINT_V1",
+  "generated_at": "2026-06-16T03:45:00.000Z",
+  "scope": {
+    "target": "English physical card row enrichment after canon reconciliation",
+    "mode": "checkpoint",
+    "db_writes_performed_by_checkpoint": false,
+    "migrations_created": false,
+    "image_work_included": false,
+    "skipped": [
+      "deferred child image printing work"
+    ]
+  },
+  "source_reports": {
+    "status": "docs/audits/card_row_enrichment_v1/card_row_enrichment_status_v1.json",
+    "cleanup_plan": "docs/audits/card_row_enrichment_v1/card_row_enrichment_cleanup_plan_v1.json",
+    "residual_source_audit": "docs/audits/card_row_enrichment_v1/enrich12_residual_source_audit_v1.json",
+    "external_id_payload_mapping_readiness": "docs/audits/card_row_enrichment_v1/enrich12b_external_id_payload_mapping_readiness_v1.json",
+    "catalog_metadata_retry": "docs/audits/card_row_enrichment_v1/enrich12c2_residual_catalog_metadata_guarded_dry_run_v1.json",
+    "residual_blocker_audit": "docs/audits/card_row_enrichment_v1/card_row_enrichment_residual_blocker_audit_v1.json",
+    "master_index_provenance_surface_plan": "docs/audits/card_row_enrichment_v1/enrich28b_master_index_provenance_surface_plan_v1.json",
+    "provenance_recovery": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+    "external_id_payload_source_governance": "docs/audits/card_row_enrichment_v1/enrich30a_external_id_payload_source_governance_v1.json"
+  },
+  "current_totals": {
+    "all_parent_rows": 26228,
+    "all_child_printing_rows": 47561,
+    "english_physical_parent_rows": 23078,
+    "english_physical_child_printing_rows": 38111,
+    "parent_gap_rows": 8619,
+    "child_gap_rows": 23142
+  },
+  "english_physical_residuals": {
+    "parent_gv_id_candidates": 125,
+    "parent_gv_id_ready": 0,
+    "child_printing_gv_id_candidates": 129,
+    "child_printing_gv_id_ready": 0,
+    "active_identity_candidates": 0,
+    "active_identity_ready": 0,
+    "core_identity_gap_rows": 0,
+    "external_mapping_gap_rows": 706,
+    "no_child_printing_parent_rows": 1087,
+    "trait_gaps": 1090,
+    "species_gaps": 3752,
+    "catalog_metadata_gaps": 139
+  },
+  "closed_or_exhausted_lanes": {
+    "catalog_metadata_retry": {
+      "candidate_rows": 0,
+      "target_rows": 0,
+      "status": "exhausted_no_safe_targets"
+    },
+    "direct_external_id_payload_mapping": {
+      "candidate_parent_rows": 14,
+      "candidate_mapping_rows": 15,
+      "ready_mapping_rows": 0,
+      "blocked_mapping_rows": 15,
+      "status": "exhausted_no_safe_targets"
+    },
+    "external_id_payload_source_governance": {
+      "candidate_parent_rows": 636,
+      "payload_source_mentions": 637,
+      "ready_mapping_rows": 0,
+      "by_classification": {
+        "provenance_payload_not_external_mapping_source": 622,
+        "blocked_variant_source_id_owned_by_base_parent": 11,
+        "blocked_existing_source_external_owner": 4
+      },
+      "status": "no_mapping_apply_package_safe"
+    },
+    "master_index_provenance_recovery": {
+      "review_rows": 30,
+      "fully_recoverable_rows": 0,
+      "write_ready_rows": 0,
+      "status": "exhausted_no_safe_targets"
+    }
+  },
+  "remaining_work_classification": {
+    "not_immediate_write_ready": [
+      "parent GV-ID collisions require identity/modifier-aware GV policy before writes",
+      "child printing GV-ID candidates are blocked by parent GV-ID or suffix governance",
+      "external mapping gaps are mostly provenance-only payloads or source ownership collisions",
+      "catalog metadata gaps lack exact active source-mapped metadata targets",
+      "trait and species residuals are source-limited or not-applicable classes, not broad write queues",
+      "no-child parent rows need canon/ingestion adjudication, not metadata cleanup",
+      "child image/display-image work remains deferred to Image Truth V1"
+    ],
+    "safe_future_work": [
+      "source-specific external mapping governance reports",
+      "identity/modifier-aware GV-ID policy design",
+      "admin-only provenance display contract for usable Master Index payloads",
+      "Image Truth V1 child-printing image work",
+      "non-mutating website/app consumption of canonical parent and child printing truth"
+    ]
+  },
+  "verification": {
+    "node_check_enrich30a": "passed",
+    "contract_scope_test": "passed",
+    "git_diff_check": "passed",
+    "supabase_migrations_status": "clean",
+    "npm_preflight": "PASS_WITH_DEFERRED_DEBT",
+    "critical_failures": 0
+  }
+}

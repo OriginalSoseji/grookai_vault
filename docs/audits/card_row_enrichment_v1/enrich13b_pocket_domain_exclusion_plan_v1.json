@@ -1,0 +1,62 @@
+{
+  "version": "ENRICH_13B_POCKET_DOMAIN_EXCLUSION_PLAN_V1",
+  "generated_at": "2026-06-16T02:03:59.649Z",
+  "mode": "read_only_governance_plan",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "source_file": "docs\\audits\\card_row_enrichment_v1\\enrich13_core_identity_resolution_readiness_v1.json",
+  "summary": {
+    "target_rows": 0,
+    "unexpected_pocket_classified_rows": 0,
+    "target_sets": 0,
+    "write_ready_now": false,
+    "recommended_policy": "exclude_from_english_physical_enrichment_until_dedicated_tcg_pocket_domain_contract_exists"
+  },
+  "set_status": [],
+  "dependency_table_status": {},
+  "dependency_totals": {},
+  "governance_decision": {
+    "decision": "do_not_backfill_as_english_physical",
+    "reason": "Rows belong to TCG Pocket-like source IDs and were previously policy-blocked from public physical GV-ID backfill. Current sets still have pokemon_eng_standard identity defaults, so applying physical enrichment would mix non-physical rows into the English physical canon.",
+    "allowed_future_work": [
+      "read-only Pocket/domain inventory",
+      "dedicated TCG Pocket exclusion/domain contract",
+      "guarded dry-run for set/card_print domain reclassification only after contract approval",
+      "public route exclusion verification"
+    ],
+    "forbidden_without_new_contract": [
+      "card_prints.set_code or number backfill as English physical",
+      "GV-ID minting under public physical namespace",
+      "child printing GV-ID enrichment",
+      "active identity insertion in pokemon_eng_standard",
+      "deletion or cleanup of dependency-bearing rows"
+    ]
+  },
+  "proposed_future_package_shape": {
+    "package_id": "ENRICH-13B1-TCG-POCKET-DOMAIN-RECLASSIFICATION-READINESS",
+    "current_status": "not_write_ready_contract_required",
+    "expected_scope_if_later_approved": [
+      "sets.identity_domain_default for A3a/P-A",
+      "card_prints.identity_domain for rows in those sets",
+      "active identity domain handling or deactivation strategy only with explicit contract"
+    ],
+    "excluded_from_scope": [
+      "deletes",
+      "merges",
+      "GV-ID writes",
+      "set_code/number writes",
+      "child printing writes",
+      "image writes",
+      "migrations"
+    ],
+    "required_before_dry_run": [
+      "authoritative Pocket/non-physical domain contract",
+      "visibility/public-route impact audit",
+      "active identity uniqueness plan for non-physical domain",
+      "rollback proof for set and parent domain fields"
+    ]
+  },
+  "sample_rows": [],
+  "fingerprint_sha256": "7375c5dd6d76832fafe3c45c59149404358a6c6d3a680f32cdc22b28d72a4e48"
+}

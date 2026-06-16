@@ -1,0 +1,1135 @@
+{
+  "version": "CARD_ROW_ENRICHMENT_CLEANUP_PLAN_V1",
+  "generated_at": "2026-06-16T03:37:54.679Z",
+  "scope": {
+    "target": "English physical card_prints and card_printings",
+    "skipped": [
+      "deferred child image printing work"
+    ],
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false
+  },
+  "totals": {
+    "english_physical_parent_rows": 23078,
+    "parent_gv_id_candidates": 125,
+    "parent_gv_id_ready": 0,
+    "child_printing_gv_id_candidates": 129,
+    "child_printing_gv_id_ready": 0,
+    "active_identity_candidates": 0,
+    "active_identity_ready": 0,
+    "core_identity_gap_rows": 0,
+    "external_mapping_gap_rows": 706,
+    "no_child_printing_parent_rows": 1087,
+    "trait_gaps": 1090,
+    "species_gaps": 3752,
+    "catalog_metadata_gaps": 139
+  },
+  "package_plan": [
+    {
+      "package_id": "ENRICH-01-PARENT-GV-ID-BACKFILL",
+      "status": "no_ready_rows",
+      "scope": "Backfill missing card_prints.gv_id for English physical parents with complete set/number identity and no GV-ID collisions.",
+      "candidate_rows": 0,
+      "writes_if_later_approved": [
+        "card_prints.gv_id"
+      ],
+      "forbidden_in_package": [
+        "child writes",
+        "identity writes",
+        "deletes",
+        "merges",
+        "migrations",
+        "image writes"
+      ]
+    },
+    {
+      "package_id": "ENRICH-02-CHILD-PRINTING-GV-ID-BACKFILL",
+      "status": "no_ready_rows",
+      "scope": "Backfill missing card_printings.printing_gv_id for English physical child printings with governed finish suffixes.",
+      "candidate_rows": 0,
+      "writes_if_later_approved": [
+        "card_printings.printing_gv_id"
+      ],
+      "forbidden_in_package": [
+        "parent writes",
+        "identity writes",
+        "deletes",
+        "merges",
+        "migrations",
+        "image writes"
+      ]
+    },
+    {
+      "package_id": "ENRICH-03-ACTIVE-IDENTITY-BACKFILL",
+      "status": "no_ready_rows",
+      "scope": "Insert missing active card_print_identity rows using public.card_print_identity_backfill_projection_v1 only.",
+      "candidate_rows": 0,
+      "writes_if_later_approved": [
+        "card_print_identity inserts"
+      ],
+      "forbidden_in_package": [
+        "parent writes",
+        "child writes",
+        "deletes",
+        "merges",
+        "migrations",
+        "image writes"
+      ]
+    },
+    {
+      "package_id": "ENRICH-04-EXTERNAL-MAPPING-BACKFILL-REVIEW",
+      "status": "needs_source_specific_plan",
+      "scope": "Rows without active external mappings. Some have external_ids payloads that can be converted after source-specific validation.",
+      "candidate_rows": 706,
+      "writes_if_later_approved": [
+        "external_mappings inserts only after source validation"
+      ],
+      "forbidden_in_package": [
+        "canonical identity changes",
+        "deletes",
+        "migrations",
+        "image writes"
+      ]
+    },
+    {
+      "package_id": "ENRICH-05-TRAITS-SPECIES-CATALOG-ENRICHMENT",
+      "status": "needs_source_specific_plan",
+      "scope": "Catalog metadata, species, and trait enrichment after identity surfaces are stable.",
+      "candidate_rows": 3752,
+      "writes_if_later_approved": [
+        "card_print_traits/card_print_species/card_prints metadata fields"
+      ],
+      "forbidden_in_package": [
+        "printing canonical changes",
+        "deletes",
+        "migrations",
+        "image writes"
+      ]
+    }
+  ],
+  "deterministic_ready_buckets": {
+    "parent_gv_id": {
+      "title": "parent_gv_id",
+      "total": 125,
+      "by_classification": {
+        "blocked_parent_gv_id_backfill": 125
+      },
+      "by_blocker": {
+        "proposed_gv_id_existing_collision": 125
+      },
+      "by_set_top_25": {
+        "sm115": 94,
+        "pl2": 9,
+        "pl3": 7,
+        "pl1": 6,
+        "dp7": 5,
+        "swsh4.5": 2,
+        "basep": 1,
+        "swsh2": 1
+      },
+      "samples": [
+        {
+          "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+          "set_code": "basep",
+          "set_name": "Wizards Black Star Promos",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Pikachu",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "687811f7-e3d2-41bb-b37d-1e73882551d2",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "100",
+          "number_plain": "100",
+          "card_name": "Regigigas",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "96",
+          "number_plain": "96",
+          "card_name": "Dusknoir",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "7c211bf2-ab9e-489d-842f-65c896270783",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "97",
+          "number_plain": "97",
+          "card_name": "Heatran",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "6f49c231-0a53-4c0c-9db1-6d4c36aa460e",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "98",
+          "number_plain": "98",
+          "card_name": "Machamp",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "7a0dbe87-8ffb-4939-a5c0-371a0a21b302",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "99",
+          "number_plain": "99",
+          "card_name": "Raichu",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "9d20653b-49ea-4a30-8e18-629267d7397b",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "122",
+          "number_plain": "122",
+          "card_name": "Dialga G",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "123",
+          "number_plain": "123",
+          "card_name": "Drapion",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "124",
+          "number_plain": "124",
+          "card_name": "Giratina",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "182aab06-7802-4dea-90cb-32dfc7cefaab",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "125",
+          "number_plain": "125",
+          "card_name": "Palkia G",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "24bd8689-4031-40d0-8948-1d08e652ef34",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "126",
+          "number_plain": "126",
+          "card_name": "Shaymin",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "1f03518a-bed9-4c04-ad0c-3a5cf3008248",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "127",
+          "number_plain": "127",
+          "card_name": "Shaymin",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "a1b66404-67e9-4586-8ac9-873c421da31e",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "103",
+          "number_plain": "103",
+          "card_name": "Alakazam 4",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "5fd2b141-a2af-4c2c-bb33-df2c2af58c02",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "104",
+          "number_plain": "104",
+          "card_name": "Floatzel GL",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "7d47083d-43a4-4868-9bac-eb1deb237136",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "105",
+          "number_plain": "105",
+          "card_name": "Flygon",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "60789fd6-a0bb-49cd-848f-1ba462f4e965",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "106",
+          "number_plain": "106",
+          "card_name": "Gallade 4",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "2ef89f59-3bd7-430f-9e71-42fea8cdd8ae",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "107",
+          "number_plain": "107",
+          "card_name": "Hippowdon",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "a719dd63-f527-4edf-8c8e-e77bac65a715",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "108",
+          "number_plain": "108",
+          "card_name": "Infernape 4",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "26d6335d-9483-4de2-8b1b-771c43ab31cb",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "110",
+          "number_plain": "110",
+          "card_name": "Mismagius GL",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        },
+        {
+          "card_print_id": "25c91739-b09a-4360-94e5-9a8b1ed43755",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "111",
+          "number_plain": "111",
+          "card_name": "Snorlax",
+          "classification": "blocked_parent_gv_id_backfill",
+          "blockers": [
+            "proposed_gv_id_existing_collision"
+          ]
+        }
+      ]
+    },
+    "child_printing_gv_id": {
+      "title": "child_printing_gv_id",
+      "total": 129,
+      "by_classification": {
+        "blocked_child_printing_gv_id_backfill": 129
+      },
+      "by_blocker": {
+        "missing_parent_gv_id": 129
+      },
+      "by_set_top_25": {
+        "sm115": 94,
+        "pl2": 10,
+        "pl3": 7,
+        "pl1": 6,
+        "dp7": 5,
+        "swsh4.5": 4,
+        "swsh2": 2,
+        "basep": 1
+      },
+      "samples": [
+        {
+          "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+          "card_printing_id": "2d6a68ef-68d0-4af2-9e9c-e894572cf57a",
+          "set_code": "basep",
+          "set_name": "Wizards Black Star Promos",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Pikachu",
+          "finish_key": "normal",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "687811f7-e3d2-41bb-b37d-1e73882551d2",
+          "card_printing_id": "7c0cc204-33bc-4277-96dc-6dda382db8d8",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "100",
+          "number_plain": "100",
+          "card_name": "Regigigas",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+          "card_printing_id": "fd0b5e6d-2511-4106-93fc-0bb398993cbb",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "96",
+          "number_plain": "96",
+          "card_name": "Dusknoir",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "7c211bf2-ab9e-489d-842f-65c896270783",
+          "card_printing_id": "f6bca011-2a61-47d5-bd1c-d240e7797f4c",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "97",
+          "number_plain": "97",
+          "card_name": "Heatran",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "6f49c231-0a53-4c0c-9db1-6d4c36aa460e",
+          "card_printing_id": "f23bb2ff-a49f-4b5d-9912-b0b00b256006",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "98",
+          "number_plain": "98",
+          "card_name": "Machamp",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "7a0dbe87-8ffb-4939-a5c0-371a0a21b302",
+          "card_printing_id": "4efcba0d-f0d9-4d21-9482-ad332cdb48f3",
+          "set_code": "dp7",
+          "set_name": "Stormfront",
+          "number": "99",
+          "number_plain": "99",
+          "card_name": "Raichu",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "9d20653b-49ea-4a30-8e18-629267d7397b",
+          "card_printing_id": "03c3313c-3abd-4ea5-91d6-ee4513031d68",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "122",
+          "number_plain": "122",
+          "card_name": "Dialga G",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+          "card_printing_id": "3241f70c-75aa-4935-bc37-1d73ae8c76fc",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "123",
+          "number_plain": "123",
+          "card_name": "Drapion",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+          "card_printing_id": "e97f9421-dfc9-4f57-9f02-458e923f1168",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "124",
+          "number_plain": "124",
+          "card_name": "Giratina",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "182aab06-7802-4dea-90cb-32dfc7cefaab",
+          "card_printing_id": "bfa40e84-9149-4100-b6ac-359a690bde6b",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "125",
+          "number_plain": "125",
+          "card_name": "Palkia G",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "24bd8689-4031-40d0-8948-1d08e652ef34",
+          "card_printing_id": "a286d93c-46e1-44bf-b466-6cfea97f70dc",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "126",
+          "number_plain": "126",
+          "card_name": "Shaymin",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "1f03518a-bed9-4c04-ad0c-3a5cf3008248",
+          "card_printing_id": "d6714ece-8710-4647-8f6c-621eb00a8b11",
+          "set_code": "pl1",
+          "set_name": "Platinum",
+          "number": "127",
+          "number_plain": "127",
+          "card_name": "Shaymin",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "a1b66404-67e9-4586-8ac9-873c421da31e",
+          "card_printing_id": "b1642e63-b55f-47ac-8019-fc4dfa74684a",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "103",
+          "number_plain": "103",
+          "card_name": "Alakazam 4",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "5fd2b141-a2af-4c2c-bb33-df2c2af58c02",
+          "card_printing_id": "f840d51f-6060-486a-8475-838fc37d42eb",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "104",
+          "number_plain": "104",
+          "card_name": "Floatzel GL",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "7d47083d-43a4-4868-9bac-eb1deb237136",
+          "card_printing_id": "d2a31a62-3a44-4666-ba4b-28c6bce0083f",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "105",
+          "number_plain": "105",
+          "card_name": "Flygon",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "60789fd6-a0bb-49cd-848f-1ba462f4e965",
+          "card_printing_id": "3f41c855-6efe-40d1-afd1-fedd165fbd40",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "106",
+          "number_plain": "106",
+          "card_name": "Gallade 4",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "2ef89f59-3bd7-430f-9e71-42fea8cdd8ae",
+          "card_printing_id": "56d84873-cdb6-4e91-a4e4-04502234e0c8",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "107",
+          "number_plain": "107",
+          "card_name": "Hippowdon",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "a719dd63-f527-4edf-8c8e-e77bac65a715",
+          "card_printing_id": "35f81064-5528-4cb7-a418-669a4da937f6",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "108",
+          "number_plain": "108",
+          "card_name": "Infernape 4",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "26d6335d-9483-4de2-8b1b-771c43ab31cb",
+          "card_printing_id": "3772033f-b4f1-4fe6-8c48-971be545e452",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "110",
+          "number_plain": "110",
+          "card_name": "Mismagius GL",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        },
+        {
+          "card_print_id": "25c91739-b09a-4360-94e5-9a8b1ed43755",
+          "card_printing_id": "6ad6c97a-e414-4f63-8b95-e00d33852f3a",
+          "set_code": "pl2",
+          "set_name": "Rising Rivals",
+          "number": "111",
+          "number_plain": "111",
+          "card_name": "Snorlax",
+          "finish_key": "holo",
+          "classification": "blocked_child_printing_gv_id_backfill",
+          "blockers": [
+            "missing_parent_gv_id"
+          ]
+        }
+      ]
+    },
+    "active_identity": {
+      "title": "active_identity",
+      "total": 0,
+      "by_classification": {},
+      "by_blocker": {},
+      "by_set_top_25": {},
+      "samples": []
+    }
+  },
+  "blocked_or_source_needed_buckets": {
+    "core_identity": {
+      "title": "core_identity",
+      "total": 0,
+      "by_classification": {},
+      "by_blocker": {},
+      "by_set_top_25": {},
+      "samples": []
+    },
+    "external_mapping": {
+      "total": 706,
+      "by_classification": {
+        "external_ids_available_for_mapping_backfill_review": 636,
+        "source_acquisition_needed_for_external_mapping": 70
+      },
+      "by_set_top_25": {
+        "svp": 55,
+        "swshp": 42,
+        "swsh11": 36,
+        "swsh9": 29,
+        "swsh7": 28,
+        "swsh10": 27,
+        "swsh6": 24,
+        "smp": 22,
+        "swsh12": 22,
+        "sv10": 21,
+        "mep": 17,
+        "swsh8": 16,
+        "xyp": 16,
+        "sv05": 13,
+        "swsh1": 13,
+        "sv02": 12,
+        "swsh5": 12,
+        "tk2b": 12,
+        "sv09": 11,
+        "dp5": 10,
+        "pl3": 10,
+        "swsh3": 10,
+        "bw1": 9,
+        "swsh2": 9,
+        "dp1": 7
+      },
+      "samples": [
+        {
+          "card_print_id": "9dfec0a3-7f9f-4a9f-a443-6582508cf539",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Pikachu",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "864849e7-1e4d-4bc9-a147-0f250b2dcf1d",
+          "set_code": "base2",
+          "set_name": "Jungle",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Clefable",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "dc7a6594-c436-4737-9d0a-d42dbd4c0a4a",
+          "set_code": "base2",
+          "set_name": "Jungle",
+          "number": "60",
+          "number_plain": "60",
+          "card_name": "Pikachu",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "e4a4fd41-4c5e-4659-8066-01439111c443",
+          "set_code": "base3",
+          "set_name": "Fossil",
+          "number": "50",
+          "number_plain": "50",
+          "card_name": "Kabuto",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "0887fb24-43c6-4e27-95ed-7e266ab6f0d7",
+          "set_code": "base4",
+          "set_name": "Base Set 2",
+          "number": "63",
+          "number_plain": "63",
+          "card_name": "Wartortle",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "d05d1001-bb2f-42dd-bfad-7dae94a09c76",
+          "set_code": "base5",
+          "set_name": "Team Rocket",
+          "number": "19",
+          "number_plain": "19",
+          "card_name": "Dark Arbok",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "20ef43c3-51e5-42cf-b9e8-d908ad9252b3",
+          "set_code": "base5",
+          "set_name": "Team Rocket",
+          "number": "32",
+          "number_plain": "32",
+          "card_name": "Dark Charmeleon",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "f6efb409-a6b9-4ed5-bc24-e600d6b363a5",
+          "set_code": "base5",
+          "set_name": "Team Rocket",
+          "number": "8",
+          "number_plain": "8",
+          "card_name": "Dark Gyarados",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+          "set_code": "basep",
+          "set_name": "Wizards Black Star Promos",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Pikachu",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "8b4de3bc-8cc8-4e8b-a97f-95a78aa08117",
+          "set_code": "basep",
+          "set_name": "Wizards Black Star Promos",
+          "number": "11",
+          "number_plain": "11",
+          "card_name": "Eevee",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "0a143f53-06f8-45de-9fe3-18cea4bca092",
+          "set_code": "basep",
+          "set_name": "Wizards Black Star Promos",
+          "number": "52",
+          "number_plain": "52",
+          "card_name": "Ho-oh",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "56a65047-8d40-4015-9e4f-f83d0f740a6a",
+          "set_code": "basep",
+          "set_name": "Wizards Black Star Promos",
+          "number": "52",
+          "number_plain": "52",
+          "card_name": "Ho-oh",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "614efd10-0ce3-438b-8466-6584bebb88cb",
+          "set_code": "bog",
+          "set_name": "Best of game",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Electabuzz",
+          "classification": "source_acquisition_needed_for_external_mapping"
+        },
+        {
+          "card_print_id": "c0204042-56f4-42a8-878c-7908a2925863",
+          "set_code": "bog",
+          "set_name": "Best of game",
+          "number": "2",
+          "number_plain": "2",
+          "card_name": "Hitmonchan",
+          "classification": "source_acquisition_needed_for_external_mapping"
+        },
+        {
+          "card_print_id": "33126ebf-99f6-4d76-a9bc-179c89e2eb34",
+          "set_code": "bog",
+          "set_name": "Best of game",
+          "number": "6",
+          "number_plain": "6",
+          "card_name": "Dark Ivysaur",
+          "classification": "source_acquisition_needed_for_external_mapping"
+        },
+        {
+          "card_print_id": "03e8e4c7-ad3d-470b-adb3-69082a7f6181",
+          "set_code": "bog",
+          "set_name": "Best of game",
+          "number": "7",
+          "number_plain": "7",
+          "card_name": "Dark Venusaur",
+          "classification": "source_acquisition_needed_for_external_mapping"
+        },
+        {
+          "card_print_id": "0f61df52-76d0-4894-b873-b9c1f972bcf9",
+          "set_code": "bw1",
+          "set_name": "Black & White",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Snivy",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+          "set_code": "bw1",
+          "set_name": "Black & White",
+          "number": "101",
+          "number_plain": "101",
+          "card_name": "Professor Juniper",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "bbb1f8b0-67fb-4ea3-bc5d-9d8ee262ed53",
+          "set_code": "bw1",
+          "set_name": "Black & White",
+          "number": "25",
+          "number_plain": "25",
+          "card_name": "Darmanitan",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "2ad03a0a-dbd8-4195-bce9-2c3582fc1010",
+          "set_code": "bw1",
+          "set_name": "Black & White",
+          "number": "27",
+          "number_plain": "27",
+          "card_name": "Oshawott",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        }
+      ]
+    },
+    "no_child_printing_parents": {
+      "total": 1087,
+      "by_set_top_25": {
+        "smp": 97,
+        "swsh10": 56,
+        "swsh9": 52,
+        "swsh11": 49,
+        "sv10": 39,
+        "sv05": 38,
+        "swsh12": 37,
+        "swsh7": 36,
+        "swsh8": 36,
+        "swsh6": 34,
+        "me01": 32,
+        "bwp": 28,
+        "sv02": 27,
+        "sv04": 24,
+        "sv06": 24,
+        "sv07": 20,
+        "swsh5": 20,
+        "sv01": 18,
+        "sv08": 18,
+        "sv09": 18,
+        "mep": 17,
+        "swsh1": 15,
+        "sv8pt5": 14,
+        "sv6pt5": 13,
+        "me03": 12
+      },
+      "samples": [
+        {
+          "card_print_id": "9dfec0a3-7f9f-4a9f-a443-6582508cf539",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Pikachu",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "864849e7-1e4d-4bc9-a147-0f250b2dcf1d",
+          "set_code": "base2",
+          "set_name": "Jungle",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Clefable",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "dc7a6594-c436-4737-9d0a-d42dbd4c0a4a",
+          "set_code": "base2",
+          "set_name": "Jungle",
+          "number": "60",
+          "number_plain": "60",
+          "card_name": "Pikachu",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "243bdeb5-ff66-415c-88af-645b45f89870",
+          "set_code": "base3",
+          "set_name": "Fossil",
+          "number": "01",
+          "number_plain": "01",
+          "card_name": "Aerodactyl",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "e4a4fd41-4c5e-4659-8066-01439111c443",
+          "set_code": "base3",
+          "set_name": "Fossil",
+          "number": "50",
+          "number_plain": "50",
+          "card_name": "Kabuto",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "0887fb24-43c6-4e27-95ed-7e266ab6f0d7",
+          "set_code": "base4",
+          "set_name": "Base Set 2",
+          "number": "63",
+          "number_plain": "63",
+          "card_name": "Wartortle",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "d05d1001-bb2f-42dd-bfad-7dae94a09c76",
+          "set_code": "base5",
+          "set_name": "Team Rocket",
+          "number": "19",
+          "number_plain": "19",
+          "card_name": "Dark Arbok",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "20ef43c3-51e5-42cf-b9e8-d908ad9252b3",
+          "set_code": "base5",
+          "set_name": "Team Rocket",
+          "number": "32",
+          "number_plain": "32",
+          "card_name": "Dark Charmeleon",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "f6efb409-a6b9-4ed5-bc24-e600d6b363a5",
+          "set_code": "base5",
+          "set_name": "Team Rocket",
+          "number": "8",
+          "number_plain": "8",
+          "card_name": "Dark Gyarados",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "614efd10-0ce3-438b-8466-6584bebb88cb",
+          "set_code": "bog",
+          "set_name": "Best of game",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Electabuzz",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "c0204042-56f4-42a8-878c-7908a2925863",
+          "set_code": "bog",
+          "set_name": "Best of game",
+          "number": "2",
+          "number_plain": "2",
+          "card_name": "Hitmonchan",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "33126ebf-99f6-4d76-a9bc-179c89e2eb34",
+          "set_code": "bog",
+          "set_name": "Best of game",
+          "number": "6",
+          "number_plain": "6",
+          "card_name": "Dark Ivysaur",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "03e8e4c7-ad3d-470b-adb3-69082a7f6181",
+          "set_code": "bog",
+          "set_name": "Best of game",
+          "number": "7",
+          "number_plain": "7",
+          "card_name": "Dark Venusaur",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "4e714b58-bcf3-4931-9c46-163dadba49b8",
+          "set_code": "bp",
+          "set_name": "Best of Game",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Electabuzz",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "cf3b8770-892a-41d8-8a47-647dbb742fee",
+          "set_code": "bp",
+          "set_name": "Best of Game",
+          "number": "2",
+          "number_plain": "2",
+          "card_name": "Hitmonchan",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "bd1d64ae-7ce1-469a-821f-2203099eab4f",
+          "set_code": "bp",
+          "set_name": "Best of Game",
+          "number": "3",
+          "number_plain": "3",
+          "card_name": "Professor Elm",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "371e2c1c-4a18-4961-b2a3-8d01edc07e90",
+          "set_code": "bp",
+          "set_name": "Best of Game",
+          "number": "8",
+          "number_plain": "8",
+          "card_name": "Rocket's Mewtwo",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "acf3e7a7-5f8d-43d2-ad5c-972db7568be7",
+          "set_code": "bp",
+          "set_name": "Best of Game",
+          "number": "9",
+          "number_plain": "9",
+          "card_name": "Rocket's Hitmonchan",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "0f61df52-76d0-4894-b873-b9c1f972bcf9",
+          "set_code": "bw1",
+          "set_name": "Black & White",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Snivy",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        },
+        {
+          "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+          "set_code": "bw1",
+          "set_name": "Black & White",
+          "number": "101",
+          "number_plain": "101",
+          "card_name": "Professor Juniper",
+          "classification": "needs_master_index_or_stale_parent_adjudication"
+        }
+      ],
+      "note": "Do not auto-insert or delete. These need Master Index/stale-parent adjudication."
+    },
+    "trait_species_catalog_metadata": {
+      "trait_gaps": 1090,
+      "species_gaps": 3752,
+      "catalog_metadata_gaps": 139,
+      "note": "These are enrichment lanes, not canonical printing blockers. They need source-specific workers and should run after identity/GV surfaces are stable."
+    },
+    "deferred_child_images": {
+      "status": "explicitly_skipped_by_current_scope",
+      "note": "Child image cleanup remains deferred and is not included in write-readiness package planning."
+    }
+  },
+  "fingerprint_sha256": "d89c3b09aa998a354937b8c382162d937f1d15925504612cafe042d26cf5963a"
+}

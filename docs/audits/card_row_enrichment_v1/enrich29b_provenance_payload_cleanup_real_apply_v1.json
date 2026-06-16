@@ -1,0 +1,3727 @@
+{
+  "version": "ENRICH29B_PROVENANCE_PAYLOAD_CLEANUP_REAL_APPLY_V1",
+  "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+  "generated_at": "2026-06-16T03:27:02.098Z",
+  "db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "approved_text": "Approve real ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP apply only. Fingerprint: 12f3937c4b87a1a9e69dea5cc8a77fbf3a09afea3643ecdd004c069117b01aa2. Scope: 22 card_prints external_ids.verified_master_index_v1 provenance payload cleanups; writes evidence_urls, evidence_labels, preserved_evidence_sources, and missing routing_fingerprint only where needed; dry-run proof: b7e61359a442a3b2587f9d0e0f50ac32b1e8e7c88eefbac04f0d6d142d95812d == b7e61359a442a3b2587f9d0e0f50ac32b1e8e7c88eefbac04f0d6d142d95812d. No parent identity writes. No child writes. No identity writes. No external mapping writes. No species writes. No trait writes. No deletes. No merges. No migrations. No image writes. No global apply.",
+  "dry_run_file": "docs\\audits\\card_row_enrichment_v1\\enrich29b_provenance_payload_cleanup_guarded_dry_run_v1.json",
+  "dry_run_fingerprint_sha256": "12f3937c4b87a1a9e69dea5cc8a77fbf3a09afea3643ecdd004c069117b01aa2",
+  "dry_run_proof_hash_sha256": "b7e61359a442a3b2587f9d0e0f50ac32b1e8e7c88eefbac04f0d6d142d95812d",
+  "package_fingerprint_sha256": "12f3937c4b87a1a9e69dea5cc8a77fbf3a09afea3643ecdd004c069117b01aa2",
+  "apply": {
+    "apply_status": "committed",
+    "before_snapshot": {
+      "captured_at": "2026-06-16T03:27:00.956Z",
+      "rows": [
+        {
+          "card_print_id": "ff0dbd84-07a6-4d0f-a628-e873d343f481",
+          "set_code": "bw5",
+          "number": "37",
+          "card_name": "Jolteon",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-dark-explorers/jolteon-regional-championship-37",
+              "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg16b_source_rows": [
+                {
+                  "source_key": "pokecardvalues_same_finish_ambiguous",
+                  "source_url": "https://pokecardvalues.co.uk/cards/jolteon-37-108-reverse-holo-regional-championships-dark-explorers/bw5-37-3-60/",
+                  "source_kind": "collector_reference",
+                  "evidence_label": "Jolteon - 37/108 - Reverse Holo - Regional Championships - Promo"
+                },
+                {
+                  "source_key": "pricecharting_product_page",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-dark-explorers/jolteon-regional-championship-37",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_label": "Jolteon [Regional Championship] #37 page includes Reverse Foils pricing lane."
+                }
+              ],
+              "pkg16b_source_variant_label": "Regional Championships Promo"
+            },
+            "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+            "independent_finish_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "pricecharting_product_page"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "pricecharting_product_page"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "85ea4524-3f07-494b-986c-290dd1515685",
+          "set_code": "bw5",
+          "number": "84",
+          "card_name": "Eevee",
+          "variant_key": "city_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-dark-explorers/eevee-city-championship-staff-84",
+              "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg16b_source_rows": [
+                {
+                  "source_key": "pokecardvalues_same_finish_ambiguous",
+                  "source_url": "https://pokecardvalues.co.uk/cards/eevee-84-108-reverse-holo-city-championships-dark-explorers/bw5-84-3-23/",
+                  "source_kind": "collector_reference",
+                  "evidence_label": "Eevee - 84/108 - Reverse Holo - City Championships - Promo"
+                },
+                {
+                  "source_key": "tcgplayer_league_championship_product",
+                  "source_url": "https://www.tcgplayer.com/product/209530/pokemon-league-and-championship-cards-eevee-84-108-city-championships",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_label": "Eevee - 84/108 (City Championships) has Reverse Holofoil listing."
+                }
+              ],
+              "pkg16b_source_variant_label": "City Championships Promo"
+            },
+            "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+            "independent_finish_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "tcgplayer_league_championship_product"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "tcgplayer_league_championship_product"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+          "set_code": "dp1",
+          "number": "35",
+          "card_name": "Pachirisu",
+          "variant_key": "diamond_pearl_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_2008_burger_king_toys",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/2008_Burger_King_promotional_Pok%C3%A9mon_toys",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Burger King 2008 checklist lists Pachirisu 35/130; page states Diamond & Pearl stamp mirror reverse holofoil variants."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family"
+                ],
+                "source_key": "pricecharting_stamped_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-diamond-%26-pearl/pachirisu-stamped-35",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "PriceCharting exact product: Pachirisu [Stamped] #35 in Pokemon Diamond & Pearl."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2008",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/2008_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "https://www.pricecharting.com/game/pokemon-diamond-%26-pearl/pachirisu-stamped-35"
+            ],
+            "evidence_labels": [
+              "Burger King 2008 checklist lists Pachirisu 35/130; page states Diamond & Pearl stamp mirror reverse holofoil variants.",
+              "PriceCharting exact product: Pachirisu [Stamped] #35 in Pokemon Diamond & Pearl."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_2008_burger_king_toys",
+              "pricecharting_stamped_product"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+          "set_code": "dp1",
+          "number": "49",
+          "card_name": "Grotle",
+          "variant_key": "diamond_pearl_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_diamond_pearl_tcg",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_(TCG)",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Diamond & Pearl additional-cards table lists Grotle 49/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "reverse_finish"
+                ],
+                "source_key": "tcgplayer_burger_king_promos",
+                "source_url": "https://www.tcgplayer.com/product/155608/pokemon-burger-king-promos-grotle-49-130-diamond-and-pearl",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "TCGplayer exact Burger King Promos product for Grotle 49/130 [Diamond & Pearl] exposes Reverse Holofoil pricing."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2008",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_(TCG)",
+              "https://www.tcgplayer.com/product/155608/pokemon-burger-king-promos-grotle-49-130-diamond-and-pearl"
+            ],
+            "evidence_labels": [
+              "Diamond & Pearl additional-cards table lists Grotle 49/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008.",
+              "TCGplayer exact Burger King Promos product for Grotle 49/130 [Diamond & Pearl] exposes Reverse Holofoil pricing."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_diamond_pearl_tcg",
+              "tcgplayer_burger_king_promos"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+          "set_code": "dp1",
+          "number": "56",
+          "card_name": "Monferno",
+          "variant_key": "diamond_pearl_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_diamond_pearl_tcg",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_(TCG)",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Diamond & Pearl additional-cards table lists Monferno 56/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "reverse_finish"
+                ],
+                "source_key": "tcgplayer_burger_king_promos",
+                "source_url": "https://www.tcgplayer.com/product/174129/pokemon-burger-king-promos-monferno-56-130-diamond-and-pearl",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "TCGplayer exact Burger King Promos product for Monferno 56/130 [Diamond & Pearl] exposes Reverse Holofoil pricing."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2008",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_(TCG)",
+              "https://www.tcgplayer.com/product/174129/pokemon-burger-king-promos-monferno-56-130-diamond-and-pearl"
+            ],
+            "evidence_labels": [
+              "Diamond & Pearl additional-cards table lists Monferno 56/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008.",
+              "TCGplayer exact Burger King Promos product for Monferno 56/130 [Diamond & Pearl] exposes Reverse Holofoil pricing."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_diamond_pearl_tcg",
+              "tcgplayer_burger_king_promos"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "4e007c58-5b91-4110-af5b-c274eaa694c0",
+          "set_code": "dp1",
+          "number": "58",
+          "card_name": "Prinplup",
+          "variant_key": "diamond_pearl_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-diamond-and-pearl",
+              "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+            ],
+            "finish_claims": [
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Double Holo checklist row Prinplup [Diamond & Pearl Stamp] #58"
+              },
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+              }
+            ],
+            "evidence_labels": [
+              "Double Holo checklist row Prinplup [Diamond & Pearl Stamp] #58",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15a_stamped_explicit_finish_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+                "d469bf7b2c0b7cbd53196091ab5c94d7fc53b1f867efb5f0113d5f7ac0df99a6"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+            "preserved_evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-diamond-and-pearl",
+              "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+            ],
+            "preserved_evidence_notes": [
+              "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+              "Generated only from explicit bracketed Double Holo finish labels."
+            ],
+            "preserved_evidence_labels": [
+              "Double Holo checklist row Prinplup [Diamond & Pearl Stamp] #58",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "preserved_evidence_sources": [
+              "doubleholo_set_checklist",
+              "thepricedex_price_list"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "542686fb-9987-4003-b83b-b1eda3d75c73",
+          "set_code": "dp1",
+          "number": "98",
+          "card_name": "Shinx",
+          "variant_key": "city_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/Shinx_(Diamond_%26_Pearl_98)",
+              "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+            ],
+            "evidence_labels": [
+              "Bulbapedia card page release information stamp/logo variant",
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "bulbapedia_set_list preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/shinx-98-130-non-holo-city-championships-diamond-pearl/dp1-98-2-23/",
+              "pkg15k_source_title": "Shinx - 98/130 - Non-Holo - City Championships - Promo",
+              "matching_manual_web_finish_context": [
+                {
+                  "source_key": "pokumon_promo_database",
+                  "source_url": "https://pokumon.com/card/shinx-98-130-city-championships-special-print/",
+                  "source_kind": "collector_reference",
+                  "evidence_type": "finish_presence",
+                  "evidence_label": "Shinx (98/130 City Championships Special Print) - Non-holo City Championships promo"
+                }
+              ],
+              "matching_pricecharting_identity_context": [
+                {
+                  "source_key": "pricecharting_csv_product",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-diamond-and-pearl/shinx-city-championships-98",
+                  "evidence_label": "Shinx [City Championships] #98",
+                  "validation_reason": "missing_explicit_active_finish"
+                }
+              ]
+            },
+            "package_fingerprint": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "d627635e90ea08b892013ca6e87eff86de744c14decdfbae5188d3efc52ba2fd",
+            "independent_finish_sources": [
+              "pokecardvalues_stamped_finish",
+              "pokumon_promo_database"
+            ],
+            "preserved_evidence_sources": [
+              "bulbapedia_card_page_release_info",
+              "bulbapedia_set_list",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_stamped_finish",
+              "pricecharting_csv_product",
+              "pokumon_promo_database"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 3,
+            "source_count": 4,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "006b48c2-45af-486e-9059-ebf0c2a4f329",
+          "set_code": "dp5",
+          "number": "56",
+          "card_name": "Chimchar",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_2009_burger_king_toys",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Burger King 2009 checklist lists Chimchar 56/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family"
+                ],
+                "source_key": "pricecharting_stamped_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/chimchar-stamped-56",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "PriceCharting exact product: Chimchar [Stamped] #56 in Pokemon Majestic Dawn."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2009",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "https://www.pricecharting.com/game/pokemon-majestic-dawn/chimchar-stamped-56"
+            ],
+            "evidence_labels": [
+              "Burger King 2009 checklist lists Chimchar 56/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "PriceCharting exact product: Chimchar [Stamped] #56 in Pokemon Majestic Dawn."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_2009_burger_king_toys",
+              "pricecharting_stamped_product"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "5d43f0d8-0fb3-4a0d-bcef-999fd40e67af",
+          "set_code": "dp5",
+          "number": "62",
+          "card_name": "Eevee",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_2009_burger_king_toys",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Burger King 2009 checklist lists Eevee 62/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "reverse_finish"
+                ],
+                "source_key": "tcgplayer_burger_king_promos",
+                "source_url": "https://www.tcgplayer.com/product/155605/pokemon-burger-king-promos-eevee-62-100-platinum",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "TCGplayer exact Burger King Promos product for Eevee 62/100 [Platinum] exposes Reverse Holofoil pricing."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2009",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "https://www.tcgplayer.com/product/155605/pokemon-burger-king-promos-eevee-62-100-platinum"
+            ],
+            "evidence_labels": [
+              "Burger King 2009 checklist lists Eevee 62/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "TCGplayer exact Burger King Promos product for Eevee 62/100 [Platinum] exposes Reverse Holofoil pricing."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_2009_burger_king_toys",
+              "tcgplayer_burger_king_promos"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "41c3c346-edf5-4306-9dd9-992823418994",
+          "set_code": "dp5",
+          "number": "70",
+          "card_name": "Pikachu",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_2009_burger_king_toys",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Burger King 2009 checklist lists Pikachu 70/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "reverse_finish"
+                ],
+                "source_key": "pricecharting_reverse_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/pikachu-reverse-holo-70",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "PriceCharting reverse-holo product for Pikachu #70 includes observed Platinum-stamped reverse-holo sale labels."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2009",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "https://www.pricecharting.com/game/pokemon-majestic-dawn/pikachu-reverse-holo-70"
+            ],
+            "evidence_labels": [
+              "Burger King 2009 checklist lists Pikachu 70/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "PriceCharting reverse-holo product for Pikachu #70 includes observed Platinum-stamped reverse-holo sale labels."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_2009_burger_king_toys",
+              "pricecharting_reverse_product"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "2df55ec4-c010-4a01-b468-d1da7270e9d2",
+          "set_code": "dp5",
+          "number": "71",
+          "card_name": "Piplup",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_2009_burger_king_toys",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Burger King 2009 checklist lists Piplup 71/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "reverse_finish"
+                ],
+                "source_key": "pricecharting_reverse_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/piplup-reverse-holo-71",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "PriceCharting reverse-holo product for Piplup #71 includes observed stamped reverse-holo sale labels."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2009",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "https://www.pricecharting.com/game/pokemon-majestic-dawn/piplup-reverse-holo-71"
+            ],
+            "evidence_labels": [
+              "Burger King 2009 checklist lists Piplup 71/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "PriceCharting reverse-holo product for Piplup #71 includes observed stamped reverse-holo sale labels."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_2009_burger_king_toys",
+              "pricecharting_reverse_product"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "d47a7931-82b8-42ba-a6dc-4137642c2f78",
+          "set_code": "dp5",
+          "number": "77",
+          "card_name": "Turtwig",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_2009_burger_king_toys",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Burger King 2009 checklist lists Turtwig 77/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "pricecharting_stamped_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/turtwig-stamped-77-77",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "PriceCharting exact product: Turtwig [Stamped] #77 in Pokemon Majestic Dawn includes reverse-holo stamped sale labels."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2009",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "https://www.pricecharting.com/game/pokemon-majestic-dawn/turtwig-stamped-77-77"
+            ],
+            "evidence_labels": [
+              "Burger King 2009 checklist lists Turtwig 77/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "PriceCharting exact product: Turtwig [Stamped] #77 in Pokemon Majestic Dawn includes reverse-holo stamped sale labels."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_2009_burger_king_toys",
+              "pricecharting_stamped_product"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "378cd3c8-dc1d-4206-b528-9cb79fbce6e6",
+          "set_code": "sm1",
+          "number": "128",
+          "card_name": "Professor Kukui",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-sun-and-moon/professor-kukui-regional-championship-staff-128",
+              "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg16b_source_rows": [
+                {
+                  "source_key": "pokecardvalues_same_finish_ambiguous",
+                  "source_url": "https://pokecardvalues.co.uk/cards/professor-kukui-128-149-reverse-holo-regional-championships-sun-moon/sm1-128-3-60/",
+                  "source_kind": "collector_reference",
+                  "evidence_label": "Professor Kukui - 128/149 - Reverse Holo - Regional Championships - Promo"
+                },
+                {
+                  "source_key": "pricecharting_historic_sales_title",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-sun-%26-moon/professor-kukui-reverse-holo-128",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_label": "Professor Kukui reverse holo page includes Regional Championship Promo sales title."
+                }
+              ],
+              "pkg16b_source_variant_label": "Regional Championships Promo"
+            },
+            "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+            "independent_finish_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "pricecharting_historic_sales_title"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "pricecharting_historic_sales_title"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "ae2f2edf-c696-4acd-bf6b-ea056b7212b2",
+          "set_code": "sm6",
+          "number": "105",
+          "card_name": "Diantha",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-forbidden-light/diantha-regional-championships-105",
+              "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/diantha-105-131-reverse-holo-regional-championships-forbidden-light/sm6-105-3-60/",
+              "pkg15k_source_title": "Diantha - 105/131 - Reverse Holo - Regional Championships - Promo",
+              "matching_manual_web_finish_context": [
+                {
+                  "source_key": "bulbapedia_forbidden_light_set_list",
+                  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_(TCG)",
+                  "source_kind": "human_readable_checklist",
+                  "evidence_type": "finish_presence",
+                  "evidence_label": "105/131 Diantha - Reverse Holo Forbidden Light Season Regional Championships promo"
+                },
+                {
+                  "source_key": "nobleknight_league_championship_cards",
+                  "source_url": "https://www.nobleknight.com/P/2148463390/Diantha---105-131-Regional-Championships-P-105-131-Reverse-Holo",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_type": "finish_presence",
+                  "evidence_label": "Diantha - 105/131 (Regional Championships) (P) #105/131 (Reverse Holo)"
+                }
+              ],
+              "matching_pricecharting_identity_context": [
+                {
+                  "source_key": "pricecharting_csv_product",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-forbidden-light/diantha-regional-championships-105",
+                  "evidence_label": "Diantha [Regional Championships] #105",
+                  "validation_reason": "missing_explicit_active_finish"
+                }
+              ]
+            },
+            "package_fingerprint": "5bf78a89758478c48815200abb9f1f94874816bd2b9e43e3511ca69c82871d07",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "a377d66086e6bfa3c08d7ca931364fd2368e2eda31f50fbff9bf9d88fe289fcb",
+            "independent_finish_sources": [
+              "pokecardvalues_stamped_finish",
+              "bulbapedia_forbidden_light_set_list",
+              "nobleknight_league_championship_cards"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_stamped_finish",
+              "pricecharting_csv_product",
+              "bulbapedia_forbidden_light_set_list",
+              "nobleknight_league_championship_cards"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "8af838c6-56ca-43bf-b121-ff1905c4b6d6",
+          "set_code": "sv02",
+          "number": "53",
+          "card_name": "Cetoddle",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-paldea-evolved",
+              "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+            ],
+            "finish_claims": [
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Double Holo checklist row Cetoddle [Snowflake Stamp] #53"
+              },
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+              }
+            ],
+            "evidence_labels": [
+              "Double Holo checklist row Cetoddle [Snowflake Stamp] #53",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15a_stamped_explicit_finish_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+                "d469bf7b2c0b7cbd53196091ab5c94d7fc53b1f867efb5f0113d5f7ac0df99a6"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+            "preserved_evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-paldea-evolved",
+              "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+            ],
+            "preserved_evidence_notes": [
+              "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+              "Generated only from explicit bracketed Double Holo finish labels."
+            ],
+            "preserved_evidence_labels": [
+              "Double Holo checklist row Cetoddle [Snowflake Stamp] #53",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "preserved_evidence_sources": [
+              "doubleholo_set_checklist",
+              "thepricedex_price_list"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "c829ffb5-f87b-4d5a-93ee-6a274909ecd9",
+          "set_code": "sv02",
+          "number": "58",
+          "card_name": "Frigibax",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-paldea-evolved",
+              "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+            ],
+            "finish_claims": [
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Double Holo checklist row Frigibax [Snowflake Stamp] #58"
+              },
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+              }
+            ],
+            "evidence_labels": [
+              "Double Holo checklist row Frigibax [Snowflake Stamp] #58",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15a_stamped_explicit_finish_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+                "d469bf7b2c0b7cbd53196091ab5c94d7fc53b1f867efb5f0113d5f7ac0df99a6"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+            "preserved_evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-paldea-evolved",
+              "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+            ],
+            "preserved_evidence_notes": [
+              "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+              "Generated only from explicit bracketed Double Holo finish labels."
+            ],
+            "preserved_evidence_labels": [
+              "Double Holo checklist row Frigibax [Snowflake Stamp] #58",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "preserved_evidence_sources": [
+              "doubleholo_set_checklist",
+              "thepricedex_price_list"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "1bad5ef7-48d8-4bf5-b40b-bb8303304d35",
+          "set_code": "swsh7",
+          "number": "43",
+          "card_name": "Cryogonal",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-evolving-skies",
+              "https://www.thepricedex.com/set/swsh7/evolving-skies/price-list"
+            ],
+            "finish_claims": [
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Double Holo checklist row Cryogonal [Snowflake Stamp] #43"
+              },
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+              }
+            ],
+            "evidence_labels": [
+              "Double Holo checklist row Cryogonal [Snowflake Stamp] #43",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15a_stamped_explicit_finish_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+                "d469bf7b2c0b7cbd53196091ab5c94d7fc53b1f867efb5f0113d5f7ac0df99a6"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+            "preserved_evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-evolving-skies",
+              "https://www.thepricedex.com/set/swsh7/evolving-skies/price-list"
+            ],
+            "preserved_evidence_notes": [
+              "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+              "Generated only from explicit bracketed Double Holo finish labels."
+            ],
+            "preserved_evidence_labels": [
+              "Double Holo checklist row Cryogonal [Snowflake Stamp] #43",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "preserved_evidence_sources": [
+              "doubleholo_set_checklist",
+              "thepricedex_price_list"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "b5ee7e14-1d09-4865-8c17-43b3eab7d1c7",
+          "set_code": "swsh8",
+          "number": "84",
+          "card_name": "Snom",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-fusion-strike",
+              "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+            ],
+            "finish_claims": [
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Double Holo checklist row Snom [Snowflake Stamp] #84"
+              },
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+              }
+            ],
+            "evidence_labels": [
+              "Double Holo checklist row Snom [Snowflake Stamp] #84",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15a_stamped_explicit_finish_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+                "d469bf7b2c0b7cbd53196091ab5c94d7fc53b1f867efb5f0113d5f7ac0df99a6"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+            "preserved_evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-fusion-strike",
+              "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+            ],
+            "preserved_evidence_notes": [
+              "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+              "Generated only from explicit bracketed Double Holo finish labels."
+            ],
+            "preserved_evidence_labels": [
+              "Double Holo checklist row Snom [Snowflake Stamp] #84",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "preserved_evidence_sources": [
+              "doubleholo_set_checklist",
+              "thepricedex_price_list"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "ac3dc158-0251-4836-a2d8-fdb17abaafb9",
+          "set_code": "xy1",
+          "number": "83",
+          "card_name": "Honedge",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-xy/honedge-regional-championships-staff-83",
+              "https://www.thepricedex.com/set/xy1/xy/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/honedge-83-146-reverse-holo-regional-championships-xy/xy1-83-3-60/",
+              "pkg15k_source_title": "Honedge - 83/146 - Reverse Holo - Regional Championships - Promo",
+              "matching_manual_web_finish_context": [
+                {
+                  "source_key": "nobleknight_league_championship_cards",
+                  "source_url": "https://www.nobleknight.com/P/2148463359/Honedge---83-146-Regional-Championships-P-083-146-Reverse-Holo",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_type": "finish_presence",
+                  "evidence_label": "Honedge - 83/146 (Regional Championships) (P) #083/146 (Reverse Holo)"
+                }
+              ],
+              "matching_pricecharting_identity_context": [
+                {
+                  "source_key": "pricecharting_csv_product",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-xy/honedge-regional-championships-83",
+                  "evidence_label": "Honedge [Regional Championships] #83",
+                  "validation_reason": "missing_explicit_active_finish"
+                }
+              ]
+            },
+            "package_fingerprint": "5bf78a89758478c48815200abb9f1f94874816bd2b9e43e3511ca69c82871d07",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "a377d66086e6bfa3c08d7ca931364fd2368e2eda31f50fbff9bf9d88fe289fcb",
+            "independent_finish_sources": [
+              "pokecardvalues_stamped_finish",
+              "nobleknight_league_championship_cards"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_stamped_finish",
+              "pricecharting_csv_product",
+              "nobleknight_league_championship_cards"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "9d665bc1-f4cf-4e17-8ae8-99b8ced25165",
+          "set_code": "xy1",
+          "number": "84",
+          "card_name": "Doublade",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-xy/doublade-regional-championship-staff-84",
+              "https://www.thepricedex.com/set/xy1/xy/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg16b_source_rows": [
+                {
+                  "source_key": "pokecardvalues_same_finish_ambiguous",
+                  "source_url": "https://pokecardvalues.co.uk/cards/doublade-84-146-reverse-holo-regional-championships-xy/xy1-84-3-60/",
+                  "source_kind": "collector_reference",
+                  "evidence_label": "Doublade - 84/146 - Reverse Holo - Regional Championships - Promo"
+                },
+                {
+                  "source_key": "tcgplayer_league_championship_product",
+                  "source_url": "https://www.tcgplayer.com/product/209556/pokemon-league-and-championship-cards-doublade-84-146-regional-championships",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_label": "Doublade - 84/146 (Regional Championships) page includes Reverse Holofoil pricing."
+                },
+                {
+                  "source_key": "card_cavern_product_page",
+                  "source_url": "https://www.cardcaverntradingcards.com/products/doublade-84-146-regionalchampionshippromo-reverseholo",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_label": "Doublade - 84/146 - Regional Championship Promo - Reverse Holo."
+                }
+              ],
+              "pkg16b_source_variant_label": "Regional Championships Promo"
+            },
+            "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+            "independent_finish_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "tcgplayer_league_championship_product",
+              "card_cavern_product_page"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "tcgplayer_league_championship_product",
+              "card_cavern_product_page"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "5fb9f9b8-d2c3-4663-af91-dcc01a411bee",
+          "set_code": "xy10",
+          "number": "94",
+          "card_name": "Chaos Tower",
+          "variant_key": "national_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-fates-collide/chaos-tower-national-championships-94",
+              "https://www.thepricedex.com/set/xy10/fates-collide/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/chaos-tower-94-124-reverse-holo-national-championships-fates-collide/xy10-94-3-45/",
+              "pkg15k_source_title": "Chaos Tower - 94/124 - Reverse Holo - National Championships - Promo",
+              "matching_manual_web_finish_context": [
+                {
+                  "source_key": "pokumon_promo_database",
+                  "source_url": "https://pokumon.com/card/chaos-tower-94-124-national-championships-special-print/",
+                  "source_kind": "collector_reference",
+                  "evidence_type": "finish_presence",
+                  "evidence_label": "Chaos Tower (94/124 National Championships Special Print) - Reverse Holo National Championships promo"
+                }
+              ],
+              "matching_pricecharting_identity_context": [
+                {
+                  "source_key": "pricecharting_csv_product",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-fates-collide/chaos-tower-national-championships-94",
+                  "evidence_label": "Chaos Tower [National Championships] #94",
+                  "validation_reason": "missing_explicit_active_finish"
+                }
+              ]
+            },
+            "package_fingerprint": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "d627635e90ea08b892013ca6e87eff86de744c14decdfbae5188d3efc52ba2fd",
+            "independent_finish_sources": [
+              "pokecardvalues_stamped_finish",
+              "pokumon_promo_database"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_stamped_finish",
+              "pricecharting_csv_product",
+              "pokumon_promo_database"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "088833de-b996-464b-85a2-f0d8874e0fa4",
+          "set_code": "xy8",
+          "number": "145",
+          "card_name": "Parallel City",
+          "variant_key": "city_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-breakthrough/parallel-city-city-championship-staff-145",
+              "https://www.thepricedex.com/set/xy8/breakthrough/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/parallel-city-145-162-reverse-holo-city-championships-breakthrough/xy8-145-3-23/",
+              "pkg15k_source_title": "Parallel City - 145/162 - Reverse Holo - City Championships - Promo",
+              "matching_manual_web_finish_context": [
+                {
+                  "source_key": "pokumon_promo_database",
+                  "source_url": "https://pokumon.com/card/parallel-city-145-162-city-championships-special-print/",
+                  "source_kind": "collector_reference",
+                  "evidence_type": "finish_presence",
+                  "evidence_label": "Parallel City (145/162 City Championships Special Print) - Reverse Holo City Championships promo"
+                }
+              ],
+              "matching_pricecharting_identity_context": [
+                {
+                  "source_key": "pricecharting_csv_product",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/parallel-city-city-championship-145",
+                  "evidence_label": "Parallel City [City Championship] #145",
+                  "validation_reason": "stamp_variant_mismatch"
+                }
+              ]
+            },
+            "package_fingerprint": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "d627635e90ea08b892013ca6e87eff86de744c14decdfbae5188d3efc52ba2fd",
+            "independent_finish_sources": [
+              "pokecardvalues_stamped_finish",
+              "pokumon_promo_database"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_stamped_finish",
+              "pricecharting_csv_product",
+              "pokumon_promo_database"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        }
+      ],
+      "hash_sha256": "432e5ece8e845a3414da60220233506f1aa0e51f035c3ba7a86114ab5ed208f9"
+    },
+    "before_global_guards": {
+      "active_identity_duplicate_groups": 0,
+      "active_external_mapping_duplicate_groups": 0
+    },
+    "updated_rows": [
+      {
+        "card_print_id": "ff0dbd84-07a6-4d0f-a628-e873d343f481",
+        "set_code": "bw5",
+        "number": "37",
+        "card_name": "Jolteon",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 3,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "85ea4524-3f07-494b-986c-290dd1515685",
+        "set_code": "bw5",
+        "number": "84",
+        "card_name": "Eevee",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 3,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+        "set_code": "dp1",
+        "number": "35",
+        "card_name": "Pachirisu",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 2,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+        "set_code": "dp1",
+        "number": "49",
+        "card_name": "Grotle",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 2,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+        "set_code": "dp1",
+        "number": "56",
+        "card_name": "Monferno",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 2,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "4e007c58-5b91-4110-af5b-c274eaa694c0",
+        "set_code": "dp1",
+        "number": "58",
+        "card_name": "Prinplup",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 2,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "542686fb-9987-4003-b83b-b1eda3d75c73",
+        "set_code": "dp1",
+        "number": "98",
+        "card_name": "Shinx",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 3,
+          "source_count": 4,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "006b48c2-45af-486e-9059-ebf0c2a4f329",
+        "set_code": "dp5",
+        "number": "56",
+        "card_name": "Chimchar",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 2,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "5d43f0d8-0fb3-4a0d-bcef-999fd40e67af",
+        "set_code": "dp5",
+        "number": "62",
+        "card_name": "Eevee",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 2,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "41c3c346-edf5-4306-9dd9-992823418994",
+        "set_code": "dp5",
+        "number": "70",
+        "card_name": "Pikachu",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 2,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "2df55ec4-c010-4a01-b468-d1da7270e9d2",
+        "set_code": "dp5",
+        "number": "71",
+        "card_name": "Piplup",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 2,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "d47a7931-82b8-42ba-a6dc-4137642c2f78",
+        "set_code": "dp5",
+        "number": "77",
+        "card_name": "Turtwig",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 2,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "378cd3c8-dc1d-4206-b528-9cb79fbce6e6",
+        "set_code": "sm1",
+        "number": "128",
+        "card_name": "Professor Kukui",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 3,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "ae2f2edf-c696-4acd-bf6b-ea056b7212b2",
+        "set_code": "sm6",
+        "number": "105",
+        "card_name": "Diantha",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 3,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "8af838c6-56ca-43bf-b121-ff1905c4b6d6",
+        "set_code": "sv02",
+        "number": "53",
+        "card_name": "Cetoddle",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 2,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "c829ffb5-f87b-4d5a-93ee-6a274909ecd9",
+        "set_code": "sv02",
+        "number": "58",
+        "card_name": "Frigibax",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 2,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "1bad5ef7-48d8-4bf5-b40b-bb8303304d35",
+        "set_code": "swsh7",
+        "number": "43",
+        "card_name": "Cryogonal",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 2,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "b5ee7e14-1d09-4865-8c17-43b3eab7d1c7",
+        "set_code": "swsh8",
+        "number": "84",
+        "card_name": "Snom",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 2,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "ac3dc158-0251-4836-a2d8-fdb17abaafb9",
+        "set_code": "xy1",
+        "number": "83",
+        "card_name": "Honedge",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 3,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "9d665bc1-f4cf-4e17-8ae8-99b8ced25165",
+        "set_code": "xy1",
+        "number": "84",
+        "card_name": "Doublade",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 3,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "5fb9f9b8-d2c3-4663-af91-dcc01a411bee",
+        "set_code": "xy10",
+        "number": "94",
+        "card_name": "Chaos Tower",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 3,
+          "has_fingerprint": true
+        }
+      },
+      {
+        "card_print_id": "088833de-b996-464b-85a2-f0d8874e0fa4",
+        "set_code": "xy8",
+        "number": "145",
+        "card_name": "Parallel City",
+        "payload_classification": {
+          "classification": "provenance_payload_usable",
+          "blockers": [],
+          "evidence_url_count": 2,
+          "evidence_label_count": 2,
+          "source_count": 3,
+          "has_fingerprint": true
+        }
+      }
+    ],
+    "after_snapshot": {
+      "captured_at": "2026-06-16T03:27:01.923Z",
+      "rows": [
+        {
+          "card_print_id": "ff0dbd84-07a6-4d0f-a628-e873d343f481",
+          "set_code": "bw5",
+          "number": "37",
+          "card_name": "Jolteon",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-dark-explorers/jolteon-regional-championship-37",
+              "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg16b_source_rows": [
+                {
+                  "source_key": "pokecardvalues_same_finish_ambiguous",
+                  "source_url": "https://pokecardvalues.co.uk/cards/jolteon-37-108-reverse-holo-regional-championships-dark-explorers/bw5-37-3-60/",
+                  "source_kind": "collector_reference",
+                  "evidence_label": "Jolteon - 37/108 - Reverse Holo - Regional Championships - Promo"
+                },
+                {
+                  "source_key": "pricecharting_product_page",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-dark-explorers/jolteon-regional-championship-37",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_label": "Jolteon [Regional Championship] #37 page includes Reverse Foils pricing lane."
+                }
+              ],
+              "pkg16b_source_variant_label": "Regional Championships Promo"
+            },
+            "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+            "independent_finish_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "pricecharting_product_page"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "pricecharting_product_page"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "85ea4524-3f07-494b-986c-290dd1515685",
+          "set_code": "bw5",
+          "number": "84",
+          "card_name": "Eevee",
+          "variant_key": "city_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-dark-explorers/eevee-city-championship-staff-84",
+              "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg16b_source_rows": [
+                {
+                  "source_key": "pokecardvalues_same_finish_ambiguous",
+                  "source_url": "https://pokecardvalues.co.uk/cards/eevee-84-108-reverse-holo-city-championships-dark-explorers/bw5-84-3-23/",
+                  "source_kind": "collector_reference",
+                  "evidence_label": "Eevee - 84/108 - Reverse Holo - City Championships - Promo"
+                },
+                {
+                  "source_key": "tcgplayer_league_championship_product",
+                  "source_url": "https://www.tcgplayer.com/product/209530/pokemon-league-and-championship-cards-eevee-84-108-city-championships",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_label": "Eevee - 84/108 (City Championships) has Reverse Holofoil listing."
+                }
+              ],
+              "pkg16b_source_variant_label": "City Championships Promo"
+            },
+            "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+            "independent_finish_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "tcgplayer_league_championship_product"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "tcgplayer_league_championship_product"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+          "set_code": "dp1",
+          "number": "35",
+          "card_name": "Pachirisu",
+          "variant_key": "diamond_pearl_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_2008_burger_king_toys",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/2008_Burger_King_promotional_Pok%C3%A9mon_toys",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Burger King 2008 checklist lists Pachirisu 35/130; page states Diamond & Pearl stamp mirror reverse holofoil variants."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family"
+                ],
+                "source_key": "pricecharting_stamped_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-diamond-%26-pearl/pachirisu-stamped-35",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "PriceCharting exact product: Pachirisu [Stamped] #35 in Pokemon Diamond & Pearl."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2008",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/2008_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "https://www.pricecharting.com/game/pokemon-diamond-%26-pearl/pachirisu-stamped-35"
+            ],
+            "evidence_labels": [
+              "Burger King 2008 checklist lists Pachirisu 35/130; page states Diamond & Pearl stamp mirror reverse holofoil variants.",
+              "PriceCharting exact product: Pachirisu [Stamped] #35 in Pokemon Diamond & Pearl."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_2008_burger_king_toys",
+              "pricecharting_stamped_product"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+          "set_code": "dp1",
+          "number": "49",
+          "card_name": "Grotle",
+          "variant_key": "diamond_pearl_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_diamond_pearl_tcg",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_(TCG)",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Diamond & Pearl additional-cards table lists Grotle 49/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "reverse_finish"
+                ],
+                "source_key": "tcgplayer_burger_king_promos",
+                "source_url": "https://www.tcgplayer.com/product/155608/pokemon-burger-king-promos-grotle-49-130-diamond-and-pearl",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "TCGplayer exact Burger King Promos product for Grotle 49/130 [Diamond & Pearl] exposes Reverse Holofoil pricing."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2008",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_(TCG)",
+              "https://www.tcgplayer.com/product/155608/pokemon-burger-king-promos-grotle-49-130-diamond-and-pearl"
+            ],
+            "evidence_labels": [
+              "Diamond & Pearl additional-cards table lists Grotle 49/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008.",
+              "TCGplayer exact Burger King Promos product for Grotle 49/130 [Diamond & Pearl] exposes Reverse Holofoil pricing."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_diamond_pearl_tcg",
+              "tcgplayer_burger_king_promos"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+          "set_code": "dp1",
+          "number": "56",
+          "card_name": "Monferno",
+          "variant_key": "diamond_pearl_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_diamond_pearl_tcg",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_(TCG)",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Diamond & Pearl additional-cards table lists Monferno 56/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "reverse_finish"
+                ],
+                "source_key": "tcgplayer_burger_king_promos",
+                "source_url": "https://www.tcgplayer.com/product/174129/pokemon-burger-king-promos-monferno-56-130-diamond-and-pearl",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "TCGplayer exact Burger King Promos product for Monferno 56/130 [Diamond & Pearl] exposes Reverse Holofoil pricing."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2008",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_(TCG)",
+              "https://www.tcgplayer.com/product/174129/pokemon-burger-king-promos-monferno-56-130-diamond-and-pearl"
+            ],
+            "evidence_labels": [
+              "Diamond & Pearl additional-cards table lists Monferno 56/130 as Reverse Holo with Diamond & Pearl stamp for Burger King Collection 2008.",
+              "TCGplayer exact Burger King Promos product for Monferno 56/130 [Diamond & Pearl] exposes Reverse Holofoil pricing."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_diamond_pearl_tcg",
+              "tcgplayer_burger_king_promos"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "4e007c58-5b91-4110-af5b-c274eaa694c0",
+          "set_code": "dp1",
+          "number": "58",
+          "card_name": "Prinplup",
+          "variant_key": "diamond_pearl_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-diamond-and-pearl",
+              "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+            ],
+            "finish_claims": [
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Double Holo checklist row Prinplup [Diamond & Pearl Stamp] #58"
+              },
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+              }
+            ],
+            "evidence_labels": [
+              "Double Holo checklist row Prinplup [Diamond & Pearl Stamp] #58",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15a_stamped_explicit_finish_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+                "d469bf7b2c0b7cbd53196091ab5c94d7fc53b1f867efb5f0113d5f7ac0df99a6"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+            "preserved_evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-diamond-and-pearl",
+              "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+            ],
+            "preserved_evidence_notes": [
+              "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+              "Generated only from explicit bracketed Double Holo finish labels."
+            ],
+            "preserved_evidence_labels": [
+              "Double Holo checklist row Prinplup [Diamond & Pearl Stamp] #58",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "preserved_evidence_sources": [
+              "doubleholo_set_checklist",
+              "thepricedex_price_list"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "542686fb-9987-4003-b83b-b1eda3d75c73",
+          "set_code": "dp1",
+          "number": "98",
+          "card_name": "Shinx",
+          "variant_key": "city_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/Shinx_(Diamond_%26_Pearl_98)",
+              "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+            ],
+            "evidence_labels": [
+              "Bulbapedia card page release information stamp/logo variant",
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "bulbapedia_set_list preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/shinx-98-130-non-holo-city-championships-diamond-pearl/dp1-98-2-23/",
+              "pkg15k_source_title": "Shinx - 98/130 - Non-Holo - City Championships - Promo",
+              "matching_manual_web_finish_context": [
+                {
+                  "source_key": "pokumon_promo_database",
+                  "source_url": "https://pokumon.com/card/shinx-98-130-city-championships-special-print/",
+                  "source_kind": "collector_reference",
+                  "evidence_type": "finish_presence",
+                  "evidence_label": "Shinx (98/130 City Championships Special Print) - Non-holo City Championships promo"
+                }
+              ],
+              "matching_pricecharting_identity_context": [
+                {
+                  "source_key": "pricecharting_csv_product",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-diamond-and-pearl/shinx-city-championships-98",
+                  "evidence_label": "Shinx [City Championships] #98",
+                  "validation_reason": "missing_explicit_active_finish"
+                }
+              ]
+            },
+            "package_fingerprint": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "d627635e90ea08b892013ca6e87eff86de744c14decdfbae5188d3efc52ba2fd",
+            "independent_finish_sources": [
+              "pokecardvalues_stamped_finish",
+              "pokumon_promo_database"
+            ],
+            "preserved_evidence_sources": [
+              "bulbapedia_card_page_release_info",
+              "bulbapedia_set_list",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_stamped_finish",
+              "pricecharting_csv_product",
+              "pokumon_promo_database"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 3,
+            "source_count": 4,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "006b48c2-45af-486e-9059-ebf0c2a4f329",
+          "set_code": "dp5",
+          "number": "56",
+          "card_name": "Chimchar",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_2009_burger_king_toys",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Burger King 2009 checklist lists Chimchar 56/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family"
+                ],
+                "source_key": "pricecharting_stamped_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/chimchar-stamped-56",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "PriceCharting exact product: Chimchar [Stamped] #56 in Pokemon Majestic Dawn."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2009",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "https://www.pricecharting.com/game/pokemon-majestic-dawn/chimchar-stamped-56"
+            ],
+            "evidence_labels": [
+              "Burger King 2009 checklist lists Chimchar 56/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "PriceCharting exact product: Chimchar [Stamped] #56 in Pokemon Majestic Dawn."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_2009_burger_king_toys",
+              "pricecharting_stamped_product"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "5d43f0d8-0fb3-4a0d-bcef-999fd40e67af",
+          "set_code": "dp5",
+          "number": "62",
+          "card_name": "Eevee",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_2009_burger_king_toys",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Burger King 2009 checklist lists Eevee 62/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "reverse_finish"
+                ],
+                "source_key": "tcgplayer_burger_king_promos",
+                "source_url": "https://www.tcgplayer.com/product/155605/pokemon-burger-king-promos-eevee-62-100-platinum",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "TCGplayer exact Burger King Promos product for Eevee 62/100 [Platinum] exposes Reverse Holofoil pricing."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2009",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "https://www.tcgplayer.com/product/155605/pokemon-burger-king-promos-eevee-62-100-platinum"
+            ],
+            "evidence_labels": [
+              "Burger King 2009 checklist lists Eevee 62/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "TCGplayer exact Burger King Promos product for Eevee 62/100 [Platinum] exposes Reverse Holofoil pricing."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_2009_burger_king_toys",
+              "tcgplayer_burger_king_promos"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "41c3c346-edf5-4306-9dd9-992823418994",
+          "set_code": "dp5",
+          "number": "70",
+          "card_name": "Pikachu",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_2009_burger_king_toys",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Burger King 2009 checklist lists Pikachu 70/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "reverse_finish"
+                ],
+                "source_key": "pricecharting_reverse_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/pikachu-reverse-holo-70",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "PriceCharting reverse-holo product for Pikachu #70 includes observed Platinum-stamped reverse-holo sale labels."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2009",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "https://www.pricecharting.com/game/pokemon-majestic-dawn/pikachu-reverse-holo-70"
+            ],
+            "evidence_labels": [
+              "Burger King 2009 checklist lists Pikachu 70/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "PriceCharting reverse-holo product for Pikachu #70 includes observed Platinum-stamped reverse-holo sale labels."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_2009_burger_king_toys",
+              "pricecharting_reverse_product"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "2df55ec4-c010-4a01-b468-d1da7270e9d2",
+          "set_code": "dp5",
+          "number": "71",
+          "card_name": "Piplup",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_2009_burger_king_toys",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Burger King 2009 checklist lists Piplup 71/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "reverse_finish"
+                ],
+                "source_key": "pricecharting_reverse_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/piplup-reverse-holo-71",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "PriceCharting reverse-holo product for Piplup #71 includes observed stamped reverse-holo sale labels."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2009",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "https://www.pricecharting.com/game/pokemon-majestic-dawn/piplup-reverse-holo-71"
+            ],
+            "evidence_labels": [
+              "Burger King 2009 checklist lists Piplup 71/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "PriceCharting reverse-holo product for Piplup #71 includes observed stamped reverse-holo sale labels."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_2009_burger_king_toys",
+              "pricecharting_reverse_product"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "d47a7931-82b8-42ba-a6dc-4137642c2f78",
+          "set_code": "dp5",
+          "number": "77",
+          "card_name": "Turtwig",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence": [
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "bulbapedia_2009_burger_king_toys",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+                "source_kind": "human_readable_checklist",
+                "evidence_label": "Burger King 2009 checklist lists Turtwig 77/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp."
+              },
+              {
+                "supports": [
+                  "card_identity",
+                  "stamp_family",
+                  "reverse_finish"
+                ],
+                "source_key": "pricecharting_stamped_product",
+                "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/turtwig-stamped-77-77",
+                "source_kind": "marketplace_checklist",
+                "evidence_label": "PriceCharting exact product: Turtwig [Stamped] #77 in Pokemon Majestic Dawn includes reverse-holo stamped sale labels."
+              }
+            ],
+            "stamp_family": "Burger King Collection 2009",
+            "evidence_urls": [
+              "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+              "https://www.pricecharting.com/game/pokemon-majestic-dawn/turtwig-stamped-77-77"
+            ],
+            "evidence_labels": [
+              "Burger King 2009 checklist lists Turtwig 77/100; page states the promotion paired toys with reverse holofoil Platinum TCG cards with a Platinum stamp.",
+              "PriceCharting exact product: Turtwig [Stamped] #77 in Pokemon Majestic Dawn includes reverse-holo stamped sale labels."
+            ],
+            "source_package_id": "PKG-15B-STAMPED-GENERIC-VARIANT-ADJUDICATION",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+                "f33e5f765038d4c6736e10e6efe877a0cc6c01649f4d35e3a842f5aeaea0f053"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "routing_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "adjudication_fingerprint": "8771f89c641e302996aed3df032ddad082f1d4f55a36a15be41f19e8ed118b2f",
+            "source_parser_correction": "Double Holo source-name text was parsed as finish=holo; adjudicated sources prove reverse holo stamped.",
+            "preserved_evidence_sources": [
+              "bulbapedia_2009_burger_king_toys",
+              "pricecharting_stamped_product"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "378cd3c8-dc1d-4206-b528-9cb79fbce6e6",
+          "set_code": "sm1",
+          "number": "128",
+          "card_name": "Professor Kukui",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-sun-and-moon/professor-kukui-regional-championship-staff-128",
+              "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg16b_source_rows": [
+                {
+                  "source_key": "pokecardvalues_same_finish_ambiguous",
+                  "source_url": "https://pokecardvalues.co.uk/cards/professor-kukui-128-149-reverse-holo-regional-championships-sun-moon/sm1-128-3-60/",
+                  "source_kind": "collector_reference",
+                  "evidence_label": "Professor Kukui - 128/149 - Reverse Holo - Regional Championships - Promo"
+                },
+                {
+                  "source_key": "pricecharting_historic_sales_title",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-sun-%26-moon/professor-kukui-reverse-holo-128",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_label": "Professor Kukui reverse holo page includes Regional Championship Promo sales title."
+                }
+              ],
+              "pkg16b_source_variant_label": "Regional Championships Promo"
+            },
+            "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+            "independent_finish_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "pricecharting_historic_sales_title"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "pricecharting_historic_sales_title"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "ae2f2edf-c696-4acd-bf6b-ea056b7212b2",
+          "set_code": "sm6",
+          "number": "105",
+          "card_name": "Diantha",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-forbidden-light/diantha-regional-championships-105",
+              "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/diantha-105-131-reverse-holo-regional-championships-forbidden-light/sm6-105-3-60/",
+              "pkg15k_source_title": "Diantha - 105/131 - Reverse Holo - Regional Championships - Promo",
+              "matching_manual_web_finish_context": [
+                {
+                  "source_key": "bulbapedia_forbidden_light_set_list",
+                  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_(TCG)",
+                  "source_kind": "human_readable_checklist",
+                  "evidence_type": "finish_presence",
+                  "evidence_label": "105/131 Diantha - Reverse Holo Forbidden Light Season Regional Championships promo"
+                },
+                {
+                  "source_key": "nobleknight_league_championship_cards",
+                  "source_url": "https://www.nobleknight.com/P/2148463390/Diantha---105-131-Regional-Championships-P-105-131-Reverse-Holo",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_type": "finish_presence",
+                  "evidence_label": "Diantha - 105/131 (Regional Championships) (P) #105/131 (Reverse Holo)"
+                }
+              ],
+              "matching_pricecharting_identity_context": [
+                {
+                  "source_key": "pricecharting_csv_product",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-forbidden-light/diantha-regional-championships-105",
+                  "evidence_label": "Diantha [Regional Championships] #105",
+                  "validation_reason": "missing_explicit_active_finish"
+                }
+              ]
+            },
+            "package_fingerprint": "5bf78a89758478c48815200abb9f1f94874816bd2b9e43e3511ca69c82871d07",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "a377d66086e6bfa3c08d7ca931364fd2368e2eda31f50fbff9bf9d88fe289fcb",
+            "independent_finish_sources": [
+              "pokecardvalues_stamped_finish",
+              "bulbapedia_forbidden_light_set_list",
+              "nobleknight_league_championship_cards"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_stamped_finish",
+              "pricecharting_csv_product",
+              "bulbapedia_forbidden_light_set_list",
+              "nobleknight_league_championship_cards"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "8af838c6-56ca-43bf-b121-ff1905c4b6d6",
+          "set_code": "sv02",
+          "number": "53",
+          "card_name": "Cetoddle",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-paldea-evolved",
+              "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+            ],
+            "finish_claims": [
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Double Holo checklist row Cetoddle [Snowflake Stamp] #53"
+              },
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+              }
+            ],
+            "evidence_labels": [
+              "Double Holo checklist row Cetoddle [Snowflake Stamp] #53",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15a_stamped_explicit_finish_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+                "d469bf7b2c0b7cbd53196091ab5c94d7fc53b1f867efb5f0113d5f7ac0df99a6"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+            "preserved_evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-paldea-evolved",
+              "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+            ],
+            "preserved_evidence_notes": [
+              "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+              "Generated only from explicit bracketed Double Holo finish labels."
+            ],
+            "preserved_evidence_labels": [
+              "Double Holo checklist row Cetoddle [Snowflake Stamp] #53",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "preserved_evidence_sources": [
+              "doubleholo_set_checklist",
+              "thepricedex_price_list"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "c829ffb5-f87b-4d5a-93ee-6a274909ecd9",
+          "set_code": "sv02",
+          "number": "58",
+          "card_name": "Frigibax",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-paldea-evolved",
+              "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+            ],
+            "finish_claims": [
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Double Holo checklist row Frigibax [Snowflake Stamp] #58"
+              },
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+              }
+            ],
+            "evidence_labels": [
+              "Double Holo checklist row Frigibax [Snowflake Stamp] #58",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15a_stamped_explicit_finish_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+                "d469bf7b2c0b7cbd53196091ab5c94d7fc53b1f867efb5f0113d5f7ac0df99a6"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+            "preserved_evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-paldea-evolved",
+              "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+            ],
+            "preserved_evidence_notes": [
+              "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+              "Generated only from explicit bracketed Double Holo finish labels."
+            ],
+            "preserved_evidence_labels": [
+              "Double Holo checklist row Frigibax [Snowflake Stamp] #58",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "preserved_evidence_sources": [
+              "doubleholo_set_checklist",
+              "thepricedex_price_list"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "1bad5ef7-48d8-4bf5-b40b-bb8303304d35",
+          "set_code": "swsh7",
+          "number": "43",
+          "card_name": "Cryogonal",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-evolving-skies",
+              "https://www.thepricedex.com/set/swsh7/evolving-skies/price-list"
+            ],
+            "finish_claims": [
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Double Holo checklist row Cryogonal [Snowflake Stamp] #43"
+              },
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+              }
+            ],
+            "evidence_labels": [
+              "Double Holo checklist row Cryogonal [Snowflake Stamp] #43",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15a_stamped_explicit_finish_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+                "d469bf7b2c0b7cbd53196091ab5c94d7fc53b1f867efb5f0113d5f7ac0df99a6"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+            "preserved_evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-evolving-skies",
+              "https://www.thepricedex.com/set/swsh7/evolving-skies/price-list"
+            ],
+            "preserved_evidence_notes": [
+              "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+              "Generated only from explicit bracketed Double Holo finish labels."
+            ],
+            "preserved_evidence_labels": [
+              "Double Holo checklist row Cryogonal [Snowflake Stamp] #43",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "preserved_evidence_sources": [
+              "doubleholo_set_checklist",
+              "thepricedex_price_list"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "b5ee7e14-1d09-4865-8c17-43b3eab7d1c7",
+          "set_code": "swsh8",
+          "number": "84",
+          "card_name": "Snom",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-fusion-strike",
+              "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+            ],
+            "finish_claims": [
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Double Holo checklist row Snom [Snowflake Stamp] #84"
+              },
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Generated only from explicit bracketed Double Holo finish labels."
+              }
+            ],
+            "evidence_labels": [
+              "Double Holo checklist row Snom [Snowflake Stamp] #84",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "source_package_id": "PKG-15-STAMPED-EXPLICIT-FINISH-READINESS",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15a_stamped_explicit_finish_guarded_dry_run_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+                "d469bf7b2c0b7cbd53196091ab5c94d7fc53b1f867efb5f0113d5f7ac0df99a6"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_fingerprint": "2b558672233c148e07995200fcf2b6983268eb80f5e74a7ba9bef84e75edb678",
+            "preserved_evidence_urls": [
+              "https://doubleholo.com/sets/pokemon-fusion-strike",
+              "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+            ],
+            "preserved_evidence_notes": [
+              "Audit-only preservation row. This preserves previously promoted ThePriceDex evidence under the same source authority; it is not a new independent source.",
+              "Generated only from explicit bracketed Double Holo finish labels."
+            ],
+            "preserved_evidence_labels": [
+              "Double Holo checklist row Snom [Snowflake Stamp] #84",
+              "ThePriceDex preserved finish evidence from last promoted Master Index"
+            ],
+            "preserved_evidence_sources": [
+              "doubleholo_set_checklist",
+              "thepricedex_price_list"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 2,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "ac3dc158-0251-4836-a2d8-fdb17abaafb9",
+          "set_code": "xy1",
+          "number": "83",
+          "card_name": "Honedge",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-xy/honedge-regional-championships-staff-83",
+              "https://www.thepricedex.com/set/xy1/xy/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/honedge-83-146-reverse-holo-regional-championships-xy/xy1-83-3-60/",
+              "pkg15k_source_title": "Honedge - 83/146 - Reverse Holo - Regional Championships - Promo",
+              "matching_manual_web_finish_context": [
+                {
+                  "source_key": "nobleknight_league_championship_cards",
+                  "source_url": "https://www.nobleknight.com/P/2148463359/Honedge---83-146-Regional-Championships-P-083-146-Reverse-Holo",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_type": "finish_presence",
+                  "evidence_label": "Honedge - 83/146 (Regional Championships) (P) #083/146 (Reverse Holo)"
+                }
+              ],
+              "matching_pricecharting_identity_context": [
+                {
+                  "source_key": "pricecharting_csv_product",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-xy/honedge-regional-championships-83",
+                  "evidence_label": "Honedge [Regional Championships] #83",
+                  "validation_reason": "missing_explicit_active_finish"
+                }
+              ]
+            },
+            "package_fingerprint": "5bf78a89758478c48815200abb9f1f94874816bd2b9e43e3511ca69c82871d07",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "a377d66086e6bfa3c08d7ca931364fd2368e2eda31f50fbff9bf9d88fe289fcb",
+            "independent_finish_sources": [
+              "pokecardvalues_stamped_finish",
+              "nobleknight_league_championship_cards"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_stamped_finish",
+              "pricecharting_csv_product",
+              "nobleknight_league_championship_cards"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "9d665bc1-f4cf-4e17-8ae8-99b8ced25165",
+          "set_code": "xy1",
+          "number": "84",
+          "card_name": "Doublade",
+          "variant_key": "regional_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-xy/doublade-regional-championship-staff-84",
+              "https://www.thepricedex.com/set/xy1/xy/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg16b_source_rows": [
+                {
+                  "source_key": "pokecardvalues_same_finish_ambiguous",
+                  "source_url": "https://pokecardvalues.co.uk/cards/doublade-84-146-reverse-holo-regional-championships-xy/xy1-84-3-60/",
+                  "source_kind": "collector_reference",
+                  "evidence_label": "Doublade - 84/146 - Reverse Holo - Regional Championships - Promo"
+                },
+                {
+                  "source_key": "tcgplayer_league_championship_product",
+                  "source_url": "https://www.tcgplayer.com/product/209556/pokemon-league-and-championship-cards-doublade-84-146-regional-championships",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_label": "Doublade - 84/146 (Regional Championships) page includes Reverse Holofoil pricing."
+                },
+                {
+                  "source_key": "card_cavern_product_page",
+                  "source_url": "https://www.cardcaverntradingcards.com/products/doublade-84-146-regionalchampionshippromo-reverseholo",
+                  "source_kind": "marketplace_checklist",
+                  "evidence_label": "Doublade - 84/146 - Regional Championship Promo - Reverse Holo."
+                }
+              ],
+              "pkg16b_source_variant_label": "Regional Championships Promo"
+            },
+            "package_fingerprint": "ae2c5c6f588eec7b48f7af97a23cc4cc24fddb167dc688b14368dc80c86bdecf",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-16E-SAME-FINISH-SPLIT-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "22e557b6971fdf965cfa84d90f112a1e988f6617eb5cec61b63177fb73dfd5bd",
+            "independent_finish_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "tcgplayer_league_championship_product",
+              "card_cavern_product_page"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_same_finish_ambiguous",
+              "tcgplayer_league_championship_product",
+              "card_cavern_product_page"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "5fb9f9b8-d2c3-4663-af91-dcc01a411bee",
+          "set_code": "xy10",
+          "number": "94",
+          "card_name": "Chaos Tower",
+          "variant_key": "national_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-fates-collide/chaos-tower-national-championships-94",
+              "https://www.thepricedex.com/set/xy10/fates-collide/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/chaos-tower-94-124-reverse-holo-national-championships-fates-collide/xy10-94-3-45/",
+              "pkg15k_source_title": "Chaos Tower - 94/124 - Reverse Holo - National Championships - Promo",
+              "matching_manual_web_finish_context": [
+                {
+                  "source_key": "pokumon_promo_database",
+                  "source_url": "https://pokumon.com/card/chaos-tower-94-124-national-championships-special-print/",
+                  "source_kind": "collector_reference",
+                  "evidence_type": "finish_presence",
+                  "evidence_label": "Chaos Tower (94/124 National Championships Special Print) - Reverse Holo National Championships promo"
+                }
+              ],
+              "matching_pricecharting_identity_context": [
+                {
+                  "source_key": "pricecharting_csv_product",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-fates-collide/chaos-tower-national-championships-94",
+                  "evidence_label": "Chaos Tower [National Championships] #94",
+                  "validation_reason": "missing_explicit_active_finish"
+                }
+              ]
+            },
+            "package_fingerprint": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "d627635e90ea08b892013ca6e87eff86de744c14decdfbae5188d3efc52ba2fd",
+            "independent_finish_sources": [
+              "pokecardvalues_stamped_finish",
+              "pokumon_promo_database"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_stamped_finish",
+              "pricecharting_csv_product",
+              "pokumon_promo_database"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        },
+        {
+          "card_print_id": "088833de-b996-464b-85a2-f0d8874e0fa4",
+          "set_code": "xy8",
+          "number": "145",
+          "card_name": "Parallel City",
+          "variant_key": "city_championships_stamp",
+          "printed_identity_modifier": null,
+          "payload": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-breakthrough/parallel-city-city-championship-staff-145",
+              "https://www.thepricedex.com/set/xy8/breakthrough/price-list"
+            ],
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index"
+            ],
+            "evidence_context": {
+              "pkg15k_source_url": "https://pokecardvalues.co.uk/cards/parallel-city-145-162-reverse-holo-city-championships-breakthrough/xy8-145-3-23/",
+              "pkg15k_source_title": "Parallel City - 145/162 - Reverse Holo - City Championships - Promo",
+              "matching_manual_web_finish_context": [
+                {
+                  "source_key": "pokumon_promo_database",
+                  "source_url": "https://pokumon.com/card/parallel-city-145-162-city-championships-special-print/",
+                  "source_kind": "collector_reference",
+                  "evidence_type": "finish_presence",
+                  "evidence_label": "Parallel City (145/162 City Championships Special Print) - Reverse Holo City Championships promo"
+                }
+              ],
+              "matching_pricecharting_identity_context": [
+                {
+                  "source_key": "pricecharting_csv_product",
+                  "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/parallel-city-city-championship-145",
+                  "evidence_label": "Parallel City [City Championship] #145",
+                  "validation_reason": "stamp_variant_mismatch"
+                }
+              ]
+            },
+            "package_fingerprint": "a7fe0f5d934e825ef73fd662881b4263721ad164a01bc48f0ad6a0eb55d42c44",
+            "provenance_recovery": {
+              "package_id": "ENRICH-29B-PROVENANCE-PAYLOAD-CLEANUP",
+              "source_report": "docs/audits/card_row_enrichment_v1/enrich29a_provenance_review_evidence_recovery_v1.json",
+              "recovery_scope": "display_grade_provenance_fields_only",
+              "source_artifacts": [
+                "docs/audits/english_master_index_source_exhaustion_v1/tcgcsv_stamped_subtype_acquisition_v1/tcgcsv_stamped_subtype_acquisition_v1.json",
+                "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg11b_stamped_finish_routing_readiness_v1.json"
+              ],
+              "recovered_fingerprints": [
+                "c34a80e8b2ff246559f8175d7efcfbcfa26b7c82c7f7251eabe787daf6bf3144",
+                "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              ],
+              "source_report_fingerprint": "4eeb322f75ab74beab330812ee0ea7e135e1c915f91469cc341e8a0c7d0c7db3"
+            },
+            "readiness_package_id": "PKG-15N-STAMPED-REVIEW-READY-PARENT-INSERT-READINESS",
+            "readiness_fingerprint": "d627635e90ea08b892013ca6e87eff86de744c14decdfbae5188d3efc52ba2fd",
+            "independent_finish_sources": [
+              "pokecardvalues_stamped_finish",
+              "pokumon_promo_database"
+            ],
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "tcgcsv_stamped_subtype",
+              "thepricedex_price_list"
+            ],
+            "independent_identity_sources": [
+              "pokecardvalues_stamped_finish",
+              "pricecharting_csv_product",
+              "pokumon_promo_database"
+            ]
+          },
+          "child_count": 0,
+          "active_identity_count": 1,
+          "active_external_mapping_count": 0,
+          "payload_classification": {
+            "classification": "provenance_payload_usable",
+            "blockers": [],
+            "evidence_url_count": 2,
+            "evidence_label_count": 2,
+            "source_count": 3,
+            "has_fingerprint": true
+          }
+        }
+      ],
+      "hash_sha256": "432e5ece8e845a3414da60220233506f1aa0e51f035c3ba7a86114ab5ed208f9"
+    },
+    "after_global_guards": {
+      "active_identity_duplicate_groups": 0,
+      "active_external_mapping_duplicate_groups": 0
+    },
+    "proof_hash_sha256": "d74618c0c50c4aef8e6934b8065a7b6d005d1aa3494f5473ec021f9c33887b51"
+  },
+  "stop_findings": [],
+  "pass": true,
+  "forbidden": [
+    "parent identity writes",
+    "child writes",
+    "identity writes",
+    "external mapping writes",
+    "species writes",
+    "trait writes",
+    "deletes",
+    "merges",
+    "migrations",
+    "image writes",
+    "global apply"
+  ],
+  "fingerprint_sha256": "08d21b2ecb12ce4c7dd897e62755bac815d269779495c6e964ccd7f539cd8b42"
+}

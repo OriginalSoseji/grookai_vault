@@ -1,0 +1,115 @@
+{
+  "generated_at": "2026-06-16T04:44:20.336Z",
+  "audit_only": true,
+  "rollback_only_dry_run": true,
+  "db_writes_persisted": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "package_id": "IMG-01B-MISSING-DISPLAY-EXACT-CHILD-IMAGE-DRY-RUN",
+  "source_manifest": "docs\\audits\\image_truth_v1\\image_truth_missing_display_asset_manifest_v1.json",
+  "nonproduction_staging_asset_dir": "tmp/nonproduction_image_staging/image_truth_v1/img01b",
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "source_rows": 1,
+  "normalized_asset_rows": 1,
+  "rollback_update_verified_rows": 1,
+  "blocked_rows": 0,
+  "dry_run_ready_for_real_apply": true,
+  "rollback_completed": true,
+  "proof_hash": "d93dff9d548f35fc593e6d458599581017f2f3e789a806f4f9414705c95700a5",
+  "proof": {
+    "package_id": "IMG-01B-MISSING-DISPLAY-EXACT-CHILD-IMAGE-DRY-RUN",
+    "row_count": 1,
+    "ready_row_count": 1,
+    "blocked_row_count": 0,
+    "target_table": "card_printings",
+    "parent_overwrite_allowed": false,
+    "rollback_completed": true,
+    "rows": [
+      {
+        "card_printing_id": "48e37111-db45-4c3e-9331-eb502378cb24",
+        "planned_normalized_front_storage_path": "warehouse-derived/image-truth-v1/img01b-missing-display/mee/48e37111-db45-4c3e-9331-eb502378cb24/997886f1017668bc97324532.jpg",
+        "normalized_sha256": "997886f1017668bc97324532749a304369b7fe986842de2b69c95eed93b715bf",
+        "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basis-energy-grass-reverse-holo-1",
+        "asset_url": "https://storage.googleapis.com/images.pricecharting.com/j3kwvnsvmwsypvws/240.jpg",
+        "image_alt": "Basis Energy Grass [Reverse Holo] #1 Pokemon Mega Evolution Energy Prices",
+        "mutation_preview": {
+          "type": "update_card_printing_identity_image",
+          "card_printing_id": "48e37111-db45-4c3e-9331-eb502378cb24",
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img01b-missing-display/mee/48e37111-db45-4c3e-9331-eb502378cb24/997886f1017668bc97324532.jpg",
+          "image_url": null,
+          "image_alt_url": null,
+          "image_status": "exact",
+          "image_note": "IMG-01B-MISSING-DISPLAY-EXACT-CHILD-IMAGE-DRY-RUN:pricecharting_csv_product:https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basis-energy-grass-reverse-holo-1"
+        }
+      }
+    ]
+  },
+  "rows": [
+    {
+      "card_printing_id": "48e37111-db45-4c3e-9331-eb502378cb24",
+      "printing_gv_id": "GV-PK-MEE-001-RH",
+      "card_print_id": "6a28431f-8e78-45ee-adce-46ccde297389",
+      "parent_gv_id": "GV-PK-MEE-001",
+      "image_scope": "english_physical",
+      "target_table": "card_printings",
+      "parent_overwrite_allowed": false,
+      "db_write_allowed": false,
+      "dry_run_ready": false,
+      "set_code": "mee",
+      "set_name": "Mega Evolution Energy",
+      "card_name": "Basic Grass Energy",
+      "number": "001",
+      "finish_key": "reverse",
+      "source_status": "source_url_preserved",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basis-energy-grass-reverse-holo-1",
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_attempts": [
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basis-energy-grass-reverse-holo-1",
+          "asset_status": "source_image_url_preserved",
+          "reason": "PriceCharting product image URL was found on the exact source page with matching alt text."
+        }
+      ],
+      "asset_status": "source_image_url_preserved",
+      "asset_url": "https://storage.googleapis.com/images.pricecharting.com/j3kwvnsvmwsypvws/240.jpg",
+      "image_alt": "Basis Energy Grass [Reverse Holo] #1 Pokemon Mega Evolution Energy Prices",
+      "image_confidence": "exact",
+      "block_reason": "Source image URL is preserved, but it is not normalized into Grookai storage and no dry-run proof exists.",
+      "dry_run_status": "rollback_update_verified",
+      "validation_errors": [],
+      "parent_image_fields_unchanged": true,
+      "mutation_preview": {
+        "type": "update_card_printing_identity_image",
+        "card_printing_id": "48e37111-db45-4c3e-9331-eb502378cb24",
+        "image_source": "identity",
+        "image_path": "warehouse-derived/image-truth-v1/img01b-missing-display/mee/48e37111-db45-4c3e-9331-eb502378cb24/997886f1017668bc97324532.jpg",
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "exact",
+        "image_note": "IMG-01B-MISSING-DISPLAY-EXACT-CHILD-IMAGE-DRY-RUN:pricecharting_csv_product:https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basis-energy-grass-reverse-holo-1"
+      },
+      "before_child_image_fields": {
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null
+      },
+      "normalized_asset": {
+        "source_sha256": "997886f1017668bc97324532749a304369b7fe986842de2b69c95eed93b715bf",
+        "normalized_sha256": "997886f1017668bc97324532749a304369b7fe986842de2b69c95eed93b715bf",
+        "normalized_size_bytes": 9086,
+        "local_nonproduction_asset_path": "tmp/nonproduction_image_staging/image_truth_v1/img01b/mee_1_reverse_48e37111_997886f1017668bc.jpg",
+        "planned_normalized_front_storage_path": "warehouse-derived/image-truth-v1/img01b-missing-display/mee/48e37111-db45-4c3e-9331-eb502378cb24/997886f1017668bc97324532.jpg"
+      }
+    }
+  ]
+}

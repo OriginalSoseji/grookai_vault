@@ -178,7 +178,7 @@ export type FounderPromotionReviewModel = {
     imageStatus: string | null;
     imageNote: string | null;
     displayImageUrl: string | null;
-    displayImageKind: "exact" | "representative" | "missing";
+    displayImageKind: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
     imageSource: string | null;
     imageOriginLabel: string | null;
     frontEvidenceUrl: string | null;

@@ -1,0 +1,779 @@
+{
+  "generated_at": "2026-06-14T17:16:41.513Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "source": {
+    "source_name": "TCGCSV live TCGplayer catalog",
+    "source_url": "https://tcgcsv.com/tcgplayer/3/24451/products",
+    "group_id": 24451,
+    "group_name": "ME: Mega Evolution Promo"
+  },
+  "target_rows": 20,
+  "source_products": 95,
+  "source_prices": 85,
+  "summary": {
+    "by_status": {
+      "representative_candidate": 17,
+      "finish_subtype_not_usable": 2,
+      "finish_label_conflict_cosmos_vs_holo": 1
+    }
+  },
+  "rows": [
+    {
+      "card_printing_id": "e6a54462-6d5e-4217-9a74-fccbe1be08ce",
+      "card_print_id": "5e67b43d-3a75-43ef-a771-91b7d4d55b20",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "022",
+      "card_name": "Charcadet",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 666538,
+      "selected_product_name": "Charcadet - 022",
+      "selected_source_url": "https://www.tcgplayer.com/product/666538/pokemon-me-mega-evolution-promo-charcadet-022",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/666538_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 665053,
+          "name": "Charcadet - 022 (Pokemon Center Exclusive)",
+          "source_url": "https://www.tcgplayer.com/product/665053/pokemon-me-mega-evolution-promo-charcadet-022-pokemon-center-exclusive",
+          "number": "22",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": "pokemon_center_exclusive_modifier",
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/665053_200w.jpg",
+            "https://product-images.tcgplayer.com/665053.jpg"
+          ]
+        },
+        {
+          "product_id": 666538,
+          "name": "Charcadet - 022",
+          "source_url": "https://www.tcgplayer.com/product/666538/pokemon-me-mega-evolution-promo-charcadet-022",
+          "number": "22",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/666538_200w.jpg",
+            "https://product-images.tcgplayer.com/666538.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "cdd39b99-58f6-46ce-b8ca-d3b6605f8d0f",
+      "card_print_id": "b9b69cb0-dfe7-4928-b7c5-18358feed3a5",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "023",
+      "card_name": "Mega Charizard X ex",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 659612,
+      "selected_product_name": "Mega Charizard X ex - 023",
+      "selected_source_url": "https://www.tcgplayer.com/product/659612/pokemon-me-mega-evolution-promo-mega-charizard-x-ex-023",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/659612_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 659612,
+          "name": "Mega Charizard X ex - 023",
+          "source_url": "https://www.tcgplayer.com/product/659612/pokemon-me-mega-evolution-promo-mega-charizard-x-ex-023",
+          "number": "23",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/659612_200w.jpg",
+            "https://product-images.tcgplayer.com/659612.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "1990b1cd-63b3-42ba-8913-1fdb247bca01",
+      "card_print_id": "11d2bbcc-37dd-41e7-a08d-7f087b9158a8",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "024",
+      "card_name": "Oricorio ex",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 664010,
+      "selected_product_name": "Oricorio ex - 024",
+      "selected_source_url": "https://www.tcgplayer.com/product/664010/pokemon-me-mega-evolution-promo-oricorio-ex-024",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/664010_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 664010,
+          "name": "Oricorio ex - 024",
+          "source_url": "https://www.tcgplayer.com/product/664010/pokemon-me-mega-evolution-promo-oricorio-ex-024",
+          "number": "24",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/664010_200w.jpg",
+            "https://product-images.tcgplayer.com/664010.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "79a55f77-1746-4a55-8a75-5f87e983f333",
+      "card_print_id": "e94f133d-201c-460a-8c00-4bd42e9c625a",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "025",
+      "card_name": "Mega Kangaskhan ex",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 668509,
+      "selected_product_name": "Mega Kangaskhan ex - 025",
+      "selected_source_url": "https://www.tcgplayer.com/product/668509/pokemon-me-mega-evolution-promo-mega-kangaskhan-ex-025",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/668509_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 668509,
+          "name": "Mega Kangaskhan ex - 025",
+          "source_url": "https://www.tcgplayer.com/product/668509/pokemon-me-mega-evolution-promo-mega-kangaskhan-ex-025",
+          "number": "25",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/668509_200w.jpg",
+            "https://product-images.tcgplayer.com/668509.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "43473b80-43d1-4433-9cfc-895e4703ca2b",
+      "card_print_id": "7b76eafc-cd2e-46c0-8cd0-972f824b7501",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "026",
+      "card_name": "Meloetta",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 659231,
+      "selected_product_name": "Meloetta - 026",
+      "selected_source_url": "https://www.tcgplayer.com/product/659231/pokemon-me-mega-evolution-promo-meloetta-026",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/659231_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 659231,
+          "name": "Meloetta - 026",
+          "source_url": "https://www.tcgplayer.com/product/659231/pokemon-me-mega-evolution-promo-meloetta-026",
+          "number": "26",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/659231_200w.jpg",
+            "https://product-images.tcgplayer.com/659231.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "4d1b3038-360c-43f1-bd9e-44895389a3fb",
+      "card_print_id": "e97100d6-f173-409b-940a-5c00ad7e2cc4",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "027",
+      "card_name": "Haunter",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 659232,
+      "selected_product_name": "Haunter  - 027",
+      "selected_source_url": "https://www.tcgplayer.com/product/659232/pokemon-me-mega-evolution-promo-haunter-027",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/659232_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 659232,
+          "name": "Haunter  - 027",
+          "source_url": "https://www.tcgplayer.com/product/659232/pokemon-me-mega-evolution-promo-haunter-027",
+          "number": "27",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/659232_200w.jpg",
+            "https://product-images.tcgplayer.com/659232.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "fa52b2fe-cb54-49e2-a97c-350a8954bb94",
+      "card_print_id": "7bd09f9b-5484-4438-98db-0310aeaa458f",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "029",
+      "card_name": "Mega Charizard X ex",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 680639,
+      "selected_product_name": "Mega Charizard X ex - 029",
+      "selected_source_url": "https://www.tcgplayer.com/product/680639/pokemon-me-mega-evolution-promo-mega-charizard-x-ex-029",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/680639_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 680639,
+          "name": "Mega Charizard X ex - 029",
+          "source_url": "https://www.tcgplayer.com/product/680639/pokemon-me-mega-evolution-promo-mega-charizard-x-ex-029",
+          "number": "29",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/680639_200w.jpg",
+            "https://product-images.tcgplayer.com/680639.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "ed980bbd-e46d-4c75-b03c-cbd87ad8eebd",
+      "card_print_id": "5a8dc5d7-d997-40c3-abbe-d0eef7274fe3",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "030",
+      "card_name": "Mega Charizard Y ex",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 680640,
+      "selected_product_name": "Mega Charizard Y ex - 030",
+      "selected_source_url": "https://www.tcgplayer.com/product/680640/pokemon-me-mega-evolution-promo-mega-charizard-y-ex-030",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/680640_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 680640,
+          "name": "Mega Charizard Y ex - 030",
+          "source_url": "https://www.tcgplayer.com/product/680640/pokemon-me-mega-evolution-promo-mega-charizard-y-ex-030",
+          "number": "30",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/680640_200w.jpg",
+            "https://product-images.tcgplayer.com/680640.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "182a4ff4-c69a-400b-83c8-a782cffb4945",
+      "card_print_id": "a3cb10d9-d6c4-4f3e-ac57-59a04f7addb9",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "032",
+      "card_name": "Mega Gardevoir ex",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 685510,
+      "selected_product_name": "Mega Gardevoir ex - 032",
+      "selected_source_url": "https://www.tcgplayer.com/product/685510/pokemon-me-mega-evolution-promo-mega-gardevoir-ex-032",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/685510_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 685510,
+          "name": "Mega Gardevoir ex - 032",
+          "source_url": "https://www.tcgplayer.com/product/685510/pokemon-me-mega-evolution-promo-mega-gardevoir-ex-032",
+          "number": "32",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/685510_200w.jpg",
+            "https://product-images.tcgplayer.com/685510.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "985d953d-a624-4a38-a22d-ae4dea45de6c",
+      "card_print_id": "1a74aac3-6e04-4ac4-9f67-f64587247e25",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "033",
+      "card_name": "Mega Lucario ex",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 685511,
+      "selected_product_name": "Mega Lucario ex - 033",
+      "selected_source_url": "https://www.tcgplayer.com/product/685511/pokemon-me-mega-evolution-promo-mega-lucario-ex-033",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/685511_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 685511,
+          "name": "Mega Lucario ex - 033",
+          "source_url": "https://www.tcgplayer.com/product/685511/pokemon-me-mega-evolution-promo-mega-lucario-ex-033",
+          "number": "33",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/685511_200w.jpg",
+            "https://product-images.tcgplayer.com/685511.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "a93e64f3-8b39-447b-b233-b428abc09299",
+      "card_print_id": "e60163f4-a526-45d1-9429-d943998d0354",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "034",
+      "card_name": "Mega Meganium ex",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 692120,
+      "selected_product_name": "Mega Meganium ex - 034",
+      "selected_source_url": "https://www.tcgplayer.com/product/692120/pokemon-me-mega-evolution-promo-mega-meganium-ex-034",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/692120_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 692120,
+          "name": "Mega Meganium ex - 034",
+          "source_url": "https://www.tcgplayer.com/product/692120/pokemon-me-mega-evolution-promo-mega-meganium-ex-034",
+          "number": "34",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/692120_200w.jpg",
+            "https://product-images.tcgplayer.com/692120.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "f99678a3-d141-4ad5-a443-b39b593a45c9",
+      "card_print_id": "cc798c00-1284-4f93-89e9-818b11fb5b78",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "035",
+      "card_name": "Mega Emboar ex",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 692119,
+      "selected_product_name": "Mega Emboar ex - 035",
+      "selected_source_url": "https://www.tcgplayer.com/product/692119/pokemon-me-mega-evolution-promo-mega-emboar-ex-035",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/692119_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 692119,
+          "name": "Mega Emboar ex - 035",
+          "source_url": "https://www.tcgplayer.com/product/692119/pokemon-me-mega-evolution-promo-mega-emboar-ex-035",
+          "number": "35",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/692119_200w.jpg",
+            "https://product-images.tcgplayer.com/692119.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "f5800572-5dbc-466f-8467-93b8fcc1eb4b",
+      "card_print_id": "a363a681-f7e9-4620-9396-dcf802abc2bf",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "036",
+      "card_name": "Mega Feraligatr ex",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 692118,
+      "selected_product_name": "Mega Feraligatr ex - 036",
+      "selected_source_url": "https://www.tcgplayer.com/product/692118/pokemon-me-mega-evolution-promo-mega-feraligatr-ex-036",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/692118_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 692118,
+          "name": "Mega Feraligatr ex - 036",
+          "source_url": "https://www.tcgplayer.com/product/692118/pokemon-me-mega-evolution-promo-mega-feraligatr-ex-036",
+          "number": "36",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/692118_200w.jpg",
+            "https://product-images.tcgplayer.com/692118.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "d771059f-c418-4ded-86a3-8316c7ed3670",
+      "card_print_id": "e974d152-fefe-4a56-ad6a-1baced7713a9",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "064",
+      "card_name": "Serperior",
+      "finish_key": "holo",
+      "status": "finish_subtype_not_usable",
+      "reason": "Matched product did not provide an unmodified Holofoil image candidate.",
+      "selected_product_id": null,
+      "selected_product_name": null,
+      "selected_source_url": null,
+      "selected_image_url": null,
+      "selected_image_exists": null,
+      "matched_products": [
+        {
+          "product_id": 685494,
+          "name": "Serperior - 064",
+          "source_url": "https://www.tcgplayer.com/product/685494/pokemon-me-mega-evolution-promo-serperior-064",
+          "number": "64",
+          "price_subtypes": [
+            "Normal"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/685494_200w.jpg",
+            "https://product-images.tcgplayer.com/685494.jpg"
+          ]
+        },
+        {
+          "product_id": 685498,
+          "name": "Serperior - 064 [Staff]",
+          "source_url": "https://www.tcgplayer.com/product/685498/pokemon-me-mega-evolution-promo-serperior-064-staff",
+          "number": "64",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": "staff_modifier",
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/685498_200w.jpg",
+            "https://product-images.tcgplayer.com/685498.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "fe9852cf-3d6d-429f-b590-82e5679ad17e",
+      "card_print_id": "bfb286b4-20db-475f-9b0e-0057c926283b",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "065",
+      "card_name": "Barbaracle",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 685495,
+      "selected_product_name": "Barbaracle - 065",
+      "selected_source_url": "https://www.tcgplayer.com/product/685495/pokemon-me-mega-evolution-promo-barbaracle-065",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/685495_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 685495,
+          "name": "Barbaracle - 065",
+          "source_url": "https://www.tcgplayer.com/product/685495/pokemon-me-mega-evolution-promo-barbaracle-065",
+          "number": "65",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/685495_200w.jpg",
+            "https://product-images.tcgplayer.com/685495.jpg"
+          ]
+        },
+        {
+          "product_id": 685499,
+          "name": "Barbaracle - 065 [Staff]",
+          "source_url": "https://www.tcgplayer.com/product/685499/pokemon-me-mega-evolution-promo-barbaracle-065-staff",
+          "number": "65",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": "staff_modifier",
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/685499_200w.jpg",
+            "https://product-images.tcgplayer.com/685499.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "b6276cd5-a477-4e7c-869a-d8a45c109ec1",
+      "card_print_id": "984c357a-056e-42c4-87ec-0595cd4c6c97",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "066",
+      "card_name": "Tyrantrum",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 685496,
+      "selected_product_name": "Tyrantrum - 066",
+      "selected_source_url": "https://www.tcgplayer.com/product/685496/pokemon-me-mega-evolution-promo-tyrantrum-066",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/685496_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 685496,
+          "name": "Tyrantrum - 066",
+          "source_url": "https://www.tcgplayer.com/product/685496/pokemon-me-mega-evolution-promo-tyrantrum-066",
+          "number": "66",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/685496_200w.jpg",
+            "https://product-images.tcgplayer.com/685496.jpg"
+          ]
+        },
+        {
+          "product_id": 685500,
+          "name": "Tyrantrum - 066 [Staff]",
+          "source_url": "https://www.tcgplayer.com/product/685500/pokemon-me-mega-evolution-promo-tyrantrum-066-staff",
+          "number": "66",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": "staff_modifier",
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/685500_200w.jpg",
+            "https://product-images.tcgplayer.com/685500.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "249f318b-94f9-478c-bc9d-caee9ab3851f",
+      "card_print_id": "54ca1be2-df3a-4b81-8adc-7b5923fc3dfa",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "067",
+      "card_name": "Doublade",
+      "finish_key": "holo",
+      "status": "finish_subtype_not_usable",
+      "reason": "Matched product did not provide an unmodified Holofoil image candidate.",
+      "selected_product_id": null,
+      "selected_product_name": null,
+      "selected_source_url": null,
+      "selected_image_url": null,
+      "selected_image_exists": null,
+      "matched_products": [
+        {
+          "product_id": 685497,
+          "name": "Doublade - 067",
+          "source_url": "https://www.tcgplayer.com/product/685497/pokemon-me-mega-evolution-promo-doublade-067",
+          "number": "67",
+          "price_subtypes": [
+            "Normal"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/685497_200w.jpg",
+            "https://product-images.tcgplayer.com/685497.jpg"
+          ]
+        },
+        {
+          "product_id": 685501,
+          "name": "Doublade - 067 [Staff]",
+          "source_url": "https://www.tcgplayer.com/product/685501/pokemon-me-mega-evolution-promo-doublade-067-staff",
+          "number": "67",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": "staff_modifier",
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/685501_200w.jpg",
+            "https://product-images.tcgplayer.com/685501.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "7cc8e470-9201-459e-8571-601f48ccce17",
+      "card_print_id": "45589393-ca82-4b9c-88c7-d477aaeb45b1",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "068",
+      "card_name": "Makuhita",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 686275,
+      "selected_product_name": "Makuhita - 068",
+      "selected_source_url": "https://www.tcgplayer.com/product/686275/pokemon-me-mega-evolution-promo-makuhita-068",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/686275_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 686275,
+          "name": "Makuhita - 068",
+          "source_url": "https://www.tcgplayer.com/product/686275/pokemon-me-mega-evolution-promo-makuhita-068",
+          "number": "68",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/686275_200w.jpg",
+            "https://product-images.tcgplayer.com/686275.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "e0521254-0ac6-4731-b6ef-2ae7cfdec997",
+      "card_print_id": "307545d2-7a82-4c60-8dfe-1b18bc2a092e",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "069",
+      "card_name": "Chikorita",
+      "finish_key": "holo",
+      "status": "finish_label_conflict_cosmos_vs_holo",
+      "reason": "Live TCGCSV product title says Cosmos Holo while the current missing-display target is finish_key=holo.",
+      "selected_product_id": null,
+      "selected_product_name": null,
+      "selected_source_url": null,
+      "selected_image_url": null,
+      "selected_image_exists": null,
+      "matched_products": [
+        {
+          "product_id": 686342,
+          "name": "Chikorita (Cosmos Holo)",
+          "source_url": "https://www.tcgplayer.com/product/686342/pokemon-me-mega-evolution-promo-chikorita-cosmos-holo",
+          "number": "69",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": true,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/686342_200w.jpg",
+            "https://product-images.tcgplayer.com/686342.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "card_printing_id": "7c26980c-cae2-421b-946a-017bee625fe4",
+      "card_print_id": "563a0b4e-5f74-4e5c-a0fc-95095a475d0d",
+      "set_code": "mep",
+      "set_name": "MEP Black Star Promos",
+      "number": "070",
+      "card_name": "Tyrunt",
+      "finish_key": "holo",
+      "status": "representative_candidate",
+      "reason": "Live TCGCSV product matches card identity with Holofoil subtype and no modifier/cosmos label.",
+      "selected_product_id": 685562,
+      "selected_product_name": "Tyrunt - 070",
+      "selected_source_url": "https://www.tcgplayer.com/product/685562/pokemon-me-mega-evolution-promo-tyrunt-070",
+      "selected_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/685562_200w.jpg",
+      "selected_image_exists": true,
+      "matched_products": [
+        {
+          "product_id": 685562,
+          "name": "Tyrunt - 070",
+          "source_url": "https://www.tcgplayer.com/product/685562/pokemon-me-mega-evolution-promo-tyrunt-070",
+          "number": "70",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": null,
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/685562_200w.jpg",
+            "https://product-images.tcgplayer.com/685562.jpg"
+          ]
+        },
+        {
+          "product_id": 685563,
+          "name": "Tyrunt - 070 (Pokemon Center Exclusive)",
+          "source_url": "https://www.tcgplayer.com/product/685563/pokemon-me-mega-evolution-promo-tyrunt-070-pokemon-center-exclusive",
+          "number": "70",
+          "price_subtypes": [
+            "Holofoil"
+          ],
+          "modifier": "pokemon_center_exclusive_modifier",
+          "has_cosmos_label": false,
+          "image_urls": [
+            "https://tcgplayer-cdn.tcgplayer.com/product/685563_200w.jpg",
+            "https://product-images.tcgplayer.com/685563.jpg"
+          ]
+        }
+      ]
+    }
+  ]
+}

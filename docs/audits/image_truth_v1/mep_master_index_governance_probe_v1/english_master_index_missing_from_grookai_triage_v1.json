@@ -1,0 +1,17 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_MISSING_FROM_GROOKAI_TRIAGE_V1",
+  "generated_at": "2026-06-14T16:58:08.647Z",
+  "audit_only": true,
+  "db_writes": false,
+  "source_report": "english_master_index_grookai_audit_v1.json",
+  "rule": "Missing-from-Grookai rows are not insertion authority. Only controlled per-set proof loops may create repair candidates.",
+  "summary": {
+    "total_missing_from_grookai": 0,
+    "by_category": {},
+    "by_set_key": {},
+    "by_finish": {},
+    "by_index_status": {},
+    "by_source_count": {}
+  },
+  "categories": {}
+}

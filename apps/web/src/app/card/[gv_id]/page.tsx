@@ -28,6 +28,7 @@ import {
 import { getDisplayPrintedIdentity } from "@/lib/cards/getDisplayPrintedIdentity";
 import { normalizeRequestedPublicGvId } from "@/lib/gvIdAlias";
 import { normalizeCardImageUrl } from "@/lib/cards/normalizeCardImageUrl";
+import { findPrintingByReference } from "@/lib/cards/printingSelection";
 import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
@@ -71,9 +72,10 @@ function formatReleaseDate(releaseDate?: string) {
   }).format(new Date(Date.UTC(Number(year), Number(month) - 1, Number(day))));
 }
 
-function buildCardHref(gvId: string, compareCardsParam?: string) {
+function buildCardHref(gvId: string, compareCardsParam?: string, printingReference?: string) {
   const params = new URLSearchParams();
   if (compareCardsParam) params.set("cards", compareCardsParam);
+  if (printingReference) params.set("printing", printingReference);
   const query = params.toString();
   return query ? `/card/${encodeURIComponent(gvId)}?${query}` : `/card/${encodeURIComponent(gvId)}`;
 }
@@ -140,19 +142,39 @@ export default async function CardPage({
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const compareCardsParam = buildCompareCardsParam(compareCards);
   if (normalizeRequestedPublicGvId(params.gv_id) !== normalizeRequestedPublicGvId(card.gv_id)) {
-    permanentRedirect(buildCardHref(card.gv_id, compareCardsParam));
+    permanentRedirect(buildCardHref(card.gv_id, compareCardsParam, searchParams?.printing));
   }
   const currentCardPath = buildCardHref(resolvedCard.gv_id, compareCardsParam);
   const selectedRoutePrinting = searchParams?.printing
-    ? resolvedCard.display_printings?.find((printing) => !printing.is_display_fallback && printing.id === searchParams.printing)
+    ? findPrintingByReference(
+        (resolvedCard.display_printings ?? []).filter((printing) => !printing.is_display_fallback),
+        searchParams.printing,
+      )
     : null;
-  const resolvedCardImagePresentation = resolveCardImagePresentation(resolvedCard);
   const selectedRoutePrintingImageUrl =
     selectedRoutePrinting?.display_image_url ?? selectedRoutePrinting?.image_url ?? null;
+  const resolvedCardFallbackImageUrl = resolvedCard.display_image_url ?? resolvedCard.image_url ?? null;
+  const selectedRoutePrintingUsesBaseImage = Boolean(
+    selectedRoutePrinting && !selectedRoutePrintingImageUrl && resolvedCardFallbackImageUrl,
+  );
+  const displayedImageTruthSource = selectedRoutePrintingUsesBaseImage
+    ? {
+        ...selectedRoutePrinting,
+        display_image_kind: "missing_variant_visual" as const,
+        image_status: selectedRoutePrinting?.image_status ?? "missing_variant_visual",
+        image_note:
+          selectedRoutePrinting?.image_note ??
+          "Correct printing. Image may not show exact finish, stamp, or parallel.",
+      }
+    : selectedRoutePrintingImageUrl
+      ? selectedRoutePrinting
+      : resolvedCard;
+  const resolvedCardImagePresentation = resolveCardImagePresentation(displayedImageTruthSource);
   const resolvedCardImageSrc =
-    normalizeCardImageUrl(selectedRoutePrintingImageUrl ?? resolvedCard.display_image_url ?? resolvedCard.image_url) ?? undefined;
-  const resolvedCardImageFallback =
-    resolvedCard.display_image_kind === "exact" ? buildTcgDexImageUrl(resolvedCard.tcgdex_external_id) : null;
+    normalizeCardImageUrl(selectedRoutePrintingImageUrl ?? resolvedCardFallbackImageUrl) ?? undefined;
+  const resolvedCardImageFallback = resolvedCardImagePresentation.displayImageKind === "exact"
+    ? buildTcgDexImageUrl(resolvedCard.tcgdex_external_id)
+    : null;
 
   async function addToVaultAction(
     _previousState: AddToVaultActionResult | null,
@@ -404,13 +426,22 @@ export default async function CardPage({
     releaseDateLabel ? { label: "Release Date", value: releaseDateLabel } : null,
   ].filter((item): item is DetailItem => item !== null);
   const relatedPrints = resolvedCard.related_prints ?? [];
-  const networkOffers = resolvedCard.id
-    ? await getCardStreamRows({
+  let networkOffers: Awaited<ReturnType<typeof getCardStreamRows>> = [];
+  if (resolvedCard.id) {
+    try {
+      networkOffers = await getCardStreamRows({
         cardPrintId: resolvedCard.id,
         excludeUserId: user?.id ?? null,
         limit: 6,
-      })
-    : [];
+      });
+    } catch (error) {
+      console.error("[network:stream] card page offers read failed", {
+        cardPrintId: resolvedCard.id,
+        gvId: resolvedCard.gv_id,
+        error,
+      });
+    }
+  }
   const hasOwnedItems = ownedObjectSummary.rawCount > 0 || ownedObjectSummary.slabItems.length > 0;
   const ownershipLabel = vaultCount > 0
     ? `You own ${vaultCount} ${vaultCount === 1 ? "copy" : "copies"}`
@@ -466,7 +497,10 @@ export default async function CardPage({
             <CardZoomModal
               src={resolvedCardImageSrc}
               fallbackSrc={resolvedCardImageFallback ?? undefined}
-              alt={getCardImageAltText(resolvedDisplayIdentity.display_name, resolvedCard)}
+              alt={getCardImageAltText(
+                resolvedDisplayIdentity.display_name,
+                displayedImageTruthSource,
+              )}
               imageClassName="aspect-[3/4] max-h-[430px] w-full cursor-zoom-in object-contain sm:max-h-[560px]"
               fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[18px] bg-slate-100 px-4 text-center text-sm text-slate-500"
             />
@@ -474,7 +508,13 @@ export default async function CardPage({
               <div className="mt-3 flex flex-wrap gap-2">
                 <CardImageTruthBadge
                   label={resolvedCardImagePresentation.detailBadgeLabel ?? resolvedCardImagePresentation.compactBadgeLabel}
-                  emphasis={resolvedCardImagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                  emphasis={
+                    resolvedCardImagePresentation.isCollisionRepresentative ||
+                    resolvedCardImagePresentation.isMissingVariantVisual ||
+                    resolvedCardImagePresentation.isBlocked
+                      ? "strong"
+                      : "default"
+                  }
                 />
               </div>
             ) : null}

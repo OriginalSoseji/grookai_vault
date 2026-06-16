@@ -1,0 +1,73 @@
+{
+  "version": "ENRICH06A_EMPTY_DUPLICATE_PARENT_DELETE_GUARDED_DRY_RUN_V1",
+  "package_id": "ENRICH-06A-EMPTY-DUPLICATE-PARENT-DELETE",
+  "generated_at": "2026-06-15T17:53:44.611Z",
+  "package_fingerprint_sha256": "e718d7e83c7eeb262a1e92d6ef8df3af90545c5e64fe62522199bfff12fc072b",
+  "source_file": "docs\\audits\\card_row_enrichment_v1\\card_row_enrichment_no_child_parent_adjudication_v1.json",
+  "scope": {
+    "target_rows": 0,
+    "target_classification": "empty_duplicate_parent_delete_candidate_needs_owner_proof",
+    "writes_simulated_then_rolled_back": [
+      "card_prints deletes"
+    ],
+    "durable_db_writes_performed": false,
+    "migrations_created": false,
+    "forbidden": [
+      "child deletes",
+      "identity deletes",
+      "mapping deletes",
+      "trait deletes",
+      "species deletes",
+      "price deletes",
+      "cameo deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ]
+  },
+  "by_set_top_25": {},
+  "execution": {
+    "before_snapshot": {
+      "captured_at": "2026-06-15T17:53:43.839Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "row_count": 0
+    },
+    "guard": {
+      "target_count": 0,
+      "distinct_target_count": 0,
+      "missing_parent_count": 0,
+      "missing_owner_proof_count": 0,
+      "child_dependency_count": 0,
+      "identity_dependency_count": 0,
+      "mapping_dependency_count": 0,
+      "trait_dependency_count": 0,
+      "species_dependency_count": 0,
+      "active_price_dependency_count": 0,
+      "cameo_dependency_count": 0,
+      "vault_instance_dependency_count": 0,
+      "target_fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "inside_transaction_proof": {
+      "active_price_view_rows_accepted_as_derived": 0,
+      "deleted_active_price_rows": 0,
+      "deleted_parent_rows": 0,
+      "deleted_samples": []
+    },
+    "caught_error": null,
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-15T17:53:44.611Z",
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "row_count": 0
+    },
+    "dry_run_status": "completed_rolled_back_no_durable_change"
+  },
+  "target_samples": [],
+  "stop_findings": [
+    "no_targets"
+  ],
+  "pass": false,
+  "recommended_approval_text": null
+}

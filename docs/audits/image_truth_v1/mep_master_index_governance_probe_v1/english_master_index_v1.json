@@ -1,0 +1,81 @@
+{
+  "version": "ENGLISH_VERIFIED_MASTER_SET_INDEX_V1",
+  "generated_at": "2026-06-14T16:58:08.647Z",
+  "audit_only": true,
+  "db_writes": false,
+  "language": "en",
+  "source_standard": {
+    "api_agreed_is_not_master_truth": true,
+    "finish_truth_requires_human_or_checklist_source_for_master_verified": true,
+    "fail_closed_unknown_printings": true,
+    "no_db_writes": true
+  },
+  "transport": {
+    "note": "Default Node TLS verification."
+  },
+  "summary": {
+    "sets": 1,
+    "evidence_rows": 243,
+    "source_overlap": [
+      {
+        "source_key": "full_grip_games_product_page",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "gamenerdz_product_page",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "noble_knight_product_page",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgcsv_tcgplayer_catalog_live",
+        "evidence_rows": 4
+      },
+      {
+        "source_key": "tcgdex",
+        "evidence_rows": 97
+      },
+      {
+        "source_key": "tcgplayer_pro_catalog_page",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "thepricedex_price_list",
+        "evidence_rows": 138
+      }
+    ],
+    "cards_by_status": {
+      "human_source_verified": 8,
+      "master_verified": 52
+    },
+    "printings_by_status": {
+      "human_source_verified": 33,
+      "master_verified": 49
+    },
+    "conflicts": 0,
+    "manual_review": 0,
+    "suppressed_structured_finish_candidates": 11,
+    "source_availability_by_status": {
+      "bulbapedia_set_list|error": 1,
+      "human_fixtures|collected": 1,
+      "pkmncards|error": 1,
+      "pokemontcg_api|unavailable": 1,
+      "tcgdex|collected": 1,
+      "tcgplayer_price_guide|unavailable": 1,
+      "thepricedex_price_list|collected": 1
+    }
+  },
+  "artifact_manifest": {
+    "sets": "english_master_index_sets_v1.json",
+    "set_alias_normalization": "english_master_index_set_alias_normalization_v1.json",
+    "source_availability": "english_master_index_source_availability_v1.json",
+    "cards": "english_master_index_cards_v1.json",
+    "printings": "english_master_index_printings_v1.json",
+    "manual_review": "english_master_index_manual_review_v1.json",
+    "conflicts": "english_master_index_conflicts_v1.json",
+    "grookai_audit": "english_master_index_grookai_audit_v1.json",
+    "suppressed_structured_finish_candidates": "english_master_index_suppressed_structured_finish_candidates_v1.json"
+  }
+}

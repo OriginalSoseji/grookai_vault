@@ -7,6 +7,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../card_detail_screen.dart';
 import '../../models/ownership_state.dart';
 import '../../services/identity/display_identity.dart';
+import '../../services/identity/image_presentation.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/public/collector_follow_service.dart';
 import '../../services/public/public_collector_service.dart';
@@ -27,6 +28,18 @@ ResolvedDisplayIdentity _publicCollectorDisplayIdentity(
     setIdentityModel: card.setIdentityModel,
     setCode: card.setCode,
     number: card.number == '—' ? null : card.number,
+  );
+}
+
+ResolvedImagePresentation _publicCollectorImagePresentation(
+  PublicCollectorCard card,
+) {
+  return resolveImagePresentationFromFields(
+    imageUrl: card.imageUrl,
+    displayImageUrl: card.imageUrl,
+    displayImageKind: card.displayImageKind,
+    imageStatus: card.imageStatus,
+    imageNote: card.imageNote,
   );
 }
 
@@ -1406,6 +1419,7 @@ class _PublicCardTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final displayIdentity = _publicCollectorDisplayIdentity(card);
+    final imagePresentation = _publicCollectorImagePresentation(card);
     final metaParts = [
       card.setName ?? card.setCode,
       card.number != '—' ? '#${card.number}' : null,
@@ -1440,14 +1454,32 @@ class _PublicCardTile extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 0.69,
-              child: CardSurfaceArtwork(
-                label: displayIdentity.displayName,
-                imageUrl: card.imageUrl,
-                borderRadius: 22,
-                padding: const EdgeInsets.all(1.5),
-                backgroundColor: colorScheme.surfaceContainerLow.withValues(
-                  alpha: 0.52,
-                ),
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: CardSurfaceArtwork(
+                      label: displayIdentity.displayName,
+                      imageUrl: card.imageUrl,
+                      borderRadius: 22,
+                      padding: const EdgeInsets.all(1.5),
+                      backgroundColor: colorScheme.surfaceContainerLow
+                          .withValues(alpha: 0.52),
+                    ),
+                  ),
+                  if (imagePresentation.compactBadgeLabel != null)
+                    Positioned(
+                      left: 6,
+                      bottom: 6,
+                      right: 6,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: _ImageStatusBadge(
+                          label: imagePresentation.compactBadgeLabel!,
+                          strong: imagePresentation.isCollisionRepresentative,
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
             const SizedBox(height: 6),
@@ -1657,6 +1689,49 @@ class _TileBadge extends StatelessWidget {
           color: colors.foreground,
           fontWeight: FontWeight.w600,
           height: 1.0,
+        ),
+      ),
+    );
+  }
+}
+
+class _ImageStatusBadge extends StatelessWidget {
+  const _ImageStatusBadge({required this.label, this.strong = false});
+
+  final String label;
+  final bool strong;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final backgroundColor = strong
+        ? colorScheme.tertiaryContainer.withValues(alpha: 0.92)
+        : colorScheme.surface.withValues(alpha: 0.94);
+    final borderColor = strong
+        ? colorScheme.tertiary.withValues(alpha: 0.22)
+        : colorScheme.outline.withValues(alpha: 0.12);
+    final textColor = strong
+        ? colorScheme.onTertiaryContainer
+        : colorScheme.onSurface.withValues(alpha: 0.78);
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: borderColor),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+        child: Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: textColor,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 0.2,
+          ),
         ),
       ),
     );

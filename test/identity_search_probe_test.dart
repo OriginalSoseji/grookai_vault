@@ -101,6 +101,17 @@ void main() {
     expect(getCardIdentityFilterKeys(zapdos), isEmpty);
   });
 
+  test('governed finish and identity labels are displayable', () {
+    expect(formatFinishLabel(finishKey: 'cosmos'), 'Cosmos Holo');
+    expect(formatFinishLabel(finishKey: 'cracked_ice'), 'Cracked Ice Holo');
+    expect(
+      formatFinishLabel(finishKey: 'rocket_reverse'),
+      'Rocket Reverse Holo',
+    );
+    expect(formatPrintedIdentityModifier('first_edition'), 'First Edition');
+    expect(formatVariantKey('play_pokemon_stamp'), 'Play Pokémon Stamp');
+  });
+
   test('child printing search contract displays selected finish context', () {
     final espurrReverse = CardPrint.fromJson(<String, dynamic>{
       'id': 'card-print-me03-033',

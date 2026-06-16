@@ -1,0 +1,63 @@
+{
+  "version": "ENRICH-13-CORE-IDENTITY-SET-CODE-RESOLUTION-READINESS-V1",
+  "generated_at": "2026-06-16T02:58:15.714Z",
+  "mode": "audit_only_readiness",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "scope": {
+    "target": "English physical parent core identity gaps only",
+    "writes_authorized": false,
+    "proposed_write_surface_if_later_approved": [
+      "card_prints.set_code",
+      "card_prints.number",
+      "card_prints.number_plain"
+    ],
+    "forbidden": [
+      "child writes",
+      "gv_id writes",
+      "identity inserts",
+      "external mapping writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes"
+    ]
+  },
+  "summary": {
+    "total_core_identity_gap_rows": 0,
+    "ready_for_guarded_dry_run_preparation": 0,
+    "blocked_rows": 0,
+    "by_classification": {},
+    "by_blocker": {},
+    "by_set_top_25": {},
+    "ready_by_set_top_25": {}
+  },
+  "recommended_next_package": {
+    "package_id": null,
+    "status": "no_ready_rows",
+    "writes_authorized": false
+  },
+  "blocked_strategy": [
+    {
+      "classification": "blocked_pocket_domain_governance_required",
+      "strategy": "Do not mutate as English physical enrichment. Decide whether these rows belong to Pocket/excluded identity domain or separate non-physical cleanup."
+    },
+    {
+      "classification": "blocked_subset_alias_governance_required",
+      "strategy": "Resolve subset identity first, then propose parent core identity updates under the canonical subset set_code."
+    },
+    {
+      "classification": "blocked_proposed_identity_collision",
+      "strategy": "Resolve duplicate ownership/collision before any parent identity update."
+    },
+    {
+      "classification": "blocked_source_acquisition_or_manual_review_required",
+      "strategy": "Acquire exact source identity or manually review before write planning."
+    }
+  ],
+  "rows": [],
+  "ready_rows": [],
+  "samples_by_classification": {},
+  "fingerprint_sha256": "881ae22db4333c287e5c4936553433cdf68df8a0697403ee244add481c71ebe9"
+}

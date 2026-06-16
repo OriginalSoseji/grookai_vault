@@ -14,16 +14,25 @@ class ResolvedDisplayIdentity {
 
 const Map<String, String> _variantKeyMap = <String, String>{
   'pokemon_together_stamp': 'Pokémon Together Stamp',
-  'prerelease': 'Prerelease',
-  'staff': 'Staff',
+  'prerelease': 'Prerelease Stamp',
+  'prerelease_stamp': 'Prerelease Stamp',
+  'staff': 'Staff Stamp',
+  'staff_stamp': 'Staff Stamp',
+  'staff_prerelease_stamp': 'Staff Prerelease Stamp',
+  'play_pokemon_stamp': 'Play Pokémon Stamp',
+  'e_league_stamp': 'E-League Stamp',
+  'e_league_winner_stamp': 'E-League Winner Stamp',
   'alt': 'Alternate Art',
   'tg': 'Trainer Gallery',
   'rc': 'Radiant Collection',
   'cc': 'Classic Collection',
+  'illustration_rare': 'Illustration Rare',
+  'shiny_rare': 'Shiny Rare',
 };
 
 const Map<String, String> _printedIdentityModifierMap = <String, String>{
   'delta_species': 'δ Delta Species',
+  'first_edition': 'First Edition',
 };
 
 const Map<String, String> _finishKeyMap = <String, String>{
@@ -32,6 +41,9 @@ const Map<String, String> _finishKeyMap = <String, String>{
   'reverse': 'Reverse Holo',
   'pokeball': 'Poké Ball',
   'masterball': 'Master Ball',
+  'cosmos': 'Cosmos Holo',
+  'cracked_ice': 'Cracked Ice Holo',
+  'rocket_reverse': 'Rocket Reverse Holo',
 };
 
 const Set<String> _nonMeaningfulVariantKeys = <String>{

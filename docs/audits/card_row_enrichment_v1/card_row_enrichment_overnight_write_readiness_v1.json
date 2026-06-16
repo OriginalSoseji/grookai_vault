@@ -1,0 +1,126 @@
+{
+  "version": "CARD_ROW_ENRICHMENT_OVERNIGHT_WRITE_READINESS_V1",
+  "generated_at": "2026-06-15T05:50:00.000Z",
+  "last_updated_at": "2026-06-15T06:57:55.7034840-06:00",
+  "mode": "post_enrich02b_apply_checkpoint",
+  "durable_db_writes_performed": true,
+  "migrations_created": false,
+  "image_work_included": false,
+  "real_apply_authorized": true,
+  "applied_packages": [
+    {
+      "package_id": "ENRICH-04-CRACKED-ICE-PRINTING-GV-ID-SUFFIX",
+      "status": "real_apply_passed",
+      "fingerprint": "5d6f8cbe955c4ca31029e440ffff4f2ff521d0ebabfe6c8ab4ffcb664f5734f3",
+      "scope": "131 cracked_ice child card_printing printing_gv_id updates using governed suffix CRACKED-ICE",
+      "real_apply_report": "docs/audits/card_row_enrichment_v1/enrich04_cracked_ice_printing_gv_id_real_apply_v1.md",
+      "writes_performed": [
+        "card_printings.printing_gv_id"
+      ],
+      "forbidden_writes_performed": false
+    },
+    {
+      "package_id": "ENRICH-06A2-EMPTY-DUPLICATE-PRICE-PARENT-DELETE",
+      "status": "real_apply_passed",
+      "fingerprint": "da0c9a329af530b55a168069d81f6501060635250b248fa64bbaa0afef3d23d0",
+      "scope": "940 zero-child empty duplicate parent card_print deletes with sibling owner proof; active prices are derived view rows and were not directly deleted",
+      "real_apply_report": "docs/audits/card_row_enrichment_v1/enrich06a2_empty_duplicate_price_parent_delete_real_apply_v1.md",
+      "writes_performed": [
+        "card_prints deletes"
+      ],
+      "forbidden_writes_performed": false
+    },
+    {
+      "package_id": "ENRICH-03B-ACTIVE-IDENTITY-BACKFILL-POST-DUPLICATE-DELETE",
+      "status": "real_apply_passed",
+      "fingerprint": "0c72e3998ba3544d7b335961fd3c4cb015619930caf498c8401bb44c01de6aab",
+      "scope": "940 active card_print_identity inserts from public.card_print_identity_backfill_projection_v1",
+      "real_apply_report": "docs/audits/card_row_enrichment_v1/enrich03b_active_identity_real_apply_v1.md",
+      "writes_performed": [
+        "card_print_identity inserts"
+      ],
+      "forbidden_writes_performed": false
+    },
+    {
+      "package_id": "ENRICH-06C2-SOURCE-MAPPED-ACTIVE-FINISH-CHILD-PRINTING-INSERT",
+      "status": "real_apply_passed",
+      "fingerprint": "7a901d3842ccffee2588fd7fe26722dbebc053caea2ba16d75bf9acc398f5442",
+      "scope": "530 child card_printing inserts across 354 source-mapped childless parents using Master Index finish keys",
+      "real_apply_report": "docs/audits/card_row_enrichment_v1/enrich06c2_source_mapped_active_finish_child_insert_real_apply_v1.md",
+      "writes_performed": [
+        "card_printings inserts"
+      ],
+      "forbidden_writes_performed": false
+    },
+    {
+      "package_id": "ENRICH-08A-SPECIES-NAME-RULE-BACKFILL",
+      "status": "real_apply_passed",
+      "fingerprint": "28d38aa417685d31193e2c2902d48ebd01bfdd1fbcd4f544121b50ed2e4ba678",
+      "scope": "680 card_print_species inserts across 680 English physical parents using grookai_dex_name_rule_v1",
+      "real_apply_report": "docs/audits/card_row_enrichment_v1/enrich08a_species_name_rule_real_apply_v1.md",
+      "writes_performed": [
+        "card_print_species inserts"
+      ],
+      "forbidden_writes_performed": false
+    },
+    {
+      "package_id": "ENRICH-02B-CHILD-PRINTING-GV-ID-BACKFILL-POST-CHILD-INSERT",
+      "status": "real_apply_passed",
+      "fingerprint": "ec870044eefe28ee10bda2bddc655e841101b016a101691691a656798b97c9c0",
+      "scope": "430 child card_printing printing_gv_id updates from current governed finish suffixes",
+      "real_apply_report": "docs/audits/card_row_enrichment_v1/enrich02b_child_printing_gv_id_real_apply_v1.md",
+      "writes_performed": [
+        "card_printings.printing_gv_id"
+      ],
+      "forbidden_writes_performed": false
+    }
+  ],
+  "write_ready_packages": [],
+  "stale_requires_refresh_before_apply": [],
+  "blocked_or_review_lanes": [
+    {
+      "lane": "ENRICH-07 external mapping payload",
+      "status": "blocked",
+      "reason": "15 scalar tcgdex/pokemonapi payloads collide with existing active source/external mappings"
+    },
+    {
+      "lane": "ENRICH-06C generic stamped finish rows",
+      "status": "blocked",
+      "reason": "5 rows use generic stamped as a finish; generic stamped is not an active canonical finish"
+    },
+    {
+      "lane": "no-child dependency-bearing parents",
+      "status": "manual_review",
+      "rows": 645
+    },
+    {
+      "lane": "no-child mapping transfer or duplicate resolution",
+      "status": "needs_source_specific_design",
+      "rows": 429
+    },
+    {
+      "lane": "vault-referenced childless parent",
+      "status": "manual_review",
+      "rows": 1
+    }
+  ],
+  "projected_gap_reduction_if_all_write_ready_packages_apply": {
+    "child_printing_gv_id_gap_reduction": 0,
+    "no_child_parent_gap_reduction": 0,
+    "species_gap_reduction": 0,
+    "child_printing_insert_count": 0,
+    "duplicate_parent_delete_count": 0
+  },
+  "guardrails": [
+    "ENRICH-04 real apply has already been executed and must not be re-run.",
+    "ENRICH-06A2 real apply has already been executed and must not be re-run.",
+    "ENRICH-03B real apply has already been executed and must not be re-run.",
+    "ENRICH-06C2 real apply has already been executed and must not be re-run.",
+    "ENRICH-08A real apply has already been executed and must not be re-run.",
+    "ENRICH-02B real apply has already been executed and must not be re-run.",
+    "No migrations were created.",
+    "No image writes were included.",
+    "Each write-ready package still requires exact operator approval before real apply.",
+    "Apply one package at a time, then rerun card_row_enrichment_status_v1 and card_row_enrichment_cleanup_plan_v1."
+  ]
+}

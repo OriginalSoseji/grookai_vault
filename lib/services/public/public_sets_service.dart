@@ -681,6 +681,12 @@ class PublicSetsService {
         return 'Poke Ball';
       case 'masterball':
         return 'Master Ball';
+      case 'cosmos':
+        return 'Cosmos Holo';
+      case 'cracked_ice':
+        return 'Cracked Ice Holo';
+      case 'rocket_reverse':
+        return 'Rocket Reverse Holo';
     }
     return _normalizeOptionalText(finishLabel);
   }

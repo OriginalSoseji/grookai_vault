@@ -1,0 +1,133 @@
+{
+  "version": "ENRICH_14A_RESIDUAL_ACTIVE_IDENTITY_SPLIT_REAL_APPLY_V1",
+  "package_id": "ENRICH-14A-RESIDUAL-ACTIVE-IDENTITY-SPLIT",
+  "approved_text": "Approve real ENRICH-14A-RESIDUAL-ACTIVE-IDENTITY-SPLIT apply only. Fingerprint: 76a33fd99b15249014dca57374ae9c04a4c68045a90e1db51c5616cbc6f52723. Scope: 1 active card_print_identity insert for basep/Wizards Black Star Promos Pikachu #1 normal parent 8277ae6a-03d8-4306-aba4-16ae7e7b4e2b; first-edition modifier row b82829d7-8deb-4e21-8860-989efe798c70 remains blocked pending modifier-aware identity projection. Dry-run proof: c1211710a86b17ebe5ad1db6d6fd8e17908cb939b36eec133dd398d8456b4542 == c1211710a86b17ebe5ad1db6d6fd8e17908cb939b36eec133dd398d8456b4542. No parent writes. No child writes. No deletes. No merges. No migrations. No image writes. No global apply.",
+  "package_fingerprint_sha256": "76a33fd99b15249014dca57374ae9c04a4c68045a90e1db51c5616cbc6f52723",
+  "db_writes_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "image_writes_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "active_identity_inserts": 1,
+    "target_card_print_id": "8277ae6a-03d8-4306-aba4-16ae7e7b4e2b",
+    "blocked_card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70"
+  },
+  "execution": {
+    "before_snapshot": {
+      "captured_at": "2026-06-15T21:18:53.427Z",
+      "rows": [
+        {
+          "row_type": "parent",
+          "row_id": "8277ae6a-03d8-4306-aba4-16ae7e7b4e2b",
+          "card_print_id": "8277ae6a-03d8-4306-aba4-16ae7e7b4e2b",
+          "gv_id": "GV-PK-PR-1",
+          "set_code": "basep",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Pikachu",
+          "printed_identity_modifier": null,
+          "identity_domain": null,
+          "identity_key_version": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+          "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+          "gv_id": null,
+          "set_code": "basep",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Pikachu",
+          "printed_identity_modifier": "edition:first_edition",
+          "identity_domain": null,
+          "identity_key_version": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "c1211710a86b17ebe5ad1db6d6fd8e17908cb939b36eec133dd398d8456b4542",
+      "counts": {
+        "parent_rows": 2,
+        "active_identity_rows": 0,
+        "total_rows": 2
+      }
+    },
+    "before_guards": {
+      "active_identity_duplicate_groups": 0,
+      "normal_active_identity_rows": 0,
+      "first_edition_active_identity_rows": 0
+    },
+    "inserted_rows": [
+      {
+        "id": "a840c1bd-02c9-4365-8ceb-e3932cfc579d",
+        "card_print_id": "8277ae6a-03d8-4306-aba4-16ae7e7b4e2b",
+        "identity_domain": "pokemon_eng_standard",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "3a72e3d3e31994ebf5a61fb012fa3cb7b6c7fdee8d2b68a0fc9916987f29b8ca"
+      }
+    ],
+    "after_snapshot": {
+      "captured_at": "2026-06-15T21:18:54.037Z",
+      "rows": [
+        {
+          "row_type": "active_identity",
+          "row_id": "a840c1bd-02c9-4365-8ceb-e3932cfc579d",
+          "card_print_id": "8277ae6a-03d8-4306-aba4-16ae7e7b4e2b",
+          "gv_id": "GV-PK-PR-1",
+          "set_code": "basep",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Pikachu",
+          "printed_identity_modifier": null,
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "identity_key_hash": "3a72e3d3e31994ebf5a61fb012fa3cb7b6c7fdee8d2b68a0fc9916987f29b8ca"
+        },
+        {
+          "row_type": "parent",
+          "row_id": "8277ae6a-03d8-4306-aba4-16ae7e7b4e2b",
+          "card_print_id": "8277ae6a-03d8-4306-aba4-16ae7e7b4e2b",
+          "gv_id": "GV-PK-PR-1",
+          "set_code": "basep",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Pikachu",
+          "printed_identity_modifier": null,
+          "identity_domain": null,
+          "identity_key_version": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+          "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+          "gv_id": null,
+          "set_code": "basep",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Pikachu",
+          "printed_identity_modifier": "edition:first_edition",
+          "identity_domain": null,
+          "identity_key_version": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "ffc657d4abc4b9d71919988ac57d3fb4148441f392d4ab9341e32915f20da654",
+      "counts": {
+        "parent_rows": 2,
+        "active_identity_rows": 1,
+        "total_rows": 3
+      }
+    },
+    "after_guards": {
+      "active_identity_duplicate_groups": 0,
+      "normal_active_identity_rows": 1,
+      "first_edition_active_identity_rows": 0
+    }
+  },
+  "stop_findings": [],
+  "generated_at": "2026-06-15T21:18:54.202Z",
+  "proof_hash_sha256": "fbc7639a1cd75f4862bfbabed9d1dca1d75799ec1c666739af6d309c23d33441",
+  "pass": true
+}

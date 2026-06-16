@@ -72,6 +72,22 @@ class CardDetailScreen extends StatefulWidget {
   State<CardDetailScreen> createState() => _CardDetailScreenState();
 }
 
+class _CardDetailPrintingOption {
+  const _CardDetailPrintingOption({
+    required this.id,
+    required this.finishName,
+    required this.sortOrder,
+    this.printingGvId,
+    this.finishKey,
+  });
+
+  final String id;
+  final String finishName;
+  final int sortOrder;
+  final String? printingGvId;
+  final String? finishKey;
+}
+
 class _CardDetailScreenState extends State<CardDetailScreen> {
   static const double _sectionSpacing = 10;
   final supabase = Supabase.instance.client;
@@ -80,6 +96,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   Map<String, dynamic>? _cardContextData;
   Map<String, dynamic>? _priceData;
   List<Map<String, dynamic>> _relatedVersions = const [];
+  List<_CardDetailPrintingOption> _printingOptions =
+      const <_CardDetailPrintingOption>[];
+  String? _selectedCardPrintingId;
+  bool _printingSelectionTouched = false;
   bool _priceLoading = false;
   String? _priceError;
   OwnershipState? _ownershipState;
@@ -189,6 +209,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           : Map<String, dynamic>.from(detailRow);
       final contextName = _cleanText(contextData?['name']);
       final resolvedName = contextName.isNotEmpty ? contextName : _displayName;
+      final cardPrintId = _cleanText(contextData?['id']).isNotEmpty
+          ? _cleanText(contextData?['id'])
+          : widget.cardPrintId;
 
       List<Map<String, dynamic>> relatedRows = const [];
       if (resolvedName.isNotEmpty) {
@@ -215,6 +238,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           await _primeRelatedVersionOwnership(
             relatedRows.map((row) => _cleanText(row['id'])),
           );
+      final printingOptions = await _fetchPrintingOptions(cardPrintId);
+      final selectedCardPrintingId = _resolveInitialPrintingSelection(
+        printingOptions,
+      );
 
       if (!mounted) {
         return;
@@ -223,6 +250,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       setState(() {
         _cardContextData = contextData;
         _relatedVersions = relatedRows;
+        _printingOptions = printingOptions;
+        _selectedCardPrintingId = selectedCardPrintingId;
+        _printingSelectionTouched = false;
         _relatedVersionOwnershipByCardPrintId =
             relatedVersionOwnershipByCardPrintId;
       });
@@ -234,9 +264,109 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       setState(() {
         _cardContextData = null;
         _relatedVersions = const [];
+        _printingOptions = const <_CardDetailPrintingOption>[];
+        _selectedCardPrintingId = null;
+        _printingSelectionTouched = false;
         _relatedVersionOwnershipByCardPrintId = <String, OwnershipState>{};
       });
     }
+  }
+
+  Future<List<_CardDetailPrintingOption>> _fetchPrintingOptions(
+    String cardPrintId,
+  ) async {
+    final normalizedCardPrintId = _cleanText(cardPrintId);
+    if (normalizedCardPrintId.isEmpty) {
+      return const <_CardDetailPrintingOption>[];
+    }
+
+    late final List<dynamic> rows;
+    try {
+      rows =
+          await supabase
+                  .from('card_printings')
+                  .select(
+                    'id,printing_gv_id,finish_key,finish_keys(label,sort_order)',
+                  )
+                  .eq('card_print_id', normalizedCardPrintId)
+              as List<dynamic>;
+    } catch (_) {
+      try {
+        rows =
+            await supabase
+                    .from('card_printings')
+                    .select('id,printing_gv_id,finish_key')
+                    .eq('card_print_id', normalizedCardPrintId)
+                as List<dynamic>;
+      } catch (_) {
+        return const <_CardDetailPrintingOption>[];
+      }
+    }
+
+    final options = <_CardDetailPrintingOption>[];
+    for (final raw in rows) {
+      if (raw is! Map) {
+        continue;
+      }
+      final row = Map<String, dynamic>.from(raw);
+      final id = _cleanText(row['id']);
+      if (id.isEmpty) {
+        continue;
+      }
+
+      final finishRecord = _extractRecord(row['finish_keys']);
+      final finishKey = _cleanText(row['finish_key']);
+      final finishName =
+          formatFinishLabel(
+            finishKey: finishKey,
+            finishLabel: _cleanText(finishRecord?['label']),
+          ) ??
+          'Standard';
+      final sortOrderRaw = finishRecord?['sort_order'];
+      final sortOrder = sortOrderRaw is num
+          ? sortOrderRaw.toInt()
+          : int.tryParse(_cleanText(sortOrderRaw?.toString())) ?? 9999;
+
+      options.add(
+        _CardDetailPrintingOption(
+          id: id,
+          printingGvId: _cleanText(row['printing_gv_id']).isEmpty
+              ? null
+              : _cleanText(row['printing_gv_id']),
+          finishKey: finishKey.isEmpty ? null : finishKey,
+          finishName: finishName,
+          sortOrder: sortOrder,
+        ),
+      );
+    }
+
+    options.sort((left, right) {
+      if (left.sortOrder != right.sortOrder) {
+        return left.sortOrder.compareTo(right.sortOrder);
+      }
+      return left.finishName.compareTo(right.finishName);
+    });
+    return options;
+  }
+
+  String? _resolveInitialPrintingSelection(
+    List<_CardDetailPrintingOption> options,
+  ) {
+    if (options.isEmpty) {
+      return null;
+    }
+
+    final requested = _cleanText(widget.selectedPrintingGvId);
+    if (requested.isNotEmpty) {
+      for (final option in options) {
+        if (_cleanText(option.printingGvId) == requested ||
+            _cleanText(option.id) == requested) {
+          return option.id;
+        }
+      }
+    }
+
+    return options.first.id;
   }
 
   Future<Map<String, OwnershipState>> _primeRelatedVersionOwnership(
@@ -430,15 +560,21 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   ResolvedDisplayIdentity get _displayIdentity {
     final setRecord = _extractRecord(_cardContextData?['sets']);
+    final selectedPrinting = _selectedPrintingForDisplay;
     return resolveDisplayIdentityFromFields(
       name: _displayName,
       variantKey: _cleanText(_cardContextData?['variant_key']),
       printedIdentityModifier: _cleanText(
         _cardContextData?['printed_identity_modifier'],
       ),
-      finishLabel: _cleanText(widget.selectedFinishLabel),
-      displayDiscriminator: _cleanText(widget.selectedFinishLabel),
-      searchObjectType: _cleanText(widget.selectedPrintingGvId).isNotEmpty
+      finishKey: selectedPrinting?.finishKey,
+      finishLabel: selectedPrinting?.finishName,
+      displayDiscriminator: _cleanText(widget.selectedFinishLabel).isNotEmpty
+          ? _cleanText(widget.selectedFinishLabel)
+          : selectedPrinting?.finishName,
+      searchObjectType:
+          selectedPrinting != null ||
+              _cleanText(widget.selectedPrintingGvId).isNotEmpty
           ? 'child_printing'
           : null,
       setIdentityModel: _cleanText(setRecord?['identity_model']),
@@ -448,6 +584,27 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   }
 
   String get _displayTitle => _displayIdentity.displayName;
+
+  bool get _hasExplicitPrintingContext =>
+      _printingSelectionTouched ||
+      _cleanText(widget.selectedPrintingGvId).isNotEmpty ||
+      _cleanText(widget.selectedFinishLabel).isNotEmpty;
+
+  _CardDetailPrintingOption? get _selectedPrintingForDisplay =>
+      _hasExplicitPrintingContext ? _selectedPrintingOption : null;
+
+  _CardDetailPrintingOption? get _selectedPrintingOption {
+    final selectedId = _cleanText(_selectedCardPrintingId);
+    if (selectedId.isEmpty) {
+      return null;
+    }
+    for (final option in _printingOptions) {
+      if (option.id == selectedId) {
+        return option;
+      }
+    }
+    return null;
+  }
 
   bool get _hasContactContext =>
       _cleanText(widget.contactVaultItemId).isNotEmpty &&
@@ -778,6 +935,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         fallbackImageUrl: _cleanText(widget.imageUrl).isEmpty
             ? null
             : widget.imageUrl,
+        cardPrintingId: _selectedPrintingOption?.id,
       );
 
       if (!mounted) {
@@ -851,6 +1009,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   ResolvedImagePresentation _resolveImagePresentationFromRecord(
     Map<String, dynamic>? row,
   ) {
+    final imageStatus = _cleanText(row?['image_status']?.toString());
     return resolveImagePresentationFromFields(
       imageUrl: _bestImageUrl(
         primary: row?['image_url'],
@@ -859,7 +1018,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       representativeImageUrl: _cleanText(
         row?['representative_image_url']?.toString(),
       ),
-      imageStatus: _cleanText(row?['image_status']?.toString()),
+      displayImageKind: imageStatus.toLowerCase().startsWith('representative_')
+          ? 'representative'
+          : null,
+      imageStatus: imageStatus,
       imageNote: _cleanText(row?['image_note']?.toString()),
     );
   }
@@ -1251,6 +1413,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
     final sections = <Widget>[
       _buildHeroPanel(theme, colorScheme),
+      if (_printingOptions.isNotEmpty)
+        _buildPrintingOptionsSection(theme, colorScheme),
       _buildActions(context, theme, colorScheme),
       if (_hasContactContext) _buildCollectorNetworkSection(theme, colorScheme),
       _buildPricingSection(theme, colorScheme),
@@ -1933,6 +2097,62 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 },
                 child: const Text('Messages'),
               ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPrintingOptionsSection(
+    ThemeData theme,
+    ColorScheme colorScheme,
+  ) {
+    final selectedId = _cleanText(_selectedCardPrintingId);
+
+    return _buildSurface(
+      colorScheme: colorScheme,
+      soft: true,
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionLabel('Printings', theme, colorScheme),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final option in _printingOptions)
+                ChoiceChip(
+                  label: Text(option.finishName),
+                  selected: option.id == selectedId,
+                  onSelected: (_) {
+                    setState(() {
+                      _selectedCardPrintingId = option.id;
+                      _printingSelectionTouched = true;
+                    });
+                  },
+                  labelStyle: theme.textTheme.labelLarge?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: option.id == selectedId
+                        ? colorScheme.onPrimaryContainer
+                        : colorScheme.onSurface,
+                  ),
+                  selectedColor: colorScheme.primaryContainer,
+                  backgroundColor: colorScheme.surfaceContainerHighest
+                      .withValues(alpha: 0.55),
+                  side: BorderSide(
+                    color: option.id == selectedId
+                        ? colorScheme.primary.withValues(alpha: 0.45)
+                        : colorScheme.outlineVariant.withValues(alpha: 0.65),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  visualDensity: VisualDensity.compact,
+                ),
             ],
           ),
         ],

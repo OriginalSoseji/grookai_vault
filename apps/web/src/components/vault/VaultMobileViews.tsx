@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import PublicCardImage from "@/components/PublicCardImage";
+import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import type { VaultCardData } from "@/components/vault/VaultCardTile";
 import {
@@ -77,8 +79,26 @@ function getSingleCopyHref(item: Pick<VaultCardData, "copy_items">) {
   return gvviId ? `/vault/gvvi/${encodeURIComponent(gvviId)}` : null;
 }
 
+function getVaultItemImagePresentation(item: VaultCardData) {
+  const displayedCanonicalImage =
+    !item.image_url ||
+    item.image_url === item.canonical_display_image_url ||
+    item.image_url === item.canonical_image_url;
+
+  return resolveCardImagePresentation(
+    displayedCanonicalImage
+      ? {
+          display_image_kind: item.canonical_display_image_kind,
+          image_status: item.canonical_image_status,
+          image_note: item.canonical_image_note,
+        }
+      : null,
+  );
+}
+
 function MobileGridCard({ item }: { item: VaultCardData }) {
   const displayIdentity = resolveDisplayIdentity(item);
+  const imagePresentation = getVaultItemImagePresentation(item);
   const cardValue = formatVaultCardValue(item.effective_price);
   const secondaryContext = formatVaultSecondaryContext(item);
   const messageSignal = getVaultMessageSignalLabel({
@@ -95,6 +115,14 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
       imageAlt={displayIdentity.display_name}
       imageHref={`/card/${item.gv_id}`}
       imageFallbackLabel={displayIdentity.display_name}
+      imageOverlay={
+        imagePresentation.compactBadgeLabel ? (
+          <CardImageTruthBadge
+            label={imagePresentation.compactBadgeLabel}
+            emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+          />
+        ) : null
+      }
       imageClassName="drop-shadow-[0_14px_24px_rgba(15,23,42,0.14)]"
       title={
         <Link href={`/card/${item.gv_id}`} className="line-clamp-2 block transition hover:text-slate-700">
@@ -124,6 +152,7 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
 
 function MobileCompactRow({ item }: { item: VaultCardData }) {
   const displayIdentity = resolveDisplayIdentity(item);
+  const imagePresentation = getVaultItemImagePresentation(item);
   const cardValue = formatVaultCardValue(item.effective_price);
   const secondaryContext = formatVaultSecondaryContext(item);
   const messageSignal = getVaultMessageSignalLabel({
@@ -151,7 +180,15 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
           <div className="min-w-0 space-y-1">
             <p className="line-clamp-2 text-sm font-semibold leading-5 text-slate-950">{displayIdentity.display_name}</p>
             <p className="line-clamp-1 text-xs text-slate-500">{getVaultCardMetaLine(item)}</p>
-            <VaultPrimaryStateBadge item={item} size="sm" />
+            <div className="flex flex-wrap gap-1.5">
+              <VaultPrimaryStateBadge item={item} size="sm" />
+              {imagePresentation.compactBadgeLabel ? (
+                <CardImageTruthBadge
+                  label={imagePresentation.compactBadgeLabel}
+                  emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                />
+              ) : null}
+            </div>
           </div>
           <div className="shrink-0 text-right">
             {cardValue ? <p className="text-sm font-semibold text-slate-900">{cardValue}</p> : null}
@@ -176,6 +213,7 @@ function MobileDetailRow({
   const rowKey = getRowKey(item);
   const isExpanded = expandedCardId === rowKey;
   const displayIdentity = resolveDisplayIdentity(item);
+  const imagePresentation = getVaultItemImagePresentation(item);
   const intentMixSummary = formatIntentMixSummary(item);
   const manageCardHref = `/vault/card/${encodeURIComponent(item.card_id)}`;
   const cardValue = formatVaultCardValue(item.effective_price);
@@ -222,7 +260,15 @@ function MobileDetailRow({
               </div>
 
               <p className="text-sm text-slate-500">{getVaultCardMetaLine(item)}</p>
-              <VaultPrimaryStateBadge item={item} />
+              <div className="flex flex-wrap gap-1.5">
+                <VaultPrimaryStateBadge item={item} />
+                {imagePresentation.compactBadgeLabel ? (
+                  <CardImageTruthBadge
+                    label={imagePresentation.compactBadgeLabel}
+                    emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                  />
+                ) : null}
+              </div>
 
               {secondaryContext ? <p className="text-sm font-medium text-slate-700">{secondaryContext}</p> : null}
 

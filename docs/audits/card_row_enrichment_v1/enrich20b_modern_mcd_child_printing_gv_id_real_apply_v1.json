@@ -1,0 +1,723 @@
+{
+  "version": "ENRICH20B_MODERN_MCD_CHILD_PRINTING_GV_ID_REAL_APPLY_V1",
+  "package_id": "ENRICH-20B-MODERN-MCD-CHILD-PRINTING-GV-ID-BACKFILL",
+  "generated_at": "2026-06-16T01:41:23.480Z",
+  "package_fingerprint_sha256": "cced1de0bf2c69cbe3adff0b107fbfea536f1686ec9a31c73ac8c872f47ded4e",
+  "expected_fingerprint_sha256": "cced1de0bf2c69cbe3adff0b107fbfea536f1686ec9a31c73ac8c872f47ded4e",
+  "expected_dry_run_proof_sha256": "96a6d6f381845847785dbf5d5c4cf3b96737fde1cdc4c9f475772bd71d90c96c",
+  "approval_text": "Approve real ENRICH-20B-MODERN-MCD-CHILD-PRINTING-GV-ID-BACKFILL apply only. Fingerprint: cced1de0bf2c69cbe3adff0b107fbfea536f1686ec9a31c73ac8c872f47ded4e. Scope: 30 modern McDonald's child card_printing printing_gv_id updates using governed finish suffixes normal=STD and holo=HOLO. Dry-run proof: 96a6d6f381845847785dbf5d5c4cf3b96737fde1cdc4c9f475772bd71d90c96c == 96a6d6f381845847785dbf5d5c4cf3b96737fde1cdc4c9f475772bd71d90c96c. No parent writes. No identity writes. No external mapping writes. No species writes. No deletes. No merges. No migrations. No image writes. No global apply.",
+  "scope": {
+    "target_rows": 30,
+    "writes_performed": [
+      "card_printings.printing_gv_id"
+    ],
+    "forbidden": [
+      "parent writes",
+      "identity writes",
+      "external mapping writes",
+      "species writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ],
+    "migrations_created": false
+  },
+  "dry_run_validation_findings": [],
+  "approval_validation_findings": [],
+  "apply_result": {
+    "before_snapshot": {
+      "rows": [
+        {
+          "card_printing_id": "9f030b5c-14bf-4086-9c00-0df453484c77",
+          "card_print_id": "43e51937-5821-449d-adf5-7cfc30d135b9",
+          "set_code": "2024sv",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Charizard",
+          "parent_gv_id": "GV-PK-MCD-2024-1",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "3a5ab65e-dda3-45a7-9871-f0532fd349ba",
+          "card_print_id": "4091ae25-3624-4f56-a455-7bd3d4beb154",
+          "set_code": "2023sv",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Sprigatito",
+          "parent_gv_id": "GV-PK-MCD-2023-1",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "1ad22655-6716-42ed-a219-aa7434f71e5a",
+          "card_print_id": "d3e549c3-b31d-4368-b7b4-e34b28b41c1d",
+          "set_code": "2024sv",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Hydreigon",
+          "parent_gv_id": "GV-PK-MCD-2024-10",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "28a2bd03-6287-4c5b-848b-737a2be841bf",
+          "card_print_id": "6e7a29e1-3b5b-4c27-86b3-1e63c99f576a",
+          "set_code": "2023sv",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Sandaconda",
+          "parent_gv_id": "GV-PK-MCD-2023-10",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "f58973ec-ae6d-48b9-b149-f75776d7d540",
+          "card_print_id": "fae05233-f9c5-4860-aa86-49a942613ff5",
+          "set_code": "2023sv",
+          "number": "11",
+          "number_plain": "11",
+          "card_name": "Klawf",
+          "parent_gv_id": "GV-PK-MCD-2023-11",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "a49a4bf7-f24c-472c-9224-3b3c3dababa0",
+          "card_print_id": "d2766899-2087-437d-81a4-8d769e4727a7",
+          "set_code": "2024sv",
+          "number": "11",
+          "number_plain": "11",
+          "card_name": "Roaring Moon",
+          "parent_gv_id": "GV-PK-MCD-2024-11",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "f6be1aac-6bcc-4f7c-9bd5-99faaa03043a",
+          "card_print_id": "3ed79a65-c672-451a-afd7-e47a68ae2c53",
+          "set_code": "2023sv",
+          "number": "12",
+          "number_plain": "12",
+          "card_name": "Blissey",
+          "parent_gv_id": "GV-PK-MCD-2023-12",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "499b5a96-8132-41ac-94a4-c003cb046c93",
+          "card_print_id": "2a8e6db0-3a82-4196-8cd8-f0528e68b9ef",
+          "set_code": "2024sv",
+          "number": "12",
+          "number_plain": "12",
+          "card_name": "Dragonite",
+          "parent_gv_id": "GV-PK-MCD-2024-12",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "2ebf1e54-7022-49c5-9641-6e299ffdeba4",
+          "card_print_id": "3faee98e-12b5-4f6c-a711-073d024155eb",
+          "set_code": "2024sv",
+          "number": "13",
+          "number_plain": "13",
+          "card_name": "Eevee",
+          "parent_gv_id": "GV-PK-MCD-2024-13",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "da153acc-e4b0-4668-9e4d-25383c5d3a8e",
+          "card_print_id": "2dd83d5b-2476-4b63-9fbe-c849c2d56aa7",
+          "set_code": "2023sv",
+          "number": "13",
+          "number_plain": "13",
+          "card_name": "Tandemaus",
+          "parent_gv_id": "GV-PK-MCD-2023-13",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "7a034cd5-5d86-4616-acee-505e92fe6438",
+          "card_print_id": "1df85310-35da-4070-a3bd-a01a96d39e1c",
+          "set_code": "2023sv",
+          "number": "14",
+          "number_plain": "14",
+          "card_name": "Cyclizar",
+          "parent_gv_id": "GV-PK-MCD-2023-14",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "eb3133d3-d504-411d-aae4-33873e10c982",
+          "card_print_id": "194dc27a-ce21-4a69-93de-d8c48000c128",
+          "set_code": "2024sv",
+          "number": "14",
+          "number_plain": "14",
+          "card_name": "Rayquaza",
+          "parent_gv_id": "GV-PK-MCD-2024-14",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "b1f8ccee-5b8b-45cc-86e1-3fdb209dd318",
+          "card_print_id": "2c2649a8-a3b7-44cd-87ba-0c5d03667e0f",
+          "set_code": "2024sv",
+          "number": "15",
+          "number_plain": "15",
+          "card_name": "Drampa",
+          "parent_gv_id": "GV-PK-MCD-2024-15",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "77d3c498-7661-4656-adf0-3319e99c48d0",
+          "card_print_id": "fb3bc199-9149-402e-8342-265eceecf120",
+          "set_code": "2023sv",
+          "number": "15",
+          "number_plain": "15",
+          "card_name": "Kirlia",
+          "parent_gv_id": "GV-PK-MCD-2023-15",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "3c456c11-1915-4800-9e76-fc9deb0aa6d3",
+          "card_print_id": "451748ac-012e-4d67-9912-d04534a05817",
+          "set_code": "2023sv",
+          "number": "2",
+          "number_plain": "2",
+          "card_name": "Fuecoco",
+          "parent_gv_id": "GV-PK-MCD-2023-2",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "b23dcc5c-720a-4684-a5a6-c3634214978c",
+          "card_print_id": "2ff72f10-b4cd-4e26-998c-87b1ca181028",
+          "set_code": "2024sv",
+          "number": "2",
+          "number_plain": "2",
+          "card_name": "Pikachu",
+          "parent_gv_id": "GV-PK-MCD-2024-2",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "d1db979e-f99f-45e9-8f46-3837d42fd535",
+          "card_print_id": "afa60d30-57c3-44ec-9964-fdf2a2bd7690",
+          "set_code": "2024sv",
+          "number": "3",
+          "number_plain": "3",
+          "card_name": "Miraidon",
+          "parent_gv_id": "GV-PK-MCD-2024-3",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "49566d90-2182-48df-8c6b-34e095ab09e1",
+          "card_print_id": "3a769557-0102-4fd2-b79e-8eef05b52e60",
+          "set_code": "2023sv",
+          "number": "3",
+          "number_plain": "3",
+          "card_name": "Quaxly",
+          "parent_gv_id": "GV-PK-MCD-2023-3",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "c01975b3-f875-4980-80ac-a1260b93a142",
+          "card_print_id": "98500b36-36d3-470f-9d15-099865980b07",
+          "set_code": "2023sv",
+          "number": "4",
+          "number_plain": "4",
+          "card_name": "Cetoddle",
+          "parent_gv_id": "GV-PK-MCD-2023-4",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "53f7df37-2144-480a-9733-91e1ecfa0419",
+          "card_print_id": "7fe87152-ff37-4a8b-8b56-1338ca39751b",
+          "set_code": "2024sv",
+          "number": "4",
+          "number_plain": "4",
+          "card_name": "Jigglypuff",
+          "parent_gv_id": "GV-PK-MCD-2024-4",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "3554a0f4-a4fb-4253-9081-0c90871af633",
+          "card_print_id": "e22e07fa-71e2-46aa-9951-829e339f8763",
+          "set_code": "2023sv",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Cetitan",
+          "parent_gv_id": "GV-PK-MCD-2023-5",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "e2ce355c-f215-4df4-9a9f-a434f1ee7dbc",
+          "card_print_id": "9218afd1-f370-4698-902d-2e60140f127c",
+          "set_code": "2024sv",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Hatenna",
+          "parent_gv_id": "GV-PK-MCD-2024-5",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "18137a8c-6450-49dc-879d-0a925eb9ab18",
+          "card_print_id": "0a81032c-548d-438c-a091-5b2924557771",
+          "set_code": "2024sv",
+          "number": "6",
+          "number_plain": "6",
+          "card_name": "Dragapult",
+          "parent_gv_id": "GV-PK-MCD-2024-6",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "de5f9e17-89e1-40e3-9bc2-569097e55b0a",
+          "card_print_id": "ee8c68fc-626c-42db-b7ef-fc869fe07ae8",
+          "set_code": "2023sv",
+          "number": "6",
+          "number_plain": "6",
+          "card_name": "Pikachu",
+          "parent_gv_id": "GV-PK-MCD-2023-6",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "cbc1f5a9-2708-4417-a41a-a67492f24846",
+          "card_print_id": "1dc8d631-789a-4857-a1fd-d72efea4d614",
+          "set_code": "2023sv",
+          "number": "7",
+          "number_plain": "7",
+          "card_name": "Pawmi",
+          "parent_gv_id": "GV-PK-MCD-2023-7",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "5282c217-bce0-4464-bf4d-dc14db786d0c",
+          "card_print_id": "24b6d461-b043-4768-ae3a-1cf43442c7d6",
+          "set_code": "2024sv",
+          "number": "7",
+          "number_plain": "7",
+          "card_name": "Quagsire",
+          "parent_gv_id": "GV-PK-MCD-2024-7",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "86fb7236-d4e3-41de-95da-04d9b98fb5cf",
+          "card_print_id": "31b28128-2bba-420a-acee-4962caf0514c",
+          "set_code": "2023sv",
+          "number": "8",
+          "number_plain": "8",
+          "card_name": "Kilowattrel",
+          "parent_gv_id": "GV-PK-MCD-2023-8",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "643c1f32-7c70-41f4-aa5e-331c03a16af6",
+          "card_print_id": "2d9108f8-f23d-49f6-8557-19553332e9eb",
+          "set_code": "2024sv",
+          "number": "8",
+          "number_plain": "8",
+          "card_name": "Koraidon",
+          "parent_gv_id": "GV-PK-MCD-2024-8",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "f0e4042d-49d3-49ff-89d5-aca3bad95b31",
+          "card_print_id": "c9372355-e4ff-46a7-8172-94fe7d8a28be",
+          "set_code": "2023sv",
+          "number": "9",
+          "number_plain": "9",
+          "card_name": "Flittle",
+          "parent_gv_id": "GV-PK-MCD-2023-9",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "d5d31c60-d683-4fb4-a451-62ff36a8ea70",
+          "card_print_id": "5d51ef4f-5f17-4b8e-b9fc-2ae31f955022",
+          "set_code": "2024sv",
+          "number": "9",
+          "number_plain": "9",
+          "card_name": "Umbreon",
+          "parent_gv_id": "GV-PK-MCD-2024-9",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        }
+      ],
+      "hash_sha256": "25d7cf28c4530a6e3162b6302db447423b1ed6210990628c7b51f96b48359a95",
+      "counts": {
+        "target_rows": 30,
+        "captured_rows": 30,
+        "rows_with_printing_gv_id": 0,
+        "rows_without_printing_gv_id": 30
+      }
+    },
+    "update_proof": {
+      "updated_rows": 30,
+      "proof": {
+        "target_count": 30,
+        "matching_printing_gv_count": 30,
+        "duplicate_printing_gv_id_exists": 0
+      }
+    },
+    "after_snapshot": {
+      "rows": [
+        {
+          "card_printing_id": "9f030b5c-14bf-4086-9c00-0df453484c77",
+          "card_print_id": "43e51937-5821-449d-adf5-7cfc30d135b9",
+          "set_code": "2024sv",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Charizard",
+          "parent_gv_id": "GV-PK-MCD-2024-1",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2024-1-STD"
+        },
+        {
+          "card_printing_id": "3a5ab65e-dda3-45a7-9871-f0532fd349ba",
+          "card_print_id": "4091ae25-3624-4f56-a455-7bd3d4beb154",
+          "set_code": "2023sv",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Sprigatito",
+          "parent_gv_id": "GV-PK-MCD-2023-1",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-MCD-2023-1-HOLO"
+        },
+        {
+          "card_printing_id": "1ad22655-6716-42ed-a219-aa7434f71e5a",
+          "card_print_id": "d3e549c3-b31d-4368-b7b4-e34b28b41c1d",
+          "set_code": "2024sv",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Hydreigon",
+          "parent_gv_id": "GV-PK-MCD-2024-10",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-MCD-2024-10-HOLO"
+        },
+        {
+          "card_printing_id": "28a2bd03-6287-4c5b-848b-737a2be841bf",
+          "card_print_id": "6e7a29e1-3b5b-4c27-86b3-1e63c99f576a",
+          "set_code": "2023sv",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Sandaconda",
+          "parent_gv_id": "GV-PK-MCD-2023-10",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2023-10-STD"
+        },
+        {
+          "card_printing_id": "f58973ec-ae6d-48b9-b149-f75776d7d540",
+          "card_print_id": "fae05233-f9c5-4860-aa86-49a942613ff5",
+          "set_code": "2023sv",
+          "number": "11",
+          "number_plain": "11",
+          "card_name": "Klawf",
+          "parent_gv_id": "GV-PK-MCD-2023-11",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-MCD-2023-11-HOLO"
+        },
+        {
+          "card_printing_id": "a49a4bf7-f24c-472c-9224-3b3c3dababa0",
+          "card_print_id": "d2766899-2087-437d-81a4-8d769e4727a7",
+          "set_code": "2024sv",
+          "number": "11",
+          "number_plain": "11",
+          "card_name": "Roaring Moon",
+          "parent_gv_id": "GV-PK-MCD-2024-11",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-MCD-2024-11-HOLO"
+        },
+        {
+          "card_printing_id": "f6be1aac-6bcc-4f7c-9bd5-99faaa03043a",
+          "card_print_id": "3ed79a65-c672-451a-afd7-e47a68ae2c53",
+          "set_code": "2023sv",
+          "number": "12",
+          "number_plain": "12",
+          "card_name": "Blissey",
+          "parent_gv_id": "GV-PK-MCD-2023-12",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2023-12-STD"
+        },
+        {
+          "card_printing_id": "499b5a96-8132-41ac-94a4-c003cb046c93",
+          "card_print_id": "2a8e6db0-3a82-4196-8cd8-f0528e68b9ef",
+          "set_code": "2024sv",
+          "number": "12",
+          "number_plain": "12",
+          "card_name": "Dragonite",
+          "parent_gv_id": "GV-PK-MCD-2024-12",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-MCD-2024-12-HOLO"
+        },
+        {
+          "card_printing_id": "2ebf1e54-7022-49c5-9641-6e299ffdeba4",
+          "card_print_id": "3faee98e-12b5-4f6c-a711-073d024155eb",
+          "set_code": "2024sv",
+          "number": "13",
+          "number_plain": "13",
+          "card_name": "Eevee",
+          "parent_gv_id": "GV-PK-MCD-2024-13",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2024-13-STD"
+        },
+        {
+          "card_printing_id": "da153acc-e4b0-4668-9e4d-25383c5d3a8e",
+          "card_print_id": "2dd83d5b-2476-4b63-9fbe-c849c2d56aa7",
+          "set_code": "2023sv",
+          "number": "13",
+          "number_plain": "13",
+          "card_name": "Tandemaus",
+          "parent_gv_id": "GV-PK-MCD-2023-13",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2023-13-STD"
+        },
+        {
+          "card_printing_id": "7a034cd5-5d86-4616-acee-505e92fe6438",
+          "card_print_id": "1df85310-35da-4070-a3bd-a01a96d39e1c",
+          "set_code": "2023sv",
+          "number": "14",
+          "number_plain": "14",
+          "card_name": "Cyclizar",
+          "parent_gv_id": "GV-PK-MCD-2023-14",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2023-14-STD"
+        },
+        {
+          "card_printing_id": "eb3133d3-d504-411d-aae4-33873e10c982",
+          "card_print_id": "194dc27a-ce21-4a69-93de-d8c48000c128",
+          "set_code": "2024sv",
+          "number": "14",
+          "number_plain": "14",
+          "card_name": "Rayquaza",
+          "parent_gv_id": "GV-PK-MCD-2024-14",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2024-14-STD"
+        },
+        {
+          "card_printing_id": "b1f8ccee-5b8b-45cc-86e1-3fdb209dd318",
+          "card_print_id": "2c2649a8-a3b7-44cd-87ba-0c5d03667e0f",
+          "set_code": "2024sv",
+          "number": "15",
+          "number_plain": "15",
+          "card_name": "Drampa",
+          "parent_gv_id": "GV-PK-MCD-2024-15",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-MCD-2024-15-HOLO"
+        },
+        {
+          "card_printing_id": "77d3c498-7661-4656-adf0-3319e99c48d0",
+          "card_print_id": "fb3bc199-9149-402e-8342-265eceecf120",
+          "set_code": "2023sv",
+          "number": "15",
+          "number_plain": "15",
+          "card_name": "Kirlia",
+          "parent_gv_id": "GV-PK-MCD-2023-15",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2023-15-STD"
+        },
+        {
+          "card_printing_id": "3c456c11-1915-4800-9e76-fc9deb0aa6d3",
+          "card_print_id": "451748ac-012e-4d67-9912-d04534a05817",
+          "set_code": "2023sv",
+          "number": "2",
+          "number_plain": "2",
+          "card_name": "Fuecoco",
+          "parent_gv_id": "GV-PK-MCD-2023-2",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-MCD-2023-2-HOLO"
+        },
+        {
+          "card_printing_id": "b23dcc5c-720a-4684-a5a6-c3634214978c",
+          "card_print_id": "2ff72f10-b4cd-4e26-998c-87b1ca181028",
+          "set_code": "2024sv",
+          "number": "2",
+          "number_plain": "2",
+          "card_name": "Pikachu",
+          "parent_gv_id": "GV-PK-MCD-2024-2",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-MCD-2024-2-HOLO"
+        },
+        {
+          "card_printing_id": "d1db979e-f99f-45e9-8f46-3837d42fd535",
+          "card_print_id": "afa60d30-57c3-44ec-9964-fdf2a2bd7690",
+          "set_code": "2024sv",
+          "number": "3",
+          "number_plain": "3",
+          "card_name": "Miraidon",
+          "parent_gv_id": "GV-PK-MCD-2024-3",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-MCD-2024-3-HOLO"
+        },
+        {
+          "card_printing_id": "49566d90-2182-48df-8c6b-34e095ab09e1",
+          "card_print_id": "3a769557-0102-4fd2-b79e-8eef05b52e60",
+          "set_code": "2023sv",
+          "number": "3",
+          "number_plain": "3",
+          "card_name": "Quaxly",
+          "parent_gv_id": "GV-PK-MCD-2023-3",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-MCD-2023-3-HOLO"
+        },
+        {
+          "card_printing_id": "c01975b3-f875-4980-80ac-a1260b93a142",
+          "card_print_id": "98500b36-36d3-470f-9d15-099865980b07",
+          "set_code": "2023sv",
+          "number": "4",
+          "number_plain": "4",
+          "card_name": "Cetoddle",
+          "parent_gv_id": "GV-PK-MCD-2023-4",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2023-4-STD"
+        },
+        {
+          "card_printing_id": "53f7df37-2144-480a-9733-91e1ecfa0419",
+          "card_print_id": "7fe87152-ff37-4a8b-8b56-1338ca39751b",
+          "set_code": "2024sv",
+          "number": "4",
+          "number_plain": "4",
+          "card_name": "Jigglypuff",
+          "parent_gv_id": "GV-PK-MCD-2024-4",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2024-4-STD"
+        },
+        {
+          "card_printing_id": "3554a0f4-a4fb-4253-9081-0c90871af633",
+          "card_print_id": "e22e07fa-71e2-46aa-9951-829e339f8763",
+          "set_code": "2023sv",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Cetitan",
+          "parent_gv_id": "GV-PK-MCD-2023-5",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-MCD-2023-5-HOLO"
+        },
+        {
+          "card_printing_id": "e2ce355c-f215-4df4-9a9f-a434f1ee7dbc",
+          "card_print_id": "9218afd1-f370-4698-902d-2e60140f127c",
+          "set_code": "2024sv",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Hatenna",
+          "parent_gv_id": "GV-PK-MCD-2024-5",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2024-5-STD"
+        },
+        {
+          "card_printing_id": "18137a8c-6450-49dc-879d-0a925eb9ab18",
+          "card_print_id": "0a81032c-548d-438c-a091-5b2924557771",
+          "set_code": "2024sv",
+          "number": "6",
+          "number_plain": "6",
+          "card_name": "Dragapult",
+          "parent_gv_id": "GV-PK-MCD-2024-6",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2024-6-STD"
+        },
+        {
+          "card_printing_id": "de5f9e17-89e1-40e3-9bc2-569097e55b0a",
+          "card_print_id": "ee8c68fc-626c-42db-b7ef-fc869fe07ae8",
+          "set_code": "2023sv",
+          "number": "6",
+          "number_plain": "6",
+          "card_name": "Pikachu",
+          "parent_gv_id": "GV-PK-MCD-2023-6",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-MCD-2023-6-HOLO"
+        },
+        {
+          "card_printing_id": "cbc1f5a9-2708-4417-a41a-a67492f24846",
+          "card_print_id": "1dc8d631-789a-4857-a1fd-d72efea4d614",
+          "set_code": "2023sv",
+          "number": "7",
+          "number_plain": "7",
+          "card_name": "Pawmi",
+          "parent_gv_id": "GV-PK-MCD-2023-7",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2023-7-STD"
+        },
+        {
+          "card_printing_id": "5282c217-bce0-4464-bf4d-dc14db786d0c",
+          "card_print_id": "24b6d461-b043-4768-ae3a-1cf43442c7d6",
+          "set_code": "2024sv",
+          "number": "7",
+          "number_plain": "7",
+          "card_name": "Quagsire",
+          "parent_gv_id": "GV-PK-MCD-2024-7",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2024-7-STD"
+        },
+        {
+          "card_printing_id": "86fb7236-d4e3-41de-95da-04d9b98fb5cf",
+          "card_print_id": "31b28128-2bba-420a-acee-4962caf0514c",
+          "set_code": "2023sv",
+          "number": "8",
+          "number_plain": "8",
+          "card_name": "Kilowattrel",
+          "parent_gv_id": "GV-PK-MCD-2023-8",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2023-8-STD"
+        },
+        {
+          "card_printing_id": "643c1f32-7c70-41f4-aa5e-331c03a16af6",
+          "card_print_id": "2d9108f8-f23d-49f6-8557-19553332e9eb",
+          "set_code": "2024sv",
+          "number": "8",
+          "number_plain": "8",
+          "card_name": "Koraidon",
+          "parent_gv_id": "GV-PK-MCD-2024-8",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-MCD-2024-8-HOLO"
+        },
+        {
+          "card_printing_id": "f0e4042d-49d3-49ff-89d5-aca3bad95b31",
+          "card_print_id": "c9372355-e4ff-46a7-8172-94fe7d8a28be",
+          "set_code": "2023sv",
+          "number": "9",
+          "number_plain": "9",
+          "card_name": "Flittle",
+          "parent_gv_id": "GV-PK-MCD-2023-9",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2023-9-STD"
+        },
+        {
+          "card_printing_id": "d5d31c60-d683-4fb4-a451-62ff36a8ea70",
+          "card_print_id": "5d51ef4f-5f17-4b8e-b9fc-2ae31f955022",
+          "set_code": "2024sv",
+          "number": "9",
+          "number_plain": "9",
+          "card_name": "Umbreon",
+          "parent_gv_id": "GV-PK-MCD-2024-9",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-MCD-2024-9-STD"
+        }
+      ],
+      "hash_sha256": "55c78cf20d05cbde58f2b06ebd2245988508bffa8cb6317fcc31fb35ef0210f4",
+      "counts": {
+        "target_rows": 30,
+        "captured_rows": 30,
+        "rows_with_printing_gv_id": 30,
+        "rows_without_printing_gv_id": 0
+      }
+    }
+  },
+  "stop_findings": [],
+  "pass": true
+}

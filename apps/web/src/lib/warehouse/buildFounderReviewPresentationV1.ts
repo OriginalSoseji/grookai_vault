@@ -14,7 +14,7 @@ export type FounderReviewPresentationV1 = {
   preview: {
     imageUrl: string | null;
     imageOriginLabel: string | null;
-    displayImageKind: "exact" | "representative" | "missing";
+    displayImageKind: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
     imageStatus: string | null;
     imageNote: string | null;
     displayName: string | null;

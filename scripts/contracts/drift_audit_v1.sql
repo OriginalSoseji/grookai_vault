@@ -56,18 +56,19 @@ active_identity_duplicate_hash as (
     having count(*) > 1
   ) dupes
 ),
-active_identity_missing as (
-  select
-    'identity_active_missing_for_canonical_card_print'::text as issue_name,
-    'deferred_known_debt'::text as severity_bucket,
-    count(*)::bigint as row_count,
-    'Canonical card_prints without active identity rows remain deferred debt.'::text as notes
-  from public.card_prints cp
-  left join public.card_print_identity cpi
-    on cpi.card_print_id = cp.id
-   and cpi.is_active = true
-  where cpi.id is null
-),
+  active_identity_missing as (
+    select
+      'identity_active_missing_for_canonical_card_print'::text as issue_name,
+      'deferred_known_debt'::text as severity_bucket,
+      count(*)::bigint as row_count,
+      'Canonical non-excluded card_prints without active identity rows remain deferred debt.'::text as notes
+    from public.card_prints cp
+    left join public.card_print_identity cpi
+      on cpi.card_print_id = cp.id
+     and cpi.is_active = true
+    where cpi.id is null
+      and coalesce(cp.identity_domain, 'pokemon_eng_standard') <> 'tcg_pocket_excluded'
+  ),
 gv_id_missing as (
   select
     'card_prints_missing_gv_id'::text as issue_name,

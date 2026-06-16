@@ -1,0 +1,798 @@
+{
+  "generated_at": "2026-06-16T05:27:11.359Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "source_inputs": {
+    "lanes_json": "docs\\audits\\image_truth_v1\\image_truth_exact_variant_source_lanes_v1.json",
+    "readiness_json": "docs\\audits\\image_truth_v1\\image_truth_exact_variant_readiness_v1.json",
+    "residual_pricecharting_probe_json": "docs\\audits\\image_truth_v1\\image_truth_img14a_pricecharting_residual_exact_probe_v1.json",
+    "ebay_browse_evidence_probe_json": "docs\\audits\\image_truth_v1\\image_truth_img15a_ebay_browse_evidence_probe_v1.json",
+    "exact_photo_acquisition_plan_json": null,
+    "exact_photo_source_evidence_pilot_json": "docs\\audits\\image_truth_v1\\image_truth_img16b_exact_photo_source_evidence_pilot_v1.json",
+    "source_records_loaded": 45449
+  },
+  "summary": {
+    "exact_variant_backlog_rows": 14501,
+    "exact_promote_ready_rows_now": 0,
+    "exact_asset_probe_candidate_rows": 6,
+    "representative_or_blocked_rows": 14495,
+    "no_source_evidence_rows": 1654,
+    "pricecharting_residual_probe_completed": true,
+    "pricecharting_residual_exact_ready_rows": 0,
+    "pricecharting_residual_blocked_rows": 6,
+    "pricecharting_residual_exhausted": true,
+    "ebay_browse_evidence_probe_completed": true,
+    "ebay_title_evidence_candidate_rows": 3,
+    "ebay_no_title_evidence_rows": 3,
+    "exact_photo_acquisition_plan_completed": false,
+    "exact_photo_source_evidence_rows": null,
+    "exact_photo_high_value_no_source_rows": null,
+    "exact_photo_source_evidence_pilot_completed": true,
+    "exact_photo_source_evidence_pilot_rows": 25,
+    "exact_photo_source_evidence_pilot_ready_rows": 0,
+    "current_display_missing_rows": 0,
+    "exact_rows_already_improved_by_recent_packages": 41,
+    "db_safe_next_step": "website_honesty_messaging_or_new_source_acquisition"
+  },
+  "by_readiness_lane": {
+    "representative_only_unless_rendered_overlay_captured": 12391,
+    "no_source_evidence_available": 1654,
+    "source_evidence_available_no_exact_asset_extractor": 388,
+    "representative_only_unless_visual_manually_verified": 62,
+    "exact_asset_probe_candidate": 6
+  },
+  "by_finish": {
+    "reverse": 13499,
+    "cosmos": 321,
+    "pokeball": 230,
+    "holo": 158,
+    "cracked_ice": 122,
+    "normal": 94,
+    "masterball": 67,
+    "rocket_reverse": 10
+  },
+  "by_source_key": {
+    "reverseholo_set_checklist": 12391,
+    "tcgcollector_card_variants": 335,
+    "tcgcsv_tcgplayer_catalog": 62,
+    "binderbuilder_set_variant": 30,
+    "bulbapedia_card_page_release_info": 16,
+    "pricecharting_csv_product": 5,
+    "bulbapedia_sm_black_star_promos": 3,
+    "pokescope_variant_exact": 2,
+    "bulbapedia_card_release_info": 1,
+    "pricecharting_csv_base_product": 1,
+    "tcdb_checklist": 1
+  },
+  "source_families": [
+    {
+      "source_key": "reverseholo_set_checklist",
+      "rows": 12399,
+      "by_lane": {
+        "representative_only_unless_rendered_overlay_captured": 12391,
+        "source_evidence_available_no_exact_asset_extractor": 8
+      },
+      "by_finish": {
+        "reverse": 12317,
+        "holo": 64,
+        "cosmos": 18
+      },
+      "examples": [
+        {
+          "card_printing_id": "37faf893-2ebf-4aa6-b8a0-e5beff8991ea",
+          "set_code": "ex7",
+          "number": "26",
+          "card_name": "Quagsire",
+          "finish_key": "reverse",
+          "source_url": "https://binderbuilder.app/sets/ex7"
+        },
+        {
+          "card_printing_id": "c29fa2da-2b46-4b86-8fd2-0c63f9e7adfc",
+          "set_code": "svp",
+          "number": "200",
+          "card_name": "Eevee",
+          "finish_key": "cosmos",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Eevee_(Stellar_Crown_113)"
+        },
+        {
+          "card_printing_id": "1ec92fd8-f306-425a-9dc7-1dce6cccaf3b",
+          "set_code": "pop8",
+          "number": "12",
+          "card_name": "Chimchar",
+          "finish_key": "reverse",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Chimchar_(Diamond_%26_Pearl_76)"
+        },
+        {
+          "card_printing_id": "99bb0980-3710-411c-b707-2da13167dfeb",
+          "set_code": "svp",
+          "number": "202",
+          "card_name": "Kangaskhan",
+          "finish_key": "cosmos",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Kangaskhan_(SVP_Promo_202)"
+        },
+        {
+          "card_printing_id": "a10ceadb-2eb4-4cf3-8b5a-82a822dfd071",
+          "set_code": "svp",
+          "number": "201",
+          "card_name": "Zebstrika",
+          "finish_key": "cosmos",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Zebstrika_(SVP_Promo_201)"
+        },
+        {
+          "card_printing_id": "d1b624ae-b4fd-445c-952e-e5538d008b9d",
+          "set_code": "ex9",
+          "number": "13",
+          "card_name": "Glalie",
+          "finish_key": "reverse",
+          "source_url": "https://binderbuilder.app/sets/ex9"
+        },
+        {
+          "card_printing_id": "b8c15706-37a0-405f-a14f-2c7788ee4f0b",
+          "set_code": "ex16",
+          "number": "18",
+          "card_name": "Mightyena",
+          "finish_key": "cosmos",
+          "source_url": "https://binderbuilder.app/sets/ex16"
+        },
+        {
+          "card_printing_id": "b7c5a51e-1a41-46be-92fa-5da05890eae6",
+          "set_code": "svp",
+          "number": "199",
+          "card_name": "Zarude",
+          "finish_key": "cosmos",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Zarude_(SVP_Promo_199)"
+        }
+      ],
+      "decision": {
+        "source_family": "ReverseHolo",
+        "current_decision": "representative_only_unless_rendered_overlay_captured",
+        "exact_asset_policy": "Do not mark exact from checklist evidence or base asset alone.",
+        "representative_policy": "Useful for broad display coverage and finish evidence.",
+        "next_action": "Consider a separate rendered-overlay pipeline if Grookai wants synthetic representative reverse imagery, clearly labeled.",
+        "risk": "Checklist proves the reverse printing exists; it does not provide a photographed exact reverse finish image."
+      }
+    },
+    {
+      "source_key": "no_source_evidence",
+      "rows": 1654,
+      "by_lane": {
+        "no_source_evidence_available": 1654
+      },
+      "by_finish": {
+        "reverse": 1121,
+        "pokeball": 230,
+        "holo": 93,
+        "normal": 81,
+        "masterball": 67,
+        "cosmos": 49,
+        "rocket_reverse": 10,
+        "cracked_ice": 3
+      },
+      "examples": [
+        {
+          "card_printing_id": "13dff25e-23de-44d7-b747-089cd2ce3ff1",
+          "set_code": "xyp",
+          "number": "XY129",
+          "card_name": "Zygarde",
+          "finish_key": "holo",
+          "source_url": null
+        },
+        {
+          "card_printing_id": "7276f4c0-9e1e-4053-9f73-09f5574326c9",
+          "set_code": "pl2",
+          "number": "92",
+          "card_name": "Lucian's Assignment",
+          "finish_key": "reverse",
+          "source_url": null
+        },
+        {
+          "card_printing_id": "06cdfc50-0512-4167-a3c0-c87acb5b180e",
+          "set_code": "me02.5",
+          "number": "156",
+          "card_name": "Noibat",
+          "finish_key": "pokeball",
+          "source_url": null
+        },
+        {
+          "card_printing_id": "6efce2ea-a34e-4e84-ab87-1c7afe8e70c7",
+          "set_code": "me02.5",
+          "number": "156",
+          "card_name": "Noibat",
+          "finish_key": "reverse",
+          "source_url": null
+        },
+        {
+          "card_printing_id": "0e901f92-95ec-4ef6-87c4-fad548461b49",
+          "set_code": "sv8pt5",
+          "number": "105",
+          "card_name": "Crispin",
+          "finish_key": "pokeball",
+          "source_url": null
+        },
+        {
+          "card_printing_id": "9f3b2cc7-6b08-421a-aaba-15c69ab35327",
+          "set_code": "me04",
+          "number": "084",
+          "card_name": "Bubbly Water Energy",
+          "finish_key": "reverse",
+          "source_url": null
+        },
+        {
+          "card_printing_id": "b08607fd-b4aa-442d-bd46-897a9a70cea6",
+          "set_code": "ex15",
+          "number": "21",
+          "card_name": "Quagsire δ",
+          "finish_key": "reverse",
+          "source_url": null
+        },
+        {
+          "card_printing_id": "9429202a-b629-4281-b1a6-517016206335",
+          "set_code": "ex12",
+          "number": "4",
+          "card_name": "Delcatty",
+          "finish_key": "reverse",
+          "source_url": null
+        }
+      ],
+      "decision": {
+        "source_family": "No Source Evidence",
+        "current_decision": "blocked_until_new_source_found",
+        "exact_asset_policy": "No exact-image promotion is allowed without a source URL and proof asset.",
+        "representative_policy": "Keep existing representative display and user-facing honesty label.",
+        "next_action": "Acquire a new source family or leave these rows honestly representative.",
+        "risk": "There is no preserved source evidence for exact variant image acquisition."
+      }
+    },
+    {
+      "source_key": "tcgcollector_card_variants",
+      "rows": 339,
+      "by_lane": {
+        "source_evidence_available_no_exact_asset_extractor": 335,
+        "representative_only_unless_rendered_overlay_captured": 4
+      },
+      "by_finish": {
+        "cosmos": 225,
+        "cracked_ice": 105,
+        "reverse": 7,
+        "normal": 2
+      },
+      "examples": [
+        {
+          "card_printing_id": "e0b3f09f-513e-4390-9710-02cf95f1ba6c",
+          "set_code": "sm8",
+          "number": "141",
+          "card_name": "Gardevoir",
+          "finish_key": "cosmos",
+          "source_url": "https://www.tcgcollector.com/cards/11710/gardevoir-lost-thunder-141-214"
+        },
+        {
+          "card_printing_id": "82c858d2-49cb-43a7-8463-b6618454c932",
+          "set_code": "swsh4",
+          "number": "47",
+          "card_name": "Jolteon",
+          "finish_key": "cosmos",
+          "source_url": "https://www.tcgcollector.com/cards/16679/jolteon-vivid-voltage-047-185"
+        },
+        {
+          "card_printing_id": "99d52e5d-9b5d-4c7d-a54a-da14a822eafd",
+          "set_code": "sv8pt5",
+          "number": "025",
+          "card_name": "Glaceon",
+          "finish_key": "cosmos",
+          "source_url": "https://www.tcgcollector.com/cards/47059/glaceon-prismatic-evolutions-025-131"
+        },
+        {
+          "card_printing_id": "a0a878de-02ff-42fd-8c88-3f7887a6a980",
+          "set_code": "sm9",
+          "number": "14",
+          "card_name": "Charizard",
+          "finish_key": "cracked_ice",
+          "source_url": "https://www.tcgcollector.com/cards/12000/charizard-team-up-14-181"
+        },
+        {
+          "card_printing_id": "1b425612-df27-4214-bf3b-5884c9f041e5",
+          "set_code": "sv10",
+          "number": "36",
+          "card_name": "Ethan's Magcargo",
+          "finish_key": "cosmos",
+          "source_url": "https://www.tcgcollector.com/cards/48770/ethans-magcargo-destined-rivals-036-182"
+        },
+        {
+          "card_printing_id": "7bc6cd9e-6fa6-4246-8f51-116a52cd6bfd",
+          "set_code": "sm1",
+          "number": "24",
+          "card_name": "Litten",
+          "finish_key": "cosmos",
+          "source_url": "https://www.tcgcollector.com/cards/8705/litten-sun-and-moon-24-149"
+        },
+        {
+          "card_printing_id": "52bf7e8a-1044-4c7c-87b5-8f3cff17fd6e",
+          "set_code": "col1",
+          "number": "14",
+          "card_name": "Lucario",
+          "finish_key": "cracked_ice",
+          "source_url": "https://www.tcgcollector.com/cards/5539/lucario-call-of-legends-14-95"
+        },
+        {
+          "card_printing_id": "49acd9fc-f4c8-406d-a967-0262620066f9",
+          "set_code": "swsh1",
+          "number": "36",
+          "card_name": "Cinderace",
+          "finish_key": "cracked_ice",
+          "source_url": "https://www.tcgcollector.com/cards/14981/cinderace-sword-and-shield-036-202"
+        }
+      ],
+      "decision": {
+        "source_family": "TCGCollector",
+        "current_decision": "variant_evidence_not_exact_asset",
+        "exact_asset_policy": "Do not promote exact from variant icons/labels alone.",
+        "representative_policy": "Useful for proving the variant exists and explaining representative-image honesty.",
+        "next_action": "Use as evidence source, not image asset source, until a variant-specific image extractor is proven.",
+        "risk": "Main images appear base/card-level and may not show cosmos/cracked ice/stamp treatment."
+      }
+    },
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog",
+      "rows": 227,
+      "by_lane": {
+        "representative_only_unless_rendered_overlay_captured": 164,
+        "representative_only_unless_visual_manually_verified": 62,
+        "source_evidence_available_no_exact_asset_extractor": 1
+      },
+      "by_finish": {
+        "reverse": 219,
+        "normal": 8
+      },
+      "examples": [
+        {
+          "card_printing_id": "1ec92fd8-f306-425a-9dc7-1dce6cccaf3b",
+          "set_code": "pop8",
+          "number": "12",
+          "card_name": "Chimchar",
+          "finish_key": "reverse",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Chimchar_(Diamond_%26_Pearl_76)"
+        },
+        {
+          "card_printing_id": "b60062f6-ff81-46e3-a6c4-ee72f1ac5860",
+          "set_code": "ex7",
+          "number": "2",
+          "card_name": "Dark Ampharos",
+          "finish_key": "reverse",
+          "source_url": "https://www.tcgplayer.com/product/84562/pokemon-team-rocket-returns-dark-ampharos"
+        },
+        {
+          "card_printing_id": "439a3af4-fea8-4dca-a184-c8427cc673f0",
+          "set_code": "sv6pt5",
+          "number": "57",
+          "card_name": "Colress's Tenacity",
+          "finish_key": "reverse",
+          "source_url": "https://www.tcgplayer.com/product/560368/pokemon-sv-shrouded-fable-colresss-tenacity-057-064"
+        },
+        {
+          "card_printing_id": "880908b8-c5ae-4288-98a2-5e7a28da7e0b",
+          "set_code": "sv03.5",
+          "number": "083",
+          "card_name": "Farfetch'd",
+          "finish_key": "reverse",
+          "source_url": "https://www.tcgplayer.com/product/516652/pokemon-sv-scarlet-and-violet-151-farfetchd"
+        },
+        {
+          "card_printing_id": "c6195e4f-9e81-4ca0-93a4-7bc8e8829fea",
+          "set_code": "ex9",
+          "number": "9",
+          "card_name": "Rayquaza",
+          "finish_key": "reverse",
+          "source_url": "https://www.tcgplayer.com/product/88626/pokemon-emerald-rayquaza"
+        },
+        {
+          "card_printing_id": "c6f4668f-606d-4f51-8a41-a6ad829e6656",
+          "set_code": "sm75",
+          "number": "47",
+          "card_name": "Kyurem",
+          "finish_key": "reverse",
+          "source_url": "https://www.tcgplayer.com/product/175477/pokemon-dragon-majesty-kyurem"
+        },
+        {
+          "card_printing_id": "c2644665-2c82-47dd-90e7-55dbd835bc33",
+          "set_code": "swsh6",
+          "number": "108",
+          "card_name": "Single Strike Urshifu",
+          "finish_key": "reverse",
+          "source_url": "https://www.tcgplayer.com/product/241783/pokemon-swsh06-chilling-reign-single-strike-urshifu"
+        },
+        {
+          "card_printing_id": "f4065665-11d2-4b64-a368-b266eba1a5c5",
+          "set_code": "ex7",
+          "number": "46",
+          "card_name": "Rocket's Meowth",
+          "finish_key": "reverse",
+          "source_url": "https://www.tcgplayer.com/product/88775/pokemon-team-rocket-returns-rockets-meowth"
+        }
+      ],
+      "decision": {
+        "source_family": "TCGCSV / TCGplayer Catalog",
+        "current_decision": "manual_visual_review_only",
+        "exact_asset_policy": "Do not promote exact from catalog URL alone. Exact requires product image proof that distinguishes the target finish/variant.",
+        "representative_policy": "Safe for representative display when identity is exact and source URL is preserved.",
+        "next_action": "Keep the 56 rows in visual review; do not bulk promote exact from shared catalog imagery.",
+        "risk": "TCGplayer products often share normal/reverse pricing and images; public pages are app-rendered and unstable for extraction."
+      }
+    },
+    {
+      "source_key": "binderbuilder_set_variant",
+      "rows": 30,
+      "by_lane": {
+        "source_evidence_available_no_exact_asset_extractor": 30
+      },
+      "by_finish": {
+        "cracked_ice": 14,
+        "cosmos": 12,
+        "reverse": 2,
+        "normal": 2
+      },
+      "examples": [
+        {
+          "card_printing_id": "fa295f8f-e124-469a-94a6-3f54cdac54bc",
+          "set_code": "hsp",
+          "number": "HGSS10",
+          "card_name": "Latias",
+          "finish_key": "cosmos",
+          "source_url": "https://binderbuilder.app/sets/hsp"
+        },
+        {
+          "card_printing_id": "d9657cc0-7d9b-4f61-8e0b-eb42eb45ed51",
+          "set_code": "hgss3",
+          "number": "10",
+          "card_name": "Umbreon",
+          "finish_key": "cracked_ice",
+          "source_url": "https://binderbuilder.app/sets/hgss3"
+        },
+        {
+          "card_printing_id": "bf786afe-142b-4654-8449-80628dc361c5",
+          "set_code": "hgss4",
+          "number": "6",
+          "card_name": "Nidoking",
+          "finish_key": "cracked_ice",
+          "source_url": "https://binderbuilder.app/sets/hgss4"
+        },
+        {
+          "card_printing_id": "6e34b839-0a83-43e7-92b3-ee41db6d68ce",
+          "set_code": "hgss2",
+          "number": "13",
+          "card_name": "Blastoise",
+          "finish_key": "cracked_ice",
+          "source_url": "https://binderbuilder.app/sets/hgss2"
+        },
+        {
+          "card_printing_id": "37faf893-2ebf-4aa6-b8a0-e5beff8991ea",
+          "set_code": "ex7",
+          "number": "26",
+          "card_name": "Quagsire",
+          "finish_key": "reverse",
+          "source_url": "https://binderbuilder.app/sets/ex7"
+        },
+        {
+          "card_printing_id": "2c38200e-dfb0-4585-822a-f64e64d31cbc",
+          "set_code": "ex3",
+          "number": "19",
+          "card_name": "Salamence",
+          "finish_key": "cosmos",
+          "source_url": "https://binderbuilder.app/sets/ex3"
+        },
+        {
+          "card_printing_id": "a2191c6f-712e-406c-b5c6-033686d6e864",
+          "set_code": "hgss2",
+          "number": "4",
+          "card_name": "Metagross",
+          "finish_key": "cracked_ice",
+          "source_url": "https://binderbuilder.app/sets/hgss2"
+        },
+        {
+          "card_printing_id": "ab26478a-074d-46a2-8630-8547ce008eaa",
+          "set_code": "hsp",
+          "number": "HGSS11",
+          "card_name": "Latios",
+          "finish_key": "cracked_ice",
+          "source_url": "https://binderbuilder.app/sets/hsp"
+        }
+      ],
+      "decision": {
+        "source_family": "BinderBuilder",
+        "current_decision": "variant_evidence_not_exact_asset",
+        "exact_asset_policy": "Do not promote exact unless embedded image URLs are proven variant-specific.",
+        "representative_policy": "Useful for finish/variant source evidence and gap triage.",
+        "next_action": "Treat as evidence only; add a future extractor only if variant-specific images are proven.",
+        "risk": "Structured variant rows may point at base card images."
+      }
+    },
+    {
+      "source_key": "bulbapedia_card_page_release_info",
+      "rows": 20,
+      "by_lane": {
+        "source_evidence_available_no_exact_asset_extractor": 20
+      },
+      "by_finish": {
+        "cosmos": 19,
+        "reverse": 1
+      },
+      "examples": [
+        {
+          "card_printing_id": "9fca5e4b-c619-420f-9b07-8b62f17c6aca",
+          "set_code": "smp",
+          "number": "SM199",
+          "card_name": "Psyduck",
+          "finish_key": "cosmos",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/SM_Black_Star_Promos_(TCG)"
+        },
+        {
+          "card_printing_id": "d8614fa9-82ed-4688-bc2d-27d01dd6e00e",
+          "set_code": "smp",
+          "number": "SM198",
+          "card_name": "Bulbasaur",
+          "finish_key": "cosmos",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/SM_Black_Star_Promos_(TCG)"
+        },
+        {
+          "card_printing_id": "dff0c5ad-9c1a-410a-a25d-0c02d3e25948",
+          "set_code": "sm6",
+          "number": "72",
+          "card_name": "Zygarde",
+          "finish_key": "cosmos",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Zygarde_(Forbidden_Light_72)"
+        },
+        {
+          "card_printing_id": "1eeb6241-6309-433c-9262-de8603f4c09e",
+          "set_code": "swshp",
+          "number": "SWSH222",
+          "card_name": "Oshawott",
+          "finish_key": "cosmos",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Oshawott_(SWSH_Promo_222)"
+        },
+        {
+          "card_printing_id": "e0637e1a-8b67-4d3a-b535-4b392f25d0b5",
+          "set_code": "svp",
+          "number": "47",
+          "card_name": "Charmander",
+          "finish_key": "cosmos",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Charmander_(SVP_Promo_47)"
+        },
+        {
+          "card_printing_id": "c29fa2da-2b46-4b86-8fd2-0c63f9e7adfc",
+          "set_code": "svp",
+          "number": "200",
+          "card_name": "Eevee",
+          "finish_key": "cosmos",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Eevee_(Stellar_Crown_113)"
+        },
+        {
+          "card_printing_id": "07b56550-c1e0-427b-a5d6-3e312d78d4ba",
+          "set_code": "swshp",
+          "number": "SWSH221",
+          "card_name": "Cyndaquil",
+          "finish_key": "cosmos",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Cyndaquil_(SWSH_Promo_221)"
+        },
+        {
+          "card_printing_id": "1ec92fd8-f306-425a-9dc7-1dce6cccaf3b",
+          "set_code": "pop8",
+          "number": "12",
+          "card_name": "Chimchar",
+          "finish_key": "reverse",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Chimchar_(Diamond_%26_Pearl_76)"
+        }
+      ],
+      "decision": {
+        "source_family": "Bulbapedia",
+        "current_decision": "human_evidence_not_exact_asset",
+        "exact_asset_policy": "Do not promote exact from release text alone.",
+        "representative_policy": "Useful as human-readable evidence for variant existence.",
+        "next_action": "Use for source agreement, not image upload, unless an externally reusable exact image asset is identified.",
+        "risk": "Release text can prove existence but not provide a reusable exact child visual asset."
+      }
+    },
+    {
+      "source_key": "pricecharting_csv_product",
+      "rows": 6,
+      "by_lane": {
+        "exact_asset_probe_candidate": 6
+      },
+      "by_finish": {
+        "reverse": 3,
+        "cosmos": 1,
+        "holo": 1,
+        "normal": 1
+      },
+      "examples": [
+        {
+          "card_printing_id": "aa91ccf3-3860-4435-ade8-2d9bcfd53bf7",
+          "set_code": "sv03.5",
+          "number": "004",
+          "card_name": "Charmander",
+          "finish_key": "cosmos",
+          "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-151/charmander-cosmos-holo-4"
+        },
+        {
+          "card_printing_id": "dd73286d-1363-46c1-8bdf-d786df131324",
+          "set_code": "sve",
+          "number": "3",
+          "card_name": "Basic Water Energy",
+          "finish_key": "reverse",
+          "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-energy/basic-water-energy-reverse-holo-3"
+        },
+        {
+          "card_printing_id": "4079a4ef-3eb5-4208-a04c-06add5be06b8",
+          "set_code": "sve",
+          "number": "5",
+          "card_name": "Basic Psychic Energy",
+          "finish_key": "reverse",
+          "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-energy/basic-psychic-energy-reverse-holo-5"
+        },
+        {
+          "card_printing_id": "3a29d550-9261-4ca6-8405-a0014d2ea76a",
+          "set_code": "sve",
+          "number": "6",
+          "card_name": "Basic Fighting Energy",
+          "finish_key": "reverse",
+          "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-energy/basic-fighting-energy-reverse-holo-6"
+        },
+        {
+          "card_printing_id": "d2686174-b14e-4dfc-9e35-51461d1c6464",
+          "set_code": "swsh4.5",
+          "number": "60",
+          "card_name": "Professor's Research",
+          "finish_key": "holo",
+          "source_url": "https://www.pricecharting.com/game/pokemon-shining-fates/professors-research-holo-60"
+        },
+        {
+          "card_printing_id": "d63aff49-0991-4170-b173-8967f7a8ee32",
+          "set_code": "xy8",
+          "number": "146a",
+          "card_name": "Professor's Letter",
+          "finish_key": "normal",
+          "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/professors-letter-146a"
+        }
+      ],
+      "decision": {
+        "source_family": "PriceCharting",
+        "current_decision": "residual_probe_exhausted",
+        "exact_asset_policy": "Exact only when frozen page title/image-alt/source URL prove set + card number + name + finish and dry-run proof passes.",
+        "representative_policy": "May remain representative when exact image proof is missing or volatile.",
+        "next_action": "No PriceCharting residual row is exact-image ready after IMG-14A; move to eBay Browse evidence-only investigation or a new exact-photo source lane.",
+        "risk": "PriceCharting still proves product/finish evidence for these rows, but current pages do not expose exact matching image alt/assets."
+      }
+    },
+    {
+      "source_key": "cardtrader",
+      "rows": 3,
+      "by_lane": {
+        "source_evidence_available_no_exact_asset_extractor": 3
+      },
+      "by_finish": {
+        "cosmos": 3
+      },
+      "examples": [
+        {
+          "card_printing_id": "1f9eca18-80ee-4853-b119-4ee16ca85dda",
+          "set_code": "bwp",
+          "number": "BW34",
+          "card_name": "Luxio",
+          "finish_key": "cosmos",
+          "source_url": "https://binderbuilder.app/sets/bwp"
+        },
+        {
+          "card_printing_id": "90fe28a3-8584-48a0-b4d3-fb12e6f3ec1a",
+          "set_code": "bwp",
+          "number": "BW25",
+          "card_name": "Scraggy",
+          "finish_key": "cosmos",
+          "source_url": "https://binderbuilder.app/sets/bwp"
+        },
+        {
+          "card_printing_id": "a01ef970-838c-4a7a-b612-b6549d9e810f",
+          "set_code": "bwp",
+          "number": "BW13",
+          "card_name": "Minccino",
+          "finish_key": "cosmos",
+          "source_url": "https://binderbuilder.app/sets/bwp"
+        }
+      ],
+      "decision": {
+        "source_family": "CardTrader",
+        "current_decision": "exact_when_frozen_metadata_proves_visual",
+        "exact_asset_policy": "Exact only from frozen product metadata/image proof, as used by IMG-13A.",
+        "representative_policy": "Otherwise representative only.",
+        "next_action": "Search for additional CardTrader rows only through the frozen-plan workflow.",
+        "risk": "Blueprint/catalog images may not show texture or parallel treatment unless metadata and asset are variant-specific."
+      }
+    },
+    {
+      "source_key": "pokescope_variant_exact",
+      "rows": 2,
+      "by_lane": {
+        "source_evidence_available_no_exact_asset_extractor": 2
+      },
+      "by_finish": {
+        "cosmos": 1,
+        "reverse": 1
+      },
+      "examples": [
+        {
+          "card_printing_id": "d8d8c543-46aa-4c83-a7be-a05c6fdab5bf",
+          "set_code": "swsh2",
+          "number": "39",
+          "card_name": "Magikarp",
+          "finish_key": "cosmos",
+          "source_url": "https://pokescope.app/card/swsh2-39/"
+        },
+        {
+          "card_printing_id": "74bb7777-d211-49e7-a078-622320756be6",
+          "set_code": "ecard2",
+          "number": "103",
+          "card_name": "Porygon",
+          "finish_key": "reverse",
+          "source_url": "https://pokescope.app/card/ecard2-103/"
+        }
+      ],
+      "decision": {
+        "source_family": "PokeScope",
+        "current_decision": "variant_evidence_not_exact_asset",
+        "exact_asset_policy": "Do not promote exact unless a variant-specific image URL is found.",
+        "representative_policy": "Useful for source-backed variant existence and display honesty.",
+        "next_action": "Keep the 2 rows blocked as evidence-only unless future page structure exposes variant-specific assets.",
+        "risk": "Observed image URLs appear base/card-level while variant sections prove finish/pricing separately."
+      }
+    },
+    {
+      "source_key": "tcdb_checklist",
+      "rows": 1,
+      "by_lane": {
+        "source_evidence_available_no_exact_asset_extractor": 1
+      },
+      "by_finish": {
+        "cosmos": 1
+      },
+      "examples": [
+        {
+          "card_printing_id": "e1910e3f-ba88-4053-9fed-ab46699d32f7",
+          "set_code": "ex1",
+          "number": "93",
+          "card_name": "Darkness Energy",
+          "finish_key": "cosmos",
+          "source_url": "https://www.tcdb.com/ViewCard.cfm/sid/83740/cid/15275797/2003-Pokemon-EX-Ruby-%26-Sapphire-93/109-Darkness-Energy"
+        }
+      ],
+      "decision": {
+        "source_family": "TCDB",
+        "current_decision": "checklist_evidence_not_exact_asset",
+        "exact_asset_policy": "Do not promote exact from checklist text alone.",
+        "representative_policy": "Useful as source evidence when source URL and label are preserved.",
+        "next_action": "Use as source agreement only unless image rights and exact variant asset proof are established.",
+        "risk": "Checklist support is not automatically an image license or exact visual proof."
+      }
+    }
+  ],
+  "decisions": {
+    "exact_promotion_allowed_now": false,
+    "exact_promotion_blocker": "No remaining row is currently promotion-ready without a fresh source-specific proof package.",
+    "safe_user_facing_state": "Correct printing; representative image may not show exact finish, stamp, or parallel.",
+    "ebay_browse_policy": "Evidence-only. Listing titles may support manual/source context, but listing images are excluded from canonical image promotion until licensing, stability, and exact visual proof rules are separately approved.",
+    "next_source_acquisition_order": [
+      "Use eBay Browse only as volatile title-evidence context; do not use listing images as canonical assets.",
+      "Design a dedicated exact-photo acquisition lane for high-value cosmos/cracked_ice/stamped rows.",
+      "Consider rendered overlay display for reverse-heavy rows, clearly labeled representative rather than exact.",
+      "Keep no-source rows honest until new sources are found."
+    ]
+  },
+  "verification": {
+    "generated_from_existing_reports_only": true,
+    "no_network_required": true,
+    "no_db_required": true,
+    "no_apply_path_imported": true
+  }
+}

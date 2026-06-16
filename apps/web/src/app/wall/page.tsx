@@ -1,9 +1,11 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import Link from "next/link";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PublicCardImage from "@/components/PublicCardImage";
 import { OwnerWallSectionRail } from "@/components/wall/OwnerWallSectionRail";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { getOwnerWallSections } from "@/lib/wallSections/getOwnerWallSections";
@@ -37,6 +39,9 @@ type WallCard = {
   number: string;
   created_at: string | null;
   image_url?: string;
+  image_status?: string | null;
+  image_note?: string | null;
+  display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
 };
 
 type WallIdentityRow = {
@@ -166,6 +171,9 @@ async function normalizeFeed(
             image_alt_url: row.image_best ?? row.image_alt_url,
             representative_image_url: imageFields.representative_image_url,
           }) ?? undefined,
+        image_status: imageFields.image_status,
+        image_note: imageFields.image_note,
+        display_image_kind: imageFields.display_image_kind,
       };
     }));
 
@@ -234,36 +242,52 @@ export default async function WallPage() {
       ) : (
         <section className="space-y-4">
           {feed.map((item) => (
-            <Link
-              key={item.id}
-              href={`/card/${item.gv_id}`}
-              className="block rounded-[2rem] border border-slate-200 bg-white px-5 py-5 shadow-sm transition hover:border-slate-300 hover:shadow-md"
-            >
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-                <PublicCardImage
-                  src={item.image_url}
-                  alt={item.display_name}
-                  imageClassName="h-40 w-28 rounded-[1.25rem] border border-slate-200 bg-slate-50 object-contain p-2"
-                  fallbackClassName="flex h-40 w-28 items-center justify-center rounded-[1.25rem] border border-slate-200 bg-slate-100 px-3 text-center text-xs text-slate-500"
-                  fallbackLabel={item.display_name}
-                />
-                <div className="min-w-0 flex-1 space-y-3">
-                  <div className="space-y-1">
-                    <h2 className="text-2xl font-medium tracking-tight text-slate-950">{item.display_name}</h2>
-                    <p className="text-sm text-slate-600">
-                      {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined].filter(Boolean).join(" • ")}
-                    </p>
+            (() => {
+              const imagePresentation = resolveCardImagePresentation(item);
+
+              return (
+                <Link
+                  key={item.id}
+                  href={`/card/${item.gv_id}`}
+                  className="block rounded-[2rem] border border-slate-200 bg-white px-5 py-5 shadow-sm transition hover:border-slate-300 hover:shadow-md"
+                >
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+                    <div className="relative w-fit">
+                      <PublicCardImage
+                        src={item.image_url}
+                        alt={item.display_name}
+                        imageClassName="h-40 w-28 rounded-[1.25rem] border border-slate-200 bg-slate-50 object-contain p-2"
+                        fallbackClassName="flex h-40 w-28 items-center justify-center rounded-[1.25rem] border border-slate-200 bg-slate-100 px-3 text-center text-xs text-slate-500"
+                        fallbackLabel={item.display_name}
+                      />
+                      {imagePresentation.compactBadgeLabel ? (
+                        <div className="pointer-events-none absolute inset-x-0 top-0 flex p-2">
+                          <CardImageTruthBadge
+                            label={imagePresentation.compactBadgeLabel}
+                            emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                          />
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="min-w-0 flex-1 space-y-3">
+                      <div className="space-y-1">
+                        <h2 className="text-2xl font-medium tracking-tight text-slate-950">{item.display_name}</h2>
+                        <p className="text-sm text-slate-600">
+                          {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined].filter(Boolean).join(" • ")}
+                        </p>
+                      </div>
+                      <div className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
+                        Added to vault
+                      </div>
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-600">
+                        <p>{formatTimeAgo(item.created_at)}</p>
+                        <p>{item.gv_id}</p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
-                    Added to vault
-                  </div>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-600">
-                    <p>{formatTimeAgo(item.created_at)}</p>
-                    <p>{item.gv_id}</p>
-                  </div>
-                </div>
-              </div>
-            </Link>
+                </Link>
+              );
+            })()
           ))}
         </section>
       )}

@@ -2150,6 +2150,88 @@ function suppressStructuredOnlyFinishCandidates(records, generatedAt) {
   return { records: kept, suppressed };
 }
 
+async function listJsonFilesRecursive(rootDir) {
+  let entries = [];
+  try {
+    entries = await fs.readdir(rootDir, { withFileTypes: true });
+  } catch (error) {
+    if (error?.code === 'ENOENT') return [];
+    throw error;
+  }
+
+  const files = [];
+  for (const entry of entries) {
+    const entryPath = path.join(rootDir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...await listJsonFilesRecursive(entryPath));
+    } else if (entry.isFile() && entry.name.endsWith('.json')) {
+      files.push(entryPath);
+    }
+  }
+  return files.sort();
+}
+
+async function loadExplicitFixtureSuppressionRules(fixtureDir) {
+  const files = await listJsonFilesRecursive(fixtureDir);
+  const rules = [];
+  for (const filePath of files) {
+    const fixture = JSON.parse(await fs.readFile(filePath, 'utf8'));
+    for (const rule of fixture.suppressed_printing_facts ?? []) {
+      if (!rule.set_key || !rule.set_name || !rule.card_number || !rule.card_name || !rule.finish_key) {
+        throw new Error(`Explicit fixture suppression in ${path.relative(fixtureDir, filePath)} is missing set/card/name/finish identity.`);
+      }
+      rules.push({
+        ...rule,
+        fixture_file: path.relative(fixtureDir, filePath),
+      });
+    }
+  }
+  return rules;
+}
+
+function applyExplicitFixtureSuppressions(records, suppressionRules, generatedAt) {
+  if (!suppressionRules.length) return { records, suppressed: [] };
+
+  const rulesByPrintingKey = new Map();
+  for (const rule of suppressionRules) {
+    const key = printingFactKey({
+      set_name: rule.set_name,
+      card_number: rule.card_number,
+      card_name: rule.card_name,
+      finish_key: normalizeFinishKey(rule.finish_key),
+    });
+    if (!rulesByPrintingKey.has(key)) rulesByPrintingKey.set(key, []);
+    rulesByPrintingKey.get(key).push(rule);
+  }
+
+  const kept = [];
+  const suppressed = [];
+  for (const row of records) {
+    if (row.evidence_type !== 'finish_presence' || !row.finish_key || !row.card_number || !row.card_name) {
+      kept.push(row);
+      continue;
+    }
+    const rules = rulesByPrintingKey.get(printingFactKey(row)) ?? [];
+    if (rules.length === 0) {
+      kept.push(row);
+      continue;
+    }
+
+    suppressed.push({
+      ...row,
+      suppressed_at: generatedAt,
+      suppression_status: rules[0].suppression_status ?? 'explicit_fixture_suppression',
+      suppression_reason: rules[0].reason ?? 'Suppressed by an explicit source-backed fixture suppression rule.',
+      suppression_fixture_file: rules[0].fixture_file,
+      replacement_finish_key: rules[0].replacement_finish_key ?? null,
+      supported_checklist_finishes_for_card: rules[0].replacement_finish_key ? [rules[0].replacement_finish_key] : [],
+      suppression_evidence_urls: rules.flatMap((rule) => rule.evidence_urls ?? []),
+    });
+  }
+
+  return { records: kept, suppressed };
+}
+
 function sourceOverlap(records) {
   return Object.entries(countBy(records, (row) => row.source_key))
     .map(([source_key, evidence_rows]) => ({ source_key, evidence_rows }));
@@ -3801,8 +3883,17 @@ async function main() {
   const preSuppressionCount = records.length;
   const structuredSuppression = suppressStructuredOnlyFinishCandidates(records, generatedAt);
   records = structuredSuppression.records;
+  const explicitFixtureSuppressionRules = options.skipHumanFixtures
+    ? []
+    : await loadExplicitFixtureSuppressionRules(options.fixtureDir);
+  const explicitFixtureSuppression = applyExplicitFixtureSuppressions(records, explicitFixtureSuppressionRules, generatedAt);
+  records = explicitFixtureSuppression.records;
+  structuredSuppression.suppressed.push(...explicitFixtureSuppression.suppressed);
   console.log(`[master-index] collected ${preSuppressionCount} evidence rows`);
-  console.log(`[master-index] suppressed ${structuredSuppression.suppressed.length} structured-only finish candidates unsupported by exact checklist variants`);
+  console.log(`[master-index] suppressed ${structuredSuppression.suppressed.length} finish candidates via structured/checklist and explicit fixture governance`);
+  if (explicitFixtureSuppression.suppressed.length > 0) {
+    console.log(`[master-index] suppressed ${explicitFixtureSuppression.suppressed.length} exact finish claims via explicit fixture governance rules`);
+  }
 
   const classified = classifyEvidence(records);
   const index = indexPayload({ records, classified, setConfigs, sourceAvailability, generatedAt, structuredSuppression });

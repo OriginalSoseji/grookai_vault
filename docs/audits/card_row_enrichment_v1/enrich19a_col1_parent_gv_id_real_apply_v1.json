@@ -1,0 +1,123 @@
+{
+  "version": "ENRICH19A_COL1_PARENT_GV_ID_REAL_APPLY_V1",
+  "package_id": "ENRICH-19A-COL1-PARENT-GV-ID-BACKFILL",
+  "generated_at": "2026-06-16T01:21:31.695Z",
+  "package_fingerprint_sha256": "f3cb5ee87c0814783b070401b5bc179b11e5e6a4be56269fc7d700aaa36948aa",
+  "expected_fingerprint_sha256": "f3cb5ee87c0814783b070401b5bc179b11e5e6a4be56269fc7d700aaa36948aa",
+  "expected_dry_run_proof_sha256": "aa1a903e3ae1c6d965fc363bc89de7c9bad676985b07cca81566ebdb6197c00c",
+  "approval_text": "Approve real ENRICH-19A-COL1-PARENT-GV-ID-BACKFILL apply only. Fingerprint: f3cb5ee87c0814783b070401b5bc179b11e5e6a4be56269fc7d700aaa36948aa. Scope: 3 Call of Legends parent card_print gv_id updates using governed COL namespace. Dry-run proof: aa1a903e3ae1c6d965fc363bc89de7c9bad676985b07cca81566ebdb6197c00c == aa1a903e3ae1c6d965fc363bc89de7c9bad676985b07cca81566ebdb6197c00c. No child writes. No identity writes. No external mapping writes. No species writes. No deletes. No merges. No migrations. No image writes. No global apply.",
+  "scope": {
+    "target_rows": 3,
+    "writes_performed": [
+      "card_prints.gv_id"
+    ],
+    "forbidden": [
+      "child writes",
+      "identity writes",
+      "external mapping writes",
+      "species writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ],
+    "migrations_created": false
+  },
+  "dry_run_validation_findings": [],
+  "approval_validation_findings": [],
+  "apply_result": {
+    "before_snapshot": {
+      "rows": [
+        {
+          "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+          "set_code": "col1",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Clefable",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+          "set_code": "col1",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Houndoom",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+          "set_code": "col1",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Forretress",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        }
+      ],
+      "hash_sha256": "aa1a903e3ae1c6d965fc363bc89de7c9bad676985b07cca81566ebdb6197c00c",
+      "counts": {
+        "target_rows": 3,
+        "captured_rows": 3,
+        "rows_with_gv_id": 0,
+        "rows_without_gv_id": 3
+      }
+    },
+    "update_proof": {
+      "updated_rows": 3,
+      "proof": {
+        "target_count": 3,
+        "matching_gv_count": 3,
+        "duplicate_gv_id_exists": 0
+      }
+    },
+    "after_snapshot": {
+      "rows": [
+        {
+          "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+          "set_code": "col1",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Clefable",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-COL-1"
+        },
+        {
+          "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+          "set_code": "col1",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Houndoom",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-COL-10"
+        },
+        {
+          "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+          "set_code": "col1",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Forretress",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-COL-5"
+        }
+      ],
+      "hash_sha256": "cb6aa6d5056f452c38995c7bb89b4638f3eb93a37dbd669ee70e485c2b737b8c",
+      "counts": {
+        "target_rows": 3,
+        "captured_rows": 3,
+        "rows_with_gv_id": 3,
+        "rows_without_gv_id": 0
+      }
+    }
+  },
+  "stop_findings": [],
+  "pass": true
+}

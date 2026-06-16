@@ -1,0 +1,132 @@
+{
+  "version": "CARD_ROW_IDENTITY_PROVENANCE_PLAN_V1",
+  "generated_at": "2026-06-16T02:03:59.096Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "child_image_printing_work_deferred": true,
+  "source_artifacts": {
+    "cleanup_plan_json": "docs\\audits\\card_row_enrichment_v1\\card_row_enrichment_cleanup_plan_v1.json",
+    "cleanup_plan_fingerprint_sha256": "b02f95b5f6c2fbb11de0e06c3b276e16c72704dc18956ac2da127694542436af",
+    "status_json": "docs\\audits\\card_row_enrichment_v1\\card_row_enrichment_status_v1.json",
+    "status_fingerprint": "4a9d33243a467a085bbc5c1cab4adc8b5d61913cd32208bbd9efe5584d7a05c7"
+  },
+  "totals": {
+    "english_physical_parent_rows": 23079,
+    "english_physical_child_printing_rows": 38113,
+    "parent_gv_id_candidates": 130,
+    "parent_gv_id_ready": 0,
+    "child_printing_gv_id_candidates": 143,
+    "child_printing_gv_id_ready": 0,
+    "active_identity_candidates": 0,
+    "active_identity_ready": 0,
+    "core_identity_gap_rows": 5,
+    "child_provenance_gap_rows": 13428,
+    "child_display_image_gap_rows_deferred": 229
+  },
+  "lanes": [
+    {
+      "lane": "parent_gv_id",
+      "status": "blocked_no_write_ready_rows",
+      "candidate_rows": 130,
+      "ready_rows": 0,
+      "blockers": {
+        "proposed_gv_id_existing_collision": 125,
+        "missing_parent_set_code": 5,
+        "missing_printed_number": 5
+      },
+      "next_action": "Resolve missing parent set_code/number and adjudicate proposed GV-ID collisions before another apply package.",
+      "write_scope_if_later_approved": [
+        "card_prints.gv_id"
+      ]
+    },
+    {
+      "lane": "child_printing_gv_id",
+      "status": "blocked_no_write_ready_rows",
+      "candidate_rows": 143,
+      "ready_rows": 0,
+      "blockers": {
+        "missing_parent_gv_id": 143
+      },
+      "next_action": "Blocked behind parent gv_id. Do not backfill printing_gv_id until parent gv_id is stable.",
+      "write_scope_if_later_approved": [
+        "card_printings.printing_gv_id"
+      ]
+    },
+    {
+      "lane": "active_identity",
+      "status": "not_applicable",
+      "candidate_rows": 0,
+      "ready_rows": 0,
+      "blockers": {},
+      "next_action": "Resolve projection blockers and identity hash duplicates before inserting active identities.",
+      "write_scope_if_later_approved": [
+        "card_print_identity inserts"
+      ]
+    },
+    {
+      "lane": "core_identity",
+      "status": "blocked_source_or_set_resolution_required",
+      "candidate_rows": 5,
+      "ready_rows": 0,
+      "blockers": {
+        "missing_number": 5,
+        "missing_number_plain": 5,
+        "missing_set_code": 5
+      },
+      "next_action": "Resolve set_code/number identity for unresolved English physical rows. This is upstream of GV-ID and external mapping cleanup.",
+      "write_scope_if_later_approved": [
+        "card_prints set_code/number identity fields only after source proof"
+      ]
+    },
+    {
+      "lane": "child_provenance",
+      "status": "deferred_enrichment_not_canon_blocker",
+      "candidate_rows": 13428,
+      "ready_rows": 0,
+      "blockers": {
+        "provenance_source_policy_needed": 13428
+      },
+      "next_action": "Define provenance source policy separately. Missing provenance does not mean the reconciled printing is wrong.",
+      "write_scope_if_later_approved": [
+        "card_printings provenance metadata only after source policy"
+      ]
+    },
+    {
+      "lane": "child_display_image",
+      "status": "explicitly_deferred_by_current_scope",
+      "candidate_rows": 229,
+      "ready_rows": 0,
+      "blockers": {
+        "deferred_child_image_printing_work": 229
+      },
+      "next_action": "Skip for this cleanup pass per current scope.",
+      "write_scope_if_later_approved": []
+    }
+  ],
+  "dependency_order": [
+    "core_identity",
+    "parent_gv_id",
+    "child_printing_gv_id",
+    "active_identity",
+    "external_mapping",
+    "traits_species_catalog_metadata",
+    "child_provenance",
+    "child_display_image_deferred"
+  ],
+  "decisions": [
+    "printing_gv_id backfill is blocked until parent gv_id is stable.",
+    "parent gv_id backfill is blocked when parent set_code/number is missing or the proposed gv_id collides.",
+    "active identity inserts are blocked when the projection is not ready or identity hashes duplicate.",
+    "child provenance is enrichment metadata, not evidence that the canonical printing is wrong.",
+    "child display image cleanup remains deferred in this pass."
+  ],
+  "recommended_next_step": {
+    "package_id": "ENRICH-13-CORE-IDENTITY-SET-CODE-RESOLUTION-READINESS",
+    "mode": "audit_only_readiness",
+    "reason": "Core identity is the upstream blocker for parent gv_id, child printing_gv_id, and some active identity residuals.",
+    "writes_authorized": false
+  },
+  "fingerprint_sha256": "0555de9b3180cbc95f0c88bbffbd73dd83ff56e26d130b953b7f7340f55210ee"
+}

@@ -7,6 +7,7 @@ import { useFormState } from "react-dom";
 import PrintingSelector from "@/components/cards/PrintingSelector";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
+import { findPrintingByReference } from "@/lib/cards/printingSelection";
 import { sendTelemetryEvent } from "@/lib/telemetry/client";
 import type { CardPrinting } from "@/types/cards";
 
@@ -41,7 +42,7 @@ type AddToVaultCardActionProps = {
 
 function getDefaultPrinting(printings: CardPrinting[], initialPrintingId?: string | null) {
   if (initialPrintingId) {
-    const initialPrinting = printings.find((printing) => printing.id === initialPrintingId);
+    const initialPrinting = findPrintingByReference(printings, initialPrintingId);
     if (initialPrinting) {
       return initialPrinting;
     }

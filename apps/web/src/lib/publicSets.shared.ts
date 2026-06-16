@@ -92,14 +92,18 @@ export type PublicSetCard = {
   image_note?: string;
   image_source?: string;
   display_image_url?: string;
-  display_image_kind?: "exact" | "representative" | "missing";
+  display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
   printings?: Array<{
     id?: string;
     printing_gv_id?: string;
     finish_key?: string;
     finish_name?: string;
     image_url?: string;
+    image_status?: string;
+    image_note?: string;
+    image_source?: string;
     display_image_url?: string;
+    display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
     owned_count?: number;
   }>;
 };

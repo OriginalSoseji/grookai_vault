@@ -1,0 +1,168 @@
+{
+  "version": "ENRICH19A_COL1_PARENT_GV_ID_GUARDED_DRY_RUN_V1",
+  "package_id": "ENRICH-19A-COL1-PARENT-GV-ID-BACKFILL",
+  "generated_at": "2026-06-16T01:19:46.785Z",
+  "package_fingerprint_sha256": "f3cb5ee87c0814783b070401b5bc179b11e5e6a4be56269fc7d700aaa36948aa",
+  "source_candidate_file": "docs\\audits\\card_row_enrichment_v1\\parent_gv_id_backfill_candidates_v1.json",
+  "source_fingerprint_basis": "a1b697c39943af77ba757c1f25dadcdfaf864c9a0ff6faab64cdc5c21f9c79e9",
+  "scope": {
+    "target_set_code": "col1",
+    "target_rows": 3,
+    "writes_simulated_then_rolled_back": [
+      "card_prints.gv_id"
+    ],
+    "forbidden": [
+      "child writes",
+      "identity writes",
+      "external mapping writes",
+      "species writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ],
+    "durable_db_writes_performed": false,
+    "migrations_created": false
+  },
+  "namespace_governance": "col1_identity_contract_v1 / COL namespace",
+  "preflight": {
+    "target_count": 3,
+    "distinct_target_count": 3,
+    "distinct_proposed_gv_count": 3,
+    "non_target_set_count": 0,
+    "missing_proposed_gv_count": 0,
+    "non_col_namespace_count": 0,
+    "missing_parent_count": 0,
+    "out_of_scope_parent_count": 0,
+    "target_already_has_gv_count": 0,
+    "existing_gv_collision_count": 0,
+    "batch_duplicate_gv_count": 0,
+    "target_fingerprint_sha256": "462e54705c73093f5a9a3d4e1b12b0839e84f90dfeb4d7e76e9d7d33d32a158d"
+  },
+  "execution": {
+    "before_snapshot": {
+      "rows": [
+        {
+          "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+          "set_code": "col1",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Clefable",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+          "set_code": "col1",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Houndoom",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+          "set_code": "col1",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Forretress",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        }
+      ],
+      "hash_sha256": "aa1a903e3ae1c6d965fc363bc89de7c9bad676985b07cca81566ebdb6197c00c",
+      "counts": {
+        "target_rows": 3,
+        "captured_rows": 3,
+        "rows_with_gv_id": 0,
+        "rows_without_gv_id": 3
+      }
+    },
+    "inside_transaction_proof": {
+      "updated_rows": 3,
+      "proof": {
+        "target_count": 3,
+        "matching_gv_count": 3,
+        "duplicate_gv_id_exists": 0
+      }
+    },
+    "after_rollback_snapshot": {
+      "rows": [
+        {
+          "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+          "set_code": "col1",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Clefable",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+          "set_code": "col1",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Houndoom",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        },
+        {
+          "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+          "set_code": "col1",
+          "number": "5",
+          "number_plain": "5",
+          "card_name": "Forretress",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": null
+        }
+      ],
+      "hash_sha256": "aa1a903e3ae1c6d965fc363bc89de7c9bad676985b07cca81566ebdb6197c00c",
+      "counts": {
+        "target_rows": 3,
+        "captured_rows": 3,
+        "rows_with_gv_id": 0,
+        "rows_without_gv_id": 3
+      }
+    },
+    "dry_run_status": "completed_rolled_back_no_durable_change"
+  },
+  "target_samples": [
+    {
+      "card_print_id": "0693f9de-73cc-4df6-b03c-23a084049e60",
+      "set_code": "col1",
+      "set_name": "Call of Legends",
+      "number": "1",
+      "number_plain": "1",
+      "card_name": "Clefable",
+      "proposed_gv_id": "GV-PK-COL-1"
+    },
+    {
+      "card_print_id": "64c77c93-2d6a-4098-812b-593db15688dd",
+      "set_code": "col1",
+      "set_name": "Call of Legends",
+      "number": "10",
+      "number_plain": "10",
+      "card_name": "Houndoom",
+      "proposed_gv_id": "GV-PK-COL-10"
+    },
+    {
+      "card_print_id": "6c46512b-d0c9-43ed-9847-6808a52743ec",
+      "set_code": "col1",
+      "set_name": "Call of Legends",
+      "number": "5",
+      "number_plain": "5",
+      "card_name": "Forretress",
+      "proposed_gv_id": "GV-PK-COL-5"
+    }
+  ],
+  "stop_findings": [],
+  "pass": true,
+  "recommended_approval_text": "Approve real ENRICH-19A-COL1-PARENT-GV-ID-BACKFILL apply only. Fingerprint: f3cb5ee87c0814783b070401b5bc179b11e5e6a4be56269fc7d700aaa36948aa. Scope: 3 Call of Legends parent card_print gv_id updates using governed COL namespace. Dry-run proof: aa1a903e3ae1c6d965fc363bc89de7c9bad676985b07cca81566ebdb6197c00c == aa1a903e3ae1c6d965fc363bc89de7c9bad676985b07cca81566ebdb6197c00c. No child writes. No identity writes. No external mapping writes. No species writes. No deletes. No merges. No migrations. No image writes. No global apply."
+}

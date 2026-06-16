@@ -7,6 +7,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../services/identity/display_identity.dart';
+import '../../services/identity/image_presentation.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
@@ -877,6 +878,7 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
         : '1 of ${data.activeCopyCount} active copies in your vault';
     final imageLabel =
         '${data.setName}${data.number == '—' ? '' : ' • #${data.number}'}';
+    final imagePresentation = _vaultGvviImagePresentation(data);
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -890,15 +892,34 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
             ),
             child: AspectRatio(
               aspectRatio: 3 / 4,
-              child: CardSurfaceArtwork(
-                label: displayIdentity.displayName,
-                imageUrl: data.primaryImageUrl ?? data.fallbackImageUrl,
-                borderRadius: 24,
-                padding: const EdgeInsets.all(6),
-                showZoomAffordance:
-                    (data.primaryImageUrl ?? data.fallbackImageUrl ?? '')
-                        .trim()
-                        .isNotEmpty,
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: CardSurfaceArtwork(
+                      label: displayIdentity.displayName,
+                      imageUrl: data.primaryImageUrl ?? data.fallbackImageUrl,
+                      borderRadius: 24,
+                      padding: const EdgeInsets.all(6),
+                      showZoomAffordance:
+                          (data.primaryImageUrl ?? data.fallbackImageUrl ?? '')
+                              .trim()
+                              .isNotEmpty,
+                    ),
+                  ),
+                  if (imagePresentation.compactBadgeLabel != null)
+                    Positioned(
+                      left: 8,
+                      right: 8,
+                      bottom: 8,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: _VaultImageStatusBadge(
+                          label: imagePresentation.compactBadgeLabel!,
+                          strong: imagePresentation.isCollisionRepresentative,
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
           ),
@@ -939,6 +960,10 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
                 color: colorScheme.onSurface.withValues(alpha: 0.56),
               ),
             ),
+            if (imagePresentation.detailNote != null) ...[
+              const SizedBox(height: 8),
+              _VaultImageTruthNote(note: imagePresentation.detailNote!),
+            ],
             const SizedBox(height: 8),
             Wrap(
               spacing: 6,
@@ -1003,6 +1028,102 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
       return data.conditionLabel!;
     }
     return null;
+  }
+}
+
+ResolvedImagePresentation _vaultGvviImagePresentation(VaultGvviData data) {
+  final uploadedFront = (data.frontImageUrl ?? '').trim();
+  if (data.imageDisplayMode == GvviImageDisplayMode.uploaded &&
+      uploadedFront.isNotEmpty) {
+    return resolveImagePresentationFromFields(
+      imageUrl: uploadedFront,
+      displayImageKind: 'exact',
+    );
+  }
+
+  final normalizedStatus = (data.imageStatus ?? '').trim().toLowerCase();
+  return resolveImagePresentationFromFields(
+    imageUrl: data.canonicalImageUrl,
+    representativeImageUrl: data.representativeImageUrl,
+    displayImageUrl: data.imageUrl,
+    displayImageKind: normalizedStatus.startsWith('representative_')
+        ? 'representative'
+        : null,
+    imageStatus: data.imageStatus,
+    imageNote: data.imageNote,
+  );
+}
+
+class _VaultImageStatusBadge extends StatelessWidget {
+  const _VaultImageStatusBadge({required this.label, this.strong = false});
+
+  final String label;
+  final bool strong;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final backgroundColor = strong
+        ? colorScheme.tertiaryContainer.withValues(alpha: 0.92)
+        : colorScheme.surface.withValues(alpha: 0.94);
+    final borderColor = strong
+        ? colorScheme.tertiary.withValues(alpha: 0.22)
+        : colorScheme.outline.withValues(alpha: 0.12);
+    final textColor = strong
+        ? colorScheme.onTertiaryContainer
+        : colorScheme.onSurface.withValues(alpha: 0.78);
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: borderColor),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+        child: Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: textColor,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 0.2,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _VaultImageTruthNote extends StatelessWidget {
+  const _VaultImageTruthNote({required this.note});
+
+  final String note;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.tertiaryContainer.withValues(alpha: 0.38),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: colorScheme.tertiary.withValues(alpha: 0.14)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+        child: Text(
+          note,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: colorScheme.onTertiaryContainer,
+            height: 1.32,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
   }
 }
 
