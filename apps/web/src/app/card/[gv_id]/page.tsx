@@ -53,16 +53,21 @@ import { getOwnedObjectSummaryForCard, type OwnedObjectSummary } from "@/lib/vau
 
 type DetailItem = { label: string; value: string };
 
-const PRINTED_TOTAL_FALLBACK_BY_SET_CODE: Record<string, number> = {
-  // Chaos Rising was reconciled as a complete 122-card English physical set,
-  // but production set metadata may lag the canonical card rows.
-  me04: 122,
+const PRINTED_TOTAL_FALLBACK_BY_SET_CODE: Record<string, string> = {
+  // Chaos Rising has 122 canonical parent rows after variants, but its printed
+  // collector identity uses the on-card denominator 086.
+  me04: "086",
 };
 
-function formatPrintedTotal(number: string, printedTotal?: number) {
-  if (!number || typeof printedTotal !== "number") return undefined;
+function formatPrintedTotal(number: string, printedTotal?: number | string) {
+  if (!number || printedTotal === undefined || printedTotal === null) return undefined;
+  const explicitPrintedTotal = typeof printedTotal === "string" ? printedTotal.trim() : "";
+  if (explicitPrintedTotal) return explicitPrintedTotal;
+  if (typeof printedTotal !== "number") return undefined;
   const prefix = number.match(/^[A-Za-z]+/)?.[0] ?? "";
-  return `${prefix}${printedTotal}`;
+  const numericWidth = number.match(/\d+/)?.[0]?.length ?? 0;
+  const paddedTotal = numericWidth > 0 ? String(printedTotal).padStart(numericWidth, "0") : String(printedTotal);
+  return `${prefix}${paddedTotal}`;
 }
 
 function getPrintedSetAbbrevFallback(card: { printed_set_abbrev?: string; set_code?: string; gv_id?: string }) {
@@ -82,7 +87,7 @@ function formatCollectorIdentity({
 }: {
   printedSetAbbrev?: string;
   printedNumber?: string | null;
-  printedTotal?: number;
+  printedTotal?: number | string;
 }) {
   const normalizedNumber = printedNumber?.trim();
   if (!normalizedNumber) return undefined;
