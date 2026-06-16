@@ -59,6 +59,35 @@ function formatPrintedTotal(number: string, printedTotal?: number) {
   return `${prefix}${printedTotal}`;
 }
 
+function getPrintedSetAbbrevFallback(card: { printed_set_abbrev?: string; set_code?: string; gv_id?: string }) {
+  const explicitAbbrev = card.printed_set_abbrev?.trim().toUpperCase();
+  if (explicitAbbrev) return explicitAbbrev;
+
+  const gvIdAbbrev = card.gv_id?.match(/^GV-PK-([A-Z0-9]+)-/i)?.[1]?.trim().toUpperCase();
+  if (gvIdAbbrev && gvIdAbbrev !== card.set_code?.trim().toUpperCase()) return gvIdAbbrev;
+
+  return undefined;
+}
+
+function formatCollectorIdentity({
+  printedSetAbbrev,
+  printedNumber,
+  printedTotal,
+}: {
+  printedSetAbbrev?: string;
+  printedNumber?: string | null;
+  printedTotal?: number;
+}) {
+  const normalizedNumber = printedNumber?.trim();
+  if (!normalizedNumber) return undefined;
+
+  const normalizedAbbrev = printedSetAbbrev?.trim().toUpperCase();
+  const normalizedTotal = formatPrintedTotal(normalizedNumber, printedTotal) ?? "xxx";
+  return [normalizedAbbrev, `${normalizedNumber}/${normalizedTotal}`]
+    .filter((value): value is string => Boolean(value))
+    .join(" ");
+}
+
 function formatReleaseDate(releaseDate?: string) {
   if (!releaseDate) return undefined;
   const match = releaseDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
@@ -390,15 +419,13 @@ export default async function CardPage({
     : null;
   const illustratorName = typeof resolvedCard.artist === "string" ? resolvedCard.artist.trim() : "";
   const displayIdentity = getDisplayPrintedIdentity(resolvedCard);
-  const printedTotal = formatPrintedTotal(displayIdentity.displayPrintedNumber ?? "", resolvedCard.printed_total);
-  const collectorIdentity = displayIdentity.displayPrintedNumber
-    ? `${displayIdentity.displayPrintedNumber}${printedTotal ? `/${printedTotal}` : ""}`
-    : null;
-  const collectorNumberLine = collectorIdentity
-    ? [displayIdentity.displayPrintedSetAbbrev, collectorIdentity]
-        .filter((value): value is string => Boolean(value))
-        .join(" ")
-    : undefined;
+  const printedSetAbbrevLabel =
+    displayIdentity.displayPrintedSetAbbrev?.trim().toUpperCase() ?? getPrintedSetAbbrevFallback(resolvedCard);
+  const collectorNumberLine = formatCollectorIdentity({
+    printedSetAbbrev: printedSetAbbrevLabel,
+    printedNumber: displayIdentity.displayPrintedNumber,
+    printedTotal: resolvedCard.printed_total,
+  });
   const releaseDateLabel = formatReleaseDate(resolvedCard.release_date);
   const variantLabels = getVariantLabels(resolvedCard, 3);
   const ownedPrintingCounts =
@@ -538,31 +565,40 @@ export default async function CardPage({
             </div>
 
             <div className="space-y-3">
+              {(setName || setCodeLabel) ? (
+                <div className="flex flex-wrap items-center gap-2">
+                  {setCodeLabel ? (
+                    <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-800">
+                      {setCodeLabel}
+                    </span>
+                  ) : null}
+                  {setName ? (
+                    setHref ? (
+                      <Link
+                        href={setHref}
+                        className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600 underline-offset-4 hover:border-slate-300 hover:text-slate-950 hover:underline"
+                      >
+                        {setName}
+                      </Link>
+                    ) : (
+                      <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
+                        {setName}
+                      </span>
+                    )
+                  ) : null}
+                </div>
+              ) : null}
               <h1 className="gv-hi-card-identity text-4xl tracking-tight sm:text-5xl">
                 {resolvedDisplayIdentity.base_name}
               </h1>
               {identitySubtitle ? (
                 <p className="gv-hi-metadata text-sm font-medium sm:text-base">{identitySubtitle}</p>
               ) : null}
-              {(setName || setCodeLabel) ? (
-                <div className="flex flex-wrap items-center gap-3 text-lg text-slate-700">
-                  {setName ? (
-                    setHref ? (
-                      <Link href={setHref} className="font-medium underline-offset-4 hover:text-slate-950 hover:underline">
-                        {setName}
-                      </Link>
-                    ) : (
-                      <span className="font-medium">{setName}</span>
-                    )
-                  ) : null}
-                  {setCodeLabel ? (
-                    <span className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
-                      {setCodeLabel}
-                    </span>
-                  ) : null}
-                </div>
+              {collectorNumberLine ? (
+                <p className="inline-flex w-fit rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-mono text-sm font-semibold uppercase tracking-[0.12em] text-slate-700">
+                  {collectorNumberLine}
+                </p>
               ) : null}
-              {collectorNumberLine ? <p className="text-lg font-medium text-slate-700">{collectorNumberLine}</p> : null}
             </div>
 
             {(resolvedCard.rarity || variantLabels.length > 0) ? (
