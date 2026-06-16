@@ -105,6 +105,21 @@ function getPrintedTotalFallback(card: { set_code?: string }) {
   return normalizedSetCode ? PRINTED_TOTAL_FALLBACK_BY_SET_CODE[normalizedSetCode] : undefined;
 }
 
+function buildPokemonTcgHiresImageUrl(card: { set_code?: string; number?: string; number_plain?: string }) {
+  const setCode = card.set_code?.trim().toLowerCase();
+  const cardNumber = (card.number_plain ?? card.number)?.trim();
+  if (!setCode || !cardNumber) return null;
+
+  const looksPokemonTcgCompatible =
+    /^(base|gym|neo|ecard|ex|dp|pl|hgss|col|bw|xy|sm|swsh|sv|pop|sma|smp|svp|xyp|bwp|np|det|cel|g|ru|dv|pgo|fut)/.test(setCode);
+  if (!looksPokemonTcgCompatible) return null;
+
+  const normalizedNumber = cardNumber.match(/^\d+$/) ? String(Number(cardNumber)) : cardNumber;
+  if (!normalizedNumber || normalizedNumber === "NaN") return null;
+
+  return `https://images.pokemontcg.io/${encodeURIComponent(setCode)}/${encodeURIComponent(normalizedNumber)}_hires.png`;
+}
+
 function formatReleaseDate(releaseDate?: string) {
   if (!releaseDate) return undefined;
   const match = releaseDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
@@ -216,11 +231,15 @@ export default async function CardPage({
       ? selectedRoutePrinting
       : resolvedCard;
   const resolvedCardImagePresentation = resolveCardImagePresentation(displayedImageTruthSource);
+  const pokemonTcgHiresImageUrl = buildPokemonTcgHiresImageUrl(resolvedCard);
   const resolvedCardImageSrc =
-    normalizeCardImageUrl(selectedRoutePrintingImageUrl ?? resolvedCardFallbackImageUrl) ?? undefined;
-  const resolvedCardImageFallback = resolvedCardImagePresentation.displayImageKind === "exact"
-    ? buildTcgDexImageUrl(resolvedCard.tcgdex_external_id)
-    : null;
+    normalizeCardImageUrl(selectedRoutePrintingImageUrl ?? pokemonTcgHiresImageUrl ?? resolvedCardFallbackImageUrl) ??
+    undefined;
+  const resolvedCardImageFallback =
+    normalizeCardImageUrl(resolvedCardFallbackImageUrl) ??
+    (resolvedCardImagePresentation.displayImageKind === "exact"
+      ? buildTcgDexImageUrl(resolvedCard.tcgdex_external_id)
+      : null);
 
   async function addToVaultAction(
     _previousState: AddToVaultActionResult | null,
@@ -537,7 +556,7 @@ export default async function CardPage({
           />
         ) : null}
         <div className="relative z-10 grid gap-6 p-5 sm:p-6 xl:grid-cols-[minmax(280px,360px)_minmax(0,1fr)_300px] xl:gap-8 xl:p-8">
-          <div className="gv-card-detail-image-shell rounded-[24px] border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-4 shadow-sm">
+          <div className="gv-card-detail-image-shell overflow-hidden rounded-[20px] border border-slate-200/80 bg-white/72 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.08)] ring-1 ring-white/70 backdrop-blur dark:border-slate-700/70 dark:bg-slate-950/50 dark:shadow-[0_18px_45px_rgba(0,0,0,0.35)] dark:ring-white/10 sm:p-4">
             <CardZoomModal
               src={resolvedCardImageSrc}
               fallbackSrc={resolvedCardImageFallback ?? undefined}
@@ -545,8 +564,8 @@ export default async function CardPage({
                 resolvedDisplayIdentity.display_name,
                 displayedImageTruthSource,
               )}
-              imageClassName="aspect-[3/4] max-h-[430px] w-full cursor-zoom-in object-contain sm:max-h-[560px]"
-              fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[18px] bg-slate-100 px-4 text-center text-sm text-slate-500"
+              imageClassName="aspect-[3/4] max-h-[430px] w-full cursor-zoom-in rounded-[14px] object-contain sm:max-h-[560px]"
+              fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[14px] bg-slate-100/80 px-4 text-center text-sm text-slate-500 dark:bg-slate-900/70 dark:text-slate-400"
             />
             {resolvedCardImagePresentation.compactBadgeLabel ? (
               <div className="mt-3 flex flex-wrap gap-2">
