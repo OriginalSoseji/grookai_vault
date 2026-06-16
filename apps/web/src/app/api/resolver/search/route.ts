@@ -14,7 +14,14 @@ export const revalidate = 120;
 // LOCK: Canonical and provisional results must remain separate.
 // LOCK: Never merge provisional rows into canonical result arrays.
 function parseSortMode(value: string | null) {
-  if (value === "newest" || value === "oldest") {
+  if (
+    value === "newest" ||
+    value === "oldest" ||
+    value === "set_order" ||
+    value === "number" ||
+    value === "value_high" ||
+    value === "value_low"
+  ) {
     return value;
   }
 

@@ -27,7 +27,14 @@ type DirectResolveOptions = {
 
 type RankedResolveOptions = {
   mode: "ranked";
-  sortMode: "relevance" | "newest" | "oldest";
+  sortMode:
+    | "relevance"
+    | "newest"
+    | "oldest"
+    | "set_order"
+    | "number"
+    | "value_high"
+    | "value_low";
   exactSetCode: string;
   exactReleaseYear?: number;
   exactIllustrator?: string;

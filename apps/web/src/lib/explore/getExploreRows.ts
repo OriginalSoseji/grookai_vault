@@ -191,7 +191,14 @@ type SetMetadataLookupRow = {
   identity_model: string | null;
 };
 
-type SortMode = "relevance" | "newest" | "oldest";
+type SortMode =
+  | "relevance"
+  | "newest"
+  | "oldest"
+  | "set_order"
+  | "number"
+  | "value_high"
+  | "value_low";
 
 type PublicSetMetadata = {
   set_code: string;
@@ -1638,6 +1645,31 @@ function sortRows(
   }
 
   return [...rows].sort((a, b) => {
+    if (sortMode === "value_high" || sortMode === "value_low") {
+      const leftPrice = typeof a.raw_price === "number" && Number.isFinite(a.raw_price) ? a.raw_price : null;
+      const rightPrice = typeof b.raw_price === "number" && Number.isFinite(b.raw_price) ? b.raw_price : null;
+
+      if (leftPrice !== null && rightPrice === null) return -1;
+      if (leftPrice === null && rightPrice !== null) return 1;
+      if (leftPrice !== null && rightPrice !== null && leftPrice !== rightPrice) {
+        return sortMode === "value_high" ? rightPrice - leftPrice : leftPrice - rightPrice;
+      }
+
+      return compareRowsByRelevance(a, b, query);
+    }
+
+    if (sortMode === "number") {
+      const setCompare = (a.set_name ?? "").localeCompare(b.set_name ?? "");
+      if (setCompare !== 0) return setCompare;
+
+      const numberCompare = a.number.localeCompare(b.number, undefined, {
+        numeric: true,
+      });
+      if (numberCompare !== 0) return numberCompare;
+
+      return compareRowsByRelevance(a, b, query);
+    }
+
     const leftDate = a.release_date ? Date.parse(a.release_date) : Number.NaN;
     const rightDate = b.release_date ? Date.parse(b.release_date) : Number.NaN;
     const leftHasDate = Number.isFinite(leftDate);
@@ -1647,9 +1679,19 @@ function sortRows(
     if (!leftHasDate && rightHasDate) return 1;
 
     if (leftHasDate && rightHasDate && leftDate !== rightDate) {
-      return sortMode === "newest"
-        ? rightDate - leftDate
-        : leftDate - rightDate;
+      return sortMode === "oldest"
+        ? leftDate - rightDate
+        : rightDate - leftDate;
+    }
+
+    if (sortMode === "set_order") {
+      const setCompare = (a.set_name ?? "").localeCompare(b.set_name ?? "");
+      if (setCompare !== 0) return setCompare;
+
+      const numberCompare = a.number.localeCompare(b.number, undefined, {
+        numeric: true,
+      });
+      if (numberCompare !== 0) return numberCompare;
     }
 
     return compareRowsByRelevance(a, b, query);

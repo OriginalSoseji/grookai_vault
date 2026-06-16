@@ -38,7 +38,19 @@ import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalTypes";
 
 type ExploreRow = ExploreResultCard;
-type SortMode = "relevance" | "newest" | "oldest";
+type SortMode =
+  | "relevance"
+  | "newest"
+  | "oldest"
+  | "set_order"
+  | "number"
+  | "value_high"
+  | "value_low";
+type ImageConfidenceFilter =
+  | "all"
+  | "exact"
+  | "representative"
+  | "missing_variant_visual";
 type SearchResultIntent = "exact_version" | "identity" | "cameo" | "related";
 
 const INITIAL_VISIBLE_RESULT_COUNT = 48;
@@ -143,11 +155,54 @@ function parseViewMode(value: string | null): ExploreViewMode {
 }
 
 function parseSortMode(value: string | null): SortMode {
-  if (value === "newest" || value === "oldest") {
+  if (
+    value === "newest" ||
+    value === "oldest" ||
+    value === "set_order" ||
+    value === "number" ||
+    value === "value_high" ||
+    value === "value_low"
+  ) {
     return value;
   }
 
   return "relevance";
+}
+
+function parseImageConfidenceFilter(value: string | null): ImageConfidenceFilter {
+  if (
+    value === "exact" ||
+    value === "representative" ||
+    value === "missing_variant_visual"
+  ) {
+    return value;
+  }
+
+  return "all";
+}
+
+function getImageConfidenceLabel(value: ImageConfidenceFilter) {
+  if (value === "exact") return "Exact images";
+  if (value === "representative") return "Representative images";
+  if (value === "missing_variant_visual") return "Variant image pending";
+  return "All images";
+}
+
+function getImageConfidenceResultNoun(value: ImageConfidenceFilter) {
+  return value === "all"
+    ? "result"
+    : `${getImageConfidenceLabel(value).toLowerCase()} result`;
+}
+
+function matchesImageConfidenceFilter(
+  row: ExploreRow,
+  filter: ImageConfidenceFilter,
+) {
+  if (filter === "all") {
+    return true;
+  }
+
+  return row.display_image_kind === filter;
 }
 
 function normalizeSetCode(value?: string | null) {
@@ -239,6 +294,7 @@ export default function ExplorePageClient({
   const identityFilter = parseIdentityFilter(searchParams.get("identity"));
   const viewMode = parseViewMode(searchParams.get("view"));
   const sortMode = parseSortMode(searchParams.get("sort"));
+  const imageConfidenceFilter = parseImageConfidenceFilter(searchParams.get("image"));
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const normalizedQuery = normalizeFreeTextQuery(q);
   const shouldServerFilterByIdentity =
@@ -375,6 +431,7 @@ export default function ExplorePageClient({
     exactReleaseYear,
     exactIllustrator,
     identityFilter,
+    imageConfidenceFilter,
   ]);
 
   const commitViewMode = (nextViewMode: ExploreViewMode) => {
@@ -416,6 +473,21 @@ export default function ExplorePageClient({
     router.replace(nextUrl, { scroll: false });
   };
 
+  const commitImageConfidenceFilter = (nextFilter: ImageConfidenceFilter) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (nextFilter === "all") {
+      params.delete("image");
+    } else {
+      params.set("image", nextFilter);
+    }
+
+    const nextUrl = params.toString()
+      ? `${pathname}?${params.toString()}`
+      : pathname;
+    router.replace(nextUrl, { scroll: false });
+  };
+
   const buildCardHref = (row: Pick<ExploreRow, "gv_id" | "selected_printing_gv_id" | "printing_gv_id" | "route_query">) => {
     const selectedPrintingGvId = row.selected_printing_gv_id ?? row.printing_gv_id;
     const params = new URLSearchParams();
@@ -437,8 +509,14 @@ export default function ExplorePageClient({
   const pricingSignInHref = `/login?next=${encodeURIComponent(currentPath)}`;
   const displayRows =
     shouldServerFilterByIdentity || !isIdentityFilterActive(identityFilter)
-      ? rows
-      : rows.filter((row) => matchesIdentityFilter(row, identityFilter));
+      ? rows.filter((row) =>
+          matchesImageConfidenceFilter(row, imageConfidenceFilter),
+        )
+      : rows
+          .filter((row) => matchesIdentityFilter(row, identityFilter))
+          .filter((row) =>
+            matchesImageConfidenceFilter(row, imageConfidenceFilter),
+          );
   const visibleRows = displayRows.slice(0, visibleResultCount);
   const visibleResultGroups = buildContiguousSearchResultGroups(visibleRows);
   const hasMoreResults = visibleRows.length < displayRows.length;
@@ -457,20 +535,24 @@ export default function ExplorePageClient({
   const resultCountLabel =
     displayRows.length > 0
       ? visibleRows.length < displayRows.length
-        ? `Showing ${visibleRows.length} of ${displayRows.length} results`
-        : `${displayRows.length} result${displayRows.length === 1 ? "" : "s"}`
+        ? `Showing ${visibleRows.length} of ${displayRows.length} ${getImageConfidenceResultNoun(imageConfidenceFilter)}s`
+        : `${displayRows.length} ${getImageConfidenceResultNoun(imageConfidenceFilter)}${displayRows.length === 1 ? "" : "s"}`
       : "Results";
   const emptyState = (
     <div className="rounded-[20px] border border-slate-200 bg-white px-5 py-7 text-sm text-slate-600 shadow-sm">
       <p className="gv-hi-card-identity text-base font-semibold text-slate-950">
-        {resolverMeta?.resolverState === "NO_MATCH" && normalizedQuery
+        {imageConfidenceFilter !== "all" && rows.length > 0
+          ? `No ${getImageConfidenceLabel(imageConfidenceFilter).toLowerCase()} in these results`
+          : resolverMeta?.resolverState === "NO_MATCH" && normalizedQuery
           ? "No card match yet"
           : isIdentityFilterActive(identityFilter)
             ? `No ${getIdentityFilterLabel(identityFilter).toLowerCase()} cards found`
             : "No results yet"}
       </p>
       <p className="mt-2 max-w-xl leading-6">
-        {resolverMeta?.resolverState === "NO_MATCH" && normalizedQuery
+        {imageConfidenceFilter !== "all" && rows.length > 0
+          ? "The canonical cards still exist. This filter is only narrowing by current image confidence."
+          : resolverMeta?.resolverState === "NO_MATCH" && normalizedQuery
           ? `Nothing matched "${normalizedQuery}". Try a card name plus set code, collector number, finish, or cameo subject.`
           : "Try a card name, set code, collector number, finish, trainer, or cameo subject."}
       </p>
@@ -645,6 +727,28 @@ export default function ExplorePageClient({
                   <option value="relevance">Relevance</option>
                   <option value="newest">Newest first</option>
                   <option value="oldest">Oldest first</option>
+                  <option value="set_order">Set order</option>
+                  <option value="number">Collector number</option>
+                  <option value="value_high">Value high to low</option>
+                  <option value="value_low">Value low to high</option>
+                </select>
+              </label>
+              <label className="flex items-center gap-2 text-sm text-slate-600">
+                <span>Image</span>
+                <select
+                  value={imageConfidenceFilter}
+                  onChange={(event) =>
+                    commitImageConfidenceFilter(
+                      event.target.value as ImageConfidenceFilter,
+                    )
+                  }
+                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+                  aria-label="Image confidence filter"
+                >
+                  <option value="all">All images</option>
+                  <option value="exact">Exact images</option>
+                  <option value="representative">Representative</option>
+                  <option value="missing_variant_visual">Variant pending</option>
                 </select>
               </label>
               <ExploreViewModeToggle
