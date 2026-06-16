@@ -13,6 +13,7 @@ type CardZoomModalProps = {
 
 export default function CardZoomModal({ src, fallbackSrc, alt, imageClassName, fallbackClassName }: CardZoomModalProps) {
   const [open, setOpen] = useState(false);
+  const triggerButtonRef = useRef<HTMLButtonElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const hasImage = Boolean(src?.trim() || fallbackSrc?.trim());
 
@@ -22,6 +23,7 @@ export default function CardZoomModal({ src, fallbackSrc, alt, imageClassName, f
     }
 
     const previousOverflow = document.body.style.overflow;
+    const triggerElement = triggerButtonRef.current;
     document.body.style.overflow = "hidden";
     closeButtonRef.current?.focus();
 
@@ -35,6 +37,7 @@ export default function CardZoomModal({ src, fallbackSrc, alt, imageClassName, f
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
+      triggerElement?.focus();
     };
   }, [open]);
 
@@ -53,6 +56,7 @@ export default function CardZoomModal({ src, fallbackSrc, alt, imageClassName, f
   return (
     <>
       <button
+        ref={triggerButtonRef}
         type="button"
         onClick={() => setOpen(true)}
         className="block w-full cursor-zoom-in text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
@@ -72,29 +76,29 @@ export default function CardZoomModal({ src, fallbackSrc, alt, imageClassName, f
           role="dialog"
           aria-modal="true"
           aria-label={`Enlarged preview for ${alt}`}
-          className="animate-fade fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-slate-950/88 p-4 backdrop-blur-sm sm:p-6"
+          className="animate-fade fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-slate-950/92 p-4 backdrop-blur-sm sm:p-8"
           onClick={() => setOpen(false)}
         >
+          <button
+            ref={closeButtonRef}
+            type="button"
+            onClick={() => setOpen(false)}
+            className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-slate-950/80 text-3xl leading-none text-white shadow-lg transition hover:bg-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-white sm:right-6 sm:top-6"
+            aria-label="Close enlarged image preview"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
           <div
             className="relative flex max-h-[90dvh] max-w-[90vw] items-center justify-center"
             onClick={(event) => event.stopPropagation()}
           >
-            <button
-              ref={closeButtonRef}
-              type="button"
-              onClick={() => setOpen(false)}
-              className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-slate-950/85 text-2xl leading-none text-white shadow-lg transition hover:bg-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              aria-label="Close enlarged image preview"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
             <PublicCardImage
               src={src}
               fallbackSrc={fallbackSrc}
               alt={alt}
-              imageClassName="block h-auto max-h-[90dvh] w-auto max-w-[90vw] rounded-[20px] bg-white object-contain shadow-2xl ring-1 ring-white/15"
-              fallbackClassName="flex aspect-[3/4] h-auto max-h-[90dvh] w-[min(90vw,28rem)] items-center justify-center rounded-[20px] bg-white px-6 text-center text-sm text-slate-500 shadow-2xl ring-1 ring-white/15"
-              sizes="(max-width: 640px) 92vw, 80vw"
+              imageClassName="block h-auto max-h-[90dvh] w-auto max-w-[90vw] rounded-[18px] bg-white object-contain shadow-[0_28px_90px_rgba(0,0,0,0.55)] ring-1 ring-white/20"
+              fallbackClassName="flex aspect-[3/4] max-h-[90dvh] w-[min(90vw,34rem)] items-center justify-center rounded-[18px] bg-white px-6 text-center text-sm text-slate-500 shadow-[0_28px_90px_rgba(0,0,0,0.55)] ring-1 ring-white/20"
+              sizes="90vw"
             />
           </div>
         </div>
