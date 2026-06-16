@@ -1,0 +1,198 @@
+{
+  "package": "IMG-17A-SVP085-DUPLICATE-PARENT-CLEANUP",
+  "mode": "apply",
+  "canonical_gv_id": "GV-PK-PR-SV-085",
+  "duplicate_gv_id": "GV-PK-PR-SV-85",
+  "db_writes_performed": true,
+  "migrations_created": false,
+  "parent_overwrite_performed": false,
+  "blockers": [],
+  "parents": {
+    "canonical": {
+      "id": "50386954-ded6-4909-8d17-6b391aeb53e4",
+      "gv_id": "GV-PK-PR-SV-085",
+      "name": "Pikachu with Grey Felt Hat",
+      "set_code": "svp",
+      "number": "085",
+      "number_plain": "085",
+      "external_ids": {
+        "tcgdex": "svp-085"
+      }
+    },
+    "duplicate": {
+      "id": "797add1a-99fc-41f6-a061-c36add0b20a9",
+      "gv_id": "GV-PK-PR-SV-85",
+      "name": "Pikachu with Grey Felt Hat",
+      "set_code": "svp",
+      "number": "85",
+      "number_plain": "85",
+      "external_ids": {
+        "pokemonapi": "svp-85"
+      }
+    }
+  },
+  "dependency_counts": {
+    "duplicate_parent": [
+      {
+        "key": "public.card_print_identity.card_print_id",
+        "schema_name": "public",
+        "table_name": "card_print_identity",
+        "column_name": "card_print_id",
+        "count": 1
+      },
+      {
+        "key": "public.card_print_species.card_print_id",
+        "schema_name": "public",
+        "table_name": "card_print_species",
+        "column_name": "card_print_id",
+        "count": 1
+      },
+      {
+        "key": "public.card_print_traits.card_print_id",
+        "schema_name": "public",
+        "table_name": "card_print_traits",
+        "column_name": "card_print_id",
+        "count": 7
+      },
+      {
+        "key": "public.card_printings.card_print_id",
+        "schema_name": "public",
+        "table_name": "card_printings",
+        "column_name": "card_print_id",
+        "count": 1
+      },
+      {
+        "key": "public.external_mappings.card_print_id",
+        "schema_name": "public",
+        "table_name": "external_mappings",
+        "column_name": "card_print_id",
+        "count": 1
+      }
+    ],
+    "duplicate_children": [
+      {
+        "child_printing_id": "8bbc59fd-b806-4582-a7ef-ba9a32da8985",
+        "counts": []
+      }
+    ]
+  },
+  "external_mappings": {
+    "transferred": [
+      {
+        "id": "122117",
+        "source": "pokemonapi",
+        "external_id": "svp-85",
+        "meta": {
+          "set_key": "svp",
+          "card_name": "Pikachu with Grey Felt Hat",
+          "package_id": "PKG-08T-NON-TCGDEX-PARENT-CHILD-INSERTS",
+          "source_url": "https://api.pokemontcg.io/v2/cards/svp-85",
+          "card_number": "85",
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/svp-85",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ],
+          "live_set_code": "svp"
+        },
+        "active": true
+      }
+    ],
+    "skipped": []
+  },
+  "traits": {
+    "inserted": [
+      {
+        "id": "65905",
+        "trait_type": "pokemon:legal",
+        "trait_value": "expanded",
+        "source": "pokemonapi"
+      },
+      {
+        "id": "65906",
+        "trait_type": "pokemon:legal",
+        "trait_value": "standard",
+        "source": "pokemonapi"
+      },
+      {
+        "id": "65907",
+        "trait_type": "pokemon:national_dex",
+        "trait_value": "25",
+        "source": "pokemonapi"
+      },
+      {
+        "id": "65908",
+        "trait_type": "pokemon:stats",
+        "trait_value": "pokemonapi",
+        "source": "pokemonapi"
+      },
+      {
+        "id": "65909",
+        "trait_type": "pokemon:subtype",
+        "trait_value": "Basic",
+        "source": "pokemonapi"
+      },
+      {
+        "id": "65910",
+        "trait_type": "pokemon:supertype",
+        "trait_value": "Pokémon",
+        "source": "pokemonapi"
+      },
+      {
+        "id": "65911",
+        "trait_type": "pokemon:type",
+        "trait_value": "Lightning",
+        "source": "pokemonapi"
+      }
+    ],
+    "duplicates": [],
+    "source_count": 7
+  },
+  "species": {
+    "inserted": [],
+    "duplicates": [
+      {
+        "species_id": "51fc99e1-ad65-41f1-93fa-0dff1e9f66c3",
+        "role": "primary"
+      }
+    ],
+    "source_count": 1
+  },
+  "cleanup": {
+    "child_rows_deleted": 1,
+    "deleted_children": [
+      {
+        "id": "8bbc59fd-b806-4582-a7ef-ba9a32da8985",
+        "printing_gv_id": "GV-PK-PR-SV-85-STD",
+        "finish_key": "normal",
+        "image_status": "representative_shared",
+        "image_source": "identity",
+        "image_path": "warehouse-derived/image-truth-v1/img03a-pkmncards-representative/svp/8bbc59fd-b806-4582-a7ef-ba9a32da8985/5d1a419870158d9f0544988d.jpg"
+      }
+    ],
+    "identity_rows_deleted": 1,
+    "deleted_identities": [
+      {
+        "id": "6d168b33-bf54-4956-9c89-bfefdfbc21ef",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "svp",
+        "printed_number": "85",
+        "is_active": true
+      }
+    ],
+    "parent_rows_deleted": 1
+  },
+  "post_verify": {
+    "canonical_parent_rows": 1,
+    "duplicate_parent_rows": 0,
+    "canonical_children": [
+      {
+        "printing_gv_id": "GV-PK-PR-SV-085-STD",
+        "finish_key": "normal",
+        "image_status": "exact",
+        "image_source": "identity"
+      }
+    ]
+  },
+  "proof_hash": "e2674114ac343e56c77af858fbc0fdfe3351df6741fa411acbb868803c106917",
+  "status": "APPLIED"
+}

@@ -399,6 +399,47 @@ function uniqueValues(values: string[]) {
   return Array.from(new Set(values.filter(Boolean)));
 }
 
+function hasCandidateForGvId(
+  candidates: Iterable<CardPrintLookupRow>,
+  gvId?: string | null,
+) {
+  if (!gvId) {
+    return false;
+  }
+  for (const candidate of candidates) {
+    if (candidate.gv_id === gvId) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function suppressParentOnlyRowsWhenChildMatchExists(
+  rows: CardPrintLookupRow[],
+) {
+  const gvIdsWithChildMatches = new Set(
+    rows
+      .filter(
+        (row) =>
+          row.search_object_type === "child_printing" &&
+          Boolean(row.selected_printing_gv_id || row.printing_gv_id),
+      )
+      .map((row) => row.gv_id)
+      .filter((value): value is string => Boolean(value)),
+  );
+
+  if (gvIdsWithChildMatches.size === 0) {
+    return rows;
+  }
+
+  return rows.filter(
+    (row) =>
+      !row.gv_id ||
+      !gvIdsWithChildMatches.has(row.gv_id) ||
+      row.search_object_type === "child_printing",
+  );
+}
+
 function getReleaseYear(releaseDate?: string | null) {
   if (!releaseDate) return undefined;
   const match = releaseDate.match(/^(\d{4})/);
@@ -2577,13 +2618,28 @@ async function fetchExactCardRows(
     deduped.set(key, applyPrintIdentityContext(parentRow, doc));
   }
 
+  for (const [key, row] of deduped.entries()) {
+    if (
+      row.gv_id &&
+      row.search_object_type !== "child_printing" &&
+      hasCandidateForGvId(
+        [...deduped.values()].filter(
+          (candidate) => candidate.search_object_type === "child_printing",
+        ),
+        row.gv_id,
+      )
+    ) {
+      deduped.delete(key);
+    }
+  }
+
   for (const row of parentRowsById.values()) {
-    if (!deduped.has(row.id)) {
+    if (!deduped.has(row.id) && !hasCandidateForGvId(deduped.values(), row.gv_id)) {
       deduped.set(row.id, row);
     }
   }
 
-  return [...deduped.values()];
+  return suppressParentOnlyRowsWhenChildMatchExists([...deduped.values()]);
 }
 
 async function fetchCardRowsBySetCode(setCode: string) {
