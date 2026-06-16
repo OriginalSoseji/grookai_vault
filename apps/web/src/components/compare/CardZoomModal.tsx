@@ -72,18 +72,18 @@ export default function CardZoomModal({ src, fallbackSrc, alt, imageClassName, f
           role="dialog"
           aria-modal="true"
           aria-label={`Enlarged preview for ${alt}`}
-          className="animate-fade fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-950/85 p-4 backdrop-blur-sm sm:p-6"
+          className="animate-fade fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-slate-950/88 p-4 backdrop-blur-sm sm:p-6"
           onClick={() => setOpen(false)}
         >
           <div
-            className="relative flex h-[calc(100dvh-2rem)] w-full max-w-5xl items-center justify-center sm:h-[calc(100dvh-3rem)]"
+            className="relative flex max-h-[90dvh] max-w-[90vw] items-center justify-center"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               ref={closeButtonRef}
               type="button"
               onClick={() => setOpen(false)}
-              className="absolute right-2 top-2 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-slate-950/75 text-2xl leading-none text-white shadow-lg transition hover:bg-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-slate-950/85 text-2xl leading-none text-white shadow-lg transition hover:bg-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
               aria-label="Close enlarged image preview"
             >
               <span aria-hidden="true">&times;</span>
@@ -92,8 +92,8 @@ export default function CardZoomModal({ src, fallbackSrc, alt, imageClassName, f
               src={src}
               fallbackSrc={fallbackSrc}
               alt={alt}
-              imageClassName="h-full max-h-full w-auto max-w-full rounded-[22px] bg-white/95 object-contain p-3 shadow-2xl ring-1 ring-white/15 sm:p-4"
-              fallbackClassName="flex min-h-[20rem] w-full max-w-md items-center justify-center rounded-[22px] bg-white/95 px-6 text-center text-sm text-slate-500 shadow-2xl ring-1 ring-white/15"
+              imageClassName="block h-auto max-h-[90dvh] w-auto max-w-[90vw] rounded-[20px] bg-white object-contain shadow-2xl ring-1 ring-white/15"
+              fallbackClassName="flex aspect-[3/4] h-auto max-h-[90dvh] w-[min(90vw,28rem)] items-center justify-center rounded-[20px] bg-white px-6 text-center text-sm text-slate-500 shadow-2xl ring-1 ring-white/15"
               sizes="(max-width: 640px) 92vw, 80vw"
             />
           </div>
