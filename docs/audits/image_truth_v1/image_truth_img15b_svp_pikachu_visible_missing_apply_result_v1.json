@@ -1,0 +1,75 @@
+{
+  "package_id": "IMG-15B-SVP-PIKACHU-VISIBLE-MISSING-CHILD-IMAGE-APPLY",
+  "dry_run_fingerprint": "066d96ff4158ad03995d36830ae04b1c75ea38ad20e7d2cc220e0d70d3586d63",
+  "targets": [
+    "GV-PK-PR-SV-190-STD",
+    "GV-PK-PR-SV-214-STD"
+  ],
+  "updated_children": [
+    {
+      "id": "c8f42393-c642-4d54-b033-b2174f2b4e4e",
+      "printing_gv_id": "GV-PK-PR-SV-190-STD",
+      "finish_key": "normal",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/c8f42393-c642-4d54-b033-b2174f2b4e4e/317f51d07cda8d0d8c7ffe88.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-15B-SVP-PIKACHU-VISIBLE-MISSING-CHILD-IMAGE-APPLY:pkmncards:https://pkmncards.com/card/pikachu-scarlet-violet-promos-svp-190/"
+    },
+    {
+      "id": "7fe6c78d-ff07-4a48-b828-04983b3337ef",
+      "printing_gv_id": "GV-PK-PR-SV-214-STD",
+      "finish_key": "normal",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/7fe6c78d-ff07-4a48-b828-04983b3337ef/9ff6219898a92fb2302646cc.jpg",
+      "image_status": "exact",
+      "image_note": "IMG-15B-SVP-PIKACHU-VISIBLE-MISSING-CHILD-IMAGE-APPLY:pkmncards:https://pkmncards.com/card/pikachu-scarlet-violet-promos-svp-214/"
+    }
+  ],
+  "storage": [
+    {
+      "printing_gv_id": "GV-PK-PR-SV-190-STD",
+      "bucket": "user-card-images",
+      "storage_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/c8f42393-c642-4d54-b033-b2174f2b4e4e/317f51d07cda8d0d8c7ffe88.jpg",
+      "existed_before": false,
+      "exists_after": true,
+      "uploaded": true,
+      "sha256": "317f51d07cda8d0d8c7ffe884e6f82c441d465c6397cfdc8a3d00a789ddfb52a",
+      "size_bytes": 231265
+    },
+    {
+      "printing_gv_id": "GV-PK-PR-SV-214-STD",
+      "bucket": "user-card-images",
+      "storage_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/7fe6c78d-ff07-4a48-b828-04983b3337ef/9ff6219898a92fb2302646cc.jpg",
+      "existed_before": false,
+      "exists_after": true,
+      "uploaded": true,
+      "sha256": "9ff6219898a92fb2302646ccd50f1bcc74ff7189dcf963042a17ac1b143b9d8e",
+      "size_bytes": 143073
+    }
+  ],
+  "post_verify": [
+    {
+      "printing_gv_id": "GV-PK-PR-SV-190-STD",
+      "finish_key": "normal",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/c8f42393-c642-4d54-b033-b2174f2b4e4e/317f51d07cda8d0d8c7ffe88.jpg",
+      "image_status": "exact"
+    },
+    {
+      "printing_gv_id": "GV-PK-PR-SV-214-STD",
+      "finish_key": "normal",
+      "image_source": "identity",
+      "image_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/7fe6c78d-ff07-4a48-b828-04983b3337ef/9ff6219898a92fb2302646cc.jpg",
+      "image_status": "exact"
+    }
+  ],
+  "parent_unchanged": true,
+  "db_writes_performed": true,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "parent_writes_performed": false,
+  "status": "APPLIED",
+  "generated_at": "2026-06-16T15:55:23.669Z",
+  "child_image_rows_updated": 2,
+  "apply_proof_hash": "f14d1b9f5c99c2ac551186e68dd49d3646a2a75192d4f7923485943fde429ddc"
+}
