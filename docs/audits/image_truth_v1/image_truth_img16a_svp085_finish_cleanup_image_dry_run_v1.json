@@ -1,0 +1,115 @@
+{
+  "package_id": "IMG-16A-SVP085-FINISH-CLEANUP-IMAGE-DRY-RUN",
+  "generated_at": "2026-06-16T15:20:13.729Z",
+  "db_writes_performed": false,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "parent_writes_performed": false,
+  "rollback_completed": true,
+  "master_evidence": {
+    "source_file": "docs/audits/english_master_index_publishable_v1/sets/svp/printings.json",
+    "grey_felt_printings": [
+      {
+        "set_key": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "card_number": "85",
+        "card_name": "Pikachu with Grey Felt Hat",
+        "finish_key": "normal",
+        "language": "en",
+        "source_count": 2,
+        "sources": [
+          "pokemontcg_api",
+          "thepricedex_price_list"
+        ],
+        "source_kinds": [
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "status": "master_verified",
+        "evidence_urls": [
+          "https://api.pokemontcg.io/v2/cards/svp-85",
+          "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+        ]
+      }
+    ],
+    "supports_exactly_normal": true
+  },
+  "local_asset": {
+    "exists": true,
+    "sha256": "5d1a419870158d9f0544988d8a4352d78d7b1ddb660e5f7af12c2b60481e95c7",
+    "size_bytes": 180772,
+    "matches_expected": true
+  },
+  "unsupported_child_delete_candidates": 2,
+  "unsupported_children_deleted_in_dry_run": 2,
+  "supported_child_image_updated_in_dry_run": 1,
+  "dependency_rows_on_delete_candidates": 0,
+  "dependency_counts": [
+    {
+      "table_schema": "public",
+      "table_name": "canon_warehouse_candidates",
+      "column_name": "promoted_card_printing_id",
+      "count": 0
+    },
+    {
+      "table_schema": "public",
+      "table_name": "external_printing_mappings",
+      "column_name": "card_printing_id",
+      "count": 0
+    },
+    {
+      "table_schema": "public",
+      "table_name": "vault_item_instances",
+      "column_name": "card_printing_id",
+      "count": 0
+    }
+  ],
+  "parent_unchanged_in_dry_run": true,
+  "validation_errors": [],
+  "unsupported_children": [
+    {
+      "child_id": "03998b41-9da4-437b-a3fd-a38303af28da",
+      "printing_gv_id": "GV-PK-PR-SV-085-HOLO",
+      "finish_key": "holo",
+      "dependency_count": 0,
+      "dry_run_status": "rollback_delete_verified",
+      "validation_errors": []
+    },
+    {
+      "child_id": "43e6bc2d-3a11-4a68-ae0c-faf4eb4b48d3",
+      "printing_gv_id": "GV-PK-PR-SV-085-RH",
+      "finish_key": "reverse",
+      "dependency_count": 0,
+      "dry_run_status": "rollback_delete_verified",
+      "validation_errors": []
+    }
+  ],
+  "supported_child_image": {
+    "child_id": "2e805b83-8ce7-4445-b4ec-4deab1d1ccb6",
+    "printing_gv_id": "GV-PK-PR-SV-085-STD",
+    "finish_key": "normal",
+    "dry_run_status": "rollback_update_verified",
+    "proposed_image_source": "identity",
+    "proposed_image_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/2e805b83-8ce7-4445-b4ec-4deab1d1ccb6/5d1a419870158d9f0544988d.jpg",
+    "proposed_image_status": "exact",
+    "source_url": "https://pkmncards.com/card/pikachu-with-grey-felt-hat-scarlet-violet-promos-svp-085/",
+    "local_asset": {
+      "exists": true,
+      "sha256": "5d1a419870158d9f0544988d8a4352d78d7b1ddb660e5f7af12c2b60481e95c7",
+      "size_bytes": 180772,
+      "matches_expected": true
+    }
+  },
+  "supported_child_after_dry_run": {
+    "id": "2e805b83-8ce7-4445-b4ec-4deab1d1ccb6",
+    "printing_gv_id": "GV-PK-PR-SV-085-STD",
+    "finish_key": "normal",
+    "image_source": "identity",
+    "image_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/2e805b83-8ce7-4445-b4ec-4deab1d1ccb6/5d1a419870158d9f0544988d.jpg",
+    "image_url": null,
+    "image_alt_url": null,
+    "image_status": "exact",
+    "image_note": "IMG-16A-SVP085-FINISH-CLEANUP-IMAGE-DRY-RUN:pkmncards:https://pkmncards.com/card/pikachu-with-grey-felt-hat-scarlet-violet-promos-svp-085/"
+  },
+  "proof_hash": "56d4630cc055db24ef3080e3dd7b3083bbc00a96d528c0a12a68df459e6f4b24"
+}

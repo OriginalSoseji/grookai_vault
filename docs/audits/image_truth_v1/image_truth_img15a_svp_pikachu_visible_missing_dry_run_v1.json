@@ -1,0 +1,131 @@
+{
+  "package_id": "IMG-15A-SVP-PIKACHU-VISIBLE-MISSING-CHILD-IMAGE-DRY-RUN",
+  "generated_at": "2026-06-16T13:55:41.161Z",
+  "db_writes_performed": false,
+  "storage_uploads_performed": false,
+  "migrations_created": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "source_rows": 3,
+  "dry_run_ready_rows": 3,
+  "blocked_rows": 2,
+  "rollback_completed": true,
+  "rows": [
+    {
+      "card_print_id": "50386954-ded6-4909-8d17-6b391aeb53e4",
+      "card_printing_id": "2e805b83-8ce7-4445-b4ec-4deab1d1ccb6",
+      "printing_gv_id": "GV-PK-PR-SV-085-STD",
+      "set_code": "svp",
+      "card_name": "Pikachu with Grey Felt Hat",
+      "number": "085",
+      "finish_key": "normal",
+      "image_confidence": "exact",
+      "source_key": "pkmncards",
+      "source_url": "https://pkmncards.com/card/pikachu-with-grey-felt-hat-scarlet-violet-promos-svp-085/",
+      "asset_url": "https://pkmncards.com/wp-content/uploads/svbsp_en_085_std.jpg",
+      "parent_gv_id": "GV-PK-PR-SV-085",
+      "dry_run_status": "rollback_update_verified",
+      "validation_errors": [],
+      "parent_image_unchanged": true,
+      "proposed_image_source": "identity",
+      "proposed_image_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/2e805b83-8ce7-4445-b4ec-4deab1d1ccb6/5d1a419870158d9f0544988d.jpg",
+      "proposed_image_status": "exact",
+      "proposed_image_note": "IMG-15A-SVP-PIKACHU-VISIBLE-MISSING-CHILD-IMAGE-DRY-RUN:pkmncards:https://pkmncards.com/card/pikachu-with-grey-felt-hat-scarlet-violet-promos-svp-085/",
+      "normalized_asset": {
+        "source_sha256": "5d1a419870158d9f0544988d8a4352d78d7b1ddb660e5f7af12c2b60481e95c7",
+        "normalized_sha256": "5d1a419870158d9f0544988d8a4352d78d7b1ddb660e5f7af12c2b60481e95c7",
+        "normalized_size_bytes": 180772,
+        "local_nonproduction_asset_path": "tmp/nonproduction_image_staging/image_truth_v1/img15a-svp-pikachu-visible-missing/svp_85_normal_2e805b83_5d1a419870158d9f.jpg",
+        "planned_normalized_front_storage_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/2e805b83-8ce7-4445-b4ec-4deab1d1ccb6/5d1a419870158d9f0544988d.jpg"
+      }
+    },
+    {
+      "card_print_id": "cc9121e0-a2da-4914-b8a1-fe082692aaee",
+      "card_printing_id": "c8f42393-c642-4d54-b033-b2174f2b4e4e",
+      "printing_gv_id": "GV-PK-PR-SV-190-STD",
+      "set_code": "svp",
+      "card_name": "Pikachu",
+      "number": "190",
+      "finish_key": "normal",
+      "image_confidence": "exact",
+      "source_key": "pkmncards",
+      "source_url": "https://pkmncards.com/card/pikachu-scarlet-violet-promos-svp-190/",
+      "asset_url": "https://pkmncards.com/wp-content/uploads/svbsp_en_190_std.jpg",
+      "parent_gv_id": "GV-PK-PR-SV-190",
+      "dry_run_status": "rollback_update_verified",
+      "validation_errors": [],
+      "parent_image_unchanged": true,
+      "proposed_image_source": "identity",
+      "proposed_image_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/c8f42393-c642-4d54-b033-b2174f2b4e4e/317f51d07cda8d0d8c7ffe88.jpg",
+      "proposed_image_status": "exact",
+      "proposed_image_note": "IMG-15A-SVP-PIKACHU-VISIBLE-MISSING-CHILD-IMAGE-DRY-RUN:pkmncards:https://pkmncards.com/card/pikachu-scarlet-violet-promos-svp-190/",
+      "normalized_asset": {
+        "source_sha256": "317f51d07cda8d0d8c7ffe884e6f82c441d465c6397cfdc8a3d00a789ddfb52a",
+        "normalized_sha256": "317f51d07cda8d0d8c7ffe884e6f82c441d465c6397cfdc8a3d00a789ddfb52a",
+        "normalized_size_bytes": 231265,
+        "local_nonproduction_asset_path": "tmp/nonproduction_image_staging/image_truth_v1/img15a-svp-pikachu-visible-missing/svp_190_normal_c8f42393_317f51d07cda8d0d.jpg",
+        "planned_normalized_front_storage_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/c8f42393-c642-4d54-b033-b2174f2b4e4e/317f51d07cda8d0d8c7ffe88.jpg"
+      }
+    },
+    {
+      "card_print_id": "f76cba14-e109-47a7-86dd-2e220e37f831",
+      "card_printing_id": "7fe6c78d-ff07-4a48-b828-04983b3337ef",
+      "printing_gv_id": "GV-PK-PR-SV-214-STD",
+      "set_code": "svp",
+      "card_name": "Pikachu",
+      "number": "214",
+      "finish_key": "normal",
+      "image_confidence": "exact",
+      "source_key": "pkmncards",
+      "source_url": "https://pkmncards.com/card/pikachu-scarlet-violet-promos-svp-214/",
+      "asset_url": "https://pkmncards.com/wp-content/uploads/svbsp_en_214_std.jpg",
+      "parent_gv_id": "GV-PK-PR-SV-214",
+      "dry_run_status": "rollback_update_verified",
+      "validation_errors": [],
+      "parent_image_unchanged": true,
+      "proposed_image_source": "identity",
+      "proposed_image_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/7fe6c78d-ff07-4a48-b828-04983b3337ef/9ff6219898a92fb2302646cc.jpg",
+      "proposed_image_status": "exact",
+      "proposed_image_note": "IMG-15A-SVP-PIKACHU-VISIBLE-MISSING-CHILD-IMAGE-DRY-RUN:pkmncards:https://pkmncards.com/card/pikachu-scarlet-violet-promos-svp-214/",
+      "normalized_asset": {
+        "source_sha256": "9ff6219898a92fb2302646ccd50f1bcc74ff7189dcf963042a17ac1b143b9d8e",
+        "normalized_sha256": "9ff6219898a92fb2302646ccd50f1bcc74ff7189dcf963042a17ac1b143b9d8e",
+        "normalized_size_bytes": 143073,
+        "local_nonproduction_asset_path": "tmp/nonproduction_image_staging/image_truth_v1/img15a-svp-pikachu-visible-missing/svp_214_normal_7fe6c78d_9ff6219898a92fb2.jpg",
+        "planned_normalized_front_storage_path": "warehouse-derived/image-truth-v1/img15a-svp-pikachu-visible-missing/svp/7fe6c78d-ff07-4a48-b828-04983b3337ef/9ff6219898a92fb2302646cc.jpg"
+      }
+    }
+  ],
+  "blocked_review_rows": [
+    {
+      "gv_id": "GV-PK-PR-SV-225",
+      "printing_gv_id": "GV-PK-PR-SV-225-RH",
+      "set_code": "svp",
+      "card_name": "Pikachu",
+      "number": "225",
+      "finish_key": "reverse",
+      "blocked_reason": "identity_finish_review_required_before_image_promotion",
+      "notes": "Current row is modeled as base/reverse, while external evidence describes SVP 225 as a 2025 World Championships promo lane with stamp/winner variant evidence.",
+      "evidence_urls": [
+        "https://www.tcgplayer.com/product/648631/pokemon-sv-scarlet-and-violet-promo-cards-pikachu-225-world-championship-2025",
+        "https://www.pricecharting.com/game/pokemon-promo/pikachu-world-championships-225",
+        "https://www.pokellector.com/Scarlet-Violet-English-Promos-Expansion/Pikachu-Card-225",
+        "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(SVP_Promo_101)"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-PR-SV-85",
+      "printing_gv_id": "GV-PK-PR-SV-85-STD",
+      "set_code": "svp",
+      "card_name": "Pikachu with Grey Felt Hat",
+      "number": "85",
+      "finish_key": "normal",
+      "blocked_reason": "already_has_child_image_path",
+      "notes": "Existing IMG-03C PKMNCards representative child image is already stored on the child row; this package does not rewrite it.",
+      "evidence_urls": [
+        "https://pkmncards.com/card/pikachu-with-grey-felt-hat-scarlet-violet-promos-svp-085/"
+      ]
+    }
+  ],
+  "proof_hash": "066d96ff4158ad03995d36830ae04b1c75ea38ad20e7d2cc220e0d70d3586d63"
+}

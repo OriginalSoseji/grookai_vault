@@ -56,6 +56,7 @@ export interface CardSummary {
   image_note?: string;
   image_source?: string;
   display_image_url?: string;
+  display_image_fallback_url?: string;
   display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
 }
 

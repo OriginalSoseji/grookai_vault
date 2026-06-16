@@ -142,6 +142,19 @@ type DirectChildPrintingLookupRow = {
     | null;
 };
 
+type CardPrintingImageLookupRow = {
+  id: string;
+  card_print_id: string | null;
+  printing_gv_id: string | null;
+  finish_key: string | null;
+  image_url: string | null;
+  image_alt_url: string | null;
+  image_source?: string | null;
+  image_path?: string | null;
+  image_status?: string | null;
+  image_note?: string | null;
+};
+
 type CardPrintLookupRow = {
   id: string;
   gv_id: string | null;
@@ -568,6 +581,104 @@ function extractTcgdexSetId(tcgdexCardId?: string) {
   return separatorIndex > 0 ? tcgdexCardId.slice(0, separatorIndex) : undefined;
 }
 
+function hasChildImageEvidence(row: CardPrintingImageLookupRow) {
+  return Boolean(
+    row.image_path?.trim() ||
+      row.image_url?.trim() ||
+      row.image_alt_url?.trim(),
+  );
+}
+
+function imageKindScore(kind: string | null | undefined) {
+  if (kind === "exact") return 40;
+  if (kind === "representative" || kind === "missing_variant_visual") return 25;
+  return 10;
+}
+
+async function fetchChildDisplayImageFallbacks(lookupRows: CardPrintLookupRow[]) {
+  const cardPrintIds = uniqueValues(lookupRows.map((row) => row.id).filter(Boolean));
+  const fallbackByCardPrintId = new Map<string, string>();
+  if (cardPrintIds.length === 0) {
+    return fallbackByCardPrintId;
+  }
+
+  const supabase = createServerComponentClient();
+  const { data, error } = await supabase
+    .from("card_printings")
+    .select(
+      "id,card_print_id,printing_gv_id,finish_key,image_source,image_path,image_url,image_alt_url,image_status,image_note",
+    )
+    .in("card_print_id", cardPrintIds);
+
+  if (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[explore] child image fallback lookup failed closed", {
+        message: error.message,
+      });
+    }
+    return fallbackByCardPrintId;
+  }
+
+  const childrenByParentId = new Map<string, CardPrintingImageLookupRow[]>();
+  for (const child of ((data ?? []) as CardPrintingImageLookupRow[]).filter(hasChildImageEvidence)) {
+    if (!child.card_print_id) continue;
+    const existing = childrenByParentId.get(child.card_print_id) ?? [];
+    existing.push(child);
+    childrenByParentId.set(child.card_print_id, existing);
+  }
+
+  await Promise.all(
+    lookupRows.map(async (row) => {
+      const children = childrenByParentId.get(row.id) ?? [];
+      if (children.length === 0) {
+        return;
+      }
+
+      const selectedPrintingGvId =
+        row.selected_printing_gv_id?.trim() ||
+        row.search_card_printing_id?.trim() ||
+        row.printing_gv_id?.trim() ||
+        null;
+      const targetFinishKey = row.finish_key?.trim().toLowerCase() || null;
+
+      const resolved = await Promise.all(
+        children.map(async (child) => ({
+          child,
+          imageFields: await resolveCardImageFieldsV1(child),
+        })),
+      );
+
+      const best = resolved
+        .filter((entry) => Boolean(entry.imageFields.display_image_url))
+        .sort((left, right) => {
+          const leftSelected =
+            selectedPrintingGvId && left.child.printing_gv_id === selectedPrintingGvId ? 100 : 0;
+          const rightSelected =
+            selectedPrintingGvId && right.child.printing_gv_id === selectedPrintingGvId ? 100 : 0;
+          if (leftSelected !== rightSelected) return rightSelected - leftSelected;
+
+          const leftFinish =
+            targetFinishKey && left.child.finish_key?.toLowerCase() === targetFinishKey ? 20 : 0;
+          const rightFinish =
+            targetFinishKey && right.child.finish_key?.toLowerCase() === targetFinishKey ? 20 : 0;
+          if (leftFinish !== rightFinish) return rightFinish - leftFinish;
+
+          const leftKind = imageKindScore(left.imageFields.display_image_kind);
+          const rightKind = imageKindScore(right.imageFields.display_image_kind);
+          if (leftKind !== rightKind) return rightKind - leftKind;
+
+          return String(left.child.printing_gv_id ?? "").localeCompare(String(right.child.printing_gv_id ?? ""));
+        })[0];
+
+      if (best?.imageFields.display_image_url) {
+        fallbackByCardPrintId.set(row.id, best.imageFields.display_image_url);
+      }
+    }),
+  );
+
+  return fallbackByCardPrintId;
+}
+
 function toNumberDigits(value?: string | null) {
   const digits = (value ?? "").replace(/\D/g, "");
   return digits || undefined;
@@ -681,6 +792,7 @@ async function buildExploreRows(
   const rows = lookupRows.filter(
     (row): row is CardPrintLookupRow & { gv_id: string } => Boolean(row.gv_id),
   );
+  const childDisplayImageFallbacks = await fetchChildDisplayImageFallbacks(rows);
 
   return Promise.all(
     rows.map(async (row) => {
@@ -708,6 +820,7 @@ async function buildExploreRows(
         image_note: imageFields.image_note ?? undefined,
         image_source: imageFields.image_source ?? undefined,
         display_image_url: imageFields.display_image_url ?? undefined,
+        display_image_fallback_url: childDisplayImageFallbacks.get(row.id) ?? undefined,
         display_image_kind: imageFields.display_image_kind,
         release_date: setMetadata?.release_date,
         release_year: setMetadata?.release_year,
