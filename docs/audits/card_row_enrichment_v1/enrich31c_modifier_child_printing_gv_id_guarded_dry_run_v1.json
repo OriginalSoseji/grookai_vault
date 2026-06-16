@@ -1,0 +1,286 @@
+{
+  "version": "ENRICH31C_MODIFIER_CHILD_PRINTING_GV_ID_GUARDED_DRY_RUN_V1",
+  "package_id": "ENRICH-31C-MODIFIER-CHILD-PRINTING-GV-ID-BACKFILL",
+  "generated_at": "2026-06-16T17:59:15.160Z",
+  "package_fingerprint_sha256": "e92b767dbaa6751ac11ad8c3e26bea8474f1df6e84c899f7a445c8d853eaa93a",
+  "pass": true,
+  "scope": {
+    "target_rows": 7,
+    "writes_tested_inside_rollback": [
+      "card_printings.printing_gv_id"
+    ],
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "parent_writes_performed": false,
+    "identity_writes_performed": false,
+    "deletes_performed": false
+  },
+  "targets": [
+    {
+      "card_printing_id": "2d6a68ef-68d0-4af2-9e9c-e894572cf57a",
+      "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+      "set_code": "basep",
+      "number": "1",
+      "number_plain": "1",
+      "card_name": "Pikachu",
+      "finish_key": "normal",
+      "parent_gv_id": "GV-PK-PR-1-FIRST-EDITION",
+      "proposed_printing_gv_id": "GV-PK-PR-1-FIRST-EDITION-STD"
+    },
+    {
+      "card_printing_id": "f15baddb-8d19-4da3-9ce2-faa9f5f461ea",
+      "card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+      "set_code": "swsh2",
+      "number": "154",
+      "number_plain": "154",
+      "card_name": "Boss's Orders (Giovanni)",
+      "finish_key": "holo",
+      "parent_gv_id": "GV-PK-RCL-154-GIOVANNI",
+      "proposed_printing_gv_id": "GV-PK-RCL-154-GIOVANNI-HOLO"
+    },
+    {
+      "card_printing_id": "c2c1bba0-fe82-40e9-afe1-e2336c6d60d2",
+      "card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+      "set_code": "swsh2",
+      "number": "154",
+      "number_plain": "154",
+      "card_name": "Boss's Orders (Giovanni)",
+      "finish_key": "reverse",
+      "parent_gv_id": "GV-PK-RCL-154-GIOVANNI",
+      "proposed_printing_gv_id": "GV-PK-RCL-154-GIOVANNI-RH"
+    },
+    {
+      "card_printing_id": "5beece9b-c002-48e8-8490-71e1e35220c8",
+      "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+      "set_code": "swsh4.5",
+      "number": "58",
+      "number_plain": "58",
+      "card_name": "Boss's Orders (Lysandre)",
+      "finish_key": "normal",
+      "parent_gv_id": "GV-PK-SHF-58-LYSANDRE",
+      "proposed_printing_gv_id": "GV-PK-SHF-58-LYSANDRE-STD"
+    },
+    {
+      "card_printing_id": "3372b23e-8cd6-42d9-adc9-7a5dc615223d",
+      "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+      "set_code": "swsh4.5",
+      "number": "58",
+      "number_plain": "58",
+      "card_name": "Boss's Orders (Lysandre)",
+      "finish_key": "reverse",
+      "parent_gv_id": "GV-PK-SHF-58-LYSANDRE",
+      "proposed_printing_gv_id": "GV-PK-SHF-58-LYSANDRE-RH"
+    },
+    {
+      "card_printing_id": "6842c2c7-c651-4363-8bfd-d3aeebb1ba20",
+      "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+      "set_code": "swsh4.5",
+      "number": "60",
+      "number_plain": "60",
+      "card_name": "Professor's Research (Professor Juniper)",
+      "finish_key": "normal",
+      "parent_gv_id": "GV-PK-SHF-60-PROFESSOR-JUNIPER",
+      "proposed_printing_gv_id": "GV-PK-SHF-60-PROFESSOR-JUNIPER-STD"
+    },
+    {
+      "card_printing_id": "93d23c9e-07af-4a3e-bfee-d3fe5192cde8",
+      "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+      "set_code": "swsh4.5",
+      "number": "60",
+      "number_plain": "60",
+      "card_name": "Professor's Research (Professor Juniper)",
+      "finish_key": "reverse",
+      "parent_gv_id": "GV-PK-SHF-60-PROFESSOR-JUNIPER",
+      "proposed_printing_gv_id": "GV-PK-SHF-60-PROFESSOR-JUNIPER-RH"
+    }
+  ],
+  "execution": {
+    "before_snapshot": {
+      "captured_at": "2026-06-16T17:59:14.359Z",
+      "rows": [
+        {
+          "card_printing_id": "2d6a68ef-68d0-4af2-9e9c-e894572cf57a",
+          "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+          "set_code": "basep",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Pikachu",
+          "parent_gv_id": "GV-PK-PR-1-FIRST-EDITION",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "f15baddb-8d19-4da3-9ce2-faa9f5f461ea",
+          "card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+          "set_code": "swsh2",
+          "number": "154",
+          "number_plain": "154",
+          "card_name": "Boss's Orders (Giovanni)",
+          "parent_gv_id": "GV-PK-RCL-154-GIOVANNI",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "c2c1bba0-fe82-40e9-afe1-e2336c6d60d2",
+          "card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+          "set_code": "swsh2",
+          "number": "154",
+          "number_plain": "154",
+          "card_name": "Boss's Orders (Giovanni)",
+          "parent_gv_id": "GV-PK-RCL-154-GIOVANNI",
+          "finish_key": "reverse",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "5beece9b-c002-48e8-8490-71e1e35220c8",
+          "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+          "set_code": "swsh4.5",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Boss's Orders (Lysandre)",
+          "parent_gv_id": "GV-PK-SHF-58-LYSANDRE",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "3372b23e-8cd6-42d9-adc9-7a5dc615223d",
+          "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+          "set_code": "swsh4.5",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Boss's Orders (Lysandre)",
+          "parent_gv_id": "GV-PK-SHF-58-LYSANDRE",
+          "finish_key": "reverse",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "6842c2c7-c651-4363-8bfd-d3aeebb1ba20",
+          "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+          "set_code": "swsh4.5",
+          "number": "60",
+          "number_plain": "60",
+          "card_name": "Professor's Research (Professor Juniper)",
+          "parent_gv_id": "GV-PK-SHF-60-PROFESSOR-JUNIPER",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "93d23c9e-07af-4a3e-bfee-d3fe5192cde8",
+          "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+          "set_code": "swsh4.5",
+          "number": "60",
+          "number_plain": "60",
+          "card_name": "Professor's Research (Professor Juniper)",
+          "parent_gv_id": "GV-PK-SHF-60-PROFESSOR-JUNIPER",
+          "finish_key": "reverse",
+          "printing_gv_id": null
+        }
+      ],
+      "hash_sha256": "a046adff9d4c3e4ccd63b991ec0ff097f8dbf578780faa6f44459558c77a5df9",
+      "counts": {
+        "target_rows": 7,
+        "captured_rows": 7,
+        "rows_with_printing_gv_id": 0,
+        "rows_without_printing_gv_id": 7
+      }
+    },
+    "inside_transaction_proof": {
+      "updated_rows": 7,
+      "proof": {
+        "target_count": 7,
+        "matching_printing_gv_count": 7,
+        "duplicate_printing_gv_id_groups": 0
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-16T17:59:15.160Z",
+      "rows": [
+        {
+          "card_printing_id": "2d6a68ef-68d0-4af2-9e9c-e894572cf57a",
+          "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+          "set_code": "basep",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Pikachu",
+          "parent_gv_id": "GV-PK-PR-1-FIRST-EDITION",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "f15baddb-8d19-4da3-9ce2-faa9f5f461ea",
+          "card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+          "set_code": "swsh2",
+          "number": "154",
+          "number_plain": "154",
+          "card_name": "Boss's Orders (Giovanni)",
+          "parent_gv_id": "GV-PK-RCL-154-GIOVANNI",
+          "finish_key": "holo",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "c2c1bba0-fe82-40e9-afe1-e2336c6d60d2",
+          "card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+          "set_code": "swsh2",
+          "number": "154",
+          "number_plain": "154",
+          "card_name": "Boss's Orders (Giovanni)",
+          "parent_gv_id": "GV-PK-RCL-154-GIOVANNI",
+          "finish_key": "reverse",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "5beece9b-c002-48e8-8490-71e1e35220c8",
+          "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+          "set_code": "swsh4.5",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Boss's Orders (Lysandre)",
+          "parent_gv_id": "GV-PK-SHF-58-LYSANDRE",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "3372b23e-8cd6-42d9-adc9-7a5dc615223d",
+          "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+          "set_code": "swsh4.5",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Boss's Orders (Lysandre)",
+          "parent_gv_id": "GV-PK-SHF-58-LYSANDRE",
+          "finish_key": "reverse",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "6842c2c7-c651-4363-8bfd-d3aeebb1ba20",
+          "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+          "set_code": "swsh4.5",
+          "number": "60",
+          "number_plain": "60",
+          "card_name": "Professor's Research (Professor Juniper)",
+          "parent_gv_id": "GV-PK-SHF-60-PROFESSOR-JUNIPER",
+          "finish_key": "normal",
+          "printing_gv_id": null
+        },
+        {
+          "card_printing_id": "93d23c9e-07af-4a3e-bfee-d3fe5192cde8",
+          "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+          "set_code": "swsh4.5",
+          "number": "60",
+          "number_plain": "60",
+          "card_name": "Professor's Research (Professor Juniper)",
+          "parent_gv_id": "GV-PK-SHF-60-PROFESSOR-JUNIPER",
+          "finish_key": "reverse",
+          "printing_gv_id": null
+        }
+      ],
+      "hash_sha256": "a046adff9d4c3e4ccd63b991ec0ff097f8dbf578780faa6f44459558c77a5df9",
+      "counts": {
+        "target_rows": 7,
+        "captured_rows": 7,
+        "rows_with_printing_gv_id": 0,
+        "rows_without_printing_gv_id": 7
+      }
+    },
+    "dry_run_status": "completed_rolled_back_no_durable_change"
+  }
+}

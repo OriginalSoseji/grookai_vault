@@ -9,6 +9,20 @@ export function isUsablePublicImageUrl(value: string | null | undefined) {
   }
 }
 
+function normalizePublicCardImageUrl(value: string) {
+  const normalized = value.trim();
+
+  if (
+    normalized.startsWith("https://assets.tcgdex.net/en/") &&
+    !normalized.endsWith("/high.webp")
+  ) {
+    const withoutKnownFile = normalized.replace(/\/(?:low|high)\.(?:webp|png|jpg|jpeg)$/i, "");
+    return `${withoutKnownFile.replace(/\/+$/, "")}/high.webp`;
+  }
+
+  return normalized;
+}
+
 function normalizeLowerOrNull(value: string | null | undefined) {
   const normalized = value?.trim().toLowerCase();
   return normalized ? normalized : null;
@@ -33,11 +47,11 @@ export function isExternalCompatibleCardImageSource(value: string | null | undef
 
 export function getBestPublicCardImageUrl(image_url?: string | null, image_alt_url?: string | null) {
   if (isUsablePublicImageUrl(image_url)) {
-    return image_url!.trim();
+    return normalizePublicCardImageUrl(image_url!);
   }
 
   if (isUsablePublicImageUrl(image_alt_url)) {
-    return image_alt_url!.trim();
+    return normalizePublicCardImageUrl(image_alt_url!);
   }
 
   return undefined;

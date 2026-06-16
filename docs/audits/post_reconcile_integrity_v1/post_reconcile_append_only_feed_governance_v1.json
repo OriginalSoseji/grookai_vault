@@ -1,0 +1,209 @@
+{
+  "generated_at": "2026-06-16T17:34:16.335Z",
+  "source_strategy": "docs/audits/post_reconcile_integrity_v1/post_reconcile_dependency_transfer_strategy_v1.json",
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false,
+    "apply_sql_generated": false
+  },
+  "summary": {
+    "blocked_groups": 2,
+    "duplicate_parent_rows": 2,
+    "duplicate_child_rows": 3,
+    "feed_event_rows": 3,
+    "target_sets": [
+      "svp"
+    ]
+  },
+  "governance_status": "blocked_by_append_only_feed_contract",
+  "recommended_next_step": "Create a governed exception gate or design a feed-correction event model before any cleanup apply.",
+  "groups": [
+    {
+      "normalized_key": "svp|46|bulbasaur||",
+      "set_code": "svp",
+      "canonical_parent_id": "94056067-d943-4cf5-85a2-6b7bf9e20896",
+      "canonical_gv_id": "GV-PK-PR-SV-046",
+      "duplicate_parent_id": "ca469f4b-d752-4bae-a821-c6273e698b03",
+      "duplicate_gv_id": "GV-PK-PR-SV-46",
+      "duplicate_child_rows": [
+        {
+          "id": "b2ae99b9-6f58-4bc2-986f-c2cafc0cd133",
+          "card_print_id": "ca469f4b-d752-4bae-a821-c6273e698b03",
+          "printing_gv_id": "GV-PK-PR-SV-46-COSMOS",
+          "finish_key": "cosmos"
+        },
+        {
+          "id": "3c21f341-3ca4-4f38-8248-914dfc4267fc",
+          "card_print_id": "ca469f4b-d752-4bae-a821-c6273e698b03",
+          "printing_gv_id": "GV-PK-PR-SV-46-HOLO",
+          "finish_key": "holo"
+        }
+      ],
+      "dependency_plan": [
+        {
+          "key": "public.card_feed_events.card_print_id",
+          "count": 1,
+          "policy": "preserve_append_only_feed_history_or_repoint_if_allowed_by_feed_governance",
+          "bucket": "append_only_user_history",
+          "dry_run_candidate": false
+        },
+        {
+          "key": "public.card_print_identity.card_print_id",
+          "count": 1,
+          "policy": "delete_duplicate_identity_after_canonical_identity_guard",
+          "bucket": "core_identity",
+          "dry_run_candidate": true
+        },
+        {
+          "key": "public.card_print_species.card_print_id",
+          "count": 1,
+          "policy": "copy_to_canonical_then_delete_duplicate_with_conflict_guard",
+          "bucket": "species_traits",
+          "dry_run_candidate": true
+        },
+        {
+          "key": "public.card_printings.card_print_id",
+          "count": 2,
+          "policy": "dedupe_same_finish_or_transfer_missing_finish_with_printing_gv_rewrite",
+          "bucket": "child_printings",
+          "dry_run_candidate": true
+        }
+      ],
+      "blocking_reasons": [
+        "append_only_feed_policy_required"
+      ]
+    },
+    {
+      "normalized_key": "svp|54|greninja ex||",
+      "set_code": "svp",
+      "canonical_parent_id": "ddd62408-c01c-4a89-8d3a-33f2a204f6b5",
+      "canonical_gv_id": "GV-PK-PR-SV-054",
+      "duplicate_parent_id": "32a9b6ff-9057-4b10-a032-80e47ba8ed53",
+      "duplicate_gv_id": "GV-PK-PR-SV-54",
+      "duplicate_child_rows": [
+        {
+          "id": "6872475f-853a-477d-a3e3-34b194c15ab7",
+          "card_print_id": "32a9b6ff-9057-4b10-a032-80e47ba8ed53",
+          "printing_gv_id": "GV-PK-PR-SV-54-HOLO",
+          "finish_key": "holo"
+        }
+      ],
+      "dependency_plan": [
+        {
+          "key": "public.card_feed_events.card_print_id",
+          "count": 2,
+          "policy": "preserve_append_only_feed_history_or_repoint_if_allowed_by_feed_governance",
+          "bucket": "append_only_user_history",
+          "dry_run_candidate": false
+        },
+        {
+          "key": "public.card_print_identity.card_print_id",
+          "count": 1,
+          "policy": "delete_duplicate_identity_after_canonical_identity_guard",
+          "bucket": "core_identity",
+          "dry_run_candidate": true
+        },
+        {
+          "key": "public.card_print_species.card_print_id",
+          "count": 1,
+          "policy": "copy_to_canonical_then_delete_duplicate_with_conflict_guard",
+          "bucket": "species_traits",
+          "dry_run_candidate": true
+        },
+        {
+          "key": "public.card_printings.card_print_id",
+          "count": 1,
+          "policy": "dedupe_same_finish_or_transfer_missing_finish_with_printing_gv_rewrite",
+          "bucket": "child_printings",
+          "dry_run_candidate": true
+        },
+        {
+          "key": "public.external_mappings.card_print_id",
+          "count": 1,
+          "policy": "transfer_to_canonical_or_drop_duplicate_source_external_id_collision",
+          "bucket": "source_mappings",
+          "dry_run_candidate": true
+        },
+        {
+          "key": "public.justtcg_variant_price_snapshots.card_print_id",
+          "count": 615,
+          "policy": "bulk_transfer_to_canonical_after_variant_owner_transfer",
+          "bucket": "market_data",
+          "dry_run_candidate": true
+        },
+        {
+          "key": "public.justtcg_variant_prices_latest.card_print_id",
+          "count": 5,
+          "policy": "transfer_to_canonical_after_variant_owner_transfer",
+          "bucket": "market_data",
+          "dry_run_candidate": true
+        },
+        {
+          "key": "public.justtcg_variants.card_print_id",
+          "count": 5,
+          "policy": "transfer_to_canonical_with_variant_identity_collision_guard",
+          "bucket": "market_data",
+          "dry_run_candidate": true
+        }
+      ],
+      "blocking_reasons": [
+        "append_only_feed_policy_required"
+      ]
+    }
+  ],
+  "feed_events": [
+    {
+      "id": "4d1122e1-466e-42d2-baa2-fd300b12c7e1",
+      "card_print_id": "32a9b6ff-9057-4b10-a032-80e47ba8ed53",
+      "event_type": "impression",
+      "surface": "feed",
+      "source_bucket": null,
+      "feed_request_id": null,
+      "position": 5,
+      "created_at": "2026-04-15T04:39:21.737Z"
+    },
+    {
+      "id": "68c88a91-5422-4f30-9bd0-413de7afabf0",
+      "card_print_id": "32a9b6ff-9057-4b10-a032-80e47ba8ed53",
+      "event_type": "impression",
+      "surface": "feed",
+      "source_bucket": null,
+      "feed_request_id": null,
+      "position": 5,
+      "created_at": "2026-04-15T05:00:44.963Z"
+    },
+    {
+      "id": "b449d558-a98b-4f0a-8b03-0721fbad7b82",
+      "card_print_id": "ca469f4b-d752-4bae-a821-c6273e698b03",
+      "event_type": "impression",
+      "surface": "feed",
+      "source_bucket": null,
+      "feed_request_id": null,
+      "position": 5,
+      "created_at": "2026-05-22T01:50:41.010Z"
+    }
+  ],
+  "feed_governance": {
+    "triggers": [
+      {
+        "tgname": "trg_card_feed_events_block_delete",
+        "tgenabled": "O",
+        "definition": "CREATE TRIGGER trg_card_feed_events_block_delete BEFORE DELETE ON public.card_feed_events FOR EACH ROW EXECUTE FUNCTION card_feed_events_block_mutation_v1()"
+      },
+      {
+        "tgname": "trg_card_feed_events_block_update",
+        "tgenabled": "O",
+        "definition": "CREATE TRIGGER trg_card_feed_events_block_update BEFORE UPDATE ON public.card_feed_events FOR EACH ROW EXECUTE FUNCTION card_feed_events_block_mutation_v1()"
+      },
+      {
+        "tgname": "trg_card_feed_events_set_insert_defaults",
+        "tgenabled": "O",
+        "definition": "CREATE TRIGGER trg_card_feed_events_set_insert_defaults BEFORE INSERT ON public.card_feed_events FOR EACH ROW EXECUTE FUNCTION card_feed_events_set_insert_defaults_v1()"
+      }
+    ],
+    "block_function_contains_append_only_error": true
+  },
+  "governance_fingerprint_sha256": "099ec120e14f3f736730b4522a4fd46087c284a8e5718978c742d64bb0dc68ec"
+}

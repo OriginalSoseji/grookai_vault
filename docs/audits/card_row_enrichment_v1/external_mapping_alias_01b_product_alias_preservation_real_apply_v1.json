@@ -1,0 +1,693 @@
+{
+  "version": "EXTERNAL_MAPPING_ALIAS_01B_PRODUCT_ALIAS_PRESERVATION_REAL_APPLY_V1",
+  "package_id": "EXTMAP-ALIAS-01B-PRODUCT-ALIAS-PRESERVATION",
+  "generated_at": "2026-06-16T22:43:39.617Z",
+  "mode": "real_apply",
+  "package_fingerprint_sha256": "e8374bd891cc7ee12d38679fe201ee3673e8477bd289a568a2eea139ee540d95",
+  "scope": {
+    "target_alias_rows": 214,
+    "table_written": [
+      "public.external_mapping_aliases"
+    ],
+    "forbidden": [
+      "card_prints writes",
+      "card_printings writes",
+      "card_print_identity writes",
+      "external_mappings writes",
+      "external_mappings deactivation",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ],
+    "external_mappings_deactivated": 0,
+    "migrations_created": false
+  },
+  "preflight": {
+    "target_count": 214,
+    "distinct_source_alias_count": 214,
+    "distinct_preserved_mapping_count": 214,
+    "non_justtcg_count": 0,
+    "disallowed_alias_kind_count": 0,
+    "blank_alias_status_count": 0,
+    "blank_evidence_reason_count": 0,
+    "unexpected_audit_source_count": 0,
+    "missing_canonical_mapping_count": 0,
+    "missing_preserved_mapping_count": 0,
+    "preserved_mapping_wrong_parent_count": 0,
+    "preserved_mapping_wrong_source_count": 0,
+    "preserved_mapping_wrong_external_id_count": 0,
+    "preserved_mapping_inactive_count": 0,
+    "alias_equals_canonical_count": 0,
+    "existing_active_alias_count": 0
+  },
+  "execution": {
+    "transaction_status": "committed",
+    "inserted_rows": 214,
+    "distinct_source_alias_rows": 214,
+    "distinct_preserved_mapping_rows": 214,
+    "inserted_by_alias_kind": {
+      "league_alias": 2,
+      "product_alias": 4,
+      "prerelease_alias": 6,
+      "prize_pack_alias": 34,
+      "battle_academy_alias": 168
+    }
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-16T22:43:39.177Z",
+    "row_count": 428,
+    "hash_sha256": "2f44aec6549f670fee75f6504f139d917ae13eede3a51a70eaa24a727ddc55e3",
+    "counts": {
+      "canonical_external_mappings": 214,
+      "preserved_external_mappings": 214
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-16T22:43:39.615Z",
+    "row_count": 642,
+    "hash_sha256": "fc968401a2daf74ab13998306bed1f5ca45e690c3582a753e4dd014bd3bd6ff3",
+    "counts": {
+      "canonical_external_mappings": 214,
+      "external_mapping_aliases": 214,
+      "preserved_external_mappings": 214
+    }
+  },
+  "by_alias_kind": {
+    "battle_academy_alias": 168,
+    "prize_pack_alias": 34,
+    "prerelease_alias": 6,
+    "product_alias": 4,
+    "league_alias": 2
+  },
+  "by_source": {
+    "justtcg": 214
+  },
+  "target_samples": [
+    {
+      "canonical_card_print_id": "c86a8b96-0cac-4bed-8a5e-d16ea8920611",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-black-and-white-promos-gigalith-53-98-prerelease-promo",
+      "alias_kind": "prerelease_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120843,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-emerging-powers-gigalith-rare",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-EPO-53",
+        "set_code": "bw2",
+        "card_name": "Gigalith",
+        "card_number": "53",
+        "canonical_external_id_to_keep": "pokemon-emerging-powers-gigalith-rare",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "48139214-02b3-4b38-ab5a-34021c3aca30",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-nintendo-promos-tentacruel-45-92-prerelease-promo",
+      "alias_kind": "prerelease_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120994,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-legend-maker-tentacruel-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-LM-45",
+        "set_code": "ex12",
+        "card_name": "Tentacruel",
+        "card_number": "45",
+        "canonical_external_id_to_keep": "pokemon-legend-maker-tentacruel-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "1bf5dbe7-81a5-4e2e-8dad-585073c2c5ae",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-nintendo-promos-salamence-19-97-e-league-promo",
+      "alias_kind": "league_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120983,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-dragon-salamence-19-97-rare",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-DR-19",
+        "set_code": "ex3",
+        "card_name": "Salamence",
+        "card_number": "19",
+        "canonical_external_id_to_keep": "pokemon-dragon-salamence-19-97-rare",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "1bf5dbe7-81a5-4e2e-8dad-585073c2c5ae",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-nintendo-promos-salamence-19-97-e-league-winner-promo",
+      "alias_kind": "league_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120976,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-dragon-salamence-19-97-rare",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-DR-19",
+        "set_code": "ex3",
+        "card_name": "Salamence",
+        "card_number": "19",
+        "canonical_external_id_to_keep": "pokemon-dragon-salamence-19-97-rare",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "a04082c2-0a6d-47f4-bd24-843ff7bbc72d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-nintendo-promos-swalot-50-101-prerelease-promo",
+      "alias_kind": "prerelease_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120987,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-hidden-legends-swalot-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-HL-50",
+        "set_code": "ex5",
+        "card_name": "Swalot",
+        "card_number": "50",
+        "canonical_external_id_to_keep": "pokemon-hidden-legends-swalot-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "41385b05-89d1-434a-819a-355a61ae1e69",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-nintendo-promos-dark-houndoom-37-109-prerelease-promo",
+      "alias_kind": "prerelease_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120973,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-team-rocket-returns-dark-houndoom-037-109-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-TRR-37",
+        "set_code": "ex7",
+        "card_name": "Dark Houndoom",
+        "card_number": "37",
+        "canonical_external_id_to_keep": "pokemon-team-rocket-returns-dark-houndoom-037-109-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "55b5f96b-5ebd-458a-a7f6-17da38e4728a",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-nintendo-promos-manectric-38-107-prerelease-promo",
+      "alias_kind": "prerelease_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120995,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-deoxys-manectric-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-DX-38",
+        "set_code": "ex8",
+        "card_name": "Manectric",
+        "card_number": "38",
+        "canonical_external_id_to_keep": "pokemon-deoxys-manectric-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "bfd0c432-a09e-4a89-9efe-97260f780656",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-nintendo-promos-grumpig-29-106-prerelease-promo",
+      "alias_kind": "prerelease_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120998,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-emerald-grumpig-029-106-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-EM-29",
+        "set_code": "ex9",
+        "card_name": "Grumpig",
+        "card_number": "29",
+        "canonical_external_id_to_keep": "pokemon-emerald-grumpig-029-106-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "1de01a51-cfa0-4bfe-90c2-a75942e88932",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-prize-pack-series-cards-mega-kangaskhan-ex-104-132-double-rare",
+      "alias_kind": "prize_pack_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 121121,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-me01-mega-evolution-mega-kangaskhan-ex-104-132-double-rare",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-MEG-104",
+        "set_code": "me01",
+        "card_name": "Mega Kangaskhan ex",
+        "card_number": "104",
+        "canonical_external_id_to_keep": "pokemon-me01-mega-evolution-mega-kangaskhan-ex-104-132-double-rare",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "90709658-2e74-4383-824a-ebe0a9146c6d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-great-ball-119-149-29-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120610,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-119",
+        "set_code": "sm1",
+        "card_name": "Great Ball",
+        "card_number": "119",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "90709658-2e74-4383-824a-ebe0a9146c6d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-great-ball-119-149-33-charizard-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120639,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-119",
+        "set_code": "sm1",
+        "card_name": "Great Ball",
+        "card_number": "119",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "90709658-2e74-4383-824a-ebe0a9146c6d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-great-ball-119-149-38-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120624,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-119",
+        "set_code": "sm1",
+        "card_name": "Great Ball",
+        "card_number": "119",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "90709658-2e74-4383-824a-ebe0a9146c6d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-great-ball-119-149-43-charizard-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120633,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-119",
+        "set_code": "sm1",
+        "card_name": "Great Ball",
+        "card_number": "119",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "90709658-2e74-4383-824a-ebe0a9146c6d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-great-ball-119-149-48-charizard-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120614,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-119",
+        "set_code": "sm1",
+        "card_name": "Great Ball",
+        "card_number": "119",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "90709658-2e74-4383-824a-ebe0a9146c6d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-great-ball-119-149-49-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120642,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-119",
+        "set_code": "sm1",
+        "card_name": "Great Ball",
+        "card_number": "119",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "90709658-2e74-4383-824a-ebe0a9146c6d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-great-ball-119-149-55-charizard-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120643,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-119",
+        "set_code": "sm1",
+        "card_name": "Great Ball",
+        "card_number": "119",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "90709658-2e74-4383-824a-ebe0a9146c6d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-great-ball-119-149-57-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120638,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-119",
+        "set_code": "sm1",
+        "card_name": "Great Ball",
+        "card_number": "119",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "90709658-2e74-4383-824a-ebe0a9146c6d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-great-ball-119-149-mewtwo-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120621,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-119",
+        "set_code": "sm1",
+        "card_name": "Great Ball",
+        "card_number": "119",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-great-ball-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "9c69b768-56c1-4e6c-8d12-697ae293035d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-hau-120-149-13-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120626,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-120",
+        "set_code": "sm1",
+        "card_name": "Hau",
+        "card_number": "120",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "9c69b768-56c1-4e6c-8d12-697ae293035d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-hau-120-149-28-charizard-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120613,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-120",
+        "set_code": "sm1",
+        "card_name": "Hau",
+        "card_number": "120",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "9c69b768-56c1-4e6c-8d12-697ae293035d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-hau-120-149-33-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120628,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-120",
+        "set_code": "sm1",
+        "card_name": "Hau",
+        "card_number": "120",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "9c69b768-56c1-4e6c-8d12-697ae293035d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-hau-120-149-41-charizard-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120641,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-120",
+        "set_code": "sm1",
+        "card_name": "Hau",
+        "card_number": "120",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "9c69b768-56c1-4e6c-8d12-697ae293035d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-hau-120-149-42-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120630,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-120",
+        "set_code": "sm1",
+        "card_name": "Hau",
+        "card_number": "120",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "9c69b768-56c1-4e6c-8d12-697ae293035d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-hau-120-149-52-charizard-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120611,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-120",
+        "set_code": "sm1",
+        "card_name": "Hau",
+        "card_number": "120",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "9c69b768-56c1-4e6c-8d12-697ae293035d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-hau-120-149-54-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120608,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-120",
+        "set_code": "sm1",
+        "card_name": "Hau",
+        "card_number": "120",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "9c69b768-56c1-4e6c-8d12-697ae293035d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-hau-120-149-57-charizard-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120632,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-120",
+        "set_code": "sm1",
+        "card_name": "Hau",
+        "card_number": "120",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "9c69b768-56c1-4e6c-8d12-697ae293035d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-hau-120-149-mewtwo-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120603,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-120",
+        "set_code": "sm1",
+        "card_name": "Hau",
+        "card_number": "120",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-hau-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "189616cb-6824-4de2-88b0-7857565c13c9",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-switch-132-149-36-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120620,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-switch-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-132",
+        "set_code": "sm1",
+        "card_name": "Switch",
+        "card_number": "132",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-switch-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "189616cb-6824-4de2-88b0-7857565c13c9",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-switch-132-149-40-charizard-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120629,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-switch-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-132",
+        "set_code": "sm1",
+        "card_name": "Switch",
+        "card_number": "132",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-switch-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    },
+    {
+      "canonical_card_print_id": "189616cb-6824-4de2-88b0-7857565c13c9",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-switch-132-149-52-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one non-product source id can remain the canonical active mapping while product aliases are preserved in sidecar.",
+      "preserved_from_mapping_id": 120625,
+      "created_from_audit": "external_mapping_alias_sidecar_readiness_v1",
+      "canonical_external_id_to_keep": "pokemon-sm-base-set-switch-uncommon",
+      "metadata": {
+        "canonical_gv_id": "GV-PK-SUM-132",
+        "set_code": "sm1",
+        "card_name": "Switch",
+        "card_number": "132",
+        "canonical_external_id_to_keep": "pokemon-sm-base-set-switch-uncommon",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f"
+      }
+    }
+  ],
+  "stop_findings": [],
+  "pass": true,
+  "recommended_next_step": "Prepare guarded dry-run for deactivating the preserved duplicate external_mappings rows now that aliases exist in the sidecar.",
+  "recommended_approval_text": null
+}

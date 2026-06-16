@@ -1,0 +1,159 @@
+{
+  "version": "EXTERNAL_MAPPING_DUPLICATE_TRIAGE_V1",
+  "generated_at": "2026-06-16T23:00:24.310Z",
+  "scope": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false
+  },
+  "invariant": "active external_mappings grouped by source and card_print_id must not have more than one row unless source-specific alias governance allows it",
+  "totals": {
+    "duplicate_source_card_groups": 5,
+    "duplicate_mapping_rows_in_groups": 13,
+    "english_physical_groups": 4,
+    "pocket_groups": 1
+  },
+  "by_source": {
+    "justtcg": 4,
+    "tcgdex": 1
+  },
+  "by_domain": {
+    "pokemon_eng_standard": 4,
+    "tcg_pocket_excluded": 1
+  },
+  "by_classification": {
+    "source_specific_alias_review": 3,
+    "pocket_domain_review": 1,
+    "tcgdex_multiple_ids_same_card_review": 1
+  },
+  "by_set_top_50": {
+    "svp": 3,
+    "A4a": 1,
+    "cel25c": 1
+  },
+  "groups": [
+    {
+      "source": "justtcg",
+      "card_print_id": "ae1896de-c635-4487-a04f-c63809a14f57",
+      "card_name": "Yamper",
+      "number": "074",
+      "number_plain": "074",
+      "set_code": "A4a",
+      "set_name": "Secluded Springs",
+      "identity_domain": "tcg_pocket_excluded",
+      "gv_id": "GV-TCGP-A4A-074",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-battle-academy-2022-yamper-074-202-1-pikachu-stamped-promo",
+        "pokemon-battle-academy-2022-yamper-074-202-58-pikachu-stamped-promo"
+      ],
+      "mapping_ids": [
+        "120478",
+        "120466"
+      ],
+      "child_printing_count": 3,
+      "classification": "pocket_domain_review"
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "0e0cd908-9985-4ca7-bda4-e2f8169e7970",
+      "card_name": "Mareep",
+      "number": "107",
+      "number_plain": "107",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PR-SV-107",
+      "active_mapping_count": 4,
+      "external_id_count": 4,
+      "external_ids": [
+        "pokemon-battle-academy-2024-mareep-pikachu-19-promo",
+        "pokemon-battle-academy-2024-mareep-pikachu-2-promo",
+        "pokemon-battle-academy-2024-mareep-pikachu-41-promo",
+        "pokemon-battle-academy-2024-mareep-pikachu-45-promo"
+      ],
+      "mapping_ids": [
+        "120592",
+        "120558",
+        "120521",
+        "120601"
+      ],
+      "child_printing_count": 1,
+      "classification": "source_specific_alias_review"
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "53976e9b-e242-4a0b-8b4b-da1e5a4fc2bc",
+      "card_name": "Flaaffy",
+      "number": "108",
+      "number_plain": "108",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PR-SV-108",
+      "active_mapping_count": 3,
+      "external_id_count": 3,
+      "external_ids": [
+        "pokemon-battle-academy-2024-flaaffy-pikachu-37-promo",
+        "pokemon-battle-academy-2024-flaaffy-pikachu-5-promo",
+        "pokemon-battle-academy-2024-flaaffy-pikachu-53-promo"
+      ],
+      "mapping_ids": [
+        "120523",
+        "120538",
+        "120539"
+      ],
+      "child_printing_count": 1,
+      "classification": "source_specific_alias_review"
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "d7ed85b3-8ef6-42a0-b890-55825732f6d9",
+      "card_name": "Ampharos",
+      "number": "109",
+      "number_plain": "109",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PR-SV-109",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-battle-academy-2024-ampharos-pikachu-28-promo",
+        "pokemon-battle-academy-2024-ampharos-pikachu-47-promo"
+      ],
+      "mapping_ids": [
+        "120595",
+        "120541"
+      ],
+      "child_printing_count": 1,
+      "classification": "source_specific_alias_review"
+    },
+    {
+      "source": "tcgdex",
+      "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+      "card_name": "Venusaur",
+      "number": "15",
+      "number_plain": "15",
+      "set_code": "cel25c",
+      "set_name": "Celebrations: Classic Collection",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-CEL-15CC",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "cel25-15A",
+        "cel25-15A1"
+      ],
+      "mapping_ids": [
+        "114430",
+        "114432"
+      ],
+      "child_printing_count": 1,
+      "classification": "tcgdex_multiple_ids_same_card_review"
+    }
+  ],
+  "recommended_next_step": "source_specific_readiness_rules_before_any_external_mapping_deactivation",
+  "fingerprint_sha256": "815215fe8f47aa25ddbfe21ff1f445776e925b8fbe9ab651a46c962b519f08ca"
+}

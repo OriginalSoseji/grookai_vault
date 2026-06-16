@@ -1,0 +1,51 @@
+{
+  "version": "GV_ID_COMPLETION_PHYSICAL_AND_POCKET_CHECKPOINT_V1",
+  "date": "2026-06-16",
+  "scope": {
+    "english_physical_namespace": "GV-PK-*",
+    "pocket_namespace": "GV-TCGP-*",
+    "pocket_domain": "tcg_pocket_excluded",
+    "pocket_promoted_to_physical_canon": false,
+    "migrations_created": false,
+    "image_writes_performed": false,
+    "global_apply_performed": false
+  },
+  "final_counts": {
+    "english_physical_parent_gv_id_missing": 0,
+    "english_physical_child_printing_gv_id_missing": 0,
+    "pocket_parent_gv_id_missing": 0,
+    "pocket_child_printing_gv_id_missing": 0,
+    "pocket_duplicate_parent_groups": 0,
+    "pocket_parent_rows_after_cleanup": 2012,
+    "pocket_child_printing_rows_after_cleanup": 6036,
+    "preflight_card_prints_missing_gv_id": 0
+  },
+  "pocket_apply": {
+    "package_id": "POCKET-GVID-01-SOURCE-ALIAS-CLEANUP-AND-GVID-BACKFILL",
+    "fingerprint_sha256": "75e99091084a71d1e8780136d20eeafb4660ef9af3390fbf601191bf6c7902f7",
+    "proof_sha256": "89f59875340da2133a55675c5dcc7efac976a86df3643f30f4e6594dbcf883fc",
+    "source_alias_duplicate_parent_cleanups": 1138,
+    "tcgdex_mapping_transfers": 1138,
+    "duplicate_pocket_child_rows_deleted": 3414,
+    "surviving_pocket_parent_gv_id_updates": 2012,
+    "pocket_child_printing_gv_id_updates": 6036
+  },
+  "verification": {
+    "build_card_print_gv_id_tests": "passed",
+    "build_pocket_gv_id_tests": "passed",
+    "contract_scope_test": "passed",
+    "git_diff_check": "passed",
+    "supabase_migrations_status": "clean",
+    "npm_run_preflight": "PASS_WITH_DEFERRED_DEBT",
+    "critical_failures": 0
+  },
+  "remaining_non_gv_id_debt": {
+    "external_mappings_source_card_duplicates": 195,
+    "external_mapping_gaps": 675,
+    "no_child_printing_parent_rows": 1083,
+    "trait_gaps": 831,
+    "species_gaps": 3740,
+    "catalog_metadata_gaps": 139
+  },
+  "next_recommended_lane": "read_only_external_mappings_source_card_duplicates_triage"
+}

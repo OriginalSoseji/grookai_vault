@@ -1,0 +1,179 @@
+{
+  "version": "ENRICH31B_MODIFIER_PARENT_GV_ID_GUARDED_DRY_RUN_V1",
+  "package_id": "ENRICH-31B-MODIFIER-PARENT-GV-ID-BACKFILL",
+  "generated_at": "2026-06-16T17:56:10.086Z",
+  "package_fingerprint_sha256": "c5b9b3eb58342bbb2e7e7499a79be2aac503d69e63f062990e79b740740fdbb7",
+  "pass": true,
+  "scope": {
+    "target_rows": 4,
+    "writes_tested_inside_rollback": [
+      "card_prints.gv_id"
+    ],
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "child_writes_performed": false,
+    "identity_writes_performed": false,
+    "deletes_performed": false
+  },
+  "targets": [
+    {
+      "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+      "set_code": "basep",
+      "number": "1",
+      "number_plain": "1",
+      "card_name": "Pikachu",
+      "printed_identity_modifier": "edition:first_edition",
+      "proposed_gv_id": "GV-PK-PR-1-FIRST-EDITION"
+    },
+    {
+      "card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+      "set_code": "swsh2",
+      "number": "154",
+      "number_plain": "154",
+      "card_name": "Boss's Orders (Giovanni)",
+      "printed_identity_modifier": "trainer_subject:giovanni",
+      "proposed_gv_id": "GV-PK-RCL-154-GIOVANNI"
+    },
+    {
+      "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+      "set_code": "swsh4.5",
+      "number": "58",
+      "number_plain": "58",
+      "card_name": "Boss's Orders (Lysandre)",
+      "printed_identity_modifier": "trainer_subject:lysandre",
+      "proposed_gv_id": "GV-PK-SHF-58-LYSANDRE"
+    },
+    {
+      "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+      "set_code": "swsh4.5",
+      "number": "60",
+      "number_plain": "60",
+      "card_name": "Professor's Research (Professor Juniper)",
+      "printed_identity_modifier": "trainer_subject:professor_juniper",
+      "proposed_gv_id": "GV-PK-SHF-60-PROFESSOR-JUNIPER"
+    }
+  ],
+  "execution": {
+    "before_snapshot": {
+      "captured_at": "2026-06-16T17:56:09.341Z",
+      "rows": [
+        {
+          "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+          "set_code": "basep",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Pikachu",
+          "variant_key": null,
+          "printed_identity_modifier": "edition:first_edition",
+          "identity_domain": "pokemon_eng_standard",
+          "gv_id": null
+        },
+        {
+          "card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+          "set_code": "swsh2",
+          "number": "154",
+          "number_plain": "154",
+          "card_name": "Boss's Orders (Giovanni)",
+          "variant_key": "",
+          "printed_identity_modifier": "trainer_subject:giovanni",
+          "identity_domain": "pokemon_eng_standard",
+          "gv_id": null
+        },
+        {
+          "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+          "set_code": "swsh4.5",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Boss's Orders (Lysandre)",
+          "variant_key": "",
+          "printed_identity_modifier": "trainer_subject:lysandre",
+          "identity_domain": "pokemon_eng_standard",
+          "gv_id": null
+        },
+        {
+          "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+          "set_code": "swsh4.5",
+          "number": "60",
+          "number_plain": "60",
+          "card_name": "Professor's Research (Professor Juniper)",
+          "variant_key": "",
+          "printed_identity_modifier": "trainer_subject:professor_juniper",
+          "identity_domain": "pokemon_eng_standard",
+          "gv_id": null
+        }
+      ],
+      "hash_sha256": "0d1e934406db1228d6f4dae7282c1d38317be8e4b48a886933089f0339c08b54",
+      "counts": {
+        "target_rows": 4,
+        "captured_rows": 4,
+        "rows_with_gv_id": 0,
+        "rows_without_gv_id": 4
+      }
+    },
+    "inside_transaction_proof": {
+      "updated_rows": 4,
+      "proof": {
+        "target_count": 4,
+        "matching_gv_count": 4,
+        "duplicate_gv_id_groups": 0
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-16T17:56:10.086Z",
+      "rows": [
+        {
+          "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+          "set_code": "basep",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Pikachu",
+          "variant_key": null,
+          "printed_identity_modifier": "edition:first_edition",
+          "identity_domain": "pokemon_eng_standard",
+          "gv_id": null
+        },
+        {
+          "card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+          "set_code": "swsh2",
+          "number": "154",
+          "number_plain": "154",
+          "card_name": "Boss's Orders (Giovanni)",
+          "variant_key": "",
+          "printed_identity_modifier": "trainer_subject:giovanni",
+          "identity_domain": "pokemon_eng_standard",
+          "gv_id": null
+        },
+        {
+          "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+          "set_code": "swsh4.5",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Boss's Orders (Lysandre)",
+          "variant_key": "",
+          "printed_identity_modifier": "trainer_subject:lysandre",
+          "identity_domain": "pokemon_eng_standard",
+          "gv_id": null
+        },
+        {
+          "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+          "set_code": "swsh4.5",
+          "number": "60",
+          "number_plain": "60",
+          "card_name": "Professor's Research (Professor Juniper)",
+          "variant_key": "",
+          "printed_identity_modifier": "trainer_subject:professor_juniper",
+          "identity_domain": "pokemon_eng_standard",
+          "gv_id": null
+        }
+      ],
+      "hash_sha256": "0d1e934406db1228d6f4dae7282c1d38317be8e4b48a886933089f0339c08b54",
+      "counts": {
+        "target_rows": 4,
+        "captured_rows": 4,
+        "rows_with_gv_id": 0,
+        "rows_without_gv_id": 4
+      }
+    },
+    "dry_run_status": "completed_rolled_back_no_durable_change"
+  }
+}

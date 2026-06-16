@@ -53,10 +53,71 @@ import { getOwnedObjectSummaryForCard, type OwnedObjectSummary } from "@/lib/vau
 
 type DetailItem = { label: string; value: string };
 
-function formatPrintedTotal(number: string, printedTotal?: number) {
-  if (!number || typeof printedTotal !== "number") return undefined;
+const PRINTED_TOTAL_FALLBACK_BY_SET_CODE: Record<string, string> = {
+  // Chaos Rising has 122 canonical parent rows after variants, but its printed
+  // collector identity uses the on-card denominator 086.
+  me04: "086",
+};
+
+function formatPrintedTotal(number: string, printedTotal?: number | string) {
+  if (!number || printedTotal === undefined || printedTotal === null) return undefined;
+  const explicitPrintedTotal = typeof printedTotal === "string" ? printedTotal.trim() : "";
+  if (explicitPrintedTotal) return explicitPrintedTotal;
+  if (typeof printedTotal !== "number") return undefined;
   const prefix = number.match(/^[A-Za-z]+/)?.[0] ?? "";
-  return `${prefix}${printedTotal}`;
+  const numericWidth = number.match(/\d+/)?.[0]?.length ?? 0;
+  const paddedTotal = numericWidth > 0 ? String(printedTotal).padStart(numericWidth, "0") : String(printedTotal);
+  return `${prefix}${paddedTotal}`;
+}
+
+function getPrintedSetAbbrevFallback(card: { printed_set_abbrev?: string; set_code?: string; gv_id?: string }) {
+  const explicitAbbrev = card.printed_set_abbrev?.trim().toUpperCase();
+  if (explicitAbbrev) return explicitAbbrev;
+
+  const gvIdAbbrev = card.gv_id?.match(/^GV-PK-([A-Z0-9]+)-/i)?.[1]?.trim().toUpperCase();
+  if (gvIdAbbrev && gvIdAbbrev !== card.set_code?.trim().toUpperCase()) return gvIdAbbrev;
+
+  return undefined;
+}
+
+function formatCollectorIdentity({
+  printedSetAbbrev,
+  printedNumber,
+  printedTotal,
+}: {
+  printedSetAbbrev?: string;
+  printedNumber?: string | null;
+  printedTotal?: number | string;
+}) {
+  const normalizedNumber = printedNumber?.trim();
+  if (!normalizedNumber) return undefined;
+
+  const normalizedAbbrev = printedSetAbbrev?.trim().toUpperCase();
+  const normalizedTotal = formatPrintedTotal(normalizedNumber, printedTotal);
+  const normalizedPrintedNumber = normalizedTotal ? `${normalizedNumber}/${normalizedTotal}` : normalizedNumber;
+  return [normalizedAbbrev, normalizedPrintedNumber]
+    .filter((value): value is string => Boolean(value))
+    .join(" ");
+}
+
+function getPrintedTotalFallback(card: { set_code?: string }) {
+  const normalizedSetCode = card.set_code?.trim().toLowerCase();
+  return normalizedSetCode ? PRINTED_TOTAL_FALLBACK_BY_SET_CODE[normalizedSetCode] : undefined;
+}
+
+function buildPokemonTcgHiresImageUrl(card: { set_code?: string; number?: string; number_plain?: string }) {
+  const setCode = card.set_code?.trim().toLowerCase();
+  const cardNumber = (card.number_plain ?? card.number)?.trim();
+  if (!setCode || !cardNumber) return null;
+
+  const looksPokemonTcgCompatible =
+    /^(base|gym|neo|ecard|ex|dp|pl|hgss|col|bw|xy|sm|swsh|sv|pop|sma|smp|svp|xyp|bwp|np|det|cel|g|ru|dv|pgo|fut)/.test(setCode);
+  if (!looksPokemonTcgCompatible) return null;
+
+  const normalizedNumber = cardNumber.match(/^\d+$/) ? String(Number(cardNumber)) : cardNumber;
+  if (!normalizedNumber || normalizedNumber === "NaN") return null;
+
+  return `https://images.pokemontcg.io/${encodeURIComponent(setCode)}/${encodeURIComponent(normalizedNumber)}_hires.png`;
 }
 
 function formatReleaseDate(releaseDate?: string) {
@@ -170,11 +231,15 @@ export default async function CardPage({
       ? selectedRoutePrinting
       : resolvedCard;
   const resolvedCardImagePresentation = resolveCardImagePresentation(displayedImageTruthSource);
+  const pokemonTcgHiresImageUrl = buildPokemonTcgHiresImageUrl(resolvedCard);
   const resolvedCardImageSrc =
-    normalizeCardImageUrl(selectedRoutePrintingImageUrl ?? resolvedCardFallbackImageUrl) ?? undefined;
-  const resolvedCardImageFallback = resolvedCardImagePresentation.displayImageKind === "exact"
-    ? buildTcgDexImageUrl(resolvedCard.tcgdex_external_id)
-    : null;
+    normalizeCardImageUrl(selectedRoutePrintingImageUrl ?? pokemonTcgHiresImageUrl ?? resolvedCardFallbackImageUrl) ??
+    undefined;
+  const resolvedCardImageFallback =
+    normalizeCardImageUrl(resolvedCardFallbackImageUrl) ??
+    (resolvedCardImagePresentation.displayImageKind === "exact"
+      ? buildTcgDexImageUrl(resolvedCard.tcgdex_external_id)
+      : null);
 
   async function addToVaultAction(
     _previousState: AddToVaultActionResult | null,
@@ -390,15 +455,13 @@ export default async function CardPage({
     : null;
   const illustratorName = typeof resolvedCard.artist === "string" ? resolvedCard.artist.trim() : "";
   const displayIdentity = getDisplayPrintedIdentity(resolvedCard);
-  const printedTotal = formatPrintedTotal(displayIdentity.displayPrintedNumber ?? "", resolvedCard.printed_total);
-  const collectorIdentity = displayIdentity.displayPrintedNumber
-    ? `${displayIdentity.displayPrintedNumber}${printedTotal ? `/${printedTotal}` : ""}`
-    : null;
-  const collectorNumberLine = collectorIdentity
-    ? [displayIdentity.displayPrintedSetAbbrev, collectorIdentity]
-        .filter((value): value is string => Boolean(value))
-        .join(" ")
-    : undefined;
+  const printedSetAbbrevLabel =
+    displayIdentity.displayPrintedSetAbbrev?.trim().toUpperCase() ?? getPrintedSetAbbrevFallback(resolvedCard);
+  const collectorNumberLine = formatCollectorIdentity({
+    printedSetAbbrev: printedSetAbbrevLabel,
+    printedNumber: displayIdentity.displayPrintedNumber,
+    printedTotal: resolvedCard.printed_total ?? getPrintedTotalFallback(resolvedCard),
+  });
   const releaseDateLabel = formatReleaseDate(resolvedCard.release_date);
   const variantLabels = getVariantLabels(resolvedCard, 3);
   const ownedPrintingCounts =
@@ -493,7 +556,7 @@ export default async function CardPage({
           />
         ) : null}
         <div className="relative z-10 grid gap-6 p-5 sm:p-6 xl:grid-cols-[minmax(280px,360px)_minmax(0,1fr)_300px] xl:gap-8 xl:p-8">
-          <div className="gv-card-detail-image-shell rounded-[24px] border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-4 shadow-sm">
+          <div className="gv-card-detail-image-shell overflow-hidden rounded-[20px] border border-slate-200/80 bg-white/72 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.08)] ring-1 ring-white/70 backdrop-blur dark:border-slate-700/70 dark:bg-slate-950/50 dark:shadow-[0_18px_45px_rgba(0,0,0,0.35)] dark:ring-white/10 sm:p-4">
             <CardZoomModal
               src={resolvedCardImageSrc}
               fallbackSrc={resolvedCardImageFallback ?? undefined}
@@ -501,8 +564,8 @@ export default async function CardPage({
                 resolvedDisplayIdentity.display_name,
                 displayedImageTruthSource,
               )}
-              imageClassName="aspect-[3/4] max-h-[430px] w-full cursor-zoom-in object-contain sm:max-h-[560px]"
-              fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[18px] bg-slate-100 px-4 text-center text-sm text-slate-500"
+              imageClassName="aspect-[3/4] max-h-[430px] w-full cursor-zoom-in rounded-[14px] object-contain sm:max-h-[560px]"
+              fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[14px] bg-slate-100/80 px-4 text-center text-sm text-slate-500 dark:bg-slate-900/70 dark:text-slate-400"
             />
             {resolvedCardImagePresentation.compactBadgeLabel ? (
               <div className="mt-3 flex flex-wrap gap-2">
@@ -538,31 +601,40 @@ export default async function CardPage({
             </div>
 
             <div className="space-y-3">
+              {(setName || setCodeLabel) ? (
+                <div className="flex flex-wrap items-center gap-2">
+                  {setCodeLabel ? (
+                    <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-800">
+                      {setCodeLabel}
+                    </span>
+                  ) : null}
+                  {setName ? (
+                    setHref ? (
+                      <Link
+                        href={setHref}
+                        className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600 underline-offset-4 hover:border-slate-300 hover:text-slate-950 hover:underline"
+                      >
+                        {setName}
+                      </Link>
+                    ) : (
+                      <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
+                        {setName}
+                      </span>
+                    )
+                  ) : null}
+                </div>
+              ) : null}
               <h1 className="gv-hi-card-identity text-4xl tracking-tight sm:text-5xl">
                 {resolvedDisplayIdentity.base_name}
               </h1>
               {identitySubtitle ? (
                 <p className="gv-hi-metadata text-sm font-medium sm:text-base">{identitySubtitle}</p>
               ) : null}
-              {(setName || setCodeLabel) ? (
-                <div className="flex flex-wrap items-center gap-3 text-lg text-slate-700">
-                  {setName ? (
-                    setHref ? (
-                      <Link href={setHref} className="font-medium underline-offset-4 hover:text-slate-950 hover:underline">
-                        {setName}
-                      </Link>
-                    ) : (
-                      <span className="font-medium">{setName}</span>
-                    )
-                  ) : null}
-                  {setCodeLabel ? (
-                    <span className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
-                      {setCodeLabel}
-                    </span>
-                  ) : null}
-                </div>
+              {collectorNumberLine ? (
+                <p className="inline-flex w-fit rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-mono text-sm font-semibold uppercase tracking-[0.12em] text-slate-700">
+                  {collectorNumberLine}
+                </p>
               ) : null}
-              {collectorNumberLine ? <p className="text-lg font-medium text-slate-700">{collectorNumberLine}</p> : null}
             </div>
 
             {(resolvedCard.rarity || variantLabels.length > 0) ? (

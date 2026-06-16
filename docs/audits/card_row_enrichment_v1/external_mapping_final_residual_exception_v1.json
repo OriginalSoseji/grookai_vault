@@ -1,0 +1,122 @@
+{
+  "version": "EXTERNAL_MAPPING_FINAL_RESIDUAL_EXCEPTION_V1",
+  "generated_at": "2026-06-16T23:00:31.884Z",
+  "scope": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "residual_groups_reviewed": 5
+  },
+  "summary": {
+    "external_mappings_source_card_duplicates": 5,
+    "external_mappings_source_external_duplicates": 0,
+    "deterministic_write_ready_groups": 0,
+    "blocked_exception_groups": 5,
+    "public_identity_impact": "none",
+    "printing_truth_impact": "none",
+    "search_truth_impact": "none"
+  },
+  "principle": "These rows are preserved because no deterministic canonical source-owner rule currently exists. They must not be auto-deactivated, deleted, merged, or treated as public card truth until source-specific governance exists.",
+  "exception_groups": [
+    {
+      "source": "justtcg",
+      "set_code": "A4a",
+      "set_name": "Secluded Springs",
+      "identity_domain": "tcg_pocket_excluded",
+      "gv_id": "GV-TCGP-A4A-074",
+      "card_name": "Yamper",
+      "number": "074",
+      "active_mapping_count": 2,
+      "external_ids": [
+        "pokemon-battle-academy-2022-yamper-074-202-1-pikachu-stamped-promo",
+        "pokemon-battle-academy-2022-yamper-074-202-58-pikachu-stamped-promo"
+      ],
+      "blocked_reason": "Pocket product aliases must be governed under Pocket-specific source policy, not English physical cleanup.",
+      "required_future_rule": "Pocket product/source alias governance"
+    },
+    {
+      "source": "justtcg",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PR-SV-107",
+      "card_name": "Mareep",
+      "number": "107",
+      "active_mapping_count": 4,
+      "external_ids": [
+        "pokemon-battle-academy-2024-mareep-pikachu-19-promo",
+        "pokemon-battle-academy-2024-mareep-pikachu-2-promo",
+        "pokemon-battle-academy-2024-mareep-pikachu-41-promo",
+        "pokemon-battle-academy-2024-mareep-pikachu-45-promo"
+      ],
+      "blocked_reason": "All active JustTCG routes are Battle Academy product aliases. There is no canonical non-product owner route to preserve aliases against.",
+      "required_future_rule": "JustTCG product-only alias owner policy"
+    },
+    {
+      "source": "justtcg",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PR-SV-108",
+      "card_name": "Flaaffy",
+      "number": "108",
+      "active_mapping_count": 3,
+      "external_ids": [
+        "pokemon-battle-academy-2024-flaaffy-pikachu-37-promo",
+        "pokemon-battle-academy-2024-flaaffy-pikachu-5-promo",
+        "pokemon-battle-academy-2024-flaaffy-pikachu-53-promo"
+      ],
+      "blocked_reason": "All active JustTCG routes are Battle Academy product aliases. There is no canonical non-product owner route to preserve aliases against.",
+      "required_future_rule": "JustTCG product-only alias owner policy"
+    },
+    {
+      "source": "justtcg",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PR-SV-109",
+      "card_name": "Ampharos",
+      "number": "109",
+      "active_mapping_count": 2,
+      "external_ids": [
+        "pokemon-battle-academy-2024-ampharos-pikachu-28-promo",
+        "pokemon-battle-academy-2024-ampharos-pikachu-47-promo"
+      ],
+      "blocked_reason": "All active JustTCG routes are Battle Academy product aliases. There is no canonical non-product owner route to preserve aliases against.",
+      "required_future_rule": "JustTCG product-only alias owner policy"
+    },
+    {
+      "source": "tcgdex",
+      "set_code": "cel25c",
+      "set_name": "Celebrations: Classic Collection",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-CEL-15CC",
+      "card_name": "Venusaur",
+      "number": "15",
+      "active_mapping_count": 2,
+      "external_ids": [
+        "cel25-15A",
+        "cel25-15A1"
+      ],
+      "blocked_reason": "TCGdex Classic Collection source IDs use suffix-like identifiers that do not map deterministically to printed number 15 under the current parser/owner policy.",
+      "required_future_rule": "TCGdex Classic Collection source alias policy"
+    }
+  ],
+  "verification_sources": {
+    "triage_report": "docs/audits/card_row_enrichment_v1/external_mapping_duplicate_triage_v1.json",
+    "residual_governance_report": "docs/audits/card_row_enrichment_v1/external_mapping_alias_residual_governance_plan_v1.json",
+    "checkpoint": "docs/checkpoints/card_row_enrichment/20260616_external_mapping_alias_governance_checkpoint_v1.md"
+  },
+  "next_allowed_actions": [
+    "Leave these rows active as documented deferred governance debt.",
+    "Create source-specific alias owner policy before any future deactivation.",
+    "Keep them out of public identity/printing truth semantics."
+  ],
+  "forbidden_actions": [
+    "Do not auto-deactivate these rows.",
+    "Do not delete these rows.",
+    "Do not infer canonical owner from product alias strings.",
+    "Do not collapse Pocket aliases into English physical canon."
+  ],
+  "fingerprint_sha256": "9d5f12ebf4c40f88a15020cdaea415bf3f23a8e60b56c4c8c0cf14acae0fd2fb"
+}

@@ -5,16 +5,16 @@
 - Audit only: true
 - DB writes performed: false
 - Migrations created: false
-- Fingerprint: `b7766d5aacaa1d0d0cc910d9fb907f05bfb202aa9ac54c78b4671735ed60797a`
+- Fingerprint: `02fa11e425135466ff26800f5d613ff636f27ba55bfc6d55dd87fe8c84427f23`
 
 ## Row Universe
 
 | metric | rows |
 | --- | --- |
-| english_physical_parent_rows | 23078 |
-| english_physical_child_printing_rows | 38111 |
-| english_physical_parent_gap_rows | 5469 |
-| english_physical_child_gap_rows | 13692 |
+| english_physical_parent_rows | 22791 |
+| english_physical_child_printing_rows | 37651 |
+| english_physical_parent_gap_rows | 5208 |
+| english_physical_child_gap_rows | 12999 |
 
 ## Core Display Readiness
 
@@ -24,7 +24,7 @@
 | active_finish_key coverage | 100% |
 | non_provisional child printings | 100% |
 | current display missing rows | 0 |
-| exact variant image backlog | 13831 |
+| exact variant image backlog | 14501 |
 | exact image promote-ready rows now | 0 |
 
 ## Surface Decisions

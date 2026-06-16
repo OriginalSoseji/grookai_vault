@@ -1,0 +1,55 @@
+{
+  "version": "EXTERNAL_MAPPING_ALIAS_SIDECAR_SCHEMA_REAL_APPLY_V1",
+  "generated_at": "2026-06-16T22:00:00.000Z",
+  "package_id": "EXTMAP-ALIAS-01A-SIDECAR-SCHEMA-CREATE",
+  "migration": "20260616161500_create_external_mapping_aliases_sidecar_v1.sql",
+  "fingerprint": "3662aec407767ede5d8264627c21f99d58c9c6d9902299384c10eeb17fab0a64",
+  "sql_hash": "f8181087b137446ba104e887ee742a6282a0b31681fd75b3e7448d047a22c94d",
+  "scope": {
+    "schema_created": true,
+    "alias_rows_inserted": 0,
+    "external_mappings_deactivated": 0,
+    "cleanup_performed": false,
+    "parent_writes": 0,
+    "child_writes": 0,
+    "identity_writes": 0,
+    "image_writes": 0,
+    "global_apply": false
+  },
+  "supabase_apply": {
+    "method": "supabase db push",
+    "scoped_temp_workdir_used": true,
+    "excluded_existing_pending_migration": "20260523183000_printing_truth_review_sidecar_v1.sql",
+    "dry_run_would_push_only": [
+      "20260616161500_create_external_mapping_aliases_sidecar_v1.sql"
+    ],
+    "remote_migration_applied": true
+  },
+  "remote_readback": {
+    "table_exists": true,
+    "table": "public.external_mapping_aliases",
+    "row_count": 0,
+    "indexes": [
+      "external_mapping_aliases_active_source_alias_uidx",
+      "external_mapping_aliases_card_print_idx",
+      "external_mapping_aliases_kind_idx",
+      "external_mapping_aliases_mapping_idx",
+      "external_mapping_aliases_pkey"
+    ]
+  },
+  "verification": {
+    "npm_run_preflight": "PASS_WITH_DEFERRED_DEBT; critical_fail_checks=0",
+    "contract_scope_test": "passed",
+    "git_diff_check_migration": "passed",
+    "supabase_migration_list": {
+      "20260616161500": "local_and_remote",
+      "20260523183000": "still_local_only_pending"
+    }
+  },
+  "next_package": {
+    "package_id": "EXTMAP-ALIAS-01B-PRODUCT-ALIAS-PRESERVATION",
+    "dry_run_first": true,
+    "projected_alias_rows": 214,
+    "source": "justtcg"
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "version": "EXTERNAL_MAPPING_ALIAS_02A_RESIDUAL_ALIAS_CLEANUP_REAL_APPLY_V1",
+  "package_id": "EXTMAP-ALIAS-03A-RESIDUAL-POKEMONAPI-SUFFIX-ALIAS-CLEANUP",
+  "generated_at": "2026-06-16T22:56:55.262Z",
+  "mode": "real_apply",
+  "package_fingerprint_sha256": "f9b89f1c9ee97bc65abf6cdf3d31c26b0f810c7c4dacd502ffe2c6f6a082ba09",
+  "scope": {
+    "target_alias_rows": 3,
+    "target_mapping_deactivations": 3,
+    "tables_written": [
+      "public.external_mapping_aliases",
+      "public.external_mappings.active"
+    ],
+    "forbidden": [
+      "card_prints writes",
+      "card_printings writes",
+      "identity writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ],
+    "migrations_created": false,
+    "rows_deleted": 0
+  },
+  "preflight": {
+    "target_alias_rows": 3,
+    "distinct_source_alias_rows": 3,
+    "missing_canonical_external_id_count": 0,
+    "alias_equals_canonical_count": 0,
+    "missing_active_canonical_mapping_count": 0,
+    "missing_active_alias_mapping_count": 0,
+    "existing_active_alias_count": 0
+  },
+  "before_counts": {
+    "source_card_duplicate_groups": 16,
+    "source_external_duplicate_groups": 0,
+    "active_alias_rows": 269
+  },
+  "inside_counts": {
+    "source_card_duplicate_groups": 13,
+    "source_external_duplicate_groups": 0,
+    "active_alias_rows": 272
+  },
+  "after_counts": {
+    "source_card_duplicate_groups": 13,
+    "source_external_duplicate_groups": 0,
+    "active_alias_rows": 272
+  },
+  "execution": {
+    "transaction_status": "committed",
+    "inserted_alias_rows": 3,
+    "distinct_preserved_mapping_rows": 3,
+    "deactivated_mapping_rows": 3
+  },
+  "before_snapshot": {
+    "row_count": 6,
+    "hash_sha256": "aa3b4955680f22227867f5708b9aeb1868ab74636731de856dd2fa366c045270",
+    "counts": {
+      "alias_external_mapping": 3,
+      "canonical_external_mapping": 3
+    }
+  },
+  "after_snapshot": {
+    "row_count": 9,
+    "hash_sha256": "0c54471efa49bce00d35194b25aa0dbacc596136edeb31e84245494130845725",
+    "counts": {
+      "alias_external_mapping": 3,
+      "canonical_external_mapping": 3,
+      "sidecar_alias": 3
+    }
+  },
+  "by_alias_kind": {
+    "suffix_alias": 3
+  },
+  "by_source": {
+    "pokemonapi": 3
+  },
+  "target_samples": [
+    {
+      "canonical_card_print_id": "cba97ba8-ae6e-4a31-965d-840bddd35de4",
+      "source": "pokemonapi",
+      "alias_external_id": "smp-SM103a",
+      "canonical_external_id_to_keep": "smp-SM103",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number SM103; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "smp",
+        "set_name": "SM Black Star Promos",
+        "card_name": "Lunala-GX",
+        "card_number": "SM103",
+        "canonical_gv_id": "GV-PK-SM-SM103",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "31ca235ea13e179248d4ebb901babb26ed9dde28dd9d9c2c06e450eba9a60a33"
+      }
+    },
+    {
+      "canonical_card_print_id": "4bedfa56-2aa0-473e-a06e-578b25f63152",
+      "source": "pokemonapi",
+      "alias_external_id": "smp-SM104a",
+      "canonical_external_id_to_keep": "smp-SM104",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number SM104; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "smp",
+        "set_name": "SM Black Star Promos",
+        "card_name": "Solgaleo-GX",
+        "card_number": "SM104",
+        "canonical_gv_id": "GV-PK-SM-SM104",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "31ca235ea13e179248d4ebb901babb26ed9dde28dd9d9c2c06e450eba9a60a33"
+      }
+    },
+    {
+      "canonical_card_print_id": "1cd4a555-b609-4ff6-8b6e-3707710115d6",
+      "source": "pokemonapi",
+      "alias_external_id": "smp-SM30a",
+      "canonical_external_id_to_keep": "smp-SM30",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number SM30; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "smp",
+        "set_name": "SM Black Star Promos",
+        "card_name": "Tapu Koko",
+        "card_number": "SM30",
+        "canonical_gv_id": "GV-PK-SM-SM30",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "31ca235ea13e179248d4ebb901babb26ed9dde28dd9d9c2c06e450eba9a60a33"
+      }
+    }
+  ],
+  "stop_findings": [],
+  "pass": true,
+  "recommended_next_step": "Regenerate external mapping duplicate triage/readiness and preflight. Remaining duplicate groups should be blocked-only residuals.",
+  "recommended_approval_text": null
+}

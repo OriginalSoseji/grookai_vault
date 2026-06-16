@@ -1,0 +1,101 @@
+{
+  "version": "EXTERNAL_MAPPING_ALIAS_SIDECAR_MIGRATION_READINESS_V1",
+  "generated_at": "2026-06-16T19:30:07.266Z",
+  "source_report": "docs/audits/card_row_enrichment_v1/external_mapping_alias_sidecar_schema_plan_v1.json",
+  "contract": "docs/contracts/EXTERNAL_MAPPING_ALIAS_GOVERNANCE_CONTRACT_V1.md",
+  "scope": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "sidecar_created": false,
+    "ddl_executed": false
+  },
+  "proposed_package_id": "EXTMAP-ALIAS-01A-SIDECAR-SCHEMA-CREATE",
+  "proposed_migration_name": "create_external_mapping_aliases_sidecar_v1",
+  "proposed_table": "public.external_mapping_aliases",
+  "draft_sql_hash_sha256": "f8181087b137446ba104e887ee742a6282a0b31681fd75b3e7448d047a22c94d",
+  "readiness_checks": [
+    {
+      "check": "external_mappings_id_type",
+      "status": "pass",
+      "evidence": "Baseline schema defines public.external_mappings.id as bigint."
+    },
+    {
+      "check": "card_print_owner_fk_shape",
+      "status": "pass",
+      "evidence": "canonical_card_print_id references public.card_prints(id), matching existing canonical owner table."
+    },
+    {
+      "check": "gen_random_uuid_available",
+      "status": "pass",
+      "evidence": "Existing migrations already use gen_random_uuid() for uuid primary keys."
+    },
+    {
+      "check": "source_alias_uniqueness",
+      "status": "pass",
+      "evidence": "Draft includes partial unique index on source + alias_external_id where active = true."
+    },
+    {
+      "check": "migration_file_created",
+      "status": "not_created",
+      "evidence": "This packet is an audit artifact only; no supabase/migrations file was created."
+    },
+    {
+      "check": "rls_policy",
+      "status": "defer",
+      "evidence": "No runtime/public exposure is authorized in the schema package; RLS/read policy should be decided before app usage."
+    }
+  ],
+  "readiness_projection": {
+    "sidecar_ready_groups": 99,
+    "projected_sidecar_alias_rows": 214,
+    "projected_canonical_mapping_deactivations_after_sidecar": 214,
+    "blocked_groups": 70,
+    "by_alias_kind": {
+      "battle_academy_alias": 168,
+      "prize_pack_alias": 34,
+      "prerelease_alias": 6,
+      "product_alias": 4,
+      "league_alias": 2
+    },
+    "by_source": {
+      "justtcg": 214
+    }
+  },
+  "draft_sql": "-- DRAFT ONLY. Do not run from this report.\ncreate table public.external_mapping_aliases (\n  id uuid primary key default gen_random_uuid(),\n  canonical_card_print_id uuid not null references public.card_prints(id) on delete cascade,\n  canonical_external_mapping_id bigint null references public.external_mappings(id) on delete set null,\n  source text not null,\n  alias_external_id text not null,\n  alias_kind text not null,\n  alias_status text not null default 'active',\n  source_domain text null,\n  evidence_reason text not null,\n  preserved_from_mapping_id bigint null references public.external_mappings(id) on delete set null,\n  created_from_audit text not null,\n  metadata jsonb not null default '{}'::jsonb,\n  active boolean not null default true,\n  created_at timestamptz not null default now(),\n  updated_at timestamptz not null default now()\n);\n\ncreate unique index external_mapping_aliases_active_source_alias_uidx\n  on public.external_mapping_aliases (source, alias_external_id)\n  where active = true;\n\ncreate index external_mapping_aliases_card_print_idx\n  on public.external_mapping_aliases (canonical_card_print_id);\n\ncreate index external_mapping_aliases_mapping_idx\n  on public.external_mapping_aliases (canonical_external_mapping_id);\n\ncreate index external_mapping_aliases_kind_idx\n  on public.external_mapping_aliases (alias_kind)\n  where active = true;",
+  "future_migration_guardrails": [
+    "Create only the sidecar table and indexes.",
+    "Do not insert alias rows in the schema migration.",
+    "Do not deactivate external_mappings in the schema migration.",
+    "Do not alter card_prints, card_printings, card_print_identity, or Master Index tables.",
+    "Do not add public app reads until RLS/API policy is explicitly approved.",
+    "Run post-migration existence and index checks before any data package."
+  ],
+  "future_data_package_after_schema": {
+    "package_id": "EXTMAP-ALIAS-01B-PRODUCT-ALIAS-PRESERVATION",
+    "scope": {
+      "projected_alias_rows": 214,
+      "source": "justtcg",
+      "allowed_alias_kinds": [
+        "battle_academy_alias",
+        "prize_pack_alias",
+        "prerelease_alias",
+        "product_alias",
+        "league_alias"
+      ]
+    },
+    "still_no_cleanup_until_after": "alias row preservation and readback proof"
+  },
+  "approval_boundary": {
+    "current_packet_authorizes": "nothing; audit artifact only",
+    "future_schema_approval_would_authorize": "creating the sidecar table and indexes only",
+    "future_schema_approval_would_not_authorize": [
+      "alias row inserts",
+      "external_mappings deactivation",
+      "cleanup",
+      "app exposure",
+      "parent or child card writes"
+    ]
+  },
+  "fingerprint_sha256": "d406c2026d841200bcc4a12796dbc1f0e8b9421cad398753cd4ec0c86287f0f5"
+}

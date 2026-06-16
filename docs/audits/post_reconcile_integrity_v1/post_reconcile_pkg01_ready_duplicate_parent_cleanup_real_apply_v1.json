@@ -1,0 +1,419 @@
+{
+  "generated_at": "2026-06-16T16:26:42.981Z",
+  "package_id": "POST-REC-01-READY-DUPLICATE-PARENT-CLEANUP",
+  "source_dry_run": "docs/audits/post_reconcile_integrity_v1/post_reconcile_pkg01_ready_duplicate_parent_cleanup_guarded_dry_run_v1.json",
+  "package_fingerprint_sha256": "6f86ad96ba603cd08db7b418b2f9dca98b8d373c1dcdde6967557df6c0755494",
+  "dry_run_sql_hash_sha256": "03c4dd83628e13bf68f4bfe085fbcb451576e284647745deb78337616a8be959",
+  "real_apply_sql_hash_sha256": "5b134cb7aaa4ad633bbb2b3da72998c5483a1c87cd64cdaa95cfd64fbc382645",
+  "safety": {
+    "db_writes_performed": true,
+    "migrations_created": false,
+    "global_apply_performed": false,
+    "parent_overwrites_performed": false,
+    "image_writes_performed": false,
+    "unsupported_cleanup_performed": false,
+    "quarantine_performed": false
+  },
+  "scope": {
+    "target_groups": 23,
+    "target_sets": [
+      "svp",
+      "swsh11"
+    ],
+    "duplicate_child_rows_from_readiness": 26,
+    "target_rows": [
+      {
+        "canonical_parent_id": "817191d0-a89d-41f0-a61e-833ffb1f85d7",
+        "duplicate_parent_id": "c60cec9b-a452-474f-acb7-61ae355ed82a",
+        "canonical_gv_id": "GV-PK-PR-SV-019",
+        "duplicate_gv_id": "GV-PK-PR-SV-19",
+        "set_code": "svp",
+        "normalized_key": "svp|19|baxcalibur||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "017bfcbe-d9de-4fa1-b1bf-c9c34c2efef8",
+        "duplicate_parent_id": "d540e969-4f37-4fca-a0ce-ea2855baf966",
+        "canonical_gv_id": "GV-PK-PR-SV-021",
+        "duplicate_gv_id": "GV-PK-PR-SV-21",
+        "set_code": "svp",
+        "normalized_key": "svp|21|murkrow||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "b455b195-3513-4a95-9d0f-4bd57e07a226",
+        "duplicate_parent_id": "f13a7a69-f7d9-4051-9816-82bdb3e1fe04",
+        "canonical_gv_id": "GV-PK-PR-SV-022",
+        "duplicate_gv_id": "GV-PK-PR-SV-22",
+        "set_code": "svp",
+        "normalized_key": "svp|22|pelipper||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "bae6ee06-ffe3-4cf6-81b5-b54341b5f1d2",
+        "duplicate_parent_id": "8558344a-3b8e-4db7-a393-1ce7908fe17d",
+        "canonical_gv_id": "GV-PK-PR-SV-025",
+        "duplicate_gv_id": "GV-PK-PR-SV-25",
+        "set_code": "svp",
+        "normalized_key": "svp|25|tinkatink||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "b9af3b2f-7c98-46c7-ba23-1b12dd41be1a",
+        "duplicate_parent_id": "b3f32041-a264-4862-8d9b-c434de23d6bb",
+        "canonical_gv_id": "GV-PK-PR-SV-026",
+        "duplicate_gv_id": "GV-PK-PR-SV-26",
+        "set_code": "svp",
+        "normalized_key": "svp|26|varoom||",
+        "duplicate_child_count": 3
+      },
+      {
+        "canonical_parent_id": "dc8ef53f-d2f6-4efb-a97d-d891fe83326c",
+        "duplicate_parent_id": "2cab3cc4-2a36-4f9e-ace3-4974d2cfb0af",
+        "canonical_gv_id": "GV-PK-PR-SV-037",
+        "duplicate_gv_id": "GV-PK-PR-SV-37",
+        "set_code": "svp",
+        "normalized_key": "svp|37|cleffa||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "637371f3-486d-4eef-850b-58f47c24104c",
+        "duplicate_parent_id": "f013f140-4022-472d-a3e4-82431f66e2b6",
+        "canonical_gv_id": "GV-PK-PR-SV-038",
+        "duplicate_gv_id": "GV-PK-PR-SV-38",
+        "set_code": "svp",
+        "normalized_key": "svp|38|togekiss||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "5d3d86e5-9da4-4cae-a42e-d38685122117",
+        "duplicate_parent_id": "aa83c51b-56c1-447e-868c-535f5c14f9e9",
+        "canonical_gv_id": "GV-PK-PR-SV-039",
+        "duplicate_gv_id": "GV-PK-PR-SV-39",
+        "set_code": "svp",
+        "normalized_key": "svp|39|mawile||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "51e53f1e-9e4f-4819-8b43-099e6ad3772b",
+        "duplicate_parent_id": "94ded563-b3b5-4c08-bc45-f3c3002c9ed7",
+        "canonical_gv_id": "GV-PK-PR-SV-045",
+        "duplicate_gv_id": "GV-PK-PR-SV-45",
+        "set_code": "svp",
+        "normalized_key": "svp|45|paradise resort||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "733c241e-8ac0-4426-a2cc-48ae987433ac",
+        "duplicate_parent_id": "34852c32-ba98-4524-884f-8920982205f9",
+        "canonical_gv_id": "GV-PK-PR-SV-047",
+        "duplicate_gv_id": "GV-PK-PR-SV-47",
+        "set_code": "svp",
+        "normalized_key": "svp|47|charmander||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "6a1b706e-06cf-4ac6-a0f9-1e0d4df5690f",
+        "duplicate_parent_id": "802bf0ba-c845-4754-9a12-cd8f75378eb9",
+        "canonical_gv_id": "GV-PK-PR-SV-048",
+        "duplicate_gv_id": "GV-PK-PR-SV-48",
+        "set_code": "svp",
+        "normalized_key": "svp|48|squirtle||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "1d04ee8c-f8ce-4796-a9f3-4dcec6d747ce",
+        "duplicate_parent_id": "ffa598ee-63e5-4d72-99d8-189aecd7c092",
+        "canonical_gv_id": "GV-PK-PR-SV-005",
+        "duplicate_gv_id": "GV-PK-PR-SV-5",
+        "set_code": "svp",
+        "normalized_key": "svp|5|quaquaval||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "7714a551-eb7f-4732-9cf4-44c1d098bcc3",
+        "duplicate_parent_id": "ccf0bf34-0271-4fd1-b77e-95095906b8ac",
+        "canonical_gv_id": "GV-PK-PR-SV-058",
+        "duplicate_gv_id": "GV-PK-PR-SV-58",
+        "set_code": "svp",
+        "normalized_key": "svp|58|iron bundle||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "6b292ee1-fd38-454b-9082-1ff6eb4ee06e",
+        "duplicate_parent_id": "27c3cc72-a45b-47bc-88b6-deaddb5a7c5f",
+        "canonical_gv_id": "GV-PK-PR-SV-059",
+        "duplicate_gv_id": "GV-PK-PR-SV-59",
+        "set_code": "svp",
+        "normalized_key": "svp|59|xatu||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "01dbd447-78e7-4cdf-86a4-5d4520de8619",
+        "duplicate_parent_id": "87432ed1-f1f6-4019-8c9e-20cc7f7c9a3f",
+        "canonical_gv_id": "GV-PK-PR-SV-006",
+        "duplicate_gv_id": "GV-PK-PR-SV-6",
+        "set_code": "svp",
+        "normalized_key": "svp|6|pawmot||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "f9f3b38c-ae15-4f6e-b775-2adf115cf37e",
+        "duplicate_parent_id": "18b4c58c-8126-4256-ad07-4c1e62382835",
+        "canonical_gv_id": "GV-PK-PR-SV-007",
+        "duplicate_gv_id": "GV-PK-PR-SV-7",
+        "set_code": "svp",
+        "normalized_key": "svp|7|hawlucha||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "71663533-9094-4b88-b52f-5cedb2ee0a62",
+        "duplicate_parent_id": "70f39107-7bba-412a-8303-1fc923038a08",
+        "canonical_gv_id": "GV-PK-PR-SV-091",
+        "duplicate_gv_id": "GV-PK-PR-SV-91",
+        "set_code": "svp",
+        "normalized_key": "svp|91|koraidon||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "2de2e34e-a1bb-4879-ac3f-808a7c01fe20",
+        "duplicate_parent_id": "7195cbfe-f3ee-447e-9fcf-53dd2828663c",
+        "canonical_gv_id": "GV-PK-PR-SV-092",
+        "duplicate_gv_id": "GV-PK-PR-SV-92",
+        "set_code": "svp",
+        "normalized_key": "svp|92|miraidon||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "b4a6a123-4085-47a1-a02a-dd7e16a39b65",
+        "duplicate_parent_id": "1bf53554-69bf-417b-9366-cc0db213b430",
+        "canonical_gv_id": "GV-PK-LOR-047",
+        "duplicate_gv_id": "GV-PK-LOR-47",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|47|swanna||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "45432572-4dc5-42fb-88d6-58b708fc47c5",
+        "duplicate_parent_id": "1c89e6f0-9fa4-4f01-baea-2416348638de",
+        "canonical_gv_id": "GV-PK-LOR-053",
+        "duplicate_gv_id": "GV-PK-LOR-53",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|53|raichu||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "76390c0f-b80a-49aa-ac2e-1d7301163bf0",
+        "duplicate_parent_id": "17066191-eb5f-43e7-8872-7b2562fa3836",
+        "canonical_gv_id": "GV-PK-LOR-064",
+        "duplicate_gv_id": "GV-PK-LOR-64",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|64|gastly||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "0729c39a-0ebd-4f4d-b041-5388e6ed2284",
+        "duplicate_parent_id": "17d7004e-7293-4ea7-b86e-21231f6a914f",
+        "canonical_gv_id": "GV-PK-LOR-086",
+        "duplicate_gv_id": "GV-PK-LOR-86",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|86|machop||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "43288865-6901-4b77-884e-c8a48d6b36cd",
+        "duplicate_parent_id": "1d66adc2-d5db-42bc-8a75-abdf3e44c2e4",
+        "canonical_gv_id": "GV-PK-LOR-093",
+        "duplicate_gv_id": "GV-PK-LOR-93",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|93|aerodactyl vstar||",
+        "duplicate_child_count": 0
+      }
+    ]
+  },
+  "execution": {
+    "execution_status": "real_apply_completed",
+    "error_message": null,
+    "post_apply_snapshot": {
+      "captured_at": "2026-06-16T16:26:42.892Z",
+      "counts": {
+        "canonical_parent_rows": 23,
+        "duplicate_parent_rows": 0,
+        "duplicate_identity_rows": 0,
+        "duplicate_child_rows": 0,
+        "duplicate_mapping_rows": 0,
+        "duplicate_trait_rows": 0,
+        "duplicate_species_rows": 0,
+        "canonical_child_rows": 66,
+        "canonical_mapping_rows": 33,
+        "canonical_trait_rows": 23,
+        "canonical_species_rows": 22
+      },
+      "remaining_parent_rows": [
+        {
+          "id": "1d04ee8c-f8ce-4796-a9f3-4dcec6d747ce",
+          "gv_id": "GV-PK-PR-SV-005",
+          "set_code": "svp",
+          "number": "005",
+          "name": "Quaquaval"
+        },
+        {
+          "id": "01dbd447-78e7-4cdf-86a4-5d4520de8619",
+          "gv_id": "GV-PK-PR-SV-006",
+          "set_code": "svp",
+          "number": "006",
+          "name": "Pawmot"
+        },
+        {
+          "id": "f9f3b38c-ae15-4f6e-b775-2adf115cf37e",
+          "gv_id": "GV-PK-PR-SV-007",
+          "set_code": "svp",
+          "number": "007",
+          "name": "Hawlucha"
+        },
+        {
+          "id": "817191d0-a89d-41f0-a61e-833ffb1f85d7",
+          "gv_id": "GV-PK-PR-SV-019",
+          "set_code": "svp",
+          "number": "019",
+          "name": "Baxcalibur"
+        },
+        {
+          "id": "017bfcbe-d9de-4fa1-b1bf-c9c34c2efef8",
+          "gv_id": "GV-PK-PR-SV-021",
+          "set_code": "svp",
+          "number": "021",
+          "name": "Murkrow"
+        },
+        {
+          "id": "b455b195-3513-4a95-9d0f-4bd57e07a226",
+          "gv_id": "GV-PK-PR-SV-022",
+          "set_code": "svp",
+          "number": "022",
+          "name": "Pelipper"
+        },
+        {
+          "id": "bae6ee06-ffe3-4cf6-81b5-b54341b5f1d2",
+          "gv_id": "GV-PK-PR-SV-025",
+          "set_code": "svp",
+          "number": "025",
+          "name": "Tinkatink"
+        },
+        {
+          "id": "b9af3b2f-7c98-46c7-ba23-1b12dd41be1a",
+          "gv_id": "GV-PK-PR-SV-026",
+          "set_code": "svp",
+          "number": "026",
+          "name": "Varoom"
+        },
+        {
+          "id": "dc8ef53f-d2f6-4efb-a97d-d891fe83326c",
+          "gv_id": "GV-PK-PR-SV-037",
+          "set_code": "svp",
+          "number": "037",
+          "name": "Cleffa"
+        },
+        {
+          "id": "637371f3-486d-4eef-850b-58f47c24104c",
+          "gv_id": "GV-PK-PR-SV-038",
+          "set_code": "svp",
+          "number": "038",
+          "name": "Togekiss"
+        },
+        {
+          "id": "5d3d86e5-9da4-4cae-a42e-d38685122117",
+          "gv_id": "GV-PK-PR-SV-039",
+          "set_code": "svp",
+          "number": "039",
+          "name": "Mawile"
+        },
+        {
+          "id": "51e53f1e-9e4f-4819-8b43-099e6ad3772b",
+          "gv_id": "GV-PK-PR-SV-045",
+          "set_code": "svp",
+          "number": "045",
+          "name": "Paradise Resort"
+        },
+        {
+          "id": "733c241e-8ac0-4426-a2cc-48ae987433ac",
+          "gv_id": "GV-PK-PR-SV-047",
+          "set_code": "svp",
+          "number": "047",
+          "name": "Charmander"
+        },
+        {
+          "id": "6a1b706e-06cf-4ac6-a0f9-1e0d4df5690f",
+          "gv_id": "GV-PK-PR-SV-048",
+          "set_code": "svp",
+          "number": "048",
+          "name": "Squirtle"
+        },
+        {
+          "id": "7714a551-eb7f-4732-9cf4-44c1d098bcc3",
+          "gv_id": "GV-PK-PR-SV-058",
+          "set_code": "svp",
+          "number": "058",
+          "name": "Iron Bundle"
+        },
+        {
+          "id": "6b292ee1-fd38-454b-9082-1ff6eb4ee06e",
+          "gv_id": "GV-PK-PR-SV-059",
+          "set_code": "svp",
+          "number": "059",
+          "name": "Xatu"
+        },
+        {
+          "id": "71663533-9094-4b88-b52f-5cedb2ee0a62",
+          "gv_id": "GV-PK-PR-SV-091",
+          "set_code": "svp",
+          "number": "091",
+          "name": "Koraidon"
+        },
+        {
+          "id": "2de2e34e-a1bb-4879-ac3f-808a7c01fe20",
+          "gv_id": "GV-PK-PR-SV-092",
+          "set_code": "svp",
+          "number": "092",
+          "name": "Miraidon"
+        },
+        {
+          "id": "b4a6a123-4085-47a1-a02a-dd7e16a39b65",
+          "gv_id": "GV-PK-LOR-047",
+          "set_code": "swsh11",
+          "number": "047",
+          "name": "Swanna"
+        },
+        {
+          "id": "45432572-4dc5-42fb-88d6-58b708fc47c5",
+          "gv_id": "GV-PK-LOR-053",
+          "set_code": "swsh11",
+          "number": "053",
+          "name": "Raichu"
+        },
+        {
+          "id": "76390c0f-b80a-49aa-ac2e-1d7301163bf0",
+          "gv_id": "GV-PK-LOR-064",
+          "set_code": "swsh11",
+          "number": "064",
+          "name": "Gastly"
+        },
+        {
+          "id": "0729c39a-0ebd-4f4d-b041-5388e6ed2284",
+          "gv_id": "GV-PK-LOR-086",
+          "set_code": "swsh11",
+          "number": "086",
+          "name": "Machop"
+        },
+        {
+          "id": "43288865-6901-4b77-884e-c8a48d6b36cd",
+          "gv_id": "GV-PK-LOR-093",
+          "set_code": "swsh11",
+          "number": "093",
+          "name": "Aerodactyl VSTAR"
+        }
+      ],
+      "hash_sha256": "459f715af0fdef81219bf5c246cec75e3f109daf4f91b4b2f54d8e45440bf08f"
+    }
+  },
+  "post_apply_findings": []
+}

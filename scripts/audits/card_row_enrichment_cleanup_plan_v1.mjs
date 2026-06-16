@@ -240,10 +240,11 @@ async function buildParentGvCandidates(client, parentRows) {
           proposedGvId = buildCardPrintGvIdV1({
             setCode: row.set_code,
             printedSetAbbrev: row.printed_set_abbrev,
-            number: row.number,
-            numberPlain: row.number_plain,
-            variantKey: row.variant_key,
-          });
+          number: row.number,
+          numberPlain: row.number_plain,
+          variantKey: row.variant_key,
+          printedIdentityModifier: row.printed_identity_modifier,
+        });
         }
       } catch (error) {
         buildError = error?.message ?? String(error);

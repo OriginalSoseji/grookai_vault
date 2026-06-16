@@ -1,0 +1,134 @@
+{
+  "generated_at": "2026-06-16T16:35:52.854Z",
+  "package_id": "POST-REC-02A-DEPENDENCY-TRANSFER-DUPLICATE-PARENT-CLEANUP",
+  "source_strategy": "docs/audits/post_reconcile_integrity_v1/post_reconcile_dependency_transfer_strategy_v1.json",
+  "safety": {
+    "db_writes_performed": false,
+    "durable_writes_performed": false,
+    "migrations_created": false,
+    "real_apply_performed": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false
+  },
+  "scope": {
+    "target_groups": 7,
+    "target_sets": [
+      "swsh11"
+    ],
+    "excluded_append_only_groups": 2,
+    "duplicate_child_rows_from_strategy": 4,
+    "target_rows": [
+      {
+        "canonical_parent_id": "755dabde-0f54-48c0-9862-2a02053b37fe",
+        "duplicate_parent_id": "0b4aa3b3-3c2e-4394-87c1-f28efa396e51",
+        "canonical_gv_id": "GV-PK-LOR-017",
+        "duplicate_gv_id": "GV-PK-LOR-17",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|17|trevenant||",
+        "duplicate_child_count": 0
+      },
+      {
+        "canonical_parent_id": "155e3b7b-c79a-495e-b849-9e6c66294673",
+        "duplicate_parent_id": "0b24e7e8-9e51-428d-a974-2e2268c7b193",
+        "canonical_gv_id": "GV-PK-LOR-026",
+        "duplicate_gv_id": "GV-PK-LOR-26",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|26|chandelure||",
+        "duplicate_child_count": 0
+      },
+      {
+        "canonical_parent_id": "8c104bd5-c6b1-4d5b-8295-d50ac7ca5f9e",
+        "duplicate_parent_id": "052f60a3-dc6d-433c-bce2-ed814c64e34d",
+        "canonical_gv_id": "GV-PK-LOR-033",
+        "duplicate_gv_id": "GV-PK-LOR-33",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|33|seel||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "fc4dbb32-9d0f-4353-bfd1-65959069aab4",
+        "duplicate_parent_id": "071eccbf-7bdd-494a-a43e-b3bc6965ea3a",
+        "canonical_gv_id": "GV-PK-LOR-045",
+        "duplicate_gv_id": "GV-PK-LOR-45",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|45|hisuian basculegion||",
+        "duplicate_child_count": 0
+      },
+      {
+        "canonical_parent_id": "8f39a034-e33b-419a-a574-7d81d212d955",
+        "duplicate_parent_id": "03ae5e0a-e43b-4828-8f6a-89a402d14656",
+        "canonical_gv_id": "GV-PK-LOR-067",
+        "duplicate_gv_id": "GV-PK-LOR-67",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|67|mr. mime||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "6595e3e2-cad0-44f7-bf29-18c7b9f0ecce",
+        "duplicate_parent_id": "02eb2e6a-e65a-4d8e-8b5e-8f23b868c53f",
+        "canonical_gv_id": "GV-PK-LOR-098",
+        "duplicate_gv_id": "GV-PK-LOR-98",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|98|hariyama||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "5dcec667-2dc0-4cb5-97f0-e8342e190ff8",
+        "duplicate_parent_id": "0fbf4a2e-2bd2-43b7-8f57-2ae906272571",
+        "canonical_gv_id": "GV-PK-LOR-099",
+        "duplicate_gv_id": "GV-PK-LOR-99",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|99|meditite||",
+        "duplicate_child_count": 1
+      }
+    ]
+  },
+  "package_fingerprint_sha256": "90e8f24e7dca6bc29c0b2d6fc1e6b049402348eafcf8c375c9ed14d83cb6b732",
+  "sql_artifact": {
+    "path": "docs/sql/post_reconcile_pkg02a_dependency_transfer_cleanup_guarded_dry_run_swsh11_v1.sql",
+    "sha256": "d44615aa069c47053dca9e67b6964e14f3253e504407ae74c7b075f70400093c",
+    "contains_commit_statement": false,
+    "contains_rollback_statement": true,
+    "contains_delete_statement": true,
+    "contains_update_statement": true,
+    "contains_insert_statement": true
+  },
+  "execution": {
+    "execution_status": "guarded_dry_run_transaction_completed_and_rolled_back",
+    "error_message": null,
+    "before_snapshot": {
+      "captured_at": "2026-06-16T16:35:51.879Z",
+      "counts": {
+        "duplicate_parent_rows": 7,
+        "canonical_parent_rows": 7,
+        "duplicate_child_rows": 4,
+        "duplicate_identity_rows": 7,
+        "duplicate_external_mapping_rows": 0,
+        "duplicate_justtcg_snapshot_rows": 0,
+        "duplicate_feed_rows": 0,
+        "duplicate_vault_instance_rows": 0,
+        "duplicate_vault_item_rows": 0
+      },
+      "hash_sha256": "a992c56f70cfdaed1ff180a8784e540dea58dc89a3fda65e2b6221389af4a33a"
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-16T16:35:52.772Z",
+      "counts": {
+        "duplicate_parent_rows": 7,
+        "canonical_parent_rows": 7,
+        "duplicate_child_rows": 4,
+        "duplicate_identity_rows": 7,
+        "duplicate_external_mapping_rows": 0,
+        "duplicate_justtcg_snapshot_rows": 0,
+        "duplicate_feed_rows": 0,
+        "duplicate_vault_instance_rows": 0,
+        "duplicate_vault_item_rows": 0
+      },
+      "hash_sha256": "a992c56f70cfdaed1ff180a8784e540dea58dc89a3fda65e2b6221389af4a33a"
+    },
+    "rollback_proof_hash_match": true
+  },
+  "required_operator_approval": {
+    "exact_phrase": "Approve real POST-REC-02A-DEPENDENCY-TRANSFER-DUPLICATE-PARENT-CLEANUP apply only. Fingerprint: 90e8f24e7dca6bc29c0b2d6fc1e6b049402348eafcf8c375c9ed14d83cb6b732. SQL hash: d44615aa069c47053dca9e67b6964e14f3253e504407ae74c7b075f70400093c. Scope: 7 dependency-transfer duplicate parent cleanups across swsh11; duplicate child rows handled=4; append-only feed groups excluded=2. Dry-run proof: a992c56f70cfdaed1ff180a8784e540dea58dc89a3fda65e2b6221389af4a33a == a992c56f70cfdaed1ff180a8784e540dea58dc89a3fda65e2b6221389af4a33a. No global apply. No migrations. No image writes. No unsupported cleanup. No quarantine."
+  }
+}

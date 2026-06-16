@@ -1,0 +1,1864 @@
+{
+  "version": "EXTERNAL_MAPPING_DUPLICATE_READINESS_V1",
+  "generated_at": "2026-06-16T22:53:52.580Z",
+  "source_report": "docs/audits/card_row_enrichment_v1/external_mapping_duplicate_triage_v1.json",
+  "scope": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false
+  },
+  "principle": "Do not deactivate product aliases or suffix/base aliases until the source-specific owner policy is explicit.",
+  "totals": {
+    "duplicate_groups": 70,
+    "write_ready_groups": 0,
+    "blocked_or_preserve_groups": 70,
+    "ready_mapping_rows_in_groups": 0
+  },
+  "by_readiness_class": {
+    "pokemonapi_suffix_alias_review": 46,
+    "justtcg_secret_rare_synonym_review": 13,
+    "tcgdex_suffix_alias_review": 5,
+    "justtcg_product_alias_preserve_until_sidecar": 3,
+    "justtcg_text_alias_review": 1,
+    "manual_source_specific_review": 1,
+    "pocket_product_alias_blocked": 1
+  },
+  "by_source": {
+    "pokemonapi": 46,
+    "justtcg": 18,
+    "tcgdex": 6
+  },
+  "ready_groups": [],
+  "blocked_group_samples": [
+    {
+      "source": "justtcg",
+      "card_print_id": "ae1896de-c635-4487-a04f-c63809a14f57",
+      "card_name": "Yamper",
+      "number": "074",
+      "number_plain": "074",
+      "set_code": "A4a",
+      "set_name": "Secluded Springs",
+      "identity_domain": "tcg_pocket_excluded",
+      "gv_id": "GV-TCGP-A4A-074",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-battle-academy-2022-yamper-074-202-1-pikachu-stamped-promo",
+        "pokemon-battle-academy-2022-yamper-074-202-58-pikachu-stamped-promo"
+      ],
+      "mapping_ids": [
+        "120478",
+        "120466"
+      ],
+      "child_printing_count": 3,
+      "classification": "pocket_domain_review",
+      "readiness_class": "pocket_product_alias_blocked",
+      "write_ready": false,
+      "reason": "Pocket is excluded from physical canon; handle only under Pocket/product governance."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "595ec587-4dcb-4f81-b43b-6ad61da852f3",
+      "card_name": "Gastly",
+      "number": "054",
+      "number_plain": "054",
+      "set_code": "me02",
+      "set_name": "Phantasmal Flames",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PFL-054",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-me02-phantasmal-flames-gastly-common",
+        "pokemon-me02-phantasmal-flames-ghastly-common"
+      ],
+      "mapping_ids": [
+        "94038",
+        "120836"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_text_alias_review",
+      "write_ready": false,
+      "reason": "Looks like a spelling/text alias; choose canonical slug only after source-specific confirmation."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "2fdcfbf3-2633-4332-bb0d-6b4b67c78a17",
+      "card_name": "Golisopod-GX",
+      "number": "148",
+      "number_plain": "148",
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BUS-148",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-sm-burning-shadows-golisopod-gx-secret-rainbow-rare",
+        "pokemon-sm-burning-shadows-golisopod-gx-secret-secret-rare"
+      ],
+      "mapping_ids": [
+        "120689",
+        "120690"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_secret_rare_synonym_review",
+      "write_ready": false,
+      "reason": "Looks like source terminology duplication for secret/rainbow rare; preserve until canonical JustTCG slug policy exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "7f05d655-b8f6-4d6d-8bdc-c31f294f3e10",
+      "card_name": "Tapu Bulu-GX",
+      "number": "149",
+      "number_plain": "149",
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BUS-149",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-sm-burning-shadows-tapu-bulu-gx-secret-rainbow-rare",
+        "pokemon-sm-burning-shadows-tapu-bulu-gx-secret-secret-rare"
+      ],
+      "mapping_ids": [
+        "120695",
+        "120696"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_secret_rare_synonym_review",
+      "write_ready": false,
+      "reason": "Looks like source terminology duplication for secret/rainbow rare; preserve until canonical JustTCG slug policy exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "d29b43e3-8d9c-4a8c-9e60-f0024ee88a94",
+      "card_name": "Charizard-GX",
+      "number": "150",
+      "number_plain": "150",
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BUS-150",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-sm-burning-shadows-charizard-gx-secret-rainbow-rare",
+        "pokemon-sm-burning-shadows-charizard-gx-secret-secret-rare"
+      ],
+      "mapping_ids": [
+        "120671",
+        "120672"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_secret_rare_synonym_review",
+      "write_ready": false,
+      "reason": "Looks like source terminology duplication for secret/rainbow rare; preserve until canonical JustTCG slug policy exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "8053886c-a8a9-4939-908c-9ad9cc3ea43d",
+      "card_name": "Salazzle-GX",
+      "number": "151",
+      "number_plain": "151",
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BUS-151",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-sm-burning-shadows-salazzle-gx-secret-rainbow-rare",
+        "pokemon-sm-burning-shadows-salazzle-gx-secret-secret-rare"
+      ],
+      "mapping_ids": [
+        "120692",
+        "120691"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_secret_rare_synonym_review",
+      "write_ready": false,
+      "reason": "Looks like source terminology duplication for secret/rainbow rare; preserve until canonical JustTCG slug policy exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "7b767902-47de-49a4-a925-33c4ca287d47",
+      "card_name": "Tapu Fini-GX",
+      "number": "152",
+      "number_plain": "152",
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BUS-152",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-sm-burning-shadows-tapu-fini-gx-secret-rainbow-rare",
+        "pokemon-sm-burning-shadows-tapu-fini-gx-secret-secret-rare"
+      ],
+      "mapping_ids": [
+        "120694",
+        "120693"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_secret_rare_synonym_review",
+      "write_ready": false,
+      "reason": "Looks like source terminology duplication for secret/rainbow rare; preserve until canonical JustTCG slug policy exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "a1aa1033-8ae1-4711-9771-1c94bdda2f78",
+      "card_name": "Necrozma-GX",
+      "number": "153",
+      "number_plain": "153",
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BUS-153",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-sm-burning-shadows-necrozma-gx-secret-rainbow-rare",
+        "pokemon-sm-burning-shadows-necrozma-gx-secret-secret-rare"
+      ],
+      "mapping_ids": [
+        "120681",
+        "120682"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_secret_rare_synonym_review",
+      "write_ready": false,
+      "reason": "Looks like source terminology duplication for secret/rainbow rare; preserve until canonical JustTCG slug policy exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "4821d4a5-e5b7-4e3a-adc0-497577802a42",
+      "card_name": "Machamp-GX",
+      "number": "154",
+      "number_plain": "154",
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BUS-154",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-sm-burning-shadows-machamp-gx-secret-rainbow-rare",
+        "pokemon-sm-burning-shadows-machamp-gx-secret-secret-rare"
+      ],
+      "mapping_ids": [
+        "120677",
+        "120678"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_secret_rare_synonym_review",
+      "write_ready": false,
+      "reason": "Looks like source terminology duplication for secret/rainbow rare; preserve until canonical JustTCG slug policy exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "63a8dd40-ed2b-4236-a90e-c595f87aa133",
+      "card_name": "Lycanroc-GX",
+      "number": "155",
+      "number_plain": "155",
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BUS-155",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-sm-burning-shadows-lycanroc-gx-secret-rainbow-rare",
+        "pokemon-sm-burning-shadows-lycanroc-gx-secret-secret-rare"
+      ],
+      "mapping_ids": [
+        "120686",
+        "120685"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_secret_rare_synonym_review",
+      "write_ready": false,
+      "reason": "Looks like source terminology duplication for secret/rainbow rare; preserve until canonical JustTCG slug policy exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "e20373aa-6e41-4582-8ab4-b13a77261130",
+      "card_name": "Marshadow-GX",
+      "number": "156",
+      "number_plain": "156",
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BUS-156",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-sm-burning-shadows-marshadow-gx-secret-rainbow-rare",
+        "pokemon-sm-burning-shadows-marshadow-gx-secret-secret-rare"
+      ],
+      "mapping_ids": [
+        "120679",
+        "120680"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_secret_rare_synonym_review",
+      "write_ready": false,
+      "reason": "Looks like source terminology duplication for secret/rainbow rare; preserve until canonical JustTCG slug policy exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "b3d4d869-6de4-463a-9189-f279851fef56",
+      "card_name": "Alolan Muk-GX",
+      "number": "157",
+      "number_plain": "157",
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BUS-157",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-sm-burning-shadows-alolan-muk-gx-secret-rainbow-rare",
+        "pokemon-sm-burning-shadows-alolan-muk-gx-secret-secret-rare"
+      ],
+      "mapping_ids": [
+        "120688",
+        "120687"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_secret_rare_synonym_review",
+      "write_ready": false,
+      "reason": "Looks like source terminology duplication for secret/rainbow rare; preserve until canonical JustTCG slug policy exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "6435cd09-8e12-4df5-8c9e-c9d2334b50b9",
+      "card_name": "Darkrai-GX",
+      "number": "158",
+      "number_plain": "158",
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BUS-158",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-sm-burning-shadows-darkrai-gx-secret-rainbow-rare",
+        "pokemon-sm-burning-shadows-darkrai-gx-secret-secret-rare"
+      ],
+      "mapping_ids": [
+        "120676",
+        "120675"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_secret_rare_synonym_review",
+      "write_ready": false,
+      "reason": "Looks like source terminology duplication for secret/rainbow rare; preserve until canonical JustTCG slug policy exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "a3f1257e-596f-4d39-bd9d-4a384f28e67c",
+      "card_name": "Gardevoir-GX",
+      "number": "159",
+      "number_plain": "159",
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BUS-159",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-sm-burning-shadows-gardevoir-gx-secret-rainbow-rare",
+        "pokemon-sm-burning-shadows-gardevoir-gx-secret-secret-rare"
+      ],
+      "mapping_ids": [
+        "120673",
+        "120674"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_secret_rare_synonym_review",
+      "write_ready": false,
+      "reason": "Looks like source terminology duplication for secret/rainbow rare; preserve until canonical JustTCG slug policy exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "d4167ee2-a2c3-4387-9525-e6366fec5959",
+      "card_name": "Noivern-GX",
+      "number": "160",
+      "number_plain": "160",
+      "set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BUS-160",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-sm-burning-shadows-noivern-gx-secret-rainbow-rare",
+        "pokemon-sm-burning-shadows-noivern-gx-secret-secret-rare"
+      ],
+      "mapping_ids": [
+        "120683",
+        "120684"
+      ],
+      "child_printing_count": 2,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_secret_rare_synonym_review",
+      "write_ready": false,
+      "reason": "Looks like source terminology duplication for secret/rainbow rare; preserve until canonical JustTCG slug policy exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "0e0cd908-9985-4ca7-bda4-e2f8169e7970",
+      "card_name": "Mareep",
+      "number": "107",
+      "number_plain": "107",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PR-SV-107",
+      "active_mapping_count": 4,
+      "external_id_count": 4,
+      "external_ids": [
+        "pokemon-battle-academy-2024-mareep-pikachu-19-promo",
+        "pokemon-battle-academy-2024-mareep-pikachu-2-promo",
+        "pokemon-battle-academy-2024-mareep-pikachu-41-promo",
+        "pokemon-battle-academy-2024-mareep-pikachu-45-promo"
+      ],
+      "mapping_ids": [
+        "120592",
+        "120558",
+        "120521",
+        "120601"
+      ],
+      "child_printing_count": 1,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_product_alias_preserve_until_sidecar",
+      "write_ready": false,
+      "reason": "JustTCG product/deck/prize-pack aliases may be useful product intelligence; preserve until sidecar/alias table exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "53976e9b-e242-4a0b-8b4b-da1e5a4fc2bc",
+      "card_name": "Flaaffy",
+      "number": "108",
+      "number_plain": "108",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PR-SV-108",
+      "active_mapping_count": 3,
+      "external_id_count": 3,
+      "external_ids": [
+        "pokemon-battle-academy-2024-flaaffy-pikachu-37-promo",
+        "pokemon-battle-academy-2024-flaaffy-pikachu-5-promo",
+        "pokemon-battle-academy-2024-flaaffy-pikachu-53-promo"
+      ],
+      "mapping_ids": [
+        "120523",
+        "120538",
+        "120539"
+      ],
+      "child_printing_count": 1,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_product_alias_preserve_until_sidecar",
+      "write_ready": false,
+      "reason": "JustTCG product/deck/prize-pack aliases may be useful product intelligence; preserve until sidecar/alias table exists."
+    },
+    {
+      "source": "justtcg",
+      "card_print_id": "d7ed85b3-8ef6-42a0-b890-55825732f6d9",
+      "card_name": "Ampharos",
+      "number": "109",
+      "number_plain": "109",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PR-SV-109",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "pokemon-battle-academy-2024-ampharos-pikachu-28-promo",
+        "pokemon-battle-academy-2024-ampharos-pikachu-47-promo"
+      ],
+      "mapping_ids": [
+        "120595",
+        "120541"
+      ],
+      "child_printing_count": 1,
+      "classification": "source_specific_alias_review",
+      "readiness_class": "justtcg_product_alias_preserve_until_sidecar",
+      "write_ready": false,
+      "reason": "JustTCG product/deck/prize-pack aliases may be useful product intelligence; preserve until sidecar/alias table exists."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "776d284f-940d-4425-b890-6761f1b936ab",
+      "card_name": "Eevee",
+      "number": "101a",
+      "number_plain": "101",
+      "set_code": "sm1",
+      "set_name": "Sun & Moon",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-SUM-101A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm1-101",
+        "sm1-101a"
+      ],
+      "mapping_ids": [
+        "2337",
+        "2338"
+      ],
+      "child_printing_count": 3,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "181fc6bb-8620-47ff-a31e-8ee5fe99b720",
+      "card_name": "Pokégear 3.0",
+      "number": "182a",
+      "number_plain": "182",
+      "set_code": "sm10",
+      "set_name": "Unbroken Bonds",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-UNB-182A",
+      "active_mapping_count": 3,
+      "external_id_count": 3,
+      "external_ids": [
+        "sm10-182",
+        "sm10-182a",
+        "sm10-182b"
+      ],
+      "mapping_ids": [
+        "3698",
+        "3752",
+        "3753"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "78e969f5-60cb-4cef-b9c1-31b1e55aa751",
+      "card_name": "Welder",
+      "number": "189a",
+      "number_plain": "189",
+      "set_code": "sm10",
+      "set_name": "Unbroken Bonds",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-UNB-189A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm10-189",
+        "sm10-189a"
+      ],
+      "mapping_ids": [
+        "3705",
+        "3754"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "22dd84e6-5963-4e81-a39d-14e066de2409",
+      "card_name": "Dedenne-GX",
+      "number": "195a",
+      "number_plain": "195",
+      "set_code": "sm10",
+      "set_name": "Unbroken Bonds",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-UNB-195A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm10-195",
+        "sm10-195a"
+      ],
+      "mapping_ids": [
+        "3711",
+        "3751"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "388389db-26b1-46df-8cf6-288de53f4693",
+      "card_name": "Cherish Ball",
+      "number": "191",
+      "number_plain": "191",
+      "set_code": "sm11",
+      "set_name": "Unified Minds",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-UNM-191",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm11-191",
+        "sm11-191a"
+      ],
+      "mapping_ids": [
+        "3945",
+        "3946"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "2f323ee3-69fe-4c7b-b515-6d7720bcbe61",
+      "card_name": "Reset Stamp",
+      "number": "206",
+      "number_plain": "206",
+      "set_code": "sm11",
+      "set_name": "Unified Minds",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-UNM-206",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm11-206",
+        "sm11-206a"
+      ],
+      "mapping_ids": [
+        "3961",
+        "3962"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "a8f81485-e78c-4eae-a856-dc012249f2d9",
+      "card_name": "Jirachi-GX",
+      "number": "79",
+      "number_plain": "79",
+      "set_code": "sm11",
+      "set_name": "Unified Minds",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-UNM-79",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm11-79",
+        "sm11-79a"
+      ],
+      "mapping_ids": [
+        "3833",
+        "4015"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "22a1a798-d2dd-49c1-baf6-a35c90772b62",
+      "card_name": "Togepi & Cleffa & Igglybuff-GX",
+      "number": "143a",
+      "number_plain": "143",
+      "set_code": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-CEC-143A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm12-143",
+        "sm12-143a"
+      ],
+      "mapping_ids": [
+        "4239",
+        "4240"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "5eb5bc28-894a-4e08-80ce-7efff25e4e7a",
+      "card_name": "Choice Band",
+      "number": "121",
+      "number_plain": "121",
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-GRI-121",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm2-121",
+        "sm2-121a"
+      ],
+      "mapping_ids": [
+        "2786",
+        "2787"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "2c81de58-2eb5-4e42-bc68-cee8281dde29",
+      "card_name": "Enhanced Hammer",
+      "number": "124",
+      "number_plain": "124",
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-GRI-124",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm2-124",
+        "sm2-124a"
+      ],
+      "mapping_ids": [
+        "2790",
+        "2791"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "47249c63-f07e-4701-9d83-ce1a84f0db92",
+      "card_name": "Field Blower",
+      "number": "125",
+      "number_plain": "125",
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-GRI-125",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm2-125",
+        "sm2-125a"
+      ],
+      "mapping_ids": [
+        "2792",
+        "2793"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "94552a4f-2762-4f63-a58d-c4862ab840ea",
+      "card_name": "Max Potion",
+      "number": "128a",
+      "number_plain": "128",
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-GRI-128A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm2-128",
+        "sm2-128a"
+      ],
+      "mapping_ids": [
+        "2796",
+        "2797"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "5e7352e8-732a-41d6-8a06-bfcc08e6fa47",
+      "card_name": "Rescue Stretcher",
+      "number": "130a",
+      "number_plain": "130",
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-GRI-130A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm2-130",
+        "sm2-130a"
+      ],
+      "mapping_ids": [
+        "2799",
+        "2800"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "67ba3bda-fc30-4da5-93a9-63c6192013a4",
+      "card_name": "Metagross-GX",
+      "number": "157a",
+      "number_plain": "157",
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-GRI-157A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm2-157",
+        "sm2-157a"
+      ],
+      "mapping_ids": [
+        "2827",
+        "2828"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "1dea049d-b2f1-4e97-939e-c9f7638a75bc",
+      "card_name": "Alolan Sandshrew",
+      "number": "19a",
+      "number_plain": "19",
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-GRI-19A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm2-19",
+        "sm2-19a"
+      ],
+      "mapping_ids": [
+        "2679",
+        "2680"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "6fe9e097-d49a-4c88-87f9-bcaeb725b6b5",
+      "card_name": "Alolan Vulpix",
+      "number": "21a",
+      "number_plain": "21",
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-GRI-21A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm2-21",
+        "sm2-21a"
+      ],
+      "mapping_ids": [
+        "2682",
+        "2683"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "44000bac-5d7b-4c91-b1df-4fc19163ab8d",
+      "card_name": "Garbodor",
+      "number": "51",
+      "number_plain": "51",
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-GRI-51",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm2-51",
+        "sm2-51a"
+      ],
+      "mapping_ids": [
+        "2713",
+        "2714"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "bf03e7f3-d30b-4957-918c-9caa3bfedef9",
+      "card_name": "Tapu Lele-GX",
+      "number": "60",
+      "number_plain": "60",
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-GRI-60",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm2-60",
+        "sm2-60a"
+      ],
+      "mapping_ids": [
+        "2723",
+        "2724"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "4b387140-d28b-4c83-90d7-aa9d0d66fc83",
+      "card_name": "Sylveon-GX",
+      "number": "92",
+      "number_plain": "92",
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-GRI-92",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm2-92",
+        "sm2-92a"
+      ],
+      "mapping_ids": [
+        "2756",
+        "2757"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "5cebfdd2-8535-4206-89dd-1c7d1a848515",
+      "card_name": "Beast Ring",
+      "number": "102a",
+      "number_plain": "102",
+      "set_code": "sm6",
+      "set_name": "Forbidden Light",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FLI-102A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm6-102",
+        "sm6-102a"
+      ],
+      "mapping_ids": [
+        "3024",
+        "3025"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "3e319a5c-46b7-417e-bad1-9e53f885400f",
+      "card_name": "Metal Frying Pan",
+      "number": "112",
+      "number_plain": "112",
+      "set_code": "sm6",
+      "set_name": "Forbidden Light",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FLI-112",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm6-112",
+        "sm6-112a"
+      ],
+      "mapping_ids": [
+        "3035",
+        "3036"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "b28de171-2cfd-4fd6-98b2-67b6cb56499b",
+      "card_name": "Mysterious Treasure",
+      "number": "113",
+      "number_plain": "113",
+      "set_code": "sm6",
+      "set_name": "Forbidden Light",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FLI-113",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm6-113",
+        "sm6-113a"
+      ],
+      "mapping_ids": [
+        "3037",
+        "3038"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "1e6e964c-eb9f-4398-be2f-dee9e1904d0e",
+      "card_name": "Alolan Exeggutor",
+      "number": "2",
+      "number_plain": "2",
+      "set_code": "sm6",
+      "set_name": "Forbidden Light",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FLI-2",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm6-2",
+        "sm6-2a"
+      ],
+      "mapping_ids": [
+        "2923",
+        "2924"
+      ],
+      "child_printing_count": 3,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "67a64e87-734d-42f8-bcd4-1bfab048cdf4",
+      "card_name": "Sceptile",
+      "number": "10a",
+      "number_plain": "10",
+      "set_code": "sm7",
+      "set_name": "Celestial Storm",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-CES-10A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm7-10",
+        "sm7-10a"
+      ],
+      "mapping_ids": [
+        "3081",
+        "3082"
+      ],
+      "child_printing_count": 3,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "4841d961-e0b6-4257-8828-9eae3b2d9f59",
+      "card_name": "Acro Bike",
+      "number": "123",
+      "number_plain": "123",
+      "set_code": "sm7",
+      "set_name": "Celestial Storm",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-CES-123",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm7-123",
+        "sm7-123a"
+      ],
+      "mapping_ids": [
+        "3195",
+        "3196"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "5327efec-4619-4036-9e80-909f7ffb4728",
+      "card_name": "Tate & Liza",
+      "number": "148a",
+      "number_plain": "148",
+      "set_code": "sm7",
+      "set_name": "Celestial Storm",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-CES-148A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm7-148",
+        "sm7-148a"
+      ],
+      "mapping_ids": [
+        "3221",
+        "3222"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "5fe9d2f5-ee2c-43b3-bd0f-5aa06bf29d21",
+      "card_name": "Rayquaza-GX",
+      "number": "177",
+      "number_plain": "177",
+      "set_code": "sm7",
+      "set_name": "Celestial Storm",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-CES-177",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm7-177",
+        "sm7-177a"
+      ],
+      "mapping_ids": [
+        "3251",
+        "3252"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "b003c5c0-0824-45fc-be75-660d8ce22abc",
+      "card_name": "Electropower",
+      "number": "172",
+      "number_plain": "172",
+      "set_code": "sm8",
+      "set_name": "Lost Thunder",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-LOT-172",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm8-172",
+        "sm8-172a"
+      ],
+      "mapping_ids": [
+        "3430",
+        "3431"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "36d4581a-4d54-4a0d-a944-12c8cf65806c",
+      "card_name": "Net Ball",
+      "number": "187",
+      "number_plain": "187",
+      "set_code": "sm8",
+      "set_name": "Lost Thunder",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-LOT-187",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm8-187",
+        "sm8-187a"
+      ],
+      "mapping_ids": [
+        "3446",
+        "3447"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "1dfcaf5e-26cf-4b98-ac16-72004bd3ef4c",
+      "card_name": "Professor Elm's Lecture",
+      "number": "188a",
+      "number_plain": "188",
+      "set_code": "sm8",
+      "set_name": "Lost Thunder",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-LOT-188A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm8-188",
+        "sm8-188a"
+      ],
+      "mapping_ids": [
+        "3448",
+        "3449"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "b89a2005-40d9-4c4c-8fb0-279b04bffdfb",
+      "card_name": "Sightseer",
+      "number": "189",
+      "number_plain": "189",
+      "set_code": "sm8",
+      "set_name": "Lost Thunder",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-LOT-189",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "sm8-189",
+        "sm8-189a"
+      ],
+      "mapping_ids": [
+        "3450",
+        "3451"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "cba97ba8-ae6e-4a31-965d-840bddd35de4",
+      "card_name": "Lunala-GX",
+      "number": "SM103",
+      "number_plain": "103",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-SM-SM103",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "smp-SM103",
+        "smp-SM103a"
+      ],
+      "mapping_ids": [
+        "2513",
+        "2514"
+      ],
+      "child_printing_count": 1,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "4bedfa56-2aa0-473e-a06e-578b25f63152",
+      "card_name": "Solgaleo-GX",
+      "number": "SM104",
+      "number_plain": "104",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-SM-SM104",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "smp-SM104",
+        "smp-SM104a"
+      ],
+      "mapping_ids": [
+        "2515",
+        "2516"
+      ],
+      "child_printing_count": 1,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "1cd4a555-b609-4ff6-8b6e-3707710115d6",
+      "card_name": "Tapu Koko",
+      "number": "SM30",
+      "number_plain": "30",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-SM-SM30",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "smp-SM30",
+        "smp-SM30a"
+      ],
+      "mapping_ids": [
+        "2439",
+        "2440"
+      ],
+      "child_printing_count": 1,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "0714d2e7-b966-42b1-96d9-60e548e2fd01",
+      "card_name": "N",
+      "number": "105",
+      "number_plain": "105",
+      "set_code": "xy10",
+      "set_name": "Fates Collide",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FCO-105",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xy10-105",
+        "xy10-105a"
+      ],
+      "mapping_ids": [
+        "2086",
+        "2087"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "09cec9bf-60a8-4e4d-a239-3e65a37a451a",
+      "card_name": "Shauna",
+      "number": "111a",
+      "number_plain": "111",
+      "set_code": "xy10",
+      "set_name": "Fates Collide",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FCO-111A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xy10-111",
+        "xy10-111a"
+      ],
+      "mapping_ids": [
+        "2093",
+        "2094"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "b5b9f054-0c84-4e36-9c71-8427aed4e76f",
+      "card_name": "Regirock-EX",
+      "number": "43a",
+      "number_plain": "43",
+      "set_code": "xy10",
+      "set_name": "Fates Collide",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FCO-43A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xy10-43",
+        "xy10-43a"
+      ],
+      "mapping_ids": [
+        "2022",
+        "2023"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "1c26e78c-bcb3-425b-ad7c-0ae4bfd85a18",
+      "card_name": "Zygarde-EX",
+      "number": "54a",
+      "number_plain": "54",
+      "set_code": "xy10",
+      "set_name": "Fates Collide",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FCO-54A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xy10-54",
+        "xy10-54a"
+      ],
+      "mapping_ids": [
+        "2034",
+        "2035"
+      ],
+      "child_printing_count": 1,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "e52ae0fc-75c2-4d79-828e-22c46bca1c65",
+      "card_name": "Blacksmith",
+      "number": "88a",
+      "number_plain": "88",
+      "set_code": "xy2",
+      "set_name": "Flashfire",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FLF-88A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xy2-88",
+        "xy2-88a"
+      ],
+      "mapping_ids": [
+        "1719",
+        "1720"
+      ],
+      "child_printing_count": 2,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "2bc6a250-d786-4719-8a7f-9063489e5d73",
+      "card_name": "M Lucario-EX",
+      "number": "55",
+      "number_plain": "55",
+      "set_code": "xy3",
+      "set_name": "Furious Fists",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FFI-55",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xy3-55",
+        "xy3-55a"
+      ],
+      "mapping_ids": [
+        "1796",
+        "1797"
+      ],
+      "child_printing_count": 1,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "298a9523-9d6a-40fe-b31e-8f59045bb00d",
+      "card_name": "M Manectric-EX",
+      "number": "24",
+      "number_plain": "24",
+      "set_code": "xy4",
+      "set_name": "Phantom Forces",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PHF-24",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xy4-24",
+        "xy4-24a"
+      ],
+      "mapping_ids": [
+        "1879",
+        "1880"
+      ],
+      "child_printing_count": 3,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+      "card_name": "Aegislash-EX",
+      "number": "65a",
+      "number_plain": "65",
+      "set_code": "xy4",
+      "set_name": "Phantom Forces",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PHF-65A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xy4-65",
+        "xy4-65a"
+      ],
+      "mapping_ids": [
+        "1921",
+        "1922"
+      ],
+      "child_printing_count": 3,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+      "card_name": "Yveltal-EX",
+      "number": "XY150a",
+      "number_plain": "150",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PR-XY-XY150A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xyp-XY150",
+        "xyp-XY150a"
+      ],
+      "mapping_ids": [
+        "1566",
+        "1567"
+      ],
+      "child_printing_count": 3,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+      "card_name": "M Camerupt-EX",
+      "number": "XY198a",
+      "number_plain": "198",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PR-XY-XY198A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xyp-XY198",
+        "xyp-XY198a"
+      ],
+      "mapping_ids": [
+        "1616",
+        "1617"
+      ],
+      "child_printing_count": 3,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "bf6e9262-f055-4800-a899-76e64458629a",
+      "card_name": "M Sharpedo-EX",
+      "number": "XY200",
+      "number_plain": "200",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PR-XY-XY200",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xyp-XY200",
+        "xyp-XY200a"
+      ],
+      "mapping_ids": [
+        "1619",
+        "1620"
+      ],
+      "child_printing_count": 1,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "pokemonapi",
+      "card_print_id": "1fb96923-9db6-4321-aca3-d00af7acb4ae",
+      "card_name": "Jirachi",
+      "number": "XY67",
+      "number_plain": "67",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-PR-XY-XY67",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xyp-XY67",
+        "xyp-XY67a"
+      ],
+      "mapping_ids": [
+        "1482",
+        "1483"
+      ],
+      "child_printing_count": 1,
+      "classification": "pokemonapi_multiple_ids_same_card_review",
+      "readiness_class": "pokemonapi_suffix_alias_review",
+      "write_ready": false,
+      "reason": "External IDs differ by suffix/base number and may represent distinct printed identities."
+    },
+    {
+      "source": "tcgdex",
+      "card_print_id": "d62d4f5c-277b-4f32-b5aa-a393d990fbb3",
+      "card_name": "Venusaur",
+      "number": "15",
+      "number_plain": "15",
+      "set_code": "cel25c",
+      "set_name": "Celebrations: Classic Collection",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-CEL-15CC",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "cel25-15A",
+        "cel25-15A1"
+      ],
+      "mapping_ids": [
+        "114430",
+        "114432"
+      ],
+      "child_printing_count": 1,
+      "classification": "tcgdex_multiple_ids_same_card_review",
+      "readiness_class": "manual_source_specific_review",
+      "write_ready": false,
+      "reason": "No deterministic source-specific rule matched."
+    },
+    {
+      "source": "tcgdex",
+      "card_print_id": "09cec9bf-60a8-4e4d-a239-3e65a37a451a",
+      "card_name": "Shauna",
+      "number": "111a",
+      "number_plain": "111",
+      "set_code": "xy10",
+      "set_name": "Fates Collide",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FCO-111A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xy10-111",
+        "xy10-111a"
+      ],
+      "mapping_ids": [
+        "61226",
+        "41346"
+      ],
+      "child_printing_count": 2,
+      "classification": "tcgdex_multiple_ids_same_card_review",
+      "readiness_class": "tcgdex_suffix_alias_review",
+      "write_ready": false,
+      "reason": "TCGdex suffix/base aliases require exact owner policy before deactivation."
+    },
+    {
+      "source": "tcgdex",
+      "card_print_id": "b5b9f054-0c84-4e36-9c71-8427aed4e76f",
+      "card_name": "Regirock-EX",
+      "number": "43a",
+      "number_plain": "43",
+      "set_code": "xy10",
+      "set_name": "Fates Collide",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FCO-43A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xy10-43",
+        "xy10-43a"
+      ],
+      "mapping_ids": [
+        "61225",
+        "41278"
+      ],
+      "child_printing_count": 2,
+      "classification": "tcgdex_multiple_ids_same_card_review",
+      "readiness_class": "tcgdex_suffix_alias_review",
+      "write_ready": false,
+      "reason": "TCGdex suffix/base aliases require exact owner policy before deactivation."
+    },
+    {
+      "source": "tcgdex",
+      "card_print_id": "1c26e78c-bcb3-425b-ad7c-0ae4bfd85a18",
+      "card_name": "Zygarde-EX",
+      "number": "54a",
+      "number_plain": "54",
+      "set_code": "xy10",
+      "set_name": "Fates Collide",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FCO-54A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xy10-54",
+        "xy10-54a"
+      ],
+      "mapping_ids": [
+        "61227",
+        "41289"
+      ],
+      "child_printing_count": 1,
+      "classification": "tcgdex_multiple_ids_same_card_review",
+      "readiness_class": "tcgdex_suffix_alias_review",
+      "write_ready": false,
+      "reason": "TCGdex suffix/base aliases require exact owner policy before deactivation."
+    },
+    {
+      "source": "tcgdex",
+      "card_print_id": "e52ae0fc-75c2-4d79-828e-22c46bca1c65",
+      "card_name": "Blacksmith",
+      "number": "88a",
+      "number_plain": "88",
+      "set_code": "xy2",
+      "set_name": "Flashfire",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-FLF-88A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xy2-88",
+        "xy2-88a"
+      ],
+      "mapping_ids": [
+        "41677",
+        "62092"
+      ],
+      "child_printing_count": 2,
+      "classification": "tcgdex_multiple_ids_same_card_review",
+      "readiness_class": "tcgdex_suffix_alias_review",
+      "write_ready": false,
+      "reason": "TCGdex suffix/base aliases require exact owner policy before deactivation."
+    },
+    {
+      "source": "tcgdex",
+      "card_print_id": "1d161aed-2ab6-4707-9db2-3e300d658729",
+      "card_name": "Professor's Letter",
+      "number": "146a",
+      "number_plain": "146",
+      "set_code": "xy8",
+      "set_name": "BREAKthrough",
+      "identity_domain": "pokemon_eng_standard",
+      "gv_id": "GV-PK-BKT-146A",
+      "active_mapping_count": 2,
+      "external_id_count": 2,
+      "external_ids": [
+        "xy8-146",
+        "xy8-146a"
+      ],
+      "mapping_ids": [
+        "42453",
+        "62098"
+      ],
+      "child_printing_count": 2,
+      "classification": "tcgdex_multiple_ids_same_card_review",
+      "readiness_class": "tcgdex_suffix_alias_review",
+      "write_ready": false,
+      "reason": "TCGdex suffix/base aliases require exact owner policy before deactivation."
+    }
+  ],
+  "recommended_next_step": "create_product_alias_sidecar_policy_before_deactivation",
+  "fingerprint_sha256": "7b6f11fc16f4a6e409dfe5af189df3ac9fc89552904d091f4b7f122ebb8c2ddf"
+}

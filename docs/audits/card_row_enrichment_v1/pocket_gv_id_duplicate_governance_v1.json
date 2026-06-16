@@ -1,0 +1,21 @@
+{
+  "version": "POCKET_GV_ID_DUPLICATE_GOVERNANCE_V1",
+  "generated_at": "2026-06-16T18:39:36.073Z",
+  "scope": {
+    "target_domain": "tcg_pocket_excluded",
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "physical_rows_targeted": false
+  },
+  "totals": {
+    "pocket_parent_rows": 2012,
+    "duplicate_parent_groups": 0,
+    "duplicate_parent_rows": 0,
+    "deterministic_owner_transfer_candidate_groups": 0,
+    "manual_review_groups": 0
+  },
+  "classification_counts": {},
+  "duplicate_group_samples": [],
+  "recommended_next_step": "prepare_guarded_dry_run_for_pocket_source_alias_duplicate_owner_transfer",
+  "fingerprint_sha256": "c8bf66f8f098b6e520fd9dc9223af72a02ee33e1c5250193efe9f9f4373876c3"
+}

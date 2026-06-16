@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-06-16T17:40:29.748Z",
+  "source_readiness": "docs/audits/post_reconcile_integrity_v1/post_reconcile_duplicate_parent_readiness_v1.json",
+  "safety": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false
+  },
+  "summary": {
+    "source_duplicate_groups": 2,
+    "strategy_groups": 0,
+    "ready_for_transfer_dry_run": 0,
+    "blocked_append_only_policy": 0,
+    "unknown_dependency_policy_groups": 0,
+    "duplicate_child_rows": 0
+  },
+  "schema_check": {
+    "connected": true,
+    "unknown_tables": []
+  },
+  "by_set": [],
+  "by_dependency": [],
+  "by_bucket": [],
+  "ready_groups": [],
+  "blocked_groups": []
+}

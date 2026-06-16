@@ -50,6 +50,12 @@ const CONTROLLED_SUFFIX_REGISTRY_V2 = new Map([
   ['mb', 'MB'],
   ['masterball', 'MB'],
 ]);
+const CONTROLLED_PRINTED_IDENTITY_MODIFIER_SUFFIX_REGISTRY_V1 = new Map([
+  ['edition:first_edition', 'FIRST-EDITION'],
+  ['trainer_subject:giovanni', 'GIOVANNI'],
+  ['trainer_subject:lysandre', 'LYSANDRE'],
+  ['trainer_subject:professor_juniper', 'PROFESSOR-JUNIPER'],
+]);
 
 function normalizeTextOrNull(value) {
   if (value === null || value === undefined) {
@@ -321,6 +327,22 @@ export function resolveGvIdExtensionTokenV2(variantKey) {
   return normalizeGvIdSuffixV1(variantKey);
 }
 
+export function resolvePrintedIdentityModifierGvIdSuffixV1(printedIdentityModifier) {
+  const normalizedModifier = normalizeTextOrNull(printedIdentityModifier);
+  if (!normalizedModifier) {
+    return null;
+  }
+
+  return CONTROLLED_PRINTED_IDENTITY_MODIFIER_SUFFIX_REGISTRY_V1.get(normalizedModifier) ?? null;
+}
+
+function applyPrintedIdentityModifierSuffixV1(gvId, input = {}) {
+  const modifierSuffix = resolvePrintedIdentityModifierGvIdSuffixV1(
+    input.printedIdentityModifier ?? input.printed_identity_modifier,
+  );
+  return modifierSuffix ? `${gvId}-${modifierSuffix}` : gvId;
+}
+
 export function buildCardPrintGvIdV1(input = {}) {
   const namespaceDecision = resolveGvIdNamespaceDecisionV1(input);
   emitNamespaceDecision(input, namespaceDecision);
@@ -342,21 +364,21 @@ export function buildCardPrintGvIdV1(input = {}) {
   }
 
   if (!variantToken || BASE_VARIANT_KEYS.has(variantToken.toLowerCase())) {
-    return `${BASE_PREFIX}-${setToken}-${rawNumberToken}`;
+    return applyPrintedIdentityModifierSuffixV1(`${BASE_PREFIX}-${setToken}-${rawNumberToken}`, input);
   }
 
   if (SUFFIX_ONLY_VARIANT_KEYS.has(variantToken)) {
-    return `${BASE_PREFIX}-${setToken}-${rawNumberToken}${variantToken}`;
+    return applyPrintedIdentityModifierSuffixV1(`${BASE_PREFIX}-${setToken}-${rawNumberToken}${variantToken}`, input);
   }
 
   if (PREFIX_ONLY_VARIANT_KEYS.has(variantToken)) {
-    return `${BASE_PREFIX}-${setToken}-${variantToken}${rawNumberToken}`;
+    return applyPrintedIdentityModifierSuffixV1(`${BASE_PREFIX}-${setToken}-${variantToken}${rawNumberToken}`, input);
   }
 
   const prefixedFamilyMatch = variantToken.match(/^([A-Z]{2,})([AB])$/);
   if (prefixedFamilyMatch) {
     const [, prefixToken, suffixToken] = prefixedFamilyMatch;
-    return `${BASE_PREFIX}-${setToken}-${prefixToken}${rawNumberToken}${suffixToken}`;
+    return applyPrintedIdentityModifierSuffixV1(`${BASE_PREFIX}-${setToken}-${prefixToken}${rawNumberToken}${suffixToken}`, input);
   }
 
   const suffixToken = resolveGvIdExtensionTokenV2(input.variantKey);
@@ -364,5 +386,5 @@ export function buildCardPrintGvIdV1(input = {}) {
     throw new Error('gv_id_variant_suffix_missing');
   }
 
-  return `${BASE_PREFIX}-${setToken}-${rawNumberToken}-${suffixToken}`;
+  return applyPrintedIdentityModifierSuffixV1(`${BASE_PREFIX}-${setToken}-${rawNumberToken}-${suffixToken}`, input);
 }

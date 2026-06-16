@@ -80,6 +80,7 @@ async function fetchTargetRows(client, opts) {
       cp.number,
       cp.number_plain,
       cp.variant_key,
+      cp.printed_identity_modifier,
       s.printed_set_abbrev
     from public.card_prints cp
     left join public.sets s
@@ -113,6 +114,7 @@ async function assignOne(client, row, apply) {
     number: row.number,
     numberPlain: row.number_plain,
     variantKey: row.variant_key,
+    printedIdentityModifier: row.printed_identity_modifier,
     onNamespaceDecision(decision) {
       namespaceDecision = decision;
     },
@@ -137,6 +139,7 @@ async function assignOne(client, row, apply) {
     number: row.number,
     number_plain: row.number_plain,
     variant_key: row.variant_key,
+    printed_identity_modifier: row.printed_identity_modifier,
     planned_gv_id: plannedGvId,
     namespace_decision: namespaceDecision,
     apply,

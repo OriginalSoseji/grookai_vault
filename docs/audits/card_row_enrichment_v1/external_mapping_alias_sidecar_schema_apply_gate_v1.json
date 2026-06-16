@@ -1,0 +1,53 @@
+{
+  "version": "EXTERNAL_MAPPING_ALIAS_SIDECAR_SCHEMA_APPLY_GATE_V1",
+  "generated_at": "2026-06-16T19:41:42.483Z",
+  "source_report": "docs/audits/card_row_enrichment_v1/external_mapping_alias_sidecar_migration_readiness_v1.json",
+  "scope": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "sidecar_created": false,
+    "ddl_executed": false
+  },
+  "package_id": "EXTMAP-ALIAS-01A-SIDECAR-SCHEMA-CREATE",
+  "proposed_migration_name": "create_external_mapping_aliases_sidecar_v1",
+  "proposed_table": "public.external_mapping_aliases",
+  "draft_sql_hash_sha256": "f8181087b137446ba104e887ee742a6282a0b31681fd75b3e7448d047a22c94d",
+  "readiness_fingerprint_sha256": "d406c2026d841200bcc4a12796dbc1f0e8b9421cad398753cd4ec0c86287f0f5",
+  "authorized_if_approved": [
+    "create one migration file for public.external_mapping_aliases schema only",
+    "create table public.external_mapping_aliases",
+    "create indexes and constraints listed in the readiness packet",
+    "run migration through the standard Supabase migration path",
+    "verify table/index existence after migration"
+  ],
+  "not_authorized_even_if_approved": [
+    "inserting alias rows",
+    "deactivating external_mappings",
+    "cleanup",
+    "parent card_print writes",
+    "child card_printing writes",
+    "identity writes",
+    "image writes",
+    "global apply",
+    "app/runtime exposure"
+  ],
+  "expected_next_after_schema": {
+    "package_id": "EXTMAP-ALIAS-01B-PRODUCT-ALIAS-PRESERVATION",
+    "dry_run_only_first": true,
+    "projected_alias_rows": 214,
+    "source": "justtcg",
+    "purpose": "insert preserved alias rows into the sidecar before any external_mappings deactivation"
+  },
+  "stop_conditions": [
+    "draft SQL hash differs from readiness packet",
+    "migration includes DML or alias inserts",
+    "migration touches external_mappings rows",
+    "migration touches card_prints/card_printings/card_print_identity",
+    "migration changes image data",
+    "migration includes broad permissions or public exposure",
+    "preflight critical failures appear after migration"
+  ],
+  "fingerprint_sha256": "3662aec407767ede5d8264627c21f99d58c9c6d9902299384c10eeb17fab0a64",
+  "approval_phrase": "Approve EXTMAP-ALIAS-01A-SIDECAR-SCHEMA-CREATE schema migration creation and standard Supabase migration apply only. Fingerprint: 3662aec407767ede5d8264627c21f99d58c9c6d9902299384c10eeb17fab0a64. SQL hash: f8181087b137446ba104e887ee742a6282a0b31681fd75b3e7448d047a22c94d. Scope: create public.external_mapping_aliases sidecar table, constraints, and indexes only. No alias row inserts. No external_mappings deactivation. No cleanup. No parent writes. No child writes. No identity writes. No image writes. No global apply."
+}

@@ -1,0 +1,308 @@
+{
+  "version": "ENRICH32A_POKEMONAPI_ZERO_PADDING_MAPPING_REAL_APPLY_V1",
+  "generated_at": "2026-06-16T18:55:14.111Z",
+  "scope": {
+    "rollback_only": false,
+    "db_writes_persisted": true,
+    "migrations_created": false,
+    "source": "pokemonapi",
+    "readiness_class": "pokemonapi_zero_padding_alias_ready"
+  },
+  "fingerprint_sha256": "b4730cd8855bfe00578e26b310805c519686cc56cea1ca4c673fc72b0d71df0a",
+  "proof_sha256": "03240951eea3bc47a15f1000a90f251b7dc2b4c09918282624b8a938eab7cd1c",
+  "proof": {
+    "target_groups": 26,
+    "target_mapping_rows_active_before": 26,
+    "mappings_deactivated": 26,
+    "remaining_source_card_duplicate_groups_after_transient_update": 169
+  },
+  "targets": [
+    {
+      "card_print_id": "05a3e4fc-15c7-460d-89ed-e463cb60d55b",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "17",
+      "card_name": "Hisuian Lilligant V",
+      "keep_external_id": "swsh10-17",
+      "deactivate_external_ids": [
+        "swsh10-017"
+      ]
+    },
+    {
+      "card_print_id": "9d8c9876-ef83-4236-9642-24e15a0d07ba",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "2",
+      "card_name": "Hisuian Voltorb",
+      "keep_external_id": "swsh10-2",
+      "deactivate_external_ids": [
+        "swsh10-002"
+      ]
+    },
+    {
+      "card_print_id": "fb267cee-adae-489f-82b9-750ed6a17ab6",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "23",
+      "card_name": "Cyndaquil",
+      "keep_external_id": "swsh10-23",
+      "deactivate_external_ids": [
+        "swsh10-023"
+      ]
+    },
+    {
+      "card_print_id": "d6ee1e74-20a2-4ac3-8d01-1eb0a2388a19",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "24",
+      "card_name": "Quilava",
+      "keep_external_id": "swsh10-24",
+      "deactivate_external_ids": [
+        "swsh10-024"
+      ]
+    },
+    {
+      "card_print_id": "5b2d9880-53ee-422e-b019-b55235ba0087",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "26",
+      "card_name": "Heatran VMAX",
+      "keep_external_id": "swsh10-26",
+      "deactivate_external_ids": [
+        "swsh10-026"
+      ]
+    },
+    {
+      "card_print_id": "0d13ab03-6d9f-4833-bed8-e49c218822f8",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "3",
+      "card_name": "Hisuian Electrode",
+      "keep_external_id": "swsh10-3",
+      "deactivate_external_ids": [
+        "swsh10-003"
+      ]
+    },
+    {
+      "card_print_id": "3aa4f5d5-31ed-48cf-9802-3704cce3b61f",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "30",
+      "card_name": "Starmie V",
+      "keep_external_id": "swsh10-30",
+      "deactivate_external_ids": [
+        "swsh10-030"
+      ]
+    },
+    {
+      "card_print_id": "1b120b65-2121-4273-9109-3cf5b4e63aff",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "35",
+      "card_name": "Barboach",
+      "keep_external_id": "swsh10-35",
+      "deactivate_external_ids": [
+        "swsh10-035"
+      ]
+    },
+    {
+      "card_print_id": "338d8de4-5979-4376-9d87-a159fb7878ca",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "38",
+      "card_name": "Glaceon",
+      "keep_external_id": "swsh10-38",
+      "deactivate_external_ids": [
+        "swsh10-038"
+      ]
+    },
+    {
+      "card_print_id": "41715f5d-9c19-400b-9476-dea212198a95",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "43",
+      "card_name": "Hisuian Basculin",
+      "keep_external_id": "swsh10-43",
+      "deactivate_external_ids": [
+        "swsh10-043"
+      ]
+    },
+    {
+      "card_print_id": "a654fd5e-5527-4fc9-b2c2-66ed0316a9c0",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "50",
+      "card_name": "Luxray V",
+      "keep_external_id": "swsh10-50",
+      "deactivate_external_ids": [
+        "swsh10-050"
+      ]
+    },
+    {
+      "card_print_id": "e544b07b-c4df-4870-8fc8-2c068bde100a",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "53",
+      "card_name": "Hisuian Typhlosion V",
+      "keep_external_id": "swsh10-53",
+      "deactivate_external_ids": [
+        "swsh10-053"
+      ]
+    },
+    {
+      "card_print_id": "c6f410af-4b5f-4008-9bef-99c9cd85cf65",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "57",
+      "card_name": "Togekiss",
+      "keep_external_id": "swsh10-57",
+      "deactivate_external_ids": [
+        "swsh10-057"
+      ]
+    },
+    {
+      "card_print_id": "dccc5943-ab5a-4fc0-9c2f-01f59bd83e04",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "59",
+      "card_name": "Mismagius",
+      "keep_external_id": "swsh10-59",
+      "deactivate_external_ids": [
+        "swsh10-059"
+      ]
+    },
+    {
+      "card_print_id": "31f581db-569e-4100-bd8c-c4cfe08320df",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "6",
+      "card_name": "Yanma",
+      "keep_external_id": "swsh10-6",
+      "deactivate_external_ids": [
+        "swsh10-006"
+      ]
+    },
+    {
+      "card_print_id": "8aab0c64-b621-44e5-970a-d416e6fa1244",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "70",
+      "card_name": "Hisuian Growlithe",
+      "keep_external_id": "swsh10-70",
+      "deactivate_external_ids": [
+        "swsh10-070"
+      ]
+    },
+    {
+      "card_print_id": "42b81fb6-560b-4d02-a5bd-97e0dd094a69",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "77",
+      "card_name": "Rampardos",
+      "keep_external_id": "swsh10-77",
+      "deactivate_external_ids": [
+        "swsh10-077"
+      ]
+    },
+    {
+      "card_print_id": "5ec4c044-3e4b-4e30-8897-11580f26b464",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "78",
+      "card_name": "Lucario V",
+      "keep_external_id": "swsh10-78",
+      "deactivate_external_ids": [
+        "swsh10-078"
+      ]
+    },
+    {
+      "card_print_id": "2af3006f-b984-4237-ad46-6c55add6f4fc",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "83",
+      "card_name": "Hisuian Decidueye V",
+      "keep_external_id": "swsh10-83",
+      "deactivate_external_ids": [
+        "swsh10-083"
+      ]
+    },
+    {
+      "card_print_id": "4531367d-6790-4e8c-9271-28c97760247b",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "84",
+      "card_name": "Hisuian Decidueye VSTAR",
+      "keep_external_id": "swsh10-84",
+      "deactivate_external_ids": [
+        "swsh10-084"
+      ]
+    },
+    {
+      "card_print_id": "505fff01-a869-4e4e-ad64-76c6b9a639aa",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "86",
+      "card_name": "Kleavor",
+      "keep_external_id": "swsh10-86",
+      "deactivate_external_ids": [
+        "swsh10-086"
+      ]
+    },
+    {
+      "card_print_id": "7075beaf-0d6b-4b77-a8c7-ed6ad67e364a",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "9",
+      "card_name": "Kricketot",
+      "keep_external_id": "swsh10-9",
+      "deactivate_external_ids": [
+        "swsh10-009"
+      ]
+    },
+    {
+      "card_print_id": "d4a25b66-fd4c-4979-b3a2-f94281c3e228",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "90",
+      "card_name": "Hisuian Overqwil",
+      "keep_external_id": "swsh10-90",
+      "deactivate_external_ids": [
+        "swsh10-090"
+      ]
+    },
+    {
+      "card_print_id": "de37b411-58be-4563-a232-668bfab9bb63",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "92",
+      "card_name": "Hisuian Sneasel",
+      "keep_external_id": "swsh10-92",
+      "deactivate_external_ids": [
+        "swsh10-092"
+      ]
+    },
+    {
+      "card_print_id": "eb919731-b48f-4a61-941e-1c42bfa9f9e3",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "93",
+      "card_name": "Hisuian Sneasler",
+      "keep_external_id": "swsh10-93",
+      "deactivate_external_ids": [
+        "swsh10-093"
+      ]
+    },
+    {
+      "card_print_id": "a7f2f2d0-51a0-4d36-aaf5-169a251e3ea9",
+      "source": "pokemonapi",
+      "set_code": "swsh10",
+      "number": "95",
+      "card_name": "Poochyena",
+      "keep_external_id": "swsh10-95",
+      "deactivate_external_ids": [
+        "swsh10-095"
+      ]
+    }
+  ],
+  "recommended_approval_phrase": "Approve real ENRICH-32A-POKEMONAPI-ZERO-PADDING-MAPPING-DEACTIVATION apply only. Fingerprint: b4730cd8855bfe00578e26b310805c519686cc56cea1ca4c673fc72b0d71df0a. Dry-run proof: 03240951eea3bc47a15f1000a90f251b7dc2b4c09918282624b8a938eab7cd1c. Scope: 26 PokemonAPI leading-zero duplicate mapping deactivations. No card_print writes. No child writes. No deletes. No migrations. No image writes. No global apply."
+}

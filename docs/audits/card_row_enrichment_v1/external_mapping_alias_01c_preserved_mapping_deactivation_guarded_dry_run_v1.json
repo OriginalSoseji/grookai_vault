@@ -1,0 +1,666 @@
+{
+  "version": "EXTERNAL_MAPPING_ALIAS_01C_PRESERVED_MAPPING_DEACTIVATION_GUARDED_DRY_RUN_V1",
+  "package_id": "EXTMAP-ALIAS-01C-PRESERVED-MAPPING-DEACTIVATION",
+  "generated_at": "2026-06-16T22:45:46.686Z",
+  "mode": "rollback_only_dry_run",
+  "package_fingerprint_sha256": "c8f4a94af4883968d56d9e6105ab48e7c9f6f38c0fa60d975d024798a8ac80c2",
+  "scope": {
+    "target_external_mapping_deactivations": 214,
+    "table_written": [
+      "public.external_mappings.active"
+    ],
+    "prerequisite_sidecar_rows": 214,
+    "forbidden": [
+      "card_prints writes",
+      "card_printings writes",
+      "card_print_identity writes",
+      "external_mapping_aliases writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ],
+    "rows_deleted": 0,
+    "migrations_created": false
+  },
+  "preflight": {
+    "target_count": 214,
+    "distinct_preserved_mapping_count": 214,
+    "distinct_source_alias_count": 214,
+    "target_is_canonical_count": 0,
+    "missing_active_alias_sidecar_count": 0,
+    "inactive_target_mapping_count": 0,
+    "wrong_parent_count": 0,
+    "wrong_source_count": 0,
+    "wrong_external_id_count": 0,
+    "missing_active_canonical_mapping_count": 0
+  },
+  "before_counts": {
+    "source_card_duplicate_groups": 169,
+    "source_external_duplicate_groups": 0,
+    "active_external_mappings": 64710,
+    "active_alias_rows": 214
+  },
+  "inside_transaction_counts": {
+    "source_card_duplicate_groups": 70,
+    "source_external_duplicate_groups": 0,
+    "active_external_mappings": 64496,
+    "active_alias_rows": 214
+  },
+  "after_counts": {
+    "source_card_duplicate_groups": 169,
+    "source_external_duplicate_groups": 0,
+    "active_external_mappings": 64710,
+    "active_alias_rows": 214
+  },
+  "execution": {
+    "transaction_status": "rolled_back",
+    "deactivated_rows": 214,
+    "distinct_deactivated_rows": 214,
+    "distinct_source_external_rows": 214
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-16T22:45:45.856Z",
+    "row_count": 642,
+    "hash_sha256": "d78c98a055aa790f82ef2da5696f3a12db9407cb52e83cb41bf96bdea0f8e07c",
+    "counts": {
+      "canonical_external_mapping": 214,
+      "preserved_external_mapping": 214,
+      "sidecar_alias": 214
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-16T22:45:46.684Z",
+    "row_count": 642,
+    "hash_sha256": "d78c98a055aa790f82ef2da5696f3a12db9407cb52e83cb41bf96bdea0f8e07c",
+    "counts": {
+      "canonical_external_mapping": 214,
+      "preserved_external_mapping": 214,
+      "sidecar_alias": 214
+    }
+  },
+  "by_alias_kind": {
+    "battle_academy_alias": 168,
+    "prize_pack_alias": 34,
+    "prerelease_alias": 6,
+    "product_alias": 4,
+    "league_alias": 2
+  },
+  "target_samples": [
+    {
+      "alias_row_id": "961274d4-9776-47f8-a36d-2d836ca0fba4",
+      "canonical_card_print_id": "644a4cf1-4f21-47d1-8cf1-e8106aed984e",
+      "canonical_external_mapping_id": 97309,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-boss-s-orders-154-192-44-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120490,
+      "metadata": {
+        "set_code": "swsh2",
+        "card_name": "Boss's Orders",
+        "card_number": "154",
+        "canonical_gv_id": "GV-PK-RCL-154",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh02-rebel-clash-boss-s-orders-holo-rare"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "30b15b57-79a9-474d-b2d2-fe1ce0dc0625",
+      "canonical_card_print_id": "b4732c84-7e03-47c6-af4d-952be27e603c",
+      "canonical_external_mapping_id": 87978,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-bug-catcher-226-264-26-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120468,
+      "metadata": {
+        "set_code": "swsh8",
+        "card_name": "Bug Catcher",
+        "card_number": "226",
+        "canonical_gv_id": "GV-PK-FST-226",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh08-fusion-strike-bug-catcher-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "d76742ab-265e-4c06-9154-076d2e12372f",
+      "canonical_card_print_id": "b4732c84-7e03-47c6-af4d-952be27e603c",
+      "canonical_external_mapping_id": 87978,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-bug-catcher-226-264-34-cinderace-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120499,
+      "metadata": {
+        "set_code": "swsh8",
+        "card_name": "Bug Catcher",
+        "card_number": "226",
+        "canonical_gv_id": "GV-PK-FST-226",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh08-fusion-strike-bug-catcher-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "d4b1012b-1ce3-483c-baa0-8faf0f3842cf",
+      "canonical_card_print_id": "b4732c84-7e03-47c6-af4d-952be27e603c",
+      "canonical_external_mapping_id": 87978,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-bug-catcher-226-264-46-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120482,
+      "metadata": {
+        "set_code": "swsh8",
+        "card_name": "Bug Catcher",
+        "card_number": "226",
+        "canonical_gv_id": "GV-PK-FST-226",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh08-fusion-strike-bug-catcher-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "5c1f61e9-3734-4c66-a207-73cedb39a1da",
+      "canonical_card_print_id": "b4732c84-7e03-47c6-af4d-952be27e603c",
+      "canonical_external_mapping_id": 87978,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-bug-catcher-226-264-47-cinderace-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120501,
+      "metadata": {
+        "set_code": "swsh8",
+        "card_name": "Bug Catcher",
+        "card_number": "226",
+        "canonical_gv_id": "GV-PK-FST-226",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh08-fusion-strike-bug-catcher-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "5e571366-8290-45a7-a9cc-ef94edc21180",
+      "canonical_card_print_id": "b4732c84-7e03-47c6-af4d-952be27e603c",
+      "canonical_external_mapping_id": 87978,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-bug-catcher-226-264-eevee-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120512,
+      "metadata": {
+        "set_code": "swsh8",
+        "card_name": "Bug Catcher",
+        "card_number": "226",
+        "canonical_gv_id": "GV-PK-FST-226",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh08-fusion-strike-bug-catcher-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "f71837d8-13f2-45b1-b5af-c14cd6f3515e",
+      "canonical_card_print_id": "0eff9229-c010-47ab-b25a-397b19e2bf24",
+      "canonical_external_mapping_id": 87879,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-carvanha-162-264-eevee-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120484,
+      "metadata": {
+        "set_code": "swsh8",
+        "card_name": "Carvanha",
+        "card_number": "162",
+        "canonical_gv_id": "GV-PK-FST-162",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh08-fusion-strike-carvanha-common"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "bd555329-121d-48df-8833-b03cb2f63e02",
+      "canonical_card_print_id": "bff32423-b893-4a0e-9bb0-c21775a0fc10",
+      "canonical_external_mapping_id": 87980,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-cook-228-264-eevee-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120515,
+      "metadata": {
+        "set_code": "swsh8",
+        "card_name": "Cook",
+        "card_number": "228",
+        "canonical_gv_id": "GV-PK-FST-228",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh08-fusion-strike-cook-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "6eddda7b-06bf-4413-966a-1f9ea2b37185",
+      "canonical_card_print_id": "1c466c19-5fc4-4abb-9a4b-072aeb5d8000",
+      "canonical_external_mapping_id": 87888,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-darkrai-167-264-eevee-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120463,
+      "metadata": {
+        "set_code": "swsh8",
+        "card_name": "Darkrai",
+        "card_number": "167",
+        "canonical_gv_id": "GV-PK-FST-167",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh08-fusion-strike-darkrai-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "c5aeca11-8a7b-4a82-890b-7eb1a68f286b",
+      "canonical_card_print_id": "d9e51312-539f-4cc3-8b0d-01a2a93462b5",
+      "canonical_external_mapping_id": 87128,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-energy-recycler-124-163-32-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120500,
+      "metadata": {
+        "set_code": "swsh5",
+        "card_name": "Energy Recycler",
+        "card_number": "124",
+        "canonical_gv_id": "GV-PK-BST-124",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh05-battle-styles-energy-recycler-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "81a314d0-d448-42d2-8be9-1d142d48bd4c",
+      "canonical_card_print_id": "d56a801f-87d6-4262-8511-a565ced4388f",
+      "canonical_external_mapping_id": 85706,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-energy-retrieval-160-202-25-cinderace-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120494,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Energy Retrieval",
+        "card_number": "160",
+        "canonical_gv_id": "GV-PK-SSH-160",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-energy-retrieval-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "9c7740a3-badb-44cb-9e60-2bfb9805b4e4",
+      "canonical_card_print_id": "d56a801f-87d6-4262-8511-a565ced4388f",
+      "canonical_external_mapping_id": 85706,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-energy-retrieval-160-202-37-cinderace-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120498,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Energy Retrieval",
+        "card_number": "160",
+        "canonical_gv_id": "GV-PK-SSH-160",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-energy-retrieval-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "fbd10f1f-5341-4370-b8f1-ed0dbcd706dc",
+      "canonical_card_print_id": "e9cc5458-2d24-4d32-aff0-1a328944d4a6",
+      "canonical_external_mapping_id": 85710,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-great-ball-164-202-29-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120488,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Great Ball",
+        "card_number": "164",
+        "canonical_gv_id": "GV-PK-SSH-164",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-great-ball-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "9b715639-75db-435a-b5ec-8795e3a03b27",
+      "canonical_card_print_id": "e9cc5458-2d24-4d32-aff0-1a328944d4a6",
+      "canonical_external_mapping_id": 85710,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-great-ball-164-202-33-cinderace-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120502,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Great Ball",
+        "card_number": "164",
+        "canonical_gv_id": "GV-PK-SSH-164",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-great-ball-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "0694efd1-245e-41bb-8904-6bc930d6e707",
+      "canonical_card_print_id": "e9cc5458-2d24-4d32-aff0-1a328944d4a6",
+      "canonical_external_mapping_id": 85710,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-great-ball-164-202-38-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120509,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Great Ball",
+        "card_number": "164",
+        "canonical_gv_id": "GV-PK-SSH-164",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-great-ball-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "ce02fca6-6863-4557-a47a-ceb0265d50ec",
+      "canonical_card_print_id": "e9cc5458-2d24-4d32-aff0-1a328944d4a6",
+      "canonical_external_mapping_id": 85710,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-great-ball-164-202-43-cinderace-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120487,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Great Ball",
+        "card_number": "164",
+        "canonical_gv_id": "GV-PK-SSH-164",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-great-ball-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "b2adfe8e-786a-4020-8b9c-3e61279745bc",
+      "canonical_card_print_id": "e9cc5458-2d24-4d32-aff0-1a328944d4a6",
+      "canonical_external_mapping_id": 85710,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-great-ball-164-202-48-cinderace-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120505,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Great Ball",
+        "card_number": "164",
+        "canonical_gv_id": "GV-PK-SSH-164",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-great-ball-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "f34b14ab-6e64-45ac-bb08-7371316bc1a5",
+      "canonical_card_print_id": "e9cc5458-2d24-4d32-aff0-1a328944d4a6",
+      "canonical_external_mapping_id": 85710,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-great-ball-164-202-49-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120516,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Great Ball",
+        "card_number": "164",
+        "canonical_gv_id": "GV-PK-SSH-164",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-great-ball-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "26d99c5a-4cfc-4c05-87ae-33bc1e47b4ca",
+      "canonical_card_print_id": "e9cc5458-2d24-4d32-aff0-1a328944d4a6",
+      "canonical_external_mapping_id": 85710,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-great-ball-164-202-55-cinderace-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120470,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Great Ball",
+        "card_number": "164",
+        "canonical_gv_id": "GV-PK-SSH-164",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-great-ball-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "17fc756e-807e-40fd-ae50-423c5259ae7e",
+      "canonical_card_print_id": "e9cc5458-2d24-4d32-aff0-1a328944d4a6",
+      "canonical_external_mapping_id": 85710,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-great-ball-164-202-57-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120483,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Great Ball",
+        "card_number": "164",
+        "canonical_gv_id": "GV-PK-SSH-164",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-great-ball-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "c5a64553-208e-4b06-bd0a-f7ca4b4242c1",
+      "canonical_card_print_id": "e9cc5458-2d24-4d32-aff0-1a328944d4a6",
+      "canonical_external_mapping_id": 85710,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-great-ball-164-202-eevee-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120503,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Great Ball",
+        "card_number": "164",
+        "canonical_gv_id": "GV-PK-SSH-164",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-great-ball-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "25178e19-c525-49b5-968a-fcd1316c9e25",
+      "canonical_card_print_id": "0294101b-892f-4d35-85f9-0d9f93682338",
+      "canonical_external_mapping_id": 85711,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-hop-165-202-13-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120486,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Hop",
+        "card_number": "165",
+        "canonical_gv_id": "GV-PK-SSH-165",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-hop-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "e8d1b34d-f89e-4ec4-b2a1-a2427a0b0218",
+      "canonical_card_print_id": "0294101b-892f-4d35-85f9-0d9f93682338",
+      "canonical_external_mapping_id": 85711,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-hop-165-202-28-cinderace-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120489,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Hop",
+        "card_number": "165",
+        "canonical_gv_id": "GV-PK-SSH-165",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-hop-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "d7092102-fe88-4919-848c-d6ee3834cb24",
+      "canonical_card_print_id": "0294101b-892f-4d35-85f9-0d9f93682338",
+      "canonical_external_mapping_id": 85711,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-hop-165-202-33-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120481,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Hop",
+        "card_number": "165",
+        "canonical_gv_id": "GV-PK-SSH-165",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-hop-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "9b3ace88-d4a7-4ff6-a53b-9bf71b14d04d",
+      "canonical_card_print_id": "0294101b-892f-4d35-85f9-0d9f93682338",
+      "canonical_external_mapping_id": 85711,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-hop-165-202-41-cinderace-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120497,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Hop",
+        "card_number": "165",
+        "canonical_gv_id": "GV-PK-SSH-165",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-hop-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "80252fdf-2726-4423-b9f0-e68a323b21aa",
+      "canonical_card_print_id": "0294101b-892f-4d35-85f9-0d9f93682338",
+      "canonical_external_mapping_id": 85711,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-hop-165-202-42-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120504,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Hop",
+        "card_number": "165",
+        "canonical_gv_id": "GV-PK-SSH-165",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-hop-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "82bf3966-08a8-4534-b3d9-a47f648529a9",
+      "canonical_card_print_id": "0294101b-892f-4d35-85f9-0d9f93682338",
+      "canonical_external_mapping_id": 85711,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-hop-165-202-52-cinderace-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120510,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Hop",
+        "card_number": "165",
+        "canonical_gv_id": "GV-PK-SSH-165",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-hop-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "b14319dd-579d-48e3-a43f-5993ef26653b",
+      "canonical_card_print_id": "0294101b-892f-4d35-85f9-0d9f93682338",
+      "canonical_external_mapping_id": 85711,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-hop-165-202-54-pikachu-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120514,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Hop",
+        "card_number": "165",
+        "canonical_gv_id": "GV-PK-SSH-165",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-hop-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "90458345-5ccf-439c-aef6-b4ad410f242f",
+      "canonical_card_print_id": "0294101b-892f-4d35-85f9-0d9f93682338",
+      "canonical_external_mapping_id": 85711,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-hop-165-202-57-cinderace-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120492,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Hop",
+        "card_number": "165",
+        "canonical_gv_id": "GV-PK-SSH-165",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-hop-uncommon"
+      },
+      "preserved_mapping_active": true
+    },
+    {
+      "alias_row_id": "cfb59078-ade4-4ea6-90bf-efd146935863",
+      "canonical_card_print_id": "0294101b-892f-4d35-85f9-0d9f93682338",
+      "canonical_external_mapping_id": 85711,
+      "source": "justtcg",
+      "alias_external_id": "pokemon-battle-academy-2022-hop-165-202-eevee-stamped-promo",
+      "alias_kind": "battle_academy_alias",
+      "alias_status": "sidecar_ready_preserve_before_deactivation",
+      "preserved_from_mapping_id": 120469,
+      "metadata": {
+        "set_code": "swsh1",
+        "card_name": "Hop",
+        "card_number": "165",
+        "canonical_gv_id": "GV-PK-SSH-165",
+        "readiness_fingerprint_sha256": "6502d9d3941d71cbb1578034f72896b172055cf2afb297525b5c37fb8777092f",
+        "canonical_external_id_to_keep": "pokemon-swsh01-sword-shield-base-set-hop-uncommon"
+      },
+      "preserved_mapping_active": true
+    }
+  ],
+  "stop_findings": [],
+  "pass": true,
+  "recommended_next_step": "If pass is true, run this script with --apply to deactivate the preserved duplicate external_mappings rows.",
+  "recommended_approval_text": "Approve real EXTMAP-ALIAS-01C-PRESERVED-MAPPING-DEACTIVATION apply only. Fingerprint: c8f4a94af4883968d56d9e6105ab48e7c9f6f38c0fa60d975d024798a8ac80c2. Scope: 214 preserved duplicate external_mappings active=false updates protected by 214 sidecar alias rows. Dry-run proof: d78c98a055aa790f82ef2da5696f3a12db9407cb52e83cb41bf96bdea0f8e07c == d78c98a055aa790f82ef2da5696f3a12db9407cb52e83cb41bf96bdea0f8e07c; duplicate groups inside transaction 169 -> 70. No card_prints writes. No child writes. No identity writes. No alias sidecar writes. No deletes. No merges. No migrations. No image writes. No global apply."
+}

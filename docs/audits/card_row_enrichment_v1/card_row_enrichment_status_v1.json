@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T03:37:57.685Z",
+  "generated_at": "2026-06-16T23:07:07.005Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -13,196 +13,187 @@
     "card_print_species",
     "card_print_cameos"
   ],
-  "parent_rows": 26228,
-  "child_printing_rows": 47561,
+  "parent_rows": 24803,
+  "child_printing_rows": 43687,
   "parent_rows_by_segment": {
-    "english_physical": 23078,
-    "tcg_pocket_excluded": 3150
+    "english_physical": 22791,
+    "tcg_pocket_excluded": 2012
   },
   "child_printing_rows_by_segment": {
-    "english_physical": 38111,
-    "tcg_pocket_excluded": 9450
+    "english_physical": 37651,
+    "tcg_pocket_excluded": 6036
   },
-  "english_physical_parent_rows": 23078,
-  "english_physical_child_printing_rows": 38111,
+  "english_physical_parent_rows": 22791,
+  "english_physical_child_printing_rows": 37651,
   "parent_coverage": {
     "name": {
-      "present": 26228,
+      "present": 24803,
       "missing": 0,
       "percent": 100
     },
     "set_id": {
-      "present": 26228,
+      "present": 24803,
       "missing": 0,
       "percent": 100
     },
     "set_code": {
-      "present": 24887,
-      "missing": 1341,
-      "percent": 94.89
+      "present": 24600,
+      "missing": 203,
+      "percent": 99.18
     },
     "number": {
-      "present": 25090,
-      "missing": 1138,
-      "percent": 95.66
+      "present": 24803,
+      "missing": 0,
+      "percent": 100
     },
     "number_plain": {
-      "present": 25090,
-      "missing": 1138,
-      "percent": 95.66
+      "present": 24803,
+      "missing": 0,
+      "percent": 100
     },
     "gv_id": {
-      "present": 22953,
-      "missing": 3275,
-      "percent": 87.51
+      "present": 24803,
+      "missing": 0,
+      "percent": 100
     },
     "active_identity": {
-      "present": 23078,
-      "missing": 3150,
-      "percent": 87.99
+      "present": 22791,
+      "missing": 2012,
+      "percent": 91.89
     },
     "child_printings": {
-      "present": 25141,
-      "missing": 1087,
-      "percent": 95.86
+      "present": 23720,
+      "missing": 1083,
+      "percent": 95.63
     },
     "active_external_mapping": {
-      "present": 24385,
-      "missing": 1843,
-      "percent": 92.97
+      "present": 24128,
+      "missing": 675,
+      "percent": 97.28
     },
     "rarity": {
-      "present": 26074,
+      "present": 24649,
       "missing": 154,
-      "percent": 99.41
+      "percent": 99.38
     },
     "artist": {
-      "present": 21094,
-      "missing": 5134,
-      "percent": 80.43
+      "present": 20847,
+      "missing": 3956,
+      "percent": 84.05
     },
     "regulation_mark": {
       "present": 5627,
-      "missing": 20601,
-      "percent": 21.45
+      "missing": 19176,
+      "percent": 22.69
     },
     "parent_or_representative_image": {
-      "present": 25911,
-      "missing": 317,
-      "percent": 98.79
+      "present": 24487,
+      "missing": 316,
+      "percent": 98.73
     },
     "any_child_image": {
-      "present": 139,
-      "missing": 26089,
-      "percent": 0.53
+      "present": 320,
+      "missing": 24483,
+      "percent": 1.29
     },
     "active_price": {
-      "present": 26228,
+      "present": 24803,
       "missing": 0,
       "percent": 100
     },
     "traits": {
-      "present": 24000,
-      "missing": 2228,
-      "percent": 91.51
+      "present": 22834,
+      "missing": 1969,
+      "percent": 92.06
     },
     "species_link": {
-      "present": 22234,
-      "missing": 3994,
-      "percent": 84.77
+      "present": 20908,
+      "missing": 3895,
+      "percent": 84.3
     },
     "cameos": {
       "present": 846,
-      "missing": 25382,
-      "percent": 3.23
+      "missing": 23957,
+      "percent": 3.41
     }
   },
   "child_coverage": {
     "finish_key": {
-      "present": 47561,
+      "present": 43687,
       "missing": 0,
       "percent": 100
     },
     "active_finish_key": {
-      "present": 47561,
+      "present": 43687,
       "missing": 0,
       "percent": 100
     },
     "printing_gv_id": {
-      "present": 37982,
-      "missing": 9579,
-      "percent": 79.86
+      "present": 43687,
+      "missing": 0,
+      "percent": 100
     },
     "provenance": {
-      "present": 30719,
-      "missing": 16842,
-      "percent": 64.59
+      "present": 27274,
+      "missing": 16413,
+      "percent": 62.43
     },
     "child_display_image": {
-      "present": 152,
-      "missing": 47409,
-      "percent": 0.32
+      "present": 384,
+      "missing": 43303,
+      "percent": 0.88
     },
     "child_or_parent_display_image": {
-      "present": 47251,
-      "missing": 310,
-      "percent": 99.35
+      "present": 43606,
+      "missing": 81,
+      "percent": 99.81
     },
     "image_source_when_child_image_present": {
-      "present": 152,
+      "present": 384,
       "missing": 0,
       "percent": 100
     },
     "image_status_when_child_image_present": {
-      "present": 152,
+      "present": 384,
       "missing": 0,
       "percent": 100
     },
     "non_provisional": {
-      "present": 47561,
+      "present": 43687,
       "missing": 0,
       "percent": 100
     }
   },
   "parent_gap_counts": {
-    "species_link": 3994,
-    "gv_id": 3275,
-    "active_identity": 3150,
-    "traits": 2228,
-    "external_mapping": 1843,
-    "core_identity": 1341,
-    "child_printings": 1087,
-    "display_image": 218,
-    "catalog_metadata": 139
+    "species_link": 3895,
+    "active_identity": 2012,
+    "traits": 1969,
+    "child_printings": 1083,
+    "external_mapping": 675,
+    "core_identity": 203,
+    "catalog_metadata": 139,
+    "display_image": 40
   },
   "child_gap_counts": {
-    "provenance": 16842,
-    "printing_gv_id": 9579,
-    "display_image": 310
+    "provenance": 16413,
+    "display_image": 81
   },
   "english_physical_parent_gap_counts": {
-    "species_link": 3752,
-    "traits": 1090,
-    "child_printings": 1087,
-    "external_mapping": 706,
-    "display_image": 191,
+    "species_link": 3740,
+    "child_printings": 1083,
+    "traits": 831,
+    "external_mapping": 675,
     "catalog_metadata": 139,
-    "gv_id": 125
+    "display_image": 13
   },
   "english_physical_child_gap_counts": {
-    "provenance": 13428,
-    "display_image": 229,
-    "printing_gv_id": 129
+    "provenance": 12999
   },
-  "parent_gap_rows": 8619,
-  "child_gap_rows": 23142,
-  "english_physical_parent_gap_rows": 5469,
-  "english_physical_child_gap_rows": 13692,
+  "parent_gap_rows": 7220,
+  "child_gap_rows": 16494,
+  "english_physical_parent_gap_rows": 5208,
+  "english_physical_child_gap_rows": 12999,
   "parent_gaps_by_set": [
-    {
-      "key": "unknown",
-      "rows": 1341
-    },
     {
       "key": "B1",
       "rows": 331
@@ -224,20 +215,16 @@
       "rows": 207
     },
     {
+      "key": "unknown",
+      "rows": 203
+    },
+    {
       "key": "sv8pt5",
       "rows": 194
     },
     {
-      "key": "me01",
-      "rows": 151
-    },
-    {
       "key": "me03",
       "rows": 126
-    },
-    {
-      "key": "svp",
-      "rows": 124
     },
     {
       "key": "smp",
@@ -272,10 +259,6 @@
       "rows": 99
     },
     {
-      "key": "swsh11",
-      "rows": 97
-    },
-    {
       "key": "A2a",
       "rows": 96
     },
@@ -290,6 +273,10 @@
     {
       "key": "A1a",
       "rows": 86
+    },
+    {
+      "key": "swsh11",
+      "rows": 85
     },
     {
       "key": "swsh7",
@@ -316,38 +303,34 @@
       "rows": 69
     },
     {
+      "key": "me01",
+      "rows": 68
+    },
+    {
       "key": "sv01",
+      "rows": 68
+    },
+    {
+      "key": "sv02",
       "rows": 68
     }
   ],
   "child_gaps_by_set": [
-    {
-      "key": "unknown",
-      "rows": 4023
-    },
-    {
-      "key": "B1",
-      "rows": 993
-    },
-    {
-      "key": "A1",
-      "rows": 858
-    },
     {
       "key": "A4",
       "rows": 723
     },
     {
       "key": "A3",
-      "rows": 717
-    },
-    {
-      "key": "A2",
-      "rows": 621
+      "rows": 642
     },
     {
       "key": "me02.5",
       "rows": 603
+    },
+    {
+      "key": "A2",
+      "rows": 558
     },
     {
       "key": "sm12",
@@ -394,10 +377,6 @@
       "rows": 288
     },
     {
-      "key": "bw11",
-      "rows": 282
-    },
-    {
       "key": "sv8pt5",
       "rows": 280
     },
@@ -414,32 +393,48 @@
       "rows": 272
     },
     {
-      "key": "me01",
-      "rows": 270
-    },
-    {
       "key": "sm3",
       "rows": 259
-    },
-    {
-      "key": "A1a",
-      "rows": 258
-    },
-    {
-      "key": "pl1",
-      "rows": 258
     },
     {
       "key": "sm2",
       "rows": 255
     },
     {
+      "key": "pl1",
+      "rows": 252
+    },
+    {
       "key": "bw9",
       "rows": 243
     },
     {
+      "key": "bw11",
+      "rows": 242
+    },
+    {
       "key": "xy4",
       "rows": 237
+    },
+    {
+      "key": "sm6",
+      "rows": 233
+    },
+    {
+      "key": "A1a",
+      "rows": 231
+    },
+    {
+      "key": "sv04",
+      "rows": 230
+    },
+    {
+      "key": "sv08",
+      "rows": 229
+    },
+    {
+      "key": "sv10",
+      "rows": 219
     }
   ],
   "english_physical_parent_gaps_by_set": [
@@ -448,16 +443,8 @@
       "rows": 194
     },
     {
-      "key": "me01",
-      "rows": 151
-    },
-    {
       "key": "me03",
       "rows": 126
-    },
-    {
-      "key": "svp",
-      "rows": 124
     },
     {
       "key": "smp",
@@ -480,16 +467,16 @@
       "rows": 99
     },
     {
-      "key": "swsh11",
-      "rows": 97
-    },
-    {
       "key": "pgo",
       "rows": 90
     },
     {
       "key": "swsh9",
       "rows": 88
+    },
+    {
+      "key": "swsh11",
+      "rows": 85
     },
     {
       "key": "swsh7",
@@ -514,6 +501,10 @@
     {
       "key": "sv06",
       "rows": 69
+    },
+    {
+      "key": "me01",
+      "rows": 68
     },
     {
       "key": "sv01",
@@ -546,6 +537,10 @@
     {
       "key": "swsh5",
       "rows": 57
+    },
+    {
+      "key": "svp",
+      "rows": 54
     },
     {
       "key": "me02.5",
@@ -598,10 +593,6 @@
       "rows": 290
     },
     {
-      "key": "bw11",
-      "rows": 282
-    },
-    {
       "key": "sv8pt5",
       "rows": 280
     },
@@ -618,24 +609,24 @@
       "rows": 272
     },
     {
-      "key": "me01",
-      "rows": 270
-    },
-    {
       "key": "sm3",
       "rows": 259
-    },
-    {
-      "key": "pl1",
-      "rows": 258
     },
     {
       "key": "sm2",
       "rows": 255
     },
     {
+      "key": "pl1",
+      "rows": 252
+    },
+    {
       "key": "bw9",
       "rows": 243
+    },
+    {
+      "key": "bw11",
+      "rows": 242
     },
     {
       "key": "xy4",
@@ -654,28 +645,24 @@
       "rows": 229
     },
     {
-      "key": "pl2",
-      "rows": 223
-    },
-    {
       "key": "sv10",
       "rows": 219
     },
     {
-      "key": "pl3",
-      "rows": 215
+      "key": "pl2",
+      "rows": 213
     },
     {
       "key": "xyp",
       "rows": 211
     },
     {
-      "key": "dp7",
-      "rows": 206
+      "key": "pl3",
+      "rows": 208
     },
     {
       "key": "sm4",
-      "rows": 206
+      "rows": 205
     },
     {
       "key": "bw10",
@@ -684,24 +671,32 @@
     {
       "key": "xy3",
       "rows": 203
+    },
+    {
+      "key": "xy9",
+      "rows": 202
+    },
+    {
+      "key": "dp7",
+      "rows": 201
     }
   ],
   "external_source_coverage": {
     "tcgdex": 22663,
     "justtcg": 19754,
     "tcgplayer": 14118,
-    "pokemonapi": 7783,
+    "pokemonapi": 7791,
     "tcgcollector": 104
   },
   "child_finish_distribution": {
-    "normal": 18091,
-    "reverse": 16688,
-    "holo": 11992,
+    "normal": 16776,
+    "reverse": 15471,
+    "holo": 10650,
     "cosmos": 352,
     "pokeball": 230,
     "cracked_ice": 131,
     "masterball": 67,
     "rocket_reverse": 10
   },
-  "fingerprint": "d0acda14bf8826a1bf800ce6d3ef46e51d754f414017bc9f94a23b8651ffb81f"
+  "fingerprint": "dadbc7ae108a993d82c0b90019394ae8ad1736dc6f02854dcb333f5968fabb9b"
 }

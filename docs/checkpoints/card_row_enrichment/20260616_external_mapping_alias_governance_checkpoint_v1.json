@@ -1,0 +1,106 @@
+{
+  "version": "EXTERNAL_MAPPING_ALIAS_GOVERNANCE_CHECKPOINT_V1",
+  "checkpoint_date": "2026-06-16",
+  "summary": {
+    "external_mapping_alias_sidecar_created": true,
+    "alias_rows_preserved": 214,
+    "residual_alias_rows_preserved": 55,
+    "final_suffix_alias_rows_preserved": 3,
+    "preserved_duplicate_external_mappings_deactivated": 214,
+    "residual_duplicate_external_mappings_deactivated": 55,
+    "final_suffix_duplicate_external_mappings_deactivated": 3,
+    "pokemonapi_owner_transfers": 8,
+    "external_mapping_source_card_duplicate_groups_before": 169,
+    "external_mapping_source_card_duplicate_groups_after": 5,
+    "external_mapping_source_external_duplicate_groups_after": 0,
+    "write_ready_packages_remaining": 0
+  },
+  "applied_packages": [
+    {
+      "package_id": "EXTMAP-ALIAS-01A-SIDECAR-SCHEMA-CREATE",
+      "migration": "supabase/migrations/20260616161500_create_external_mapping_aliases_sidecar_v1.sql",
+      "fingerprint_sha256": "3662aec407767ede5d8264627c21f99d58c9c6d9902299384c10eeb17fab0a64",
+      "sql_hash_sha256": "f8181087b137446ba104e887ee742a6282a0b31681fd75b3e7448d047a22c94d",
+      "db_writes": "schema only",
+      "report_json": "docs/audits/card_row_enrichment_v1/external_mapping_alias_sidecar_schema_real_apply_v1.json"
+    },
+    {
+      "package_id": "EXTMAP-ALIAS-01B-PRODUCT-ALIAS-PRESERVATION",
+      "fingerprint_sha256": "e8374bd891cc7ee12d38679fe201ee3673e8477bd289a568a2eea139ee540d95",
+      "scope": "214 external_mapping_aliases inserts",
+      "dry_run_proof": "2f44aec6549f670fee75f6504f139d917ae13eede3a51a70eaa24a727ddc55e3 == 2f44aec6549f670fee75f6504f139d917ae13eede3a51a70eaa24a727ddc55e3",
+      "report_json": "docs/audits/card_row_enrichment_v1/external_mapping_alias_01b_product_alias_preservation_real_apply_v1.json"
+    },
+    {
+      "package_id": "EXTMAP-ALIAS-01C-PRESERVED-MAPPING-DEACTIVATION",
+      "fingerprint_sha256": "c8f4a94af4883968d56d9e6105ab48e7c9f6f38c0fa60d975d024798a8ac80c2",
+      "scope": "214 preserved duplicate external_mappings active=false updates",
+      "dry_run_proof": "d78c98a055aa790f82ef2da5696f3a12db9407cb52e83cb41bf96bdea0f8e07c == d78c98a055aa790f82ef2da5696f3a12db9407cb52e83cb41bf96bdea0f8e07c",
+      "report_json": "docs/audits/card_row_enrichment_v1/external_mapping_alias_01c_preserved_mapping_deactivation_real_apply_v1.json"
+    },
+    {
+      "package_id": "EXTMAP-ALIAS-02A-RESIDUAL-ALIAS-PRESERVATION-CLEANUP",
+      "fingerprint_sha256": "95f6d2d3ac13446413508db37fd0d0a0d2124c19b1c591f03a57dfdc3c9b4ef9",
+      "scope": "55 residual alias sidecar inserts and 55 preserved duplicate external_mappings active=false updates",
+      "dry_run_proof": "88ff35a063c5ed0c821ce7928899a418cab4bc9a3f85b2c8e698b7da64547403 == 88ff35a063c5ed0c821ce7928899a418cab4bc9a3f85b2c8e698b7da64547403",
+      "report_json": "docs/audits/card_row_enrichment_v1/external_mapping_alias_02a_residual_alias_cleanup_real_apply_v1.json"
+    },
+    {
+      "package_id": "EXTMAP-ALIAS-03A-RESIDUAL-POKEMONAPI-SUFFIX-ALIAS-CLEANUP",
+      "fingerprint_sha256": "f9b89f1c9ee97bc65abf6cdf3d31c26b0f810c7c4dacd502ffe2c6f6a082ba09",
+      "scope": "3 residual PokemonAPI suffix alias sidecar inserts and 3 preserved duplicate external_mappings active=false updates",
+      "dry_run_proof": "aa3b4955680f22227867f5708b9aeb1868ab74636731de856dd2fa366c045270 == aa3b4955680f22227867f5708b9aeb1868ab74636731de856dd2fa366c045270",
+      "report_json": "docs/audits/card_row_enrichment_v1/external_mapping_alias_03a_residual_pokemonapi_suffix_alias_cleanup_real_apply_v1.json"
+    },
+    {
+      "package_id": "EXTMAP-ALIAS-04A-POKEMONAPI-SUFFIX-OWNER-TRANSFER",
+      "fingerprint_sha256": "4908bb9588c1666c7bce6ea921997b394ddd42a2a1b750196ebad0b724a84f22",
+      "scope": "8 PokemonAPI external_mapping owner transfers to suffix/base owner parents",
+      "dry_run_proof": "72e219e1823ca74d04bbabb7357e869d0c38cdcd657c1131e7ffd7fd49a0ce70 == 72e219e1823ca74d04bbabb7357e869d0c38cdcd657c1131e7ffd7fd49a0ce70",
+      "report_json": "docs/audits/card_row_enrichment_v1/external_mapping_alias_04a_pokemonapi_suffix_owner_transfer_real_apply_v1.json"
+    }
+  ],
+  "verification": {
+    "npm_run_preflight": "PASS_WITH_DEFERRED_DEBT; critical_failures=0",
+    "contract_scope_test": "pass",
+    "card_row_enrichment_status_fingerprint": "dadbc7ae108a993d82c0b90019394ae8ad1736dc6f02854dcb333f5968fabb9b",
+    "external_mapping_duplicate_triage_fingerprint": "815215fe8f47aa25ddbfe21ff1f445776e925b8fbe9ab651a46c962b519f08ca",
+    "external_mapping_residual_governance_fingerprint": "0376a1c0e492e3e7b0f204d426d56e812aecb3f3abdc1db076f0c986426d5133"
+  },
+  "final_residual_exception_report": {
+    "report_json": "docs/audits/card_row_enrichment_v1/external_mapping_final_residual_exception_v1.json",
+    "report_md": "docs/audits/card_row_enrichment_v1/external_mapping_final_residual_exception_v1.md",
+    "fingerprint_sha256": "9d5f12ebf4c40f88a15020cdaea415bf3f23a8e60b56c4c8c0cf14acae0fd2fb"
+  },
+  "remaining_residuals": {
+    "external_mappings_source_card_duplicates": 5,
+    "external_mapping_duplicate_readiness": {
+      "write_ready_groups": 0,
+      "blocked_or_preserve_groups": 5,
+      "by_actionability": {
+        "blocked": 5
+      }
+    },
+    "no_child_parent_rows": 1083,
+    "external_mapping_gaps": 675,
+    "catalog_metadata_gaps": 139,
+    "english_physical_trait_gaps": 831,
+    "english_physical_species_gaps": 3740,
+    "english_physical_parent_display_image_gaps": 13,
+    "english_physical_child_provenance_gaps": 12999
+  },
+  "migration_ledger_note": {
+    "applied_now": "20260616161500_create_external_mapping_aliases_sidecar_v1",
+    "still_pending_local_only": "20260523183000_printing_truth_review_sidecar_v1",
+    "note": "The older printing truth sidecar migration remains intentionally pending and was not applied as part of this checkpoint."
+  },
+  "safety": {
+    "card_prints_writes": false,
+    "card_printings_writes": false,
+    "identity_writes": false,
+    "deletes": false,
+    "merges": false,
+    "image_writes": false,
+    "global_apply": false
+  }
+}

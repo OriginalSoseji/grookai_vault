@@ -1,0 +1,1351 @@
+{
+  "generated_at": "2026-06-16T16:35:16.221Z",
+  "package_id": "POST-REC-02A-DEPENDENCY-TRANSFER-DUPLICATE-PARENT-CLEANUP",
+  "source_strategy": "docs/audits/post_reconcile_integrity_v1/post_reconcile_dependency_transfer_strategy_v1.json",
+  "safety": {
+    "db_writes_performed": false,
+    "durable_writes_performed": false,
+    "migrations_created": false,
+    "real_apply_performed": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false
+  },
+  "scope": {
+    "target_groups": 142,
+    "target_sets": [
+      "me01",
+      "svp",
+      "swsh11"
+    ],
+    "excluded_append_only_groups": 2,
+    "duplicate_child_rows_from_strategy": 223,
+    "target_rows": [
+      {
+        "canonical_parent_id": "35ec8ca0-6bc7-4b2a-9077-94bf42c4fecb",
+        "duplicate_parent_id": "96244e7c-c647-412e-b5d7-b073bfbe5d9c",
+        "canonical_gv_id": "GV-PK-MEG-001",
+        "duplicate_gv_id": "GV-PK-MEG-1",
+        "set_code": "me01",
+        "normalized_key": "me01|1|bulbasaur||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "711a2789-6c0b-4c7b-8e5a-15c865deb444",
+        "duplicate_parent_id": "0a7e9961-aebf-4617-b3a3-97ff9540cc2c",
+        "canonical_gv_id": "GV-PK-MEG-010",
+        "duplicate_gv_id": "GV-PK-MEG-10",
+        "set_code": "me01",
+        "normalized_key": "me01|10|meganium||",
+        "duplicate_child_count": 3
+      },
+      {
+        "canonical_parent_id": "2c818714-a5c7-426f-8a8f-9e5db12ba941",
+        "duplicate_parent_id": "a40d49f6-a528-4fdd-8f89-67c1527e5c03",
+        "canonical_gv_id": "GV-PK-MEG-011",
+        "duplicate_gv_id": "GV-PK-MEG-11",
+        "set_code": "me01",
+        "normalized_key": "me01|11|shuckle||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "a2aae959-98c0-453d-a3e5-196b774acf77",
+        "duplicate_parent_id": "d0513f68-3ce9-458c-af14-6e8ba8213e23",
+        "canonical_gv_id": "GV-PK-MEG-012",
+        "duplicate_gv_id": "GV-PK-MEG-12",
+        "set_code": "me01",
+        "normalized_key": "me01|12|celebi||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "37f0dcda-5da9-41af-ba5e-6d92c01b2676",
+        "duplicate_parent_id": "93ce0dda-8d3e-440d-a5de-6565e353f3d7",
+        "canonical_gv_id": "GV-PK-MEG-013",
+        "duplicate_gv_id": "GV-PK-MEG-13",
+        "set_code": "me01",
+        "normalized_key": "me01|13|seedot||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "ab5d40b5-ae91-40cd-a3b2-c085eb226c15",
+        "duplicate_parent_id": "b92d44c5-0b1c-400c-8ee9-597a26c5cbff",
+        "canonical_gv_id": "GV-PK-MEG-014",
+        "duplicate_gv_id": "GV-PK-MEG-14",
+        "set_code": "me01",
+        "normalized_key": "me01|14|nuzleaf||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "223177d5-5156-4bca-97ed-a55405d506bd",
+        "duplicate_parent_id": "bee3af95-2d7b-4ab3-a0fb-141a460d3b3f",
+        "canonical_gv_id": "GV-PK-MEG-015",
+        "duplicate_gv_id": "GV-PK-MEG-15",
+        "set_code": "me01",
+        "normalized_key": "me01|15|shiftry||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "5e8491ad-fbc4-4e97-b73f-03b6666ffff5",
+        "duplicate_parent_id": "4fc58502-0329-4e2a-bdfc-bc2a32c1f0e6",
+        "canonical_gv_id": "GV-PK-MEG-016",
+        "duplicate_gv_id": "GV-PK-MEG-16",
+        "set_code": "me01",
+        "normalized_key": "me01|16|nincada||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "756b62e3-5bf9-4aa7-9204-5682cb5f312c",
+        "duplicate_parent_id": "1434ce4e-fd3e-4673-bd76-aa3b79f4f3e4",
+        "canonical_gv_id": "GV-PK-MEG-017",
+        "duplicate_gv_id": "GV-PK-MEG-17",
+        "set_code": "me01",
+        "normalized_key": "me01|17|ninjask||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "b01f0f86-df22-4b41-b8ad-e4d1053d6812",
+        "duplicate_parent_id": "62a726e2-1762-47b3-bb40-ba17ce4d1399",
+        "canonical_gv_id": "GV-PK-MEG-018",
+        "duplicate_gv_id": "GV-PK-MEG-18",
+        "set_code": "me01",
+        "normalized_key": "me01|18|dhelmise||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "3a862499-6f17-4531-85d2-30dfc726d882",
+        "duplicate_parent_id": "61ab6f72-9c80-44a0-bd50-b43efb7cf09f",
+        "canonical_gv_id": "GV-PK-MEG-019",
+        "duplicate_gv_id": "GV-PK-MEG-19",
+        "set_code": "me01",
+        "normalized_key": "me01|19|vulpix||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "728642b0-10e0-47fe-902e-acc0cc0f7c6f",
+        "duplicate_parent_id": "869378aa-6f71-4182-8dcf-949248d0d9a2",
+        "canonical_gv_id": "GV-PK-MEG-020",
+        "duplicate_gv_id": "GV-PK-MEG-20",
+        "set_code": "me01",
+        "normalized_key": "me01|20|ninetales||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "e4ccbd91-a03c-416d-969a-af1c8faa7d0f",
+        "duplicate_parent_id": "5c3e43dd-96f9-4fd3-b31f-1509212cb327",
+        "canonical_gv_id": "GV-PK-MEG-021",
+        "duplicate_gv_id": "GV-PK-MEG-21",
+        "set_code": "me01",
+        "normalized_key": "me01|21|numel||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "d13cd05f-d7f8-47c1-92bf-76196414895f",
+        "duplicate_parent_id": "b435e25c-19b0-4a0f-ba82-c613103b0263",
+        "canonical_gv_id": "GV-PK-MEG-022",
+        "duplicate_gv_id": "GV-PK-MEG-22",
+        "set_code": "me01",
+        "normalized_key": "me01|22|mega camerupt ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "3a300a8d-7e5c-4744-9b3b-2961adcd57a2",
+        "duplicate_parent_id": "acd560a6-a46a-4f07-943a-7bdbb5c63fe7",
+        "canonical_gv_id": "GV-PK-MEG-023",
+        "duplicate_gv_id": "GV-PK-MEG-23",
+        "set_code": "me01",
+        "normalized_key": "me01|23|litleo||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "c906523d-dd38-4899-b343-9339ab6ee3f7",
+        "duplicate_parent_id": "8c6795af-3045-4bd9-8380-727872e79823",
+        "canonical_gv_id": "GV-PK-MEG-025",
+        "duplicate_gv_id": "GV-PK-MEG-25",
+        "set_code": "me01",
+        "normalized_key": "me01|25|volcanion||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "f2a6ce1c-3b4b-4b21-a367-25c6c9a4e2fd",
+        "duplicate_parent_id": "402f016f-d448-455b-93c7-b9e1cd8e50a7",
+        "canonical_gv_id": "GV-PK-MEG-026",
+        "duplicate_gv_id": "GV-PK-MEG-26",
+        "set_code": "me01",
+        "normalized_key": "me01|26|scorbunny||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "d7e33cc1-581b-4b4c-8497-be10892dbe0f",
+        "duplicate_parent_id": "3499ebfc-78e7-440a-a6b4-9be28dac2b21",
+        "canonical_gv_id": "GV-PK-MEG-027",
+        "duplicate_gv_id": "GV-PK-MEG-27",
+        "set_code": "me01",
+        "normalized_key": "me01|27|raboot||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "f7c0bdb9-b762-4c56-b698-4907376db02d",
+        "duplicate_parent_id": "e313ace5-4e47-4290-b23c-76b992910e31",
+        "canonical_gv_id": "GV-PK-MEG-028",
+        "duplicate_gv_id": "GV-PK-MEG-28",
+        "set_code": "me01",
+        "normalized_key": "me01|28|cinderace||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "3b3e22cf-5165-41ec-9b6e-b441e00528fe",
+        "duplicate_parent_id": "b67ef4ca-568d-4e24-b845-f8c611d1995d",
+        "canonical_gv_id": "GV-PK-MEG-029",
+        "duplicate_gv_id": "GV-PK-MEG-29",
+        "set_code": "me01",
+        "normalized_key": "me01|29|sizzlipede||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "3bdab7d9-494e-429a-85c4-5bc4f60b56a5",
+        "duplicate_parent_id": "b7fd7058-6af6-4da6-95c7-3cea7d397caf",
+        "canonical_gv_id": "GV-PK-MEG-030",
+        "duplicate_gv_id": "GV-PK-MEG-30",
+        "set_code": "me01",
+        "normalized_key": "me01|30|centiskorch||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "9458269b-b01d-48a1-a299-ee775da3f6b8",
+        "duplicate_parent_id": "e2394324-d43d-4bff-9b32-931c0fd7a9ed",
+        "canonical_gv_id": "GV-PK-MEG-031",
+        "duplicate_gv_id": "GV-PK-MEG-31",
+        "set_code": "me01",
+        "normalized_key": "me01|31|chi-yu||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "46bb2c65-85ca-4e54-82c8-bd4dc9709d3d",
+        "duplicate_parent_id": "cef7073b-d1d7-4848-bdb3-ffeb7d189bfb",
+        "canonical_gv_id": "GV-PK-MEG-032",
+        "duplicate_gv_id": "GV-PK-MEG-32",
+        "set_code": "me01",
+        "normalized_key": "me01|32|mantine||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "d6783e4a-9296-4fec-a85a-98f170b8ecdb",
+        "duplicate_parent_id": "30632d57-00aa-472a-96ac-4ac735531731",
+        "canonical_gv_id": "GV-PK-MEG-033",
+        "duplicate_gv_id": "GV-PK-MEG-33",
+        "set_code": "me01",
+        "normalized_key": "me01|33|corphish||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "36d01240-1013-435a-8216-4b9b333a8281",
+        "duplicate_parent_id": "1026ffa4-592e-4863-82b1-dda9d83f2ac1",
+        "canonical_gv_id": "GV-PK-MEG-034",
+        "duplicate_gv_id": "GV-PK-MEG-34",
+        "set_code": "me01",
+        "normalized_key": "me01|34|kyogre||",
+        "duplicate_child_count": 3
+      },
+      {
+        "canonical_parent_id": "fb0d293a-e731-45d7-af05-85dfe35b6da8",
+        "duplicate_parent_id": "0c18ba69-0ec8-4bc7-a223-164377e4a5b1",
+        "canonical_gv_id": "GV-PK-MEG-035",
+        "duplicate_gv_id": "GV-PK-MEG-35",
+        "set_code": "me01",
+        "normalized_key": "me01|35|snover||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "6041ea6e-d598-45cd-82d5-43ff9af86265",
+        "duplicate_parent_id": "94213180-ef42-4c30-aefe-dc982b46d54c",
+        "canonical_gv_id": "GV-PK-MEG-036",
+        "duplicate_gv_id": "GV-PK-MEG-36",
+        "set_code": "me01",
+        "normalized_key": "me01|36|mega abomasnow ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "03253b6e-c0ca-420e-9b5c-548142b39f81",
+        "duplicate_parent_id": "c2086597-f23d-4c0b-a9e7-e1c434beb51a",
+        "canonical_gv_id": "GV-PK-MEG-037",
+        "duplicate_gv_id": "GV-PK-MEG-37",
+        "set_code": "me01",
+        "normalized_key": "me01|37|clauncher||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "994a32c6-4774-400e-ad94-ef39aaba0836",
+        "duplicate_parent_id": "f4a775b1-517c-4d6a-a378-8e9c3341a3ab",
+        "canonical_gv_id": "GV-PK-MEG-038",
+        "duplicate_gv_id": "GV-PK-MEG-38",
+        "set_code": "me01",
+        "normalized_key": "me01|38|clawitzer||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "e392d99c-0dbe-44b7-8d41-a2c8f6947c65",
+        "duplicate_parent_id": "495ca168-5d77-441f-bc7e-7f149e3314c1",
+        "canonical_gv_id": "GV-PK-MEG-039",
+        "duplicate_gv_id": "GV-PK-MEG-39",
+        "set_code": "me01",
+        "normalized_key": "me01|39|sobble||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "9de52da6-5c3c-4621-8cec-b01a9db1e4d7",
+        "duplicate_parent_id": "57fab93b-84ac-4e64-ab5b-ee0aa5580f6c",
+        "canonical_gv_id": "GV-PK-MEG-004",
+        "duplicate_gv_id": "GV-PK-MEG-4",
+        "set_code": "me01",
+        "normalized_key": "me01|4|exeggcute||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "cc6e8e9a-0505-49f6-917f-782f106de7f4",
+        "duplicate_parent_id": "77b90e32-68f8-487d-8d1e-a542b53a5c8f",
+        "canonical_gv_id": "GV-PK-MEG-040",
+        "duplicate_gv_id": "GV-PK-MEG-40",
+        "set_code": "me01",
+        "normalized_key": "me01|40|drizzile||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "b23ef0b8-9ab7-4333-9ec7-10555b8ae142",
+        "duplicate_parent_id": "524a9420-08af-4ab8-9e66-e9f6f77511a0",
+        "canonical_gv_id": "GV-PK-MEG-041",
+        "duplicate_gv_id": "GV-PK-MEG-41",
+        "set_code": "me01",
+        "normalized_key": "me01|41|inteleon||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "7a9e718f-f302-455c-a90a-4dd024d773b6",
+        "duplicate_parent_id": "1123150f-fc73-433b-ba0b-db3b22111700",
+        "canonical_gv_id": "GV-PK-MEG-042",
+        "duplicate_gv_id": "GV-PK-MEG-42",
+        "set_code": "me01",
+        "normalized_key": "me01|42|snom||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "4b1ec036-6918-451c-b8d8-504347b96fa1",
+        "duplicate_parent_id": "348be353-9bf1-477d-8453-fb6f8c8bda1b",
+        "canonical_gv_id": "GV-PK-MEG-043",
+        "duplicate_gv_id": "GV-PK-MEG-43",
+        "set_code": "me01",
+        "normalized_key": "me01|43|frosmoth||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "079a15ab-610e-4d7e-b8ba-f4dff5ac97c9",
+        "duplicate_parent_id": "abe17b87-0635-4ad5-80ac-1dde5c0f3a39",
+        "canonical_gv_id": "GV-PK-MEG-044",
+        "duplicate_gv_id": "GV-PK-MEG-44",
+        "set_code": "me01",
+        "normalized_key": "me01|44|eiscue||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "c910f0c6-98f9-48c9-9a97-44a7d766a91c",
+        "duplicate_parent_id": "d997de7c-b805-445f-83a0-3ea00411f449",
+        "canonical_gv_id": "GV-PK-MEG-045",
+        "duplicate_gv_id": "GV-PK-MEG-45",
+        "set_code": "me01",
+        "normalized_key": "me01|45|magnemite||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "61df2e14-a9e4-4741-a957-4fef75468dee",
+        "duplicate_parent_id": "cffee33c-8bb2-42f3-bff6-d1ebd621281b",
+        "canonical_gv_id": "GV-PK-MEG-046",
+        "duplicate_gv_id": "GV-PK-MEG-46",
+        "set_code": "me01",
+        "normalized_key": "me01|46|magneton||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "a4240ebf-2820-4455-90a5-5e24c780758d",
+        "duplicate_parent_id": "6fd997ce-2774-4b08-88b3-74240712706c",
+        "canonical_gv_id": "GV-PK-MEG-047",
+        "duplicate_gv_id": "GV-PK-MEG-47",
+        "set_code": "me01",
+        "normalized_key": "me01|47|magnezone||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "4b121129-bf0a-4835-8af6-dbed0c23b962",
+        "duplicate_parent_id": "9d6ddf70-c0d0-4995-8b4e-8d74d1e0092e",
+        "canonical_gv_id": "GV-PK-MEG-049",
+        "duplicate_gv_id": "GV-PK-MEG-49",
+        "set_code": "me01",
+        "normalized_key": "me01|49|electrike||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "df1a84f9-7a7c-44a6-bce2-b6a21947ac8f",
+        "duplicate_parent_id": "7f748a0a-d4fc-471f-a149-3a003f0f2942",
+        "canonical_gv_id": "GV-PK-MEG-050",
+        "duplicate_gv_id": "GV-PK-MEG-50",
+        "set_code": "me01",
+        "normalized_key": "me01|50|mega manectric ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "a3c9641f-5152-4bc9-aec6-f7f5f836a5b6",
+        "duplicate_parent_id": "c379bebb-1731-47e3-9dba-e3a0df9cada9",
+        "canonical_gv_id": "GV-PK-MEG-051",
+        "duplicate_gv_id": "GV-PK-MEG-51",
+        "set_code": "me01",
+        "normalized_key": "me01|51|pachirisu||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "007c91d0-6e49-4654-b88e-da105cd4bac9",
+        "duplicate_parent_id": "3d76fd95-d3bf-4f4e-b3fe-79f6b6126074",
+        "canonical_gv_id": "GV-PK-MEG-052",
+        "duplicate_gv_id": "GV-PK-MEG-52",
+        "set_code": "me01",
+        "normalized_key": "me01|52|helioptile||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "9b837cfd-0f7f-4bd1-ab75-c9b8c14ba027",
+        "duplicate_parent_id": "3511eda5-fb2d-4d8d-94b0-93a0bd0a91a3",
+        "canonical_gv_id": "GV-PK-MEG-056",
+        "duplicate_gv_id": "GV-PK-MEG-56",
+        "set_code": "me01",
+        "normalized_key": "me01|56|alakazam||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "91eba394-d9a1-4e7e-926f-381d2abd8a32",
+        "duplicate_parent_id": "2f481633-448e-483c-b5af-ce449cd671d0",
+        "canonical_gv_id": "GV-PK-MEG-057",
+        "duplicate_gv_id": "GV-PK-MEG-57",
+        "set_code": "me01",
+        "normalized_key": "me01|57|jynx||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "569f605f-b7e2-4e7d-9182-459287edda7a",
+        "duplicate_parent_id": "87e718fc-f5df-46ba-8a40-32f1881ada53",
+        "canonical_gv_id": "GV-PK-MEG-058",
+        "duplicate_gv_id": "GV-PK-MEG-58",
+        "set_code": "me01",
+        "normalized_key": "me01|58|ralts||",
+        "duplicate_child_count": 3
+      },
+      {
+        "canonical_parent_id": "4800e647-2f2b-4ebc-931e-ef4b672788e2",
+        "duplicate_parent_id": "dd8f0c4d-ac21-441d-a57f-34be3a02a6f8",
+        "canonical_gv_id": "GV-PK-MEG-059",
+        "duplicate_gv_id": "GV-PK-MEG-59",
+        "set_code": "me01",
+        "normalized_key": "me01|59|kirlia||",
+        "duplicate_child_count": 3
+      },
+      {
+        "canonical_parent_id": "2314a826-39ad-4782-9c0a-465c25f8fe48",
+        "duplicate_parent_id": "a5ec7878-a1f0-4048-8da5-bf1274361352",
+        "canonical_gv_id": "GV-PK-MEG-006",
+        "duplicate_gv_id": "GV-PK-MEG-6",
+        "set_code": "me01",
+        "normalized_key": "me01|6|tangela||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "addfd1d7-c1cc-42e4-a4c2-ffddbba89022",
+        "duplicate_parent_id": "288e23c3-d19b-455f-bd0d-aa82f42a751c",
+        "canonical_gv_id": "GV-PK-MEG-060",
+        "duplicate_gv_id": "GV-PK-MEG-60",
+        "set_code": "me01",
+        "normalized_key": "me01|60|mega gardevoir ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "006ee906-bf8c-46dd-9e14-ac623ba3c596",
+        "duplicate_parent_id": "f0fe6c4e-1484-4043-9932-10b080d5e459",
+        "canonical_gv_id": "GV-PK-MEG-061",
+        "duplicate_gv_id": "GV-PK-MEG-61",
+        "set_code": "me01",
+        "normalized_key": "me01|61|shedinja||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "99d7e313-27de-4da7-a10e-3d2bb898ebcd",
+        "duplicate_parent_id": "e5a62eac-b1e3-46bc-a1d6-63cf8ea15e85",
+        "canonical_gv_id": "GV-PK-MEG-063",
+        "duplicate_gv_id": "GV-PK-MEG-63",
+        "set_code": "me01",
+        "normalized_key": "me01|63|grumpig||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "e003f060-6249-47f6-b31b-e2cb4cac5611",
+        "duplicate_parent_id": "8452ac8c-c71f-443e-8f7d-f89eb34ae61d",
+        "canonical_gv_id": "GV-PK-MEG-064",
+        "duplicate_gv_id": "GV-PK-MEG-64",
+        "set_code": "me01",
+        "normalized_key": "me01|64|xerneas||",
+        "duplicate_child_count": 3
+      },
+      {
+        "canonical_parent_id": "33096065-fff0-42f9-9df2-52516e55cd04",
+        "duplicate_parent_id": "f47cdbb3-e683-4373-8797-20895c8e2f33",
+        "canonical_gv_id": "GV-PK-MEG-065",
+        "duplicate_gv_id": "GV-PK-MEG-65",
+        "set_code": "me01",
+        "normalized_key": "me01|65|greavard||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "56611277-9b14-49e5-b71a-4fc1c675f973",
+        "duplicate_parent_id": "3077badd-632e-4466-afaa-6fc8c3c43ad5",
+        "canonical_gv_id": "GV-PK-MEG-066",
+        "duplicate_gv_id": "GV-PK-MEG-66",
+        "set_code": "me01",
+        "normalized_key": "me01|66|houndstone||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "952acdf6-f707-4bac-a111-133a2d456207",
+        "duplicate_parent_id": "11b0e783-edeb-4a05-9df8-bcf529cacb33",
+        "canonical_gv_id": "GV-PK-MEG-067",
+        "duplicate_gv_id": "GV-PK-MEG-67",
+        "set_code": "me01",
+        "normalized_key": "me01|67|gimmighoul||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "29cd9592-1684-425b-9102-000c335f53b5",
+        "duplicate_parent_id": "b3afdde8-e7fa-46c2-954d-ae4df2b6b2d7",
+        "canonical_gv_id": "GV-PK-MEG-069",
+        "duplicate_gv_id": "GV-PK-MEG-69",
+        "set_code": "me01",
+        "normalized_key": "me01|69|sandslash||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "80a83fe5-ccc6-4f14-b060-af5ee3bd56c4",
+        "duplicate_parent_id": "94d170c6-5faa-484b-a24c-b0b2652db303",
+        "canonical_gv_id": "GV-PK-MEG-007",
+        "duplicate_gv_id": "GV-PK-MEG-7",
+        "set_code": "me01",
+        "normalized_key": "me01|7|tangrowth||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "b522fb51-1555-4d51-94a4-359988bbbe5f",
+        "duplicate_parent_id": "1fa35a1f-57cb-41dd-9c1e-5d602e06075b",
+        "canonical_gv_id": "GV-PK-MEG-070",
+        "duplicate_gv_id": "GV-PK-MEG-70",
+        "set_code": "me01",
+        "normalized_key": "me01|70|onix||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "61a36b8f-49cd-4200-9e4b-49a2a042060c",
+        "duplicate_parent_id": "f58b8424-dbed-4813-bb73-1afb0d2799d7",
+        "canonical_gv_id": "GV-PK-MEG-071",
+        "duplicate_gv_id": "GV-PK-MEG-71",
+        "set_code": "me01",
+        "normalized_key": "me01|71|tyrogue||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "38d96ab4-73b8-4a03-9b2a-2d0439e3effc",
+        "duplicate_parent_id": "71bd9d4d-9df7-4614-ac9d-ff0ac58dcc3a",
+        "canonical_gv_id": "GV-PK-MEG-072",
+        "duplicate_gv_id": "GV-PK-MEG-72",
+        "set_code": "me01",
+        "normalized_key": "me01|72|makuhita||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "4faab1bd-e8ce-4fe8-8fda-cd2167875850",
+        "duplicate_parent_id": "82869eea-70cf-450d-b417-55925771308a",
+        "canonical_gv_id": "GV-PK-MEG-073",
+        "duplicate_gv_id": "GV-PK-MEG-73",
+        "set_code": "me01",
+        "normalized_key": "me01|73|hariyama||",
+        "duplicate_child_count": 3
+      },
+      {
+        "canonical_parent_id": "6968d365-f435-4047-9c47-8c9f274f92e6",
+        "duplicate_parent_id": "c5489115-a557-4c9d-b61f-4e4878fb87ce",
+        "canonical_gv_id": "GV-PK-MEG-075",
+        "duplicate_gv_id": "GV-PK-MEG-75",
+        "set_code": "me01",
+        "normalized_key": "me01|75|solrock||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "6a389901-dd1b-480a-88fc-ca3d1ee02128",
+        "duplicate_parent_id": "031dc29b-18cb-4048-8301-a29f3bd6335c",
+        "canonical_gv_id": "GV-PK-MEG-076",
+        "duplicate_gv_id": "GV-PK-MEG-76",
+        "set_code": "me01",
+        "normalized_key": "me01|76|riolu||",
+        "duplicate_child_count": 3
+      },
+      {
+        "canonical_parent_id": "f6c13207-e0b4-413d-a54d-f7eab7cdeadb",
+        "duplicate_parent_id": "240833a6-3e68-4953-bb2d-751da76525e7",
+        "canonical_gv_id": "GV-PK-MEG-077",
+        "duplicate_gv_id": "GV-PK-MEG-77",
+        "set_code": "me01",
+        "normalized_key": "me01|77|mega lucario ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "564ce33e-8dce-40b9-abad-b71b85e50bb6",
+        "duplicate_parent_id": "2b9cb590-0d8c-4f21-be00-c47de44c7c97",
+        "canonical_gv_id": "GV-PK-MEG-079",
+        "duplicate_gv_id": "GV-PK-MEG-79",
+        "set_code": "me01",
+        "normalized_key": "me01|79|toxicroak||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "7d4af188-1b3c-4c6b-8a9b-cb426f11d87b",
+        "duplicate_parent_id": "01699d7f-b6e0-4f83-987d-d58fa3d189c0",
+        "canonical_gv_id": "GV-PK-MEG-008",
+        "duplicate_gv_id": "GV-PK-MEG-8",
+        "set_code": "me01",
+        "normalized_key": "me01|8|chikorita||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "8fbc6c9f-5494-4a27-88ec-b47b75626670",
+        "duplicate_parent_id": "443c8390-b5f9-4508-8b69-fa5356d2173a",
+        "canonical_gv_id": "GV-PK-MEG-081",
+        "duplicate_gv_id": "GV-PK-MEG-81",
+        "set_code": "me01",
+        "normalized_key": "me01|81|stonjourner||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "1b68a134-7b27-448d-b27d-bd6c792e1cf1",
+        "duplicate_parent_id": "b09d5866-6742-4e82-9510-52a3b2aa967d",
+        "canonical_gv_id": "GV-PK-MEG-082",
+        "duplicate_gv_id": "GV-PK-MEG-82",
+        "set_code": "me01",
+        "normalized_key": "me01|82|nacli||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "4e4b3fa7-31fc-4740-a617-5be4d5ad453e",
+        "duplicate_parent_id": "474ae17f-aabd-43f8-919f-804c43266bd2",
+        "canonical_gv_id": "GV-PK-MEG-083",
+        "duplicate_gv_id": "GV-PK-MEG-83",
+        "set_code": "me01",
+        "normalized_key": "me01|83|naclstack||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "cea4de22-3921-46bf-a88a-41a60978a936",
+        "duplicate_parent_id": "30da861b-529a-4110-9598-35adc4c4a195",
+        "canonical_gv_id": "GV-PK-MEG-085",
+        "duplicate_gv_id": "GV-PK-MEG-85",
+        "set_code": "me01",
+        "normalized_key": "me01|85|crawdaunt||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "8be2f619-a4eb-4cb3-85f2-550e1bd332e7",
+        "duplicate_parent_id": "4be3283f-99bf-493a-a2df-6bfa912e7612",
+        "canonical_gv_id": "GV-PK-MEG-087",
+        "duplicate_gv_id": "GV-PK-MEG-87",
+        "set_code": "me01",
+        "normalized_key": "me01|87|spiritomb||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "69c0e94b-9641-410a-a9f3-62b5bd0b6a79",
+        "duplicate_parent_id": "8004fa96-9648-4533-8db8-e8873f8be9a6",
+        "canonical_gv_id": "GV-PK-MEG-088",
+        "duplicate_gv_id": "GV-PK-MEG-88",
+        "set_code": "me01",
+        "normalized_key": "me01|88|yveltal||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "c1d12a78-15fd-4101-92b1-d03e06aab576",
+        "duplicate_parent_id": "2a0105a9-4d9d-4bc7-8334-ff8a15951a9e",
+        "canonical_gv_id": "GV-PK-MEG-089",
+        "duplicate_gv_id": "GV-PK-MEG-89",
+        "set_code": "me01",
+        "normalized_key": "me01|89|nickit||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "493cbe02-e42b-4ca0-97cb-f9b75584c66f",
+        "duplicate_parent_id": "07847a4a-1aa0-4fea-b2b8-6b066ddb60f7",
+        "canonical_gv_id": "GV-PK-MEG-009",
+        "duplicate_gv_id": "GV-PK-MEG-9",
+        "set_code": "me01",
+        "normalized_key": "me01|9|bayleef||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "1df8b92b-eff7-4f4d-a82f-1302c9885a80",
+        "duplicate_parent_id": "7ffbe4b2-78cc-42f0-82bc-36547a4bcf42",
+        "canonical_gv_id": "GV-PK-MEG-090",
+        "duplicate_gv_id": "GV-PK-MEG-90",
+        "set_code": "me01",
+        "normalized_key": "me01|90|thievul||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "0003593d-5fc1-4f51-a5fa-4211e946c257",
+        "duplicate_parent_id": "7edb19d6-098f-4c38-a4f0-ab0b85e3b151",
+        "canonical_gv_id": "GV-PK-MEG-091",
+        "duplicate_gv_id": "GV-PK-MEG-91",
+        "set_code": "me01",
+        "normalized_key": "me01|91|shroodle||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "2fbd7a5a-fb64-4dda-889d-ff2ba59aac7e",
+        "duplicate_parent_id": "1f3675d6-b609-43e9-b907-49c183255a56",
+        "canonical_gv_id": "GV-PK-MEG-092",
+        "duplicate_gv_id": "GV-PK-MEG-92",
+        "set_code": "me01",
+        "normalized_key": "me01|92|grafaiai||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "7fc198b4-272c-4734-a798-610c3fa32287",
+        "duplicate_parent_id": "c29cf7bf-d1cb-407a-8570-37f9dff2d488",
+        "canonical_gv_id": "GV-PK-MEG-093",
+        "duplicate_gv_id": "GV-PK-MEG-93",
+        "set_code": "me01",
+        "normalized_key": "me01|93|steelix||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "d05ad932-fbfe-40b6-b812-2097add0e93c",
+        "duplicate_parent_id": "ff9714bc-090f-4369-a782-ab3ebcdf69a6",
+        "canonical_gv_id": "GV-PK-MEG-094",
+        "duplicate_gv_id": "GV-PK-MEG-94",
+        "set_code": "me01",
+        "normalized_key": "me01|94|mega mawile ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "36dea4d3-2ca5-4397-a359-cfbf98023aab",
+        "duplicate_parent_id": "2979056b-be25-453d-8051-c560aa51d586",
+        "canonical_gv_id": "GV-PK-MEG-096",
+        "duplicate_gv_id": "GV-PK-MEG-96",
+        "set_code": "me01",
+        "normalized_key": "me01|96|tinkatink||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "0af77d06-ad91-4f6d-a5fb-c53f2a349628",
+        "duplicate_parent_id": "9a97d097-231b-497c-aab4-d56d3815ff38",
+        "canonical_gv_id": "GV-PK-MEG-097",
+        "duplicate_gv_id": "GV-PK-MEG-97",
+        "set_code": "me01",
+        "normalized_key": "me01|97|tinkatuff||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "90da4fea-bf5b-4335-a5f5-dcb7fab86958",
+        "duplicate_parent_id": "6f4a056f-4a14-4d1e-9d91-53014d15f1b9",
+        "canonical_gv_id": "GV-PK-MEG-098",
+        "duplicate_gv_id": "GV-PK-MEG-98",
+        "set_code": "me01",
+        "normalized_key": "me01|98|tinkaton||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "20f18283-9337-47d2-a807-37f019221717",
+        "duplicate_parent_id": "eaf4f37e-443a-4fef-a5f4-817c0ddbeb33",
+        "canonical_gv_id": "GV-PK-MEG-099",
+        "duplicate_gv_id": "GV-PK-MEG-99",
+        "set_code": "me01",
+        "normalized_key": "me01|99|gholdengo||",
+        "duplicate_child_count": 2
+      },
+      {
+        "canonical_parent_id": "fa33f1a3-1902-4111-82b0-3ab2efeb2124",
+        "duplicate_parent_id": "3cd23751-aa60-4290-9ddb-bfc26c179a4e",
+        "canonical_gv_id": "GV-PK-PR-SV-001",
+        "duplicate_gv_id": "GV-PK-PR-SV-1",
+        "set_code": "svp",
+        "normalized_key": "svp|1|sprigatito||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "1154a3c4-8965-4ac8-be8f-6963bdad7a35",
+        "duplicate_parent_id": "9f044f9b-155c-4341-b0cb-76d98a13a2c6",
+        "canonical_gv_id": "GV-PK-PR-SV-011",
+        "duplicate_gv_id": "GV-PK-PR-SV-11",
+        "set_code": "svp",
+        "normalized_key": "svp|11|arcanine||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "a20d299e-c452-48ae-876a-70513c4171bf",
+        "duplicate_parent_id": "91256748-9c39-4f8c-afde-bd0150dae069",
+        "canonical_gv_id": "GV-PK-PR-SV-012",
+        "duplicate_gv_id": "GV-PK-PR-SV-12",
+        "set_code": "svp",
+        "normalized_key": "svp|12|dondozo||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "38573c4d-7323-4025-a2c9-9090be30a9ef",
+        "duplicate_parent_id": "935bee38-6c43-43f2-8675-239e17291046",
+        "canonical_gv_id": "GV-PK-PR-SV-013",
+        "duplicate_gv_id": "GV-PK-PR-SV-13",
+        "set_code": "svp",
+        "normalized_key": "svp|13|miraidon||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "021b1475-367f-4cc3-bf50-43b578331619",
+        "duplicate_parent_id": "7330cfd2-3857-4a06-b266-65fd008ffb4f",
+        "canonical_gv_id": "GV-PK-PR-SV-014",
+        "duplicate_gv_id": "GV-PK-PR-SV-14",
+        "set_code": "svp",
+        "normalized_key": "svp|14|koraidon||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "10b6b8a7-ccd5-47b1-97f7-65f55df0703d",
+        "duplicate_parent_id": "a1346047-1250-47b4-9a34-1320d55afcb4",
+        "canonical_gv_id": "GV-PK-PR-SV-017",
+        "duplicate_gv_id": "GV-PK-PR-SV-17",
+        "set_code": "svp",
+        "normalized_key": "svp|17|lucario ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "1c1b2f2e-9b6c-4b16-b737-3d5d7659bc53",
+        "duplicate_parent_id": "af5804f0-ce98-4206-8fca-b5466141fb16",
+        "canonical_gv_id": "GV-PK-PR-SV-018",
+        "duplicate_gv_id": "GV-PK-PR-SV-18",
+        "set_code": "svp",
+        "normalized_key": "svp|18|cyclizar ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "da212189-7a46-4cac-ac27-efac8930055a",
+        "duplicate_parent_id": "590b469b-fcf7-418c-a760-3d52a2d475fe",
+        "canonical_gv_id": "GV-PK-PR-SV-023",
+        "duplicate_gv_id": "GV-PK-PR-SV-23",
+        "set_code": "svp",
+        "normalized_key": "svp|23|smoliv||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "ac2c59f1-38cb-4eea-b082-30b4b22b45d2",
+        "duplicate_parent_id": "6cebe351-fe69-4cb3-bd19-7c73baeaf481",
+        "canonical_gv_id": "GV-PK-PR-SV-024",
+        "duplicate_gv_id": "GV-PK-PR-SV-24",
+        "set_code": "svp",
+        "normalized_key": "svp|24|growlithe||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "4659591e-e289-4844-b52d-603711c7573e",
+        "duplicate_parent_id": "9974ccab-da03-42de-bfdb-dd69b273629b",
+        "canonical_gv_id": "GV-PK-PR-SV-027",
+        "duplicate_gv_id": "GV-PK-PR-SV-27",
+        "set_code": "svp",
+        "normalized_key": "svp|27|pikachu||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "276dee1b-f172-4c52-aa8f-abc104b438b5",
+        "duplicate_parent_id": "8c805157-7ecb-4a3f-8c52-3240c69cd492",
+        "canonical_gv_id": "GV-PK-PR-SV-028",
+        "duplicate_gv_id": "GV-PK-PR-SV-28",
+        "set_code": "svp",
+        "normalized_key": "svp|28|miraidon ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "0cf0caab-76b3-4430-8878-5427f78d52af",
+        "duplicate_parent_id": "80d88ba4-76cb-45b8-adc1-12f60d6f1068",
+        "canonical_gv_id": "GV-PK-PR-SV-029",
+        "duplicate_gv_id": "GV-PK-PR-SV-29",
+        "set_code": "svp",
+        "normalized_key": "svp|29|koraidon ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "6cd56d97-2450-48d4-a47f-a0bcde3972f3",
+        "duplicate_parent_id": "49973fd9-e920-4562-8dbd-3782589cb927",
+        "canonical_gv_id": "GV-PK-PR-SV-003",
+        "duplicate_gv_id": "GV-PK-PR-SV-3",
+        "set_code": "svp",
+        "normalized_key": "svp|3|quaxly||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "218be4da-7037-4334-a9b0-70b1e6e06789",
+        "duplicate_parent_id": "5311de95-28d5-4813-9533-ccb0eaa15eee",
+        "canonical_gv_id": "GV-PK-PR-SV-030",
+        "duplicate_gv_id": "GV-PK-PR-SV-30",
+        "set_code": "svp",
+        "normalized_key": "svp|30|chien-pao ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "aaf3fa99-4550-4d66-8a4c-22899eb83200",
+        "duplicate_parent_id": "8d64a5ba-9724-4fa1-86ec-bfd35287e794",
+        "canonical_gv_id": "GV-PK-PR-SV-034",
+        "duplicate_gv_id": "GV-PK-PR-SV-34",
+        "set_code": "svp",
+        "normalized_key": "svp|34|skeledirge ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "5b72a481-2fff-4104-8dd7-c8dcc02626b7",
+        "duplicate_parent_id": "ccae9639-b04e-46bd-a97f-c2f5d031a726",
+        "canonical_gv_id": "GV-PK-PR-SV-035",
+        "duplicate_gv_id": "GV-PK-PR-SV-35",
+        "set_code": "svp",
+        "normalized_key": "svp|35|quaquaval ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "dd4dcf50-dca8-447d-933b-b1c483325a5b",
+        "duplicate_parent_id": "0eff4b2d-0649-4fd4-84e4-fd19e25a7226",
+        "canonical_gv_id": "GV-PK-PR-SV-042",
+        "duplicate_gv_id": "GV-PK-PR-SV-42",
+        "set_code": "svp",
+        "normalized_key": "svp|42|houndstone||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "daa55ac3-2697-421a-a0c2-fa07dfc2c7e1",
+        "duplicate_parent_id": "a6af65cd-03d6-4e12-840e-d44081c21319",
+        "canonical_gv_id": "GV-PK-PR-SV-049",
+        "duplicate_gv_id": "GV-PK-PR-SV-49",
+        "set_code": "svp",
+        "normalized_key": "svp|49|zapdos ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "0c500907-b532-4c45-9b35-5cbe4059c21c",
+        "duplicate_parent_id": "6e928c98-a997-4e16-a205-77f78c8e03f2",
+        "canonical_gv_id": "GV-PK-PR-SV-050",
+        "duplicate_gv_id": "GV-PK-PR-SV-50",
+        "set_code": "svp",
+        "normalized_key": "svp|50|alakazam ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "c7171ec8-743d-453d-bc8b-47517986916f",
+        "duplicate_parent_id": "9eaf009b-ee67-4811-9e02-0e3ad92d8e23",
+        "canonical_gv_id": "GV-PK-PR-SV-051",
+        "duplicate_gv_id": "GV-PK-PR-SV-51",
+        "set_code": "svp",
+        "normalized_key": "svp|51|snorlax||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "257db1a1-6901-4db1-931e-e28545c27644",
+        "duplicate_parent_id": "de24b643-d925-4269-9295-4efaa31b2d03",
+        "canonical_gv_id": "GV-PK-PR-SV-052",
+        "duplicate_gv_id": "GV-PK-PR-SV-52",
+        "set_code": "svp",
+        "normalized_key": "svp|52|mewtwo||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "1972a9c9-064b-455f-824e-542a37623b36",
+        "duplicate_parent_id": "1942848c-dff2-48e0-aaa8-f059db416977",
+        "canonical_gv_id": "GV-PK-PR-SV-053",
+        "duplicate_gv_id": "GV-PK-PR-SV-53",
+        "set_code": "svp",
+        "normalized_key": "svp|53|mew ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "5076f7d4-8d36-4560-9527-3aaadac3ef42",
+        "duplicate_parent_id": "a4f7588a-bb56-4bad-890b-50605ffeedfd",
+        "canonical_gv_id": "GV-PK-PR-SV-055",
+        "duplicate_gv_id": "GV-PK-PR-SV-55",
+        "set_code": "svp",
+        "normalized_key": "svp|55|kangaskhan ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "dbf93836-ccac-420f-9967-4281c7e775f6",
+        "duplicate_parent_id": "d1e3a12b-9bc1-40e2-ba80-cfadf5f04c6d",
+        "canonical_gv_id": "GV-PK-PR-SV-056",
+        "duplicate_gv_id": "GV-PK-PR-SV-56",
+        "set_code": "svp",
+        "normalized_key": "svp|56|charizard ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "e4bc07b0-08d5-46c9-b4b6-6217bec74cf8",
+        "duplicate_parent_id": "83305754-cb20-4042-8b0d-ecca310380d9",
+        "canonical_gv_id": "GV-PK-PR-SV-061",
+        "duplicate_gv_id": "GV-PK-PR-SV-61",
+        "set_code": "svp",
+        "normalized_key": "svp|61|pineco||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "5e8642f6-1fb5-492a-9e73-8d5976083b9d",
+        "duplicate_parent_id": "611b1fcb-8048-47c3-bb37-0a8036458cc8",
+        "canonical_gv_id": "GV-PK-PR-SV-062",
+        "duplicate_gv_id": "GV-PK-PR-SV-62",
+        "set_code": "svp",
+        "normalized_key": "svp|62|sinistea||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "6f7ddb77-58d2-4e0b-b761-4ce80881c739",
+        "duplicate_parent_id": "d66a9b95-9a87-438a-80ad-d5fcb9fc845c",
+        "canonical_gv_id": "GV-PK-PR-SV-064",
+        "duplicate_gv_id": "GV-PK-PR-SV-64",
+        "set_code": "svp",
+        "normalized_key": "svp|64|arctibax||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "1eb2ea7e-7b90-421c-a5f5-84ffec00c25d",
+        "duplicate_parent_id": "cd2e8ee9-01b3-4cec-bf4d-397841280640",
+        "canonical_gv_id": "GV-PK-PR-SV-068",
+        "duplicate_gv_id": "GV-PK-PR-SV-68",
+        "set_code": "svp",
+        "normalized_key": "svp|68|iron valiant ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "e5fcec1c-384f-47f7-8dfb-b81e8b88b31d",
+        "duplicate_parent_id": "ed39efeb-fdc6-4b04-94dd-bc9ec917743f",
+        "canonical_gv_id": "GV-PK-PR-SV-070",
+        "duplicate_gv_id": "GV-PK-PR-SV-70",
+        "set_code": "svp",
+        "normalized_key": "svp|70|greavard||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "123c2f60-a80a-4c07-a1fa-f0b53b09c2c6",
+        "duplicate_parent_id": "bfea0054-88bd-4948-9a23-a3c1cb982569",
+        "canonical_gv_id": "GV-PK-PR-SV-071",
+        "duplicate_gv_id": "GV-PK-PR-SV-71",
+        "set_code": "svp",
+        "normalized_key": "svp|71|maschiff||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "b3fedab3-1c3f-4aa3-816a-7b3fdcad2a3e",
+        "duplicate_parent_id": "21b4f09d-b6ab-4adb-be2f-c1630760cc34",
+        "canonical_gv_id": "GV-PK-PR-SV-072",
+        "duplicate_gv_id": "GV-PK-PR-SV-72",
+        "set_code": "svp",
+        "normalized_key": "svp|72|great tusk ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "ca37b5e3-e21d-43cf-8322-55028194ab8a",
+        "duplicate_parent_id": "608eaea1-fe02-4c9e-be93-36d23935a1a9",
+        "canonical_gv_id": "GV-PK-PR-SV-073",
+        "duplicate_gv_id": "GV-PK-PR-SV-73",
+        "set_code": "svp",
+        "normalized_key": "svp|73|iron treads ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "0658c806-e1be-48f4-9c4b-50b54bcd59da",
+        "duplicate_parent_id": "87b4038a-8957-4102-baac-0a0752a1b76d",
+        "canonical_gv_id": "GV-PK-PR-SV-074",
+        "duplicate_gv_id": "GV-PK-PR-SV-74",
+        "set_code": "svp",
+        "normalized_key": "svp|74|charizard ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "95bf7fda-0385-4bd0-ab55-26375f189b88",
+        "duplicate_parent_id": "c724a1f5-37f4-48ed-96bd-19930cce63c7",
+        "canonical_gv_id": "GV-PK-PR-SV-075",
+        "duplicate_gv_id": "GV-PK-PR-SV-75",
+        "set_code": "svp",
+        "normalized_key": "svp|75|mimikyu||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "041b022e-8dea-4078-8189-2ca4ff16219c",
+        "duplicate_parent_id": "922dbb0f-4d6d-4082-ba6e-1f547a6ca7e2",
+        "canonical_gv_id": "GV-PK-PR-SV-077",
+        "duplicate_gv_id": "GV-PK-PR-SV-77",
+        "set_code": "svp",
+        "normalized_key": "svp|77|floragato||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "52362404-5c65-4fe7-b2a4-43b7ed975d2e",
+        "duplicate_parent_id": "58ddc3d4-bd4b-4d0a-bc3d-ff233f5a36e1",
+        "canonical_gv_id": "GV-PK-PR-SV-078",
+        "duplicate_gv_id": "GV-PK-PR-SV-78",
+        "set_code": "svp",
+        "normalized_key": "svp|78|meowscarada ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "86ea0095-d913-407e-8e64-7f018e3a542d",
+        "duplicate_parent_id": "616f81f1-a3df-4f71-952d-bbb0122fddd6",
+        "canonical_gv_id": "GV-PK-PR-SV-079",
+        "duplicate_gv_id": "GV-PK-PR-SV-79",
+        "set_code": "svp",
+        "normalized_key": "svp|79|fuecoco||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "2853058a-cc88-468a-a3a3-e4bc1281c158",
+        "duplicate_parent_id": "751d4bbe-926e-4267-b6d8-33e7c4c05782",
+        "canonical_gv_id": "GV-PK-PR-SV-080",
+        "duplicate_gv_id": "GV-PK-PR-SV-80",
+        "set_code": "svp",
+        "normalized_key": "svp|80|crocalor||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "09307184-d786-4590-a6b1-22ce990007a7",
+        "duplicate_parent_id": "05beb8c1-e19a-458c-8714-469e213fded6",
+        "canonical_gv_id": "GV-PK-PR-SV-081",
+        "duplicate_gv_id": "GV-PK-PR-SV-81",
+        "set_code": "svp",
+        "normalized_key": "svp|81|skeledirge ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "d474bab4-49c1-4d11-8a96-5ca5ac6378be",
+        "duplicate_parent_id": "aab48d24-1a65-44d4-961a-8fbcfee12d14",
+        "canonical_gv_id": "GV-PK-PR-SV-082",
+        "duplicate_gv_id": "GV-PK-PR-SV-82",
+        "set_code": "svp",
+        "normalized_key": "svp|82|quaxly||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "29ef74b9-dca4-44f4-b3cf-5ad0c6d1e7ea",
+        "duplicate_parent_id": "26c6b56b-d829-41e9-87f5-de767fdaaca2",
+        "canonical_gv_id": "GV-PK-PR-SV-083",
+        "duplicate_gv_id": "GV-PK-PR-SV-83",
+        "set_code": "svp",
+        "normalized_key": "svp|83|quaxwell||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "54feabc9-f65d-46fd-b3d4-71d35677f5a9",
+        "duplicate_parent_id": "5043bce7-f57d-4325-a026-d6a37da3ce95",
+        "canonical_gv_id": "GV-PK-PR-SV-086",
+        "duplicate_gv_id": "GV-PK-PR-SV-86",
+        "set_code": "svp",
+        "normalized_key": "svp|86|mabosstiff ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "23e1224e-6a1d-49c0-94d2-5bb36a7e2711",
+        "duplicate_parent_id": "5477b123-f3d5-4714-bd39-7b7397a8b5e0",
+        "canonical_gv_id": "GV-PK-PR-SV-087",
+        "duplicate_gv_id": "GV-PK-PR-SV-87",
+        "set_code": "svp",
+        "normalized_key": "svp|87|sprigatito ex||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "b7642ea2-8519-499e-b0a5-857943327933",
+        "duplicate_parent_id": "61984aa6-9d6b-456c-9625-ecde4893091d",
+        "canonical_gv_id": "GV-PK-PR-SV-088",
+        "duplicate_gv_id": "GV-PK-PR-SV-88",
+        "set_code": "svp",
+        "normalized_key": "svp|88|pikachu||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "fee01f50-a98b-4594-b559-80d3da98e856",
+        "duplicate_parent_id": "75bb8432-b187-4f94-a559-d55cf6cc7b61",
+        "canonical_gv_id": "GV-PK-PR-SV-009",
+        "duplicate_gv_id": "GV-PK-PR-SV-9",
+        "set_code": "svp",
+        "normalized_key": "svp|9|spidops||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "b4d77eb7-0a23-42e4-8365-59ab89a98cf5",
+        "duplicate_parent_id": "96615575-de08-4370-aff4-77f66910f03a",
+        "canonical_gv_id": "GV-PK-PR-SV-093",
+        "duplicate_gv_id": "GV-PK-PR-SV-93",
+        "set_code": "svp",
+        "normalized_key": "svp|93|carvanha||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "e0e95ad4-64fb-4846-96b6-c1bc4bea89f6",
+        "duplicate_parent_id": "b6b0fa74-f011-4c8a-8953-de698686a47f",
+        "canonical_gv_id": "GV-PK-PR-SV-094",
+        "duplicate_gv_id": "GV-PK-PR-SV-94",
+        "set_code": "svp",
+        "normalized_key": "svp|94|bellibolt||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "e8df7cdf-b355-42a9-aebd-2e84a29ec39a",
+        "duplicate_parent_id": "89a26c6b-55ae-4865-9298-a6a7b3bee303",
+        "canonical_gv_id": "GV-PK-PR-SV-095",
+        "duplicate_gv_id": "GV-PK-PR-SV-95",
+        "set_code": "svp",
+        "normalized_key": "svp|95|cleffa||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "799e08d1-667c-4b58-809b-313f1c615831",
+        "duplicate_parent_id": "580ffe1e-1f6e-4dcd-99fd-bfbad7b3d95e",
+        "canonical_gv_id": "GV-PK-PR-SV-096",
+        "duplicate_gv_id": "GV-PK-PR-SV-96",
+        "set_code": "svp",
+        "normalized_key": "svp|96|cyclizar||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "bdce87a2-f2a9-45aa-aa7d-eddd5add43c3",
+        "duplicate_parent_id": "0578797c-0d23-4ebb-a8de-7d861c953354",
+        "canonical_gv_id": "GV-PK-PR-SV-097",
+        "duplicate_gv_id": "GV-PK-PR-SV-97",
+        "set_code": "svp",
+        "normalized_key": "svp|97|flutter mane||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "9cb2307f-d80d-442b-9738-e9c7e3949e9a",
+        "duplicate_parent_id": "7bee6735-51cf-4fb3-8d69-5f43f843a76b",
+        "canonical_gv_id": "GV-PK-PR-SV-098",
+        "duplicate_gv_id": "GV-PK-PR-SV-98",
+        "set_code": "svp",
+        "normalized_key": "svp|98|iron thorns||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "cfe55d5d-d756-411b-8850-eed580fb9667",
+        "duplicate_parent_id": "02b75660-84f4-4164-8795-70efda01efc7",
+        "canonical_gv_id": "GV-PK-PR-SV-099",
+        "duplicate_gv_id": "GV-PK-PR-SV-99",
+        "set_code": "svp",
+        "normalized_key": "svp|99|shroodle||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "755dabde-0f54-48c0-9862-2a02053b37fe",
+        "duplicate_parent_id": "0b4aa3b3-3c2e-4394-87c1-f28efa396e51",
+        "canonical_gv_id": "GV-PK-LOR-017",
+        "duplicate_gv_id": "GV-PK-LOR-17",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|17|trevenant||",
+        "duplicate_child_count": 0
+      },
+      {
+        "canonical_parent_id": "155e3b7b-c79a-495e-b849-9e6c66294673",
+        "duplicate_parent_id": "0b24e7e8-9e51-428d-a974-2e2268c7b193",
+        "canonical_gv_id": "GV-PK-LOR-026",
+        "duplicate_gv_id": "GV-PK-LOR-26",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|26|chandelure||",
+        "duplicate_child_count": 0
+      },
+      {
+        "canonical_parent_id": "8c104bd5-c6b1-4d5b-8295-d50ac7ca5f9e",
+        "duplicate_parent_id": "052f60a3-dc6d-433c-bce2-ed814c64e34d",
+        "canonical_gv_id": "GV-PK-LOR-033",
+        "duplicate_gv_id": "GV-PK-LOR-33",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|33|seel||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "fc4dbb32-9d0f-4353-bfd1-65959069aab4",
+        "duplicate_parent_id": "071eccbf-7bdd-494a-a43e-b3bc6965ea3a",
+        "canonical_gv_id": "GV-PK-LOR-045",
+        "duplicate_gv_id": "GV-PK-LOR-45",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|45|hisuian basculegion||",
+        "duplicate_child_count": 0
+      },
+      {
+        "canonical_parent_id": "8f39a034-e33b-419a-a574-7d81d212d955",
+        "duplicate_parent_id": "03ae5e0a-e43b-4828-8f6a-89a402d14656",
+        "canonical_gv_id": "GV-PK-LOR-067",
+        "duplicate_gv_id": "GV-PK-LOR-67",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|67|mr. mime||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "6595e3e2-cad0-44f7-bf29-18c7b9f0ecce",
+        "duplicate_parent_id": "02eb2e6a-e65a-4d8e-8b5e-8f23b868c53f",
+        "canonical_gv_id": "GV-PK-LOR-098",
+        "duplicate_gv_id": "GV-PK-LOR-98",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|98|hariyama||",
+        "duplicate_child_count": 1
+      },
+      {
+        "canonical_parent_id": "5dcec667-2dc0-4cb5-97f0-e8342e190ff8",
+        "duplicate_parent_id": "0fbf4a2e-2bd2-43b7-8f57-2ae906272571",
+        "canonical_gv_id": "GV-PK-LOR-099",
+        "duplicate_gv_id": "GV-PK-LOR-99",
+        "set_code": "swsh11",
+        "normalized_key": "swsh11|99|meditite||",
+        "duplicate_child_count": 1
+      }
+    ]
+  },
+  "package_fingerprint_sha256": "7bf5f95205d26e8e0ba3e85604e3f431259b32e1a07b57eba8764cd6bdd69b8c",
+  "sql_artifact": {
+    "path": "docs/sql/post_reconcile_pkg02a_dependency_transfer_cleanup_guarded_dry_run_v1.sql",
+    "sha256": "0d3c04cfa1fbc59c39116ee2eb1aab9bbf124dd8086cdbad67484be1ada71b65",
+    "contains_commit_statement": false,
+    "contains_rollback_statement": true,
+    "contains_delete_statement": true,
+    "contains_update_statement": true,
+    "contains_insert_statement": true
+  },
+  "execution": {
+    "execution_status": "guarded_dry_run_transaction_failed",
+    "error_message": "canceling statement due to statement timeout",
+    "before_snapshot": {
+      "captured_at": "2026-06-16T16:32:50.990Z",
+      "counts": {
+        "duplicate_parent_rows": 142,
+        "canonical_parent_rows": 142,
+        "duplicate_child_rows": 223,
+        "duplicate_identity_rows": 142,
+        "duplicate_external_mapping_rows": 218,
+        "duplicate_justtcg_snapshot_rows": 128840,
+        "duplicate_feed_rows": 0,
+        "duplicate_vault_instance_rows": 3,
+        "duplicate_vault_item_rows": 4
+      },
+      "hash_sha256": "84bd08047980ea834e85cd7ff6b525c5d03e500a3855084552d2dbbc969434d5"
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-16T16:35:16.119Z",
+      "counts": {
+        "duplicate_parent_rows": 142,
+        "canonical_parent_rows": 142,
+        "duplicate_child_rows": 223,
+        "duplicate_identity_rows": 142,
+        "duplicate_external_mapping_rows": 218,
+        "duplicate_justtcg_snapshot_rows": 128840,
+        "duplicate_feed_rows": 0,
+        "duplicate_vault_instance_rows": 3,
+        "duplicate_vault_item_rows": 4
+      },
+      "hash_sha256": "84bd08047980ea834e85cd7ff6b525c5d03e500a3855084552d2dbbc969434d5"
+    },
+    "rollback_proof_hash_match": true
+  },
+  "required_operator_approval": {
+    "exact_phrase": "Approve real POST-REC-02A-DEPENDENCY-TRANSFER-DUPLICATE-PARENT-CLEANUP apply only. Fingerprint: 7bf5f95205d26e8e0ba3e85604e3f431259b32e1a07b57eba8764cd6bdd69b8c. SQL hash: 0d3c04cfa1fbc59c39116ee2eb1aab9bbf124dd8086cdbad67484be1ada71b65. Scope: 142 dependency-transfer duplicate parent cleanups across me01, svp, swsh11; duplicate child rows handled=223; append-only feed groups excluded=2. Dry-run proof: 84bd08047980ea834e85cd7ff6b525c5d03e500a3855084552d2dbbc969434d5 == 84bd08047980ea834e85cd7ff6b525c5d03e500a3855084552d2dbbc969434d5. No global apply. No migrations. No image writes. No unsupported cleanup. No quarantine."
+  }
+}

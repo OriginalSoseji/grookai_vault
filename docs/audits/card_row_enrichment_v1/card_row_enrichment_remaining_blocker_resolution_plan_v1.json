@@ -1,6 +1,6 @@
 {
   "version": "CARD_ROW_ENRICHMENT_REMAINING_BLOCKER_RESOLUTION_PLAN_V1",
-  "generated_at": "2026-06-16T02:49:03.614Z",
+  "generated_at": "2026-06-16T22:46:52.141Z",
   "mode": "read_only_report_only",
   "db_writes_performed": false,
   "migrations_created": false,
@@ -13,7 +13,7 @@
   "blocker_lanes": [
     {
       "lane": "core_identity",
-      "rows": 1,
+      "rows": 0,
       "status": "blocked_governance_required",
       "reason": "Pocket-like exclusions, proposed identity collisions, and subset alias governance have zero ready rows.",
       "next_action": "Split into Pocket cleanup/exclusion decision, collision ownership adjudication, and subset alias governance packages.",
@@ -21,7 +21,7 @@
     },
     {
       "lane": "parent_gv_id",
-      "rows": 126,
+      "rows": 0,
       "status": "blocked_by_core_identity_and_collisions",
       "reason": "All parent GV-ID candidates are blocked by missing set_code/number or existing GV-ID collisions.",
       "next_action": "Resolve core identity and duplicate/collision ownership before another parent GV-ID package.",
@@ -29,7 +29,7 @@
     },
     {
       "lane": "child_printing_gv_id",
-      "rows": 131,
+      "rows": 0,
       "status": "blocked_by_parent_gv_id",
       "reason": "All remaining child printing GV-ID candidates are missing parent gv_id.",
       "next_action": "Resume after parent GV-ID blockers are reduced.",
@@ -45,7 +45,7 @@
     },
     {
       "lane": "external_mapping",
-      "rows": 706,
+      "rows": 675,
       "status": "blocked_by_existing_owner_collision",
       "reason": "Payload mapping candidates are all blocked by existing source/external ownership or variant/base ownership ambiguity.",
       "next_action": "Build source-specific transfer/adjudication plans; do not bulk insert mappings.",
@@ -53,7 +53,7 @@
     },
     {
       "lane": "no_child_parent",
-      "rows": 1087,
+      "rows": 1083,
       "status": "blocked_dependency_bearing",
       "reason": "Every childless parent has dependencies; zero empty-delete and zero source-mapped child-insert targets are currently ready.",
       "next_action": "Resolve duplicate/mapping ownership first, then reassess whether a child insert or non-delete preservation package exists.",
@@ -61,7 +61,7 @@
     },
     {
       "lane": "traits",
-      "rows": 1091,
+      "rows": 831,
       "status": "source_exhausted_for_current_rules",
       "reason": "Active source-mapped retry lanes are cleared; residual rows need new source/rule acquisition.",
       "next_action": "Add rule/source acquisition for unmapped trait gaps only where exact identity is preserved.",
@@ -69,7 +69,7 @@
     },
     {
       "lane": "species",
-      "rows": 3752,
+      "rows": 3740,
       "status": "rule_unmapped",
       "reason": "Species name-rule dry-run scanned all missing-species parents and produced zero targets.",
       "next_action": "Design a richer species extraction/adjudication rule; do not infer species from card names yet.",
@@ -94,33 +94,27 @@
   ],
   "source_snapshots": {
     "cleanup_totals": {
-      "english_physical_parent_rows": 23079,
-      "parent_gv_id_candidates": 126,
+      "english_physical_parent_rows": 22791,
+      "parent_gv_id_candidates": 0,
       "parent_gv_id_ready": 0,
-      "child_printing_gv_id_candidates": 131,
+      "child_printing_gv_id_candidates": 0,
       "child_printing_gv_id_ready": 0,
       "active_identity_candidates": 0,
       "active_identity_ready": 0,
-      "core_identity_gap_rows": 1,
-      "external_mapping_gap_rows": 706,
-      "no_child_printing_parent_rows": 1087,
-      "trait_gaps": 1091,
-      "species_gaps": 3752,
+      "core_identity_gap_rows": 0,
+      "external_mapping_gap_rows": 675,
+      "no_child_printing_parent_rows": 1083,
+      "trait_gaps": 831,
+      "species_gaps": 3740,
       "catalog_metadata_gaps": 139
     },
     "core_identity_summary": {
-      "total_core_identity_gap_rows": 1,
+      "total_core_identity_gap_rows": 0,
       "ready_for_guarded_dry_run_preparation": 0,
-      "blocked_rows": 1,
-      "by_classification": {
-        "blocked_proposed_identity_collision": 1
-      },
-      "by_blocker": {
-        "proposed_identity_existing_owner_collision": 1
-      },
-      "by_set_top_25": {
-        "pl2": 1
-      },
+      "blocked_rows": 0,
+      "by_classification": {},
+      "by_blocker": {},
+      "by_set_top_25": {},
       "ready_by_set_top_25": {}
     },
     "external_mapping_readiness_totals": {
@@ -151,9 +145,9 @@
       "owner_dependency_bearing_rows": 15
     },
     "residual_source_totals": {
-      "english_physical_parent_rows": 23282,
-      "trait_gaps": 1091,
-      "species_gaps": 3770,
+      "english_physical_parent_rows": 23078,
+      "trait_gaps": 1090,
+      "species_gaps": 3752,
       "catalog_metadata_gaps": 139,
       "external_mapping_gaps": 706
     },
@@ -201,20 +195,10 @@
     },
     "active_identity_classifications": {},
     "active_identity_blockers": {},
-    "parent_gv_classifications": {
-      "blocked_parent_gv_id_backfill": 126
-    },
-    "parent_gv_blockers": {
-      "proposed_gv_id_existing_collision": 125,
-      "missing_parent_set_code": 1,
-      "missing_printed_number": 1
-    },
-    "child_gv_classifications": {
-      "blocked_child_printing_gv_id_backfill": 131
-    },
-    "child_gv_blockers": {
-      "missing_parent_gv_id": 131
-    }
+    "parent_gv_classifications": {},
+    "parent_gv_blockers": {},
+    "child_gv_classifications": {},
+    "child_gv_blockers": {}
   },
-  "fingerprint_sha256": "f4f3322bdb87c84dedb79cd105c9530789761b44511600cdf3b71039a2cec54e"
+  "fingerprint_sha256": "1e991a2f5a5b4fe1133d353dc06527b94fda1b01bfcf973570e662a7b127f281"
 }

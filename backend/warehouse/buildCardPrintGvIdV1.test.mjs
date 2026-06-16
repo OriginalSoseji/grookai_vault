@@ -5,6 +5,7 @@ import {
   MCD_NAMESPACE_YEAR_BY_SET_CODE_V1,
   PROMO_PREFIX_IDENTITY_RULE_V1,
   buildCardPrintGvIdV1,
+  resolvePrintedIdentityModifierGvIdSuffixV1,
   resolvePromoNumberV1,
   resolveSmpPromoNumberTokenV1,
 } from './buildCardPrintGvIdV1.mjs';
@@ -111,5 +112,48 @@ test('special deck and energy mini sets use default base namespace tokens', () =
       numberPlain: '001',
     }),
     'GV-PK-MEE-001',
+  );
+});
+
+test('governed printed identity modifiers append stable gv id suffixes', () => {
+  assert.equal(resolvePrintedIdentityModifierGvIdSuffixV1('edition:first_edition'), 'FIRST-EDITION');
+  assert.equal(resolvePrintedIdentityModifierGvIdSuffixV1('trainer_subject:giovanni'), 'GIOVANNI');
+
+  assert.equal(
+    buildCardPrintGvIdV1({
+      setCode: 'basep',
+      printedSetAbbrev: 'PR',
+      number: '1',
+      numberPlain: '1',
+      printedIdentityModifier: 'edition:first_edition',
+    }),
+    'GV-PK-PR-1-FIRST-EDITION',
+  );
+
+  assert.equal(
+    buildCardPrintGvIdV1({
+      setCode: 'swsh2',
+      printedSetAbbrev: 'RCL',
+      number: '154',
+      numberPlain: '154',
+      printed_identity_modifier: 'trainer_subject:giovanni',
+    }),
+    'GV-PK-RCL-154-GIOVANNI',
+  );
+});
+
+test('unsupported printed identity modifiers do not silently mint new physical namespaces', () => {
+  assert.equal(resolvePrintedIdentityModifierGvIdSuffixV1('number_prefix:SV'), null);
+  assert.equal(resolvePrintedIdentityModifierGvIdSuffixV1('level_x'), null);
+
+  assert.equal(
+    buildCardPrintGvIdV1({
+      setCode: 'sm115',
+      printedSetAbbrev: 'HIF',
+      number: 'SV1',
+      numberPlain: '1',
+      printedIdentityModifier: 'number_prefix:SV',
+    }),
+    'GV-PK-HIF-SV1',
   );
 });

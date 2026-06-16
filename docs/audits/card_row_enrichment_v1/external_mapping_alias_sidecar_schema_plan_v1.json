@@ -1,0 +1,139 @@
+{
+  "version": "EXTERNAL_MAPPING_ALIAS_SIDECAR_SCHEMA_PLAN_V1",
+  "generated_at": "2026-06-16T19:26:12.247Z",
+  "source_report": "docs/audits/card_row_enrichment_v1/external_mapping_alias_sidecar_readiness_v1.json",
+  "contract": "docs/contracts/EXTERNAL_MAPPING_ALIAS_GOVERNANCE_CONTRACT_V1.md",
+  "scope": {
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "sidecar_created": false,
+    "ddl_executed": false
+  },
+  "purpose": "Define the future alias sidecar schema and migration readiness without creating a migration or touching the database.",
+  "proposed_table": "public.external_mapping_aliases",
+  "proposed_columns": [
+    {
+      "name": "id",
+      "type": "uuid",
+      "role": "sidecar row identity"
+    },
+    {
+      "name": "canonical_card_print_id",
+      "type": "uuid",
+      "role": "canonical Grookai card owner"
+    },
+    {
+      "name": "canonical_external_mapping_id",
+      "type": "bigint nullable",
+      "role": "canonical active external_mappings owner row when known"
+    },
+    {
+      "name": "source",
+      "type": "text",
+      "role": "source namespace such as justtcg"
+    },
+    {
+      "name": "alias_external_id",
+      "type": "text",
+      "role": "preserved upstream alias identifier"
+    },
+    {
+      "name": "alias_kind",
+      "type": "text",
+      "role": "product/deck/prize-pack/suffix/text category"
+    },
+    {
+      "name": "alias_status",
+      "type": "text",
+      "role": "active, retired, superseded, blocked"
+    },
+    {
+      "name": "source_domain",
+      "type": "text nullable",
+      "role": "identity domain at preservation time"
+    },
+    {
+      "name": "evidence_reason",
+      "type": "text",
+      "role": "why the alias was preserved"
+    },
+    {
+      "name": "preserved_from_mapping_id",
+      "type": "bigint nullable",
+      "role": "external_mappings row that would later be safe to deactivate"
+    },
+    {
+      "name": "created_from_audit",
+      "type": "text",
+      "role": "audit package provenance"
+    },
+    {
+      "name": "metadata",
+      "type": "jsonb",
+      "role": "non-authoritative source context"
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "role": "active sidecar alias flag"
+    },
+    {
+      "name": "created_at",
+      "type": "timestamptz",
+      "role": "creation timestamp"
+    },
+    {
+      "name": "updated_at",
+      "type": "timestamptz",
+      "role": "update timestamp"
+    }
+  ],
+  "proposed_constraints": [
+    "primary key on id",
+    "foreign key canonical_card_print_id -> public.card_prints(id)",
+    "foreign key canonical_external_mapping_id -> public.external_mappings(id) on delete set null",
+    "foreign key preserved_from_mapping_id -> public.external_mappings(id) on delete set null",
+    "partial unique index on (source, alias_external_id) where active = true"
+  ],
+  "proposed_ddl": "-- DRAFT ONLY. Do not run from this report.\ncreate table public.external_mapping_aliases (\n  id uuid primary key default gen_random_uuid(),\n  canonical_card_print_id uuid not null references public.card_prints(id) on delete cascade,\n  canonical_external_mapping_id bigint null references public.external_mappings(id) on delete set null,\n  source text not null,\n  alias_external_id text not null,\n  alias_kind text not null,\n  alias_status text not null default 'active',\n  source_domain text null,\n  evidence_reason text not null,\n  preserved_from_mapping_id bigint null references public.external_mappings(id) on delete set null,\n  created_from_audit text not null,\n  metadata jsonb not null default '{}'::jsonb,\n  active boolean not null default true,\n  created_at timestamptz not null default now(),\n  updated_at timestamptz not null default now()\n);\n\ncreate unique index external_mapping_aliases_active_source_alias_uidx\n  on public.external_mapping_aliases (source, alias_external_id)\n  where active = true;\n\ncreate index external_mapping_aliases_card_print_idx\n  on public.external_mapping_aliases (canonical_card_print_id);\n\ncreate index external_mapping_aliases_mapping_idx\n  on public.external_mapping_aliases (canonical_external_mapping_id);\n\ncreate index external_mapping_aliases_kind_idx\n  on public.external_mapping_aliases (alias_kind)\n  where active = true;",
+  "proposed_insert_shape": "-- DRAFT ONLY. Populate only after schema approval.\ninsert into public.external_mapping_aliases (\n  canonical_card_print_id,\n  canonical_external_mapping_id,\n  source,\n  alias_external_id,\n  alias_kind,\n  alias_status,\n  source_domain,\n  evidence_reason,\n  preserved_from_mapping_id,\n  created_from_audit,\n  metadata,\n  active\n) values (...);",
+  "readiness_projection": {
+    "sidecar_ready_groups": 99,
+    "projected_sidecar_alias_rows": 214,
+    "projected_canonical_mapping_deactivations_after_sidecar": 214,
+    "blocked_groups": 70,
+    "by_alias_kind": {
+      "battle_academy_alias": 168,
+      "prize_pack_alias": 34,
+      "prerelease_alias": 6,
+      "product_alias": 4,
+      "league_alias": 2
+    },
+    "by_source": {
+      "justtcg": 214
+    }
+  },
+  "migration_prerequisites": [
+    "Review and approve table name and FK behavior.",
+    "Confirm bigint matches live external_mappings.id type.",
+    "Confirm gen_random_uuid() availability in the live database.",
+    "Confirm RLS/permission posture before public/runtime exposure.",
+    "Generate migration only after explicit approval.",
+    "Run guarded dry-run insert for the 214 projected aliases before any external_mappings deactivation package."
+  ],
+  "future_apply_order": [
+    "Create sidecar schema by migration after approval.",
+    "Insert projected sidecar alias rows in guarded dry-run transaction.",
+    "Verify sidecar row count and unique source/alias constraints.",
+    "Only then prepare deactivation package for preserved duplicate external_mappings rows.",
+    "Verify external_mappings_source_card_duplicates falls from 169 to the remaining blocked groups only."
+  ],
+  "blocked_until_later": [
+    "52 suffix/base source-owner policy groups",
+    "14 non-product alias groups",
+    "3 groups without a unique canonical source id",
+    "1 Pocket product alias group"
+  ],
+  "fingerprint_sha256": "c6e7997e6862d073933bcaad000751e2bb97eeae4f683d238769c2574adaebaf"
+}

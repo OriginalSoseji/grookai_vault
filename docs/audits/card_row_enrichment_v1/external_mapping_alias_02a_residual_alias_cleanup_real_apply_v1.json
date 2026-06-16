@@ -1,0 +1,690 @@
+{
+  "version": "EXTERNAL_MAPPING_ALIAS_02A_RESIDUAL_ALIAS_CLEANUP_REAL_APPLY_V1",
+  "package_id": "EXTMAP-ALIAS-02A-RESIDUAL-ALIAS-PRESERVATION-CLEANUP",
+  "generated_at": "2026-06-16T22:53:43.060Z",
+  "mode": "real_apply",
+  "package_fingerprint_sha256": "95f6d2d3ac13446413508db37fd0d0a0d2124c19b1c591f03a57dfdc3c9b4ef9",
+  "scope": {
+    "target_alias_rows": 55,
+    "target_mapping_deactivations": 55,
+    "tables_written": [
+      "public.external_mapping_aliases",
+      "public.external_mappings.active"
+    ],
+    "forbidden": [
+      "card_prints writes",
+      "card_printings writes",
+      "identity writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ],
+    "migrations_created": false,
+    "rows_deleted": 0
+  },
+  "preflight": {
+    "target_alias_rows": 55,
+    "distinct_source_alias_rows": 55,
+    "missing_canonical_external_id_count": 0,
+    "alias_equals_canonical_count": 0,
+    "missing_active_canonical_mapping_count": 0,
+    "missing_active_alias_mapping_count": 0,
+    "existing_active_alias_count": 0
+  },
+  "before_counts": {
+    "source_card_duplicate_groups": 70,
+    "source_external_duplicate_groups": 0,
+    "active_alias_rows": 214
+  },
+  "inside_counts": {
+    "source_card_duplicate_groups": 16,
+    "source_external_duplicate_groups": 0,
+    "active_alias_rows": 269
+  },
+  "after_counts": {
+    "source_card_duplicate_groups": 16,
+    "source_external_duplicate_groups": 0,
+    "active_alias_rows": 269
+  },
+  "execution": {
+    "transaction_status": "committed",
+    "inserted_alias_rows": 55,
+    "distinct_preserved_mapping_rows": 55,
+    "deactivated_mapping_rows": 55
+  },
+  "before_snapshot": {
+    "row_count": 110,
+    "hash_sha256": "88ff35a063c5ed0c821ce7928899a418cab4bc9a3f85b2c8e698b7da64547403",
+    "counts": {
+      "alias_external_mapping": 55,
+      "canonical_external_mapping": 55
+    }
+  },
+  "after_snapshot": {
+    "row_count": 165,
+    "hash_sha256": "4f179097b0690de2dfcb14437bbc8fae73167ff9797365987dc0d05aba273628",
+    "counts": {
+      "alias_external_mapping": 55,
+      "canonical_external_mapping": 55,
+      "sidecar_alias": 55
+    }
+  },
+  "by_alias_kind": {
+    "suffix_alias": 41,
+    "terminology_alias": 13,
+    "text_alias": 1
+  },
+  "by_source": {
+    "pokemonapi": 36,
+    "justtcg": 14,
+    "tcgdex": 5
+  },
+  "target_samples": [
+    {
+      "canonical_card_print_id": "595ec587-4dcb-4f81-b43b-6ad61da852f3",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-me02-phantasmal-flames-ghastly-common",
+      "canonical_external_id_to_keep": "pokemon-me02-phantasmal-flames-gastly-common",
+      "alias_kind": "text_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by source spelling alias for Gastly/Ghastly; keep the source route matching the printed card name.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "me02",
+        "set_name": "Phantasmal Flames",
+        "card_name": "Gastly",
+        "card_number": "054",
+        "canonical_gv_id": "GV-PK-PFL-054",
+        "proposed_rule": "justtcg_text_spelling_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "2fdcfbf3-2633-4332-bb0d-6b4b67c78a17",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-sm-burning-shadows-golisopod-gx-secret-secret-rare",
+      "canonical_external_id_to_keep": "pokemon-sm-burning-shadows-golisopod-gx-secret-rainbow-rare",
+      "alias_kind": "terminology_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by JustTCG rare terminology only; keep the more specific secret-rainbow-rare route and preserve secret-secret-rare as terminology alias.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm3",
+        "set_name": "Burning Shadows",
+        "card_name": "Golisopod-GX",
+        "card_number": "148",
+        "canonical_gv_id": "GV-PK-BUS-148",
+        "proposed_rule": "justtcg_secret_rare_terminology_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "7f05d655-b8f6-4d6d-8bdc-c31f294f3e10",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-sm-burning-shadows-tapu-bulu-gx-secret-secret-rare",
+      "canonical_external_id_to_keep": "pokemon-sm-burning-shadows-tapu-bulu-gx-secret-rainbow-rare",
+      "alias_kind": "terminology_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by JustTCG rare terminology only; keep the more specific secret-rainbow-rare route and preserve secret-secret-rare as terminology alias.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm3",
+        "set_name": "Burning Shadows",
+        "card_name": "Tapu Bulu-GX",
+        "card_number": "149",
+        "canonical_gv_id": "GV-PK-BUS-149",
+        "proposed_rule": "justtcg_secret_rare_terminology_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "d29b43e3-8d9c-4a8c-9e60-f0024ee88a94",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-sm-burning-shadows-charizard-gx-secret-secret-rare",
+      "canonical_external_id_to_keep": "pokemon-sm-burning-shadows-charizard-gx-secret-rainbow-rare",
+      "alias_kind": "terminology_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by JustTCG rare terminology only; keep the more specific secret-rainbow-rare route and preserve secret-secret-rare as terminology alias.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm3",
+        "set_name": "Burning Shadows",
+        "card_name": "Charizard-GX",
+        "card_number": "150",
+        "canonical_gv_id": "GV-PK-BUS-150",
+        "proposed_rule": "justtcg_secret_rare_terminology_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "8053886c-a8a9-4939-908c-9ad9cc3ea43d",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-sm-burning-shadows-salazzle-gx-secret-secret-rare",
+      "canonical_external_id_to_keep": "pokemon-sm-burning-shadows-salazzle-gx-secret-rainbow-rare",
+      "alias_kind": "terminology_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by JustTCG rare terminology only; keep the more specific secret-rainbow-rare route and preserve secret-secret-rare as terminology alias.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm3",
+        "set_name": "Burning Shadows",
+        "card_name": "Salazzle-GX",
+        "card_number": "151",
+        "canonical_gv_id": "GV-PK-BUS-151",
+        "proposed_rule": "justtcg_secret_rare_terminology_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "7b767902-47de-49a4-a925-33c4ca287d47",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-sm-burning-shadows-tapu-fini-gx-secret-secret-rare",
+      "canonical_external_id_to_keep": "pokemon-sm-burning-shadows-tapu-fini-gx-secret-rainbow-rare",
+      "alias_kind": "terminology_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by JustTCG rare terminology only; keep the more specific secret-rainbow-rare route and preserve secret-secret-rare as terminology alias.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm3",
+        "set_name": "Burning Shadows",
+        "card_name": "Tapu Fini-GX",
+        "card_number": "152",
+        "canonical_gv_id": "GV-PK-BUS-152",
+        "proposed_rule": "justtcg_secret_rare_terminology_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "a1aa1033-8ae1-4711-9771-1c94bdda2f78",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-sm-burning-shadows-necrozma-gx-secret-secret-rare",
+      "canonical_external_id_to_keep": "pokemon-sm-burning-shadows-necrozma-gx-secret-rainbow-rare",
+      "alias_kind": "terminology_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by JustTCG rare terminology only; keep the more specific secret-rainbow-rare route and preserve secret-secret-rare as terminology alias.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm3",
+        "set_name": "Burning Shadows",
+        "card_name": "Necrozma-GX",
+        "card_number": "153",
+        "canonical_gv_id": "GV-PK-BUS-153",
+        "proposed_rule": "justtcg_secret_rare_terminology_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "4821d4a5-e5b7-4e3a-adc0-497577802a42",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-sm-burning-shadows-machamp-gx-secret-secret-rare",
+      "canonical_external_id_to_keep": "pokemon-sm-burning-shadows-machamp-gx-secret-rainbow-rare",
+      "alias_kind": "terminology_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by JustTCG rare terminology only; keep the more specific secret-rainbow-rare route and preserve secret-secret-rare as terminology alias.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm3",
+        "set_name": "Burning Shadows",
+        "card_name": "Machamp-GX",
+        "card_number": "154",
+        "canonical_gv_id": "GV-PK-BUS-154",
+        "proposed_rule": "justtcg_secret_rare_terminology_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "63a8dd40-ed2b-4236-a90e-c595f87aa133",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-sm-burning-shadows-lycanroc-gx-secret-secret-rare",
+      "canonical_external_id_to_keep": "pokemon-sm-burning-shadows-lycanroc-gx-secret-rainbow-rare",
+      "alias_kind": "terminology_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by JustTCG rare terminology only; keep the more specific secret-rainbow-rare route and preserve secret-secret-rare as terminology alias.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm3",
+        "set_name": "Burning Shadows",
+        "card_name": "Lycanroc-GX",
+        "card_number": "155",
+        "canonical_gv_id": "GV-PK-BUS-155",
+        "proposed_rule": "justtcg_secret_rare_terminology_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "e20373aa-6e41-4582-8ab4-b13a77261130",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-sm-burning-shadows-marshadow-gx-secret-secret-rare",
+      "canonical_external_id_to_keep": "pokemon-sm-burning-shadows-marshadow-gx-secret-rainbow-rare",
+      "alias_kind": "terminology_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by JustTCG rare terminology only; keep the more specific secret-rainbow-rare route and preserve secret-secret-rare as terminology alias.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm3",
+        "set_name": "Burning Shadows",
+        "card_name": "Marshadow-GX",
+        "card_number": "156",
+        "canonical_gv_id": "GV-PK-BUS-156",
+        "proposed_rule": "justtcg_secret_rare_terminology_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "b3d4d869-6de4-463a-9189-f279851fef56",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-sm-burning-shadows-alolan-muk-gx-secret-secret-rare",
+      "canonical_external_id_to_keep": "pokemon-sm-burning-shadows-alolan-muk-gx-secret-rainbow-rare",
+      "alias_kind": "terminology_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by JustTCG rare terminology only; keep the more specific secret-rainbow-rare route and preserve secret-secret-rare as terminology alias.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm3",
+        "set_name": "Burning Shadows",
+        "card_name": "Alolan Muk-GX",
+        "card_number": "157",
+        "canonical_gv_id": "GV-PK-BUS-157",
+        "proposed_rule": "justtcg_secret_rare_terminology_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "6435cd09-8e12-4df5-8c9e-c9d2334b50b9",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-sm-burning-shadows-darkrai-gx-secret-secret-rare",
+      "canonical_external_id_to_keep": "pokemon-sm-burning-shadows-darkrai-gx-secret-rainbow-rare",
+      "alias_kind": "terminology_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by JustTCG rare terminology only; keep the more specific secret-rainbow-rare route and preserve secret-secret-rare as terminology alias.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm3",
+        "set_name": "Burning Shadows",
+        "card_name": "Darkrai-GX",
+        "card_number": "158",
+        "canonical_gv_id": "GV-PK-BUS-158",
+        "proposed_rule": "justtcg_secret_rare_terminology_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "a3f1257e-596f-4d39-bd9d-4a384f28e67c",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-sm-burning-shadows-gardevoir-gx-secret-secret-rare",
+      "canonical_external_id_to_keep": "pokemon-sm-burning-shadows-gardevoir-gx-secret-rainbow-rare",
+      "alias_kind": "terminology_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by JustTCG rare terminology only; keep the more specific secret-rainbow-rare route and preserve secret-secret-rare as terminology alias.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm3",
+        "set_name": "Burning Shadows",
+        "card_name": "Gardevoir-GX",
+        "card_number": "159",
+        "canonical_gv_id": "GV-PK-BUS-159",
+        "proposed_rule": "justtcg_secret_rare_terminology_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "d4167ee2-a2c3-4387-9525-e6366fec5959",
+      "source": "justtcg",
+      "alias_external_id": "pokemon-sm-burning-shadows-noivern-gx-secret-secret-rare",
+      "canonical_external_id_to_keep": "pokemon-sm-burning-shadows-noivern-gx-secret-rainbow-rare",
+      "alias_kind": "terminology_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Rows differ by JustTCG rare terminology only; keep the more specific secret-rainbow-rare route and preserve secret-secret-rare as terminology alias.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm3",
+        "set_name": "Burning Shadows",
+        "card_name": "Noivern-GX",
+        "card_number": "160",
+        "canonical_gv_id": "GV-PK-BUS-160",
+        "proposed_rule": "justtcg_secret_rare_terminology_alias",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "776d284f-940d-4425-b890-6761f1b936ab",
+      "source": "pokemonapi",
+      "alias_external_id": "sm1-101",
+      "canonical_external_id_to_keep": "sm1-101a",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 101a; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm1",
+        "set_name": "Sun & Moon",
+        "card_name": "Eevee",
+        "card_number": "101a",
+        "canonical_gv_id": "GV-PK-SUM-101A",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "181fc6bb-8620-47ff-a31e-8ee5fe99b720",
+      "source": "pokemonapi",
+      "alias_external_id": "sm10-182",
+      "canonical_external_id_to_keep": "sm10-182a",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 182a; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm10",
+        "set_name": "Unbroken Bonds",
+        "card_name": "Pokégear 3.0",
+        "card_number": "182a",
+        "canonical_gv_id": "GV-PK-UNB-182A",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "181fc6bb-8620-47ff-a31e-8ee5fe99b720",
+      "source": "pokemonapi",
+      "alias_external_id": "sm10-182b",
+      "canonical_external_id_to_keep": "sm10-182a",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 182a; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm10",
+        "set_name": "Unbroken Bonds",
+        "card_name": "Pokégear 3.0",
+        "card_number": "182a",
+        "canonical_gv_id": "GV-PK-UNB-182A",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "78e969f5-60cb-4cef-b9c1-31b1e55aa751",
+      "source": "pokemonapi",
+      "alias_external_id": "sm10-189",
+      "canonical_external_id_to_keep": "sm10-189a",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 189a; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm10",
+        "set_name": "Unbroken Bonds",
+        "card_name": "Welder",
+        "card_number": "189a",
+        "canonical_gv_id": "GV-PK-UNB-189A",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "22dd84e6-5963-4e81-a39d-14e066de2409",
+      "source": "pokemonapi",
+      "alias_external_id": "sm10-195",
+      "canonical_external_id_to_keep": "sm10-195a",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 195a; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm10",
+        "set_name": "Unbroken Bonds",
+        "card_name": "Dedenne-GX",
+        "card_number": "195a",
+        "canonical_gv_id": "GV-PK-UNB-195A",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "388389db-26b1-46df-8cf6-288de53f4693",
+      "source": "pokemonapi",
+      "alias_external_id": "sm11-191a",
+      "canonical_external_id_to_keep": "sm11-191",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 191; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm11",
+        "set_name": "Unified Minds",
+        "card_name": "Cherish Ball",
+        "card_number": "191",
+        "canonical_gv_id": "GV-PK-UNM-191",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "2f323ee3-69fe-4c7b-b515-6d7720bcbe61",
+      "source": "pokemonapi",
+      "alias_external_id": "sm11-206a",
+      "canonical_external_id_to_keep": "sm11-206",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 206; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm11",
+        "set_name": "Unified Minds",
+        "card_name": "Reset Stamp",
+        "card_number": "206",
+        "canonical_gv_id": "GV-PK-UNM-206",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "a8f81485-e78c-4eae-a856-dc012249f2d9",
+      "source": "pokemonapi",
+      "alias_external_id": "sm11-79a",
+      "canonical_external_id_to_keep": "sm11-79",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 79; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm11",
+        "set_name": "Unified Minds",
+        "card_name": "Jirachi-GX",
+        "card_number": "79",
+        "canonical_gv_id": "GV-PK-UNM-79",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "22a1a798-d2dd-49c1-baf6-a35c90772b62",
+      "source": "pokemonapi",
+      "alias_external_id": "sm12-143",
+      "canonical_external_id_to_keep": "sm12-143a",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 143a; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm12",
+        "set_name": "Cosmic Eclipse",
+        "card_name": "Togepi & Cleffa & Igglybuff-GX",
+        "card_number": "143a",
+        "canonical_gv_id": "GV-PK-CEC-143A",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "5eb5bc28-894a-4e08-80ce-7efff25e4e7a",
+      "source": "pokemonapi",
+      "alias_external_id": "sm2-121a",
+      "canonical_external_id_to_keep": "sm2-121",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 121; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm2",
+        "set_name": "Guardians Rising",
+        "card_name": "Choice Band",
+        "card_number": "121",
+        "canonical_gv_id": "GV-PK-GRI-121",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "2c81de58-2eb5-4e42-bc68-cee8281dde29",
+      "source": "pokemonapi",
+      "alias_external_id": "sm2-124a",
+      "canonical_external_id_to_keep": "sm2-124",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 124; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm2",
+        "set_name": "Guardians Rising",
+        "card_name": "Enhanced Hammer",
+        "card_number": "124",
+        "canonical_gv_id": "GV-PK-GRI-124",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "47249c63-f07e-4701-9d83-ce1a84f0db92",
+      "source": "pokemonapi",
+      "alias_external_id": "sm2-125a",
+      "canonical_external_id_to_keep": "sm2-125",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 125; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm2",
+        "set_name": "Guardians Rising",
+        "card_name": "Field Blower",
+        "card_number": "125",
+        "canonical_gv_id": "GV-PK-GRI-125",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "94552a4f-2762-4f63-a58d-c4862ab840ea",
+      "source": "pokemonapi",
+      "alias_external_id": "sm2-128",
+      "canonical_external_id_to_keep": "sm2-128a",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 128a; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm2",
+        "set_name": "Guardians Rising",
+        "card_name": "Max Potion",
+        "card_number": "128a",
+        "canonical_gv_id": "GV-PK-GRI-128A",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "5e7352e8-732a-41d6-8a06-bfcc08e6fa47",
+      "source": "pokemonapi",
+      "alias_external_id": "sm2-130",
+      "canonical_external_id_to_keep": "sm2-130a",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 130a; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm2",
+        "set_name": "Guardians Rising",
+        "card_name": "Rescue Stretcher",
+        "card_number": "130a",
+        "canonical_gv_id": "GV-PK-GRI-130A",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "67ba3bda-fc30-4da5-93a9-63c6192013a4",
+      "source": "pokemonapi",
+      "alias_external_id": "sm2-157",
+      "canonical_external_id_to_keep": "sm2-157a",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 157a; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm2",
+        "set_name": "Guardians Rising",
+        "card_name": "Metagross-GX",
+        "card_number": "157a",
+        "canonical_gv_id": "GV-PK-GRI-157A",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    },
+    {
+      "canonical_card_print_id": "1dea049d-b2f1-4e97-939e-c9f7638a75bc",
+      "source": "pokemonapi",
+      "alias_external_id": "sm2-19",
+      "canonical_external_id_to_keep": "sm2-19a",
+      "alias_kind": "suffix_alias",
+      "alias_status": "active",
+      "source_domain": "pokemon_eng_standard",
+      "evidence_reason": "Exactly one pokemonapi ID matches printed number 19a; non-matching source IDs can be preserved as suffix/base aliases before deactivation.",
+      "created_from_audit": "external_mapping_alias_residual_governance_plan_v1",
+      "metadata": {
+        "set_code": "sm2",
+        "set_name": "Guardians Rising",
+        "card_name": "Alolan Sandshrew",
+        "card_number": "19a",
+        "canonical_gv_id": "GV-PK-GRI-19A",
+        "proposed_rule": "pokemonapi_suffix_alias_preservation",
+        "governance_fingerprint_sha256": "e1af70210d2be8c1f0af1d7a6f4beb5ee84c30d19ba56e78892e15661063eda9"
+      }
+    }
+  ],
+  "stop_findings": [],
+  "pass": true,
+  "recommended_next_step": "Regenerate external mapping duplicate triage/readiness and preflight. Remaining duplicate groups should be blocked-only residuals.",
+  "recommended_approval_text": null
+}

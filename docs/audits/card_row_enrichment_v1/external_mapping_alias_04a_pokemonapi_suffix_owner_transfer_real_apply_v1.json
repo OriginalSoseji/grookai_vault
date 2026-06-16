@@ -1,0 +1,188 @@
+{
+  "version": "EXTERNAL_MAPPING_ALIAS_04A_POKEMONAPI_SUFFIX_OWNER_TRANSFER_REAL_APPLY_V1",
+  "package_id": "EXTMAP-ALIAS-04A-POKEMONAPI-SUFFIX-OWNER-TRANSFER",
+  "generated_at": "2026-06-16T23:00:11.549Z",
+  "mode": "real_apply",
+  "package_fingerprint_sha256": "4908bb9588c1666c7bce6ea921997b394ddd42a2a1b750196ebad0b724a84f22",
+  "scope": {
+    "target_transfer_rows": 8,
+    "table_written": [
+      "public.external_mappings.card_print_id",
+      "public.external_mappings.meta"
+    ],
+    "forbidden": [
+      "card_prints writes",
+      "card_printings writes",
+      "identity writes",
+      "deletes",
+      "merges",
+      "migrations",
+      "image writes",
+      "global apply"
+    ],
+    "rows_deleted": 0,
+    "migrations_created": false
+  },
+  "preflight": {
+    "target_count": 8,
+    "distinct_source_external_count": 8,
+    "non_pokemonapi_count": 0,
+    "same_owner_count": 0,
+    "missing_source_mapping_count": 0,
+    "owner_collision_count": 0,
+    "missing_owner_count": 0,
+    "missing_source_parent_count": 0
+  },
+  "before_counts": {
+    "source_card_duplicate_groups": 13,
+    "source_external_duplicate_groups": 0
+  },
+  "inside_counts": {
+    "source_card_duplicate_groups": 5,
+    "source_external_duplicate_groups": 0
+  },
+  "after_counts": {
+    "source_card_duplicate_groups": 5,
+    "source_external_duplicate_groups": 0
+  },
+  "execution": {
+    "transaction_status": "committed",
+    "transferred_rows": 8,
+    "distinct_transferred_rows": 8
+  },
+  "before_snapshot": {
+    "row_count": 24,
+    "counts": {
+      "from_parent": 8,
+      "to_parent": 8,
+      "transfer_mapping": 8
+    },
+    "hash_sha256": "72e219e1823ca74d04bbabb7357e869d0c38cdcd657c1131e7ffd7fd49a0ce70"
+  },
+  "after_snapshot": {
+    "row_count": 24,
+    "counts": {
+      "from_parent": 8,
+      "to_parent": 8,
+      "transfer_mapping": 8
+    },
+    "hash_sha256": "3c7fe14c7110aa98e1c3912982c61fb9b5048f313b98eda72af137dcbacd10a6"
+  },
+  "targets": [
+    {
+      "source": "pokemonapi",
+      "external_id": "xy10-105a",
+      "from_card_print_id": "0714d2e7-b966-42b1-96d9-60e548e2fd01",
+      "to_card_print_id": "f467fd09-2ba3-40a4-9e75-2547704c582c",
+      "from_gv_id": "GV-PK-FCO-105",
+      "to_gv_id": "GV-PK-FCO-105A",
+      "set_code": "xy10",
+      "from_number": "105",
+      "to_number": "105a",
+      "card_name": "N",
+      "to_name": "N",
+      "governance_fingerprint_sha256": "3cc52ffb8ccfe9698f3f3a116b7ac8132f1afca0ffea2826216c91bbe6607c53"
+    },
+    {
+      "source": "pokemonapi",
+      "external_id": "xy3-55a",
+      "from_card_print_id": "2bc6a250-d786-4719-8a7f-9063489e5d73",
+      "to_card_print_id": "5862d23e-8526-4055-baf2-cc478ce02ea9",
+      "from_gv_id": "GV-PK-FFI-55",
+      "to_gv_id": "GV-PK-FFI-55A",
+      "set_code": "xy3",
+      "from_number": "55",
+      "to_number": "55a",
+      "card_name": "M Lucario-EX",
+      "to_name": "M Lucario-EX",
+      "governance_fingerprint_sha256": "3cc52ffb8ccfe9698f3f3a116b7ac8132f1afca0ffea2826216c91bbe6607c53"
+    },
+    {
+      "source": "pokemonapi",
+      "external_id": "xy4-24a",
+      "from_card_print_id": "298a9523-9d6a-40fe-b31e-8f59045bb00d",
+      "to_card_print_id": "f0a82330-0795-40cf-9994-0b77c9494ba8",
+      "from_gv_id": "GV-PK-PHF-24",
+      "to_gv_id": "GV-PK-PHF-24A",
+      "set_code": "xy4",
+      "from_number": "24",
+      "to_number": "24a",
+      "card_name": "M Manectric-EX",
+      "to_name": "M Manectric-EX",
+      "governance_fingerprint_sha256": "3cc52ffb8ccfe9698f3f3a116b7ac8132f1afca0ffea2826216c91bbe6607c53"
+    },
+    {
+      "source": "pokemonapi",
+      "external_id": "xy4-65",
+      "from_card_print_id": "6f632392-0999-4a74-84ec-9346caf17d24",
+      "to_card_print_id": "21840232-9191-4566-8e3e-046f74841288",
+      "from_gv_id": "GV-PK-PHF-65A",
+      "to_gv_id": "GV-PK-PHF-65",
+      "set_code": "xy4",
+      "from_number": "65a",
+      "to_number": "65",
+      "card_name": "Aegislash-EX",
+      "to_name": "Aegislash EX",
+      "governance_fingerprint_sha256": "3cc52ffb8ccfe9698f3f3a116b7ac8132f1afca0ffea2826216c91bbe6607c53"
+    },
+    {
+      "source": "pokemonapi",
+      "external_id": "xyp-XY150",
+      "from_card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+      "to_card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+      "from_gv_id": "GV-PK-PR-XY-XY150A",
+      "to_gv_id": "GV-PK-PR-XY-XY150",
+      "set_code": "xyp",
+      "from_number": "XY150a",
+      "to_number": "XY150",
+      "card_name": "Yveltal-EX",
+      "to_name": "Yveltal EX",
+      "governance_fingerprint_sha256": "3cc52ffb8ccfe9698f3f3a116b7ac8132f1afca0ffea2826216c91bbe6607c53"
+    },
+    {
+      "source": "pokemonapi",
+      "external_id": "xyp-XY198",
+      "from_card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+      "to_card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+      "from_gv_id": "GV-PK-PR-XY-XY198A",
+      "to_gv_id": "GV-PK-PR-XY-XY198",
+      "set_code": "xyp",
+      "from_number": "XY198a",
+      "to_number": "XY198",
+      "card_name": "M Camerupt-EX",
+      "to_name": "M Camerupt-EX",
+      "governance_fingerprint_sha256": "3cc52ffb8ccfe9698f3f3a116b7ac8132f1afca0ffea2826216c91bbe6607c53"
+    },
+    {
+      "source": "pokemonapi",
+      "external_id": "xyp-XY200a",
+      "from_card_print_id": "bf6e9262-f055-4800-a899-76e64458629a",
+      "to_card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+      "from_gv_id": "GV-PK-PR-XY-XY200",
+      "to_gv_id": "GV-PK-PR-XY-XY200A",
+      "set_code": "xyp",
+      "from_number": "XY200",
+      "to_number": "XY200a",
+      "card_name": "M Sharpedo-EX",
+      "to_name": "M Sharpedo-EX",
+      "governance_fingerprint_sha256": "3cc52ffb8ccfe9698f3f3a116b7ac8132f1afca0ffea2826216c91bbe6607c53"
+    },
+    {
+      "source": "pokemonapi",
+      "external_id": "xyp-XY67a",
+      "from_card_print_id": "1fb96923-9db6-4321-aca3-d00af7acb4ae",
+      "to_card_print_id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+      "from_gv_id": "GV-PK-PR-XY-XY67",
+      "to_gv_id": "GV-PK-PR-XY-XY67A",
+      "set_code": "xyp",
+      "from_number": "XY67",
+      "to_number": "XY67a",
+      "card_name": "Jirachi",
+      "to_name": "Jirachi",
+      "governance_fingerprint_sha256": "3cc52ffb8ccfe9698f3f3a116b7ac8132f1afca0ffea2826216c91bbe6607c53"
+    }
+  ],
+  "stop_findings": [],
+  "pass": true,
+  "recommended_approval_text": null
+}

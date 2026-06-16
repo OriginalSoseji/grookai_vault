@@ -1,6 +1,6 @@
 {
   "version": "CARD_ROW_ENRICHMENT_CONSUMER_READINESS_V1",
-  "generated_at": "2026-06-16T03:44:24.197Z",
+  "generated_at": "2026-06-16T23:07:04.207Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -11,10 +11,10 @@
     "image_confidence_contract": "docs/contracts/IMAGE_CONFIDENCE_CONTRACT_V1.md"
   },
   "row_universe": {
-    "english_physical_parent_rows": 23078,
-    "english_physical_child_printing_rows": 38111,
-    "english_physical_parent_gap_rows": 5469,
-    "english_physical_child_gap_rows": 13692
+    "english_physical_parent_rows": 22791,
+    "english_physical_child_printing_rows": 37651,
+    "english_physical_parent_gap_rows": 5208,
+    "english_physical_child_gap_rows": 12999
   },
   "core_display_readiness": {
     "parent_identity": {
@@ -28,9 +28,9 @@
     },
     "image_truth": {
       "current_display_missing_rows": 0,
-      "exact_variant_backlog_rows": 13831,
+      "exact_variant_backlog_rows": 14501,
       "exact_promote_ready_rows_now": 0,
-      "representative_or_blocked_rows": 13825
+      "representative_or_blocked_rows": 14495
     }
   },
   "surfaces": [
@@ -159,5 +159,5 @@
     "Do not expose raw provenance payloads as public source links.",
     "Do not use external_ids payloads as active mappings."
   ],
-  "fingerprint_sha256": "b7766d5aacaa1d0d0cc910d9fb907f05bfb202aa9ac54c78b4671735ed60797a"
+  "fingerprint_sha256": "02fa11e425135466ff26800f5d613ff636f27ba55bfc6d55dd87fe8c84427f23"
 }

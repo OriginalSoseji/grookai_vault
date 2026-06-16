@@ -1,0 +1,22 @@
+{
+  "version": "ENRICH31A_PHYSICAL_GV_ID_COLLISION_GOVERNANCE_V1",
+  "generated_at": "2026-06-16T18:11:33.471Z",
+  "scope": {
+    "target": "English physical card_prints with null gv_id",
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "parent_overwrites_performed": false,
+    "child_writes_performed": false,
+    "pocket_rows_excluded": true
+  },
+  "totals": {
+    "physical_parent_gv_id_gap_rows": 0,
+    "write_safe_modifier_rows": 0,
+    "blocked_or_alias_resolution_rows": 0
+  },
+  "by_lane": {},
+  "by_set": {},
+  "write_ready_preview": [],
+  "rows": [],
+  "fingerprint_sha256": "be7aebab690ceb05116eea41510b77edd0afa2404d200e6048b14cbbf6be434a"
+}

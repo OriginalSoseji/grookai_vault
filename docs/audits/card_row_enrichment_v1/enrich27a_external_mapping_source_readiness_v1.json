@@ -1,6 +1,6 @@
 {
   "version": "ENRICH27A_EXTERNAL_MAPPING_SOURCE_READINESS_V1",
-  "generated_at": "2026-06-16T03:12:53.146Z",
+  "generated_at": "2026-06-16T22:46:53.150Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -477,7 +477,7 @@
     },
     {
       "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
-      "gv_id": null,
+      "gv_id": "GV-PK-PR-1-FIRST-EDITION",
       "set_code": "basep",
       "set_name": "Wizards Black Star Promos",
       "number": "1",
@@ -1430,14 +1430,14 @@
       "batch_source_external_count": 622
     },
     {
-      "card_print_id": "57ed9496-3a3e-49fc-b21e-8916a9c0a9f7",
-      "gv_id": "GV-PK-DP5-92-PLAY-POKEMON-STAMP",
+      "card_print_id": "d61d1739-3b2a-4a10-9a0c-c5a95914e14a",
+      "gv_id": "GV-PK-DP5-92-LEAGUE-STAMP",
       "set_code": "dp5",
       "set_name": "Majestic Dawn",
       "number": "92",
       "card_name": "Call Energy",
       "printed_identity_modifier": null,
-      "variant_key": "play_pokemon_stamp",
+      "variant_key": "league_stamp",
       "source": "verified_master_index_v1",
       "normalized_source": "verified_master_index_v1",
       "value_type": "object",
@@ -1448,14 +1448,14 @@
       "batch_source_external_count": 622
     },
     {
-      "card_print_id": "d61d1739-3b2a-4a10-9a0c-c5a95914e14a",
-      "gv_id": "GV-PK-DP5-92-LEAGUE-STAMP",
+      "card_print_id": "57ed9496-3a3e-49fc-b21e-8916a9c0a9f7",
+      "gv_id": "GV-PK-DP5-92-PLAY-POKEMON-STAMP",
       "set_code": "dp5",
       "set_name": "Majestic Dawn",
       "number": "92",
       "card_name": "Call Energy",
       "printed_identity_modifier": null,
-      "variant_key": "league_stamp",
+      "variant_key": "play_pokemon_stamp",
       "source": "verified_master_index_v1",
       "normalized_source": "verified_master_index_v1",
       "value_type": "object",

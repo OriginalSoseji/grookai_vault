@@ -1,0 +1,208 @@
+{
+  "version": "POCKET_GV_ID_REAL_APPLY_V1",
+  "generated_at": "2026-06-16T18:37:02.503Z",
+  "scope": {
+    "rollback_only": false,
+    "db_writes_persisted": true,
+    "migrations_created": false,
+    "physical_rows_targeted": false,
+    "target_domain": "tcg_pocket_excluded"
+  },
+  "fingerprint_sha256": "75e99091084a71d1e8780136d20eeafb4660ef9af3390fbf601191bf6c7902f7",
+  "proof_sha256": "89f59875340da2133a55675c5dcc7efac976a86df3643f30f4e6594dbcf883fc",
+  "totals": {
+    "starting_pocket_parent_rows": 3150,
+    "source_alias_duplicate_groups": 1138,
+    "surviving_pocket_parent_targets": 2012,
+    "surviving_pocket_child_targets": 6036
+  },
+  "proof": {
+    "duplicate_mappings_transferred": 1138,
+    "duplicate_printing_mappings_deleted": 0,
+    "duplicate_identity_rows_deleted": 0,
+    "duplicate_trait_rows_deleted": 1138,
+    "duplicate_species_rows_deleted": 1053,
+    "duplicate_children_deleted": 3414,
+    "duplicate_parents_deleted": 1138,
+    "pocket_parent_gv_ids_updated": 2012,
+    "pocket_child_printing_gv_ids_updated": 6036
+  },
+  "sample_duplicate_groups": [
+    {
+      "proposed_gv_id": "GV-TCGP-A1-191",
+      "owner_card_print_id": "fe521734-6768-49a6-9c60-3709bda20de6",
+      "duplicate_card_print_id": "18e24304-55bb-4b70-af62-959bfaf63978",
+      "set_code": "A1",
+      "card_name": "Spearow"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-001",
+      "owner_card_print_id": "7ee43a7e-fa1c-479d-8ec1-352743699208",
+      "duplicate_card_print_id": "763fba07-dcc0-47e0-abed-67167aad2e00",
+      "set_code": "A1a",
+      "card_name": "Exeggcute"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-002",
+      "owner_card_print_id": "36cca954-7da3-44f1-b2c0-a99cb8316905",
+      "duplicate_card_print_id": "99e29b2b-24c6-400b-9882-d9dc24cd4074",
+      "set_code": "A1a",
+      "card_name": "Exeggutor"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-003",
+      "owner_card_print_id": "2039d4b7-80b2-41fa-b380-5c3f97bd60e7",
+      "duplicate_card_print_id": "412e915f-f1d9-4d9c-a246-b283eaa9d7c4",
+      "set_code": "A1a",
+      "card_name": "Celebi ex"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-004",
+      "owner_card_print_id": "3ad5f0c6-a30e-40ee-bac2-b43b4c763615",
+      "duplicate_card_print_id": "f747fe8b-c112-4294-b85f-0fdf18e7a9b6",
+      "set_code": "A1a",
+      "card_name": "Snivy"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-005",
+      "owner_card_print_id": "e52752af-b0f6-4d90-95f6-b94fb8bbb0cc",
+      "duplicate_card_print_id": "c1b3b6b0-ab18-4322-99cf-7412ab5c935a",
+      "set_code": "A1a",
+      "card_name": "Servine"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-006",
+      "owner_card_print_id": "49c6194d-d654-4ec6-86b5-0399b5e33668",
+      "duplicate_card_print_id": "c80a9a43-d068-4aba-abc0-2a70e001d390",
+      "set_code": "A1a",
+      "card_name": "Serperior"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-007",
+      "owner_card_print_id": "66b9ec66-4395-4a95-9754-aecdc577ac03",
+      "duplicate_card_print_id": "f749ccf7-b9ff-4a75-91bc-2aaab644f5d1",
+      "set_code": "A1a",
+      "card_name": "Morelull"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-008",
+      "owner_card_print_id": "ff24a3d7-b4b4-4520-bfa1-e8f01765297e",
+      "duplicate_card_print_id": "b25155ae-5859-4409-8f1f-f89a5327e1d6",
+      "set_code": "A1a",
+      "card_name": "Shiinotic"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-009",
+      "owner_card_print_id": "bc93e04f-0330-48c4-8382-895f2f56c654",
+      "duplicate_card_print_id": "09931918-f7b8-4eee-a505-c1b7284cd2b9",
+      "set_code": "A1a",
+      "card_name": "Dhelmise"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-010",
+      "owner_card_print_id": "62eb099d-aae8-4eb2-85f1-366fb64fe7c9",
+      "duplicate_card_print_id": "a1466cac-bac6-4177-8622-fe57df2653ed",
+      "set_code": "A1a",
+      "card_name": "Ponyta"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-011",
+      "owner_card_print_id": "b2cedd4f-f590-4340-bf69-69db11b4b74a",
+      "duplicate_card_print_id": "629ff3a6-d642-4a93-9be9-cbb30b7a32ab",
+      "set_code": "A1a",
+      "card_name": "Rapidash"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-012",
+      "owner_card_print_id": "14fe4c25-d79b-417a-a3ed-0b664001ce0c",
+      "duplicate_card_print_id": "1cc94235-1ab8-4e7b-bef8-dd12735b93ec",
+      "set_code": "A1a",
+      "card_name": "Magmar"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-013",
+      "owner_card_print_id": "a1c9dce8-4bd4-4410-8e31-fb2dd099dd27",
+      "duplicate_card_print_id": "7f0eecc6-0a5b-451d-ad10-09bf3a90bc54",
+      "set_code": "A1a",
+      "card_name": "Larvesta"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-014",
+      "owner_card_print_id": "4a92a5fc-23c5-4c6e-aec0-060895f90289",
+      "duplicate_card_print_id": "4c81685d-ae2a-48a8-a13e-e0e8fffcab5b",
+      "set_code": "A1a",
+      "card_name": "Volcarona"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-016",
+      "owner_card_print_id": "21daa048-960f-490d-846f-a13d2f2e2762",
+      "duplicate_card_print_id": "15f43ddd-10da-408e-b88b-2328a28a6e1c",
+      "set_code": "A1a",
+      "card_name": "Salazzle"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-017",
+      "owner_card_print_id": "2cf2c4e6-c9e9-483d-8af2-c7fed0073b0b",
+      "duplicate_card_print_id": "392549f0-b8c5-4865-b3ad-af11ffc5a1b3",
+      "set_code": "A1a",
+      "card_name": "Magikarp"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-018",
+      "owner_card_print_id": "17f7dc32-5016-4827-9f14-7fe4e969e421",
+      "duplicate_card_print_id": "e81dd84e-6df7-43f3-b2ff-1d5ff1611b2a",
+      "set_code": "A1a",
+      "card_name": "Gyarados ex"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-019",
+      "owner_card_print_id": "5570d449-e8c9-4603-a041-9fe50eef4c64",
+      "duplicate_card_print_id": "03547d66-ea2c-4eb1-b71a-63faf6895363",
+      "set_code": "A1a",
+      "card_name": "Vaporeon"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-020",
+      "owner_card_print_id": "50469917-f02b-4f98-b611-c76ee35ad17d",
+      "duplicate_card_print_id": "518193ec-791a-473f-8b9a-611d709d25d8",
+      "set_code": "A1a",
+      "card_name": "Finneon"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-021",
+      "owner_card_print_id": "41fca281-5470-4298-90cb-ab1b283cddcc",
+      "duplicate_card_print_id": "4c71cec3-7bdc-4928-b360-9e6f65418e17",
+      "set_code": "A1a",
+      "card_name": "Lumineon"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-023",
+      "owner_card_print_id": "ee5de018-4f64-4b19-93d3-f1bd767807cd",
+      "duplicate_card_print_id": "13a18194-6f0c-4772-bba5-084f05b8fcf8",
+      "set_code": "A1a",
+      "card_name": "Drednaw"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-024",
+      "owner_card_print_id": "49b9c085-70e3-40c0-9b0c-b0be67feb0d5",
+      "duplicate_card_print_id": "bb64113f-dde6-4335-aaf6-7a0360fc0326",
+      "set_code": "A1a",
+      "card_name": "Cramorant"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-025",
+      "owner_card_print_id": "bdb54357-082d-4d7d-ab5e-d86932042614",
+      "duplicate_card_print_id": "2b13a7e8-dc2c-4d03-a51f-3b325d87f210",
+      "set_code": "A1a",
+      "card_name": "Pikachu"
+    },
+    {
+      "proposed_gv_id": "GV-TCGP-A1A-026",
+      "owner_card_print_id": "2e99ecac-daca-47de-ac6e-385154880c75",
+      "duplicate_card_print_id": "ad68b73c-6141-4f05-a0b4-a4a23975c42b",
+      "set_code": "A1a",
+      "card_name": "Raichu"
+    }
+  ],
+  "recommended_approval_phrase": "Approve real POCKET-GVID-01-SOURCE-ALIAS-CLEANUP-AND-GVID-BACKFILL apply only. Fingerprint: 75e99091084a71d1e8780136d20eeafb4660ef9af3390fbf601191bf6c7902f7. Dry-run proof: 89f59875340da2133a55675c5dcc7efac976a86df3643f30f4e6594dbcf883fc. Scope: 1138 Pocket source-alias duplicate parent cleanups, 2012 Pocket parent GV-ID updates, 6036 Pocket child printing GV-ID updates. No physical rows. No migrations. No image writes. No global apply."
+}
