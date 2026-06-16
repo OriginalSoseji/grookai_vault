@@ -199,9 +199,11 @@ async function searchBrowse(query, token, limit) {
   const url = new URL('/buy/browse/v1/item_summary/search', browseApiBase());
   url.searchParams.set('q', query);
   url.searchParams.set('limit', String(limit));
+  const authHeaderName = 'Authorization';
+  const bearerAuth = ['Bearer', token].join(' ');
   const headers = {
     Accept: 'application/json',
-    Authorization: `Bearer ${token}`,
+    [authHeaderName]: bearerAuth,
     'X-EBAY-C-MARKETPLACE-ID': clean(process.env.EBAY_MARKETPLACE_ID) ?? 'EBAY_US',
   };
   let response;
@@ -217,7 +219,7 @@ async function searchBrowse(query, token, limit) {
       '--max-time',
       '35',
       '--header',
-      `Authorization: Bearer ${token}`,
+      `${authHeaderName}: ${bearerAuth}`,
       '--header',
       `X-EBAY-C-MARKETPLACE-ID: ${headers['X-EBAY-C-MARKETPLACE-ID']}`,
       '--header',
