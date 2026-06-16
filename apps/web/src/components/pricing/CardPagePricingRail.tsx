@@ -34,7 +34,7 @@ function PricingLowMidHigh({
         <span>Mid</span>
         <span>High</span>
       </div>
-      <div className="flex justify-between gap-3 text-sm font-medium text-slate-900">
+      <div className="flex justify-between gap-3 text-sm font-medium text-slate-900 dark:text-slate-100">
         <span>{formatUsdPrice(low)}</span>
         <span>{formatUsdPrice(mid)}</span>
         <span>{formatUsdPrice(high)}</span>
@@ -46,7 +46,7 @@ function PricingLowMidHigh({
 function PricingEmptyState() {
   return (
     <div className="space-y-1.5">
-      <p className="text-xl font-semibold tracking-tight text-slate-950">No pricing data available</p>
+      <p className="text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-100">No pricing data available</p>
       <p className="text-xs leading-5 text-slate-500">Pricing for this card is not available yet.</p>
     </div>
   );
@@ -68,8 +68,8 @@ function PrimaryPricingBlock({ pricing }: { pricing: CardPricingUiRecord | null 
   return (
     <div className="space-y-2">
       <div className="space-y-1">
-        <p className="text-3xl font-semibold tracking-tight text-slate-950">{formatUsdPrice(midPrice)}</p>
-        <p className="text-sm font-medium text-slate-700">Near Mint</p>
+        <p className="text-3xl font-semibold tracking-tight text-slate-950 dark:text-slate-100">{formatUsdPrice(midPrice)}</p>
+        <p className="text-sm font-medium text-slate-700 dark:text-slate-300">Near Mint</p>
       </div>
       {hasLowMidHigh ? (
         <PricingLowMidHigh low={lowPrice} mid={midPrice} high={highPrice} />
@@ -80,12 +80,12 @@ function PrimaryPricingBlock({ pricing }: { pricing: CardPricingUiRecord | null 
 
 function LockedPricingState({ loginHref }: { loginHref: string }) {
   return (
-    <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4">
+    <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4 dark:border-slate-800 dark:bg-slate-950">
       <div className="space-y-4">
         <div className="space-y-2">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Pricing</p>
           <div className="space-y-1.5">
-            <p className="text-xl font-semibold tracking-tight text-slate-950">Sign in to view pricing</p>
+            <p className="text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-100">Sign in to view pricing</p>
             <p className="text-xs leading-5 text-slate-500">
               Reference pricing and market insights available for signed-in collectors.
             </p>
@@ -100,7 +100,7 @@ function LockedPricingState({ loginHref }: { loginHref: string }) {
           </Link>
           <Link
             href={loginHref}
-            className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:text-slate-950"
+          className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:text-slate-950"
           >
             Create account
           </Link>
@@ -115,7 +115,7 @@ function AuthenticatedPricingState({ gvId, pricing }: { gvId: string; pricing: C
   const hasPrimaryPrice = Boolean(pricing?.primary_source && typeof pricing.primary_price === "number");
 
   return (
-    <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4">
+    <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4 dark:border-slate-800 dark:bg-slate-950">
       <div className="space-y-4">
         <div className="space-y-2">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Pricing</p>

@@ -112,14 +112,14 @@ export function ConditionSnapshotSection({
 
   return (
     <>
-      <section className="space-y-4 rounded-[16px] border border-slate-200 bg-white p-6 shadow-sm">
+      <section className="space-y-4 rounded-[18px] border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 sm:p-5">
         <div className="space-y-1">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Condition</h2>
-          <p className="text-sm text-slate-500">Read-only scan history for this card in your vault.</p>
+          <h2 className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Condition</h2>
+          <p className="text-sm text-slate-500 dark:text-slate-400">Read-only scan history for this card in your vault.</p>
         </div>
 
         {snapshots.length === 0 ? (
-          <div className="rounded-[14px] border border-slate-100 bg-slate-50 px-4 py-4 text-sm text-slate-500">
+          <div className="rounded-[14px] border border-slate-100 bg-slate-50 px-4 py-3 text-sm text-slate-500 dark:border-slate-800 dark:bg-slate-900">
             No condition scans yet
           </div>
         ) : (
@@ -135,11 +135,11 @@ export function ConditionSnapshotSection({
               return (
                 <div
                   key={snapshot.id}
-                  className="rounded-[14px] border border-slate-100 bg-slate-50 px-4 py-4"
+                  className="rounded-[14px] border border-slate-100 bg-slate-50 px-4 py-3 dark:border-slate-800 dark:bg-slate-900"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div className="space-y-1">
-                      <p className="text-sm font-medium text-slate-900">{assignmentLabel}</p>
+                      <p className="text-sm font-medium text-slate-900 dark:text-slate-100">{assignmentLabel}</p>
                       <p className="text-xs text-slate-500">{formatSnapshotDate(snapshot.created_at)}</p>
                     </div>
                     <div className="flex items-center gap-2">
