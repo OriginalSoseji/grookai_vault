@@ -536,7 +536,7 @@ export default async function CardPage({
   return (
     <div className={`space-y-8 py-4 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
       <TrackPageEvent eventName="page_view_card" path={currentCardPath} gvId={resolvedCard.gv_id} />
-      <section className="relative isolate overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
+      <section className="relative isolate overflow-hidden rounded-[30px] border border-slate-200/80 bg-white shadow-[0_24px_80px_-60px_rgba(15,23,42,0.75)] dark:border-slate-800/80 dark:bg-slate-950">
         {setLogoPath ? (
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
             <Image
@@ -555,20 +555,22 @@ export default async function CardPage({
             className="gv-card-identity-wash pointer-events-none absolute inset-0"
           />
         ) : null}
-        <div className="relative z-10 grid gap-6 p-5 sm:p-6 xl:grid-cols-[minmax(280px,360px)_minmax(0,1fr)_300px] xl:gap-8 xl:p-8">
-          <div className="gv-card-detail-image-shell overflow-hidden rounded-[20px] border border-slate-200/80 bg-white/72 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.08)] ring-1 ring-white/70 backdrop-blur dark:border-slate-700/70 dark:bg-slate-950/50 dark:shadow-[0_18px_45px_rgba(0,0,0,0.35)] dark:ring-white/10 sm:p-4">
-            <CardZoomModal
-              src={resolvedCardImageSrc}
-              fallbackSrc={resolvedCardImageFallback ?? undefined}
-              alt={getCardImageAltText(
-                resolvedDisplayIdentity.display_name,
-                displayedImageTruthSource,
-              )}
-              imageClassName="aspect-[3/4] max-h-[430px] w-full cursor-zoom-in rounded-[14px] object-contain sm:max-h-[560px]"
-              fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[14px] bg-slate-100/80 px-4 text-center text-sm text-slate-500 dark:bg-slate-900/70 dark:text-slate-400"
-            />
+        <div className="relative z-10 grid gap-8 p-5 sm:p-7 lg:grid-cols-[minmax(260px,380px)_minmax(0,1fr)] lg:items-start lg:gap-10 xl:p-10">
+          <div className="mx-auto flex w-full max-w-[340px] flex-col items-center lg:sticky lg:top-8 lg:max-w-[380px]">
+            <div className="w-full">
+              <CardZoomModal
+                src={resolvedCardImageSrc}
+                fallbackSrc={resolvedCardImageFallback ?? undefined}
+                alt={getCardImageAltText(
+                  resolvedDisplayIdentity.display_name,
+                  displayedImageTruthSource,
+                )}
+                imageClassName="h-auto max-h-[520px] w-full cursor-zoom-in rounded-[18px] bg-white object-contain shadow-[0_24px_70px_-38px_rgba(15,23,42,0.85)] ring-1 ring-slate-200/70 transition duration-150 hover:scale-[1.01] hover:shadow-[0_30px_80px_-36px_rgba(15,23,42,0.9)] dark:ring-white/10 sm:max-h-[600px]"
+                fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[18px] bg-slate-100/70 px-4 text-center text-sm text-slate-500 ring-1 ring-slate-200/70 dark:bg-slate-900/70 dark:text-slate-400 dark:ring-white/10"
+              />
+            </div>
             {resolvedCardImagePresentation.compactBadgeLabel ? (
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="mt-4 flex w-full flex-wrap justify-center gap-2">
                 <CardImageTruthBadge
                   label={resolvedCardImagePresentation.detailBadgeLabel ?? resolvedCardImagePresentation.compactBadgeLabel}
                   emphasis={
@@ -582,122 +584,130 @@ export default async function CardPage({
               </div>
             ) : null}
             {resolvedCardImagePresentation.detailNote ? (
-              <p className="mt-3 rounded-[16px] border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-950">
+              <p className="mt-4 rounded-[16px] border border-amber-200/80 bg-amber-50/90 px-4 py-3 text-sm leading-6 text-amber-950 shadow-sm dark:border-amber-500/30 dark:bg-amber-950/28 dark:text-amber-100">
                 {resolvedCardImagePresentation.detailNote}
               </p>
             ) : null}
           </div>
 
-          <div className="space-y-5">
-            <div className="flex flex-wrap items-center gap-2">
-              {resolvedCard.supertype ? (
-                <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">
-                  {resolvedCard.supertype}
-                </span>
-              ) : null}
-              <span className="gv-hi-ownership inline-flex rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em]">
-                {ownershipLabel}
-              </span>
-            </div>
-
-            <div className="space-y-3">
-              {(setName || setCodeLabel) ? (
-                <div className="flex flex-wrap items-center gap-2">
-                  {setCodeLabel ? (
-                    <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-800">
-                      {setCodeLabel}
-                    </span>
-                  ) : null}
-                  {setName ? (
-                    setHref ? (
-                      <Link
-                        href={setHref}
-                        className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600 underline-offset-4 hover:border-slate-300 hover:text-slate-950 hover:underline"
-                      >
-                        {setName}
-                      </Link>
-                    ) : (
-                      <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
-                        {setName}
-                      </span>
-                    )
-                  ) : null}
-                </div>
-              ) : null}
-              <h1 className="gv-hi-card-identity text-4xl tracking-tight sm:text-5xl">
-                {resolvedDisplayIdentity.base_name}
-              </h1>
-              {identitySubtitle ? (
-                <p className="gv-hi-metadata text-sm font-medium sm:text-base">{identitySubtitle}</p>
-              ) : null}
-              {collectorNumberLine ? (
-                <p className="inline-flex w-fit rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-mono text-sm font-semibold uppercase tracking-[0.12em] text-slate-700">
-                  {collectorNumberLine}
-                </p>
-              ) : null}
-            </div>
-
-            {(resolvedCard.rarity || variantLabels.length > 0) ? (
-              <div className="flex flex-wrap gap-2">
-                {resolvedCard.rarity ? (
-                  <span className="inline-flex rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-900">
-                    {resolvedCard.rarity}
+          <div className="min-w-0 space-y-7">
+            <div className="space-y-5">
+              <div className="flex flex-wrap items-center gap-2">
+                {resolvedCard.supertype ? (
+                  <span className="inline-flex rounded-full border border-slate-200/80 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
+                    {resolvedCard.supertype}
                   </span>
                 ) : null}
-                {variantLabels.map((label) => (
-                  <VariantBadge key={`${resolvedCard.gv_id}-${label}`} label={label} />
-                ))}
+                <span className="gv-hi-ownership inline-flex rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em]">
+                  {ownershipLabel}
+                </span>
               </div>
-            ) : null}
 
-            <div className="gv-hi-diagnostics flex flex-wrap items-center gap-3 text-sm">
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">
-                {resolvedCard.gv_id}
-              </span>
-              <CopyButton text={resolvedCard.gv_id} />
-              {illustratorName ? <span>Illustrated by {illustratorName}</span> : null}
-            </div>
-          </div>
-
-          <aside className="rounded-[24px] border border-slate-200 bg-slate-50/90 p-5 shadow-sm backdrop-blur">
-            <div className="space-y-4">
-              <CardPagePricingRail
-                isAuthenticated={canViewPricing}
-                loginHref={loginHref}
-                gvId={resolvedCard.gv_id}
-                cardPrintId={resolvedCard.id}
-                pricing={pricingUi}
-              />
-
-              <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Vault</p>
-                <p className="gv-hi-card-identity mt-2 text-sm leading-6">{ownershipLabel}.</p>
-                {vaultCount > 0 && (ownedObjectSummary.rawCount > 0 || ownedObjectSummary.slabCount > 0) ? (
-                  <p className="mt-2 text-xs text-slate-500">
-                    {[ownedObjectSummary.rawCount > 0 ? `${ownedObjectSummary.rawCount} raw` : null, ownedObjectSummary.slabCount > 0 ? `${ownedObjectSummary.slabCount} slab` : null]
-                      .filter((value): value is string => value !== null)
-                      .join(" • ")}
-                  </p>
+              <div className="space-y-4">
+                {(setName || setCodeLabel) ? (
+                  <div className="flex flex-wrap items-center gap-2">
+                    {setCodeLabel ? (
+                      <span className="inline-flex rounded-full border border-emerald-200/80 bg-emerald-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-800 shadow-sm">
+                        {setCodeLabel}
+                      </span>
+                    ) : null}
+                    {setName ? (
+                      setHref ? (
+                        <Link
+                          href={setHref}
+                          className="inline-flex rounded-full border border-slate-200/80 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600 shadow-sm underline-offset-4 transition hover:border-slate-300 hover:text-slate-950 hover:underline dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white"
+                        >
+                          {setName}
+                        </Link>
+                      ) : (
+                        <span className="inline-flex rounded-full border border-slate-200/80 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
+                          {setName}
+                        </span>
+                      )
+                    ) : null}
+                  </div>
                 ) : null}
+                <div className="space-y-3">
+                  <h1 className="gv-hi-card-identity max-w-3xl text-4xl tracking-tight sm:text-5xl lg:text-6xl">
+                    {resolvedDisplayIdentity.base_name}
+                  </h1>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {identitySubtitle ? (
+                      <p className="gv-hi-metadata text-sm font-medium sm:text-base">{identitySubtitle}</p>
+                    ) : null}
+                    {collectorNumberLine ? (
+                      <p className="inline-flex w-fit rounded-full border border-slate-200/80 bg-slate-50/90 px-3 py-1 font-mono text-sm font-semibold uppercase tracking-[0.12em] text-slate-700 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200">
+                        {collectorNumberLine}
+                      </p>
+                    ) : null}
+                  </div>
+                </div>
               </div>
 
-              <AddToVaultCardAction
-                action={addToVaultAction}
-                isAuthenticated={Boolean(user)}
-                loginHref={loginHref}
-                currentPath={currentCardPath}
-                gvId={resolvedCard.gv_id}
-                printings={displayPrintingsWithOwnedCounts}
-                initialPrintingId={searchParams?.printing ?? null}
-              />
+              {(resolvedCard.rarity || variantLabels.length > 0) ? (
+                <div className="flex flex-wrap gap-2">
+                  {resolvedCard.rarity ? (
+                    <span className="inline-flex rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-900 shadow-sm dark:bg-amber-500/18 dark:text-amber-200">
+                      {resolvedCard.rarity}
+                    </span>
+                  ) : null}
+                  {variantLabels.map((label) => (
+                    <VariantBadge key={`${resolvedCard.gv_id}-${label}`} label={label} />
+                  ))}
+                </div>
+              ) : null}
 
-              <div className="flex flex-wrap items-center gap-3">
-                {user ? <AddSlabCardAction action={createSlabAction} cardName={resolvedDisplayIdentity.display_name} /> : null}
-                <CompareCardButton gvId={resolvedCard.gv_id} />
-                <ShareCardButton gvId={resolvedCard.gv_id} />
+              <div className="gv-hi-diagnostics flex flex-wrap items-center gap-3 text-sm">
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">
+                  {resolvedCard.gv_id}
+                </span>
+                <CopyButton text={resolvedCard.gv_id} />
+                {illustratorName ? <span>Illustrated by {illustratorName}</span> : null}
               </div>
             </div>
-          </aside>
+
+            <aside className="grid gap-4 lg:grid-cols-[minmax(240px,0.9fr)_minmax(280px,1.1fr)]">
+              <div className="rounded-[22px] border border-slate-200/80 bg-white/82 p-5 shadow-[0_18px_55px_-44px_rgba(15,23,42,0.75)] backdrop-blur dark:border-slate-800 dark:bg-slate-900/72">
+                <CardPagePricingRail
+                  isAuthenticated={canViewPricing}
+                  loginHref={loginHref}
+                  gvId={resolvedCard.gv_id}
+                  cardPrintId={resolvedCard.id}
+                  pricing={pricingUi}
+                />
+              </div>
+
+              <div className="space-y-4 rounded-[22px] border border-slate-200/80 bg-white/88 p-5 shadow-[0_18px_55px_-44px_rgba(15,23,42,0.75)] backdrop-blur dark:border-slate-800 dark:bg-slate-900/72">
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Vault</p>
+                  <p className="gv-hi-card-identity mt-2 text-sm leading-6">{ownershipLabel}.</p>
+                  {vaultCount > 0 && (ownedObjectSummary.rawCount > 0 || ownedObjectSummary.slabCount > 0) ? (
+                    <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                      {[ownedObjectSummary.rawCount > 0 ? `${ownedObjectSummary.rawCount} raw` : null, ownedObjectSummary.slabCount > 0 ? `${ownedObjectSummary.slabCount} slab` : null]
+                        .filter((value): value is string => value !== null)
+                        .join(" • ")}
+                    </p>
+                  ) : null}
+                </div>
+
+                <AddToVaultCardAction
+                  action={addToVaultAction}
+                  isAuthenticated={Boolean(user)}
+                  loginHref={loginHref}
+                  currentPath={currentCardPath}
+                  gvId={resolvedCard.gv_id}
+                  printings={displayPrintingsWithOwnedCounts}
+                  initialPrintingId={searchParams?.printing ?? null}
+                />
+
+                <div className="flex flex-wrap items-center gap-3">
+                  {user ? <AddSlabCardAction action={createSlabAction} cardName={resolvedDisplayIdentity.display_name} /> : null}
+                  <CompareCardButton gvId={resolvedCard.gv_id} />
+                  <ShareCardButton gvId={resolvedCard.gv_id} />
+                </div>
+              </div>
+            </aside>
+          </div>
         </div>
       </section>
 
