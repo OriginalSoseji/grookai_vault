@@ -13,11 +13,14 @@ import {
   type PublicSetSummary,
 } from "@/lib/publicSets.shared";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 
 type PublicSetsResultsProps = {
   sets: PublicSetSummary[];
   logoEntries: Array<[string, string]>;
 };
+
+const INITIAL_VISIBLE_SET_COUNT = 36;
 
 function parseSetSortTimestamp(setInfo: Pick<PublicSetSummary, "sort_date">) {
   if (!setInfo.sort_date) {
@@ -118,15 +121,24 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
   const rawQuery = searchParams.get("q") ?? "";
   const rawFilter = searchParams.get("filter") ?? "all";
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
-  const textFilteredSets = filterPublicSetsClient(sets, rawQuery);
+  const [visibleSetCount, setVisibleSetCount] = useState(INITIAL_VISIBLE_SET_COUNT);
   const normalizedQuery = normalizeSetQuery(rawQuery);
   const activeFilter = normalizePublicSetFilter(rawFilter);
-  const filteredAndSortedSets = applyPublicSetFilterAndSortClient(textFilteredSets, activeFilter);
+  const filteredAndSortedSets = useMemo(
+    () => applyPublicSetFilterAndSortClient(filterPublicSetsClient(sets, rawQuery), activeFilter),
+    [sets, rawQuery, activeFilter],
+  );
+  const visibleSets = filteredAndSortedSets.slice(0, visibleSetCount);
+  const hasMoreSets = visibleSets.length < filteredAndSortedSets.length;
   const activeFilterLabel = PUBLIC_SET_FILTER_OPTIONS.find((option) => option.value === activeFilter)?.label ?? "All Sets";
   const setLogoPathByCode = new Map(logoEntries);
   const resultLabel = normalizedQuery
     ? `${filteredAndSortedSets.length} set${filteredAndSortedSets.length === 1 ? "" : "s"} matched "${rawQuery}".`
     : `${filteredAndSortedSets.length} collector-ready set${filteredAndSortedSets.length === 1 ? "" : "s"}.`;
+
+  useEffect(() => {
+    setVisibleSetCount(INITIAL_VISIBLE_SET_COUNT);
+  }, [normalizedQuery, activeFilter]);
 
   return (
     <>
@@ -148,15 +160,29 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
       />
 
       {filteredAndSortedSets.length > 0 ? (
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {filteredAndSortedSets.map((setInfo) => (
-            <PublicSetTile
-              key={setInfo.code}
-              setInfo={setInfo}
-              compareCards={compareCards}
-              logoPath={setLogoPathByCode.get(setInfo.code)}
-            />
-          ))}
+        <div className="space-y-5">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {visibleSets.map((setInfo) => (
+              <PublicSetTile
+                key={setInfo.code}
+                setInfo={setInfo}
+                compareCards={compareCards}
+                logoPath={setLogoPathByCode.get(setInfo.code)}
+              />
+            ))}
+          </div>
+
+          {hasMoreSets ? (
+            <div className="flex justify-center">
+              <button
+                type="button"
+                onClick={() => setVisibleSetCount((current) => current + INITIAL_VISIBLE_SET_COUNT)}
+                className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+              >
+                Show more sets
+              </button>
+            </div>
+          ) : null}
         </div>
       ) : (
         <PageSection surface="card" className="text-sm text-slate-600">
