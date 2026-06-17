@@ -100,15 +100,15 @@ function renderImage({
 }) {
   return (
     <div
-      className={`relative flex items-center justify-center overflow-hidden rounded-[14px] border border-slate-100 bg-slate-50 ${IMAGE_PADDING_BY_DENSITY[density]}`}
+      className={`gv-visual-card-image relative flex items-center justify-center overflow-hidden ${IMAGE_PADDING_BY_DENSITY[density]}`}
     >
       <PublicCardImage
         src={imageSrc}
         fallbackSrc={imageFallbackSrc}
         alt={imageAlt}
         loading={imageLoading}
-        imageClassName={`aspect-[3/4] w-full rounded-[12px] object-contain transition duration-200 group-hover:scale-[1.02] ${imageClassName ?? ""}`.trim()}
-        fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[12px] bg-slate-100 px-4 text-center text-sm text-slate-500"
+        imageClassName={`aspect-[3/4] w-full rounded-[16px] object-contain transition duration-200 group-hover:scale-[1.018] ${imageClassName ?? ""}`.trim()}
+        fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[16px] bg-slate-100/70 px-4 text-center text-sm text-slate-500"
         fallbackLabel={imageFallbackLabel ?? imageAlt}
       />
       {imageOverlay ? (
@@ -138,8 +138,8 @@ export function PokemonCardGridBadge({
         : tone === "warm"
           ? "border-amber-200 bg-amber-50 text-amber-700"
           : tone === "neutral"
-            ? "border-slate-200 bg-white text-slate-600"
-            : "border-slate-200 bg-slate-50 text-slate-600";
+            ? "border-slate-200/80 bg-white/80 text-slate-600"
+            : "border-slate-200/80 bg-slate-50/80 text-slate-600";
 
   return (
     <span className={`inline-flex rounded-full border ${sizeClassName} ${toneClassName} ${className}`.trim()}>
@@ -181,7 +181,7 @@ export default function PokemonCardGridTile({
 
   return (
     <article
-      className={`group overflow-hidden rounded-[18px] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md ${TILE_PADDING_BY_DENSITY[density]} ${className}`.trim()}
+      className={`gv-visual-card group overflow-hidden ${TILE_PADDING_BY_DENSITY[density]} ${className}`.trim()}
     >
       {utility ? <div className="mb-3 flex items-center justify-end gap-2">{utility}</div> : null}
 
@@ -190,7 +190,7 @@ export default function PokemonCardGridTile({
 
         <div className={BODY_STACK_BY_DENSITY[density]}>
           <div className="space-y-1.5">
-            <div className={`${TITLE_TEXT_BY_DENSITY[density]} gv-hi-card-identity tracking-tight`}>{title}</div>
+            <div className={`${TITLE_TEXT_BY_DENSITY[density]} gv-hi-card-identity`}>{title}</div>
             {subtitle ? <div className={`${SUBTITLE_TEXT_BY_DENSITY[density]} gv-hi-metadata`}>{subtitle}</div> : null}
           </div>
 
@@ -199,7 +199,7 @@ export default function PokemonCardGridTile({
           {summary ? <div className="space-y-2.5">{summary}</div> : null}
           {details ? <div className="pt-1">{details}</div> : null}
           {footer ? (
-            <div className={`gv-hi-diagnostics border-t border-slate-100 ${FOOTER_TEXT_BY_DENSITY[density]}`}>{footer}</div>
+            <div className={`gv-hi-diagnostics border-t border-slate-100/60 ${FOOTER_TEXT_BY_DENSITY[density]}`}>{footer}</div>
           ) : null}
         </div>
       </div>

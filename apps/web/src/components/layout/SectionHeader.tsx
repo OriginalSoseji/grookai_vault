@@ -25,9 +25,9 @@ export function SectionHeader({
       )}
     >
       <div className="min-w-0 space-y-1.5">
-        <h2 className="text-xl font-semibold tracking-tight text-slate-950">{title}</h2>
+        <h2 className="gv-section-title text-xl">{title}</h2>
         {description ? (
-          <p className="max-w-2xl text-sm leading-6 text-slate-600">{description}</p>
+          <p className="gv-quiet-line max-w-2xl">{description}</p>
         ) : null}
       </div>
       {actions ? (

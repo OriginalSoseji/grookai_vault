@@ -6,20 +6,28 @@ export const spacing = {
   xl: "24px",
   xxl: "32px",
   xxxl: "48px",
+  jumbo: "64px",
 } as const;
 
 export const radius = {
-  small: "8px",
-  medium: "12px",
-  large: "16px",
+  small: "12px",
+  medium: "14px",
+  large: "22px",
+  xlarge: "28px",
 } as const;
 
 export const shadows = {
-  subtle: "0 1px 3px rgba(0,0,0,0.08)",
-  hover: "0 6px 18px rgba(0,0,0,0.08)",
+  subtle: "0 6px 14px rgba(15, 23, 42, 0.05)",
+  hover: "0 10px 22px rgba(15, 23, 42, 0.06)",
+  elevated: "0 14px 28px rgba(15, 23, 42, 0.08)",
 } as const;
 
 export const transitions = {
-  fast: "transition-all duration-100",
-  normal: "transition-all duration-150",
+  fast: "transition-all duration-100 ease-out",
+  normal: "transition-all duration-150 ease-out",
+} as const;
+
+export const pageWidths = {
+  standard: 1280,
+  wide: 1440,
 } as const;

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Suspense } from "react";
 import PublicCardImage from "@/components/PublicCardImage";
 import PublicSearchForm from "@/components/PublicSearchForm";
@@ -91,7 +92,7 @@ async function getFeaturedCards() {
 function HomeSearchFallback() {
   return (
     <form action="/search" className="max-w-2xl">
-      <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-3 py-3 shadow-sm shadow-slate-200/60">
+      <div className="flex items-center gap-3 rounded-full bg-white/78 px-3 py-3 shadow-[0_28px_70px_-52px_rgba(15,23,42,0.72)] ring-1 ring-white/80 backdrop-blur-xl">
         <input
           type="search"
           name="q"
@@ -101,7 +102,7 @@ function HomeSearchFallback() {
         />
         <button
           type="submit"
-          className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white"
+          className="gv-primary-button"
         >
           Search
         </button>
@@ -114,37 +115,39 @@ export default async function HomePage() {
   const [leftCard, centerCard, rightCard] = await getFeaturedCards();
 
   return (
-    <div className="space-y-20 py-10 md:py-14">
-      <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-10 shadow-sm shadow-slate-200/70 md:px-10 md:py-14">
-        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-amber-100/50 via-sky-50/40 to-transparent" />
-        <div className="relative grid gap-10 lg:grid-cols-[minmax(0,1fr)_440px] lg:items-center">
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-                Find the cards you want. Reach the collectors who have them.
-              </h1>
-              <p className="max-w-2xl text-lg text-slate-600">
-                See who has the card you want, who&rsquo;s willing to move it, and reach out instantly.
-              </p>
-              <p className="text-sm font-medium uppercase tracking-[0.18em] text-slate-500">
-                Built on a trusted card identity system.
-              </p>
-              <p className="max-w-2xl text-sm leading-6 text-slate-600">
-                Collectors can already mark cards for trade, sale, and showcase.
-              </p>
-            </div>
+    <div className="space-y-16 py-8 md:space-y-20 md:py-12">
+      <section className="gv-showcase-hero px-5 py-10 md:px-10 md:py-14">
+        <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-8 text-center">
+          <div className="space-y-5">
+            <Image
+              src="/grookai-logo-192.png"
+              alt="Grookai Vault logo"
+              width={88}
+              height={88}
+              className="mx-auto rounded-[26px] shadow-[0_18px_40px_-30px_rgba(74,144,226,0.9)]"
+              priority
+            />
+            <p className="gv-eyebrow">Grookai Vault</p>
+            <h1 className="gv-display-title mx-auto max-w-4xl">
+              Collect with purpose.
+            </h1>
+            <p className="gv-body-copy mx-auto max-w-2xl">
+              Show your collection, connect with collectors, and act when it matters.
+            </p>
+          </div>
 
+          <div className="w-full max-w-2xl">
             <Suspense fallback={<HomeSearchFallback />}>
               <PublicSearchForm variant="hero" />
             </Suspense>
           </div>
 
-          <div className="mx-auto flex w-full max-w-[420px] items-end justify-center gap-3 sm:gap-4">
+          <div className="mx-auto flex w-full max-w-[560px] items-end justify-center gap-3 pt-2 sm:gap-5">
             <Link
               href={leftCard.gv_id.startsWith("featured-") ? "/explore" : `/card/${leftCard.gv_id}`}
-              className="block w-[30%] translate-y-4 -rotate-6 transition hover:-translate-y-0.5"
+              className="block w-[29%] translate-y-5 -rotate-6 transition hover:-translate-y-0.5"
             >
-              <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white p-3 shadow-md shadow-slate-200/70">
+              <div className="overflow-hidden rounded-[1.65rem] bg-white/82 p-3 shadow-[0_30px_70px_-48px_rgba(15,23,42,0.72)] ring-1 ring-white/80">
                 <PublicCardImage
                   src={leftCard.image_url}
                   alt={leftCard.display_name}
@@ -157,9 +160,9 @@ export default async function HomePage() {
 
             <Link
               href={centerCard.gv_id.startsWith("featured-") ? "/explore" : `/card/${centerCard.gv_id}`}
-              className="block w-[38%] -translate-y-4 transition hover:-translate-y-5"
+              className="block w-[38%] -translate-y-5 transition hover:-translate-y-6"
             >
-              <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-3 shadow-xl shadow-slate-300/60">
+              <div className="overflow-hidden rounded-[1.9rem] bg-white/88 p-3 shadow-[0_42px_90px_-50px_rgba(15,23,42,0.78)] ring-1 ring-white/90">
                 <PublicCardImage
                   src={centerCard.image_url}
                   alt={centerCard.display_name}
@@ -172,9 +175,9 @@ export default async function HomePage() {
 
             <Link
               href={rightCard.gv_id.startsWith("featured-") ? "/explore" : `/card/${rightCard.gv_id}`}
-              className="block w-[30%] translate-y-5 rotate-6 transition hover:translate-y-1"
+              className="block w-[29%] translate-y-6 rotate-6 transition hover:translate-y-1"
             >
-              <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white p-3 shadow-md shadow-slate-200/70">
+              <div className="overflow-hidden rounded-[1.65rem] bg-white/82 p-3 shadow-[0_30px_70px_-48px_rgba(15,23,42,0.72)] ring-1 ring-white/80">
                 <PublicCardImage
                   src={rightCard.image_url}
                   alt={rightCard.display_name}
@@ -188,25 +191,25 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="grid gap-10 md:grid-cols-2">
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-slate-950">Cards aren&rsquo;t just data here</h2>
-          <p className="max-w-xl text-sm leading-7 text-slate-600">
+      <section className="grid gap-5 md:grid-cols-2">
+        <div className="gv-premium-surface space-y-4 px-6 py-7 md:px-8">
+          <h2 className="gv-section-title">Cards are not just data here</h2>
+          <p className="gv-body-copy max-w-xl text-sm">
             Every card is tied to a real collector and a real intent.
           </p>
-          <p className="max-w-xl text-sm leading-7 text-slate-600">
+          <p className="gv-body-copy max-w-xl text-sm">
             You&rsquo;re not just browsing listings. You&rsquo;re seeing what collectors are actually open to moving.
           </p>
         </div>
 
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-slate-950">Built for how collectors actually move cards</h2>
-          <p className="max-w-xl text-sm leading-7 text-slate-600">
+        <div className="gv-premium-surface space-y-4 px-6 py-7 md:px-8">
+          <h2 className="gv-section-title">Built for how collectors move cards</h2>
+          <p className="gv-body-copy max-w-xl text-sm">
             Collectors don&rsquo;t just track cards.
           </p>
-          <p className="max-w-xl text-sm leading-7 text-slate-600">They trade, buy, sell, and connect.</p>
-          <p className="max-w-xl text-sm leading-7 text-slate-600">Grookai makes that visible:</p>
-          <ul className="max-w-xl space-y-1 text-sm leading-7 text-slate-600">
+          <p className="gv-body-copy max-w-xl text-sm">They trade, buy, sell, and connect.</p>
+          <p className="gv-body-copy max-w-xl text-sm">Grookai makes that visible:</p>
+          <ul className="gv-body-copy max-w-xl space-y-1 text-sm">
             <li>mark what you&rsquo;re willing to move</li>
             <li>see what other collectors have</li>
             <li>reach out directly on the card</li>
@@ -214,20 +217,20 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
+      <section className="gv-showcase-hero px-6 py-9 md:px-9">
         <div className="max-w-3xl space-y-4">
-          <h2 className="text-2xl font-semibold text-slate-950">Turn your collection into real opportunities</h2>
-          <p className="text-sm leading-7 text-slate-600">
+          <h2 className="gv-section-title">Turn your collection into real opportunities</h2>
+          <p className="gv-body-copy text-sm">
             Set intent on your cards.
           </p>
-          <p className="text-sm leading-7 text-slate-600">Trade them. Sell them. Showcase them.</p>
-          <p className="text-sm leading-7 text-slate-600">
+          <p className="gv-body-copy text-sm">Trade them. Sell them. Showcase them.</p>
+          <p className="gv-body-copy text-sm">
             When you&rsquo;re ready, other collectors can find them and reach out.
           </p>
           <div>
             <Link
               href="/login?next=%2Faccount"
-              className="inline-flex rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
+              className="gv-primary-button"
             >
               Make your cards visible
             </Link>

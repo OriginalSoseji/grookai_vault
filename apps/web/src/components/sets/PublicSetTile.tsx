@@ -30,7 +30,7 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath }: Publi
   return (
     <Link
       href={buildPathWithCompareCards(`/sets/${setInfo.code}`, "", compareCards)}
-      className="group relative isolate overflow-hidden rounded-3xl border border-slate-200 bg-white px-5 py-5 shadow-sm transition-all duration-200 hover:-translate-y-[2px] hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/70"
+      className="gv-visual-card group relative isolate overflow-hidden px-5 py-5"
     >
       <div
         aria-hidden="true"
@@ -52,13 +52,13 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath }: Publi
       {logoPath ? (
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.97)_0%,rgba(255,255,255,0.94)_35%,rgba(255,255,255,0.9)_100%)]"
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.92)_0%,rgba(255,255,255,0.86)_38%,rgba(255,255,255,0.82)_100%)]"
         />
       ) : null}
 
       <div className="relative z-10 space-y-3">
         <div className="space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{setInfo.code}</p>
+          <p className="gv-eyebrow">{setInfo.code}</p>
           <h2 className="text-xl font-semibold text-slate-950">{setInfo.name}</h2>
         </div>
         <p className="text-sm text-slate-600">

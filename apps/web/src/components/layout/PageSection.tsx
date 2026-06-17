@@ -13,8 +13,8 @@ function cx(...classes: Array<string | false | null | undefined>) {
 
 const SURFACE_CLASSNAME: Record<NonNullable<PageSectionProps["surface"]>, string> = {
   plain: "",
-  card: "rounded-[16px] border border-slate-200 bg-white px-6 py-6 shadow-sm",
-  subtle: "rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4",
+  card: "gv-premium-surface px-5 py-6 sm:px-7 sm:py-7",
+  subtle: "gv-soft-surface px-4 py-5 sm:px-6",
 };
 
 const SPACING_CLASSNAME: Record<NonNullable<PageSectionProps["spacing"]>, string> = {

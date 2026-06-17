@@ -20,7 +20,7 @@ type SiteHeaderProps = {
 function NetworkLabel({ unreadCount }: { unreadCount: number }) {
   return (
     <span className="inline-flex items-center gap-2">
-      <span>Network</span>
+      <span>Feed</span>
       {unreadCount > 0 ? (
         <span className="inline-flex min-w-[1.35rem] items-center justify-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[11px] font-semibold text-emerald-950 ring-1 ring-emerald-200">
           {unreadCount > 99 ? "99+" : unreadCount}
@@ -60,10 +60,10 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
   const accountHref = isAuthenticated ? "/account" : "/login";
   const accountLabel = isAuthenticated ? "Account" : "Login";
   const primaryNav = [
-    { href: buildPathWithCompareCards("/explore", "", compareCards), label: "Explore", matchHref: "/explore" },
+    { href: buildPathWithCompareCards("/explore", "", compareCards), label: "Search", matchHref: "/explore" },
+    { href: "/network", label: "Feed", matchHref: "/network" },
     { href: buildPathWithCompareCards("/sets", "", compareCards), label: "Sets", matchHref: "/sets" },
     ...(dexEnabled ? [{ href: "/dex", label: "Dex", matchHref: "/dex" }] : []),
-    { href: "/network", label: "Network", matchHref: "/network" },
     { href: buildCompareHref(compareCards), label: compareCount > 0 ? `Compare (${compareCount})` : "Compare", matchHref: "/compare" },
     { href: "/vault", label: "Vault" },
   ];
@@ -73,27 +73,27 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
       : pathname === "/account" || pathname.startsWith("/account/")
         ? "Profile"
         : pathname === "/network" || pathname.startsWith("/network/")
-          ? "Network"
+          ? "Feed"
           : pathname === "/wall" || pathname.startsWith("/wall/") || pathname.startsWith("/u/")
-            ? "Showcase"
+            ? "Wall"
           : pathname === "/dex" || pathname.startsWith("/dex/")
             ? "Dex"
           : showTopSearch || pathname === "/sets" || pathname.startsWith("/sets/") || pathname === "/compare" || pathname.startsWith("/compare/")
-            ? "Discover"
+            ? "Search"
             : "Grookai Vault";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <header className="gv-site-header sticky top-0 z-50">
       <PageContainer className={showTopSearch ? "space-y-2.5 py-2.5 md:space-y-4 md:py-4" : "py-2.5 md:py-4"}>
         <div className="md:hidden">
           <div className="flex min-h-[46px] items-center justify-between gap-3">
             <Link href="/" className="flex min-w-0 flex-1 items-center gap-2 text-[15px] font-semibold text-slate-950">
               <Image
-                src="/grookai-emblem-square.svg"
+                src="/grookai-logo-64.png"
                 alt="Grookai Vault logo"
                 width={28}
                 height={28}
-                className="rounded-md"
+                className="gv-brand-mark"
               />
               <span className="truncate">Grookai Vault</span>
             </Link>
@@ -107,7 +107,7 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
                 className={`hidden shrink-0 rounded-full px-2.5 py-1 text-[11px] font-medium transition ${
                   pathname === "/network" || pathname.startsWith("/network/")
                     ? "bg-emerald-100 text-emerald-950 ring-1 ring-emerald-200"
-                    : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
+                    : "bg-white/60 text-slate-600 ring-1 ring-slate-200/60 hover:bg-white hover:text-slate-950"
                 }`}
               >
                 <NetworkLabel unreadCount={networkUnreadCount} />
@@ -117,7 +117,7 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
                 className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] font-medium transition ${compareCount > 0 ? "inline-flex" : "hidden"} ${
                   pathname === "/compare" || pathname.startsWith("/compare/")
                     ? "bg-amber-100 text-amber-950 ring-1 ring-amber-200"
-                    : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
+                    : "bg-white/60 text-slate-600 ring-1 ring-slate-200/60 hover:bg-white hover:text-slate-950"
                 }`}
               >
                 {compareCount > 0 ? `Compare (${compareCount})` : "Compare"}
@@ -125,7 +125,7 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
               {!isAuthenticated ? (
                 <Link
                   href={accountHref}
-                  className="shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                  className="shrink-0 rounded-full bg-white/68 px-2.5 py-1 text-[11px] font-medium text-slate-700 ring-1 ring-slate-200/60 transition hover:bg-white"
                 >
                   {accountLabel}
                 </Link>
@@ -145,11 +145,11 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
         <div className="hidden min-h-[64px] flex-col justify-center gap-4 md:flex lg:flex-row lg:items-center lg:justify-between">
           <Link href="/" className="flex items-center gap-3 text-lg font-semibold text-slate-950">
             <Image
-              src="/grookai-emblem-square.svg"
+              src="/grookai-logo-64.png"
               alt="Grookai Vault logo"
               width={36}
               height={36}
-              className="rounded-md"
+              className="gv-brand-mark"
             />
             <span>Grookai Vault</span>
           </Link>
@@ -164,12 +164,12 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`rounded-full px-3 py-2 transition-all duration-100 ${
+                    className={`gv-nav-link ${
                       isActive
                         ? isCompareItem && compareCount > 0
                           ? "bg-amber-100 text-amber-950 shadow-sm ring-1 ring-amber-200"
-                          : "bg-slate-900 text-white shadow-sm"
-                        : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
+                          : "gv-nav-link-active"
+                        : ""
                     }`}
                   >
                     {matchHref === "/network" ? <NetworkLabel unreadCount={networkUnreadCount} /> : item.label}
@@ -179,20 +179,20 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
               {showTopSearch ? (
                 <Link
                   href={buildPathWithCompareCards("/explore", "", compareCards)}
-                  className="rounded-full px-3 py-2 text-slate-600 transition-all duration-100 hover:bg-slate-100 hover:text-slate-950"
+                  className="gv-nav-link"
                 >
                   Search
                 </Link>
               ) : null}
               {isAuthenticated && profileHref ? (
-                <Link href={profileHref} className="rounded-full px-3 py-2 text-slate-600 transition-all duration-100 hover:bg-slate-100 hover:text-slate-950">
+                <Link href={profileHref} className="gv-nav-link">
                   Profile
                 </Link>
               ) : null}
               <ThemeToggle />
               <Link
                 href={accountHref}
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-slate-700 transition-all duration-100 hover:border-slate-300 hover:bg-slate-50"
+                className="gv-secondary-button min-h-0 px-4 py-2 text-sm"
               >
                 {accountLabel}
               </Link>

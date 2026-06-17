@@ -23,25 +23,24 @@ const themeBootstrapScript = `
 
 function ChromeFallback({ dexEnabled }: { dexEnabled: boolean }) {
   const desktopNavItems = [
-    { href: "/explore", label: "Explore" },
+    { href: "/explore", label: "Search" },
+    { href: "/network", label: "Feed" },
     { href: "/sets", label: "Sets" },
     ...(dexEnabled ? [{ href: "/dex", label: "Dex" }] : []),
-    { href: "/network", label: "Network" },
     { href: "/compare", label: "Compare" },
     { href: "/vault", label: "Vault" },
   ];
   const mobileNavItems = [
+    { href: "/explore", label: "Search" },
+    { href: "/network", label: "Feed" },
+    { href: "/wall", label: "Wall" },
     { href: "/vault", label: "Vault" },
-    { href: "/explore", label: "Discover" },
-    ...(dexEnabled ? [{ href: "/dex", label: "Dex" }] : []),
-    { href: "/network", label: "Network" },
-    { href: "/wall", label: "Showcase" },
     { href: "/account", label: "Profile" },
   ];
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <header className="gv-site-header sticky top-0 z-50">
         <PageContainer className="py-2.5 md:py-4">
           <div className="md:hidden">
             <div className="flex min-h-[46px] items-center justify-between gap-3">
@@ -50,7 +49,7 @@ function ChromeFallback({ dexEnabled }: { dexEnabled: boolean }) {
               </Link>
               <Link
                 href="/login"
-                className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700"
+                className="rounded-full bg-white/70 px-2.5 py-1 text-[11px] font-medium text-slate-700 ring-1 ring-slate-200/70"
               >
                 Login
               </Link>
@@ -63,13 +62,13 @@ function ChromeFallback({ dexEnabled }: { dexEnabled: boolean }) {
             </Link>
             <nav className="flex flex-wrap items-center gap-2 text-sm">
               {desktopNavItems.map((item) => (
-                <Link key={item.href} href={item.href} className="rounded-full px-3 py-2 text-slate-600">
+                <Link key={item.href} href={item.href} className="gv-nav-link">
                   {item.label}
                 </Link>
               ))}
               <Link
                 href="/login"
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-slate-700"
+                className="gv-secondary-button min-h-0 px-4 py-2 text-sm"
               >
                 Login
               </Link>
@@ -110,10 +109,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Suspense fallback={<ChromeFallback dexEnabled={dexEnabled} />}>
           <AppChrome dexEnabled={dexEnabled} />
         </Suspense>
-        <main className="gv-mobile-safe-content w-full min-w-0 overflow-x-clip py-7 md:py-12 md:pb-12">
+        <main className="gv-mobile-safe-content gv-page-shell w-full min-w-0 overflow-x-clip md:pb-12">
           <PageContainer>{children}</PageContainer>
         </main>
-        <footer className="border-t border-slate-200 bg-white pb-[calc(5.1rem+env(safe-area-inset-bottom))] md:pb-0">
+        <footer className="border-t border-slate-200/60 bg-white/55 pb-[calc(5.1rem+env(safe-area-inset-bottom))] backdrop-blur md:pb-0">
           <PageContainer className="py-4 text-center text-sm text-slate-600">
             <Link href="/legal" className="underline-offset-4 hover:text-slate-900 hover:underline">
               Legal

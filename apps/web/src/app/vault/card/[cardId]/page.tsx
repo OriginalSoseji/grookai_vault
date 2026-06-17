@@ -135,7 +135,7 @@ export default async function VaultManageCardPage({
                       {secondaryContext ? <p className="text-sm font-medium text-slate-700">{secondaryContext}</p> : null}
                     </div>
                     {cardValue ? (
-                      <p className="shrink-0 text-[1.75rem] font-semibold tracking-[-0.04em] text-slate-950">{cardValue}</p>
+                      <p className="shrink-0 text-[1.75rem] font-semibold text-slate-950">{cardValue}</p>
                     ) : null}
                   </div>
 

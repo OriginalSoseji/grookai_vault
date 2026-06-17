@@ -30,22 +30,22 @@ export function PageIntro({
     >
       <div className="min-w-0 space-y-3">
         {eyebrow ? (
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
+          <p className="gv-eyebrow">
             {eyebrow}
           </p>
         ) : null}
-        <div className="space-y-2">
+        <div className="space-y-3">
           <h1
             className={
               size === "compact"
-                ? "text-3xl font-semibold tracking-tight text-slate-950"
-                : "text-4xl font-semibold tracking-tight text-slate-950"
+                ? "gv-section-title"
+                : "gv-display-title"
             }
           >
             {title}
           </h1>
           {description ? (
-            <p className="max-w-2xl text-base leading-7 text-slate-600">{description}</p>
+            <p className="gv-body-copy max-w-2xl">{description}</p>
           ) : null}
         </div>
       </div>

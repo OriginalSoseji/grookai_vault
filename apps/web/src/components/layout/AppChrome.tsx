@@ -82,7 +82,7 @@ export function AppChrome({ dexEnabled }: { dexEnabled: boolean }) {
         networkUnreadCount={authState.networkUnreadCount}
         dexEnabled={dexEnabled}
       />
-      <MobileBottomNav wallHref={authState.wallHref} dexEnabled={dexEnabled} />
+      <MobileBottomNav wallHref={authState.wallHref} />
     </>
   );
 }

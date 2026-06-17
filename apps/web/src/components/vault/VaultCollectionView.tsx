@@ -655,7 +655,7 @@ export function VaultCollectionView({
                   Estimated Vault Value
                 </p>
                 <div className="space-y-1">
-                  <p className="text-[2.15rem] font-semibold tracking-[-0.045em] text-slate-950 sm:text-[2.7rem]">
+                  <p className="text-[2.15rem] font-semibold text-slate-950 sm:text-[2.7rem]">
                     {formattedVaultValue ?? "No estimate yet"}
                   </p>
                   <p className="text-xs text-slate-400">Best available pricing across your vault.</p>
