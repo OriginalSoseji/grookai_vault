@@ -35,6 +35,8 @@ const TARGET_IMAGE_STATUSES = new Set([
   "unresolved",
 ]);
 
+const STATUSES_THAT_BLOCK_EXACT_URL = new Set(["blocked", "missing", "unresolved"]);
+
 function normalizeTextOrNull(value: unknown) {
   if (typeof value !== "string") {
     return null;
@@ -83,6 +85,33 @@ function normalizeImageStatus(
   return normalized;
 }
 
+function getDisplayKindFromStatus(
+  imageStatus: string | null,
+  fallbackKind: CardDisplayImageKind,
+): CardDisplayImageKind {
+  if (imageStatus === "exact") {
+    return "exact";
+  }
+
+  if (imageStatus === "missing_variant_visual" || imageStatus === "representative_missing_variant_visual") {
+    return "missing_variant_visual";
+  }
+
+  if (imageStatus?.startsWith("representative_")) {
+    return "representative";
+  }
+
+  if (imageStatus === "blocked") {
+    return "blocked";
+  }
+
+  if (imageStatus === "missing" || imageStatus === "unresolved") {
+    return "missing";
+  }
+
+  return fallbackKind;
+}
+
 export async function resolveCardImageFieldsV1(
   cardPrint: CardImageLike | null | undefined,
 ): Promise<ResolvedCardImageFieldsV1> {
@@ -96,8 +125,11 @@ export async function resolveCardImageFieldsV1(
   );
   const imageNote = normalizeTextOrNull(cardPrint?.image_note);
   const imageSource = normalizeTextOrNull(cardPrint?.image_source);
+  const exactDisplayKind = getDisplayKindFromStatus(imageStatus, "exact");
+  const exactImageUrlIsUsable =
+    Boolean(exactImageUrl) && !STATUSES_THAT_BLOCK_EXACT_URL.has(imageStatus ?? "");
 
-  if (exactImageUrl) {
+  if (exactImageUrlIsUsable) {
     return {
       image_url: exactImageUrl,
       representative_image_url: representativeImageUrl,
@@ -105,7 +137,7 @@ export async function resolveCardImageFieldsV1(
       image_note: imageNote,
       image_source: imageSource,
       display_image_url: exactImageUrl,
-      display_image_kind: "exact",
+      display_image_kind: exactDisplayKind,
       image_path: exactImage.image_path,
       exact_image_source: exactImage.source,
     };

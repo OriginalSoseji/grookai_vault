@@ -212,6 +212,11 @@ export default async function CardPage({
         searchParams.printing,
       )
     : null;
+  const defaultDisplayPrintingWithImage = (resolvedCard.display_printings ?? [])
+    .filter((printing) => !printing.is_display_fallback)
+    .find((printing) => normalizeCardImageUrl(printing.display_image_url ?? printing.image_url));
+  const defaultDisplayPrintingImageUrl =
+    defaultDisplayPrintingWithImage?.display_image_url ?? defaultDisplayPrintingWithImage?.image_url ?? null;
   const selectedRoutePrintingImageUrl =
     selectedRoutePrinting?.display_image_url ?? selectedRoutePrinting?.image_url ?? null;
   const resolvedCardFallbackImageUrl = resolvedCard.display_image_url ?? resolvedCard.image_url ?? null;
@@ -233,10 +238,18 @@ export default async function CardPage({
   const resolvedCardImagePresentation = resolveCardImagePresentation(displayedImageTruthSource);
   const pokemonTcgHiresImageUrl = buildPokemonTcgHiresImageUrl(resolvedCard);
   const resolvedCardImageSrc =
-    normalizeCardImageUrl(selectedRoutePrintingImageUrl ?? pokemonTcgHiresImageUrl ?? resolvedCardFallbackImageUrl) ??
+    normalizeCardImageUrl(
+      selectedRoutePrintingImageUrl ??
+        resolvedCardFallbackImageUrl ??
+        defaultDisplayPrintingImageUrl ??
+        pokemonTcgHiresImageUrl,
+    ) ??
     undefined;
   const resolvedCardImageFallback =
-    normalizeCardImageUrl(resolvedCardFallbackImageUrl) ??
+    normalizeCardImageUrl(
+      defaultDisplayPrintingImageUrl ??
+        resolvedCardFallbackImageUrl,
+    ) ??
     (resolvedCardImagePresentation.displayImageKind === "exact"
       ? buildTcgDexImageUrl(resolvedCard.tcgdex_external_id)
       : null);
