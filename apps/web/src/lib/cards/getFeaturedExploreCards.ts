@@ -1,5 +1,6 @@
 import "server-only";
 
+import { cache } from "react";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getRotationOffset } from "@/lib/cards/getFeaturedCardRotation";
@@ -146,7 +147,9 @@ function dedupeFeaturedExploreCards(cards: FeaturedExploreCard[]) {
   return deduped;
 }
 
-export async function getFeaturedExploreCards(limit = FEATURED_EXPLORE_CARD_COUNT): Promise<FeaturedExploreCard[]> {
+export const getFeaturedExploreCards = cache(async function getFeaturedExploreCards(
+  limit = FEATURED_EXPLORE_CARD_COUNT,
+): Promise<FeaturedExploreCard[]> {
   const targetCount = Math.max(1, limit);
   const totalRows = await fetchFeaturedExploreCardCount();
   if (totalRows <= 0) {
@@ -164,4 +167,4 @@ export async function getFeaturedExploreCards(limit = FEATURED_EXPLORE_CARD_COUN
 
   const fallbackCards = await getFeaturedExploreCardsFromWindow(0, windowSize);
   return dedupeFeaturedExploreCards([...dedupedRotatedCards, ...fallbackCards]).slice(0, targetCount);
-}
+});

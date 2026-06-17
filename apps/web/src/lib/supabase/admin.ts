@@ -2,7 +2,7 @@ import "server-only";
 
 import { createClient } from "@supabase/supabase-js";
 
-export function createServerAdminClient() {
+function createUncachedServerAdminClient() {
   const url = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SECRET_KEY;
 
@@ -16,4 +16,14 @@ export function createServerAdminClient() {
       persistSession: false,
     },
   });
+}
+
+let cachedServerAdminClient: ReturnType<typeof createUncachedServerAdminClient> | null = null;
+
+export function createServerAdminClient(): ReturnType<typeof createUncachedServerAdminClient> {
+  if (!cachedServerAdminClient) {
+    cachedServerAdminClient = createUncachedServerAdminClient();
+  }
+
+  return cachedServerAdminClient;
 }

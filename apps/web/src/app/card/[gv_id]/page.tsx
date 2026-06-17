@@ -443,10 +443,31 @@ export default async function CardPage({
 
   const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
   const canViewPricing = Boolean(user);
-  const pricingUi = canViewPricing && resolvedCard.id ? await getCardPricingUiByCardPrintId(resolvedCard.id) : null;
-  const setLogoPath = resolvedCard.set_code
-    ? (await getSetLogoAssetPathMap([resolvedCard.set_code])).get(resolvedCard.set_code.toLowerCase())
-    : undefined;
+  const [pricingUi, setLogoPath, ownedPrintingCounts, networkOffers] = await Promise.all([
+    canViewPricing && resolvedCard.id ? getCardPricingUiByCardPrintId(resolvedCard.id) : Promise.resolve(null),
+    resolvedCard.set_code
+      ? getSetLogoAssetPathMap([resolvedCard.set_code]).then((logos) =>
+          logos.get(resolvedCard.set_code!.toLowerCase()),
+        )
+      : Promise.resolve(undefined),
+    user && resolvedCard.id
+      ? getOwnedPrintingCountsByCardPrintIds(user.id, [resolvedCard.id])
+      : Promise.resolve(new Map()),
+    resolvedCard.id
+      ? getCardStreamRows({
+          cardPrintId: resolvedCard.id,
+          excludeUserId: user?.id ?? null,
+          limit: 6,
+        }).catch((error) => {
+          console.error("[network:stream] card page offers read failed", {
+            cardPrintId: resolvedCard.id,
+            gvId: resolvedCard.gv_id,
+            error,
+          });
+          return [];
+        })
+      : Promise.resolve([]),
+  ]);
   const identityWatermarkStyle = {
     "--wm-opacity-desktop": "0.05",
     "--wm-blur-desktop": "8px",
@@ -477,8 +498,6 @@ export default async function CardPage({
   });
   const releaseDateLabel = formatReleaseDate(resolvedCard.release_date);
   const variantLabels = getVariantLabels(resolvedCard, 3);
-  const ownedPrintingCounts =
-    user && resolvedCard.id ? await getOwnedPrintingCountsByCardPrintIds(user.id, [resolvedCard.id]) : new Map();
   const ownedPrintingCountsForCard = resolvedCard.id ? ownedPrintingCounts.get(resolvedCard.id) : null;
   const displayPrintingsWithOwnedCounts = (resolvedCard.display_printings ?? []).map((printing) => ({
     ...printing,
@@ -502,22 +521,6 @@ export default async function CardPage({
     releaseDateLabel ? { label: "Release Date", value: releaseDateLabel } : null,
   ].filter((item): item is DetailItem => item !== null);
   const relatedPrints = resolvedCard.related_prints ?? [];
-  let networkOffers: Awaited<ReturnType<typeof getCardStreamRows>> = [];
-  if (resolvedCard.id) {
-    try {
-      networkOffers = await getCardStreamRows({
-        cardPrintId: resolvedCard.id,
-        excludeUserId: user?.id ?? null,
-        limit: 6,
-      });
-    } catch (error) {
-      console.error("[network:stream] card page offers read failed", {
-        cardPrintId: resolvedCard.id,
-        gvId: resolvedCard.gv_id,
-        error,
-      });
-    }
-  }
   const hasOwnedItems = ownedObjectSummary.rawCount > 0 || ownedObjectSummary.slabItems.length > 0;
   const ownershipLabel = vaultCount > 0
     ? `You own ${vaultCount} ${vaultCount === 1 ? "copy" : "copies"}`

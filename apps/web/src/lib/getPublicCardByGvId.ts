@@ -478,7 +478,9 @@ async function getRelatedPrintsByName(
   return mapRelatedPrints((data as RelatedCardRow[]).filter((row) => row.id !== excludeId));
 }
 
-export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | null> {
+export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
+  gv_id: string,
+): Promise<CardDetail | null> {
   const supabase = createServerSupabase();
   const [includePrintingPublicIdentity, includeChildPrintingImageFields] = await Promise.all([
     hasChildPrintingPublicIdentityColumn(supabase),
@@ -604,7 +606,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     display_printings: resolveDisplayPrintings(row, printings),
     related_prints: relatedPrints,
   };
-}
+});
 
 export async function getStaticCardParams(limit = 100): Promise<Array<{ gv_id: string }>> {
   const supabase = createServerSupabase();

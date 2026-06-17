@@ -290,7 +290,9 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
     });
 });
 
-export async function getPublicSetByCode(setCode: string): Promise<PublicSetSummary | null> {
+export const getPublicSetByCode = cache(async function getPublicSetByCode(
+  setCode: string,
+): Promise<PublicSetSummary | null> {
   const normalizedCode = resolvePublicSetRouteCode(setCode);
   if (!normalizedCode) {
     return null;
@@ -298,9 +300,13 @@ export async function getPublicSetByCode(setCode: string): Promise<PublicSetSumm
 
   const sets = await getPublicSets();
   return sets.find((setInfo) => setInfo.code === normalizedCode) ?? null;
-}
+});
 
-export async function getPublicSetCards(setCode: string, offset = 0, limit = 36): Promise<PublicSetCard[]> {
+export const getPublicSetCards = cache(async function getPublicSetCards(
+  setCode: string,
+  offset = 0,
+  limit = 36,
+): Promise<PublicSetCard[]> {
   const normalizedCode = resolvePublicSetRouteCode(setCode);
   if (!normalizedCode || limit <= 0) {
     return [];
@@ -377,9 +383,11 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
       };
     }),
   );
-}
+});
 
-export async function getPublicSetDetail(setCode: string): Promise<PublicSetDetail | null> {
+export const getPublicSetDetail = cache(async function getPublicSetDetail(
+  setCode: string,
+): Promise<PublicSetDetail | null> {
   const setInfo = await getPublicSetByCode(setCode);
   if (!setInfo) {
     return null;
@@ -389,7 +397,7 @@ export async function getPublicSetDetail(setCode: string): Promise<PublicSetDeta
     ...setInfo,
     cards: await getPublicSetCards(setInfo.code, 0, setInfo.card_count),
   };
-}
+});
 
 export function filterPublicSets(sets: PublicSetSummary[], rawQuery: string) {
   const queryTokens = normalizeSetSearchQuery(rawQuery);

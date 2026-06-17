@@ -1,5 +1,6 @@
 import "server-only";
 
+import { cache } from "react";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 type CardPricingUiRow = {
@@ -30,7 +31,9 @@ function toNumber(value: number | null | undefined) {
   return typeof value === "number" && Number.isFinite(value) ? value : undefined;
 }
 
-export async function getCardPricingUiByCardPrintId(cardPrintId: string): Promise<CardPricingUiRecord | null> {
+export const getCardPricingUiByCardPrintId = cache(async function getCardPricingUiByCardPrintId(
+  cardPrintId: string,
+): Promise<CardPricingUiRecord | null> {
   const normalizedCardPrintId = cardPrintId.trim();
   if (!normalizedCardPrintId) {
     return null;
@@ -72,4 +75,4 @@ export async function getCardPricingUiByCardPrintId(cardPrintId: string): Promis
     ebay_listing_count:
       typeof row.ebay_listing_count === "number" && Number.isFinite(row.ebay_listing_count) ? row.ebay_listing_count : undefined,
   };
-}
+});

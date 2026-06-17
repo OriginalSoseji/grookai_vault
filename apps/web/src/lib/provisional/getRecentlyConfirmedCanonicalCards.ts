@@ -1,5 +1,6 @@
 import "server-only";
 
+import { cache } from "react";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import type { FeaturedExploreCard } from "@/lib/cards/getFeaturedExploreCards";
@@ -143,7 +144,7 @@ async function normalizeCanonicalCard(
 
 // LOCK: Recently confirmed cards are canonical cards with historical context only.
 // LOCK: Never render warehouse candidates as canonical discovery cards.
-export async function getRecentlyConfirmedCanonicalCards(
+export const getRecentlyConfirmedCanonicalCards = cache(async function getRecentlyConfirmedCanonicalCards(
   limit = RECENTLY_CONFIRMED_CARD_LIMIT,
 ): Promise<RecentlyConfirmedCanonicalCard[]> {
   const safeLimit = Number.isFinite(limit)
@@ -205,7 +206,7 @@ export async function getRecentlyConfirmedCanonicalCards(
   );
 
   return normalizedCards.filter((card): card is RecentlyConfirmedCanonicalCard => Boolean(card));
-}
+});
 
 export const recentlyConfirmedTestInternals = {
   normalizePromotionLinks,
