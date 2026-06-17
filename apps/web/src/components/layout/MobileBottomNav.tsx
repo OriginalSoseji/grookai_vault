@@ -118,9 +118,9 @@ function MobileBottomNavLink({
 
   const className = `flex min-h-[50px] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-[0.95rem] px-2 py-1.5 transition ${
     active
-      ? "bg-sky-500/[0.08] ring-1 ring-sky-200/70"
+      ? "bg-sky-500/[0.09] ring-1 ring-sky-200/70 dark:bg-sky-400/[0.14] dark:ring-sky-300/20"
       : item.href
-        ? "hover:bg-slate-100"
+        ? "hover:bg-slate-100/80 dark:hover:bg-slate-800/80"
         : "opacity-45"
   }`;
 
@@ -158,7 +158,7 @@ export function MobileBottomNav({ wallHref }: MobileBottomNavProps) {
       aria-label="Mobile navigation"
       className="fixed inset-x-0 bottom-0 z-50 bg-transparent px-3 pb-[calc(0.45rem+env(safe-area-inset-bottom))] pt-2 md:hidden"
     >
-      <div className="mx-auto flex max-w-2xl items-center gap-1.5 rounded-[22px] border border-slate-200/70 bg-white/95 p-1.5 shadow-[0_4px_18px_rgba(15,23,42,0.06)] backdrop-blur">
+      <div className="gv-control-surface mx-auto flex max-w-2xl items-center gap-1.5 rounded-[22px] p-1.5 backdrop-blur">
         {items.map((item) => (
           <MobileBottomNavLink key={item.key} item={item} active={activeKey === item.key} />
         ))}

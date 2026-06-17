@@ -43,28 +43,28 @@ function cx(...classes: Array<string | false | null | undefined>) {
 const SURFACE_CLASSNAME: Record<NonNullable<SearchToolbarProps["surface"]>, string> = {
   none: "",
   card: "gv-premium-surface px-4 py-4 sm:px-5",
-  pill: "rounded-[20px] bg-slate-100/70 px-3 py-3 ring-1 ring-slate-200/60",
+  pill: "gv-control-surface rounded-[20px] px-3 py-3",
   "soft-pill":
-    "rounded-[20px] bg-slate-100/70 px-3 py-2 ring-1 ring-slate-200/60",
+    "gv-control-surface rounded-[20px] px-3 py-2",
 };
 
 const CONTROL_SHELL_CLASSNAME = {
   bare: "flex min-w-0 flex-1 items-center gap-2",
-  default: "flex h-11 items-center gap-2 rounded-[14px] bg-white/82 px-4 ring-1 ring-slate-200/70",
-  soft: "flex h-11 items-center gap-2 rounded-[14px] bg-slate-100/70 px-4 ring-1 ring-slate-200/60",
+  default: "gv-control-surface flex h-11 items-center gap-2 rounded-[14px] px-4",
+  soft: "gv-control-surface flex h-11 items-center gap-2 rounded-[14px] px-4",
 } as const;
 
 const INPUT_CLASSNAME = {
-  bare: "min-w-0 flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400",
+  bare: "min-w-0 flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400 dark:text-slate-100 dark:placeholder:text-slate-500",
   default:
-    "min-w-0 flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400",
-  soft: "min-w-0 flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400",
+    "min-w-0 flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400 dark:text-slate-100 dark:placeholder:text-slate-500",
+  soft: "min-w-0 flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400 dark:text-slate-100 dark:placeholder:text-slate-500",
 } as const;
 
 const SELECT_CLASSNAME = {
   default:
-    "h-11 w-full rounded-[14px] bg-white/82 px-4 text-sm text-slate-900 ring-1 ring-slate-200/70 outline-none transition focus:bg-white focus:ring-2 focus:ring-sky-200",
-  soft: "h-11 w-full rounded-[14px] bg-slate-100/70 px-4 text-sm text-slate-900 ring-1 ring-slate-200/60 outline-none transition focus:bg-white focus:ring-2 focus:ring-sky-200",
+    "gv-control-surface h-11 w-full rounded-[14px] px-4 text-sm text-slate-900 outline-none transition focus:ring-2 focus:ring-sky-200 dark:text-slate-100",
+  soft: "gv-control-surface h-11 w-full rounded-[14px] px-4 text-sm text-slate-900 outline-none transition focus:ring-2 focus:ring-sky-200 dark:text-slate-100",
 } as const;
 
 export function SearchToolbar({

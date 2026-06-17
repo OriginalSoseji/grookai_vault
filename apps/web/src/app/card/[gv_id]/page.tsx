@@ -552,7 +552,7 @@ export default async function CardPage({
   return (
     <div className={`space-y-8 py-4 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
       <TrackPageEvent eventName="page_view_card" path={currentCardPath} gvId={resolvedCard.gv_id} />
-      <section className="relative isolate overflow-hidden rounded-[30px] border border-slate-200/80 bg-white shadow-[0_24px_80px_-60px_rgba(15,23,42,0.75)] dark:border-slate-800/80 dark:bg-slate-950">
+      <section className="gv-product-hero isolate">
         {setLogoPath ? (
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
             <Image
@@ -573,7 +573,7 @@ export default async function CardPage({
         ) : null}
         <div className="relative z-10 grid gap-8 p-5 sm:p-7 lg:grid-cols-[minmax(260px,380px)_minmax(0,1fr)] lg:items-start lg:gap-10 xl:p-10">
           <div className="mx-auto flex w-full max-w-[340px] flex-col items-center lg:sticky lg:top-8 lg:max-w-[380px]">
-            <div className="w-full">
+            <div className="gv-image-stage w-full p-3 sm:p-4">
               <CardZoomModal
                 src={resolvedCardImageSrc}
                 fallbackSrc={resolvedCardImageFallback ?? undefined}
@@ -581,8 +581,8 @@ export default async function CardPage({
                   resolvedDisplayIdentity.display_name,
                   displayedImageTruthSource,
                 )}
-                imageClassName="h-auto max-h-[520px] w-full cursor-zoom-in rounded-[18px] bg-white object-contain shadow-[0_24px_70px_-38px_rgba(15,23,42,0.85)] ring-1 ring-slate-200/70 transition duration-150 hover:scale-[1.01] hover:shadow-[0_30px_80px_-36px_rgba(15,23,42,0.9)] dark:ring-white/10 sm:max-h-[600px]"
-                fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[18px] bg-slate-100/70 px-4 text-center text-sm text-slate-500 ring-1 ring-slate-200/70 dark:bg-slate-900/70 dark:text-slate-400 dark:ring-white/10"
+                imageClassName="h-auto max-h-[520px] w-full cursor-zoom-in rounded-[16px] object-contain shadow-[0_22px_62px_-40px_rgba(15,23,42,0.85)] transition duration-150 hover:scale-[1.01] hover:shadow-[0_28px_72px_-40px_rgba(15,23,42,0.9)] sm:max-h-[600px]"
+                fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[16px] bg-slate-100/70 px-4 text-center text-sm text-slate-500 ring-1 ring-slate-200/70 dark:bg-slate-900/70 dark:text-slate-400 dark:ring-white/10"
               />
             </div>
             {resolvedCardImagePresentation.compactBadgeLabel ? (
@@ -683,7 +683,7 @@ export default async function CardPage({
             </div>
 
             <aside className="grid gap-4 lg:grid-cols-[minmax(240px,0.9fr)_minmax(280px,1.1fr)]">
-              <div className="rounded-[22px] border border-slate-200/80 bg-white/82 p-5 shadow-[0_18px_55px_-44px_rgba(15,23,42,0.75)] backdrop-blur dark:border-slate-800 dark:bg-slate-900/72">
+              <div className="gv-action-panel p-5">
                 <CardPagePricingRail
                   isAuthenticated={canViewPricing}
                   loginHref={loginHref}
@@ -693,7 +693,7 @@ export default async function CardPage({
                 />
               </div>
 
-              <div className="space-y-4 rounded-[22px] border border-slate-200/80 bg-white/88 p-5 shadow-[0_18px_55px_-44px_rgba(15,23,42,0.75)] backdrop-blur dark:border-slate-800 dark:bg-slate-900/72">
+              <div className="gv-action-panel space-y-4 p-5">
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Vault</p>
                   <p className="gv-hi-card-identity mt-2 text-sm leading-6">{ownershipLabel}.</p>
@@ -728,14 +728,14 @@ export default async function CardPage({
       </section>
 
       {networkOffers.length > 0 ? (
-        <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
+        <section className="gv-premium-surface space-y-4 p-6">
           <div className="space-y-1">
             <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Collector Network</h2>
             <p className="text-sm text-slate-600">Collectors with this card marked Trade, Sell, or Showcase.</p>
           </div>
           <div className="space-y-3">
             {networkOffers.map((offer) => (
-              <article key={offer.vaultItemId} className="rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4">
+              <article key={offer.vaultItemId} className="gv-quiet-panel px-4 py-4">
                 {(() => {
                   const groupedContactAnchor = getGroupedOfferContactAnchor(offer);
                   const singleCopyHref = getSingleOfferCopyHref(offer);
@@ -796,13 +796,13 @@ export default async function CardPage({
                   );
                 })()}
                 {offer.inPlayCopies.length > 1 ? (
-                  <details className="mt-4 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
+                  <details className="gv-quiet-panel mt-4 px-4 py-3">
                     <summary className="cursor-pointer text-sm font-medium text-slate-800">
                       View copies ({offer.inPlayCopies.length})
                     </summary>
                     <div className="mt-3 space-y-2">
                       {offer.inPlayCopies.map((copy) => (
-                        <div key={copy.instanceId} className="rounded-[0.9rem] border border-slate-200 bg-slate-50 px-3 py-3">
+                        <div key={copy.instanceId} className="gv-quiet-panel px-3 py-3">
                           <div className="space-y-3">
                             <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
                               <span className="inline-flex rounded-full border border-slate-200 bg-white px-2.5 py-1 text-slate-700">

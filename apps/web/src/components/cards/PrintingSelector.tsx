@@ -109,10 +109,10 @@ export default function PrintingSelector({
   const imageSuggestionHref = selectedNeedsImageNotice ? getImageSuggestionHref?.(selectedPrinting) ?? null : null;
 
   return (
-    <section className={`space-y-4 rounded-[16px] border border-slate-200 bg-white shadow-sm ${compact ? "p-4" : "p-6"}`}>
+    <section className={`gv-action-panel space-y-4 ${compact ? "p-4" : "p-5"}`}>
       <div className="space-y-1">
-        <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">{title}</h2>
-        <p className="text-sm text-slate-600">
+        <h2 className="gv-eyebrow">{title}</h2>
+        <p className="gv-quiet-line text-sm">
           {description ??
           (selectedPrintingFallbackOnly
             ? "No child printings are cataloged for this card. Showing the canonical base display."
@@ -137,14 +137,14 @@ export default function PrintingSelector({
           <button
             type="button"
             onClick={() => setExpanded(true)}
-            className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
+            className="gv-secondary-button min-h-0 px-3 py-1.5 text-sm"
           >
             +{hiddenCount} more
           </button>
         ) : null}
       </div>
 
-      <div className="gv-hi-selected-version rounded-[14px] border px-4 py-3">
+      <div className="gv-hi-selected-version gv-quiet-panel px-4 py-3">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Selected version</p>
@@ -154,7 +154,7 @@ export default function PrintingSelector({
             className={`inline-flex w-fit rounded-full border px-3 py-1 text-xs font-semibold ${
               selectedOwnedCount > 0
                 ? "gv-hi-ownership"
-                : "border-slate-200 bg-white text-slate-600"
+                : "border-slate-200 bg-white/80 text-slate-600"
             }`}
           >
             {selectedOwnershipLabel}
