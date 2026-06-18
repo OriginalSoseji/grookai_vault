@@ -1,0 +1,3611 @@
+{
+  "generated_at": "2026-06-17T16:59:06.212Z",
+  "version": "VARIANT_ORIGIN_INDEX_V1",
+  "mode": "read_only_origin_index",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "fingerprint_sha256": "96435c0780e77047b8111996ee84986291decdb077db3169985d3987026c1d3a",
+  "summary": {
+    "parent_variant_rows_audited": 1876,
+    "origin_families": 41,
+    "public_copy_safe_families": 39,
+    "source_gap_families": 2,
+    "public_copy_safe_parent_rows": 1803,
+    "source_gap_parent_rows": 73
+  },
+  "families": [
+    {
+      "family_key": "prize_pack_series_stamp",
+      "family_label": "Play! Pokémon Prize Pack Stamp",
+      "variant_category": "organized_play_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Play! Pokémon Prize Packs are distributed through Organized Play programs and contain selected cards bearing a Play! Pokémon stamp.",
+      "why_collectors_care": "Prize Pack cards retain original set identity but have Organized Play distribution markings, so they are collected separately from ordinary pack-pulled copies.",
+      "how_to_identify": "Look for the Play! Pokémon stamp and, where present, the specific Prize Pack series marker.",
+      "grookai_rule": "Prize Pack stamps are parent identity lanes; explicit series markers may create separate identity lanes under the Prize Pack governance contract.",
+      "source_urls": [
+        "https://play.pokemon.com/en-us/rewards/gallery/",
+        "https://bulbapedia.bulbagarden.net/wiki/Play%21_Pok%C3%A9mon_Prize_Pack_Series_One_%28TCG%29"
+      ],
+      "parent_row_count": 625,
+      "child_row_count": 23,
+      "sample_gv_ids": [
+        "GV-PK-ASR-027-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-030-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-037-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-039-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-040-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-043-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-046-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-051-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-062-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-068-PLAY-POKEMON-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-BW5-94-PLAY-POKEMON-STAMP",
+          "name": "Enhanced Hammer",
+          "set_code": "bw5",
+          "number": "94",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DP5-92-PLAY-POKEMON-STAMP",
+          "name": "Call Energy",
+          "set_code": "dp5",
+          "number": "92",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-MEG-003-PLAY-POKEMON-STAMP",
+          "name": "Mega Venusaur ex",
+          "set_code": "me01",
+          "number": "003",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-MEG-022-PLAY-POKEMON-STAMP",
+          "name": "Mega Camerupt ex",
+          "set_code": "me01",
+          "number": "022",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-MEG-028-PLAY-POKEMON-STAMP",
+          "name": "Cinderace",
+          "set_code": "me01",
+          "number": "028",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-MEG-036-PLAY-POKEMON-STAMP",
+          "name": "Mega Abomasnow ex",
+          "set_code": "me01",
+          "number": "036",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-MEG-050-PLAY-POKEMON-STAMP",
+          "name": "Mega Manectric ex",
+          "set_code": "me01",
+          "number": "050",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-MEG-060-PLAY-POKEMON-STAMP",
+          "name": "Mega Gardevoir ex",
+          "set_code": "me01",
+          "number": "060",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-MEG-073-PLAY-POKEMON-STAMP",
+          "name": "Hariyama",
+          "set_code": "me01",
+          "number": "073",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-MEG-074-PLAY-POKEMON-STAMP",
+          "name": "Lunatone",
+          "set_code": "me01",
+          "number": "074",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "prerelease_or_staff_stamp",
+      "family_label": "Prerelease / Staff Stamp",
+      "variant_category": "event_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Prerelease cards are selected expansion reprints with a Prerelease or expansion-logo stamp; staff versions were produced for event organizers beginning with the Diamond & Pearl expansion.",
+      "why_collectors_care": "Prerelease and Staff stamps identify event-distribution copies, and Staff copies are often more limited because they were distributed to organizers rather than regular participants.",
+      "how_to_identify": "Look for a PRERELEASE, expansion-logo, or STAFF stamp on the card face.",
+      "grookai_rule": "Prerelease and Staff stamps are parent identity modifiers because the stamp changes the distribution identity of the physical card.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Prerelease_cards_%28TCG%29"
+      ],
+      "parent_row_count": 315,
+      "child_row_count": 108,
+      "sample_gv_ids": [
+        "GV-PK-BASE2-1-PRERELEASE-STAMP",
+        "GV-PK-BASE5-8-PRERELEASE-STAMP",
+        "GV-PK-BLW-25-PRERELEASE-STAMP",
+        "GV-PK-BLW-25-STAFF-PRERELEASE-STAMP",
+        "GV-PK-BW1-25-STAFF-STAMP",
+        "GV-PK-BW2-53-STAFF-STAMP",
+        "GV-PK-BW3-43-STAFF-STAMP",
+        "GV-PK-BW4-12-STAFF-STAMP",
+        "GV-PK-BW5-48-STAFF-STAMP",
+        "GV-PK-BWP-40-STAFF-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-BASE2-1-PRERELEASE-STAMP",
+          "name": "Clefable",
+          "set_code": "base2",
+          "number": "1",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": "prerelease_stamp"
+        },
+        {
+          "gv_id": "GV-PK-FO-01-PRERELEASE-STAMP",
+          "name": "Aerodactyl",
+          "set_code": "base3",
+          "number": "01",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-BASE5-8-PRERELEASE-STAMP",
+          "name": "Dark Gyarados",
+          "set_code": "base5",
+          "number": "8",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": "prerelease_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BLW-25-PRERELEASE-STAMP",
+          "name": "Darmanitan",
+          "set_code": "bw1",
+          "number": "25",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-BLW-25-STAFF-PRERELEASE-STAMP",
+          "name": "Darmanitan",
+          "set_code": "bw1",
+          "number": "25",
+          "variant_key": "staff_prerelease_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-BW1-25-STAFF-STAMP",
+          "name": "Darmanitan",
+          "set_code": "bw1",
+          "number": "25",
+          "variant_key": "staff_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-BW2-53-STAFF-STAMP",
+          "name": "Gigalith",
+          "set_code": "bw2",
+          "number": "53",
+          "variant_key": "staff_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-NVI-43-PRERELEASE-STAMP",
+          "name": "Victini",
+          "set_code": "bw3",
+          "number": "43",
+          "variant_key": "prerelease_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-NVI-43-STAFF-PRERELEASE-STAMP",
+          "name": "Victini",
+          "set_code": "bw3",
+          "number": "43",
+          "variant_key": "staff_prerelease_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-BW3-43-STAFF-STAMP",
+          "name": "Victini",
+          "set_code": "bw3",
+          "number": "43",
+          "variant_key": "staff_stamp",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "delta_species_identity",
+      "family_label": "Delta Species Identity",
+      "variant_category": "mechanic_identity",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "δ Delta Species are a distinct kind of Pokémon card first introduced in EX Delta Species, often showing Pokémon with unusual types compared with their normal identity.",
+      "why_collectors_care": "Collectors track Delta Species separately because the δ mark and altered typing define a recognizable EX-era mechanic and theme, not just a finish.",
+      "how_to_identify": "Look for the δ / Delta Species marker and the unusual type assignment on the card.",
+      "grookai_rule": "Delta Species is a parent identity modifier because it changes the printed card identity and search meaning.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/%CE%94_Delta_Species_%28TCG%29"
+      ],
+      "parent_row_count": 193,
+      "child_row_count": 359,
+      "sample_gv_ids": [
+        "GV-PK-CG-15",
+        "GV-PK-CG-18",
+        "GV-PK-CG-19",
+        "GV-PK-CG-2",
+        "GV-PK-CG-22",
+        "GV-PK-CG-26",
+        "GV-PK-CG-30",
+        "GV-PK-CG-4",
+        "GV-PK-CG-49",
+        "GV-PK-CG-6"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-SK-136",
+          "name": "Mystery Plate δ",
+          "set_code": "ecard3",
+          "number": "136",
+          "variant_key": "",
+          "printed_identity_modifier": "delta_species"
+        },
+        {
+          "gv_id": "GV-PK-DS-1",
+          "name": "Beedrill δ",
+          "set_code": "ex11",
+          "number": "1",
+          "variant_key": "",
+          "printed_identity_modifier": "delta_species"
+        },
+        {
+          "gv_id": "GV-PK-DS-10",
+          "name": "Marowak δ",
+          "set_code": "ex11",
+          "number": "10",
+          "variant_key": "",
+          "printed_identity_modifier": "delta_species"
+        },
+        {
+          "gv_id": "GV-PK-DS-11",
+          "name": "Metagross δ",
+          "set_code": "ex11",
+          "number": "11",
+          "variant_key": "",
+          "printed_identity_modifier": "delta_species"
+        },
+        {
+          "gv_id": "GV-PK-DS-12",
+          "name": "Mewtwo δ",
+          "set_code": "ex11",
+          "number": "12",
+          "variant_key": "",
+          "printed_identity_modifier": "delta_species"
+        },
+        {
+          "gv_id": "GV-PK-DS-13",
+          "name": "Rayquaza δ",
+          "set_code": "ex11",
+          "number": "13",
+          "variant_key": "",
+          "printed_identity_modifier": "delta_species"
+        },
+        {
+          "gv_id": "GV-PK-DS-14",
+          "name": "Salamence δ",
+          "set_code": "ex11",
+          "number": "14",
+          "variant_key": "",
+          "printed_identity_modifier": "delta_species"
+        },
+        {
+          "gv_id": "GV-PK-DS-15",
+          "name": "Starmie δ",
+          "set_code": "ex11",
+          "number": "15",
+          "variant_key": "",
+          "printed_identity_modifier": "delta_species"
+        },
+        {
+          "gv_id": "GV-PK-DS-16",
+          "name": "Tyranitar δ",
+          "set_code": "ex11",
+          "number": "16",
+          "variant_key": "",
+          "printed_identity_modifier": "delta_species"
+        },
+        {
+          "gv_id": "GV-PK-DS-17",
+          "name": "Umbreon δ",
+          "set_code": "ex11",
+          "number": "17",
+          "variant_key": "",
+          "printed_identity_modifier": "delta_species"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "pokemon_league_or_placement_stamp",
+      "family_label": "Pokémon League / Placement Stamp",
+      "variant_category": "organized_play_placement_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Pokémon League and League Challenge events can award special stamped cards, including placement-stamped variants for top finishers.",
+      "why_collectors_care": "Placement stamps encode event achievement or league distribution, making the physical card a different collector object from a normal copy.",
+      "how_to_identify": "Look for a Pokémon League, League Challenge, placement, finalist, or top-cut stamp on the card face.",
+      "grookai_rule": "Event and placement stamps are modeled as parent identity modifiers when the exact event/card pairing is source-backed.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_%28TCG%29",
+        "https://bulbapedia.bulbagarden.net/wiki/League_Challenge_%28TCG%29",
+        "https://bulbapedia.bulbagarden.net/wiki/Miscellaneous_Promotional_cards_%28TCG%29"
+      ],
+      "parent_row_count": 157,
+      "child_row_count": 20,
+      "sample_gv_ids": [
+        "GV-PK-BW1-1-PLAYER-REWARDS-CROSSHATCH-STAMP",
+        "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP",
+        "GV-PK-BW1-27-PLAYER-REWARDS-CROSSHATCH-STAMP",
+        "GV-PK-BW1-42-LEAGUE-STAMP",
+        "GV-PK-BW1-53-LEAGUE-STAMP",
+        "GV-PK-BW1-64-LEAGUE-STAMP",
+        "GV-PK-BW1-79-LEAGUE-STAMP",
+        "GV-PK-BW1-81-LEAGUE-STAMP",
+        "GV-PK-BW11-109-LEAGUE-STAMP",
+        "GV-PK-BW2-82-LEAGUE-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-BW1-1-PLAYER-REWARDS-CROSSHATCH-STAMP",
+          "name": "Snivy",
+          "set_code": "bw1",
+          "number": "1",
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP",
+          "name": "Professor Juniper",
+          "set_code": "bw1",
+          "number": "101",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-BW1-27-PLAYER-REWARDS-CROSSHATCH-STAMP",
+          "name": "Oshawott",
+          "set_code": "bw1",
+          "number": "27",
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-BW1-42-LEAGUE-STAMP",
+          "name": "Zebstrika",
+          "set_code": "bw1",
+          "number": "42",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-BW1-53-LEAGUE-STAMP",
+          "name": "Whirlipede",
+          "set_code": "bw1",
+          "number": "53",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BW1-64-LEAGUE-STAMP",
+          "name": "Krokorok",
+          "set_code": "bw1",
+          "number": "64",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-BW1-79-LEAGUE-STAMP",
+          "name": "Watchog",
+          "set_code": "bw1",
+          "number": "79",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BW1-81-LEAGUE-STAMP",
+          "name": "Lillipup",
+          "set_code": "bw1",
+          "number": "81",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BW11-109-LEAGUE-STAMP",
+          "name": "Bianca",
+          "set_code": "bw11",
+          "number": "109",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BW2-82-LEAGUE-STAMP",
+          "name": "Unfezant",
+          "set_code": "bw2",
+          "number": "82",
+          "variant_key": "league_stamp",
+          "printed_identity_modifier": "league_stamp"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "shiny_vault_subset",
+      "family_label": "Shiny Vault Subset",
+      "variant_category": "subset_identity",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Shiny Vault subsets collect Shiny Pokémon cards under SV-prefixed numbering, including Hidden Fates and Shining Fates.",
+      "why_collectors_care": "SV cards are tracked separately because they are Shiny Pokémon subset cards with their own numbering and checklist identity.",
+      "how_to_identify": "Look for an SV-prefixed card number and Shiny Pokémon artwork/identity.",
+      "grookai_rule": "Shiny Vault cards are parent identity lanes because SV numbering is part of the printed checklist identity.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Hidden_Fates_%28TCG%29",
+        "https://bulbapedia.bulbagarden.net/wiki/Shining_Fates_%28TCG%29"
+      ],
+      "parent_row_count": 94,
+      "child_row_count": 94,
+      "sample_gv_ids": [
+        "GV-PK-HIF-SV1",
+        "GV-PK-HIF-SV10",
+        "GV-PK-HIF-SV11",
+        "GV-PK-HIF-SV12",
+        "GV-PK-HIF-SV13",
+        "GV-PK-HIF-SV14",
+        "GV-PK-HIF-SV15",
+        "GV-PK-HIF-SV16",
+        "GV-PK-HIF-SV17",
+        "GV-PK-HIF-SV18"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-HIF-SV1",
+          "name": "Scyther",
+          "set_code": "sm115",
+          "number": "SV1",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SV"
+        },
+        {
+          "gv_id": "GV-PK-HIF-SV10",
+          "name": "Quagsire",
+          "set_code": "sm115",
+          "number": "SV10",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SV"
+        },
+        {
+          "gv_id": "GV-PK-HIF-SV11",
+          "name": "Froakie",
+          "set_code": "sm115",
+          "number": "SV11",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SV"
+        },
+        {
+          "gv_id": "GV-PK-HIF-SV12",
+          "name": "Frogadier",
+          "set_code": "sm115",
+          "number": "SV12",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SV"
+        },
+        {
+          "gv_id": "GV-PK-HIF-SV13",
+          "name": "Voltorb",
+          "set_code": "sm115",
+          "number": "SV13",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SV"
+        },
+        {
+          "gv_id": "GV-PK-HIF-SV14",
+          "name": "Xurkitree",
+          "set_code": "sm115",
+          "number": "SV14",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SV"
+        },
+        {
+          "gv_id": "GV-PK-HIF-SV15",
+          "name": "Seviper",
+          "set_code": "sm115",
+          "number": "SV15",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SV"
+        },
+        {
+          "gv_id": "GV-PK-HIF-SV16",
+          "name": "Shuppet",
+          "set_code": "sm115",
+          "number": "SV16",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SV"
+        },
+        {
+          "gv_id": "GV-PK-HIF-SV17",
+          "name": "Inkay",
+          "set_code": "sm115",
+          "number": "SV17",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SV"
+        },
+        {
+          "gv_id": "GV-PK-HIF-SV18",
+          "name": "Malamar",
+          "set_code": "sm115",
+          "number": "SV18",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SV"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "trainer_gallery_subset",
+      "family_label": "Trainer Gallery Subset",
+      "variant_category": "subset_identity",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Trainer Gallery cards are a subset focused on the relationship between Trainer and Pokémon, using TG-prefixed numbering in Sword & Shield expansions.",
+      "why_collectors_care": "TG cards are collected as a separate gallery subset because their numbering, artwork concept, and checklist position are distinct from the main set.",
+      "how_to_identify": "Look for a TG-prefixed card number and Trainer Gallery artwork treatment.",
+      "grookai_rule": "Trainer Gallery is modeled as parent identity, not a finish, because the card belongs to a separate numbered subset.",
+      "source_urls": [
+        "https://www.pokemon.com/us/pokemon-news/a-peek-at-the-cards-of-the-pokemon-tcg-sword-shield-brilliant-stars-trainer-gallery"
+      ],
+      "parent_row_count": 60,
+      "child_row_count": 60,
+      "sample_gv_ids": [
+        "GV-PK-LOR-TG01",
+        "GV-PK-LOR-TG02",
+        "GV-PK-LOR-TG03",
+        "GV-PK-LOR-TG04",
+        "GV-PK-LOR-TG05",
+        "GV-PK-LOR-TG06",
+        "GV-PK-LOR-TG07",
+        "GV-PK-LOR-TG08",
+        "GV-PK-LOR-TG09",
+        "GV-PK-LOR-TG10"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-LOR-TG01",
+          "name": "Parasect",
+          "set_code": "swsh11tg",
+          "number": "TG01",
+          "variant_key": "TG",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-LOR-TG02",
+          "name": "Roserade",
+          "set_code": "swsh11tg",
+          "number": "TG02",
+          "variant_key": "TG",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-LOR-TG03",
+          "name": "Charizard",
+          "set_code": "swsh11tg",
+          "number": "TG03",
+          "variant_key": "TG",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-LOR-TG04",
+          "name": "Chandelure",
+          "set_code": "swsh11tg",
+          "number": "TG04",
+          "variant_key": "TG",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-LOR-TG05",
+          "name": "Pikachu",
+          "set_code": "swsh11tg",
+          "number": "TG05",
+          "variant_key": "TG",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-LOR-TG06",
+          "name": "Gengar",
+          "set_code": "swsh11tg",
+          "number": "TG06",
+          "variant_key": "TG",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-LOR-TG07",
+          "name": "Banette",
+          "set_code": "swsh11tg",
+          "number": "TG07",
+          "variant_key": "TG",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-LOR-TG08",
+          "name": "Hisuian Arcanine",
+          "set_code": "swsh11tg",
+          "number": "TG08",
+          "variant_key": "TG",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-LOR-TG09",
+          "name": "Spiritomb",
+          "set_code": "swsh11tg",
+          "number": "TG09",
+          "variant_key": "TG",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-LOR-TG10",
+          "name": "Snorlax",
+          "set_code": "swsh11tg",
+          "number": "TG10",
+          "variant_key": "TG",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "radiant_collection_subset",
+      "family_label": "Radiant Collection Subset",
+      "variant_category": "subset_identity",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Radiant Collection is a separately numbered subset that appeared in Legendary Treasures and later Generations, using the RC card-number prefix.",
+      "why_collectors_care": "Collectors track RC cards as a subset lane because their numbering and set membership differ from the main expansion checklist.",
+      "how_to_identify": "Look for an RC-prefixed card number such as RC1, RC10, or RC25.",
+      "grookai_rule": "Subset card-number prefixes are modeled as parent identity lanes when they change checklist membership.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Legendary_Treasures_%28TCG%29",
+        "https://bulbapedia.bulbagarden.net/wiki/Generations_%28TCG%29"
+      ],
+      "parent_row_count": 57,
+      "child_row_count": 97,
+      "sample_gv_ids": [
+        "GV-PK-GEN-RC1",
+        "GV-PK-GEN-RC10",
+        "GV-PK-GEN-RC11",
+        "GV-PK-GEN-RC12",
+        "GV-PK-GEN-RC13",
+        "GV-PK-GEN-RC14",
+        "GV-PK-GEN-RC15",
+        "GV-PK-GEN-RC16",
+        "GV-PK-GEN-RC17",
+        "GV-PK-GEN-RC18"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-LTR-RC1",
+          "name": "Snivy",
+          "set_code": "bw11",
+          "number": "RC1",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RC"
+        },
+        {
+          "gv_id": "GV-PK-LTR-RC10",
+          "name": "Gardevoir",
+          "set_code": "bw11",
+          "number": "RC10",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RC"
+        },
+        {
+          "gv_id": "GV-PK-LTR-RC11",
+          "name": "Meloetta-EX",
+          "set_code": "bw11",
+          "number": "RC11",
+          "variant_key": "rc",
+          "printed_identity_modifier": "number_prefix:RC"
+        },
+        {
+          "gv_id": "GV-PK-LTR-RC12",
+          "name": "Stunfisk",
+          "set_code": "bw11",
+          "number": "RC12",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RC"
+        },
+        {
+          "gv_id": "GV-PK-LTR-RC13",
+          "name": "Purrloin",
+          "set_code": "bw11",
+          "number": "RC13",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RC"
+        },
+        {
+          "gv_id": "GV-PK-LTR-RC14",
+          "name": "Eevee",
+          "set_code": "bw11",
+          "number": "RC14",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RC"
+        },
+        {
+          "gv_id": "GV-PK-LTR-RC15",
+          "name": "Teddiursa",
+          "set_code": "bw11",
+          "number": "RC15",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RC"
+        },
+        {
+          "gv_id": "GV-PK-LTR-RC16",
+          "name": "Ursaring",
+          "set_code": "bw11",
+          "number": "RC16",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RC"
+        },
+        {
+          "gv_id": "GV-PK-LTR-RC17",
+          "name": "Audino",
+          "set_code": "bw11",
+          "number": "RC17",
+          "variant_key": "rc",
+          "printed_identity_modifier": "number_prefix:RC"
+        },
+        {
+          "gv_id": "GV-PK-LTR-RC18",
+          "name": "Minccino",
+          "set_code": "bw11",
+          "number": "RC18",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RC"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "expansion_logo_or_set_stamp",
+      "family_label": "Expansion Logo / Set Stamp",
+      "variant_category": "event_or_product_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "Expansion-logo and set-name stamps are used on selected promotional reprints, including prerelease/event cards and some product or retail promotions tied to a specific expansion.",
+      "why_collectors_care": "The visible set logo or expansion-name stamp changes distribution identity, so collectors track these copies separately from unstamped expansion cards.",
+      "how_to_identify": "Look for the expansion logo or set-name stamp on the artwork area, then verify the exact card against the relevant prerelease, product, or card-specific release source.",
+      "grookai_rule": "Set-logo stamps are parent identity variants. The family-level explanation may be public, but exact campaign/source evidence should remain attached per card where available.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Prerelease_cards_%28TCG%29",
+        "https://bulbapedia.bulbagarden.net/wiki/Pachirisu_%28Diamond_%26_Pearl_35%29",
+        "https://bulbapedia.bulbagarden.net/wiki/Grotle_%28Diamond_%26_Pearl_49%29"
+      ],
+      "parent_row_count": 47,
+      "child_row_count": 0,
+      "sample_gv_ids": [
+        "GV-PK-BLK-012-BLACK-BOLT-STAMP",
+        "GV-PK-BLK-034-BLACK-BOLT-STAMP",
+        "GV-PK-BRS-056-BRILLIANT-STARS-STAMP",
+        "GV-PK-DP1-35-DIAMOND-PEARL-STAMP",
+        "GV-PK-DP1-49-DIAMOND-PEARL-STAMP",
+        "GV-PK-DP1-56-DIAMOND-PEARL-STAMP",
+        "GV-PK-DP1-58-DIAMOND-PEARL-STAMP",
+        "GV-PK-DV1-9-DRAGON-VAULT-STAMP",
+        "GV-PK-GEN-043-GENERATIONS-GEODUDE-STAMP",
+        "GV-PK-MEG-064-MEGA-EVOLUTION-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-DP1-35-DIAMOND-PEARL-STAMP",
+          "name": "Pachirisu",
+          "set_code": "dp1",
+          "number": "35",
+          "variant_key": "diamond_pearl_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DP1-49-DIAMOND-PEARL-STAMP",
+          "name": "Grotle",
+          "set_code": "dp1",
+          "number": "49",
+          "variant_key": "diamond_pearl_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DP1-56-DIAMOND-PEARL-STAMP",
+          "name": "Monferno",
+          "set_code": "dp1",
+          "number": "56",
+          "variant_key": "diamond_pearl_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DP1-58-DIAMOND-PEARL-STAMP",
+          "name": "Prinplup",
+          "set_code": "dp1",
+          "number": "58",
+          "variant_key": "diamond_pearl_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DV1-9-DRAGON-VAULT-STAMP",
+          "name": "Latias",
+          "set_code": "dv1",
+          "number": "9",
+          "variant_key": "dragon_vault_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-GEN-043-GENERATIONS-GEODUDE-STAMP",
+          "name": "Geodude",
+          "set_code": "g1",
+          "number": "043",
+          "variant_key": "generations_geodude_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-MEG-064-MEGA-EVOLUTION-STAMP",
+          "name": "Xerneas",
+          "set_code": "me01",
+          "number": "064",
+          "variant_key": "mega_evolution_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-MEG-088-MEGA-EVOLUTION-STAMP",
+          "name": "Yveltal",
+          "set_code": "me01",
+          "number": "088",
+          "variant_key": "mega_evolution_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-PFL-017-PHANTASMAL-FLAMES-STAMP",
+          "name": "Reshiram",
+          "set_code": "me02",
+          "number": "017",
+          "variant_key": "phantasmal_flames_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-MEP-74-CHAOS-RISING-STAMP",
+          "name": "Delphox",
+          "set_code": "mep",
+          "number": "74",
+          "variant_key": "chaos_rising_stamp",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "pokemon_lvx_identity",
+      "family_label": "Pokémon LV.X Identity",
+      "variant_category": "mechanic_identity",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Pokémon LV.X cards were introduced in Diamond & Pearl as Level-Up Pokémon representing a stronger trained state.",
+      "why_collectors_care": "LV.X cards are a distinct era mechanic with unique naming, rules treatment, and checklist identity, so collectors track them apart from ordinary versions of the same Pokémon.",
+      "how_to_identify": "Look for LV.X in the card name and Level-Up styling.",
+      "grookai_rule": "LV.X is modeled as parent identity because it is part of the printed card name/mechanic identity.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_LV.X_%28TCG%29"
+      ],
+      "parent_row_count": 26,
+      "child_row_count": 26,
+      "sample_gv_ids": [
+        "GV-PK-PL-122",
+        "GV-PK-PL-123",
+        "GV-PK-PL-124",
+        "GV-PK-PL-125",
+        "GV-PK-PL-126",
+        "GV-PK-PL-127",
+        "GV-PK-RR-103",
+        "GV-PK-RR-104",
+        "GV-PK-RR-105",
+        "GV-PK-RR-106"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-SF-100",
+          "name": "Regigigas LV.X",
+          "set_code": "dp7",
+          "number": "100",
+          "variant_key": "",
+          "printed_identity_modifier": "level_x"
+        },
+        {
+          "gv_id": "GV-PK-SF-96",
+          "name": "Dusknoir LV.X",
+          "set_code": "dp7",
+          "number": "96",
+          "variant_key": "",
+          "printed_identity_modifier": "level_x"
+        },
+        {
+          "gv_id": "GV-PK-SF-97",
+          "name": "Heatran LV.X",
+          "set_code": "dp7",
+          "number": "97",
+          "variant_key": "",
+          "printed_identity_modifier": "level_x"
+        },
+        {
+          "gv_id": "GV-PK-SF-98",
+          "name": "Machamp LV.X",
+          "set_code": "dp7",
+          "number": "98",
+          "variant_key": "",
+          "printed_identity_modifier": "level_x"
+        },
+        {
+          "gv_id": "GV-PK-SF-99",
+          "name": "Raichu LV.X",
+          "set_code": "dp7",
+          "number": "99",
+          "variant_key": "",
+          "printed_identity_modifier": "level_x"
+        },
+        {
+          "gv_id": "GV-PK-PL-122",
+          "name": "Dialga G LV.X",
+          "set_code": "pl1",
+          "number": "122",
+          "variant_key": "",
+          "printed_identity_modifier": "level_x"
+        },
+        {
+          "gv_id": "GV-PK-PL-123",
+          "name": "Drapion LV.X",
+          "set_code": "pl1",
+          "number": "123",
+          "variant_key": "",
+          "printed_identity_modifier": "level_x"
+        },
+        {
+          "gv_id": "GV-PK-PL-124",
+          "name": "Giratina LV.X",
+          "set_code": "pl1",
+          "number": "124",
+          "variant_key": "",
+          "printed_identity_modifier": "level_x"
+        },
+        {
+          "gv_id": "GV-PK-PL-125",
+          "name": "Palkia G LV.X",
+          "set_code": "pl1",
+          "number": "125",
+          "variant_key": "",
+          "printed_identity_modifier": "level_x"
+        },
+        {
+          "gv_id": "GV-PK-PL-126",
+          "name": "Shaymin LV.X",
+          "set_code": "pl1",
+          "number": "126",
+          "variant_key": "",
+          "printed_identity_modifier": "level_x"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "classic_collection_subset",
+      "family_label": "Celebrations Classic Collection",
+      "variant_category": "subset_identity",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Celebrations included a Classic Collection subset of close replicas of popular older cards with special treatment and retained original-style numbering.",
+      "why_collectors_care": "Classic Collection cards are tracked separately from both the main Celebrations set and the original historical cards they reference.",
+      "how_to_identify": "Look for the Celebrations Classic Collection treatment and card identity rather than treating it as the original vintage print.",
+      "grookai_rule": "Classic Collection is a parent identity lane because it is a separate modern subset, not a finish variant of the original card.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Celebrations_%28TCG%29"
+      ],
+      "parent_row_count": 25,
+      "child_row_count": 25,
+      "sample_gv_ids": [
+        "GV-PK-CEL-107CC",
+        "GV-PK-CEL-109CC",
+        "GV-PK-CEL-113CC",
+        "GV-PK-CEL-114CC",
+        "GV-PK-CEL-145CC",
+        "GV-PK-CEL-15CC",
+        "GV-PK-CEL-15CC-CLAYDOL",
+        "GV-PK-CEL-15CC-HERE-COMES-TEAM-ROCKET",
+        "GV-PK-CEL-15CC-ROCKET-S-ZAPDOS",
+        "GV-PK-CEL-17CC"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-CEL-107CC",
+          "name": "Donphan",
+          "set_code": "cel25c",
+          "number": "107",
+          "variant_key": "cc",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-CEL-109CC",
+          "name": "Luxray GL LV.X",
+          "set_code": "cel25c",
+          "number": "109",
+          "variant_key": "cc",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-CEL-113CC",
+          "name": "Reshiram",
+          "set_code": "cel25c",
+          "number": "113",
+          "variant_key": "cc",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-CEL-114CC",
+          "name": "Zekrom",
+          "set_code": "cel25c",
+          "number": "114",
+          "variant_key": "cc",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-CEL-145CC",
+          "name": "Garchomp C LV.X",
+          "set_code": "cel25c",
+          "number": "145",
+          "variant_key": "cc",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-CEL-15CC-CLAYDOL",
+          "name": "Claydol",
+          "set_code": "cel25c",
+          "number": "15",
+          "variant_key": "cc",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-CEL-15CC-HERE-COMES-TEAM-ROCKET",
+          "name": "Here Comes Team Rocket!",
+          "set_code": "cel25c",
+          "number": "15",
+          "variant_key": "cc",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-CEL-15CC-ROCKET-S-ZAPDOS",
+          "name": "Rocket's Zapdos",
+          "set_code": "cel25c",
+          "number": "15",
+          "variant_key": "cc",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-CEL-15CC",
+          "name": "Venusaur",
+          "set_code": "cel25c",
+          "number": "15",
+          "variant_key": "cc",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-CEL-17CC",
+          "name": "Umbreon ★",
+          "set_code": "cel25c",
+          "number": "17",
+          "variant_key": "cc",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "wotc_recognized_error",
+      "family_label": "WOTC Recognized Error / Correction Variant",
+      "variant_category": "recognized_error_variant",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "WOTC-era production or text/artwork mistakes created repeatable physical variants such as no-damage Ninetales, missing Stage text Blastoise, and corrected/error text lanes.",
+      "why_collectors_care": "Recognized repeatable errors are collected as distinct objects because they document a specific production state rather than ordinary wear or damage.",
+      "how_to_identify": "Compare the affected text, artwork, HP, holo box, set symbol, or other documented error area against the corrected card.",
+      "grookai_rule": "Grookai only models error lanes when they are externally recognized and repeatable at card identity level.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+        "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+        "https://www.cgccards.com/news/article/8861/pokemon-ninetales-variant/"
+      ],
+      "parent_row_count": 20,
+      "child_row_count": 20,
+      "sample_gv_ids": [
+        "GV-PK-BASE1-12-BLACK-FLAME-ERROR",
+        "GV-PK-BASE1-12-NO-DAMAGE-ERROR",
+        "GV-PK-BASE1-17-D-FENDING-ERROR",
+        "GV-PK-BASE1-2-STAGE-ERROR",
+        "GV-PK-BASE1-42-EVOLUTION-BOX-ERROR",
+        "GV-PK-BASE1-47-SIDEWAYS-FIGHTING-ENERGY-ERROR",
+        "GV-PK-BASE3-15-MISSING-HOLO-EVOLUTION-BOX-ERROR",
+        "GV-PK-BASE5-5-NONHOLO-ERROR",
+        "GV-PK-BASEP-17-NO-HP-ERROR",
+        "GV-PK-BASEP-2-INVERTED-WB-KIDS-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-BASE1-12-BLACK-FLAME-ERROR",
+          "name": "Ninetales",
+          "set_code": "base1",
+          "number": "12",
+          "variant_key": "black_flame_error",
+          "printed_identity_modifier": "recognized_error:black_flame"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-12-NO-DAMAGE-ERROR",
+          "name": "Ninetales",
+          "set_code": "base1",
+          "number": "12",
+          "variant_key": "no_damage_error",
+          "printed_identity_modifier": "recognized_error:no_damage"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-17-D-FENDING-ERROR",
+          "name": "Beedrill",
+          "set_code": "base1",
+          "number": "17",
+          "variant_key": "d_fending_error",
+          "printed_identity_modifier": "recognized_error:d_fending_text"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-2-STAGE-ERROR",
+          "name": "Blastoise",
+          "set_code": "base1",
+          "number": "2",
+          "variant_key": "stage_error",
+          "printed_identity_modifier": "recognized_error:missing_stage_text"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-42-EVOLUTION-BOX-ERROR",
+          "name": "Wartortle",
+          "set_code": "base1",
+          "number": "42",
+          "variant_key": "evolution_box_error",
+          "printed_identity_modifier": "recognized_error:evolution_box_wartortle"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-47-SIDEWAYS-FIGHTING-ENERGY-ERROR",
+          "name": "Diglett",
+          "set_code": "base1",
+          "number": "47",
+          "variant_key": "sideways_fighting_energy_error",
+          "printed_identity_modifier": "recognized_error:sideways_fighting_energy"
+        },
+        {
+          "gv_id": "GV-PK-BASE3-15-MISSING-HOLO-EVOLUTION-BOX-ERROR",
+          "name": "Zapdos",
+          "set_code": "base3",
+          "number": "15",
+          "variant_key": "missing_holo_evolution_box_error",
+          "printed_identity_modifier": "recognized_error:missing_holo_evolution_box"
+        },
+        {
+          "gv_id": "GV-PK-BASE5-5-NONHOLO-ERROR",
+          "name": "Dark Dragonite",
+          "set_code": "base5",
+          "number": "5",
+          "variant_key": "nonholo_error",
+          "printed_identity_modifier": "recognized_error:nonholo_holo_number"
+        },
+        {
+          "gv_id": "GV-PK-BASEP-17-NO-HP-ERROR",
+          "name": "Dark Persian",
+          "set_code": "basep",
+          "number": "17",
+          "variant_key": "no_hp_error",
+          "printed_identity_modifier": "recognized_error:missing_hp"
+        },
+        {
+          "gv_id": "GV-PK-BASEP-2-INVERTED-WB-KIDS-STAMP",
+          "name": "Electabuzz",
+          "set_code": "basep",
+          "number": "2",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "jungle_no_symbol_error",
+      "family_label": "Jungle No Symbol Error",
+      "variant_category": "recognized_error_variant",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Some Jungle holo rares were printed without the Jungle expansion symbol.",
+      "why_collectors_care": "The missing symbol is a visible, repeatable WOTC-era error that collectors identify separately from normal Jungle holo copies.",
+      "how_to_identify": "Confirm the Jungle holo rare is missing the Jungle set symbol where it should appear.",
+      "grookai_rule": "Recognized repeatable production errors receive parent identity lanes when card-level evidence supports the exact card.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+        "https://bulbapedia.bulbagarden.net/wiki/Error_cards"
+      ],
+      "parent_row_count": 16,
+      "child_row_count": 16,
+      "sample_gv_ids": [
+        "GV-PK-BASE2-1-NO-SYMBOL",
+        "GV-PK-BASE2-10-NO-SYMBOL",
+        "GV-PK-BASE2-11-NO-SYMBOL",
+        "GV-PK-BASE2-12-NO-SYMBOL",
+        "GV-PK-BASE2-13-NO-SYMBOL",
+        "GV-PK-BASE2-14-NO-SYMBOL",
+        "GV-PK-BASE2-15-NO-SYMBOL",
+        "GV-PK-BASE2-16-NO-SYMBOL",
+        "GV-PK-BASE2-2-NO-SYMBOL",
+        "GV-PK-BASE2-3-NO-SYMBOL"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-BASE2-1-NO-SYMBOL",
+          "name": "Clefable",
+          "set_code": "base2",
+          "number": "1",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol"
+        },
+        {
+          "gv_id": "GV-PK-BASE2-10-NO-SYMBOL",
+          "name": "Scyther",
+          "set_code": "base2",
+          "number": "10",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol"
+        },
+        {
+          "gv_id": "GV-PK-BASE2-11-NO-SYMBOL",
+          "name": "Snorlax",
+          "set_code": "base2",
+          "number": "11",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol"
+        },
+        {
+          "gv_id": "GV-PK-BASE2-12-NO-SYMBOL",
+          "name": "Vaporeon",
+          "set_code": "base2",
+          "number": "12",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol"
+        },
+        {
+          "gv_id": "GV-PK-BASE2-13-NO-SYMBOL",
+          "name": "Venomoth",
+          "set_code": "base2",
+          "number": "13",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol"
+        },
+        {
+          "gv_id": "GV-PK-BASE2-14-NO-SYMBOL",
+          "name": "Victreebel",
+          "set_code": "base2",
+          "number": "14",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol"
+        },
+        {
+          "gv_id": "GV-PK-BASE2-15-NO-SYMBOL",
+          "name": "Vileplume",
+          "set_code": "base2",
+          "number": "15",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol"
+        },
+        {
+          "gv_id": "GV-PK-BASE2-16-NO-SYMBOL",
+          "name": "Wigglytuff",
+          "set_code": "base2",
+          "number": "16",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol"
+        },
+        {
+          "gv_id": "GV-PK-BASE2-2-NO-SYMBOL",
+          "name": "Electrode",
+          "set_code": "base2",
+          "number": "2",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol"
+        },
+        {
+          "gv_id": "GV-PK-BASE2-3-NO-SYMBOL",
+          "name": "Flareon",
+          "set_code": "base2",
+          "number": "3",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "trick_or_trade_pumpkin_stamp",
+      "family_label": "Trick or Trade Pumpkin Stamp",
+      "variant_category": "seasonal_product_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "Trick or Trade Halloween mini-set cards are reprints packaged for seasonal Halloween distribution with a Pikachu pumpkin stamp on the card artwork.",
+      "why_collectors_care": "The pumpkin stamp ties the card to the Halloween Trick or Trade product instead of the original expansion pack, making it a separate seasonal collector lane.",
+      "how_to_identify": "Look for the Pikachu jack-o-lantern / pumpkin stamp on the card art and verify the card against the Trick or Trade checklist.",
+      "grookai_rule": "Trick or Trade stamped cards are parent identity variants because the visible seasonal stamp changes distribution identity while preserving the base card identity.",
+      "source_urls": [
+        "https://www.pokebeach.com/forums/threads/all-30-pokemon-%E2%80%9Ctrick-or-trade%E2%80%9D-halloween-cards.153244/"
+      ],
+      "parent_row_count": 14,
+      "child_row_count": 0,
+      "sample_gv_ids": [
+        "GV-PK-SWSH10-59-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH11-081-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH2-15-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH2-33-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH3-105-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH3-81-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH4-71-HOLIDAY-STAMP",
+        "GV-PK-SWSH5-89-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH6-57-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH6-72-PIKACHU-JACK-O-LANTERN-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-SWSH10-59-PIKACHU-JACK-O-LANTERN-STAMP",
+          "name": "Mismagius",
+          "set_code": "swsh10",
+          "number": "59",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH11-081-PIKACHU-JACK-O-LANTERN-STAMP",
+          "name": "Spectrier",
+          "set_code": "swsh11",
+          "number": "081",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH2-15-PIKACHU-JACK-O-LANTERN-STAMP",
+          "name": "Trevenant",
+          "set_code": "swsh2",
+          "number": "15",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH2-33-PIKACHU-JACK-O-LANTERN-STAMP",
+          "name": "Chandelure",
+          "set_code": "swsh2",
+          "number": "33",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH3-105-PIKACHU-JACK-O-LANTERN-STAMP",
+          "name": "Darkrai",
+          "set_code": "swsh3",
+          "number": "105",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH3-81-PIKACHU-JACK-O-LANTERN-STAMP",
+          "name": "Mimikyu",
+          "set_code": "swsh3",
+          "number": "81",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH4-71-HOLIDAY-STAMP",
+          "name": "Dusknoir",
+          "set_code": "swsh4",
+          "number": "71",
+          "variant_key": "holiday_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH5-89-PIKACHU-JACK-O-LANTERN-STAMP",
+          "name": "Zubat",
+          "set_code": "swsh5",
+          "number": "89",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH6-57-PIKACHU-JACK-O-LANTERN-STAMP",
+          "name": "Gengar",
+          "set_code": "swsh6",
+          "number": "57",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH6-72-PIKACHU-JACK-O-LANTERN-STAMP",
+          "name": "Hattrem",
+          "set_code": "swsh6",
+          "number": "72",
+          "variant_key": "pikachu_jack_o_lantern_stamp",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "burger_king_stamped_promo",
+      "family_label": "Burger King Stamped Promo",
+      "variant_category": "fast_food_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Burger King Pokémon promotions paired selected Diamond & Pearl-era cards with Kids Meal toy campaigns; the 2009 Platinum campaign used visibly stamped reverse-holo cards.",
+      "why_collectors_care": "These cards are tied to a short fast-food promotion and have an identifiable stamp, so collectors track them separately from normal Platinum-era cards.",
+      "how_to_identify": "Look for the Burger King or Platinum promotional stamp on the card face and verify the card against Burger King promo product/checklist sources.",
+      "grookai_rule": "Burger King stamped cards are parent identity variants; the stamped row may then carry its own supported child finish.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+        "https://www.tcgplayer.com/product/155611/pokemon-burger-king-promos-lucario-6-130-diamond-and-pearl",
+        "https://www.tcgplayer.com/product/215634/pokemon-burger-king-promos-manaphy-9-130-diamond-and-pearl",
+        "https://www.pricecharting.com/game/pokemon-great-encounters/palkia-stamped-26",
+        "https://pokecardvalues.co.uk/cards/manaphy-9-130-reverse-holo-burger-king-diamond-pearl/dp1-9-3-19/"
+      ],
+      "parent_row_count": 12,
+      "child_row_count": 7,
+      "sample_gv_ids": [
+        "GV-PK-DP1-6-STAMPED",
+        "GV-PK-DP1-9-STAMPED",
+        "GV-PK-DP4-26-STAMPED",
+        "GV-PK-DP5-24-STAMPED",
+        "GV-PK-DP5-56-PLATINUM-STAMPED-BURGER-KING-2009",
+        "GV-PK-DP5-62-PLATINUM-STAMPED-BURGER-KING-2009",
+        "GV-PK-DP5-70-PLATINUM-STAMPED-BURGER-KING-2009",
+        "GV-PK-DP5-71-PLATINUM-STAMPED-BURGER-KING-2009",
+        "GV-PK-DP5-77-PLATINUM-STAMPED-BURGER-KING-2009",
+        "GV-PK-DP6-106-PLATINUM-STAMPED-BURGER-KING-2009"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-DP1-6-STAMPED",
+          "name": "Lucario",
+          "set_code": "dp1",
+          "number": "6",
+          "variant_key": "stamped",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DP1-9-STAMPED",
+          "name": "Manaphy",
+          "set_code": "dp1",
+          "number": "9",
+          "variant_key": "stamped",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DP4-26-STAMPED",
+          "name": "Palkia",
+          "set_code": "dp4",
+          "number": "26",
+          "variant_key": "stamped",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DP5-24-STAMPED",
+          "name": "Leafeon",
+          "set_code": "dp5",
+          "number": "24",
+          "variant_key": "stamped",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DP5-56-PLATINUM-STAMPED-BURGER-KING-2009",
+          "name": "Chimchar",
+          "set_code": "dp5",
+          "number": "56",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DP5-62-PLATINUM-STAMPED-BURGER-KING-2009",
+          "name": "Eevee",
+          "set_code": "dp5",
+          "number": "62",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DP5-70-PLATINUM-STAMPED-BURGER-KING-2009",
+          "name": "Pikachu",
+          "set_code": "dp5",
+          "number": "70",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DP5-71-PLATINUM-STAMPED-BURGER-KING-2009",
+          "name": "Piplup",
+          "set_code": "dp5",
+          "number": "71",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DP5-77-PLATINUM-STAMPED-BURGER-KING-2009",
+          "name": "Turtwig",
+          "set_code": "dp5",
+          "number": "77",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-DP6-106-PLATINUM-STAMPED-BURGER-KING-2009",
+          "name": "Meowth",
+          "set_code": "dp6",
+          "number": "106",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "dp_platinum_shiny_sh_subset",
+      "family_label": "Diamond/Pearl/Platinum SH Shiny Subset",
+      "variant_category": "subset_identity",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "Diamond & Pearl and Platinum-era Shiny cards are commonly tracked as an SH-prefixed shiny subset.",
+      "why_collectors_care": "SH cards are sought as shiny variant subset cards and are not ordinary main-set numbering lanes.",
+      "how_to_identify": "Look for an SH-prefixed card number such as SH1 through SH12.",
+      "grookai_rule": "SH-prefixed cards are parent identity lanes because the prefix encodes subset identity.",
+      "source_urls": [
+        "https://www.psacard.com/psasetregistry/showcase/variations/pokemon-diamon-pearl-platinum-2008-2009-shiny-sh-subset/imagegallery/5378"
+      ],
+      "parent_row_count": 12,
+      "child_row_count": 15,
+      "sample_gv_ids": [
+        "GV-PK-AR-SH10",
+        "GV-PK-AR-SH11",
+        "GV-PK-AR-SH12",
+        "GV-PK-PL-SH4",
+        "GV-PK-PL-SH5",
+        "GV-PK-PL-SH6",
+        "GV-PK-SF-SH1",
+        "GV-PK-SF-SH2",
+        "GV-PK-SF-SH3",
+        "GV-PK-SV-SH7"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-SF-SH1",
+          "name": "Drifloon",
+          "set_code": "dp7",
+          "number": "SH1",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SH"
+        },
+        {
+          "gv_id": "GV-PK-SF-SH2",
+          "name": "Duskull",
+          "set_code": "dp7",
+          "number": "SH2",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SH"
+        },
+        {
+          "gv_id": "GV-PK-SF-SH3",
+          "name": "Voltorb",
+          "set_code": "dp7",
+          "number": "SH3",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SH"
+        },
+        {
+          "gv_id": "GV-PK-PL-SH4",
+          "name": "Lotad",
+          "set_code": "pl1",
+          "number": "SH4",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SH"
+        },
+        {
+          "gv_id": "GV-PK-PL-SH5",
+          "name": "Swablu",
+          "set_code": "pl1",
+          "number": "SH5",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SH"
+        },
+        {
+          "gv_id": "GV-PK-PL-SH6",
+          "name": "Vulpix",
+          "set_code": "pl1",
+          "number": "SH6",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SH"
+        },
+        {
+          "gv_id": "GV-PK-SV-SH7",
+          "name": "Milotic",
+          "set_code": "pl3",
+          "number": "SH7",
+          "variant_key": "SH",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SV-SH8",
+          "name": "Relicanth",
+          "set_code": "pl3",
+          "number": "SH8",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SH"
+        },
+        {
+          "gv_id": "GV-PK-SV-SH9",
+          "name": "Yanma",
+          "set_code": "pl3",
+          "number": "SH9",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SH"
+        },
+        {
+          "gv_id": "GV-PK-AR-SH10",
+          "name": "Bagon",
+          "set_code": "pl4",
+          "number": "SH10",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SH"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "build_a_bear_workshop_stamp",
+      "family_label": "Build-A-Bear Workshop Stamp",
+      "variant_category": "retailer_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Build-A-Bear Workshop sold Pokémon plush releases with same-character, Build-A-Bear Workshop-branded Pokémon TCG cards.",
+      "why_collectors_care": "The stamp ties the card to a specific retail plush promotion, making it physically distinguishable from the standard set card and tracked as a separate promotional lane.",
+      "how_to_identify": "Look for the Build-A-Bear Workshop stamp on the card face.",
+      "grookai_rule": "Visible retailer distribution stamps are modeled as parent identity modifiers, not as card finishes.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Build-A-Bear_Workshop_collection"
+      ],
+      "parent_row_count": 11,
+      "child_row_count": 11,
+      "sample_gv_ids": [
+        "GV-PK-BW10-14-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-BW11-17-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-BW5-1-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-SM1-28-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-SM1-90-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-SM4-71-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-UPR-32-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-XY2-80-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-XY5-20-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-XY6-67-BUILD-A-BEAR-WORKSHOP-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-BW10-14-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "name": "Squirtle",
+          "set_code": "bw10",
+          "number": "14",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BW11-17-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "name": "Charmander",
+          "set_code": "bw11",
+          "number": "17",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BW5-1-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "name": "Bulbasaur",
+          "set_code": "bw5",
+          "number": "1",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp"
+        },
+        {
+          "gv_id": "GV-PK-SM1-28-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "name": "Psyduck",
+          "set_code": "sm1",
+          "number": "28",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp"
+        },
+        {
+          "gv_id": "GV-PK-SM1-90-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "name": "Snubbull",
+          "set_code": "sm1",
+          "number": "90",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp"
+        },
+        {
+          "gv_id": "GV-PK-SM4-71-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "name": "Jigglypuff",
+          "set_code": "sm4",
+          "number": "71",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp"
+        },
+        {
+          "gv_id": "GV-PK-UPR-32-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "name": "Piplup",
+          "set_code": "sm5",
+          "number": "32",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp"
+        },
+        {
+          "gv_id": "GV-PK-XY2-80-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "name": "Snorlax",
+          "set_code": "xy2",
+          "number": "80",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp"
+        },
+        {
+          "gv_id": "GV-PK-XY5-20-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "name": "Vulpix",
+          "set_code": "xy5",
+          "number": "20",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp"
+        },
+        {
+          "gv_id": "GV-PK-XY6-67-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "name": "Meowth",
+          "set_code": "xy6",
+          "number": "67",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "call_of_legends_sl_subset",
+      "family_label": "Call of Legends SL Shiny Secret Subset",
+      "variant_category": "subset_identity",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Call of Legends included Shiny Secret prints of Legendary Pokémon, commonly identified by SL-prefixed numbering.",
+      "why_collectors_care": "SL cards are collected as a distinct high-interest subset because they are Shiny Secret prints outside the ordinary numbered checklist.",
+      "how_to_identify": "Look for an SL-prefixed card number in Call of Legends.",
+      "grookai_rule": "SL-prefixed cards are parent identity lanes because the prefix is a printed subset identity.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Call_of_Legends_%28TCG%29"
+      ],
+      "parent_row_count": 11,
+      "child_row_count": 22,
+      "sample_gv_ids": [
+        "GV-PK-COL-SL1",
+        "GV-PK-COL-SL10",
+        "GV-PK-COL-SL11",
+        "GV-PK-COL-SL2",
+        "GV-PK-COL-SL3",
+        "GV-PK-COL-SL4",
+        "GV-PK-COL-SL5",
+        "GV-PK-COL-SL6",
+        "GV-PK-COL-SL7",
+        "GV-PK-COL-SL8"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-COL-SL1",
+          "name": "Deoxys",
+          "set_code": "col1",
+          "number": "SL1",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SL"
+        },
+        {
+          "gv_id": "GV-PK-COL-SL10",
+          "name": "Rayquaza",
+          "set_code": "col1",
+          "number": "SL10",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SL"
+        },
+        {
+          "gv_id": "GV-PK-COL-SL11",
+          "name": "Suicune",
+          "set_code": "col1",
+          "number": "SL11",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SL"
+        },
+        {
+          "gv_id": "GV-PK-COL-SL2",
+          "name": "Dialga",
+          "set_code": "col1",
+          "number": "SL2",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SL"
+        },
+        {
+          "gv_id": "GV-PK-COL-SL3",
+          "name": "Entei",
+          "set_code": "col1",
+          "number": "SL3",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SL"
+        },
+        {
+          "gv_id": "GV-PK-COL-SL4",
+          "name": "Groudon",
+          "set_code": "col1",
+          "number": "SL4",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SL"
+        },
+        {
+          "gv_id": "GV-PK-COL-SL5",
+          "name": "Ho-Oh",
+          "set_code": "col1",
+          "number": "SL5",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SL"
+        },
+        {
+          "gv_id": "GV-PK-COL-SL6",
+          "name": "Kyogre",
+          "set_code": "col1",
+          "number": "SL6",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SL"
+        },
+        {
+          "gv_id": "GV-PK-COL-SL7",
+          "name": "Lugia",
+          "set_code": "col1",
+          "number": "SL7",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SL"
+        },
+        {
+          "gv_id": "GV-PK-COL-SL8",
+          "name": "Palkia",
+          "set_code": "col1",
+          "number": "SL8",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:SL"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "secret_or_h_prefix_identity",
+      "family_label": "Secret / H-Prefix Number Identity",
+      "variant_category": "numbering_identity",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "Some older and special sets use nonstandard prefixes or secret numbering lanes that identify cards outside the ordinary numeric checklist.",
+      "why_collectors_care": "The prefix changes checklist identity and helps collectors distinguish secret/subset cards from normal numbered cards.",
+      "how_to_identify": "Check the printed card number prefix and compare it to the set checklist.",
+      "grookai_rule": "Number-prefix identities are parent identity lanes when the prefix changes checklist membership.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Secret_card_%28TCG%29"
+      ],
+      "parent_row_count": 11,
+      "child_row_count": 11,
+      "sample_gv_ids": [
+        "GV-PK-AQ-H1",
+        "GV-PK-AQ-H5",
+        "GV-PK-AQ-H6",
+        "GV-PK-AQ-H7",
+        "GV-PK-AQ-H9",
+        "GV-PK-SK-H1",
+        "GV-PK-SK-H2",
+        "GV-PK-SK-H3",
+        "GV-PK-SK-H5",
+        "GV-PK-SK-H7"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-AQ-H1",
+          "name": "Ampharos",
+          "set_code": "ecard2",
+          "number": "H1",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:H"
+        },
+        {
+          "gv_id": "GV-PK-AQ-H5",
+          "name": "Bellossom",
+          "set_code": "ecard2",
+          "number": "H5",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:H"
+        },
+        {
+          "gv_id": "GV-PK-AQ-H6",
+          "name": "Blissey",
+          "set_code": "ecard2",
+          "number": "H6",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:H"
+        },
+        {
+          "gv_id": "GV-PK-AQ-H7",
+          "name": "Electrode",
+          "set_code": "ecard2",
+          "number": "H7",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:H"
+        },
+        {
+          "gv_id": "GV-PK-AQ-H9",
+          "name": "Espeon",
+          "set_code": "ecard2",
+          "number": "H9",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:H"
+        },
+        {
+          "gv_id": "GV-PK-SK-H1",
+          "name": "Alakazam",
+          "set_code": "ecard3",
+          "number": "H1",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:H"
+        },
+        {
+          "gv_id": "GV-PK-SK-H2",
+          "name": "Arcanine",
+          "set_code": "ecard3",
+          "number": "H2",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:H"
+        },
+        {
+          "gv_id": "GV-PK-SK-H3",
+          "name": "Articuno",
+          "set_code": "ecard3",
+          "number": "H3",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:H"
+        },
+        {
+          "gv_id": "GV-PK-SK-H5",
+          "name": "Crobat",
+          "set_code": "ecard3",
+          "number": "H5",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:H"
+        },
+        {
+          "gv_id": "GV-PK-SK-H7",
+          "name": "Flareon",
+          "set_code": "ecard3",
+          "number": "H7",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:H"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "toys_r_us_stamp",
+      "family_label": "Toys R Us Stamp",
+      "variant_category": "retailer_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Toys R Us released special stamped promotional cards to coincide with Pokémon TCG expansion releases, beginning with the Generations era.",
+      "why_collectors_care": "The Toys R Us stamp identifies a retailer-distribution copy that collectors separate from the ordinary expansion card.",
+      "how_to_identify": "Look for the Toys R Us stamp on the card face.",
+      "grookai_rule": "Retailer-exclusive visible stamps create parent identity lanes when the exact card/stamp pairing is source-backed.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Toys_%22R%22_Us_Promotional_cards_%28TCG%29",
+        "https://bulbapedia.bulbagarden.net/wiki/Ponyta_%28Flashfire_14%29",
+        "https://www.tcgplayer.com/product/153282/pokemon-miscellaneous-cards-and-products-ponyta-14-83-toys-r-us-promo",
+        "https://www.pricecharting.com/game/pokemon-generations/ponyta-toys-r-us-14"
+      ],
+      "parent_row_count": 11,
+      "child_row_count": 11,
+      "sample_gv_ids": [
+        "GV-PK-G1-14-STAMPED",
+        "GV-PK-G1-22-TOYS-R-US-STAMP",
+        "GV-PK-G1-26-TOYS-R-US-STAMP",
+        "GV-PK-G1-32-TOYS-R-US-STAMP",
+        "GV-PK-G1-50-TOYS-R-US-STAMP",
+        "GV-PK-G1-53-TOYS-R-US-STAMP",
+        "GV-PK-G1-8-TOYS-R-US-STAMP",
+        "GV-PK-SM1-64-TOYS-R-US-STAMP",
+        "GV-PK-SM3-110-TOYS-R-US-STAMP",
+        "GV-PK-UPR-32-TOYS-R-US-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-G1-14-STAMPED",
+          "name": "Ponyta",
+          "set_code": "g1",
+          "number": "14",
+          "variant_key": "stamped",
+          "printed_identity_modifier": "stamped"
+        },
+        {
+          "gv_id": "GV-PK-G1-22-TOYS-R-US-STAMP",
+          "name": "Magikarp",
+          "set_code": "g1",
+          "number": "22",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp"
+        },
+        {
+          "gv_id": "GV-PK-G1-26-TOYS-R-US-STAMP",
+          "name": "Pikachu",
+          "set_code": "g1",
+          "number": "26",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp"
+        },
+        {
+          "gv_id": "GV-PK-G1-32-TOYS-R-US-STAMP",
+          "name": "Slowpoke",
+          "set_code": "g1",
+          "number": "32",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp"
+        },
+        {
+          "gv_id": "GV-PK-G1-50-TOYS-R-US-STAMP",
+          "name": "Clefairy",
+          "set_code": "g1",
+          "number": "50",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp"
+        },
+        {
+          "gv_id": "GV-PK-G1-53-TOYS-R-US-STAMP",
+          "name": "Meowth",
+          "set_code": "g1",
+          "number": "53",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp"
+        },
+        {
+          "gv_id": "GV-PK-G1-8-TOYS-R-US-STAMP",
+          "name": "Tangela",
+          "set_code": "g1",
+          "number": "8",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp"
+        },
+        {
+          "gv_id": "GV-PK-SM1-64-TOYS-R-US-STAMP",
+          "name": "Cosmog",
+          "set_code": "sm1",
+          "number": "64",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp"
+        },
+        {
+          "gv_id": "GV-PK-SM3-110-TOYS-R-US-STAMP",
+          "name": "Stufful",
+          "set_code": "sm3",
+          "number": "110",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp"
+        },
+        {
+          "gv_id": "GV-PK-UPR-32-TOYS-R-US-STAMP",
+          "name": "Piplup",
+          "set_code": "sm5",
+          "number": "32",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "winner_stamp",
+      "family_label": "Winner Stamp",
+      "variant_category": "organized_play_winner_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Winner cards are stamped reprints released through Pokémon League or related tournament programs.",
+      "why_collectors_care": "The WINNER stamp marks a tournament/league award copy and is physically distinct from the ordinary card.",
+      "how_to_identify": "Look for the foil WINNER stamp on the card face.",
+      "grookai_rule": "Winner-stamped cards are parent identity variants because the stamp records distribution and award context.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Winner_cards_%28TCG%29"
+      ],
+      "parent_row_count": 11,
+      "child_row_count": 1,
+      "sample_gv_ids": [
+        "GV-PK-BOG-1-WINNER-STAMP",
+        "GV-PK-BOG-2-WINNER-STAMP",
+        "GV-PK-BOG-6-WINNER-STAMP",
+        "GV-PK-BOG-7-WINNER-STAMP",
+        "GV-PK-EX1-85-WINNER-STAMP",
+        "GV-PK-EX1-94-WINNER-STAMP",
+        "GV-PK-EX2-93-WINNER-STAMP",
+        "GV-PK-EX3-15-WINNER-STAMP",
+        "GV-PK-EX3-19-WINNER-STAMP",
+        "GV-PK-EX5-29-WINNER-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-BOG-1-WINNER-STAMP",
+          "name": "Electabuzz",
+          "set_code": "bog",
+          "number": "1",
+          "variant_key": "winner_stamp",
+          "printed_identity_modifier": "winner_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BOG-2-WINNER-STAMP",
+          "name": "Hitmonchan",
+          "set_code": "bog",
+          "number": "2",
+          "variant_key": "winner_stamp",
+          "printed_identity_modifier": "winner_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BOG-6-WINNER-STAMP",
+          "name": "Dark Ivysaur",
+          "set_code": "bog",
+          "number": "6",
+          "variant_key": "winner_stamp",
+          "printed_identity_modifier": "winner_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BOG-7-WINNER-STAMP",
+          "name": "Dark Venusaur",
+          "set_code": "bog",
+          "number": "7",
+          "variant_key": "winner_stamp",
+          "printed_identity_modifier": "winner_stamp"
+        },
+        {
+          "gv_id": "GV-PK-EX1-85-WINNER-STAMP",
+          "name": "Oran Berry",
+          "set_code": "ex1",
+          "number": "85",
+          "variant_key": "winner_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-EX1-94-WINNER-STAMP",
+          "name": "Metal Energy",
+          "set_code": "ex1",
+          "number": "94",
+          "variant_key": "winner_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-EX2-93-WINNER-STAMP",
+          "name": "Multi Energy",
+          "set_code": "ex2",
+          "number": "93",
+          "variant_key": "winner_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-EX3-15-WINNER-STAMP",
+          "name": "Flygon",
+          "set_code": "ex3",
+          "number": "15",
+          "variant_key": "winner_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-EX3-19-WINNER-STAMP",
+          "name": "Salamence",
+          "set_code": "ex3",
+          "number": "19",
+          "variant_key": "winner_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-EX5-29-WINNER-STAMP",
+          "name": "Beldum",
+          "set_code": "ex5",
+          "number": "29",
+          "variant_key": "winner_stamp",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "arceus_ar_subset",
+      "family_label": "Platinum Arceus AR Subset",
+      "variant_category": "subset_identity",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Platinum: Arceus includes a distinct AR-numbered Arceus subset, with individual Arceus cards carrying AR-prefixed card numbers.",
+      "why_collectors_care": "The AR prefix identifies a themed Arceus subset checklist rather than ordinary set numbering.",
+      "how_to_identify": "Look for an AR-prefixed card number such as AR1 through AR9.",
+      "grookai_rule": "AR-prefixed cards are parent identity lanes because the prefix changes checklist membership.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Platinum%3A_Arceus_%28TCG%29",
+        "https://bulbapedia.bulbagarden.net/wiki/Arceus_%28Arceus_AR9%29"
+      ],
+      "parent_row_count": 9,
+      "child_row_count": 9,
+      "sample_gv_ids": [
+        "GV-PK-AR-AR1",
+        "GV-PK-AR-AR2",
+        "GV-PK-AR-AR3",
+        "GV-PK-AR-AR4",
+        "GV-PK-AR-AR5",
+        "GV-PK-AR-AR6",
+        "GV-PK-AR-AR7",
+        "GV-PK-AR-AR8",
+        "GV-PK-AR-AR9"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-AR-AR1",
+          "name": "Arceus",
+          "set_code": "pl4",
+          "number": "AR1",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:AR"
+        },
+        {
+          "gv_id": "GV-PK-AR-AR2",
+          "name": "Arceus",
+          "set_code": "pl4",
+          "number": "AR2",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:AR"
+        },
+        {
+          "gv_id": "GV-PK-AR-AR3",
+          "name": "Arceus",
+          "set_code": "pl4",
+          "number": "AR3",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:AR"
+        },
+        {
+          "gv_id": "GV-PK-AR-AR4",
+          "name": "Arceus",
+          "set_code": "pl4",
+          "number": "AR4",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:AR"
+        },
+        {
+          "gv_id": "GV-PK-AR-AR5",
+          "name": "Arceus",
+          "set_code": "pl4",
+          "number": "AR5",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:AR"
+        },
+        {
+          "gv_id": "GV-PK-AR-AR6",
+          "name": "Arceus",
+          "set_code": "pl4",
+          "number": "AR6",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:AR"
+        },
+        {
+          "gv_id": "GV-PK-AR-AR7",
+          "name": "Arceus",
+          "set_code": "pl4",
+          "number": "AR7",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:AR"
+        },
+        {
+          "gv_id": "GV-PK-AR-AR8",
+          "name": "Arceus",
+          "set_code": "pl4",
+          "number": "AR8",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:AR"
+        },
+        {
+          "gv_id": "GV-PK-AR-AR9",
+          "name": "Arceus",
+          "set_code": "pl4",
+          "number": "AR9",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:AR"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "holiday_calendar_snowflake_stamp",
+      "family_label": "Holiday Calendar Snowflake / Festive Stamp",
+      "variant_category": "seasonal_product_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Pokémon TCG Holiday Calendar products include foil cards with festive stamps; older Countdown/Surprise Calendar products used foil snowflake stamps on included cards.",
+      "why_collectors_care": "Snowflake/festive-stamped cards are tied to seasonal calendar products, so collectors track them separately from standard set copies.",
+      "how_to_identify": "Look for the snowflake or festive calendar stamp on the card art and verify the card against the relevant Holiday/Countdown Calendar product list.",
+      "grookai_rule": "Holiday Calendar stamped cards are parent identity variants because the seasonal product stamp changes distribution identity.",
+      "source_urls": [
+        "https://www.pokemon.com/us/pokemon-tcg/product-gallery/holiday-calendar",
+        "https://www.pokemon.com/us/pokemon-tcg/product-gallery/holiday-calendar-2025",
+        "https://www.pokemoncenter.com/product/290-85256/pokemon-tcg-holiday-calendar-glaceon-alolan-vulpix",
+        "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Countdown_Calendar_%28TCG%29"
+      ],
+      "parent_row_count": 7,
+      "child_row_count": 0,
+      "sample_gv_ids": [
+        "GV-PK-SV02-53-SNOWFLAKE-STAMP",
+        "GV-PK-SV02-58-SNOWFLAKE-STAMP",
+        "GV-PK-SWSH2-55-SNOWFLAKE-STAMP",
+        "GV-PK-SWSH6-45-SNOWFLAKE-STAMP",
+        "GV-PK-SWSH6-46-SNOWFLAKE-STAMPED",
+        "GV-PK-SWSH7-43-SNOWFLAKE-STAMP",
+        "GV-PK-SWSH8-84-SNOWFLAKE-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-SV02-53-SNOWFLAKE-STAMP",
+          "name": "Cetoddle",
+          "set_code": "sv02",
+          "number": "53",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SV02-58-SNOWFLAKE-STAMP",
+          "name": "Frigibax",
+          "set_code": "sv02",
+          "number": "58",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH2-55-SNOWFLAKE-STAMP",
+          "name": "Eiscue V",
+          "set_code": "swsh2",
+          "number": "55",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH6-45-SNOWFLAKE-STAMP",
+          "name": "Ice Rider Calyrex V",
+          "set_code": "swsh6",
+          "number": "45",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH6-46-SNOWFLAKE-STAMPED",
+          "name": "Ice Rider Calyrex VMAX",
+          "set_code": "swsh6",
+          "number": "46",
+          "variant_key": "snowflake_stamped",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH7-43-SNOWFLAKE-STAMP",
+          "name": "Cryogonal",
+          "set_code": "swsh7",
+          "number": "43",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH8-84-SNOWFLAKE-STAMP",
+          "name": "Snom",
+          "set_code": "swsh8",
+          "number": "84",
+          "variant_key": "snowflake_stamp",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "w_stamp",
+      "family_label": "W Stamp",
+      "variant_category": "retail_promotion_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "W Promotional cards are reprints with a gold foil W stamp.",
+      "why_collectors_care": "The W stamp identifies a separate promotional distribution copy from the normal expansion card.",
+      "how_to_identify": "Look for the gold foil W stamp on the card face.",
+      "grookai_rule": "W-stamped cards are modeled as parent identity variants.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/W_Promotional_cards_%28TCG%29"
+      ],
+      "parent_row_count": 7,
+      "child_row_count": 0,
+      "sample_gv_ids": [
+        "GV-PK-BASE2-60-WOTC-STAMP",
+        "GV-PK-BASE3-50-WOTC-STAMP",
+        "GV-PK-BASE4-63-WOTC-STAMP",
+        "GV-PK-BASE5-19-WOTC-STAMP",
+        "GV-PK-BASE5-32-WOTC-STAMP",
+        "GV-PK-GYM1-54-WOTC-STAMP",
+        "GV-PK-GYM2-37-WOTC-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-BASE2-60-WOTC-STAMP",
+          "name": "Pikachu",
+          "set_code": "base2",
+          "number": "60",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BASE3-50-WOTC-STAMP",
+          "name": "Kabuto",
+          "set_code": "base3",
+          "number": "50",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BASE4-63-WOTC-STAMP",
+          "name": "Wartortle",
+          "set_code": "base4",
+          "number": "63",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-BASE5-19-WOTC-STAMP",
+          "name": "Dark Arbok",
+          "set_code": "base5",
+          "number": "19",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BASE5-32-WOTC-STAMP",
+          "name": "Dark Charmeleon",
+          "set_code": "base5",
+          "number": "32",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp"
+        },
+        {
+          "gv_id": "GV-PK-GYM1-54-WOTC-STAMP",
+          "name": "Misty's Psyduck",
+          "set_code": "gym1",
+          "number": "54",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp"
+        },
+        {
+          "gv_id": "GV-PK-GYM2-37-WOTC-STAMP",
+          "name": "Brock's Vulpix",
+          "set_code": "gym2",
+          "number": "37",
+          "variant_key": "wotc_stamp",
+          "printed_identity_modifier": "wotc_stamp"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "illustration_rare_identity",
+      "family_label": "Illustration Rare Identity",
+      "variant_category": "rarity_art_identity",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Illustration Rare is a Scarlet & Violet-era rarity outside Asia, used for Full Art Secret cards focused on expanded character or environment artwork.",
+      "why_collectors_care": "Illustration Rares are collected as a modern art-focused rarity lane with distinct checklist and rarity meaning, not as ordinary set copies.",
+      "how_to_identify": "Look for the Illustration Rare rarity label/symbol and the full-art scene treatment.",
+      "grookai_rule": "Illustration Rare is a parent identity label when the printed card is stored as a distinct art/rarity lane.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Illustration_rare_card_%28TCG%29"
+      ],
+      "parent_row_count": 6,
+      "child_row_count": 0,
+      "sample_gv_ids": [
+        "GV-PK-ME03-089-ILLUSTRATION-RARE",
+        "GV-PK-ME03-090-ILLUSTRATION-RARE",
+        "GV-PK-ME03-092-ILLUSTRATION-RARE",
+        "GV-PK-ME03-093-ILLUSTRATION-RARE",
+        "GV-PK-ME03-094-ILLUSTRATION-RARE",
+        "GV-PK-ME03-095-ILLUSTRATION-RARE"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-ME03-089-ILLUSTRATION-RARE",
+          "name": "Spewpa",
+          "set_code": "me03",
+          "number": "089",
+          "variant_key": "illustration_rare",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-ME03-090-ILLUSTRATION-RARE",
+          "name": "Rowlet",
+          "set_code": "me03",
+          "number": "090",
+          "variant_key": "illustration_rare",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-ME03-092-ILLUSTRATION-RARE",
+          "name": "Aurorus",
+          "set_code": "me03",
+          "number": "092",
+          "variant_key": "illustration_rare",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-ME03-093-ILLUSTRATION-RARE",
+          "name": "Dedenne",
+          "set_code": "me03",
+          "number": "093",
+          "variant_key": "illustration_rare",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-ME03-094-ILLUSTRATION-RARE",
+          "name": "Clefairy",
+          "set_code": "me03",
+          "number": "094",
+          "variant_key": "illustration_rare",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-ME03-095-ILLUSTRATION-RARE",
+          "name": "Espurr",
+          "set_code": "me03",
+          "number": "095",
+          "variant_key": "illustration_rare",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "rotom_rt_subset",
+      "family_label": "Rising Rivals Rotom RT Subset",
+      "variant_category": "subset_identity",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "Rising Rivals includes Rotom-form cards with RT-prefixed card numbers.",
+      "why_collectors_care": "The RT prefix identifies the Rotom-form subset lane and keeps these cards distinct from ordinary numbered Rising Rivals cards.",
+      "how_to_identify": "Look for an RT-prefixed card number and Rotom form identity.",
+      "grookai_rule": "RT-prefixed cards are parent identity lanes because the prefix changes printed checklist identity.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Rotom_%28TCG%29",
+        "https://bulbapedia.bulbagarden.net/wiki/Frost_Rotom_%28Rising_Rivals_RT2%29"
+      ],
+      "parent_row_count": 6,
+      "child_row_count": 6,
+      "sample_gv_ids": [
+        "GV-PK-RR-RT1",
+        "GV-PK-RR-RT2",
+        "GV-PK-RR-RT3",
+        "GV-PK-RR-RT4",
+        "GV-PK-RR-RT5",
+        "GV-PK-RR-RT6"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-RR-RT1",
+          "name": "Fan Rotom",
+          "set_code": "pl2",
+          "number": "RT1",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RT"
+        },
+        {
+          "gv_id": "GV-PK-RR-RT2",
+          "name": "Frost Rotom",
+          "set_code": "pl2",
+          "number": "RT2",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RT"
+        },
+        {
+          "gv_id": "GV-PK-RR-RT3",
+          "name": "Heat Rotom",
+          "set_code": "pl2",
+          "number": "RT3",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RT"
+        },
+        {
+          "gv_id": "GV-PK-RR-RT4",
+          "name": "Mow Rotom",
+          "set_code": "pl2",
+          "number": "RT4",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RT"
+        },
+        {
+          "gv_id": "GV-PK-RR-RT5",
+          "name": "Wash Rotom",
+          "set_code": "pl2",
+          "number": "RT5",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RT"
+        },
+        {
+          "gv_id": "GV-PK-RR-RT6",
+          "name": "Charon's Choice",
+          "set_code": "pl2",
+          "number": "RT6",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:RT"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "base_pikachu_print_run",
+      "family_label": "Base Pikachu Cheek / Shadowless Print Run",
+      "variant_category": "print_run_variant",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Early Base Set Pikachu print runs differ by cheek color, edition, shadowless frame, and in one lane a weak/ghosted First Edition stamp impression.",
+      "why_collectors_care": "These visual print-run differences identify early Base Set production states and are collected separately from later Unlimited copies.",
+      "how_to_identify": "Check cheek color, shadowless frame, edition stamp, and whether the First Edition stamp is absent, normal, or ghosted.",
+      "grookai_rule": "Visible print-run identity differences are parent identity variants, not finishes.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pikachu_%28Base_Set_58%29",
+        "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059"
+      ],
+      "parent_row_count": 5,
+      "child_row_count": 5,
+      "sample_gv_ids": [
+        "GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS",
+        "GV-PK-BASE1-58-FIRST-EDITION-YELLOW-CHEEKS",
+        "GV-PK-BASE1-58-GHOST-STAMP-SHADOWLESS",
+        "GV-PK-BASE1-58-SHADOWLESS-RED-CHEEKS",
+        "GV-PK-BASE1-58-SHADOWLESS-YELLOW-CHEEKS"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS",
+          "name": "Pikachu",
+          "set_code": "base1",
+          "number": "58",
+          "variant_key": "first_edition_red_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:red_cheeks"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-58-FIRST-EDITION-YELLOW-CHEEKS",
+          "name": "Pikachu",
+          "set_code": "base1",
+          "number": "58",
+          "variant_key": "first_edition_yellow_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:yellow_cheeks"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-58-GHOST-STAMP-SHADOWLESS",
+          "name": "Pikachu",
+          "set_code": "base1",
+          "number": "58",
+          "variant_key": "ghost_stamp_shadowless",
+          "printed_identity_modifier": "print_run:shadowless;stamp_error:ghost_first_edition"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-58-SHADOWLESS-RED-CHEEKS",
+          "name": "Pikachu",
+          "set_code": "base1",
+          "number": "58",
+          "variant_key": "shadowless_red_cheeks",
+          "printed_identity_modifier": "print_run:shadowless;color:red_cheeks"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-58-SHADOWLESS-YELLOW-CHEEKS",
+          "name": "Pikachu",
+          "set_code": "base1",
+          "number": "58",
+          "variant_key": "shadowless_yellow_cheeks",
+          "printed_identity_modifier": "print_run:shadowless;color:yellow_cheeks"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "battle_academy_deck_mark",
+      "family_label": "Battle Academy Deck Mark",
+      "variant_category": "product_deck_identity",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "Battle Academy products are beginner-friendly deck kits with fixed decks and teaching materials; some included cards carry deck/tutorial identity marks.",
+      "why_collectors_care": "Deck-marked Battle Academy cards come from a specific teaching product and can be separated from normal set copies.",
+      "how_to_identify": "Look for Battle Academy deck or sequence marks and confirm the source product year.",
+      "grookai_rule": "Battle Academy deck-mark rows are parent identity variants when the mark is visible and source-backed.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_2022_%28TCG%29"
+      ],
+      "parent_row_count": 5,
+      "child_row_count": 2,
+      "sample_gv_ids": [
+        "GV-PK-SMP-65-BATTLE-ACADEMY-DECK-MARK",
+        "GV-PK-SWSH6-23-BATTLE-ACADEMY-DECK-MARK",
+        "GV-PK-SWSH6-24-BATTLE-ACADEMY-DECK-MARK",
+        "GV-PK-SWSH8-43-BATTLE-ACADEMY-DECK-MARK",
+        "GV-PK-SWSHP-065-BATTLE-ACADEMY-DECK-MARK"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-SMP-65-BATTLE-ACADEMY-DECK-MARK",
+          "name": "Alolan Raichu",
+          "set_code": "smp",
+          "number": "SM65",
+          "variant_key": "battle_academy_deck_mark",
+          "printed_identity_modifier": "battle_academy_deck_mark"
+        },
+        {
+          "gv_id": "GV-PK-SWSH6-23-BATTLE-ACADEMY-DECK-MARK",
+          "name": "Larvesta",
+          "set_code": "swsh6",
+          "number": "23",
+          "variant_key": "battle_academy_deck_mark",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH6-24-BATTLE-ACADEMY-DECK-MARK",
+          "name": "Volcarona",
+          "set_code": "swsh6",
+          "number": "24",
+          "variant_key": "battle_academy_deck_mark",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSH8-43-BATTLE-ACADEMY-DECK-MARK",
+          "name": "Cinderace V",
+          "set_code": "swsh8",
+          "number": "43",
+          "variant_key": "battle_academy_deck_mark",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SWSHP-065-BATTLE-ACADEMY-DECK-MARK",
+          "name": "Eevee V",
+          "set_code": "swshp",
+          "number": "SWSH065",
+          "variant_key": "battle_academy_deck_mark",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "pokemon_center_stamp",
+      "family_label": "Pokémon Center Stamp",
+      "variant_category": "direct_retail_promotion_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "Pokémon Center stamped promos are tied to Pokémon Center direct retail or preorder campaigns for specific products.",
+      "why_collectors_care": "The stamp identifies a direct-retail promotional copy that is physically distinct from an unstamped set or promo card.",
+      "how_to_identify": "Look for the Pokémon Center stamp and verify the card against the exact campaign/product source.",
+      "grookai_rule": "Pokémon Center stamps are parent identity variants; exact campaign text should be preserved whenever available.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Miscellaneous_Promotional_cards_%28TCG%29"
+      ],
+      "parent_row_count": 5,
+      "child_row_count": 4,
+      "sample_gv_ids": [
+        "GV-PK-BASEP-52-POKEMON-CENTER-NY-STAMP",
+        "GV-PK-BASEP-52-POKEMON-CENTER-STAMP",
+        "GV-PK-SV03-5-007-POKEMON-CENTER-STAMP",
+        "GV-PK-SVP-209-POKEMON-CENTER-STAMP",
+        "GV-PK-SVP-210-POKEMON-CENTER-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-BASEP-52-POKEMON-CENTER-NY-STAMP",
+          "name": "Ho-oh",
+          "set_code": "basep",
+          "number": "52",
+          "variant_key": "pokemon_center_ny_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-BASEP-52-POKEMON-CENTER-STAMP",
+          "name": "Ho-oh",
+          "set_code": "basep",
+          "number": "52",
+          "variant_key": "pokemon_center_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SV03-5-007-POKEMON-CENTER-STAMP",
+          "name": "Squirtle",
+          "set_code": "sv03.5",
+          "number": "007",
+          "variant_key": "pokemon_center_stamp",
+          "printed_identity_modifier": "pokemon_center_stamp"
+        },
+        {
+          "gv_id": "GV-PK-SVP-209-POKEMON-CENTER-STAMP",
+          "name": "Thundurus",
+          "set_code": "svp",
+          "number": "209",
+          "variant_key": "pokemon_center_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SVP-210-POKEMON-CENTER-STAMP",
+          "name": "Tornadus",
+          "set_code": "svp",
+          "number": "210",
+          "variant_key": "pokemon_center_stamp",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "detective_pikachu_movie_stamp",
+      "family_label": "Detective Pikachu Movie Stamp",
+      "variant_category": "movie_campaign_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "Detective Pikachu stamped promos were distributed through movie-era promotional channels, including stamped SM Promo variants tied to the POKEMON Detective Pikachu campaign.",
+      "why_collectors_care": "The movie stamp identifies a campaign-distribution copy that collectors separate from the ordinary SM Promo or set card.",
+      "how_to_identify": "Look for the Detective Pikachu movie stamp on the card face and confirm the promo number against card-specific checklist or marketplace references.",
+      "grookai_rule": "Movie-campaign stamps are parent identity variants when the exact stamped card is source-backed.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Detective_Pikachu_%28SM_Promo_190%29",
+        "https://bulbapedia.bulbagarden.net/wiki/Bulbasaur_%28SM_Promo_198%29",
+        "https://www.tcgplayer.com/product/206823/pokemon-sm-promos-detective-pikachu-sm170-stamped",
+        "https://www.tcgplayer.com/product/196992/pokemon-sm-promos-detective-pikachu-sm190-stamped",
+        "https://www.tcgplayer.com/product/206824/pokemon-sm-promos-bulbasaur-sm198-detective-pikachu-stamped"
+      ],
+      "parent_row_count": 4,
+      "child_row_count": 2,
+      "sample_gv_ids": [
+        "GV-PK-SM-SM170-SM-PROMOS-DETECTIVE-PIKACHU-SM170-STAMP",
+        "GV-PK-SM-SM190-SM-PROMOS-DETECTIVE-PIKACHU-SM190-STAMP",
+        "GV-PK-SMP-190-PIKACHU-STAMP",
+        "GV-PK-SMP-198-PIKACHU-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-SM-SM170-SM-PROMOS-DETECTIVE-PIKACHU-SM170-STAMP",
+          "name": "Detective Pikachu",
+          "set_code": "smp",
+          "number": "SM170",
+          "variant_key": "sm_promos_detective_pikachu_sm170_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SMP-190-PIKACHU-STAMP",
+          "name": "Detective Pikachu",
+          "set_code": "smp",
+          "number": "SM190",
+          "variant_key": "pikachu_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SM-SM190-SM-PROMOS-DETECTIVE-PIKACHU-SM190-STAMP",
+          "name": "Detective Pikachu",
+          "set_code": "smp",
+          "number": "SM190",
+          "variant_key": "sm_promos_detective_pikachu_sm190_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SMP-198-PIKACHU-STAMP",
+          "name": "Bulbasaur",
+          "set_code": "smp",
+          "number": "SM198",
+          "variant_key": "pikachu_stamp",
+          "printed_identity_modifier": "pikachu_stamp"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "prismatic_evolutions_premium_collection_stamp",
+      "family_label": "Prismatic Evolutions Premium Collection Stamp",
+      "variant_category": "product_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "Selected Prismatic Evolutions Premium Collection products included stamped promotional reprints such as Lucario and Tyranitar collection cards.",
+      "why_collectors_care": "The product stamp identifies a collection-box distribution copy, so collectors separate it from the unstamped Prismatic Evolutions card.",
+      "how_to_identify": "Look for the Prismatic Evolutions stamp on the card face and verify the exact card against product announcement or catalog sources.",
+      "grookai_rule": "Product-exclusive stamps are parent identity variants when exact product/card evidence is preserved.",
+      "source_urls": [
+        "https://www.pokebeach.com/forums/threads/%E2%80%9Cprismatic-evolutions-lucario-ex-tyranitar-ex-premium-collection%E2%80%9D-to-release-at-sam%E2%80%99s-club.156293/",
+        "https://www.pokeguardian.com/2646761_prismatic-evolutions-lucario-ex-tyranitar-ex-premium-collection-revealed",
+        "https://www.pricecharting.com/game/pokemon-prismatic-evolutions/lucario-stamped-51"
+      ],
+      "parent_row_count": 4,
+      "child_row_count": 0,
+      "sample_gv_ids": [
+        "GV-PK-PRE-051-PRISMATIC-EVOLUTIONS-STAMP",
+        "GV-PK-PRE-064-PRISMATIC-EVOLUTIONS-STAMP",
+        "GV-PK-PRE-076-PRISMATIC-EVOLUTION-STAMP",
+        "GV-PK-PRE-082-PRISMATIC-EVOLUTIONS-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-PRE-051-PRISMATIC-EVOLUTIONS-STAMP",
+          "name": "Lucario ex",
+          "set_code": "sv8pt5",
+          "number": "051",
+          "variant_key": "prismatic_evolutions_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-PRE-064-PRISMATIC-EVOLUTIONS-STAMP",
+          "name": "Tyranitar ex",
+          "set_code": "sv8pt5",
+          "number": "064",
+          "variant_key": "prismatic_evolutions_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-PRE-076-PRISMATIC-EVOLUTION-STAMP",
+          "name": "Snorlax ex",
+          "set_code": "sv8pt5",
+          "number": "076",
+          "variant_key": "prismatic_evolution_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-PRE-082-PRISMATIC-EVOLUTIONS-STAMP",
+          "name": "Lugia ex",
+          "set_code": "sv8pt5",
+          "number": "082",
+          "variant_key": "prismatic_evolutions_stamp",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "wb_kids_stamp",
+      "family_label": "WB Kids Stamp",
+      "variant_category": "media_promotion_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "WB Kids stamped Wizards Black Star Promos were tied to Pokémon movie-era promotional distribution; missing and inverted stamp states are recognized special cases for specific cards.",
+      "why_collectors_care": "The stamp state identifies how the promo copy was distributed or mis-stamped, creating a physically distinct lane from the ordinary Black Star Promo.",
+      "how_to_identify": "Check whether the WB Kids stamp is present, missing, or inverted on the card face.",
+      "grookai_rule": "Grookai models WB Kids stamp states as parent identity variants when card-specific evidence is strong enough.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Miscellaneous_Promotional_cards_%28TCG%29",
+        "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328"
+      ],
+      "parent_row_count": 4,
+      "child_row_count": 4,
+      "sample_gv_ids": [
+        "GV-PK-BASEP-2-WB-KIDS-STAMP",
+        "GV-PK-BASEP-3-WB-KIDS-STAMP",
+        "GV-PK-BASEP-4-WB-KIDS-STAMP",
+        "GV-PK-BASEP-5-WB-KIDS-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-BASEP-2-WB-KIDS-STAMP",
+          "name": "Electabuzz",
+          "set_code": "basep",
+          "number": "2",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie"
+        },
+        {
+          "gv_id": "GV-PK-BASEP-3-WB-KIDS-STAMP",
+          "name": "Mewtwo",
+          "set_code": "basep",
+          "number": "3",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie"
+        },
+        {
+          "gv_id": "GV-PK-BASEP-4-WB-KIDS-STAMP",
+          "name": "Pikachu",
+          "set_code": "basep",
+          "number": "4",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie"
+        },
+        {
+          "gv_id": "GV-PK-BASEP-5-WB-KIDS-STAMP",
+          "name": "Dragonite",
+          "set_code": "basep",
+          "number": "5",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "e3_pikachu_stamp",
+      "family_label": "E3 Pikachu Stamp",
+      "variant_category": "event_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "Base Set Pikachu has E3-stamped promotional versions; Bulbapedia records red-cheeked copies from Nintendo booth distribution at E3 in May 1999 and yellow-cheeked copies from Nintendo Power.",
+      "why_collectors_care": "The stamp and cheek-color combination identifies a narrow early promotional distribution and separates these copies from ordinary Base Set Pikachu.",
+      "how_to_identify": "Look for the gold E3 stamp and verify whether the Pikachu artwork has red or yellow cheeks.",
+      "grookai_rule": "Grookai models the E3 stamp and cheek color together because both are visible identity dimensions.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pikachu_%28Base_Set_58%29",
+        "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059"
+      ],
+      "parent_row_count": 3,
+      "child_row_count": 2,
+      "sample_gv_ids": [
+        "GV-PK-BASE1-58-E3-STAMP",
+        "GV-PK-BASE1-58-E3-STAMP-RED-CHEEKS",
+        "GV-PK-BASE1-58-E3-STAMP-YELLOW-CHEEKS"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-BASE1-58-E3-STAMP",
+          "name": "Pikachu",
+          "set_code": "base1",
+          "number": "58",
+          "variant_key": "e3_stamp",
+          "printed_identity_modifier": "e3_stamp"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-58-E3-STAMP-RED-CHEEKS",
+          "name": "Pikachu",
+          "set_code": "base1",
+          "number": "58",
+          "variant_key": "e3_stamp_red_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:red_cheeks"
+        },
+        {
+          "gv_id": "GV-PK-BASE1-58-E3-STAMP-YELLOW-CHEEKS",
+          "name": "Pikachu",
+          "set_code": "base1",
+          "number": "58",
+          "variant_key": "e3_stamp_yellow_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:yellow_cheeks"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "eb_games_stamp",
+      "family_label": "EB Games Stamp",
+      "variant_category": "retailer_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "EB Games-stamped cards are retailer-exclusive promotional copies distributed through EB Games channels in markets where EB Games operates.",
+      "why_collectors_care": "The EB Games stamp marks a regional retailer-exclusive copy, making it a distinct lane from the unstamped version of the same card.",
+      "how_to_identify": "Look for the EB Games stamp and verify the exact card against retailer-exclusive product/checklist sources.",
+      "grookai_rule": "EB Games stamps are parent identity variants when the exact card/stamp pairing is source-backed.",
+      "source_urls": [
+        "https://www.tcgplayer.com/product/531251/pokemon-miscellaneous-cards-and-products-charmander-004-165-ebgames-exclusive",
+        "https://www.pricecharting.com/game/pokemon-scarlet-%26-violet-151/charmander-eb-games-4",
+        "https://www.tcgplayer.com/product/686505/pokemon-miscellaneous-cards-and-products-gengar-cosmos-holo-eb-games-exclusive"
+      ],
+      "parent_row_count": 3,
+      "child_row_count": 0,
+      "sample_gv_ids": [
+        "GV-PK-ME03-050-EB-GAMES-STAMP",
+        "GV-PK-ME03-050-EB-GAMES-STAMPED",
+        "GV-PK-SV03-5-004-EB-GAMES-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-ME03-050-EB-GAMES-STAMP",
+          "name": "Gengar",
+          "set_code": "me03",
+          "number": "050",
+          "variant_key": "eb_games_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-ME03-050-EB-GAMES-STAMPED",
+          "name": "Gengar",
+          "set_code": "me03",
+          "number": "050",
+          "variant_key": "eb_games_stamped",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-SV03-5-004-EB-GAMES-STAMP",
+          "name": "Charmander",
+          "set_code": "sv03.5",
+          "number": "004",
+          "variant_key": "eb_games_stamp",
+          "printed_identity_modifier": "eb_games_stamp"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "world_championships_stamp",
+      "family_label": "World Championships Stamp",
+      "variant_category": "event_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "World Championships stamped cards are tied to specific championship-event distributions or staff/placement programs.",
+      "why_collectors_care": "The stamp connects the card to a specific competitive event and can encode staff, placement, or event participation context.",
+      "how_to_identify": "Look for the World Championships, Worlds, Staff, or placement stamp on the card face.",
+      "grookai_rule": "Worlds/event-stamped rows stay parent identity variants; exact event/card provenance should be preserved before adding new lanes.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Miscellaneous_Promotional_cards_%28TCG%29"
+      ],
+      "parent_row_count": 2,
+      "child_row_count": 0,
+      "sample_gv_ids": [
+        "GV-PK-PR-BLW-50-WORLDS-12-STAMP",
+        "GV-PK-PR-DPP-05-WORLDS-07-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-PR-BLW-50-WORLDS-12-STAMP",
+          "name": "Tropical Beach",
+          "set_code": "bwp",
+          "number": "50",
+          "variant_key": "worlds_12_stamp",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-PR-DPP-05-WORLDS-07-STAMP",
+          "name": "Tropical Wind",
+          "set_code": "dpp",
+          "number": "05",
+          "variant_key": "worlds_07_stamp",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "asia_gym_stamp",
+      "family_label": "Asia Gym Stamp",
+      "variant_category": "event_or_regional_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "Asia Gym-stamped cards are regional event/distribution copies of existing cards, with the Gym mark applied to distinguish the promotional copy from the base set printing.",
+      "why_collectors_care": "The Gym stamp marks a regional/event-distribution variant that collectors track separately from the ordinary set card and from Play! Pokémon Prize Pack stamped copies.",
+      "how_to_identify": "Look for the Gym stamp on the card face and confirm the exact set, card number, and name against stamp-specific catalog references.",
+      "grookai_rule": "Gym-stamped rows are parent identity variants when the exact card/stamp pairing is source-backed; the stamp is not modeled as a finish.",
+      "source_urls": [
+        "https://www.pricecharting.com/game/pokemon-astral-radiance/radiant-greninja-gym-stamp-46",
+        "https://www.pkmn.gg/series/sword-shield/astral-radiance/046"
+      ],
+      "parent_row_count": 1,
+      "child_row_count": 0,
+      "sample_gv_ids": [
+        "GV-PK-SWSH10-46-GYM-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-SWSH10-46-GYM-STAMP",
+          "name": "Radiant Greninja",
+          "set_code": "swsh10",
+          "number": "46",
+          "variant_key": "gym_stamp",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "first_edition",
+      "family_label": "First Edition",
+      "variant_category": "edition_print_run",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "First Edition copies were printed with an edition stamp identifying an earlier edition of the card.",
+      "why_collectors_care": "The stamp marks a separate early print identity, usually collected separately from Unlimited copies.",
+      "how_to_identify": "Look for the First Edition stamp on the card face.",
+      "grookai_rule": "First Edition is modeled as a parent identity modifier, not as a finish.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pikachu_%28Base_Set_58%29",
+        "https://bulbapedia.bulbagarden.net/wiki/Prerelease_cards_%28TCG%29"
+      ],
+      "parent_row_count": 1,
+      "child_row_count": 1,
+      "sample_gv_ids": [
+        "GV-PK-PR-1-FIRST-EDITION"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-PR-1-FIRST-EDITION",
+          "name": "Pikachu",
+          "set_code": "basep",
+          "number": "1",
+          "variant_key": null,
+          "printed_identity_modifier": "edition:first_edition"
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "gamestop_stamp",
+      "family_label": "GameStop Stamp",
+      "variant_category": "retailer_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "GameStop-stamped cards are retailer-exclusive promotional copies distributed through GameStop channels.",
+      "why_collectors_care": "The GameStop stamp identifies a retailer-exclusive copy that collectors separate from unstamped promo or set copies.",
+      "how_to_identify": "Look for the GameStop stamp and verify the exact card against retailer-exclusive product/checklist sources.",
+      "grookai_rule": "GameStop stamps are parent identity variants when the exact card/stamp pairing is source-backed.",
+      "source_urls": [
+        "https://www.tcgplayer.com/product/247362/pokemon-miscellaneous-cards-and-products-duraludon-swsh028-gamestop-exclusive",
+        "https://www.pricecharting.com/game/pokemon-promo/duraludon-stamped-swsh028"
+      ],
+      "parent_row_count": 1,
+      "child_row_count": 1,
+      "sample_gv_ids": [
+        "GV-PK-SWSHP-028-GAMESTOP-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-SWSHP-028-GAMESTOP-STAMP",
+          "name": "Duraludon",
+          "set_code": "swshp",
+          "number": "SWSH028",
+          "variant_key": "gamestop_stamp",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "jr_stamp_rally_promo",
+      "family_label": "JR East Stamp Rally Promo",
+      "variant_category": "event_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "medium",
+      "why_it_exists": "JR East Stamp Rally promotional cards were tied to Japanese railway stamp-rally events and include visibly stamped promo copies.",
+      "why_collectors_care": "The JR Stamp Rally mark ties the card to a narrow event-distribution context, making it distinct from the standard promo card.",
+      "how_to_identify": "Look for the JR East Stamp Rally mark on the card face and verify the card against card-specific references.",
+      "grookai_rule": "Stamp-rally event cards are parent identity variants when the exact card/stamp pairing is source-backed.",
+      "source_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Eevee_%28Wizards_Promo_11%29",
+        "https://www.tcgplayer.com/product/618732/pokemon-wotc-promo-eevee-jr-east-stamp-rally",
+        "https://www.psacard.com/spec/psa/2082246"
+      ],
+      "parent_row_count": 1,
+      "child_row_count": 1,
+      "sample_gv_ids": [
+        "GV-PK-BASEP-11-JR-STAMP-RALLY"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-BASEP-11-JR-STAMP-RALLY",
+          "name": "Eevee",
+          "set_code": "basep",
+          "number": "11",
+          "variant_key": "jr_stamp_rally",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "pokemon_together_stamp",
+      "family_label": "Pokémon Together Stamp",
+      "variant_category": "campaign_distribution_stamp",
+      "modeling_level": "parent_identity",
+      "confidence": "high",
+      "why_it_exists": "The Pokémon Together stamp was used on Pikachu and Eevee promos distributed through Poké Post pop-up gift-pack campaigns.",
+      "why_collectors_care": "The gold campaign stamp identifies the pop-up/gift-pack distribution copy rather than a normal set copy.",
+      "how_to_identify": "Look for the Pokémon Together stamp on the card face.",
+      "grookai_rule": "Campaign stamps are modeled as parent identities so the stamped copy can be owned, searched, and imaged separately.",
+      "source_urls": [
+        "https://www.pokebeach.com/2023/11/special-pikachu-and-eevee-pokemon-together-stamped-promos-to-release-at-european-pop-ups"
+      ],
+      "parent_row_count": 1,
+      "child_row_count": 0,
+      "sample_gv_ids": [
+        "GV-PK-MEW-025-POKEMON-TOGETHER-STAMP"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-MEW-025-POKEMON-TOGETHER-STAMP",
+          "name": "Pikachu",
+          "set_code": "sv03.5",
+          "number": "025",
+          "variant_key": "pokemon_together_stamp",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true
+    },
+    {
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "variant_category": "scope_gap",
+      "modeling_level": "parent_identity",
+      "confidence": "needs_scope_decision",
+      "why_it_exists": "This row uses a short variant/suffix token that appears to encode printed identity rather than a campaign stamp or special-origin story.",
+      "why_collectors_care": "Some suffixes are collector-meaningful, but not every printed suffix needs a historical origin explanation.",
+      "how_to_identify": "Review set, number, and active identity payload to decide whether this belongs in Variant Origin Index or a separate printed-identity explanation index.",
+      "grookai_rule": "Do not publish a special-origin explanation until the lane is classified as stamp, error, print-run, or other collector-origin family.",
+      "source_urls": [],
+      "parent_row_count": 60,
+      "child_row_count": 69,
+      "sample_gv_ids": [
+        "GV-PK-AQ-103A",
+        "GV-PK-AQ-103B",
+        "GV-PK-AQ-50A",
+        "GV-PK-AQ-50B",
+        "GV-PK-AQ-74A",
+        "GV-PK-AQ-74B",
+        "GV-PK-AQ-95A",
+        "GV-PK-AQ-95B",
+        "GV-PK-BKP-107A",
+        "GV-PK-BKP-98B"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-AQ-103A",
+          "name": "Porygon",
+          "set_code": "ecard2",
+          "number": "103a",
+          "variant_key": "a",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-AQ-103B",
+          "name": "Porygon",
+          "set_code": "ecard2",
+          "number": "103b",
+          "variant_key": "b",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-AQ-50A",
+          "name": "Golduck",
+          "set_code": "ecard2",
+          "number": "50a",
+          "variant_key": "a",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-AQ-50B",
+          "name": "Golduck",
+          "set_code": "ecard2",
+          "number": "50b",
+          "variant_key": "b",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-AQ-74A",
+          "name": "Drowzee",
+          "set_code": "ecard2",
+          "number": "74a",
+          "variant_key": "a",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-AQ-74B",
+          "name": "Drowzee",
+          "set_code": "ecard2",
+          "number": "74b",
+          "variant_key": "b",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-AQ-95A",
+          "name": "Mr. Mime",
+          "set_code": "ecard2",
+          "number": "95a",
+          "variant_key": "a",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-AQ-95B",
+          "name": "Mr. Mime",
+          "set_code": "ecard2",
+          "number": "95b",
+          "variant_key": "b",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-UF-EXCL",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "!",
+          "variant_key": "!",
+          "printed_identity_modifier": null
+        },
+        {
+          "gv_id": "GV-PK-UF-QMARK",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "?",
+          "variant_key": "?",
+          "printed_identity_modifier": null
+        }
+      ],
+      "source_status": "origin_needs_source",
+      "public_copy_safe": false
+    },
+    {
+      "family_key": "unclassified_special_identity",
+      "family_label": "Unclassified Special Identity",
+      "variant_category": "source_gap",
+      "modeling_level": "parent_identity",
+      "confidence": "needs_source",
+      "why_it_exists": "This parent row has a non-base variant/modifier, but the origin family is not yet mapped.",
+      "why_collectors_care": "It may still be a legitimate collector lane, but Grookai should not publish origin copy until the family is reviewed.",
+      "how_to_identify": "Review the visible card, variant key, printed identity modifier, and original evidence source.",
+      "grookai_rule": "Unclassified rows stay canonical if already reconciled, but public origin text is blocked.",
+      "source_urls": [],
+      "parent_row_count": 13,
+      "child_row_count": 24,
+      "sample_gv_ids": [
+        "GV-PK-AOR-75A",
+        "GV-PK-BKP-98A",
+        "GV-PK-CIN-63A",
+        "GV-PK-GEN-73A",
+        "GV-PK-PHF-65A",
+        "GV-PK-PR-BLW-BW004",
+        "GV-PK-PR-BLW-BW005",
+        "GV-PK-PR-XY-XY150A",
+        "GV-PK-PR-XY-XY198A",
+        "GV-PK-RCL-154-GIOVANNI"
+      ],
+      "sample_cards": [
+        {
+          "gv_id": "GV-PK-PR-BLW-BW004",
+          "name": "Reshiram",
+          "set_code": "bwp",
+          "number": "BW004",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:BW"
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-BW005",
+          "name": "Zekrom",
+          "set_code": "bwp",
+          "number": "BW005",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:BW"
+        },
+        {
+          "gv_id": "GV-PK-GEN-73A",
+          "name": "Team Flare Grunt",
+          "set_code": "g1",
+          "number": "73a",
+          "variant_key": "",
+          "printed_identity_modifier": "a"
+        },
+        {
+          "gv_id": "GV-PK-RR-95",
+          "name": "Team Galactic's Invention G-107 Technical Machine G",
+          "set_code": "pl2",
+          "number": "95",
+          "variant_key": "",
+          "printed_identity_modifier": "name_suffix:g"
+        },
+        {
+          "gv_id": "GV-PK-CIN-63A",
+          "name": "Guzzlord-GX",
+          "set_code": "sm4",
+          "number": "63a",
+          "variant_key": "",
+          "printed_identity_modifier": "a"
+        },
+        {
+          "gv_id": "GV-PK-RCL-154-GIOVANNI",
+          "name": "Boss's Orders (Giovanni)",
+          "set_code": "swsh2",
+          "number": "154",
+          "variant_key": "",
+          "printed_identity_modifier": "trainer_subject:giovanni"
+        },
+        {
+          "gv_id": "GV-PK-SHF-58-LYSANDRE",
+          "name": "Boss's Orders (Lysandre)",
+          "set_code": "swsh4.5",
+          "number": "58",
+          "variant_key": "",
+          "printed_identity_modifier": "trainer_subject:lysandre"
+        },
+        {
+          "gv_id": "GV-PK-SHF-60-PROFESSOR-JUNIPER",
+          "name": "Professor's Research (Professor Juniper)",
+          "set_code": "swsh4.5",
+          "number": "60",
+          "variant_key": "",
+          "printed_identity_modifier": "trainer_subject:professor_juniper"
+        },
+        {
+          "gv_id": "GV-PK-PHF-65A",
+          "name": "Aegislash-EX",
+          "set_code": "xy4",
+          "number": "65a",
+          "variant_key": "",
+          "printed_identity_modifier": "a"
+        },
+        {
+          "gv_id": "GV-PK-AOR-75A",
+          "name": "Hex Maniac",
+          "set_code": "xy7",
+          "number": "75a",
+          "variant_key": "",
+          "printed_identity_modifier": "a"
+        }
+      ],
+      "source_status": "origin_needs_source",
+      "public_copy_safe": false
+    }
+  ]
+}

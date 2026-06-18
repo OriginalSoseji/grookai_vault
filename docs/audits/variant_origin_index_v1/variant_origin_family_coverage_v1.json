@@ -1,0 +1,807 @@
+{
+  "generated_at": "2026-06-17T16:59:06.212Z",
+  "version": "VARIANT_ORIGIN_INDEX_V1",
+  "mode": "read_only_origin_index",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "fingerprint_sha256": "417deed0e1117b617b4e29e9ff459264f26ccd9d0d9680fa1d441229fbcc1b0c",
+  "summary": {
+    "parent_variant_rows_audited": 1876,
+    "origin_families": 41,
+    "public_copy_safe_families": 39,
+    "source_gap_families": 2,
+    "public_copy_safe_parent_rows": 1803,
+    "source_gap_parent_rows": 73
+  },
+  "rows": [
+    {
+      "family_key": "prize_pack_series_stamp",
+      "family_label": "Play! Pokémon Prize Pack Stamp",
+      "variant_category": "organized_play_distribution_stamp",
+      "parent_row_count": 625,
+      "child_row_count": 23,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-ASR-027-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-030-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-037-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-039-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-040-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-043-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-046-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-051-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-062-PLAY-POKEMON-STAMP",
+        "GV-PK-ASR-068-PLAY-POKEMON-STAMP"
+      ]
+    },
+    {
+      "family_key": "prerelease_or_staff_stamp",
+      "family_label": "Prerelease / Staff Stamp",
+      "variant_category": "event_distribution_stamp",
+      "parent_row_count": 315,
+      "child_row_count": 108,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-BASE2-1-PRERELEASE-STAMP",
+        "GV-PK-BASE5-8-PRERELEASE-STAMP",
+        "GV-PK-BLW-25-PRERELEASE-STAMP",
+        "GV-PK-BLW-25-STAFF-PRERELEASE-STAMP",
+        "GV-PK-BW1-25-STAFF-STAMP",
+        "GV-PK-BW2-53-STAFF-STAMP",
+        "GV-PK-BW3-43-STAFF-STAMP",
+        "GV-PK-BW4-12-STAFF-STAMP",
+        "GV-PK-BW5-48-STAFF-STAMP",
+        "GV-PK-BWP-40-STAFF-STAMP"
+      ]
+    },
+    {
+      "family_key": "delta_species_identity",
+      "family_label": "Delta Species Identity",
+      "variant_category": "mechanic_identity",
+      "parent_row_count": 193,
+      "child_row_count": 359,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-CG-15",
+        "GV-PK-CG-18",
+        "GV-PK-CG-19",
+        "GV-PK-CG-2",
+        "GV-PK-CG-22",
+        "GV-PK-CG-26",
+        "GV-PK-CG-30",
+        "GV-PK-CG-4",
+        "GV-PK-CG-49",
+        "GV-PK-CG-6"
+      ]
+    },
+    {
+      "family_key": "pokemon_league_or_placement_stamp",
+      "family_label": "Pokémon League / Placement Stamp",
+      "variant_category": "organized_play_placement_stamp",
+      "parent_row_count": 157,
+      "child_row_count": 20,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-BW1-1-PLAYER-REWARDS-CROSSHATCH-STAMP",
+        "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP",
+        "GV-PK-BW1-27-PLAYER-REWARDS-CROSSHATCH-STAMP",
+        "GV-PK-BW1-42-LEAGUE-STAMP",
+        "GV-PK-BW1-53-LEAGUE-STAMP",
+        "GV-PK-BW1-64-LEAGUE-STAMP",
+        "GV-PK-BW1-79-LEAGUE-STAMP",
+        "GV-PK-BW1-81-LEAGUE-STAMP",
+        "GV-PK-BW11-109-LEAGUE-STAMP",
+        "GV-PK-BW2-82-LEAGUE-STAMP"
+      ]
+    },
+    {
+      "family_key": "shiny_vault_subset",
+      "family_label": "Shiny Vault Subset",
+      "variant_category": "subset_identity",
+      "parent_row_count": 94,
+      "child_row_count": 94,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-HIF-SV1",
+        "GV-PK-HIF-SV10",
+        "GV-PK-HIF-SV11",
+        "GV-PK-HIF-SV12",
+        "GV-PK-HIF-SV13",
+        "GV-PK-HIF-SV14",
+        "GV-PK-HIF-SV15",
+        "GV-PK-HIF-SV16",
+        "GV-PK-HIF-SV17",
+        "GV-PK-HIF-SV18"
+      ]
+    },
+    {
+      "family_key": "trainer_gallery_subset",
+      "family_label": "Trainer Gallery Subset",
+      "variant_category": "subset_identity",
+      "parent_row_count": 60,
+      "child_row_count": 60,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-LOR-TG01",
+        "GV-PK-LOR-TG02",
+        "GV-PK-LOR-TG03",
+        "GV-PK-LOR-TG04",
+        "GV-PK-LOR-TG05",
+        "GV-PK-LOR-TG06",
+        "GV-PK-LOR-TG07",
+        "GV-PK-LOR-TG08",
+        "GV-PK-LOR-TG09",
+        "GV-PK-LOR-TG10"
+      ]
+    },
+    {
+      "family_key": "radiant_collection_subset",
+      "family_label": "Radiant Collection Subset",
+      "variant_category": "subset_identity",
+      "parent_row_count": 57,
+      "child_row_count": 97,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-GEN-RC1",
+        "GV-PK-GEN-RC10",
+        "GV-PK-GEN-RC11",
+        "GV-PK-GEN-RC12",
+        "GV-PK-GEN-RC13",
+        "GV-PK-GEN-RC14",
+        "GV-PK-GEN-RC15",
+        "GV-PK-GEN-RC16",
+        "GV-PK-GEN-RC17",
+        "GV-PK-GEN-RC18"
+      ]
+    },
+    {
+      "family_key": "expansion_logo_or_set_stamp",
+      "family_label": "Expansion Logo / Set Stamp",
+      "variant_category": "event_or_product_distribution_stamp",
+      "parent_row_count": 47,
+      "child_row_count": 0,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-BLK-012-BLACK-BOLT-STAMP",
+        "GV-PK-BLK-034-BLACK-BOLT-STAMP",
+        "GV-PK-BRS-056-BRILLIANT-STARS-STAMP",
+        "GV-PK-DP1-35-DIAMOND-PEARL-STAMP",
+        "GV-PK-DP1-49-DIAMOND-PEARL-STAMP",
+        "GV-PK-DP1-56-DIAMOND-PEARL-STAMP",
+        "GV-PK-DP1-58-DIAMOND-PEARL-STAMP",
+        "GV-PK-DV1-9-DRAGON-VAULT-STAMP",
+        "GV-PK-GEN-043-GENERATIONS-GEODUDE-STAMP",
+        "GV-PK-MEG-064-MEGA-EVOLUTION-STAMP"
+      ]
+    },
+    {
+      "family_key": "pokemon_lvx_identity",
+      "family_label": "Pokémon LV.X Identity",
+      "variant_category": "mechanic_identity",
+      "parent_row_count": 26,
+      "child_row_count": 26,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-PL-122",
+        "GV-PK-PL-123",
+        "GV-PK-PL-124",
+        "GV-PK-PL-125",
+        "GV-PK-PL-126",
+        "GV-PK-PL-127",
+        "GV-PK-RR-103",
+        "GV-PK-RR-104",
+        "GV-PK-RR-105",
+        "GV-PK-RR-106"
+      ]
+    },
+    {
+      "family_key": "classic_collection_subset",
+      "family_label": "Celebrations Classic Collection",
+      "variant_category": "subset_identity",
+      "parent_row_count": 25,
+      "child_row_count": 25,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-CEL-107CC",
+        "GV-PK-CEL-109CC",
+        "GV-PK-CEL-113CC",
+        "GV-PK-CEL-114CC",
+        "GV-PK-CEL-145CC",
+        "GV-PK-CEL-15CC",
+        "GV-PK-CEL-15CC-CLAYDOL",
+        "GV-PK-CEL-15CC-HERE-COMES-TEAM-ROCKET",
+        "GV-PK-CEL-15CC-ROCKET-S-ZAPDOS",
+        "GV-PK-CEL-17CC"
+      ]
+    },
+    {
+      "family_key": "wotc_recognized_error",
+      "family_label": "WOTC Recognized Error / Correction Variant",
+      "variant_category": "recognized_error_variant",
+      "parent_row_count": 20,
+      "child_row_count": 20,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-BASE1-12-BLACK-FLAME-ERROR",
+        "GV-PK-BASE1-12-NO-DAMAGE-ERROR",
+        "GV-PK-BASE1-17-D-FENDING-ERROR",
+        "GV-PK-BASE1-2-STAGE-ERROR",
+        "GV-PK-BASE1-42-EVOLUTION-BOX-ERROR",
+        "GV-PK-BASE1-47-SIDEWAYS-FIGHTING-ENERGY-ERROR",
+        "GV-PK-BASE3-15-MISSING-HOLO-EVOLUTION-BOX-ERROR",
+        "GV-PK-BASE5-5-NONHOLO-ERROR",
+        "GV-PK-BASEP-17-NO-HP-ERROR",
+        "GV-PK-BASEP-2-INVERTED-WB-KIDS-STAMP"
+      ]
+    },
+    {
+      "family_key": "jungle_no_symbol_error",
+      "family_label": "Jungle No Symbol Error",
+      "variant_category": "recognized_error_variant",
+      "parent_row_count": 16,
+      "child_row_count": 16,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-BASE2-1-NO-SYMBOL",
+        "GV-PK-BASE2-10-NO-SYMBOL",
+        "GV-PK-BASE2-11-NO-SYMBOL",
+        "GV-PK-BASE2-12-NO-SYMBOL",
+        "GV-PK-BASE2-13-NO-SYMBOL",
+        "GV-PK-BASE2-14-NO-SYMBOL",
+        "GV-PK-BASE2-15-NO-SYMBOL",
+        "GV-PK-BASE2-16-NO-SYMBOL",
+        "GV-PK-BASE2-2-NO-SYMBOL",
+        "GV-PK-BASE2-3-NO-SYMBOL"
+      ]
+    },
+    {
+      "family_key": "trick_or_trade_pumpkin_stamp",
+      "family_label": "Trick or Trade Pumpkin Stamp",
+      "variant_category": "seasonal_product_stamp",
+      "parent_row_count": 14,
+      "child_row_count": 0,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-SWSH10-59-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH11-081-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH2-15-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH2-33-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH3-105-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH3-81-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH4-71-HOLIDAY-STAMP",
+        "GV-PK-SWSH5-89-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH6-57-PIKACHU-JACK-O-LANTERN-STAMP",
+        "GV-PK-SWSH6-72-PIKACHU-JACK-O-LANTERN-STAMP"
+      ]
+    },
+    {
+      "family_key": "burger_king_stamped_promo",
+      "family_label": "Burger King Stamped Promo",
+      "variant_category": "fast_food_distribution_stamp",
+      "parent_row_count": 12,
+      "child_row_count": 7,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-DP1-6-STAMPED",
+        "GV-PK-DP1-9-STAMPED",
+        "GV-PK-DP4-26-STAMPED",
+        "GV-PK-DP5-24-STAMPED",
+        "GV-PK-DP5-56-PLATINUM-STAMPED-BURGER-KING-2009",
+        "GV-PK-DP5-62-PLATINUM-STAMPED-BURGER-KING-2009",
+        "GV-PK-DP5-70-PLATINUM-STAMPED-BURGER-KING-2009",
+        "GV-PK-DP5-71-PLATINUM-STAMPED-BURGER-KING-2009",
+        "GV-PK-DP5-77-PLATINUM-STAMPED-BURGER-KING-2009",
+        "GV-PK-DP6-106-PLATINUM-STAMPED-BURGER-KING-2009"
+      ]
+    },
+    {
+      "family_key": "dp_platinum_shiny_sh_subset",
+      "family_label": "Diamond/Pearl/Platinum SH Shiny Subset",
+      "variant_category": "subset_identity",
+      "parent_row_count": 12,
+      "child_row_count": 15,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-AR-SH10",
+        "GV-PK-AR-SH11",
+        "GV-PK-AR-SH12",
+        "GV-PK-PL-SH4",
+        "GV-PK-PL-SH5",
+        "GV-PK-PL-SH6",
+        "GV-PK-SF-SH1",
+        "GV-PK-SF-SH2",
+        "GV-PK-SF-SH3",
+        "GV-PK-SV-SH7"
+      ]
+    },
+    {
+      "family_key": "build_a_bear_workshop_stamp",
+      "family_label": "Build-A-Bear Workshop Stamp",
+      "variant_category": "retailer_distribution_stamp",
+      "parent_row_count": 11,
+      "child_row_count": 11,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-BW10-14-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-BW11-17-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-BW5-1-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-SM1-28-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-SM1-90-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-SM4-71-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-UPR-32-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-XY2-80-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-XY5-20-BUILD-A-BEAR-WORKSHOP-STAMP",
+        "GV-PK-XY6-67-BUILD-A-BEAR-WORKSHOP-STAMP"
+      ]
+    },
+    {
+      "family_key": "call_of_legends_sl_subset",
+      "family_label": "Call of Legends SL Shiny Secret Subset",
+      "variant_category": "subset_identity",
+      "parent_row_count": 11,
+      "child_row_count": 22,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-COL-SL1",
+        "GV-PK-COL-SL10",
+        "GV-PK-COL-SL11",
+        "GV-PK-COL-SL2",
+        "GV-PK-COL-SL3",
+        "GV-PK-COL-SL4",
+        "GV-PK-COL-SL5",
+        "GV-PK-COL-SL6",
+        "GV-PK-COL-SL7",
+        "GV-PK-COL-SL8"
+      ]
+    },
+    {
+      "family_key": "secret_or_h_prefix_identity",
+      "family_label": "Secret / H-Prefix Number Identity",
+      "variant_category": "numbering_identity",
+      "parent_row_count": 11,
+      "child_row_count": 11,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-AQ-H1",
+        "GV-PK-AQ-H5",
+        "GV-PK-AQ-H6",
+        "GV-PK-AQ-H7",
+        "GV-PK-AQ-H9",
+        "GV-PK-SK-H1",
+        "GV-PK-SK-H2",
+        "GV-PK-SK-H3",
+        "GV-PK-SK-H5",
+        "GV-PK-SK-H7"
+      ]
+    },
+    {
+      "family_key": "toys_r_us_stamp",
+      "family_label": "Toys R Us Stamp",
+      "variant_category": "retailer_distribution_stamp",
+      "parent_row_count": 11,
+      "child_row_count": 11,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-G1-14-STAMPED",
+        "GV-PK-G1-22-TOYS-R-US-STAMP",
+        "GV-PK-G1-26-TOYS-R-US-STAMP",
+        "GV-PK-G1-32-TOYS-R-US-STAMP",
+        "GV-PK-G1-50-TOYS-R-US-STAMP",
+        "GV-PK-G1-53-TOYS-R-US-STAMP",
+        "GV-PK-G1-8-TOYS-R-US-STAMP",
+        "GV-PK-SM1-64-TOYS-R-US-STAMP",
+        "GV-PK-SM3-110-TOYS-R-US-STAMP",
+        "GV-PK-UPR-32-TOYS-R-US-STAMP"
+      ]
+    },
+    {
+      "family_key": "winner_stamp",
+      "family_label": "Winner Stamp",
+      "variant_category": "organized_play_winner_stamp",
+      "parent_row_count": 11,
+      "child_row_count": 1,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-BOG-1-WINNER-STAMP",
+        "GV-PK-BOG-2-WINNER-STAMP",
+        "GV-PK-BOG-6-WINNER-STAMP",
+        "GV-PK-BOG-7-WINNER-STAMP",
+        "GV-PK-EX1-85-WINNER-STAMP",
+        "GV-PK-EX1-94-WINNER-STAMP",
+        "GV-PK-EX2-93-WINNER-STAMP",
+        "GV-PK-EX3-15-WINNER-STAMP",
+        "GV-PK-EX3-19-WINNER-STAMP",
+        "GV-PK-EX5-29-WINNER-STAMP"
+      ]
+    },
+    {
+      "family_key": "arceus_ar_subset",
+      "family_label": "Platinum Arceus AR Subset",
+      "variant_category": "subset_identity",
+      "parent_row_count": 9,
+      "child_row_count": 9,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-AR-AR1",
+        "GV-PK-AR-AR2",
+        "GV-PK-AR-AR3",
+        "GV-PK-AR-AR4",
+        "GV-PK-AR-AR5",
+        "GV-PK-AR-AR6",
+        "GV-PK-AR-AR7",
+        "GV-PK-AR-AR8",
+        "GV-PK-AR-AR9"
+      ]
+    },
+    {
+      "family_key": "holiday_calendar_snowflake_stamp",
+      "family_label": "Holiday Calendar Snowflake / Festive Stamp",
+      "variant_category": "seasonal_product_stamp",
+      "parent_row_count": 7,
+      "child_row_count": 0,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-SV02-53-SNOWFLAKE-STAMP",
+        "GV-PK-SV02-58-SNOWFLAKE-STAMP",
+        "GV-PK-SWSH2-55-SNOWFLAKE-STAMP",
+        "GV-PK-SWSH6-45-SNOWFLAKE-STAMP",
+        "GV-PK-SWSH6-46-SNOWFLAKE-STAMPED",
+        "GV-PK-SWSH7-43-SNOWFLAKE-STAMP",
+        "GV-PK-SWSH8-84-SNOWFLAKE-STAMP"
+      ]
+    },
+    {
+      "family_key": "w_stamp",
+      "family_label": "W Stamp",
+      "variant_category": "retail_promotion_stamp",
+      "parent_row_count": 7,
+      "child_row_count": 0,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-BASE2-60-WOTC-STAMP",
+        "GV-PK-BASE3-50-WOTC-STAMP",
+        "GV-PK-BASE4-63-WOTC-STAMP",
+        "GV-PK-BASE5-19-WOTC-STAMP",
+        "GV-PK-BASE5-32-WOTC-STAMP",
+        "GV-PK-GYM1-54-WOTC-STAMP",
+        "GV-PK-GYM2-37-WOTC-STAMP"
+      ]
+    },
+    {
+      "family_key": "illustration_rare_identity",
+      "family_label": "Illustration Rare Identity",
+      "variant_category": "rarity_art_identity",
+      "parent_row_count": 6,
+      "child_row_count": 0,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-ME03-089-ILLUSTRATION-RARE",
+        "GV-PK-ME03-090-ILLUSTRATION-RARE",
+        "GV-PK-ME03-092-ILLUSTRATION-RARE",
+        "GV-PK-ME03-093-ILLUSTRATION-RARE",
+        "GV-PK-ME03-094-ILLUSTRATION-RARE",
+        "GV-PK-ME03-095-ILLUSTRATION-RARE"
+      ]
+    },
+    {
+      "family_key": "rotom_rt_subset",
+      "family_label": "Rising Rivals Rotom RT Subset",
+      "variant_category": "subset_identity",
+      "parent_row_count": 6,
+      "child_row_count": 6,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-RR-RT1",
+        "GV-PK-RR-RT2",
+        "GV-PK-RR-RT3",
+        "GV-PK-RR-RT4",
+        "GV-PK-RR-RT5",
+        "GV-PK-RR-RT6"
+      ]
+    },
+    {
+      "family_key": "base_pikachu_print_run",
+      "family_label": "Base Pikachu Cheek / Shadowless Print Run",
+      "variant_category": "print_run_variant",
+      "parent_row_count": 5,
+      "child_row_count": 5,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS",
+        "GV-PK-BASE1-58-FIRST-EDITION-YELLOW-CHEEKS",
+        "GV-PK-BASE1-58-GHOST-STAMP-SHADOWLESS",
+        "GV-PK-BASE1-58-SHADOWLESS-RED-CHEEKS",
+        "GV-PK-BASE1-58-SHADOWLESS-YELLOW-CHEEKS"
+      ]
+    },
+    {
+      "family_key": "battle_academy_deck_mark",
+      "family_label": "Battle Academy Deck Mark",
+      "variant_category": "product_deck_identity",
+      "parent_row_count": 5,
+      "child_row_count": 2,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-SMP-65-BATTLE-ACADEMY-DECK-MARK",
+        "GV-PK-SWSH6-23-BATTLE-ACADEMY-DECK-MARK",
+        "GV-PK-SWSH6-24-BATTLE-ACADEMY-DECK-MARK",
+        "GV-PK-SWSH8-43-BATTLE-ACADEMY-DECK-MARK",
+        "GV-PK-SWSHP-065-BATTLE-ACADEMY-DECK-MARK"
+      ]
+    },
+    {
+      "family_key": "pokemon_center_stamp",
+      "family_label": "Pokémon Center Stamp",
+      "variant_category": "direct_retail_promotion_stamp",
+      "parent_row_count": 5,
+      "child_row_count": 4,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-BASEP-52-POKEMON-CENTER-NY-STAMP",
+        "GV-PK-BASEP-52-POKEMON-CENTER-STAMP",
+        "GV-PK-SV03-5-007-POKEMON-CENTER-STAMP",
+        "GV-PK-SVP-209-POKEMON-CENTER-STAMP",
+        "GV-PK-SVP-210-POKEMON-CENTER-STAMP"
+      ]
+    },
+    {
+      "family_key": "detective_pikachu_movie_stamp",
+      "family_label": "Detective Pikachu Movie Stamp",
+      "variant_category": "movie_campaign_stamp",
+      "parent_row_count": 4,
+      "child_row_count": 2,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-SM-SM170-SM-PROMOS-DETECTIVE-PIKACHU-SM170-STAMP",
+        "GV-PK-SM-SM190-SM-PROMOS-DETECTIVE-PIKACHU-SM190-STAMP",
+        "GV-PK-SMP-190-PIKACHU-STAMP",
+        "GV-PK-SMP-198-PIKACHU-STAMP"
+      ]
+    },
+    {
+      "family_key": "prismatic_evolutions_premium_collection_stamp",
+      "family_label": "Prismatic Evolutions Premium Collection Stamp",
+      "variant_category": "product_distribution_stamp",
+      "parent_row_count": 4,
+      "child_row_count": 0,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-PRE-051-PRISMATIC-EVOLUTIONS-STAMP",
+        "GV-PK-PRE-064-PRISMATIC-EVOLUTIONS-STAMP",
+        "GV-PK-PRE-076-PRISMATIC-EVOLUTION-STAMP",
+        "GV-PK-PRE-082-PRISMATIC-EVOLUTIONS-STAMP"
+      ]
+    },
+    {
+      "family_key": "wb_kids_stamp",
+      "family_label": "WB Kids Stamp",
+      "variant_category": "media_promotion_stamp",
+      "parent_row_count": 4,
+      "child_row_count": 4,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-BASEP-2-WB-KIDS-STAMP",
+        "GV-PK-BASEP-3-WB-KIDS-STAMP",
+        "GV-PK-BASEP-4-WB-KIDS-STAMP",
+        "GV-PK-BASEP-5-WB-KIDS-STAMP"
+      ]
+    },
+    {
+      "family_key": "e3_pikachu_stamp",
+      "family_label": "E3 Pikachu Stamp",
+      "variant_category": "event_distribution_stamp",
+      "parent_row_count": 3,
+      "child_row_count": 2,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-BASE1-58-E3-STAMP",
+        "GV-PK-BASE1-58-E3-STAMP-RED-CHEEKS",
+        "GV-PK-BASE1-58-E3-STAMP-YELLOW-CHEEKS"
+      ]
+    },
+    {
+      "family_key": "eb_games_stamp",
+      "family_label": "EB Games Stamp",
+      "variant_category": "retailer_distribution_stamp",
+      "parent_row_count": 3,
+      "child_row_count": 0,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-ME03-050-EB-GAMES-STAMP",
+        "GV-PK-ME03-050-EB-GAMES-STAMPED",
+        "GV-PK-SV03-5-004-EB-GAMES-STAMP"
+      ]
+    },
+    {
+      "family_key": "world_championships_stamp",
+      "family_label": "World Championships Stamp",
+      "variant_category": "event_distribution_stamp",
+      "parent_row_count": 2,
+      "child_row_count": 0,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-PR-BLW-50-WORLDS-12-STAMP",
+        "GV-PK-PR-DPP-05-WORLDS-07-STAMP"
+      ]
+    },
+    {
+      "family_key": "asia_gym_stamp",
+      "family_label": "Asia Gym Stamp",
+      "variant_category": "event_or_regional_distribution_stamp",
+      "parent_row_count": 1,
+      "child_row_count": 0,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-SWSH10-46-GYM-STAMP"
+      ]
+    },
+    {
+      "family_key": "first_edition",
+      "family_label": "First Edition",
+      "variant_category": "edition_print_run",
+      "parent_row_count": 1,
+      "child_row_count": 1,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-PR-1-FIRST-EDITION"
+      ]
+    },
+    {
+      "family_key": "gamestop_stamp",
+      "family_label": "GameStop Stamp",
+      "variant_category": "retailer_distribution_stamp",
+      "parent_row_count": 1,
+      "child_row_count": 1,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-SWSHP-028-GAMESTOP-STAMP"
+      ]
+    },
+    {
+      "family_key": "jr_stamp_rally_promo",
+      "family_label": "JR East Stamp Rally Promo",
+      "variant_category": "event_distribution_stamp",
+      "parent_row_count": 1,
+      "child_row_count": 1,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "medium",
+      "sample_gv_ids": [
+        "GV-PK-BASEP-11-JR-STAMP-RALLY"
+      ]
+    },
+    {
+      "family_key": "pokemon_together_stamp",
+      "family_label": "Pokémon Together Stamp",
+      "variant_category": "campaign_distribution_stamp",
+      "parent_row_count": 1,
+      "child_row_count": 0,
+      "source_status": "origin_source_backed",
+      "public_copy_safe": true,
+      "confidence": "high",
+      "sample_gv_ids": [
+        "GV-PK-MEW-025-POKEMON-TOGETHER-STAMP"
+      ]
+    },
+    {
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "variant_category": "scope_gap",
+      "parent_row_count": 60,
+      "child_row_count": 69,
+      "source_status": "origin_needs_source",
+      "public_copy_safe": false,
+      "confidence": "needs_scope_decision",
+      "sample_gv_ids": [
+        "GV-PK-AQ-103A",
+        "GV-PK-AQ-103B",
+        "GV-PK-AQ-50A",
+        "GV-PK-AQ-50B",
+        "GV-PK-AQ-74A",
+        "GV-PK-AQ-74B",
+        "GV-PK-AQ-95A",
+        "GV-PK-AQ-95B",
+        "GV-PK-BKP-107A",
+        "GV-PK-BKP-98B"
+      ]
+    },
+    {
+      "family_key": "unclassified_special_identity",
+      "family_label": "Unclassified Special Identity",
+      "variant_category": "source_gap",
+      "parent_row_count": 13,
+      "child_row_count": 24,
+      "source_status": "origin_needs_source",
+      "public_copy_safe": false,
+      "confidence": "needs_source",
+      "sample_gv_ids": [
+        "GV-PK-AOR-75A",
+        "GV-PK-BKP-98A",
+        "GV-PK-CIN-63A",
+        "GV-PK-GEN-73A",
+        "GV-PK-PHF-65A",
+        "GV-PK-PR-BLW-BW004",
+        "GV-PK-PR-BLW-BW005",
+        "GV-PK-PR-XY-XY150A",
+        "GV-PK-PR-XY-XY198A",
+        "GV-PK-RCL-154-GIOVANNI"
+      ]
+    }
+  ]
+}

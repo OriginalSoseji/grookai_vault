@@ -30,6 +30,7 @@ import { normalizeRequestedPublicGvId } from "@/lib/gvIdAlias";
 import { normalizeCardImageUrl } from "@/lib/cards/normalizeCardImageUrl";
 import { findPrintingByReference } from "@/lib/cards/printingSelection";
 import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
+import { getVariantOriginPublicCopy } from "@/lib/cards/variantOriginPublicCopy";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
 import { buildCompareCardsParam, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
@@ -498,6 +499,10 @@ export default async function CardPage({
   });
   const releaseDateLabel = formatReleaseDate(resolvedCard.release_date);
   const variantLabels = getVariantLabels(resolvedCard, 3);
+  const variantOriginCopy = getVariantOriginPublicCopy({
+    cardPrintId: resolvedCard.id,
+    gvId: resolvedCard.gv_id,
+  });
   const ownedPrintingCountsForCard = resolvedCard.id ? ownedPrintingCounts.get(resolvedCard.id) : null;
   const displayPrintingsWithOwnedCounts = (resolvedCard.display_printings ?? []).map((printing) => ({
     ...printing,
@@ -671,6 +676,64 @@ export default async function CardPage({
                     <VariantBadge key={`${resolvedCard.gv_id}-${label}`} label={label} />
                   ))}
                 </div>
+              ) : null}
+
+              {variantOriginCopy ? (
+                <section className="gv-quiet-panel max-w-3xl px-4 py-4">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="inline-flex rounded-full border border-slate-200/80 bg-white/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 shadow-sm dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
+                      Variant Origin
+                    </span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      {variantOriginCopy.family_label}
+                    </span>
+                  </div>
+                  <div className="mt-4 grid gap-4 md:grid-cols-2">
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                        Why it exists
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-300">
+                        {variantOriginCopy.why_it_exists}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                        Why collectors care
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-300">
+                        {variantOriginCopy.why_collectors_care}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-4 text-xs leading-5 text-slate-500 dark:text-slate-400">
+                    {variantOriginCopy.how_to_identify}
+                  </p>
+                  <details className="mt-4 rounded-[14px] border border-slate-200/70 bg-white/60 px-3 py-3 dark:border-slate-700 dark:bg-slate-900/50">
+                    <summary className="cursor-pointer text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 transition hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200">
+                      Source-backed modeling
+                    </summary>
+                    <div className="mt-3 space-y-3 text-xs leading-5 text-slate-600 dark:text-slate-300">
+                      <p>{variantOriginCopy.grookai_rule}</p>
+                      {variantOriginCopy.source_urls.length > 0 ? (
+                        <ul className="space-y-1">
+                          {variantOriginCopy.source_urls.slice(0, 4).map((url) => (
+                            <li key={`${variantOriginCopy.gv_id}-${url}`}>
+                              <a
+                                href={url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="break-words font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline dark:text-slate-200 dark:hover:text-white"
+                              >
+                                {url}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </div>
+                  </details>
+                </section>
               ) : null}
 
               <div className="gv-hi-diagnostics flex flex-wrap items-center gap-3 text-sm">

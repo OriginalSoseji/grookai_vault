@@ -1,0 +1,1627 @@
+{
+  "generated_at": "2026-06-17T16:59:14.084Z",
+  "version": "VARIANT_ORIGIN_SOURCE_ACQUISITION_QUEUE_V1",
+  "mode": "read_only_source_acquisition_queue",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "input_gap_fingerprint_sha256": "69b4d1d9b3312da7a68edafebe301862bbdaf497b140e8a4943bc4099a30b677",
+  "summary": {
+    "gap_rows_queued": 73,
+    "queue_groups": 33,
+    "priority_1_groups": 0,
+    "priority_2_groups": 0,
+    "scope_decision_groups": 32
+  },
+  "queue": [
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:alt",
+      "token": "alt",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 14,
+      "set_codes": [
+        "swsh7"
+      ],
+      "sample_cards": [
+        "Rayquaza VMAX swsh7 111",
+        "Duraludon V swsh7 122",
+        "Dragonite V swsh7 192",
+        "Noivern V swsh7 196",
+        "Leafeon VMAX swsh7 205",
+        "Glaceon VMAX swsh7 209",
+        "Sylveon VMAX swsh7 212",
+        "Umbreon VMAX swsh7 215"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-EVS-111",
+          "name": "Rayquaza VMAX",
+          "set_code": "swsh7",
+          "number": "111",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-EVS-122",
+          "name": "Duraludon V",
+          "set_code": "swsh7",
+          "number": "122",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-EVS-192",
+          "name": "Dragonite V",
+          "set_code": "swsh7",
+          "number": "192",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-EVS-196",
+          "name": "Noivern V",
+          "set_code": "swsh7",
+          "number": "196",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-EVS-205",
+          "name": "Leafeon VMAX",
+          "set_code": "swsh7",
+          "number": "205",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-EVS-209",
+          "name": "Glaceon VMAX",
+          "set_code": "swsh7",
+          "number": "209",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-EVS-212",
+          "name": "Sylveon VMAX",
+          "set_code": "swsh7",
+          "number": "212",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-EVS-215",
+          "name": "Umbreon VMAX",
+          "set_code": "swsh7",
+          "number": "215",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-EVS-218",
+          "name": "Rayquaza VMAX",
+          "set_code": "swsh7",
+          "number": "218",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-EVS-220",
+          "name": "Duraludon VMAX",
+          "set_code": "swsh7",
+          "number": "220",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-EVS-41",
+          "name": "Glaceon VMAX",
+          "set_code": "swsh7",
+          "number": "41",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-EVS-70",
+          "name": "Golurk V",
+          "set_code": "swsh7",
+          "number": "70",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-EVS-74",
+          "name": "Sylveon V",
+          "set_code": "swsh7",
+          "number": "74",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-EVS-95",
+          "name": "Umbreon VMAX",
+          "set_code": "swsh7",
+          "number": "95",
+          "variant_key": "alt",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:a",
+      "token": "a",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 12,
+      "set_codes": [
+        "ecard2",
+        "exu",
+        "g1",
+        "xy10",
+        "xy3",
+        "xy4",
+        "xy6",
+        "xy9"
+      ],
+      "sample_cards": [
+        "Porygon ecard2 103a",
+        "Golduck ecard2 50a",
+        "Drowzee ecard2 74a",
+        "Mr. Mime ecard2 95a",
+        "Unown exu A",
+        "Jolteon-EX g1 28a",
+        "N xy10 105a",
+        "M Lucario-EX xy3 55a"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-AQ-103A",
+          "name": "Porygon",
+          "set_code": "ecard2",
+          "number": "103a",
+          "variant_key": "a",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-AQ-50A",
+          "name": "Golduck",
+          "set_code": "ecard2",
+          "number": "50a",
+          "variant_key": "a",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-AQ-74A",
+          "name": "Drowzee",
+          "set_code": "ecard2",
+          "number": "74a",
+          "variant_key": "a",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-AQ-95A",
+          "name": "Mr. Mime",
+          "set_code": "ecard2",
+          "number": "95a",
+          "variant_key": "a",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-UF-A",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "A",
+          "variant_key": "A",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-GEN-28A",
+          "name": "Jolteon-EX",
+          "set_code": "g1",
+          "number": "28a",
+          "variant_key": "a",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-FCO-105A",
+          "name": "N",
+          "set_code": "xy10",
+          "number": "105a",
+          "variant_key": "a",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-FFI-55A",
+          "name": "M Lucario-EX",
+          "set_code": "xy3",
+          "number": "55a",
+          "variant_key": "a",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-PHF-24A",
+          "name": "M Manectric-EX",
+          "set_code": "xy4",
+          "number": "24a",
+          "variant_key": "a",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-ROS-77A",
+          "name": "Shaymin-EX",
+          "set_code": "xy6",
+          "number": "77a",
+          "variant_key": "a",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-ROS-92A",
+          "name": "Trainers' Mail",
+          "set_code": "xy6",
+          "number": "92a",
+          "variant_key": "a",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-BKP-107A",
+          "name": "Professor Sycamore",
+          "set_code": "xy9",
+          "number": "107a",
+          "variant_key": "a",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:unkeyed",
+      "token": "unkeyed",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "unclassified_special_identity",
+      "family_label": "Unclassified Special Identity",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 7,
+      "set_codes": [
+        "g1",
+        "sm4",
+        "xy4",
+        "xy7",
+        "xy9",
+        "xyp"
+      ],
+      "sample_cards": [
+        "Team Flare Grunt g1 73a",
+        "Guzzlord-GX sm4 63a",
+        "Aegislash-EX xy4 65a",
+        "Hex Maniac xy7 75a",
+        "Delinquent xy9 98a",
+        "Yveltal-EX xyp XY150a",
+        "M Camerupt-EX xyp XY198a"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-GEN-73A",
+          "name": "Team Flare Grunt",
+          "set_code": "g1",
+          "number": "73a",
+          "variant_key": "",
+          "printed_identity_modifier": "a",
+          "family_key": "unclassified_special_identity",
+          "family_label": "Unclassified Special Identity",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-CIN-63A",
+          "name": "Guzzlord-GX",
+          "set_code": "sm4",
+          "number": "63a",
+          "variant_key": "",
+          "printed_identity_modifier": "a",
+          "family_key": "unclassified_special_identity",
+          "family_label": "Unclassified Special Identity",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-PHF-65A",
+          "name": "Aegislash-EX",
+          "set_code": "xy4",
+          "number": "65a",
+          "variant_key": "",
+          "printed_identity_modifier": "a",
+          "family_key": "unclassified_special_identity",
+          "family_label": "Unclassified Special Identity",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-AOR-75A",
+          "name": "Hex Maniac",
+          "set_code": "xy7",
+          "number": "75a",
+          "variant_key": "",
+          "printed_identity_modifier": "a",
+          "family_key": "unclassified_special_identity",
+          "family_label": "Unclassified Special Identity",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-BKP-98A",
+          "name": "Delinquent",
+          "set_code": "xy9",
+          "number": "98a",
+          "variant_key": "",
+          "printed_identity_modifier": "a",
+          "family_key": "unclassified_special_identity",
+          "family_label": "Unclassified Special Identity",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-PR-XY-XY150A",
+          "name": "Yveltal-EX",
+          "set_code": "xyp",
+          "number": "XY150a",
+          "variant_key": "",
+          "printed_identity_modifier": "a",
+          "family_key": "unclassified_special_identity",
+          "family_label": "Unclassified Special Identity",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-PR-XY-XY198A",
+          "name": "M Camerupt-EX",
+          "set_code": "xyp",
+          "number": "XY198a",
+          "variant_key": "",
+          "printed_identity_modifier": "a",
+          "family_key": "unclassified_special_identity",
+          "family_label": "Unclassified Special Identity",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:b",
+      "token": "b",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 6,
+      "set_codes": [
+        "ecard2",
+        "exu",
+        "xy9"
+      ],
+      "sample_cards": [
+        "Porygon ecard2 103b",
+        "Golduck ecard2 50b",
+        "Drowzee ecard2 74b",
+        "Mr. Mime ecard2 95b",
+        "Unown exu B",
+        "Delinquent xy9 98b"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-AQ-103B",
+          "name": "Porygon",
+          "set_code": "ecard2",
+          "number": "103b",
+          "variant_key": "b",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-AQ-50B",
+          "name": "Golduck",
+          "set_code": "ecard2",
+          "number": "50b",
+          "variant_key": "b",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-AQ-74B",
+          "name": "Drowzee",
+          "set_code": "ecard2",
+          "number": "74b",
+          "variant_key": "b",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-AQ-95B",
+          "name": "Mr. Mime",
+          "set_code": "ecard2",
+          "number": "95b",
+          "variant_key": "b",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-UF-B",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "B",
+          "variant_key": "B",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-BKP-98B",
+          "name": "Delinquent",
+          "set_code": "xy9",
+          "number": "98b",
+          "variant_key": "b",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:semantic_identity_scope_decision:unkeyed",
+      "token": "unkeyed",
+      "lane": "semantic_identity_scope_decision",
+      "priority": 3,
+      "family_key": "unclassified_special_identity",
+      "family_label": "Unclassified Special Identity",
+      "recommended_sources": [
+        "card-specific checklist page proving exact parenthetical/name subject",
+        "governance decision on whether this is public origin copy or search/display metadata"
+      ],
+      "row_count": 4,
+      "set_codes": [
+        "pl2",
+        "swsh2",
+        "swsh4.5"
+      ],
+      "sample_cards": [
+        "Team Galactic's Invention G-107 Technical Machine G pl2 95",
+        "Boss's Orders (Giovanni) swsh2 154",
+        "Boss's Orders (Lysandre) swsh4.5 58",
+        "Professor's Research (Professor Juniper) swsh4.5 60"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-RR-95",
+          "name": "Team Galactic's Invention G-107 Technical Machine G",
+          "set_code": "pl2",
+          "number": "95",
+          "variant_key": "",
+          "printed_identity_modifier": "name_suffix:g",
+          "family_key": "unclassified_special_identity",
+          "family_label": "Unclassified Special Identity",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-RCL-154-GIOVANNI",
+          "name": "Boss's Orders (Giovanni)",
+          "set_code": "swsh2",
+          "number": "154",
+          "variant_key": "",
+          "printed_identity_modifier": "trainer_subject:giovanni",
+          "family_key": "unclassified_special_identity",
+          "family_label": "Unclassified Special Identity",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-SHF-58-LYSANDRE",
+          "name": "Boss's Orders (Lysandre)",
+          "set_code": "swsh4.5",
+          "number": "58",
+          "variant_key": "",
+          "printed_identity_modifier": "trainer_subject:lysandre",
+          "family_key": "unclassified_special_identity",
+          "family_label": "Unclassified Special Identity",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-SHF-60-PROFESSOR-JUNIPER",
+          "name": "Professor's Research (Professor Juniper)",
+          "set_code": "swsh4.5",
+          "number": "60",
+          "variant_key": "",
+          "printed_identity_modifier": "trainer_subject:professor_juniper",
+          "family_key": "unclassified_special_identity",
+          "family_label": "Unclassified Special Identity",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:xya",
+      "token": "xya",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 2,
+      "set_codes": [
+        "xyp"
+      ],
+      "sample_cards": [
+        "M Sharpedo-EX xyp XY200a",
+        "Jirachi xyp XY67a"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-PR-XY-XY200A",
+          "name": "M Sharpedo-EX",
+          "set_code": "xyp",
+          "number": "XY200a",
+          "variant_key": "XYa",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-PR-XY-XY67A",
+          "name": "Jirachi",
+          "set_code": "xyp",
+          "number": "XY67a",
+          "variant_key": "XYa",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:!",
+      "token": "!",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu !"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-EXCL",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "!",
+          "variant_key": "!",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:?",
+      "token": "?",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu ?"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-QMARK",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "?",
+          "variant_key": "?",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:c",
+      "token": "c",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu C"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-C",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "C",
+          "variant_key": "C",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:d",
+      "token": "d",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu D"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-D",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "D",
+          "variant_key": "D",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:e",
+      "token": "e",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu E"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-E",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "E",
+          "variant_key": "E",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:f",
+      "token": "f",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu F"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-F",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "F",
+          "variant_key": "F",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:g",
+      "token": "g",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu G"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-G",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "G",
+          "variant_key": "G",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:i",
+      "token": "i",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu I"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-I",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "I",
+          "variant_key": "I",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:j",
+      "token": "j",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu J"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-J",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "J",
+          "variant_key": "J",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:k",
+      "token": "k",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu K"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-K",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "K",
+          "variant_key": "K",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:l",
+      "token": "l",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu L"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-L",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "L",
+          "variant_key": "L",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:m",
+      "token": "m",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu M"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-M",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "M",
+          "variant_key": "M",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:n",
+      "token": "n",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu N"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-N",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "N",
+          "variant_key": "N",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:o",
+      "token": "o",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu O"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-O",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "O",
+          "variant_key": "O",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:p",
+      "token": "p",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu P"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-P",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "P",
+          "variant_key": "P",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:q",
+      "token": "q",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu Q"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-Q",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "Q",
+          "variant_key": "Q",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:r",
+      "token": "r",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu R"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-R",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "R",
+          "variant_key": "R",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:s",
+      "token": "s",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu S"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-S",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "S",
+          "variant_key": "S",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:t",
+      "token": "t",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu T"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-T",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "T",
+          "variant_key": "T",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:u",
+      "token": "u",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu U"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-U",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "U",
+          "variant_key": "U",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:v",
+      "token": "v",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu V"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-V",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "V",
+          "variant_key": "V",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:w",
+      "token": "w",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu W"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-W",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "W",
+          "variant_key": "W",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:x",
+      "token": "x",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu X"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-X",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "X",
+          "variant_key": "X",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:xy",
+      "token": "xy",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "xyp"
+      ],
+      "sample_cards": [
+        "Karen xyp XY177"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-PR-XY-XY177",
+          "name": "Karen",
+          "set_code": "xyp",
+          "number": "XY177",
+          "variant_key": "XY",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:y",
+      "token": "y",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu Y"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-Y",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "Y",
+          "variant_key": "Y",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "3:suffix_or_printed_number_scope_decision:z",
+      "token": "z",
+      "lane": "suffix_or_printed_number_scope_decision",
+      "priority": 3,
+      "family_key": "letter_or_suffix_identity_needs_scope_decision",
+      "family_label": "Letter / Suffix Identity Needs Scope Decision",
+      "recommended_sources": [
+        "set checklist page proving the printed suffix or special number",
+        "card-specific source page for exact set/name/number",
+        "governance decision on whether this belongs in public origin copy or printed identity docs"
+      ],
+      "row_count": 1,
+      "set_codes": [
+        "exu"
+      ],
+      "sample_cards": [
+        "Unown exu Z"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-UF-Z",
+          "name": "Unown",
+          "set_code": "exu",
+          "number": "Z",
+          "variant_key": "Z",
+          "printed_identity_modifier": null,
+          "family_key": "letter_or_suffix_identity_needs_scope_decision",
+          "family_label": "Letter / Suffix Identity Needs Scope Decision",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    },
+    {
+      "queue_key": "4:manual_origin_mapping_needed:unkeyed",
+      "token": "unkeyed",
+      "lane": "manual_origin_mapping_needed",
+      "priority": 4,
+      "family_key": "unclassified_special_identity",
+      "family_label": "Unclassified Special Identity",
+      "recommended_sources": [
+        "card-specific official/checklist source",
+        "collector reference with exact card identity and variant label",
+        "marketplace exact product page only as supporting evidence"
+      ],
+      "row_count": 2,
+      "set_codes": [
+        "bwp"
+      ],
+      "sample_cards": [
+        "Reshiram bwp BW004",
+        "Zekrom bwp BW005"
+      ],
+      "rows": [
+        {
+          "gv_id": "GV-PK-PR-BLW-BW004",
+          "name": "Reshiram",
+          "set_code": "bwp",
+          "number": "BW004",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:BW",
+          "family_key": "unclassified_special_identity",
+          "family_label": "Unclassified Special Identity",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        },
+        {
+          "gv_id": "GV-PK-PR-BLW-BW005",
+          "name": "Zekrom",
+          "set_code": "bwp",
+          "number": "BW005",
+          "variant_key": "",
+          "printed_identity_modifier": "number_prefix:BW",
+          "family_key": "unclassified_special_identity",
+          "family_label": "Unclassified Special Identity",
+          "reason": "Family needs exact origin source or scope decision before public origin copy."
+        }
+      ],
+      "promotion_status": "blocked_until_exact_origin_source"
+    }
+  ],
+  "fingerprint_sha256": "2d1c85799be0cf7fd748413e76ece07c45725dbb0df5a2325e39f01ee2a3e704"
+}

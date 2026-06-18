@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'models/ownership_state.dart';
 import 'screens/compare/compare_screen.dart';
@@ -14,6 +15,7 @@ import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/vault_gvvi_screen.dart';
 import 'services/identity/display_identity.dart';
 import 'services/identity/image_presentation.dart';
+import 'services/identity/variant_origin_public_copy.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/public/compare_service.dart';
@@ -606,6 +608,17 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     return null;
   }
 
+  VariantOriginPublicCopy? get _variantOriginCopy {
+    final contextCardPrintId = _cleanText(_cardContextData?['id']);
+    final contextGvId = _cleanText(_cardContextData?['gv_id']);
+    return getVariantOriginPublicCopy(
+      cardPrintId: contextCardPrintId.isNotEmpty
+          ? contextCardPrintId
+          : widget.cardPrintId,
+      gvId: contextGvId.isNotEmpty ? contextGvId : widget.gvId,
+    );
+  }
+
   bool get _hasContactContext =>
       _cleanText(widget.contactVaultItemId).isNotEmpty &&
       _cleanText(widget.contactOwnerDisplayName).isNotEmpty;
@@ -682,6 +695,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         builder: (_) => PublicSetDetailScreen(setCode: setCode),
       ),
     );
+  }
+
+  Future<void> _openVariantOriginSource(String url) async {
+    final uri = Uri.tryParse(url);
+    if (uri == null) {
+      return;
+    }
+
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
   Future<void> _openExactCopy() async {
@@ -1415,6 +1437,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       _buildHeroPanel(theme, colorScheme),
       if (_printingOptions.isNotEmpty)
         _buildPrintingOptionsSection(theme, colorScheme),
+      if (_variantOriginCopy != null)
+        _buildVariantOriginSection(theme, colorScheme),
       _buildActions(context, theme, colorScheme),
       if (_hasContactContext) _buildCollectorNetworkSection(theme, colorScheme),
       _buildPricingSection(theme, colorScheme),
@@ -2156,6 +2180,185 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildVariantOriginSection(
+    ThemeData theme,
+    ColorScheme colorScheme,
+  ) {
+    final copy = _variantOriginCopy;
+    if (copy == null) {
+      return const SizedBox.shrink();
+    }
+
+    final sourceUrls = copy.sourceUrls.take(4).toList(growable: false);
+
+    return _buildSurface(
+      colorScheme: colorScheme,
+      soft: true,
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildSectionLabel('Variant Origin', theme, colorScheme),
+                    const SizedBox(height: 5),
+                    Text(
+                      copy.familyLabel,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -0.15,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 10),
+              _buildInfoChip(
+                label: copy.confidence.isEmpty
+                    ? 'Source backed'
+                    : '${copy.confidence[0].toUpperCase()}${copy.confidence.substring(1)} confidence',
+                icon: Icons.verified_outlined,
+                tint: colorScheme.primary,
+                theme: theme,
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          _buildVariantOriginTextBlock(
+            title: 'Why it exists',
+            body: copy.whyItExists,
+            theme: theme,
+            colorScheme: colorScheme,
+          ),
+          const SizedBox(height: 10),
+          _buildVariantOriginTextBlock(
+            title: 'Why collectors care',
+            body: copy.whyCollectorsCare,
+            theme: theme,
+            colorScheme: colorScheme,
+          ),
+          if (copy.howToIdentify.isNotEmpty) ...[
+            const SizedBox(height: 10),
+            _buildVariantOriginTextBlock(
+              title: 'How to identify it',
+              body: copy.howToIdentify,
+              theme: theme,
+              colorScheme: colorScheme,
+            ),
+          ],
+          const SizedBox(height: 8),
+          Theme(
+            data: theme.copyWith(dividerColor: Colors.transparent),
+            child: ExpansionTile(
+              tilePadding: EdgeInsets.zero,
+              childrenPadding: EdgeInsets.zero,
+              dense: true,
+              title: Text(
+                'Source-backed modeling',
+                style: theme.textTheme.labelLarge?.copyWith(
+                  fontWeight: FontWeight.w800,
+                  color: colorScheme.onSurface.withValues(alpha: 0.78),
+                ),
+              ),
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    copy.grookaiRule,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.72),
+                      height: 1.35,
+                    ),
+                  ),
+                ),
+                if (sourceUrls.isNotEmpty) ...[
+                  const SizedBox(height: 8),
+                  for (var index = 0; index < sourceUrls.length; index++) ...[
+                    if (index > 0) const SizedBox(height: 6),
+                    _buildVariantOriginSourceLink(
+                      url: sourceUrls[index],
+                      theme: theme,
+                      colorScheme: colorScheme,
+                    ),
+                  ],
+                ],
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildVariantOriginTextBlock({
+    required String title,
+    required String body,
+    required ThemeData theme,
+    required ColorScheme colorScheme,
+  }) {
+    if (body.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: theme.textTheme.labelMedium?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.62),
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+        const SizedBox(height: 3),
+        Text(
+          body,
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.84),
+            height: 1.35,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildVariantOriginSourceLink({
+    required String url,
+    required ThemeData theme,
+    required ColorScheme colorScheme,
+  }) {
+    final uri = Uri.tryParse(url);
+    final label = uri != null && uri.host.isNotEmpty ? uri.host : url;
+
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: TextButton.icon(
+        onPressed: () => _openVariantOriginSource(url),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+          minimumSize: const Size(0, 32),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+        icon: const Icon(Icons.open_in_new_rounded, size: 15),
+        label: Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.labelMedium?.copyWith(
+            color: colorScheme.primary,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
     );
   }
