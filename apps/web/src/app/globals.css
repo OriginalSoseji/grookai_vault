@@ -21,21 +21,21 @@
   --gv-primary-soft: rgba(74, 144, 226, 0.08);
   --gv-primary-container: #d8e6ff;
   --gv-tertiary-container: #fff1d6;
-  --gv-surface-page: #fbfcff;
+  --gv-surface-page: #f7f9fc;
   --gv-surface-base: #ffffff;
-  --gv-surface-elevated: rgba(255, 255, 255, 0.94);
-  --gv-surface-container: rgba(239, 244, 251, 0.8);
-  --gv-surface-container-low: rgba(247, 249, 253, 0.74);
-  --gv-surface-soft: rgba(239, 244, 251, 0.68);
-  --gv-surface-glass: rgba(255, 255, 255, 0.78);
-  --gv-border-soft: rgba(30, 41, 59, 0.14);
-  --gv-border-hairline: rgba(30, 41, 59, 0.08);
+  --gv-surface-elevated: rgba(255, 255, 255, 0.82);
+  --gv-surface-container: rgba(244, 247, 251, 0.76);
+  --gv-surface-container-low: rgba(255, 255, 255, 0.58);
+  --gv-surface-soft: rgba(248, 250, 252, 0.58);
+  --gv-surface-glass: rgba(255, 255, 255, 0.68);
+  --gv-border-soft: rgba(15, 23, 42, 0.1);
+  --gv-border-hairline: rgba(15, 23, 42, 0.06);
   --gv-text-primary: #111827;
   --gv-text-secondary: #586174;
   --gv-text-tertiary: #8b95a7;
-  --gv-shadow-sm: 0 10px 34px -30px rgba(15, 23, 42, 0.5);
-  --gv-shadow-md: 0 28px 80px -58px rgba(15, 23, 42, 0.58);
-  --gv-shadow-lg: 0 54px 140px -86px rgba(15, 23, 42, 0.72);
+  --gv-shadow-sm: 0 14px 42px -34px rgba(15, 23, 42, 0.42);
+  --gv-shadow-md: 0 34px 90px -64px rgba(15, 23, 42, 0.48);
+  --gv-shadow-lg: 0 70px 160px -96px rgba(15, 23, 42, 0.62);
   --gv-transition-fast: 120ms ease;
   --gv-transition-default: 180ms ease;
 }
@@ -43,7 +43,8 @@
 body {
   @apply bg-slate-50 text-slate-900;
   background:
-    linear-gradient(180deg, #ffffff 0%, var(--gv-surface-page) 42%, #f4f7fb 100%);
+    radial-gradient(circle at 50% -12%, rgba(74, 144, 226, 0.1), transparent 34rem),
+    linear-gradient(180deg, #ffffff 0%, var(--gv-surface-page) 46%, #eef3f8 100%);
   color: var(--gv-text-primary);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
@@ -62,15 +63,15 @@ body {
 
 html.gv-dark {
   color-scheme: dark;
-  --gv-surface-page: #00030a;
-  --gv-surface-base: rgba(6, 10, 20, 0.94);
-  --gv-surface-elevated: rgba(9, 14, 27, 0.82);
-  --gv-surface-container: rgba(17, 24, 39, 0.7);
-  --gv-surface-container-low: rgba(8, 13, 25, 0.66);
-  --gv-surface-soft: rgba(8, 13, 25, 0.66);
-  --gv-surface-glass: rgba(8, 13, 25, 0.6);
-  --gv-border-soft: rgba(148, 163, 184, 0.16);
-  --gv-border-hairline: rgba(226, 232, 240, 0.08);
+  --gv-surface-page: #000000;
+  --gv-surface-base: rgba(5, 8, 15, 0.82);
+  --gv-surface-elevated: rgba(8, 12, 22, 0.74);
+  --gv-surface-container: rgba(13, 18, 31, 0.66);
+  --gv-surface-container-low: rgba(10, 14, 24, 0.5);
+  --gv-surface-soft: rgba(8, 12, 22, 0.46);
+  --gv-surface-glass: rgba(8, 12, 22, 0.52);
+  --gv-border-soft: rgba(226, 232, 240, 0.1);
+  --gv-border-hairline: rgba(226, 232, 240, 0.06);
   --gv-text-primary: #f6f8fb;
   --gv-text-secondary: #bec7d5;
   --gv-text-tertiary: #738096;
@@ -81,8 +82,9 @@ html.gv-dark {
 
 html.gv-dark body {
   background:
-    radial-gradient(circle at 50% -12%, rgba(37, 99, 235, 0.16), transparent 32rem),
-    linear-gradient(180deg, #00030a 0%, #020617 44%, #000000 100%);
+    radial-gradient(circle at 50% -16%, rgba(59, 130, 246, 0.14), transparent 34rem),
+    radial-gradient(circle at 12% 18%, rgba(16, 185, 129, 0.05), transparent 20rem),
+    linear-gradient(180deg, #000000 0%, #02040a 48%, #000000 100%);
   color: #e2e8f0;
 }
 
@@ -332,15 +334,28 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
     inset 0 1px 0 rgba(255, 255, 255, 0.64);
 }
 
+.gv-results-command-bar {
+  border: 1px solid var(--gv-border-hairline);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow:
+    0 20px 54px -46px rgba(15, 23, 42, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(18px);
+}
+
 .gv-discovery-hero {
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--gv-border-soft);
-  border-radius: clamp(24px, 3vw, 36px);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: clamp(28px, 4vw, 44px);
   background:
-    radial-gradient(circle at 12% 12%, rgba(74, 144, 226, 0.18), transparent 18rem),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(247, 250, 255, 0.94) 48%, rgba(239, 244, 251, 0.9) 100%);
-  box-shadow: var(--gv-shadow-lg);
+    radial-gradient(circle at 11% 4%, rgba(74, 144, 226, 0.2), transparent 21rem),
+    radial-gradient(circle at 88% 12%, rgba(16, 185, 129, 0.13), transparent 17rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 252, 255, 0.94) 44%, rgba(239, 244, 251, 0.82) 100%);
+  box-shadow:
+    0 80px 180px -112px rgba(15, 23, 42, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
 }
 
 .gv-discovery-hero::before {
@@ -359,7 +374,7 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   border: 1px solid rgba(16, 185, 129, 0.28);
   border-radius: 999px;
   background: rgba(236, 253, 245, 0.74);
-  padding: 0.38rem 0.72rem;
+  padding: 0.42rem 0.78rem;
   color: #047857;
   font-size: 0.72rem;
   font-weight: 750;
@@ -374,7 +389,7 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   border: 1px solid var(--gv-border-hairline);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.68);
-  padding: 0.38rem 0.72rem;
+  padding: 0.42rem 0.78rem;
   color: var(--gv-text-secondary);
   font-size: 0.74rem;
   font-weight: 700;
@@ -393,11 +408,11 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 
 .gv-discovery-proof-card {
   border: 1px solid var(--gv-border-hairline);
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.74);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.66);
   box-shadow:
-    0 30px 90px -64px rgba(15, 23, 42, 0.74),
-    inset 0 1px 0 rgba(255, 255, 255, 0.74);
+    0 34px 96px -68px rgba(15, 23, 42, 0.68),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(18px);
 }
 
@@ -531,12 +546,14 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 }
 
 .gv-visual-card {
-  border: 1px solid var(--gv-border-soft);
-  border-radius: 22px;
-  background: var(--gv-surface-base);
+  position: relative;
+  border: 1px solid rgba(15, 23, 42, 0.07);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.78) 100%);
   box-shadow:
-    var(--gv-shadow-sm),
-    inset 0 1px 0 rgba(255, 255, 255, 0.68);
+    0 26px 74px -62px rgba(15, 23, 42, 0.56),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
   transition:
     border-color var(--gv-transition-default),
     box-shadow var(--gv-transition-default),
@@ -544,16 +561,35 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 }
 
 .gv-visual-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(74, 144, 226, 0.26);
-  box-shadow: var(--gv-shadow-md);
+  transform: translateY(-3px);
+  border-color: rgba(74, 144, 226, 0.18);
+  box-shadow:
+    0 38px 110px -72px rgba(15, 23, 42, 0.62),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
 }
 
 .gv-visual-card-image {
   border: 0;
-  border-radius: 18px;
+  border-radius: 24px;
   background:
-    linear-gradient(180deg, rgba(247, 249, 253, 0.9) 0%, rgba(239, 244, 251, 0.78) 100%);
+    radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.9), transparent 14rem),
+    linear-gradient(180deg, rgba(246, 248, 252, 0.55) 0%, rgba(238, 243, 249, 0.42) 100%);
+}
+
+.gv-visual-card-utility {
+  position: absolute;
+  right: 0.95rem;
+  top: 0.95rem;
+  z-index: 2;
+  opacity: 0.88;
+  transition:
+    opacity var(--gv-transition-fast),
+    transform var(--gv-transition-fast);
+}
+
+.gv-visual-card:hover .gv-visual-card-utility {
+  opacity: 1;
+  transform: translateY(-1px);
 }
 
 .gv-set-logo-wash {
@@ -606,15 +642,27 @@ html.gv-dark .gv-control-surface {
   background: rgba(8, 13, 25, 0.72);
 }
 
+html.gv-dark .gv-results-command-bar {
+  border-color: rgba(226, 232, 240, 0.08);
+  background: rgba(5, 8, 15, 0.58);
+  box-shadow:
+    0 24px 70px -54px rgba(0, 0, 0, 0.92),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
 html.gv-dark .gv-quiet-panel {
   background: rgba(8, 13, 25, 0.52);
 }
 
 html.gv-dark .gv-discovery-hero {
+  border-color: rgba(255, 255, 255, 0.08);
   background:
-    radial-gradient(circle at 12% 0%, rgba(59, 130, 246, 0.2), transparent 18rem),
-    radial-gradient(circle at 86% 18%, rgba(16, 185, 129, 0.12), transparent 16rem),
-    linear-gradient(135deg, rgba(3, 7, 18, 0.98) 0%, rgba(8, 13, 25, 0.96) 48%, rgba(0, 0, 0, 0.94) 100%);
+    radial-gradient(circle at 12% 0%, rgba(59, 130, 246, 0.24), transparent 22rem),
+    radial-gradient(circle at 86% 18%, rgba(16, 185, 129, 0.14), transparent 17rem),
+    linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(7, 10, 18, 0.96) 48%, rgba(0, 0, 0, 0.94) 100%);
+  box-shadow:
+    0 90px 190px -112px rgba(0, 0, 0, 0.98),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 html.gv-dark .gv-discovery-hero::before {
@@ -642,7 +690,7 @@ html.gv-dark .gv-discovery-chip-muted {
 
 html.gv-dark .gv-discovery-proof-card {
   border-color: rgba(226, 232, 240, 0.1);
-  background: rgba(8, 13, 25, 0.66);
+  background: rgba(5, 8, 15, 0.68);
   box-shadow:
     0 30px 90px -62px rgba(0, 0, 0, 0.94),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -695,8 +743,24 @@ html.gv-dark .gv-secondary-button:hover:not(:disabled) {
 
 html.gv-dark .gv-visual-card-image {
   background:
-    radial-gradient(circle at 50% 0%, rgba(51, 65, 85, 0.62), transparent 14rem),
-    rgba(15, 23, 42, 0.78);
+    radial-gradient(circle at 50% 0%, rgba(51, 65, 85, 0.34), transparent 15rem),
+    rgba(8, 12, 22, 0.46);
+}
+
+html.gv-dark .gv-visual-card {
+  border-color: rgba(226, 232, 240, 0.08);
+  background:
+    linear-gradient(180deg, rgba(8, 12, 22, 0.82) 0%, rgba(4, 7, 13, 0.72) 100%);
+  box-shadow:
+    0 28px 86px -62px rgba(0, 0, 0, 0.96),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html.gv-dark .gv-visual-card:hover {
+  border-color: rgba(147, 197, 253, 0.2);
+  box-shadow:
+    0 40px 120px -72px rgba(0, 0, 0, 1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 html.gv-dark .gv-set-logo-wash {

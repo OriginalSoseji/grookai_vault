@@ -107,8 +107,8 @@ function renderImage({
         fallbackSrc={imageFallbackSrc}
         alt={imageAlt}
         loading={imageLoading}
-        imageClassName={`aspect-[3/4] w-full rounded-[16px] object-contain transition duration-200 group-hover:scale-[1.018] ${imageClassName ?? ""}`.trim()}
-        fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[16px] bg-slate-100/70 px-4 text-center text-sm text-slate-500"
+        imageClassName={`aspect-[3/4] w-full rounded-[20px] object-contain transition duration-200 group-hover:scale-[1.018] ${imageClassName ?? ""}`.trim()}
+        fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[20px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
         fallbackLabel={imageFallbackLabel ?? imageAlt}
       />
       {imageOverlay ? (
@@ -183,7 +183,7 @@ export default function PokemonCardGridTile({
     <article
       className={`gv-visual-card group overflow-hidden ${TILE_PADDING_BY_DENSITY[density]} ${className}`.trim()}
     >
-      {utility ? <div className="mb-3 flex items-center justify-end gap-2">{utility}</div> : null}
+      {utility ? <div className="gv-visual-card-utility">{utility}</div> : null}
 
       <div className={CONTENT_STACK_BY_DENSITY[density]}>
         {imageHref ? <Link href={imageHref}>{image}</Link> : image}
