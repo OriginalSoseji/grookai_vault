@@ -74,6 +74,16 @@ type CardPrintingRow = {
     | null;
 };
 
+type CameoViewRow = {
+  gv_id: string | null;
+  card_name: string | null;
+  set_code: string | null;
+  set_name: string | null;
+  number: string | null;
+  notes_raw: string | null;
+  cameo_qualifiers: string[] | null;
+};
+
 export type GrookaiDexSpeciesDetail = {
   speciesId: string;
   slug: string;
@@ -87,6 +97,17 @@ export type GrookaiDexSpeciesDetail = {
   ownedVariantOptionCount: number;
   missingVariantOptionCount: number;
   cards: GrookaiDexCardPrintRow[];
+  cameoAppearances: GrookaiDexCameoAppearance[];
+};
+
+export type GrookaiDexCameoAppearance = {
+  gvId: string;
+  cardName: string;
+  setCode: string | null;
+  setName: string | null;
+  number: string | null;
+  notes: string | null;
+  qualifiers: string[];
 };
 
 function clean(value: unknown) {
@@ -272,6 +293,38 @@ export async function getGrookaiDexSpeciesDetail(
 
     return sum + row.printings.filter((printing) => printing.ownedCount > 0).length;
   }, 0);
+  const { data: cameoRows, error: cameoError } = await admin
+    .from("v_card_print_cameos_public_v1")
+    .select("gv_id,card_name,set_code,set_name,number,notes_raw,cameo_qualifiers")
+    .eq("cameo_subject_type", "pokemon")
+    .eq("pokemon_ndex", String(rows[0]?.national_dex_number ?? ""))
+    .order("set_name", { ascending: true })
+    .order("number", { ascending: true })
+    .limit(60);
+
+  if (cameoError) {
+    throw new Error(`[grookai-dex:species-detail-cameos] ${cameoError.message}`);
+  }
+
+  const cameoAppearances = ((cameoRows ?? []) as CameoViewRow[])
+    .map((row) => {
+      const gvId = clean(row.gv_id);
+      if (!gvId) {
+        return null;
+      }
+      return {
+        gvId,
+        cardName: clean(row.card_name) ?? "Unknown card",
+        setCode: clean(row.set_code),
+        setName: clean(row.set_name),
+        number: clean(row.number),
+        notes: clean(row.notes_raw),
+        qualifiers: Array.isArray(row.cameo_qualifiers)
+          ? row.cameo_qualifiers.filter((value): value is string => typeof value === "string" && value.trim().length > 0)
+          : [],
+      } satisfies GrookaiDexCameoAppearance;
+    })
+    .filter((row): row is GrookaiDexCameoAppearance => row !== null);
 
   return {
     speciesId: clean(rows[0]?.species_id) ?? "",
@@ -286,5 +339,6 @@ export async function getGrookaiDexSpeciesDetail(
     ownedVariantOptionCount,
     missingVariantOptionCount: Math.max(0, variantOptionCount - ownedVariantOptionCount),
     cards,
+    cameoAppearances,
   };
 }

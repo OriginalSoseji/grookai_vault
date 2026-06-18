@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `CAMEO_SEARCH_ROTOMAMITI_REFRESH_20260618_V1` — `2026-06-18` — Additive RotomAmiti cameo enrichment refresh: 60 logical-new `card_print_cameos` rows applied, active source count now 1,421, 38 preservation-review rows intentionally retained, and future refreshes locked to logical cameo identity instead of volatile sheet row hashes
 - `DB_CANON_COMPLETE_BEFORE_WEB_CHANGES_RESTORE_POINT_V1` — `2026-06-16` — Restore instructions for git checkpoint `checkpoint/db-canon-complete-before-web-20260616` / commit `fb95dff5`, preserving the current DB canon, enrichment, image-truth, Pocket GV-ID, external mapping alias, and website baseline before further website changes
 - `LOCAL_COMMUNITY_FEED_V1_INTERNAL_PREVIEW_COMPLETE` — `2026-05-21` — Permanent project-memory checkpoint locking Local Community Feed V1 as accepted internal-preview infrastructure, with authenticated opt-in access, coarse locality only, block/mute safety, sanitized public-safe images, mobile drawer-only scope, and no public production enablement
 - `FIXED_SLOT_SCANNER_RESET_V1` — `2026-05-15` — L3 scanner architecture reset checkpoint: fixed guide slot becomes production crop authority, still capture becomes final identity frame, detector boxes become advisory, and legacy live-boundary identity is deprecated

@@ -1,0 +1,932 @@
+{
+  "generated_at": "2026-06-18T17:36:48.482Z",
+  "source_delta_path": "docs\\audits\\cameo_search_v1\\cameo_search_v1_rotomamiti_refresh_delta_20260618.json",
+  "db_read_mode": "transaction read only",
+  "active_source_rows_now": 1421,
+  "summary": {
+    "preservation_review_rows": 38,
+    "deletion_safe_rows": 0,
+    "recommended_action": "preserve_all_until_manual_adjudication",
+    "rows_by_set": [
+      {
+        "name": "Evolving Skies",
+        "count": 6
+      },
+      {
+        "name": "DP Promos",
+        "count": 4
+      },
+      {
+        "name": "BREAKthrough",
+        "count": 3
+      },
+      {
+        "name": "Destined Rivals",
+        "count": 3
+      },
+      {
+        "name": "XY",
+        "count": 3
+      },
+      {
+        "name": "Dark Explorers",
+        "count": 2
+      },
+      {
+        "name": "Majestic Dawn",
+        "count": 2
+      },
+      {
+        "name": "Secret Wonders",
+        "count": 2
+      },
+      {
+        "name": "SVP Promos",
+        "count": 2
+      },
+      {
+        "name": "Unleashed",
+        "count": 2
+      },
+      {
+        "name": "BREAKpoint",
+        "count": 1
+      },
+      {
+        "name": "Chilling Reign",
+        "count": 1
+      },
+      {
+        "name": "Fates Collide",
+        "count": 1
+      },
+      {
+        "name": "Great Encounters",
+        "count": 1
+      },
+      {
+        "name": "HeartGold & SoulSilver",
+        "count": 1
+      },
+      {
+        "name": "Roaring Skies",
+        "count": 1
+      },
+      {
+        "name": "SM Promos",
+        "count": 1
+      },
+      {
+        "name": "Ultra Prism",
+        "count": 1
+      },
+      {
+        "name": "Vivid Voltage",
+        "count": 1
+      }
+    ],
+    "rows_by_subject_type": [
+      {
+        "name": "pokemon",
+        "count": 26
+      },
+      {
+        "name": "trainer",
+        "count": 12
+      }
+    ],
+    "rows_by_reason": [
+      {
+        "name": "historical_source_row_retained",
+        "count": 38
+      },
+      {
+        "name": "promo_family_row",
+        "count": 7
+      },
+      {
+        "name": "edge_visibility_note",
+        "count": 4
+      }
+    ]
+  },
+  "rows": [
+    {
+      "source_tab": "Gen 1",
+      "source_row_index": 188,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Pikachu",
+      "pokemon_ndex": "25",
+      "card_name_raw": "Pokémon Communication",
+      "set_name_raw": "HeartGold & SoulSilver",
+      "number_raw": "98",
+      "notes_raw": null,
+      "card_print_id": "d70defc2-67bb-48e3-93de-6b4127fef47d",
+      "source_row_hash": "2847dcfddee64fbba4850cbfc16e9ede39022ac4d31b35e6210bc272eafb753c",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_row_index": 565,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Psyduck",
+      "pokemon_ndex": "54",
+      "card_name_raw": "Tropical Wind",
+      "set_name_raw": "DP Promos",
+      "number_raw": "48",
+      "notes_raw": null,
+      "card_print_id": "3087efa0-9ef8-4365-8820-bcc14e26a7e8",
+      "source_row_hash": "75e812a3da83dece062957bc3fd246d5b7a65964eee106d1419a8cae8c93f1d4",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "promo_family_row",
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_row_index": 1219,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Mega Mewtwo X",
+      "pokemon_ndex": "150",
+      "card_name_raw": "Flabébé",
+      "set_name_raw": "BREAKthrough",
+      "number_raw": "101",
+      "notes_raw": "silhouette",
+      "card_print_id": "4f5f59ea-417a-443b-beaf-5d13bf1223e5",
+      "source_row_hash": "d48fd45b6f422d0e982b6715506d8028358a5546f72993f953d6361b243d2be4",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "edge_visibility_note",
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 2",
+      "source_row_index": 14,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Chikorita",
+      "pokemon_ndex": "152",
+      "card_name_raw": "Fennekin",
+      "set_name_raw": "Fates Collide",
+      "number_raw": "10",
+      "notes_raw": null,
+      "card_print_id": "695de035-70a0-4150-81be-ea87b1463429",
+      "source_row_hash": "0c0465807704a5d19ca090d70077a4433f7761d74b3a0fe953534301b303f4da",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 2",
+      "source_row_index": 247,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Snubbull",
+      "pokemon_ndex": "209",
+      "card_name_raw": "Floette",
+      "set_name_raw": "BREAKthrough",
+      "number_raw": "102",
+      "notes_raw": null,
+      "card_print_id": "d65a9c23-da54-4eb5-995f-071fb8c24c67",
+      "source_row_hash": "87c27aa7a1c1438c6764b2c48971da197f9d7a945eee66ace3dd15ec20ebcb25",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 3",
+      "source_row_index": 350,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Spheal",
+      "pokemon_ndex": "363",
+      "card_name_raw": "Piplup",
+      "set_name_raw": "Ultra Prism",
+      "number_raw": "32",
+      "notes_raw": null,
+      "card_print_id": "9d7ad936-c000-4401-9bc0-d1191b157af2",
+      "source_row_hash": "32575e0e082263b1fb3f5e7540060f49c2c57bacc6ff8873a37004c6b6d19e04",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 3",
+      "source_row_index": 379,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Beldum",
+      "pokemon_ndex": "374",
+      "card_name_raw": "Judge",
+      "set_name_raw": "Unleashed",
+      "number_raw": "78",
+      "notes_raw": null,
+      "card_print_id": "1e4fbdcc-d777-4d9c-a83b-1d3ef2f58d13",
+      "source_row_hash": "153f586dd4743776c21e9cb54fe45cd35acb821d4ec752ac4f47960049b717fa",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 4",
+      "source_row_index": 15,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Piplup",
+      "pokemon_ndex": "393",
+      "card_name_raw": "Roseanne's Research",
+      "set_name_raw": "Secret Wonders",
+      "number_raw": "125",
+      "notes_raw": null,
+      "card_print_id": "157d0533-b1c4-435c-a6b9-fce49d33c452",
+      "source_row_hash": "6af98772095d25bb3ac0aa7c81f7b90157a2e232ecdb1998e84cb1c73dd7eb6e",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 4",
+      "source_row_index": 49,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bidoof",
+      "pokemon_ndex": "399",
+      "card_name_raw": "Tropical Wind",
+      "set_name_raw": "DP Promos",
+      "number_raw": "48",
+      "notes_raw": null,
+      "card_print_id": "3087efa0-9ef8-4365-8820-bcc14e26a7e8",
+      "source_row_hash": "941b0b4e5ecc3b31e67ce7c511ce764601191a33c6d08165dd6e94518b175689",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "promo_family_row",
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 4",
+      "source_row_index": 70,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Roserade",
+      "pokemon_ndex": "407",
+      "card_name_raw": "Super Scoop Up",
+      "set_name_raw": "Unleashed",
+      "number_raw": "83",
+      "notes_raw": null,
+      "card_print_id": "fe1c8f86-5133-42d1-8a2b-df6518f11d59",
+      "source_row_hash": "f603b1f48ea1e9d9245d46539794417a75c124d6388df96ce1455d45f7e47758",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 4",
+      "source_row_index": 139,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Buneary",
+      "pokemon_ndex": "427",
+      "card_name_raw": "Felicity's Drawing",
+      "set_name_raw": "Great Encounters",
+      "number_raw": "98",
+      "notes_raw": "plushie",
+      "card_print_id": "3028bdc9-366f-44aa-9633-977130c4a44f",
+      "source_row_hash": "4bf09e52cd94e1b96738ed0c4e7e181153aa6c961f5cf6ff16bd3468866996a6",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 4",
+      "source_row_index": 159,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bonsly",
+      "pokemon_ndex": "438",
+      "card_name_raw": "Warp Point",
+      "set_name_raw": "Majestic Dawn",
+      "number_raw": "88",
+      "notes_raw": null,
+      "card_print_id": "cfcbf472-332c-4b44-893c-790cca52148e",
+      "source_row_hash": "c0d0e38f931011d75ab3850683de22b2006538be24773953b27b7d72cad5518e",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 4",
+      "source_row_index": 188,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Munchlax",
+      "pokemon_ndex": "446",
+      "card_name_raw": "Warp Point",
+      "set_name_raw": "Majestic Dawn",
+      "number_raw": "88",
+      "notes_raw": null,
+      "card_print_id": "cfcbf472-332c-4b44-893c-790cca52148e",
+      "source_row_hash": "5341c826bc07f1112e452200df00afb3992ed7d8d97b06e43be2e5a961fd0c6f",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 4",
+      "source_row_index": 244,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Weavile",
+      "pokemon_ndex": "461",
+      "card_name_raw": "Tropical Wind",
+      "set_name_raw": "DP Promos",
+      "number_raw": "48",
+      "notes_raw": null,
+      "card_print_id": "3087efa0-9ef8-4365-8820-bcc14e26a7e8",
+      "source_row_hash": "51bc0f7c5782a570784ecdd34caf5c83ee5b2ba6077f062143175b868bdb6859",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "promo_family_row",
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 4",
+      "source_row_index": 287,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Rotom Phone",
+      "pokemon_ndex": "479",
+      "card_name_raw": "Raihan",
+      "set_name_raw": "Evolving Skies",
+      "number_raw": "152",
+      "notes_raw": null,
+      "card_print_id": "a42ea45e-5af3-453c-a473-c959fb37edba",
+      "source_row_hash": "abac5d788a0d5469f4d62d019b98cba768cec2277f94fa5c81eea9c5e0b5a2e7",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 4",
+      "source_row_index": 358,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Sky Forme Shaymin",
+      "pokemon_ndex": "492",
+      "card_name_raw": "Tropical Wind",
+      "set_name_raw": "DP Promos",
+      "number_raw": "48",
+      "notes_raw": null,
+      "card_print_id": "3087efa0-9ef8-4365-8820-bcc14e26a7e8",
+      "source_row_hash": "4f77d64c459f10e58ad028e86440bfce46a43ed6e4e7605593f016d9150c86aa",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "promo_family_row",
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 5",
+      "source_row_index": 77,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Pidove",
+      "pokemon_ndex": "519",
+      "card_name_raw": "Professor Juniper",
+      "set_name_raw": "Dark Explorers",
+      "number_raw": "98",
+      "notes_raw": null,
+      "card_print_id": "e2dadea2-f1a8-4cac-9496-31e8adfa5908",
+      "source_row_hash": "d4bf1ca26d2290df05dfe8d12fff93c7d1c03b45d77fc6827b73aad62f273525",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 5",
+      "source_row_index": 115,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Petilil",
+      "pokemon_ndex": "548",
+      "card_name_raw": "Professor Sycamore",
+      "set_name_raw": "XY",
+      "number_raw": "122",
+      "notes_raw": "picture",
+      "card_print_id": "4cec1b2e-358c-4e24-a295-efb955acc303",
+      "source_row_hash": "f9596b578733d6117f2329fc766dea499ff2c5b1a987529a4d7b030bb8881a65",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "edge_visibility_note",
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 5",
+      "source_row_index": 135,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Sigilyph",
+      "pokemon_ndex": "561",
+      "card_name_raw": "Professor Sycamore",
+      "set_name_raw": "XY",
+      "number_raw": "122",
+      "notes_raw": "picture",
+      "card_print_id": "4cec1b2e-358c-4e24-a295-efb955acc303",
+      "source_row_hash": "14effac089b1f55c11b1d9ea30878d668ddce1ea78bff85f2771625ab5f2140b",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "edge_visibility_note",
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 5",
+      "source_row_index": 139,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Yamask",
+      "pokemon_ndex": "562",
+      "card_name_raw": "Professor Sycamore",
+      "set_name_raw": "XY",
+      "number_raw": "122",
+      "notes_raw": "picture",
+      "card_print_id": "4cec1b2e-358c-4e24-a295-efb955acc303",
+      "source_row_hash": "017d4a5353135bed031b28d9ed65e208b6bc30be3a7bba1ac2da5f5e673eab3f",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "edge_visibility_note",
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 5",
+      "source_row_index": 170,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Minccino",
+      "pokemon_ndex": "572",
+      "card_name_raw": "Professor Juniper",
+      "set_name_raw": "Dark Explorers",
+      "number_raw": "98",
+      "notes_raw": null,
+      "card_print_id": "e2dadea2-f1a8-4cac-9496-31e8adfa5908",
+      "source_row_hash": "137495dbed0a38f815bd2ae5f2ed949a58d812dcc9000bafd2914ebcea47e2ca",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 5",
+      "source_row_index": 291,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Pirouette Meloetta",
+      "pokemon_ndex": "648",
+      "card_name_raw": "Floette",
+      "set_name_raw": "BREAKthrough",
+      "number_raw": "102",
+      "notes_raw": null,
+      "card_print_id": "d65a9c23-da54-4eb5-995f-071fb8c24c67",
+      "source_row_hash": "efe3896c57eb7406c1f2c46bf4c2c2380499ee32e997d6ed251e6b972b19e34e",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 6",
+      "source_row_index": 15,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Fennekin",
+      "pokemon_ndex": "653",
+      "card_name_raw": "Chikorita",
+      "set_name_raw": "BREAKpoint",
+      "number_raw": "1",
+      "notes_raw": null,
+      "card_print_id": "ec6c1053-9691-4ee2-8bc2-179e3d11f297",
+      "source_row_hash": "934f95c3773cd5e458f0e609007f7d80ae8426e6160ba296b6260e3c51cffc6a",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 6",
+      "source_row_index": 90,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Inkay",
+      "pokemon_ndex": "686",
+      "card_name_raw": "Meowth",
+      "set_name_raw": "Roaring Skies",
+      "number_raw": "67",
+      "notes_raw": null,
+      "card_print_id": "f70cd048-f6de-4510-989d-8c643a3325b3",
+      "source_row_hash": "972ecfd0252c4749c0d23ba026e600b90b86d41a490119d4000b3fd75e5bbc99",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 6",
+      "source_row_index": 147,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Pumpkaboo",
+      "pokemon_ndex": "710",
+      "card_name_raw": "Gourgeist",
+      "set_name_raw": "Evolving Skies",
+      "number_raw": "77",
+      "notes_raw": null,
+      "card_print_id": "a6b4c0fa-599a-4c7b-a97d-4e38ce5ae74f",
+      "source_row_hash": "b1b98c836e7917778918d685b61741a6bb1aa71104c9191fa2549ff5e30fd0ba",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Gen 8",
+      "source_row_index": 20,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Sobble",
+      "pokemon_ndex": "816",
+      "card_name_raw": "Passimian",
+      "set_name_raw": "Chilling Reign",
+      "number_raw": "88",
+      "notes_raw": null,
+      "card_print_id": "0095d85b-4a0b-4873-b715-12e26944ef27",
+      "source_row_hash": "650614db98db46f9528a3be11bf291db43ac54accaeb986fb06829ba4716e697",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Trainers",
+      "source_row_index": 94,
+      "cameo_subject_type": "trainer",
+      "cameo_subject_name": "Ash",
+      "pokemon_ndex": null,
+      "card_name_raw": "Pikachu",
+      "set_name_raw": "SM Promos",
+      "number_raw": "227",
+      "notes_raw": null,
+      "card_print_id": "5947c4d6-7ca7-4d25-bd9e-71f94874d5db",
+      "source_row_hash": "4de1083d4f73b05b1cdc64a143bb979522875f8ec402e24e7de9890d172a9c91",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "promo_family_row",
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Trainers",
+      "source_row_index": 109,
+      "cameo_subject_type": "trainer",
+      "cameo_subject_name": "Ethan",
+      "pokemon_ndex": null,
+      "card_name_raw": "Ethan's Ho-Oh ex",
+      "set_name_raw": "Destined Rivals",
+      "number_raw": "239",
+      "notes_raw": null,
+      "card_print_id": "bce3f3e6-1f18-47ce-afd2-cd8dda3a72c4",
+      "source_row_hash": "0294985fc7437c66049d91cb7744a71c748532e7d988fefc9f9475454880bca9",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Trainers",
+      "source_row_index": 119,
+      "cameo_subject_type": "trainer",
+      "cameo_subject_name": "Ethan",
+      "pokemon_ndex": null,
+      "card_name_raw": "Copycat",
+      "set_name_raw": "Evolving Skies",
+      "number_raw": "143",
+      "notes_raw": null,
+      "card_print_id": "492c1529-cc38-4ecf-ab06-7d9594b28b63",
+      "source_row_hash": "e0cdd559ed2e55dac74456b9217bd3c7b34d3f020d39e0d601b2287898d2a369",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Trainers",
+      "source_row_index": 148,
+      "cameo_subject_type": "trainer",
+      "cameo_subject_name": "Archer",
+      "pokemon_ndex": null,
+      "card_name_raw": "Team Rocket's Moltres ex",
+      "set_name_raw": "Destined Rivals",
+      "number_raw": "208",
+      "notes_raw": null,
+      "card_print_id": "ff338b59-53b0-4e94-afe3-64653dac6018",
+      "source_row_hash": "aa69dec9ae624796506203dbad865ea5195380608d50f0577879a0080c3aa62e",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Trainers",
+      "source_row_index": 149,
+      "cameo_subject_type": "trainer",
+      "cameo_subject_name": "Archer",
+      "pokemon_ndex": null,
+      "card_name_raw": "Team Rocket's Moltres ex",
+      "set_name_raw": "Destined Rivals",
+      "number_raw": "229",
+      "notes_raw": null,
+      "card_print_id": "cd136b36-3439-492a-985f-ccc32550c796",
+      "source_row_hash": "69addba2c8fc1bfede35f612e765ed20fbca50c33891420378725b8b7e026bd7",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Trainers",
+      "source_row_index": 213,
+      "cameo_subject_type": "trainer",
+      "cameo_subject_name": "Professor Rowan",
+      "pokemon_ndex": null,
+      "card_name_raw": "Roseanne's Research",
+      "set_name_raw": "Secret Wonders",
+      "number_raw": "125",
+      "notes_raw": null,
+      "card_print_id": "157d0533-b1c4-435c-a6b9-fce49d33c452",
+      "source_row_hash": "aed1c846f48dd2498d332be644872668e8052956eb3644462a56c13e99c39097",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Trainers",
+      "source_row_index": 255,
+      "cameo_subject_type": "trainer",
+      "cameo_subject_name": "N",
+      "pokemon_ndex": null,
+      "card_name_raw": "N's Zorua",
+      "set_name_raw": "SVP Promos",
+      "number_raw": "189",
+      "notes_raw": null,
+      "card_print_id": "e84ae163-8b5e-4285-b425-06a64535e206",
+      "source_row_hash": "9003ac14ab700b76976906c1fdab74b0c409a3c826c329a692a26d51320a6b1a",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "promo_family_row",
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Trainers",
+      "source_row_index": 327,
+      "cameo_subject_type": "trainer",
+      "cameo_subject_name": "Marnie",
+      "pokemon_ndex": null,
+      "card_name_raw": "Copycat",
+      "set_name_raw": "Evolving Skies",
+      "number_raw": "143",
+      "notes_raw": "costume",
+      "card_print_id": "492c1529-cc38-4ecf-ab06-7d9594b28b63",
+      "source_row_hash": "27d564a575fe089f9bd302278eb6048c2e06d3116da0123949d026b725f0ee62",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Trainers",
+      "source_row_index": 343,
+      "cameo_subject_type": "trainer",
+      "cameo_subject_name": "Leon",
+      "pokemon_ndex": null,
+      "card_name_raw": "Charizard",
+      "set_name_raw": "Vivid Voltage",
+      "number_raw": "25",
+      "notes_raw": null,
+      "card_print_id": "dfaaa5c8-3497-4bd6-b446-0c90d0f55724",
+      "source_row_hash": "2591e9576bf108e21fa44b99eda3fa078240aa6f2d6accc31d3577bfb67d7d81",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Trainers",
+      "source_row_index": 345,
+      "cameo_subject_type": "trainer",
+      "cameo_subject_name": "Leon",
+      "pokemon_ndex": null,
+      "card_name_raw": "Copycat",
+      "set_name_raw": "Evolving Skies",
+      "number_raw": "143",
+      "notes_raw": "costume",
+      "card_print_id": "492c1529-cc38-4ecf-ab06-7d9594b28b63",
+      "source_row_hash": "3b40a3419deabedf2bf359c8e9e9b617504200e79e7d690e73ddc60c746a12c1",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Trainers",
+      "source_row_index": 356,
+      "cameo_subject_type": "trainer",
+      "cameo_subject_name": "Rose",
+      "pokemon_ndex": null,
+      "card_name_raw": "Copycat",
+      "set_name_raw": "Evolving Skies",
+      "number_raw": "143",
+      "notes_raw": "costume",
+      "card_print_id": "492c1529-cc38-4ecf-ab06-7d9594b28b63",
+      "source_row_hash": "134b34b40344c29ace8ed7541c8cd4796e92a062226419e5ecfc98339ebab880",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    },
+    {
+      "source_tab": "Trainers",
+      "source_row_index": 530,
+      "cameo_subject_type": "trainer",
+      "cameo_subject_name": "Team Rocket Grunt",
+      "pokemon_ndex": null,
+      "card_name_raw": "Team Rocket's Wobbuffet",
+      "set_name_raw": "SVP Promos",
+      "number_raw": "203",
+      "notes_raw": null,
+      "card_print_id": "3b139ba4-08be-48ba-869c-e7ab3d494976",
+      "source_row_hash": "35d1571bb987eb7460a8b9114ae21f9366873806598e075cdc16e785e56eb6a8",
+      "review": {
+        "action": "preserve_pending_manual_review",
+        "reason_codes": [
+          "promo_family_row",
+          "historical_source_row_retained"
+        ],
+        "deletion_safe": false,
+        "notes": "Existing cameo row is absent from the current logical source view. Preserve it until a human confirms source removal or replacement."
+      }
+    }
+  ],
+  "confirmations": {
+    "db_writes": false,
+    "deactivations": false,
+    "deletes": false,
+    "migrations": false,
+    "card_identity_changes": false,
+    "species_dex_changes": false
+  }
+}

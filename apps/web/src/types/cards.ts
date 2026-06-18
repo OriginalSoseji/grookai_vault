@@ -30,6 +30,15 @@ export type DisplayPrintedIdentity = {
   identitySource: DisplayPrintedIdentitySource;
 };
 
+export type CardCameo = {
+  cameo_subject_type: "pokemon" | "trainer";
+  cameo_subject_name: string;
+  pokemon_ndex?: string;
+  notes_raw?: string;
+  cameo_qualifiers?: string[];
+  source_name?: string;
+};
+
 export interface CardSummary {
   id: string;
   gv_id: string;
@@ -88,4 +97,5 @@ export interface CardDetail extends CardSummary {
   printings?: CardPrinting[];
   display_printings?: CardPrinting[];
   related_prints?: RelatedCardPrint[];
+  cameos?: CardCameo[];
 }

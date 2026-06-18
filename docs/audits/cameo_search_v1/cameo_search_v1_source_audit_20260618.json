@@ -1,0 +1,1511 @@
+{
+  "generated_at": "2026-06-18T16:42:42.819Z",
+  "source_url": "https://docs.google.com/spreadsheets/d/18nIkOgqQrHZTz0TrH_gL1e1nL1RcHiCmPF5finAjToY/htmlview",
+  "workbook_id": "18nIkOgqQrHZTz0TrH_gL1e1nL1RcHiCmPF5finAjToY",
+  "workbook_html_hash": "ae1802ce774e6cd610e08e210177746c509375fd599b2ef3d057e1fc6e32553f",
+  "tabs": [
+    {
+      "name": "Main",
+      "gid": "1923267969",
+      "row_count": 6,
+      "data_row_count": 0,
+      "headers": [
+        "Welcome to RotomAmiti's Cameo Pokémon Card Database! What is this? What is this for? How do I use this database? ",
+        "This sheet is a listing of every time a Pokémon appears on a card that does not have its name. Well-known examples include the Natu on Legendary Treasures Bouffalant or the Weedle on Base Set Scoop Up. The sheet is intended to help collectors of specific Pokémon species locate cards where their target is not the cards' main focus. This sheet's tabs are organized into each Generation of Pokémon, plus an additional tab for humans labeled \"Trainers\". Go to the tab corresponding to the Pokémon you're looking for. For example, if you want cards with Wingull, go to Gen 3. Alternate forms are included alongside the original. Human characters listed in the Trainers tab are ordered by region of appearance, and then grouped somewhat arbitrarily within those regions. Generic Trainer classes are at the end. Cards displayed in Italics indicate that the Pokémon is an edge case. The Pokémon may not be entirely in frame, or may be represented by a toy or costume. The Notes column will indicate what is specifically going on. Cards displayed with a light blue background indicate the card was never released in English. If the card was not released in Japanese either, then the language it is available in will be indicated in the Notes column. Card names that are in merged cells indicate that the set numbers all correspond to the same artwork. ",
+        "",
+        "",
+        "",
+        "What is included on this list? What is not included on this list? ",
+        "Every officially-printed, standard-sized TCG or TFG card that includes a Pokémon not in the card's name is eligible for the list. There are many cases where the Pokémon is not physically present, such as a toy or silhouette; these are included for the sake of completion. All Trainer cards that have Pokémon on the artwork are included, whether the Pokémon is in the name of the card or not. Human characters function somewhat inversely to Pokémon. Any Trainer card that does not include the character's name is listed, plus every Pokémon card whether the character is in the name or not. This is because Trainer cards almost always feature the named character, but the Trainer's Pokémon mechanic does so suprisingly rarely. Jumbo-only cards are included. They have \"Jumbo\" noted in the Notes column. The original version of this sheet did not include Jumbos, but they have since been added. This list focuses on English releases, and with some exceptions, every English release of any particular card is included. Unique releases in other languages are also included, once. The sheet is currently up-to-date with all English releases up to and including Chaos Rising, and all Japanese releases up to and including Abyss Eye. By and large, \"symbiotic\" Pokémon are not included. Drakloak cards are not listed as appearances by Dreepy beacuse every Drakloak includes a Dreepy anyway. Pokémon that only appear on stamps, such as the Pikachu from the English 25th Anniversary Promos, are not included. The nature of stamps mean that some prints of these cards may not include them, and they aren't part of the card's artwork regardless. Human characters that only appear in infoboxes of Trainer's Pokémon and Pokémon SP are not included."
+      ],
+      "csv_hash": "d0f10b9b1d2e58a25a7dea70fe384520a23151ca4e72ff2644122ea15b5a8487"
+    },
+    {
+      "name": "Gen 1",
+      "gid": "0",
+      "row_count": 1251,
+      "data_row_count": 1251,
+      "headers": [
+        "Ndex",
+        "Cameo Pokémon",
+        "Card name",
+        "Set",
+        "#",
+        "Notes"
+      ],
+      "csv_hash": "7ed7992a0cae6bfea98a70b877b190690f026b9f170a28b613e30b092aff4f58"
+    },
+    {
+      "name": "Gen 2",
+      "gid": "2112540589",
+      "row_count": 398,
+      "data_row_count": 398,
+      "headers": [
+        "Ndex",
+        "Cameo Pokémon",
+        "Card name",
+        "Set",
+        "#",
+        "Notes"
+      ],
+      "csv_hash": "dc0cc28eccfb02d5317bec0a58e5a3e66c5be5b0debfdfe1687d4c51fa006573"
+    },
+    {
+      "name": "Gen 3",
+      "gid": "1642805847",
+      "row_count": 439,
+      "data_row_count": 439,
+      "headers": [
+        "Ndex",
+        "Cameo Pokémon",
+        "Card name",
+        "Set",
+        "#",
+        "Notes"
+      ],
+      "csv_hash": "093f2b44e089df5320d3b8f49073e3a266d194c0a1e524faa6461ae9b7de25f5"
+    },
+    {
+      "name": "Gen 4",
+      "gid": "623394955",
+      "row_count": 380,
+      "data_row_count": 380,
+      "headers": [
+        "Ndex",
+        "Cameo Pokémon",
+        "Card name",
+        "Set",
+        "#",
+        "Notes"
+      ],
+      "csv_hash": "70d7c7625cab992826ef16973328e5d833f40d6a95f8904f411112267fcf1b4d"
+    },
+    {
+      "name": "Gen 5",
+      "gid": "907311085",
+      "row_count": 297,
+      "data_row_count": 297,
+      "headers": [
+        "Ndex",
+        "Cameo Pokémon",
+        "Card name",
+        "Set",
+        "#",
+        "Notes"
+      ],
+      "csv_hash": "4369329ebd438fc4d8f0ac13fe7f8b06ce4b6da5a0fa6e9480cfb06195456650"
+    },
+    {
+      "name": "Gen 6",
+      "gid": "1750206679",
+      "row_count": 171,
+      "data_row_count": 171,
+      "headers": [
+        "Ndex",
+        "Cameo Pokémon",
+        "Card name",
+        "Set",
+        "#",
+        "Notes"
+      ],
+      "csv_hash": "e60f0c5e4270285d3a1a6f31ea52d8dd7fb752d9fb9b40ebd9de12e6e1e41988"
+    },
+    {
+      "name": "Gen 7",
+      "gid": "2096460131",
+      "row_count": 137,
+      "data_row_count": 137,
+      "headers": [
+        "Ndex",
+        "Cameo Pokémon",
+        "Card name",
+        "Set",
+        "#",
+        "Notes"
+      ],
+      "csv_hash": "1f5dd2b76c43cf87b2ff75ea655796ad9bf6bf28f7b51ec3f9113b93d7dd3ca4"
+    },
+    {
+      "name": "Gen 8",
+      "gid": "692781906",
+      "row_count": 185,
+      "data_row_count": 185,
+      "headers": [
+        "Ndex",
+        "Cameo Pokémon",
+        "Card name",
+        "Set",
+        "#",
+        "Notes"
+      ],
+      "csv_hash": "8c5da7160c2d52831b4a942b51d235eeb9934482ef89959f5e5c8c2d7ff4f5dc"
+    },
+    {
+      "name": "Gen 9",
+      "gid": "1784063283",
+      "row_count": 156,
+      "data_row_count": 156,
+      "headers": [
+        "Ndex",
+        "Cameo Pokémon",
+        "Card name",
+        "Set",
+        "#",
+        "Notes"
+      ],
+      "csv_hash": "9effb6f5508951bbb63525de9aed4c3b465ecf8b3d6a7dc6b0d07409ff2246a1"
+    },
+    {
+      "name": "Trainers",
+      "gid": "36967854",
+      "row_count": 577,
+      "data_row_count": 577,
+      "headers": [
+        "",
+        "Cameo Trainer",
+        "Card name",
+        "Set",
+        "#",
+        "Notes"
+      ],
+      "csv_hash": "89abeb5e68f27bbddac0fffe91e1e864fa36a67e25ed06029822dfe0952b31e1"
+    }
+  ],
+  "summary": {
+    "data_rows": 3991,
+    "pokemon_rows": 3414,
+    "trainer_rows": 577,
+    "rows_with_card_name": 3670,
+    "rows_with_set_name": 3991,
+    "rows_with_number": 3148,
+    "rows_with_notes": 926,
+    "distinct_pokemon_subjects": 823,
+    "distinct_trainer_subjects": 197,
+    "qualifier_counts": [
+      {
+        "name": "unknown_note",
+        "count": 346
+      },
+      {
+        "name": "jumbo",
+        "count": 240
+      },
+      {
+        "name": "toy_or_costume",
+        "count": 81
+      },
+      {
+        "name": "picture",
+        "count": 76
+      },
+      {
+        "name": "partial_visibility",
+        "count": 69
+      },
+      {
+        "name": "silhouette",
+        "count": 63
+      },
+      {
+        "name": "non_english",
+        "count": 50
+      },
+      {
+        "name": "disguise",
+        "count": 10
+      }
+    ],
+    "risk_buckets": [
+      {
+        "name": "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN",
+        "count": 2474
+      },
+      {
+        "name": "BLOCKED_NUMBER_MISSING",
+        "count": 843
+      },
+      {
+        "name": "NEEDS_NOTE_REVIEW",
+        "count": 346
+      },
+      {
+        "name": "BLOCKED_CARD_NAME_MISSING",
+        "count": 321
+      },
+      {
+        "name": "NEEDS_JUMBO_REVIEW",
+        "count": 240
+      },
+      {
+        "name": "NEEDS_LANGUAGE_SCOPE_REVIEW",
+        "count": 50
+      }
+    ],
+    "top_source_sets": [
+      {
+        "name": "Crown Zenith",
+        "count": 128
+      },
+      {
+        "name": "SM-P Promos",
+        "count": 126
+      },
+      {
+        "name": "MEP Promos",
+        "count": 98
+      },
+      {
+        "name": "BW-P Promos",
+        "count": 91
+      },
+      {
+        "name": "XY-P Promos",
+        "count": 91
+      },
+      {
+        "name": "Astral Radiance",
+        "count": 71
+      },
+      {
+        "name": "2010 Card Design Contest",
+        "count": 68
+      },
+      {
+        "name": "SV Promos",
+        "count": 66
+      },
+      {
+        "name": "Miscellaneous Promos",
+        "count": 64
+      },
+      {
+        "name": "SM Promos",
+        "count": 63
+      },
+      {
+        "name": "XY Promos",
+        "count": 63
+      },
+      {
+        "name": "Evolving Skies",
+        "count": 61
+      },
+      {
+        "name": "Twilight Masquerade",
+        "count": 60
+      },
+      {
+        "name": "SWSH Promos",
+        "count": 59
+      },
+      {
+        "name": "Silver Tempest",
+        "count": 57
+      },
+      {
+        "name": "SV-P Promos",
+        "count": 57
+      },
+      {
+        "name": "Temporal Forces",
+        "count": 53
+      },
+      {
+        "name": "Paradox Rift",
+        "count": 52
+      },
+      {
+        "name": "Lost Origin",
+        "count": 51
+      },
+      {
+        "name": "Destined Rivals",
+        "count": 50
+      },
+      {
+        "name": "Ascended Heroes",
+        "count": 49
+      },
+      {
+        "name": "Cosmic Eclipse",
+        "count": 48
+      },
+      {
+        "name": "Art Academy Promo",
+        "count": 47
+      },
+      {
+        "name": "Koko Illustration Contest",
+        "count": 47
+      },
+      {
+        "name": "Brilliant Stars",
+        "count": 45
+      },
+      {
+        "name": "Double Crisis",
+        "count": 42
+      },
+      {
+        "name": "Skyridge",
+        "count": 42
+      },
+      {
+        "name": "Paldean Fates",
+        "count": 41
+      },
+      {
+        "name": "Paldea Evolved",
+        "count": 39
+      },
+      {
+        "name": "Scarlet & Violet",
+        "count": 38
+      }
+    ]
+  },
+  "required_future_match_classifications": [
+    "APPROVED_MATCH",
+    "BLOCKED_SET_ALIAS_MISSING",
+    "BLOCKED_CARD_NOT_FOUND",
+    "BLOCKED_NUMBER_MISSING",
+    "BLOCKED_AMBIGUOUS_CARD",
+    "BLOCKED_PARENT_VARIANT_AMBIGUITY",
+    "BLOCKED_NON_ENGLISH_SCOPE",
+    "NEEDS_MANUAL_REVIEW"
+  ],
+  "sample_rows": [
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 2,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "Pokémon Valley",
+      "set_name_raw": "Miscellaneous Promos",
+      "number_raw": null,
+      "notes_raw": "Jumbo",
+      "cameo_qualifiers": [
+        "jumbo"
+      ],
+      "source_row_hash": "7a485654a3f84e51cc38c89030fd286a4a58c5afbc9f26c413f4f86aa55d7b84",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": false,
+      "has_notes": true,
+      "source_match_risk": [
+        "BLOCKED_NUMBER_MISSING",
+        "NEEDS_JUMBO_REVIEW"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 3,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "Town Volunteers",
+      "set_name_raw": "Aquapolis",
+      "number_raw": "136",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "a859c2b4c69838867c6c383640cd7b322a6159ca8b0ebac6bc6f0c9219feae1c",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 4,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "Venture Bomb",
+      "set_name_raw": "Team Rocket Returns",
+      "number_raw": "93",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "d21e3d4395af0be8313221c5a75d4e69d5340ec4e8c70f8ebef7cb0751351f40",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 5,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "Rattata",
+      "set_name_raw": "Pokémon Rumble",
+      "number_raw": "15",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "eb13ca8458317053355d2d2b31195761950de70f31327af0d58183be3160c0cb",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 6,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "Champions Festival",
+      "set_name_raw": "XY Promos",
+      "number_raw": "176",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "2a3ccd57c9b744043fc83748b1d8eff64b9d511062675d15e9de7376788e59f1",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 7,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "Pikachu",
+      "set_name_raw": "XY-P Promos",
+      "number_raw": "279",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "3acb1c5745e6dd691d97e1c8683104fb90e81636f18e381d61502555f9eefb67",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 8,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "M Sachiko-EX",
+      "set_name_raw": "XY-P Promos",
+      "number_raw": "298",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "3efbba56c2273e080ba5f2aceec707821689339e52bbb6f20c8f60af134de5ae",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 9,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "Red's Challenge",
+      "set_name_raw": "Tag All Stars",
+      "number_raw": "201",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "95ee642ad72e81eeeae9e6e7c813e0d4ae8eb7da18519b1d0f057824272aee5a",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 10,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "Rescue Team DX's Pikachu",
+      "set_name_raw": "S-P Promos",
+      "number_raw": "36",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "4e0a24380b4fb1054cb99f7e06ba1dc8f6e6e78e83c1050b7a08dcf9edfdc70e",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 11,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "Poké-lun TV's Pikachu and Friends",
+      "set_name_raw": "S-P Promos",
+      "number_raw": null,
+      "notes_raw": "Jumbo",
+      "cameo_qualifiers": [
+        "jumbo"
+      ],
+      "source_row_hash": "6d9d2d0d045defba36ad01ea1b501eae885a889d2861787986f69f276bbc33fe",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": false,
+      "has_notes": true,
+      "source_match_risk": [
+        "BLOCKED_NUMBER_MISSING",
+        "NEEDS_JUMBO_REVIEW"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 12,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "Ditto",
+      "set_name_raw": "Delta Species",
+      "number_raw": "36",
+      "notes_raw": "Ditto's disguise",
+      "cameo_qualifiers": [
+        "disguise"
+      ],
+      "source_row_hash": "9a730f6f84bc25c63704740cf5d8d91a0dffaf042dff47c28780ec8a678b3308",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": true,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 13,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "Team Rocket's Meowth",
+      "set_name_raw": "Wizards Promos",
+      "number_raw": "18",
+      "notes_raw": "silhouette",
+      "cameo_qualifiers": [
+        "silhouette"
+      ],
+      "source_row_hash": "59eb7cac77e9db8a59d8809418f70204519975c0e8fc2e335d03ce4d1bfe6a55",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": true,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 14,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "Pokémon Communication",
+      "set_name_raw": "Team Up",
+      "number_raw": null,
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "138ce40edf99c2afee8e0d3f9382f8690923b075cf7b542fb28ffca481c762e8",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": false,
+      "has_notes": false,
+      "source_match_risk": [
+        "BLOCKED_NUMBER_MISSING"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 15,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Bulbasaur",
+      "pokemon_ndex": "1",
+      "card_name_raw": "Champions Festival",
+      "set_name_raw": "SM Promos",
+      "number_raw": "231",
+      "notes_raw": "picture",
+      "cameo_qualifiers": [
+        "picture"
+      ],
+      "source_row_hash": "f3296d5f8c2f99b89e01e1a9e988dff68dceeb0db4a9d8e4aa50d25a12ee5de9",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": true,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 16,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Ivysaur",
+      "pokemon_ndex": "2",
+      "card_name_raw": "Togepi",
+      "set_name_raw": "Southern Islands",
+      "number_raw": "4",
+      "notes_raw": "only partially visible",
+      "cameo_qualifiers": [
+        "partial_visibility"
+      ],
+      "source_row_hash": "70fae6c34126d3efde4190088ea7fd454df1eba72d91d5661b5356bdd1e83a59",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": true,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 17,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Ivysaur",
+      "pokemon_ndex": "2",
+      "card_name_raw": "Raticate",
+      "set_name_raw": "Southern Islands",
+      "number_raw": "6",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "eea240fe5fddc5c750b824657021c4072bd651941815859f50f8a036d9c56e4c",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 18,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Ivysaur",
+      "pokemon_ndex": "2",
+      "card_name_raw": "Gardenia's Vigor",
+      "set_name_raw": "Crown Zenith",
+      "number_raw": null,
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "61acb7d14413478509da7a140a09449cbe850361e81ef3a50af8c055aba6fdda",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": false,
+      "has_notes": false,
+      "source_match_risk": [
+        "BLOCKED_NUMBER_MISSING"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 19,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Ivysaur",
+      "pokemon_ndex": "2",
+      "card_name_raw": "Bulbasaur",
+      "set_name_raw": "Mega Evolution",
+      "number_raw": "133",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "904e894dac9360757037968747f232b73c95c7b366eaa2567a72826adc1720f8",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 20,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Venusaur",
+      "pokemon_ndex": "3",
+      "card_name_raw": "Charizard-EX",
+      "set_name_raw": "XY-P Promos",
+      "number_raw": "276",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "28fd7beafdbdadf009b1841a8ef0be34ac1baa4bbb1f41fcfd34bc28f1f80dcb",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 21,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Venusaur",
+      "pokemon_ndex": "3",
+      "card_name_raw": "Koko",
+      "set_name_raw": "Koko Illustration Contest",
+      "number_raw": null,
+      "notes_raw": "Jumbo",
+      "cameo_qualifiers": [
+        "jumbo"
+      ],
+      "source_row_hash": "ad3f831562920842575372b665fd0d76c0a93355a81bd007e6b7d0d22f9577cd",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": false,
+      "has_notes": true,
+      "source_match_risk": [
+        "BLOCKED_NUMBER_MISSING",
+        "NEEDS_JUMBO_REVIEW"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 22,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Venusaur",
+      "pokemon_ndex": "3",
+      "card_name_raw": "Charizard V",
+      "set_name_raw": "Brilliant Stars",
+      "number_raw": "154",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "b6b07743bd6a0575b42e863a385640b683468a7991e27fa5069da54535509754",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 23,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Venusaur",
+      "pokemon_ndex": "3",
+      "card_name_raw": "Charizard V",
+      "set_name_raw": "SWSH Promos",
+      "number_raw": "260",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "482f02f5531e05182fa33b20699b0ce47745798786f31c30796207f3e0facba8",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 24,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Venusaur",
+      "pokemon_ndex": "3",
+      "card_name_raw": "Mega Venusaur ex",
+      "set_name_raw": "Mega Evolution",
+      "number_raw": "155",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "f7681b775fb573fd09347c257b73c1cb395bf1432beec793be887aa9690e142a",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 25,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Venusaur",
+      "pokemon_ndex": "3",
+      "card_name_raw": "Mega Venusaur ex",
+      "set_name_raw": "Mega Evolution",
+      "number_raw": "177",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "410cf8489de680beead4a2b2d0c317135bf32f57a47f687c0f4eba8fc378a305",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 26,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Venusaur",
+      "pokemon_ndex": "3",
+      "card_name_raw": "Ivysaur",
+      "set_name_raw": "Mega Evolution",
+      "number_raw": "134",
+      "notes_raw": "only partially visible",
+      "cameo_qualifiers": [
+        "partial_visibility"
+      ],
+      "source_row_hash": "b6fb87929105a27419536dffdb081beedda5a4646811dbf9f9b832d69bdd4519",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": true,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 27,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Mega Venusaur",
+      "pokemon_ndex": "3",
+      "card_name_raw": "Venusaur Spirit Link",
+      "set_name_raw": "Evolutions",
+      "number_raw": "89",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "026a034586ab6919b497149effe15ed91711b9a2a40071e7070fb8ac5b08f477",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 28,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Mega Venusaur",
+      "pokemon_ndex": "3",
+      "card_name_raw": "Mega Lucario ex",
+      "set_name_raw": "Mega Evolution",
+      "number_raw": "179",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "73d743568efbfa5f1b3a9669e6ac2c94bf4c651c5f06897dfc466aa6ac8fb6ac",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 29,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmander",
+      "pokemon_ndex": "4",
+      "card_name_raw": "Pikachu's Summer Vacation",
+      "set_name_raw": "Miscellaneous Promos",
+      "number_raw": null,
+      "notes_raw": "Jumbo",
+      "cameo_qualifiers": [
+        "jumbo"
+      ],
+      "source_row_hash": "c4bc4f52dd6eff9d01218889e6e34491d7dea5b3422490d8e8182c7f5e069205",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": false,
+      "has_notes": true,
+      "source_match_risk": [
+        "BLOCKED_NUMBER_MISSING",
+        "NEEDS_JUMBO_REVIEW"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 30,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmander",
+      "pokemon_ndex": "4",
+      "card_name_raw": "Weakness Guard",
+      "set_name_raw": "Aquapolis",
+      "number_raw": "141",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "14930a18a4fcc5d99e4775f668bc9cb1e1200be45c25e83b3e9989e5d85e4756",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 31,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmander",
+      "pokemon_ndex": "4",
+      "card_name_raw": "Bulbasaur",
+      "set_name_raw": "DPt-P Promos",
+      "number_raw": "30",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "d24e72541499e129b118e850b681b53ff11c94c6a8e74052134ecd649f3886ee",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 32,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmander",
+      "pokemon_ndex": "4",
+      "card_name_raw": "Champions Festival",
+      "set_name_raw": "XY Promos",
+      "number_raw": "176",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "557a5d22cf105d356ca9acdfc54f66a99671535686d30d2429deac28fb1781d1",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 33,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmander",
+      "pokemon_ndex": "4",
+      "card_name_raw": "Pikachu",
+      "set_name_raw": "XY-P Promos",
+      "number_raw": "279",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "608061247ec4b1b8bd77ef2913269e7626e9cad52612521fe69407ba281ace38",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 34,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmander",
+      "pokemon_ndex": "4",
+      "card_name_raw": "M Sachiko-EX",
+      "set_name_raw": "XY-P Promos",
+      "number_raw": "298",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "ee41a6deb8058e1f410ce49f78406356499e2737a3327720ec75676ae2c7f3c2",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 35,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmander",
+      "pokemon_ndex": "4",
+      "card_name_raw": "Blue's Tactics",
+      "set_name_raw": "Tag All Stars",
+      "number_raw": "193",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "7569a6109893b9f8c3b04d5e3c8cfc9ddc525821979e730104479a0ed74c97f6",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 36,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmander",
+      "pokemon_ndex": "4",
+      "card_name_raw": "Celebratory Fanfare",
+      "set_name_raw": "SV-P Promos",
+      "number_raw": "110",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "ae23874d22714beb389fc7c930cd29c7bf47846efbdb403717e2729bf5a83d8f",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 37,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmander",
+      "pokemon_ndex": "4",
+      "card_name_raw": "Mega Charizard X ex",
+      "set_name_raw": "Phantasmal Flames",
+      "number_raw": "125",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "b6750d0520542eee50410c96af9f76c9cb2cfadaf8a72ae5c7937bb586a56632",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 38,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmander",
+      "pokemon_ndex": "4",
+      "card_name_raw": "Ditto",
+      "set_name_raw": "Delta Species",
+      "number_raw": "37",
+      "notes_raw": "Ditto's disguise",
+      "cameo_qualifiers": [
+        "disguise"
+      ],
+      "source_row_hash": "57b887622b937e9b0c40cdf93ad0e6faaaf1ec54de17d24734b83dd1f7db1bb6",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": true,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 39,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmander",
+      "pokemon_ndex": "4",
+      "card_name_raw": "Ditto",
+      "set_name_raw": "Delta Species",
+      "number_raw": "61",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "20d5436b234ea08159cf1db3ad416305d40d3b9e19bdf2666328cc76991f90cb",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 40,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmander",
+      "pokemon_ndex": "4",
+      "card_name_raw": "Pokémon Illustrator",
+      "set_name_raw": "Miscellaneous Promos",
+      "number_raw": null,
+      "notes_raw": "drawing",
+      "cameo_qualifiers": [
+        "unknown_note"
+      ],
+      "source_row_hash": "3770ecfa7f594fe2b611bc784ba601ab55a402d1afcf594ebb7ce6bd975817f8",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": false,
+      "has_notes": true,
+      "source_match_risk": [
+        "BLOCKED_NUMBER_MISSING",
+        "NEEDS_NOTE_REVIEW"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 41,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmander",
+      "pokemon_ndex": "4",
+      "card_name_raw": "Champions Festival",
+      "set_name_raw": "SM Promos",
+      "number_raw": "231",
+      "notes_raw": "picture",
+      "cameo_qualifiers": [
+        "picture"
+      ],
+      "source_row_hash": "407dc4d975ef69f79aa2b4f3f132195bcbbd51c98550eaa422e59d7dac13dd3e",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": true,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 42,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmeleon",
+      "pokemon_ndex": "5",
+      "card_name_raw": "Swablu",
+      "set_name_raw": "Legendary Treasures",
+      "number_raw": "103",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "d667b3de8592e3dbb1180dc099585131d56fe5fe8c0c05f5686b331cbb024141",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 43,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charmeleon",
+      "pokemon_ndex": "5",
+      "card_name_raw": "Mega Charizard X ex",
+      "set_name_raw": "Phantasmal Flames",
+      "number_raw": "125",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "bde39ccaeba71c0257f9c7ab0b5fd6a37e1bbb4571b284ceb3e886667e3348cc",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 44,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charizard",
+      "pokemon_ndex": "6",
+      "card_name_raw": "Mew",
+      "set_name_raw": "Southern Islands",
+      "number_raw": "1",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "0d0a64329ecb37bc7de5507959370bb0680eb056938b554ff309090bd6c57e50",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 45,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charizard",
+      "pokemon_ndex": "6",
+      "card_name_raw": "New Year Present",
+      "set_name_raw": "Miscellaneous Promos",
+      "number_raw": null,
+      "notes_raw": "Jumbo",
+      "cameo_qualifiers": [
+        "jumbo"
+      ],
+      "source_row_hash": "4e8969dda56fc1d80226de635fffd76fe97a0df0bdcab5f346a2a4eec29448ae",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": false,
+      "has_notes": true,
+      "source_match_risk": [
+        "BLOCKED_NUMBER_MISSING",
+        "NEEDS_JUMBO_REVIEW"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 46,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charizard",
+      "pokemon_ndex": "6",
+      "card_name_raw": "Lucky Stadium",
+      "set_name_raw": "Wizards Promos",
+      "number_raw": "41",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "170e64e9e98208da1e2e283566f90cf682103f325cb6dd4a0cd8265d7e8262f5",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 47,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charizard",
+      "pokemon_ndex": "6",
+      "card_name_raw": "Swap Spots",
+      "set_name_raw": "Next Quest",
+      "number_raw": "5",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "3385e278c5b323930fa94bc87f7036884a6b0f7a7d7e1c106dd29ab0ad536c48",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 48,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charizard",
+      "pokemon_ndex": "6",
+      "card_name_raw": null,
+      "set_name_raw": "Groundbreakers",
+      "number_raw": "4",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "5fb80cff1c07fc3d1d70ae3e20cd68ed4211bb3e4d7c4fc6341b72481140faab",
+      "has_subject": true,
+      "has_card_name": false,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "BLOCKED_CARD_NAME_MISSING"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 49,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charizard",
+      "pokemon_ndex": "6",
+      "card_name_raw": "Special Delivery Bidoof",
+      "set_name_raw": "SWSH Promos",
+      "number_raw": "177",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "2c938890f6383271b8a15d3f481c0dbcf0a31b1257fbe3a983afb5957b6fb821",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 50,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charizard",
+      "pokemon_ndex": "6",
+      "card_name_raw": "Mewtwo VSTAR",
+      "set_name_raw": "Crown Zenith",
+      "number_raw": null,
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "7d5f764be37e29d4ae24cebdd45e3da9999f0253671470e67110ffabe945c5e6",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": false,
+      "has_notes": false,
+      "source_match_risk": [
+        "BLOCKED_NUMBER_MISSING"
+      ]
+    },
+    {
+      "source_tab": "Gen 1",
+      "source_gid": "0",
+      "source_row_index": 51,
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charizard",
+      "pokemon_ndex": "6",
+      "card_name_raw": "Pikachu",
+      "set_name_raw": "SV Promos",
+      "number_raw": "101",
+      "notes_raw": null,
+      "cameo_qualifiers": [],
+      "source_row_hash": "c3cf604d3e4b869bbb2e8323a937c34513146300e35eb5873f381efccdb57c4e",
+      "has_subject": true,
+      "has_card_name": true,
+      "has_set_name": true,
+      "has_number": true,
+      "has_notes": false,
+      "source_match_risk": [
+        "SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN"
+      ]
+    }
+  ]
+}

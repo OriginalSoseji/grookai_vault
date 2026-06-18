@@ -6,8 +6,9 @@ import process from 'node:process';
 
 const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, 'docs', 'audits', 'cameo_search_v1');
-const JSON_PATH = path.join(OUT_DIR, 'cameo_search_v1_source_audit_20260520.json');
-const MD_PATH = path.join(OUT_DIR, 'cameo_search_v1_source_audit_20260520.md');
+const REPORT_LABEL = process.env.CAMEO_SEARCH_REPORT_LABEL ?? '20260520';
+const JSON_PATH = path.join(OUT_DIR, `cameo_search_v1_source_audit_${REPORT_LABEL}.json`);
+const MD_PATH = path.join(OUT_DIR, `cameo_search_v1_source_audit_${REPORT_LABEL}.md`);
 
 const WORKBOOK_ID = '18nIkOgqQrHZTz0TrH_gL1e1nL1RcHiCmPF5finAjToY';
 const SOURCE_URL = `https://docs.google.com/spreadsheets/d/${WORKBOOK_ID}/htmlview`;
