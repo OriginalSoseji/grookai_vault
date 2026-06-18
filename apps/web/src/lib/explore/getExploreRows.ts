@@ -864,6 +864,9 @@ async function buildExploreRows(
         ? setMetadataByCode.get(row.set_code)
         : undefined;
       const imageFields = await resolveCardImageFieldsV1(row);
+      const childDisplayImageFallback = childDisplayImageFallbacks.get(row.id);
+      const displayImageUrl = imageFields.display_image_url ?? childDisplayImageFallback;
+      const isUsingChildDisplayFallback = Boolean(!imageFields.display_image_url && childDisplayImageFallback);
 
       return {
         id: row.id,
@@ -878,12 +881,18 @@ async function buildExploreRows(
         artist: row.artist ?? undefined,
         image_url: imageFields.image_url ?? undefined,
         representative_image_url: imageFields.representative_image_url ?? undefined,
-        image_status: imageFields.image_status ?? undefined,
-        image_note: imageFields.image_note ?? undefined,
         image_source: imageFields.image_source ?? undefined,
-        display_image_url: imageFields.display_image_url ?? undefined,
-        display_image_fallback_url: childDisplayImageFallbacks.get(row.id) ?? undefined,
-        display_image_kind: imageFields.display_image_kind,
+        display_image_url: displayImageUrl ?? undefined,
+        display_image_fallback_url: childDisplayImageFallback ?? undefined,
+        display_image_kind: isUsingChildDisplayFallback
+          ? "missing_variant_visual"
+          : imageFields.display_image_kind,
+        image_status: isUsingChildDisplayFallback
+          ? "representative_missing_variant_visual"
+          : imageFields.image_status ?? undefined,
+        image_note: isUsingChildDisplayFallback
+          ? "Correct printing. Displaying a representative/base image until exact variant imagery is available."
+          : imageFields.image_note ?? undefined,
         release_date: setMetadata?.release_date,
         release_year: setMetadata?.release_year,
         set_code: row.set_code ?? undefined,
@@ -3136,6 +3145,18 @@ function mapSmartChildRowToCardPrintLookupRow(
   const finishLabel = getCardPrintingFinishLabel({
     finishKey: row.finish_key,
   });
+  const childHasImage = Boolean(
+    row.image_path?.trim() ||
+      row.image_url?.trim() ||
+      row.image_alt_url?.trim(),
+  );
+  const parentRepresentativeImageUrl =
+    parent.representative_image_url?.trim() ||
+    parent.image_url?.trim() ||
+    parent.image_alt_url?.trim() ||
+    null;
+  const shouldUseParentRepresentativeImage =
+    !childHasImage && Boolean(parentRepresentativeImageUrl);
 
   return {
     ...parent,
@@ -3143,8 +3164,19 @@ function mapSmartChildRowToCardPrintLookupRow(
     image_alt_url: row.image_alt_url,
     image_source: row.image_source,
     image_path: row.image_path,
-    image_status: row.image_status,
-    image_note: row.image_note,
+    representative_image_url: shouldUseParentRepresentativeImage
+      ? parentRepresentativeImageUrl
+      : parent.representative_image_url,
+    image_status:
+      row.image_status ??
+      (shouldUseParentRepresentativeImage
+        ? "representative_missing_variant_visual"
+        : undefined),
+    image_note:
+      row.image_note ??
+      (shouldUseParentRepresentativeImage
+        ? "Correct printing. Displaying a representative/base image until exact variant imagery is available."
+        : undefined),
     search_object_type: "child_printing",
     search_card_printing_id: row.id,
     printing_gv_id: row.printing_gv_id ?? undefined,

@@ -32,6 +32,10 @@ function getDiagnosticId(card: ExploreResultCard) {
   return card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`;
 }
 
+function normalizeBadgeLabel(label?: string | null) {
+  return (label ?? "").trim().toLowerCase();
+}
+
 export default function ExploreCardDetailsRow({ card, href, canViewPricing, signInHref, matchReason }: ExploreCardDetailsRowProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = card.set_name ?? "Unknown set";
@@ -43,6 +47,12 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
   const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
   const primaryFinishLabel = getPrimaryFinishLabel(card);
+  const hiddenBadgeLabels = new Set(
+    [primaryFinishLabel, searchDiscriminator].map(normalizeBadgeLabel).filter(Boolean),
+  );
+  const visibleVariantLabels = variantLabels.filter(
+    (label) => !hiddenBadgeLabels.has(normalizeBadgeLabel(label)),
+  );
 
   return (
     <tr className="border-b border-slate-100 last:border-b-0 dark:border-slate-800/80">
@@ -88,12 +98,12 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
       <td className="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{card.number ? `#${card.number}` : "—"}</td>
       <td className="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{card.rarity ?? "—"}</td>
       <td className="px-4 py-3">
-        {primaryFinishLabel || variantLabels.length > 0 || searchDiscriminator ? (
+        {primaryFinishLabel || visibleVariantLabels.length > 0 || searchDiscriminator ? (
           <div className="flex flex-wrap gap-1.5">
             {primaryFinishLabel ? (
               <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
             ) : null}
-            {variantLabels.map((label) => (
+            {visibleVariantLabels.map((label) => (
               <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
             ))}
             {searchDiscriminator ? (

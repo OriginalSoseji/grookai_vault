@@ -32,6 +32,10 @@ function getDiagnosticId(card: ExploreResultCard) {
   return card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`;
 }
 
+function normalizeBadgeLabel(label?: string | null) {
+  return (label ?? "").trim().toLowerCase();
+}
+
 export default function ExploreCardGridItem({ card, href, mode, canViewPricing, matchReason }: ExploreCardGridItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = card.set_name ?? "Unknown set";
@@ -45,6 +49,12 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
   const isLarge = mode === "thumb-lg";
   const density = isLarge ? "large" : "default";
   const primaryFinishLabel = getPrimaryFinishLabel(card);
+  const hiddenBadgeLabels = new Set(
+    [primaryFinishLabel, searchDiscriminator].map(normalizeBadgeLabel).filter(Boolean),
+  );
+  const visibleVariantLabels = variantLabels.filter(
+    (label) => !hiddenBadgeLabels.has(normalizeBadgeLabel(label)),
+  );
   const metaLine = [card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ") || "—";
 
   return (
@@ -82,7 +92,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
           {primaryFinishLabel ? (
             <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
           ) : null}
-          {variantLabels.map((label) => (
+          {visibleVariantLabels.map((label) => (
             <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
           ))}
           {searchDiscriminator ? (

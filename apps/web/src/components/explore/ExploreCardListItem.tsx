@@ -32,6 +32,10 @@ function getDiagnosticId(card: ExploreResultCard) {
   return card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`;
 }
 
+function normalizeBadgeLabel(label?: string | null) {
+  return (label ?? "").trim().toLowerCase();
+}
+
 export default function ExploreCardListItem({ card, href, canViewPricing, signInHref, matchReason }: ExploreCardListItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = [card.set_name, card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ") || "—";
@@ -43,6 +47,12 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
   const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
   const primaryFinishLabel = getPrimaryFinishLabel(card);
+  const hiddenBadgeLabels = new Set(
+    [primaryFinishLabel, searchDiscriminator].map(normalizeBadgeLabel).filter(Boolean),
+  );
+  const visibleVariantLabels = variantLabels.filter(
+    (label) => !hiddenBadgeLabels.has(normalizeBadgeLabel(label)),
+  );
 
   return (
     <li className="gv-visual-card px-4 py-4">
@@ -73,12 +83,12 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                   emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
                 />
               ) : null}
-              {primaryFinishLabel || variantLabels.length > 0 || searchDiscriminator ? (
+              {primaryFinishLabel || visibleVariantLabels.length > 0 || searchDiscriminator ? (
                 <div className="flex flex-wrap gap-1.5">
                   {primaryFinishLabel ? (
                     <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
                   ) : null}
-                  {variantLabels.map((label) => (
+                  {visibleVariantLabels.map((label) => (
                     <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
                   ))}
                   {searchDiscriminator ? (
