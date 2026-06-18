@@ -105,7 +105,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
       footer={
         <details className="group/details">
           <summary className="cursor-pointer list-none text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400 transition hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300">
-            Card identity
+            Identity proof
           </summary>
           <div className="mt-1.5 space-y-1 text-[11px] leading-4 text-slate-500 dark:text-slate-400">
             <p className="truncate">{getDiagnosticId(card)}</p>

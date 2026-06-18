@@ -37,6 +37,10 @@ import { useClientViewer } from "@/lib/auth/useClientViewer";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalTypes";
 import type { SmartSearchIntent } from "@/lib/search/smartSearchIntent";
+import {
+  VARIANT_FAMILY_DISCOVERY_COPY,
+  type VariantOriginFamilyCopy,
+} from "@/lib/cards/variantFamilyDiscoveryCopy";
 
 type ExploreRow = ExploreResultCard;
 type SortMode =
@@ -133,6 +137,154 @@ const COLLECTOR_SEARCH_PRESETS = [
     query: "image_state=exact",
   },
 ];
+
+const FAMILY_QUERY_PATTERNS: Array<{
+  key: string;
+  labels: string[];
+  patterns: RegExp[];
+}> = [
+  {
+    key: "wb_kids_stamp",
+    labels: ["WB Kids Stamp", "Inverted WB Kids Stamp", "Missing WB Kids Stamp"],
+    patterns: [/\bwb\s+kids\b/i],
+  },
+  {
+    key: "pokemon_center_stamp",
+    labels: ["Pokemon Center Stamp"],
+    patterns: [/\bpokemon\s+center\b/i],
+  },
+  {
+    key: "build_a_bear_workshop_stamp",
+    labels: ["Build-A-Bear Workshop Stamp"],
+    patterns: [/\bbuild[-\s]?a[-\s]?bear\b/i],
+  },
+  {
+    key: "toys_r_us_stamp",
+    labels: ["Toys R Us Stamp"],
+    patterns: [/\btoys\s*r\s*us\b/i],
+  },
+  {
+    key: "burger_king_stamped_promo",
+    labels: ["Burger King Stamp"],
+    patterns: [/\bburger\s+king\b/i],
+  },
+  {
+    key: "pokemon_together_stamp",
+    labels: ["Pokemon Together Stamp"],
+    patterns: [/\bpokemon\s+together\b/i],
+  },
+  {
+    key: "first_edition",
+    labels: ["First Edition"],
+    patterns: [/\bfirst\s+edition\b/i, /\b1st\s+edition\b/i],
+  },
+  {
+    key: "jungle_no_symbol_error",
+    labels: ["Jungle No Symbol Error"],
+    patterns: [/\bno\s+symbol\b/i, /\bjungle\s+no\s+symbol\b/i],
+  },
+  {
+    key: "base_pikachu_print_run",
+    labels: ["Base Pikachu Cheek / Shadowless Print Run"],
+    patterns: [/\bshadowless\b/i, /\bred\s+cheeks?\b/i, /\byellow\s+cheeks?\b/i, /\bgray\s+stamp\b/i, /\bgrey\s+stamp\b/i],
+  },
+  {
+    key: "winner_stamp",
+    labels: ["Winner Stamp"],
+    patterns: [/\bwinner\s+stamp\b/i],
+  },
+  {
+    key: "pokemon_league_or_placement_stamp",
+    labels: ["League Stamp"],
+    patterns: [/\bleague\s+stamp\b/i, /\bplacement\s+stamp\b/i],
+  },
+];
+
+function getVariantFamilyFromIntent(
+  intent: SmartSearchIntent | null,
+  rawQuery: string,
+  activeStamp: string,
+) {
+  const stampLabels = new Set([
+    ...(intent?.stampLabels ?? []),
+    ...(activeStamp ? [activeStamp] : []),
+  ]);
+  const haystack = [intent?.originalQuery, rawQuery, activeStamp]
+    .filter(Boolean)
+    .join(" ");
+
+  for (const family of FAMILY_QUERY_PATTERNS) {
+    if (
+      family.labels.some((label) => stampLabels.has(label)) ||
+      family.patterns.some((pattern) => pattern.test(haystack))
+    ) {
+      return VARIANT_FAMILY_DISCOVERY_COPY[family.key] ?? null;
+    }
+  }
+
+  return null;
+}
+
+function getDiscoveryTitle(payload: {
+  familyCopy: VariantOriginFamilyCopy | null;
+  normalizedQuery: string;
+  smartSearchIntent: SmartSearchIntent | null;
+  fallback: string;
+}) {
+  if (payload.familyCopy) {
+    return payload.familyCopy.family_label;
+  }
+
+  const labels = payload.smartSearchIntent?.interpretedLabels ?? [];
+  const residual = payload.smartSearchIntent?.residualQuery || payload.normalizedQuery;
+  const collectorLabels = labels.filter((label) => !/^\d{4}-\d{4}$/.test(label));
+
+  if (residual && collectorLabels.length > 0) {
+    return `${residual} ${collectorLabels[0]}`;
+  }
+
+  return residual || collectorLabels[0] || payload.fallback;
+}
+
+function getCollectorObjectNoun(familyCopy: VariantOriginFamilyCopy | null) {
+  if (!familyCopy) {
+    return "collector results";
+  }
+
+  if (familyCopy.variant_category.includes("stamp")) {
+    return "stamped identities";
+  }
+
+  if (familyCopy.variant_category.includes("error")) {
+    return "recognized variants";
+  }
+
+  if (familyCopy.variant_category.includes("subset")) {
+    return "subset identities";
+  }
+
+  return "collector identities";
+}
+
+function getSingularCollectorObjectNoun(familyCopy: VariantOriginFamilyCopy | null) {
+  if (!familyCopy) {
+    return "collector result";
+  }
+
+  if (familyCopy.variant_category.includes("stamp")) {
+    return "stamped identity";
+  }
+
+  if (familyCopy.variant_category.includes("error")) {
+    return "recognized variant";
+  }
+
+  if (familyCopy.variant_category.includes("subset")) {
+    return "subset identity";
+  }
+
+  return "collector identity";
+}
 
 function isCameoLabel(value?: string | null) {
   const normalized = value?.trim().toLowerCase() ?? "";
@@ -962,6 +1114,35 @@ export default function ExplorePageClient({
         ? `Showing ${visibleRows.length} of ${displayRows.length} ${getImageConfidenceResultNoun(imageConfidenceFilter)}s`
         : `${displayRows.length} ${getImageConfidenceResultNoun(imageConfidenceFilter)}${displayRows.length === 1 ? "" : "s"}`
       : "Results";
+  const variantFamilyCopy = getVariantFamilyFromIntent(
+    smartSearchIntent,
+    normalizedQuery,
+    smartStamp,
+  );
+  const discoveryTitle = getDiscoveryTitle({
+    familyCopy: variantFamilyCopy,
+    normalizedQuery,
+    smartSearchIntent,
+    fallback: "Collector discovery",
+  });
+  const discoveryNoun = getCollectorObjectNoun(variantFamilyCopy);
+  const discoveryCountLabel =
+    displayRows.length === 1
+      ? `1 ${getSingularCollectorObjectNoun(variantFamilyCopy)}`
+      : `${displayRows.length} ${discoveryNoun}`;
+  const discoveryEyebrow = variantFamilyCopy
+    ? "Family identified"
+    : interpretedLabels.length > 0
+      ? "Search understood"
+      : "Collector discovery";
+  const discoveryDescription = variantFamilyCopy?.why_it_exists
+    ?? (normalizedQuery
+      ? "Grookai is using deterministic card identity, finish, set, ownership, image, and variant signals to narrow the catalog."
+      : "Search the catalog by collector language, variants, finishes, stamps, artists, ownership, and years.");
+  const discoverySupportingCopy = variantFamilyCopy?.why_collectors_care
+    ?? (interpretedLabels.length > 0
+      ? "The cards below are grouped as collector objects first, with database identifiers kept secondary."
+      : "Results are presented as collectible identities, not just rows.");
   const emptyStateTitle = ownershipRequiresSignIn
     ? "Sign in to search your vault"
     : ownershipState === "owned" && viewer.isAuthenticated
@@ -1195,12 +1376,70 @@ export default function ExplorePageClient({
         </>
       ) : (
         <div className="space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-slate-200 bg-white px-4 py-3 shadow-sm dark:border-slate-800 dark:bg-slate-950">
-            <p className="text-sm text-slate-600 dark:text-slate-300">
+          <section className="gv-discovery-hero px-5 py-5 sm:px-7 sm:py-7 lg:px-9">
+            <div className="relative z-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(260px,360px)] lg:items-end">
+              <div className="space-y-4">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="gv-discovery-eyebrow">{discoveryEyebrow}</span>
+                  {variantFamilyCopy?.confidence ? (
+                    <span className="gv-discovery-pill">
+                      {formatFilterValue(variantFamilyCopy.confidence)} confidence
+                    </span>
+                  ) : null}
+                </div>
+                <div className="space-y-3">
+                  <h2 className="max-w-4xl text-[2.5rem] font-semibold leading-[0.98] tracking-normal text-slate-950 dark:text-white sm:text-[3.4rem] lg:text-[4.25rem]">
+                    {discoveryTitle}
+                  </h2>
+                  <p className="max-w-3xl text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">
+                    {discoveryDescription}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {interpretedLabels.slice(0, 5).map((label) => (
+                    <span key={label} className="gv-discovery-chip">
+                      {label}
+                    </span>
+                  ))}
+                  {residualQuery ? (
+                    <span className="gv-discovery-chip gv-discovery-chip-muted">
+                      Text: {residualQuery}
+                    </span>
+                  ) : null}
+                </div>
+              </div>
+
+              <div className="gv-discovery-proof-card p-4 sm:p-5">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+                  Discovery result
+                </p>
+                <p className="mt-2 text-3xl font-semibold tracking-normal text-slate-950 dark:text-white">
+                  {discoveryCountLabel}
+                </p>
+                <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                  {discoverySupportingCopy}
+                </p>
+                {variantFamilyCopy?.how_to_identify ? (
+                  <div className="mt-4 rounded-2xl bg-white/70 p-3 text-sm leading-6 text-slate-600 dark:bg-white/[0.06] dark:text-slate-300">
+                    <span className="font-semibold text-slate-950 dark:text-white">How to identify: </span>
+                    {variantFamilyCopy.how_to_identify}
+                  </div>
+                ) : null}
+                {loading && displayRows.length > 0 ? (
+                  <span className="mt-4 inline-flex rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white dark:bg-white dark:text-slate-950">
+                    Refreshing
+                  </span>
+                ) : null}
+              </div>
+            </div>
+          </section>
+
+          <div className="gv-control-surface flex flex-wrap items-center justify-between gap-3 rounded-[18px] px-4 py-3">
+            <p className="text-sm text-slate-500 dark:text-slate-400">
               {resultCountLabel}
-              {loading && displayRows.length > 0 ? (
-                <span className="ml-2 rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-500 dark:bg-slate-800 dark:text-slate-400">
-                  Refreshing
+              {variantFamilyCopy ? (
+                <span className="ml-2 hidden text-slate-400 dark:text-slate-500 sm:inline">
+                  Source-backed family copy
                 </span>
               ) : null}
             </p>

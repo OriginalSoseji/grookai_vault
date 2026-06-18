@@ -62,13 +62,13 @@ body {
 
 html.gv-dark {
   color-scheme: dark;
-  --gv-surface-page: #020617;
-  --gv-surface-base: rgba(15, 23, 42, 0.92);
-  --gv-surface-elevated: rgba(15, 23, 42, 0.78);
-  --gv-surface-container: rgba(30, 41, 59, 0.72);
-  --gv-surface-container-low: rgba(15, 23, 42, 0.66);
-  --gv-surface-soft: rgba(15, 23, 42, 0.66);
-  --gv-surface-glass: rgba(15, 23, 42, 0.62);
+  --gv-surface-page: #00030a;
+  --gv-surface-base: rgba(6, 10, 20, 0.94);
+  --gv-surface-elevated: rgba(9, 14, 27, 0.82);
+  --gv-surface-container: rgba(17, 24, 39, 0.7);
+  --gv-surface-container-low: rgba(8, 13, 25, 0.66);
+  --gv-surface-soft: rgba(8, 13, 25, 0.66);
+  --gv-surface-glass: rgba(8, 13, 25, 0.6);
   --gv-border-soft: rgba(148, 163, 184, 0.16);
   --gv-border-hairline: rgba(226, 232, 240, 0.08);
   --gv-text-primary: #f6f8fb;
@@ -81,7 +81,8 @@ html.gv-dark {
 
 html.gv-dark body {
   background:
-    linear-gradient(180deg, #020617 0%, #07111f 46%, #020617 100%);
+    radial-gradient(circle at 50% -12%, rgba(37, 99, 235, 0.16), transparent 32rem),
+    linear-gradient(180deg, #00030a 0%, #020617 44%, #000000 100%);
   color: #e2e8f0;
 }
 
@@ -331,6 +332,75 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
     inset 0 1px 0 rgba(255, 255, 255, 0.64);
 }
 
+.gv-discovery-hero {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--gv-border-soft);
+  border-radius: clamp(24px, 3vw, 36px);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(74, 144, 226, 0.18), transparent 18rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(247, 250, 255, 0.94) 48%, rgba(239, 244, 251, 0.9) 100%);
+  box-shadow: var(--gv-shadow-lg);
+}
+
+.gv-discovery-hero::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.42), transparent 32%),
+    radial-gradient(circle at 88% 18%, rgba(16, 185, 129, 0.12), transparent 15rem);
+  pointer-events: none;
+}
+
+.gv-discovery-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  border-radius: 999px;
+  background: rgba(236, 253, 245, 0.74);
+  padding: 0.38rem 0.72rem;
+  color: #047857;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.gv-discovery-pill,
+.gv-discovery-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--gv-border-hairline);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.68);
+  padding: 0.38rem 0.72rem;
+  color: var(--gv-text-secondary);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.gv-discovery-chip {
+  background: rgba(15, 23, 42, 0.06);
+  color: var(--gv-text-primary);
+}
+
+.gv-discovery-chip-muted {
+  color: var(--gv-text-secondary);
+}
+
+.gv-discovery-proof-card {
+  border: 1px solid var(--gv-border-hairline);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow:
+    0 30px 90px -64px rgba(15, 23, 42, 0.74),
+    inset 0 1px 0 rgba(255, 255, 255, 0.74);
+  backdrop-filter: blur(18px);
+}
+
 .gv-quiet-panel {
   border: 1px solid var(--gv-border-hairline);
   border-radius: 18px;
@@ -533,11 +603,49 @@ html.gv-dark .gv-image-stage {
 
 html.gv-dark .gv-action-panel,
 html.gv-dark .gv-control-surface {
-  background: rgba(15, 23, 42, 0.72);
+  background: rgba(8, 13, 25, 0.72);
 }
 
 html.gv-dark .gv-quiet-panel {
-  background: rgba(15, 23, 42, 0.52);
+  background: rgba(8, 13, 25, 0.52);
+}
+
+html.gv-dark .gv-discovery-hero {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(59, 130, 246, 0.2), transparent 18rem),
+    radial-gradient(circle at 86% 18%, rgba(16, 185, 129, 0.12), transparent 16rem),
+    linear-gradient(135deg, rgba(3, 7, 18, 0.98) 0%, rgba(8, 13, 25, 0.96) 48%, rgba(0, 0, 0, 0.94) 100%);
+}
+
+html.gv-dark .gv-discovery-hero::before {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06), transparent 34%),
+    radial-gradient(circle at 88% 18%, rgba(16, 185, 129, 0.14), transparent 15rem);
+}
+
+html.gv-dark .gv-discovery-eyebrow {
+  border-color: rgba(52, 211, 153, 0.36);
+  background: rgba(6, 78, 59, 0.28);
+  color: #6ee7b7;
+}
+
+html.gv-dark .gv-discovery-pill,
+html.gv-dark .gv-discovery-chip {
+  border-color: rgba(226, 232, 240, 0.1);
+  background: rgba(255, 255, 255, 0.07);
+  color: #dbeafe;
+}
+
+html.gv-dark .gv-discovery-chip-muted {
+  color: #94a3b8;
+}
+
+html.gv-dark .gv-discovery-proof-card {
+  border-color: rgba(226, 232, 240, 0.1);
+  background: rgba(8, 13, 25, 0.66);
+  box-shadow:
+    0 30px 90px -62px rgba(0, 0, 0, 0.94),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 html.gv-dark .gv-site-header {

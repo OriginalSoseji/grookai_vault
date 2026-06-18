@@ -44,10 +44,12 @@ test('Grookai Search parses collector language without requiring AI', () => {
 
 test('Grookai Search recognizes stamp and image worklist language deterministically', () => {
   const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');
+  const { resolveSmartSearchQuery } = loadTsModule('../../apps/web/src/lib/search/resolveSmartSearchQuery.ts');
 
   const stamped = buildSmartSearchIntent('Build-A-Bear stamped Piplup');
   const pokemonCenter = buildSmartSearchIntent('Pokemon Center stamped promos');
   const wbKids = buildSmartSearchIntent('WB Kids stamp Pikachu');
+  const wbKidsFamilyOnly = buildSmartSearchIntent('WB Kids stamp');
   const missingImages = buildSmartSearchIntent('cards missing images');
 
   assert.deepEqual(Array.from(stamped.stampLabels), ['Build-A-Bear Workshop Stamp']);
@@ -56,6 +58,8 @@ test('Grookai Search recognizes stamp and image worklist language deterministica
   assert.equal(pokemonCenter.residualQuery, '');
   assert.deepEqual(Array.from(wbKids.stampLabels), ['WB Kids Stamp']);
   assert.equal(wbKids.residualQuery, 'Pikachu');
+  assert.equal(resolveSmartSearchQuery('WB Kids stamp', wbKidsFamilyOnly), '');
+  assert.equal(resolveSmartSearchQuery('WB Kids stamp Pikachu', wbKids), 'Pikachu');
   assert.equal(missingImages.imageState, 'missing');
   assert.ok(missingImages.interpretedLabels.includes('Image: Missing exact image'));
 });
