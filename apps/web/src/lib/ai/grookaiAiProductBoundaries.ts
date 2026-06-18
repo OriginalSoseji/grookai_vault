@@ -4,10 +4,10 @@ export type GrookaiAiProductLane = "search" | "assistant" | "intelligence";
 
 export type GrookaiAiEntitlementTier =
   | "anonymous"
-  | "free_account"
-  | "paid_subscriber"
+  | "free"
+  | "premium"
   | "founder_admin"
-  | "vendor_power_user";
+  | "vendor";
 
 export type GrookaiAssistantMode =
   | "search_interpretation"

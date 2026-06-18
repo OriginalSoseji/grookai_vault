@@ -7,7 +7,7 @@ import {
   getFounderMarketSignals,
   type FounderInsightBundle,
 } from "@/lib/founder/getFounderMarketSignals";
-import { isFounderUser } from "@/lib/founder/requireFounderAccess";
+import { resolveServerUserEntitlement } from "@/lib/entitlements/resolveServerUserEntitlement";
 import type { PublicProfileSettingsValues } from "@/lib/publicProfileSettings";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { getOwnerWallSections } from "@/lib/wallSections/getOwnerWallSections";
@@ -82,7 +82,8 @@ export default async function AccountPage({
     initialProfileValues.publicProfileEnabled && initialProfileValues.vaultSharingEnabled && initialProfileValues.slug
       ? initialProfileValues.slug
       : null;
-  const showFounderSignals = isFounderUser(user);
+  const entitlement = await resolveServerUserEntitlement(user);
+  const showFounderSignals = entitlement.capabilities.canUseVendorTools;
   const wallSectionsModel = await getOwnerWallSections(user.id);
   const activeTab = resolveAccountTab(
     normalizeTabParam(searchParams?.tab),

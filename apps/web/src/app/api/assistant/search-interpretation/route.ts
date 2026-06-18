@@ -11,6 +11,7 @@ import {
   type GrookaiAssistantMode,
 } from "@/lib/ai/grookaiAiProductBoundaries";
 import type { GrookaiAssistantSearchInterpretationResponse } from "@/lib/ai/grookaiAssistantSchemas";
+import { resolveServerUserEntitlement } from "@/lib/entitlements/resolveServerUserEntitlement";
 import { buildSmartSearchIntent } from "@/lib/search/smartSearchIntent";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
@@ -57,7 +58,8 @@ export async function POST(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const entitlement = resolveGrookaiAssistantAccess({ user, mode });
+  const userEntitlement = await resolveServerUserEntitlement(user);
+  const entitlement = resolveGrookaiAssistantAccess({ user, mode, entitlement: userEntitlement });
   const deterministicInterpretation = buildSmartSearchIntent(prompt);
   const capability = resolveGrookaiAssistantCapability(mode);
   const runtimeGuard = resolveGrookaiAiRuntimeGuard({
