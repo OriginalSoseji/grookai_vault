@@ -14,6 +14,7 @@ import {
   getVariantDisplayLabel,
 } from "@/lib/cards/displayDiscriminator";
 import { getVariantOriginPublicCopy } from "@/lib/cards/variantOriginPublicCopy";
+import { resolveServerUserEntitlement } from "@/lib/entitlements/resolveServerUserEntitlement";
 import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -80,7 +81,8 @@ export async function POST(request: NextRequest) {
 
   const mode = "variant_explanation";
   const capability = resolveGrookaiAssistantCapability(mode);
-  const entitlement = resolveGrookaiAssistantAccess({ user, mode });
+  const userEntitlement = await resolveServerUserEntitlement(user);
+  const entitlement = resolveGrookaiAssistantAccess({ user, mode, entitlement: userEntitlement });
   const runtimeGuard = resolveGrookaiAiRuntimeGuard({
     productLane: "assistant",
     outputType: "grounded_explanation",

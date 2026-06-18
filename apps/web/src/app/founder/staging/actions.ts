@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { revalidatePath } from "next/cache";
-import { getFounderAuthUser, isFounderUser } from "@/lib/founder/requireFounderAccess";
+import { getFounderAuthUser } from "@/lib/founder/requireFounderAccess";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 
 type FounderStagingExecutionOperation = "dry_run" | "execute";
@@ -173,7 +173,7 @@ export async function runFounderStagingExecutionAction(
   const stagingId = normalizeOptionalText(formData.get("staging_id"));
   const founderUser = await getFounderAuthUser();
 
-  if (!founderUser || !isFounderUser(founderUser)) {
+  if (!founderUser) {
     return {
       ok: false,
       submissionKey,

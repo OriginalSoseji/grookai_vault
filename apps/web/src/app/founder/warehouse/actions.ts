@@ -5,7 +5,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { revalidatePath } from "next/cache";
 import type { PostgrestError } from "@supabase/supabase-js";
-import { getFounderAuthUser, isFounderUser } from "@/lib/founder/requireFounderAccess";
+import { getFounderAuthUser } from "@/lib/founder/requireFounderAccess";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { getFounderWarehouseCandidateById } from "@/lib/warehouse/getFounderWarehouseCandidateById";
 
@@ -298,7 +298,7 @@ export async function runFounderWarehouseAction(
   const note = normalizeOptionalText(formData.get("note"));
   const founderUser = await getFounderAuthUser();
 
-  if (!founderUser || !isFounderUser(founderUser)) {
+  if (!founderUser) {
     return {
       ok: false,
       submissionKey,

@@ -57,29 +57,37 @@ test('Grookai Search recognizes stamp and image worklist language deterministica
 test('Grookai Assistant access fails closed unless explicitly enabled and entitled', () => {
   const { resolveGrookaiAssistantAccess } = loadTsModule('../../apps/web/src/lib/ai/grookaiAssistantAccess.ts');
   const originalEnv = { ...process.env };
+  const founderEntitlement = {
+    tier: 'founder_admin',
+    capabilities: {
+      canUseFounderTools: true,
+      canUseVendorTools: true,
+      canUseAssistant: true,
+    },
+  };
 
   try {
     delete process.env.GROOKAI_ASSISTANT_ENABLED;
-    delete process.env.GROOKAI_ASSISTANT_FOUNDER_EMAILS;
     delete process.env.GROOKAI_ASSISTANT_FREE_TRIAL_ENABLED;
 
     const disabled = resolveGrookaiAssistantAccess({
       user: { email: 'founder@example.com' },
       mode: 'search_interpretation',
+      entitlement: founderEntitlement,
     });
     assert.equal(disabled.allowed, false);
     assert.equal(disabled.reason, 'assistant_disabled');
 
     process.env.GROOKAI_ASSISTANT_ENABLED = 'true';
-    process.env.GROOKAI_ASSISTANT_FOUNDER_EMAILS = 'founder@example.com';
 
     const founder = resolveGrookaiAssistantAccess({
       user: { email: 'founder@example.com' },
       mode: 'search_interpretation',
+      entitlement: founderEntitlement,
     });
     assert.equal(founder.allowed, true);
     assert.equal(founder.tier, 'founder_admin');
-    assert.equal(founder.reason, 'founder_admin_allowlist');
+    assert.equal(founder.reason, 'founder_admin_entitlement');
   } finally {
     process.env = originalEnv;
   }
@@ -92,7 +100,7 @@ test('Grookai AI runtime guard blocks model calls by default and never allows Se
   const entitled = {
     allowed: true,
     tier: 'founder_admin',
-    reason: 'founder_admin_allowlist',
+    reason: 'founder_admin_entitlement',
     dailyLimit: 100,
     mode: 'search_interpretation',
   };
@@ -140,7 +148,7 @@ test('planned Assistant capabilities stay blocked until grounded handlers exist'
   const entitled = {
     allowed: true,
     tier: 'founder_admin',
-    reason: 'founder_admin_allowlist',
+    reason: 'founder_admin_entitlement',
     dailyLimit: 100,
     mode: 'variant_explanation',
   };

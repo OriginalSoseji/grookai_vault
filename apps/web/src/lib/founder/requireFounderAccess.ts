@@ -3,24 +3,26 @@ import "server-only";
 import { redirect } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
-
-export const FOUNDER_EMAIL = "ccabrl@gmail.com";
+import { resolveServerUserEntitlement } from "@/lib/entitlements/resolveServerUserEntitlement";
+import { resolveStaticGrookaiUserEntitlement } from "@/lib/entitlements/grookaiUserEntitlements";
 
 export function isFounderUser(user: Pick<User, "email"> | null | undefined) {
-  return Boolean(user?.email && user.email.toLowerCase() === FOUNDER_EMAIL.toLowerCase());
+  return resolveStaticGrookaiUserEntitlement({ user }).capabilities.canUseFounderTools;
 }
 
 export async function getFounderAuthUser() {
   const { user } = await requireServerUser("/founder");
-  return user;
+  const entitlement = await resolveServerUserEntitlement(user);
+  return entitlement.capabilities.canUseFounderTools ? user : null;
 }
 
 export async function requireFounderAccess(nextPath: string) {
   const { user } = await requireServerUser(nextPath);
+  const entitlement = await resolveServerUserEntitlement(user);
 
-  if (!isFounderUser(user)) {
+  if (!entitlement.capabilities.canUseFounderTools) {
     redirect("/");
   }
 
-  return { user };
+  return { user, entitlement };
 }
