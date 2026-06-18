@@ -1,6 +1,8 @@
 import Link from "next/link";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PublicCardImage from "@/components/PublicCardImage";
 import ContactOwnerButton from "@/components/network/ContactOwnerButton";
+import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { getVaultIntentLabel } from "@/lib/network/intent";
 import type { CardStreamRow } from "@/lib/network/getCardStreamRows";
 import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
@@ -54,6 +56,11 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
     set_code: row.setCode,
     number: row.number === "—" ? null : row.number,
   });
+  const imagePresentation = resolveCardImagePresentation({
+    display_image_kind: row.displayImageKind,
+    image_status: row.imageStatus,
+    image_note: row.imageNote,
+  });
   const loginHref = `/login?next=${encodeURIComponent(currentPath)}`;
   const ownerHref = `/u/${row.ownerSlug}`;
   const canContactOwner = viewerUserId !== row.ownerUserId;
@@ -67,10 +74,7 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
   return (
     <article className="rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow-md">
       <div className="flex flex-col gap-5 sm:flex-row">
-        <Link
-          href={singleCopyHref}
-          className="flex w-full justify-center sm:w-[140px] sm:shrink-0"
-        >
+        <Link href={singleCopyHref} className="relative flex w-full justify-center sm:w-[140px] sm:shrink-0">
           <PublicCardImage
             src={row.imageUrl ?? undefined}
             alt={displayIdentity.display_name}
@@ -78,6 +82,15 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
             fallbackClassName="flex aspect-[3/4] w-[140px] items-center justify-center rounded-[1rem] border border-slate-200 bg-slate-100 px-3 text-center text-xs text-slate-500"
             fallbackLabel={displayIdentity.display_name}
           />
+          {imagePresentation.compactBadgeLabel ? (
+            <span className="pointer-events-none absolute left-2 top-2">
+              <CardImageTruthBadge
+                label={imagePresentation.compactBadgeLabel}
+                note={imagePresentation.detailNote}
+                emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+              />
+            </span>
+          ) : null}
         </Link>
 
         <div className="min-w-0 flex-1 space-y-4">

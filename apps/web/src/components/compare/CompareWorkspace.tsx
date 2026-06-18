@@ -2,6 +2,7 @@
 
 import { Fragment, useMemo, useState } from "react";
 import Link from "next/link";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import VariantBadge from "@/components/cards/VariantBadge";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
@@ -9,6 +10,7 @@ import SectionHeader from "@/components/layout/SectionHeader";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
+import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import type { ComparePublicCard } from "@/lib/cards/getPublicCardsByGvIds";
 import { formatUsdPrice } from "@/lib/cards/formatUsdPrice";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
@@ -226,6 +228,11 @@ export default function CompareWorkspace({
           const variantLabels = getVariantLabels(card, 3);
           const remainingCards = cards.filter((candidate) => candidate.gv_id !== card.gv_id).map((candidate) => candidate.gv_id);
           const removeHref = buildCompareHref(remainingCards);
+          const imagePresentation = resolveCardImagePresentation({
+            display_image_kind: card.display_image_kind,
+            image_status: card.image_status,
+            image_note: card.image_note,
+          });
 
           return (
             <article
@@ -279,13 +286,23 @@ export default function CompareWorkspace({
                   </div>
                 </div>
 
-                <div className="rounded-[12px] bg-slate-50 p-4">
+                <div className="relative rounded-[12px] bg-slate-50 p-4">
                   <CardZoomModal
-                    src={card.image_url}
+                    src={card.display_image_url ?? card.image_url}
+                    fallbackSrc={card.representative_image_url}
                     alt={displayIdentity.display_name}
                     imageClassName="aspect-[3/4] w-full rounded-[12px] object-contain"
                     fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[12px] bg-slate-100 px-4 text-center text-sm text-slate-500"
                   />
+                  {imagePresentation.compactBadgeLabel ? (
+                    <div className="pointer-events-none absolute left-6 top-6">
+                      <CardImageTruthBadge
+                        label={imagePresentation.compactBadgeLabel}
+                        note={imagePresentation.detailNote}
+                        emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                      />
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </article>

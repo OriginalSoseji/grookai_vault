@@ -1,5 +1,7 @@
 import Link from "next/link";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PublicCardImage from "@/components/PublicCardImage";
+import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import type { LocalCommunityFeedRow } from "@/lib/network/getLocalCommunityFeedRows";
 import { getVaultIntentLabel, normalizeDiscoverableVaultIntent } from "@/lib/network/intent";
 
@@ -40,11 +42,14 @@ export default function LocalCommunityFeedCard({
   const primarySourceLabel = labels[0] ?? "Network";
   const secondarySourceLabels = labels.slice(1);
   const hasMultipleSources = activityCount > 1 || secondarySourceLabels.length > 0;
+  const imagePresentation = resolveCardImagePresentation({
+    display_image_kind: row.displayImageKind,
+  });
 
   return (
     <article className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm transition hover:border-slate-300 hover:shadow-md">
       <div className="flex flex-col gap-5 p-5 sm:flex-row">
-        <Link href={row.routeTarget} className="flex w-full justify-center sm:w-[136px] sm:shrink-0">
+        <Link href={row.routeTarget} className="relative flex w-full justify-center sm:w-[136px] sm:shrink-0">
           <PublicCardImage
             src={row.imageUrl ?? undefined}
             alt={row.cardName}
@@ -57,6 +62,11 @@ export default function LocalCommunityFeedCard({
               </>
             }
           />
+          {imagePresentation.compactBadgeLabel ? (
+            <span className="pointer-events-none absolute left-2 top-2">
+              <CardImageTruthBadge label={imagePresentation.compactBadgeLabel} note={imagePresentation.detailNote} />
+            </span>
+          ) : null}
         </Link>
 
         <div className="min-w-0 flex-1 space-y-4">
