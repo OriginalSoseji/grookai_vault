@@ -693,10 +693,10 @@ function FounderToolCard({
   return (
     <Link
       href={href}
-      className={`group block rounded-[1.5rem] border px-5 py-5 transition hover:-translate-y-0.5 ${
+      className={`group block rounded-[1.75rem] border px-5 py-5 transition hover:-translate-y-0.5 ${
         primary
-          ? "border-slate-950 bg-slate-950 text-white shadow-[0_24px_60px_-34px_rgba(15,23,42,0.9)] hover:bg-slate-900"
-          : "border-slate-200 bg-white text-slate-950 shadow-sm hover:border-slate-300 hover:shadow-md"
+          ? "border-slate-950 bg-slate-950 text-white shadow-[0_30px_84px_-46px_rgba(15,23,42,0.9)] hover:bg-slate-900 dark:border-white/10 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100"
+          : "gv-premium-surface text-slate-950 hover:border-slate-300"
       }`}
     >
       <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${primary ? "text-slate-300" : "text-slate-500"}`}>
@@ -819,23 +819,25 @@ export default async function FounderPage() {
 
   return (
     <PageContainer className="space-y-8 py-8">
-      <PageIntro
-        eyebrow="Founder"
-        title="Founder Control Center"
-        description="A single operational surface for access levels, warehouse review, pricing operations, product telemetry, and vault growth signals."
-        actions={
-          <>
-            <Link href="/founder/entitlements" className="gv-primary-button">
-              Manage Entitlements
-            </Link>
-            <Link href="/founder/warehouse" className="gv-secondary-button">
-              Review Warehouse
-            </Link>
-          </>
-        }
-      />
+      <section className="gv-collector-panel px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
+        <PageIntro
+          eyebrow="Founder"
+          title="Founder Control Center"
+          description="A single governed operating surface for access levels, warehouse review, pricing operations, product telemetry, and vault growth signals."
+          actions={
+            <>
+              <Link href="/founder/entitlements" className="gv-primary-button">
+                Manage Entitlements
+              </Link>
+              <Link href="/founder/warehouse" className="gv-secondary-button">
+                Review Warehouse
+              </Link>
+            </>
+          }
+        />
+      </section>
 
-      <PageSection surface="card" spacing="loose">
+      <PageSection spacing="loose" className="gv-collector-panel px-5 py-6 sm:px-7">
         <SectionHeader
           title="Founder Tools"
           description="Use these guarded lanes for access, review, and staged operational changes."

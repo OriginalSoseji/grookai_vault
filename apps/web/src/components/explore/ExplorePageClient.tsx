@@ -1267,14 +1267,14 @@ export default function ExplorePageClient({
     </div>
   ) : null;
   const presetSearchStrip = (
-    <section className="gv-soft-surface px-4 py-4">
+    <section className="gv-collector-panel gv-search-showcase px-5 py-5 sm:px-6">
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
             Collector presets
           </p>
           <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-            Fast entry points for common Grookai searches. Each preset is just a shareable Smart Search URL.
+            Natural-language entry points for identity, finish, ownership, image truth, and variant families.
           </p>
         </div>
         <Link
@@ -1293,7 +1293,7 @@ export default function ExplorePageClient({
           <Link
             key={preset.key}
             href={buildPathWithCompareCards("/explore", preset.query, compareCards)}
-            className="group rounded-[18px] border border-slate-200 bg-white p-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-950 dark:hover:border-slate-700"
+            className="gv-search-preset-card group p-4 text-left"
           >
             <p className="text-sm font-semibold text-slate-950 dark:text-slate-50">
               {preset.title}
@@ -1314,16 +1314,16 @@ export default function ExplorePageClient({
     <div
       className={`space-y-4 md:space-y-5 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}
     >
-      <div className="space-y-2 md:space-y-2.5">
+      <div className="gv-collector-panel px-5 py-6 md:px-8 md:py-8">
         <div className="space-y-1 md:hidden">
           <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
             Discover
           </p>
-          <h1 className="text-[1.65rem] font-semibold tracking-tight text-slate-950">
+          <h1 className="text-[1.9rem] font-black tracking-tight text-slate-950 dark:text-slate-50">
             Discover cards
           </h1>
-          <p className="text-[13px] leading-5 text-slate-600">
-            Track your cards. Discover more. Showcase your collection.
+          <p className="max-w-xl text-[13px] leading-5 text-slate-600 dark:text-slate-300">
+            Search the canonical catalog by card, finish, stamp, year, artist, ownership, and image truth.
           </p>
           <div className="flex flex-wrap gap-2 pt-px">
             <Link
@@ -1345,16 +1345,15 @@ export default function ExplorePageClient({
           </div>
         </div>
 
-        <div className="hidden space-y-2 md:block">
+        <div className="hidden space-y-3 md:block">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-            Public Explorer
+            Grookai Search
           </p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">
-            Explore cards
+          <h1 className="max-w-4xl text-[clamp(3.5rem,7vw,6.75rem)] font-black leading-[0.92] tracking-tight text-slate-950 dark:text-slate-50">
+            Search collector reality.
           </h1>
-          <p className="max-w-2xl text-sm leading-7 text-slate-600">
-            Discover iconic cards, standout artwork, and notable sets collectors
-            are chasing.
+          <p className="max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300">
+            Ask for cards the way collectors think: reverse holo Pikachu from 2014-2026, Pokemon Center stamped promos, Komiya art, or cards missing from your vault.
           </p>
         </div>
       </div>
@@ -1434,7 +1433,7 @@ export default function ExplorePageClient({
             </div>
           </section>
 
-          <div className="gv-results-command-bar flex flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-5">
+          <div className="gv-command-surface flex flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-5">
             <p className="text-sm text-slate-500 dark:text-slate-400">
               {resultCountLabel}
               {variantFamilyCopy ? (
@@ -1488,7 +1487,7 @@ export default function ExplorePageClient({
           </div>
 
           {activeFilterChips.length > 0 ? (
-            <div className="gv-soft-surface px-4 py-3">
+            <div className="gv-command-surface px-4 py-3">
               <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
@@ -1547,7 +1546,7 @@ export default function ExplorePageClient({
           {presetSearchStrip}
 
           {visibleIdentityFilters.length > 1 ? (
-            <div className="flex flex-wrap gap-2 rounded-[16px] border border-slate-200 bg-white px-4 py-3 shadow-sm">
+            <div className="gv-command-surface flex flex-wrap gap-2 px-4 py-3">
               {visibleIdentityFilters.map((option) => {
                 const selected = identityFilter === option.key;
                 const count = identityFilterCounts[option.key];
