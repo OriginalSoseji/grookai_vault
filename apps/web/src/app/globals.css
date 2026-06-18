@@ -258,16 +258,63 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 
 .gv-soft-surface {
   border: 1px solid var(--gv-border-hairline);
-  border-radius: 18px;
-  background: var(--gv-surface-container-low);
-  box-shadow: var(--gv-shadow-sm);
+  border-radius: 24px;
+  background: var(--gv-surface-glass);
+  box-shadow:
+    var(--gv-shadow-sm),
+    inset 0 1px 0 rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(18px);
 }
 
 .gv-premium-surface {
   border: 1px solid var(--gv-border-soft);
-  border-radius: 22px;
-  background: var(--gv-surface-base);
-  box-shadow: var(--gv-shadow-md);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.95), transparent 18rem),
+    var(--gv-surface-elevated);
+  box-shadow:
+    var(--gv-shadow-md),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+}
+
+.gv-collector-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.055);
+  border-radius: clamp(24px, 3vw, 36px);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(74, 144, 226, 0.12), transparent 19rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.72) 100%);
+  box-shadow:
+    0 48px 130px -92px rgba(15, 23, 42, 0.56),
+    inset 0 1px 0 rgba(255, 255, 255, 0.74);
+  backdrop-filter: blur(20px);
+}
+
+.gv-collector-panel::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.38), transparent 42%),
+    radial-gradient(circle at 86% 12%, rgba(16, 185, 129, 0.08), transparent 16rem);
+  pointer-events: none;
+}
+
+.gv-collector-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.gv-command-surface {
+  border: 1px solid var(--gv-border-hairline);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 28px 86px -70px rgba(15, 23, 42, 0.46),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(18px);
 }
 
 .gv-glass-panel {
@@ -380,11 +427,35 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 
 .gv-card-lower-section {
   border: 1px solid var(--gv-border-hairline);
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.7);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 16% 0%, rgba(74, 144, 226, 0.08), transparent 16rem),
+    rgba(255, 255, 255, 0.68);
   box-shadow:
-    0 24px 70px -62px rgba(15, 23, 42, 0.38),
+    0 32px 96px -74px rgba(15, 23, 42, 0.44),
     inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+}
+
+.gv-card-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.gv-card-section-header h2 {
+  color: var(--gv-text-primary);
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  font-weight: 850;
+  letter-spacing: 0;
+  line-height: 1.02;
+}
+
+.gv-card-section-header p {
+  max-width: 46rem;
+  color: var(--gv-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.65;
 }
 
 .gv-control-surface {
@@ -475,6 +546,36 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
     0 34px 96px -68px rgba(15, 23, 42, 0.68),
     inset 0 1px 0 rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(18px);
+}
+
+.gv-search-showcase {
+  border-radius: clamp(28px, 4vw, 48px);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.94), transparent 18rem),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.86) 0%, rgba(238, 243, 249, 0.58) 100%);
+}
+
+.gv-search-preset-card {
+  border: 1px solid var(--gv-border-hairline);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.86), transparent 9rem),
+    rgba(255, 255, 255, 0.62);
+  box-shadow:
+    0 22px 66px -54px rgba(15, 23, 42, 0.44),
+    inset 0 1px 0 rgba(255, 255, 255, 0.74);
+  transition:
+    border-color var(--gv-transition-default),
+    box-shadow var(--gv-transition-default),
+    transform var(--gv-transition-default);
+}
+
+.gv-search-preset-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(74, 144, 226, 0.22);
+  box-shadow:
+    0 34px 94px -62px rgba(15, 23, 42, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
 }
 
 .gv-dex-hero {
@@ -763,11 +864,12 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 .gv-visual-card {
   position: relative;
   border: 1px solid rgba(15, 23, 42, 0.07);
-  border-radius: 28px;
+  border-radius: 32px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.78) 100%);
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.96), transparent 14rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.78) 100%);
   box-shadow:
-    0 26px 74px -62px rgba(15, 23, 42, 0.56),
+    0 32px 86px -66px rgba(15, 23, 42, 0.58),
     inset 0 1px 0 rgba(255, 255, 255, 0.78);
   transition:
     border-color var(--gv-transition-default),
@@ -785,10 +887,11 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 
 .gv-visual-card-image {
   border: 0;
-  border-radius: 24px;
+  border-radius: 28px;
   background:
     radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.9), transparent 14rem),
-    linear-gradient(180deg, rgba(246, 248, 252, 0.55) 0%, rgba(238, 243, 249, 0.42) 100%);
+    linear-gradient(180deg, rgba(246, 248, 252, 0.58) 0%, rgba(238, 243, 249, 0.34) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.64);
 }
 
 .gv-visual-card-utility {
@@ -828,9 +931,35 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 
 html.gv-dark .gv-soft-surface,
 html.gv-dark .gv-premium-surface,
+html.gv-dark .gv-collector-panel,
+html.gv-dark .gv-command-surface,
 html.gv-dark .gv-hero-section,
 html.gv-dark .gv-product-hero {
   background: var(--gv-surface-base);
+}
+
+html.gv-dark .gv-collector-panel {
+  border-color: rgba(226, 232, 240, 0.08);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(59, 130, 246, 0.14), transparent 19rem),
+    linear-gradient(180deg, rgba(8, 12, 22, 0.78) 0%, rgba(3, 6, 12, 0.68) 100%);
+  box-shadow:
+    0 50px 132px -82px rgba(0, 0, 0, 0.96),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html.gv-dark .gv-collector-panel::before {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035), transparent 42%),
+    radial-gradient(circle at 86% 12%, rgba(16, 185, 129, 0.08), transparent 16rem);
+}
+
+html.gv-dark .gv-command-surface {
+  border-color: rgba(226, 232, 240, 0.08);
+  background: rgba(5, 8, 15, 0.62);
+  box-shadow:
+    0 30px 88px -62px rgba(0, 0, 0, 0.94),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 html.gv-dark .gv-product-hero {
@@ -947,6 +1076,29 @@ html.gv-dark .gv-discovery-proof-card {
   box-shadow:
     0 30px 90px -62px rgba(0, 0, 0, 0.94),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+html.gv-dark .gv-search-showcase {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08), transparent 18rem),
+    linear-gradient(180deg, rgba(8, 12, 22, 0.62) 0%, rgba(0, 0, 0, 0.46) 100%);
+}
+
+html.gv-dark .gv-search-preset-card {
+  border-color: rgba(226, 232, 240, 0.08);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(51, 65, 85, 0.26), transparent 9rem),
+    rgba(5, 8, 15, 0.62);
+  box-shadow:
+    0 24px 72px -52px rgba(0, 0, 0, 0.96),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html.gv-dark .gv-search-preset-card:hover {
+  border-color: rgba(147, 197, 253, 0.2);
+  box-shadow:
+    0 36px 104px -64px rgba(0, 0, 0, 1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 html.gv-dark .gv-site-header {

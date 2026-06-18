@@ -167,8 +167,8 @@ function SmartViewButton({
       onClick={onClick}
       className={`rounded-full px-4 py-2 text-sm font-medium transition ${
         selected
-          ? "border border-slate-200 bg-white text-slate-950 shadow-[0_12px_24px_-20px_rgba(15,23,42,0.35)]"
-          : "border border-transparent text-slate-500 hover:bg-white/80 hover:text-slate-900"
+          ? "border border-slate-200 bg-white text-slate-950 shadow-[0_12px_24px_-20px_rgba(15,23,42,0.35)] dark:border-slate-700 dark:bg-slate-100 dark:text-slate-950"
+          : "border border-transparent text-slate-500 hover:bg-white/80 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/[0.06] dark:hover:text-slate-100"
       }`}
     >
       <span>{label}</span>
@@ -620,15 +620,11 @@ export function VaultCollectionView({
 
   return (
     <div className="space-y-10 py-7 md:space-y-12 md:py-9">
-      <PageSection
-        surface="card"
-        spacing="default"
-        className="overflow-hidden rounded-[2rem] border-slate-200/80 bg-[linear-gradient(180deg,_rgba(255,255,255,1)_0%,_rgba(248,250,252,0.94)_100%)] px-5 py-6 shadow-[0_34px_76px_-52px_rgba(15,23,42,0.34)] sm:px-6 md:px-8 md:py-7"
-      >
+      <section className="gv-collector-panel px-5 py-7 sm:px-7 md:px-9 md:py-9">
         <PageIntro
           title="Your Vault"
           eyebrow="Vault"
-          description="A clear, focused view of the cards you own."
+          description="Your personal card library, organized around ownership, value, set progress, and collector intent."
           size="compact"
           actions={
             <div className="flex flex-wrap items-center gap-2.5">
@@ -648,7 +644,7 @@ export function VaultCollectionView({
           }
         />
         {valueSummary.totalGroupedCount > 0 ? (
-          <div className="rounded-[1.9rem] border border-slate-200/75 bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(248,250,252,0.88)_100%)] px-5 py-5 shadow-[0_26px_56px_-40px_rgba(15,23,42,0.28)] md:px-6 md:py-6">
+          <div className="gv-command-surface mt-6 px-5 py-5 md:px-6 md:py-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div className="min-w-0 space-y-2.5">
                 <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-slate-400/90">
@@ -671,7 +667,7 @@ export function VaultCollectionView({
             </div>
           </div>
         ) : null}
-        <div className="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <div className="mt-5 flex flex-wrap items-center gap-2 text-sm text-slate-500">
           <span className="rounded-full border border-slate-200/75 bg-white/80 px-4 py-2 font-medium text-slate-700 shadow-[0_14px_26px_-24px_rgba(15,23,42,0.22)]">
             {summary.cards} {summary.cards === 1 ? "card" : "cards"}
           </span>
@@ -685,7 +681,7 @@ export function VaultCollectionView({
             Last added {summary.lastAdded}
           </span>
         </div>
-      </PageSection>
+      </section>
 
       {itemsError ? (
         <section className="rounded-[2rem] border border-rose-200 bg-rose-50 px-6 py-5 text-sm text-rose-700">
@@ -713,7 +709,7 @@ export function VaultCollectionView({
           </div>
         </section>
       ) : (
-        <PageSection spacing="default">
+        <PageSection spacing="default" className="space-y-6">
           {collectorPageActivationVariant ? (
             <CollectorPageActivationCard
               variant={collectorPageActivationVariant}
@@ -726,7 +722,7 @@ export function VaultCollectionView({
             description="Cards currently in your collection."
           />
 
-          <div className="hidden md:flex md:flex-row md:items-center md:justify-between md:gap-4 md:rounded-[1.5rem] md:border md:border-slate-200/80 md:bg-slate-50/70 md:p-3.5">
+          <div className="gv-command-surface hidden md:flex md:flex-row md:items-center md:justify-between md:gap-4 md:p-3.5">
             <SearchToolbar className="w-full sm:max-w-md">
               <SearchToolbarInput
                 type="text"
@@ -759,9 +755,8 @@ export function VaultCollectionView({
           />
 
           <PageSection
-            surface="subtle"
             spacing="compact"
-            className="rounded-[1.5rem] border-slate-200/80 bg-slate-50/70 p-2.5 md:p-3"
+            className="gv-command-surface p-2.5 md:p-3"
           >
             <div className="flex gap-1.5 overflow-x-auto md:flex-wrap">
               {smartViews.map((view) => (

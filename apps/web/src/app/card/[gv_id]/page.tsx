@@ -821,9 +821,10 @@ export default async function CardPage({
 
       {networkOffers.length > 0 ? (
         <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-          <div className="space-y-1">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Collector Network</h2>
-            <p className="text-sm text-slate-600">Collectors with this card marked Trade, Sell, or Showcase.</p>
+          <div className="gv-card-section-header">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Collector Network</p>
+            <h2>Available in the network</h2>
+            <p>Collectors with this card marked Trade, Sell, or Showcase.</p>
           </div>
           <div className="space-y-3">
             {networkOffers.map((offer) => (
@@ -952,9 +953,10 @@ export default async function CardPage({
 
       {cameoRows.length > 0 ? (
         <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-          <div className="space-y-1">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Artwork Cameos</h2>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
+          <div className="gv-card-section-header">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Artwork Cameos</p>
+            <h2>Visible in the artwork</h2>
+            <p>
               Characters visible in the artwork. These are searchable enrichment facts and do not change this card&apos;s identity or Species Dex completion.
             </p>
           </div>
@@ -998,9 +1000,10 @@ export default async function CardPage({
 
       {relatedPrints.length > 0 ? (
         <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-          <div className="space-y-1">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Other Versions of This Card</h2>
-            <p className="text-sm text-slate-600">Read-only links to other prints that share this card name.</p>
+          <div className="gv-card-section-header">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Other Versions</p>
+            <h2>Other versions of this card</h2>
+            <p>Read-only links to other prints that share this card name.</p>
           </div>
           <div className="flex gap-3 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:gap-3 md:overflow-visible lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
             {relatedPrints.map((relatedCard) => {
@@ -1079,9 +1082,10 @@ export default async function CardPage({
 
       {detailItems.length > 0 ? (
         <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-          <div className="space-y-1">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Card Details</h2>
-            <p className="text-sm text-slate-600 dark:text-slate-300">Identity and card traits surfaced from the current catalog data.</p>
+          <div className="gv-card-section-header">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Card Details</p>
+            <h2>Catalog intelligence</h2>
+            <p>Identity and card traits surfaced from the current catalog data.</p>
           </div>
           <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {detailItems.map((item) => (
@@ -1097,10 +1101,10 @@ export default async function CardPage({
       {setContextItems.length > 0 ? (
         <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div className="space-y-1">
-              <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">About This Set</h2>
-              {setName ? <p className="text-2xl font-semibold tracking-tight text-slate-950">{setName}</p> : null}
-              <p className="text-sm text-slate-600">Context for the set this print belongs to.</p>
+            <div className="gv-card-section-header">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">About This Set</p>
+              {setName ? <h2>{setName}</h2> : null}
+              <p>Context for the set this print belongs to.</p>
             </div>
             {setHref ? (
               <Link
@@ -1123,10 +1127,11 @@ export default async function CardPage({
       ) : null}
 
       {user && hasOwnedItems ? (
-        <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="space-y-1">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Your Vault</h2>
-            <p className="text-sm text-slate-600">Existing ownership entries for this card.</p>
+        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
+          <div className="gv-card-section-header">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Your Vault</p>
+            <h2>Your copies</h2>
+            <p>Existing ownership entries for this card.</p>
           </div>
           <ul className="space-y-3 text-sm text-slate-600">
             {ownedObjectSummary.rawCount > 0 ? (
@@ -1187,10 +1192,11 @@ export default async function CardPage({
       ) : null}
 
       {(adjacentCards.previous || adjacentCards.next) ? (
-        <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="space-y-1">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">In This Set</h2>
-            <p className="text-sm text-slate-600">Nearby cards from the same set, ordered around this print.</p>
+        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
+          <div className="gv-card-section-header">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">In This Set</p>
+            <h2>Nearby cards</h2>
+            <p>Cards from the same set, ordered around this print.</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {adjacentCards.previous ? (
