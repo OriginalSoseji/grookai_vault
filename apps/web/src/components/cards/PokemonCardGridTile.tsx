@@ -112,7 +112,7 @@ function renderImage({
         fallbackLabel={imageFallbackLabel ?? imageAlt}
       />
       {imageOverlay ? (
-        <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-2 p-3">
+        <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-2 p-3 pr-20">
           {imageOverlay}
         </div>
       ) : null}

@@ -281,6 +281,8 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 .gv-collector-panel {
   position: relative;
   overflow: hidden;
+  max-width: 100%;
+  min-width: 0;
   border: 1px solid rgba(15, 23, 42, 0.055);
   border-radius: clamp(24px, 3vw, 36px);
   background:
@@ -308,6 +310,8 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 }
 
 .gv-command-surface {
+  max-width: 100%;
+  min-width: 0;
   border: 1px solid var(--gv-border-hairline);
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.72);
@@ -479,6 +483,8 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 .gv-discovery-hero {
   position: relative;
   overflow: hidden;
+  max-width: 100%;
+  min-width: 0;
   border: 1px solid rgba(255, 255, 255, 0.62);
   border-radius: clamp(28px, 4vw, 44px);
   background:
@@ -863,6 +869,7 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 
 .gv-visual-card {
   position: relative;
+  min-width: 0;
   border: 1px solid rgba(15, 23, 42, 0.07);
   border-radius: 32px;
   background:
