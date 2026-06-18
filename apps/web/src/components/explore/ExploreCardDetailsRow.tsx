@@ -13,6 +13,7 @@ import {
   resolveDisplayIdentitySubtitleForContext,
 } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
+import { getSecondaryBadgeLabels } from "@/components/explore/dedupeBadgeLabels";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 import { getSearchContextBadgeTone } from "@/components/explore/searchContextPresentation";
 
@@ -43,6 +44,10 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
   const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
   const primaryFinishLabel = getPrimaryFinishLabel(card);
+  const secondaryVariantLabels = getSecondaryBadgeLabels(variantLabels, [
+    primaryFinishLabel,
+    searchDiscriminator ?? undefined,
+  ]);
 
   return (
     <tr className="border-b border-slate-100 last:border-b-0 dark:border-slate-800/80">
@@ -93,7 +98,7 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
             {primaryFinishLabel ? (
               <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
             ) : null}
-            {variantLabels.map((label) => (
+            {secondaryVariantLabels.map((label) => (
               <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
             ))}
             {searchDiscriminator ? (

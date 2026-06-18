@@ -13,6 +13,7 @@ import {
   resolveDisplayIdentitySubtitleForContext,
 } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
+import { getSecondaryBadgeLabels } from "@/components/explore/dedupeBadgeLabels";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 import { getSearchContextBadgeTone } from "@/components/explore/searchContextPresentation";
 
@@ -43,6 +44,10 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
   const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
   const primaryFinishLabel = getPrimaryFinishLabel(card);
+  const secondaryVariantLabels = getSecondaryBadgeLabels(variantLabels, [
+    primaryFinishLabel,
+    searchDiscriminator ?? undefined,
+  ]);
 
   return (
     <li className="gv-visual-card px-4 py-4">
@@ -78,7 +83,7 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                   {primaryFinishLabel ? (
                     <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
                   ) : null}
-                  {variantLabels.map((label) => (
+                  {secondaryVariantLabels.map((label) => (
                     <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
                   ))}
                   {searchDiscriminator ? (

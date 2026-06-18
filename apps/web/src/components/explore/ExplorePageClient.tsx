@@ -1011,7 +1011,7 @@ export default function ExplorePageClient({
               `q=${encodeURIComponent(suggestion)}`,
               compareCards,
             )}
-            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-white"
+            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:bg-slate-800"
           >
             {suggestion}
           </Link>
@@ -1020,22 +1020,22 @@ export default function ExplorePageClient({
     </div>
   );
   const loadingState = (
-    <div className="rounded-[20px] border border-slate-200 bg-white p-4 shadow-sm">
+    <div className="rounded-[20px] border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <p className="text-sm font-semibold text-slate-950">Searching cards</p>
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="text-sm font-semibold text-slate-950 dark:text-slate-50">Searching cards</p>
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
             Ranking identity, finish, ownership context, and cameo signals.
           </p>
         </div>
-        <span className="h-2 w-2 animate-pulse rounded-full bg-slate-900" />
+        <span className="h-2 w-2 animate-pulse rounded-full bg-slate-900 dark:bg-slate-100" />
       </div>
       <div className="mt-4 grid gap-3 md:grid-cols-3">
         {[0, 1, 2].map((index) => (
-          <div key={index} className="rounded-[16px] border border-slate-100 bg-slate-50 p-3">
-            <div className="h-28 rounded-xl bg-slate-200/70" />
-            <div className="mt-3 h-3 w-2/3 rounded-full bg-slate-200" />
-            <div className="mt-2 h-2.5 w-1/2 rounded-full bg-slate-200/80" />
+          <div key={index} className="rounded-[16px] border border-slate-100 bg-slate-50 p-3 dark:border-slate-800 dark:bg-slate-900">
+            <div className="h-28 rounded-xl bg-slate-200/70 dark:bg-slate-800" />
+            <div className="mt-3 h-3 w-2/3 rounded-full bg-slate-200 dark:bg-slate-800" />
+            <div className="mt-2 h-2.5 w-1/2 rounded-full bg-slate-200/80 dark:bg-slate-800/80" />
           </div>
         ))}
       </div>
@@ -1047,14 +1047,14 @@ export default function ExplorePageClient({
   ) => {
     const copy = SEARCH_RESULT_INTENT_COPY[group.intent];
     const content = (
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2 dark:border-slate-800">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
             {copy.label}
           </p>
-          <p className="mt-1 text-xs text-slate-500">{copy.description}</p>
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{copy.description}</p>
         </div>
-        <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-600">
+        <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
           {group.rows.length}
         </span>
       </div>
@@ -1063,7 +1063,7 @@ export default function ExplorePageClient({
     if (options.table) {
       return (
         <tr>
-          <td colSpan={7} className="bg-white px-4 pb-2 pt-5">
+          <td colSpan={7} className="bg-white px-4 pb-2 pt-5 dark:bg-slate-950">
             {content}
           </td>
         </tr>
@@ -1079,7 +1079,7 @@ export default function ExplorePageClient({
         onClick={() =>
           setVisibleResultCount((current) => current + INITIAL_VISIBLE_RESULT_COUNT)
         }
-        className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+        className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-slate-600 dark:hover:bg-slate-800"
       >
         Show more results
       </button>
@@ -1195,24 +1195,24 @@ export default function ExplorePageClient({
         </>
       ) : (
         <div className="space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-slate-200 bg-white px-4 py-3 shadow-sm">
-            <p className="text-sm text-slate-600">
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-slate-200 bg-white px-4 py-3 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+            <p className="text-sm text-slate-600 dark:text-slate-300">
               {resultCountLabel}
               {loading && displayRows.length > 0 ? (
-                <span className="ml-2 rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-500">
+                <span className="ml-2 rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-500 dark:bg-slate-800 dark:text-slate-400">
                   Refreshing
                 </span>
               ) : null}
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              <label className="flex items-center gap-2 text-sm text-slate-600">
+              <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
                 <span>Sort</span>
                 <select
                   value={sortMode}
                   onChange={(event) =>
                     commitSortMode(event.target.value as SortMode)
                   }
-                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-slate-700"
                 >
                   <option value="relevance">Relevance</option>
                   <option value="newest">Newest first</option>
@@ -1223,7 +1223,7 @@ export default function ExplorePageClient({
                   <option value="value_low">Value low to high</option>
                 </select>
               </label>
-              <label className="flex items-center gap-2 text-sm text-slate-600">
+              <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
                 <span>Image</span>
                 <select
                   value={imageConfidenceFilter}
@@ -1232,7 +1232,7 @@ export default function ExplorePageClient({
                       event.target.value as ImageConfidenceFilter,
                     )
                   }
-                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-slate-700"
                   aria-label="Image confidence filter"
                 >
                   <option value="all">All images</option>

@@ -9,6 +9,7 @@ import {
 import {
   getExploreRowsForOwnedSmartFilterDiscovery,
   getExploreRowsForSmartFilterDiscovery,
+  getExploreRowsForSmartStructuredTextSearch,
 } from "@/lib/explore/getExploreRows";
 import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
@@ -284,6 +285,9 @@ export async function GET(request: NextRequest) {
   const hasSmartImageIntent = Boolean(effectiveSmartSearchIntent.imageState && effectiveSmartSearchIntent.imageState !== "any");
   const hasSmartOwnershipIntent = Boolean(effectiveSmartSearchIntent.ownedState && effectiveSmartSearchIntent.ownedState !== "any");
   const hasSmartStampIntent = effectiveSmartSearchIntent.stampLabels.length > 0;
+  const shouldUseStructuredTextExpansion =
+    Boolean(query) &&
+    (hasSmartFinishIntent || hasSmartImageIntent || hasSmartStampIntent);
   const hasCatalogDiscoveryScope =
     Boolean(exactSetCode) ||
     typeof exactReleaseYear === "number" ||
@@ -355,16 +359,32 @@ export async function GET(request: NextRequest) {
             rows,
             meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
           }))
-          : resolveQueryWithMeta(query, {
-            mode: "ranked",
-            sortMode,
-            exactSetCode,
-            exactReleaseYear,
-            exactIllustrator,
-            identityFilter,
-            releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
-            releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
-          }),
+          : shouldUseStructuredTextExpansion
+            ? getExploreRowsForSmartStructuredTextSearch(query, {
+                sortMode,
+                exactSetCode,
+                exactReleaseYear,
+                exactIllustrator,
+                identityFilter,
+                releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
+                releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
+                finishKeys: effectiveSmartSearchIntent.finishKeys,
+                stampLabels: effectiveSmartSearchIntent.stampLabels,
+                imageState: effectiveSmartSearchIntent.imageState,
+              }).then((rows) => ({
+                rows,
+                meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
+              }))
+            : resolveQueryWithMeta(query, {
+                mode: "ranked",
+                sortMode,
+                exactSetCode,
+                exactReleaseYear,
+                exactIllustrator,
+                identityFilter,
+                releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
+                releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
+              }),
       includeProvisional
         ? getPublicProvisionalCards({
             query: rawQuery,

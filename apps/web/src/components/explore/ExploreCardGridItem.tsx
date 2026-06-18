@@ -15,6 +15,7 @@ import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 import { getSearchContextBadgeTone } from "@/components/explore/searchContextPresentation";
+import { getSecondaryBadgeLabels } from "@/components/explore/dedupeBadgeLabels";
 
 type ExploreCardGridItemProps = {
   card: ExploreResultCard;
@@ -45,6 +46,10 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
   const isLarge = mode === "thumb-lg";
   const density = isLarge ? "large" : "default";
   const primaryFinishLabel = getPrimaryFinishLabel(card);
+  const secondaryVariantLabels = getSecondaryBadgeLabels(variantLabels, [
+    primaryFinishLabel,
+    searchDiscriminator ?? undefined,
+  ]);
   const metaLine = [card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ") || "—";
 
   return (
@@ -82,7 +87,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
           {primaryFinishLabel ? (
             <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
           ) : null}
-          {variantLabels.map((label) => (
+          {secondaryVariantLabels.map((label) => (
             <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
           ))}
           {searchDiscriminator ? (
