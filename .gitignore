@@ -117,6 +117,12 @@ tmp_schema_local.sql
 *.webp
 *_report.md
 apps/web/src/app/api/*
+!apps/web/src/app/api/assistant/
+apps/web/src/app/api/assistant/*
+!apps/web/src/app/api/assistant/search-interpretation/
+!apps/web/src/app/api/assistant/search-interpretation/route.ts
+!apps/web/src/app/api/assistant/variant-explanation-context/
+!apps/web/src/app/api/assistant/variant-explanation-context/route.ts
 !apps/web/src/app/api/slabs/
 apps/web/src/app/api/slabs/*
 !apps/web/src/app/api/slabs/upgrade/
