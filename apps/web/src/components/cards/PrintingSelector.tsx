@@ -125,7 +125,7 @@ export default function PrintingSelector({
         : "Correct printing. Exact variant image is pending.");
 
   return (
-    <section className={`gv-action-panel space-y-4 ${compact ? "p-4" : "p-5"}`}>
+    <section className={`gv-variant-selector space-y-4 ${compact ? "p-1" : "p-2"}`}>
       <div className="space-y-1">
         <h2 className="gv-eyebrow">{title}</h2>
         <p className="gv-quiet-line text-sm">

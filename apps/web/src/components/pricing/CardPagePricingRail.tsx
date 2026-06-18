@@ -80,7 +80,7 @@ function PrimaryPricingBlock({ pricing }: { pricing: CardPricingUiRecord | null 
 
 function LockedPricingState({ loginHref }: { loginHref: string }) {
   return (
-    <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4 dark:border-slate-800 dark:bg-slate-950">
+    <div className="gv-card-pricing-panel px-1 py-1">
       <div className="space-y-4">
         <div className="space-y-2">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Pricing</p>
@@ -115,7 +115,7 @@ function AuthenticatedPricingState({ gvId, pricing }: { gvId: string; pricing: C
   const hasPrimaryPrice = Boolean(pricing?.primary_source && typeof pricing.primary_price === "number");
 
   return (
-    <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4 dark:border-slate-800 dark:bg-slate-950">
+    <div className="gv-card-pricing-panel px-1 py-1">
       <div className="space-y-4">
         <div className="space-y-2">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Pricing</p>

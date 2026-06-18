@@ -568,7 +568,7 @@ export default async function CardPage({
       : null;
 
   return (
-    <div className={`space-y-8 py-4 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
+    <div className={`space-y-7 py-5 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
       <TrackPageEvent eventName="page_view_card" path={currentCardPath} gvId={resolvedCard.gv_id} />
       <section className="gv-product-hero isolate">
         {setLogoPath ? (
@@ -589,9 +589,9 @@ export default async function CardPage({
             className="gv-card-identity-wash pointer-events-none absolute inset-0"
           />
         ) : null}
-        <div className="relative z-10 grid gap-8 p-5 sm:p-7 lg:grid-cols-[minmax(260px,380px)_minmax(0,1fr)] lg:items-start lg:gap-10 xl:p-10">
-          <div className="mx-auto flex w-full max-w-[340px] flex-col items-center lg:sticky lg:top-8 lg:max-w-[380px]">
-            <div className="gv-image-stage w-full p-3 sm:p-4">
+        <div className="relative z-10 grid gap-8 p-5 sm:p-7 lg:grid-cols-[minmax(300px,440px)_minmax(0,1fr)] lg:items-start lg:gap-12 xl:p-12">
+          <div className="mx-auto flex w-full max-w-[380px] flex-col items-center lg:sticky lg:top-8 lg:max-w-[430px]">
+            <div className="gv-image-stage gv-card-hero-image-stage w-full p-3 sm:p-4">
               <CardZoomModal
                 src={resolvedCardImageSrc}
                 fallbackSrc={resolvedCardImageFallback ?? undefined}
@@ -599,8 +599,8 @@ export default async function CardPage({
                   resolvedDisplayIdentity.display_name,
                   displayedImageTruthSource,
                 )}
-                imageClassName="h-auto max-h-[520px] w-full cursor-zoom-in rounded-[16px] object-contain shadow-[0_22px_62px_-40px_rgba(15,23,42,0.85)] transition duration-150 hover:scale-[1.01] hover:shadow-[0_28px_72px_-40px_rgba(15,23,42,0.9)] sm:max-h-[600px]"
-                fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[16px] bg-slate-100/70 px-4 text-center text-sm text-slate-500 ring-1 ring-slate-200/70 dark:bg-slate-900/70 dark:text-slate-400 dark:ring-white/10"
+                imageClassName="h-auto max-h-[580px] w-full cursor-zoom-in rounded-[22px] object-contain shadow-[0_30px_76px_-46px_rgba(15,23,42,0.88)] transition duration-150 hover:scale-[1.008] hover:shadow-[0_36px_84px_-46px_rgba(15,23,42,0.92)] sm:max-h-[660px]"
+                fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[22px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
               />
             </div>
             {resolvedCardImagePresentation.compactBadgeLabel ? (
@@ -625,11 +625,11 @@ export default async function CardPage({
             ) : null}
           </div>
 
-          <div className="min-w-0 space-y-7">
+          <div className="gv-card-hero-copy min-w-0 space-y-7">
             <div className="space-y-5">
               <div className="flex flex-wrap items-center gap-2">
                 {resolvedCard.supertype ? (
-                  <span className="inline-flex rounded-full border border-slate-200/80 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
+                  <span className="gv-card-detail-eyebrow">
                     {resolvedCard.supertype}
                   </span>
                 ) : null}
@@ -642,7 +642,7 @@ export default async function CardPage({
                 {(setName || setCodeLabel) ? (
                   <div className="flex flex-wrap items-center gap-2">
                     {setCodeLabel ? (
-                      <span className="inline-flex rounded-full border border-emerald-200/80 bg-emerald-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-800 shadow-sm">
+                      <span className="inline-flex rounded-full border border-emerald-200/80 bg-emerald-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-800 shadow-sm dark:border-emerald-400/25 dark:bg-emerald-400/12 dark:text-emerald-100">
                         {setCodeLabel}
                       </span>
                     ) : null}
@@ -663,7 +663,7 @@ export default async function CardPage({
                   </div>
                 ) : null}
                 <div className="space-y-3">
-                  <h1 className="gv-hi-card-identity max-w-3xl text-4xl tracking-tight sm:text-5xl lg:text-6xl">
+                  <h1 className="gv-hi-card-identity max-w-3xl text-[3rem] leading-[0.96] tracking-normal sm:text-[4.2rem] lg:text-[5.35rem]">
                     {resolvedDisplayIdentity.base_name}
                   </h1>
                   <div className="flex flex-wrap items-center gap-2">
@@ -693,15 +693,15 @@ export default async function CardPage({
               ) : null}
 
               {variantOriginCopy ? (
-                <section className="gv-quiet-panel max-w-3xl px-4 py-4">
+                <section className="gv-variant-story max-w-4xl px-5 py-5 sm:px-6 sm:py-6">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="inline-flex rounded-full border border-slate-200/80 bg-white/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 shadow-sm dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
+                    <span className="gv-card-detail-eyebrow text-[10px]">
                       Why this version matters
                     </span>
-                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
-                      {variantExplanation?.title ?? variantOriginCopy.family_label}
-                    </span>
                   </div>
+                  <p className="mt-4 max-w-2xl text-2xl font-semibold leading-tight tracking-normal text-slate-950 dark:text-white sm:text-3xl">
+                    {variantExplanation?.title ?? variantOriginCopy.family_label}
+                  </p>
                   {variantExplanation?.summary ? (
                     <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-700 dark:text-slate-300">
                       {variantExplanation.summary}
@@ -774,8 +774,8 @@ export default async function CardPage({
               </div>
             </div>
 
-            <aside className="grid gap-4 lg:grid-cols-[minmax(240px,0.9fr)_minmax(280px,1.1fr)]">
-              <div className="gv-action-panel p-5">
+            <aside className="grid gap-4 lg:grid-cols-[minmax(240px,0.88fr)_minmax(300px,1.12fr)]">
+              <div className="gv-action-panel p-5 sm:p-6">
                 <CardPagePricingRail
                   isAuthenticated={canViewPricing}
                   loginHref={loginHref}
@@ -785,7 +785,7 @@ export default async function CardPage({
                 />
               </div>
 
-              <div className="gv-action-panel space-y-4 p-5">
+              <div className="gv-action-panel space-y-5 p-5 sm:p-6">
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Vault</p>
                   <p className="gv-hi-card-identity mt-2 text-sm leading-6">{ownershipLabel}.</p>
@@ -820,7 +820,7 @@ export default async function CardPage({
       </section>
 
       {networkOffers.length > 0 ? (
-        <section className="gv-premium-surface space-y-4 p-6">
+        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
           <div className="space-y-1">
             <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Collector Network</h2>
             <p className="text-sm text-slate-600">Collectors with this card marked Trade, Sell, or Showcase.</p>
@@ -951,7 +951,7 @@ export default async function CardPage({
       ) : null}
 
       {cameoRows.length > 0 ? (
-        <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
           <div className="space-y-1">
             <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Artwork Cameos</h2>
             <p className="text-sm text-slate-600 dark:text-slate-300">
@@ -996,25 +996,8 @@ export default async function CardPage({
         </section>
       ) : null}
 
-      {detailItems.length > 0 ? (
-        <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="space-y-1">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Card Details</h2>
-            <p className="text-sm text-slate-600">Identity and card traits surfaced from the current catalog data.</p>
-          </div>
-          <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {detailItems.map((item) => (
-              <div key={item.label} className="rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4">
-                <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">{item.label}</dt>
-                <dd className="mt-2 text-sm font-medium text-slate-900">{item.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-      ) : null}
-
       {relatedPrints.length > 0 ? (
-        <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
+        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
           <div className="space-y-1">
             <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Other Versions of This Card</h2>
             <p className="text-sm text-slate-600">Read-only links to other prints that share this card name.</p>
@@ -1094,8 +1077,25 @@ export default async function CardPage({
         </section>
       ) : null}
 
+      {detailItems.length > 0 ? (
+        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
+          <div className="space-y-1">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Card Details</h2>
+            <p className="text-sm text-slate-600 dark:text-slate-300">Identity and card traits surfaced from the current catalog data.</p>
+          </div>
+          <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {detailItems.map((item) => (
+              <div key={item.label} className="rounded-[18px] border border-slate-200/70 bg-white/54 px-4 py-4 dark:border-slate-700 dark:bg-white/[0.04]">
+                <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{item.label}</dt>
+                <dd className="mt-2 text-sm font-medium text-slate-900 dark:text-slate-100">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ) : null}
+
       {setContextItems.length > 0 ? (
-        <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
+        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="space-y-1">
               <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">About This Set</h2>
