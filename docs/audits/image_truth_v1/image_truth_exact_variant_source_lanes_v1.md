@@ -1,12 +1,12 @@
 # Image Truth Exact Variant Source Lanes V1
 
-Generated: 2026-06-16T05:27:10.927Z
+Generated: 2026-06-18T19:23:22.328Z
 
 This is read-only. It does not upload images, update database rows, create migrations, clean up, quarantine, or change image confidence.
 
 ## Summary
 
-- exact_variant_backlog_rows: 14501
+- exact_variant_backlog_rows: 14431
 - db_writes_performed: false
 - migrations_created: false
 - parent_overwrite_allowed: false
@@ -15,10 +15,10 @@ This is read-only. It does not upload images, update database rows, create migra
 
 | lane | rows |
 | --- | --- |
-| representative_only_unless_rendered_overlay_captured | 12391 |
-| no_source_evidence_available | 1654 |
+| representative_only_unless_rendered_overlay_captured | 12340 |
+| no_source_evidence_available | 1636 |
 | source_evidence_available_no_exact_asset_extractor | 388 |
-| representative_only_unless_visual_manually_verified | 62 |
+| representative_only_unless_visual_manually_verified | 61 |
 | exact_asset_probe_candidate | 6 |
 
 ## Source Evidence With No Exact Extractor
@@ -171,7 +171,6 @@ These rows have source-associated images that may be useful, but require visual/
 | xy12 | 80 | Misty's Determination | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/124093/pokemon-xy-evolutions-mistys-determination |
 | swsh6 | 79 | Galarian Sirfetch'd | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/241744/pokemon-swsh06-chilling-reign-galarian-sirfetchd |
 | ex7 | 8 | Dark Octillery | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/84633/pokemon-team-rocket-returns-dark-octillery |
-| pl2 | 95 | Team Galactic's Invention G-107 Technical Machine | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/89808/pokemon-rising-rivals-team-galactics-invention-g-107-technical-mach-g |
 | sv03.5 | 158 | Daisy's Help | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/516720/pokemon-sv-scarlet-and-violet-151-daisys-help-158-165 |
 | ex7 | 88 | Rocket's Mission | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/88780/pokemon-team-rocket-returns-rockets-mission |
 | ex7 | 9 | Dark Slowking | reverse | tcgcsv_tcgplayer_catalog | https://www.tcgplayer.com/product/84657/pokemon-team-rocket-returns-dark-slowking |
@@ -191,11 +190,9 @@ These remain honest representative/missing-variant rows until new evidence is ac
 | me04 | 084 | Bubbly Water Energy | reverse |
 | ex15 | 21 | Quagsire δ | reverse |
 | ex12 | 4 | Delcatty | reverse |
-| xyp | XY126 | Mew-EX | reverse |
 | ex5 | 13 | Pinsir | reverse |
 | sv05 | 142 | Bianca's Devotion | reverse |
 | ex4 | 30 | Team Aqua's Mightyena | reverse |
-| xyp | XY122 | Blastoise-EX | reverse |
 | ex11 | 19 | Azumarill δ | reverse |
 | svp | 021 | Murkrow | reverse |
 | ex11 | 13 | Rayquaza δ | reverse |
@@ -207,13 +204,11 @@ These remain honest representative/missing-variant rows until new evidence is ac
 | sv8pt5 | 025 | Glaceon | pokeball |
 | svp | 014 | Koraidon | reverse |
 | sv10 | 121 | Team Rocket's Golbat | reverse |
-| xyp | XY63 | M Absol-EX | reverse |
 | sv8pt5 | 83 | Buneary | masterball |
 | sv8pt5 | 83 | Buneary | pokeball |
 | sv10 | 36 | Ethan's Magcargo | reverse |
 | ex13 | 3 | Deoxys δ | reverse |
 | dp3 | 126 | Team Galactic's Mars | reverse |
-| me01 | 76 | Riolu | cosmos |
 | ex14 | 1 | Banette | reverse |
 | me02.5 | 097 | Team Rocket's Mimikyu | reverse |
 | me02.5 | 097 | Team Rocket's Mimikyu | rocket_reverse |
@@ -243,7 +238,6 @@ These remain honest representative/missing-variant rows until new evidence is ac
 | me02.5 | 020 | Charmander | reverse |
 | me02.5 | 093 | Swirlix | pokeball |
 | me02.5 | 093 | Swirlix | reverse |
-| xyp | XY55 | Swampert-EX | reverse |
 | pl2 | 102 | Upper Energy | holo |
 | xy4 | 101 | Professor Sycamore | normal |
 | sv8pt5 | 69 | Duraludon | masterball |
@@ -253,7 +247,6 @@ These remain honest representative/missing-variant rows until new evidence is ac
 | me02 | 003 | Vileplume | cosmos |
 | ex10 | 97 | Metal Energy | reverse |
 | me01 | 132 | Wally's Compassion | reverse |
-| xyp | XY61 | Flygon-EX | reverse |
 | me02.5 | 163 | Larry's Dunsparce | pokeball |
 | me02.5 | 163 | Larry's Dunsparce | reverse |
 | ex15 | 5 | Milotic δ | reverse |
@@ -262,4 +255,10 @@ These remain honest representative/missing-variant rows until new evidence is ac
 | ex4 | 29 | Team Aqua's Manectric | reverse |
 | sv10 | 96 | Team Rocket's Tyranitar | reverse |
 | xy10 | 111a | Shauna | reverse |
-| xyp | XY151 | Zygarde-EX | reverse |
+| basep | 52 | Ho-oh | normal |
+| pl2 | RT6 | Charon's Choice | reverse |
+| ex11 | 104 | Holon Energy FF | reverse |
+| ex16 | 11 | Machamp | reverse |
+| ex15 | 20 | Mantine δ | reverse |
+| sm5 | 125a | Lillie | reverse |
+| swsh10.5 | 078 | Professor's Research | holo |

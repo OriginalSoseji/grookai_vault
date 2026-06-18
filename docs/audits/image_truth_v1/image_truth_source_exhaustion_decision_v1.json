@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T05:27:11.359Z",
+  "generated_at": "2026-06-18T19:23:48.049Z",
   "audit_only": true,
   "db_writes_performed": false,
   "storage_uploads_performed": false,
@@ -18,11 +18,11 @@
     "source_records_loaded": 45449
   },
   "summary": {
-    "exact_variant_backlog_rows": 14501,
+    "exact_variant_backlog_rows": 14431,
     "exact_promote_ready_rows_now": 0,
     "exact_asset_probe_candidate_rows": 6,
-    "representative_or_blocked_rows": 14495,
-    "no_source_evidence_rows": 1654,
+    "representative_or_blocked_rows": 14425,
+    "no_source_evidence_rows": 1636,
     "pricecharting_residual_probe_completed": true,
     "pricecharting_residual_exact_ready_rows": 0,
     "pricecharting_residual_blocked_rows": 6,
@@ -41,26 +41,26 @@
     "db_safe_next_step": "website_honesty_messaging_or_new_source_acquisition"
   },
   "by_readiness_lane": {
-    "representative_only_unless_rendered_overlay_captured": 12391,
-    "no_source_evidence_available": 1654,
+    "representative_only_unless_rendered_overlay_captured": 12340,
+    "no_source_evidence_available": 1636,
     "source_evidence_available_no_exact_asset_extractor": 388,
-    "representative_only_unless_visual_manually_verified": 62,
+    "representative_only_unless_visual_manually_verified": 61,
     "exact_asset_probe_candidate": 6
   },
   "by_finish": {
-    "reverse": 13499,
-    "cosmos": 321,
+    "reverse": 13372,
+    "cosmos": 324,
     "pokeball": 230,
-    "holo": 158,
+    "holo": 184,
     "cracked_ice": 122,
-    "normal": 94,
+    "normal": 122,
     "masterball": 67,
     "rocket_reverse": 10
   },
   "by_source_key": {
-    "reverseholo_set_checklist": 12391,
+    "reverseholo_set_checklist": 12340,
     "tcgcollector_card_variants": 335,
-    "tcgcsv_tcgplayer_catalog": 62,
+    "tcgcsv_tcgplayer_catalog": 61,
     "binderbuilder_set_variant": 30,
     "bulbapedia_card_page_release_info": 16,
     "pricecharting_csv_product": 5,
@@ -73,14 +73,14 @@
   "source_families": [
     {
       "source_key": "reverseholo_set_checklist",
-      "rows": 12399,
+      "rows": 12348,
       "by_lane": {
-        "representative_only_unless_rendered_overlay_captured": 12391,
+        "representative_only_unless_rendered_overlay_captured": 12340,
         "source_evidence_available_no_exact_asset_extractor": 8
       },
       "by_finish": {
-        "reverse": 12317,
-        "holo": 64,
+        "reverse": 12248,
+        "holo": 82,
         "cosmos": 18
       },
       "examples": [
@@ -160,17 +160,17 @@
     },
     {
       "source_key": "no_source_evidence",
-      "rows": 1654,
+      "rows": 1636,
       "by_lane": {
-        "no_source_evidence_available": 1654
+        "no_source_evidence_available": 1636
       },
       "by_finish": {
-        "reverse": 1121,
+        "reverse": 1064,
         "pokeball": 230,
-        "holo": 93,
-        "normal": 81,
+        "normal": 109,
+        "holo": 101,
         "masterball": 67,
-        "cosmos": 49,
+        "cosmos": 52,
         "rocket_reverse": 10,
         "cracked_ice": 3
       },
@@ -339,14 +339,14 @@
     },
     {
       "source_key": "tcgcsv_tcgplayer_catalog",
-      "rows": 227,
+      "rows": 226,
       "by_lane": {
         "representative_only_unless_rendered_overlay_captured": 164,
-        "representative_only_unless_visual_manually_verified": 62,
+        "representative_only_unless_visual_manually_verified": 61,
         "source_evidence_available_no_exact_asset_extractor": 1
       },
       "by_finish": {
-        "reverse": 219,
+        "reverse": 218,
         "normal": 8
       },
       "examples": [
@@ -555,14 +555,6 @@
           "source_url": "https://bulbapedia.bulbagarden.net/wiki/Oshawott_(SWSH_Promo_222)"
         },
         {
-          "card_printing_id": "e0637e1a-8b67-4d3a-b535-4b392f25d0b5",
-          "set_code": "svp",
-          "number": "47",
-          "card_name": "Charmander",
-          "finish_key": "cosmos",
-          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Charmander_(SVP_Promo_47)"
-        },
-        {
           "card_printing_id": "c29fa2da-2b46-4b86-8fd2-0c63f9e7adfc",
           "set_code": "svp",
           "number": "200",
@@ -585,6 +577,14 @@
           "card_name": "Chimchar",
           "finish_key": "reverse",
           "source_url": "https://bulbapedia.bulbagarden.net/wiki/Chimchar_(Diamond_%26_Pearl_76)"
+        },
+        {
+          "card_printing_id": "99bb0980-3710-411c-b707-2da13167dfeb",
+          "set_code": "svp",
+          "number": "202",
+          "card_name": "Kangaskhan",
+          "finish_key": "cosmos",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Kangaskhan_(SVP_Promo_202)"
         }
       ],
       "decision": {
