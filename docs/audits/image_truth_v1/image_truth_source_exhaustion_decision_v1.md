@@ -1,12 +1,12 @@
 # Image Truth Source Exhaustion Decision V1
 
-Generated: 2026-06-16T05:27:11.359Z
+Generated: 2026-06-18T19:23:48.049Z
 
 This is read-only. It does not upload images, update database rows, create migrations, clean up, quarantine, or change image confidence.
 
 ## Summary
 
-- exact_variant_backlog_rows: 14501
+- exact_variant_backlog_rows: 14431
 - exact_promote_ready_rows_now: 0
 - exact_asset_probe_candidate_rows: 6
 - pricecharting_residual_probe_completed: true
@@ -21,8 +21,8 @@ This is read-only. It does not upload images, update database rows, create migra
 - exact_photo_source_evidence_pilot_completed: true
 - exact_photo_source_evidence_pilot_rows: 25
 - exact_photo_source_evidence_pilot_ready_rows: 0
-- representative_or_blocked_rows: 14495
-- no_source_evidence_rows: 1654
+- representative_or_blocked_rows: 14425
+- no_source_evidence_rows: 1636
 - db_writes_performed: false
 - migrations_created: false
 
@@ -44,10 +44,10 @@ IMG-15A checked 6 residual rows. It found 3 title-only evidence candidates and 3
 
 | source | rows | decision | lanes | finishes | next action |
 | --- | --- | --- | --- | --- | --- |
-| ReverseHolo | 12399 | representative_only_unless_rendered_overlay_captured | representative_only_unless_rendered_overlay_captured=12391, source_evidence_available_no_exact_asset_extractor=8 | reverse=12317, holo=64, cosmos=18 | Consider a separate rendered-overlay pipeline if Grookai wants synthetic representative reverse imagery, clearly labeled. |
-| No Source Evidence | 1654 | blocked_until_new_source_found | no_source_evidence_available=1654 | reverse=1121, pokeball=230, holo=93, normal=81, masterball=67, cosmos=49, rocket_reverse=10, cracked_ice=3 | Acquire a new source family or leave these rows honestly representative. |
+| ReverseHolo | 12348 | representative_only_unless_rendered_overlay_captured | representative_only_unless_rendered_overlay_captured=12340, source_evidence_available_no_exact_asset_extractor=8 | reverse=12248, holo=82, cosmos=18 | Consider a separate rendered-overlay pipeline if Grookai wants synthetic representative reverse imagery, clearly labeled. |
+| No Source Evidence | 1636 | blocked_until_new_source_found | no_source_evidence_available=1636 | reverse=1064, pokeball=230, normal=109, holo=101, masterball=67, cosmos=52, rocket_reverse=10, cracked_ice=3 | Acquire a new source family or leave these rows honestly representative. |
 | TCGCollector | 339 | variant_evidence_not_exact_asset | source_evidence_available_no_exact_asset_extractor=335, representative_only_unless_rendered_overlay_captured=4 | cosmos=225, cracked_ice=105, reverse=7, normal=2 | Use as evidence source, not image asset source, until a variant-specific image extractor is proven. |
-| TCGCSV / TCGplayer Catalog | 227 | manual_visual_review_only | representative_only_unless_rendered_overlay_captured=164, representative_only_unless_visual_manually_verified=62, source_evidence_available_no_exact_asset_extractor=1 | reverse=219, normal=8 | Keep the 56 rows in visual review; do not bulk promote exact from shared catalog imagery. |
+| TCGCSV / TCGplayer Catalog | 226 | manual_visual_review_only | representative_only_unless_rendered_overlay_captured=164, representative_only_unless_visual_manually_verified=61, source_evidence_available_no_exact_asset_extractor=1 | reverse=218, normal=8 | Keep the 56 rows in visual review; do not bulk promote exact from shared catalog imagery. |
 | BinderBuilder | 30 | variant_evidence_not_exact_asset | source_evidence_available_no_exact_asset_extractor=30 | cracked_ice=14, cosmos=12, reverse=2, normal=2 | Treat as evidence only; add a future extractor only if variant-specific images are proven. |
 | Bulbapedia | 20 | human_evidence_not_exact_asset | source_evidence_available_no_exact_asset_extractor=20 | cosmos=19, reverse=1 | Use for source agreement, not image upload, unless an externally reusable exact image asset is identified. |
 | PriceCharting | 6 | residual_probe_exhausted | exact_asset_probe_candidate=6 | reverse=3, cosmos=1, holo=1, normal=1 | No PriceCharting residual row is exact-image ready after IMG-14A; move to eBay Browse evidence-only investigation or a new exact-photo source lane. |
@@ -59,10 +59,10 @@ IMG-15A checked 6 residual rows. It found 3 title-only evidence candidates and 3
 
 | lane | rows |
 | --- | --- |
-| representative_only_unless_rendered_overlay_captured | 12391 |
-| no_source_evidence_available | 1654 |
+| representative_only_unless_rendered_overlay_captured | 12340 |
+| no_source_evidence_available | 1636 |
 | source_evidence_available_no_exact_asset_extractor | 388 |
-| representative_only_unless_visual_manually_verified | 62 |
+| representative_only_unless_visual_manually_verified | 61 |
 | exact_asset_probe_candidate | 6 |
 
 ## Next Source Acquisition Order
