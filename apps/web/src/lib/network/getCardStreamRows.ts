@@ -132,6 +132,9 @@ export type CardStreamRow = {
   printedIdentityModifier: string | null;
   setIdentityModel: string | null;
   imageUrl: string | null;
+  displayImageKind: CardDisplayImageKind | null;
+  imageStatus: string | null;
+  imageNote: string | null;
   inPlayCopies: CardStreamCopy[];
 };
 
@@ -224,6 +227,9 @@ function normalizeRow(
     printedIdentityModifier: normalizeOptionalText(identityRow?.printed_identity_modifier),
     setIdentityModel: normalizeOptionalText(setRecord?.identity_model),
     imageUrl: displayImageUrl,
+    displayImageKind: row.display_image_kind ?? identityRow?.display_image_kind ?? null,
+    imageStatus: normalizeOptionalText(identityRow?.image_status),
+    imageNote: normalizeOptionalText(identityRow?.image_note),
     inPlayCopies: [],
   };
 }
