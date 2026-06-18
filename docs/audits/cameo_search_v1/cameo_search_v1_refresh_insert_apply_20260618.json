@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-06-18T16:51:05.441Z",
+  "mode": "APPLY_COMMITTED",
+  "delta_path": "docs\\audits\\cameo_search_v1\\cameo_search_v1_rotomamiti_refresh_delta_20260618.json",
+  "approved_apply_text": "Approve real CAMEO-REFRESH-01-ROTOMAMITI-LOGICAL-NEW-INSERTS apply only. Fingerprint: 94a961633283e044ba9ec4f64f63dcab35f9fdd63e8a5039d7e9c31b8b4458ed. Scope: 60 additive cameo metadata inserts from RotomAmiti current sheet; existing preservation-review cameos excluded=38. Dry-run proof: 35ceb88a4c888c4dfda36cb8d23638b2a4a70e15ee68a4dec9d7c1a4d6a6b562 == 35ceb88a4c888c4dfda36cb8d23638b2a4a70e15ee68a4dec9d7c1a4d6a6b562. No card identity writes. No child printing writes. No Species Dex writes. No pricing writes. No image writes. No migrations. No deletes.",
+  "package_fingerprint": "94a961633283e044ba9ec4f64f63dcab35f9fdd63e8a5039d7e9c31b8b4458ed",
+  "summary": {
+    "candidate_rows": 60,
+    "duplicate_payload_hashes": 0,
+    "duplicate_payload_logical_keys": 0,
+    "invalid_rows": 0,
+    "preservation_review_existing_missing_from_current": 38
+  },
+  "guards": {
+    "candidate_rows_match_delta_report": true,
+    "no_duplicate_payload_hashes": true,
+    "no_duplicate_payload_logical_keys": true,
+    "no_invalid_pokemon_rows": true,
+    "no_existing_source_hash_collisions": true,
+    "all_target_card_prints_exist": true,
+    "no_existing_logical_cameo_collisions": true,
+    "dry_run_proof_passed": true,
+    "apply_proof_passed": true
+  },
+  "execution": {
+    "before_snapshot": {
+      "active_count": 1361,
+      "distinct_hashes": 1361,
+      "distinct_cards": 846,
+      "max_updated_at": "2026-05-20 17:31:52.070891+00",
+      "hash_sha256": "35ceb88a4c888c4dfda36cb8d23638b2a4a70e15ee68a4dec9d7c1a4d6a6b562"
+    },
+    "inside_snapshot": {
+      "active_count": 1421,
+      "distinct_hashes": 1421,
+      "distinct_cards": 896,
+      "max_updated_at": "2026-06-18 16:51:04.735035+00",
+      "hash_sha256": "95a82dbb676f51e7bc508ee54978981a74c8002587b698f16e2c1e75096ecb3d"
+    },
+    "after_rollback_snapshot": null,
+    "after_apply_snapshot": {
+      "active_count": 1421,
+      "distinct_hashes": 1421,
+      "distinct_cards": 896,
+      "max_updated_at": "2026-06-18 16:51:04.735035+00",
+      "hash_sha256": "95a82dbb676f51e7bc508ee54978981a74c8002587b698f16e2c1e75096ecb3d"
+    },
+    "inserted_inside_transaction": 60
+  },
+  "approval_string": "Approve real CAMEO-REFRESH-01-ROTOMAMITI-LOGICAL-NEW-INSERTS apply only. Fingerprint: 94a961633283e044ba9ec4f64f63dcab35f9fdd63e8a5039d7e9c31b8b4458ed. Scope: 60 additive cameo metadata inserts from RotomAmiti current sheet; existing preservation-review cameos excluded=38. Dry-run proof: 35ceb88a4c888c4dfda36cb8d23638b2a4a70e15ee68a4dec9d7c1a4d6a6b562 == 35ceb88a4c888c4dfda36cb8d23638b2a4a70e15ee68a4dec9d7c1a4d6a6b562. No card identity writes. No child printing writes. No Species Dex writes. No pricing writes. No image writes. No migrations. No deletes.",
+  "confirmations": {
+    "durable_db_writes": true,
+    "durable_db_write_scope": "public.card_print_cameos inserts only",
+    "migrations": false,
+    "card_identity_changes": false,
+    "child_printing_changes": false,
+    "species_dex_changes": false,
+    "pricing_changes": false,
+    "image_writes": false
+  }
+}

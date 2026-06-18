@@ -106,7 +106,7 @@ export default async function GrookaiDexSpeciesPage({
         </div>
       </header>
 
-      <section className="grid gap-3 sm:grid-cols-4">
+      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         <div className="rounded-lg border border-slate-200 bg-white p-4">
           <p className="text-2xl font-semibold text-slate-950">{detail.cards.length}</p>
           <p className="text-sm text-slate-500">Mapped prints</p>
@@ -125,7 +125,59 @@ export default async function GrookaiDexSpeciesPage({
           </p>
           <p className="text-sm text-slate-500">Missing options</p>
         </div>
+        <div className="rounded-lg border border-slate-200 bg-white p-4">
+          <p className="text-2xl font-semibold text-slate-950">{detail.cameoAppearances.length}</p>
+          <p className="text-sm text-slate-500">Artwork cameos</p>
+        </div>
       </section>
+
+      {detail.cameoAppearances.length > 0 ? (
+        <section className="space-y-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+                Cameo Appearances
+              </h2>
+              <p className="mt-1 text-sm text-slate-600">
+                Cards where {detail.displayName} appears in the artwork. These do not count toward Species Dex completion.
+              </p>
+            </div>
+            <Link
+              href={`/explore?q=${encodeURIComponent(`${detail.displayName} cameo`)}`}
+              className="inline-flex rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:border-slate-300 hover:text-slate-950"
+            >
+              Search cameos
+            </Link>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {detail.cameoAppearances.slice(0, 12).map((cameo) => {
+              const qualifierLabel = cameo.qualifiers.length
+                ? cameo.qualifiers.map((value) => value.replace(/_/g, " ")).join(", ")
+                : null;
+              return (
+                <Link
+                  key={`${cameo.gvId}:${cameo.cardName}`}
+                  href={`/card/${cameo.gvId}`}
+                  className="rounded-md border border-slate-200 bg-slate-50 px-3 py-3 transition hover:border-slate-300 hover:bg-white"
+                >
+                  <p className="truncate text-sm font-semibold text-slate-950">{cameo.cardName}</p>
+                  <p className="mt-1 truncate text-xs text-slate-500">
+                    {[cameo.setName ?? cameo.setCode, cameo.number ? `#${cameo.number}` : null].filter(Boolean).join(" · ")}
+                  </p>
+                  {qualifierLabel ? (
+                    <p className="mt-2 text-xs capitalize text-slate-500">{qualifierLabel}</p>
+                  ) : null}
+                </Link>
+              );
+            })}
+          </div>
+          {detail.cameoAppearances.length > 12 ? (
+            <p className="text-xs text-slate-500">
+              Showing 12 of {detail.cameoAppearances.length}. Use cameo search to inspect the full list.
+            </p>
+          ) : null}
+        </section>
+      ) : null}
 
       <nav className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3 text-sm">
         <div className="flex flex-wrap items-center gap-2">

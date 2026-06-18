@@ -7,7 +7,7 @@ import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
-import type { ActiveCardPrintIdentity, CardDetail, CardPrinting, RelatedCardPrint } from "@/types/cards";
+import type { ActiveCardPrintIdentity, CardCameo, CardDetail, CardPrinting, RelatedCardPrint } from "@/types/cards";
 
 type TraitRow = {
   hp: number | null;
@@ -115,6 +115,15 @@ type ActiveIdentityRow = {
   set_code_identity: string | null;
   printed_number: string | null;
   identity_key_version: string | null;
+};
+
+type CameoRow = {
+  cameo_subject_type: string | null;
+  cameo_subject_name: string | null;
+  pokemon_ndex: string | null;
+  notes_raw: string | null;
+  cameo_qualifiers: string[] | null;
+  source_name: string | null;
 };
 
 function getCardPrintingsSelectColumns(includePublicIdentity: boolean, includeImageColumns: boolean) {
@@ -478,6 +487,55 @@ async function getRelatedPrintsByName(
   return mapRelatedPrints((data as RelatedCardRow[]).filter((row) => row.id !== excludeId));
 }
 
+async function getCameosByGvId(
+  supabase: ReturnType<typeof createServerSupabase>,
+  gvId?: string | null,
+): Promise<CardCameo[] | undefined> {
+  const normalizedGvId = gvId?.trim();
+  if (!normalizedGvId) {
+    return undefined;
+  }
+
+  const { data, error } = await supabase
+    .from("v_card_print_cameos_public_v1")
+    .select("cameo_subject_type,cameo_subject_name,pokemon_ndex,notes_raw,cameo_qualifiers,source_name")
+    .eq("gv_id", normalizedGvId)
+    .order("cameo_subject_type", { ascending: true })
+    .order("cameo_subject_name", { ascending: true });
+
+  if (error || !data) {
+    return undefined;
+  }
+
+  const seen = new Set<string>();
+  const rows = (data as CameoRow[])
+    .map((row): CardCameo | null => {
+      const subjectType = row.cameo_subject_type?.trim();
+      const subjectName = row.cameo_subject_name?.trim();
+      if ((subjectType !== "pokemon" && subjectType !== "trainer") || !subjectName) {
+        return null;
+      }
+      const key = `${subjectType}:${subjectName.toLowerCase()}:${row.pokemon_ndex ?? ""}`;
+      if (seen.has(key)) {
+        return null;
+      }
+      seen.add(key);
+      return {
+        cameo_subject_type: subjectType,
+        cameo_subject_name: subjectName,
+        pokemon_ndex: row.pokemon_ndex?.trim() || undefined,
+        notes_raw: row.notes_raw?.trim() || undefined,
+        cameo_qualifiers: Array.isArray(row.cameo_qualifiers)
+          ? row.cameo_qualifiers.filter((value): value is string => typeof value === "string" && value.trim().length > 0)
+          : undefined,
+        source_name: row.source_name?.trim() || undefined,
+      } satisfies CardCameo;
+    })
+    .filter((row): row is CardCameo => row !== null);
+
+  return rows.length > 0 ? rows : undefined;
+}
+
 export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
   gv_id: string,
 ): Promise<CardDetail | null> {
@@ -540,11 +598,12 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
   }
   assertCanonicalCardRouteRow(row, gv_id);
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
-  const [fallbackSet, relatedPrints, imageFields, activeIdentity] = await Promise.all([
+  const [fallbackSet, relatedPrints, imageFields, activeIdentity, cameos] = await Promise.all([
     getSetDetailsByCode(row.set_code),
     getRelatedPrintsByName(supabase, row.name, row.id),
     resolveCardImageFieldsV1(row),
     getActiveIdentityByCardPrintId(supabase, row.id, row.identity_domain),
+    getCameosByGvId(supabase, row.gv_id),
   ]);
   // Pricing authority note:
   // Current active engine = v_grookai_value_v1_1
@@ -605,6 +664,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     printings,
     display_printings: resolveDisplayPrintings(row, printings),
     related_prints: relatedPrints,
+    cameos,
   };
 });
 

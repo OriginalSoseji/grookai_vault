@@ -15,9 +15,10 @@ for (const envPath of ['.env.local', '.env']) {
 }
 
 const OUT_DIR = path.join(ROOT, 'docs', 'audits', 'cameo_search_v1');
+const REPORT_LABEL = process.env.CAMEO_SEARCH_REPORT_LABEL ?? '20260520';
 const BASELINE_JSON_PATH = path.join(OUT_DIR, 'cameo_search_v1_match_dry_run_20260520.json');
-const JSON_PATH = path.join(OUT_DIR, 'cameo_search_v1_phase3_alias_replay_dry_run_20260520.json');
-const MD_PATH = path.join(OUT_DIR, 'cameo_search_v1_phase3_alias_replay_dry_run_20260520.md');
+const JSON_PATH = path.join(OUT_DIR, `cameo_search_v1_phase3_alias_replay_dry_run_${REPORT_LABEL}.json`);
+const MD_PATH = path.join(OUT_DIR, `cameo_search_v1_phase3_alias_replay_dry_run_${REPORT_LABEL}.md`);
 const SOURCE_SET_ALIAS_PATH = path.join(ROOT, 'data', 'cameo_search_v1', 'source_set_aliases_v1.json');
 
 const WORKBOOK_ID = '18nIkOgqQrHZTz0TrH_gL1e1nL1RcHiCmPF5finAjToY';

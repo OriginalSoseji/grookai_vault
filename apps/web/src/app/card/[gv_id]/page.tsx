@@ -538,6 +538,7 @@ export default async function CardPage({
     releaseDateLabel ? { label: "Release Date", value: releaseDateLabel } : null,
   ].filter((item): item is DetailItem => item !== null);
   const relatedPrints = resolvedCard.related_prints ?? [];
+  const cameoRows = resolvedCard.cameos ?? [];
   const hasOwnedItems = ownedObjectSummary.rawCount > 0 || ownedObjectSummary.slabItems.length > 0;
   const ownershipLabel = vaultCount > 0
     ? `You own ${vaultCount} ${vaultCount === 1 ? "copy" : "copies"}`
@@ -944,6 +945,52 @@ export default async function CardPage({
                 ) : null}
               </article>
             ))}
+          </div>
+        </section>
+      ) : null}
+
+      {cameoRows.length > 0 ? (
+        <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+          <div className="space-y-1">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Artwork Cameos</h2>
+            <p className="text-sm text-slate-600 dark:text-slate-300">
+              Characters visible in the artwork. These are searchable enrichment facts and do not change this card&apos;s identity or Species Dex completion.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {cameoRows.map((cameo) => {
+              const qualifierLabel = cameo.cameo_qualifiers?.length
+                ? cameo.cameo_qualifiers.map((value) => value.replace(/_/g, " ")).join(", ")
+                : null;
+              const href =
+                cameo.cameo_subject_type === "pokemon" && cameo.pokemon_ndex
+                  ? `/explore?q=${encodeURIComponent(`${cameo.cameo_subject_name} cameo`)}`
+                  : `/explore?q=${encodeURIComponent(`${cameo.cameo_subject_name} trainer cameo`)}`;
+              return (
+                <Link
+                  key={`${cameo.cameo_subject_type}:${cameo.cameo_subject_name}:${cameo.pokemon_ndex ?? ""}`}
+                  href={href}
+                  className="group rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition hover:-translate-y-[1px] hover:border-slate-300 hover:bg-white hover:shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-900/80"
+                >
+                  <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                    {cameo.cameo_subject_type === "trainer" ? "Trainer cameo" : "Pokemon cameo"}
+                  </span>
+                  <span className="mt-1 block text-sm font-semibold text-slate-950 dark:text-slate-50">
+                    {cameo.cameo_subject_name}
+                    {cameo.pokemon_ndex ? (
+                      <span className="ml-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+                        #{cameo.pokemon_ndex.padStart(3, "0")}
+                      </span>
+                    ) : null}
+                  </span>
+                  {qualifierLabel ? (
+                    <span className="mt-1 block text-xs capitalize text-slate-500 dark:text-slate-400">
+                      {qualifierLabel}
+                    </span>
+                  ) : null}
+                </Link>
+              );
+            })}
           </div>
         </section>
       ) : null}
