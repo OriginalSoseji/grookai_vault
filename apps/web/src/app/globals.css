@@ -477,6 +477,114 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   backdrop-filter: blur(18px);
 }
 
+.gv-dex-hero {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: clamp(30px, 4vw, 48px);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(16, 185, 129, 0.18), transparent 21rem),
+    radial-gradient(circle at 88% 12%, rgba(74, 144, 226, 0.16), transparent 18rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 252, 255, 0.94) 44%, rgba(240, 245, 251, 0.86) 100%);
+  box-shadow:
+    0 84px 190px -118px rgba(15, 23, 42, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+.gv-dex-hero::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.45), transparent 35%),
+    radial-gradient(circle at 82% 18%, rgba(16, 185, 129, 0.1), transparent 16rem);
+  pointer-events: none;
+}
+
+.gv-dex-search {
+  border: 1px solid var(--gv-border-hairline);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow:
+    0 34px 86px -72px rgba(15, 23, 42, 0.72),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(18px);
+}
+
+.gv-dex-progress-panel {
+  border: 1px solid var(--gv-border-hairline);
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow:
+    0 42px 120px -84px rgba(15, 23, 42, 0.72),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(18px);
+}
+
+.gv-dex-mini-stat {
+  border: 1px solid var(--gv-border-hairline);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.58);
+  padding: 0.78rem 0.7rem;
+  text-align: center;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.gv-dex-mini-stat p {
+  color: var(--gv-text-primary);
+  font-size: 1.25rem;
+  font-weight: 850;
+  line-height: 1;
+}
+
+.gv-dex-mini-stat span {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--gv-text-tertiary);
+  font-size: 0.66rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.gv-dex-species-card {
+  position: relative;
+  border: 1px solid rgba(15, 23, 42, 0.07);
+  border-radius: 30px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.76) 100%);
+  box-shadow:
+    0 26px 74px -62px rgba(15, 23, 42, 0.56),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+  transition:
+    border-color var(--gv-transition-default),
+    box-shadow var(--gv-transition-default),
+    transform var(--gv-transition-default);
+}
+
+.gv-dex-species-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(74, 144, 226, 0.18);
+  box-shadow:
+    0 42px 118px -78px rgba(15, 23, 42, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+}
+
+.gv-dex-number {
+  display: inline-flex;
+  min-width: 5.4rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gv-border-hairline);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 0.52rem 0.86rem;
+  color: var(--gv-text-secondary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.74);
+}
+
 .gv-quiet-panel {
   border: 1px solid var(--gv-border-hairline);
   border-radius: 18px;
@@ -872,11 +980,67 @@ html.gv-dark .gv-metadata-pill {
   color: #cbd5e1;
 }
 
+html.gv-dark .gv-dex-hero {
+  border-color: rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(16, 185, 129, 0.14), transparent 22rem),
+    radial-gradient(circle at 88% 12%, rgba(59, 130, 246, 0.16), transparent 19rem),
+    linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(6, 9, 16, 0.96) 52%, rgba(0, 0, 0, 0.94) 100%);
+  box-shadow:
+    0 90px 190px -112px rgba(0, 0, 0, 0.98),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+html.gv-dark .gv-dex-hero::before {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035), transparent 34%),
+    radial-gradient(circle at 82% 18%, rgba(16, 185, 129, 0.08), transparent 16rem);
+}
+
+html.gv-dark .gv-dex-search,
+html.gv-dark .gv-dex-progress-panel {
+  border-color: rgba(226, 232, 240, 0.08);
+  background: rgba(5, 8, 15, 0.6);
+  box-shadow:
+    0 42px 118px -82px rgba(0, 0, 0, 0.98),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html.gv-dark .gv-dex-mini-stat {
+  border-color: rgba(226, 232, 240, 0.08);
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+html.gv-dark .gv-dex-species-card {
+  border-color: rgba(226, 232, 240, 0.08);
+  background:
+    linear-gradient(180deg, rgba(8, 12, 22, 0.82) 0%, rgba(4, 7, 13, 0.72) 100%);
+  box-shadow:
+    0 28px 82px -66px rgba(0, 0, 0, 0.95),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html.gv-dark .gv-dex-species-card:hover {
+  border-color: rgba(147, 197, 253, 0.2);
+  box-shadow:
+    0 40px 120px -72px rgba(0, 0, 0, 1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+html.gv-dark .gv-dex-number {
+  border-color: rgba(226, 232, 240, 0.08);
+  background: rgba(255, 255, 255, 0.055);
+  color: #cbd5e1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gv-primary-button,
   .gv-secondary-button,
   .gv-ghost-button,
   .gv-visual-card,
+  .gv-dex-species-card,
   .gv-interactive,
   .card-hover {
     transition: none;
@@ -885,6 +1049,7 @@ html.gv-dark .gv-metadata-pill {
   .gv-primary-button:hover:not(:disabled),
   .gv-secondary-button:hover:not(:disabled),
   .gv-visual-card:hover,
+  .gv-dex-species-card:hover,
   .gv-interactive:hover:not(:disabled),
   .card-hover:hover {
     transform: none;

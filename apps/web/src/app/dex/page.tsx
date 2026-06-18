@@ -52,6 +52,18 @@ function completionLabel(percent: number, owned: number, total: number) {
   return "Open";
 }
 
+function completionClassName(status: string) {
+  if (status === "Complete") {
+    return "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/14 dark:text-emerald-200";
+  }
+
+  if (status === "Started") {
+    return "bg-sky-100 text-sky-800 dark:bg-sky-400/14 dark:text-sky-200";
+  }
+
+  return "bg-slate-100 text-slate-600 dark:bg-white/[0.07] dark:text-slate-300";
+}
+
 export default async function GrookaiDexPage({
   searchParams,
 }: {
@@ -75,26 +87,32 @@ export default async function GrookaiDexPage({
   const species = speciesPage.species;
   const incompleteCount = species.filter((row) => row.totalPrintCount > 0 && row.ownedPrintCount < row.totalPrintCount).length;
   const ownedSpeciesCount = species.filter((row) => row.ownedPrintCount > 0).length;
+  const completeSpeciesCount = species.filter((row) => row.totalPrintCount > 0 && row.ownedPrintCount >= row.totalPrintCount).length;
+  const pageTotalPrints = species.reduce((sum, row) => sum + row.totalPrintCount, 0);
+  const pageOwnedPrints = species.reduce((sum, row) => sum + row.ownedPrintCount, 0);
+  const pageCompletionPercent = pageTotalPrints > 0 ? clampPercent(Math.round((pageOwnedPrints / pageTotalPrints) * 100)) : 0;
   const startRow = species.length === 0 ? 0 : (speciesPage.page - 1) * speciesPage.pageSize + 1;
   const endRow = Math.min(speciesPage.totalSpeciesCount, startRow + species.length - 1);
 
   return (
     <main className="gv-page-shell gv-mobile-safe-content">
       <div className="gv-page-container gv-page-rhythm">
-        <header className="gv-hero-section px-5 py-6 sm:px-7 lg:px-8">
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,430px)] lg:items-end">
-            <div className="space-y-4">
-              <div className="inline-flex h-11 w-11 items-center justify-center rounded-[18px] border border-sky-200/70 bg-sky-500/[0.08] text-lg font-black text-sky-700 dark:border-sky-300/20 dark:bg-sky-400/[0.13] dark:text-sky-200">
-                G
+        <header className="gv-dex-hero px-5 py-7 sm:px-8 sm:py-9 lg:px-10">
+          <div className="relative z-[1] grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,430px)] lg:items-end">
+            <div className="space-y-5">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="gv-discovery-eyebrow">Grookai Dex</span>
+                <span className="gv-discovery-pill">Vault-aware</span>
               </div>
               <div className="space-y-2">
-                <p className="gv-eyebrow">Grookai Dex</p>
-                <h1 className="gv-display-title">Pokemon Progress</h1>
-                <p className="gv-body-copy max-w-2xl">
-                  Track every mapped card print by Pokemon and see what is already in your vault. Showing {startRow}-{endRow} of {speciesPage.totalSpeciesCount}.
+                <h1 className="gv-display-title max-w-3xl text-[clamp(3rem,8vw,6.5rem)]">
+                  Character completion, not just a checklist.
+                </h1>
+                <p className="gv-body-copy max-w-2xl text-[1.08rem]">
+                  Search a Pokemon and see every mapped card print, what your vault already owns, and the exact gaps still left for that character.
                 </p>
               </div>
-              <form action="/dex" className="gv-control-surface flex max-w-2xl flex-col gap-2 rounded-[22px] p-2 sm:flex-row">
+              <form action="/dex" className="gv-dex-search flex max-w-2xl flex-col gap-2 rounded-[26px] p-2 sm:flex-row">
                 <label htmlFor="dex-character-search" className="sr-only">
                   Search Pokemon character
                 </label>
@@ -103,46 +121,73 @@ export default async function GrookaiDexPage({
                   name="q"
                   type="search"
                   defaultValue={searchQuery}
-                  placeholder="Search Pokemon, like Gengar or #025"
-                  className="min-h-11 min-w-0 flex-1 rounded-full border border-transparent bg-white/70 px-4 text-sm font-medium text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-300 focus:bg-white dark:bg-slate-950/60 dark:text-slate-100 dark:placeholder:text-slate-500"
+                  placeholder="Search Pikachu, Gengar, #025..."
+                  className="min-h-12 min-w-0 flex-1 rounded-full border border-transparent bg-white/78 px-5 text-[0.95rem] font-semibold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-300 focus:bg-white dark:bg-black/48 dark:text-slate-100 dark:placeholder:text-slate-500"
                 />
                 <div className="flex gap-2">
-                  <button type="submit" className="gv-primary-button min-h-11 flex-1 px-5 py-2 text-sm sm:flex-none">
+                  <button type="submit" className="gv-primary-button min-h-12 flex-1 px-6 py-2 text-sm sm:flex-none">
                     Search
                   </button>
                   {searchQuery ? (
-                    <Link href="/dex" className="gv-secondary-button min-h-11 flex-1 px-5 py-2 text-sm sm:flex-none">
+                    <Link href="/dex" className="gv-secondary-button min-h-12 flex-1 px-5 py-2 text-sm sm:flex-none">
                       Reset
                     </Link>
                   ) : null}
                 </div>
               </form>
+              <div className="flex flex-wrap gap-2">
+                {["Pikachu", "Gengar", "Eevee", "#006"].map((example) => (
+                  <Link key={example} href={`/dex?q=${encodeURIComponent(example)}`} className="gv-discovery-chip">
+                    {example}
+                  </Link>
+                ))}
+              </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 sm:gap-3">
-              <div className="gv-soft-surface px-4 py-3 text-center">
-                <p className="text-2xl font-bold text-slate-950 dark:text-slate-50">{species.length}</p>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Shown</p>
+            <div className="gv-dex-progress-panel p-5 sm:p-6">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="gv-eyebrow">Current view</p>
+                  <p className="mt-2 text-4xl font-black tracking-tight text-slate-950 dark:text-slate-50">{pageCompletionPercent}%</p>
+                </div>
+                <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-emerald-800 dark:bg-emerald-400/14 dark:text-emerald-200">
+                  {pageOwnedPrints}/{pageTotalPrints}
+                </span>
               </div>
-              <div className="gv-soft-surface px-4 py-3 text-center">
-                <p className="text-2xl font-bold text-slate-950 dark:text-slate-50">{ownedSpeciesCount}</p>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Started</p>
+              <div className="mt-5 h-2 overflow-hidden rounded-full bg-slate-200/70 dark:bg-white/[0.08]">
+                <div className="h-full rounded-full bg-emerald-500" style={{ width: `${pageCompletionPercent}%` }} />
               </div>
-              <div className="gv-soft-surface px-4 py-3 text-center">
-                <p className="text-2xl font-bold text-slate-950 dark:text-slate-50">{incompleteCount}</p>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Open</p>
+              <p className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-400">
+                Showing {startRow}-{endRow} of {speciesPage.totalSpeciesCount} species. Completion reflects the visible page.
+              </p>
+              <div className="mt-5 grid grid-cols-3 gap-2">
+                <div className="gv-dex-mini-stat">
+                  <p>{species.length}</p>
+                  <span>Shown</span>
+                </div>
+                <div className="gv-dex-mini-stat">
+                  <p>{ownedSpeciesCount}</p>
+                  <span>Started</span>
+                </div>
+                <div className="gv-dex-mini-stat">
+                  <p>{completeSpeciesCount}</p>
+                  <span>Complete</span>
+                </div>
               </div>
             </div>
           </div>
         </header>
 
-        <section className="space-y-3" aria-label="Pokemon species progress">
+        <section className="space-y-4" aria-label="Pokemon species progress">
           {searchQuery ? (
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">
-                Search results for <span className="text-slate-950 dark:text-slate-50">&quot;{searchQuery}&quot;</span>
-              </p>
-              <Link href="/dex" className="text-sm font-semibold text-sky-700 hover:text-sky-900 dark:text-sky-300 dark:hover:text-sky-200">
+            <div className="gv-results-command-bar flex flex-wrap items-center justify-between gap-3 px-4 py-3">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Character search</p>
+                <p className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-200">
+                  Results for <span className="text-slate-950 dark:text-slate-50">&quot;{searchQuery}&quot;</span>
+                </p>
+              </div>
+              <Link href="/dex" className="gv-secondary-button min-h-0 px-4 py-2 text-sm">
                 Clear search
               </Link>
             </div>
@@ -158,57 +203,46 @@ export default async function GrookaiDexPage({
           {species.map((row) => {
             const percent = clampPercent(row.completionPercent);
             const status = completionLabel(percent, row.ownedPrintCount, row.totalPrintCount);
+            const typeLabel = row.types.length > 0 ? row.types.slice(0, 2).join(" / ") : "Pokemon";
             return (
               <Link
                 key={row.speciesId}
                 href={`/dex/${row.slug}`}
-                className="gv-visual-card group grid gap-4 px-4 py-4 sm:grid-cols-[92px_minmax(0,1fr)_minmax(180px,260px)] sm:items-center sm:px-5"
+                className="gv-dex-species-card group grid gap-5 px-5 py-5 sm:grid-cols-[7.4rem_minmax(0,1fr)_minmax(180px,260px)] sm:items-center sm:px-6"
               >
                 <div className="flex items-center justify-between gap-3 sm:block">
-                  <span className="inline-flex min-w-[4.75rem] items-center justify-center rounded-full border border-slate-200/80 bg-white/78 px-3 py-1 text-xs font-bold text-slate-500 dark:border-slate-700/80 dark:bg-slate-900/70 dark:text-slate-400">
+                  <span className="gv-dex-number">
                     #{row.nationalDexNumber.toString().padStart(4, "0")}
                   </span>
-                  <span
-                    className={`inline-flex rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] sm:hidden ${
-                      status === "Complete"
-                        ? "bg-emerald-100 text-emerald-800"
-                        : status === "Started"
-                          ? "bg-sky-100 text-sky-800"
-                          : "bg-slate-100 text-slate-600"
-                    }`}
-                  >
+                  <span className={`inline-flex rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] sm:hidden ${completionClassName(status)}`}>
                     {status}
                   </span>
                 </div>
 
                 <div className="min-w-0 space-y-2">
                   <div className="flex min-w-0 items-center gap-2">
-                    <h2 className="truncate text-xl font-extrabold tracking-tight text-slate-950 dark:text-slate-50">
+                    <h2 className="truncate text-2xl font-black tracking-tight text-slate-950 dark:text-slate-50">
                       {row.displayName}
                     </h2>
-                    <span
-                      className={`hidden rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] sm:inline-flex ${
-                        status === "Complete"
-                          ? "bg-emerald-100 text-emerald-800"
-                          : status === "Started"
-                            ? "bg-sky-100 text-sky-800"
-                            : "bg-slate-100 text-slate-600"
-                      }`}
-                    >
+                    <span className={`hidden rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] sm:inline-flex ${completionClassName(status)}`}>
                       {status}
                     </span>
                   </div>
-                  <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
+                  <p className="text-sm font-semibold text-slate-500 dark:text-slate-400">
                     {row.ownedPrintCount} of {row.totalPrintCount} mapped printings in your vault
                   </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="gv-metadata-pill">{typeLabel}</span>
+                    {row.generation ? <span className="gv-metadata-pill">Gen {row.generation}</span> : null}
+                  </div>
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex items-center justify-between gap-3">
-                    <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Completion</span>
+                    <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Completion</span>
                     <span className="text-sm font-extrabold text-slate-800 dark:text-slate-100">{percent}%</span>
                   </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+                  <div className="h-2.5 overflow-hidden rounded-full bg-slate-100 dark:bg-white/[0.08]">
                     <div className="h-full rounded-full bg-emerald-500 transition-all group-hover:bg-emerald-400" style={{ width: `${percent}%` }} />
                   </div>
                 </div>
