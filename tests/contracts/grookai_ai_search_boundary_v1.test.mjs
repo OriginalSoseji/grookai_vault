@@ -58,10 +58,16 @@ test('Grookai Search recognizes stamp and image worklist language deterministica
   const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');
 
   const stamped = buildSmartSearchIntent('Build-A-Bear stamped Piplup');
+  const pokemonCenter = buildSmartSearchIntent('Pokemon Center stamped promos');
+  const wbKids = buildSmartSearchIntent('WB Kids stamp Pikachu');
   const missingImages = buildSmartSearchIntent('cards missing images');
 
   assert.deepEqual(Array.from(stamped.stampLabels), ['Build-A-Bear Workshop Stamp']);
   assert.equal(stamped.residualQuery, 'Piplup');
+  assert.deepEqual(Array.from(pokemonCenter.stampLabels), ['Pokemon Center Stamp']);
+  assert.equal(pokemonCenter.residualQuery, '');
+  assert.deepEqual(Array.from(wbKids.stampLabels), ['WB Kids Stamp']);
+  assert.equal(wbKids.residualQuery, 'Pikachu');
   assert.equal(missingImages.imageState, 'missing');
   assert.ok(missingImages.interpretedLabels.includes('Image: Missing exact image'));
 });
