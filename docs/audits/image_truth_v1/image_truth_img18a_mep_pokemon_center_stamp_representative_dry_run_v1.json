@@ -1,0 +1,205 @@
+{
+  "package_id": "IMG-18A-MEP-POKEMON-CENTER-STAMP-REPRESENTATIVE-CHILD-IMAGE-DRY-RUN",
+  "generated_at": "2026-06-18T19:09:40.650Z",
+  "dry_run_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "storage_uploads_performed": false,
+  "parent_writes": false,
+  "deletes": false,
+  "merges": false,
+  "summary": {
+    "target_rows": 4,
+    "matched_pair_rows": 4,
+    "ready_rows": 4,
+    "blocked_rows": 0,
+    "planned_child_image_updates": 4,
+    "image_status": "representative_shared_stamp",
+    "exact_stamped_image_claim": false
+  },
+  "fingerprint": "eb74103e5a208ed1ada8042aada5a98df3c4478eb783e6afce54c8a9b8b80e66",
+  "sql_hash": "45bb60b18bdf2d0cca3dbc723628d11801d6606c218c3db353920954207cd5c5",
+  "proof_payload": {
+    "package_id": "IMG-18A-MEP-POKEMON-CENTER-STAMP-REPRESENTATIVE-CHILD-IMAGE-DRY-RUN",
+    "ready_rows": [
+      {
+        "card_printing_id": "31f43b19-cb77-401e-97ea-cc6bba0526b8",
+        "printing_gv_id": "GV-PK-MEP-022-POKEMON-CENTER-STAMP-HOLO",
+        "planned_update": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/e6a54462-6d5e-4217-9a74-fccbe1be08ce/10fa3f519d43e793b00fefa8.jpg",
+          "image_url": null,
+          "image_alt_url": null,
+          "image_status": "representative_shared_stamp",
+          "image_note": "IMG-18A-MEP-POKEMON-CENTER-STAMP-REPRESENTATIVE-CHILD-IMAGE-DRY-RUN: representative base MEP image copied from same set/number/name base child printing; source:https://www.tcgplayer.com/product/666538/pokemon-me-mega-evolution-promo-charcadet-022; base_printing_gv_id:GV-PK-MEP-022-HOLO; not_exact_stamped_image"
+        },
+        "source_base_card_printing_id": "e6a54462-6d5e-4217-9a74-fccbe1be08ce",
+        "source_base_printing_gv_id": "GV-PK-MEP-022-HOLO"
+      },
+      {
+        "card_printing_id": "89cfafcb-a729-4d42-b8c8-fec8ffae31f7",
+        "printing_gv_id": "GV-PK-MEP-031-POKEMON-CENTER-STAMP-HOLO",
+        "planned_update": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img11a-mep-official-final-display-representative/mep/14436fbf-b2cf-4057-a3ec-e2ab8f0caa5f/3deaf356e2856ad02ab5958c.png",
+          "image_url": null,
+          "image_alt_url": null,
+          "image_status": "representative_shared_stamp",
+          "image_note": "IMG-18A-MEP-POKEMON-CENTER-STAMP-REPRESENTATIVE-CHILD-IMAGE-DRY-RUN: representative base MEP image copied from same set/number/name base child printing; source:https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/mep/31/; base_printing_gv_id:GV-PK-MEP-031-HOLO; not_exact_stamped_image"
+        },
+        "source_base_card_printing_id": "14436fbf-b2cf-4057-a3ec-e2ab8f0caa5f",
+        "source_base_printing_gv_id": "GV-PK-MEP-031-HOLO"
+      },
+      {
+        "card_printing_id": "6e1b4dbb-e4d3-4724-bebe-2857379e526b",
+        "printing_gv_id": "GV-PK-MEP-070-POKEMON-CENTER-STAMP-HOLO",
+        "planned_update": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/7c26980c-cae2-421b-946a-017bee625fe4/971fe2595e11d80eaff28c1a.jpg",
+          "image_url": null,
+          "image_alt_url": null,
+          "image_status": "representative_shared_stamp",
+          "image_note": "IMG-18A-MEP-POKEMON-CENTER-STAMP-REPRESENTATIVE-CHILD-IMAGE-DRY-RUN: representative base MEP image copied from same set/number/name base child printing; source:https://www.tcgplayer.com/product/685562/pokemon-me-mega-evolution-promo-tyrunt-070; base_printing_gv_id:GV-PK-MEP-070-HOLO; not_exact_stamped_image"
+        },
+        "source_base_card_printing_id": "7c26980c-cae2-421b-946a-017bee625fe4",
+        "source_base_printing_gv_id": "GV-PK-MEP-070-HOLO"
+      },
+      {
+        "card_printing_id": "1b33e4bf-d4a2-42de-9f14-f379e1b9fc86",
+        "printing_gv_id": "GV-PK-MEP-080-POKEMON-CENTER-STAMP-HOLO",
+        "planned_update": {
+          "image_source": "identity",
+          "image_path": "warehouse-derived/image-truth-v1/img02a-missing-display-representative/mep/85367f10-2d1e-4314-ba84-b23bd09cd423/bcf7dbd5402c102b302b255b.jpg",
+          "image_url": null,
+          "image_alt_url": null,
+          "image_status": "representative_shared_stamp",
+          "image_note": "IMG-18A-MEP-POKEMON-CENTER-STAMP-REPRESENTATIVE-CHILD-IMAGE-DRY-RUN: representative base MEP image copied from same set/number/name base child printing; source:https://www.tcgplayer.com/product/694695/pokemon-me-mega-evolution-promo-fennekin-080-pokemon-center-exclusive; base_printing_gv_id:GV-PK-MEP-80-HOLO; not_exact_stamped_image"
+        },
+        "source_base_card_printing_id": "85367f10-2d1e-4314-ba84-b23bd09cd423",
+        "source_base_printing_gv_id": "GV-PK-MEP-80-HOLO"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "ready": true,
+      "violations": [],
+      "card_printing_id": "31f43b19-cb77-401e-97ea-cc6bba0526b8",
+      "card_print_id": "01eb8829-7bef-40f8-a24b-4b5a2458adeb",
+      "printing_gv_id": "GV-PK-MEP-022-POKEMON-CENTER-STAMP-HOLO",
+      "parent_gv_id": "GV-PK-MEP-022-POKEMON-CENTER-STAMP",
+      "set_code": "mep",
+      "number": "022",
+      "card_name": "Charcadet",
+      "finish_key": "holo",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "source_base_card_printing_id": "e6a54462-6d5e-4217-9a74-fccbe1be08ce",
+      "source_base_printing_gv_id": "GV-PK-MEP-022-HOLO",
+      "source_base_image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/e6a54462-6d5e-4217-9a74-fccbe1be08ce/10fa3f519d43e793b00fefa8.jpg",
+      "source_base_image_url": null,
+      "source_base_image_alt_url": null,
+      "source_base_image_status": "representative_shared",
+      "source_base_image_note": "IMG-09C-MEP-TCGCSV-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-UPLOAD-APPLY:tcgcsv_tcgplayer_catalog_live:https://www.tcgplayer.com/product/666538/pokemon-me-mega-evolution-promo-charcadet-022",
+      "source_evidence_url": "https://www.tcgplayer.com/product/666538/pokemon-me-mega-evolution-promo-charcadet-022",
+      "planned_update": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/e6a54462-6d5e-4217-9a74-fccbe1be08ce/10fa3f519d43e793b00fefa8.jpg",
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared_stamp",
+        "image_note": "IMG-18A-MEP-POKEMON-CENTER-STAMP-REPRESENTATIVE-CHILD-IMAGE-DRY-RUN: representative base MEP image copied from same set/number/name base child printing; source:https://www.tcgplayer.com/product/666538/pokemon-me-mega-evolution-promo-charcadet-022; base_printing_gv_id:GV-PK-MEP-022-HOLO; not_exact_stamped_image"
+      }
+    },
+    {
+      "ready": true,
+      "violations": [],
+      "card_printing_id": "89cfafcb-a729-4d42-b8c8-fec8ffae31f7",
+      "card_print_id": "fcbe0c37-4939-49b0-964d-d16d251225bd",
+      "printing_gv_id": "GV-PK-MEP-031-POKEMON-CENTER-STAMP-HOLO",
+      "parent_gv_id": "GV-PK-MEP-031-POKEMON-CENTER-STAMP",
+      "set_code": "mep",
+      "number": "031",
+      "card_name": "N's Zekrom",
+      "finish_key": "holo",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "source_base_card_printing_id": "14436fbf-b2cf-4057-a3ec-e2ab8f0caa5f",
+      "source_base_printing_gv_id": "GV-PK-MEP-031-HOLO",
+      "source_base_image_path": "warehouse-derived/image-truth-v1/img11a-mep-official-final-display-representative/mep/14436fbf-b2cf-4057-a3ec-e2ab8f0caa5f/3deaf356e2856ad02ab5958c.png",
+      "source_base_image_url": null,
+      "source_base_image_alt_url": null,
+      "source_base_image_status": "representative_shared",
+      "source_base_image_note": "IMG-11A-MEP-OFFICIAL-FINAL-DISPLAY-REPRESENTATIVE-CHILD-IMAGE-UPLOAD-APPLY:official_pokemon_card_page:https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/mep/31/",
+      "source_evidence_url": "https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/mep/31/",
+      "planned_update": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/image-truth-v1/img11a-mep-official-final-display-representative/mep/14436fbf-b2cf-4057-a3ec-e2ab8f0caa5f/3deaf356e2856ad02ab5958c.png",
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared_stamp",
+        "image_note": "IMG-18A-MEP-POKEMON-CENTER-STAMP-REPRESENTATIVE-CHILD-IMAGE-DRY-RUN: representative base MEP image copied from same set/number/name base child printing; source:https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/mep/31/; base_printing_gv_id:GV-PK-MEP-031-HOLO; not_exact_stamped_image"
+      }
+    },
+    {
+      "ready": true,
+      "violations": [],
+      "card_printing_id": "6e1b4dbb-e4d3-4724-bebe-2857379e526b",
+      "card_print_id": "1ea8e35c-754d-4e8c-a4b3-c881711f095e",
+      "printing_gv_id": "GV-PK-MEP-070-POKEMON-CENTER-STAMP-HOLO",
+      "parent_gv_id": "GV-PK-MEP-070-POKEMON-CENTER-STAMP",
+      "set_code": "mep",
+      "number": "070",
+      "card_name": "Tyrunt",
+      "finish_key": "holo",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "source_base_card_printing_id": "7c26980c-cae2-421b-946a-017bee625fe4",
+      "source_base_printing_gv_id": "GV-PK-MEP-070-HOLO",
+      "source_base_image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/7c26980c-cae2-421b-946a-017bee625fe4/971fe2595e11d80eaff28c1a.jpg",
+      "source_base_image_url": null,
+      "source_base_image_alt_url": null,
+      "source_base_image_status": "representative_shared",
+      "source_base_image_note": "IMG-09C-MEP-TCGCSV-REPRESENTATIVE-MISSING-DISPLAY-CHILD-IMAGE-UPLOAD-APPLY:tcgcsv_tcgplayer_catalog_live:https://www.tcgplayer.com/product/685562/pokemon-me-mega-evolution-promo-tyrunt-070",
+      "source_evidence_url": "https://www.tcgplayer.com/product/685562/pokemon-me-mega-evolution-promo-tyrunt-070",
+      "planned_update": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/image-truth-v1/img09a-mep-tcgcsv-representative/mep/7c26980c-cae2-421b-946a-017bee625fe4/971fe2595e11d80eaff28c1a.jpg",
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared_stamp",
+        "image_note": "IMG-18A-MEP-POKEMON-CENTER-STAMP-REPRESENTATIVE-CHILD-IMAGE-DRY-RUN: representative base MEP image copied from same set/number/name base child printing; source:https://www.tcgplayer.com/product/685562/pokemon-me-mega-evolution-promo-tyrunt-070; base_printing_gv_id:GV-PK-MEP-070-HOLO; not_exact_stamped_image"
+      }
+    },
+    {
+      "ready": true,
+      "violations": [],
+      "card_printing_id": "1b33e4bf-d4a2-42de-9f14-f379e1b9fc86",
+      "card_print_id": "a71a3419-80dc-4997-9997-1eb9d669c64a",
+      "printing_gv_id": "GV-PK-MEP-080-POKEMON-CENTER-STAMP-HOLO",
+      "parent_gv_id": "GV-PK-MEP-080-POKEMON-CENTER-STAMP",
+      "set_code": "mep",
+      "number": "80",
+      "card_name": "Fennekin",
+      "finish_key": "holo",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "source_base_card_printing_id": "85367f10-2d1e-4314-ba84-b23bd09cd423",
+      "source_base_printing_gv_id": "GV-PK-MEP-80-HOLO",
+      "source_base_image_path": "warehouse-derived/image-truth-v1/img02a-missing-display-representative/mep/85367f10-2d1e-4314-ba84-b23bd09cd423/bcf7dbd5402c102b302b255b.jpg",
+      "source_base_image_url": null,
+      "source_base_image_alt_url": null,
+      "source_base_image_status": "representative_shared",
+      "source_base_image_note": "IMG-02C-MISSING-DISPLAY-REPRESENTATIVE-CHILD-IMAGE-UPLOAD-APPLY:tcgcsv_tcgplayer_catalog:https://www.tcgplayer.com/product/694695/pokemon-me-mega-evolution-promo-fennekin-080-pokemon-center-exclusive",
+      "source_evidence_url": "https://www.tcgplayer.com/product/694695/pokemon-me-mega-evolution-promo-fennekin-080-pokemon-center-exclusive",
+      "planned_update": {
+        "image_source": "identity",
+        "image_path": "warehouse-derived/image-truth-v1/img02a-missing-display-representative/mep/85367f10-2d1e-4314-ba84-b23bd09cd423/bcf7dbd5402c102b302b255b.jpg",
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": "representative_shared_stamp",
+        "image_note": "IMG-18A-MEP-POKEMON-CENTER-STAMP-REPRESENTATIVE-CHILD-IMAGE-DRY-RUN: representative base MEP image copied from same set/number/name base child printing; source:https://www.tcgplayer.com/product/694695/pokemon-me-mega-evolution-promo-fennekin-080-pokemon-center-exclusive; base_printing_gv_id:GV-PK-MEP-80-HOLO; not_exact_stamped_image"
+      }
+    }
+  ]
+}
