@@ -1375,9 +1375,9 @@ export default function ExplorePageClient({
           />
         </>
       ) : (
-        <div className="space-y-4">
-          <section className="gv-discovery-hero px-5 py-5 sm:px-7 sm:py-7 lg:px-9">
-            <div className="relative z-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(260px,360px)] lg:items-end">
+        <div className="gv-collector-search-results space-y-6">
+          <section className="gv-discovery-hero px-5 py-7 sm:px-8 sm:py-9 lg:px-12 lg:py-12">
+            <div className="relative z-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,380px)] lg:items-end">
               <div className="space-y-4">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="gv-discovery-eyebrow">{discoveryEyebrow}</span>
@@ -1388,7 +1388,7 @@ export default function ExplorePageClient({
                   ) : null}
                 </div>
                 <div className="space-y-3">
-                  <h2 className="max-w-4xl text-[2.5rem] font-semibold leading-[0.98] tracking-normal text-slate-950 dark:text-white sm:text-[3.4rem] lg:text-[4.25rem]">
+                  <h2 className="max-w-4xl text-[2.75rem] font-semibold leading-[0.96] tracking-normal text-slate-950 dark:text-white sm:text-[4rem] lg:text-[5.2rem]">
                     {discoveryTitle}
                   </h2>
                   <p className="max-w-3xl text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">
@@ -1434,7 +1434,7 @@ export default function ExplorePageClient({
             </div>
           </section>
 
-          <div className="gv-control-surface flex flex-wrap items-center justify-between gap-3 rounded-[18px] px-4 py-3">
+          <div className="gv-results-command-bar flex flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-5">
             <p className="text-sm text-slate-500 dark:text-slate-400">
               {resultCountLabel}
               {variantFamilyCopy ? (
