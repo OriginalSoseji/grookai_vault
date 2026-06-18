@@ -1,6 +1,6 @@
 # Image Truth Confidence Audit V1
 
-Generated: 2026-06-16T05:27:11.413Z
+Generated: 2026-06-18T19:07:24.431Z
 
 Status: audit only. No DB writes. No migrations. No image promotion.
 
@@ -8,11 +8,11 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 
 ## Summary
 
-- english physical child printings: 38111
-- english physical exact-required rows: 14593
-- english physical display-covered rows: 38111
-- english physical missing-display rows: 0
-- english physical missing-variant-visual rows: 14501
+- english physical child printings: 37646
+- english physical exact-required rows: 14527
+- english physical display-covered rows: 37642
+- english physical missing-display rows: 4
+- english physical missing-variant-visual rows: 14431
 - db_writes_performed: false
 - migrations_created: false
 
@@ -20,17 +20,19 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 
 | confidence | rows |
 | --- | --- |
-| exact | 23178 |
-| missing_variant_visual | 14501 |
-| representative | 432 |
+| exact | 22739 |
+| missing_variant_visual | 14431 |
+| representative | 472 |
+| missing | 4 |
 
 ## English Physical Exact-Required Confidence Counts
 
 | confidence | rows |
 | --- | --- |
-| missing_variant_visual | 14501 |
+| missing_variant_visual | 14431 |
 | exact | 55 |
 | representative | 37 |
+| missing | 4 |
 
 ## Interpretation
 
@@ -40,7 +42,12 @@ This gives Grookai high display coverage without falsely claiming exact variant 
 
 ## First Missing Display Rows
 
-_None._
+| set | number | card | finish | reason |
+| --- | --- | --- | --- | --- |
+| mep | 022 | Charcadet | holo | no_safe_display_image_available |
+| mep | 031 | N's Zekrom | holo | no_safe_display_image_available |
+| mep | 070 | Tyrunt | holo | no_safe_display_image_available |
+| mep | 80 | Fennekin | holo | no_safe_display_image_available |
 
 ## First Missing Variant Visual Rows
 
@@ -49,6 +56,11 @@ _None._
 | sv03.5 | 025 | Pikachu | reverse | display_image_available_but_exact_finish_or_modifier_visual_missing |
 | sv8pt5 | 002 | Exeggutor | masterball | display_image_available_but_exact_finish_or_modifier_visual_missing |
 | sv8pt5 | 002 | Exeggutor | pokeball | display_image_available_but_exact_finish_or_modifier_visual_missing |
+| base1 | 58 | Pikachu | normal | display_image_available_but_exact_finish_or_modifier_visual_missing |
+| base1 | 58 | Pikachu | normal | display_image_available_but_exact_finish_or_modifier_visual_missing |
+| base1 | 58 | Pikachu | normal | display_image_available_but_exact_finish_or_modifier_visual_missing |
+| base1 | 58 | Pikachu | normal | display_image_available_but_exact_finish_or_modifier_visual_missing |
+| base1 | 58 | Pikachu | normal | display_image_available_but_exact_finish_or_modifier_visual_missing |
 | base1 | 73 | Impostor Professor Oak | normal | display_image_available_but_exact_finish_or_modifier_visual_missing |
 | base1 | 88 | Professor Oak | normal | display_image_available_but_exact_finish_or_modifier_visual_missing |
 | base3 | 15 | Zapdos | cosmos | display_image_available_but_exact_finish_or_modifier_visual_missing |
@@ -91,8 +103,3 @@ _None._
 | base6 | 30 | Moltres | reverse | display_image_available_but_exact_finish_or_modifier_visual_missing |
 | base6 | 31 | Nidoking | reverse | display_image_available_but_exact_finish_or_modifier_visual_missing |
 | base6 | 32 | Nidoqueen | reverse | display_image_available_but_exact_finish_or_modifier_visual_missing |
-| base6 | 33 | Pidgeot | reverse | display_image_available_but_exact_finish_or_modifier_visual_missing |
-| base6 | 34 | Pidgeotto | reverse | display_image_available_but_exact_finish_or_modifier_visual_missing |
-| base6 | 35 | Rhydon | reverse | display_image_available_but_exact_finish_or_modifier_visual_missing |
-| base6 | 36 | Arcanine | reverse | display_image_available_but_exact_finish_or_modifier_visual_missing |
-| base6 | 37 | Charmeleon | reverse | display_image_available_but_exact_finish_or_modifier_visual_missing |
