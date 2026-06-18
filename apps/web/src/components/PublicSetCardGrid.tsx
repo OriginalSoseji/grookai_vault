@@ -104,10 +104,13 @@ export default function PublicSetCardGrid({
 
   return (
     <div className={`space-y-4 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-slate-200 bg-white px-4 py-3 shadow-sm">
-        <p className="text-sm text-slate-600">
+      <div className="gv-results-command-bar flex flex-wrap items-center justify-between gap-3 px-4 py-3">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Album view</p>
+          <p className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-200">
           Showing {cards.length} of {totalCount} card{totalCount === 1 ? "" : "s"}
-        </p>
+          </p>
+        </div>
       </div>
 
       <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
@@ -235,7 +238,7 @@ export default function PublicSetCardGrid({
             type="button"
             onClick={handleLoadMore}
             disabled={isLoading}
-            className="inline-flex items-center justify-center rounded-full border border-slate-300 px-5 py-2.5 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
+            className="gv-secondary-button disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isLoading ? "Loading..." : "Load more"}
           </button>

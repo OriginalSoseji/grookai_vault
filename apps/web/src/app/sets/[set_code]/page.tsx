@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import PublicSetCardGrid from "@/components/PublicSetCardGrid";
+import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getPublicSetByCode, getPublicSetCards } from "@/lib/publicSets";
 import { getPublicSetMasterSetStats } from "@/lib/publicSetMasterSetStats";
 import { applyOwnedPrintingCountsToSetCards } from "@/lib/publicSetsOwnership";
@@ -9,6 +11,23 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 const INITIAL_CARD_CHUNK = 36;
+
+function formatReleaseDate(value?: string) {
+  if (!value) {
+    return null;
+  }
+
+  const parsed = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(parsed.getTime())) {
+    return value;
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(parsed);
+}
 
 export default async function SetPage({
   params,
@@ -29,58 +48,104 @@ export default async function SetPage({
   }
 
   const masterSetStats = await getPublicSetMasterSetStats(setDetail.code, user?.id ?? null);
+  const setLogoPath = (await getSetLogoAssetPathMap([setDetail.code])).get(setDetail.code);
+  const releaseLabel = formatReleaseDate(setDetail.release_date);
+  const completionPercent = masterSetStats.completionPercent ?? 0;
+  const missingOptionCount = masterSetStats.missingVariantOptionCount ?? masterSetStats.variantOptionCount;
+  const isSignedIn = Boolean(user?.id);
 
   return (
-    <div className="space-y-8 py-6">
+    <main className="gv-page-shell gv-mobile-safe-content">
+      <div className="gv-page-container gv-page-rhythm py-5">
       <TrackPageEvent eventName="page_view_set" path={`/sets/${setDetail.code}`} setCode={setDetail.code} />
-      <section className="space-y-5 rounded-[16px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
-        <div className="space-y-4">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Public Set</p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">{setDetail.name}</h1>
-          <p className="text-sm leading-7 text-slate-600">
-            {[
-              setDetail.code,
-              typeof setDetail.release_year === "number" ? String(setDetail.release_year) : undefined,
-              typeof setDetail.printed_total === "number" ? `${setDetail.printed_total} printed cards` : undefined,
-              `${masterSetStats.variantOptionCount} master set options`,
-            ]
-              .filter(Boolean)
-              .join(" • ")}
-          </p>
-        </div>
+      <section className="gv-set-hero px-5 py-7 sm:px-8 sm:py-9 lg:px-10">
+        <div className="relative z-[1] grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,440px)] lg:items-end">
+          <div className="space-y-5">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="gv-discovery-eyebrow">Set Album</span>
+              <span className="gv-discovery-pill">{setDetail.code.toUpperCase()}</span>
+              {setDetail.printed_set_abbrev ? (
+                <span className="gv-discovery-pill">{setDetail.printed_set_abbrev}</span>
+              ) : null}
+            </div>
 
-        <div className="grid gap-3 border-t border-slate-100 pt-5 sm:grid-cols-3">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Card Prints</p>
-            <p className="mt-1 text-2xl font-semibold text-slate-950">{masterSetStats.parentPrintCount}</p>
+            {setLogoPath ? (
+              <div className="gv-set-logo-stage flex max-w-[28rem] items-center justify-center px-6 py-5">
+                <Image src={setLogoPath} alt="" width={440} height={150} className="max-h-24 w-auto object-contain" priority />
+              </div>
+            ) : null}
+
+            <div className="space-y-3">
+              <h1 className="gv-display-title max-w-4xl text-[clamp(3rem,8vw,6.5rem)]">
+                {setDetail.name}
+              </h1>
+              <p className="gv-body-copy max-w-2xl text-[1.08rem]">
+                Browse every reconciled English physical identity, finish, and variant option in this set. Your vault progress is shown against the Master Index.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {releaseLabel ? <span className="gv-metadata-pill">{releaseLabel}</span> : null}
+              {typeof setDetail.printed_total === "number" ? (
+                <span className="gv-metadata-pill">{setDetail.printed_total} printed cards</span>
+              ) : null}
+              <span className="gv-metadata-pill">{masterSetStats.parentPrintCount} card identities</span>
+            </div>
           </div>
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Master Set</p>
-            <p className="mt-1 text-2xl font-semibold text-slate-950">{masterSetStats.variantOptionCount}</p>
-            <p className="mt-1 text-xs text-slate-500">Includes finish and parallel options.</p>
-          </div>
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Owned</p>
-            {masterSetStats.ownedVariantOptionCount === null ? (
-              <p className="mt-1 text-sm font-medium text-slate-600">Sign in for master set progress.</p>
-            ) : (
-              <>
-                <p className="mt-1 text-2xl font-semibold text-slate-950">
-                  {masterSetStats.ownedVariantOptionCount}/{masterSetStats.variantOptionCount}
+
+          <div className="gv-set-progress-panel p-5 sm:p-6">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="gv-eyebrow">Master set progress</p>
+                <p className="mt-2 text-4xl font-black tracking-tight text-slate-950 dark:text-slate-50">
+                  {isSignedIn ? `${completionPercent}%` : "Sign in"}
                 </p>
-                <p className="mt-1 text-xs text-slate-500">
-                  {masterSetStats.completionPercent}% complete
-                  {masterSetStats.unclassifiedOwnedCount > 0
-                    ? ` • ${masterSetStats.unclassifiedOwnedCount} owned copies need finish selection`
-                    : ""}
-                </p>
-              </>
-            )}
+              </div>
+              <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-emerald-800 dark:bg-emerald-400/14 dark:text-emerald-200">
+                {isSignedIn && masterSetStats.ownedVariantOptionCount !== null
+                  ? `${masterSetStats.ownedVariantOptionCount}/${masterSetStats.variantOptionCount}`
+                  : `${masterSetStats.variantOptionCount} options`}
+              </span>
+            </div>
+
+            <div className="mt-5 h-2 overflow-hidden rounded-full bg-slate-200/70 dark:bg-white/[0.08]">
+              <div className="h-full rounded-full bg-emerald-500" style={{ width: `${completionPercent}%` }} />
+            </div>
+
+            <p className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-400">
+              {isSignedIn
+                ? `${missingOptionCount} finish, stamp, or parallel options still open.`
+                : "Sign in to compare this set against your vault."}
+            </p>
+
+            <div className="mt-5 grid grid-cols-3 gap-2">
+              <div className="gv-dex-mini-stat">
+                <p>{masterSetStats.parentPrintCount}</p>
+                <span>Cards</span>
+              </div>
+              <div className="gv-dex-mini-stat">
+                <p>{masterSetStats.variantOptionCount}</p>
+                <span>Options</span>
+              </div>
+              <div className="gv-dex-mini-stat">
+                <p>{masterSetStats.unclassifiedOwnedCount}</p>
+                <span>Needs finish</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="space-y-4">
+      <section className="space-y-5">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="gv-eyebrow">Set checklist</p>
+            <h2 className="mt-1 text-3xl font-black tracking-tight text-slate-950 dark:text-slate-50">Cards in this album</h2>
+          </div>
+          <p className="text-sm font-semibold text-slate-500 dark:text-slate-400">
+            {setDetail.card_count.toLocaleString()} catalog rows
+          </p>
+        </div>
         <PublicSetCardGrid
           setCode={setDetail.code}
           initialCards={await applyOwnedPrintingCountsToSetCards(initialCards, user?.id ?? null)}
@@ -88,6 +153,7 @@ export default async function SetPage({
           chunkSize={INITIAL_CARD_CHUNK}
         />
       </section>
-    </div>
+      </div>
+    </main>
   );
 }
