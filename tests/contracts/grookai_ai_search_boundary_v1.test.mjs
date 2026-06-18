@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
 const require = createRequire(import.meta.url);
-const ts = require('../../apps/web/node_modules/typescript');
+const ts = require('typescript');
 
 function loadTsModule(relativePath) {
   const source = readFileSync(new URL(relativePath, import.meta.url), 'utf8');

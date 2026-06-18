@@ -451,7 +451,7 @@ function sha256(value) {
 
 function getSupabaseClient() {
   const url = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const key = process.env.SUPABASE_SECRET_KEY;
   if (!url || !key) throw new Error("Missing Supabase read credentials.");
   return createClient(url, key, { auth: { autoRefreshToken: false, persistSession: false } });
 }

@@ -43,5 +43,8 @@
     "pricing:ebay:self": "node backend/ebay/ebay_self_orders_worker.mjs",
     "pricing:ebay:sellers:sync": "node backend/ebay/ebay_sellers_sync_worker.mjs",
     "ebay:browse:token": "node scripts/ebay_fetch_browse_token.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }
