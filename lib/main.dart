@@ -50,6 +50,7 @@ import 'services/scanner_v4/scanner_v4_debug_action_bus_v1.dart';
 import 'screens/scanner/scan_capture_screen.dart';
 import 'screens/identity_scan/identity_scan_screen.dart';
 import 'services/identity/display_identity.dart';
+import 'services/identity/image_presentation.dart';
 import 'services/identity/identity_search.dart';
 import 'widgets/card_surface_artwork.dart';
 import 'widgets/card_surface_price.dart';
@@ -818,6 +819,7 @@ class _CatalogCardTile extends StatelessWidget {
 
   Widget _thumb(String? url, double width, double height) {
     final displayIdentity = resolveCardPrintDisplayIdentity(card);
+    final imagePresentation = _cardPrintImagePresentation(card);
     return CardSurfaceArtwork(
       label: displayIdentity.displayName,
       imageUrl: url,
@@ -826,6 +828,8 @@ class _CatalogCardTile extends StatelessWidget {
       borderRadius: 10,
       padding: const EdgeInsets.all(3),
       enableTapToZoom: false,
+      imageTruthLabel: imagePresentation.compactBadgeLabel,
+      imageTruthStrong: imagePresentation.isCollisionRepresentative,
     );
   }
 }
@@ -1062,6 +1066,17 @@ class _CatalogCardGridTile extends StatelessWidget {
   }
 }
 
+ResolvedImagePresentation _cardPrintImagePresentation(CardPrint card) {
+  return resolveImagePresentationFromFields(
+    imageUrl: card.imageUrl,
+    representativeImageUrl: card.representativeImageUrl,
+    displayImageUrl: card.displayImageUrl,
+    displayImageKind: card.displayImageKind,
+    imageStatus: card.imageStatus,
+    imageNote: card.imageNote,
+  );
+}
+
 class _CatalogGridArtwork extends StatelessWidget {
   const _CatalogGridArtwork({required this.card});
 
@@ -1071,6 +1086,7 @@ class _CatalogGridArtwork extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final displayIdentity = resolveCardPrintDisplayIdentity(card);
+    final imagePresentation = _cardPrintImagePresentation(card);
 
     return CardSurfaceArtwork(
       label: displayIdentity.displayName,
@@ -1081,6 +1097,8 @@ class _CatalogGridArtwork extends StatelessWidget {
       enableTapToZoom: false,
       showShadow: false,
       filterQuality: FilterQuality.none,
+      imageTruthLabel: imagePresentation.compactBadgeLabel,
+      imageTruthStrong: imagePresentation.isCollisionRepresentative,
     );
   }
 }
@@ -1442,6 +1460,7 @@ class _SearchResultActionSheet extends StatelessWidget {
         action != OwnershipAction.openManageCard;
     final metadataParts = _catalogMetadataParts(card, compact: false);
     final hasSubtitle = metadataParts.isNotEmpty;
+    final imagePresentation = _cardPrintImagePresentation(card);
 
     return SafeArea(
       child: Padding(
@@ -1460,6 +1479,9 @@ class _SearchResultActionSheet extends StatelessWidget {
                     imageUrl: card.displayImage,
                     borderRadius: 24,
                     padding: const EdgeInsets.all(6),
+                    imageTruthLabel: imagePresentation.compactBadgeLabel,
+                    imageTruthStrong:
+                        imagePresentation.isCollisionRepresentative,
                   ),
                 ),
               ),
