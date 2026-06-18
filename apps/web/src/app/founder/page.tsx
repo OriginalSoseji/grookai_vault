@@ -1,6 +1,10 @@
 import Link from "next/link";
 import FounderMarketSignalsSection from "@/components/founder/FounderMarketSignalsSection";
 import PublicCardImage from "@/components/PublicCardImage";
+import PageContainer from "@/components/layout/PageContainer";
+import PageIntro from "@/components/layout/PageIntro";
+import PageSection from "@/components/layout/PageSection";
+import SectionHeader from "@/components/layout/SectionHeader";
 import { requireFounderAccess } from "@/lib/founder/requireFounderAccess";
 import {
   getFounderMarketSignals,
@@ -657,7 +661,7 @@ function MetricCard({
   detail?: string;
 }) {
   return (
-    <div className="rounded-[1.75rem] border border-slate-200 bg-white px-5 py-5 shadow-sm">
+    <div className="gv-premium-surface px-5 py-5">
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{label}</p>
       <p className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">{value}</p>
       {detail ? <p className="mt-2 text-sm text-slate-600">{detail}</p> : null}
@@ -667,9 +671,52 @@ function MetricCard({
 
 function EmptyPanel({ message }: { message: string }) {
   return (
-    <div className="rounded-[1.75rem] border border-slate-200 bg-white px-6 py-6 text-sm leading-7 text-slate-600 shadow-sm">
+    <div className="gv-soft-surface px-6 py-6 text-sm leading-7 text-slate-600">
       {message}
     </div>
+  );
+}
+
+function FounderToolCard({
+  href,
+  title,
+  description,
+  eyebrow,
+  primary = false,
+}: {
+  href: string;
+  title: string;
+  description: string;
+  eyebrow: string;
+  primary?: boolean;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`group block rounded-[1.5rem] border px-5 py-5 transition hover:-translate-y-0.5 ${
+        primary
+          ? "border-slate-950 bg-slate-950 text-white shadow-[0_24px_60px_-34px_rgba(15,23,42,0.9)] hover:bg-slate-900"
+          : "border-slate-200 bg-white text-slate-950 shadow-sm hover:border-slate-300 hover:shadow-md"
+      }`}
+    >
+      <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${primary ? "text-slate-300" : "text-slate-500"}`}>
+        {eyebrow}
+      </p>
+      <div className="mt-4 flex items-start justify-between gap-4">
+        <div className="min-w-0 space-y-2">
+          <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
+          <p className={`text-sm leading-6 ${primary ? "text-slate-300" : "text-slate-600"}`}>{description}</p>
+        </div>
+        <span
+          aria-hidden="true"
+          className={`mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-lg transition group-hover:translate-x-0.5 ${
+            primary ? "border-white/20 bg-white/10 text-white" : "border-slate-200 bg-slate-50 text-slate-700"
+          }`}
+        >
+          {"->"}
+        </span>
+      </div>
+    </Link>
   );
 }
 
@@ -771,47 +818,50 @@ export default async function FounderPage() {
   );
 
   return (
-    <div className="space-y-10 py-8">
-      <section className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
-        <div className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Founder Dashboard</p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Founder Dashboard V2</h1>
-          <p className="max-w-3xl text-base leading-7 text-slate-600">
-            Founder intelligence combining collector vault data with lightweight first-party product telemetry.
-          </p>
-        </div>
-      </section>
+    <PageContainer className="space-y-8 py-8">
+      <PageIntro
+        eyebrow="Founder"
+        title="Founder Control Center"
+        description="A single operational surface for access levels, warehouse review, pricing operations, product telemetry, and vault growth signals."
+        actions={
+          <>
+            <Link href="/founder/entitlements" className="gv-primary-button">
+              Manage Entitlements
+            </Link>
+            <Link href="/founder/warehouse" className="gv-secondary-button">
+              Review Warehouse
+            </Link>
+          </>
+        }
+      />
 
-      <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-6 shadow-sm shadow-slate-200/60">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="space-y-1">
-            <h2 className="text-xl font-semibold tracking-tight text-slate-950">Founder Tools</h2>
-            <p className="text-sm text-slate-600">
-              Warehouse review stays in the decision lane. Staging stays in the execution lane. Entitlements govern premium, vendor, and founder access.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/founder/entitlements"
-              className="rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
-            >
-              User Entitlements
-            </Link>
-            <Link
-              href="/founder/warehouse"
-              className="rounded-full border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-            >
-              Warehouse Review
-            </Link>
-            <Link
-              href="/founder/staging"
-              className="rounded-full border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-            >
-              Staging Dashboard
-            </Link>
-          </div>
+      <PageSection surface="card" spacing="loose">
+        <SectionHeader
+          title="Founder Tools"
+          description="Use these guarded lanes for access, review, and staged operational changes."
+        />
+        <div className="grid gap-4 lg:grid-cols-3">
+          <FounderToolCard
+            href="/founder/entitlements"
+            eyebrow="Access"
+            title="User Entitlements"
+            description="Manage Grookai Search, Assistant, Intelligence, vendor, and founder access from one governed source."
+            primary
+          />
+          <FounderToolCard
+            href="/founder/warehouse"
+            eyebrow="Images"
+            title="Warehouse Review"
+            description="Review image evidence and warehouse candidates without mixing review decisions into data execution."
+          />
+          <FounderToolCard
+            href="/founder/staging"
+            eyebrow="Operations"
+            title="Staging Dashboard"
+            description="Inspect staged work before any guarded production path is considered."
+          />
         </div>
-      </section>
+      </PageSection>
 
       {telemetryError ? (
         <EmptyPanel message={`Telemetry analytics could not be loaded right now: ${telemetryError.message}`} />
@@ -827,11 +877,11 @@ export default async function FounderPage() {
 
       <PricingOpsSection pricingOps={pricingOps} />
 
-      <section className="space-y-4">
-        <div>
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Product Signals</h2>
-          <p className="text-sm text-slate-600">Rolling telemetry windows for traffic, engagement, and conversion intent.</p>
-        </div>
+      <PageSection spacing="default">
+        <SectionHeader
+          title="Product Signals"
+          description="Rolling telemetry windows for traffic, engagement, and conversion intent."
+        />
 
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
           <MetricCard label="Unique Visitors (24h)" value={telemetryMetrics.uniqueVisitors24h} detail="Distinct user_id or anonymous_id across all web events" />
@@ -845,87 +895,91 @@ export default async function FounderPage() {
           <MetricCard label="Active Vault Users (7d)" value={telemetryMetrics.activeVaultUsers7d} detail="Distinct users from vault_opened or vault_add_success" />
           <MetricCard label="Cards Added To Vault (7d)" value={telemetryMetrics.cardsAddedToVault7d} detail="Summed quantity_delta from vault_add_success" />
         </div>
-      </section>
+      </PageSection>
 
-      <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-        <div className="space-y-5">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Top Search Terms (7d)</h2>
-            <p className="text-sm text-slate-600">Normalized search queries grouped case-insensitively.</p>
+      <PageSection spacing="default">
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+          <div className="space-y-5">
+            <SectionHeader
+              title="Top Search Terms (7d)"
+              description="Normalized search queries grouped case-insensitively."
+            />
+
+            {topSearchTerms.length === 0 ? (
+              <EmptyPanel message="No search telemetry has been recorded yet." />
+            ) : (
+              <div className="space-y-3">
+                {topSearchTerms.map((term) => (
+                  <div
+                    key={term.query}
+                    className="gv-soft-surface flex items-center justify-between gap-4 px-5 py-4"
+                  >
+                    <div className="min-w-0">
+                      <p className="truncate text-base font-medium text-slate-950">{term.query}</p>
+                      <p className="text-sm text-slate-600">Search query</p>
+                    </div>
+                    <div className="rounded-2xl bg-slate-50 px-3 py-2 text-right text-sm text-slate-700">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Count</p>
+                      <p className="mt-1 font-medium text-slate-900">{term.count}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          {topSearchTerms.length === 0 ? (
-            <EmptyPanel message="No search telemetry has been recorded yet." />
-          ) : (
-            <div className="space-y-3">
-              {topSearchTerms.map((term) => (
-                <div
-                  key={term.query}
-                  className="flex items-center justify-between gap-4 rounded-[1.5rem] border border-slate-200 bg-white px-5 py-4 shadow-sm"
-                >
-                  <div className="min-w-0">
-                    <p className="truncate text-base font-medium text-slate-950">{term.query}</p>
-                    <p className="text-sm text-slate-600">Search query</p>
-                  </div>
-                  <div className="rounded-2xl bg-slate-50 px-3 py-2 text-right text-sm text-slate-700">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Count</p>
-                    <p className="mt-1 font-medium text-slate-900">{term.count}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+          <div className="space-y-5">
+            <SectionHeader
+              title="Top Viewed Cards (7d)"
+              description="Most-viewed public card pages by canonical GV-ID."
+            />
 
-        <div className="space-y-5">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Top Viewed Cards (7d)</h2>
-            <p className="text-sm text-slate-600">Most-viewed public card pages by canonical GV-ID.</p>
+            {topViewedCardsError ? (
+              <EmptyPanel message={`Top viewed card metadata could not be loaded right now: ${topViewedCardsError}`} />
+            ) : topViewedCards.length === 0 ? (
+              <EmptyPanel message="No card page telemetry has been recorded yet." />
+            ) : (
+              <div className="space-y-3">
+                {topViewedCards.map((item) => (
+                  <Link
+                    key={`${item.gv_id}-views`}
+                    href={`/card/${item.gv_id}`}
+                    className="gv-soft-surface flex items-center gap-4 px-4 py-4 transition hover:-translate-y-0.5"
+                  >
+                    <PublicCardImage
+                      src={item.image_url}
+                      alt={item.name}
+                      imageClassName="h-24 w-16 rounded-lg border border-slate-200 bg-slate-50 object-contain p-1"
+                      fallbackClassName="flex h-24 w-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
+                      fallbackLabel={item.name}
+                    />
+                    <div className="min-w-0 flex-1 space-y-1">
+                      <p className="truncate text-base font-medium text-slate-950">{item.name}</p>
+                      <p className="text-sm text-slate-600">
+                        {[item.set_name ?? item.set_code, item.number !== "—" ? `#${item.number}` : undefined].filter(Boolean).join(" • ")}
+                      </p>
+                      <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{item.gv_id}</p>
+                    </div>
+                    <div className="rounded-2xl bg-slate-50 px-3 py-2 text-right text-sm text-slate-700">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Views</p>
+                      <p className="mt-1 font-medium text-slate-900">{item.view_count}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
-
-          {topViewedCardsError ? (
-            <EmptyPanel message={`Top viewed card metadata could not be loaded right now: ${topViewedCardsError}`} />
-          ) : topViewedCards.length === 0 ? (
-            <EmptyPanel message="No card page telemetry has been recorded yet." />
-          ) : (
-            <div className="space-y-3">
-              {topViewedCards.map((item) => (
-                <Link
-                  key={`${item.gv_id}-views`}
-                  href={`/card/${item.gv_id}`}
-                  className="flex items-center gap-4 rounded-[1.5rem] border border-slate-200 bg-white px-4 py-4 shadow-sm transition hover:border-slate-300 hover:shadow-md"
-                >
-                  <PublicCardImage
-                    src={item.image_url}
-                    alt={item.name}
-                    imageClassName="h-24 w-16 rounded-lg border border-slate-200 bg-slate-50 object-contain p-1"
-                    fallbackClassName="flex h-24 w-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
-                    fallbackLabel={item.name}
-                  />
-                  <div className="min-w-0 flex-1 space-y-1">
-                    <p className="truncate text-base font-medium text-slate-950">{item.name}</p>
-                    <p className="text-sm text-slate-600">
-                      {[item.set_name ?? item.set_code, item.number !== "—" ? `#${item.number}` : undefined].filter(Boolean).join(" • ")}
-                    </p>
-                    <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{item.gv_id}</p>
-                  </div>
-                  <div className="rounded-2xl bg-slate-50 px-3 py-2 text-right text-sm text-slate-700">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Views</p>
-                    <p className="mt-1 font-medium text-slate-900">{item.view_count}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
         </div>
-      </section>
+      </PageSection>
 
-      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <MetricCard label="Active Vault Instances" value={vaultRows.length} detail="Active owned objects read from vault_item_instances" />
-        <MetricCard label="Distinct Vault Users" value={distinctUsers} detail="Collectors with vault activity" />
-        <MetricCard label="Distinct GV-IDs" value={distinctCards} detail="Unique canonical cards in vault ownership" />
-        <MetricCard label="Total Active Instances" value={totalQuantity} detail="Count of active owned objects across all canonical vault instances" />
-      </section>
+      <PageSection spacing="default">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <MetricCard label="Active Vault Instances" value={vaultRows.length} detail="Active owned objects read from vault_item_instances" />
+          <MetricCard label="Distinct Vault Users" value={distinctUsers} detail="Collectors with vault activity" />
+          <MetricCard label="Distinct GV-IDs" value={distinctCards} detail="Unique canonical cards in vault ownership" />
+          <MetricCard label="Total Active Instances" value={totalQuantity} detail="Count of active owned objects across all canonical vault instances" />
+        </div>
+      </PageSection>
 
       {vaultAnalyticsError ? (
         <EmptyPanel message={`Vault analytics could not be loaded right now: ${vaultAnalyticsError}`} />
@@ -1121,7 +1175,7 @@ export default async function FounderPage() {
           </section>
         </>
       )}
-    </div>
+    </PageContainer>
   );
 }
 
