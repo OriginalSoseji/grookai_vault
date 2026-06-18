@@ -222,6 +222,7 @@ type SmartFilterImageState = "exact" | "representative" | "missing" | "any";
 
 type SmartFilterDiscoveryOptions = {
   sortMode: SortMode;
+  textQuery?: string;
   exactSetCode?: string;
   exactReleaseYear?: number;
   exactIllustrator?: string;
@@ -2906,6 +2907,89 @@ function normalizeFinishKeys(finishKeys?: string[]) {
   );
 }
 
+function getSmartDiscoveryTextTokens(textQuery?: string) {
+  return uniqueValues(
+    tokenizeNormalizedQuery(textQuery)
+      .filter((token) => token.length >= 2 && !GENERIC_TOKENS.has(token))
+      .slice(0, 6),
+  );
+}
+
+function rowMatchesSmartDiscoveryText(
+  row: CardPrintLookupRow,
+  textQuery?: string,
+) {
+  const tokens = getSmartDiscoveryTextTokens(textQuery);
+  if (tokens.length === 0) {
+    return true;
+  }
+
+  const haystack = normalizeTextForMatch(
+    [
+      row.name,
+      row.number,
+      row.gv_id,
+      row.set_code,
+      row.printed_set_abbrev,
+      row.rarity,
+      row.artist,
+      row.variant_key,
+      row.printed_identity_modifier,
+      row.printing_gv_id,
+      row.finish_key,
+      row.finish_label,
+      row.display_discriminator,
+    ]
+      .filter(Boolean)
+      .join(" "),
+  );
+
+  return tokens.every((token) => haystack.includes(token));
+}
+
+async function fetchCardRowsBySmartText(textQuery?: string) {
+  const tokens = getSmartDiscoveryTextTokens(textQuery);
+  if (tokens.length === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const supabase = createServerComponentClient();
+  const selectClause =
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
+  const rowsById = new Map<string, CardPrintLookupRow>();
+  const searchTokens = tokens
+    .filter((token) => token.length >= 3)
+    .slice(0, 3);
+  const tokenChunks = searchTokens.length > 0 ? chunkArray(searchTokens, 3) : [tokens.slice(0, 1)];
+
+  for (const tokenChunk of tokenChunks) {
+    const orExpression = tokenChunk
+      .flatMap((token) => [
+        `name.ilike.%${token}%`,
+        `number.ilike.%${token}%`,
+        `gv_id.ilike.%${token}%`,
+      ])
+      .join(",");
+    const { data, error } = await supabase
+      .from("card_prints")
+      .select(selectClause)
+      .or(orExpression)
+      .limit(SMART_FILTER_DISCOVERY_LIMIT);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    for (const row of (data ?? []) as CardPrintLookupRow[]) {
+      if (rowMatchesSmartDiscoveryText(row, textQuery)) {
+        rowsById.set(row.id, row);
+      }
+    }
+  }
+
+  return [...rowsById.values()];
+}
+
 async function fetchCardRowsByStampLabels(stampLabels: string[]) {
   const tokens = getSmartStampSearchTokens(stampLabels);
   if (tokens.length === 0) {
@@ -2953,6 +3037,10 @@ async function fetchSmartDiscoverySeedParentRows(
     return fetchCardRowsBySetCode(exactSetCode);
   }
 
+  if (getSmartDiscoveryTextTokens(options.textQuery).length > 0) {
+    return fetchCardRowsBySmartText(options.textQuery);
+  }
+
   if (typeof options.exactReleaseYear === "number") {
     return fetchCardRowsByReleaseYear(options.exactReleaseYear);
   }
@@ -2980,6 +3068,57 @@ async function fetchSmartDiscoverySeedParentRows(
   }
 
   return [] as CardPrintLookupRow[];
+}
+
+async function filterSmartDiscoveryRowsByScope(
+  rows: CardPrintLookupRow[],
+  options: SmartFilterDiscoveryOptions,
+) {
+  const exactSetCode = normalizeSetCode(options.exactSetCode);
+  const exactIllustrator = options.exactIllustrator?.trim().toLowerCase();
+  const identityFilter = normalizeIdentityFilterKey(options.identityFilter);
+  let allowedSetCodes: Set<string> | null = null;
+
+  if (typeof options.exactReleaseYear === "number") {
+    allowedSetCodes = new Set(await fetchSetCodesByReleaseYear(options.exactReleaseYear));
+  } else if (
+    typeof options.releaseYearMin === "number" ||
+    typeof options.releaseYearMax === "number"
+  ) {
+    allowedSetCodes = new Set(
+      await fetchSetCodesByReleaseYearRange(
+        options.releaseYearMin,
+        options.releaseYearMax,
+      ),
+    );
+  }
+
+  return rows.filter((row) => {
+    if (!rowMatchesSmartDiscoveryText(row, options.textQuery)) {
+      return false;
+    }
+
+    if (exactSetCode && normalizeSetCode(row.set_code) !== exactSetCode) {
+      return false;
+    }
+
+    if (allowedSetCodes && !allowedSetCodes.has(row.set_code ?? "")) {
+      return false;
+    }
+
+    if (
+      exactIllustrator &&
+      (row.artist ?? "").trim().toLowerCase() !== exactIllustrator
+    ) {
+      return false;
+    }
+
+    if (isIdentityFilterActive(identityFilter) && !matchesIdentityFilter(row, identityFilter)) {
+      return false;
+    }
+
+    return true;
+  });
 }
 
 function getParentFromSmartChild(row: CardPrintingSmartLookupRow) {
@@ -3103,7 +3242,17 @@ export async function getExploreRowsForSmartFilterDiscovery(
 ): Promise<ExploreRow[]> {
   const parentRows = await fetchSmartDiscoverySeedParentRows(options);
   const childScopedRows = await fetchSmartDiscoveryChildRows(options, parentRows);
-  const exactRows = childScopedRows.length > 0 ? childScopedRows : parentRows;
+  const shouldRequireChildScope =
+    normalizeFinishKeys(options.finishKeys).length > 0 ||
+    Boolean(options.imageState && options.imageState !== "any");
+  const exactRows = await filterSmartDiscoveryRowsByScope(
+    childScopedRows.length > 0
+      ? childScopedRows
+      : shouldRequireChildScope
+        ? []
+        : parentRows,
+    options,
+  );
   const query = await buildResolverQuery(normalizeQuery(""));
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
@@ -3131,9 +3280,12 @@ export async function getExploreRowsForOwnedSmartFilterDiscovery(
   const shouldUseChildScope =
     normalizeFinishKeys(options.finishKeys).length > 0 ||
     Boolean(options.imageState && options.imageState !== "any");
-  const exactRows = shouldUseChildScope
-    ? await fetchSmartDiscoveryChildRows(options, parentRows)
-    : parentRows;
+  const exactRows = await filterSmartDiscoveryRowsByScope(
+    shouldUseChildScope
+      ? await fetchSmartDiscoveryChildRows(options, parentRows)
+      : parentRows,
+    options,
+  );
   const query = await buildResolverQuery(normalizeQuery(""));
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),

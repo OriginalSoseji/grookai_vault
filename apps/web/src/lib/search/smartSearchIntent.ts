@@ -32,8 +32,8 @@ const FINISH_PATTERNS: Array<{ pattern: RegExp; key: string; label: string; resi
   { pattern: /\breverse\s+holos?\b/gi, key: "reverse", label: "Reverse Holo", residual: "reverse holo" },
   { pattern: /\bcosmos\s+holos?\b/gi, key: "cosmos", label: "Cosmos Holo", residual: "cosmos holo" },
   { pattern: /\bcracked\s+ice(?:\s+holos?)?\b/gi, key: "cracked_ice", label: "Cracked Ice", residual: "cracked ice" },
-  { pattern: /\bpoke?\s*ball\s+reverse(?:\s+holos?)?\b/gi, key: "poke_ball_reverse", label: "Poke Ball Reverse", residual: "poke ball reverse" },
-  { pattern: /\bmaster\s*ball\s+reverse(?:\s+holos?)?\b/gi, key: "master_ball_reverse", label: "Master Ball Reverse", residual: "master ball reverse" },
+  { pattern: /\bpok[eé]?\s*ball\s+reverse(?:\s+holos?)?\b/gi, key: "pokeball", label: "Poke Ball Reverse", residual: "poke ball reverse" },
+  { pattern: /\bmaster\s*ball\s+reverse(?:\s+holos?)?\b/gi, key: "masterball", label: "Master Ball Reverse", residual: "master ball reverse" },
   { pattern: /\bholos?\b/gi, key: "holo", label: "Holo", residual: "holo" },
   { pattern: /\bnormal\b|\bnon[-\s]?holos?\b|\bstandard\b/gi, key: "normal", label: "Normal", residual: "normal" },
 ];

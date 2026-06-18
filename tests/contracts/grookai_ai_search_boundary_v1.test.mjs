@@ -42,6 +42,18 @@ test('Grookai Search parses collector language without requiring AI', () => {
   assert.ok(intent.interpretedLabels.includes('2014-2026'));
 });
 
+test('Grookai Search maps collector parallel language to live finish keys', () => {
+  const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');
+
+  const pokeBall = buildSmartSearchIntent('Poke Ball reverse Pikachu');
+  const masterBall = buildSmartSearchIntent('Master Ball reverse Pikachu');
+
+  assert.deepEqual(Array.from(pokeBall.finishKeys), ['pokeball']);
+  assert.equal(pokeBall.residualQuery, 'Pikachu');
+  assert.deepEqual(Array.from(masterBall.finishKeys), ['masterball']);
+  assert.equal(masterBall.residualQuery, 'Pikachu');
+});
+
 test('Grookai Search recognizes stamp and image worklist language deterministically', () => {
   const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');
 
