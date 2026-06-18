@@ -1,0 +1,30 @@
+# Jungle No Symbol Real Apply Gate V1
+
+This is an apply gate only. It does not write to the database.
+
+## Gate
+
+- pass: true
+- gate_fingerprint_sha256: `cc29dc97f3b064c73beb52edb736eb43e69cb2eb89620fec2607aee5f966c489`
+- package_fingerprint_sha256: `d5a01e1ae21d3ef6f007dae9efe4485a8a6b57c88e9d57da6fd99ae0b70993f6`
+- sql_hash_sha256: `0d7bed6961ea56fa760bbda32133ebf0bdfc232820143bf586db24d2d2ce306a`
+- dry_run_proof_sha256: `59ff65e4ef4f45afe1ef7425b2880b8e41f7e4ec9bf4053761854e46123965cc`
+- findings: 0
+
+## Scope
+
+| metric | value |
+| --- | --- |
+| target_rows | 16 |
+| parent_inserts | 16 |
+| identity_inserts | 16 |
+| child_inserts | 16 |
+| by_set | {"base2":16} |
+| by_finish | {"holo":16} |
+| by_variant | {"no_symbol_error":16} |
+
+## Required Approval Text
+
+```text
+Approve real SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS apply only. Fingerprint: d5a01e1ae21d3ef6f007dae9efe4485a8a6b57c88e9d57da6fd99ae0b70993f6. SQL hash: 0d7bed6961ea56fa760bbda32133ebf0bdfc232820143bf586db24d2d2ce306a. Scope: 16 Jungle No Symbol recognized-error parent inserts, 16 active identity inserts, 16 holo child printing inserts; set base2/Jungle; variant_key=no_symbol_error; printed_identity_modifier=recognized_error:no_jungle_symbol. Dry-run proof: 7f67f088b80af2058324230a7d0b1987fbdf3819e42ff658fdb56cb3852c9970 == 7f67f088b80af2058324230a7d0b1987fbdf3819e42ff658fdb56cb3852c9970. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.
+```

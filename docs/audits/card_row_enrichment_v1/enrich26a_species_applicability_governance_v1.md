@@ -5,7 +5,7 @@
 - Audit only: true
 - DB writes performed: false
 - Migrations created: false
-- Fingerprint: `bb1dda2150fd508f28f8b721ae74945b02bbaced364b8def6344512381c84e89`
+- Fingerprint: `f9676a8eb9e5f5b7c7c40554349a87299809edd659a41057b860f396c27ae81c`
 
 ## What This Means
 
@@ -15,10 +15,10 @@ A missing `card_print_species` row is not automatically a defect. Trainer, Energ
 
 | metric | rows |
 | --- | --- |
-| missing_species_parent_rows | 3752 |
-| not_applicable_rows | 3580 |
+| missing_species_parent_rows | 3741 |
+| not_applicable_rows | 3579 |
 | maybe_applicable_review_rows | 1 |
-| unknown_until_traits_rows | 171 |
+| unknown_until_traits_rows | 161 |
 | insert_candidate_rows | 0 |
 | write_ready_rows | 0 |
 
@@ -26,9 +26,9 @@ A missing `card_print_species` row is not automatically a defect. Trainer, Energ
 
 | classification | rows |
 | --- | --- |
-| species_not_applicable_trainer | 2886 |
+| species_not_applicable_trainer | 2885 |
 | species_not_applicable_energy | 693 |
-| blocked_missing_traits | 171 |
+| blocked_missing_traits | 161 |
 | species_not_applicable_trait_blocked_subject_reference | 1 |
 | species_rule_or_seed_review_needed | 1 |
 
@@ -36,8 +36,8 @@ A missing `card_print_species` row is not automatically a defect. Trainer, Energ
 
 | applicability | rows |
 | --- | --- |
-| not_applicable | 3580 |
-| unknown_until_traits_exist | 171 |
+| not_applicable | 3579 |
+| unknown_until_traits_exist | 161 |
 | maybe_applicable | 1 |
 
 ## Governance Recommendation
@@ -67,10 +67,10 @@ A missing `card_print_species` row is not automatically a defect. Trainer, Energ
 | bwp | 50 | Tropical Beach | blocked_missing_traits | No trait context exists; species applicability cannot be determined safely. |
 | dpp | 05 | Tropical Wind | blocked_missing_traits | No trait context exists; species applicability cannot be determined safely. |
 | ecard3 | 47 | Buried Fossil | species_rule_or_seed_review_needed | Pokemon-like traits exist but current species seed/rule does not map the name. |
+| gym2 | 119 | Rocket's Minefield Gym | blocked_missing_traits | No trait context exists; species applicability cannot be determined safely. |
 | me03 | 068 | Antique Jaw Fossil | blocked_missing_traits | No trait context exists; species applicability cannot be determined safely. |
 | me03 | 069 | Antique Sail Fossil | blocked_missing_traits | No trait context exists; species applicability cannot be determined safely. |
 | me03 | 070 | Core Memory | blocked_missing_traits | No trait context exists; species applicability cannot be determined safely. |
 | me03 | 071 | Crushing Hammer | blocked_missing_traits | No trait context exists; species applicability cannot be determined safely. |
 | me03 | 074 | Hole-Digging Shovel | blocked_missing_traits | No trait context exists; species applicability cannot be determined safely. |
 | me03 | 075 | Jacinthe | blocked_missing_traits | No trait context exists; species applicability cannot be determined safely. |
-| me03 | 076 | Judge | blocked_missing_traits | No trait context exists; species applicability cannot be determined safely. |

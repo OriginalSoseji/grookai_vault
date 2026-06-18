@@ -62,14 +62,20 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
   const primaryNav = [
     { href: buildPathWithCompareCards("/explore", "", compareCards), label: "Search", matchHref: "/explore" },
     { href: "/network", label: "Feed", matchHref: "/network" },
+    { href: "/vault/import", label: "Scan", matchHref: "/vault/import" },
+    { href: "/wall", label: "Wall", matchHref: "/wall" },
+    { href: "/vault", label: "Vault", matchHref: "/vault" },
+  ];
+  const utilityNav = [
     { href: buildPathWithCompareCards("/sets", "", compareCards), label: "Sets", matchHref: "/sets" },
     ...(dexEnabled ? [{ href: "/dex", label: "Dex", matchHref: "/dex" }] : []),
     { href: buildCompareHref(compareCards), label: compareCount > 0 ? `Compare (${compareCount})` : "Compare", matchHref: "/compare" },
-    { href: "/vault", label: "Vault" },
   ];
   const mobileSectionLabel =
     pathname === "/vault" || pathname.startsWith("/vault/")
-      ? "Vault"
+      ? pathname === "/vault/import" || pathname.startsWith("/vault/import/")
+        ? "Scan"
+        : "Vault"
       : pathname === "/account" || pathname.startsWith("/account/")
         ? "Profile"
         : pathname === "/network" || pathname.startsWith("/network/")
@@ -155,16 +161,33 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
           </Link>
 
           <div className="flex flex-col gap-4 lg:items-end">
-            <nav className="flex flex-wrap items-center gap-2 text-sm">
+            <nav className="flex flex-wrap items-center justify-end gap-2 text-sm">
               {primaryNav.map((item) => {
-                const matchHref = "matchHref" in item ? item.matchHref : item.href;
+                const matchHref = item.matchHref;
+                const isActive =
+                  matchHref === "/vault"
+                    ? pathname === "/vault" || (pathname.startsWith("/vault/") && !pathname.startsWith("/vault/import"))
+                    : pathname === matchHref || pathname.startsWith(`${matchHref}/`);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`gv-nav-link ${isActive ? "gv-nav-link-active" : ""}`}
+                  >
+                    {matchHref === "/network" ? <NetworkLabel unreadCount={networkUnreadCount} /> : item.label}
+                  </Link>
+                );
+              })}
+              <span className="mx-1 hidden h-5 w-px bg-slate-200/80 lg:inline-block dark:bg-slate-700/70" aria-hidden="true" />
+              {utilityNav.map((item) => {
+                const matchHref = item.matchHref;
                 const isActive = pathname === matchHref || pathname.startsWith(`${matchHref}/`);
                 const isCompareItem = matchHref === "/compare";
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`gv-nav-link ${
+                    className={`gv-nav-link gv-nav-link-secondary ${
                       isActive
                         ? isCompareItem && compareCount > 0
                           ? "bg-amber-100 text-amber-950 shadow-sm ring-1 ring-amber-200"
@@ -172,18 +195,10 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
                         : ""
                     }`}
                   >
-                    {matchHref === "/network" ? <NetworkLabel unreadCount={networkUnreadCount} /> : item.label}
+                    {item.label}
                   </Link>
                 );
               })}
-              {showTopSearch ? (
-                <Link
-                  href={buildPathWithCompareCards("/explore", "", compareCards)}
-                  className="gv-nav-link"
-                >
-                  Search
-                </Link>
-              ) : null}
               {isAuthenticated && profileHref ? (
                 <Link href={profileHref} className="gv-nav-link">
                   Profile

@@ -5,12 +5,12 @@ Package: `ENRICH-06C2-SOURCE-MAPPED-ACTIVE-FINISH-CHILD-PRINTING-INSERT`
 ## Result
 
 - Pass: true
-- Target parent rows: 354
-- Inserted child rows: 530
-- Package fingerprint: `7a901d3842ccffee2588fd7fe26722dbebc053caea2ba16d75bf9acc398f5442`
-- Dry-run proof: `d8c96ea20a3b0e44755b248b23e9f2819e85c3040e791d769f3f964854a733ae == d8c96ea20a3b0e44755b248b23e9f2819e85c3040e791d769f3f964854a733ae`
+- Target parent rows: 10
+- Inserted child rows: 13
+- Package fingerprint: `6e32357534841a49f65bfd3f10e23f04cd982a6795b5c2e47b2fd50829bec8e7`
+- Dry-run proof: `26d63932fb3c14d0fb4aece6970ef3462783891353378a9584a96bf06a980d43 == 26d63932fb3c14d0fb4aece6970ef3462783891353378a9584a96bf06a980d43`
 - Before child rows in scope: 0
-- After child rows in scope: 530
+- After child rows in scope: 13
 
 ## Safety
 
@@ -28,9 +28,9 @@ Package: `ENRICH-06C2-SOURCE-MAPPED-ACTIVE-FINISH-CHILD-PRINTING-INSERT`
 
 | finish | rows |
 | --- | --- |
-| holo | 212 |
-| reverse | 174 |
-| normal | 144 |
+| holo | 7 |
+| normal | 3 |
+| reverse | 3 |
 
 ## Stop Findings
 

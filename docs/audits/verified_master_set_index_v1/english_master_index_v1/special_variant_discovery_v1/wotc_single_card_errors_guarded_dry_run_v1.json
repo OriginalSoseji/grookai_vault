@@ -1,0 +1,1172 @@
+{
+  "generated_at": "2026-06-17T15:18:42.014Z",
+  "package_id": "SPECIAL-VAR-03-WOTC-SINGLE-CARD-ERROR-PARENT-INSERTS",
+  "mode": "guarded_rollback_dry_run_only",
+  "source_report": "docs/audits/verified_master_set_index_v1/english_master_index_v1/special_variant_discovery_v1/special_variant_discovery_v1.json",
+  "source_fingerprint_sha256": "2937bce56c5e2e264add95444e4a28937f90d2ca65a5d0a0a3d616a8bf405fc2",
+  "package_fingerprint_sha256": "e86d05bb30c630306e57cc4bdab5ab53f6b101d050c0e395913a2e99798d6c61",
+  "sql_hash_sha256": "5ca77d000f034f205e014d638bed8a2ad163bf7b499d5dd752721f2245873347",
+  "pass": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "scope": {
+    "target_rows": 8,
+    "source_unique_finish_rows": 1,
+    "by_set": {
+      "basep": 4,
+      "base1": 3,
+      "base5": 1
+    },
+    "by_finish": {
+      "normal": 5,
+      "holo": 3
+    },
+    "by_variant": {
+      "incorrect_artist_variant": 3,
+      "evolution_box_error": 1,
+      "no_damage_error": 1,
+      "no_hp_error": 1,
+      "nonholo_error": 1,
+      "stage_error": 1
+    },
+    "targets": [
+      {
+        "source_candidate_key": "base1-2-blastoise-stage-error",
+        "set_key": "base1",
+        "set_name": "Base Set",
+        "card_number": "2",
+        "card_name": "Blastoise",
+        "target_variant_key": "stage_error",
+        "target_printed_identity_modifier": "recognized_error:missing_stage_text",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia lists Missing/No stage Blastoise as a Base Set unlimited error."
+          },
+          {
+            "source_key": "elitefourum_wotc_error_guide",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+            "evidence_label": "WOTC corrected-errors guide identifies Missing/No stage Blastoise #2/102."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-base-set/blastoise-stage-error-2",
+            "evidence_label": "PriceCharting exact product: Blastoise [Stage Error] #2."
+          }
+        ],
+        "target_parent_id": "80d4d2f2-67dd-4289-ab24-0abcabf882b4",
+        "target_child_id": "03c6f804-96a7-4945-ac10-9ed6fece6d02",
+        "base_parent_id": "5390df67-a217-47f9-90ab-7399fdff5269",
+        "base_parent_gv_id": "GV-PK-BS-2",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "https://www.pricecharting.com/game/pokemon-base-set/blastoise-stage-error-2"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-03-WOTC-SINGLE-CARD-ERROR-PARENT-INSERTS",
+          "source_candidate_key": "base1-2-blastoise-stage-error",
+          "classification": "recognized_error_variant",
+          "variant_key": "stage_error",
+          "printed_identity_modifier": "recognized_error:missing_stage_text",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia lists Missing/No stage Blastoise as a Base Set unlimited error."
+            },
+            {
+              "source_key": "elitefourum_wotc_error_guide",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+              "evidence_label": "WOTC corrected-errors guide identifies Missing/No stage Blastoise #2/102."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-base-set/blastoise-stage-error-2",
+              "evidence_label": "PriceCharting exact product: Blastoise [Stage Error] #2."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base1-12-ninetales-no-damage",
+        "set_key": "base1",
+        "set_name": "Base Set",
+        "card_number": "12",
+        "card_name": "Ninetales",
+        "target_variant_key": "no_damage_error",
+        "target_printed_identity_modifier": "recognized_error:no_damage",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia catalogs Base Set Ninetales recognized printing errors."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-base-set/ninetales-no-damage-12",
+            "evidence_label": "PriceCharting exact product: Ninetales [No Damage] #12."
+          },
+          {
+            "source_key": "elitefourum_black_flame_ninetales",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/the-black-flame-ninetales/29619",
+            "evidence_label": "Elite Fourum discussion links No Damage Ninetales to the original Black Flame/shadowless print context."
+          }
+        ],
+        "target_parent_id": "831f02cf-4ebb-4bc8-85ee-7360eb13b3ad",
+        "target_child_id": "78e59234-039e-4f98-9b46-d029ae541e98",
+        "base_parent_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "base_parent_gv_id": "GV-PK-BS-12",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-base-set/ninetales-no-damage-12",
+          "https://www.elitefourum.com/t/the-black-flame-ninetales/29619"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-03-WOTC-SINGLE-CARD-ERROR-PARENT-INSERTS",
+          "source_candidate_key": "base1-12-ninetales-no-damage",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_damage_error",
+          "printed_identity_modifier": "recognized_error:no_damage",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia catalogs Base Set Ninetales recognized printing errors."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-base-set/ninetales-no-damage-12",
+              "evidence_label": "PriceCharting exact product: Ninetales [No Damage] #12."
+            },
+            {
+              "source_key": "elitefourum_black_flame_ninetales",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/the-black-flame-ninetales/29619",
+              "evidence_label": "Elite Fourum discussion links No Damage Ninetales to the original Black Flame/shadowless print context."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base1-42-wartortle-evolution-box-error",
+        "set_key": "base1",
+        "set_name": "Base Set",
+        "card_number": "42",
+        "card_name": "Wartortle",
+        "target_variant_key": "evolution_box_error",
+        "target_printed_identity_modifier": "recognized_error:evolution_box_wartortle",
+        "target_finish_key": "normal",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies Evolution Box Wartortle as a corrected design error in a short English unlimited print run."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-base-set/wartortle-evolution-box-error-42",
+            "evidence_label": "PriceCharting exact product: Wartortle [Evolution Box Error] #42."
+          }
+        ],
+        "target_parent_id": "ff0d759b-40bd-44c3-be41-37b5c4bcc860",
+        "target_child_id": "cc01cd1c-98f8-4cb6-99a6-8d3c04c05b72",
+        "base_parent_id": "8fd7e87c-418e-4634-bf65-2890fcd36426",
+        "base_parent_gv_id": "GV-PK-BS-42",
+        "base_child_finishes": [
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-base-set/wartortle-evolution-box-error-42"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-03-WOTC-SINGLE-CARD-ERROR-PARENT-INSERTS",
+          "source_candidate_key": "base1-42-wartortle-evolution-box-error",
+          "classification": "recognized_error_variant",
+          "variant_key": "evolution_box_error",
+          "printed_identity_modifier": "recognized_error:evolution_box_wartortle",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies Evolution Box Wartortle as a corrected design error in a short English unlimited print run."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-base-set/wartortle-evolution-box-error-42",
+              "evidence_label": "PriceCharting exact product: Wartortle [Evolution Box Error] #42."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base5-5-dark-dragonite-nonholo-error",
+        "set_key": "base5",
+        "set_name": "Team Rocket",
+        "card_number": "5",
+        "card_name": "Dark Dragonite",
+        "target_variant_key": "nonholo_error",
+        "target_printed_identity_modifier": "recognized_error:nonholo_holo_number",
+        "target_finish_key": "normal",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies Nonholo Dark Dragonite #5 as a Team Rocket design error mass produced in unlimited and present in 1st edition."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-team-rocket/dark-dragonite-error-5",
+            "evidence_label": "PriceCharting exact product: Dark Dragonite [Error] #5."
+          }
+        ],
+        "target_parent_id": "d0155199-e607-42fe-a18c-9d0a9adc9b9a",
+        "target_child_id": "4e48c277-b3b7-4332-a6b2-c1fcc2f998f7",
+        "base_parent_id": "7078e85f-2279-4d5c-8faf-07b95482d804",
+        "base_parent_gv_id": "GV-PK-TR-5",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-team-rocket/dark-dragonite-error-5"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-03-WOTC-SINGLE-CARD-ERROR-PARENT-INSERTS",
+          "source_candidate_key": "base5-5-dark-dragonite-nonholo-error",
+          "classification": "recognized_error_variant",
+          "variant_key": "nonholo_error",
+          "printed_identity_modifier": "recognized_error:nonholo_holo_number",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies Nonholo Dark Dragonite #5 as a Team Rocket design error mass produced in unlimited and present in 1st edition."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-team-rocket/dark-dragonite-error-5",
+              "evidence_label": "PriceCharting exact product: Dark Dragonite [Error] #5."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-17-dark-persian-no-hp-error",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "17",
+        "card_name": "Dark Persian",
+        "target_variant_key": "no_hp_error",
+        "target_printed_identity_modifier": "recognized_error:missing_hp",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies Dark Persian Black Star Promo copies printed without HP."
+          },
+          {
+            "source_key": "elitefourum_wotc_error_guide",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+            "evidence_label": "WOTC corrected-errors guide identifies Missing/No HP Dark Persian #17 Black Star promo."
+          }
+        ],
+        "target_parent_id": "bae09811-d56e-41db-b093-94b4dc70b561",
+        "target_child_id": "0af4dde5-591a-495d-9f73-a15f749d37ac",
+        "base_parent_id": "f5b23f15-34b3-48a1-a12f-1a3d3475d4b7",
+        "base_parent_gv_id": "GV-PK-PR-17",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-03-WOTC-SINGLE-CARD-ERROR-PARENT-INSERTS",
+          "source_candidate_key": "basep-17-dark-persian-no-hp-error",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_hp_error",
+          "printed_identity_modifier": "recognized_error:missing_hp",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies Dark Persian Black Star Promo copies printed without HP."
+            },
+            {
+              "source_key": "elitefourum_wotc_error_guide",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+              "evidence_label": "WOTC corrected-errors guide identifies Missing/No HP Dark Persian #17 Black Star promo."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-21-moltres-incorrect-artist",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "21",
+        "card_name": "Moltres",
+        "target_variant_key": "incorrect_artist_variant",
+        "target_printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+        "target_finish_key": "normal",
+        "classification": "recognized_correction_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies the Legendary Bird promos as early prints with incorrect Toshinao Aoki artist credit, corrected to Naoyo Kimura in later prints."
+          },
+          {
+            "source_key": "elitefourum_wotc_error_guide",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+            "evidence_label": "WOTC corrected-errors guide identifies Zapdos, Articuno, and Moltres Black Star promos #21-23 as incorrect-artist corrected variants."
+          }
+        ],
+        "target_parent_id": "3368a54d-889f-42c7-8493-afbddf613328",
+        "target_child_id": "bff6bf44-63ea-49e5-9333-5b7b8287f095",
+        "base_parent_id": "429e14e5-13dc-4114-aeb7-4f6498c83f0c",
+        "base_parent_gv_id": "GV-PK-PR-21",
+        "base_child_finishes": [
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-03-WOTC-SINGLE-CARD-ERROR-PARENT-INSERTS",
+          "source_candidate_key": "basep-21-moltres-incorrect-artist",
+          "classification": "recognized_correction_variant",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies the Legendary Bird promos as early prints with incorrect Toshinao Aoki artist credit, corrected to Naoyo Kimura in later prints."
+            },
+            {
+              "source_key": "elitefourum_wotc_error_guide",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+              "evidence_label": "WOTC corrected-errors guide identifies Zapdos, Articuno, and Moltres Black Star promos #21-23 as incorrect-artist corrected variants."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-22-articuno-incorrect-artist",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "22",
+        "card_name": "Articuno",
+        "target_variant_key": "incorrect_artist_variant",
+        "target_printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+        "target_finish_key": "normal",
+        "classification": "recognized_correction_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies the Legendary Bird promos as early prints with incorrect Toshinao Aoki artist credit, corrected to Naoyo Kimura in later prints."
+          },
+          {
+            "source_key": "elitefourum_wotc_error_guide",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+            "evidence_label": "WOTC corrected-errors guide identifies Zapdos, Articuno, and Moltres Black Star promos #21-23 as incorrect-artist corrected variants."
+          }
+        ],
+        "target_parent_id": "aaedcb11-d8ed-4ee0-8c26-920aa86c35c9",
+        "target_child_id": "94fcdef8-e52e-465f-990d-20e0ab69e7a0",
+        "base_parent_id": "28116bdf-cec1-48d7-a977-baed0169e2c6",
+        "base_parent_gv_id": "GV-PK-PR-22",
+        "base_child_finishes": [
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-03-WOTC-SINGLE-CARD-ERROR-PARENT-INSERTS",
+          "source_candidate_key": "basep-22-articuno-incorrect-artist",
+          "classification": "recognized_correction_variant",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies the Legendary Bird promos as early prints with incorrect Toshinao Aoki artist credit, corrected to Naoyo Kimura in later prints."
+            },
+            {
+              "source_key": "elitefourum_wotc_error_guide",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+              "evidence_label": "WOTC corrected-errors guide identifies Zapdos, Articuno, and Moltres Black Star promos #21-23 as incorrect-artist corrected variants."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-23-zapdos-incorrect-artist",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "23",
+        "card_name": "Zapdos",
+        "target_variant_key": "incorrect_artist_variant",
+        "target_printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+        "target_finish_key": "normal",
+        "classification": "recognized_correction_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies the Legendary Bird promos as early prints with incorrect Toshinao Aoki artist credit, corrected to Naoyo Kimura in later prints."
+          },
+          {
+            "source_key": "elitefourum_wotc_error_guide",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+            "evidence_label": "WOTC corrected-errors guide identifies Zapdos, Articuno, and Moltres Black Star promos #21-23 as incorrect-artist corrected variants."
+          }
+        ],
+        "target_parent_id": "8355d761-b16a-4a07-9a2d-d39dcb4bf809",
+        "target_child_id": "60d326d5-57a5-42e2-9994-3961749ddfd7",
+        "base_parent_id": "0184e4d6-ab2c-443b-ac01-f22c1773800d",
+        "base_parent_gv_id": "GV-PK-PR-23",
+        "base_child_finishes": [
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-03-WOTC-SINGLE-CARD-ERROR-PARENT-INSERTS",
+          "source_candidate_key": "basep-23-zapdos-incorrect-artist",
+          "classification": "recognized_correction_variant",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies the Legendary Bird promos as early prints with incorrect Toshinao Aoki artist credit, corrected to Naoyo Kimura in later prints."
+            },
+            {
+              "source_key": "elitefourum_wotc_error_guide",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+              "evidence_label": "WOTC corrected-errors guide identifies Zapdos, Articuno, and Moltres Black Star promos #21-23 as incorrect-artist corrected variants."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "wotc_single_card_errors_parent_insert_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 8,
+      "target_parent_count": 8,
+      "target_child_count": 8,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "source_unique_finish_count": 1,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 8,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "SPECIAL-VAR-03-WOTC-SINGLE-CARD-ERROR-PARENT-INSERTS",
+      "package_fingerprint": "e86d05bb30c630306e57cc4bdab5ab53f6b101d050c0e395913a2e99798d6c61",
+      "target_rows": 8,
+      "inserted_parent_rows": 8,
+      "inserted_parent_identity_rows": 8,
+      "inserted_identity_rows": 8,
+      "inserted_child_rows": 8,
+      "forbidden_stamped_child_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 8,
+      "identity_inserts": 8,
+      "child_inserts": 8,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-17T15:18:40.669Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+          "set_code": "base1",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Ninetales",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "5390df67-a217-47f9-90ab-7399fdff5269",
+          "set_code": "base1",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Blastoise",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8fd7e87c-418e-4634-bf65-2890fcd36426",
+          "set_code": "base1",
+          "number": "42",
+          "number_plain": "42",
+          "name": "Wartortle",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "7078e85f-2279-4d5c-8faf-07b95482d804",
+          "set_code": "base5",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dark Dragonite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f5b23f15-34b3-48a1-a12f-1a3d3475d4b7",
+          "set_code": "basep",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Dark Persian",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "429e14e5-13dc-4114-aeb7-4f6498c83f0c",
+          "set_code": "basep",
+          "number": "21",
+          "number_plain": "21",
+          "name": "Moltres",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "28116bdf-cec1-48d7-a977-baed0169e2c6",
+          "set_code": "basep",
+          "number": "22",
+          "number_plain": "22",
+          "name": "Articuno",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "0184e4d6-ab2c-443b-ac01-f22c1773800d",
+          "set_code": "basep",
+          "number": "23",
+          "number_plain": "23",
+          "name": "Zapdos",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "2b49d3651a487f226efde4207a41711e345e66e0960627ed45f7eb6016138abf",
+      "counts": {
+        "base_parent": 8
+      }
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-17T15:18:41.725Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+          "set_code": "base1",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Ninetales",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "5390df67-a217-47f9-90ab-7399fdff5269",
+          "set_code": "base1",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Blastoise",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8fd7e87c-418e-4634-bf65-2890fcd36426",
+          "set_code": "base1",
+          "number": "42",
+          "number_plain": "42",
+          "name": "Wartortle",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "7078e85f-2279-4d5c-8faf-07b95482d804",
+          "set_code": "base5",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dark Dragonite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f5b23f15-34b3-48a1-a12f-1a3d3475d4b7",
+          "set_code": "basep",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Dark Persian",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "429e14e5-13dc-4114-aeb7-4f6498c83f0c",
+          "set_code": "basep",
+          "number": "21",
+          "number_plain": "21",
+          "name": "Moltres",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "28116bdf-cec1-48d7-a977-baed0169e2c6",
+          "set_code": "basep",
+          "number": "22",
+          "number_plain": "22",
+          "name": "Articuno",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "0184e4d6-ab2c-443b-ac01-f22c1773800d",
+          "set_code": "basep",
+          "number": "23",
+          "number_plain": "23",
+          "name": "Zapdos",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "78e59234-039e-4f98-9b46-d029ae541e98",
+          "set_code": "base1",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Ninetales",
+          "variant_key": "no_damage_error",
+          "printed_identity_modifier": "recognized_error:no_damage",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "03c6f804-96a7-4945-ac10-9ed6fece6d02",
+          "set_code": "base1",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Blastoise",
+          "variant_key": "stage_error",
+          "printed_identity_modifier": "recognized_error:missing_stage_text",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "cc01cd1c-98f8-4cb6-99a6-8d3c04c05b72",
+          "set_code": "base1",
+          "number": "42",
+          "number_plain": "42",
+          "name": "Wartortle",
+          "variant_key": "evolution_box_error",
+          "printed_identity_modifier": "recognized_error:evolution_box_wartortle",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "4e48c277-b3b7-4332-a6b2-c1fcc2f998f7",
+          "set_code": "base5",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dark Dragonite",
+          "variant_key": "nonholo_error",
+          "printed_identity_modifier": "recognized_error:nonholo_holo_number",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "0af4dde5-591a-495d-9f73-a15f749d37ac",
+          "set_code": "basep",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Dark Persian",
+          "variant_key": "no_hp_error",
+          "printed_identity_modifier": "recognized_error:missing_hp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "bff6bf44-63ea-49e5-9333-5b7b8287f095",
+          "set_code": "basep",
+          "number": "21",
+          "number_plain": "21",
+          "name": "Moltres",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "94fcdef8-e52e-465f-990d-20e0ab69e7a0",
+          "set_code": "basep",
+          "number": "22",
+          "number_plain": "22",
+          "name": "Articuno",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "60d326d5-57a5-42e2-9994-3961749ddfd7",
+          "set_code": "basep",
+          "number": "23",
+          "number_plain": "23",
+          "name": "Zapdos",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "4b8369b1-8467-4261-85ad-a05929145a5a",
+          "set_code": "base1",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Ninetales",
+          "variant_key": "no_damage_error",
+          "printed_identity_modifier": "recognized_error:no_damage",
+          "finish_key": null,
+          "identity_key_hash": "eaf7b2dc4d5ef3b34c4a9898f33df73c3d1fb803ac778b65b6938387f19f473b"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "98ea6eae-5db9-499a-91d5-72f376fcb149",
+          "set_code": "base1",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Blastoise",
+          "variant_key": "stage_error",
+          "printed_identity_modifier": "recognized_error:missing_stage_text",
+          "finish_key": null,
+          "identity_key_hash": "5f7c8995231830283c30d61bec16f7570b7fd6bdf67f771859d93018f10e79b3"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "66995fb7-13ea-4afa-bd2e-ffe2cee24c90",
+          "set_code": "base1",
+          "number": "42",
+          "number_plain": "42",
+          "name": "Wartortle",
+          "variant_key": "evolution_box_error",
+          "printed_identity_modifier": "recognized_error:evolution_box_wartortle",
+          "finish_key": null,
+          "identity_key_hash": "8927c97595f17716132a893f1aafb0079eca952c94e20ed142a5d577f6989b85"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "1b2a546a-594c-462a-a00f-36501d629303",
+          "set_code": "base5",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dark Dragonite",
+          "variant_key": "nonholo_error",
+          "printed_identity_modifier": "recognized_error:nonholo_holo_number",
+          "finish_key": null,
+          "identity_key_hash": "ec8025c637572d5d21154e09ee0cb15202fafbf4a46e9217c20047909153d846"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "40a1a8f7-185d-4cc9-aa0c-87def89f0f02",
+          "set_code": "basep",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Dark Persian",
+          "variant_key": "no_hp_error",
+          "printed_identity_modifier": "recognized_error:missing_hp",
+          "finish_key": null,
+          "identity_key_hash": "5e00f02cefc677c4926aa901be50e3a68d7cacd1841555eb83b29587fa562a5c"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "5fa2f724-a201-4c05-8a5e-679bc4b231a8",
+          "set_code": "basep",
+          "number": "21",
+          "number_plain": "21",
+          "name": "Moltres",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "finish_key": null,
+          "identity_key_hash": "94f747d44c3112d76c32a277fa418f842a7207388790d547de44235a2d1212c9"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "9425b59e-dc52-49d5-8872-b232495cd7a6",
+          "set_code": "basep",
+          "number": "22",
+          "number_plain": "22",
+          "name": "Articuno",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "finish_key": null,
+          "identity_key_hash": "30047a32544879796396918166f52d89c79426b021704015bcc801cf186d8506"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "3bb79715-738e-4b00-8dc9-1ee0b6313add",
+          "set_code": "basep",
+          "number": "23",
+          "number_plain": "23",
+          "name": "Zapdos",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "finish_key": null,
+          "identity_key_hash": "8cc0beb3269371f94ab8668ab445b0b43eb1f4549f513ae6b45e840078a01e31"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "831f02cf-4ebb-4bc8-85ee-7360eb13b3ad",
+          "set_code": "base1",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Ninetales",
+          "variant_key": "no_damage_error",
+          "printed_identity_modifier": "recognized_error:no_damage",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "80d4d2f2-67dd-4289-ab24-0abcabf882b4",
+          "set_code": "base1",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Blastoise",
+          "variant_key": "stage_error",
+          "printed_identity_modifier": "recognized_error:missing_stage_text",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ff0d759b-40bd-44c3-be41-37b5c4bcc860",
+          "set_code": "base1",
+          "number": "42",
+          "number_plain": "42",
+          "name": "Wartortle",
+          "variant_key": "evolution_box_error",
+          "printed_identity_modifier": "recognized_error:evolution_box_wartortle",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d0155199-e607-42fe-a18c-9d0a9adc9b9a",
+          "set_code": "base5",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dark Dragonite",
+          "variant_key": "nonholo_error",
+          "printed_identity_modifier": "recognized_error:nonholo_holo_number",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "bae09811-d56e-41db-b093-94b4dc70b561",
+          "set_code": "basep",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Dark Persian",
+          "variant_key": "no_hp_error",
+          "printed_identity_modifier": "recognized_error:missing_hp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "3368a54d-889f-42c7-8493-afbddf613328",
+          "set_code": "basep",
+          "number": "21",
+          "number_plain": "21",
+          "name": "Moltres",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "aaedcb11-d8ed-4ee0-8c26-920aa86c35c9",
+          "set_code": "basep",
+          "number": "22",
+          "number_plain": "22",
+          "name": "Articuno",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "8355d761-b16a-4a07-9a2d-d39dcb4bf809",
+          "set_code": "basep",
+          "number": "23",
+          "number_plain": "23",
+          "name": "Zapdos",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "90dff8a78e1808e1f8cacd39e8fb5c7e5e758136fe6d20b29f2263bfc9231f54",
+      "counts": {
+        "base_parent": 8,
+        "target_child": 8,
+        "target_identity": 8,
+        "target_parent": 8
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-17T15:18:41.882Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+          "set_code": "base1",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Ninetales",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "5390df67-a217-47f9-90ab-7399fdff5269",
+          "set_code": "base1",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Blastoise",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8fd7e87c-418e-4634-bf65-2890fcd36426",
+          "set_code": "base1",
+          "number": "42",
+          "number_plain": "42",
+          "name": "Wartortle",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "7078e85f-2279-4d5c-8faf-07b95482d804",
+          "set_code": "base5",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dark Dragonite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f5b23f15-34b3-48a1-a12f-1a3d3475d4b7",
+          "set_code": "basep",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Dark Persian",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "429e14e5-13dc-4114-aeb7-4f6498c83f0c",
+          "set_code": "basep",
+          "number": "21",
+          "number_plain": "21",
+          "name": "Moltres",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "28116bdf-cec1-48d7-a977-baed0169e2c6",
+          "set_code": "basep",
+          "number": "22",
+          "number_plain": "22",
+          "name": "Articuno",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "0184e4d6-ab2c-443b-ac01-f22c1773800d",
+          "set_code": "basep",
+          "number": "23",
+          "number_plain": "23",
+          "name": "Zapdos",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "2b49d3651a487f226efde4207a41711e345e66e0960627ed45f7eb6016138abf",
+      "counts": {
+        "base_parent": 8
+      }
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "d8549f3b59828daf4894ab8dddf5ec7d95af102029506f51e7f0681fee1ce3f2",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real SPECIAL-VAR-03-WOTC-SINGLE-CARD-ERROR-PARENT-INSERTS apply only. Fingerprint: e86d05bb30c630306e57cc4bdab5ab53f6b101d050c0e395913a2e99798d6c61. SQL hash: 5ca77d000f034f205e014d638bed8a2ad163bf7b499d5dd752721f2245873347. Scope: 8 WOTC single-card special-case parent inserts, 8 active identity inserts, 8 child printing inserts; source_unique_finish_rows=1; sets base1=3, base5=1, basep=4. Dry-run proof: 2b49d3651a487f226efde4207a41711e345e66e0960627ed45f7eb6016138abf == 2b49d3651a487f226efde4207a41711e345e66e0960627ed45f7eb6016138abf. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}

@@ -1,0 +1,1095 @@
+{
+  "generated_at": "2026-06-17T15:24:58.654Z",
+  "package_id": "SPECIAL-VAR-04-BASE-PIKACHU-VARIANT-PARENT-INSERTS",
+  "mode": "guarded_rollback_dry_run_only",
+  "source_report": "docs/audits/verified_master_set_index_v1/english_master_index_v1/special_variant_discovery_v1/special_variant_discovery_v1.json",
+  "source_fingerprint_sha256": "18d47f1e37aca8fb6c5b8b9caace44e9fc314ec19539ebcf44fab21b4a39716f",
+  "package_fingerprint_sha256": "1707129776982c793e5e507370e1f425acbb9a056f25f8a01dfc165394274dcb",
+  "sql_hash_sha256": "75ae3600600ea5eb0c730e05cf14a1938dc7d06f1527fce5a4b4d0183494e38a",
+  "pass": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "scope": {
+    "target_rows": 7,
+    "source_unique_finish_rows": 0,
+    "by_set": {
+      "base1": 7
+    },
+    "by_finish": {
+      "normal": 7
+    },
+    "by_variant": {
+      "e3_stamp_red_cheeks": 1,
+      "e3_stamp_yellow_cheeks": 1,
+      "first_edition_red_cheeks": 1,
+      "first_edition_yellow_cheeks": 1,
+      "ghost_stamp_shadowless": 1,
+      "shadowless_red_cheeks": 1,
+      "shadowless_yellow_cheeks": 1
+    },
+    "targets": [
+      {
+        "source_candidate_key": "base1-58-pikachu-e3-red-cheeks",
+        "set_key": "base1",
+        "set_name": "Base Set",
+        "card_number": "58",
+        "card_name": "Pikachu",
+        "target_variant_key": "e3_stamp_red_cheeks",
+        "target_printed_identity_modifier": "stamp:e3;color:red_cheeks",
+        "target_finish_key": "normal",
+        "classification": "stamp_or_release_variant",
+        "evidence": [
+          {
+            "source_key": "elitefourum_base_pikachu_variants",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+            "evidence_label": "Base Pikachu guide identifies English Red Cheeks E3 stamped Pikachu and distinguishes it from Yellow Cheeks E3."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-e3-red-cheeks-58",
+            "evidence_label": "PriceCharting exact product: Pikachu [E3 Red Cheeks] #58."
+          }
+        ],
+        "target_parent_id": "9c1f54d6-8f74-4c5e-a5b3-69806ad338bb",
+        "target_child_id": "88c7cf4b-4591-43a2-8933-68c4891c6c91",
+        "base_parent_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+        "base_parent_gv_id": "GV-PK-BS-58",
+        "base_child_finishes": [
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "https://www.pricecharting.com/game/pokemon-base-set/pikachu-e3-red-cheeks-58"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-04-BASE-PIKACHU-VARIANT-PARENT-INSERTS",
+          "source_candidate_key": "base1-58-pikachu-e3-red-cheeks",
+          "classification": "stamp_or_release_variant",
+          "variant_key": "e3_stamp_red_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:red_cheeks",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "elitefourum_base_pikachu_variants",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+              "evidence_label": "Base Pikachu guide identifies English Red Cheeks E3 stamped Pikachu and distinguishes it from Yellow Cheeks E3."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-e3-red-cheeks-58",
+              "evidence_label": "PriceCharting exact product: Pikachu [E3 Red Cheeks] #58."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base1-58-pikachu-e3-yellow-cheeks",
+        "set_key": "base1",
+        "set_name": "Base Set",
+        "card_number": "58",
+        "card_name": "Pikachu",
+        "target_variant_key": "e3_stamp_yellow_cheeks",
+        "target_printed_identity_modifier": "stamp:e3;color:yellow_cheeks",
+        "target_finish_key": "normal",
+        "classification": "stamp_or_release_variant",
+        "evidence": [
+          {
+            "source_key": "elitefourum_base_pikachu_variants",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+            "evidence_label": "Base Pikachu guide identifies English Yellow Cheeks E3 stamped Pikachu."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-e3-58",
+            "evidence_label": "PriceCharting exact product: Pikachu [E3] #58."
+          }
+        ],
+        "target_parent_id": "df7098c1-1ab6-40b5-97fd-fd77f6fc9dc2",
+        "target_child_id": "3dc9b1fa-b022-4023-a79b-376799b14292",
+        "base_parent_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+        "base_parent_gv_id": "GV-PK-BS-58",
+        "base_child_finishes": [
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "https://www.pricecharting.com/game/pokemon-base-set/pikachu-e3-58"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-04-BASE-PIKACHU-VARIANT-PARENT-INSERTS",
+          "source_candidate_key": "base1-58-pikachu-e3-yellow-cheeks",
+          "classification": "stamp_or_release_variant",
+          "variant_key": "e3_stamp_yellow_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:yellow_cheeks",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "elitefourum_base_pikachu_variants",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+              "evidence_label": "Base Pikachu guide identifies English Yellow Cheeks E3 stamped Pikachu."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-e3-58",
+              "evidence_label": "PriceCharting exact product: Pikachu [E3] #58."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base1-58-pikachu-first-edition-red-cheeks",
+        "set_key": "base1",
+        "set_name": "Base Set",
+        "card_number": "58",
+        "card_name": "Pikachu",
+        "target_variant_key": "first_edition_red_cheeks",
+        "target_printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:red_cheeks",
+        "target_finish_key": "normal",
+        "classification": "canonical_print_lane",
+        "evidence": [
+          {
+            "source_key": "elitefourum_base_pikachu_variants",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+            "evidence_label": "Base Pikachu guide identifies English Shadowless 1st edition Red Cheeks."
+          },
+          {
+            "source_key": "elitefourum_wotc_error_guide",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+            "evidence_label": "WOTC corrected-errors guide states Red Cheeks is found within 1st edition and Shadowless Base Set booster packs."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-1st-edition-red-cheeks-58",
+            "evidence_label": "PriceCharting exact product: Pikachu [1st Edition Red Cheeks] #58."
+          }
+        ],
+        "target_parent_id": "238dff30-ce49-453a-8504-4de3450e9d70",
+        "target_child_id": "2fe38f69-bedd-425b-905b-ccc829f506ee",
+        "base_parent_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+        "base_parent_gv_id": "GV-PK-BS-58",
+        "base_child_finishes": [
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "https://www.pricecharting.com/game/pokemon-base-set/pikachu-1st-edition-red-cheeks-58"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-04-BASE-PIKACHU-VARIANT-PARENT-INSERTS",
+          "source_candidate_key": "base1-58-pikachu-first-edition-red-cheeks",
+          "classification": "canonical_print_lane",
+          "variant_key": "first_edition_red_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:red_cheeks",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "elitefourum_base_pikachu_variants",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+              "evidence_label": "Base Pikachu guide identifies English Shadowless 1st edition Red Cheeks."
+            },
+            {
+              "source_key": "elitefourum_wotc_error_guide",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+              "evidence_label": "WOTC corrected-errors guide states Red Cheeks is found within 1st edition and Shadowless Base Set booster packs."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-1st-edition-red-cheeks-58",
+              "evidence_label": "PriceCharting exact product: Pikachu [1st Edition Red Cheeks] #58."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base1-58-pikachu-first-edition-yellow-cheeks",
+        "set_key": "base1",
+        "set_name": "Base Set",
+        "card_number": "58",
+        "card_name": "Pikachu",
+        "target_variant_key": "first_edition_yellow_cheeks",
+        "target_printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:yellow_cheeks",
+        "target_finish_key": "normal",
+        "classification": "canonical_print_lane",
+        "evidence": [
+          {
+            "source_key": "elitefourum_base_pikachu_variants",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+            "evidence_label": "Base Pikachu guide identifies English Shadowless 1st edition Yellow Cheeks as a distinct variant."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-1st-edition-58",
+            "evidence_label": "PriceCharting exact product: Pikachu [1st Edition] #58 includes Yellow Cheeks listings."
+          }
+        ],
+        "target_parent_id": "dc27ea00-fe52-4fa2-a30b-9724201ed586",
+        "target_child_id": "9a1841e3-3223-43a2-a461-9088826e92d5",
+        "base_parent_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+        "base_parent_gv_id": "GV-PK-BS-58",
+        "base_child_finishes": [
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "https://www.pricecharting.com/game/pokemon-base-set/pikachu-1st-edition-58"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-04-BASE-PIKACHU-VARIANT-PARENT-INSERTS",
+          "source_candidate_key": "base1-58-pikachu-first-edition-yellow-cheeks",
+          "classification": "canonical_print_lane",
+          "variant_key": "first_edition_yellow_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:yellow_cheeks",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "elitefourum_base_pikachu_variants",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+              "evidence_label": "Base Pikachu guide identifies English Shadowless 1st edition Yellow Cheeks as a distinct variant."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-1st-edition-58",
+              "evidence_label": "PriceCharting exact product: Pikachu [1st Edition] #58 includes Yellow Cheeks listings."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base1-58-pikachu-ghost-stamp",
+        "set_key": "base1",
+        "set_name": "Base Set",
+        "card_number": "58",
+        "card_name": "Pikachu",
+        "target_variant_key": "ghost_stamp_shadowless",
+        "target_printed_identity_modifier": "print_run:shadowless;stamp_error:ghost_first_edition",
+        "target_finish_key": "normal",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies Ghost Stamp Pikachu as a yellow-cheeks shadowless design error with incomplete 1st Edition stamp traces found in gold-strip Shadowless Zap! theme decks."
+          },
+          {
+            "source_key": "elitefourum_wotc_error_guide",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+            "evidence_label": "WOTC corrected-errors guide identifies Ghost stamp Shadowless Pikachu #58/102 and its Zap! theme deck source."
+          },
+          {
+            "source_key": "elitefourum_base_pikachu_variants",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+            "evidence_label": "Base Pikachu guide documents English Ghost stamped Pikachu and notes it is well-known rather than one-of-one."
+          }
+        ],
+        "target_parent_id": "939f09d0-1adc-4a79-ba7f-882e102c4e22",
+        "target_child_id": "cc6b0966-b366-42fd-a21f-954e59883068",
+        "base_parent_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+        "base_parent_gv_id": "GV-PK-BS-58",
+        "base_child_finishes": [
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-04-BASE-PIKACHU-VARIANT-PARENT-INSERTS",
+          "source_candidate_key": "base1-58-pikachu-ghost-stamp",
+          "classification": "recognized_error_variant",
+          "variant_key": "ghost_stamp_shadowless",
+          "printed_identity_modifier": "print_run:shadowless;stamp_error:ghost_first_edition",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies Ghost Stamp Pikachu as a yellow-cheeks shadowless design error with incomplete 1st Edition stamp traces found in gold-strip Shadowless Zap! theme decks."
+            },
+            {
+              "source_key": "elitefourum_wotc_error_guide",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+              "evidence_label": "WOTC corrected-errors guide identifies Ghost stamp Shadowless Pikachu #58/102 and its Zap! theme deck source."
+            },
+            {
+              "source_key": "elitefourum_base_pikachu_variants",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+              "evidence_label": "Base Pikachu guide documents English Ghost stamped Pikachu and notes it is well-known rather than one-of-one."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base1-58-pikachu-shadowless-red-cheeks",
+        "set_key": "base1",
+        "set_name": "Base Set",
+        "card_number": "58",
+        "card_name": "Pikachu",
+        "target_variant_key": "shadowless_red_cheeks",
+        "target_printed_identity_modifier": "print_run:shadowless;color:red_cheeks",
+        "target_finish_key": "normal",
+        "classification": "canonical_print_lane",
+        "evidence": [
+          {
+            "source_key": "elitefourum_base_pikachu_variants",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+            "evidence_label": "Base Pikachu guide identifies English Shadowless non-1st edition Red Cheeks as a distinct variant."
+          },
+          {
+            "source_key": "elitefourum_wotc_error_guide",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+            "evidence_label": "WOTC corrected-errors guide identifies Red Cheeks Pikachu #58/102 as found in 1st edition and Shadowless Base Set packs."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-shadowless-red-cheeks-58",
+            "evidence_label": "PriceCharting exact product: Pikachu [Shadowless Red Cheeks] #58."
+          }
+        ],
+        "target_parent_id": "ec82bb94-e450-4107-bee0-c3e21c24f23b",
+        "target_child_id": "e10ebe3d-1490-4429-9383-8c6a253b342e",
+        "base_parent_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+        "base_parent_gv_id": "GV-PK-BS-58",
+        "base_child_finishes": [
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "https://www.pricecharting.com/game/pokemon-base-set/pikachu-shadowless-red-cheeks-58"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-04-BASE-PIKACHU-VARIANT-PARENT-INSERTS",
+          "source_candidate_key": "base1-58-pikachu-shadowless-red-cheeks",
+          "classification": "canonical_print_lane",
+          "variant_key": "shadowless_red_cheeks",
+          "printed_identity_modifier": "print_run:shadowless;color:red_cheeks",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "elitefourum_base_pikachu_variants",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+              "evidence_label": "Base Pikachu guide identifies English Shadowless non-1st edition Red Cheeks as a distinct variant."
+            },
+            {
+              "source_key": "elitefourum_wotc_error_guide",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+              "evidence_label": "WOTC corrected-errors guide identifies Red Cheeks Pikachu #58/102 as found in 1st edition and Shadowless Base Set packs."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-shadowless-red-cheeks-58",
+              "evidence_label": "PriceCharting exact product: Pikachu [Shadowless Red Cheeks] #58."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base1-58-pikachu-shadowless-yellow-cheeks",
+        "set_key": "base1",
+        "set_name": "Base Set",
+        "card_number": "58",
+        "card_name": "Pikachu",
+        "target_variant_key": "shadowless_yellow_cheeks",
+        "target_printed_identity_modifier": "print_run:shadowless;color:yellow_cheeks",
+        "target_finish_key": "normal",
+        "classification": "canonical_print_lane",
+        "evidence": [
+          {
+            "source_key": "elitefourum_base_pikachu_variants",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+            "evidence_label": "Base Pikachu guide identifies English Shadowless non-1st edition Yellow Cheeks as a distinct variant."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-shadowless-58",
+            "evidence_label": "PriceCharting exact product: Pikachu [Shadowless] #58."
+          }
+        ],
+        "target_parent_id": "a719658f-3b5a-4a4e-94de-0e3a72098713",
+        "target_child_id": "f11fd214-e096-4fab-811a-1584d9ca6675",
+        "base_parent_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+        "base_parent_gv_id": "GV-PK-BS-58",
+        "base_child_finishes": [
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "https://www.pricecharting.com/game/pokemon-base-set/pikachu-shadowless-58"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-04-BASE-PIKACHU-VARIANT-PARENT-INSERTS",
+          "source_candidate_key": "base1-58-pikachu-shadowless-yellow-cheeks",
+          "classification": "canonical_print_lane",
+          "variant_key": "shadowless_yellow_cheeks",
+          "printed_identity_modifier": "print_run:shadowless;color:yellow_cheeks",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "elitefourum_base_pikachu_variants",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+              "evidence_label": "Base Pikachu guide identifies English Shadowless non-1st edition Yellow Cheeks as a distinct variant."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-shadowless-58",
+              "evidence_label": "PriceCharting exact product: Pikachu [Shadowless] #58."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "base_pikachu_variants_parent_insert_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 7,
+      "target_parent_count": 7,
+      "target_child_count": 7,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "source_unique_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 7,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "SPECIAL-VAR-04-BASE-PIKACHU-VARIANT-PARENT-INSERTS",
+      "package_fingerprint": "1707129776982c793e5e507370e1f425acbb9a056f25f8a01dfc165394274dcb",
+      "target_rows": 7,
+      "inserted_parent_rows": 7,
+      "inserted_parent_identity_rows": 7,
+      "inserted_identity_rows": 7,
+      "inserted_child_rows": 7,
+      "forbidden_stamped_child_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 7,
+      "identity_inserts": 7,
+      "child_inserts": 7,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-17T15:24:57.503Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "71b7d277e7f0223377d4671a6637241c5cab460ee3788ab64f6fecfd6f0bcf15",
+      "counts": {
+        "base_parent": 7
+      }
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-17T15:24:58.420Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "88c7cf4b-4591-43a2-8933-68c4891c6c91",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "e3_stamp_red_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:red_cheeks",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "3dc9b1fa-b022-4023-a79b-376799b14292",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "e3_stamp_yellow_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:yellow_cheeks",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "2fe38f69-bedd-425b-905b-ccc829f506ee",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "first_edition_red_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:red_cheeks",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "9a1841e3-3223-43a2-a461-9088826e92d5",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "first_edition_yellow_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:yellow_cheeks",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "cc6b0966-b366-42fd-a21f-954e59883068",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "ghost_stamp_shadowless",
+          "printed_identity_modifier": "print_run:shadowless;stamp_error:ghost_first_edition",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "e10ebe3d-1490-4429-9383-8c6a253b342e",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "shadowless_red_cheeks",
+          "printed_identity_modifier": "print_run:shadowless;color:red_cheeks",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "f11fd214-e096-4fab-811a-1584d9ca6675",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "shadowless_yellow_cheeks",
+          "printed_identity_modifier": "print_run:shadowless;color:yellow_cheeks",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "d8d79722-6efe-4156-87cf-5c4fe269ca4b",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "e3_stamp_red_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:red_cheeks",
+          "finish_key": null,
+          "identity_key_hash": "77af40244d409b9163414fb7ba40706bfeb65d8bfb2849c04b5a91b40222a429"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "137db778-4cd7-4a3a-93d8-5e5d489bbba7",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "e3_stamp_yellow_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:yellow_cheeks",
+          "finish_key": null,
+          "identity_key_hash": "2654170a2e91b64acca52d2ee2aae5e81d8ca87b126dfd4cecddb84740fb75c0"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "1c4af37f-fb99-4419-afcf-247f00aa86c9",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "first_edition_red_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:red_cheeks",
+          "finish_key": null,
+          "identity_key_hash": "e1baeedc3f75fe91dd0ac49083894a1831d64eee27421f68a6aa329869c8c774"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "598096af-146d-4a50-be92-01b5954cda17",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "first_edition_yellow_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:yellow_cheeks",
+          "finish_key": null,
+          "identity_key_hash": "08da97068bb05e735057b9efdf916617717d274d5a2e97b7f2ca3e74beeb80ef"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "b08d55bc-9dd4-48a0-b6f0-800bbdd29a88",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "ghost_stamp_shadowless",
+          "printed_identity_modifier": "print_run:shadowless;stamp_error:ghost_first_edition",
+          "finish_key": null,
+          "identity_key_hash": "38a3fbaf3871474fcf5e8b0880c7f57fd45b4801be972f4a2ec3a6403f758b9e"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "7a49f536-323f-4bc5-bb3d-ce98ac32050c",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "shadowless_red_cheeks",
+          "printed_identity_modifier": "print_run:shadowless;color:red_cheeks",
+          "finish_key": null,
+          "identity_key_hash": "bc77edbcf0aa087f35924192f58488739aa7798d8dd7136e4e06568dffe399fa"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "90990db1-772b-4ea3-a8ce-fc70cacebd9a",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "shadowless_yellow_cheeks",
+          "printed_identity_modifier": "print_run:shadowless;color:yellow_cheeks",
+          "finish_key": null,
+          "identity_key_hash": "21a423a0e9dec431c1f6384d525262013197f1fee03216246baa08c821974e1a"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "9c1f54d6-8f74-4c5e-a5b3-69806ad338bb",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "e3_stamp_red_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:red_cheeks",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "df7098c1-1ab6-40b5-97fd-fd77f6fc9dc2",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "e3_stamp_yellow_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:yellow_cheeks",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "238dff30-ce49-453a-8504-4de3450e9d70",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "first_edition_red_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:red_cheeks",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "dc27ea00-fe52-4fa2-a30b-9724201ed586",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "first_edition_yellow_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:yellow_cheeks",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "939f09d0-1adc-4a79-ba7f-882e102c4e22",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "ghost_stamp_shadowless",
+          "printed_identity_modifier": "print_run:shadowless;stamp_error:ghost_first_edition",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ec82bb94-e450-4107-bee0-c3e21c24f23b",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "shadowless_red_cheeks",
+          "printed_identity_modifier": "print_run:shadowless;color:red_cheeks",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "a719658f-3b5a-4a4e-94de-0e3a72098713",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "shadowless_yellow_cheeks",
+          "printed_identity_modifier": "print_run:shadowless;color:yellow_cheeks",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "94df2f3f254b4fa3c0ce31bcad363634462c08d624df97ef386cd38b817e8913",
+      "counts": {
+        "base_parent": 7,
+        "target_child": 7,
+        "target_identity": 7,
+        "target_parent": 7
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-17T15:24:58.573Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8e2d1c3e-f7e4-4d35-a842-569d6ac68a27",
+          "set_code": "base1",
+          "number": "58",
+          "number_plain": "58",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "71b7d277e7f0223377d4671a6637241c5cab460ee3788ab64f6fecfd6f0bcf15",
+      "counts": {
+        "base_parent": 7
+      }
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "72203de8200dfe5df1bb2c4c78c518593b1268307ac8a54f87a96c310c48c49b",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real SPECIAL-VAR-04-BASE-PIKACHU-VARIANT-PARENT-INSERTS apply only. Fingerprint: 1707129776982c793e5e507370e1f425acbb9a056f25f8a01dfc165394274dcb. SQL hash: 75ae3600600ea5eb0c730e05cf14a1938dc7d06f1527fce5a4b4d0183494e38a. Scope: 7 Base Set Pikachu special-case parent inserts, 7 active identity inserts, 7 normal child printing inserts; source_unique_finish_rows=0; sets base1=7. Dry-run proof: 71b7d277e7f0223377d4671a6637241c5cab460ee3788ab64f6fecfd6f0bcf15 == 71b7d277e7f0223377d4671a6637241c5cab460ee3788ab64f6fecfd6f0bcf15. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}

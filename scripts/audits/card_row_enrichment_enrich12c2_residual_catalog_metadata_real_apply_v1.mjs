@@ -15,10 +15,10 @@ const OUTPUT_JSON = path.join(OUTPUT_DIR, 'enrich12c2_residual_catalog_metadata_
 const OUTPUT_MD = path.join(OUTPUT_DIR, 'enrich12c2_residual_catalog_metadata_real_apply_v1.md');
 
 const PACKAGE_ID = 'ENRICH-12C2-RESIDUAL-CATALOG-METADATA-RETRY';
-const EXPECTED_FINGERPRINT = '3be12029a643045cd1a0904bbf366953fd58e122f14d5e3496735469ab17e897';
-const EXPECTED_DRY_RUN_PROOF = '729aa6b0b50fedc7d865a96e95b2356e4e12aa9ff43856847445072a911c3aa9';
-const EXPECTED_TARGET_ROWS = 8;
-const APPROVAL_TEXT = 'Approve real ENRICH-12C2-RESIDUAL-CATALOG-METADATA-RETRY apply only. Fingerprint: 3be12029a643045cd1a0904bbf366953fd58e122f14d5e3496735469ab17e897. Scope: 8 null-only card_prints catalog metadata updates from exact active TCGdex source mappings. Dry-run proof: 729aa6b0b50fedc7d865a96e95b2356e4e12aa9ff43856847445072a911c3aa9 == 729aa6b0b50fedc7d865a96e95b2356e4e12aa9ff43856847445072a911c3aa9. No non-null overwrites. No child writes. No identity writes. No external mapping writes. No species writes. No deletes. No merges. No migrations. No image writes. No global apply.';
+const EXPECTED_FINGERPRINT = 'f7ddec6bf8d35a3b91d32e31e4ef89a9bd00286d341890755ef5f45d9e7fec08';
+const EXPECTED_DRY_RUN_PROOF = '7019a141b7244681d5f4a9748d32415412cb09c86594467340aefef752901e47';
+const EXPECTED_TARGET_ROWS = 94;
+const APPROVAL_TEXT = 'Approve real ENRICH-12C2-RESIDUAL-CATALOG-METADATA-RETRY apply only. Fingerprint: f7ddec6bf8d35a3b91d32e31e4ef89a9bd00286d341890755ef5f45d9e7fec08. Scope: 94 null-only card_prints catalog metadata updates from exact active TCGdex source mappings. Dry-run proof: 7019a141b7244681d5f4a9748d32415412cb09c86594467340aefef752901e47 == 7019a141b7244681d5f4a9748d32415412cb09c86594467340aefef752901e47. No non-null overwrites. No child writes. No identity writes. No external mapping writes. No species writes. No deletes. No merges. No migrations. No image writes. No global apply.';
 
 function connectionString() {
   return process.env.SUPABASE_DB_URL

@@ -377,6 +377,14 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   box-shadow: none;
 }
 
+.gv-nav-link-secondary {
+  min-height: 2.05rem;
+  padding: 0.42rem 0.72rem;
+  color: var(--gv-text-tertiary);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
 .gv-showcase-hero {
   position: relative;
   overflow: hidden;
@@ -478,6 +486,11 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
     linear-gradient(180deg, rgba(247, 249, 253, 0.9) 0%, rgba(239, 244, 251, 0.78) 100%);
 }
 
+.gv-set-logo-wash {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.86) 38%, rgba(255, 255, 255, 0.82) 100%);
+}
+
 .gv-metadata-pill {
   display: inline-flex;
   align-items: center;
@@ -540,6 +553,10 @@ html.gv-dark .gv-nav-link-active {
   color: #93c5fd;
 }
 
+html.gv-dark .gv-nav-link-secondary {
+  color: #94a3b8;
+}
+
 html.gv-dark .gv-showcase-hero {
   background:
     linear-gradient(135deg, rgba(74, 144, 226, 0.12) 0%, rgba(15, 23, 42, 0.96) 46%, rgba(2, 6, 23, 0.9) 100%);
@@ -572,6 +589,11 @@ html.gv-dark .gv-visual-card-image {
   background:
     radial-gradient(circle at 50% 0%, rgba(51, 65, 85, 0.62), transparent 14rem),
     rgba(15, 23, 42, 0.78);
+}
+
+html.gv-dark .gv-set-logo-wash {
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.82) 40%, rgba(2, 6, 23, 0.78) 100%);
 }
 
 html.gv-dark .gv-metadata-pill {

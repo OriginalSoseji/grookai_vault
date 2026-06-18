@@ -1,0 +1,136 @@
+{
+  "generated_at": "2026-06-17T05:43:19.064Z",
+  "version": "piplup_burger_king_child_insert_real_apply_v1",
+  "package_id": "RETAILER-STAMP-04-PIPLUP-BURGER-KING-CHILD-INSERT",
+  "package_fingerprint_sha256": "3be011d0358463d682aaecbc4f77ffa2586d047d40f870cbbcad6443dd59891e",
+  "dry_run_proof_sha256": "5c09c29526cdb3da564ea35db34ed00785271113bc97a7ef29f231ebd7e8156e",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/retailer_stamp_active_finish_route_v1/piplup_burger_king_child_insert_guarded_dry_run_v1.json",
+  "migrations_created": false,
+  "global_apply_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target": {
+    "set_key": "dp5",
+    "card_number": "71",
+    "card_name": "Piplup",
+    "target_variant_key": "platinum_stamped_burger_king_2009",
+    "target_finish_key": "reverse",
+    "stamp_label": "Platinum Stamped Burger King 2009",
+    "target_parent_id": "2df55ec4-c010-4a01-b468-d1da7270e9d2",
+    "target_child_id": "69df0f74-07d7-4faf-b5de-a1779a33fc4b",
+    "evidence": [
+      {
+        "source_key": "bulbapedia_2009_burger_king_toys",
+        "source_kind": "human_readable_checklist",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+        "evidence_label": "Burger King 2009 checklist includes Piplup 71/100 and states paired cards are reverse holofoil Platinum-stamped TCG cards."
+      },
+      {
+        "source_key": "pricecharting_stamped_product",
+        "source_kind": "marketplace_checklist",
+        "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/piplup-stamped-71",
+        "evidence_label": "PriceCharting exact Piplup [Stamped] #71 product includes Burger King Platinum stamped reverse-holo sale labels."
+      },
+      {
+        "source_key": "pokumon_promo_database",
+        "source_kind": "collector_reference",
+        "source_url": "https://pokumon.com/card/burger-king-piplup-71-100-burger-king-special-print/",
+        "evidence_label": "Pokumon lists Burger King Piplup 71/100 as Reverse Holo Platinum stamp, Burger King Collection 2009."
+      }
+    ]
+  },
+  "execution": {
+    "apply_status": "piplup_burger_king_child_insert_applied",
+    "guard": {
+      "parent_count": 1,
+      "target_parent_match_count": 1,
+      "active_identity_count": 1,
+      "active_finish_count": 1,
+      "child_id_collision_count": 0,
+      "existing_target_finish_count": 0,
+      "forbidden_stamped_child_rows": 0
+    },
+    "proof": {
+      "package_id": "RETAILER-STAMP-04-PIPLUP-BURGER-KING-CHILD-INSERT",
+      "package_fingerprint": "3be011d0358463d682aaecbc4f77ffa2586d047d40f870cbbcad6443dd59891e",
+      "inserted_child_rows": 1,
+      "matching_target_finish_rows": 1,
+      "forbidden_stamped_child_rows": 0
+    },
+    "write_counts": {
+      "child_inserts": 1,
+      "parent_writes": 0,
+      "identity_writes": 0,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-17T05:43:18.327Z",
+      "rows": [
+        {
+          "row_type": "target_identity",
+          "row_id": "2ed97069-0f48-4f5e-b455-c84790b3e6c1",
+          "set_code": "dp5",
+          "number": "71",
+          "name": "Piplup",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "2730dec13f9beb77f8979aa4d85b1fdaa13a1ca4978afc70fcda327c952b6895"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "2df55ec4-c010-4a01-b468-d1da7270e9d2",
+          "set_code": "dp5",
+          "number": "71",
+          "name": "Piplup",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "81309c9d198d9739e029ee38aa55799824ae16a84f66673ec79d138c613f6356"
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-17T05:43:18.986Z",
+      "rows": [
+        {
+          "row_type": "target_child",
+          "row_id": "69df0f74-07d7-4faf-b5de-a1779a33fc4b",
+          "set_code": "dp5",
+          "number": "71",
+          "name": "Piplup",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2ed97069-0f48-4f5e-b455-c84790b3e6c1",
+          "set_code": "dp5",
+          "number": "71",
+          "name": "Piplup",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "2730dec13f9beb77f8979aa4d85b1fdaa13a1ca4978afc70fcda327c952b6895"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "2df55ec4-c010-4a01-b468-d1da7270e9d2",
+          "set_code": "dp5",
+          "number": "71",
+          "name": "Piplup",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "515ca70da5f8174cf13cc8eddf128bf70eba90af12f32c73a77cf49ca2c8093b"
+    },
+    "post_apply_verified": true
+  }
+}

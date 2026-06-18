@@ -52,16 +52,16 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath }: Publi
       {logoPath ? (
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.92)_0%,rgba(255,255,255,0.86)_38%,rgba(255,255,255,0.82)_100%)]"
+          className="gv-set-logo-wash pointer-events-none absolute inset-0"
         />
       ) : null}
 
       <div className="relative z-10 space-y-3">
         <div className="space-y-2">
           <p className="gv-eyebrow">{setInfo.code}</p>
-          <h2 className="text-xl font-semibold text-slate-950">{setInfo.name}</h2>
+          <h2 className="text-xl font-semibold text-slate-950 dark:text-slate-50">{setInfo.name}</h2>
         </div>
-        <p className="text-sm text-slate-600">
+        <p className="text-sm text-slate-600 dark:text-slate-400">
           {[
             typeof setInfo.release_year === "number" ? String(setInfo.release_year) : undefined,
             typeof setInfo.printed_total === "number" ? `${setInfo.printed_total} cards` : undefined,

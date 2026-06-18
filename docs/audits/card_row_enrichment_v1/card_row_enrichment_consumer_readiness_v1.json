@@ -1,6 +1,6 @@
 {
   "version": "CARD_ROW_ENRICHMENT_CONSUMER_READINESS_V1",
-  "generated_at": "2026-06-16T23:07:04.207Z",
+  "generated_at": "2026-06-18T02:56:08.138Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -11,10 +11,10 @@
     "image_confidence_contract": "docs/contracts/IMAGE_CONFIDENCE_CONTRACT_V1.md"
   },
   "row_universe": {
-    "english_physical_parent_rows": 22791,
-    "english_physical_child_printing_rows": 37651,
-    "english_physical_parent_gap_rows": 5208,
-    "english_physical_child_gap_rows": 12999
+    "english_physical_parent_rows": 22859,
+    "english_physical_child_printing_rows": 37620,
+    "english_physical_parent_gap_rows": 5192,
+    "english_physical_child_gap_rows": 13012
   },
   "core_display_readiness": {
     "parent_identity": {
@@ -159,5 +159,5 @@
     "Do not expose raw provenance payloads as public source links.",
     "Do not use external_ids payloads as active mappings."
   ],
-  "fingerprint_sha256": "02fa11e425135466ff26800f5d613ff636f27ba55bfc6d55dd87fe8c84427f23"
+  "fingerprint_sha256": "3789e80cdf5a75a65b48a3a80f8f9186c1bd50be900d406fca2c3c8ec1b7e1a2"
 }

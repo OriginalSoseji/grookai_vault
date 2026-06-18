@@ -36,6 +36,7 @@ import {
 import { useClientViewer } from "@/lib/auth/useClientViewer";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalTypes";
+import type { SmartSearchIntent } from "@/lib/search/smartSearchIntent";
 
 type ExploreRow = ExploreResultCard;
 type SortMode =
@@ -52,6 +53,23 @@ type ImageConfidenceFilter =
   | "representative"
   | "missing_variant_visual";
 type SearchResultIntent = "exact_version" | "identity" | "cameo" | "related";
+type AssistantBoundaryPreview = {
+  ok: boolean;
+  assistant_available?: boolean;
+  entitlement?: {
+    allowed: boolean;
+    reason: string;
+    tier: string;
+    dailyLimit: number;
+  };
+  safety?: {
+    model_call_performed: boolean;
+    db_writes_allowed: false;
+  };
+  notes?: string[];
+  error?: string;
+  message?: string;
+};
 
 const INITIAL_VISIBLE_RESULT_COUNT = 48;
 
@@ -76,6 +94,45 @@ const SEARCH_RESULT_INTENT_COPY: Record<
     description: "Additional ranked results that may still match the query.",
   },
 };
+
+const COLLECTOR_SEARCH_PRESETS = [
+  {
+    key: "reverse-pikachu-modern",
+    title: "Modern Pikachu reverse holos",
+    description: "Pikachu reverse holos from 2014 through today.",
+    query: "q=Pikachu&year_min=2014&year_max=2026&finish=reverse",
+  },
+  {
+    key: "missing-images",
+    title: "Missing image worklist",
+    description: "Cards that still need exact image attention.",
+    query: "image_state=missing",
+  },
+  {
+    key: "stamped-specials",
+    title: "Stamped special cards",
+    description: "Special stamped lanes for collector review.",
+    query: "identity=stamped",
+  },
+  {
+    key: "owned-reverse",
+    title: "My reverse holos",
+    description: "Reverse holo cards currently in your vault.",
+    query: "finish=reverse&owned=owned",
+  },
+  {
+    key: "vault-gaps-reverse",
+    title: "Reverse holo vault gaps",
+    description: "Reverse holo cards missing from your vault.",
+    query: "finish=reverse&owned=missing",
+  },
+  {
+    key: "exact-images",
+    title: "Exact image catalog",
+    description: "Cards with exact image confidence.",
+    query: "image_state=exact",
+  },
+];
 
 function isCameoLabel(value?: string | null) {
   const normalized = value?.trim().toLowerCase() ?? "";
@@ -194,6 +251,32 @@ function getImageConfidenceResultNoun(value: ImageConfidenceFilter) {
     : `${getImageConfidenceLabel(value).toLowerCase()} result`;
 }
 
+function formatFilterValue(value: string) {
+  return value
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function activeFilterSummary(params: { get(name: string): string | null }) {
+  const parts = [
+    params.get("q") ? `query ${params.get("q")}` : "",
+    params.get("set") ? `set ${params.get("set")}` : "",
+    params.get("year") ? `year ${params.get("year")}` : "",
+    params.get("year_min") || params.get("year_max")
+      ? `years ${params.get("year_min") ?? "any"} to ${params.get("year_max") ?? "now"}`
+      : "",
+    params.get("finish") ? `finish ${params.get("finish")}` : "",
+    params.get("stamp") ? `stamp ${params.get("stamp")}` : "",
+    params.get("owned") ? `ownership ${params.get("owned")}` : "",
+    params.get("image_state") ? `image ${params.get("image_state")}` : "",
+    params.get("illustrator") ? `artist ${params.get("illustrator")}` : "",
+  ].filter(Boolean);
+
+  return parts.join(", ");
+}
+
 function matchesImageConfidenceFilter(
   row: ExploreRow,
   filter: ImageConfidenceFilter,
@@ -295,6 +378,22 @@ export default function ExplorePageClient({
   const viewMode = parseViewMode(searchParams.get("view"));
   const sortMode = parseSortMode(searchParams.get("sort"));
   const imageConfidenceFilter = parseImageConfidenceFilter(searchParams.get("image"));
+  const smartYearMin = (searchParams.get("year_min") ?? "").trim();
+  const smartYearMax = (searchParams.get("year_max") ?? "").trim();
+  const smartFinish = (searchParams.get("finish") ?? "").trim();
+  const smartStamp = (searchParams.get("stamp") ?? "").trim();
+  const smartOwned = (searchParams.get("owned") ?? "").trim();
+  const smartImageState = (searchParams.get("image_state") ?? "").trim();
+  const smartIllustrator = (searchParams.get("illustrator") ?? "").trim();
+  const hasExplicitSmartFilters = Boolean(
+    smartYearMin ||
+      smartYearMax ||
+      smartFinish ||
+      smartStamp ||
+      smartOwned ||
+      smartImageState ||
+      smartIllustrator,
+  );
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const normalizedQuery = normalizeFreeTextQuery(q);
   const shouldServerFilterByIdentity =
@@ -308,10 +407,15 @@ export default function ExplorePageClient({
     !exactSetCode &&
     !exactReleaseYear &&
     !exactIllustrator &&
-    !isIdentityFilterActive(identityFilter);
+    !isIdentityFilterActive(identityFilter) &&
+    !hasExplicitSmartFilters;
   const [rows, setRows] = useState<ExploreRow[]>([]);
   const [provisionalRows, setProvisionalRows] = useState<PublicProvisionalCard[]>([]);
   const [resolverMeta, setResolverMeta] = useState<ResolverMeta | null>(null);
+  const [smartSearchIntent, setSmartSearchIntent] = useState<SmartSearchIntent | null>(null);
+  const [assistantPreview, setAssistantPreview] =
+    useState<AssistantBoundaryPreview | null>(null);
+  const [assistantPreviewLoading, setAssistantPreviewLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [visibleResultCount, setVisibleResultCount] = useState(
@@ -328,11 +432,13 @@ export default function ExplorePageClient({
         !exactSetCode &&
         !exactReleaseYear &&
         !exactIllustrator &&
-        !isIdentityFilterActive(identityFilter)
+        !isIdentityFilterActive(identityFilter) &&
+        !hasExplicitSmartFilters
       ) {
         setRows([]);
         setProvisionalRows([]);
         setResolverMeta(null);
+        setSmartSearchIntent(null);
         setError(null);
         setLoading(false);
         return;
@@ -364,6 +470,30 @@ export default function ExplorePageClient({
           params.set("illustrator", exactIllustrator);
         }
 
+        if (smartYearMin) {
+          params.set("year_min", smartYearMin);
+        }
+
+        if (smartYearMax) {
+          params.set("year_max", smartYearMax);
+        }
+
+        if (smartFinish) {
+          params.set("finish", smartFinish);
+        }
+
+        if (smartStamp) {
+          params.set("stamp", smartStamp);
+        }
+
+        if (smartOwned) {
+          params.set("owned", smartOwned);
+        }
+
+        if (smartImageState) {
+          params.set("image_state", smartImageState);
+        }
+
         if (shouldServerFilterByIdentity) {
           params.set("identity", identityFilter);
         }
@@ -382,6 +512,7 @@ export default function ExplorePageClient({
           canonical?: ExploreRow[];
           provisional?: PublicProvisionalCard[];
           meta?: ResolverMeta;
+          smart_search?: SmartSearchIntent;
         };
 
         if (!response.ok || !payload.ok) {
@@ -391,6 +522,8 @@ export default function ExplorePageClient({
         setRows(payload.canonical ?? payload.rows ?? []);
         setProvisionalRows(payload.provisional ?? []);
         setResolverMeta(payload.meta ?? null);
+        setSmartSearchIntent(payload.smart_search ?? null);
+        setAssistantPreview(null);
       } catch (searchError) {
         if (controller.signal.aborted) return;
         setError(
@@ -399,6 +532,8 @@ export default function ExplorePageClient({
         setRows([]);
         setProvisionalRows([]);
         setResolverMeta(null);
+        setSmartSearchIntent(null);
+        setAssistantPreview(null);
       } finally {
         if (!controller.signal.aborted) {
           setLoading(false);
@@ -418,6 +553,13 @@ export default function ExplorePageClient({
     exactSetCode,
     exactReleaseYear,
     exactIllustrator,
+    smartYearMin,
+    smartYearMax,
+    smartFinish,
+    smartStamp,
+    smartOwned,
+    smartImageState,
+    hasExplicitSmartFilters,
     identityFilter,
     shouldServerFilterByIdentity,
   ]);
@@ -430,6 +572,12 @@ export default function ExplorePageClient({
     exactSetCode,
     exactReleaseYear,
     exactIllustrator,
+    smartYearMin,
+    smartYearMax,
+    smartFinish,
+    smartStamp,
+    smartOwned,
+    smartImageState,
     identityFilter,
     imageConfidenceFilter,
   ]);
@@ -532,30 +680,328 @@ export default function ExplorePageClient({
   const resolverSummary = normalizedQuery
     ? getResolverSummary(resolverMeta)
     : null;
+  const interpretedLabels = smartSearchIntent?.interpretedLabels ?? [];
+  const unappliedLabels = smartSearchIntent?.unappliedLabels ?? [];
+  const residualQuery =
+    smartSearchIntent && smartSearchIntent.residualQuery && smartSearchIntent.residualQuery !== smartSearchIntent.originalQuery
+      ? smartSearchIntent.residualQuery
+      : "";
+  const assistantPrompt =
+    smartSearchIntent?.originalQuery ||
+    normalizedQuery ||
+    activeFilterSummary(searchParams);
+  const assistantPreviewMessage = assistantPreview
+    ? assistantPreview.ok
+      ? assistantPreview.assistant_available
+        ? "Assistant is available for this account. This preview still performed no model call."
+        : "Assistant is gated right now. Grookai Search still handled this deterministically."
+      : assistantPreview.message ?? "Assistant preview is unavailable."
+    : "";
+  const handleAssistantPreview = async () => {
+    const prompt = assistantPrompt.trim();
+    if (!prompt || assistantPreviewLoading) {
+      return;
+    }
+
+    setAssistantPreviewLoading(true);
+    setAssistantPreview(null);
+
+    try {
+      const response = await fetch("/api/assistant/search-interpretation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt,
+          mode: "search_interpretation",
+        }),
+      });
+      const payload = (await response.json()) as AssistantBoundaryPreview;
+      setAssistantPreview(payload);
+    } catch {
+      setAssistantPreview({
+        ok: false,
+        message: "Assistant preview could not be reached.",
+      });
+    } finally {
+      setAssistantPreviewLoading(false);
+    }
+  };
+  const buildSmartSearchRefinementHref = (mutate: (params: URLSearchParams) => void) => {
+    const params = new URLSearchParams(searchParams.toString());
+    mutate(params);
+    const queryString = params.toString();
+    return queryString ? `${pathname}?${queryString}` : pathname;
+  };
+  const residualOnlyHref = residualQuery
+    ? buildSmartSearchRefinementHref((params) => {
+        params.set("q", residualQuery);
+        params.delete("year");
+      })
+    : null;
+  const pinnedArtistHref = smartSearchIntent?.artist
+    ? buildSmartSearchRefinementHref((params) => {
+        if (residualQuery) {
+          params.set("q", residualQuery);
+        }
+        params.set("illustrator", smartSearchIntent.artist ?? "");
+      })
+    : null;
+  const pinnedImageHref =
+    smartSearchIntent?.imageState === "exact" ||
+    smartSearchIntent?.imageState === "representative" ||
+    smartSearchIntent?.imageState === "missing"
+      ? buildSmartSearchRefinementHref((params) => {
+          if (residualQuery) {
+            params.set("q", residualQuery);
+          }
+          params.set("image_state", smartSearchIntent.imageState ?? "");
+          if (smartSearchIntent.imageState === "exact") {
+            params.set("image", "exact");
+          } else if (smartSearchIntent.imageState === "representative") {
+            params.set("image", "representative");
+          } else if (smartSearchIntent.imageState === "missing") {
+            params.set("image", "missing_variant_visual");
+          }
+        })
+      : null;
+  const pinnedSmartFiltersHref =
+    smartSearchIntent && interpretedLabels.length > 0
+      ? buildSmartSearchRefinementHref((params) => {
+          if (residualQuery) {
+            params.set("q", residualQuery);
+          }
+          params.delete("year_min");
+          params.delete("year_max");
+          params.delete("finish");
+          params.delete("stamp");
+          params.delete("owned");
+          params.delete("image_state");
+
+          if (typeof smartSearchIntent.releaseYearMin === "number") {
+            params.set("year_min", String(smartSearchIntent.releaseYearMin));
+          }
+          if (typeof smartSearchIntent.releaseYearMax === "number") {
+            params.set("year_max", String(smartSearchIntent.releaseYearMax));
+          }
+          for (const finishKey of smartSearchIntent.finishKeys) {
+            params.append("finish", finishKey);
+          }
+          for (const stampLabel of smartSearchIntent.stampLabels) {
+            params.append("stamp", stampLabel);
+          }
+          if (smartSearchIntent.ownedState && smartSearchIntent.ownedState !== "any") {
+            params.set("owned", smartSearchIntent.ownedState);
+          }
+          if (smartSearchIntent.imageState && smartSearchIntent.imageState !== "any") {
+            params.set("image_state", smartSearchIntent.imageState);
+            if (smartSearchIntent.imageState === "exact") {
+              params.set("image", "exact");
+            } else if (smartSearchIntent.imageState === "representative") {
+              params.set("image", "representative");
+            } else if (smartSearchIntent.imageState === "missing") {
+              params.set("image", "missing_variant_visual");
+            }
+          }
+          if (smartSearchIntent.artist) {
+            params.set("illustrator", smartSearchIntent.artist);
+          }
+        })
+      : null;
+  const clearSmartFiltersHref = hasExplicitSmartFilters
+    ? buildSmartSearchRefinementHref((params) => {
+        params.delete("year_min");
+        params.delete("year_max");
+        params.delete("finish");
+        params.delete("stamp");
+        params.delete("owned");
+        params.delete("image_state");
+        params.delete("illustrator");
+      })
+    : null;
+  const buildRemoveFilterHref = (keys: string[]) =>
+    buildSmartSearchRefinementHref((params) => {
+      for (const key of keys) {
+        params.delete(key);
+      }
+    });
+  const activeFilterChips = [
+    normalizedQuery
+      ? {
+          key: "query",
+          label: "Search",
+          value: normalizedQuery,
+          href: buildRemoveFilterHref(["q"]),
+        }
+      : null,
+    exactSetCode
+      ? {
+          key: "set",
+          label: "Set",
+          value: exactSetCode.toUpperCase(),
+          href: buildRemoveFilterHref(["set"]),
+        }
+      : null,
+    typeof exactReleaseYear === "number"
+      ? {
+          key: "year",
+          label: "Year",
+          value: String(exactReleaseYear),
+          href: buildRemoveFilterHref(["year"]),
+        }
+      : null,
+    smartYearMin || smartYearMax
+      ? {
+          key: "year-range",
+          label: "Years",
+          value: `${smartYearMin || "Any"}-${smartYearMax || "Now"}`,
+          href: buildRemoveFilterHref(["year_min", "year_max"]),
+        }
+      : null,
+    smartFinish
+      ? {
+          key: "finish",
+          label: "Finish",
+          value: formatFilterValue(smartFinish),
+          href: buildRemoveFilterHref(["finish"]),
+        }
+      : null,
+    smartStamp
+      ? {
+          key: "stamp",
+          label: "Stamp",
+          value: smartStamp,
+          href: buildRemoveFilterHref(["stamp"]),
+        }
+      : null,
+    smartImageState
+      ? {
+          key: "image-state",
+          label: "Image truth",
+          value:
+            smartImageState === "missing"
+              ? "Missing or pending"
+              : formatFilterValue(smartImageState),
+          href: buildRemoveFilterHref(["image_state", "image"]),
+        }
+      : imageConfidenceFilter !== "all"
+        ? {
+            key: "image-confidence",
+            label: "Image",
+            value: getImageConfidenceLabel(imageConfidenceFilter),
+            href: buildRemoveFilterHref(["image"]),
+          }
+        : null,
+    smartOwned
+      ? {
+          key: "owned",
+          label: "Vault",
+          value: smartOwned === "owned" ? "In my vault" : "Missing from vault",
+          href: buildRemoveFilterHref(["owned"]),
+        }
+      : null,
+    smartIllustrator
+      ? {
+          key: "illustrator",
+          label: "Artist",
+          value: smartIllustrator,
+          href: buildRemoveFilterHref(["illustrator"]),
+        }
+      : null,
+    isIdentityFilterActive(identityFilter)
+      ? {
+          key: "identity",
+          label: "Identity",
+          value: getIdentityFilterLabel(identityFilter),
+          href: buildRemoveFilterHref(["identity"]),
+        }
+      : null,
+  ].filter(
+    (
+      chip,
+    ): chip is {
+      key: string;
+      label: string;
+      value: string;
+      href: string;
+    } => Boolean(chip),
+  );
+  const ownershipState =
+    smartSearchIntent?.ownedState && smartSearchIntent.ownedState !== "any"
+      ? smartSearchIntent.ownedState
+      : null;
+  const ownershipRequiresSignIn = unappliedLabels.includes(
+    "Vault ownership requires sign in",
+  );
+  const ownershipScopeCopy = ownershipRequiresSignIn
+    ? {
+        tone: "border-amber-200 bg-amber-50 text-amber-950 dark:border-amber-300/20 dark:bg-amber-400/[0.12] dark:text-amber-100",
+        label: "Vault filter paused",
+        title: "Sign in to search your vault",
+        body: "Ownership filters need your active vault inventory. The catalog filter is still safe, but owned and missing-from-vault matching cannot apply while signed out.",
+      }
+    : ownershipState === "owned"
+      ? {
+          tone: "border-emerald-200 bg-emerald-50 text-emerald-950 dark:border-emerald-300/20 dark:bg-emerald-400/[0.12] dark:text-emerald-100",
+          label: "Vault scope",
+          title: "Searching cards in your vault",
+          body: "Results are anchored to active raw and slab-backed cards in your Grookai Vault.",
+        }
+      : ownershipState === "missing"
+        ? {
+            tone: "border-sky-200 bg-sky-50 text-sky-950 dark:border-sky-300/20 dark:bg-sky-400/[0.12] dark:text-sky-100",
+            label: "Vault gap scope",
+            title: "Searching cards missing from your vault",
+            body: "Grookai is comparing this scoped catalog search against your active vault inventory.",
+          }
+        : null;
   const resultCountLabel =
     displayRows.length > 0
       ? visibleRows.length < displayRows.length
         ? `Showing ${visibleRows.length} of ${displayRows.length} ${getImageConfidenceResultNoun(imageConfidenceFilter)}s`
         : `${displayRows.length} ${getImageConfidenceResultNoun(imageConfidenceFilter)}${displayRows.length === 1 ? "" : "s"}`
       : "Results";
-  const emptyState = (
-    <div className="rounded-[20px] border border-slate-200 bg-white px-5 py-7 text-sm text-slate-600 shadow-sm">
-      <p className="gv-hi-card-identity text-base font-semibold text-slate-950">
-        {imageConfidenceFilter !== "all" && rows.length > 0
+  const emptyStateTitle = ownershipRequiresSignIn
+    ? "Sign in to search your vault"
+    : ownershipState === "owned" && viewer.isAuthenticated
+      ? "No owned cards match this search"
+      : ownershipState === "missing" && viewer.isAuthenticated
+        ? "No missing cards found for this scope"
+        : imageConfidenceFilter !== "all" && rows.length > 0
           ? `No ${getImageConfidenceLabel(imageConfidenceFilter).toLowerCase()} in these results`
           : resolverMeta?.resolverState === "NO_MATCH" && normalizedQuery
-          ? "No card match yet"
-          : isIdentityFilterActive(identityFilter)
-            ? `No ${getIdentityFilterLabel(identityFilter).toLowerCase()} cards found`
-            : "No results yet"}
-      </p>
-      <p className="mt-2 max-w-xl leading-6">
-        {imageConfidenceFilter !== "all" && rows.length > 0
+            ? "No card match yet"
+            : isIdentityFilterActive(identityFilter)
+              ? `No ${getIdentityFilterLabel(identityFilter).toLowerCase()} cards found`
+              : "No results yet";
+  const emptyStateBody = ownershipRequiresSignIn
+    ? "Sign in and run the same search again. Grookai will use your active vault inventory instead of guessing ownership."
+    : ownershipState === "owned" && viewer.isAuthenticated
+      ? "These filters are valid, but none of your active vault cards match them yet."
+      : ownershipState === "missing" && viewer.isAuthenticated
+        ? "Your vault already covers this scoped search, or the scoped catalog filter returned no eligible cards."
+        : imageConfidenceFilter !== "all" && rows.length > 0
           ? "The canonical cards still exist. This filter is only narrowing by current image confidence."
           : resolverMeta?.resolverState === "NO_MATCH" && normalizedQuery
-          ? `Nothing matched "${normalizedQuery}". Try a card name plus set code, collector number, finish, or cameo subject.`
-          : "Try a card name, set code, collector number, finish, trainer, or cameo subject."}
+            ? `Nothing matched "${normalizedQuery}". Try a card name plus set code, collector number, finish, or cameo subject.`
+            : "Try a card name, set code, collector number, finish, trainer, or cameo subject.";
+  const emptyState = (
+    <div className="rounded-[20px] border border-slate-200 bg-white px-5 py-7 text-sm text-slate-600 shadow-sm dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300">
+      <p className="gv-hi-card-identity text-base font-semibold text-slate-950 dark:text-slate-50">
+        {emptyStateTitle}
       </p>
+      <p className="mt-2 max-w-xl leading-6">
+        {emptyStateBody}
+      </p>
+      {ownershipRequiresSignIn ? (
+        <Link
+          href={pricingSignInHref}
+          className="mt-4 inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-white"
+        >
+          Sign in to apply vault filters
+        </Link>
+      ) : null}
       <div className="mt-4 flex flex-wrap gap-2">
         {["pikachu masterball", "sv8pt5 exeggutor pokeball", "GV-PK-ME03-033-RH", "cameo charizard"].map((suggestion) => (
           <Link
@@ -639,6 +1085,49 @@ export default function ExplorePageClient({
       </button>
     </div>
   ) : null;
+  const presetSearchStrip = (
+    <section className="gv-soft-surface px-4 py-4">
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+            Collector presets
+          </p>
+          <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
+            Fast entry points for common Grookai searches. Each preset is just a shareable Smart Search URL.
+          </p>
+        </div>
+        <Link
+          href={buildPathWithCompareCards(
+            "/explore",
+            "q=Build-A-Bear stamped cards",
+            compareCards,
+          )}
+          className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
+        >
+          Try sentence search
+        </Link>
+      </div>
+      <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+        {COLLECTOR_SEARCH_PRESETS.map((preset) => (
+          <Link
+            key={preset.key}
+            href={buildPathWithCompareCards("/explore", preset.query, compareCards)}
+            className="group rounded-[18px] border border-slate-200 bg-white p-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-950 dark:hover:border-slate-700"
+          >
+            <p className="text-sm font-semibold text-slate-950 dark:text-slate-50">
+              {preset.title}
+            </p>
+            <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">
+              {preset.description}
+            </p>
+            <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400 transition group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-200">
+              Open preset
+            </p>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
 
   return (
     <div
@@ -693,6 +1182,7 @@ export default function ExplorePageClient({
 
       {isDiscoveryMode ? (
         <>
+          {presetSearchStrip}
           {discoveryContent}
           <CompareTray
             cards={compareCards}
@@ -758,6 +1248,65 @@ export default function ExplorePageClient({
             </div>
           </div>
 
+          {activeFilterChips.length > 0 ? (
+            <div className="gv-soft-surface px-4 py-3">
+              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                    Active filters
+                  </p>
+                  <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+                    {activeFilterChips.length} active filter{activeFilterChips.length === 1 ? "" : "s"} narrowing {displayRows.length} result{displayRows.length === 1 ? "" : "s"}.
+                  </p>
+                </div>
+                {activeFilterChips.length > 1 ? (
+                  <Link
+                    href={buildSmartSearchRefinementHref((params) => {
+                      params.delete("q");
+                      params.delete("set");
+                      params.delete("year");
+                      params.delete("year_min");
+                      params.delete("year_max");
+                      params.delete("finish");
+                      params.delete("stamp");
+                      params.delete("owned");
+                      params.delete("image_state");
+                      params.delete("image");
+                      params.delete("illustrator");
+                      params.delete("identity");
+                    })}
+                    className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
+                  >
+                    Clear all
+                  </Link>
+                ) : null}
+              </div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {activeFilterChips.map((chip) => (
+                  <Link
+                    key={chip.key}
+                    href={chip.href}
+                    className="group inline-flex max-w-full items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:text-slate-50"
+                    aria-label={`Remove ${chip.label} filter`}
+                  >
+                    <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">
+                      {chip.label}
+                    </span>
+                    <span className="truncate font-semibold">{chip.value}</span>
+                    <span
+                      aria-hidden="true"
+                      className="rounded-full bg-slate-100 px-1.5 text-xs font-bold text-slate-500 transition group-hover:bg-slate-950 group-hover:text-white dark:bg-slate-800 dark:text-slate-300 dark:group-hover:bg-slate-100 dark:group-hover:text-slate-950"
+                    >
+                      x
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+          {presetSearchStrip}
+
           {visibleIdentityFilters.length > 1 ? (
             <div className="flex flex-wrap gap-2 rounded-[16px] border border-slate-200 bg-white px-4 py-3 shadow-sm">
               {visibleIdentityFilters.map((option) => {
@@ -799,6 +1348,308 @@ export default function ExplorePageClient({
               <p className="mt-1 text-slate-600">{resolverSummary.body}</p>
             </div>
           ) : null}
+
+          {interpretedLabels.length > 0 || residualQuery || unappliedLabels.length > 0 ? (
+            <div className="gv-soft-surface px-4 py-3">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="space-y-1">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                    Smart search interpretation
+                  </p>
+                  {residualQuery ? (
+                    <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                      Searching trusted catalog for <span className="text-slate-950 dark:text-slate-50">&quot;{residualQuery}&quot;</span>
+                    </p>
+                  ) : null}
+                </div>
+                {interpretedLabels.length > 0 ? (
+                  <div className="flex flex-wrap gap-2">
+                    {interpretedLabels.map((label) => (
+                      <span
+                        key={label}
+                        className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-sky-800 dark:border-sky-300/20 dark:bg-sky-400/[0.13] dark:text-sky-200"
+                      >
+                        {label}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+              {unappliedLabels.length > 0 ? (
+                <div className="mt-3 flex flex-wrap gap-2 border-t border-slate-200/70 pt-3 dark:border-slate-700/70">
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">
+                    Not applied
+                  </span>
+                  {unappliedLabels.map((label) => (
+                    <span
+                      key={label}
+                      className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-amber-800 dark:border-amber-300/20 dark:bg-amber-400/[0.13] dark:text-amber-200"
+                    >
+                      {label}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+              {residualOnlyHref || pinnedArtistHref || pinnedImageHref || pinnedSmartFiltersHref ? (
+                <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-slate-200/70 pt-3 dark:border-slate-700/70">
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">
+                    Refine
+                  </span>
+                  {pinnedSmartFiltersHref ? (
+                    <Link
+                      href={pinnedSmartFiltersHref}
+                      className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-emerald-800 transition hover:border-emerald-300 hover:text-emerald-950 dark:border-emerald-300/20 dark:bg-emerald-400/[0.13] dark:text-emerald-200"
+                    >
+                      Pin smart filters
+                    </Link>
+                  ) : null}
+                  {residualOnlyHref ? (
+                    <Link
+                      href={residualOnlyHref}
+                      className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:text-slate-50"
+                    >
+                      Search text only
+                    </Link>
+                  ) : null}
+                  {pinnedArtistHref ? (
+                    <Link
+                      href={pinnedArtistHref}
+                      className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:text-slate-50"
+                    >
+                      Pin artist filter
+                    </Link>
+                  ) : null}
+                  {pinnedImageHref ? (
+                    <Link
+                      href={pinnedImageHref}
+                      className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:text-slate-50"
+                    >
+                      Pin image filter
+                    </Link>
+                  ) : null}
+                </div>
+              ) : null}
+              {assistantPrompt ? (
+                <div className="mt-3 rounded-[16px] border border-violet-200/70 bg-violet-50/70 p-3 dark:border-violet-300/20 dark:bg-violet-400/[0.10]">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-700 dark:text-violet-200">
+                        Grookai Assistant
+                      </p>
+                      <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+                        Premium AI will explain variants, gaps, and collection strategy from Grookai data. Search results stay deterministic.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleAssistantPreview}
+                      disabled={assistantPreviewLoading}
+                      className="rounded-full border border-violet-300 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-violet-800 shadow-sm transition hover:border-violet-400 hover:text-violet-950 disabled:cursor-wait disabled:opacity-60 dark:border-violet-300/30 dark:bg-slate-950/60 dark:text-violet-100 dark:hover:text-white"
+                    >
+                      {assistantPreviewLoading ? "Checking..." : "Check access"}
+                    </button>
+                  </div>
+                  {assistantPreview ? (
+                    <div className="mt-3 border-t border-violet-200/70 pt-3 text-sm text-slate-700 dark:border-violet-300/20 dark:text-slate-300">
+                      <p className="font-medium text-slate-900 dark:text-slate-50">
+                        {assistantPreviewMessage}
+                      </p>
+                      {assistantPreview.entitlement ? (
+                        <p className="mt-1 text-xs uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+                          Tier: {formatFilterValue(assistantPreview.entitlement.tier)} / Reason:{" "}
+                          {formatFilterValue(assistantPreview.entitlement.reason)}
+                        </p>
+                      ) : null}
+                      {assistantPreview.safety ? (
+                        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                          Model call: {assistantPreview.safety.model_call_performed ? "yes" : "no"} / DB writes:{" "}
+                          {assistantPreview.safety.db_writes_allowed ? "yes" : "no"}
+                        </p>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+
+          {ownershipScopeCopy ? (
+            <div className={`rounded-[18px] border px-4 py-3 text-sm shadow-sm ${ownershipScopeCopy.tone}`}>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.18em] opacity-70">
+                    {ownershipScopeCopy.label}
+                  </p>
+                  <p className="mt-1 font-semibold">{ownershipScopeCopy.title}</p>
+                  <p className="mt-1 max-w-3xl leading-6 opacity-80">
+                    {ownershipScopeCopy.body}
+                  </p>
+                </div>
+                {ownershipRequiresSignIn ? (
+                  <Link
+                    href={pricingSignInHref}
+                    className="inline-flex shrink-0 justify-center rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-white"
+                  >
+                    Sign in
+                  </Link>
+                ) : null}
+              </div>
+            </div>
+          ) : null}
+
+          <details
+            open={hasExplicitSmartFilters}
+            className="gv-soft-surface group px-4 py-3"
+          >
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                  Smart filters
+                </p>
+                <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+                  Pin exact filters for year, finish, stamp, image confidence, ownership, and artist.
+                </p>
+              </div>
+              <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition group-open:bg-slate-950 group-open:text-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:group-open:bg-slate-100 dark:group-open:text-slate-950">
+                {hasExplicitSmartFilters ? "Editing" : "Open"}
+              </span>
+            </summary>
+            <form action={pathname} method="get" className="mt-4 space-y-4 border-t border-slate-200/70 pt-4 dark:border-slate-700/70">
+              {q ? <input type="hidden" name="q" value={q} /> : null}
+              {sortMode !== "relevance" ? <input type="hidden" name="sort" value={sortMode} /> : null}
+              {viewMode !== "thumb" ? <input type="hidden" name="view" value={viewMode} /> : null}
+              {compareCards.length > 0 ? (
+                <input type="hidden" name="cards" value={compareCards.join(",")} />
+              ) : null}
+              {exactSetCode ? <input type="hidden" name="set" value={exactSetCode} /> : null}
+              {typeof exactReleaseYear === "number" ? (
+                <input type="hidden" name="year" value={String(exactReleaseYear)} />
+              ) : null}
+              {isIdentityFilterActive(identityFilter) ? (
+                <input type="hidden" name="identity" value={identityFilter} />
+              ) : null}
+              {imageConfidenceFilter !== "all" ? (
+                <input type="hidden" name="image" value={imageConfidenceFilter} />
+              ) : null}
+
+              <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                <label className="space-y-1.5">
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+                    From year
+                  </span>
+                  <input
+                    name="year_min"
+                    defaultValue={smartYearMin}
+                    inputMode="numeric"
+                    pattern="[0-9]{4}"
+                    placeholder="2014"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-50 dark:focus:border-slate-500 dark:focus:ring-slate-700"
+                  />
+                </label>
+                <label className="space-y-1.5">
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+                    To year
+                  </span>
+                  <input
+                    name="year_max"
+                    defaultValue={smartYearMax}
+                    inputMode="numeric"
+                    pattern="[0-9]{4}"
+                    placeholder="2026"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-50 dark:focus:border-slate-500 dark:focus:ring-slate-700"
+                  />
+                </label>
+                <label className="space-y-1.5">
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+                    Finish
+                  </span>
+                  <select
+                    name="finish"
+                    defaultValue={smartFinish}
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-50 dark:focus:border-slate-500 dark:focus:ring-slate-700"
+                  >
+                    <option value="">Any finish</option>
+                    <option value="normal">Normal</option>
+                    <option value="holo">Holo</option>
+                    <option value="reverse">Reverse holo</option>
+                    <option value="cosmos">Cosmos holo</option>
+                    <option value="cracked_ice">Cracked ice</option>
+                    <option value="rocket_reverse">Rocket reverse</option>
+                    <option value="poke_ball_reverse">Poke Ball reverse</option>
+                    <option value="master_ball_reverse">Master Ball reverse</option>
+                  </select>
+                </label>
+                <label className="space-y-1.5">
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+                    Image truth
+                  </span>
+                  <select
+                    name="image_state"
+                    defaultValue={smartImageState}
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-50 dark:focus:border-slate-500 dark:focus:ring-slate-700"
+                  >
+                    <option value="">Any image</option>
+                    <option value="exact">Exact image</option>
+                    <option value="representative">Representative image</option>
+                    <option value="missing">Missing or pending image</option>
+                  </select>
+                </label>
+                <label className="space-y-1.5">
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+                    Vault
+                  </span>
+                  <select
+                    name="owned"
+                    defaultValue={smartOwned}
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-50 dark:focus:border-slate-500 dark:focus:ring-slate-700"
+                  >
+                    <option value="">Any ownership</option>
+                    <option value="owned">In my vault</option>
+                    <option value="missing">Missing from my vault</option>
+                  </select>
+                </label>
+                <label className="space-y-1.5">
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+                    Artist
+                  </span>
+                  <input
+                    name="illustrator"
+                    defaultValue={smartIllustrator}
+                    placeholder="Atsuko Nishida"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-50 dark:focus:border-slate-500 dark:focus:ring-slate-700"
+                  />
+                </label>
+                <label className="space-y-1.5 md:col-span-2 xl:col-span-3">
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+                    Stamp or special label
+                  </span>
+                  <input
+                    name="stamp"
+                    defaultValue={smartStamp}
+                    placeholder="Build-A-Bear Workshop Stamp"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-50 dark:focus:border-slate-500 dark:focus:ring-slate-700"
+                  />
+                </label>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="submit"
+                  className="rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-white"
+                >
+                  Apply smart filters
+                </button>
+                {clearSmartFiltersHref ? (
+                  <Link
+                    href={clearSmartFiltersHref}
+                    className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
+                  >
+                    Clear smart filters
+                  </Link>
+                ) : null}
+              </div>
+            </form>
+          </details>
 
           {loading && displayRows.length === 0 ? (
             loadingState

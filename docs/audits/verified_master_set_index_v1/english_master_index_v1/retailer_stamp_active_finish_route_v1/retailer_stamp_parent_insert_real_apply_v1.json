@@ -1,0 +1,1605 @@
+{
+  "generated_at": "2026-06-17T05:10:29.208Z",
+  "version": "retailer_stamp_parent_insert_real_apply_v1",
+  "package_id": "RETAILER-STAMP-02-PARENT-IDENTITY-INSERTS",
+  "package_fingerprint_sha256": "758040a7745516be0d173b7bed581ffd78b7f0c23ef7c0c4537f3cbe3fd76156",
+  "dry_run_proof_sha256": "ce4c07f9f938f7c99bf589458b2c5123c324765b3c300796389d15c267c791c5",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/retailer_stamp_active_finish_route_v1/retailer_stamp_parent_insert_guarded_dry_run_v1.json",
+  "migrations_created": false,
+  "global_apply_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "scope": {
+    "target_count": 14,
+    "excluded_blocked_base_parent_rows": 5,
+    "source_unique_active_finish_rows": 8,
+    "base_finish_aligned_rows": 6,
+    "by_set": {
+      "g1": 6,
+      "sm1": 3,
+      "bw10": 1,
+      "bw11": 1,
+      "bw5": 1,
+      "sm3": 1,
+      "sm4": 1
+    },
+    "by_finish": {
+      "holo": 7,
+      "normal": 6,
+      "cosmos": 1
+    },
+    "by_stamp_label": {
+      "Toys R Us Stamp": 8,
+      "Build-A-Bear Workshop Stamp": 6
+    },
+    "targets": [
+      {
+        "target_parent_id": "dffcea63-9ac5-4027-8316-c471695d9e0e",
+        "target_child_id": "f25bbb84-222c-4ad5-bcbd-4582a851fbd4",
+        "base_parent_id": "f90d929b-d8c8-417d-8aab-1f35ecad63d1",
+        "base_parent_gv_id": "GV-PK-PLB-14",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "bw10",
+        "card_number": "14",
+        "card_name": "Squirtle",
+        "target_finish_key": "normal",
+        "target_variant_key": "build_a_bear_workshop_stamp",
+        "target_printed_identity_modifier": "build_a_bear_workshop_stamp",
+        "stamp_label": "Build-A-Bear Workshop Stamp",
+        "evidence_urls": [
+          "https://pokecardvalues.co.uk/cards/squirtle-14-101-non-holo-build-a-bear-plasma-blast/bw10-14-2-18/",
+          "https://pokumon.com/card/build-a-bear-squirtle-14-101-build-a-bear-workshop-special-print/"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "f90d929b-d8c8-417d-8aab-1f35ecad63d1",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "build_a_bear_workshop_stamp",
+          "stamp_label": "Build-A-Bear Workshop Stamp",
+          "active_child_finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "pokecardvalues_stamped_finish",
+              "source_kind": "collector_reference",
+              "source_url": "https://pokecardvalues.co.uk/cards/squirtle-14-101-non-holo-build-a-bear-plasma-blast/bw10-14-2-18/",
+              "evidence_label": "Squirtle 14/101 Non-Holo Build-A-Bear"
+            },
+            {
+              "source_key": "pokumon_promo_database",
+              "source_kind": "collector_reference",
+              "source_url": "https://pokumon.com/card/build-a-bear-squirtle-14-101-build-a-bear-workshop-special-print/",
+              "evidence_label": "Build-A-Bear Squirtle special print, Non-holo"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "d4880277-c005-4d7a-a3b3-a72658ffd4a3",
+        "target_child_id": "38886807-33a0-434b-a386-93e9841d362f",
+        "base_parent_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+        "base_parent_gv_id": "GV-PK-LTR-17",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "bw11",
+        "card_number": "17",
+        "card_name": "Charmander",
+        "target_finish_key": "normal",
+        "target_variant_key": "build_a_bear_workshop_stamp",
+        "target_printed_identity_modifier": "build_a_bear_workshop_stamp",
+        "stamp_label": "Build-A-Bear Workshop Stamp",
+        "evidence_urls": [
+          "https://pokecardvalues.co.uk/cards/charmander-17-113-non-holo-build-a-bear-legendary-treasures/bw11-17-2-18/",
+          "https://www.pricecharting.com/game/pokemon-legendary-treasures/charmander-17"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "build_a_bear_workshop_stamp",
+          "stamp_label": "Build-A-Bear Workshop Stamp",
+          "active_child_finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "pokecardvalues_stamped_finish",
+              "source_kind": "collector_reference",
+              "source_url": "https://pokecardvalues.co.uk/cards/charmander-17-113-non-holo-build-a-bear-legendary-treasures/bw11-17-2-18/",
+              "evidence_label": "Charmander 17/113 Non-Holo Build-A-Bear"
+            },
+            {
+              "source_key": "pricecharting_listing_evidence",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-legendary-treasures/charmander-17",
+              "evidence_label": "PriceCharting listings include Charmander Build-A-Bear 17/113 under non-holo base card context"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "d32fed29-e055-4fc9-b1f4-0854aab67ec3",
+        "target_child_id": "c56c95bf-2394-4a21-a964-219b7e88aa4b",
+        "base_parent_id": "63f698b5-2db3-41a5-a56c-ce4fa98f5f78",
+        "base_parent_gv_id": "GV-PK-DEX-1",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "bw5",
+        "card_number": "1",
+        "card_name": "Bulbasaur",
+        "target_finish_key": "normal",
+        "target_variant_key": "build_a_bear_workshop_stamp",
+        "target_printed_identity_modifier": "build_a_bear_workshop_stamp",
+        "stamp_label": "Build-A-Bear Workshop Stamp",
+        "evidence_urls": [
+          "https://pokecardvalues.co.uk/cards/bulbasaur-1-108-non-holo-build-a-bear-dark-explorers/bw5-1-2-18/",
+          "https://bulbapedia.bulbagarden.net/wiki/Bulbasaur_(Dark_Explorers_1)"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "63f698b5-2db3-41a5-a56c-ce4fa98f5f78",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "build_a_bear_workshop_stamp",
+          "stamp_label": "Build-A-Bear Workshop Stamp",
+          "active_child_finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "pokecardvalues_stamped_finish",
+              "source_kind": "collector_reference",
+              "source_url": "https://pokecardvalues.co.uk/cards/bulbasaur-1-108-non-holo-build-a-bear-dark-explorers/bw5-1-2-18/",
+              "evidence_label": "Bulbasaur 1/108 Non-Holo Build-A-Bear"
+            },
+            {
+              "source_key": "bulbapedia_card_page_release_info",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Bulbasaur_(Dark_Explorers_1)",
+              "evidence_label": "Release information documents the Build-A-Bear stamped variant"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "a9a53cfc-3fbe-4c7c-ac75-3816d777954f",
+        "target_child_id": "2614e62b-0d51-4037-b876-aeef95b91ccc",
+        "base_parent_id": "14d43149-7879-4527-b129-66a9b40d0e24",
+        "base_parent_gv_id": "GV-PK-GEN-8",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "g1",
+        "card_number": "8",
+        "card_name": "Tangela",
+        "target_finish_key": "holo",
+        "target_variant_key": "toys_r_us_stamp",
+        "target_printed_identity_modifier": "toys_r_us_stamp",
+        "stamp_label": "Toys R Us Stamp",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+          "https://bulbapedia.bulbagarden.net/wiki/Toys_%22R%22_Us_Promotional_cards_%28TCG%29"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "14d43149-7879-4527-b129-66a9b40d0e24",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "toys_r_us_stamp",
+          "stamp_label": "Toys R Us Stamp",
+          "active_child_finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_set_list",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+              "evidence_label": "Generations additional cards list: Tangela 8/83 Holo \"Toys R Us\" stamp promo"
+            },
+            {
+              "source_key": "bulbapedia_toys_r_us_promos",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Toys_%22R%22_Us_Promotional_cards_%28TCG%29",
+              "evidence_label": "Toys R Us promotional card list includes Tangela 8/83"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "ffb8eac8-5aa2-4b8f-a3f2-bbc7014b5688",
+        "target_child_id": "a4e21814-bb5c-4b3f-b3f9-b1b39d84e1f1",
+        "base_parent_id": "35edb5a2-fa5d-4358-b1a8-7e3967f8ab2c",
+        "base_parent_gv_id": "GV-PK-GEN-22",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "g1",
+        "card_number": "22",
+        "card_name": "Magikarp",
+        "target_finish_key": "holo",
+        "target_variant_key": "toys_r_us_stamp",
+        "target_printed_identity_modifier": "toys_r_us_stamp",
+        "stamp_label": "Toys R Us Stamp",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+          "https://www.pricecharting.com/game/pokemon-generations/magikarp-toys-r-us-22"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "35edb5a2-fa5d-4358-b1a8-7e3967f8ab2c",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "toys_r_us_stamp",
+          "stamp_label": "Toys R Us Stamp",
+          "active_child_finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_set_list",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+              "evidence_label": "Generations additional cards list: Magikarp 22/83 Holo \"Toys R Us\" stamp promo"
+            },
+            {
+              "source_key": "pricecharting_csv_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-generations/magikarp-toys-r-us-22",
+              "evidence_label": "PriceCharting exact Toys R Us Magikarp product"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "508ede96-3342-40a5-af9c-0c1ad5b4ddc7",
+        "target_child_id": "30cae0f8-8eb3-47b1-b8f8-44287f9dbd9d",
+        "base_parent_id": "c698cb45-7196-4fa6-b1de-b943436be4da",
+        "base_parent_gv_id": "GV-PK-GEN-26",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "g1",
+        "card_number": "26",
+        "card_name": "Pikachu",
+        "target_finish_key": "holo",
+        "target_variant_key": "toys_r_us_stamp",
+        "target_printed_identity_modifier": "toys_r_us_stamp",
+        "stamp_label": "Toys R Us Stamp",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+          "https://www.pricecharting.com/game/pokemon-generations/pikachu-toys-r-us-26"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "c698cb45-7196-4fa6-b1de-b943436be4da",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "toys_r_us_stamp",
+          "stamp_label": "Toys R Us Stamp",
+          "active_child_finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_set_list",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+              "evidence_label": "Generations additional cards list: Pikachu 26/83 Holo \"Toys R Us\" stamp promo"
+            },
+            {
+              "source_key": "pricecharting_csv_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-generations/pikachu-toys-r-us-26",
+              "evidence_label": "PriceCharting exact Toys R Us Pikachu product"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "31652c3f-d4b0-44c2-8f73-853cbe9084b4",
+        "target_child_id": "85c4d4cc-df38-4a85-960a-e1f9fe2ad12f",
+        "base_parent_id": "3365d632-e982-4453-b230-65678c59d839",
+        "base_parent_gv_id": "GV-PK-GEN-32",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "g1",
+        "card_number": "32",
+        "card_name": "Slowpoke",
+        "target_finish_key": "holo",
+        "target_variant_key": "toys_r_us_stamp",
+        "target_printed_identity_modifier": "toys_r_us_stamp",
+        "stamp_label": "Toys R Us Stamp",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+          "https://www.pricecharting.com/game/pokemon-generations/slowpoke-toys-r-us-32"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "3365d632-e982-4453-b230-65678c59d839",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "toys_r_us_stamp",
+          "stamp_label": "Toys R Us Stamp",
+          "active_child_finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_set_list",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+              "evidence_label": "Generations additional cards list: Slowpoke 32/83 Holo \"Toys R Us\" stamp promo"
+            },
+            {
+              "source_key": "pricecharting_csv_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-generations/slowpoke-toys-r-us-32",
+              "evidence_label": "PriceCharting exact Toys R Us Slowpoke product"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "534f1a73-c9a6-4daf-b861-33fa6a76ba16",
+        "target_child_id": "cf9b4299-5107-48b8-8a56-a191e94f2c89",
+        "base_parent_id": "d4c94e77-ed35-4218-a910-4cfed68cc54f",
+        "base_parent_gv_id": "GV-PK-GEN-50",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "g1",
+        "card_number": "50",
+        "card_name": "Clefairy",
+        "target_finish_key": "holo",
+        "target_variant_key": "toys_r_us_stamp",
+        "target_printed_identity_modifier": "toys_r_us_stamp",
+        "stamp_label": "Toys R Us Stamp",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+          "https://www.pricecharting.com/game/pokemon-generations/clefairy-toys-r-us-50"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "d4c94e77-ed35-4218-a910-4cfed68cc54f",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "toys_r_us_stamp",
+          "stamp_label": "Toys R Us Stamp",
+          "active_child_finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_set_list",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+              "evidence_label": "Generations additional cards list: Clefairy 50/83 Holo \"Toys R Us\" stamp promo"
+            },
+            {
+              "source_key": "pricecharting_csv_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-generations/clefairy-toys-r-us-50",
+              "evidence_label": "PriceCharting exact Toys R Us Clefairy product"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "e3a83183-e1fe-44cf-becb-ce23ef191792",
+        "target_child_id": "21191691-b75c-4d91-99be-adc68b8997c0",
+        "base_parent_id": "b6cfae62-0d29-454b-91aa-1005460a5f36",
+        "base_parent_gv_id": "GV-PK-GEN-53",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "g1",
+        "card_number": "53",
+        "card_name": "Meowth",
+        "target_finish_key": "holo",
+        "target_variant_key": "toys_r_us_stamp",
+        "target_printed_identity_modifier": "toys_r_us_stamp",
+        "stamp_label": "Toys R Us Stamp",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+          "https://www.pricecharting.com/game/pokemon-generations/meowth-toys-r-us-53"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "b6cfae62-0d29-454b-91aa-1005460a5f36",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "toys_r_us_stamp",
+          "stamp_label": "Toys R Us Stamp",
+          "active_child_finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_set_list",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+              "evidence_label": "Generations additional cards list: Meowth 53/83 Holo \"Toys R Us\" stamp promo"
+            },
+            {
+              "source_key": "pricecharting_csv_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-generations/meowth-toys-r-us-53",
+              "evidence_label": "PriceCharting exact Toys R Us Meowth product"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "bc1d821c-4d8d-4a1e-920f-3c4bf2cf7623",
+        "target_child_id": "8e37c0f4-50be-4bc1-ac29-d2b77d89841a",
+        "base_parent_id": "ce877140-a4b5-4b99-844a-8bb957d9d7f8",
+        "base_parent_gv_id": "GV-PK-SUM-28",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "sm1",
+        "card_number": "28",
+        "card_name": "Psyduck",
+        "target_finish_key": "normal",
+        "target_variant_key": "build_a_bear_workshop_stamp",
+        "target_printed_identity_modifier": "build_a_bear_workshop_stamp",
+        "stamp_label": "Build-A-Bear Workshop Stamp",
+        "evidence_urls": [
+          "https://pokecardvalues.co.uk/cards/psyduck-28-149-non-holo-build-a-bear-sun-moon/sm1-28-2-18/",
+          "https://www.pricecharting.com/game/pokemon-sun-%26-moon/psyduck-build-a-bear-28"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "ce877140-a4b5-4b99-844a-8bb957d9d7f8",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "build_a_bear_workshop_stamp",
+          "stamp_label": "Build-A-Bear Workshop Stamp",
+          "active_child_finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "pokecardvalues_stamped_finish",
+              "source_kind": "collector_reference",
+              "source_url": "https://pokecardvalues.co.uk/cards/psyduck-28-149-non-holo-build-a-bear-sun-moon/sm1-28-2-18/",
+              "evidence_label": "Psyduck 28/149 Non-Holo Build-A-Bear"
+            },
+            {
+              "source_key": "pricecharting_csv_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-sun-%26-moon/psyduck-build-a-bear-28",
+              "evidence_label": "PriceCharting exact Build-A-Bear Psyduck product"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "1e961518-8c96-4cac-b658-8f8d7f86e9c1",
+        "target_child_id": "707e1160-f18b-41f5-9a6b-37a54bb977ee",
+        "base_parent_id": "69c5c655-7d4f-4314-9c4b-4acea0f28e65",
+        "base_parent_gv_id": "GV-PK-SUM-64",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "sm1",
+        "card_number": "64",
+        "card_name": "Cosmog",
+        "target_finish_key": "cosmos",
+        "target_variant_key": "toys_r_us_stamp",
+        "target_printed_identity_modifier": "toys_r_us_stamp",
+        "stamp_label": "Toys R Us Stamp",
+        "evidence_urls": [
+          "https://www.pricecharting.com/game/pokemon-promo/cosmog-toys-r-us-64",
+          "https://www.pokedata.io/card/Miscellaneous%2BPromos/Cosmog%2BToys%2BR%2BUs%2B64"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "69c5c655-7d4f-4314-9c4b-4acea0f28e65",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "toys_r_us_stamp",
+          "stamp_label": "Toys R Us Stamp",
+          "active_child_finish_key": "cosmos",
+          "evidence": [
+            {
+              "source_key": "pricecharting_stamped_active_finish",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-promo/cosmog-toys-r-us-64",
+              "evidence_label": "PriceCharting exact Toys R Us Cosmog product includes Cosmos Holo listing text"
+            },
+            {
+              "source_key": "pokedata_stamped_finish",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pokedata.io/card/Miscellaneous%2BPromos/Cosmog%2BToys%2BR%2BUs%2B64",
+              "evidence_label": "PokeDATA references Toys R Us Cosmog 64 with Cosmos Holo promo listing"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "f06be078-907c-42c3-8b33-2173333f06cd",
+        "target_child_id": "35e8dc3a-d50a-4b28-bd95-dfcc0961b0c3",
+        "base_parent_id": "0fc0c811-b335-4dd7-8df7-c970e58338e9",
+        "base_parent_gv_id": "GV-PK-SUM-90",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "sm1",
+        "card_number": "90",
+        "card_name": "Snubbull",
+        "target_finish_key": "normal",
+        "target_variant_key": "build_a_bear_workshop_stamp",
+        "target_printed_identity_modifier": "build_a_bear_workshop_stamp",
+        "stamp_label": "Build-A-Bear Workshop Stamp",
+        "evidence_urls": [
+          "https://pokecardvalues.co.uk/cards/snubbull-90-149-non-holo-build-a-bear-sun-moon/sm1-90-2-18/",
+          "https://www.pricecharting.com/game/pokemon-sun-%26-moon/snubbull-90"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "0fc0c811-b335-4dd7-8df7-c970e58338e9",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "build_a_bear_workshop_stamp",
+          "stamp_label": "Build-A-Bear Workshop Stamp",
+          "active_child_finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "pokecardvalues_stamped_finish",
+              "source_kind": "collector_reference",
+              "source_url": "https://pokecardvalues.co.uk/cards/snubbull-90-149-non-holo-build-a-bear-sun-moon/sm1-90-2-18/",
+              "evidence_label": "Snubbull 90/149 Non-Holo Build-A-Bear"
+            },
+            {
+              "source_key": "pricecharting_listing_evidence",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-sun-%26-moon/snubbull-90",
+              "evidence_label": "PriceCharting listings include Build-A-Bear Snubbull 90/149 under base non-holo context"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "5ccd6f56-0bb1-46e3-9162-b15d87751197",
+        "target_child_id": "bd433b47-ce67-4d55-82b8-45d42460837e",
+        "base_parent_id": "bec32fb2-c9cd-4369-8433-6d70b3b8b3de",
+        "base_parent_gv_id": "GV-PK-BUS-110",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "sm3",
+        "card_number": "110",
+        "card_name": "Stufful",
+        "target_finish_key": "holo",
+        "target_variant_key": "toys_r_us_stamp",
+        "target_printed_identity_modifier": "toys_r_us_stamp",
+        "stamp_label": "Toys R Us Stamp",
+        "evidence_urls": [
+          "https://www.pricecharting.com/game/pokemon-burning-shadows/stufful-toys-r-us-110",
+          "https://facetofacegames.com/products/stufful-110147-toys-r-us-promo-holo"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "bec32fb2-c9cd-4369-8433-6d70b3b8b3de",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "toys_r_us_stamp",
+          "stamp_label": "Toys R Us Stamp",
+          "active_child_finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "pricecharting_stamped_active_finish",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-burning-shadows/stufful-toys-r-us-110",
+              "evidence_label": "PriceCharting exact Toys R Us Stufful product includes Holo listing text"
+            },
+            {
+              "source_key": "facetofacegames_stamped_finish",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://facetofacegames.com/products/stufful-110147-toys-r-us-promo-holo",
+              "evidence_label": "Face to Face Games exact Toys R Us Stufful product title includes Holo"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "736faf44-80c4-4d0d-925c-b2a6cec9d148",
+        "target_child_id": "c55ca0b0-39e1-4b23-9b7d-fed1c4c31cd0",
+        "base_parent_id": "9608bbff-c551-48ee-916e-ad932d756870",
+        "base_parent_gv_id": "GV-PK-CIN-71",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "sm4",
+        "card_number": "71",
+        "card_name": "Jigglypuff",
+        "target_finish_key": "normal",
+        "target_variant_key": "build_a_bear_workshop_stamp",
+        "target_printed_identity_modifier": "build_a_bear_workshop_stamp",
+        "stamp_label": "Build-A-Bear Workshop Stamp",
+        "evidence_urls": [
+          "https://facetofacegames.com/products/jigglypuff-71111-build-a-bear-promo-non-holo",
+          "https://pokumon.com/card/build-a-bear-jigglypuff-71-111-build-a-bear-workshop-special-print/"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "05f56ca817071ac21e0b78dfdc63059ede8f6655ec707b33a401a215a159ce63",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "9608bbff-c551-48ee-916e-ad932d756870",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "build_a_bear_workshop_stamp",
+          "stamp_label": "Build-A-Bear Workshop Stamp",
+          "active_child_finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "facetofacegames_stamped_finish",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://facetofacegames.com/products/jigglypuff-71111-build-a-bear-promo-non-holo",
+              "evidence_label": "Jigglypuff 71/111 Build-a-Bear Promo Non-Holo"
+            },
+            {
+              "source_key": "pokumon_promo_database",
+              "source_kind": "collector_reference",
+              "source_url": "https://pokumon.com/card/build-a-bear-jigglypuff-71-111-build-a-bear-workshop-special-print/",
+              "evidence_label": "Build-A-Bear Jigglypuff special print, Non-holo"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "execution": {
+    "apply_status": "retailer_stamp_parent_insert_applied",
+    "guard": {
+      "target_count": 14,
+      "target_parent_count": 14,
+      "target_child_count": 14,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 8,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 14,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "RETAILER-STAMP-02-PARENT-IDENTITY-INSERTS",
+      "package_fingerprint": "758040a7745516be0d173b7bed581ffd78b7f0c23ef7c0c4537f3cbe3fd76156",
+      "target_rows": 14,
+      "inserted_parent_rows": 14,
+      "inserted_parent_modifier_rows": 14,
+      "inserted_identity_rows": 14,
+      "inserted_child_rows": 14,
+      "forbidden_stamped_child_rows": 0
+    },
+    "write_counts": {
+      "parent_inserts": 14,
+      "identity_inserts": 14,
+      "child_inserts": 14,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-17T05:10:28.096Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "f90d929b-d8c8-417d-8aab-1f35ecad63d1",
+          "set_code": "bw10",
+          "number": "14",
+          "number_plain": "14",
+          "name": "Squirtle",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+          "set_code": "bw11",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Charmander",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "63f698b5-2db3-41a5-a56c-ce4fa98f5f78",
+          "set_code": "bw5",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Bulbasaur",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "35edb5a2-fa5d-4358-b1a8-7e3967f8ab2c",
+          "set_code": "g1",
+          "number": "22",
+          "number_plain": "22",
+          "name": "Magikarp",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "c698cb45-7196-4fa6-b1de-b943436be4da",
+          "set_code": "g1",
+          "number": "26",
+          "number_plain": "26",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "3365d632-e982-4453-b230-65678c59d839",
+          "set_code": "g1",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Slowpoke",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d4c94e77-ed35-4218-a910-4cfed68cc54f",
+          "set_code": "g1",
+          "number": "50",
+          "number_plain": "50",
+          "name": "Clefairy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "b6cfae62-0d29-454b-91aa-1005460a5f36",
+          "set_code": "g1",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Meowth",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "14d43149-7879-4527-b129-66a9b40d0e24",
+          "set_code": "g1",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Tangela",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "ce877140-a4b5-4b99-844a-8bb957d9d7f8",
+          "set_code": "sm1",
+          "number": "28",
+          "number_plain": "28",
+          "name": "Psyduck",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "69c5c655-7d4f-4314-9c4b-4acea0f28e65",
+          "set_code": "sm1",
+          "number": "64",
+          "number_plain": "64",
+          "name": "Cosmog",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "0fc0c811-b335-4dd7-8df7-c970e58338e9",
+          "set_code": "sm1",
+          "number": "90",
+          "number_plain": "90",
+          "name": "Snubbull",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "bec32fb2-c9cd-4369-8433-6d70b3b8b3de",
+          "set_code": "sm3",
+          "number": "110",
+          "number_plain": "110",
+          "name": "Stufful",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "9608bbff-c551-48ee-916e-ad932d756870",
+          "set_code": "sm4",
+          "number": "71",
+          "number_plain": "71",
+          "name": "Jigglypuff",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "c289be527678890672120c45d44cea3400ce2a1b6635cb41a29a30b740480b48",
+      "counts": {
+        "base_parent": 14
+      }
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-17T05:10:29.121Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "f90d929b-d8c8-417d-8aab-1f35ecad63d1",
+          "set_code": "bw10",
+          "number": "14",
+          "number_plain": "14",
+          "name": "Squirtle",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+          "set_code": "bw11",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Charmander",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "63f698b5-2db3-41a5-a56c-ce4fa98f5f78",
+          "set_code": "bw5",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Bulbasaur",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "35edb5a2-fa5d-4358-b1a8-7e3967f8ab2c",
+          "set_code": "g1",
+          "number": "22",
+          "number_plain": "22",
+          "name": "Magikarp",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "c698cb45-7196-4fa6-b1de-b943436be4da",
+          "set_code": "g1",
+          "number": "26",
+          "number_plain": "26",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "3365d632-e982-4453-b230-65678c59d839",
+          "set_code": "g1",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Slowpoke",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "d4c94e77-ed35-4218-a910-4cfed68cc54f",
+          "set_code": "g1",
+          "number": "50",
+          "number_plain": "50",
+          "name": "Clefairy",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "b6cfae62-0d29-454b-91aa-1005460a5f36",
+          "set_code": "g1",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Meowth",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "14d43149-7879-4527-b129-66a9b40d0e24",
+          "set_code": "g1",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Tangela",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "ce877140-a4b5-4b99-844a-8bb957d9d7f8",
+          "set_code": "sm1",
+          "number": "28",
+          "number_plain": "28",
+          "name": "Psyduck",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "69c5c655-7d4f-4314-9c4b-4acea0f28e65",
+          "set_code": "sm1",
+          "number": "64",
+          "number_plain": "64",
+          "name": "Cosmog",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "0fc0c811-b335-4dd7-8df7-c970e58338e9",
+          "set_code": "sm1",
+          "number": "90",
+          "number_plain": "90",
+          "name": "Snubbull",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "bec32fb2-c9cd-4369-8433-6d70b3b8b3de",
+          "set_code": "sm3",
+          "number": "110",
+          "number_plain": "110",
+          "name": "Stufful",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "9608bbff-c551-48ee-916e-ad932d756870",
+          "set_code": "sm4",
+          "number": "71",
+          "number_plain": "71",
+          "name": "Jigglypuff",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "f25bbb84-222c-4ad5-bcbd-4582a851fbd4",
+          "set_code": "bw10",
+          "number": "14",
+          "number_plain": "14",
+          "name": "Squirtle",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "38886807-33a0-434b-a386-93e9841d362f",
+          "set_code": "bw11",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Charmander",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "c56c95bf-2394-4a21-a964-219b7e88aa4b",
+          "set_code": "bw5",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Bulbasaur",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "a4e21814-bb5c-4b3f-b3f9-b1b39d84e1f1",
+          "set_code": "g1",
+          "number": "22",
+          "number_plain": "22",
+          "name": "Magikarp",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "30cae0f8-8eb3-47b1-b8f8-44287f9dbd9d",
+          "set_code": "g1",
+          "number": "26",
+          "number_plain": "26",
+          "name": "Pikachu",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "85c4d4cc-df38-4a85-960a-e1f9fe2ad12f",
+          "set_code": "g1",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Slowpoke",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "cf9b4299-5107-48b8-8a56-a191e94f2c89",
+          "set_code": "g1",
+          "number": "50",
+          "number_plain": "50",
+          "name": "Clefairy",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "21191691-b75c-4d91-99be-adc68b8997c0",
+          "set_code": "g1",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Meowth",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "2614e62b-0d51-4037-b876-aeef95b91ccc",
+          "set_code": "g1",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Tangela",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "8e37c0f4-50be-4bc1-ac29-d2b77d89841a",
+          "set_code": "sm1",
+          "number": "28",
+          "number_plain": "28",
+          "name": "Psyduck",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "707e1160-f18b-41f5-9a6b-37a54bb977ee",
+          "set_code": "sm1",
+          "number": "64",
+          "number_plain": "64",
+          "name": "Cosmog",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": "cosmos",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "35e8dc3a-d50a-4b28-bd95-dfcc0961b0c3",
+          "set_code": "sm1",
+          "number": "90",
+          "number_plain": "90",
+          "name": "Snubbull",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "bd433b47-ce67-4d55-82b8-45d42460837e",
+          "set_code": "sm3",
+          "number": "110",
+          "number_plain": "110",
+          "name": "Stufful",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "c55ca0b0-39e1-4b23-9b7d-fed1c4c31cd0",
+          "set_code": "sm4",
+          "number": "71",
+          "number_plain": "71",
+          "name": "Jigglypuff",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "11a8c8c2-adcc-4758-a627-984e0f79bea0",
+          "set_code": "bw10",
+          "number": "14",
+          "number_plain": "14",
+          "name": "Squirtle",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": "744295be3d4a58381606859609872874101827c377675429f2f841019f4cd561"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "be834b72-e803-4879-9c9d-c5f4822ffa95",
+          "set_code": "bw11",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Charmander",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": "9bc89cacb0a106d4dbd3ad1886c2d3a940ff00801eac29edcbf024ba18602bdf"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "7ee9fc3b-1b69-4297-9eda-9c458aa62041",
+          "set_code": "bw5",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Bulbasaur",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": "de945291da002018b96c0f67f61a8dce6e0d9478a390fe370df960fd280b59b8"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "3659a091-15fb-4373-8682-916158a21c42",
+          "set_code": "g1",
+          "number": "22",
+          "number_plain": "22",
+          "name": "Magikarp",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": "6a56146aa580ff54747d0f72dd5aa7cff26f0969139af741d3e8055ded14fa7b"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "a6ff74a2-8c30-4a92-9790-166ac1aaba72",
+          "set_code": "g1",
+          "number": "26",
+          "number_plain": "26",
+          "name": "Pikachu",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": "2b78993c3204dcd7bb799e9c6d3ede80091d8464aefb68e25451d39c82f84f7f"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "70518363-f1a3-4c4a-b4be-81b31c9bef78",
+          "set_code": "g1",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Slowpoke",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": "f73f6f39432e6bc2e2c80846beb28ce997981022e49b18a56d01b47974a167fb"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "aa3acce5-e3aa-44c7-bb13-2fee4f211f76",
+          "set_code": "g1",
+          "number": "50",
+          "number_plain": "50",
+          "name": "Clefairy",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": "30481f03446d53ef034d86d6f822fdb6cb912e2c0638790a385615881ee1f851"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "9e7e1781-e0f6-4424-b5f9-df3dcc464516",
+          "set_code": "g1",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Meowth",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": "94bf465eee6c8e8f3003633d0ef071d523e4bac9a9d60afbee99cc1e77cbcdd4"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "e0f3f75c-fdfb-45e8-be09-4fb38753a02c",
+          "set_code": "g1",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Tangela",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": "9231e96f0524947fd1e71e8d7de9d3a6ee1b1454b8640c2da043973f4caa19ea"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "3d81e782-ad87-4cbd-8afb-1a583f3d16c9",
+          "set_code": "sm1",
+          "number": "28",
+          "number_plain": "28",
+          "name": "Psyduck",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": "6ccffcabe9f6b717505765d763ab22623131fcea79e3c07ed11e213c81321b30"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "e6619bf2-1867-4068-be05-ea13c7f39be5",
+          "set_code": "sm1",
+          "number": "64",
+          "number_plain": "64",
+          "name": "Cosmog",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": "714c21626ab682b4b680d268644efea88bf7fe44ac535207ec6d0d444a5d4625"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "d4c3efa7-1926-4c6c-b50f-4c2a4f9cf49f",
+          "set_code": "sm1",
+          "number": "90",
+          "number_plain": "90",
+          "name": "Snubbull",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": "124c4ff9d36c6be3e5169ed2067ac85e24b0d082bb858e92b4ec998f48c41b73"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "fb69f052-5494-4e14-95ee-238d7f88ab1e",
+          "set_code": "sm3",
+          "number": "110",
+          "number_plain": "110",
+          "name": "Stufful",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": "f7bf83db87f0cb6d9b9d8065c0f9fb4287dfb6f502360a50d9d97d9a6cdf7843"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "ce1c3d08-362d-4d36-995a-3b6bbad49924",
+          "set_code": "sm4",
+          "number": "71",
+          "number_plain": "71",
+          "name": "Jigglypuff",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": "e8b5da5fbb5d504221759de991c02e49839128312673f49619f2da8244918b10"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "dffcea63-9ac5-4027-8316-c471695d9e0e",
+          "set_code": "bw10",
+          "number": "14",
+          "number_plain": "14",
+          "name": "Squirtle",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d4880277-c005-4d7a-a3b3-a72658ffd4a3",
+          "set_code": "bw11",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Charmander",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d32fed29-e055-4fc9-b1f4-0854aab67ec3",
+          "set_code": "bw5",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Bulbasaur",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ffb8eac8-5aa2-4b8f-a3f2-bbc7014b5688",
+          "set_code": "g1",
+          "number": "22",
+          "number_plain": "22",
+          "name": "Magikarp",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "508ede96-3342-40a5-af9c-0c1ad5b4ddc7",
+          "set_code": "g1",
+          "number": "26",
+          "number_plain": "26",
+          "name": "Pikachu",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "31652c3f-d4b0-44c2-8f73-853cbe9084b4",
+          "set_code": "g1",
+          "number": "32",
+          "number_plain": "32",
+          "name": "Slowpoke",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "534f1a73-c9a6-4daf-b861-33fa6a76ba16",
+          "set_code": "g1",
+          "number": "50",
+          "number_plain": "50",
+          "name": "Clefairy",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "e3a83183-e1fe-44cf-becb-ce23ef191792",
+          "set_code": "g1",
+          "number": "53",
+          "number_plain": "53",
+          "name": "Meowth",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "a9a53cfc-3fbe-4c7c-ac75-3816d777954f",
+          "set_code": "g1",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Tangela",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "bc1d821c-4d8d-4a1e-920f-3c4bf2cf7623",
+          "set_code": "sm1",
+          "number": "28",
+          "number_plain": "28",
+          "name": "Psyduck",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "1e961518-8c96-4cac-b658-8f8d7f86e9c1",
+          "set_code": "sm1",
+          "number": "64",
+          "number_plain": "64",
+          "name": "Cosmog",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "f06be078-907c-42c3-8b33-2173333f06cd",
+          "set_code": "sm1",
+          "number": "90",
+          "number_plain": "90",
+          "name": "Snubbull",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "5ccd6f56-0bb1-46e3-9162-b15d87751197",
+          "set_code": "sm3",
+          "number": "110",
+          "number_plain": "110",
+          "name": "Stufful",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "736faf44-80c4-4d0d-925c-b2a6cec9d148",
+          "set_code": "sm4",
+          "number": "71",
+          "number_plain": "71",
+          "name": "Jigglypuff",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "55c88e7097a2051ef231253d936b2b767d9e7382ab67c6f40a67565d3393e833",
+      "counts": {
+        "base_parent": 14,
+        "target_child": 14,
+        "target_identity": 14,
+        "target_parent": 14
+      }
+    },
+    "post_apply_verified": true
+  }
+}

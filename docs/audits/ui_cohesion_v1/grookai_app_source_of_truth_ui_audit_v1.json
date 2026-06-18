@@ -1,0 +1,84 @@
+{
+  "audit_key": "grookai_app_source_of_truth_ui_audit_v1",
+  "date": "2026-06-17",
+  "status": "audit_only",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "ui_implementation_changes": false,
+  "source_of_truth": {
+    "product": "actual_flutter_app",
+    "primary_navigation": ["Search", "Feed", "Scan", "Wall", "Vault"],
+    "design_principles": [
+      "behavior_first_navigation",
+      "compact_premium_surfaces",
+      "static_card_imagery",
+      "collector_progress_first",
+      "quiet_metadata",
+      "shared_surface_language"
+    ]
+  },
+  "files_reviewed": {
+    "app": [
+      "lib/main.dart",
+      "lib/main_shell.dart",
+      "lib/widgets/card_surface_artwork.dart",
+      "lib/widgets/card_surface_price.dart",
+      "lib/widgets/card_view_mode.dart",
+      "lib/screens/dex/grookai_dex_screen.dart",
+      "lib/screens/sets/public_sets_screen.dart",
+      "lib/card_detail_screen.dart"
+    ],
+    "web": [
+      "apps/web/src/app/globals.css",
+      "apps/web/src/styles/designTokens.ts",
+      "apps/web/src/components/layout/SiteHeader.tsx",
+      "apps/web/src/components/layout/MobileBottomNav.tsx",
+      "apps/web/src/components/cards/PokemonCardGridTile.tsx",
+      "apps/web/src/components/explore/ExploreCardGridItem.tsx",
+      "apps/web/src/app/card/[gv_id]/page.tsx",
+      "apps/web/src/app/dex/page.tsx",
+      "apps/web/src/app/sets/page.tsx",
+      "apps/web/src/app/vault/page.tsx",
+      "apps/web/src/features/vault/components/VaultCollectionView.tsx"
+    ]
+  },
+  "high_priority_mismatches": [
+    {
+      "area": "mobile_navigation",
+      "current_web": ["Search", "Feed", "Wall", "Vault", "Profile"],
+      "actual_app": ["Search", "Feed", "Scan", "Wall", "Vault"],
+      "recommendation": "Move Profile out of primary bottom navigation and add Scan as the center primary action."
+    },
+    {
+      "area": "dex_landing",
+      "current_issue": "Web Dex is table-like and does not match the app's progress-first species-card model.",
+      "recommendation": "Redesign Dex landing with app-style progress hero and species tiles."
+    },
+    {
+      "area": "sets_landing",
+      "current_issue": "Web Sets page feels like a generic directory rather than the app discovery surface.",
+      "recommendation": "Rebuild Sets around app-style discovery, filters, and set tiles."
+    },
+    {
+      "area": "search_cards",
+      "current_issue": "Diagnostic identity details are too visually prominent for the normal collector flow.",
+      "recommendation": "Keep diagnostics available but make image, card name, set, finish, value, and ownership primary."
+    },
+    {
+      "area": "dark_mode",
+      "current_issue": "Dark mode relies on broad overrides and can produce inconsistent surfaces.",
+      "recommendation": "Move pages to shared tokenized surface primitives."
+    }
+  ],
+  "recommended_phases": [
+    "web_shell_parity",
+    "shared_visual_primitives",
+    "dex_landing_redesign",
+    "sets_landing_redesign",
+    "search_card_grid_polish",
+    "vault_visual_alignment",
+    "card_detail_final_pass",
+    "cohesion_qa"
+  ],
+  "recommended_next_step": "Implement web shell parity and shared visual primitives before redesigning individual pages."
+}

@@ -14,7 +14,7 @@ import {
 } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
-import { getSearchContextBadgeTone, getSearchContextClassName } from "@/components/explore/searchContextPresentation";
+import { getSearchContextBadgeTone } from "@/components/explore/searchContextPresentation";
 
 type ExploreCardDetailsRowProps = {
   card: ExploreResultCard;
@@ -23,6 +23,14 @@ type ExploreCardDetailsRowProps = {
   signInHref?: string;
   matchReason?: string;
 };
+
+function getPrimaryFinishLabel(card: ExploreResultCard) {
+  return card.finish_label?.trim() || card.display_discriminator?.trim() || "";
+}
+
+function getDiagnosticId(card: ExploreResultCard) {
+  return card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`;
+}
 
 export default function ExploreCardDetailsRow({ card, href, canViewPricing, signInHref, matchReason }: ExploreCardDetailsRowProps) {
   const displayIdentity = resolveDisplayIdentity(card);
@@ -34,9 +42,10 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
   const variantLabels = getVariantLabels(card, 3);
   const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
+  const primaryFinishLabel = getPrimaryFinishLabel(card);
 
   return (
-    <tr className="border-b border-slate-100 last:border-b-0">
+    <tr className="border-b border-slate-100 last:border-b-0 dark:border-slate-800/80">
       <td className="px-4 py-3">
         <div className="flex min-w-0 items-center gap-3">
           <PublicCardImage
@@ -47,19 +56,22 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
             fallbackClassName="flex h-14 w-10 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
           />
           <div className="min-w-0">
-            <Link href={href} className="block text-sm font-semibold text-slate-900 hover:underline">
+            <Link href={href} className="block text-sm font-semibold text-slate-900 hover:underline dark:text-slate-100">
               <span className="gv-hi-card-identity block truncate">{displayIdentity.base_name}</span>
               {identitySubtitle ? (
                 <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
               ) : null}
-              {searchDiscriminator ? (
-                <span className={getSearchContextClassName(searchDiscriminator)}>{searchDiscriminator}</span>
-              ) : null}
-              {matchReason ? (
-                <span className="gv-hi-search-context block truncate text-[11px] font-medium text-slate-500">{matchReason}</span>
-              ) : null}
             </Link>
-            <p className="gv-hi-diagnostics truncate text-[11px] tracking-[0.08em]">{card.printing_gv_id ?? card.gv_id}</p>
+            <details className="mt-1">
+              <summary className="cursor-pointer list-none text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400 transition hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300">
+                Identity
+              </summary>
+              <div className="mt-1 space-y-1 text-[11px] text-slate-500 dark:text-slate-400">
+                <p className="truncate">{getDiagnosticId(card)}</p>
+                {matchReason ? <p className="truncate">{matchReason}</p> : null}
+                {searchDiscriminator ? <p className="truncate">{searchDiscriminator}</p> : null}
+              </div>
+            </details>
             <PromotionTransitionNote state={card.promotion_transition} className="mt-1" />
             {imagePresentation.compactBadgeLabel ? (
               <div className="mt-1">
@@ -72,12 +84,15 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
           </div>
         </div>
       </td>
-      <td className="px-4 py-3 text-sm text-slate-700">{setLabel}</td>
-      <td className="px-4 py-3 text-sm text-slate-700">{card.number ? `#${card.number}` : "—"}</td>
-      <td className="px-4 py-3 text-sm text-slate-700">{card.rarity ?? "—"}</td>
+      <td className="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{setLabel}</td>
+      <td className="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{card.number ? `#${card.number}` : "—"}</td>
+      <td className="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{card.rarity ?? "—"}</td>
       <td className="px-4 py-3">
-        {variantLabels.length > 0 || searchDiscriminator ? (
+        {primaryFinishLabel || variantLabels.length > 0 || searchDiscriminator ? (
           <div className="flex flex-wrap gap-1.5">
+            {primaryFinishLabel ? (
+              <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
+            ) : null}
             {variantLabels.map((label) => (
               <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
             ))}

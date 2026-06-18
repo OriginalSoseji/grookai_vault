@@ -1,0 +1,93 @@
+{
+  "version": "CARD_ROW_ENRICHMENT_GOVERNANCE_BOUNDARY_CHECKPOINT_V1",
+  "generated_at": "2026-06-18",
+  "purpose": "Records the point where deterministic card row enrichment writes are closed and remaining work is governance, source-adjudication, or deferred image work.",
+  "latest_completed_packages": [
+    {
+      "package_id": "ENRICH-06C2-SOURCE-MAPPED-ACTIVE-FINISH-CHILD-PRINTING-INSERT",
+      "scope": "13 child card_printing inserts across 10 source-mapped childless parents",
+      "finishes": {
+        "holo": 7,
+        "normal": 3,
+        "reverse": 3
+      },
+      "forbidden_work_performed": false
+    },
+    {
+      "package_id": "ENRICH-02-CHILD-PRINTING-GV-ID-BACKFILL",
+      "fingerprint": "614fae5abc35f86d15158069d92a79d80d5a93c24a1368d3381e8e8643564f3c",
+      "dry_run_proof": "45c75b6e2eb5304bbbdfa70fc5ba43480cee805c49440b0d91f911b6a91f8e34",
+      "updated_rows": 13,
+      "writes": [
+        "card_printings.printing_gv_id"
+      ],
+      "forbidden_work_performed": false
+    }
+  ],
+  "deterministic_closure": {
+    "english_physical_parent_rows": 22859,
+    "parent_gv_id_candidates": 0,
+    "child_printing_gv_id_candidates": 0,
+    "active_identity_candidates": 0,
+    "core_identity_gap_rows": 0
+  },
+  "remaining_lanes": {
+    "external_mapping_gap_rows": 743,
+    "no_child_printing_parent_rows": 1067,
+    "trait_gaps": 899,
+    "species_gaps": 3741,
+    "catalog_metadata_gaps": 45
+  },
+  "external_mapping_boundary": {
+    "payload_source_mentions": 808,
+    "distinct_parent_rows": 704,
+    "write_ready_source_mentions": 0,
+    "write_ready_parent_rows": 0,
+    "blocked_source_mentions": 808,
+    "blocked_unknown_or_non_direct_source_key": 690,
+    "blocked_existing_source_external_collision": 118,
+    "decision": "Do not convert external_ids payloads into active external_mappings without source-specific proof."
+  },
+  "alias_sidecar_finding": {
+    "current_duplicate_mapping_debt_blocked": true,
+    "projected_justtcg_alias_rows_if_schema_lane_is_opened": 214,
+    "requires_migration_decision": true
+  },
+  "no_child_parent_boundary": {
+    "total_no_child_parent_rows": 1067,
+    "dependency_bearing_childless_parent_manual_review": 633,
+    "mapping_transfer_or_duplicate_resolution_required": 433,
+    "vault_referenced_childless_parent_manual_review": 1,
+    "zero_dependency_ready_rows": 0
+  },
+  "consumer_readiness": {
+    "public_card_identity": "ready",
+    "printing_selector": "ready",
+    "image_display": "ready_with_labeling_guardrails",
+    "catalog_metadata": "ready_with_labeling_guardrails",
+    "species_and_traits": "ready_with_labeling_guardrails",
+    "external_source_links": "admin_only_or_hidden",
+    "public_provenance": "not_public_ready"
+  },
+  "guardrails": [
+    "Do not insert external mappings from payloads without source-specific proof.",
+    "Do not treat Master Index provenance payloads as active source mappings.",
+    "Do not delete no-child parents without dependency-transfer or duplicate-resolution proof.",
+    "Do not infer species, traits, or metadata from weak sibling/source assumptions.",
+    "Do not label representative images as exact.",
+    "Do not create migrations unless explicitly entering the alias sidecar schema lane."
+  ],
+  "verification": {
+    "contract_scope_test": "passed",
+    "git_diff_check": "passed",
+    "migrations_status": "clean",
+    "preflight": "PASS_WITH_DEFERRED_DEBT",
+    "critical_failures": 0
+  },
+  "resume_guidance": [
+    "Website/app consumption can proceed against stable identity and printing truth.",
+    "External mapping alias sidecar requires a separate schema decision.",
+    "No-child parent work should continue as governance planning, not blind writes.",
+    "Image Truth remains a separate deferred lane."
+  ]
+}

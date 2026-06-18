@@ -379,7 +379,7 @@ export async function getCardStreamRows({
   excludeUserId = null,
   limit = 60,
 }: GetCardStreamRowsOptions = {}): Promise<CardStreamRow[]> {
-  const client = createPublicServerClient();
+  const client = createServerAdminClient();
   const normalizedIntent = normalizeDiscoverableVaultIntent(intent);
   const normalizedCardPrintId = normalizeOptionalText(cardPrintId);
   const normalizedExcludeUserId = normalizeOptionalText(excludeUserId);

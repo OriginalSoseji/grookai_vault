@@ -7,7 +7,7 @@ type MobileBottomNavProps = {
   wallHref: string | null;
 };
 
-type MobileNavKey = "search" | "feed" | "wall" | "vault" | "profile";
+type MobileNavKey = "search" | "feed" | "scan" | "wall" | "vault";
 
 type MobileNavItem = {
   key: MobileNavKey;
@@ -41,6 +41,10 @@ function getActiveMobileNavKey(pathname: string): MobileNavKey | null {
     return "feed";
   }
 
+  if (pathname === "/vault/import" || pathname.startsWith("/vault/import/")) {
+    return "scan";
+  }
+
   if (pathname === "/wall" || pathname.startsWith("/wall/") || pathname.startsWith("/u/")) {
     return "wall";
   }
@@ -49,15 +53,14 @@ function getActiveMobileNavKey(pathname: string): MobileNavKey | null {
     return "vault";
   }
 
-  if (pathname === "/account" || pathname.startsWith("/account/")) {
-    return "profile";
-  }
-
   return null;
 }
 
 function NavIcon({ name, active }: { name: MobileNavKey; active: boolean }) {
-  const className = `h-[18px] w-[18px] ${active ? "text-sky-600" : "text-slate-500"}`;
+  const className =
+    name === "scan"
+      ? "h-[18px] w-[18px] text-white dark:text-slate-950"
+      : `h-[18px] w-[18px] ${active ? "text-sky-600" : "text-slate-500"}`;
 
   switch (name) {
     case "vault":
@@ -84,19 +87,25 @@ function NavIcon({ name, active }: { name: MobileNavKey; active: boolean }) {
           <circle cx="18" cy="17" r="2" />
         </svg>
       );
+    case "scan":
+      return (
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M7 3.75H5.75a2 2 0 0 0-2 2V7" />
+          <path d="M17 3.75h1.25a2 2 0 0 1 2 2V7" />
+          <path d="M7 20.25H5.75a2 2 0 0 1-2-2V17" />
+          <path d="M17 20.25h1.25a2 2 0 0 0 2-2V17" />
+          <path d="M7.75 9.5h8.5" />
+          <path d="M7.75 14.5h8.5" />
+          <path d="M9.5 7.75h5" />
+          <path d="M9.5 16.25h5" />
+        </svg>
+      );
     case "wall":
       return (
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <rect x="4" y="4.5" width="16" height="15" rx="3" />
           <path d="M8 15.25c1.2-1.6 2.2-2.4 3-2.4.9 0 1.5.5 2.25 1.2.7.64 1.14.95 1.75.95.8 0 1.55-.55 2.5-1.75" />
           <circle cx="9.25" cy="9.25" r="1.25" />
-        </svg>
-      );
-    case "profile":
-      return (
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="8" r="3.25" />
-          <path d="M5 19.25c1.55-2.9 4.1-4.25 7-4.25s5.45 1.35 7 4.25" />
         </svg>
       );
   }
@@ -112,17 +121,31 @@ function MobileBottomNavLink({
   const content = (
     <>
       <NavIcon name={item.key} active={active} />
-      <span className={`text-[10px] font-medium ${active ? "text-sky-600" : "text-slate-500"}`}>{item.label}</span>
+      <span
+        className={`text-[10px] font-medium ${
+          item.key === "scan"
+            ? "text-white dark:text-slate-950"
+            : active
+              ? "text-sky-600"
+              : "text-slate-500"
+        }`}
+      >
+        {item.label}
+      </span>
     </>
   );
 
-  const className = `flex min-h-[50px] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-[0.95rem] px-2 py-1.5 transition ${
+  const isScan = item.key === "scan";
+  const className = `flex min-w-0 flex-1 flex-col items-center justify-center gap-0.5 transition ${
+    isScan
+      ? `min-h-[56px] rounded-[18px] px-2 py-1.5 ${active ? "bg-sky-500 text-white shadow-[0_16px_34px_-24px_rgba(14,165,233,0.9)]" : "bg-slate-950 text-white shadow-[0_16px_34px_-24px_rgba(15,23,42,0.7)] hover:bg-slate-800 dark:bg-sky-400 dark:text-slate-950 dark:hover:bg-sky-300"}`
+      : `min-h-[50px] rounded-[0.95rem] px-2 py-1.5 ${
     active
       ? "bg-sky-500/[0.09] ring-1 ring-sky-200/70 dark:bg-sky-400/[0.14] dark:ring-sky-300/20"
       : item.href
         ? "hover:bg-slate-100/80 dark:hover:bg-slate-800/80"
         : "opacity-45"
-  }`;
+  }`}`;
 
   if (!item.href) {
     return (
@@ -148,9 +171,9 @@ export function MobileBottomNav({ wallHref }: MobileBottomNavProps) {
   const items: MobileNavItem[] = [
     { key: "search", label: "Search", href: "/explore" },
     { key: "feed", label: "Feed", href: "/network" },
+    { key: "scan", label: "Scan", href: "/vault/import" },
     { key: "wall", label: "Wall", href: currentWallHref },
     { key: "vault", label: "Vault", href: "/vault" },
-    { key: "profile", label: "Profile", href: "/account" },
   ];
 
   return (

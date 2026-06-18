@@ -14,7 +14,7 @@ import {
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
-import { getSearchContextBadgeTone, getSearchContextClassName } from "@/components/explore/searchContextPresentation";
+import { getSearchContextBadgeTone } from "@/components/explore/searchContextPresentation";
 
 type ExploreCardGridItemProps = {
   card: ExploreResultCard;
@@ -23,6 +23,14 @@ type ExploreCardGridItemProps = {
   canViewPricing: boolean;
   matchReason?: string;
 };
+
+function getPrimaryFinishLabel(card: ExploreResultCard) {
+  return card.finish_label?.trim() || card.display_discriminator?.trim() || "";
+}
+
+function getDiagnosticId(card: ExploreResultCard) {
+  return card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`;
+}
 
 export default function ExploreCardGridItem({ card, href, mode, canViewPricing, matchReason }: ExploreCardGridItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
@@ -36,6 +44,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
   const imagePresentation = resolveCardImagePresentation(card);
   const isLarge = mode === "thumb-lg";
   const density = isLarge ? "large" : "default";
+  const primaryFinishLabel = getPrimaryFinishLabel(card);
   const metaLine = [card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ") || "—";
 
   return (
@@ -60,12 +69,6 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
           {identitySubtitle ? (
             <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
           ) : null}
-          {searchDiscriminator ? (
-            <span className={getSearchContextClassName(searchDiscriminator)}>{searchDiscriminator}</span>
-          ) : null}
-          {matchReason ? (
-            <span className="gv-hi-search-context block truncate text-[11px] font-medium text-slate-500">{matchReason}</span>
-          ) : null}
         </Link>
       }
       subtitle={
@@ -76,6 +79,9 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
       }
       badges={
         <>
+          {primaryFinishLabel ? (
+            <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
+          ) : null}
           {variantLabels.map((label) => (
             <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
           ))}
@@ -90,7 +96,18 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
       }
       meta={<span>{metaLine}</span>}
       summary={canViewPricing ? <VisiblePrice value={card.raw_price} size="grid" className="gv-hi-price" /> : <LockedPrice size="grid" className="gv-hi-price" />}
-      footer={<span className="gv-hi-diagnostics">{card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`}</span>}
+      footer={
+        <details className="group/details">
+          <summary className="cursor-pointer list-none text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400 transition hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300">
+            Card identity
+          </summary>
+          <div className="mt-1.5 space-y-1 text-[11px] leading-4 text-slate-500 dark:text-slate-400">
+            <p className="truncate">{getDiagnosticId(card)}</p>
+            {matchReason ? <p className="truncate">{matchReason}</p> : null}
+            {searchDiscriminator ? <p className="truncate">{searchDiscriminator}</p> : null}
+          </div>
+        </details>
+      }
       imageClassName={isLarge ? "max-w-[280px]" : undefined}
     />
   );

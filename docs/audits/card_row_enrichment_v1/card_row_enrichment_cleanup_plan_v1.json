@@ -1,6 +1,6 @@
 {
   "version": "CARD_ROW_ENRICHMENT_CLEANUP_PLAN_V1",
-  "generated_at": "2026-06-16T18:39:38.523Z",
+  "generated_at": "2026-06-18T02:56:10.638Z",
   "scope": {
     "target": "English physical card_prints and card_printings",
     "skipped": [
@@ -11,7 +11,7 @@
     "cleanup_performed": false
   },
   "totals": {
-    "english_physical_parent_rows": 22791,
+    "english_physical_parent_rows": 22859,
     "parent_gv_id_candidates": 0,
     "parent_gv_id_ready": 0,
     "child_printing_gv_id_candidates": 0,
@@ -19,11 +19,11 @@
     "active_identity_candidates": 0,
     "active_identity_ready": 0,
     "core_identity_gap_rows": 0,
-    "external_mapping_gap_rows": 675,
-    "no_child_printing_parent_rows": 1083,
-    "trait_gaps": 831,
-    "species_gaps": 3740,
-    "catalog_metadata_gaps": 139
+    "external_mapping_gap_rows": 743,
+    "no_child_printing_parent_rows": 1067,
+    "trait_gaps": 899,
+    "species_gaps": 3741,
+    "catalog_metadata_gaps": 45
   },
   "package_plan": [
     {
@@ -81,7 +81,7 @@
       "package_id": "ENRICH-04-EXTERNAL-MAPPING-BACKFILL-REVIEW",
       "status": "needs_source_specific_plan",
       "scope": "Rows without active external mappings. Some have external_ids payloads that can be converted after source-specific validation.",
-      "candidate_rows": 675,
+      "candidate_rows": 743,
       "writes_if_later_approved": [
         "external_mappings inserts only after source validation"
       ],
@@ -96,7 +96,7 @@
       "package_id": "ENRICH-05-TRAITS-SPECIES-CATALOG-ENRICHMENT",
       "status": "needs_source_specific_plan",
       "scope": "Catalog metadata, species, and trait enrichment after identity surfaces are stable.",
-      "candidate_rows": 3740,
+      "candidate_rows": 3741,
       "writes_if_later_approved": [
         "card_print_traits/card_print_species/card_prints metadata fields"
       ],
@@ -144,9 +144,9 @@
       "samples": []
     },
     "external_mapping": {
-      "total": 675,
+      "total": 743,
       "by_classification": {
-        "external_ids_available_for_mapping_backfill_review": 636,
+        "external_ids_available_for_mapping_backfill_review": 704,
         "source_acquisition_needed_for_external_mapping": 39
       },
       "by_set_top_25": {
@@ -160,9 +160,12 @@
         "smp": 22,
         "swsh12": 22,
         "sv10": 21,
+        "basep": 19,
+        "base2": 18,
         "mep": 17,
         "swsh8": 16,
         "xyp": 16,
+        "base1": 14,
         "sv05": 13,
         "swsh1": 13,
         "sv02": 12,
@@ -171,12 +174,90 @@
         "sv09": 11,
         "dp5": 10,
         "pl3": 10,
-        "swsh3": 10,
-        "bw1": 9,
-        "swsh2": 9,
-        "dp1": 7
+        "swsh3": 10
       },
       "samples": [
+        {
+          "card_print_id": "02b8f0ff-101f-4fc3-b010-c989194611a4",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "12",
+          "number_plain": "12",
+          "card_name": "Ninetales",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "831f02cf-4ebb-4bc8-85ee-7360eb13b3ad",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "12",
+          "number_plain": "12",
+          "card_name": "Ninetales",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "72e51650-dbad-41ec-a5d1-a8fc9f5c7d71",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "17",
+          "number_plain": "17",
+          "card_name": "Beedrill",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "80d4d2f2-67dd-4289-ab24-0abcabf882b4",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "2",
+          "number_plain": "2",
+          "card_name": "Blastoise",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "ff0d759b-40bd-44c3-be41-37b5c4bcc860",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "42",
+          "number_plain": "42",
+          "card_name": "Wartortle",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "9d600dd3-f0aa-43f7-8fd3-0311c9e8403a",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "47",
+          "number_plain": "47",
+          "card_name": "Diglett",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "238dff30-ce49-453a-8504-4de3450e9d70",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Pikachu",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "939f09d0-1adc-4a79-ba7f-882e102c4e22",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Pikachu",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "9c1f54d6-8f74-4c5e-a5b3-69806ad338bb",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Pikachu",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
         {
           "card_print_id": "9dfec0a3-7f9f-4a9f-a443-6582508cf539",
           "set_code": "base1",
@@ -184,6 +265,51 @@
           "number": "58",
           "number_plain": "58",
           "card_name": "Pikachu",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "a719658f-3b5a-4a4e-94de-0e3a72098713",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Pikachu",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "dc27ea00-fe52-4fa2-a30b-9724201ed586",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Pikachu",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "df7098c1-1ab6-40b5-97fd-fd77f6fc9dc2",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Pikachu",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "ec82bb94-e450-4107-bee0-c3e21c24f23b",
+          "set_code": "base1",
+          "set_name": "Base Set",
+          "number": "58",
+          "number_plain": "58",
+          "card_name": "Pikachu",
+          "classification": "external_ids_available_for_mapping_backfill_review"
+        },
+        {
+          "card_print_id": "28a7a1a5-30c3-42ef-9b18-3efd340e2c5a",
+          "set_code": "base2",
+          "set_name": "Jungle",
+          "number": "1",
+          "number_plain": "1",
+          "card_name": "Clefable",
           "classification": "external_ids_available_for_mapping_backfill_review"
         },
         {
@@ -196,171 +322,45 @@
           "classification": "external_ids_available_for_mapping_backfill_review"
         },
         {
-          "card_print_id": "dc7a6594-c436-4737-9d0a-d42dbd4c0a4a",
+          "card_print_id": "bafc2195-d765-4f65-9db2-5a7ae54e3198",
           "set_code": "base2",
           "set_name": "Jungle",
-          "number": "60",
-          "number_plain": "60",
-          "card_name": "Pikachu",
+          "number": "10",
+          "number_plain": "10",
+          "card_name": "Scyther",
           "classification": "external_ids_available_for_mapping_backfill_review"
         },
         {
-          "card_print_id": "e4a4fd41-4c5e-4659-8066-01439111c443",
-          "set_code": "base3",
-          "set_name": "Fossil",
-          "number": "50",
-          "number_plain": "50",
-          "card_name": "Kabuto",
-          "classification": "external_ids_available_for_mapping_backfill_review"
-        },
-        {
-          "card_print_id": "0887fb24-43c6-4e27-95ed-7e266ab6f0d7",
-          "set_code": "base4",
-          "set_name": "Base Set 2",
-          "number": "63",
-          "number_plain": "63",
-          "card_name": "Wartortle",
-          "classification": "external_ids_available_for_mapping_backfill_review"
-        },
-        {
-          "card_print_id": "d05d1001-bb2f-42dd-bfad-7dae94a09c76",
-          "set_code": "base5",
-          "set_name": "Team Rocket",
-          "number": "19",
-          "number_plain": "19",
-          "card_name": "Dark Arbok",
-          "classification": "external_ids_available_for_mapping_backfill_review"
-        },
-        {
-          "card_print_id": "20ef43c3-51e5-42cf-b9e8-d908ad9252b3",
-          "set_code": "base5",
-          "set_name": "Team Rocket",
-          "number": "32",
-          "number_plain": "32",
-          "card_name": "Dark Charmeleon",
-          "classification": "external_ids_available_for_mapping_backfill_review"
-        },
-        {
-          "card_print_id": "f6efb409-a6b9-4ed5-bc24-e600d6b363a5",
-          "set_code": "base5",
-          "set_name": "Team Rocket",
-          "number": "8",
-          "number_plain": "8",
-          "card_name": "Dark Gyarados",
-          "classification": "external_ids_available_for_mapping_backfill_review"
-        },
-        {
-          "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
-          "set_code": "basep",
-          "set_name": "Wizards Black Star Promos",
-          "number": "1",
-          "number_plain": "1",
-          "card_name": "Pikachu",
-          "classification": "external_ids_available_for_mapping_backfill_review"
-        },
-        {
-          "card_print_id": "8b4de3bc-8cc8-4e8b-a97f-95a78aa08117",
-          "set_code": "basep",
-          "set_name": "Wizards Black Star Promos",
+          "card_print_id": "20fa5289-8e45-41cf-9f96-1dfd4cb189fa",
+          "set_code": "base2",
+          "set_name": "Jungle",
           "number": "11",
           "number_plain": "11",
-          "card_name": "Eevee",
+          "card_name": "Snorlax",
           "classification": "external_ids_available_for_mapping_backfill_review"
         },
         {
-          "card_print_id": "0a143f53-06f8-45de-9fe3-18cea4bca092",
-          "set_code": "basep",
-          "set_name": "Wizards Black Star Promos",
-          "number": "52",
-          "number_plain": "52",
-          "card_name": "Ho-oh",
+          "card_print_id": "ca4004fb-c4af-4631-b624-ec5a872ffa35",
+          "set_code": "base2",
+          "set_name": "Jungle",
+          "number": "12",
+          "number_plain": "12",
+          "card_name": "Vaporeon",
           "classification": "external_ids_available_for_mapping_backfill_review"
         },
         {
-          "card_print_id": "56a65047-8d40-4015-9e4f-f83d0f740a6a",
-          "set_code": "basep",
-          "set_name": "Wizards Black Star Promos",
-          "number": "52",
-          "number_plain": "52",
-          "card_name": "Ho-oh",
-          "classification": "external_ids_available_for_mapping_backfill_review"
-        },
-        {
-          "card_print_id": "614efd10-0ce3-438b-8466-6584bebb88cb",
-          "set_code": "bog",
-          "set_name": "Best of game",
-          "number": "1",
-          "number_plain": "1",
-          "card_name": "Electabuzz",
-          "classification": "source_acquisition_needed_for_external_mapping"
-        },
-        {
-          "card_print_id": "c0204042-56f4-42a8-878c-7908a2925863",
-          "set_code": "bog",
-          "set_name": "Best of game",
-          "number": "2",
-          "number_plain": "2",
-          "card_name": "Hitmonchan",
-          "classification": "source_acquisition_needed_for_external_mapping"
-        },
-        {
-          "card_print_id": "33126ebf-99f6-4d76-a9bc-179c89e2eb34",
-          "set_code": "bog",
-          "set_name": "Best of game",
-          "number": "6",
-          "number_plain": "6",
-          "card_name": "Dark Ivysaur",
-          "classification": "source_acquisition_needed_for_external_mapping"
-        },
-        {
-          "card_print_id": "03e8e4c7-ad3d-470b-adb3-69082a7f6181",
-          "set_code": "bog",
-          "set_name": "Best of game",
-          "number": "7",
-          "number_plain": "7",
-          "card_name": "Dark Venusaur",
-          "classification": "source_acquisition_needed_for_external_mapping"
-        },
-        {
-          "card_print_id": "0f61df52-76d0-4894-b873-b9c1f972bcf9",
-          "set_code": "bw1",
-          "set_name": "Black & White",
-          "number": "1",
-          "number_plain": "1",
-          "card_name": "Snivy",
-          "classification": "external_ids_available_for_mapping_backfill_review"
-        },
-        {
-          "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
-          "set_code": "bw1",
-          "set_name": "Black & White",
-          "number": "101",
-          "number_plain": "101",
-          "card_name": "Professor Juniper",
-          "classification": "external_ids_available_for_mapping_backfill_review"
-        },
-        {
-          "card_print_id": "bbb1f8b0-67fb-4ea3-bc5d-9d8ee262ed53",
-          "set_code": "bw1",
-          "set_name": "Black & White",
-          "number": "25",
-          "number_plain": "25",
-          "card_name": "Darmanitan",
-          "classification": "external_ids_available_for_mapping_backfill_review"
-        },
-        {
-          "card_print_id": "2ad03a0a-dbd8-4195-bce9-2c3582fc1010",
-          "set_code": "bw1",
-          "set_name": "Black & White",
-          "number": "27",
-          "number_plain": "27",
-          "card_name": "Oshawott",
+          "card_print_id": "b4dec454-afa9-429d-b44d-12ac70a226c0",
+          "set_code": "base2",
+          "set_name": "Jungle",
+          "number": "13",
+          "number_plain": "13",
+          "card_name": "Venomoth",
           "classification": "external_ids_available_for_mapping_backfill_review"
         }
       ]
     },
     "no_child_printing_parents": {
-      "total": 1083,
+      "total": 1067,
       "by_set_top_25": {
         "smp": 97,
         "swsh10": 56,
@@ -386,7 +386,7 @@
         "swsh1": 15,
         "sv8pt5": 14,
         "sv6pt5": 13,
-        "me03": 12
+        "bw1": 11
       },
       "samples": [
         {
@@ -573,9 +573,9 @@
       "note": "Do not auto-insert or delete. These need Master Index/stale-parent adjudication."
     },
     "trait_species_catalog_metadata": {
-      "trait_gaps": 831,
-      "species_gaps": 3740,
-      "catalog_metadata_gaps": 139,
+      "trait_gaps": 899,
+      "species_gaps": 3741,
+      "catalog_metadata_gaps": 45,
       "note": "These are enrichment lanes, not canonical printing blockers. They need source-specific workers and should run after identity/GV surfaces are stable."
     },
     "deferred_child_images": {
@@ -583,5 +583,5 @@
       "note": "Child image cleanup remains deferred and is not included in write-readiness package planning."
     }
   },
-  "fingerprint_sha256": "353e07816436eca30cb5405768d31469ae26836ef27f545f2b61a0b218aec710"
+  "fingerprint_sha256": "dd426386a96b4e07fd04be95f22146cb3a8953d69941c00f49e3bc9f2ffdc091"
 }

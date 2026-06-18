@@ -11,20 +11,19 @@ Read-only classification of English physical `card_prints` rows that currently h
 
 ## Summary
 
-- Total no-child parent rows: 1083
+- Total no-child parent rows: 1067
 - Zero-dependency rows: 0
-- Dependency-bearing rows: 1083
+- Dependency-bearing rows: 1067
 - Stale GV collision lane rows: 0
-- Rows with sibling owners: 931
-- Master Index supported rows: 830
+- Rows with sibling owners: 925
+- Master Index supported rows: 814
 
 ## Classification Counts
 
 | classification | rows |
 | --- | --- |
-| dependency_bearing_childless_parent_manual_review | 639 |
+| dependency_bearing_childless_parent_manual_review | 633 |
 | mapping_transfer_or_duplicate_resolution_required | 433 |
-| source_mapped_child_insert_candidate_needs_finish_selection | 10 |
 | vault_referenced_childless_parent_manual_review | 1 |
 
 ## Recommended Next Packages
@@ -33,6 +32,6 @@ Read-only classification of English physical `card_prints` rows that currently h
 | --- | --- | --- |
 | ENRICH-06A-EMPTY-DUPLICATE-PARENT-DELETE-DRY-RUN | ready_for_guarded_dry_run_design | 0 |
 | ENRICH-06B-MAPPING-TRANSFER-OR-DUPLICATE-RESOLUTION | needs_source_specific_guarded_design | 433 |
-| ENRICH-06C-SOURCE-MAPPED-CHILD-INSERT-SELECTION | needs_finish_selection_from_master_index | 10 |
+| ENRICH-06C-SOURCE-MAPPED-CHILD-INSERT-SELECTION | needs_finish_selection_from_master_index | 0 |
 
-Fingerprint: `49d8dd9e847d74b150d37d8d3a54b5df901648afab2dcdc70c99dfd8d66b5717`
+Fingerprint: `0fbc39fcdc1ed32932c565f09f32fbb321b5cb688017f0e944632ed98fc62938`

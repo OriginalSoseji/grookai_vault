@@ -1,0 +1,1281 @@
+{
+  "generated_at": "2026-06-17T14:45:03.456Z",
+  "package_id": "SPECIAL-VAR-02-WB-KIDS-PROMO-STAMP-PARENT-INSERTS",
+  "mode": "guarded_rollback_dry_run_only",
+  "source_report": "docs/audits/verified_master_set_index_v1/english_master_index_v1/special_variant_discovery_v1/special_variant_discovery_v1.json",
+  "source_fingerprint_sha256": "6979be40b2a712948adef69641a8d77b9dc103132f2ffec624c3d4657cd1baba",
+  "package_fingerprint_sha256": "d6793a662528ecd9fc7a2bec19244da24da7a06df8a820b4c35c50c1d56102fc",
+  "sql_hash_sha256": "cf6539d044a889f51db702da396cbdb813a9b7c9251c44a06b378b52b725752c",
+  "pass": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "scope": {
+    "target_rows": 9,
+    "by_set": {
+      "basep": 9
+    },
+    "by_finish": {
+      "normal": 9
+    },
+    "by_variant": {
+      "inverted_wb_kids_stamp": 4,
+      "wb_kids_stamp": 4,
+      "missing_wb_kids_stamp": 1
+    },
+    "targets": [
+      {
+        "source_candidate_key": "basep-2-electabuzz-inverted-wb-kids-stamp",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "2",
+        "card_name": "Electabuzz",
+        "target_variant_key": "inverted_wb_kids_stamp",
+        "target_printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+        "target_finish_key": "normal",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies inverted WB Kids stamp versions of Black Star Promos #2-5 and reports a very small production population."
+          },
+          {
+            "source_key": "elitefourum_wotc_promo_images",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+            "evidence_label": "Elite Fourum WOTC promo image list includes inverted WB Stamp versions for the first-movie promo cards."
+          }
+        ],
+        "target_parent_id": "0d97110d-e8bd-453a-b721-35091f4f08b8",
+        "target_child_id": "720bbcbe-b834-43dd-ba3d-27941f9b1dd9",
+        "base_parent_id": "3e106aae-c583-4893-9069-3f158b27bd22",
+        "base_parent_gv_id": "GV-PK-PR-2",
+        "base_child_finishes": [
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-02-WB-KIDS-PROMO-STAMP-PARENT-INSERTS",
+          "source_candidate_key": "basep-2-electabuzz-inverted-wb-kids-stamp",
+          "classification": "recognized_error_variant",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies inverted WB Kids stamp versions of Black Star Promos #2-5 and reports a very small production population."
+            },
+            {
+              "source_key": "elitefourum_wotc_promo_images",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+              "evidence_label": "Elite Fourum WOTC promo image list includes inverted WB Stamp versions for the first-movie promo cards."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-2-electabuzz-wb-kids-stamp",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "2",
+        "card_name": "Electabuzz",
+        "target_variant_key": "wb_kids_stamp",
+        "target_printed_identity_modifier": "stamp:wb_kids_first_movie",
+        "target_finish_key": "normal",
+        "classification": "stamp_or_release_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_wotc_promos",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+            "evidence_label": "Bulbapedia identifies Wizards Black Star Promos #2-5 as Mewtwo Strikes Back theatrical-release cards with a Kids WB Presents: Pokemon The First Movie gold foil stamp."
+          },
+          {
+            "source_key": "elitefourum_wotc_promo_images",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+            "evidence_label": "Elite Fourum WOTC promo image list distinguishes the regular WB Stamp versions of promos #2-5."
+          }
+        ],
+        "target_parent_id": "71d197da-c12f-4f01-899f-1449b53dcf6c",
+        "target_child_id": "d466e713-eeea-4805-b225-ecf2b79aaa09",
+        "base_parent_id": "3e106aae-c583-4893-9069-3f158b27bd22",
+        "base_parent_gv_id": "GV-PK-PR-2",
+        "base_child_finishes": [
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+          "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-02-WB-KIDS-PROMO-STAMP-PARENT-INSERTS",
+          "source_candidate_key": "basep-2-electabuzz-wb-kids-stamp",
+          "classification": "stamp_or_release_variant",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_wotc_promos",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+              "evidence_label": "Bulbapedia identifies Wizards Black Star Promos #2-5 as Mewtwo Strikes Back theatrical-release cards with a Kids WB Presents: Pokemon The First Movie gold foil stamp."
+            },
+            {
+              "source_key": "elitefourum_wotc_promo_images",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+              "evidence_label": "Elite Fourum WOTC promo image list distinguishes the regular WB Stamp versions of promos #2-5."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-3-mewtwo-inverted-wb-kids-stamp",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "3",
+        "card_name": "Mewtwo",
+        "target_variant_key": "inverted_wb_kids_stamp",
+        "target_printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+        "target_finish_key": "normal",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies inverted WB Kids stamp versions of Black Star Promos #2-5 and reports a very small production population."
+          },
+          {
+            "source_key": "elitefourum_wotc_promo_images",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+            "evidence_label": "Elite Fourum WOTC promo image list includes inverted WB Stamp versions for the first-movie promo cards."
+          }
+        ],
+        "target_parent_id": "3746cabc-29bd-4a1f-a105-eca80800cc2e",
+        "target_child_id": "c532ffb6-d835-4bde-af54-1f6e13d86a36",
+        "base_parent_id": "676b6e46-9457-4945-9c5a-4efadb7cef58",
+        "base_parent_gv_id": "GV-PK-PR-3",
+        "base_child_finishes": [
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-02-WB-KIDS-PROMO-STAMP-PARENT-INSERTS",
+          "source_candidate_key": "basep-3-mewtwo-inverted-wb-kids-stamp",
+          "classification": "recognized_error_variant",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies inverted WB Kids stamp versions of Black Star Promos #2-5 and reports a very small production population."
+            },
+            {
+              "source_key": "elitefourum_wotc_promo_images",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+              "evidence_label": "Elite Fourum WOTC promo image list includes inverted WB Stamp versions for the first-movie promo cards."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-3-mewtwo-wb-kids-stamp",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "3",
+        "card_name": "Mewtwo",
+        "target_variant_key": "wb_kids_stamp",
+        "target_printed_identity_modifier": "stamp:wb_kids_first_movie",
+        "target_finish_key": "normal",
+        "classification": "stamp_or_release_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_wotc_promos",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+            "evidence_label": "Bulbapedia identifies Wizards Black Star Promos #2-5 as Mewtwo Strikes Back theatrical-release cards with a Kids WB Presents: Pokemon The First Movie gold foil stamp."
+          },
+          {
+            "source_key": "elitefourum_wotc_promo_images",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+            "evidence_label": "Elite Fourum WOTC promo image list distinguishes the regular WB Stamp versions of promos #2-5."
+          }
+        ],
+        "target_parent_id": "571cb8c6-b7ec-43e8-8a54-fc5b71245690",
+        "target_child_id": "98fed3d6-4741-4997-a908-11e42508c1d4",
+        "base_parent_id": "676b6e46-9457-4945-9c5a-4efadb7cef58",
+        "base_parent_gv_id": "GV-PK-PR-3",
+        "base_child_finishes": [
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+          "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-02-WB-KIDS-PROMO-STAMP-PARENT-INSERTS",
+          "source_candidate_key": "basep-3-mewtwo-wb-kids-stamp",
+          "classification": "stamp_or_release_variant",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_wotc_promos",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+              "evidence_label": "Bulbapedia identifies Wizards Black Star Promos #2-5 as Mewtwo Strikes Back theatrical-release cards with a Kids WB Presents: Pokemon The First Movie gold foil stamp."
+            },
+            {
+              "source_key": "elitefourum_wotc_promo_images",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+              "evidence_label": "Elite Fourum WOTC promo image list distinguishes the regular WB Stamp versions of promos #2-5."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-4-pikachu-inverted-wb-kids-stamp",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "4",
+        "card_name": "Pikachu",
+        "target_variant_key": "inverted_wb_kids_stamp",
+        "target_printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+        "target_finish_key": "normal",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies inverted WB Kids stamp versions of Black Star Promos #2-5 and reports a very small production population."
+          },
+          {
+            "source_key": "elitefourum_wotc_promo_images",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+            "evidence_label": "Elite Fourum WOTC promo image list includes inverted WB Stamp versions for the first-movie promo cards."
+          }
+        ],
+        "target_parent_id": "dfa19c6b-5e69-4ba5-a791-60b0f0c9edd1",
+        "target_child_id": "084a1bd0-b072-4bf5-b799-bda0d931abe3",
+        "base_parent_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+        "base_parent_gv_id": "GV-PK-PR-4",
+        "base_child_finishes": [
+          "normal",
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-02-WB-KIDS-PROMO-STAMP-PARENT-INSERTS",
+          "source_candidate_key": "basep-4-pikachu-inverted-wb-kids-stamp",
+          "classification": "recognized_error_variant",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies inverted WB Kids stamp versions of Black Star Promos #2-5 and reports a very small production population."
+            },
+            {
+              "source_key": "elitefourum_wotc_promo_images",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+              "evidence_label": "Elite Fourum WOTC promo image list includes inverted WB Stamp versions for the first-movie promo cards."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-4-pikachu-missing-wb-kids-stamp",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "4",
+        "card_name": "Pikachu",
+        "target_variant_key": "missing_wb_kids_stamp",
+        "target_printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+        "target_finish_key": "normal",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies missing WB Kids stamp versions of Black Star Promos #2-5."
+          },
+          {
+            "source_key": "elitefourum_wotc_promo_images",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+            "evidence_label": "Elite Fourum WOTC promo image list explicitly includes Pikachu #4 Missing WB Stamp."
+          }
+        ],
+        "target_parent_id": "a10b92ea-ea18-4d3c-b046-8908fab97c4a",
+        "target_child_id": "5ee0e449-5842-4d6b-a0da-31bc45b63fa8",
+        "base_parent_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+        "base_parent_gv_id": "GV-PK-PR-4",
+        "base_child_finishes": [
+          "normal",
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-02-WB-KIDS-PROMO-STAMP-PARENT-INSERTS",
+          "source_candidate_key": "basep-4-pikachu-missing-wb-kids-stamp",
+          "classification": "recognized_error_variant",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies missing WB Kids stamp versions of Black Star Promos #2-5."
+            },
+            {
+              "source_key": "elitefourum_wotc_promo_images",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+              "evidence_label": "Elite Fourum WOTC promo image list explicitly includes Pikachu #4 Missing WB Stamp."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-4-pikachu-wb-kids-stamp",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "4",
+        "card_name": "Pikachu",
+        "target_variant_key": "wb_kids_stamp",
+        "target_printed_identity_modifier": "stamp:wb_kids_first_movie",
+        "target_finish_key": "normal",
+        "classification": "stamp_or_release_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_wotc_promos",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+            "evidence_label": "Bulbapedia identifies Wizards Black Star Promos #2-5 as Mewtwo Strikes Back theatrical-release cards with a Kids WB Presents: Pokemon The First Movie gold foil stamp."
+          },
+          {
+            "source_key": "elitefourum_wotc_promo_images",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+            "evidence_label": "Elite Fourum WOTC promo image list distinguishes the regular WB Stamp versions of promos #2-5."
+          }
+        ],
+        "target_parent_id": "aa1859b6-99a2-4d95-960b-8cedda0ea8c1",
+        "target_child_id": "24afd848-6bd5-42fb-8c48-7177a38c0257",
+        "base_parent_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+        "base_parent_gv_id": "GV-PK-PR-4",
+        "base_child_finishes": [
+          "normal",
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+          "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-02-WB-KIDS-PROMO-STAMP-PARENT-INSERTS",
+          "source_candidate_key": "basep-4-pikachu-wb-kids-stamp",
+          "classification": "stamp_or_release_variant",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_wotc_promos",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+              "evidence_label": "Bulbapedia identifies Wizards Black Star Promos #2-5 as Mewtwo Strikes Back theatrical-release cards with a Kids WB Presents: Pokemon The First Movie gold foil stamp."
+            },
+            {
+              "source_key": "elitefourum_wotc_promo_images",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+              "evidence_label": "Elite Fourum WOTC promo image list distinguishes the regular WB Stamp versions of promos #2-5."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-5-dragonite-inverted-wb-kids-stamp",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "5",
+        "card_name": "Dragonite",
+        "target_variant_key": "inverted_wb_kids_stamp",
+        "target_printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+        "target_finish_key": "normal",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies inverted WB Kids stamp versions of Black Star Promos #2-5 and reports a very small production population."
+          },
+          {
+            "source_key": "elitefourum_wotc_promo_images",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+            "evidence_label": "Elite Fourum WOTC promo image list includes inverted WB Stamp versions for the first-movie promo cards."
+          }
+        ],
+        "target_parent_id": "6a505b8b-807f-4b0f-b1ee-73ecf29b3a42",
+        "target_child_id": "814508cd-8e3b-4d74-84f5-4817d484b439",
+        "base_parent_id": "eb57fdeb-8bce-4ba1-b981-9da7b88d33b5",
+        "base_parent_gv_id": "GV-PK-PR-5",
+        "base_child_finishes": [
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-02-WB-KIDS-PROMO-STAMP-PARENT-INSERTS",
+          "source_candidate_key": "basep-5-dragonite-inverted-wb-kids-stamp",
+          "classification": "recognized_error_variant",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies inverted WB Kids stamp versions of Black Star Promos #2-5 and reports a very small production population."
+            },
+            {
+              "source_key": "elitefourum_wotc_promo_images",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+              "evidence_label": "Elite Fourum WOTC promo image list includes inverted WB Stamp versions for the first-movie promo cards."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-5-dragonite-wb-kids-stamp",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "5",
+        "card_name": "Dragonite",
+        "target_variant_key": "wb_kids_stamp",
+        "target_printed_identity_modifier": "stamp:wb_kids_first_movie",
+        "target_finish_key": "normal",
+        "classification": "stamp_or_release_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_wotc_promos",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+            "evidence_label": "Bulbapedia identifies Wizards Black Star Promos #2-5 as Mewtwo Strikes Back theatrical-release cards with a Kids WB Presents: Pokemon The First Movie gold foil stamp."
+          },
+          {
+            "source_key": "elitefourum_wotc_promo_images",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+            "evidence_label": "Elite Fourum WOTC promo image list distinguishes the regular WB Stamp versions of promos #2-5."
+          }
+        ],
+        "target_parent_id": "4c4a8734-fc89-4208-ade7-4ebacc80bdbb",
+        "target_child_id": "3addb622-e46d-4a7d-adbd-d835dc5c9180",
+        "base_parent_id": "eb57fdeb-8bce-4ba1-b981-9da7b88d33b5",
+        "base_parent_gv_id": "GV-PK-PR-5",
+        "base_child_finishes": [
+          "normal",
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+          "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-02-WB-KIDS-PROMO-STAMP-PARENT-INSERTS",
+          "source_candidate_key": "basep-5-dragonite-wb-kids-stamp",
+          "classification": "stamp_or_release_variant",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_wotc_promos",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+              "evidence_label": "Bulbapedia identifies Wizards Black Star Promos #2-5 as Mewtwo Strikes Back theatrical-release cards with a Kids WB Presents: Pokemon The First Movie gold foil stamp."
+            },
+            {
+              "source_key": "elitefourum_wotc_promo_images",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+              "evidence_label": "Elite Fourum WOTC promo image list distinguishes the regular WB Stamp versions of promos #2-5."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "wb_kids_stamp_parent_insert_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 9,
+      "target_parent_count": 9,
+      "target_child_count": 9,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 9,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "SPECIAL-VAR-02-WB-KIDS-PROMO-STAMP-PARENT-INSERTS",
+      "package_fingerprint": "d6793a662528ecd9fc7a2bec19244da24da7a06df8a820b4c35c50c1d56102fc",
+      "target_rows": 9,
+      "inserted_parent_rows": 9,
+      "inserted_parent_identity_rows": 9,
+      "inserted_identity_rows": 9,
+      "inserted_child_rows": 9,
+      "forbidden_stamped_child_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 9,
+      "identity_inserts": 9,
+      "child_inserts": 9,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-17T14:45:02.275Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "3e106aae-c583-4893-9069-3f158b27bd22",
+          "set_code": "basep",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electabuzz",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "3e106aae-c583-4893-9069-3f158b27bd22",
+          "set_code": "basep",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electabuzz",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "676b6e46-9457-4945-9c5a-4efadb7cef58",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "676b6e46-9457-4945-9c5a-4efadb7cef58",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "eb57fdeb-8bce-4ba1-b981-9da7b88d33b5",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "eb57fdeb-8bce-4ba1-b981-9da7b88d33b5",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "3334b32c58f50feb80baf86239009e387d56ee8634c52de235500ba17d3fe20c",
+      "counts": {
+        "base_parent": 9
+      }
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-17T14:45:03.224Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "3e106aae-c583-4893-9069-3f158b27bd22",
+          "set_code": "basep",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electabuzz",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "3e106aae-c583-4893-9069-3f158b27bd22",
+          "set_code": "basep",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electabuzz",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "676b6e46-9457-4945-9c5a-4efadb7cef58",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "676b6e46-9457-4945-9c5a-4efadb7cef58",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "eb57fdeb-8bce-4ba1-b981-9da7b88d33b5",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "eb57fdeb-8bce-4ba1-b981-9da7b88d33b5",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "720bbcbe-b834-43dd-ba3d-27941f9b1dd9",
+          "set_code": "basep",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electabuzz",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "d466e713-eeea-4805-b225-ecf2b79aaa09",
+          "set_code": "basep",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electabuzz",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "c532ffb6-d835-4bde-af54-1f6e13d86a36",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "98fed3d6-4741-4997-a908-11e42508c1d4",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "084a1bd0-b072-4bf5-b799-bda0d931abe3",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "5ee0e449-5842-4d6b-a0da-31bc45b63fa8",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "24afd848-6bd5-42fb-8c48-7177a38c0257",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "814508cd-8e3b-4d74-84f5-4817d484b439",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "3addb622-e46d-4a7d-adbd-d835dc5c9180",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "30f060e3-ae92-40ba-a54e-4a6fbfc8c6ef",
+          "set_code": "basep",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electabuzz",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": "6682b2dff3a45abb16ec4ffd7ddbe1593f4835f461b0cd49032b4d2e63150973"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2905d3a8-ef82-45bd-bacc-f7b9e4fa3740",
+          "set_code": "basep",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electabuzz",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": null,
+          "identity_key_hash": "375de83489c255a88a4a866fd25543f1264fae5a8c3b8ec5fff229e7498a1148"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "7c1b3982-50a0-413f-b63b-ab35ba56d518",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": "39e453a8a8d102b25d89341aed7a3fcb10e65bf4d2131690274e3ec425df9eeb"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "00308c3d-f215-4360-9fa0-6715fed04d15",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": null,
+          "identity_key_hash": "a977acec4e59f7abd65e6dff759e3f23555e8080b5f14fd494ff268859cb9234"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "4dbe6f9b-a2e3-4529-9984-87bd7aae27fc",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": "728221a16982a1c4720013f71401bb708b07f213579ae7b36298cacc19aae75a"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "6a712d39-0b05-45de-ad4f-15e7dc4976e7",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": "e6a17b2b1bc1bbde9f64066e1ef35cf5201ba6df1fca3b34d4c34613001a2e00"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "e289935a-8e5a-4aba-a1fc-fee0606a6b32",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": null,
+          "identity_key_hash": "c4996d9a88b801c088466ec3d67922c92b8ee892fbd701323eb10fe589d27fd3"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "8a78c0e8-e936-48bd-88d7-50b9bdf12f49",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": "9a6d58c963abf928a25203fb3202029c5710165c0a1f9b11be363d074a58bcdc"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "95b413af-49b7-41df-959a-5d8900fd2d24",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": null,
+          "identity_key_hash": "40a7e49a64b2e11d7ebbeae8a5b2cfc3e66cef493356c485afa9c8ed87b70e2b"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "0d97110d-e8bd-453a-b721-35091f4f08b8",
+          "set_code": "basep",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electabuzz",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "71d197da-c12f-4f01-899f-1449b53dcf6c",
+          "set_code": "basep",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electabuzz",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "3746cabc-29bd-4a1f-a105-eca80800cc2e",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "571cb8c6-b7ec-43e8-8a54-fc5b71245690",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "dfa19c6b-5e69-4ba5-a791-60b0f0c9edd1",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "a10b92ea-ea18-4d3c-b046-8908fab97c4a",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "aa1859b6-99a2-4d95-960b-8cedda0ea8c1",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "6a505b8b-807f-4b0f-b1ee-73ecf29b3a42",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "4c4a8734-fc89-4208-ade7-4ebacc80bdbb",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "9ee170beedf9c48a58f956d7cd3504f12b1cf1ff6a2a5b37b97955a6ac5e8438",
+      "counts": {
+        "base_parent": 9,
+        "target_child": 9,
+        "target_identity": 9,
+        "target_parent": 9
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-17T14:45:03.376Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "3e106aae-c583-4893-9069-3f158b27bd22",
+          "set_code": "basep",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electabuzz",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "3e106aae-c583-4893-9069-3f158b27bd22",
+          "set_code": "basep",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electabuzz",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "676b6e46-9457-4945-9c5a-4efadb7cef58",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "676b6e46-9457-4945-9c5a-4efadb7cef58",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+          "set_code": "basep",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Pikachu",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "eb57fdeb-8bce-4ba1-b981-9da7b88d33b5",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "eb57fdeb-8bce-4ba1-b981-9da7b88d33b5",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "3334b32c58f50feb80baf86239009e387d56ee8634c52de235500ba17d3fe20c",
+      "counts": {
+        "base_parent": 9
+      }
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "1ea619a0eed2b267ab92ad780d270cbab5eaf2d6811a99f2cf13a06db7f9f17e",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real SPECIAL-VAR-02-WB-KIDS-PROMO-STAMP-PARENT-INSERTS apply only. Fingerprint: d6793a662528ecd9fc7a2bec19244da24da7a06df8a820b4c35c50c1d56102fc. SQL hash: cf6539d044a889f51db702da396cbdb813a9b7c9251c44a06b378b52b725752c. Scope: 9 WB Kids promo special-case parent inserts, 9 active identity inserts, 9 normal child printing inserts; set basep/Wizards Black Star Promos; variants wb_kids_stamp=4, inverted_wb_kids_stamp=4, missing_wb_kids_stamp=1. Dry-run proof: 3334b32c58f50feb80baf86239009e387d56ee8634c52de235500ba17d3fe20c == 3334b32c58f50feb80baf86239009e387d56ee8634c52de235500ba17d3fe20c. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}

@@ -5,10 +5,10 @@ Package: `ENRICH-12C2-RESIDUAL-CATALOG-METADATA-RETRY`
 ## Result
 
 - Pass: true
-- Target parent rows: 8
-- Parent rows updated: 8
-- Matching metadata proof: 8
-- Package fingerprint: `3be12029a643045cd1a0904bbf366953fd58e122f14d5e3496735469ab17e897`
+- Target parent rows: 94
+- Parent rows updated: 94
+- Matching metadata proof: 94
+- Package fingerprint: `f7ddec6bf8d35a3b91d32e31e4ef89a9bd00286d341890755ef5f45d9e7fec08`
 
 ## Safety
 
@@ -20,4 +20,4 @@ Package: `ENRICH-12C2-RESIDUAL-CATALOG-METADATA-RETRY`
 
 | set_code | rows |
 | --- | --- |
-| sve | 8 |
+| sm115 | 94 |

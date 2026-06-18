@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-06-17T00:00:00.000Z",
+  "version": "SPECIAL_VARIANT_BLOCKED_EVIDENCE_REVIEW_V1",
+  "mode": "audit_only_blocked_evidence_review",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "production_apply_performed": false,
+  "summary": {
+    "source_ready_missing_from_db": 0,
+    "blocked_rows": 3,
+    "blocked_by_status": {
+      "needs_second_source": 3
+    }
+  },
+  "rows": [
+    {
+      "candidate_key": "base1-58-pikachu-grey-first-edition-stamp",
+      "set_key": "base1",
+      "card_number": "58",
+      "card_name": "Pikachu",
+      "variant_key": "grey_first_edition_stamp",
+      "status": "needs_second_source",
+      "reason": "Known collector concept, but current evidence does not prove an exact repeatable Base Set Pikachu #58 canonical lane beyond one collector taxonomy/source.",
+      "minimum_next_evidence_needed": "Second exact source naming Base Set Pikachu #58 grey/gray 1st Edition stamp as a recognized repeatable variant."
+    },
+    {
+      "candidate_key": "base6-75-exeggcute-legendary-collection-reverse-holo-shift-review",
+      "set_key": "base6",
+      "card_number": "75",
+      "card_name": "Exeggcute",
+      "variant_key": "reverse_holo_shift_error",
+      "status": "needs_second_source",
+      "reason": "Current evidence is too broad around Legendary Collection holo/reverse misalignment. It does not prove an exact repeatable Exeggcute #75 canonical lane.",
+      "minimum_next_evidence_needed": "Second exact source naming Legendary Collection Exeggcute #75 reverse holo shift/misalignment as a recognized repeatable variant."
+    },
+    {
+      "candidate_key": "basep-2-electabuzz-missing-wb-kids-stamp",
+      "set_key": "basep",
+      "card_number": "2",
+      "card_name": "Electabuzz",
+      "variant_key": "missing_wb_kids_stamp",
+      "status": "needs_second_source",
+      "reason": "Bulbapedia names missing WB stamp promos #2-5, but the second collector source specifically confirms Mewtwo/Dragonite/Pikachu and notes Electabuzz has not been seen by that collector.",
+      "minimum_next_evidence_needed": "Second exact source or image/checklist evidence naming Electabuzz #2 Missing WB Kids Stamp specifically."
+    }
+  ]
+}

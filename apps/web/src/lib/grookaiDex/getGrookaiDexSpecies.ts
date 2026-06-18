@@ -1,6 +1,7 @@
 import "server-only";
 
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
 
 type DexSpeciesViewRow = {
   species_id: string | null;
@@ -14,10 +15,6 @@ type DexSpeciesViewRow = {
 
 type SpeciesMappingRow = {
   species_id: string | null;
-  card_print_id: string | null;
-};
-
-type OwnedInstanceRow = {
   card_print_id: string | null;
 };
 
@@ -45,6 +42,7 @@ export type GrookaiDexSpeciesPage = {
 type GetGrookaiDexSpeciesPageOptions = {
   page?: number;
   pageSize?: number;
+  searchQuery?: string | null;
 };
 
 function chunkArray<T>(values: T[], size: number) {
@@ -59,27 +57,8 @@ function normalizeString(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
 }
 
-async function getOwnedInstances(userId: string | null, cardPrintIds: string[]) {
-  if (!userId || cardPrintIds.length === 0) {
-    return [];
-  }
-
-  const admin = createServerAdminClient();
-  const rows: OwnedInstanceRow[] = [];
-  for (const chunk of chunkArray(Array.from(new Set(cardPrintIds)), 500)) {
-    const { data, error } = await admin
-      .from("vault_item_instances")
-      .select("card_print_id")
-      .eq("user_id", userId)
-      .is("archived_at", null)
-      .in("card_print_id", chunk);
-
-    if (error) {
-      throw new Error(`[grookai-dex:owned-instances] ${error.message}`);
-    }
-    rows.push(...((data ?? []) as OwnedInstanceRow[]));
-  }
-  return rows;
+function normalizeSearchQuery(value: string | null | undefined) {
+  return normalizeString(value).replace(/[%_]/g, "").slice(0, 64);
 }
 
 export async function getGrookaiDexSpeciesPage(
@@ -90,13 +69,28 @@ export async function getGrookaiDexSpeciesPage(
   const page = Math.max(options.page ?? 1, 1);
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
+  const searchQuery = normalizeSearchQuery(options.searchQuery);
   const admin = createServerAdminClient();
-  const { data: speciesRows, error: speciesError, count } = await admin
+
+  let speciesQuery = admin
     .from("v_grookai_dex_species_v1")
     .select("species_id,national_dex_number,display_name,slug,types,generation,total_print_count", { count: "exact" })
     .eq("active", true)
-    .order("national_dex_number", { ascending: true })
-    .range(from, to);
+    .order("national_dex_number", { ascending: true });
+
+  if (searchQuery) {
+    const numericSearch = Number.parseInt(searchQuery.replace(/^#/, ""), 10);
+    const clauses = [
+      `display_name.ilike.%${searchQuery}%`,
+      `slug.ilike.%${searchQuery.toLowerCase()}%`,
+    ];
+    if (Number.isInteger(numericSearch) && numericSearch > 0) {
+      clauses.push(`national_dex_number.eq.${numericSearch}`);
+    }
+    speciesQuery = speciesQuery.or(clauses.join(","));
+  }
+
+  const { data: speciesRows, error: speciesError, count } = await speciesQuery.range(from, to);
 
   if (speciesError) {
     throw new Error(`[grookai-dex:species] ${speciesError.message}`);
@@ -155,20 +149,19 @@ export async function getGrookaiDexSpeciesPage(
     speciesByCardPrintId.set(cardPrintId, current);
   }
 
-  const ownedInstances = await getOwnedInstances(userId, Array.from(speciesByCardPrintId.keys()));
+  const ownedCountsByCardPrintId = await getOwnedCountsByCardPrintIds(userId, Array.from(speciesByCardPrintId.keys()));
   const ownedPrintsBySpecies = new Map<string, Set<string>>();
   const ownedCopiesBySpecies = new Map<string, number>();
 
-  for (const row of ownedInstances) {
-    const cardPrintId = normalizeString(row.card_print_id);
-    if (!cardPrintId) {
+  for (const [cardPrintId, ownedCount] of ownedCountsByCardPrintId.entries()) {
+    if (ownedCount <= 0) {
       continue;
     }
     for (const speciesId of speciesByCardPrintId.get(cardPrintId) ?? []) {
       const ownedPrints = ownedPrintsBySpecies.get(speciesId) ?? new Set<string>();
       ownedPrints.add(cardPrintId);
       ownedPrintsBySpecies.set(speciesId, ownedPrints);
-      ownedCopiesBySpecies.set(speciesId, (ownedCopiesBySpecies.get(speciesId) ?? 0) + 1);
+      ownedCopiesBySpecies.set(speciesId, (ownedCopiesBySpecies.get(speciesId) ?? 0) + ownedCount);
     }
   }
 

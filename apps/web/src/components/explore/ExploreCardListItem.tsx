@@ -14,7 +14,7 @@ import {
 } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
-import { getSearchContextBadgeTone, getSearchContextClassName } from "@/components/explore/searchContextPresentation";
+import { getSearchContextBadgeTone } from "@/components/explore/searchContextPresentation";
 
 type ExploreCardListItemProps = {
   card: ExploreResultCard;
@@ -23,6 +23,14 @@ type ExploreCardListItemProps = {
   signInHref?: string;
   matchReason?: string;
 };
+
+function getPrimaryFinishLabel(card: ExploreResultCard) {
+  return card.finish_label?.trim() || card.display_discriminator?.trim() || "";
+}
+
+function getDiagnosticId(card: ExploreResultCard) {
+  return card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`;
+}
 
 export default function ExploreCardListItem({ card, href, canViewPricing, signInHref, matchReason }: ExploreCardListItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
@@ -34,9 +42,10 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
   const variantLabels = getVariantLabels(card, 2);
   const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
+  const primaryFinishLabel = getPrimaryFinishLabel(card);
 
   return (
-    <li className="rounded-[16px] border border-slate-200 bg-white px-4 py-4 shadow-sm transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:shadow-md">
+    <li className="gv-visual-card px-4 py-4">
       <div className="flex items-start justify-between gap-4">
         <Link href={href} className="flex min-w-0 flex-1 items-start gap-4">
           <PublicCardImage
@@ -55,13 +64,7 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                 {identitySubtitle ? (
                   <span className="gv-hi-metadata block truncate text-sm font-medium">{identitySubtitle}</span>
                 ) : null}
-                {searchDiscriminator ? (
-                  <span className={getSearchContextClassName(searchDiscriminator)}>{searchDiscriminator}</span>
-                ) : null}
-                {matchReason ? (
-                  <span className="gv-hi-search-context block truncate text-xs font-medium text-slate-500">{matchReason}</span>
-                ) : null}
-                <p className="text-sm text-slate-600">{setLabel}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400">{setLabel}</p>
                 <PromotionTransitionNote state={card.promotion_transition} />
               </div>
               {imagePresentation.compactBadgeLabel ? (
@@ -70,8 +73,11 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                   emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
                 />
               ) : null}
-              {variantLabels.length > 0 || searchDiscriminator ? (
+              {primaryFinishLabel || variantLabels.length > 0 || searchDiscriminator ? (
                 <div className="flex flex-wrap gap-1.5">
+                  {primaryFinishLabel ? (
+                    <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
+                  ) : null}
                   {variantLabels.map((label) => (
                     <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
                   ))}
@@ -84,9 +90,16 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                   ) : null}
                 </div>
               ) : null}
-              <p className="gv-hi-diagnostics text-xs font-medium tracking-[0.08em]">
-                {card.printing_gv_id ?? card.gv_id}
-              </p>
+              <details className="max-w-xl">
+                <summary className="cursor-pointer list-none text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400 transition hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300">
+                  Card identity
+                </summary>
+                <div className="mt-1.5 space-y-1 text-xs text-slate-500 dark:text-slate-400">
+                  <p className="truncate">{getDiagnosticId(card)}</p>
+                  {matchReason ? <p className="truncate">{matchReason}</p> : null}
+                  {searchDiscriminator ? <p className="truncate">{searchDiscriminator}</p> : null}
+                </div>
+              </details>
             </div>
             <div className="hidden shrink-0 text-right md:block">
               {canViewPricing ? (

@@ -1,0 +1,462 @@
+{
+  "generated_at": "2026-06-17T05:53:23.026Z",
+  "version": "burger_king_residual_child_insert_real_apply_v1",
+  "package_id": "RETAILER-STAMP-06-BURGER-KING-RESIDUAL-CHILD-INSERTS",
+  "package_fingerprint_sha256": "34439459b7b56f6ad5f0cee5603b80b886106864187a5f840dcceff76f76bdf1",
+  "dry_run_proof_sha256": "d2fd572e023926f3e4c00c4b6d8fbc5ff8c7052915311a5ed2dad89c6011104b",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/retailer_stamp_active_finish_route_v1/burger_king_residual_child_insert_guarded_dry_run_v1.json",
+  "migrations_created": false,
+  "global_apply_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "targets": [
+    {
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "56",
+      "card_name": "Chimchar",
+      "target_parent_id": "006b48c2-45af-486e-9059-ebf0c2a4f329",
+      "target_child_id": "7b63ea82-e888-47be-9d23-96810c96e544",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_2009_burger_king_toys",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+          "evidence_label": "Burger King 2009 checklist lists Chimchar 56/100 and states the promotion paired toys with reverse holofoil Platinum-stamped TCG cards."
+        },
+        {
+          "source_key": "pricecharting_stamped_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/chimchar-stamped-56",
+          "evidence_label": "PriceCharting exact product identifies Chimchar [Stamped] #56 in Pokemon Majestic Dawn."
+        }
+      ],
+      "target_variant_key": "platinum_stamped_burger_king_2009",
+      "target_finish_key": "reverse",
+      "stamp_label": "Platinum Stamped Burger King 2009"
+    },
+    {
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "62",
+      "card_name": "Eevee",
+      "target_parent_id": "5d43f0d8-0fb3-4a0d-bcef-999fd40e67af",
+      "target_child_id": "6d4b7093-9427-4581-951d-d3204a5e60f7",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_2009_burger_king_toys",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+          "evidence_label": "Burger King 2009 checklist lists Eevee 62/100 and states the promotion paired toys with reverse holofoil Platinum-stamped TCG cards."
+        },
+        {
+          "source_key": "tcgplayer_burger_king_promos",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/155605/pokemon-burger-king-promos-eevee-62-100-platinum",
+          "evidence_label": "TCGplayer exact Burger King Promos product for Eevee 62/100 [Platinum] exposes Reverse Holofoil pricing."
+        }
+      ],
+      "target_variant_key": "platinum_stamped_burger_king_2009",
+      "target_finish_key": "reverse",
+      "stamp_label": "Platinum Stamped Burger King 2009"
+    },
+    {
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "70",
+      "card_name": "Pikachu",
+      "target_parent_id": "41c3c346-edf5-4306-9dd9-992823418994",
+      "target_child_id": "210886b2-8058-465d-bf87-3fe1d93b3047",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_2009_burger_king_toys",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+          "evidence_label": "Burger King 2009 checklist lists Pikachu 70/100 and states the promotion paired toys with reverse holofoil Platinum-stamped TCG cards."
+        },
+        {
+          "source_key": "pricecharting_reverse_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/pikachu-reverse-holo-70",
+          "evidence_label": "PriceCharting preserved product evidence includes Platinum-stamped reverse-holo Pikachu #70 sale labels."
+        }
+      ],
+      "target_variant_key": "platinum_stamped_burger_king_2009",
+      "target_finish_key": "reverse",
+      "stamp_label": "Platinum Stamped Burger King 2009"
+    },
+    {
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "77",
+      "card_name": "Turtwig",
+      "target_parent_id": "d47a7931-82b8-42ba-a6dc-4137642c2f78",
+      "target_child_id": "82a0c5ab-c4e7-440b-9cee-320499342139",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_2009_burger_king_toys",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/2009_Burger_King_promotional_Pok%C3%A9mon_toys",
+          "evidence_label": "Burger King 2009 checklist lists Turtwig 77/100 and states the promotion paired toys with reverse holofoil Platinum-stamped TCG cards."
+        },
+        {
+          "source_key": "pricecharting_stamped_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/turtwig-stamped-77-77",
+          "evidence_label": "PriceCharting exact product identifies Turtwig [Stamped] #77 in Pokemon Majestic Dawn."
+        }
+      ],
+      "target_variant_key": "platinum_stamped_burger_king_2009",
+      "target_finish_key": "reverse",
+      "stamp_label": "Platinum Stamped Burger King 2009"
+    },
+    {
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "106",
+      "card_name": "Meowth",
+      "target_parent_id": "ca2d8167-7a79-4069-b112-9268e2da6ac0",
+      "target_child_id": "393c4b88-002f-4cc8-b43b-82edd2d871af",
+      "evidence": [
+        {
+          "source_key": "elitefourum_alternate_checklist",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+          "evidence_label": "Elite Fourum alternate checklist lists 106/146 Meowth [Platinum Stamped, Burger King; 2009]."
+        },
+        {
+          "source_key": "pricecharting_stamped_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-legends-awakened/meowth-platinum-stamped-106",
+          "evidence_label": "PriceCharting exact product identifies Meowth [Platinum Stamped] #106 in Pokemon Legends Awakened."
+        },
+        {
+          "source_key": "poke_card_values_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://pokecardvalues.co.uk/cards/meowth-106-146-reverse-holo-burger-king-legends-awakened/dp6-106-3-19/",
+          "evidence_label": "Poke Card Values exact product identifies Meowth 106/146 Reverse Holo Burger King promo."
+        }
+      ],
+      "target_variant_key": "platinum_stamped_burger_king_2009",
+      "target_finish_key": "reverse",
+      "stamp_label": "Platinum Stamped Burger King 2009"
+    }
+  ],
+  "execution": {
+    "apply_status": "burger_king_residual_child_insert_applied",
+    "guard": {
+      "target_count": 5,
+      "target_parent_count": 5,
+      "target_child_count": 5,
+      "parent_count": 5,
+      "target_parent_match_count": 5,
+      "active_identity_count": 5,
+      "active_finish_count": 5,
+      "child_id_collision_count": 0,
+      "existing_target_finish_count": 0,
+      "forbidden_stamped_child_rows": 0
+    },
+    "proof": {
+      "package_id": "RETAILER-STAMP-06-BURGER-KING-RESIDUAL-CHILD-INSERTS",
+      "package_fingerprint": "34439459b7b56f6ad5f0cee5603b80b886106864187a5f840dcceff76f76bdf1",
+      "inserted_child_rows": 5,
+      "matching_target_finish_rows": 5,
+      "forbidden_stamped_child_rows": 0
+    },
+    "write_counts": {
+      "child_inserts": 5,
+      "parent_writes": 0,
+      "identity_writes": 0,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-17T05:53:22.113Z",
+      "rows": [
+        {
+          "row_type": "target_identity",
+          "row_id": "13636167-5ccc-4c00-8faa-1d0b2483ce8f",
+          "set_code": "dp5",
+          "number": "56",
+          "name": "Chimchar",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "c2cde612886659ae3f9bf2f7e203f4591f24f95b0720323f73c333f6cc14db97"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "006b48c2-45af-486e-9059-ebf0c2a4f329",
+          "set_code": "dp5",
+          "number": "56",
+          "name": "Chimchar",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "a4990db6-f406-4cbd-ad10-6ca112b5ee70",
+          "set_code": "dp5",
+          "number": "62",
+          "name": "Eevee",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "7f561233b757f7708910962689e8c7241dd2ca37c406824f66fb838defddb142"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "5d43f0d8-0fb3-4a0d-bcef-999fd40e67af",
+          "set_code": "dp5",
+          "number": "62",
+          "name": "Eevee",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "9da66356-de7e-48e4-a2e7-1db3b8ad9fa1",
+          "set_code": "dp5",
+          "number": "70",
+          "name": "Pikachu",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "ea4d2f25d5600d0bc0b183b59e2863b4a890f1ba6c52e19d2831a68a429e6a2d"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "41c3c346-edf5-4306-9dd9-992823418994",
+          "set_code": "dp5",
+          "number": "70",
+          "name": "Pikachu",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2cea0045-6ae1-4168-b918-f3bf69ccd437",
+          "set_code": "dp5",
+          "number": "77",
+          "name": "Turtwig",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "50dfa8886e58568c4b0fe7b8c6fcbb8591749813e84291478b1a404843f33d7a"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d47a7931-82b8-42ba-a6dc-4137642c2f78",
+          "set_code": "dp5",
+          "number": "77",
+          "name": "Turtwig",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2027cfe8-5858-4982-b2a2-d6b0db2279ea",
+          "set_code": "dp6",
+          "number": "106",
+          "name": "Meowth",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "d9966812a1925cb2309a05d7ab44e15cadd609e977bdf35e3a727d42e324c176"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ca2d8167-7a79-4069-b112-9268e2da6ac0",
+          "set_code": "dp6",
+          "number": "106",
+          "name": "Meowth",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "28cb6571e6076829efae74690499668bf609f4c987d216355d55a386b6c7cda5"
+    },
+    "after_snapshot": {
+      "captured_at": "2026-06-17T05:53:22.944Z",
+      "rows": [
+        {
+          "row_type": "target_child",
+          "row_id": "7b63ea82-e888-47be-9d23-96810c96e544",
+          "set_code": "dp5",
+          "number": "56",
+          "name": "Chimchar",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "13636167-5ccc-4c00-8faa-1d0b2483ce8f",
+          "set_code": "dp5",
+          "number": "56",
+          "name": "Chimchar",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "c2cde612886659ae3f9bf2f7e203f4591f24f95b0720323f73c333f6cc14db97"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "006b48c2-45af-486e-9059-ebf0c2a4f329",
+          "set_code": "dp5",
+          "number": "56",
+          "name": "Chimchar",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "6d4b7093-9427-4581-951d-d3204a5e60f7",
+          "set_code": "dp5",
+          "number": "62",
+          "name": "Eevee",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "a4990db6-f406-4cbd-ad10-6ca112b5ee70",
+          "set_code": "dp5",
+          "number": "62",
+          "name": "Eevee",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "7f561233b757f7708910962689e8c7241dd2ca37c406824f66fb838defddb142"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "5d43f0d8-0fb3-4a0d-bcef-999fd40e67af",
+          "set_code": "dp5",
+          "number": "62",
+          "name": "Eevee",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "210886b2-8058-465d-bf87-3fe1d93b3047",
+          "set_code": "dp5",
+          "number": "70",
+          "name": "Pikachu",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "9da66356-de7e-48e4-a2e7-1db3b8ad9fa1",
+          "set_code": "dp5",
+          "number": "70",
+          "name": "Pikachu",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "ea4d2f25d5600d0bc0b183b59e2863b4a890f1ba6c52e19d2831a68a429e6a2d"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "41c3c346-edf5-4306-9dd9-992823418994",
+          "set_code": "dp5",
+          "number": "70",
+          "name": "Pikachu",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "82a0c5ab-c4e7-440b-9cee-320499342139",
+          "set_code": "dp5",
+          "number": "77",
+          "name": "Turtwig",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2cea0045-6ae1-4168-b918-f3bf69ccd437",
+          "set_code": "dp5",
+          "number": "77",
+          "name": "Turtwig",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "50dfa8886e58568c4b0fe7b8c6fcbb8591749813e84291478b1a404843f33d7a"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "d47a7931-82b8-42ba-a6dc-4137642c2f78",
+          "set_code": "dp5",
+          "number": "77",
+          "name": "Turtwig",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "393c4b88-002f-4cc8-b43b-82edd2d871af",
+          "set_code": "dp6",
+          "number": "106",
+          "name": "Meowth",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2027cfe8-5858-4982-b2a2-d6b0db2279ea",
+          "set_code": "dp6",
+          "number": "106",
+          "name": "Meowth",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "d9966812a1925cb2309a05d7ab44e15cadd609e977bdf35e3a727d42e324c176"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ca2d8167-7a79-4069-b112-9268e2da6ac0",
+          "set_code": "dp6",
+          "number": "106",
+          "name": "Meowth",
+          "variant_key": "platinum_stamped_burger_king_2009",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "852b2d94c52cb33d35533e3373b72d16c3b7c8e7cb6a53bb7d5e7ad55cad471a"
+    },
+    "post_apply_verified": true
+  }
+}

@@ -1,0 +1,704 @@
+{
+  "generated_at": "2026-06-17T05:16:26.259Z",
+  "version": "retailer_stamp_xy_parent_insert_guarded_dry_run_v1",
+  "package_id": "RETAILER-STAMP-03-XY-PARENT-IDENTITY-INSERTS",
+  "package_fingerprint_sha256": "103681d2519e9bf317e49388b26934fdf17b9a15f507dad7bf44ae73d68d96d0",
+  "dry_run_proof_sha256": "ebe230af9770a266c2e6821e751cc0ff764da26e323ca34d8dd49314f1ec2dfe",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/retailer_stamp_active_finish_route_v1/retailer_stamp_active_finish_route_v1.json",
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "target_count": 5,
+    "source_unique_active_finish_rows": 1,
+    "base_finish_aligned_rows": 4,
+    "by_set": {
+      "xy12": 1,
+      "xy2": 1,
+      "xy5": 1,
+      "xy6": 1,
+      "xy7": 1
+    },
+    "by_finish": {
+      "normal": 4,
+      "cosmos": 1
+    },
+    "by_stamp_label": {
+      "Build-A-Bear Workshop Stamp": 4,
+      "Toys R Us Stamp": 1
+    },
+    "targets": [
+      {
+        "target_parent_id": "71a07feb-8e33-4833-90a9-e66a8bfdeb51",
+        "target_child_id": "997a0e60-7f87-4c18-a338-99deeb60828d",
+        "base_parent_id": "b62f669b-ccfd-44b6-bfcc-a5f719e24d77",
+        "base_parent_gv_id": "GV-PK-EVO-41",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "xy12",
+        "card_number": "41",
+        "card_name": "Electabuzz",
+        "target_finish_key": "cosmos",
+        "target_variant_key": "toys_r_us_stamp",
+        "target_printed_identity_modifier": "toys_r_us_stamp",
+        "stamp_label": "Toys R Us Stamp",
+        "evidence_urls": [
+          "https://www.pricecharting.com/game/pokemon-evolutions/electabuzz-toys-r-us-41",
+          "https://www.pokedata.io/card/Miscellaneous%2BPromos/Electabuzz%2BToys%2BR%2BUs%2B41"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "42b0a9587017b6f176b87fa0aaef6c6986115d3019d263d3ed6062e423999425",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "b62f669b-ccfd-44b6-bfcc-a5f719e24d77",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "toys_r_us_stamp",
+          "stamp_label": "Toys R Us Stamp",
+          "active_child_finish_key": "cosmos",
+          "evidence": [
+            {
+              "source_key": "pricecharting_stamped_active_finish",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-evolutions/electabuzz-toys-r-us-41",
+              "evidence_label": "PriceCharting exact Toys R Us Electabuzz product includes Cosmos/Holo listing text"
+            },
+            {
+              "source_key": "pokedata_stamped_finish",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pokedata.io/card/Miscellaneous%2BPromos/Electabuzz%2BToys%2BR%2BUs%2B41",
+              "evidence_label": "PokeDATA references Toys R Us Electabuzz 41/108 Holo promo"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "c2ac7f45-ad5c-4147-b83e-734c33cf3cc5",
+        "target_child_id": "f56e71d1-9450-492e-ba84-b63e513576e1",
+        "base_parent_id": "86793c14-e37b-49c8-80eb-51ad7242e4f9",
+        "base_parent_gv_id": "GV-PK-FLF-80",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "xy2",
+        "card_number": "80",
+        "card_name": "Snorlax",
+        "target_finish_key": "normal",
+        "target_variant_key": "build_a_bear_workshop_stamp",
+        "target_printed_identity_modifier": "build_a_bear_workshop_stamp",
+        "stamp_label": "Build-A-Bear Workshop Stamp",
+        "evidence_urls": [
+          "https://facetofacegames.com/products/snorlax-80106-promo-build-a-bear-workshop-xy2msp-80-non-holo",
+          "https://pokumon.com/card/build-a-bear-snorlax-80-106-build-a-bear-workshop-special-print/"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "42b0a9587017b6f176b87fa0aaef6c6986115d3019d263d3ed6062e423999425",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "86793c14-e37b-49c8-80eb-51ad7242e4f9",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "build_a_bear_workshop_stamp",
+          "stamp_label": "Build-A-Bear Workshop Stamp",
+          "active_child_finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "facetofacegames_stamped_finish",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://facetofacegames.com/products/snorlax-80106-promo-build-a-bear-workshop-xy2msp-80-non-holo",
+              "evidence_label": "Snorlax 80/106 Build-A-Bear Workshop, Finish: Non-Holo"
+            },
+            {
+              "source_key": "pokumon_promo_database",
+              "source_kind": "collector_reference",
+              "source_url": "https://pokumon.com/card/build-a-bear-snorlax-80-106-build-a-bear-workshop-special-print/",
+              "evidence_label": "Build-A-Bear Snorlax special print, Non-holo"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "c61c3baf-261d-4518-b752-a9c0b315c543",
+        "target_child_id": "79bad5ae-198d-44a1-8644-68abc305d5a1",
+        "base_parent_id": "459f35e9-31ed-4f96-b86b-193a1e7bfda9",
+        "base_parent_gv_id": "GV-PK-PRC-20",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "xy5",
+        "card_number": "20",
+        "card_name": "Vulpix",
+        "target_finish_key": "normal",
+        "target_variant_key": "build_a_bear_workshop_stamp",
+        "target_printed_identity_modifier": "build_a_bear_workshop_stamp",
+        "stamp_label": "Build-A-Bear Workshop Stamp",
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Vulpix_(Primal_Clash_20)",
+          "https://www.pricecharting.com/game/pokemon-primal-clash/vulpix-build-a-bear-20"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "42b0a9587017b6f176b87fa0aaef6c6986115d3019d263d3ed6062e423999425",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "459f35e9-31ed-4f96-b86b-193a1e7bfda9",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "build_a_bear_workshop_stamp",
+          "stamp_label": "Build-A-Bear Workshop Stamp",
+          "active_child_finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_card_page_release_info",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Vulpix_(Primal_Clash_20)",
+              "evidence_label": "Release information says the Build-A-Bear stamped version is Non Holofoil"
+            },
+            {
+              "source_key": "pricecharting_csv_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-primal-clash/vulpix-build-a-bear-20",
+              "evidence_label": "PriceCharting exact Build-A-Bear Vulpix product"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "0d4520ba-b7cd-46f8-8755-fee018a0d8d8",
+        "target_child_id": "aa3c1079-8b92-475e-9286-3efa679d4260",
+        "base_parent_id": "f70cd048-f6de-4510-989d-8c643a3325b3",
+        "base_parent_gv_id": "GV-PK-ROS-67",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "xy6",
+        "card_number": "67",
+        "card_name": "Meowth",
+        "target_finish_key": "normal",
+        "target_variant_key": "build_a_bear_workshop_stamp",
+        "target_printed_identity_modifier": "build_a_bear_workshop_stamp",
+        "stamp_label": "Build-A-Bear Workshop Stamp",
+        "evidence_urls": [
+          "https://pokecardvalues.co.uk/cards/meowth-67-108-non-holo-unlimited-roaring-skies/xy6-67-2-1/",
+          "https://bulbapedia.bulbagarden.net/wiki/Meowth_(Roaring_Skies_67)"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "42b0a9587017b6f176b87fa0aaef6c6986115d3019d263d3ed6062e423999425",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "f70cd048-f6de-4510-989d-8c643a3325b3",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "build_a_bear_workshop_stamp",
+          "stamp_label": "Build-A-Bear Workshop Stamp",
+          "active_child_finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "pokecardvalues_stamped_finish",
+              "source_kind": "collector_reference",
+              "source_url": "https://pokecardvalues.co.uk/cards/meowth-67-108-non-holo-unlimited-roaring-skies/xy6-67-2-1/",
+              "evidence_label": "Poke Card Values lists Meowth 67/108 Build-A-Bear as Non-Holo"
+            },
+            {
+              "source_key": "bulbapedia_card_page_release_info",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Meowth_(Roaring_Skies_67)",
+              "evidence_label": "Release information documents the Build-A-Bear stamped variant"
+            }
+          ]
+        }
+      },
+      {
+        "target_parent_id": "ff8cdfb8-e0f4-40ea-b33b-d214f7c8fab2",
+        "target_child_id": "5c9bdd86-c78b-44ca-90a2-57d2a5056e5f",
+        "base_parent_id": "2de00ce9-f885-4d0d-aa8c-6b7268fbd4fd",
+        "base_parent_gv_id": "GV-PK-AOR-63",
+        "base_parent_child_finishes": [
+          "normal",
+          "reverse"
+        ],
+        "set_key": "xy7",
+        "card_number": "63",
+        "card_name": "Eevee",
+        "target_finish_key": "normal",
+        "target_variant_key": "build_a_bear_workshop_stamp",
+        "target_printed_identity_modifier": "build_a_bear_workshop_stamp",
+        "stamp_label": "Build-A-Bear Workshop Stamp",
+        "evidence_urls": [
+          "https://pokecardvalues.co.uk/cards/eevee-63-98-non-holo-build-a-bear-ancient-origins/xy7-63-2-18/",
+          "https://bulbapedia.bulbagarden.net/wiki/Eevee_(Ancient_Origins_63)"
+        ],
+        "evidence": {
+          "source_package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+          "source_fingerprint_sha256": "42b0a9587017b6f176b87fa0aaef6c6986115d3019d263d3ed6062e423999425",
+          "source_status": "ready_for_guarded_dry_run",
+          "selected_base_parent_id": "2de00ce9-f885-4d0d-aa8c-6b7268fbd4fd",
+          "base_parent_child_finishes": [
+            "normal",
+            "reverse"
+          ],
+          "stamped_variant_key": "build_a_bear_workshop_stamp",
+          "stamp_label": "Build-A-Bear Workshop Stamp",
+          "active_child_finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "pokecardvalues_stamped_finish",
+              "source_kind": "collector_reference",
+              "source_url": "https://pokecardvalues.co.uk/cards/eevee-63-98-non-holo-build-a-bear-ancient-origins/xy7-63-2-18/",
+              "evidence_label": "Eevee 63/98 Non-Holo Build-A-Bear"
+            },
+            {
+              "source_key": "bulbapedia_card_page_release_info",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Eevee_(Ancient_Origins_63)",
+              "evidence_label": "Release information documents the Build-A-Bear stamped variant"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "retailer_stamp_xy_parent_insert_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 5,
+      "target_parent_count": 5,
+      "target_child_count": 5,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_finish_count": 1,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 5,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "RETAILER-STAMP-03-XY-PARENT-IDENTITY-INSERTS",
+      "package_fingerprint": "103681d2519e9bf317e49388b26934fdf17b9a15f507dad7bf44ae73d68d96d0",
+      "target_rows": 5,
+      "inserted_parent_rows": 5,
+      "inserted_parent_modifier_rows": 5,
+      "inserted_identity_rows": 5,
+      "inserted_child_rows": 5,
+      "forbidden_stamped_child_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 5,
+      "identity_inserts": 5,
+      "child_inserts": 5,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-17T05:16:25.074Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "b62f669b-ccfd-44b6-bfcc-a5f719e24d77",
+          "set_code": "xy12",
+          "number": "41",
+          "number_plain": "41",
+          "name": "Electabuzz",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "86793c14-e37b-49c8-80eb-51ad7242e4f9",
+          "set_code": "xy2",
+          "number": "80",
+          "number_plain": "80",
+          "name": "Snorlax",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "459f35e9-31ed-4f96-b86b-193a1e7bfda9",
+          "set_code": "xy5",
+          "number": "20",
+          "number_plain": "20",
+          "name": "Vulpix",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f70cd048-f6de-4510-989d-8c643a3325b3",
+          "set_code": "xy6",
+          "number": "67",
+          "number_plain": "67",
+          "name": "Meowth",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "2de00ce9-f885-4d0d-aa8c-6b7268fbd4fd",
+          "set_code": "xy7",
+          "number": "63",
+          "number_plain": "63",
+          "name": "Eevee",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "40ed64e90c439ab5380aec16faf6814b7a5df102a7bdf82dd103f85542ce949b",
+      "counts": {
+        "base_parent": 5
+      }
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-17T05:16:26.028Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "b62f669b-ccfd-44b6-bfcc-a5f719e24d77",
+          "set_code": "xy12",
+          "number": "41",
+          "number_plain": "41",
+          "name": "Electabuzz",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "86793c14-e37b-49c8-80eb-51ad7242e4f9",
+          "set_code": "xy2",
+          "number": "80",
+          "number_plain": "80",
+          "name": "Snorlax",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "459f35e9-31ed-4f96-b86b-193a1e7bfda9",
+          "set_code": "xy5",
+          "number": "20",
+          "number_plain": "20",
+          "name": "Vulpix",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f70cd048-f6de-4510-989d-8c643a3325b3",
+          "set_code": "xy6",
+          "number": "67",
+          "number_plain": "67",
+          "name": "Meowth",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "2de00ce9-f885-4d0d-aa8c-6b7268fbd4fd",
+          "set_code": "xy7",
+          "number": "63",
+          "number_plain": "63",
+          "name": "Eevee",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "997a0e60-7f87-4c18-a338-99deeb60828d",
+          "set_code": "xy12",
+          "number": "41",
+          "number_plain": "41",
+          "name": "Electabuzz",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": "cosmos",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "f56e71d1-9450-492e-ba84-b63e513576e1",
+          "set_code": "xy2",
+          "number": "80",
+          "number_plain": "80",
+          "name": "Snorlax",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "79bad5ae-198d-44a1-8644-68abc305d5a1",
+          "set_code": "xy5",
+          "number": "20",
+          "number_plain": "20",
+          "name": "Vulpix",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "aa3c1079-8b92-475e-9286-3efa679d4260",
+          "set_code": "xy6",
+          "number": "67",
+          "number_plain": "67",
+          "name": "Meowth",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "5c9bdd86-c78b-44ca-90a2-57d2a5056e5f",
+          "set_code": "xy7",
+          "number": "63",
+          "number_plain": "63",
+          "name": "Eevee",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "69beafc4-5340-409d-823a-d7af555bb77a",
+          "set_code": "xy12",
+          "number": "41",
+          "number_plain": "41",
+          "name": "Electabuzz",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": "18c15b00272f33253c4b65a6304278f82c9fd22fb215ed9320a65ace6e26b671"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "6bfb8749-f44d-4290-8aeb-1c9120097740",
+          "set_code": "xy2",
+          "number": "80",
+          "number_plain": "80",
+          "name": "Snorlax",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": "aec29005a79064d22d175b9e280b144c065b3e2a515b668d8b86b07780593c55"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "b0e17537-68b9-4658-a16f-c7bc3a1c4c1b",
+          "set_code": "xy5",
+          "number": "20",
+          "number_plain": "20",
+          "name": "Vulpix",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": "e6b271c4d8d424955f6a41e12ccb9b1f0a705924f395fb3154ed138d37d96ec5"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "64532086-f646-420b-b8a4-7ab7293a500d",
+          "set_code": "xy6",
+          "number": "67",
+          "number_plain": "67",
+          "name": "Meowth",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": "a79de389f3f038750f63eb88d0ca8f4259320cdce2faf815b9c1fe2e4b3c599f"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "192f15d4-6818-4429-9905-bb6e946e8fbb",
+          "set_code": "xy7",
+          "number": "63",
+          "number_plain": "63",
+          "name": "Eevee",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": "9948b718ec917068ce8dab151fef460e5396faacd78746e24f909fb0cbf1372a"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "71a07feb-8e33-4833-90a9-e66a8bfdeb51",
+          "set_code": "xy12",
+          "number": "41",
+          "number_plain": "41",
+          "name": "Electabuzz",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "c2ac7f45-ad5c-4147-b83e-734c33cf3cc5",
+          "set_code": "xy2",
+          "number": "80",
+          "number_plain": "80",
+          "name": "Snorlax",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "c61c3baf-261d-4518-b752-a9c0b315c543",
+          "set_code": "xy5",
+          "number": "20",
+          "number_plain": "20",
+          "name": "Vulpix",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "0d4520ba-b7cd-46f8-8755-fee018a0d8d8",
+          "set_code": "xy6",
+          "number": "67",
+          "number_plain": "67",
+          "name": "Meowth",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ff8cdfb8-e0f4-40ea-b33b-d214f7c8fab2",
+          "set_code": "xy7",
+          "number": "63",
+          "number_plain": "63",
+          "name": "Eevee",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "b46ea299a14cbbc642a50ab934c3a149ee3eedfeb444894984c5adc8de27dfdf",
+      "counts": {
+        "base_parent": 5,
+        "target_child": 5,
+        "target_identity": 5,
+        "target_parent": 5
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-17T05:16:26.179Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "b62f669b-ccfd-44b6-bfcc-a5f719e24d77",
+          "set_code": "xy12",
+          "number": "41",
+          "number_plain": "41",
+          "name": "Electabuzz",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "86793c14-e37b-49c8-80eb-51ad7242e4f9",
+          "set_code": "xy2",
+          "number": "80",
+          "number_plain": "80",
+          "name": "Snorlax",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "459f35e9-31ed-4f96-b86b-193a1e7bfda9",
+          "set_code": "xy5",
+          "number": "20",
+          "number_plain": "20",
+          "name": "Vulpix",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "f70cd048-f6de-4510-989d-8c643a3325b3",
+          "set_code": "xy6",
+          "number": "67",
+          "number_plain": "67",
+          "name": "Meowth",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "2de00ce9-f885-4d0d-aa8c-6b7268fbd4fd",
+          "set_code": "xy7",
+          "number": "63",
+          "number_plain": "63",
+          "name": "Eevee",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "40ed64e90c439ab5380aec16faf6814b7a5df102a7bdf82dd103f85542ce949b",
+      "counts": {
+        "base_parent": 5
+      }
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "ebe230af9770a266c2e6821e751cc0ff764da26e323ca34d8dd49314f1ec2dfe",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real RETAILER-STAMP-03-XY-PARENT-IDENTITY-INSERTS apply only. Fingerprint: 103681d2519e9bf317e49388b26934fdf17b9a15f507dad7bf44ae73d68d96d0. Scope: 5 XY retailer-stamped parent inserts, 5 identity inserts, 5 child printing inserts; finishes normal=4, cosmos=1; stamp labels Build-A-Bear Workshop Stamp=4, Toys R Us Stamp=1; sets xy12=1, xy2=1, xy5=1, xy6=1, xy7=1; source-unique active-finish rows: 1. Dry-run proof: 40ed64e90c439ab5380aec16faf6814b7a5df102a7bdf82dd103f85542ce949b == 40ed64e90c439ab5380aec16faf6814b7a5df102a7bdf82dd103f85542ce949b. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}

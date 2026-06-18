@@ -33901,6 +33901,159 @@
     ]
   },
   {
+    "card_print_id": "02b8f0ff-101f-4fc3-b010-c989194611a4",
+    "set_code": "base1",
+    "set_name": "Base Set",
+    "number": "12",
+    "number_plain": "12",
+    "name": "Ninetales",
+    "gv_id": "GV-PK-BASE1-12-BLACK-FLAME-ERROR",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "831f02cf-4ebb-4bc8-85ee-7360eb13b3ad",
+    "set_code": "base1",
+    "set_name": "Base Set",
+    "number": "12",
+    "number_plain": "12",
+    "name": "Ninetales",
+    "gv_id": "GV-PK-BASE1-12-NO-DAMAGE-ERROR",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "72e51650-dbad-41ec-a5d1-a8fc9f5c7d71",
+    "set_code": "base1",
+    "set_name": "Base Set",
+    "number": "17",
+    "number_plain": "17",
+    "name": "Beedrill",
+    "gv_id": "GV-PK-BASE1-17-D-FENDING-ERROR",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "80d4d2f2-67dd-4289-ab24-0abcabf882b4",
+    "set_code": "base1",
+    "set_name": "Base Set",
+    "number": "2",
+    "number_plain": "2",
+    "name": "Blastoise",
+    "gv_id": "GV-PK-BASE1-2-STAGE-ERROR",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "ff0d759b-40bd-44c3-be41-37b5c4bcc860",
+    "set_code": "base1",
+    "set_name": "Base Set",
+    "number": "42",
+    "number_plain": "42",
+    "name": "Wartortle",
+    "gv_id": "GV-PK-BASE1-42-EVOLUTION-BOX-ERROR",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "9d600dd3-f0aa-43f7-8fd3-0311c9e8403a",
+    "set_code": "base1",
+    "set_name": "Base Set",
+    "number": "47",
+    "number_plain": "47",
+    "name": "Diglett",
+    "gv_id": "GV-PK-BASE1-47-SIDEWAYS-FIGHTING-ENERGY-ERROR",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "238dff30-ce49-453a-8504-4de3450e9d70",
+    "set_code": "base1",
+    "set_name": "Base Set",
+    "number": "58",
+    "number_plain": "58",
+    "name": "Pikachu",
+    "gv_id": "GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "939f09d0-1adc-4a79-ba7f-882e102c4e22",
+    "set_code": "base1",
+    "set_name": "Base Set",
+    "number": "58",
+    "number_plain": "58",
+    "name": "Pikachu",
+    "gv_id": "GV-PK-BASE1-58-GHOST-STAMP-SHADOWLESS",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "9c1f54d6-8f74-4c5e-a5b3-69806ad338bb",
+    "set_code": "base1",
+    "set_name": "Base Set",
+    "number": "58",
+    "number_plain": "58",
+    "name": "Pikachu",
+    "gv_id": "GV-PK-BASE1-58-E3-STAMP-RED-CHEEKS",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
     "card_print_id": "9dfec0a3-7f9f-4a9f-a443-6582508cf539",
     "set_code": "base1",
     "set_name": "Base Set",
@@ -33915,6 +34068,74 @@
     "missing_groups": [
       "child_printings",
       "external_mapping"
+    ]
+  },
+  {
+    "card_print_id": "a719658f-3b5a-4a4e-94de-0e3a72098713",
+    "set_code": "base1",
+    "set_name": "Base Set",
+    "number": "58",
+    "number_plain": "58",
+    "name": "Pikachu",
+    "gv_id": "GV-PK-BASE1-58-SHADOWLESS-YELLOW-CHEEKS",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "dc27ea00-fe52-4fa2-a30b-9724201ed586",
+    "set_code": "base1",
+    "set_name": "Base Set",
+    "number": "58",
+    "number_plain": "58",
+    "name": "Pikachu",
+    "gv_id": "GV-PK-BASE1-58-FIRST-EDITION-YELLOW-CHEEKS",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "df7098c1-1ab6-40b5-97fd-fd77f6fc9dc2",
+    "set_code": "base1",
+    "set_name": "Base Set",
+    "number": "58",
+    "number_plain": "58",
+    "name": "Pikachu",
+    "gv_id": "GV-PK-BASE1-58-E3-STAMP-YELLOW-CHEEKS",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "ec82bb94-e450-4107-bee0-c3e21c24f23b",
+    "set_code": "base1",
+    "set_name": "Base Set",
+    "number": "58",
+    "number_plain": "58",
+    "name": "Pikachu",
+    "gv_id": "GV-PK-BASE1-58-SHADOWLESS-RED-CHEEKS",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
     ]
   },
   {
@@ -34520,6 +34741,23 @@
     ]
   },
   {
+    "card_print_id": "28a7a1a5-30c3-42ef-9b18-3efd340e2c5a",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "1",
+    "number_plain": "1",
+    "name": "Clefable",
+    "gv_id": "GV-PK-BASE2-1-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
     "card_print_id": "864849e7-1e4d-4bc9-a147-0f250b2dcf1d",
     "set_code": "base2",
     "set_name": "Jungle",
@@ -34534,6 +34772,210 @@
     "missing_groups": [
       "child_printings",
       "external_mapping"
+    ]
+  },
+  {
+    "card_print_id": "bafc2195-d765-4f65-9db2-5a7ae54e3198",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "10",
+    "number_plain": "10",
+    "name": "Scyther",
+    "gv_id": "GV-PK-BASE2-10-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "20fa5289-8e45-41cf-9f96-1dfd4cb189fa",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "11",
+    "number_plain": "11",
+    "name": "Snorlax",
+    "gv_id": "GV-PK-BASE2-11-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "ca4004fb-c4af-4631-b624-ec5a872ffa35",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "12",
+    "number_plain": "12",
+    "name": "Vaporeon",
+    "gv_id": "GV-PK-BASE2-12-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "b4dec454-afa9-429d-b44d-12ac70a226c0",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "13",
+    "number_plain": "13",
+    "name": "Venomoth",
+    "gv_id": "GV-PK-BASE2-13-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "2cfe8e2f-c552-4ef3-b69f-9ca29f69c3b9",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "14",
+    "number_plain": "14",
+    "name": "Victreebel",
+    "gv_id": "GV-PK-BASE2-14-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "3ab13536-8f6a-4686-be31-14424a87788f",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "15",
+    "number_plain": "15",
+    "name": "Vileplume",
+    "gv_id": "GV-PK-BASE2-15-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "b8b0e710-4454-439a-a0eb-f3eb75878998",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "16",
+    "number_plain": "16",
+    "name": "Wigglytuff",
+    "gv_id": "GV-PK-BASE2-16-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "83189125-b5f6-4169-b788-52a873359eb4",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "2",
+    "number_plain": "2",
+    "name": "Electrode",
+    "gv_id": "GV-PK-BASE2-2-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "58197a15-6846-4234-b153-565e26038a51",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "3",
+    "number_plain": "3",
+    "name": "Flareon",
+    "gv_id": "GV-PK-BASE2-3-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "bfd2238e-fc2d-452c-bc22-c4ea9dd84743",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "4",
+    "number_plain": "4",
+    "name": "Jolteon",
+    "gv_id": "GV-PK-BASE2-4-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "84b0cad0-b224-44f7-98bc-1be6d582b513",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "5",
+    "number_plain": "5",
+    "name": "Kangaskhan",
+    "gv_id": "GV-PK-BASE2-5-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "1cfc7d99-93b3-4da7-a9d0-9321e4b1eaa2",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "6",
+    "number_plain": "6",
+    "name": "Mr. Mime",
+    "gv_id": "GV-PK-BASE2-6-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
     ]
   },
   {
@@ -34574,6 +35016,57 @@
     ]
   },
   {
+    "card_print_id": "ffceadb7-dfad-4a35-b332-0ff0856fbecb",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "7",
+    "number_plain": "7",
+    "name": "Nidoqueen",
+    "gv_id": "GV-PK-BASE2-7-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "e563e20e-a43b-48f0-b07f-31a986fd827e",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "8",
+    "number_plain": "8",
+    "name": "Pidgeot",
+    "gv_id": "GV-PK-BASE2-8-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "66cdd415-f700-4199-bd04-dd47edeefd5e",
+    "set_code": "base2",
+    "set_name": "Jungle",
+    "number": "9",
+    "number_plain": "9",
+    "name": "Pinsir",
+    "gv_id": "GV-PK-BASE2-9-NO-SYMBOL",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
     "card_print_id": "243bdeb5-ff66-415c-88af-645b45f89870",
     "set_code": "base3",
     "set_name": "Fossil",
@@ -34589,6 +35082,23 @@
     ],
     "missing_groups": [
       "child_printings",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "e9c242ce-6ebb-40ac-b148-43f063c5f9c9",
+    "set_code": "base3",
+    "set_name": "Fossil",
+    "number": "15",
+    "number_plain": "15",
+    "name": "Zapdos",
+    "gv_id": "GV-PK-BASE3-15-MISSING-HOLO-EVOLUTION-BOX-ERROR",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
       "traits"
     ]
   },
@@ -35453,6 +35963,23 @@
     ]
   },
   {
+    "card_print_id": "d0155199-e607-42fe-a18c-9d0a9adc9b9a",
+    "set_code": "base5",
+    "set_name": "Team Rocket",
+    "number": "5",
+    "number_plain": "5",
+    "name": "Dark Dragonite",
+    "gv_id": "GV-PK-BASE5-5-NONHOLO-ERROR",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
     "card_print_id": "b4c80f17-1114-4567-8b54-ca9879c094bb",
     "set_code": "base5",
     "set_name": "Team Rocket",
@@ -35991,6 +36518,210 @@
     ]
   },
   {
+    "card_print_id": "bae09811-d56e-41db-b093-94b4dc70b561",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "17",
+    "number_plain": "17",
+    "name": "Dark Persian",
+    "gv_id": "GV-PK-BASEP-17-NO-HP-ERROR",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "0d97110d-e8bd-453a-b721-35091f4f08b8",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "2",
+    "number_plain": "2",
+    "name": "Electabuzz",
+    "gv_id": "GV-PK-BASEP-2-INVERTED-WB-KIDS-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "71d197da-c12f-4f01-899f-1449b53dcf6c",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "2",
+    "number_plain": "2",
+    "name": "Electabuzz",
+    "gv_id": "GV-PK-BASEP-2-WB-KIDS-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "3368a54d-889f-42c7-8493-afbddf613328",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "21",
+    "number_plain": "21",
+    "name": "Moltres",
+    "gv_id": "GV-PK-BASEP-21-INCORRECT-ARTIST-VARIANT",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "aaedcb11-d8ed-4ee0-8c26-920aa86c35c9",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "22",
+    "number_plain": "22",
+    "name": "Articuno",
+    "gv_id": "GV-PK-BASEP-22-INCORRECT-ARTIST-VARIANT",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "8355d761-b16a-4a07-9a2d-d39dcb4bf809",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "23",
+    "number_plain": "23",
+    "name": "Zapdos",
+    "gv_id": "GV-PK-BASEP-23-INCORRECT-ARTIST-VARIANT",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "3746cabc-29bd-4a1f-a105-eca80800cc2e",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "3",
+    "number_plain": "3",
+    "name": "Mewtwo",
+    "gv_id": "GV-PK-BASEP-3-INVERTED-WB-KIDS-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "571cb8c6-b7ec-43e8-8a54-fc5b71245690",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "3",
+    "number_plain": "3",
+    "name": "Mewtwo",
+    "gv_id": "GV-PK-BASEP-3-WB-KIDS-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "6abd5cee-cbe0-492c-9202-6ae41ba1bbcd",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "3",
+    "number_plain": "3",
+    "name": "Mewtwo",
+    "gv_id": "GV-PK-BASEP-3-MISSING-WB-KIDS-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "a10b92ea-ea18-4d3c-b046-8908fab97c4a",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "4",
+    "number_plain": "4",
+    "name": "Pikachu",
+    "gv_id": "GV-PK-BASEP-4-MISSING-WB-KIDS-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "aa1859b6-99a2-4d95-960b-8cedda0ea8c1",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "4",
+    "number_plain": "4",
+    "name": "Pikachu",
+    "gv_id": "GV-PK-BASEP-4-WB-KIDS-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "dfa19c6b-5e69-4ba5-a791-60b0f0c9edd1",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "4",
+    "number_plain": "4",
+    "name": "Pikachu",
+    "gv_id": "GV-PK-BASEP-4-INVERTED-WB-KIDS-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
     "card_print_id": "af7eb7f7-0451-49f9-93c2-d071ce7064a6",
     "set_code": "basep",
     "set_name": "Wizards Black Star Promos",
@@ -36045,6 +36776,57 @@
     ],
     "missing_groups": [
       "species_link"
+    ]
+  },
+  {
+    "card_print_id": "4c4a8734-fc89-4208-ade7-4ebacc80bdbb",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "5",
+    "number_plain": "5",
+    "name": "Dragonite",
+    "gv_id": "GV-PK-BASEP-5-WB-KIDS-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "6a505b8b-807f-4b0f-b1ee-73ecf29b3a42",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "5",
+    "number_plain": "5",
+    "name": "Dragonite",
+    "gv_id": "GV-PK-BASEP-5-INVERTED-WB-KIDS-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "c5899ee0-4e67-4629-8f8d-4d2a74238cac",
+    "set_code": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "number": "5",
+    "number_plain": "5",
+    "name": "Dragonite",
+    "gv_id": "GV-PK-BASEP-5-MISSING-WB-KIDS-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
     ]
   },
   {
@@ -36906,6 +37688,23 @@
     ]
   },
   {
+    "card_print_id": "dffcea63-9ac5-4027-8316-c471695d9e0e",
+    "set_code": "bw10",
+    "set_name": "Plasma Blast",
+    "number": "14",
+    "number_plain": "14",
+    "name": "Squirtle",
+    "gv_id": "GV-PK-BW10-14-BUILD-A-BEAR-WORKSHOP-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
     "card_print_id": "69dda831-11c5-4bf4-8954-5b0a7252bdc0",
     "set_code": "bw10",
     "set_name": "Plasma Blast",
@@ -37359,6 +38158,23 @@
     ],
     "missing_groups": [
       "species_link"
+    ]
+  },
+  {
+    "card_print_id": "d4880277-c005-4d7a-a3b3-a72658ffd4a3",
+    "set_code": "bw11",
+    "set_name": "Legendary Treasures",
+    "number": "17",
+    "number_plain": "17",
+    "name": "Charmander",
+    "gv_id": "GV-PK-BW11-17-BUILD-A-BEAR-WORKSHOP-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
     ]
   },
   {
@@ -38053,6 +38869,23 @@
     ],
     "missing_groups": [
       "species_link"
+    ]
+  },
+  {
+    "card_print_id": "d32fed29-e055-4fc9-b1f4-0854aab67ec3",
+    "set_code": "bw5",
+    "set_name": "Dark Explorers",
+    "number": "1",
+    "number_plain": "1",
+    "name": "Bulbasaur",
+    "gv_id": "GV-PK-BW5-1-BUILD-A-BEAR-WORKSHOP-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
     ]
   },
   {
@@ -42558,10 +43391,9 @@
     "gv_id": "GV-PK-DP5-56-PLATINUM-STAMPED-BURGER-KING-2009",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 1,
     "active_external_sources": [],
     "missing_groups": [
-      "child_printings",
       "external_mapping"
     ]
   },
@@ -42575,10 +43407,9 @@
     "gv_id": "GV-PK-DP5-62-PLATINUM-STAMPED-BURGER-KING-2009",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 1,
     "active_external_sources": [],
     "missing_groups": [
-      "child_printings",
       "external_mapping"
     ]
   },
@@ -42592,10 +43423,9 @@
     "gv_id": "GV-PK-DP5-70-PLATINUM-STAMPED-BURGER-KING-2009",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 1,
     "active_external_sources": [],
     "missing_groups": [
-      "child_printings",
       "external_mapping"
     ]
   },
@@ -42609,10 +43439,9 @@
     "gv_id": "GV-PK-DP5-71-PLATINUM-STAMPED-BURGER-KING-2009",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 1,
     "active_external_sources": [],
     "missing_groups": [
-      "child_printings",
       "external_mapping"
     ]
   },
@@ -42626,10 +43455,9 @@
     "gv_id": "GV-PK-DP5-77-PLATINUM-STAMPED-BURGER-KING-2009",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 1,
     "active_external_sources": [],
     "missing_groups": [
-      "child_printings",
       "external_mapping"
     ]
   },
@@ -43056,10 +43884,9 @@
     "gv_id": "GV-PK-DP6-106-PLATINUM-STAMPED-BURGER-KING-2009",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 1,
     "active_external_sources": [],
     "missing_groups": [
-      "child_printings",
       "external_mapping"
     ]
   },
@@ -52291,6 +53118,23 @@
     ]
   },
   {
+    "card_print_id": "ffb8eac8-5aa2-4b8f-a3f2-bbc7014b5688",
+    "set_code": "g1",
+    "set_name": "Generations",
+    "number": "22",
+    "number_plain": "22",
+    "name": "Magikarp",
+    "gv_id": "GV-PK-G1-22-TOYS-R-US-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
     "card_print_id": "b3ef7a40-9d58-489a-9573-846c5587f867",
     "set_code": "g1",
     "set_name": "Generations",
@@ -52309,6 +53153,23 @@
     ]
   },
   {
+    "card_print_id": "508ede96-3342-40a5-af9c-0c1ad5b4ddc7",
+    "set_code": "g1",
+    "set_name": "Generations",
+    "number": "26",
+    "number_plain": "26",
+    "name": "Pikachu",
+    "gv_id": "GV-PK-G1-26-TOYS-R-US-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
     "card_print_id": "ab846b92-4a09-4297-b48f-c728d2b2823a",
     "set_code": "g1",
     "set_name": "Generations",
@@ -52324,6 +53185,57 @@
     ],
     "missing_groups": [
       "species_link"
+    ]
+  },
+  {
+    "card_print_id": "31652c3f-d4b0-44c2-8f73-853cbe9084b4",
+    "set_code": "g1",
+    "set_name": "Generations",
+    "number": "32",
+    "number_plain": "32",
+    "name": "Slowpoke",
+    "gv_id": "GV-PK-G1-32-TOYS-R-US-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "534f1a73-c9a6-4daf-b861-33fa6a76ba16",
+    "set_code": "g1",
+    "set_name": "Generations",
+    "number": "50",
+    "number_plain": "50",
+    "name": "Clefairy",
+    "gv_id": "GV-PK-G1-50-TOYS-R-US-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "e3a83183-e1fe-44cf-becb-ce23ef191792",
+    "set_code": "g1",
+    "set_name": "Generations",
+    "number": "53",
+    "number_plain": "53",
+    "name": "Meowth",
+    "gv_id": "GV-PK-G1-53-TOYS-R-US-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
     ]
   },
   {
@@ -52759,6 +53671,23 @@
     ],
     "missing_groups": [
       "species_link"
+    ]
+  },
+  {
+    "card_print_id": "a9a53cfc-3fbe-4c7c-ac75-3816d777954f",
+    "set_code": "g1",
+    "set_name": "Generations",
+    "number": "8",
+    "number_plain": "8",
+    "name": "Tangela",
+    "gv_id": "GV-PK-G1-8-TOYS-R-US-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
     ]
   },
   {
@@ -54113,6 +55042,24 @@
       "tcgplayer"
     ],
     "missing_groups": [
+      "species_link"
+    ]
+  },
+  {
+    "card_print_id": "391dad7b-2816-47b3-a86b-b51e369f06f4",
+    "set_code": "gym2",
+    "set_name": "Gym Challenge",
+    "number": "119",
+    "number_plain": "119",
+    "name": "Rocket's Minefield Gym",
+    "gv_id": "GV-PK-GYM2-119-CORRECTED-TEXT-VARIANT",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits",
       "species_link"
     ]
   },
@@ -60081,12 +61028,11 @@
     "gv_id": "GV-PK-ME03-080",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 2,
     "active_external_sources": [
       "justtcg"
     ],
     "missing_groups": [
-      "child_printings",
       "traits",
       "species_link"
     ]
@@ -60101,12 +61047,11 @@
     "gv_id": "GV-PK-ME03-081",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 2,
     "active_external_sources": [
       "justtcg"
     ],
     "missing_groups": [
-      "child_printings",
       "traits",
       "species_link"
     ]
@@ -60121,12 +61066,11 @@
     "gv_id": "GV-PK-ME03-082",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 2,
     "active_external_sources": [
       "justtcg"
     ],
     "missing_groups": [
-      "child_printings",
       "traits",
       "species_link"
     ]
@@ -60255,12 +61199,11 @@
     "gv_id": "GV-PK-ME03-089-ILLUSTRATION-RARE",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 1,
     "active_external_sources": [
       "justtcg"
     ],
     "missing_groups": [
-      "child_printings",
       "traits"
     ]
   },
@@ -60274,12 +61217,11 @@
     "gv_id": "GV-PK-ME03-090-ILLUSTRATION-RARE",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 1,
     "active_external_sources": [
       "justtcg"
     ],
     "missing_groups": [
-      "child_printings",
       "traits"
     ]
   },
@@ -60311,12 +61253,11 @@
     "gv_id": "GV-PK-ME03-092-ILLUSTRATION-RARE",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 1,
     "active_external_sources": [
       "justtcg"
     ],
     "missing_groups": [
-      "child_printings",
       "traits"
     ]
   },
@@ -60330,12 +61271,11 @@
     "gv_id": "GV-PK-ME03-093-ILLUSTRATION-RARE",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 1,
     "active_external_sources": [
       "justtcg"
     ],
     "missing_groups": [
-      "child_printings",
       "traits"
     ]
   },
@@ -60349,12 +61289,11 @@
     "gv_id": "GV-PK-ME03-094-ILLUSTRATION-RARE",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 1,
     "active_external_sources": [
       "justtcg"
     ],
     "missing_groups": [
-      "child_printings",
       "traits"
     ]
   },
@@ -60368,12 +61307,11 @@
     "gv_id": "GV-PK-ME03-095-ILLUSTRATION-RARE",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 1,
     "active_external_sources": [
       "justtcg"
     ],
     "missing_groups": [
-      "child_printings",
       "traits"
     ]
   },
@@ -60698,12 +61636,11 @@
     "gv_id": "GV-PK-ME03-113",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 0,
+    "child_printing_count": 1,
     "active_external_sources": [
       "justtcg"
     ],
     "missing_groups": [
-      "child_printings",
       "traits",
       "species_link"
     ]
@@ -68367,6 +69304,57 @@
     ]
   },
   {
+    "card_print_id": "bc1d821c-4d8d-4a1e-920f-3c4bf2cf7623",
+    "set_code": "sm1",
+    "set_name": "Sun & Moon",
+    "number": "28",
+    "number_plain": "28",
+    "name": "Psyduck",
+    "gv_id": "GV-PK-SM1-28-BUILD-A-BEAR-WORKSHOP-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "1e961518-8c96-4cac-b658-8f8d7f86e9c1",
+    "set_code": "sm1",
+    "set_name": "Sun & Moon",
+    "number": "64",
+    "number_plain": "64",
+    "name": "Cosmog",
+    "gv_id": "GV-PK-SM1-64-TOYS-R-US-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "f06be078-907c-42c3-8b33-2173333f06cd",
+    "set_code": "sm1",
+    "set_name": "Sun & Moon",
+    "number": "90",
+    "number_plain": "90",
+    "name": "Snubbull",
+    "gv_id": "GV-PK-SM1-90-BUILD-A-BEAR-WORKSHOP-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
     "card_print_id": "ca96d59e-ae30-4d91-acca-7d9c8d73cbe7",
     "set_code": "sm10",
     "set_name": "Unbroken Bonds",
@@ -70061,880 +71049,6 @@
     ]
   },
   {
-    "card_print_id": "ef2289fe-3ca1-417a-ab09-e8f3c706cfbc",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV1",
-    "number_plain": "1",
-    "name": "Scyther",
-    "gv_id": "GV-PK-HIF-SV1",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "e25cee25-cf1b-4734-9755-e4b758b39276",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV10",
-    "number_plain": "10",
-    "name": "Quagsire",
-    "gv_id": "GV-PK-HIF-SV10",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "f4f0bc7e-4500-4fdb-b9bc-ce76bb7b120c",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV11",
-    "number_plain": "11",
-    "name": "Froakie",
-    "gv_id": "GV-PK-HIF-SV11",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "96860c0e-6ccb-474f-9b91-ff2639d1a9b2",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV12",
-    "number_plain": "12",
-    "name": "Frogadier",
-    "gv_id": "GV-PK-HIF-SV12",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "8c42841b-a589-440c-b968-b2695c18828e",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV13",
-    "number_plain": "13",
-    "name": "Voltorb",
-    "gv_id": "GV-PK-HIF-SV13",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "df6dbe1d-99ed-463c-9e53-291c489e33f1",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV14",
-    "number_plain": "14",
-    "name": "Xurkitree",
-    "gv_id": "GV-PK-HIF-SV14",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "91f1703f-a4f4-4321-bef7-c4170c7d09fb",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV15",
-    "number_plain": "15",
-    "name": "Seviper",
-    "gv_id": "GV-PK-HIF-SV15",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "1c910c61-0a44-4cce-b2bc-4b8cc32549dc",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV16",
-    "number_plain": "16",
-    "name": "Shuppet",
-    "gv_id": "GV-PK-HIF-SV16",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "46f438ca-5659-4f2a-b4c0-b5ef0a2872cd",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV17",
-    "number_plain": "17",
-    "name": "Inkay",
-    "gv_id": "GV-PK-HIF-SV17",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "940a063a-f75c-4a3d-94cb-1def4e7dd24a",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV18",
-    "number_plain": "18",
-    "name": "Malamar",
-    "gv_id": "GV-PK-HIF-SV18",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "c0d51e27-8c59-423f-869c-cb5e8f06bebe",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV19",
-    "number_plain": "19",
-    "name": "Poipole",
-    "gv_id": "GV-PK-HIF-SV19",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "dd7398ae-9c77-4399-af57-3dfe805b9066",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV2",
-    "number_plain": "2",
-    "name": "Rowlet",
-    "gv_id": "GV-PK-HIF-SV2",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "d138dceb-d0ea-474e-879b-cb30c6d16998",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV20",
-    "number_plain": "20",
-    "name": "Sudowoodo",
-    "gv_id": "GV-PK-HIF-SV20",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "e745ff21-2da0-4577-bd03-8416f72433bc",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV21",
-    "number_plain": "21",
-    "name": "Riolu",
-    "gv_id": "GV-PK-HIF-SV21",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "8219fa5b-8986-440d-8584-270de2b972cd",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV22",
-    "number_plain": "22",
-    "name": "Lucario",
-    "gv_id": "GV-PK-HIF-SV22",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "73c1fa96-f7d8-435f-bc50-b5a4bebb2609",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV23",
-    "number_plain": "23",
-    "name": "Rockruff",
-    "gv_id": "GV-PK-HIF-SV23",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "8c8c8d61-310d-4ede-92e9-3c1a7ce402df",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV24",
-    "number_plain": "24",
-    "name": "Buzzwole",
-    "gv_id": "GV-PK-HIF-SV24",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "4fe9aedb-31f4-4da5-a40c-fc51d49f7ad3",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV25",
-    "number_plain": "25",
-    "name": "Zorua",
-    "gv_id": "GV-PK-HIF-SV25",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "66cbb9e8-baf9-4029-bc2a-e84eb7a09c52",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV26",
-    "number_plain": "26",
-    "name": "Guzzlord",
-    "gv_id": "GV-PK-HIF-SV26",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "0d07f95e-721e-4299-b834-0cebe4fc5f95",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV27",
-    "number_plain": "27",
-    "name": "Magnemite",
-    "gv_id": "GV-PK-HIF-SV27",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "971633bd-6407-4af2-996a-cb8447962af4",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV28",
-    "number_plain": "28",
-    "name": "Magneton",
-    "gv_id": "GV-PK-HIF-SV28",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "7d29ec40-c50d-4934-a460-2c1eb1a5dfc2",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV29",
-    "number_plain": "29",
-    "name": "Magnezone",
-    "gv_id": "GV-PK-HIF-SV29",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "7d338e0b-1a36-4b4f-aff9-6a0478decb7d",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV3",
-    "number_plain": "3",
-    "name": "Dartrix",
-    "gv_id": "GV-PK-HIF-SV3",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "11eb2145-ad0e-4ee2-ad23-783e4b858f94",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV30",
-    "number_plain": "30",
-    "name": "Beldum",
-    "gv_id": "GV-PK-HIF-SV30",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "160410f9-d40b-4d4c-9f54-94dd42caece3",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV31",
-    "number_plain": "31",
-    "name": "Metang",
-    "gv_id": "GV-PK-HIF-SV31",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "fc1f31b0-9756-481a-a1b7-802afbae4536",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV32",
-    "number_plain": "32",
-    "name": "Celesteela",
-    "gv_id": "GV-PK-HIF-SV32",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "52730a0c-ce2c-460b-b1f2-c43be3506fd1",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV33",
-    "number_plain": "33",
-    "name": "Kartana",
-    "gv_id": "GV-PK-HIF-SV33",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "19be92df-3f96-4c02-b175-537a0620c50c",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV34",
-    "number_plain": "34",
-    "name": "Ralts",
-    "gv_id": "GV-PK-HIF-SV34",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "4208dbf9-238c-453b-8d3c-fb7544c95a03",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV35",
-    "number_plain": "35",
-    "name": "Kirlia",
-    "gv_id": "GV-PK-HIF-SV35",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "f3948250-ca61-48c2-942a-64b5a137adf4",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV36",
-    "number_plain": "36",
-    "name": "Diancie",
-    "gv_id": "GV-PK-HIF-SV36",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "8c961a0c-4afc-4574-b4d0-ff551a67b5d9",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV37",
-    "number_plain": "37",
-    "name": "Altaria",
-    "gv_id": "GV-PK-HIF-SV37",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "a88a07a0-1b8a-41fd-806c-cb1959770d87",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV38",
-    "number_plain": "38",
-    "name": "Gible",
-    "gv_id": "GV-PK-HIF-SV38",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "056a531c-05a5-48c8-8787-0d13ff0eb997",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV39",
-    "number_plain": "39",
-    "name": "Gabite",
-    "gv_id": "GV-PK-HIF-SV39",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "bcd5d3aa-afdb-4c28-b134-7927a6a8a4bc",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV4",
-    "number_plain": "4",
-    "name": "Wimpod",
-    "gv_id": "GV-PK-HIF-SV4",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "5fcc28de-0f17-4395-9c7e-029af73853ec",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV40",
-    "number_plain": "40",
-    "name": "Garchomp",
-    "gv_id": "GV-PK-HIF-SV40",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "bab25d43-2ae0-4522-b30d-d8347a6973eb",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV41",
-    "number_plain": "41",
-    "name": "Eevee",
-    "gv_id": "GV-PK-HIF-SV41",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "6fb01ffd-6cfe-4f5b-9b09-393028da50df",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV42",
-    "number_plain": "42",
-    "name": "Swablu",
-    "gv_id": "GV-PK-HIF-SV42",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "f587d25a-a7be-450f-b8bc-404f29124665",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV43",
-    "number_plain": "43",
-    "name": "Noibat",
-    "gv_id": "GV-PK-HIF-SV43",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "ba82c44b-13c4-4558-9c89-c9f3009dc3b4",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV44",
-    "number_plain": "44",
-    "name": "Oranguru",
-    "gv_id": "GV-PK-HIF-SV44",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "52b661d1-24fe-4c27-9539-e19cf101fdae",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV45",
-    "number_plain": "45",
-    "name": "Type: Null",
-    "gv_id": "GV-PK-HIF-SV45",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "49c40a63-039b-4f19-988f-ea53a68c57fe",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV46",
-    "number_plain": "46",
-    "name": "Leafeon-GX",
-    "gv_id": "GV-PK-HIF-SV46",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "739a91c8-2895-4608-b80e-3e994b6b1e86",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV47",
-    "number_plain": "47",
-    "name": "Decidueye-GX",
-    "gv_id": "GV-PK-HIF-SV47",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "964bc478-b11f-4156-beac-198e06382f02",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV48",
-    "number_plain": "48",
-    "name": "Golisopod-GX",
-    "gv_id": "GV-PK-HIF-SV48",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "cc70d07c-37af-43a4-b9fb-7f5daf35bb09",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV49",
-    "number_plain": "49",
-    "name": "Charizard-GX",
-    "gv_id": "GV-PK-HIF-SV49",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "3e49aae2-5b24-4474-943d-d27932646d8a",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV5",
-    "number_plain": "5",
-    "name": "Pheromosa",
-    "gv_id": "GV-PK-HIF-SV5",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "7bd05a05-4a67-4b17-af6d-87343b4baac1",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV50",
-    "number_plain": "50",
-    "name": "Ho-Oh-GX",
-    "gv_id": "GV-PK-HIF-SV50",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
     "card_print_id": "e6d360ba-b366-4f08-b5ed-1be874ec0ba3",
     "set_code": "sm115",
     "set_name": "Hidden Fates",
@@ -70952,25 +71066,6 @@
     ],
     "missing_groups": [
       "species_link"
-    ]
-  },
-  {
-    "card_print_id": "e5b62d33-bfd6-457e-88ee-d7e82842f166",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV51",
-    "number_plain": "51",
-    "name": "Reshiram-GX",
-    "gv_id": "GV-PK-HIF-SV51",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
     ]
   },
   {
@@ -70994,44 +71089,6 @@
     ]
   },
   {
-    "card_print_id": "9e8fd3b9-e3bc-4ac5-8464-5d6f9b20d6d7",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV52",
-    "number_plain": "52",
-    "name": "Turtonator-GX",
-    "gv_id": "GV-PK-HIF-SV52",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "64102371-fc47-42f5-a872-f17f90612312",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV53",
-    "number_plain": "53",
-    "name": "Alolan Ninetales-GX",
-    "gv_id": "GV-PK-HIF-SV53",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
     "card_print_id": "533fd576-b685-4f5c-8333-7eddbf531871",
     "set_code": "sm115",
     "set_name": "Hidden Fates",
@@ -71049,25 +71106,6 @@
     ],
     "missing_groups": [
       "species_link"
-    ]
-  },
-  {
-    "card_print_id": "3436a7fb-0c2b-4e9f-90c6-49fbecc9f809",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV54",
-    "number_plain": "54",
-    "name": "Articuno-GX",
-    "gv_id": "GV-PK-HIF-SV54",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
     ]
   },
   {
@@ -71111,25 +71149,6 @@
     ]
   },
   {
-    "card_print_id": "a4ffe96c-386d-4582-9857-6970c2abae33",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV55",
-    "number_plain": "55",
-    "name": "Glaceon-GX",
-    "gv_id": "GV-PK-HIF-SV55",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
     "card_print_id": "ce567719-854a-40cc-846b-7b7f64557700",
     "set_code": "sm115",
     "set_name": "Hidden Fates",
@@ -71147,44 +71166,6 @@
     ],
     "missing_groups": [
       "species_link"
-    ]
-  },
-  {
-    "card_print_id": "5312ea06-2475-4afe-87cd-3099d7c0889e",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV56",
-    "number_plain": "56",
-    "name": "Greninja-GX",
-    "gv_id": "GV-PK-HIF-SV56",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "eb904e67-4841-4fcb-8984-d5dcd9285b40",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV57",
-    "number_plain": "57",
-    "name": "Electrode-GX",
-    "gv_id": "GV-PK-HIF-SV57",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
     ]
   },
   {
@@ -71229,25 +71210,6 @@
     ]
   },
   {
-    "card_print_id": "100f55ea-149d-4362-abf8-85edd54d500f",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV58",
-    "number_plain": "58",
-    "name": "Xurkitree-GX",
-    "gv_id": "GV-PK-HIF-SV58",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
     "card_print_id": "398a4e76-67db-4430-a669-36e9fba0fd19",
     "set_code": "sm115",
     "set_name": "Hidden Fates",
@@ -71268,63 +71230,6 @@
     ]
   },
   {
-    "card_print_id": "6c8c40f9-1bc4-4980-829e-6fd85a590020",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV59",
-    "number_plain": "59",
-    "name": "Mewtwo-GX",
-    "gv_id": "GV-PK-HIF-SV59",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "8828138a-5d65-460c-b125-4ac1d52dd692",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV6",
-    "number_plain": "6",
-    "name": "Charmander",
-    "gv_id": "GV-PK-HIF-SV6",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "2925ffb1-6d54-4542-9f4c-2d519e60c7bc",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV60",
-    "number_plain": "60",
-    "name": "Espeon-GX",
-    "gv_id": "GV-PK-HIF-SV60",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
     "card_print_id": "2b070813-aa99-46e5-9ea9-e8af7da602a5",
     "set_code": "sm115",
     "set_name": "Hidden Fates",
@@ -71342,25 +71247,6 @@
     ],
     "missing_groups": [
       "species_link"
-    ]
-  },
-  {
-    "card_print_id": "684eb44a-b7d3-437e-85b3-a4caafb10b11",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV61",
-    "number_plain": "61",
-    "name": "Banette-GX",
-    "gv_id": "GV-PK-HIF-SV61",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
     ]
   },
   {
@@ -71404,25 +71290,6 @@
     ]
   },
   {
-    "card_print_id": "92691a1b-68ac-4a5c-acba-27d8b3e6a8d5",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV62",
-    "number_plain": "62",
-    "name": "Nihilego-GX",
-    "gv_id": "GV-PK-HIF-SV62",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
     "card_print_id": "b2d8d14c-d822-43d4-a044-47ba014d14d2",
     "set_code": "sm115",
     "set_name": "Hidden Fates",
@@ -71440,44 +71307,6 @@
     ],
     "missing_groups": [
       "species_link"
-    ]
-  },
-  {
-    "card_print_id": "7bcc9fdc-c024-4d40-aba3-a47c90e0d0d6",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV63",
-    "number_plain": "63",
-    "name": "Naganadel-GX",
-    "gv_id": "GV-PK-HIF-SV63",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "6474a38c-1942-4886-8149-1751c08cf9cc",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV64",
-    "number_plain": "64",
-    "name": "Lucario-GX",
-    "gv_id": "GV-PK-HIF-SV64",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
     ]
   },
   {
@@ -71521,44 +71350,6 @@
     ]
   },
   {
-    "card_print_id": "d4b70138-60c2-4db6-a424-ece5e5f45119",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV65",
-    "number_plain": "65",
-    "name": "Zygarde-GX",
-    "gv_id": "GV-PK-HIF-SV65",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "ba0a0aec-d00d-4b9a-8e48-0f0d592ff545",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV66",
-    "number_plain": "66",
-    "name": "Lycanroc-GX",
-    "gv_id": "GV-PK-HIF-SV66",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
     "card_print_id": "50368e5c-1bff-4f6d-94b4-5774a3e5f317",
     "set_code": "sm115",
     "set_name": "Hidden Fates",
@@ -71575,44 +71366,6 @@
     ],
     "missing_groups": [
       "species_link"
-    ]
-  },
-  {
-    "card_print_id": "84587ee8-8ad6-4548-8061-c9ea5832eedc",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV67",
-    "number_plain": "67",
-    "name": "Lycanroc-GX",
-    "gv_id": "GV-PK-HIF-SV67",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "7c8b6b98-7411-4d64-94ed-4d1f62f0d779",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV68",
-    "number_plain": "68",
-    "name": "Buzzwole-GX",
-    "gv_id": "GV-PK-HIF-SV68",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
     ]
   },
   {
@@ -71637,272 +71390,6 @@
     ]
   },
   {
-    "card_print_id": "e1994e5d-2dd9-4021-8c46-ea1d28c346b4",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV69",
-    "number_plain": "69",
-    "name": "Umbreon-GX",
-    "gv_id": "GV-PK-HIF-SV69",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "b909a8e8-e5fa-4f89-9008-449655ebfaad",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV7",
-    "number_plain": "7",
-    "name": "Charmeleon",
-    "gv_id": "GV-PK-HIF-SV7",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "16270dab-4805-4114-9a1e-5dfbe72d9c0a",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV70",
-    "number_plain": "70",
-    "name": "Darkrai-GX",
-    "gv_id": "GV-PK-HIF-SV70",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "52a2e2e6-713f-4be9-b0ae-ff695808bd1d",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV71",
-    "number_plain": "71",
-    "name": "Guzzlord-GX",
-    "gv_id": "GV-PK-HIF-SV71",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "a91f45b2-1551-442f-8885-d25c35a2edfa",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV72",
-    "number_plain": "72",
-    "name": "Scizor-GX",
-    "gv_id": "GV-PK-HIF-SV72",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "91eb7ef9-cc0d-46de-88ae-b2a5c78c3a3e",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV73",
-    "number_plain": "73",
-    "name": "Kartana-GX",
-    "gv_id": "GV-PK-HIF-SV73",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "2e3cb12f-c101-4c55-ae6f-c84ee2bd6516",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV74",
-    "number_plain": "74",
-    "name": "Stakataka-GX",
-    "gv_id": "GV-PK-HIF-SV74",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "207faab0-d390-4ecd-8eec-2bf53fea77c6",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV75",
-    "number_plain": "75",
-    "name": "Gardevoir-GX",
-    "gv_id": "GV-PK-HIF-SV75",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "0dcb1a11-e00a-44bf-976e-ea899e7ea46b",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV76",
-    "number_plain": "76",
-    "name": "Sylveon-GX",
-    "gv_id": "GV-PK-HIF-SV76",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "758b24f1-f2fa-4ced-bf8e-d1bbd2b4ccac",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV77",
-    "number_plain": "77",
-    "name": "Altaria-GX",
-    "gv_id": "GV-PK-HIF-SV77",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "ffb0f793-bd49-4ee2-b08c-904df3510d6a",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV78",
-    "number_plain": "78",
-    "name": "Noivern-GX",
-    "gv_id": "GV-PK-HIF-SV78",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "94e79b18-8c85-40fa-917f-cd1eddc71a75",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV79",
-    "number_plain": "79",
-    "name": "Silvally-GX",
-    "gv_id": "GV-PK-HIF-SV79",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "4ad145db-a9ab-4352-ac1d-db87a5d1100e",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV8",
-    "number_plain": "8",
-    "name": "Alolan Vulpix",
-    "gv_id": "GV-PK-HIF-SV8",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "70a39e0f-6c6f-4da0-af4c-aaa2c32ceb49",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV80",
-    "number_plain": "80",
-    "name": "Drampa-GX",
-    "gv_id": "GV-PK-HIF-SV80",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
     "card_print_id": "4a5998f9-6a36-4082-8b86-3e407563a3ec",
     "set_code": "sm115",
     "set_name": "Hidden Fates",
@@ -71918,7 +71405,6 @@
       "tcgdex"
     ],
     "missing_groups": [
-      "catalog_metadata",
       "species_link"
     ]
   },
@@ -71938,7 +71424,6 @@
       "tcgdex"
     ],
     "missing_groups": [
-      "catalog_metadata",
       "species_link"
     ]
   },
@@ -71958,7 +71443,6 @@
       "tcgdex"
     ],
     "missing_groups": [
-      "catalog_metadata",
       "species_link"
     ]
   },
@@ -71978,7 +71462,6 @@
       "tcgdex"
     ],
     "missing_groups": [
-      "catalog_metadata",
       "species_link"
     ]
   },
@@ -71998,7 +71481,6 @@
       "tcgdex"
     ],
     "missing_groups": [
-      "catalog_metadata",
       "species_link"
     ]
   },
@@ -72018,7 +71500,6 @@
       "tcgdex"
     ],
     "missing_groups": [
-      "catalog_metadata",
       "species_link"
     ]
   },
@@ -72038,7 +71519,6 @@
       "tcgdex"
     ],
     "missing_groups": [
-      "catalog_metadata",
       "species_link"
     ]
   },
@@ -72058,7 +71538,6 @@
       "tcgdex"
     ],
     "missing_groups": [
-      "catalog_metadata",
       "species_link"
     ]
   },
@@ -72078,27 +71557,7 @@
       "tcgdex"
     ],
     "missing_groups": [
-      "catalog_metadata",
       "species_link"
-    ]
-  },
-  {
-    "card_print_id": "7f8015a5-a074-4830-9588-f6abb0c35fe0",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV9",
-    "number_plain": "9",
-    "name": "Wooper",
-    "gv_id": "GV-PK-HIF-SV9",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
     ]
   },
   {
@@ -72117,84 +71576,7 @@
       "tcgdex"
     ],
     "missing_groups": [
-      "catalog_metadata",
       "species_link"
-    ]
-  },
-  {
-    "card_print_id": "2157a251-626c-42b8-ad65-1b4cd3423085",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV91",
-    "number_plain": "91",
-    "name": "Tapu Bulu-GX",
-    "gv_id": "GV-PK-HIF-SV91",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "debfdac5-41bc-431b-9fd2-e9cf68f21f53",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV92",
-    "number_plain": "92",
-    "name": "Tapu Fini-GX",
-    "gv_id": "GV-PK-HIF-SV92",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "5b602c86-2de2-43cd-818e-3c9b0f66a873",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV93",
-    "number_plain": "93",
-    "name": "Tapu Koko-GX",
-    "gv_id": "GV-PK-HIF-SV93",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
-    ]
-  },
-  {
-    "card_print_id": "3c6fbb9a-4dcc-439d-8844-d76f090ca581",
-    "set_code": "sm115",
-    "set_name": "Hidden Fates",
-    "number": "SV94",
-    "number_plain": "94",
-    "name": "Tapu Lele-GX",
-    "gv_id": "GV-PK-HIF-SV94",
-    "identity_domain_default": "pokemon_eng_standard",
-    "segment": "english_physical",
-    "child_printing_count": 1,
-    "active_external_sources": [
-      "tcgcollector",
-      "tcgdex"
-    ],
-    "missing_groups": [
-      "catalog_metadata"
     ]
   },
   {
@@ -73775,6 +73157,23 @@
     ]
   },
   {
+    "card_print_id": "5ccd6f56-0bb1-46e3-9162-b15d87751197",
+    "set_code": "sm3",
+    "set_name": "Burning Shadows",
+    "number": "110",
+    "number_plain": "110",
+    "name": "Stufful",
+    "gv_id": "GV-PK-SM3-110-TOYS-R-US-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
     "card_print_id": "22e00860-8b07-4b69-8494-c3af14ad6d5d",
     "set_code": "sm3",
     "set_name": "Burning Shadows",
@@ -74919,6 +74318,23 @@
     ]
   },
   {
+    "card_print_id": "736faf44-80c4-4d0d-925c-b2a6cec9d148",
+    "set_code": "sm4",
+    "set_name": "Crimson Invasion",
+    "number": "71",
+    "number_plain": "71",
+    "name": "Jigglypuff",
+    "gv_id": "GV-PK-SM4-71-BUILD-A-BEAR-WORKSHOP-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
     "card_print_id": "9f1d7a61-f143-4355-8fd9-4adc9de205a0",
     "set_code": "sm4",
     "set_name": "Crimson Invasion",
@@ -75854,6 +75270,40 @@
     "missing_groups": [
       "child_printings",
       "external_mapping"
+    ]
+  },
+  {
+    "card_print_id": "87ca80d0-7c42-4655-b6dd-d5122b7db764",
+    "set_code": "sm5",
+    "set_name": "Ultra Prism",
+    "number": "32",
+    "number_plain": "32",
+    "name": "Piplup",
+    "gv_id": "GV-PK-UPR-32-BUILD-A-BEAR-WORKSHOP-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
+    "card_print_id": "ffbec7b6-6658-4c9c-ac73-064ff85ab484",
+    "set_code": "sm5",
+    "set_name": "Ultra Prism",
+    "number": "32",
+    "number_plain": "32",
+    "name": "Piplup",
+    "gv_id": "GV-PK-UPR-32-TOYS-R-US-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
     ]
   },
   {
@@ -129644,6 +129094,23 @@
     ]
   },
   {
+    "card_print_id": "71a07feb-8e33-4833-90a9-e66a8bfdeb51",
+    "set_code": "xy12",
+    "set_name": "Evolutions",
+    "number": "41",
+    "number_plain": "41",
+    "name": "Electabuzz",
+    "gv_id": "GV-PK-XY12-41-TOYS-R-US-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
     "card_print_id": "635c7d9c-00f0-4159-a92e-4d649225039d",
     "set_code": "xy12",
     "set_name": "Evolutions",
@@ -130190,6 +129657,23 @@
     "missing_groups": [
       "child_printings",
       "external_mapping"
+    ]
+  },
+  {
+    "card_print_id": "c2ac7f45-ad5c-4147-b83e-734c33cf3cc5",
+    "set_code": "xy2",
+    "set_name": "Flashfire",
+    "number": "80",
+    "number_plain": "80",
+    "name": "Snorlax",
+    "gv_id": "GV-PK-XY2-80-BUILD-A-BEAR-WORKSHOP-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
     ]
   },
   {
@@ -131927,6 +131411,23 @@
     ]
   },
   {
+    "card_print_id": "c61c3baf-261d-4518-b752-a9c0b315c543",
+    "set_code": "xy5",
+    "set_name": "Primal Clash",
+    "number": "20",
+    "number_plain": "20",
+    "name": "Vulpix",
+    "gv_id": "GV-PK-XY5-20-BUILD-A-BEAR-WORKSHOP-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
+    ]
+  },
+  {
     "card_print_id": "b350582b-00ec-4461-b09b-a71150fbd1d3",
     "set_code": "xy6",
     "set_name": "Roaring Skies",
@@ -132004,6 +131505,23 @@
     ],
     "missing_groups": [
       "species_link"
+    ]
+  },
+  {
+    "card_print_id": "0d4520ba-b7cd-46f8-8755-fee018a0d8d8",
+    "set_code": "xy6",
+    "set_name": "Roaring Skies",
+    "number": "67",
+    "number_plain": "67",
+    "name": "Meowth",
+    "gv_id": "GV-PK-XY6-67-BUILD-A-BEAR-WORKSHOP-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
     ]
   },
   {
@@ -132282,6 +131800,23 @@
     ],
     "missing_groups": [
       "species_link"
+    ]
+  },
+  {
+    "card_print_id": "ff8cdfb8-e0f4-40ea-b33b-d214f7c8fab2",
+    "set_code": "xy7",
+    "set_name": "Ancient Origins",
+    "number": "63",
+    "number_plain": "63",
+    "name": "Eevee",
+    "gv_id": "GV-PK-XY7-63-BUILD-A-BEAR-WORKSHOP-STAMP",
+    "identity_domain_default": "pokemon_eng_standard",
+    "segment": "english_physical",
+    "child_printing_count": 1,
+    "active_external_sources": [],
+    "missing_groups": [
+      "external_mapping",
+      "traits"
     ]
   },
   {
@@ -133734,7 +133269,7 @@
     "gv_id": "GV-PK-PR-XY-XY177A",
     "identity_domain_default": "pokemon_eng_standard",
     "segment": "english_physical",
-    "child_printing_count": 3,
+    "child_printing_count": 1,
     "active_external_sources": [
       "pokemonapi",
       "tcgdex"

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-16T18:39:38.523Z",
-  "fingerprint_basis": "353e07816436eca30cb5405768d31469ae26836ef27f545f2b61a0b218aec710",
+  "generated_at": "2026-06-18T02:56:10.638Z",
+  "fingerprint_basis": "dd426386a96b4e07fd04be95f22146cb3a8953d69941c00f49e3bc9f2ffdc091",
   "projection_function": "public.card_print_identity_backfill_projection_v1",
   "rows": []
 }

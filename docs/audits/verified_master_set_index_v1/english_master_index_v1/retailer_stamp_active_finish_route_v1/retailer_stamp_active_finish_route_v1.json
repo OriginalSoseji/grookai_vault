@@ -1,0 +1,824 @@
+{
+  "generated_at": "2026-06-17T05:55:10.075Z",
+  "version": "retailer_stamp_active_finish_route_v1",
+  "package_id": "RETAILER-STAMP-01-ACTIVE-FINISH-ROUTE-READINESS",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_gap_report": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\retailer_stamp_gap_audit_v1\\retailer_stamp_gap_audit_v1.json",
+  "summary": {
+    "route_rows": 19,
+    "ready_for_guarded_dry_run": 0,
+    "blocked_or_review_rows": 19,
+    "by_variant_key": {
+      "build_a_bear_workshop_stamp": 10,
+      "toys_r_us_stamp": 9
+    },
+    "by_classification": {
+      "target_parent_already_exists_review_before_insert": 19
+    }
+  },
+  "rows": [
+    {
+      "set_key": "bw10",
+      "card_number": "14",
+      "card_name": "Squirtle",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "accepted_finish_key": "normal",
+      "evidence": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/squirtle-14-101-non-holo-build-a-bear-plasma-blast/bw10-14-2-18/",
+          "evidence_label": "Squirtle 14/101 Non-Holo Build-A-Bear"
+        },
+        {
+          "source_key": "pokumon_promo_database",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/build-a-bear-squirtle-14-101-build-a-bear-workshop-special-print/",
+          "evidence_label": "Build-A-Bear Squirtle special print, Non-holo"
+        }
+      ],
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "f90d929b-d8c8-417d-8aab-1f35ecad63d1",
+          "gv_id": "GV-PK-PLB-14",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "dffcea63-9ac5-4027-8316-c471695d9e0e",
+          "gv_id": "GV-PK-BW10-14-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "bw11",
+      "card_number": "17",
+      "card_name": "Charmander",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "accepted_finish_key": "normal",
+      "evidence": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/charmander-17-113-non-holo-build-a-bear-legendary-treasures/bw11-17-2-18/",
+          "evidence_label": "Charmander 17/113 Non-Holo Build-A-Bear"
+        },
+        {
+          "source_key": "pricecharting_listing_evidence",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-legendary-treasures/charmander-17",
+          "evidence_label": "PriceCharting listings include Charmander Build-A-Bear 17/113 under non-holo base card context"
+        }
+      ],
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "d24c5888-bb6a-4835-aa2e-37e2088d5ad8",
+          "gv_id": "GV-PK-LTR-17",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "d4880277-c005-4d7a-a3b3-a72658ffd4a3",
+          "gv_id": "GV-PK-BW11-17-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "bw5",
+      "card_number": "1",
+      "card_name": "Bulbasaur",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "accepted_finish_key": "normal",
+      "evidence": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/bulbasaur-1-108-non-holo-build-a-bear-dark-explorers/bw5-1-2-18/",
+          "evidence_label": "Bulbasaur 1/108 Non-Holo Build-A-Bear"
+        },
+        {
+          "source_key": "bulbapedia_card_page_release_info",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Bulbasaur_(Dark_Explorers_1)",
+          "evidence_label": "Release information documents the Build-A-Bear stamped variant"
+        }
+      ],
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "63f698b5-2db3-41a5-a56c-ce4fa98f5f78",
+          "gv_id": "GV-PK-DEX-1",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "d32fed29-e055-4fc9-b1f4-0854aab67ec3",
+          "gv_id": "GV-PK-BW5-1-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "g1",
+      "card_number": "22",
+      "card_name": "Magikarp",
+      "variant_key": "toys_r_us_stamp",
+      "accepted_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+          "evidence_label": "Generations additional cards list: Magikarp 22/83 Holo \"Toys R Us\" stamp promo"
+        },
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-generations/magikarp-toys-r-us-22",
+          "evidence_label": "PriceCharting exact Toys R Us Magikarp product"
+        }
+      ],
+      "stamp_label": "Toys R Us Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "35edb5a2-fa5d-4358-b1a8-7e3967f8ab2c",
+          "gv_id": "GV-PK-GEN-22",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "ffb8eac8-5aa2-4b8f-a3f2-bbc7014b5688",
+          "gv_id": "GV-PK-G1-22-TOYS-R-US-STAMP",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "g1",
+      "card_number": "26",
+      "card_name": "Pikachu",
+      "variant_key": "toys_r_us_stamp",
+      "accepted_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+          "evidence_label": "Generations additional cards list: Pikachu 26/83 Holo \"Toys R Us\" stamp promo"
+        },
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-generations/pikachu-toys-r-us-26",
+          "evidence_label": "PriceCharting exact Toys R Us Pikachu product"
+        }
+      ],
+      "stamp_label": "Toys R Us Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "c698cb45-7196-4fa6-b1de-b943436be4da",
+          "gv_id": "GV-PK-GEN-26",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "508ede96-3342-40a5-af9c-0c1ad5b4ddc7",
+          "gv_id": "GV-PK-G1-26-TOYS-R-US-STAMP",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "g1",
+      "card_number": "32",
+      "card_name": "Slowpoke",
+      "variant_key": "toys_r_us_stamp",
+      "accepted_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+          "evidence_label": "Generations additional cards list: Slowpoke 32/83 Holo \"Toys R Us\" stamp promo"
+        },
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-generations/slowpoke-toys-r-us-32",
+          "evidence_label": "PriceCharting exact Toys R Us Slowpoke product"
+        }
+      ],
+      "stamp_label": "Toys R Us Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "3365d632-e982-4453-b230-65678c59d839",
+          "gv_id": "GV-PK-GEN-32",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "31652c3f-d4b0-44c2-8f73-853cbe9084b4",
+          "gv_id": "GV-PK-G1-32-TOYS-R-US-STAMP",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "g1",
+      "card_number": "50",
+      "card_name": "Clefairy",
+      "variant_key": "toys_r_us_stamp",
+      "accepted_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+          "evidence_label": "Generations additional cards list: Clefairy 50/83 Holo \"Toys R Us\" stamp promo"
+        },
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-generations/clefairy-toys-r-us-50",
+          "evidence_label": "PriceCharting exact Toys R Us Clefairy product"
+        }
+      ],
+      "stamp_label": "Toys R Us Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "d4c94e77-ed35-4218-a910-4cfed68cc54f",
+          "gv_id": "GV-PK-GEN-50",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "534f1a73-c9a6-4daf-b861-33fa6a76ba16",
+          "gv_id": "GV-PK-G1-50-TOYS-R-US-STAMP",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "g1",
+      "card_number": "53",
+      "card_name": "Meowth",
+      "variant_key": "toys_r_us_stamp",
+      "accepted_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+          "evidence_label": "Generations additional cards list: Meowth 53/83 Holo \"Toys R Us\" stamp promo"
+        },
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-generations/meowth-toys-r-us-53",
+          "evidence_label": "PriceCharting exact Toys R Us Meowth product"
+        }
+      ],
+      "stamp_label": "Toys R Us Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "b6cfae62-0d29-454b-91aa-1005460a5f36",
+          "gv_id": "GV-PK-GEN-53",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "e3a83183-e1fe-44cf-becb-ce23ef191792",
+          "gv_id": "GV-PK-G1-53-TOYS-R-US-STAMP",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "g1",
+      "card_number": "8",
+      "card_name": "Tangela",
+      "variant_key": "toys_r_us_stamp",
+      "accepted_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Generations_(TCG)",
+          "evidence_label": "Generations additional cards list: Tangela 8/83 Holo \"Toys R Us\" stamp promo"
+        },
+        {
+          "source_key": "bulbapedia_toys_r_us_promos",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Toys_%22R%22_Us_Promotional_cards_%28TCG%29",
+          "evidence_label": "Toys R Us promotional card list includes Tangela 8/83"
+        }
+      ],
+      "stamp_label": "Toys R Us Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "14d43149-7879-4527-b129-66a9b40d0e24",
+          "gv_id": "GV-PK-GEN-8",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "a9a53cfc-3fbe-4c7c-ac75-3816d777954f",
+          "gv_id": "GV-PK-G1-8-TOYS-R-US-STAMP",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "sm1",
+      "card_number": "28",
+      "card_name": "Psyduck",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "accepted_finish_key": "normal",
+      "evidence": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/psyduck-28-149-non-holo-build-a-bear-sun-moon/sm1-28-2-18/",
+          "evidence_label": "Psyduck 28/149 Non-Holo Build-A-Bear"
+        },
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-sun-%26-moon/psyduck-build-a-bear-28",
+          "evidence_label": "PriceCharting exact Build-A-Bear Psyduck product"
+        }
+      ],
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "ce877140-a4b5-4b99-844a-8bb957d9d7f8",
+          "gv_id": "GV-PK-SUM-28",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "bc1d821c-4d8d-4a1e-920f-3c4bf2cf7623",
+          "gv_id": "GV-PK-SM1-28-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "sm1",
+      "card_number": "64",
+      "card_name": "Cosmog",
+      "variant_key": "toys_r_us_stamp",
+      "accepted_finish_key": "cosmos",
+      "evidence": [
+        {
+          "source_key": "pricecharting_stamped_active_finish",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/cosmog-toys-r-us-64",
+          "evidence_label": "PriceCharting exact Toys R Us Cosmog product includes Cosmos Holo listing text"
+        },
+        {
+          "source_key": "pokedata_stamped_finish",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pokedata.io/card/Miscellaneous%2BPromos/Cosmog%2BToys%2BR%2BUs%2B64",
+          "evidence_label": "PokeDATA references Toys R Us Cosmog 64 with Cosmos Holo promo listing"
+        }
+      ],
+      "stamp_label": "Toys R Us Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "69c5c655-7d4f-4314-9c4b-4acea0f28e65",
+          "gv_id": "GV-PK-SUM-64",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "1e961518-8c96-4cac-b658-8f8d7f86e9c1",
+          "gv_id": "GV-PK-SM1-64-TOYS-R-US-STAMP",
+          "child_finishes": [
+            "cosmos"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "sm1",
+      "card_number": "90",
+      "card_name": "Snubbull",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "accepted_finish_key": "normal",
+      "evidence": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/snubbull-90-149-non-holo-build-a-bear-sun-moon/sm1-90-2-18/",
+          "evidence_label": "Snubbull 90/149 Non-Holo Build-A-Bear"
+        },
+        {
+          "source_key": "pricecharting_listing_evidence",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-sun-%26-moon/snubbull-90",
+          "evidence_label": "PriceCharting listings include Build-A-Bear Snubbull 90/149 under base non-holo context"
+        }
+      ],
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "0fc0c811-b335-4dd7-8df7-c970e58338e9",
+          "gv_id": "GV-PK-SUM-90",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "f06be078-907c-42c3-8b33-2173333f06cd",
+          "gv_id": "GV-PK-SM1-90-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "sm3",
+      "card_number": "110",
+      "card_name": "Stufful",
+      "variant_key": "toys_r_us_stamp",
+      "accepted_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "pricecharting_stamped_active_finish",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-burning-shadows/stufful-toys-r-us-110",
+          "evidence_label": "PriceCharting exact Toys R Us Stufful product includes Holo listing text"
+        },
+        {
+          "source_key": "facetofacegames_stamped_finish",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://facetofacegames.com/products/stufful-110147-toys-r-us-promo-holo",
+          "evidence_label": "Face to Face Games exact Toys R Us Stufful product title includes Holo"
+        }
+      ],
+      "stamp_label": "Toys R Us Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "bec32fb2-c9cd-4369-8433-6d70b3b8b3de",
+          "gv_id": "GV-PK-BUS-110",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "5ccd6f56-0bb1-46e3-9162-b15d87751197",
+          "gv_id": "GV-PK-SM3-110-TOYS-R-US-STAMP",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "sm4",
+      "card_number": "71",
+      "card_name": "Jigglypuff",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "accepted_finish_key": "normal",
+      "evidence": [
+        {
+          "source_key": "facetofacegames_stamped_finish",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://facetofacegames.com/products/jigglypuff-71111-build-a-bear-promo-non-holo",
+          "evidence_label": "Jigglypuff 71/111 Build-a-Bear Promo Non-Holo"
+        },
+        {
+          "source_key": "pokumon_promo_database",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/build-a-bear-jigglypuff-71-111-build-a-bear-workshop-special-print/",
+          "evidence_label": "Build-A-Bear Jigglypuff special print, Non-holo"
+        }
+      ],
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "9608bbff-c551-48ee-916e-ad932d756870",
+          "gv_id": "GV-PK-CIN-71",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "736faf44-80c4-4d0d-925c-b2a6cec9d148",
+          "gv_id": "GV-PK-SM4-71-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "xy12",
+      "card_number": "41",
+      "card_name": "Electabuzz",
+      "variant_key": "toys_r_us_stamp",
+      "accepted_finish_key": "cosmos",
+      "evidence": [
+        {
+          "source_key": "pricecharting_stamped_active_finish",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-evolutions/electabuzz-toys-r-us-41",
+          "evidence_label": "PriceCharting exact Toys R Us Electabuzz product includes Cosmos/Holo listing text"
+        },
+        {
+          "source_key": "pokedata_stamped_finish",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pokedata.io/card/Miscellaneous%2BPromos/Electabuzz%2BToys%2BR%2BUs%2B41",
+          "evidence_label": "PokeDATA references Toys R Us Electabuzz 41/108 Holo promo"
+        }
+      ],
+      "stamp_label": "Toys R Us Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "b62f669b-ccfd-44b6-bfcc-a5f719e24d77",
+          "gv_id": "GV-PK-EVO-41",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "71a07feb-8e33-4833-90a9-e66a8bfdeb51",
+          "gv_id": "GV-PK-XY12-41-TOYS-R-US-STAMP",
+          "child_finishes": [
+            "cosmos"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "xy2",
+      "card_number": "80",
+      "card_name": "Snorlax",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "accepted_finish_key": "normal",
+      "evidence": [
+        {
+          "source_key": "facetofacegames_stamped_finish",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://facetofacegames.com/products/snorlax-80106-promo-build-a-bear-workshop-xy2msp-80-non-holo",
+          "evidence_label": "Snorlax 80/106 Build-A-Bear Workshop, Finish: Non-Holo"
+        },
+        {
+          "source_key": "pokumon_promo_database",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokumon.com/card/build-a-bear-snorlax-80-106-build-a-bear-workshop-special-print/",
+          "evidence_label": "Build-A-Bear Snorlax special print, Non-holo"
+        }
+      ],
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "86793c14-e37b-49c8-80eb-51ad7242e4f9",
+          "gv_id": "GV-PK-FLF-80",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "c2ac7f45-ad5c-4147-b83e-734c33cf3cc5",
+          "gv_id": "GV-PK-XY2-80-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "xy5",
+      "card_number": "20",
+      "card_name": "Vulpix",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "accepted_finish_key": "normal",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_card_page_release_info",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Vulpix_(Primal_Clash_20)",
+          "evidence_label": "Release information says the Build-A-Bear stamped version is Non Holofoil"
+        },
+        {
+          "source_key": "pricecharting_csv_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-primal-clash/vulpix-build-a-bear-20",
+          "evidence_label": "PriceCharting exact Build-A-Bear Vulpix product"
+        }
+      ],
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "459f35e9-31ed-4f96-b86b-193a1e7bfda9",
+          "gv_id": "GV-PK-PRC-20",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "c61c3baf-261d-4518-b752-a9c0b315c543",
+          "gv_id": "GV-PK-XY5-20-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "xy6",
+      "card_number": "67",
+      "card_name": "Meowth",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "accepted_finish_key": "normal",
+      "evidence": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/meowth-67-108-non-holo-unlimited-roaring-skies/xy6-67-2-1/",
+          "evidence_label": "Poke Card Values lists Meowth 67/108 Build-A-Bear as Non-Holo"
+        },
+        {
+          "source_key": "bulbapedia_card_page_release_info",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Meowth_(Roaring_Skies_67)",
+          "evidence_label": "Release information documents the Build-A-Bear stamped variant"
+        }
+      ],
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "f70cd048-f6de-4510-989d-8c643a3325b3",
+          "gv_id": "GV-PK-ROS-67",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "0d4520ba-b7cd-46f8-8755-fee018a0d8d8",
+          "gv_id": "GV-PK-XY6-67-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    },
+    {
+      "set_key": "xy7",
+      "card_number": "63",
+      "card_name": "Eevee",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "accepted_finish_key": "normal",
+      "evidence": [
+        {
+          "source_key": "pokecardvalues_stamped_finish",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokecardvalues.co.uk/cards/eevee-63-98-non-holo-build-a-bear-ancient-origins/xy7-63-2-18/",
+          "evidence_label": "Eevee 63/98 Non-Holo Build-A-Bear"
+        },
+        {
+          "source_key": "bulbapedia_card_page_release_info",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Eevee_(Ancient_Origins_63)",
+          "evidence_label": "Release information documents the Build-A-Bear stamped variant"
+        }
+      ],
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "base_parent_rows": [
+        {
+          "card_print_id": "2de00ce9-f885-4d0d-aa8c-6b7268fbd4fd",
+          "gv_id": "GV-PK-AOR-63",
+          "child_finishes": [
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "target_parent_rows": [
+        {
+          "card_print_id": "ff8cdfb8-e0f4-40ea-b33b-d214f7c8fab2",
+          "gv_id": "GV-PK-XY7-63-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "classification": "target_parent_already_exists_review_before_insert"
+    }
+  ],
+  "fingerprint_sha256": "b8d88492fa0d6497741398bfd2338be5d910a9d845329fe9b55c92c3e923a591"
+}

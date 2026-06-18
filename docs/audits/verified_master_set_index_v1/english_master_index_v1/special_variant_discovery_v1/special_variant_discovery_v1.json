@@ -1,0 +1,2727 @@
+{
+  "generated_at": "2026-06-17T15:40:02.673Z",
+  "version": "SPECIAL_VARIANT_DISCOVERY_V1",
+  "mode": "audit_only_master_index_expansion",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "production_apply_performed": false,
+  "fingerprint_sha256": "7c46ef1e19c32bc12783440947482b8ae78c5ce48f681baf71e7db8bc4995e30",
+  "summary": {
+    "candidate_rows": 57,
+    "by_classification": {
+      "recognized_error_variant": 36,
+      "stamp_or_release_variant": 6,
+      "canonical_print_lane": 5,
+      "item_level_error_only": 4,
+      "recognized_correction_variant": 4,
+      "set_level_print_run_family": 2
+    },
+    "by_governance_status": {
+      "source_ready": 48,
+      "blocked_item_level_only": 4,
+      "needs_second_source": 3,
+      "family_rule_ready": 2
+    },
+    "by_db_status": {
+      "already_in_db": 48,
+      "item_level_not_db_lane": 4,
+      "missing_from_db": 3,
+      "family_rule_not_expanded": 2
+    },
+    "master_index_ready_missing_from_db": 0,
+    "needs_second_source_or_review": 9,
+    "family_rule_rows": 2,
+    "item_level_excluded_rows": 4
+  },
+  "rows": [
+    {
+      "candidate_key": "base1-12-ninetales-black-flame",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "12",
+      "card_name": "Ninetales",
+      "proposed_variant_key": "black_flame_error",
+      "proposed_identity_modifier": "recognized_error:black_flame",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "elitefourum_black_flame_ninetales",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/the-black-flame-ninetales/29619",
+          "evidence_label": "Elite Fourum documents the Black Flame Ninetales distinction and notes collector debate about whether it is an error or original artwork state."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/ninetales-black-flame-12",
+          "evidence_label": "PriceCharting exact product: Ninetales [Black Flame] #12."
+        },
+        {
+          "source_key": "cgc_ninetales_black_flame",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.cgccards.com/news/article/8861/pokemon-ninetales-variant/",
+          "evidence_label": "CGC identifies the Black Flame Ninetales as a distinct Base Set variant and explains the artwork difference from normal unlimited copies."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia states Wizards changed the Ninetales artwork early during unlimited print, making black-flame unlimited copies less common."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base1-12-ninetales-black-flame",
+          "card_print_id": "02b8f0ff-101f-4fc3-b010-c989194611a4",
+          "gv_id": "GV-PK-BASE1-12-BLACK-FLAME-ERROR",
+          "set_code": "base1",
+          "number": "12",
+          "name": "Ninetales",
+          "variant_key": "black_flame_error",
+          "printed_identity_modifier": "recognized_error:black_flame",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 4,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base1-12-ninetales-no-damage",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "12",
+      "card_name": "Ninetales",
+      "proposed_variant_key": "no_damage_error",
+      "proposed_identity_modifier": "recognized_error:no_damage",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia catalogs Base Set Ninetales recognized printing errors."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/ninetales-no-damage-12",
+          "evidence_label": "PriceCharting exact product: Ninetales [No Damage] #12."
+        },
+        {
+          "source_key": "elitefourum_black_flame_ninetales",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/the-black-flame-ninetales/29619",
+          "evidence_label": "Elite Fourum discussion links No Damage Ninetales to the original Black Flame/shadowless print context."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base1-12-ninetales-no-damage",
+          "card_print_id": "831f02cf-4ebb-4bc8-85ee-7360eb13b3ad",
+          "gv_id": "GV-PK-BASE1-12-NO-DAMAGE-ERROR",
+          "set_code": "base1",
+          "number": "12",
+          "name": "Ninetales",
+          "variant_key": "no_damage_error",
+          "printed_identity_modifier": "recognized_error:no_damage",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base1-17-beedrill-d-fending-error",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "17",
+      "card_name": "Beedrill",
+      "proposed_variant_key": "d_fending_error",
+      "proposed_identity_modifier": "recognized_error:d_fending_text",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "WOTC corrected-errors guide identifies the “D.fending” Beedrill error text."
+        },
+        {
+          "source_key": "bulbapedia_beedrill_base_17",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Beedrill_%28Base_Set_17%29",
+          "evidence_label": "Bulbapedia Beedrill Base Set 17 page states a few copies were printed with “D.efending” in Poison Sting attack text."
+        },
+        {
+          "source_key": "psa_beedrill_d_efending_spec",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.psacard.com/spec/psa/8859750",
+          "evidence_label": "PSA spec page identifies 1999 Pokemon Game Beedrill #17 “d. Efending” Error."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base1-17-beedrill-d-fending-error",
+          "card_print_id": "72e51650-dbad-41ec-a5d1-a8fc9f5c7d71",
+          "gv_id": "GV-PK-BASE1-17-D-FENDING-ERROR",
+          "set_code": "base1",
+          "number": "17",
+          "name": "Beedrill",
+          "variant_key": "d_fending_error",
+          "printed_identity_modifier": "recognized_error:d_fending_text",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base1-2-blastoise-stage-error",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "2",
+      "card_name": "Blastoise",
+      "proposed_variant_key": "stage_error",
+      "proposed_identity_modifier": "recognized_error:missing_stage_text",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia lists Missing/No stage Blastoise as a Base Set unlimited error."
+        },
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "WOTC corrected-errors guide identifies Missing/No stage Blastoise #2/102."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/blastoise-stage-error-2",
+          "evidence_label": "PriceCharting exact product: Blastoise [Stage Error] #2."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base1-2-blastoise-stage-error",
+          "card_print_id": "80d4d2f2-67dd-4289-ab24-0abcabf882b4",
+          "gv_id": "GV-PK-BASE1-2-STAGE-ERROR",
+          "set_code": "base1",
+          "number": "2",
+          "name": "Blastoise",
+          "variant_key": "stage_error",
+          "printed_identity_modifier": "recognized_error:missing_stage_text",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base1-42-wartortle-evolution-box-error",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "42",
+      "card_name": "Wartortle",
+      "proposed_variant_key": "evolution_box_error",
+      "proposed_identity_modifier": "recognized_error:evolution_box_wartortle",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies Evolution Box Wartortle as a corrected design error in a short English unlimited print run."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/wartortle-evolution-box-error-42",
+          "evidence_label": "PriceCharting exact product: Wartortle [Evolution Box Error] #42."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base1-42-wartortle-evolution-box-error",
+          "card_print_id": "ff0d759b-40bd-44c3-be41-37b5c4bcc860",
+          "gv_id": "GV-PK-BASE1-42-EVOLUTION-BOX-ERROR",
+          "set_code": "base1",
+          "number": "42",
+          "name": "Wartortle",
+          "variant_key": "evolution_box_error",
+          "printed_identity_modifier": "recognized_error:evolution_box_wartortle",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base1-47-diglett-sideways-fighting-energy",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "47",
+      "card_name": "Diglett",
+      "proposed_variant_key": "sideways_fighting_energy_error",
+      "proposed_identity_modifier": "recognized_error:sideways_fighting_energy",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "WOTC corrected-errors guide identifies Sideways Fighting energy Diglett #47/102 found in Base Set 2-Player Starter decks."
+        },
+        {
+          "source_key": "elitefourum_base_set_errors_unlimited",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/base-set-error-cards-exclusive-to-unlimited-set/25307",
+          "evidence_label": "Elite Fourum Base Set error discussion lists Diglett #47/102 Sideways Fighting Energy as an unlimited Base Set error."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/diglett-fight-symbol-error-47",
+          "evidence_label": "PriceCharting exact product: Diglett [Fight Symbol Error] #47."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base1-47-diglett-sideways-fighting-energy",
+          "card_print_id": "9d600dd3-f0aa-43f7-8fd3-0311c9e8403a",
+          "gv_id": "GV-PK-BASE1-47-SIDEWAYS-FIGHTING-ENERGY-ERROR",
+          "set_code": "base1",
+          "number": "47",
+          "name": "Diglett",
+          "variant_key": "sideways_fighting_energy_error",
+          "printed_identity_modifier": "recognized_error:sideways_fighting_energy",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base1-58-pikachu-e3-red-cheeks",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "58",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "e3_stamp_red_cheeks",
+      "proposed_identity_modifier": "stamp:e3;color:red_cheeks",
+      "proposed_finish_key": "normal",
+      "classification": "stamp_or_release_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "elitefourum_base_pikachu_variants",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "evidence_label": "Base Pikachu guide identifies English Red Cheeks E3 stamped Pikachu and distinguishes it from Yellow Cheeks E3."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-e3-red-cheeks-58",
+          "evidence_label": "PriceCharting exact product: Pikachu [E3 Red Cheeks] #58."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base1-58-pikachu-e3-red-cheeks",
+          "card_print_id": "9c1f54d6-8f74-4c5e-a5b3-69806ad338bb",
+          "gv_id": "GV-PK-BASE1-58-E3-STAMP-RED-CHEEKS",
+          "set_code": "base1",
+          "number": "58",
+          "name": "Pikachu",
+          "variant_key": "e3_stamp_red_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:red_cheeks",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base1-58-pikachu-e3-yellow-cheeks",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "58",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "e3_stamp_yellow_cheeks",
+      "proposed_identity_modifier": "stamp:e3;color:yellow_cheeks",
+      "proposed_finish_key": "normal",
+      "classification": "stamp_or_release_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "elitefourum_base_pikachu_variants",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "evidence_label": "Base Pikachu guide identifies English Yellow Cheeks E3 stamped Pikachu."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-e3-58",
+          "evidence_label": "PriceCharting exact product: Pikachu [E3] #58."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base1-58-pikachu-e3-yellow-cheeks",
+          "card_print_id": "df7098c1-1ab6-40b5-97fd-fd77f6fc9dc2",
+          "gv_id": "GV-PK-BASE1-58-E3-STAMP-YELLOW-CHEEKS",
+          "set_code": "base1",
+          "number": "58",
+          "name": "Pikachu",
+          "variant_key": "e3_stamp_yellow_cheeks",
+          "printed_identity_modifier": "stamp:e3;color:yellow_cheeks",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base1-58-pikachu-first-edition-red-cheeks",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "58",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "first_edition_red_cheeks",
+      "proposed_identity_modifier": "edition:first_edition;print_run:shadowless;color:red_cheeks",
+      "proposed_finish_key": "normal",
+      "classification": "canonical_print_lane",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "elitefourum_base_pikachu_variants",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "evidence_label": "Base Pikachu guide identifies English Shadowless 1st edition Red Cheeks."
+        },
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "WOTC corrected-errors guide states Red Cheeks is found within 1st edition and Shadowless Base Set booster packs."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-1st-edition-red-cheeks-58",
+          "evidence_label": "PriceCharting exact product: Pikachu [1st Edition Red Cheeks] #58."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base1-58-pikachu-first-edition-red-cheeks",
+          "card_print_id": "238dff30-ce49-453a-8504-4de3450e9d70",
+          "gv_id": "GV-PK-BASE1-58-FIRST-EDITION-RED-CHEEKS",
+          "set_code": "base1",
+          "number": "58",
+          "name": "Pikachu",
+          "variant_key": "first_edition_red_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:red_cheeks",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base1-58-pikachu-first-edition-yellow-cheeks",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "58",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "first_edition_yellow_cheeks",
+      "proposed_identity_modifier": "edition:first_edition;print_run:shadowless;color:yellow_cheeks",
+      "proposed_finish_key": "normal",
+      "classification": "canonical_print_lane",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "elitefourum_base_pikachu_variants",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "evidence_label": "Base Pikachu guide identifies English Shadowless 1st edition Yellow Cheeks as a distinct variant."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-1st-edition-58",
+          "evidence_label": "PriceCharting exact product: Pikachu [1st Edition] #58 includes Yellow Cheeks listings."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base1-58-pikachu-first-edition-yellow-cheeks",
+          "card_print_id": "dc27ea00-fe52-4fa2-a30b-9724201ed586",
+          "gv_id": "GV-PK-BASE1-58-FIRST-EDITION-YELLOW-CHEEKS",
+          "set_code": "base1",
+          "number": "58",
+          "name": "Pikachu",
+          "variant_key": "first_edition_yellow_cheeks",
+          "printed_identity_modifier": "edition:first_edition;print_run:shadowless;color:yellow_cheeks",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base1-58-pikachu-ghost-stamp",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "58",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "ghost_stamp_shadowless",
+      "proposed_identity_modifier": "print_run:shadowless;stamp_error:ghost_first_edition",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies Ghost Stamp Pikachu as a yellow-cheeks shadowless design error with incomplete 1st Edition stamp traces found in gold-strip Shadowless Zap! theme decks."
+        },
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "WOTC corrected-errors guide identifies Ghost stamp Shadowless Pikachu #58/102 and its Zap! theme deck source."
+        },
+        {
+          "source_key": "elitefourum_base_pikachu_variants",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "evidence_label": "Base Pikachu guide documents English Ghost stamped Pikachu and notes it is well-known rather than one-of-one."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base1-58-pikachu-ghost-stamp",
+          "card_print_id": "939f09d0-1adc-4a79-ba7f-882e102c4e22",
+          "gv_id": "GV-PK-BASE1-58-GHOST-STAMP-SHADOWLESS",
+          "set_code": "base1",
+          "number": "58",
+          "name": "Pikachu",
+          "variant_key": "ghost_stamp_shadowless",
+          "printed_identity_modifier": "print_run:shadowless;stamp_error:ghost_first_edition",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base1-58-pikachu-grey-first-edition-stamp",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "58",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "grey_first_edition_stamp",
+      "proposed_identity_modifier": "edition:first_edition;stamp_variant:grey_stamp",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "medium",
+      "status": "needs_second_source",
+      "evidence": [
+        {
+          "source_key": "elitefourum_base_pikachu_variants",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "evidence_label": "Base Pikachu guide documents English Grey 1st edition stamp Yellow Cheeks and explains the grey-stamp theory."
+        }
+      ],
+      "db_status": "missing_from_db",
+      "db_matches": [],
+      "source_count": 1,
+      "governance_status": "needs_second_source"
+    },
+    {
+      "candidate_key": "base1-58-pikachu-shadowless-red-cheeks",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "58",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "shadowless_red_cheeks",
+      "proposed_identity_modifier": "print_run:shadowless;color:red_cheeks",
+      "proposed_finish_key": "normal",
+      "classification": "canonical_print_lane",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "elitefourum_base_pikachu_variants",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "evidence_label": "Base Pikachu guide identifies English Shadowless non-1st edition Red Cheeks as a distinct variant."
+        },
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "WOTC corrected-errors guide identifies Red Cheeks Pikachu #58/102 as found in 1st edition and Shadowless Base Set packs."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-shadowless-red-cheeks-58",
+          "evidence_label": "PriceCharting exact product: Pikachu [Shadowless Red Cheeks] #58."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base1-58-pikachu-shadowless-red-cheeks",
+          "card_print_id": "ec82bb94-e450-4107-bee0-c3e21c24f23b",
+          "gv_id": "GV-PK-BASE1-58-SHADOWLESS-RED-CHEEKS",
+          "set_code": "base1",
+          "number": "58",
+          "name": "Pikachu",
+          "variant_key": "shadowless_red_cheeks",
+          "printed_identity_modifier": "print_run:shadowless;color:red_cheeks",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base1-58-pikachu-shadowless-yellow-cheeks",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "58",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "shadowless_yellow_cheeks",
+      "proposed_identity_modifier": "print_run:shadowless;color:yellow_cheeks",
+      "proposed_finish_key": "normal",
+      "classification": "canonical_print_lane",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "elitefourum_base_pikachu_variants",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "evidence_label": "Base Pikachu guide identifies English Shadowless non-1st edition Yellow Cheeks as a distinct variant."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/pikachu-shadowless-58",
+          "evidence_label": "PriceCharting exact product: Pikachu [Shadowless] #58."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base1-58-pikachu-shadowless-yellow-cheeks",
+          "card_print_id": "a719658f-3b5a-4a4e-94de-0e3a72098713",
+          "gv_id": "GV-PK-BASE1-58-SHADOWLESS-YELLOW-CHEEKS",
+          "set_code": "base1",
+          "number": "58",
+          "name": "Pikachu",
+          "variant_key": "shadowless_yellow_cheeks",
+          "printed_identity_modifier": "print_run:shadowless;color:yellow_cheeks",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base1-family-1999-2000-uk-print-run",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "*",
+      "card_name": "Base Set 1999-2000 UK print-run family",
+      "proposed_variant_key": "1999_2000_uk_print_run_family",
+      "proposed_identity_modifier": "print_run:1999_2000_uk",
+      "proposed_finish_key": null,
+      "classification": "set_level_print_run_family",
+      "confidence": "high",
+      "status": "family_rule_ready_needs_row_expansion",
+      "db_compare_mode": "family_rule",
+      "evidence": [
+        {
+          "source_key": "big_orbit_base_set_editions",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.bigorbitcards.co.uk/pokemon-base-set-how-to-tell-what-edition-you-have.html",
+          "evidence_label": "Big Orbit identifies UK Print / 4th Print / Base Set 2000 as the final and smallest English Base Set print run with 1999-2000 copyright text."
+        },
+        {
+          "source_key": "elitefourum_base_pikachu_variants",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "evidence_label": "Elite Fourum Base Pikachu taxonomy references the 1999-2000 UK print as a Base Set print-run variant."
+        }
+      ],
+      "db_status": "family_rule_not_expanded",
+      "db_matches": [],
+      "source_count": 2,
+      "governance_status": "family_rule_ready"
+    },
+    {
+      "candidate_key": "base1-family-shadowless-print-run",
+      "set_key": "base1",
+      "set_name": "Base Set",
+      "card_number": "*",
+      "card_name": "Base Set shadowless print-run family",
+      "proposed_variant_key": "shadowless_print_run_family",
+      "proposed_identity_modifier": "print_run:shadowless",
+      "proposed_finish_key": null,
+      "classification": "set_level_print_run_family",
+      "confidence": "high",
+      "status": "family_rule_ready_needs_row_expansion",
+      "db_compare_mode": "family_rule",
+      "evidence": [
+        {
+          "source_key": "big_orbit_base_set_editions",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.bigorbitcards.co.uk/pokemon-base-set-how-to-tell-what-edition-you-have.html",
+          "evidence_label": "Big Orbit identifies Shadowless Edition as an English Base Set edition/print run and explains how it differs from Unlimited."
+        },
+        {
+          "source_key": "elitefourum_base_pikachu_variants",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "evidence_label": "Elite Fourum Base Pikachu taxonomy describes Base Set print-run sequence including 1st edition Shadowless, non-1st Shadowless, Unlimited, and 1999-2000 UK print."
+        }
+      ],
+      "db_status": "family_rule_not_expanded",
+      "db_matches": [],
+      "source_count": 2,
+      "governance_status": "family_rule_ready"
+    },
+    {
+      "candidate_key": "base2-1-clefable-no-symbol-1",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "1",
+      "card_name": "Clefable",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/clefable-no-symbol-1",
+          "evidence_label": "PriceCharting exact product: Clefable [No Symbol] #1."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-1-clefable-no-symbol-1",
+          "card_print_id": "28a7a1a5-30c3-42ef-9b18-3efd340e2c5a",
+          "gv_id": "GV-PK-BASE2-1-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "1",
+          "name": "Clefable",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-10-scyther-no-symbol-10",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "10",
+      "card_name": "Scyther",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/scyther-no-symbol-10",
+          "evidence_label": "PriceCharting exact product: Scyther [No Symbol] #10."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-10-scyther-no-symbol-10",
+          "card_print_id": "bafc2195-d765-4f65-9db2-5a7ae54e3198",
+          "gv_id": "GV-PK-BASE2-10-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "10",
+          "name": "Scyther",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-11-snorlax-no-symbol-11",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "11",
+      "card_name": "Snorlax",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/snorlax-no-symbol-11",
+          "evidence_label": "PriceCharting exact product: Snorlax [No Symbol] #11."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-11-snorlax-no-symbol-11",
+          "card_print_id": "20fa5289-8e45-41cf-9f96-1dfd4cb189fa",
+          "gv_id": "GV-PK-BASE2-11-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "11",
+          "name": "Snorlax",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-12-vaporeon-no-symbol-12",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "12",
+      "card_name": "Vaporeon",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/vaporeon-no-symbol-12",
+          "evidence_label": "PriceCharting exact product: Vaporeon [No Symbol] #12."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-12-vaporeon-no-symbol-12",
+          "card_print_id": "ca4004fb-c4af-4631-b624-ec5a872ffa35",
+          "gv_id": "GV-PK-BASE2-12-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "12",
+          "name": "Vaporeon",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-13-venomoth-no-symbol-13",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "13",
+      "card_name": "Venomoth",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/venomoth-no-symbol-13",
+          "evidence_label": "PriceCharting exact product: Venomoth [No Symbol] #13."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-13-venomoth-no-symbol-13",
+          "card_print_id": "b4dec454-afa9-429d-b44d-12ac70a226c0",
+          "gv_id": "GV-PK-BASE2-13-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "13",
+          "name": "Venomoth",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-14-victreebel-no-symbol-14",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "14",
+      "card_name": "Victreebel",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/victreebel-no-symbol-14",
+          "evidence_label": "PriceCharting exact product: Victreebel [No Symbol] #14."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-14-victreebel-no-symbol-14",
+          "card_print_id": "2cfe8e2f-c552-4ef3-b69f-9ca29f69c3b9",
+          "gv_id": "GV-PK-BASE2-14-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "14",
+          "name": "Victreebel",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-15-vileplume-no-symbol-15",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "15",
+      "card_name": "Vileplume",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/vileplume-no-symbol-15",
+          "evidence_label": "PriceCharting exact product: Vileplume [No Symbol] #15."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-15-vileplume-no-symbol-15",
+          "card_print_id": "3ab13536-8f6a-4686-be31-14424a87788f",
+          "gv_id": "GV-PK-BASE2-15-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "15",
+          "name": "Vileplume",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-16-wigglytuff-no-symbol-16",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "16",
+      "card_name": "Wigglytuff",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/wigglytuff-no-symbol-16",
+          "evidence_label": "PriceCharting exact product: Wigglytuff [No Symbol] #16."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-16-wigglytuff-no-symbol-16",
+          "card_print_id": "b8b0e710-4454-439a-a0eb-f3eb75878998",
+          "gv_id": "GV-PK-BASE2-16-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "16",
+          "name": "Wigglytuff",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-2-electrode-no-symbol-2",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "2",
+      "card_name": "Electrode",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/electrode-no-symbol-2",
+          "evidence_label": "PriceCharting exact product: Electrode [No Symbol] #2."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-2-electrode-no-symbol-2",
+          "card_print_id": "83189125-b5f6-4169-b788-52a873359eb4",
+          "gv_id": "GV-PK-BASE2-2-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "2",
+          "name": "Electrode",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-3-flareon-no-symbol-3",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "3",
+      "card_name": "Flareon",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/flareon-no-symbol-3",
+          "evidence_label": "PriceCharting exact product: Flareon [No Symbol] #3."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-3-flareon-no-symbol-3",
+          "card_print_id": "58197a15-6846-4234-b153-565e26038a51",
+          "gv_id": "GV-PK-BASE2-3-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "3",
+          "name": "Flareon",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-4-jolteon-no-symbol-4",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "4",
+      "card_name": "Jolteon",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/jolteon-no-symbol-4",
+          "evidence_label": "PriceCharting exact product: Jolteon [No Symbol] #4."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-4-jolteon-no-symbol-4",
+          "card_print_id": "bfd2238e-fc2d-452c-bc22-c4ea9dd84743",
+          "gv_id": "GV-PK-BASE2-4-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "4",
+          "name": "Jolteon",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-5-kangaskhan-no-symbol-5",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "5",
+      "card_name": "Kangaskhan",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/kangaskhan-no-symbol-5",
+          "evidence_label": "PriceCharting exact product: Kangaskhan [No Symbol] #5."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-5-kangaskhan-no-symbol-5",
+          "card_print_id": "84b0cad0-b224-44f7-98bc-1be6d582b513",
+          "gv_id": "GV-PK-BASE2-5-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "5",
+          "name": "Kangaskhan",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-6-mr-mime-no-symbol-6",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "6",
+      "card_name": "Mr. Mime",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/mr-mime-no-symbol-6",
+          "evidence_label": "PriceCharting exact product: Mr. Mime [No Symbol] #6."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-6-mr-mime-no-symbol-6",
+          "card_print_id": "1cfc7d99-93b3-4da7-a9d0-9321e4b1eaa2",
+          "gv_id": "GV-PK-BASE2-6-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "6",
+          "name": "Mr. Mime",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-7-nidoqueen-no-symbol-7",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "7",
+      "card_name": "Nidoqueen",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/nidoqueen-no-symbol-7",
+          "evidence_label": "PriceCharting exact product: Nidoqueen [No Symbol] #7."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-7-nidoqueen-no-symbol-7",
+          "card_print_id": "ffceadb7-dfad-4a35-b332-0ff0856fbecb",
+          "gv_id": "GV-PK-BASE2-7-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "7",
+          "name": "Nidoqueen",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-8-pidgeot-no-symbol-8",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "8",
+      "card_name": "Pidgeot",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/pidgeot-no-symbol-8",
+          "evidence_label": "PriceCharting exact product: Pidgeot [No Symbol] #8."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-8-pidgeot-no-symbol-8",
+          "card_print_id": "e563e20e-a43b-48f0-b07f-31a986fd827e",
+          "gv_id": "GV-PK-BASE2-8-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "8",
+          "name": "Pidgeot",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base2-9-pinsir-no-symbol-9",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "card_number": "9",
+      "card_name": "Pinsir",
+      "proposed_variant_key": "no_symbol_error",
+      "proposed_identity_modifier": "recognized_error:no_jungle_symbol",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_jungle_tcg",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-jungle/pinsir-no-symbol-9",
+          "evidence_label": "PriceCharting exact product: Pinsir [No Symbol] #9."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base2-9-pinsir-no-symbol-9",
+          "card_print_id": "66cdd415-f700-4199-bd04-dd47edeefd5e",
+          "gv_id": "GV-PK-BASE2-9-NO-SYMBOL",
+          "set_code": "base2",
+          "number": "9",
+          "name": "Pinsir",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base3-15-zapdos-missing-holo-evolution-box",
+      "set_key": "base3",
+      "set_name": "Fossil",
+      "card_number": "15",
+      "card_name": "Zapdos",
+      "proposed_variant_key": "missing_holo_evolution_box_error",
+      "proposed_identity_modifier": "recognized_error:missing_holo_evolution_box",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "WOTC corrected-errors guide identifies Missing holo in Evolution box Zapdos #15/62."
+        },
+        {
+          "source_key": "elitefourum_fossil_zapdos_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/guide-to-understanding-fossil-zapdos-15-62-variants/30830",
+          "evidence_label": "Elite Fourum Fossil Zapdos variant guide documents the holo evolution box error on Zapdos #15/62 and explains the late corrected unlimited print."
+        },
+        {
+          "source_key": "pricecharting_corrected_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-fossil/zapdos-corrected-15",
+          "evidence_label": "PriceCharting exact corrected-product page says corrected Zapdos #15 has no “Evolution Box” error like the original printing."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base3-15-zapdos-missing-holo-evolution-box",
+          "card_print_id": "e9c242ce-6ebb-40ac-b148-43f063c5f9c9",
+          "gv_id": "GV-PK-BASE3-15-MISSING-HOLO-EVOLUTION-BOX-ERROR",
+          "set_code": "base3",
+          "number": "15",
+          "name": "Zapdos",
+          "variant_key": "missing_holo_evolution_box_error",
+          "printed_identity_modifier": "recognized_error:missing_holo_evolution_box",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 3,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base5-5-dark-dragonite-nonholo-error",
+      "set_key": "base5",
+      "set_name": "Team Rocket",
+      "card_number": "5",
+      "card_name": "Dark Dragonite",
+      "proposed_variant_key": "nonholo_error",
+      "proposed_identity_modifier": "recognized_error:nonholo_holo_number",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies Nonholo Dark Dragonite #5 as a Team Rocket design error mass produced in unlimited and present in 1st edition."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-team-rocket/dark-dragonite-error-5",
+          "evidence_label": "PriceCharting exact product: Dark Dragonite [Error] #5."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "base5-5-dark-dragonite-nonholo-error",
+          "card_print_id": "d0155199-e607-42fe-a18c-9d0a9adc9b9a",
+          "gv_id": "GV-PK-BASE5-5-NONHOLO-ERROR",
+          "set_code": "base5",
+          "number": "5",
+          "name": "Dark Dragonite",
+          "variant_key": "nonholo_error",
+          "printed_identity_modifier": "recognized_error:nonholo_holo_number",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "base6-75-exeggcute-legendary-collection-reverse-holo-shift-review",
+      "set_key": "base6",
+      "set_name": "Legendary Collection",
+      "card_number": "75",
+      "card_name": "Exeggcute",
+      "proposed_variant_key": "reverse_holo_shift_error",
+      "proposed_identity_modifier": "recognized_error:legendary_collection_reverse_holo_shift",
+      "proposed_finish_key": "reverse",
+      "classification": "recognized_error_variant",
+      "confidence": "medium",
+      "status": "needs_second_source",
+      "evidence": [
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "WOTC corrected-errors guide identifies misaligned holo errors across Legendary Collection cards, with known collector discussion around Exeggcute reverse-holo correction/error states."
+        }
+      ],
+      "db_status": "missing_from_db",
+      "db_matches": [],
+      "source_count": 1,
+      "governance_status": "needs_second_source"
+    },
+    {
+      "candidate_key": "basep-1-ivy-pikachu-first-edition",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "1",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "first_edition",
+      "proposed_identity_modifier": "edition:first_edition",
+      "proposed_finish_key": "normal",
+      "classification": "canonical_print_lane",
+      "confidence": "high",
+      "status": "already_likely_in_db",
+      "notes": "Release context is Jungle secret/chase distribution, but the DB identity modifier should remain edition:first_edition unless a separate release modifier is formally approved.",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia classifies Ivy Pikachu 1st Edition as incorrectly regarded as an error and documents it as intentional secret/chase style distribution in 1st Edition Jungle packs."
+        },
+        {
+          "source_key": "elitefourum_base_pikachu_variants",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059",
+          "evidence_label": "Base Pikachu guide references Ivy Pikachu / Black Star Promo #1 1st edition context."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-1-ivy-pikachu-first-edition",
+          "card_print_id": "b82829d7-8deb-4e21-8860-989efe798c70",
+          "gv_id": "GV-PK-PR-1-FIRST-EDITION",
+          "set_code": "basep",
+          "number": "1",
+          "name": "Pikachu",
+          "variant_key": null,
+          "printed_identity_modifier": "edition:first_edition",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-17-dark-persian-no-hp-error",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "17",
+      "card_name": "Dark Persian",
+      "proposed_variant_key": "no_hp_error",
+      "proposed_identity_modifier": "recognized_error:missing_hp",
+      "proposed_finish_key": "holo",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies Dark Persian Black Star Promo copies printed without HP."
+        },
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "WOTC corrected-errors guide identifies Missing/No HP Dark Persian #17 Black Star promo."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-17-dark-persian-no-hp-error",
+          "card_print_id": "bae09811-d56e-41db-b093-94b4dc70b561",
+          "gv_id": "GV-PK-BASEP-17-NO-HP-ERROR",
+          "set_code": "basep",
+          "number": "17",
+          "name": "Dark Persian",
+          "variant_key": "no_hp_error",
+          "printed_identity_modifier": "recognized_error:missing_hp",
+          "child_finishes": [
+            "holo"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-2-electabuzz-inverted-wb-kids-stamp",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "2",
+      "card_name": "Electabuzz",
+      "proposed_variant_key": "inverted_wb_kids_stamp",
+      "proposed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies inverted WB Kids stamp versions of Black Star Promos #2-5 and reports a very small production population."
+        },
+        {
+          "source_key": "elitefourum_wotc_promo_images",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+          "evidence_label": "Elite Fourum WOTC promo image list includes inverted WB Stamp versions for the first-movie promo cards."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-2-electabuzz-inverted-wb-kids-stamp",
+          "card_print_id": "0d97110d-e8bd-453a-b721-35091f4f08b8",
+          "gv_id": "GV-PK-BASEP-2-INVERTED-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "2",
+          "name": "Electabuzz",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-2-electabuzz-missing-wb-kids-stamp",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "2",
+      "card_name": "Electabuzz",
+      "proposed_variant_key": "missing_wb_kids_stamp",
+      "proposed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "medium",
+      "status": "needs_second_source",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies missing WB Kids stamp versions of Black Star Promos #2-5."
+        }
+      ],
+      "db_status": "missing_from_db",
+      "db_matches": [],
+      "source_count": 1,
+      "governance_status": "needs_second_source"
+    },
+    {
+      "candidate_key": "basep-2-electabuzz-wb-kids-stamp",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "2",
+      "card_name": "Electabuzz",
+      "proposed_variant_key": "wb_kids_stamp",
+      "proposed_identity_modifier": "stamp:wb_kids_first_movie",
+      "proposed_finish_key": "normal",
+      "classification": "stamp_or_release_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_wotc_promos",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+          "evidence_label": "Bulbapedia identifies Wizards Black Star Promos #2-5 as Mewtwo Strikes Back theatrical-release cards with a Kids WB Presents: Pokemon The First Movie gold foil stamp."
+        },
+        {
+          "source_key": "elitefourum_wotc_promo_images",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+          "evidence_label": "Elite Fourum WOTC promo image list distinguishes the regular WB Stamp versions of promos #2-5."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-2-electabuzz-wb-kids-stamp",
+          "card_print_id": "0d97110d-e8bd-453a-b721-35091f4f08b8",
+          "gv_id": "GV-PK-BASEP-2-INVERTED-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "2",
+          "name": "Electabuzz",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        },
+        {
+          "candidate_key": "basep-2-electabuzz-wb-kids-stamp",
+          "card_print_id": "71d197da-c12f-4f01-899f-1449b53dcf6c",
+          "gv_id": "GV-PK-BASEP-2-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "2",
+          "name": "Electabuzz",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-21-moltres-incorrect-artist",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "21",
+      "card_name": "Moltres",
+      "proposed_variant_key": "incorrect_artist_variant",
+      "proposed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_correction_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies the Legendary Bird promos as early prints with incorrect Toshinao Aoki artist credit, corrected to Naoyo Kimura in later prints."
+        },
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "WOTC corrected-errors guide identifies Zapdos, Articuno, and Moltres Black Star promos #21-23 as incorrect-artist corrected variants."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-21-moltres-incorrect-artist",
+          "card_print_id": "3368a54d-889f-42c7-8493-afbddf613328",
+          "gv_id": "GV-PK-BASEP-21-INCORRECT-ARTIST-VARIANT",
+          "set_code": "basep",
+          "number": "21",
+          "name": "Moltres",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-22-articuno-incorrect-artist",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "22",
+      "card_name": "Articuno",
+      "proposed_variant_key": "incorrect_artist_variant",
+      "proposed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_correction_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies the Legendary Bird promos as early prints with incorrect Toshinao Aoki artist credit, corrected to Naoyo Kimura in later prints."
+        },
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "WOTC corrected-errors guide identifies Zapdos, Articuno, and Moltres Black Star promos #21-23 as incorrect-artist corrected variants."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-22-articuno-incorrect-artist",
+          "card_print_id": "aaedcb11-d8ed-4ee0-8c26-920aa86c35c9",
+          "gv_id": "GV-PK-BASEP-22-INCORRECT-ARTIST-VARIANT",
+          "set_code": "basep",
+          "number": "22",
+          "name": "Articuno",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-23-zapdos-incorrect-artist",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "23",
+      "card_name": "Zapdos",
+      "proposed_variant_key": "incorrect_artist_variant",
+      "proposed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_correction_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies the Legendary Bird promos as early prints with incorrect Toshinao Aoki artist credit, corrected to Naoyo Kimura in later prints."
+        },
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "WOTC corrected-errors guide identifies Zapdos, Articuno, and Moltres Black Star promos #21-23 as incorrect-artist corrected variants."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-23-zapdos-incorrect-artist",
+          "card_print_id": "8355d761-b16a-4a07-9a2d-d39dcb4bf809",
+          "gv_id": "GV-PK-BASEP-23-INCORRECT-ARTIST-VARIANT",
+          "set_code": "basep",
+          "number": "23",
+          "name": "Zapdos",
+          "variant_key": "incorrect_artist_variant",
+          "printed_identity_modifier": "text_variant:incorrect_artist_toshinao_aoki",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-3-mewtwo-inverted-wb-kids-stamp",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "3",
+      "card_name": "Mewtwo",
+      "proposed_variant_key": "inverted_wb_kids_stamp",
+      "proposed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies inverted WB Kids stamp versions of Black Star Promos #2-5 and reports a very small production population."
+        },
+        {
+          "source_key": "elitefourum_wotc_promo_images",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+          "evidence_label": "Elite Fourum WOTC promo image list includes inverted WB Stamp versions for the first-movie promo cards."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-3-mewtwo-inverted-wb-kids-stamp",
+          "card_print_id": "3746cabc-29bd-4a1f-a105-eca80800cc2e",
+          "gv_id": "GV-PK-BASEP-3-INVERTED-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "3",
+          "name": "Mewtwo",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-3-mewtwo-missing-wb-kids-stamp",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "3",
+      "card_name": "Mewtwo",
+      "proposed_variant_key": "missing_wb_kids_stamp",
+      "proposed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "medium",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies missing WB Kids stamp versions of Black Star Promos #2-5."
+        },
+        {
+          "source_key": "elitefourum_wotc_promo_images_missing_wb_comment",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+          "evidence_label": "Elite Fourum WOTC promo variant discussion states missing-stamp Mewtwo and Dragonite have been seen in collector holdings."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-3-mewtwo-missing-wb-kids-stamp",
+          "card_print_id": "6abd5cee-cbe0-492c-9202-6ae41ba1bbcd",
+          "gv_id": "GV-PK-BASEP-3-MISSING-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "3",
+          "name": "Mewtwo",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-3-mewtwo-wb-kids-stamp",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "3",
+      "card_name": "Mewtwo",
+      "proposed_variant_key": "wb_kids_stamp",
+      "proposed_identity_modifier": "stamp:wb_kids_first_movie",
+      "proposed_finish_key": "normal",
+      "classification": "stamp_or_release_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_wotc_promos",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+          "evidence_label": "Bulbapedia identifies Wizards Black Star Promos #2-5 as Mewtwo Strikes Back theatrical-release cards with a Kids WB Presents: Pokemon The First Movie gold foil stamp."
+        },
+        {
+          "source_key": "elitefourum_wotc_promo_images",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+          "evidence_label": "Elite Fourum WOTC promo image list distinguishes the regular WB Stamp versions of promos #2-5."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-3-mewtwo-wb-kids-stamp",
+          "card_print_id": "3746cabc-29bd-4a1f-a105-eca80800cc2e",
+          "gv_id": "GV-PK-BASEP-3-INVERTED-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "3",
+          "name": "Mewtwo",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        },
+        {
+          "candidate_key": "basep-3-mewtwo-wb-kids-stamp",
+          "card_print_id": "571cb8c6-b7ec-43e8-8a54-fc5b71245690",
+          "gv_id": "GV-PK-BASEP-3-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "3",
+          "name": "Mewtwo",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "child_finishes": [
+            "normal"
+          ]
+        },
+        {
+          "candidate_key": "basep-3-mewtwo-wb-kids-stamp",
+          "card_print_id": "6abd5cee-cbe0-492c-9202-6ae41ba1bbcd",
+          "gv_id": "GV-PK-BASEP-3-MISSING-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "3",
+          "name": "Mewtwo",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-4-pikachu-inverted-wb-kids-stamp",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "4",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "inverted_wb_kids_stamp",
+      "proposed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies inverted WB Kids stamp versions of Black Star Promos #2-5 and reports a very small production population."
+        },
+        {
+          "source_key": "elitefourum_wotc_promo_images",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+          "evidence_label": "Elite Fourum WOTC promo image list includes inverted WB Stamp versions for the first-movie promo cards."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-4-pikachu-inverted-wb-kids-stamp",
+          "card_print_id": "dfa19c6b-5e69-4ba5-a791-60b0f0c9edd1",
+          "gv_id": "GV-PK-BASEP-4-INVERTED-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "4",
+          "name": "Pikachu",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-4-pikachu-missing-wb-kids-stamp",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "4",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "missing_wb_kids_stamp",
+      "proposed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "medium",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies missing WB Kids stamp versions of Black Star Promos #2-5."
+        },
+        {
+          "source_key": "elitefourum_wotc_promo_images",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+          "evidence_label": "Elite Fourum WOTC promo image list explicitly includes Pikachu #4 Missing WB Stamp."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-4-pikachu-missing-wb-kids-stamp",
+          "card_print_id": "a10b92ea-ea18-4d3c-b046-8908fab97c4a",
+          "gv_id": "GV-PK-BASEP-4-MISSING-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "4",
+          "name": "Pikachu",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-4-pikachu-wb-kids-stamp",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "4",
+      "card_name": "Pikachu",
+      "proposed_variant_key": "wb_kids_stamp",
+      "proposed_identity_modifier": "stamp:wb_kids_first_movie",
+      "proposed_finish_key": "normal",
+      "classification": "stamp_or_release_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_wotc_promos",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+          "evidence_label": "Bulbapedia identifies Wizards Black Star Promos #2-5 as Mewtwo Strikes Back theatrical-release cards with a Kids WB Presents: Pokemon The First Movie gold foil stamp."
+        },
+        {
+          "source_key": "elitefourum_wotc_promo_images",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+          "evidence_label": "Elite Fourum WOTC promo image list distinguishes the regular WB Stamp versions of promos #2-5."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-4-pikachu-wb-kids-stamp",
+          "card_print_id": "a10b92ea-ea18-4d3c-b046-8908fab97c4a",
+          "gv_id": "GV-PK-BASEP-4-MISSING-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "4",
+          "name": "Pikachu",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        },
+        {
+          "candidate_key": "basep-4-pikachu-wb-kids-stamp",
+          "card_print_id": "aa1859b6-99a2-4d95-960b-8cedda0ea8c1",
+          "gv_id": "GV-PK-BASEP-4-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "4",
+          "name": "Pikachu",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "child_finishes": [
+            "normal"
+          ]
+        },
+        {
+          "candidate_key": "basep-4-pikachu-wb-kids-stamp",
+          "card_print_id": "dfa19c6b-5e69-4ba5-a791-60b0f0c9edd1",
+          "gv_id": "GV-PK-BASEP-4-INVERTED-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "4",
+          "name": "Pikachu",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-5-dragonite-inverted-wb-kids-stamp",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "5",
+      "card_name": "Dragonite",
+      "proposed_variant_key": "inverted_wb_kids_stamp",
+      "proposed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies inverted WB Kids stamp versions of Black Star Promos #2-5 and reports a very small production population."
+        },
+        {
+          "source_key": "elitefourum_wotc_promo_images",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+          "evidence_label": "Elite Fourum WOTC promo image list includes inverted WB Stamp versions for the first-movie promo cards."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-5-dragonite-inverted-wb-kids-stamp",
+          "card_print_id": "6a505b8b-807f-4b0f-b1ee-73ecf29b3a42",
+          "gv_id": "GV-PK-BASEP-5-INVERTED-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "5",
+          "name": "Dragonite",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-5-dragonite-missing-wb-kids-stamp",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "5",
+      "card_name": "Dragonite",
+      "proposed_variant_key": "missing_wb_kids_stamp",
+      "proposed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_error_variant",
+      "confidence": "medium",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia identifies missing WB Kids stamp versions of Black Star Promos #2-5."
+        },
+        {
+          "source_key": "elitefourum_wotc_promo_images_missing_wb_comment",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+          "evidence_label": "Elite Fourum WOTC promo variant discussion states missing-stamp Mewtwo and Dragonite have been seen in collector holdings."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-5-dragonite-missing-wb-kids-stamp",
+          "card_print_id": "c5899ee0-4e67-4629-8f8d-4d2a74238cac",
+          "gv_id": "GV-PK-BASEP-5-MISSING-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "5",
+          "name": "Dragonite",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "basep-5-dragonite-wb-kids-stamp",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "5",
+      "card_name": "Dragonite",
+      "proposed_variant_key": "wb_kids_stamp",
+      "proposed_identity_modifier": "stamp:wb_kids_first_movie",
+      "proposed_finish_key": "normal",
+      "classification": "stamp_or_release_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_wotc_promos",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_%28TCG%29",
+          "evidence_label": "Bulbapedia identifies Wizards Black Star Promos #2-5 as Mewtwo Strikes Back theatrical-release cards with a Kids WB Presents: Pokemon The First Movie gold foil stamp."
+        },
+        {
+          "source_key": "elitefourum_wotc_promo_images",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+          "evidence_label": "Elite Fourum WOTC promo image list distinguishes the regular WB Stamp versions of promos #2-5."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "basep-5-dragonite-wb-kids-stamp",
+          "card_print_id": "4c4a8734-fc89-4208-ade7-4ebacc80bdbb",
+          "gv_id": "GV-PK-BASEP-5-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "5",
+          "name": "Dragonite",
+          "variant_key": "wb_kids_stamp",
+          "printed_identity_modifier": "stamp:wb_kids_first_movie",
+          "child_finishes": [
+            "normal"
+          ]
+        },
+        {
+          "candidate_key": "basep-5-dragonite-wb-kids-stamp",
+          "card_print_id": "6a505b8b-807f-4b0f-b1ee-73ecf29b3a42",
+          "gv_id": "GV-PK-BASEP-5-INVERTED-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "5",
+          "name": "Dragonite",
+          "variant_key": "inverted_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:inverted_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        },
+        {
+          "candidate_key": "basep-5-dragonite-wb-kids-stamp",
+          "card_print_id": "c5899ee0-4e67-4629-8f8d-4d2a74238cac",
+          "gv_id": "GV-PK-BASEP-5-MISSING-WB-KIDS-STAMP",
+          "set_code": "basep",
+          "number": "5",
+          "name": "Dragonite",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 2,
+      "governance_status": "source_ready"
+    },
+    {
+      "candidate_key": "copy-error-crimped-edge",
+      "set_key": "various",
+      "set_name": "Various",
+      "card_number": "*",
+      "card_name": "Crimped Edge cards",
+      "proposed_variant_key": "crimped-edge",
+      "proposed_identity_modifier": null,
+      "proposed_finish_key": null,
+      "classification": "item_level_error_only",
+      "confidence": "high",
+      "status": "item_level_error_only",
+      "db_compare_mode": "item_level_only",
+      "evidence": [
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "Packing/sealing crimp errors vary by individual copy and should remain vault/item-level attributes, not canonical parent lanes."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia catalogs this as a production/misprint phenomenon rather than a stable card identity lane."
+        }
+      ],
+      "db_status": "item_level_not_db_lane",
+      "db_matches": [],
+      "source_count": 2,
+      "governance_status": "blocked_item_level_only"
+    },
+    {
+      "candidate_key": "copy-error-filler-cards",
+      "set_key": "various",
+      "set_name": "Various",
+      "card_number": "*",
+      "card_name": "Filler / blank / color-bar cards",
+      "proposed_variant_key": "filler-cards",
+      "proposed_identity_modifier": null,
+      "proposed_finish_key": null,
+      "classification": "item_level_error_only",
+      "confidence": "high",
+      "status": "item_level_error_only",
+      "db_compare_mode": "item_level_only",
+      "evidence": [
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "Filler and blank cards are production artifacts without normal card identity; route to item-level or separate oddity catalog, not canonical card_prints."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia catalogs this as a production/misprint phenomenon rather than a stable card identity lane."
+        }
+      ],
+      "db_status": "item_level_not_db_lane",
+      "db_matches": [],
+      "source_count": 2,
+      "governance_status": "blocked_item_level_only"
+    },
+    {
+      "candidate_key": "copy-error-holo-bleed-general",
+      "set_key": "various",
+      "set_name": "Various",
+      "card_number": "*",
+      "card_name": "General holo bleed cards",
+      "proposed_variant_key": "holo-bleed-general",
+      "proposed_identity_modifier": null,
+      "proposed_finish_key": null,
+      "classification": "item_level_error_only",
+      "confidence": "high",
+      "status": "item_level_error_only",
+      "db_compare_mode": "item_level_only",
+      "evidence": [
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "Holo bleed can occur across many sets in varying degree; only explicitly repeatable named cases should become parent lanes."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia catalogs this as a production/misprint phenomenon rather than a stable card identity lane."
+        }
+      ],
+      "db_status": "item_level_not_db_lane",
+      "db_matches": [],
+      "source_count": 2,
+      "governance_status": "blocked_item_level_only"
+    },
+    {
+      "candidate_key": "copy-error-miscut-offcenter",
+      "set_key": "various",
+      "set_name": "Various",
+      "card_number": "*",
+      "card_name": "Mis-cut / off-center cards",
+      "proposed_variant_key": "miscut-offcenter",
+      "proposed_identity_modifier": null,
+      "proposed_finish_key": null,
+      "classification": "item_level_error_only",
+      "confidence": "high",
+      "status": "item_level_error_only",
+      "db_compare_mode": "item_level_only",
+      "evidence": [
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "Miscut and off-center cards vary by individual copy and grading standard; they should not create Master Index parent rows."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia catalogs this as a production/misprint phenomenon rather than a stable card identity lane."
+        }
+      ],
+      "db_status": "item_level_not_db_lane",
+      "db_matches": [],
+      "source_count": 2,
+      "governance_status": "blocked_item_level_only"
+    },
+    {
+      "candidate_key": "gym2-119-rockets-minefield-gym-corrected-text-lane",
+      "set_key": "gym2",
+      "set_name": "Gym Challenge",
+      "card_number": "119",
+      "card_name": "Rocket's Minefield Gym",
+      "proposed_variant_key": "corrected_text_variant",
+      "proposed_identity_modifier": "text_variant:corrected_damage_counter_text",
+      "proposed_finish_key": "normal",
+      "classification": "recognized_correction_variant",
+      "confidence": "high",
+      "status": "master_index_ready",
+      "evidence": [
+        {
+          "source_key": "elitefourum_wotc_error_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "evidence_label": "WOTC corrected-errors guide identifies Rocket’s Minefield Gym corrected text as an English Gym Challenge corrected error family."
+        },
+        {
+          "source_key": "bulbapedia_error_cards",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "evidence_label": "Bulbapedia states Rocket’s Minefield Gym was corrected very late in the unlimited print run and that corrected unlimited copies are rarer."
+        },
+        {
+          "source_key": "pricecharting_exact_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-gym-challenge/rocket%27s-minefield-gym-119",
+          "evidence_label": "PriceCharting Rocket’s Minefield Gym #119 page includes corrected-card sales and error sales as separate title evidence."
+        },
+        {
+          "source_key": "tcgone_wotc_erratas",
+          "source_kind": "collector_reference",
+          "source_url": "https://forum.tcgone.net/t/wotc-erratas-complete-list/9383",
+          "evidence_label": "TCG ONE WotC errata list notes scans of the corrected Rocket’s Minefield Gym version printed in later Gym Challenge packs."
+        }
+      ],
+      "db_status": "already_in_db",
+      "db_matches": [
+        {
+          "candidate_key": "gym2-119-rockets-minefield-gym-corrected-text-lane",
+          "card_print_id": "391dad7b-2816-47b3-a86b-b51e369f06f4",
+          "gv_id": "GV-PK-GYM2-119-CORRECTED-TEXT-VARIANT",
+          "set_code": "gym2",
+          "number": "119",
+          "name": "Rocket's Minefield Gym",
+          "variant_key": "corrected_text_variant",
+          "printed_identity_modifier": "text_variant:corrected_damage_counter_text",
+          "child_finishes": [
+            "normal"
+          ]
+        }
+      ],
+      "source_count": 4,
+      "governance_status": "source_ready"
+    }
+  ]
+}

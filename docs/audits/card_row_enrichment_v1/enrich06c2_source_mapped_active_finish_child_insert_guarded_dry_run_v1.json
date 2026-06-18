@@ -1,12 +1,12 @@
 {
   "version": "ENRICH06C_SOURCE_MAPPED_CHILD_INSERT_GUARDED_DRY_RUN_V1",
   "package_id": "ENRICH-06C2-SOURCE-MAPPED-ACTIVE-FINISH-CHILD-PRINTING-INSERT",
-  "generated_at": "2026-06-15T17:53:44.666Z",
-  "package_fingerprint_sha256": "360de8d5c8cca6da18200fc024d7cfb72fb7a57de1a2da7cd1ee3d6073991fa9",
+  "generated_at": "2026-06-18T02:52:19.061Z",
+  "package_fingerprint_sha256": "6e32357534841a49f65bfd3f10e23f04cd982a6795b5c2e47b2fd50829bec8e7",
   "source_file": "docs\\audits\\card_row_enrichment_v1\\card_row_enrichment_no_child_parent_adjudication_v1.json",
   "scope": {
-    "target_parent_rows": 0,
-    "target_child_printing_inserts": 0,
+    "target_parent_rows": 10,
+    "target_child_printing_inserts": 13,
     "target_classification": "source_mapped_child_insert_candidate_needs_finish_selection",
     "excluded_finish_keys": [
       "stamped"
@@ -27,55 +27,458 @@
       "global apply"
     ]
   },
-  "by_finish": {},
-  "by_set_top_25": {},
+  "by_finish": {
+    "holo": 7,
+    "normal": 3,
+    "reverse": 3
+  },
+  "by_set_top_25": {
+    "me03": 13
+  },
   "execution": {
     "before_snapshot": {
-      "captured_at": "2026-06-15T17:53:43.845Z",
-      "rows": [],
-      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "captured_at": "2026-06-18T02:52:18.271Z",
+      "rows": [
+        {
+          "row_type": "parent",
+          "row_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+          "card_print_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+          "set_code": "me03",
+          "number": "080",
+          "number_plain": "080",
+          "card_name": "Poke Ball",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "377086c4-b968-4335-aa44-54b0b518e913",
+          "card_print_id": "377086c4-b968-4335-aa44-54b0b518e913",
+          "set_code": "me03",
+          "number": "081",
+          "number_plain": "081",
+          "card_name": "Poke Pad",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+          "card_print_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+          "set_code": "me03",
+          "number": "082",
+          "number_plain": "082",
+          "card_name": "Pokemon Catcher",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "1e4c3b8d-754d-4ef5-b227-74403f48e8fc",
+          "card_print_id": "1e4c3b8d-754d-4ef5-b227-74403f48e8fc",
+          "set_code": "me03",
+          "number": "089",
+          "number_plain": "089",
+          "card_name": "Spewpa",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "b609368c-765d-4c2a-a26e-24f26afa8a85",
+          "card_print_id": "b609368c-765d-4c2a-a26e-24f26afa8a85",
+          "set_code": "me03",
+          "number": "090",
+          "number_plain": "090",
+          "card_name": "Rowlet",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "2079454d-e93a-48db-818a-bc6094d402ed",
+          "card_print_id": "2079454d-e93a-48db-818a-bc6094d402ed",
+          "set_code": "me03",
+          "number": "092",
+          "number_plain": "092",
+          "card_name": "Aurorus",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "db560767-e26f-43ba-b859-f173c2ecbb69",
+          "card_print_id": "db560767-e26f-43ba-b859-f173c2ecbb69",
+          "set_code": "me03",
+          "number": "093",
+          "number_plain": "093",
+          "card_name": "Dedenne",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "02601537-eba7-4602-b72b-35d50af15261",
+          "card_print_id": "02601537-eba7-4602-b72b-35d50af15261",
+          "set_code": "me03",
+          "number": "094",
+          "number_plain": "094",
+          "card_name": "Clefairy",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "2a5e4336-dfb8-4e2e-bba8-4cf004fa15a1",
+          "card_print_id": "2a5e4336-dfb8-4e2e-bba8-4cf004fa15a1",
+          "set_code": "me03",
+          "number": "095",
+          "number_plain": "095",
+          "card_name": "Espurr",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "6254904f-1f84-4f58-99c6-d4a06731adc0",
+          "card_print_id": "6254904f-1f84-4f58-99c6-d4a06731adc0",
+          "set_code": "me03",
+          "number": "113",
+          "number_plain": "113",
+          "card_name": "Poke Pad",
+          "finish_key": null
+        }
+      ],
+      "hash_sha256": "26d63932fb3c14d0fb4aece6970ef3462783891353378a9584a96bf06a980d43",
       "counts": {
-        "parent_rows": 0,
+        "parent_rows": 10,
         "child_rows": 0,
-        "total_rows": 0
+        "total_rows": 10
       }
     },
     "guard": {
-      "target_printing_count": 0,
-      "target_parent_count": 0,
-      "distinct_target_printing_count": 0,
+      "target_printing_count": 13,
+      "target_parent_count": 10,
+      "distinct_target_printing_count": 13,
       "missing_parent_count": 0,
       "inactive_finish_key_count": 0,
       "existing_child_finish_count": 0,
       "existing_child_any_count": 0,
       "missing_active_mapping_parent_count": 0,
-      "target_fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "target_fingerprint_sha256": "791abd4d3b06334eb0c12a8d08c48cc7e01a2835a31736645ced1392452a1b9d"
     },
     "inside_transaction_proof": {
-      "inserted_child_rows": 0,
+      "inserted_child_rows": 13,
       "proof": {
-        "target_printing_count": 0,
-        "matching_child_count": 0
+        "target_printing_count": 13,
+        "matching_child_count": 13
       },
-      "inserted_samples": []
+      "inserted_samples": [
+        {
+          "id": "dc803aab-c039-4bb7-891b-2896d86c2247",
+          "card_print_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+          "finish_key": "normal"
+        },
+        {
+          "id": "a90340a6-2968-447a-85eb-3d974694d365",
+          "card_print_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+          "finish_key": "reverse"
+        },
+        {
+          "id": "910950cf-47c6-4f50-9b65-43c8282e6f6a",
+          "card_print_id": "377086c4-b968-4335-aa44-54b0b518e913",
+          "finish_key": "normal"
+        },
+        {
+          "id": "e8ff75a7-368d-4681-8016-4a1e4674fa61",
+          "card_print_id": "377086c4-b968-4335-aa44-54b0b518e913",
+          "finish_key": "reverse"
+        },
+        {
+          "id": "fc74fb08-3d1d-4a37-9a03-4bfa6958d4fe",
+          "card_print_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+          "finish_key": "normal"
+        },
+        {
+          "id": "c1d5e6ff-aae3-4f4b-a920-e66cec6f1284",
+          "card_print_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+          "finish_key": "reverse"
+        },
+        {
+          "id": "13dfa99c-1ed5-4465-8ccb-21b14a8cb7ab",
+          "card_print_id": "1e4c3b8d-754d-4ef5-b227-74403f48e8fc",
+          "finish_key": "holo"
+        },
+        {
+          "id": "cd369670-5191-477a-804a-9bfcbb289484",
+          "card_print_id": "b609368c-765d-4c2a-a26e-24f26afa8a85",
+          "finish_key": "holo"
+        },
+        {
+          "id": "0be001e4-7b5c-4980-afad-882536973d76",
+          "card_print_id": "2079454d-e93a-48db-818a-bc6094d402ed",
+          "finish_key": "holo"
+        },
+        {
+          "id": "feccac03-6f75-47f3-b7ef-e07d52539fa8",
+          "card_print_id": "db560767-e26f-43ba-b859-f173c2ecbb69",
+          "finish_key": "holo"
+        },
+        {
+          "id": "913cf061-24c7-440e-b693-922662d95ef8",
+          "card_print_id": "02601537-eba7-4602-b72b-35d50af15261",
+          "finish_key": "holo"
+        },
+        {
+          "id": "088ecf4d-da89-4070-8b96-802770177b0a",
+          "card_print_id": "2a5e4336-dfb8-4e2e-bba8-4cf004fa15a1",
+          "finish_key": "holo"
+        },
+        {
+          "id": "8910404e-ef79-4353-a96e-4362c0604699",
+          "card_print_id": "6254904f-1f84-4f58-99c6-d4a06731adc0",
+          "finish_key": "holo"
+        }
+      ]
     },
     "caught_error": null,
     "after_rollback_snapshot": {
-      "captured_at": "2026-06-15T17:53:44.666Z",
-      "rows": [],
-      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "captured_at": "2026-06-18T02:52:19.061Z",
+      "rows": [
+        {
+          "row_type": "parent",
+          "row_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+          "card_print_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+          "set_code": "me03",
+          "number": "080",
+          "number_plain": "080",
+          "card_name": "Poke Ball",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "377086c4-b968-4335-aa44-54b0b518e913",
+          "card_print_id": "377086c4-b968-4335-aa44-54b0b518e913",
+          "set_code": "me03",
+          "number": "081",
+          "number_plain": "081",
+          "card_name": "Poke Pad",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+          "card_print_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+          "set_code": "me03",
+          "number": "082",
+          "number_plain": "082",
+          "card_name": "Pokemon Catcher",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "1e4c3b8d-754d-4ef5-b227-74403f48e8fc",
+          "card_print_id": "1e4c3b8d-754d-4ef5-b227-74403f48e8fc",
+          "set_code": "me03",
+          "number": "089",
+          "number_plain": "089",
+          "card_name": "Spewpa",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "b609368c-765d-4c2a-a26e-24f26afa8a85",
+          "card_print_id": "b609368c-765d-4c2a-a26e-24f26afa8a85",
+          "set_code": "me03",
+          "number": "090",
+          "number_plain": "090",
+          "card_name": "Rowlet",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "2079454d-e93a-48db-818a-bc6094d402ed",
+          "card_print_id": "2079454d-e93a-48db-818a-bc6094d402ed",
+          "set_code": "me03",
+          "number": "092",
+          "number_plain": "092",
+          "card_name": "Aurorus",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "db560767-e26f-43ba-b859-f173c2ecbb69",
+          "card_print_id": "db560767-e26f-43ba-b859-f173c2ecbb69",
+          "set_code": "me03",
+          "number": "093",
+          "number_plain": "093",
+          "card_name": "Dedenne",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "02601537-eba7-4602-b72b-35d50af15261",
+          "card_print_id": "02601537-eba7-4602-b72b-35d50af15261",
+          "set_code": "me03",
+          "number": "094",
+          "number_plain": "094",
+          "card_name": "Clefairy",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "2a5e4336-dfb8-4e2e-bba8-4cf004fa15a1",
+          "card_print_id": "2a5e4336-dfb8-4e2e-bba8-4cf004fa15a1",
+          "set_code": "me03",
+          "number": "095",
+          "number_plain": "095",
+          "card_name": "Espurr",
+          "finish_key": null
+        },
+        {
+          "row_type": "parent",
+          "row_id": "6254904f-1f84-4f58-99c6-d4a06731adc0",
+          "card_print_id": "6254904f-1f84-4f58-99c6-d4a06731adc0",
+          "set_code": "me03",
+          "number": "113",
+          "number_plain": "113",
+          "card_name": "Poke Pad",
+          "finish_key": null
+        }
+      ],
+      "hash_sha256": "26d63932fb3c14d0fb4aece6970ef3462783891353378a9584a96bf06a980d43",
       "counts": {
-        "parent_rows": 0,
+        "parent_rows": 10,
         "child_rows": 0,
-        "total_rows": 0
+        "total_rows": 10
       }
     },
     "dry_run_status": "completed_rolled_back_no_durable_change"
   },
-  "target_samples": [],
-  "stop_findings": [
-    "no_targets"
+  "target_samples": [
+    {
+      "card_print_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+      "set_code": "me03",
+      "number": "080",
+      "number_plain": "080",
+      "card_name": "Poke Ball",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_index_v1",
+      "provenance_ref": "me03|080|Poke Ball|normal"
+    },
+    {
+      "card_print_id": "5e35b3c4-660b-46de-a679-73e685ee3265",
+      "set_code": "me03",
+      "number": "080",
+      "number_plain": "080",
+      "card_name": "Poke Ball",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_index_v1",
+      "provenance_ref": "me03|080|Poke Ball|reverse"
+    },
+    {
+      "card_print_id": "377086c4-b968-4335-aa44-54b0b518e913",
+      "set_code": "me03",
+      "number": "081",
+      "number_plain": "081",
+      "card_name": "Poke Pad",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_index_v1",
+      "provenance_ref": "me03|081|Poke Pad|normal"
+    },
+    {
+      "card_print_id": "377086c4-b968-4335-aa44-54b0b518e913",
+      "set_code": "me03",
+      "number": "081",
+      "number_plain": "081",
+      "card_name": "Poke Pad",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_index_v1",
+      "provenance_ref": "me03|081|Poke Pad|reverse"
+    },
+    {
+      "card_print_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+      "set_code": "me03",
+      "number": "082",
+      "number_plain": "082",
+      "card_name": "Pokemon Catcher",
+      "finish_key": "normal",
+      "provenance_source": "verified_master_index_v1",
+      "provenance_ref": "me03|082|Pokemon Catcher|normal"
+    },
+    {
+      "card_print_id": "ae485e17-2157-405b-a304-fc9c1ad377aa",
+      "set_code": "me03",
+      "number": "082",
+      "number_plain": "082",
+      "card_name": "Pokemon Catcher",
+      "finish_key": "reverse",
+      "provenance_source": "verified_master_index_v1",
+      "provenance_ref": "me03|082|Pokemon Catcher|reverse"
+    },
+    {
+      "card_print_id": "1e4c3b8d-754d-4ef5-b227-74403f48e8fc",
+      "set_code": "me03",
+      "number": "089",
+      "number_plain": "089",
+      "card_name": "Spewpa",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_index_v1",
+      "provenance_ref": "me03|089|Spewpa|holo"
+    },
+    {
+      "card_print_id": "b609368c-765d-4c2a-a26e-24f26afa8a85",
+      "set_code": "me03",
+      "number": "090",
+      "number_plain": "090",
+      "card_name": "Rowlet",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_index_v1",
+      "provenance_ref": "me03|090|Rowlet|holo"
+    },
+    {
+      "card_print_id": "2079454d-e93a-48db-818a-bc6094d402ed",
+      "set_code": "me03",
+      "number": "092",
+      "number_plain": "092",
+      "card_name": "Aurorus",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_index_v1",
+      "provenance_ref": "me03|092|Aurorus|holo"
+    },
+    {
+      "card_print_id": "db560767-e26f-43ba-b859-f173c2ecbb69",
+      "set_code": "me03",
+      "number": "093",
+      "number_plain": "093",
+      "card_name": "Dedenne",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_index_v1",
+      "provenance_ref": "me03|093|Dedenne|holo"
+    },
+    {
+      "card_print_id": "02601537-eba7-4602-b72b-35d50af15261",
+      "set_code": "me03",
+      "number": "094",
+      "number_plain": "094",
+      "card_name": "Clefairy",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_index_v1",
+      "provenance_ref": "me03|094|Clefairy|holo"
+    },
+    {
+      "card_print_id": "2a5e4336-dfb8-4e2e-bba8-4cf004fa15a1",
+      "set_code": "me03",
+      "number": "095",
+      "number_plain": "095",
+      "card_name": "Espurr",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_index_v1",
+      "provenance_ref": "me03|095|Espurr|holo"
+    },
+    {
+      "card_print_id": "6254904f-1f84-4f58-99c6-d4a06731adc0",
+      "set_code": "me03",
+      "number": "113",
+      "number_plain": "113",
+      "card_name": "Poke Pad",
+      "finish_key": "holo",
+      "provenance_source": "verified_master_index_v1",
+      "provenance_ref": "me03|113|Poke Pad|holo"
+    }
   ],
-  "pass": false,
-  "recommended_approval_text": null
+  "stop_findings": [],
+  "pass": true,
+  "recommended_approval_text": "Approve real ENRICH-06C2-SOURCE-MAPPED-ACTIVE-FINISH-CHILD-PRINTING-INSERT apply only. Fingerprint: 6e32357534841a49f65bfd3f10e23f04cd982a6795b5c2e47b2fd50829bec8e7. Scope: 13 child card_printing inserts across 10 source-mapped childless parents using Master Index finish keys. Finishes: holo=7, normal=3, reverse=3. Dry-run proof: 26d63932fb3c14d0fb4aece6970ef3462783891353378a9584a96bf06a980d43 == 26d63932fb3c14d0fb4aece6970ef3462783891353378a9584a96bf06a980d43. No parent writes. No identity writes. No mapping writes. No deletes. No merges. No migrations. No image writes. No global apply."
 }

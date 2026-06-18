@@ -21,12 +21,12 @@ const OUTPUT_MD = path.join(OUTPUT_DIR, 'enrich08a_species_name_rule_real_apply_
 
 const PACKAGE_ID = 'ENRICH-08A-SPECIES-NAME-RULE-BACKFILL';
 const SOURCE = 'grookai_dex_name_rule_v1';
-const EXPECTED_FINGERPRINT = '3948d58e66e15283556fdc0c180426214219f94411d09e5444b9927848933bff';
+const EXPECTED_FINGERPRINT = '240724ddd2897956a15453ca0e66629b477364de821d95b07881c505d7c5a1ad';
 const EXPECTED_DRY_RUN_PROOF = '4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945';
-const EXPECTED_TARGET_ROWS = 157;
-const EXPECTED_TARGET_PARENTS = 157;
+const EXPECTED_TARGET_ROWS = 67;
+const EXPECTED_TARGET_PARENTS = 67;
 const CHUNK_SIZE = 500;
-const APPROVAL_TEXT = 'Approve real ENRICH-08A-SPECIES-NAME-RULE-BACKFILL apply only. Fingerprint: 3948d58e66e15283556fdc0c180426214219f94411d09e5444b9927848933bff. Scope: 157 card_print_species inserts across 157 English physical parents using grookai_dex_name_rule_v1. Dry-run proof: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 == 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945. No parent writes. No child writes. No identity writes. No mapping writes. No deletes. No merges. No migrations. No image writes. No global apply.';
+const APPROVAL_TEXT = 'Approve real ENRICH-08A-SPECIES-NAME-RULE-BACKFILL apply only. Fingerprint: 240724ddd2897956a15453ca0e66629b477364de821d95b07881c505d7c5a1ad. Scope: 67 card_print_species inserts across 67 English physical parents using grookai_dex_name_rule_v1. Dry-run proof: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 == 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945. No parent writes. No child writes. No identity writes. No mapping writes. No deletes. No merges. No migrations. No image writes. No global apply.';
 
 function connectionString() {
   return process.env.SUPABASE_DB_URL

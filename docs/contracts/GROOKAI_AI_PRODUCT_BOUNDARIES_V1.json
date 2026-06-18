@@ -1,0 +1,124 @@
+{
+  "contract_key": "GROOKAI_AI_PRODUCT_BOUNDARIES_V1",
+  "status": "proposed",
+  "date": "2026-06-17",
+  "objective": "Define product boundaries so Grookai Search stays free and deterministic while AI lives in premium Assistant and Intelligence layers.",
+  "core_rules": {
+    "ai_required_for_basic_search": false,
+    "ai_can_create_canonical_truth": false,
+    "ai_can_write_database": false,
+    "ai_can_execute_arbitrary_sql": false,
+    "grookai_canon_is_source_of_truth": true
+  },
+  "products": {
+    "grookai_search": {
+      "tier": "free",
+      "ai_default": false,
+      "description": "Deterministic catalog interface and the default search box everyone uses.",
+      "capabilities": [
+        "natural_language_deterministic_parsing",
+        "structured_filters",
+        "variants",
+        "stamps",
+        "ownership",
+        "years",
+        "artists",
+        "sets",
+        "finish_families",
+        "image_truth_state",
+        "species_and_dex_search_where_supported"
+      ]
+    },
+    "grookai_assistant": {
+      "tier": "premium",
+      "ai_default": true,
+      "description": "Collector-facing AI grounded in Grookai data.",
+      "capabilities": [
+        "missing_variant_answers",
+        "why_card_is_special_explanations",
+        "chase_lists",
+        "collection_to_master_index_comparison",
+        "collection_gap_summaries",
+        "collection_goal_suggestions"
+      ]
+    },
+    "grookai_intelligence": {
+      "tier": "vendor_power_user",
+      "ai_default": true,
+      "description": "Commercial analytics and operational intelligence.",
+      "capabilities": [
+        "catalog_gap_detection",
+        "demand_signals",
+        "shopify_exports",
+        "collection_audits",
+        "inventory_recommendations",
+        "pricing_and_listing_work_queues",
+        "missing_image_work_queues",
+        "source_coverage_analysis"
+      ]
+    }
+  },
+  "entitlements": {
+    "anonymous": {
+      "search": true,
+      "assistant": false,
+      "intelligence": false,
+      "ai_calls": false
+    },
+    "free_account": {
+      "search": true,
+      "assistant": "optional_explicit_limited_trial_only",
+      "intelligence": false,
+      "ai_calls": "explicit_limited_only"
+    },
+    "paid_subscriber": {
+      "search": true,
+      "assistant": true,
+      "intelligence": false,
+      "ai_calls": "metered_with_limits"
+    },
+    "founder_admin": {
+      "search": true,
+      "assistant": true,
+      "intelligence": true,
+      "ai_calls": "highest_limits_with_debug_access"
+    },
+    "vendor_power_user": {
+      "search": true,
+      "assistant": true,
+      "intelligence": true,
+      "ai_calls": "explicitly_metered"
+    }
+  },
+  "ai_invocation_rules": {
+    "allowed_when": [
+      "user_explicitly_invokes_assistant_or_intelligence",
+      "user_entitled_for_feature",
+      "deterministic_search_attempted_first",
+      "request_logged_for_cost_telemetry",
+      "output_constrained_to_approved_schema_or_grounded_response_type"
+    ],
+    "forbidden_when": [
+      "every_keystroke",
+      "simple_deterministic_search",
+      "anonymous_user",
+      "basic_search_result_ranking",
+      "sql_generation",
+      "canonical_truth_decision",
+      "data_mutation",
+      "row_hiding_or_deletion"
+    ]
+  },
+  "cost_controls_required": [
+    "cache_ai_interpretations_by_normalized_prompt_and_entitlement_context",
+    "no_model_call_for_cached_identical_interpretation",
+    "daily_user_limits",
+    "global_kill_switch",
+    "per_feature_cost_telemetry",
+    "admin_visible_usage_summaries",
+    "model_tier_selection_by_product_lane"
+  ],
+  "related_contracts": [
+    "GROOKAI_SMART_SEARCH_V1"
+  ]
+}

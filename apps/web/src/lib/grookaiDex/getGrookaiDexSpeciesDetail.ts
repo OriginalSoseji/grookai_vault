@@ -206,6 +206,10 @@ export async function getGrookaiDexSpeciesDetail(
         }) ?? null;
       const ownedCount = ownedCounts.get(cardPrintId) ?? 0;
       const printings = (printingOptionsByCardPrintId.get(cardPrintId) ?? []).map(({ sortOrder: _sortOrder, ...printing }) => printing);
+      const resolvedPrintings =
+        ownedCount > 0 && printings.length === 1 && printings[0]?.ownedCount === 0
+          ? [{ ...printings[0], ownedCount }]
+          : printings;
 
       return {
         cardPrintId,
@@ -224,7 +228,7 @@ export async function getGrookaiDexSpeciesDetail(
         countsForCompletion: row.counts_for_completion === true,
         ownedCount,
         isOwned: ownedCount > 0,
-        printings,
+        printings: resolvedPrintings,
       };
     }),
   );

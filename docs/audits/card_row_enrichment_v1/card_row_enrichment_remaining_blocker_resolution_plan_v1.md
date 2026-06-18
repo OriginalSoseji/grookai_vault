@@ -23,18 +23,18 @@ Consolidated read-only plan for the enrichment rows that remain after the curren
 | parent_gv_id | 0 | blocked_by_core_identity_and_collisions | false | Resolve core identity and duplicate/collision ownership before another parent GV-ID package. |
 | child_printing_gv_id | 0 | blocked_by_parent_gv_id | false | Resume after parent GV-ID blockers are reduced. |
 | active_identity | 0 | blocked_projection_or_duplicate_hash | false | Resolve identity projection readiness and duplicate hash ownership before insert package. |
-| external_mapping | 675 | blocked_by_existing_owner_collision | false | Build source-specific transfer/adjudication plans; do not bulk insert mappings. |
-| no_child_parent | 1083 | blocked_dependency_bearing | false | Resolve duplicate/mapping ownership first, then reassess whether a child insert or non-delete preservation package exists. |
-| traits | 831 | source_exhausted_for_current_rules | false | Add rule/source acquisition for unmapped trait gaps only where exact identity is preserved. |
-| species | 3740 | rule_unmapped | false | Design a richer species extraction/adjudication rule; do not infer species from card names yet. |
-| catalog_metadata | 139 | source_exhausted_for_current_rules | false | Find additional exact source mappings or payload evidence before another metadata package. |
+| external_mapping | 743 | blocked_by_existing_owner_collision | false | Build source-specific transfer/adjudication plans; do not bulk insert mappings. |
+| no_child_parent | 1067 | blocked_dependency_bearing | false | Resolve duplicate/mapping ownership first, then reassess whether a child insert or non-delete preservation package exists. |
+| traits | 899 | source_exhausted_for_current_rules | false | Add rule/source acquisition for unmapped trait gaps only where exact identity is preserved. |
+| species | 3741 | rule_unmapped | false | Design a richer species extraction/adjudication rule; do not infer species from card names yet. |
+| catalog_metadata | 45 | source_exhausted_for_current_rules | false | Find additional exact source mappings or payload evidence before another metadata package. |
 | child_display_image | 229 | explicitly_deferred | false | Resume Image Truth separately. |
 
 ## Key Blocker Counts
 
 - Core identity classifications: `{}`
-- External payload readiness: `{"blocked_variant_source_id_owned_by_base_parent":11,"blocked_existing_source_external_owner":4}`
-- No-child parent classifications: `{"dependency_bearing_childless_parent_manual_review":641,"mapping_transfer_or_duplicate_resolution_required":433,"vault_referenced_childless_parent_manual_review":1}`
+- External payload readiness: `{"blocked_variant_source_id_owned_by_base_parent":114,"blocked_existing_source_external_owner":4}`
+- No-child parent classifications: `{"dependency_bearing_childless_parent_manual_review":633,"mapping_transfer_or_duplicate_resolution_required":433,"vault_referenced_childless_parent_manual_review":1}`
 - Active identity blockers: `{}`
 - Parent GV-ID blockers: `{}`
 - Child GV-ID blockers: `{}`
@@ -43,4 +43,4 @@ Consolidated read-only plan for the enrichment rows that remain after the curren
 
 No guarded write package is currently ready. The next phase should be governance/adjudication work, not another apply attempt.
 
-Fingerprint: `1e991a2f5a5b4fe1133d353dc06527b94fda1b01bfcf973570e662a7b127f281`
+Fingerprint: `01415b932308b852a68198ca69589364688313b4773bd806e724e82ccc151a54`

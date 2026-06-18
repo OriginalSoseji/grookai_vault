@@ -1,76 +1,76 @@
 # Card Row Enrichment Status V1
 
-Generated: 2026-06-16T23:07:07.005Z
+Generated: 2026-06-18T02:56:11.375Z
 
 Read-only audit. No database writes, migrations, cleanup, quarantine, or image promotion were performed.
 
 ## Summary
 
-- parent card_print rows: 24803
-- child card_printings rows: 43687
-- English physical parent rows: 22791
-- English physical child printing rows: 37651
-- parent rows with one or more enrichment gaps: 7220
+- parent card_print rows: 24871
+- child card_printings rows: 43656
+- English physical parent rows: 22859
+- English physical child printing rows: 37620
+- parent rows with one or more enrichment gaps: 7204
 - child printing rows with one or more enrichment gaps: 16494
-- English physical parent rows with one or more enrichment gaps: 5208
+- English physical parent rows with one or more enrichment gaps: 5192
 - English physical child printing rows with one or more enrichment gaps: 12999
-- fingerprint: dadbc7ae108a993d82c0b90019394ae8ad1736dc6f02854dcb333f5968fabb9b
+- fingerprint: 92b65d6e370f2576e098a2a5cc32283ee31c33e955d1d0111b7fe7577208a9e7
 
 ## Row Segments
 
 | segment | parent rows | child printing rows |
 | --- | --- | --- |
-| english_physical | 22791 | 37651 |
+| english_physical | 22859 | 37620 |
 | tcg_pocket_excluded | 2012 | 6036 |
 
 ## Parent Row Coverage
 
 | field/group | present | missing | coverage |
 | --- | --- | --- | --- |
-| name | 24803 | 0 | 100% |
-| set_id | 24803 | 0 | 100% |
-| set_code | 24600 | 203 | 99.18% |
-| number | 24803 | 0 | 100% |
-| number_plain | 24803 | 0 | 100% |
-| gv_id | 24803 | 0 | 100% |
-| active_identity | 22791 | 2012 | 91.89% |
-| child_printings | 23720 | 1083 | 95.63% |
-| active_external_mapping | 24128 | 675 | 97.28% |
-| rarity | 24649 | 154 | 99.38% |
-| artist | 20847 | 3956 | 84.05% |
-| regulation_mark | 5627 | 19176 | 22.69% |
-| parent_or_representative_image | 24487 | 316 | 98.73% |
-| any_child_image | 320 | 24483 | 1.29% |
-| active_price | 24803 | 0 | 100% |
-| traits | 22834 | 1969 | 92.06% |
-| species_link | 20908 | 3895 | 84.3% |
-| cameos | 846 | 23957 | 3.41% |
+| name | 24871 | 0 | 100% |
+| set_id | 24871 | 0 | 100% |
+| set_code | 24668 | 203 | 99.18% |
+| number | 24871 | 0 | 100% |
+| number_plain | 24871 | 0 | 100% |
+| gv_id | 24871 | 0 | 100% |
+| active_identity | 22859 | 2012 | 91.91% |
+| child_printings | 23804 | 1067 | 95.71% |
+| active_external_mapping | 24128 | 743 | 97.01% |
+| rarity | 24811 | 60 | 99.76% |
+| artist | 21009 | 3862 | 84.47% |
+| regulation_mark | 5627 | 19244 | 22.62% |
+| parent_or_representative_image | 24555 | 316 | 98.73% |
+| any_child_image | 320 | 24551 | 1.29% |
+| active_price | 24871 | 0 | 100% |
+| traits | 22834 | 2037 | 91.81% |
+| species_link | 20975 | 3896 | 84.34% |
+| cameos | 846 | 24025 | 3.4% |
 
 ## Child Printing Coverage
 
 | field/group | present | missing | coverage |
 | --- | --- | --- | --- |
-| finish_key | 43687 | 0 | 100% |
-| active_finish_key | 43687 | 0 | 100% |
-| printing_gv_id | 43687 | 0 | 100% |
-| provenance | 27274 | 16413 | 62.43% |
-| child_display_image | 384 | 43303 | 0.88% |
-| child_or_parent_display_image | 43606 | 81 | 99.81% |
+| finish_key | 43656 | 0 | 100% |
+| active_finish_key | 43656 | 0 | 100% |
+| printing_gv_id | 43656 | 0 | 100% |
+| provenance | 27243 | 16413 | 62.4% |
+| child_display_image | 384 | 43272 | 0.88% |
+| child_or_parent_display_image | 43575 | 81 | 99.81% |
 | image_source_when_child_image_present | 384 | 0 | 100% |
 | image_status_when_child_image_present | 384 | 0 | 100% |
-| non_provisional | 43687 | 0 | 100% |
+| non_provisional | 43656 | 0 | 100% |
 
 ## Parent Gap Counts
 
 | gap | rows |
 | --- | --- |
-| species_link | 3895 |
+| species_link | 3896 |
+| traits | 2037 |
 | active_identity | 2012 |
-| traits | 1969 |
-| child_printings | 1083 |
-| external_mapping | 675 |
+| child_printings | 1067 |
+| external_mapping | 743 |
 | core_identity | 203 |
-| catalog_metadata | 139 |
+| catalog_metadata | 45 |
 | display_image | 40 |
 
 ## Child Gap Counts
@@ -84,11 +84,11 @@ Read-only audit. No database writes, migrations, cleanup, quarantine, or image p
 
 | gap | rows |
 | --- | --- |
-| species_link | 3740 |
-| child_printings | 1083 |
-| traits | 831 |
-| external_mapping | 675 |
-| catalog_metadata | 139 |
+| species_link | 3741 |
+| child_printings | 1067 |
+| traits | 899 |
+| external_mapping | 743 |
+| catalog_metadata | 45 |
 | display_image | 13 |
 
 ## English Physical Child Gap Counts
@@ -112,7 +112,6 @@ Read-only audit. No database writes, migrations, cleanup, quarantine, or image p
 | smp | 123 |
 | sv6pt5 | 112 |
 | A2b | 111 |
-| sm115 | 111 |
 | A3b | 107 |
 | A4a | 105 |
 | swsh10 | 105 |
@@ -131,6 +130,7 @@ Read-only audit. No database writes, migrations, cleanup, quarantine, or image p
 | me01 | 68 |
 | sv01 | 68 |
 | sv02 | 68 |
+| sv04 | 67 |
 
 ## Top Child Gap Sets
 
@@ -175,7 +175,6 @@ Read-only audit. No database writes, migrations, cleanup, quarantine, or image p
 | me03 | 126 |
 | smp | 123 |
 | sv6pt5 | 112 |
-| sm115 | 111 |
 | swsh10 | 105 |
 | swsh6 | 99 |
 | pgo | 90 |
@@ -199,8 +198,9 @@ Read-only audit. No database writes, migrations, cleanup, quarantine, or image p
 | svp | 54 |
 | me02.5 | 52 |
 | swsh12.5 | 48 |
+| sm1 | 47 |
+| base1 | 46 |
 | sm7 | 46 |
-| sm8 | 46 |
 
 ## Top English Physical Child Gap Sets
 

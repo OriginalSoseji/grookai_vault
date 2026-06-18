@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-06-18T04:54:37.681Z",
+  "version": "GROOKAI_ASSISTANT_VARIANT_CONTEXT_SMOKE_V1",
+  "mode": "read_only_source_and_route_smoke",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "model_calls_performed": false,
+  "source_fingerprint_sha256": "fa7d064286ca0ec3996ddef0671ead8a4b7e31c3461102cc24f80497b3fcd084",
+  "source_summary": {
+    "public_copy_safe_parent_rows": 1803,
+    "public_copy_safe_families": 39,
+    "blocked_parent_rows_excluded": 73
+  },
+  "route_read_only_issues": [],
+  "required_family_rows": [
+    {
+      "family_key": "build_a_bear_workshop_stamp",
+      "family_label": "Build-A-Bear Workshop Stamp",
+      "variant_category": "retailer_distribution_stamp",
+      "confidence": "high",
+      "status": "ready",
+      "issues": [],
+      "source_url_count": 1
+    },
+    {
+      "family_key": "base_pikachu_print_run",
+      "family_label": "Base Pikachu Cheek / Shadowless Print Run",
+      "variant_category": "print_run_variant",
+      "confidence": "high",
+      "status": "ready",
+      "issues": [],
+      "source_url_count": 2
+    },
+    {
+      "family_key": "jungle_no_symbol_error",
+      "family_label": "Jungle No Symbol Error",
+      "variant_category": "recognized_error_variant",
+      "confidence": "high",
+      "status": "ready",
+      "issues": [],
+      "source_url_count": 2
+    },
+    {
+      "family_key": "pokemon_together_stamp",
+      "family_label": "Pokémon Together Stamp",
+      "variant_category": "campaign_distribution_stamp",
+      "confidence": "high",
+      "status": "ready",
+      "issues": [],
+      "source_url_count": 1
+    },
+    {
+      "family_key": "toys_r_us_stamp",
+      "family_label": "Toys R Us Stamp",
+      "variant_category": "retailer_distribution_stamp",
+      "confidence": "high",
+      "status": "ready",
+      "issues": [],
+      "source_url_count": 4
+    }
+  ],
+  "summary": {
+    "required_families": 5,
+    "ready_families": 5,
+    "needs_follow_up_families": 0,
+    "route_read_only": true
+  },
+  "fingerprint_sha256": "9f8199e260cd9193883791fdeccd1af024f5d8179476748d6661f421f9f5709f"
+}

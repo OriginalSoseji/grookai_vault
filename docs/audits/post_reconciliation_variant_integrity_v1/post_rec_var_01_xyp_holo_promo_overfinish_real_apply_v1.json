@@ -1,0 +1,3588 @@
+{
+  "version": "POST-REC-VAR-01-XYP-HOLO-PROMO-OVERFINISH-CLEANUP_REAL_APPLY_V1",
+  "generated_at": "2026-06-17T02:37:15.089Z",
+  "approval_text": "Approve real POST-REC-VAR-01-XYP-HOLO-PROMO-OVERFINISH-CLEANUP apply only. Fingerprint: add9ab7fc95bc808f0edca0a3d6b2920f3fc68bd93bd756f103f1be2cf0e164e. Scope: 118 unsupported XYP holo-promo overfinish child deletes; finishes normal=59, reverse=59; all targets support only holo in the Master Index and have zero external mapping, vault, or warehouse refs. Dry-run proof: 1f0688e6186042a06d54eaef52e362d828469cfe1bd38e2acefc4a2f85b5cea8 == 1f0688e6186042a06d54eaef52e362d828469cfe1bd38e2acefc4a2f85b5cea8. No parent writes. No migrations. No merges. No quarantine. Holo rows preserved.",
+  "db_writes_committed": true,
+  "migrations_created": false,
+  "package_id": "POST-REC-VAR-01-XYP-HOLO-PROMO-OVERFINISH-CLEANUP",
+  "fingerprint": "add9ab7fc95bc808f0edca0a3d6b2920f3fc68bd93bd756f103f1be2cf0e164e",
+  "scope": {
+    "child_deletes": 118,
+    "parent_rows_affected_by_child_delete": 59,
+    "set_code": "xyp",
+    "finishes": {
+      "normal": 59,
+      "reverse": 59
+    },
+    "supported_finish_preserved": "holo"
+  },
+  "apply_result": {
+    "before": {
+      "target_children": 118,
+      "target_parents": 59,
+      "normal_targets": 59,
+      "reverse_targets": 59,
+      "forbidden_holo_targets": 0,
+      "external_mapping_refs": 0,
+      "vault_refs": 0,
+      "warehouse_refs": 0,
+      "hash_sha256": "4708ccf36775c7c80698793ab87780af07535069166a19acc821d73314468b0d"
+    },
+    "after_delete": {
+      "target_children": 0,
+      "target_parents": 0,
+      "normal_targets": 0,
+      "reverse_targets": 0,
+      "forbidden_holo_targets": 0,
+      "external_mapping_refs": 0,
+      "vault_refs": 0,
+      "warehouse_refs": 0,
+      "hash_sha256": "48cc29bff353a41954c205f4184e18ba0c9e55b40e8244b2e68051b38ec3409e"
+    },
+    "rows_deleted": 118,
+    "parent_proof": [
+      {
+        "card_print_id": "6600f6b5-8b32-45f3-a121-37d108c7274e",
+        "set_code": "xyp",
+        "number": "XY07",
+        "name": "Xerneas-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "f8df7ade-2a33-4097-96cb-85711be82b05",
+        "set_code": "xyp",
+        "number": "XY08",
+        "name": "Yveltal-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "305fe59c-2a9f-462e-b1c6-b6be85b570cc",
+        "set_code": "xyp",
+        "number": "XY09",
+        "name": "Garchomp-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "eedbb474-00a4-41fe-857d-17109102658b",
+        "set_code": "xyp",
+        "number": "XY102",
+        "name": "Aurorus-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "9ece083e-4361-4e0a-b65b-3f9c791d522d",
+        "set_code": "xyp",
+        "number": "XY103",
+        "name": "Mawile-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "b301e859-ad1f-4165-9a85-917fc4adac13",
+        "set_code": "xyp",
+        "number": "XY104",
+        "name": "M Mawile-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "5391ffa9-0374-458c-be51-7fc0fbd3812b",
+        "set_code": "xyp",
+        "number": "XY106",
+        "name": "Gyarados-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "81f73254-b9d3-4ab9-bba6-fd6440a2019f",
+        "set_code": "xyp",
+        "number": "XY107",
+        "name": "Mewtwo-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "d25e49f0-8513-4aa0-9947-afdfb26cd7cc",
+        "set_code": "xyp",
+        "number": "XY108",
+        "name": "Machamp-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "fe82ee50-1c48-42d3-ad45-65de76a81be3",
+        "set_code": "xyp",
+        "number": "XY121",
+        "name": "Charizard-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "013f6060-be7c-45e3-ae65-610f5bae7822",
+        "set_code": "xyp",
+        "number": "XY122",
+        "name": "Blastoise-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "61f75475-0503-453c-94f8-88e45943fd69",
+        "set_code": "xyp",
+        "number": "XY123",
+        "name": "Venusaur-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "c1fa0bfa-ab99-41d6-9423-96effff0db10",
+        "set_code": "xyp",
+        "number": "XY124",
+        "name": "Pikachu-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "d49b3435-a672-4c96-a88c-e27a2a25f55a",
+        "set_code": "xyp",
+        "number": "XY125",
+        "name": "Mewtwo-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "00dad38a-e1b4-423d-a142-2d21a8b78c2a",
+        "set_code": "xyp",
+        "number": "XY126",
+        "name": "Mew-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "9e4886e0-b28d-49a2-91c6-a4f56a8d5463",
+        "set_code": "xyp",
+        "number": "XY133",
+        "name": "Ash-Greninja-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "3fe897a2-89c9-4ac4-95a7-2cfaa7297db4",
+        "set_code": "xyp",
+        "number": "XY148",
+        "name": "Shaymin-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "7087218e-f25a-4427-ab0a-7c419566792a",
+        "set_code": "xyp",
+        "number": "XY149",
+        "name": "Xerneas-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+        "set_code": "xyp",
+        "number": "XY150",
+        "name": "Yveltal EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "0a00ba6c-905f-4daf-9cb6-65c4a2137ccc",
+        "set_code": "xyp",
+        "number": "XY151",
+        "name": "Zygarde-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "ce9359fe-82b3-4ecf-9d98-794a4489906d",
+        "set_code": "xyp",
+        "number": "XY153",
+        "name": "Ho-Oh",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "ef28e6f7-269a-4190-88ec-33ba5ccba6e6",
+        "set_code": "xyp",
+        "number": "XY157",
+        "name": "Beedrill-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "79ba62da-08f3-428a-b452-438b0492cf77",
+        "set_code": "xyp",
+        "number": "XY17",
+        "name": "Charizard-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "be43ca5e-2ebc-4275-9464-91c4b6af5018",
+        "set_code": "xyp",
+        "number": "XY170",
+        "name": "Salamence-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "d3d63cac-4f16-44a3-80c1-6b17158a47d4",
+        "set_code": "xyp",
+        "number": "XY173",
+        "name": "Volcanion-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+        "set_code": "xyp",
+        "number": "XY177a",
+        "name": "Karen",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "0d2c01ee-7ae5-4540-b4bd-8c0394d7e08d",
+        "set_code": "xyp",
+        "number": "XY18",
+        "name": "Chesnaught-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "f6a684c4-bea0-4ea2-bb80-bfd059894829",
+        "set_code": "xyp",
+        "number": "XY19",
+        "name": "Delphox-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+        "set_code": "xyp",
+        "number": "XY198",
+        "name": "M Camerupt-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "5a72b200-f6f2-4e27-a736-83b4e49a1d61",
+        "set_code": "xyp",
+        "number": "XY20",
+        "name": "Greninja-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "9a874210-ac76-49ed-973a-7618c64280a3",
+        "set_code": "xyp",
+        "number": "XY25",
+        "name": "Krookodile-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "97e20721-78f7-4456-9e4d-a0fc966ba090",
+        "set_code": "xyp",
+        "number": "XY28",
+        "name": "Venusaur-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "d9257ce8-437f-4313-8188-6f808632ba03",
+        "set_code": "xyp",
+        "number": "XY29",
+        "name": "Charizard-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "0a407511-8a6c-41f9-83b7-ffbe0f7d4ff9",
+        "set_code": "xyp",
+        "number": "XY30",
+        "name": "Blastoise-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "cb3f5b0c-387f-42ce-92ad-f90efd536d08",
+        "set_code": "xyp",
+        "number": "XY34",
+        "name": "Metagross-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "25a7e282-cbbf-45ed-8dc6-405ce028d09e",
+        "set_code": "xyp",
+        "number": "XY35",
+        "name": "M Metagross-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "84d52140-a09e-4903-ba5b-fa22053515b4",
+        "set_code": "xyp",
+        "number": "XY41",
+        "name": "Kyogre-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "8eccabb3-05f2-4032-9c26-a9945fe80a46",
+        "set_code": "xyp",
+        "number": "XY42",
+        "name": "Groudon-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "81f376d8-63f5-4c64-9020-3c4475491105",
+        "set_code": "xyp",
+        "number": "XY43",
+        "name": "Diancie-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "a8b51a1d-6470-46e6-8339-078e85beb3eb",
+        "set_code": "xyp",
+        "number": "XY44",
+        "name": "M Diancie-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "7f2a6b58-dddf-47ea-b448-9ff5d1651595",
+        "set_code": "xyp",
+        "number": "XY45",
+        "name": "Gallade-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "47d8123b-1371-41bd-a52a-6df24aeb76a1",
+        "set_code": "xyp",
+        "number": "XY53",
+        "name": "Sceptile-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "10f41a7c-3990-42b8-a186-57defe900734",
+        "set_code": "xyp",
+        "number": "XY54",
+        "name": "Blaziken-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "076c588b-a52a-426a-b43e-21152616f508",
+        "set_code": "xyp",
+        "number": "XY55",
+        "name": "Swampert-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "08acb1ab-8523-47ed-9b0e-4f5648c87ab8",
+        "set_code": "xyp",
+        "number": "XY61",
+        "name": "Flygon-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "ff324c30-a3ca-4b8b-8c4e-8049f33b9e19",
+        "set_code": "xyp",
+        "number": "XY62",
+        "name": "Absol-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "0259c3c5-97ca-4d3a-bfcf-78a434b07f33",
+        "set_code": "xyp",
+        "number": "XY63",
+        "name": "M Absol-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "52c18531-8a85-45be-8626-6d9a6f5c68d9",
+        "set_code": "xyp",
+        "number": "XY66",
+        "name": "Rayquaza-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "e9b80833-603d-4505-9195-e490e6cdc6a5",
+        "set_code": "xyp",
+        "number": "XY69",
+        "name": "Rayquaza-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "ad45223e-5318-413d-a343-013cdf81a1b0",
+        "set_code": "xyp",
+        "number": "XY70",
+        "name": "Tyrantrum-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "2c7966df-555e-423e-b4fa-730611505275",
+        "set_code": "xyp",
+        "number": "XY71",
+        "name": "Hoopa-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "3442ba73-f66a-477e-9cb5-8bd8cba7eba2",
+        "set_code": "xyp",
+        "number": "XY72",
+        "name": "Latios-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "e1a8be62-d5b7-4ffb-b0c7-462d1bc09dc8",
+        "set_code": "xyp",
+        "number": "XY73",
+        "name": "Rayquaza-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "1ae8ad54-92c0-4375-8cdb-622f8a59e3c1",
+        "set_code": "xyp",
+        "number": "XY84",
+        "name": "Pikachu-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "a5091e90-ad56-4791-b605-97afb187e834",
+        "set_code": "xyp",
+        "number": "XY85",
+        "name": "Hoopa-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "b63dbed6-96c5-4865-8df5-89630a8e9d9e",
+        "set_code": "xyp",
+        "number": "XY86",
+        "name": "M Blaziken-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "cd1e8985-0c07-4eb7-aef2-ef5115885dd3",
+        "set_code": "xyp",
+        "number": "XY87",
+        "name": "M Swampert-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "1896918c-c20f-4e65-8642-d61d1eb84aff",
+        "set_code": "xyp",
+        "number": "XY97",
+        "name": "Aerodactyl-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      },
+      {
+        "card_print_id": "3673b751-e636-46d2-8f38-5a833d2d78c4",
+        "set_code": "xyp",
+        "number": "XY98",
+        "name": "M Aerodactyl-EX",
+        "holo_children": 1,
+        "residual_overfinish_children": 0
+      }
+    ]
+  },
+  "targets": [
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "6600f6b5-8b32-45f3-a121-37d108c7274e",
+      "card_printing_id": "d6651340-e31c-4433-937e-df6095189e03",
+      "gv_id": "GV-PK-PR-XY-XY07",
+      "printing_gv_id": "GV-PK-PR-XY-XY07-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY07",
+      "card_name": "Xerneas-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY07",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "6600f6b5-8b32-45f3-a121-37d108c7274e",
+      "card_printing_id": "0e38daa0-dde2-4db8-87fd-de1aa61a87a6",
+      "gv_id": "GV-PK-PR-XY-XY07",
+      "printing_gv_id": "GV-PK-PR-XY-XY07-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY07",
+      "card_name": "Xerneas-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY07",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "f8df7ade-2a33-4097-96cb-85711be82b05",
+      "card_printing_id": "591a6bb7-7367-4130-85db-48c9a38c84b1",
+      "gv_id": "GV-PK-PR-XY-XY08",
+      "printing_gv_id": "GV-PK-PR-XY-XY08-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY08",
+      "card_name": "Yveltal-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY08",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "f8df7ade-2a33-4097-96cb-85711be82b05",
+      "card_printing_id": "3a858b04-e83d-4af8-b06c-38dd2d750e80",
+      "gv_id": "GV-PK-PR-XY-XY08",
+      "printing_gv_id": "GV-PK-PR-XY-XY08-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY08",
+      "card_name": "Yveltal-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY08",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "305fe59c-2a9f-462e-b1c6-b6be85b570cc",
+      "card_printing_id": "bb4dd854-51e1-4222-bd16-8f0ba0ecc22d",
+      "gv_id": "GV-PK-PR-XY-XY09",
+      "printing_gv_id": "GV-PK-PR-XY-XY09-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY09",
+      "card_name": "Garchomp-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY09",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "305fe59c-2a9f-462e-b1c6-b6be85b570cc",
+      "card_printing_id": "15360b46-820a-4d3c-bf01-c2404ea2bc07",
+      "gv_id": "GV-PK-PR-XY-XY09",
+      "printing_gv_id": "GV-PK-PR-XY-XY09-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY09",
+      "card_name": "Garchomp-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY09",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "79ba62da-08f3-428a-b452-438b0492cf77",
+      "card_printing_id": "733a2950-e179-4669-9d10-b0a2ee103d67",
+      "gv_id": "GV-PK-PR-XY-XY17",
+      "printing_gv_id": "GV-PK-PR-XY-XY17-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY17",
+      "card_name": "Charizard-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY17",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "79ba62da-08f3-428a-b452-438b0492cf77",
+      "card_printing_id": "d56a64f3-0394-4c49-87c8-50617dda5151",
+      "gv_id": "GV-PK-PR-XY-XY17",
+      "printing_gv_id": "GV-PK-PR-XY-XY17-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY17",
+      "card_name": "Charizard-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY17",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "0d2c01ee-7ae5-4540-b4bd-8c0394d7e08d",
+      "card_printing_id": "bf11d847-d2a7-4da0-b768-0f369252620d",
+      "gv_id": "GV-PK-PR-XY-XY18",
+      "printing_gv_id": "GV-PK-PR-XY-XY18-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY18",
+      "card_name": "Chesnaught-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY18",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "0d2c01ee-7ae5-4540-b4bd-8c0394d7e08d",
+      "card_printing_id": "20302f28-3b02-4917-9e4d-a183156284ee",
+      "gv_id": "GV-PK-PR-XY-XY18",
+      "printing_gv_id": "GV-PK-PR-XY-XY18-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY18",
+      "card_name": "Chesnaught-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY18",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "f6a684c4-bea0-4ea2-bb80-bfd059894829",
+      "card_printing_id": "b04ce601-565a-48f5-9d2b-6d7bc9add537",
+      "gv_id": "GV-PK-PR-XY-XY19",
+      "printing_gv_id": "GV-PK-PR-XY-XY19-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY19",
+      "card_name": "Delphox-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY19",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "f6a684c4-bea0-4ea2-bb80-bfd059894829",
+      "card_printing_id": "87302dc5-a2f1-4b05-bda3-e9ded5ee9c4b",
+      "gv_id": "GV-PK-PR-XY-XY19",
+      "printing_gv_id": "GV-PK-PR-XY-XY19-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY19",
+      "card_name": "Delphox-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY19",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "5a72b200-f6f2-4e27-a736-83b4e49a1d61",
+      "card_printing_id": "8175b32d-dfff-4248-b25c-cdaf1b111a8c",
+      "gv_id": "GV-PK-PR-XY-XY20",
+      "printing_gv_id": "GV-PK-PR-XY-XY20-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY20",
+      "card_name": "Greninja-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY20",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "5a72b200-f6f2-4e27-a736-83b4e49a1d61",
+      "card_printing_id": "2a7b5d7f-bfd4-427b-bd3f-7f728bfa5861",
+      "gv_id": "GV-PK-PR-XY-XY20",
+      "printing_gv_id": "GV-PK-PR-XY-XY20-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY20",
+      "card_name": "Greninja-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY20",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "9a874210-ac76-49ed-973a-7618c64280a3",
+      "card_printing_id": "6611b0e6-0593-4eaf-92ad-8f40f64610be",
+      "gv_id": "GV-PK-PR-XY-XY25",
+      "printing_gv_id": "GV-PK-PR-XY-XY25-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY25",
+      "card_name": "Krookodile-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY25",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "9a874210-ac76-49ed-973a-7618c64280a3",
+      "card_printing_id": "bdec45f5-5535-4a12-b4b2-0e9a8ede522d",
+      "gv_id": "GV-PK-PR-XY-XY25",
+      "printing_gv_id": "GV-PK-PR-XY-XY25-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY25",
+      "card_name": "Krookodile-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY25",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "97e20721-78f7-4456-9e4d-a0fc966ba090",
+      "card_printing_id": "0859aa81-865d-460b-b62f-55225bb6deca",
+      "gv_id": "GV-PK-PR-XY-XY28",
+      "printing_gv_id": "GV-PK-PR-XY-XY28-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY28",
+      "card_name": "Venusaur-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY28",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "97e20721-78f7-4456-9e4d-a0fc966ba090",
+      "card_printing_id": "f5834356-c287-493b-aee1-1430efdc438d",
+      "gv_id": "GV-PK-PR-XY-XY28",
+      "printing_gv_id": "GV-PK-PR-XY-XY28-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY28",
+      "card_name": "Venusaur-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY28",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "d9257ce8-437f-4313-8188-6f808632ba03",
+      "card_printing_id": "e7fef47e-ea3b-4ec9-b599-d2151b8272fc",
+      "gv_id": "GV-PK-PR-XY-XY29",
+      "printing_gv_id": "GV-PK-PR-XY-XY29-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY29",
+      "card_name": "Charizard-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY29",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "d9257ce8-437f-4313-8188-6f808632ba03",
+      "card_printing_id": "f3fc4aa3-7929-449e-abb4-de0105886d0a",
+      "gv_id": "GV-PK-PR-XY-XY29",
+      "printing_gv_id": "GV-PK-PR-XY-XY29-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY29",
+      "card_name": "Charizard-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY29",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "0a407511-8a6c-41f9-83b7-ffbe0f7d4ff9",
+      "card_printing_id": "9cb45c01-1bc0-414c-939c-2a625158485b",
+      "gv_id": "GV-PK-PR-XY-XY30",
+      "printing_gv_id": "GV-PK-PR-XY-XY30-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY30",
+      "card_name": "Blastoise-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY30",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "0a407511-8a6c-41f9-83b7-ffbe0f7d4ff9",
+      "card_printing_id": "53bf279c-1a21-4383-a37f-c3236ac48381",
+      "gv_id": "GV-PK-PR-XY-XY30",
+      "printing_gv_id": "GV-PK-PR-XY-XY30-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY30",
+      "card_name": "Blastoise-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY30",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "cb3f5b0c-387f-42ce-92ad-f90efd536d08",
+      "card_printing_id": "e7d19a33-8829-43bf-99d6-77032fbbe171",
+      "gv_id": "GV-PK-PR-XY-XY34",
+      "printing_gv_id": "GV-PK-PR-XY-XY34-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY34",
+      "card_name": "Metagross-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY34",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "cb3f5b0c-387f-42ce-92ad-f90efd536d08",
+      "card_printing_id": "4f892da2-6ecc-4418-937c-048187ba7287",
+      "gv_id": "GV-PK-PR-XY-XY34",
+      "printing_gv_id": "GV-PK-PR-XY-XY34-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY34",
+      "card_name": "Metagross-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY34",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "25a7e282-cbbf-45ed-8dc6-405ce028d09e",
+      "card_printing_id": "55229f23-bc10-49d6-9472-fab2a54e1d55",
+      "gv_id": "GV-PK-PR-XY-XY35",
+      "printing_gv_id": "GV-PK-PR-XY-XY35-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY35",
+      "card_name": "M Metagross-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY35",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "25a7e282-cbbf-45ed-8dc6-405ce028d09e",
+      "card_printing_id": "f35a0719-702e-4f5e-91be-8c2a130e650d",
+      "gv_id": "GV-PK-PR-XY-XY35",
+      "printing_gv_id": "GV-PK-PR-XY-XY35-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY35",
+      "card_name": "M Metagross-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY35",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "84d52140-a09e-4903-ba5b-fa22053515b4",
+      "card_printing_id": "6ec0232b-fdf4-40c0-a325-fcd115eddd7b",
+      "gv_id": "GV-PK-PR-XY-XY41",
+      "printing_gv_id": "GV-PK-PR-XY-XY41-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY41",
+      "card_name": "Kyogre-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY41",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "84d52140-a09e-4903-ba5b-fa22053515b4",
+      "card_printing_id": "b9cca97d-272e-4493-a70b-8eb1e34ff941",
+      "gv_id": "GV-PK-PR-XY-XY41",
+      "printing_gv_id": "GV-PK-PR-XY-XY41-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY41",
+      "card_name": "Kyogre-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY41",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "8eccabb3-05f2-4032-9c26-a9945fe80a46",
+      "card_printing_id": "ade6656e-0ef8-4538-80dd-3f1cc22a0917",
+      "gv_id": "GV-PK-PR-XY-XY42",
+      "printing_gv_id": "GV-PK-PR-XY-XY42-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY42",
+      "card_name": "Groudon-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY42",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "8eccabb3-05f2-4032-9c26-a9945fe80a46",
+      "card_printing_id": "9047d6ab-4684-4797-886e-34ef06579352",
+      "gv_id": "GV-PK-PR-XY-XY42",
+      "printing_gv_id": "GV-PK-PR-XY-XY42-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY42",
+      "card_name": "Groudon-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY42",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "81f376d8-63f5-4c64-9020-3c4475491105",
+      "card_printing_id": "510e23fe-6b4c-4753-8cd3-2aa0a66c2349",
+      "gv_id": "GV-PK-PR-XY-XY43",
+      "printing_gv_id": "GV-PK-PR-XY-XY43-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY43",
+      "card_name": "Diancie-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY43",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "81f376d8-63f5-4c64-9020-3c4475491105",
+      "card_printing_id": "368cdf0f-c89d-49a3-9bd3-cac873464c9c",
+      "gv_id": "GV-PK-PR-XY-XY43",
+      "printing_gv_id": "GV-PK-PR-XY-XY43-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY43",
+      "card_name": "Diancie-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY43",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "a8b51a1d-6470-46e6-8339-078e85beb3eb",
+      "card_printing_id": "9cf81c89-1de6-4cc2-9fa1-46eae234815e",
+      "gv_id": "GV-PK-PR-XY-XY44",
+      "printing_gv_id": "GV-PK-PR-XY-XY44-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY44",
+      "card_name": "M Diancie-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY44",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "a8b51a1d-6470-46e6-8339-078e85beb3eb",
+      "card_printing_id": "35c0b223-3354-4afa-afa0-9dbb5d318e79",
+      "gv_id": "GV-PK-PR-XY-XY44",
+      "printing_gv_id": "GV-PK-PR-XY-XY44-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY44",
+      "card_name": "M Diancie-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY44",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "7f2a6b58-dddf-47ea-b448-9ff5d1651595",
+      "card_printing_id": "ada927f4-ec5d-478a-b5e2-9861a91a225d",
+      "gv_id": "GV-PK-PR-XY-XY45",
+      "printing_gv_id": "GV-PK-PR-XY-XY45-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY45",
+      "card_name": "Gallade-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY45",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "7f2a6b58-dddf-47ea-b448-9ff5d1651595",
+      "card_printing_id": "a78d3c34-4262-4886-b351-7453c00d7b4c",
+      "gv_id": "GV-PK-PR-XY-XY45",
+      "printing_gv_id": "GV-PK-PR-XY-XY45-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY45",
+      "card_name": "Gallade-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY45",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "47d8123b-1371-41bd-a52a-6df24aeb76a1",
+      "card_printing_id": "5bd06aae-2008-4455-b378-3076e61bec6d",
+      "gv_id": "GV-PK-PR-XY-XY53",
+      "printing_gv_id": "GV-PK-PR-XY-XY53-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY53",
+      "card_name": "Sceptile-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY53",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "47d8123b-1371-41bd-a52a-6df24aeb76a1",
+      "card_printing_id": "9a01ab37-b52a-41e2-8aeb-2878b856e08e",
+      "gv_id": "GV-PK-PR-XY-XY53",
+      "printing_gv_id": "GV-PK-PR-XY-XY53-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY53",
+      "card_name": "Sceptile-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY53",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "10f41a7c-3990-42b8-a186-57defe900734",
+      "card_printing_id": "bb45458c-9423-4808-9060-63ecad81b1f0",
+      "gv_id": "GV-PK-PR-XY-XY54",
+      "printing_gv_id": "GV-PK-PR-XY-XY54-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY54",
+      "card_name": "Blaziken-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY54",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "10f41a7c-3990-42b8-a186-57defe900734",
+      "card_printing_id": "b7b47740-8dec-4aaa-a088-c2299055bfdb",
+      "gv_id": "GV-PK-PR-XY-XY54",
+      "printing_gv_id": "GV-PK-PR-XY-XY54-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY54",
+      "card_name": "Blaziken-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY54",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "076c588b-a52a-426a-b43e-21152616f508",
+      "card_printing_id": "3eda6fd7-757b-4076-8964-21979172e52e",
+      "gv_id": "GV-PK-PR-XY-XY55",
+      "printing_gv_id": "GV-PK-PR-XY-XY55-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY55",
+      "card_name": "Swampert-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY55",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "076c588b-a52a-426a-b43e-21152616f508",
+      "card_printing_id": "0d6d438f-04fb-418b-9ac7-0315862b6040",
+      "gv_id": "GV-PK-PR-XY-XY55",
+      "printing_gv_id": "GV-PK-PR-XY-XY55-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY55",
+      "card_name": "Swampert-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY55",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "08acb1ab-8523-47ed-9b0e-4f5648c87ab8",
+      "card_printing_id": "8cf689f9-f060-4000-94ee-c6ffeb4b3cd3",
+      "gv_id": "GV-PK-PR-XY-XY61",
+      "printing_gv_id": "GV-PK-PR-XY-XY61-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY61",
+      "card_name": "Flygon-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY61",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "08acb1ab-8523-47ed-9b0e-4f5648c87ab8",
+      "card_printing_id": "527815b0-7aee-46aa-9354-604007365d32",
+      "gv_id": "GV-PK-PR-XY-XY61",
+      "printing_gv_id": "GV-PK-PR-XY-XY61-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY61",
+      "card_name": "Flygon-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY61",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "ff324c30-a3ca-4b8b-8c4e-8049f33b9e19",
+      "card_printing_id": "4aa0d8ca-590a-4c5f-89ec-6d9872f2fcd9",
+      "gv_id": "GV-PK-PR-XY-XY62",
+      "printing_gv_id": "GV-PK-PR-XY-XY62-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY62",
+      "card_name": "Absol-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY62",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "ff324c30-a3ca-4b8b-8c4e-8049f33b9e19",
+      "card_printing_id": "3559b6a0-bf64-405f-a83d-d6ee3c543cdf",
+      "gv_id": "GV-PK-PR-XY-XY62",
+      "printing_gv_id": "GV-PK-PR-XY-XY62-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY62",
+      "card_name": "Absol-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY62",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "0259c3c5-97ca-4d3a-bfcf-78a434b07f33",
+      "card_printing_id": "b083f8ef-ab7a-47d8-a4e3-e9d64cc533d1",
+      "gv_id": "GV-PK-PR-XY-XY63",
+      "printing_gv_id": "GV-PK-PR-XY-XY63-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY63",
+      "card_name": "M Absol-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY63",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "0259c3c5-97ca-4d3a-bfcf-78a434b07f33",
+      "card_printing_id": "1b266b4a-d827-4724-8a68-0a87f1e1c74c",
+      "gv_id": "GV-PK-PR-XY-XY63",
+      "printing_gv_id": "GV-PK-PR-XY-XY63-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY63",
+      "card_name": "M Absol-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY63",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "52c18531-8a85-45be-8626-6d9a6f5c68d9",
+      "card_printing_id": "fa3a2728-6283-45db-8873-ad37f25f07e4",
+      "gv_id": "GV-PK-PR-XY-XY66",
+      "printing_gv_id": "GV-PK-PR-XY-XY66-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY66",
+      "card_name": "Rayquaza-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY66",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "52c18531-8a85-45be-8626-6d9a6f5c68d9",
+      "card_printing_id": "a92c621c-1ce1-4f94-aded-21e0c0d29f4e",
+      "gv_id": "GV-PK-PR-XY-XY66",
+      "printing_gv_id": "GV-PK-PR-XY-XY66-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY66",
+      "card_name": "Rayquaza-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY66",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "e9b80833-603d-4505-9195-e490e6cdc6a5",
+      "card_printing_id": "e895f334-762d-46b8-8a57-ab8e06b69b1f",
+      "gv_id": "GV-PK-PR-XY-XY69",
+      "printing_gv_id": "GV-PK-PR-XY-XY69-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY69",
+      "card_name": "Rayquaza-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY69",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "e9b80833-603d-4505-9195-e490e6cdc6a5",
+      "card_printing_id": "dbe8e851-775c-4728-8b23-963b96d2b8bb",
+      "gv_id": "GV-PK-PR-XY-XY69",
+      "printing_gv_id": "GV-PK-PR-XY-XY69-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY69",
+      "card_name": "Rayquaza-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY69",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "ad45223e-5318-413d-a343-013cdf81a1b0",
+      "card_printing_id": "e984d990-d533-4595-a172-09643dc5224b",
+      "gv_id": "GV-PK-PR-XY-XY70",
+      "printing_gv_id": "GV-PK-PR-XY-XY70-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY70",
+      "card_name": "Tyrantrum-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY70",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "ad45223e-5318-413d-a343-013cdf81a1b0",
+      "card_printing_id": "fe8995f2-a772-4a25-bd13-f8ba0e850df2",
+      "gv_id": "GV-PK-PR-XY-XY70",
+      "printing_gv_id": "GV-PK-PR-XY-XY70-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY70",
+      "card_name": "Tyrantrum-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY70",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "2c7966df-555e-423e-b4fa-730611505275",
+      "card_printing_id": "f409c902-0136-4b36-a8d4-63c550e64e05",
+      "gv_id": "GV-PK-PR-XY-XY71",
+      "printing_gv_id": "GV-PK-PR-XY-XY71-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY71",
+      "card_name": "Hoopa-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY71",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "2c7966df-555e-423e-b4fa-730611505275",
+      "card_printing_id": "c3f07d1d-3a09-417c-9c65-f87231302d8b",
+      "gv_id": "GV-PK-PR-XY-XY71",
+      "printing_gv_id": "GV-PK-PR-XY-XY71-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY71",
+      "card_name": "Hoopa-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY71",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "3442ba73-f66a-477e-9cb5-8bd8cba7eba2",
+      "card_printing_id": "50fd9aa5-0dfc-4fcd-9860-cf8866e31689",
+      "gv_id": "GV-PK-PR-XY-XY72",
+      "printing_gv_id": "GV-PK-PR-XY-XY72-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY72",
+      "card_name": "Latios-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY72",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "3442ba73-f66a-477e-9cb5-8bd8cba7eba2",
+      "card_printing_id": "f23ede26-187e-4721-96b5-ab02db0cedde",
+      "gv_id": "GV-PK-PR-XY-XY72",
+      "printing_gv_id": "GV-PK-PR-XY-XY72-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY72",
+      "card_name": "Latios-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY72",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "e1a8be62-d5b7-4ffb-b0c7-462d1bc09dc8",
+      "card_printing_id": "d6ee477f-cd09-4e6a-a4e8-5332e1281d5c",
+      "gv_id": "GV-PK-PR-XY-XY73",
+      "printing_gv_id": "GV-PK-PR-XY-XY73-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY73",
+      "card_name": "Rayquaza-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY73",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "e1a8be62-d5b7-4ffb-b0c7-462d1bc09dc8",
+      "card_printing_id": "445bf084-aede-437c-85da-acc267337915",
+      "gv_id": "GV-PK-PR-XY-XY73",
+      "printing_gv_id": "GV-PK-PR-XY-XY73-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY73",
+      "card_name": "Rayquaza-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY73",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "1ae8ad54-92c0-4375-8cdb-622f8a59e3c1",
+      "card_printing_id": "225ab086-67e5-4849-b6bb-be379b4ee993",
+      "gv_id": "GV-PK-PR-XY-XY84",
+      "printing_gv_id": "GV-PK-PR-XY-XY84-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY84",
+      "card_name": "Pikachu-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY84",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "1ae8ad54-92c0-4375-8cdb-622f8a59e3c1",
+      "card_printing_id": "331823e3-3ec4-4c94-8d45-d962ad02882d",
+      "gv_id": "GV-PK-PR-XY-XY84",
+      "printing_gv_id": "GV-PK-PR-XY-XY84-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY84",
+      "card_name": "Pikachu-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY84",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "a5091e90-ad56-4791-b605-97afb187e834",
+      "card_printing_id": "49a77040-39eb-4068-acee-37c4db07d71a",
+      "gv_id": "GV-PK-PR-XY-XY85",
+      "printing_gv_id": "GV-PK-PR-XY-XY85-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY85",
+      "card_name": "Hoopa-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY85",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "a5091e90-ad56-4791-b605-97afb187e834",
+      "card_printing_id": "2fd7b4f2-89c3-4e12-ae80-4b543aff07f6",
+      "gv_id": "GV-PK-PR-XY-XY85",
+      "printing_gv_id": "GV-PK-PR-XY-XY85-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY85",
+      "card_name": "Hoopa-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY85",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "b63dbed6-96c5-4865-8df5-89630a8e9d9e",
+      "card_printing_id": "8d081dff-3cef-4a83-a58b-65bc331a7dee",
+      "gv_id": "GV-PK-PR-XY-XY86",
+      "printing_gv_id": "GV-PK-PR-XY-XY86-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY86",
+      "card_name": "M Blaziken-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY86",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "b63dbed6-96c5-4865-8df5-89630a8e9d9e",
+      "card_printing_id": "5d4751ab-ad54-4f90-93e7-09a1209095a6",
+      "gv_id": "GV-PK-PR-XY-XY86",
+      "printing_gv_id": "GV-PK-PR-XY-XY86-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY86",
+      "card_name": "M Blaziken-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY86",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "cd1e8985-0c07-4eb7-aef2-ef5115885dd3",
+      "card_printing_id": "5081835a-f88b-461b-8371-b02811118d06",
+      "gv_id": "GV-PK-PR-XY-XY87",
+      "printing_gv_id": "GV-PK-PR-XY-XY87-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY87",
+      "card_name": "M Swampert-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY87",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "cd1e8985-0c07-4eb7-aef2-ef5115885dd3",
+      "card_printing_id": "5b02c3e9-acf3-4195-9c45-5a803ae1d473",
+      "gv_id": "GV-PK-PR-XY-XY87",
+      "printing_gv_id": "GV-PK-PR-XY-XY87-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY87",
+      "card_name": "M Swampert-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY87",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "1896918c-c20f-4e65-8642-d61d1eb84aff",
+      "card_printing_id": "93d90bbb-e245-43ad-8f00-bbbc12dbec31",
+      "gv_id": "GV-PK-PR-XY-XY97",
+      "printing_gv_id": "GV-PK-PR-XY-XY97-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY97",
+      "card_name": "Aerodactyl-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY97",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "1896918c-c20f-4e65-8642-d61d1eb84aff",
+      "card_printing_id": "a8842779-8f6b-4327-bf9b-cee22cf9bf5c",
+      "gv_id": "GV-PK-PR-XY-XY97",
+      "printing_gv_id": "GV-PK-PR-XY-XY97-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY97",
+      "card_name": "Aerodactyl-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY97",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "3673b751-e636-46d2-8f38-5a833d2d78c4",
+      "card_printing_id": "01bd5a03-0f9c-4a4c-9475-0e62b29a4db6",
+      "gv_id": "GV-PK-PR-XY-XY98",
+      "printing_gv_id": "GV-PK-PR-XY-XY98-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY98",
+      "card_name": "M Aerodactyl-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY98",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "3673b751-e636-46d2-8f38-5a833d2d78c4",
+      "card_printing_id": "ea8757ac-ce8e-457b-8fb8-d0baff9be8a9",
+      "gv_id": "GV-PK-PR-XY-XY98",
+      "printing_gv_id": "GV-PK-PR-XY-XY98-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY98",
+      "card_name": "M Aerodactyl-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY98",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "eedbb474-00a4-41fe-857d-17109102658b",
+      "card_printing_id": "dec18eb4-fefc-4220-ae48-1b9ae6834db0",
+      "gv_id": "GV-PK-PR-XY-XY102",
+      "printing_gv_id": "GV-PK-PR-XY-XY102-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY102",
+      "card_name": "Aurorus-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY102",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "eedbb474-00a4-41fe-857d-17109102658b",
+      "card_printing_id": "e67ba562-0cde-4409-a2e9-871cf9d46a29",
+      "gv_id": "GV-PK-PR-XY-XY102",
+      "printing_gv_id": "GV-PK-PR-XY-XY102-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY102",
+      "card_name": "Aurorus-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY102",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "9ece083e-4361-4e0a-b65b-3f9c791d522d",
+      "card_printing_id": "643c2a50-8563-4ea4-9741-f59e132f3d40",
+      "gv_id": "GV-PK-PR-XY-XY103",
+      "printing_gv_id": "GV-PK-PR-XY-XY103-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY103",
+      "card_name": "Mawile-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY103",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "9ece083e-4361-4e0a-b65b-3f9c791d522d",
+      "card_printing_id": "3e2079ee-02f5-4945-b7a9-03c22e24df2c",
+      "gv_id": "GV-PK-PR-XY-XY103",
+      "printing_gv_id": "GV-PK-PR-XY-XY103-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY103",
+      "card_name": "Mawile-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY103",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "b301e859-ad1f-4165-9a85-917fc4adac13",
+      "card_printing_id": "87e0cc64-8d1b-47dc-bae3-5b0d112e8543",
+      "gv_id": "GV-PK-PR-XY-XY104",
+      "printing_gv_id": "GV-PK-PR-XY-XY104-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY104",
+      "card_name": "M Mawile-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY104",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "b301e859-ad1f-4165-9a85-917fc4adac13",
+      "card_printing_id": "0a4d277b-ad48-43a4-a498-586593242332",
+      "gv_id": "GV-PK-PR-XY-XY104",
+      "printing_gv_id": "GV-PK-PR-XY-XY104-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY104",
+      "card_name": "M Mawile-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY104",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "5391ffa9-0374-458c-be51-7fc0fbd3812b",
+      "card_printing_id": "9a581745-eb1f-42de-9622-68c99375dd19",
+      "gv_id": "GV-PK-PR-XY-XY106",
+      "printing_gv_id": "GV-PK-PR-XY-XY106-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY106",
+      "card_name": "Gyarados-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY106",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "5391ffa9-0374-458c-be51-7fc0fbd3812b",
+      "card_printing_id": "4f43418d-ebbb-4922-96ff-5c256250f6cb",
+      "gv_id": "GV-PK-PR-XY-XY106",
+      "printing_gv_id": "GV-PK-PR-XY-XY106-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY106",
+      "card_name": "Gyarados-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY106",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "81f73254-b9d3-4ab9-bba6-fd6440a2019f",
+      "card_printing_id": "cc097180-640e-4253-9b0c-94baed8140c0",
+      "gv_id": "GV-PK-PR-XY-XY107",
+      "printing_gv_id": "GV-PK-PR-XY-XY107-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY107",
+      "card_name": "Mewtwo-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY107",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "81f73254-b9d3-4ab9-bba6-fd6440a2019f",
+      "card_printing_id": "e579ab74-b583-461f-a549-b258f081d415",
+      "gv_id": "GV-PK-PR-XY-XY107",
+      "printing_gv_id": "GV-PK-PR-XY-XY107-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY107",
+      "card_name": "Mewtwo-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY107",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "d25e49f0-8513-4aa0-9947-afdfb26cd7cc",
+      "card_printing_id": "bf90ccd7-d478-4e21-aab5-d049595ce6d3",
+      "gv_id": "GV-PK-PR-XY-XY108",
+      "printing_gv_id": "GV-PK-PR-XY-XY108-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY108",
+      "card_name": "Machamp-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY108",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "d25e49f0-8513-4aa0-9947-afdfb26cd7cc",
+      "card_printing_id": "24ed70b9-3414-4024-914c-0dd863ca232b",
+      "gv_id": "GV-PK-PR-XY-XY108",
+      "printing_gv_id": "GV-PK-PR-XY-XY108-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY108",
+      "card_name": "Machamp-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY108",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "fe82ee50-1c48-42d3-ad45-65de76a81be3",
+      "card_printing_id": "53b7e625-5fcb-4f6f-ac1b-cbbf0c49d93b",
+      "gv_id": "GV-PK-PR-XY-XY121",
+      "printing_gv_id": "GV-PK-PR-XY-XY121-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY121",
+      "card_name": "Charizard-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY121",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "fe82ee50-1c48-42d3-ad45-65de76a81be3",
+      "card_printing_id": "5108624c-f0be-4d4e-9309-942ac560e737",
+      "gv_id": "GV-PK-PR-XY-XY121",
+      "printing_gv_id": "GV-PK-PR-XY-XY121-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY121",
+      "card_name": "Charizard-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY121",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "013f6060-be7c-45e3-ae65-610f5bae7822",
+      "card_printing_id": "24bb93d2-9ef0-49da-90ee-62f417008b1a",
+      "gv_id": "GV-PK-PR-XY-XY122",
+      "printing_gv_id": "GV-PK-PR-XY-XY122-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY122",
+      "card_name": "Blastoise-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY122",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "013f6060-be7c-45e3-ae65-610f5bae7822",
+      "card_printing_id": "ab536372-7145-49ad-8a60-f6e11f6fb67e",
+      "gv_id": "GV-PK-PR-XY-XY122",
+      "printing_gv_id": "GV-PK-PR-XY-XY122-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY122",
+      "card_name": "Blastoise-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY122",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "61f75475-0503-453c-94f8-88e45943fd69",
+      "card_printing_id": "4accd721-dc9e-45a5-bb12-1234c4d3a39b",
+      "gv_id": "GV-PK-PR-XY-XY123",
+      "printing_gv_id": "GV-PK-PR-XY-XY123-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY123",
+      "card_name": "Venusaur-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY123",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "61f75475-0503-453c-94f8-88e45943fd69",
+      "card_printing_id": "489b70a1-a2e8-42c1-aa99-58cbf160b595",
+      "gv_id": "GV-PK-PR-XY-XY123",
+      "printing_gv_id": "GV-PK-PR-XY-XY123-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY123",
+      "card_name": "Venusaur-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY123",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "c1fa0bfa-ab99-41d6-9423-96effff0db10",
+      "card_printing_id": "6fbfeee3-7958-41de-ad70-0b4cd0485f71",
+      "gv_id": "GV-PK-PR-XY-XY124",
+      "printing_gv_id": "GV-PK-PR-XY-XY124-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY124",
+      "card_name": "Pikachu-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY124",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "c1fa0bfa-ab99-41d6-9423-96effff0db10",
+      "card_printing_id": "a66face2-b8b3-43e2-a4ed-d5ee178071c0",
+      "gv_id": "GV-PK-PR-XY-XY124",
+      "printing_gv_id": "GV-PK-PR-XY-XY124-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY124",
+      "card_name": "Pikachu-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY124",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "d49b3435-a672-4c96-a88c-e27a2a25f55a",
+      "card_printing_id": "c34ff859-e8fd-44dc-ab3e-91846a0e1393",
+      "gv_id": "GV-PK-PR-XY-XY125",
+      "printing_gv_id": "GV-PK-PR-XY-XY125-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY125",
+      "card_name": "Mewtwo-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY125",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "d49b3435-a672-4c96-a88c-e27a2a25f55a",
+      "card_printing_id": "0d21db9c-f1f5-4786-9318-700d1c13dac8",
+      "gv_id": "GV-PK-PR-XY-XY125",
+      "printing_gv_id": "GV-PK-PR-XY-XY125-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY125",
+      "card_name": "Mewtwo-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY125",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "00dad38a-e1b4-423d-a142-2d21a8b78c2a",
+      "card_printing_id": "901ba584-b371-4a55-aff0-661a7a5c8906",
+      "gv_id": "GV-PK-PR-XY-XY126",
+      "printing_gv_id": "GV-PK-PR-XY-XY126-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY126",
+      "card_name": "Mew-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY126",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "00dad38a-e1b4-423d-a142-2d21a8b78c2a",
+      "card_printing_id": "442e404e-7957-4673-bd61-c97ac0939d6a",
+      "gv_id": "GV-PK-PR-XY-XY126",
+      "printing_gv_id": "GV-PK-PR-XY-XY126-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY126",
+      "card_name": "Mew-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY126",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "9e4886e0-b28d-49a2-91c6-a4f56a8d5463",
+      "card_printing_id": "c91ed1a0-9bcf-46e6-965a-e8d8878bbc20",
+      "gv_id": "GV-PK-PR-XY-XY133",
+      "printing_gv_id": "GV-PK-PR-XY-XY133-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY133",
+      "card_name": "Ash-Greninja-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY133",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "9e4886e0-b28d-49a2-91c6-a4f56a8d5463",
+      "card_printing_id": "501411e2-a062-4d39-a2c6-2582400764b9",
+      "gv_id": "GV-PK-PR-XY-XY133",
+      "printing_gv_id": "GV-PK-PR-XY-XY133-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY133",
+      "card_name": "Ash-Greninja-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY133",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "3fe897a2-89c9-4ac4-95a7-2cfaa7297db4",
+      "card_printing_id": "cf9e5715-10b6-4484-8214-26657568808f",
+      "gv_id": "GV-PK-PR-XY-XY148",
+      "printing_gv_id": "GV-PK-PR-XY-XY148-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY148",
+      "card_name": "Shaymin-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY148",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "3fe897a2-89c9-4ac4-95a7-2cfaa7297db4",
+      "card_printing_id": "8c3841e2-c335-4ad0-82a0-b03faa619acc",
+      "gv_id": "GV-PK-PR-XY-XY148",
+      "printing_gv_id": "GV-PK-PR-XY-XY148-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY148",
+      "card_name": "Shaymin-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY148",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "7087218e-f25a-4427-ab0a-7c419566792a",
+      "card_printing_id": "2486df8d-d783-4306-8b27-e425479f33fc",
+      "gv_id": "GV-PK-PR-XY-XY149",
+      "printing_gv_id": "GV-PK-PR-XY-XY149-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY149",
+      "card_name": "Xerneas-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY149",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "7087218e-f25a-4427-ab0a-7c419566792a",
+      "card_printing_id": "b57e80d6-35b4-41d2-95c4-64cfc4c16be6",
+      "gv_id": "GV-PK-PR-XY-XY149",
+      "printing_gv_id": "GV-PK-PR-XY-XY149-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY149",
+      "card_name": "Xerneas-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY149",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+      "card_printing_id": "e5f97bc6-8c6d-4479-9fd7-533745442454",
+      "gv_id": "GV-PK-PR-XY-XY150",
+      "printing_gv_id": "GV-PK-PR-XY-XY150-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY150",
+      "card_name": "Yveltal EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY150",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+      "card_printing_id": "5ccd143d-e6c3-4f62-94bd-cc031504f597",
+      "gv_id": "GV-PK-PR-XY-XY150",
+      "printing_gv_id": "GV-PK-PR-XY-XY150-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY150",
+      "card_name": "Yveltal EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY150",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "0a00ba6c-905f-4daf-9cb6-65c4a2137ccc",
+      "card_printing_id": "0d588b6c-7e68-4094-bec0-ded2925ee47c",
+      "gv_id": "GV-PK-PR-XY-XY151",
+      "printing_gv_id": "GV-PK-PR-XY-XY151-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY151",
+      "card_name": "Zygarde-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY151",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "0a00ba6c-905f-4daf-9cb6-65c4a2137ccc",
+      "card_printing_id": "34c14316-ac38-44a1-a8ec-bca27148c96c",
+      "gv_id": "GV-PK-PR-XY-XY151",
+      "printing_gv_id": "GV-PK-PR-XY-XY151-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY151",
+      "card_name": "Zygarde-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY151",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "ce9359fe-82b3-4ecf-9d98-794a4489906d",
+      "card_printing_id": "5b223932-292b-49a7-9ccc-48016f4ce66b",
+      "gv_id": "GV-PK-PR-XY-XY153",
+      "printing_gv_id": "GV-PK-PR-XY-XY153-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY153",
+      "card_name": "Ho-Oh",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY153",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "ce9359fe-82b3-4ecf-9d98-794a4489906d",
+      "card_printing_id": "deb68336-6ffb-4f18-93c5-08577054f11b",
+      "gv_id": "GV-PK-PR-XY-XY153",
+      "printing_gv_id": "GV-PK-PR-XY-XY153-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY153",
+      "card_name": "Ho-Oh",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY153",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "ef28e6f7-269a-4190-88ec-33ba5ccba6e6",
+      "card_printing_id": "2887e4dd-151f-4e41-859d-b7227f2344b1",
+      "gv_id": "GV-PK-PR-XY-XY157",
+      "printing_gv_id": "GV-PK-PR-XY-XY157-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY157",
+      "card_name": "Beedrill-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY157",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "ef28e6f7-269a-4190-88ec-33ba5ccba6e6",
+      "card_printing_id": "1ccec7ca-b96c-4b9d-b428-95c127e3f1ba",
+      "gv_id": "GV-PK-PR-XY-XY157",
+      "printing_gv_id": "GV-PK-PR-XY-XY157-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY157",
+      "card_name": "Beedrill-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY157",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "be43ca5e-2ebc-4275-9464-91c4b6af5018",
+      "card_printing_id": "3dc841ca-3543-44ad-a228-8a1e36ed43da",
+      "gv_id": "GV-PK-PR-XY-XY170",
+      "printing_gv_id": "GV-PK-PR-XY-XY170-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY170",
+      "card_name": "Salamence-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY170",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "be43ca5e-2ebc-4275-9464-91c4b6af5018",
+      "card_printing_id": "783d3cbc-472f-454f-8405-b8b74e775363",
+      "gv_id": "GV-PK-PR-XY-XY170",
+      "printing_gv_id": "GV-PK-PR-XY-XY170-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY170",
+      "card_name": "Salamence-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY170",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "d3d63cac-4f16-44a3-80c1-6b17158a47d4",
+      "card_printing_id": "65c0e884-13f9-4811-9aec-9a741a9ff6ce",
+      "gv_id": "GV-PK-PR-XY-XY173",
+      "printing_gv_id": "GV-PK-PR-XY-XY173-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY173",
+      "card_name": "Volcanion-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY173",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "d3d63cac-4f16-44a3-80c1-6b17158a47d4",
+      "card_printing_id": "d9b9ff3d-6be1-40e3-af1c-c31538b32e1b",
+      "gv_id": "GV-PK-PR-XY-XY173",
+      "printing_gv_id": "GV-PK-PR-XY-XY173-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY173",
+      "card_name": "Volcanion-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY173",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+      "card_printing_id": "dadbfcd5-ea0b-4adf-a33e-9fd46731079a",
+      "gv_id": "GV-PK-PR-XY-XY177A",
+      "printing_gv_id": "GV-PK-PR-XY-XY177A-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY177a",
+      "card_name": "Karen",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-promo/karen-xy177a",
+        "https://www.nobleknight.com/P/2148465200/Karen-P-XY177a-Holo"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "79d4fa29-4137-46de-bf72-14ee8fe96119",
+      "card_printing_id": "9ccd5531-c8c6-4239-b5e9-1ee3145410a6",
+      "gv_id": "GV-PK-PR-XY-XY177A",
+      "printing_gv_id": "GV-PK-PR-XY-XY177A-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY177a",
+      "card_name": "Karen",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-promo/karen-xy177a",
+        "https://www.nobleknight.com/P/2148465200/Karen-P-XY177a-Holo"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+      "card_printing_id": "a09079bc-0a1e-4769-ba16-d27e21723928",
+      "gv_id": "GV-PK-PR-XY-XY198",
+      "printing_gv_id": "GV-PK-PR-XY-XY198-STD",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY198",
+      "card_name": "M Camerupt-EX",
+      "finish_key": "normal",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY198",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    },
+    {
+      "status": "unsupported_finish_no_dependencies",
+      "recommended_action": "guarded_delete_candidate",
+      "reason": "Finish is not in the master index, the card identity is present, and the child has no detected dependencies.",
+      "card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+      "card_printing_id": "d4d78fd8-fb28-441c-bf51-cc7fb5593ae5",
+      "gv_id": "GV-PK-PR-XY-XY198",
+      "printing_gv_id": "GV-PK-PR-XY-XY198-RH",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY198",
+      "card_name": "M Camerupt-EX",
+      "finish_key": "reverse",
+      "variant_key": null,
+      "printed_identity_modifier": null,
+      "master_supported_finishes": [
+        "holo"
+      ],
+      "master_evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/xyp-XY198",
+        "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+      ],
+      "external_printing_mapping_refs": 0,
+      "vault_item_instance_refs": 0,
+      "warehouse_candidate_refs": 0
+    }
+  ]
+}

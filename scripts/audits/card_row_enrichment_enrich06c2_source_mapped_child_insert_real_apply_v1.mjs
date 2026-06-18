@@ -17,11 +17,11 @@ const OUTPUT_MD = path.join(OUTPUT_DIR, 'enrich06c2_source_mapped_active_finish_
 
 const PACKAGE_ID = 'ENRICH-06C2-SOURCE-MAPPED-ACTIVE-FINISH-CHILD-PRINTING-INSERT';
 const TARGET_CLASSIFICATION = 'source_mapped_child_insert_candidate_needs_finish_selection';
-const EXPECTED_FINGERPRINT = '7a901d3842ccffee2588fd7fe26722dbebc053caea2ba16d75bf9acc398f5442';
-const EXPECTED_DRY_RUN_PROOF = 'd8c96ea20a3b0e44755b248b23e9f2819e85c3040e791d769f3f964854a733ae';
-const EXPECTED_TARGET_PRINTINGS = 530;
-const EXPECTED_TARGET_PARENTS = 354;
-const APPROVAL_TEXT = 'Approve real ENRICH-06C2-SOURCE-MAPPED-ACTIVE-FINISH-CHILD-PRINTING-INSERT apply only. Fingerprint: 7a901d3842ccffee2588fd7fe26722dbebc053caea2ba16d75bf9acc398f5442. Scope: 530 child card_printing inserts across 354 source-mapped childless parents using Master Index finish keys. Finishes: holo=212, reverse=174, normal=144. Dry-run proof: d8c96ea20a3b0e44755b248b23e9f2819e85c3040e791d769f3f964854a733ae == d8c96ea20a3b0e44755b248b23e9f2819e85c3040e791d769f3f964854a733ae. No parent writes. No identity writes. No mapping writes. No deletes. No merges. No migrations. No image writes. No global apply.';
+const EXPECTED_FINGERPRINT = '6e32357534841a49f65bfd3f10e23f04cd982a6795b5c2e47b2fd50829bec8e7';
+const EXPECTED_DRY_RUN_PROOF = '26d63932fb3c14d0fb4aece6970ef3462783891353378a9584a96bf06a980d43';
+const EXPECTED_TARGET_PRINTINGS = 13;
+const EXPECTED_TARGET_PARENTS = 10;
+const APPROVAL_TEXT = 'Approve real ENRICH-06C2-SOURCE-MAPPED-ACTIVE-FINISH-CHILD-PRINTING-INSERT apply only. Fingerprint: 6e32357534841a49f65bfd3f10e23f04cd982a6795b5c2e47b2fd50829bec8e7. Scope: 13 child card_printing inserts across 10 source-mapped childless parents using Master Index finish keys. Finishes: holo=7, normal=3, reverse=3. Dry-run proof: 26d63932fb3c14d0fb4aece6970ef3462783891353378a9584a96bf06a980d43 == 26d63932fb3c14d0fb4aece6970ef3462783891353378a9584a96bf06a980d43. No parent writes. No identity writes. No mapping writes. No deletes. No merges. No migrations. No image writes. No global apply.';
 
 function connectionString() {
   return process.env.SUPABASE_DB_URL

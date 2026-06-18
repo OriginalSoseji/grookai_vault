@@ -1,6 +1,6 @@
 {
   "version": "EXTERNAL_MAPPING_ALIAS_SIDECAR_MIGRATION_READINESS_V1",
-  "generated_at": "2026-06-16T19:30:07.266Z",
+  "generated_at": "2026-06-18T02:57:25.350Z",
   "source_report": "docs/audits/card_row_enrichment_v1/external_mapping_alias_sidecar_schema_plan_v1.json",
   "contract": "docs/contracts/EXTERNAL_MAPPING_ALIAS_GOVERNANCE_CONTRACT_V1.md",
   "scope": {

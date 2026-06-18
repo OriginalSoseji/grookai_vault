@@ -1,0 +1,517 @@
+{
+  "generated_at": "2026-06-17T15:38:25.073Z",
+  "package_id": "SPECIAL-VAR-06-FINAL-SOURCE-READY-PARENT-INSERTS",
+  "mode": "guarded_rollback_dry_run_only",
+  "source_report": "docs/audits/verified_master_set_index_v1/english_master_index_v1/special_variant_discovery_v1/special_variant_discovery_v1.json",
+  "source_fingerprint_sha256": "1316efc4b0bb7eed7281f49ee11bedb90747cfef409face9853a4f9a0aa92b9d",
+  "package_fingerprint_sha256": "74ba5eeb13f6418db5ccfe71c53f2bddb92eadaaa87503341b267fce991825d3",
+  "sql_hash_sha256": "b215ed71141a18e174dc36eb1624a669a21b3fac0990d6fc7848173deef33e33",
+  "pass": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "scope": {
+    "target_rows": 3,
+    "source_unique_finish_rows": 0,
+    "by_set": {
+      "basep": 2,
+      "base1": 1
+    },
+    "by_finish": {
+      "normal": 2,
+      "holo": 1
+    },
+    "by_variant": {
+      "missing_wb_kids_stamp": 2,
+      "black_flame_error": 1
+    },
+    "targets": [
+      {
+        "source_candidate_key": "base1-12-ninetales-black-flame",
+        "set_key": "base1",
+        "set_name": "Base Set",
+        "card_number": "12",
+        "card_name": "Ninetales",
+        "target_variant_key": "black_flame_error",
+        "target_printed_identity_modifier": "recognized_error:black_flame",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "elitefourum_black_flame_ninetales",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/the-black-flame-ninetales/29619",
+            "evidence_label": "Elite Fourum documents the Black Flame Ninetales distinction and notes collector debate about whether it is an error or original artwork state."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-base-set/ninetales-black-flame-12",
+            "evidence_label": "PriceCharting exact product: Ninetales [Black Flame] #12."
+          },
+          {
+            "source_key": "cgc_ninetales_black_flame",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.cgccards.com/news/article/8861/pokemon-ninetales-variant/",
+            "evidence_label": "CGC identifies the Black Flame Ninetales as a distinct Base Set variant and explains the artwork difference from normal unlimited copies."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia states Wizards changed the Ninetales artwork early during unlimited print, making black-flame unlimited copies less common."
+          }
+        ],
+        "target_parent_id": "02b8f0ff-101f-4fc3-b010-c989194611a4",
+        "target_child_id": "a18296ee-cb5a-4c9a-b9c0-a8177a616315",
+        "base_parent_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+        "base_parent_gv_id": "GV-PK-BS-12",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://www.elitefourum.com/t/the-black-flame-ninetales/29619",
+          "https://www.pricecharting.com/game/pokemon-base-set/ninetales-black-flame-12",
+          "https://www.cgccards.com/news/article/8861/pokemon-ninetales-variant/",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-06-FINAL-SOURCE-READY-PARENT-INSERTS",
+          "source_candidate_key": "base1-12-ninetales-black-flame",
+          "classification": "recognized_error_variant",
+          "variant_key": "black_flame_error",
+          "printed_identity_modifier": "recognized_error:black_flame",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "elitefourum_black_flame_ninetales",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/the-black-flame-ninetales/29619",
+              "evidence_label": "Elite Fourum documents the Black Flame Ninetales distinction and notes collector debate about whether it is an error or original artwork state."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-base-set/ninetales-black-flame-12",
+              "evidence_label": "PriceCharting exact product: Ninetales [Black Flame] #12."
+            },
+            {
+              "source_key": "cgc_ninetales_black_flame",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.cgccards.com/news/article/8861/pokemon-ninetales-variant/",
+              "evidence_label": "CGC identifies the Black Flame Ninetales as a distinct Base Set variant and explains the artwork difference from normal unlimited copies."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia states Wizards changed the Ninetales artwork early during unlimited print, making black-flame unlimited copies less common."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-3-mewtwo-missing-wb-kids-stamp",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "3",
+        "card_name": "Mewtwo",
+        "target_variant_key": "missing_wb_kids_stamp",
+        "target_printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+        "target_finish_key": "normal",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies missing WB Kids stamp versions of Black Star Promos #2-5."
+          },
+          {
+            "source_key": "elitefourum_wotc_promo_images_missing_wb_comment",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+            "evidence_label": "Elite Fourum WOTC promo variant discussion states missing-stamp Mewtwo and Dragonite have been seen in collector holdings."
+          }
+        ],
+        "target_parent_id": "6abd5cee-cbe0-492c-9202-6ae41ba1bbcd",
+        "target_child_id": "2d4c001b-deaf-49cb-b58c-fc5739acdbf7",
+        "base_parent_id": "676b6e46-9457-4945-9c5a-4efadb7cef58",
+        "base_parent_gv_id": "GV-PK-PR-3",
+        "base_child_finishes": [
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-06-FINAL-SOURCE-READY-PARENT-INSERTS",
+          "source_candidate_key": "basep-3-mewtwo-missing-wb-kids-stamp",
+          "classification": "recognized_error_variant",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies missing WB Kids stamp versions of Black Star Promos #2-5."
+            },
+            {
+              "source_key": "elitefourum_wotc_promo_images_missing_wb_comment",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+              "evidence_label": "Elite Fourum WOTC promo variant discussion states missing-stamp Mewtwo and Dragonite have been seen in collector holdings."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "basep-5-dragonite-missing-wb-kids-stamp",
+        "set_key": "basep",
+        "set_name": "Wizards Black Star Promos",
+        "card_number": "5",
+        "card_name": "Dragonite",
+        "target_variant_key": "missing_wb_kids_stamp",
+        "target_printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+        "target_finish_key": "normal",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia identifies missing WB Kids stamp versions of Black Star Promos #2-5."
+          },
+          {
+            "source_key": "elitefourum_wotc_promo_images_missing_wb_comment",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+            "evidence_label": "Elite Fourum WOTC promo variant discussion states missing-stamp Mewtwo and Dragonite have been seen in collector holdings."
+          }
+        ],
+        "target_parent_id": "c5899ee0-4e67-4629-8f8d-4d2a74238cac",
+        "target_child_id": "dbfcae10-ee88-4e2e-b0b6-da7d006e0998",
+        "base_parent_id": "eb57fdeb-8bce-4ba1-b981-9da7b88d33b5",
+        "base_parent_gv_id": "GV-PK-PR-5",
+        "base_child_finishes": [
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-06-FINAL-SOURCE-READY-PARENT-INSERTS",
+          "source_candidate_key": "basep-5-dragonite-missing-wb-kids-stamp",
+          "classification": "recognized_error_variant",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia identifies missing WB Kids stamp versions of Black Star Promos #2-5."
+            },
+            {
+              "source_key": "elitefourum_wotc_promo_images_missing_wb_comment",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/wizards-of-the-coast-black-star-promos-hd-image-list-eng/31020",
+              "evidence_label": "Elite Fourum WOTC promo variant discussion states missing-stamp Mewtwo and Dragonite have been seen in collector holdings."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "final_source_ready_parent_insert_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 3,
+      "target_parent_count": 3,
+      "target_child_count": 3,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "source_unique_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 3,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "SPECIAL-VAR-06-FINAL-SOURCE-READY-PARENT-INSERTS",
+      "package_fingerprint": "74ba5eeb13f6418db5ccfe71c53f2bddb92eadaaa87503341b267fce991825d3",
+      "target_rows": 3,
+      "inserted_parent_rows": 3,
+      "inserted_parent_identity_rows": 3,
+      "inserted_identity_rows": 3,
+      "inserted_child_rows": 3,
+      "forbidden_stamped_child_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 3,
+      "identity_inserts": 3,
+      "child_inserts": 3,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-17T15:38:23.882Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+          "set_code": "base1",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Ninetales",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "676b6e46-9457-4945-9c5a-4efadb7cef58",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "eb57fdeb-8bce-4ba1-b981-9da7b88d33b5",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "679968ce5317ac491bcb483172963c8509cc7ae418bcaa5d830099f9b306ffb0",
+      "counts": {
+        "base_parent": 3
+      }
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-17T15:38:24.836Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+          "set_code": "base1",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Ninetales",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "676b6e46-9457-4945-9c5a-4efadb7cef58",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "eb57fdeb-8bce-4ba1-b981-9da7b88d33b5",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "a18296ee-cb5a-4c9a-b9c0-a8177a616315",
+          "set_code": "base1",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Ninetales",
+          "variant_key": "black_flame_error",
+          "printed_identity_modifier": "recognized_error:black_flame",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "2d4c001b-deaf-49cb-b58c-fc5739acdbf7",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "dbfcae10-ee88-4e2e-b0b6-da7d006e0998",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "30a4c920-a566-4f76-88a7-29cf590ec032",
+          "set_code": "base1",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Ninetales",
+          "variant_key": "black_flame_error",
+          "printed_identity_modifier": "recognized_error:black_flame",
+          "finish_key": null,
+          "identity_key_hash": "6e21990d39b25281696911e853eb5438ff8b60cb852ae59bb4c8a666155cfcb5"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "fcd7c24e-a880-4dc9-9a22-d29a7d1b7a5b",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": "5c453f93443cce9b3807bbb63976ae775d34c062bdc3b39d37f16363da6576c1"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "22c05211-1246-4c22-b87b-c328dadbafbf",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": "cb73fc7bcda5096ce4f3346695588c3733700324ba16dc9d48aad8f15b07c5ea"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "02b8f0ff-101f-4fc3-b010-c989194611a4",
+          "set_code": "base1",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Ninetales",
+          "variant_key": "black_flame_error",
+          "printed_identity_modifier": "recognized_error:black_flame",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "6abd5cee-cbe0-492c-9202-6ae41ba1bbcd",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "c5899ee0-4e67-4629-8f8d-4d2a74238cac",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "missing_wb_kids_stamp",
+          "printed_identity_modifier": "recognized_error:missing_wb_kids_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "b108f5230426ae71f9920b853ae7ba831f2a3bc4039964b744721d2d26b0e1c2",
+      "counts": {
+        "base_parent": 3,
+        "target_child": 3,
+        "target_identity": 3,
+        "target_parent": 3
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-17T15:38:24.993Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "dd732e0c-c0aa-4c94-8189-d1a7328b1154",
+          "set_code": "base1",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Ninetales",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "676b6e46-9457-4945-9c5a-4efadb7cef58",
+          "set_code": "basep",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Mewtwo",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "eb57fdeb-8bce-4ba1-b981-9da7b88d33b5",
+          "set_code": "basep",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Dragonite",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "679968ce5317ac491bcb483172963c8509cc7ae418bcaa5d830099f9b306ffb0",
+      "counts": {
+        "base_parent": 3
+      }
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "9e9e8c8d47eefa19cad4ef9f82c59ba9ac55da5209ccf50d80dadfa783974871",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real SPECIAL-VAR-06-FINAL-SOURCE-READY-PARENT-INSERTS apply only. Fingerprint: 74ba5eeb13f6418db5ccfe71c53f2bddb92eadaaa87503341b267fce991825d3. SQL hash: b215ed71141a18e174dc36eb1624a669a21b3fac0990d6fc7848173deef33e33. Scope: 3 final source-ready special-case parent inserts, 3 active identity inserts, 3 child printing inserts; source_unique_finish_rows=0; sets base1=1, basep=2. Dry-run proof: 679968ce5317ac491bcb483172963c8509cc7ae418bcaa5d830099f9b306ffb0 == 679968ce5317ac491bcb483172963c8509cc7ae418bcaa5d830099f9b306ffb0. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}

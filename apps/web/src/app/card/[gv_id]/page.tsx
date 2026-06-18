@@ -8,6 +8,7 @@ import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapsh
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
 import PrintingSelector from "@/components/cards/PrintingSelector";
+import VariantExplanationContextPreview from "@/components/cards/VariantExplanationContextPreview";
 import PricingDisclosure from "@/components/common/PricingDisclosure";
 import AddSlabCardAction, { type AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
@@ -20,6 +21,7 @@ import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction"
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
+import { buildGrookaiVariantExplanationFromPublicCopy } from "@/lib/ai/grookaiVariantExplanationBuilder";
 import { buildTcgDexImageUrl } from "@/lib/cards/buildTcgDexImageUrl";
 import {
   resolveDisplayIdentity,
@@ -503,6 +505,16 @@ export default async function CardPage({
     cardPrintId: resolvedCard.id,
     gvId: resolvedCard.gv_id,
   });
+  const variantExplanation = variantOriginCopy
+    ? buildGrookaiVariantExplanationFromPublicCopy({
+        card: {
+          name: resolvedDisplayIdentity.base_name,
+          set_name: setName || null,
+          printed_number: displayIdentity.displayPrintedNumber ?? resolvedCard.number ?? null,
+        },
+        variantOrigin: variantOriginCopy,
+      })
+    : null;
   const ownedPrintingCountsForCard = resolvedCard.id ? ownedPrintingCounts.get(resolvedCard.id) : null;
   const displayPrintingsWithOwnedCounts = (resolvedCard.display_printings ?? []).map((printing) => ({
     ...printing,
@@ -682,19 +694,24 @@ export default async function CardPage({
                 <section className="gv-quiet-panel max-w-3xl px-4 py-4">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="inline-flex rounded-full border border-slate-200/80 bg-white/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 shadow-sm dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
-                      Variant Origin
+                      Why this version matters
                     </span>
                     <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
-                      {variantOriginCopy.family_label}
+                      {variantExplanation?.title ?? variantOriginCopy.family_label}
                     </span>
                   </div>
+                  {variantExplanation?.summary ? (
+                    <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-700 dark:text-slate-300">
+                      {variantExplanation.summary}
+                    </p>
+                  ) : null}
                   <div className="mt-4 grid gap-4 md:grid-cols-2">
                     <div>
                       <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
                         Why it exists
                       </p>
                       <p className="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-300">
-                        {variantOriginCopy.why_it_exists}
+                        {variantExplanation?.why_it_exists ?? variantOriginCopy.why_it_exists}
                       </p>
                     </div>
                     <div>
@@ -702,22 +719,22 @@ export default async function CardPage({
                         Why collectors care
                       </p>
                       <p className="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-300">
-                        {variantOriginCopy.why_collectors_care}
+                        {variantExplanation?.why_collectors_care ?? variantOriginCopy.why_collectors_care}
                       </p>
                     </div>
                   </div>
                   <p className="mt-4 text-xs leading-5 text-slate-500 dark:text-slate-400">
-                    {variantOriginCopy.how_to_identify}
+                    {variantExplanation?.how_to_identify ?? variantOriginCopy.how_to_identify}
                   </p>
                   <details className="mt-4 rounded-[14px] border border-slate-200/70 bg-white/60 px-3 py-3 dark:border-slate-700 dark:bg-slate-900/50">
                     <summary className="cursor-pointer text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 transition hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200">
                       Source-backed modeling
                     </summary>
                     <div className="mt-3 space-y-3 text-xs leading-5 text-slate-600 dark:text-slate-300">
-                      <p>{variantOriginCopy.grookai_rule}</p>
-                      {variantOriginCopy.source_urls.length > 0 ? (
+                      <p>{variantExplanation?.grookai_rule ?? variantOriginCopy.grookai_rule}</p>
+                      {(variantExplanation?.source_urls ?? variantOriginCopy.source_urls).length > 0 ? (
                         <ul className="space-y-1">
-                          {variantOriginCopy.source_urls.slice(0, 4).map((url) => (
+                          {(variantExplanation?.source_urls ?? variantOriginCopy.source_urls).slice(0, 4).map((url) => (
                             <li key={`${variantOriginCopy.gv_id}-${url}`}>
                               <a
                                 href={url}
@@ -732,6 +749,16 @@ export default async function CardPage({
                         </ul>
                       ) : null}
                     </div>
+                  </details>
+                  <details className="mt-3 rounded-[14px] border border-violet-200/60 bg-violet-50/50 px-3 py-3 dark:border-violet-300/20 dark:bg-violet-400/[0.08]">
+                    <summary className="cursor-pointer text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 transition hover:text-violet-950 dark:text-violet-200 dark:hover:text-white">
+                      Assistant grounding
+                    </summary>
+                    <VariantExplanationContextPreview
+                      gvId={resolvedCard.gv_id}
+                      printingGvId={selectedRoutePrinting?.printing_gv_id}
+                      finishKey={selectedRoutePrinting?.finish_key}
+                    />
                   </details>
                 </section>
               ) : null}

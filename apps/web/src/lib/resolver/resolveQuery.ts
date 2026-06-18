@@ -39,6 +39,8 @@ type RankedResolveOptions = {
   exactReleaseYear?: number;
   exactIllustrator?: string;
   identityFilter: IdentityFilterKey;
+  releaseYearMin?: number;
+  releaseYearMax?: number;
 };
 
 export type ResolverState =
@@ -311,6 +313,8 @@ export async function resolveQueryWithMeta(
     options.exactReleaseYear,
     options.exactIllustrator,
     options.identityFilter,
+    options.releaseYearMin,
+    options.releaseYearMax,
   );
   const meta = buildRankedResolverMeta(resolved.rows, resolved.timing, packet);
 

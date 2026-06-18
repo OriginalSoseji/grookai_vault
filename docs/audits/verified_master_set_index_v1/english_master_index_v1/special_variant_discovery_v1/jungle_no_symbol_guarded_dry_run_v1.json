@@ -1,0 +1,2385 @@
+{
+  "generated_at": "2026-06-17T13:31:41.060Z",
+  "package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+  "mode": "guarded_rollback_dry_run_only",
+  "source_report": "docs/audits/verified_master_set_index_v1/english_master_index_v1/special_variant_discovery_v1/special_variant_discovery_v1.json",
+  "source_fingerprint_sha256": "3c884f364c1a805e6d093eda26358de35438ae337aca6a1747079751ac1bb5a7",
+  "package_fingerprint_sha256": "d5a01e1ae21d3ef6f007dae9efe4485a8a6b57c88e9d57da6fd99ae0b70993f6",
+  "sql_hash_sha256": "0d7bed6961ea56fa760bbda32133ebf0bdfc232820143bf586db24d2d2ce306a",
+  "pass": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "scope": {
+    "target_rows": 16,
+    "by_set": {
+      "base2": 16
+    },
+    "by_finish": {
+      "holo": 16
+    },
+    "by_variant": {
+      "no_symbol_error": 16
+    },
+    "targets": [
+      {
+        "source_candidate_key": "base2-1-clefable-no-symbol-1",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "1",
+        "card_name": "Clefable",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/clefable-no-symbol-1",
+            "evidence_label": "PriceCharting exact product: Clefable [No Symbol] #1."
+          }
+        ],
+        "target_parent_id": "28a7a1a5-30c3-42ef-9b18-3efd340e2c5a",
+        "target_child_id": "96c33d5c-7341-482b-b1cf-464d4eb4f47f",
+        "base_parent_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+        "base_parent_gv_id": "GV-PK-JU-1",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/clefable-no-symbol-1"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-1-clefable-no-symbol-1",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/clefable-no-symbol-1",
+              "evidence_label": "PriceCharting exact product: Clefable [No Symbol] #1."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-2-electrode-no-symbol-2",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "2",
+        "card_name": "Electrode",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/electrode-no-symbol-2",
+            "evidence_label": "PriceCharting exact product: Electrode [No Symbol] #2."
+          }
+        ],
+        "target_parent_id": "83189125-b5f6-4169-b788-52a873359eb4",
+        "target_child_id": "150ef769-8012-48c4-95bd-408c6fbfb589",
+        "base_parent_id": "8eb4813c-0b90-4764-8709-16aa9d5a0d9e",
+        "base_parent_gv_id": "GV-PK-JU-2",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/electrode-no-symbol-2"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-2-electrode-no-symbol-2",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/electrode-no-symbol-2",
+              "evidence_label": "PriceCharting exact product: Electrode [No Symbol] #2."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-3-flareon-no-symbol-3",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "3",
+        "card_name": "Flareon",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/flareon-no-symbol-3",
+            "evidence_label": "PriceCharting exact product: Flareon [No Symbol] #3."
+          }
+        ],
+        "target_parent_id": "58197a15-6846-4234-b153-565e26038a51",
+        "target_child_id": "9108f0de-e2df-4614-9015-26cd2fd5acee",
+        "base_parent_id": "a89425a0-6abc-4c95-872f-6a433087939f",
+        "base_parent_gv_id": "GV-PK-JU-3",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/flareon-no-symbol-3"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-3-flareon-no-symbol-3",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/flareon-no-symbol-3",
+              "evidence_label": "PriceCharting exact product: Flareon [No Symbol] #3."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-4-jolteon-no-symbol-4",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "4",
+        "card_name": "Jolteon",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/jolteon-no-symbol-4",
+            "evidence_label": "PriceCharting exact product: Jolteon [No Symbol] #4."
+          }
+        ],
+        "target_parent_id": "bfd2238e-fc2d-452c-bc22-c4ea9dd84743",
+        "target_child_id": "f53201a7-824a-41f7-aa9d-c12107f2dd60",
+        "base_parent_id": "44867e4d-aa59-4fef-a33c-4ede1be99495",
+        "base_parent_gv_id": "GV-PK-JU-4",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/jolteon-no-symbol-4"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-4-jolteon-no-symbol-4",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/jolteon-no-symbol-4",
+              "evidence_label": "PriceCharting exact product: Jolteon [No Symbol] #4."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-5-kangaskhan-no-symbol-5",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "5",
+        "card_name": "Kangaskhan",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/kangaskhan-no-symbol-5",
+            "evidence_label": "PriceCharting exact product: Kangaskhan [No Symbol] #5."
+          }
+        ],
+        "target_parent_id": "84b0cad0-b224-44f7-98bc-1be6d582b513",
+        "target_child_id": "274405fd-a1c4-4030-9262-f0dc5199eecc",
+        "base_parent_id": "43c6f019-7fc4-4f5f-93e2-7f28ee798180",
+        "base_parent_gv_id": "GV-PK-JU-5",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/kangaskhan-no-symbol-5"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-5-kangaskhan-no-symbol-5",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/kangaskhan-no-symbol-5",
+              "evidence_label": "PriceCharting exact product: Kangaskhan [No Symbol] #5."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-6-mr-mime-no-symbol-6",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "6",
+        "card_name": "Mr. Mime",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/mr-mime-no-symbol-6",
+            "evidence_label": "PriceCharting exact product: Mr. Mime [No Symbol] #6."
+          }
+        ],
+        "target_parent_id": "1cfc7d99-93b3-4da7-a9d0-9321e4b1eaa2",
+        "target_child_id": "4f8ee9c0-e905-4e89-86e1-dfae714556ec",
+        "base_parent_id": "b35e8af0-bec3-4bb7-bbaf-d623553e4474",
+        "base_parent_gv_id": "GV-PK-JU-6",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/mr-mime-no-symbol-6"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-6-mr-mime-no-symbol-6",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/mr-mime-no-symbol-6",
+              "evidence_label": "PriceCharting exact product: Mr. Mime [No Symbol] #6."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-7-nidoqueen-no-symbol-7",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "7",
+        "card_name": "Nidoqueen",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/nidoqueen-no-symbol-7",
+            "evidence_label": "PriceCharting exact product: Nidoqueen [No Symbol] #7."
+          }
+        ],
+        "target_parent_id": "ffceadb7-dfad-4a35-b332-0ff0856fbecb",
+        "target_child_id": "16085226-b3dd-4e43-b0e3-55abad2eecf1",
+        "base_parent_id": "8148c1b4-3104-4a36-962f-cab78bb67a89",
+        "base_parent_gv_id": "GV-PK-JU-7",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/nidoqueen-no-symbol-7"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-7-nidoqueen-no-symbol-7",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/nidoqueen-no-symbol-7",
+              "evidence_label": "PriceCharting exact product: Nidoqueen [No Symbol] #7."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-8-pidgeot-no-symbol-8",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "8",
+        "card_name": "Pidgeot",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/pidgeot-no-symbol-8",
+            "evidence_label": "PriceCharting exact product: Pidgeot [No Symbol] #8."
+          }
+        ],
+        "target_parent_id": "e563e20e-a43b-48f0-b07f-31a986fd827e",
+        "target_child_id": "a49ed5c6-3672-4dec-84b9-e749c862539f",
+        "base_parent_id": "bb7ceaa7-dd12-45f1-848f-5091c83ee0f0",
+        "base_parent_gv_id": "GV-PK-JU-8",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/pidgeot-no-symbol-8"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-8-pidgeot-no-symbol-8",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/pidgeot-no-symbol-8",
+              "evidence_label": "PriceCharting exact product: Pidgeot [No Symbol] #8."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-9-pinsir-no-symbol-9",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "9",
+        "card_name": "Pinsir",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/pinsir-no-symbol-9",
+            "evidence_label": "PriceCharting exact product: Pinsir [No Symbol] #9."
+          }
+        ],
+        "target_parent_id": "66cdd415-f700-4199-bd04-dd47edeefd5e",
+        "target_child_id": "689bfe5c-9240-4f37-b229-f835e636e480",
+        "base_parent_id": "49fa39dd-d4ff-41a7-80dc-03db65aeb4a7",
+        "base_parent_gv_id": "GV-PK-JU-9",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/pinsir-no-symbol-9"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-9-pinsir-no-symbol-9",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/pinsir-no-symbol-9",
+              "evidence_label": "PriceCharting exact product: Pinsir [No Symbol] #9."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-10-scyther-no-symbol-10",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "10",
+        "card_name": "Scyther",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/scyther-no-symbol-10",
+            "evidence_label": "PriceCharting exact product: Scyther [No Symbol] #10."
+          }
+        ],
+        "target_parent_id": "bafc2195-d765-4f65-9db2-5a7ae54e3198",
+        "target_child_id": "3f679c8e-4359-49cc-864b-e20abd92f0cf",
+        "base_parent_id": "77dcdb70-4912-4574-b790-17e613cecb98",
+        "base_parent_gv_id": "GV-PK-JU-10",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/scyther-no-symbol-10"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-10-scyther-no-symbol-10",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/scyther-no-symbol-10",
+              "evidence_label": "PriceCharting exact product: Scyther [No Symbol] #10."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-11-snorlax-no-symbol-11",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "11",
+        "card_name": "Snorlax",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/snorlax-no-symbol-11",
+            "evidence_label": "PriceCharting exact product: Snorlax [No Symbol] #11."
+          }
+        ],
+        "target_parent_id": "20fa5289-8e45-41cf-9f96-1dfd4cb189fa",
+        "target_child_id": "7be7b6b8-5a1c-40c9-b7d6-bf9140ce326f",
+        "base_parent_id": "8b3cc33b-bb52-4b52-a731-70f3516345e7",
+        "base_parent_gv_id": "GV-PK-JU-11",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/snorlax-no-symbol-11"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-11-snorlax-no-symbol-11",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/snorlax-no-symbol-11",
+              "evidence_label": "PriceCharting exact product: Snorlax [No Symbol] #11."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-12-vaporeon-no-symbol-12",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "12",
+        "card_name": "Vaporeon",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/vaporeon-no-symbol-12",
+            "evidence_label": "PriceCharting exact product: Vaporeon [No Symbol] #12."
+          }
+        ],
+        "target_parent_id": "ca4004fb-c4af-4631-b624-ec5a872ffa35",
+        "target_child_id": "f2621ff6-4653-47a1-a1ff-889a4e58177a",
+        "base_parent_id": "b575fc44-4d9e-460d-9977-8f19fc0a1b4b",
+        "base_parent_gv_id": "GV-PK-JU-12",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/vaporeon-no-symbol-12"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-12-vaporeon-no-symbol-12",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/vaporeon-no-symbol-12",
+              "evidence_label": "PriceCharting exact product: Vaporeon [No Symbol] #12."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-13-venomoth-no-symbol-13",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "13",
+        "card_name": "Venomoth",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/venomoth-no-symbol-13",
+            "evidence_label": "PriceCharting exact product: Venomoth [No Symbol] #13."
+          }
+        ],
+        "target_parent_id": "b4dec454-afa9-429d-b44d-12ac70a226c0",
+        "target_child_id": "fb5e1765-06d4-486d-a8a0-b55bec2138df",
+        "base_parent_id": "59544cf4-177c-4c83-bd16-44b68733b06f",
+        "base_parent_gv_id": "GV-PK-JU-13",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/venomoth-no-symbol-13"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-13-venomoth-no-symbol-13",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/venomoth-no-symbol-13",
+              "evidence_label": "PriceCharting exact product: Venomoth [No Symbol] #13."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-14-victreebel-no-symbol-14",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "14",
+        "card_name": "Victreebel",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/victreebel-no-symbol-14",
+            "evidence_label": "PriceCharting exact product: Victreebel [No Symbol] #14."
+          }
+        ],
+        "target_parent_id": "2cfe8e2f-c552-4ef3-b69f-9ca29f69c3b9",
+        "target_child_id": "d1ae59a4-0bf9-4b43-acf3-932ad841470b",
+        "base_parent_id": "786ed86f-d6f0-43d7-92dc-22eadd69a620",
+        "base_parent_gv_id": "GV-PK-JU-14",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/victreebel-no-symbol-14"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-14-victreebel-no-symbol-14",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/victreebel-no-symbol-14",
+              "evidence_label": "PriceCharting exact product: Victreebel [No Symbol] #14."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-15-vileplume-no-symbol-15",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "15",
+        "card_name": "Vileplume",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/vileplume-no-symbol-15",
+            "evidence_label": "PriceCharting exact product: Vileplume [No Symbol] #15."
+          }
+        ],
+        "target_parent_id": "3ab13536-8f6a-4686-be31-14424a87788f",
+        "target_child_id": "910b82f4-f6da-478c-8771-902dc8e7f663",
+        "base_parent_id": "99f177ea-8920-43cb-9e8d-f6063054fc3d",
+        "base_parent_gv_id": "GV-PK-JU-15",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/vileplume-no-symbol-15"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-15-vileplume-no-symbol-15",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/vileplume-no-symbol-15",
+              "evidence_label": "PriceCharting exact product: Vileplume [No Symbol] #15."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base2-16-wigglytuff-no-symbol-16",
+        "set_key": "base2",
+        "set_name": "Jungle",
+        "card_number": "16",
+        "card_name": "Wigglytuff",
+        "target_variant_key": "no_symbol_error",
+        "target_printed_identity_modifier": "recognized_error:no_jungle_symbol",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "bulbapedia_jungle_tcg",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+            "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-jungle/wigglytuff-no-symbol-16",
+            "evidence_label": "PriceCharting exact product: Wigglytuff [No Symbol] #16."
+          }
+        ],
+        "target_parent_id": "b8b0e710-4454-439a-a0eb-f3eb75878998",
+        "target_child_id": "251993ea-4663-44a7-b9be-9acfca1e4b72",
+        "base_parent_id": "8a9af34f-25c2-497b-a6e1-740f8821de4e",
+        "base_parent_gv_id": "GV-PK-JU-16",
+        "base_child_finishes": [
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-jungle/wigglytuff-no-symbol-16"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+          "source_candidate_key": "base2-16-wigglytuff-no-symbol-16",
+          "classification": "recognized_error_variant",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "bulbapedia_jungle_tcg",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jungle_%28TCG%29",
+              "evidence_label": "Bulbapedia Jungle page states all English Holofoil Rares in unlimited Jungle were accidentally printed as error cards without set symbol."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia error-card page documents No Symbol Errors as a large print run of unlimited Jungle holo rares."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-jungle/wigglytuff-no-symbol-16",
+              "evidence_label": "PriceCharting exact product: Wigglytuff [No Symbol] #16."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "jungle_no_symbol_parent_insert_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 16,
+      "target_parent_count": 16,
+      "target_child_count": 16,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "missing_base_holo_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 16,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS",
+      "package_fingerprint": "d5a01e1ae21d3ef6f007dae9efe4485a8a6b57c88e9d57da6fd99ae0b70993f6",
+      "target_rows": 16,
+      "inserted_parent_rows": 16,
+      "inserted_parent_identity_rows": 16,
+      "inserted_identity_rows": 16,
+      "inserted_child_rows": 16,
+      "forbidden_stamped_child_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 16,
+      "identity_inserts": 16,
+      "child_inserts": 16,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-17T13:31:39.582Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+          "set_code": "base2",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Clefable",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "77dcdb70-4912-4574-b790-17e613cecb98",
+          "set_code": "base2",
+          "number": "10",
+          "number_plain": "10",
+          "name": "Scyther",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8b3cc33b-bb52-4b52-a731-70f3516345e7",
+          "set_code": "base2",
+          "number": "11",
+          "number_plain": "11",
+          "name": "Snorlax",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "b575fc44-4d9e-460d-9977-8f19fc0a1b4b",
+          "set_code": "base2",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Vaporeon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "59544cf4-177c-4c83-bd16-44b68733b06f",
+          "set_code": "base2",
+          "number": "13",
+          "number_plain": "13",
+          "name": "Venomoth",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "786ed86f-d6f0-43d7-92dc-22eadd69a620",
+          "set_code": "base2",
+          "number": "14",
+          "number_plain": "14",
+          "name": "Victreebel",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "99f177ea-8920-43cb-9e8d-f6063054fc3d",
+          "set_code": "base2",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Vileplume",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8a9af34f-25c2-497b-a6e1-740f8821de4e",
+          "set_code": "base2",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Wigglytuff",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8eb4813c-0b90-4764-8709-16aa9d5a0d9e",
+          "set_code": "base2",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electrode",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "a89425a0-6abc-4c95-872f-6a433087939f",
+          "set_code": "base2",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Flareon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "44867e4d-aa59-4fef-a33c-4ede1be99495",
+          "set_code": "base2",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Jolteon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "43c6f019-7fc4-4f5f-93e2-7f28ee798180",
+          "set_code": "base2",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Kangaskhan",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "b35e8af0-bec3-4bb7-bbaf-d623553e4474",
+          "set_code": "base2",
+          "number": "6",
+          "number_plain": "6",
+          "name": "Mr. Mime",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8148c1b4-3104-4a36-962f-cab78bb67a89",
+          "set_code": "base2",
+          "number": "7",
+          "number_plain": "7",
+          "name": "Nidoqueen",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "bb7ceaa7-dd12-45f1-848f-5091c83ee0f0",
+          "set_code": "base2",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Pidgeot",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "49fa39dd-d4ff-41a7-80dc-03db65aeb4a7",
+          "set_code": "base2",
+          "number": "9",
+          "number_plain": "9",
+          "name": "Pinsir",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "7f67f088b80af2058324230a7d0b1987fbdf3819e42ff658fdb56cb3852c9970",
+      "counts": {
+        "base_parent": 16
+      }
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-17T13:31:40.821Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+          "set_code": "base2",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Clefable",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "77dcdb70-4912-4574-b790-17e613cecb98",
+          "set_code": "base2",
+          "number": "10",
+          "number_plain": "10",
+          "name": "Scyther",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8b3cc33b-bb52-4b52-a731-70f3516345e7",
+          "set_code": "base2",
+          "number": "11",
+          "number_plain": "11",
+          "name": "Snorlax",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "b575fc44-4d9e-460d-9977-8f19fc0a1b4b",
+          "set_code": "base2",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Vaporeon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "59544cf4-177c-4c83-bd16-44b68733b06f",
+          "set_code": "base2",
+          "number": "13",
+          "number_plain": "13",
+          "name": "Venomoth",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "786ed86f-d6f0-43d7-92dc-22eadd69a620",
+          "set_code": "base2",
+          "number": "14",
+          "number_plain": "14",
+          "name": "Victreebel",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "99f177ea-8920-43cb-9e8d-f6063054fc3d",
+          "set_code": "base2",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Vileplume",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8a9af34f-25c2-497b-a6e1-740f8821de4e",
+          "set_code": "base2",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Wigglytuff",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8eb4813c-0b90-4764-8709-16aa9d5a0d9e",
+          "set_code": "base2",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electrode",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "a89425a0-6abc-4c95-872f-6a433087939f",
+          "set_code": "base2",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Flareon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "44867e4d-aa59-4fef-a33c-4ede1be99495",
+          "set_code": "base2",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Jolteon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "43c6f019-7fc4-4f5f-93e2-7f28ee798180",
+          "set_code": "base2",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Kangaskhan",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "b35e8af0-bec3-4bb7-bbaf-d623553e4474",
+          "set_code": "base2",
+          "number": "6",
+          "number_plain": "6",
+          "name": "Mr. Mime",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8148c1b4-3104-4a36-962f-cab78bb67a89",
+          "set_code": "base2",
+          "number": "7",
+          "number_plain": "7",
+          "name": "Nidoqueen",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "bb7ceaa7-dd12-45f1-848f-5091c83ee0f0",
+          "set_code": "base2",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Pidgeot",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "49fa39dd-d4ff-41a7-80dc-03db65aeb4a7",
+          "set_code": "base2",
+          "number": "9",
+          "number_plain": "9",
+          "name": "Pinsir",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "96c33d5c-7341-482b-b1cf-464d4eb4f47f",
+          "set_code": "base2",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Clefable",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "3f679c8e-4359-49cc-864b-e20abd92f0cf",
+          "set_code": "base2",
+          "number": "10",
+          "number_plain": "10",
+          "name": "Scyther",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "7be7b6b8-5a1c-40c9-b7d6-bf9140ce326f",
+          "set_code": "base2",
+          "number": "11",
+          "number_plain": "11",
+          "name": "Snorlax",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "f2621ff6-4653-47a1-a1ff-889a4e58177a",
+          "set_code": "base2",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Vaporeon",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "fb5e1765-06d4-486d-a8a0-b55bec2138df",
+          "set_code": "base2",
+          "number": "13",
+          "number_plain": "13",
+          "name": "Venomoth",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "d1ae59a4-0bf9-4b43-acf3-932ad841470b",
+          "set_code": "base2",
+          "number": "14",
+          "number_plain": "14",
+          "name": "Victreebel",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "910b82f4-f6da-478c-8771-902dc8e7f663",
+          "set_code": "base2",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Vileplume",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "251993ea-4663-44a7-b9be-9acfca1e4b72",
+          "set_code": "base2",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Wigglytuff",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "150ef769-8012-48c4-95bd-408c6fbfb589",
+          "set_code": "base2",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electrode",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "9108f0de-e2df-4614-9015-26cd2fd5acee",
+          "set_code": "base2",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Flareon",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "f53201a7-824a-41f7-aa9d-c12107f2dd60",
+          "set_code": "base2",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Jolteon",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "274405fd-a1c4-4030-9262-f0dc5199eecc",
+          "set_code": "base2",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Kangaskhan",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "4f8ee9c0-e905-4e89-86e1-dfae714556ec",
+          "set_code": "base2",
+          "number": "6",
+          "number_plain": "6",
+          "name": "Mr. Mime",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "16085226-b3dd-4e43-b0e3-55abad2eecf1",
+          "set_code": "base2",
+          "number": "7",
+          "number_plain": "7",
+          "name": "Nidoqueen",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "a49ed5c6-3672-4dec-84b9-e749c862539f",
+          "set_code": "base2",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Pidgeot",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "689bfe5c-9240-4f37-b229-f835e636e480",
+          "set_code": "base2",
+          "number": "9",
+          "number_plain": "9",
+          "name": "Pinsir",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "f430b6d3-8155-43da-9ee8-5be71da463c0",
+          "set_code": "base2",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Clefable",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "147c52782a3b390bb94ddec64f784b5e7fd33abf54f6d3cd2a39adc71d606206"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "8abd2888-f078-48f6-a0c2-98e6e544d12f",
+          "set_code": "base2",
+          "number": "10",
+          "number_plain": "10",
+          "name": "Scyther",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "b7dc9205c80bb1c30b1a66d1361d42ad6df1191f28abd9ba9b7dbc9afa1ffec3"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "2361aa7d-72d8-4933-a3c6-66068c2df2b4",
+          "set_code": "base2",
+          "number": "11",
+          "number_plain": "11",
+          "name": "Snorlax",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "8130b39aed84e869f5f701d3fdf30f38e72a02ecd739166d67fc04d587c48db3"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "1e5e1940-7c11-4f93-8f3f-61954c2937fe",
+          "set_code": "base2",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Vaporeon",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "4dd4ab32e52e38c6d7e0301d10869f984d77cd4ae2fcc27e292422d3cfc40877"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "d15b8ac4-1679-4d19-8abd-c1e52896f2e4",
+          "set_code": "base2",
+          "number": "13",
+          "number_plain": "13",
+          "name": "Venomoth",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "5e6569023f8d236773e58a761f89fe8411e3c3acc436ea5a95a757e26f9093d7"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "308f0267-e6df-441b-9e88-9e8ea9d509b1",
+          "set_code": "base2",
+          "number": "14",
+          "number_plain": "14",
+          "name": "Victreebel",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "6fa5983cb8b529e509a86b0c6407846fd36a7ca29fddfdf5f600a2b37918aedd"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "317c8c15-5bc8-4493-bc3b-ec4437533551",
+          "set_code": "base2",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Vileplume",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "07a973d16691af53d054871a9703b664c0d8a71867b66bb4dcdb17ee143c8426"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "388445b9-5638-4df1-bf2d-91c37b6b1828",
+          "set_code": "base2",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Wigglytuff",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "1232eb9f308dcb150201d051e0da16dfbf7a30164d8308f2e84ff1c5d1717d4f"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "64bd5c77-30df-4719-ac2b-b15eeb042176",
+          "set_code": "base2",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electrode",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "8f55009b2842aaa5c9954cdf969060733fd23518b1e594fe8ea36953633cbb8a"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "8abfa02d-7a8d-452c-9026-c3000a65d634",
+          "set_code": "base2",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Flareon",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "23d04636e1cbde7c7ecb3d08ce57aa3699eb80f9ce3a857c02f734ffc2d6f54e"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "03fb4cf9-2d01-4ea1-867a-c30ba1b24471",
+          "set_code": "base2",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Jolteon",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "65f92db6ad24e309aec6f6f5baa2c2c5632a6d1f5e47c4cee9cea7a0f4dcad0f"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "45284e1b-d0e1-4ec6-829e-8f1d6fd2c871",
+          "set_code": "base2",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Kangaskhan",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "16b7ef93ef8a4a0fc4f5ca2dacf90775c5d479d2cbddeb71e7bdca1ac5a28107"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "6c551ab8-020a-4295-8b47-b1cb82ce2ad0",
+          "set_code": "base2",
+          "number": "6",
+          "number_plain": "6",
+          "name": "Mr. Mime",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "a240ea2dd52e12a8b71f29afbce27962ed2d38fd6d482f7650d2e46dd130815c"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "40a93740-2314-4226-b5fc-0f7c828ad0d1",
+          "set_code": "base2",
+          "number": "7",
+          "number_plain": "7",
+          "name": "Nidoqueen",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "b9f8fd262c893354dc96bc4eae76997a4110c70aea940f574a26b3b128993af6"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "45beef3b-42bd-4615-83b2-62fa10f4423e",
+          "set_code": "base2",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Pidgeot",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "c053bc63a3e8d2ca5c7e1d65c5d332ac0f60739a9c4404dcb1b2121dec082ab9"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "0c72f605-5de2-49cd-a31f-fad6f613b2cc",
+          "set_code": "base2",
+          "number": "9",
+          "number_plain": "9",
+          "name": "Pinsir",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": "b10f97168ad3d34286beb8eaf50e6c0d2ca923e33d45ae74d8303d3858a3da8c"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "28a7a1a5-30c3-42ef-9b18-3efd340e2c5a",
+          "set_code": "base2",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Clefable",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "bafc2195-d765-4f65-9db2-5a7ae54e3198",
+          "set_code": "base2",
+          "number": "10",
+          "number_plain": "10",
+          "name": "Scyther",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "20fa5289-8e45-41cf-9f96-1dfd4cb189fa",
+          "set_code": "base2",
+          "number": "11",
+          "number_plain": "11",
+          "name": "Snorlax",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ca4004fb-c4af-4631-b624-ec5a872ffa35",
+          "set_code": "base2",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Vaporeon",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "b4dec454-afa9-429d-b44d-12ac70a226c0",
+          "set_code": "base2",
+          "number": "13",
+          "number_plain": "13",
+          "name": "Venomoth",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "2cfe8e2f-c552-4ef3-b69f-9ca29f69c3b9",
+          "set_code": "base2",
+          "number": "14",
+          "number_plain": "14",
+          "name": "Victreebel",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "3ab13536-8f6a-4686-be31-14424a87788f",
+          "set_code": "base2",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Vileplume",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "b8b0e710-4454-439a-a0eb-f3eb75878998",
+          "set_code": "base2",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Wigglytuff",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "83189125-b5f6-4169-b788-52a873359eb4",
+          "set_code": "base2",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electrode",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "58197a15-6846-4234-b153-565e26038a51",
+          "set_code": "base2",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Flareon",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "bfd2238e-fc2d-452c-bc22-c4ea9dd84743",
+          "set_code": "base2",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Jolteon",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "84b0cad0-b224-44f7-98bc-1be6d582b513",
+          "set_code": "base2",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Kangaskhan",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "1cfc7d99-93b3-4da7-a9d0-9321e4b1eaa2",
+          "set_code": "base2",
+          "number": "6",
+          "number_plain": "6",
+          "name": "Mr. Mime",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "ffceadb7-dfad-4a35-b332-0ff0856fbecb",
+          "set_code": "base2",
+          "number": "7",
+          "number_plain": "7",
+          "name": "Nidoqueen",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "e563e20e-a43b-48f0-b07f-31a986fd827e",
+          "set_code": "base2",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Pidgeot",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "66cdd415-f700-4199-bd04-dd47edeefd5e",
+          "set_code": "base2",
+          "number": "9",
+          "number_plain": "9",
+          "name": "Pinsir",
+          "variant_key": "no_symbol_error",
+          "printed_identity_modifier": "recognized_error:no_jungle_symbol",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "2d83eb306d625a6220473f63a227fbc1e033b3d1dc2b11d807d82f613f39ad23",
+      "counts": {
+        "base_parent": 16,
+        "target_child": 16,
+        "target_identity": 16,
+        "target_parent": 16
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-17T13:31:40.978Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "463f3a84-42a5-4d8f-85c8-7fc1aa14ec36",
+          "set_code": "base2",
+          "number": "1",
+          "number_plain": "1",
+          "name": "Clefable",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "77dcdb70-4912-4574-b790-17e613cecb98",
+          "set_code": "base2",
+          "number": "10",
+          "number_plain": "10",
+          "name": "Scyther",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8b3cc33b-bb52-4b52-a731-70f3516345e7",
+          "set_code": "base2",
+          "number": "11",
+          "number_plain": "11",
+          "name": "Snorlax",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "b575fc44-4d9e-460d-9977-8f19fc0a1b4b",
+          "set_code": "base2",
+          "number": "12",
+          "number_plain": "12",
+          "name": "Vaporeon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "59544cf4-177c-4c83-bd16-44b68733b06f",
+          "set_code": "base2",
+          "number": "13",
+          "number_plain": "13",
+          "name": "Venomoth",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "786ed86f-d6f0-43d7-92dc-22eadd69a620",
+          "set_code": "base2",
+          "number": "14",
+          "number_plain": "14",
+          "name": "Victreebel",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "99f177ea-8920-43cb-9e8d-f6063054fc3d",
+          "set_code": "base2",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Vileplume",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8a9af34f-25c2-497b-a6e1-740f8821de4e",
+          "set_code": "base2",
+          "number": "16",
+          "number_plain": "16",
+          "name": "Wigglytuff",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8eb4813c-0b90-4764-8709-16aa9d5a0d9e",
+          "set_code": "base2",
+          "number": "2",
+          "number_plain": "2",
+          "name": "Electrode",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "a89425a0-6abc-4c95-872f-6a433087939f",
+          "set_code": "base2",
+          "number": "3",
+          "number_plain": "3",
+          "name": "Flareon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "44867e4d-aa59-4fef-a33c-4ede1be99495",
+          "set_code": "base2",
+          "number": "4",
+          "number_plain": "4",
+          "name": "Jolteon",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "43c6f019-7fc4-4f5f-93e2-7f28ee798180",
+          "set_code": "base2",
+          "number": "5",
+          "number_plain": "5",
+          "name": "Kangaskhan",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "b35e8af0-bec3-4bb7-bbaf-d623553e4474",
+          "set_code": "base2",
+          "number": "6",
+          "number_plain": "6",
+          "name": "Mr. Mime",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "8148c1b4-3104-4a36-962f-cab78bb67a89",
+          "set_code": "base2",
+          "number": "7",
+          "number_plain": "7",
+          "name": "Nidoqueen",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "bb7ceaa7-dd12-45f1-848f-5091c83ee0f0",
+          "set_code": "base2",
+          "number": "8",
+          "number_plain": "8",
+          "name": "Pidgeot",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "49fa39dd-d4ff-41a7-80dc-03db65aeb4a7",
+          "set_code": "base2",
+          "number": "9",
+          "number_plain": "9",
+          "name": "Pinsir",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "7f67f088b80af2058324230a7d0b1987fbdf3819e42ff658fdb56cb3852c9970",
+      "counts": {
+        "base_parent": 16
+      }
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "59ff65e4ef4f45afe1ef7425b2880b8e41f7e4ec9bf4053761854e46123965cc",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real SPECIAL-VAR-01-JUNGLE-NO-SYMBOL-PARENT-INSERTS apply only. Fingerprint: d5a01e1ae21d3ef6f007dae9efe4485a8a6b57c88e9d57da6fd99ae0b70993f6. SQL hash: 0d7bed6961ea56fa760bbda32133ebf0bdfc232820143bf586db24d2d2ce306a. Scope: 16 Jungle No Symbol recognized-error parent inserts, 16 active identity inserts, 16 holo child printing inserts; set base2/Jungle; variant_key=no_symbol_error; printed_identity_modifier=recognized_error:no_jungle_symbol. Dry-run proof: 7f67f088b80af2058324230a7d0b1987fbdf3819e42ff658fdb56cb3852c9970 == 7f67f088b80af2058324230a7d0b1987fbdf3819e42ff658fdb56cb3852c9970. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}

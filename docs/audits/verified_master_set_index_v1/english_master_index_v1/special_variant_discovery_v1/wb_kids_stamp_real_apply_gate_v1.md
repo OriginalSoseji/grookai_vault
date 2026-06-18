@@ -1,0 +1,30 @@
+# WB Kids Promo Stamp Real Apply Gate V1
+
+This is an apply gate only. It does not write to the database.
+
+## Gate
+
+- pass: true
+- gate_fingerprint_sha256: `d29da7b6653c0b9cb399a77722109ee87e214f9c277065518ce1fd4c87f2f938`
+- package_fingerprint_sha256: `d6793a662528ecd9fc7a2bec19244da24da7a06df8a820b4c35c50c1d56102fc`
+- sql_hash_sha256: `cf6539d044a889f51db702da396cbdb813a9b7c9251c44a06b378b52b725752c`
+- dry_run_proof_sha256: `1ea619a0eed2b267ab92ad780d270cbab5eaf2d6811a99f2cf13a06db7f9f17e`
+- findings: 0
+
+## Scope
+
+| metric | value |
+| --- | --- |
+| target_rows | 9 |
+| parent_inserts | 9 |
+| identity_inserts | 9 |
+| child_inserts | 9 |
+| by_set | {"basep":9} |
+| by_finish | {"normal":9} |
+| by_variant | {"inverted_wb_kids_stamp":4,"wb_kids_stamp":4,"missing_wb_kids_stamp":1} |
+
+## Required Approval Text
+
+```text
+Approve real SPECIAL-VAR-02-WB-KIDS-PROMO-STAMP-PARENT-INSERTS apply only. Fingerprint: d6793a662528ecd9fc7a2bec19244da24da7a06df8a820b4c35c50c1d56102fc. SQL hash: cf6539d044a889f51db702da396cbdb813a9b7c9251c44a06b378b52b725752c. Scope: 9 WB Kids promo special-case parent inserts, 9 active identity inserts, 9 normal child printing inserts; set basep/Wizards Black Star Promos; variants wb_kids_stamp=4, inverted_wb_kids_stamp=4, missing_wb_kids_stamp=1. Dry-run proof: 3334b32c58f50feb80baf86239009e387d56ee8634c52de235500ba17d3fe20c == 3334b32c58f50feb80baf86239009e387d56ee8634c52de235500ba17d3fe20c. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.
+```

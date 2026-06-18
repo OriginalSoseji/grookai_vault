@@ -4,6 +4,8 @@ Audit-only checkpoint registry for English Master Index work.
 
 | Date | Checkpoint | Purpose |
 | --- | --- | --- |
+| 2026-06-17 | [Variant Origin Public Copy Export Checkpoint V1](20260617_variant_origin_public_copy_export_checkpoint_v1.md) | Records read-only public-copy export for source-backed special variant explanations: 1,803 public-copy-safe parent rows, 39 families, 73 governance-blocked rows excluded, no migrations. |
+| 2026-06-17 | [Special Variant Master Index Completion Checkpoint V1](20260617_special_variant_master_index_completion_checkpoint_v1.md) | Records closure of the source-ready special-variant pass: 48 source-ready variants in DB, 0 source-ready missing rows, 3 blocked evidence rows, no migrations. |
 | 2026-05-26 | [PokemonTCG Live + Snapshot Union Checkpoint V1](20260526_pokemontcg_live_snapshot_union_checkpoint_v1.md) | Records the additive live+snapshot PokemonTCG evidence invariant and non-degraded Master Index rebuild. |
 | 2026-05-27 | [Guarded Master Index Safe Baseline V1](20260527_guarded_master_index_safe_baseline_v1.md) | Records the promoted guarded rebuild baseline and non-regression rules for future Master Index report promotion. |
 | 2026-05-27 | [PriceCharting Context + PokemonTCG Preservation Checkpoint V1](20260527_pricecharting_context_preservation_checkpoint_v1.md) | Records PriceCharting manual-review context capture, PokemonTCG preservation overrides, and the non-degraded guarded rebuild. |

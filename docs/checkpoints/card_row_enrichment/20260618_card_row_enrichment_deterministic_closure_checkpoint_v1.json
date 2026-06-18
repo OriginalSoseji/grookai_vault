@@ -1,0 +1,83 @@
+{
+  "version": "CARD_ROW_ENRICHMENT_DETERMINISTIC_CLOSURE_CHECKPOINT_V1",
+  "generated_at": "2026-06-18T02:45:00.000Z",
+  "scope": {
+    "target": "English physical card row enrichment after special-variant and retailer-stamp additions",
+    "mode": "checkpoint",
+    "db_writes_performed_by_checkpoint": false,
+    "migrations_created": false,
+    "image_work_included": false,
+    "checkpoint_note": "This checkpoint documents the state after the separately approved ENRICH-02 child printing GV-ID apply. No writes were performed by checkpoint creation."
+  },
+  "applied_before_checkpoint": {
+    "package_id": "ENRICH-02-CHILD-PRINTING-GV-ID-BACKFILL",
+    "fingerprint": "cfc4ef65c32e6b88e55a2dc6d07788a62979873dcc8d4d078ca9ad12723d542f",
+    "scope": "27 child card_printing printing_gv_id updates",
+    "dry_run_proof": "8c811f00a50fede62e62e720453a02cad4f5058f07132c6d9f5e3353127516aa == 8c811f00a50fede62e62e720453a02cad4f5058f07132c6d9f5e3353127516aa",
+    "forbidden_scope_confirmed": [
+      "no parent writes",
+      "no identity writes",
+      "no deletes",
+      "no merges",
+      "no migrations",
+      "no image writes",
+      "no global apply"
+    ]
+  },
+  "source_reports": {
+    "status": "docs/audits/card_row_enrichment_v1/card_row_enrichment_status_v1.json",
+    "cleanup_plan": "docs/audits/card_row_enrichment_v1/card_row_enrichment_cleanup_plan_v1.json",
+    "consumer_readiness": "docs/audits/card_row_enrichment_v1/card_row_enrichment_consumer_readiness_v1.json",
+    "real_apply_artifact": "docs/audits/card_row_enrichment_v1/enrich02_child_printing_gv_id_real_apply_v1.json"
+  },
+  "fingerprints": {
+    "status": "9d1681af4915a3e3f784265c5636662b51fbceefb0a2266c895c56be2c2c1eb9",
+    "cleanup_plan": "5905dff0789bb1f73a3f2047d700be03301a834297610a80010660f73db68763",
+    "consumer_readiness": "87059193001647200bc7f3eb86f5944603868fa3c54ff6e41d78a952d8987999"
+  },
+  "row_universe": {
+    "all_parent_rows": 24871,
+    "all_child_printing_rows": 43643,
+    "english_physical_parent_rows": 22859,
+    "english_physical_child_printing_rows": 37607,
+    "english_physical_parent_gap_rows": 5276,
+    "english_physical_child_gap_rows": 12999
+  },
+  "deterministic_closure": {
+    "parent_gv_id_ready": 0,
+    "child_printing_gv_id_ready": 0,
+    "active_identity_ready": 0,
+    "core_identity_gap_rows": 0,
+    "next_recommended_package": null
+  },
+  "remaining_source_governance_backlog": {
+    "external_mapping_gap_rows": 743,
+    "no_child_printing_parent_rows": 1077,
+    "trait_gaps": 899,
+    "species_gaps": 3808,
+    "catalog_metadata_gaps": 139,
+    "image_exact_variant_backlog_rows": 14501,
+    "public_provenance_status": "not_public_ready"
+  },
+  "consumer_surface_readiness": {
+    "public_card_identity": "ready",
+    "printing_selector": "ready",
+    "image_display": "ready_with_labeling_guardrails",
+    "catalog_metadata": "ready_with_labeling_guardrails",
+    "species_and_traits": "ready_with_labeling_guardrails",
+    "external_source_links": "admin_only_or_hidden",
+    "public_provenance": "not_public_ready"
+  },
+  "next_work_recommendation": [
+    "Do not start another broad automatic enrichment write package.",
+    "Treat external mappings, species, traits, catalog metadata, and no-child parents as source-governance lanes.",
+    "Treat child image exactness as Image Truth work, with representative labeling retained until exact evidence exists.",
+    "If continuing DB work, start with a read-only source-specific readiness plan for external mappings or species applicability."
+  ],
+  "verification": {
+    "contract_scope_test": "passed",
+    "node_check_enrich02_real_apply": "passed",
+    "git_diff_check": "passed",
+    "supabase_migrations_status": "clean"
+  }
+}

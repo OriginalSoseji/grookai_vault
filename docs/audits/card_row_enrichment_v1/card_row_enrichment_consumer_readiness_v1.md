@@ -5,16 +5,16 @@
 - Audit only: true
 - DB writes performed: false
 - Migrations created: false
-- Fingerprint: `02fa11e425135466ff26800f5d613ff636f27ba55bfc6d55dd87fe8c84427f23`
+- Fingerprint: `3789e80cdf5a75a65b48a3a80f8f9186c1bd50be900d406fca2c3c8ec1b7e1a2`
 
 ## Row Universe
 
 | metric | rows |
 | --- | --- |
-| english_physical_parent_rows | 22791 |
-| english_physical_child_printing_rows | 37651 |
-| english_physical_parent_gap_rows | 5208 |
-| english_physical_child_gap_rows | 12999 |
+| english_physical_parent_rows | 22859 |
+| english_physical_child_printing_rows | 37620 |
+| english_physical_parent_gap_rows | 5192 |
+| english_physical_child_gap_rows | 13012 |
 
 ## Core Display Readiness
 

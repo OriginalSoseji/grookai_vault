@@ -1,0 +1,690 @@
+{
+  "generated_at": "2026-06-17T15:33:02.877Z",
+  "package_id": "SPECIAL-VAR-05-RESIDUAL-SOURCE-READY-PARENT-INSERTS",
+  "mode": "guarded_rollback_dry_run_only",
+  "source_report": "docs/audits/verified_master_set_index_v1/english_master_index_v1/special_variant_discovery_v1/special_variant_discovery_v1.json",
+  "source_fingerprint_sha256": "f099bade9d298aff964d3d5718742510b81a76c5b4c12b35c00034ba5eebc717",
+  "package_fingerprint_sha256": "d8868b21fb25b7834ad967dcd4659a8ff7ff750b4a516825eb2d6a4a0a2d96c2",
+  "sql_hash_sha256": "15922fd72f503afa5ffd0af086680222ae19c5422d07f38297a65d1951c0d32a",
+  "pass": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "transaction_writes_rolled_back": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "scope": {
+    "target_rows": 4,
+    "source_unique_finish_rows": 0,
+    "by_set": {
+      "base1": 2,
+      "base3": 1,
+      "gym2": 1
+    },
+    "by_finish": {
+      "normal": 3,
+      "holo": 1
+    },
+    "by_variant": {
+      "corrected_text_variant": 1,
+      "d_fending_error": 1,
+      "missing_holo_evolution_box_error": 1,
+      "sideways_fighting_energy_error": 1
+    },
+    "targets": [
+      {
+        "source_candidate_key": "base1-17-beedrill-d-fending-error",
+        "set_key": "base1",
+        "set_name": "Base Set",
+        "card_number": "17",
+        "card_name": "Beedrill",
+        "target_variant_key": "d_fending_error",
+        "target_printed_identity_modifier": "recognized_error:d_fending_text",
+        "target_finish_key": "normal",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "elitefourum_wotc_error_guide",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+            "evidence_label": "WOTC corrected-errors guide identifies the “D.fending” Beedrill error text."
+          },
+          {
+            "source_key": "bulbapedia_beedrill_base_17",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Beedrill_%28Base_Set_17%29",
+            "evidence_label": "Bulbapedia Beedrill Base Set 17 page states a few copies were printed with “D.efending” in Poison Sting attack text."
+          },
+          {
+            "source_key": "psa_beedrill_d_efending_spec",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.psacard.com/spec/psa/8859750",
+            "evidence_label": "PSA spec page identifies 1999 Pokemon Game Beedrill #17 “d. Efending” Error."
+          }
+        ],
+        "target_parent_id": "72e51650-dbad-41ec-a5d1-a8fc9f5c7d71",
+        "target_child_id": "15d6dff1-3df8-4f52-89eb-651047e76f1f",
+        "base_parent_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+        "base_parent_gv_id": "GV-PK-BS-17",
+        "base_child_finishes": [
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "https://bulbapedia.bulbagarden.net/wiki/Beedrill_%28Base_Set_17%29",
+          "https://www.psacard.com/spec/psa/8859750"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-05-RESIDUAL-SOURCE-READY-PARENT-INSERTS",
+          "source_candidate_key": "base1-17-beedrill-d-fending-error",
+          "classification": "recognized_error_variant",
+          "variant_key": "d_fending_error",
+          "printed_identity_modifier": "recognized_error:d_fending_text",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "elitefourum_wotc_error_guide",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+              "evidence_label": "WOTC corrected-errors guide identifies the “D.fending” Beedrill error text."
+            },
+            {
+              "source_key": "bulbapedia_beedrill_base_17",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Beedrill_%28Base_Set_17%29",
+              "evidence_label": "Bulbapedia Beedrill Base Set 17 page states a few copies were printed with “D.efending” in Poison Sting attack text."
+            },
+            {
+              "source_key": "psa_beedrill_d_efending_spec",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.psacard.com/spec/psa/8859750",
+              "evidence_label": "PSA spec page identifies 1999 Pokemon Game Beedrill #17 “d. Efending” Error."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base1-47-diglett-sideways-fighting-energy",
+        "set_key": "base1",
+        "set_name": "Base Set",
+        "card_number": "47",
+        "card_name": "Diglett",
+        "target_variant_key": "sideways_fighting_energy_error",
+        "target_printed_identity_modifier": "recognized_error:sideways_fighting_energy",
+        "target_finish_key": "normal",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "elitefourum_wotc_error_guide",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+            "evidence_label": "WOTC corrected-errors guide identifies Sideways Fighting energy Diglett #47/102 found in Base Set 2-Player Starter decks."
+          },
+          {
+            "source_key": "elitefourum_base_set_errors_unlimited",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/base-set-error-cards-exclusive-to-unlimited-set/25307",
+            "evidence_label": "Elite Fourum Base Set error discussion lists Diglett #47/102 Sideways Fighting Energy as an unlimited Base Set error."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-base-set/diglett-fight-symbol-error-47",
+            "evidence_label": "PriceCharting exact product: Diglett [Fight Symbol Error] #47."
+          }
+        ],
+        "target_parent_id": "9d600dd3-f0aa-43f7-8fd3-0311c9e8403a",
+        "target_child_id": "7107d289-4015-4ba0-b43c-cb46e4bdfc28",
+        "base_parent_id": "190716dc-1a89-4bfe-86fd-fb147a39fe3d",
+        "base_parent_gv_id": "GV-PK-BS-47",
+        "base_child_finishes": [
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "https://www.elitefourum.com/t/base-set-error-cards-exclusive-to-unlimited-set/25307",
+          "https://www.pricecharting.com/game/pokemon-base-set/diglett-fight-symbol-error-47"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-05-RESIDUAL-SOURCE-READY-PARENT-INSERTS",
+          "source_candidate_key": "base1-47-diglett-sideways-fighting-energy",
+          "classification": "recognized_error_variant",
+          "variant_key": "sideways_fighting_energy_error",
+          "printed_identity_modifier": "recognized_error:sideways_fighting_energy",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "elitefourum_wotc_error_guide",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+              "evidence_label": "WOTC corrected-errors guide identifies Sideways Fighting energy Diglett #47/102 found in Base Set 2-Player Starter decks."
+            },
+            {
+              "source_key": "elitefourum_base_set_errors_unlimited",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/base-set-error-cards-exclusive-to-unlimited-set/25307",
+              "evidence_label": "Elite Fourum Base Set error discussion lists Diglett #47/102 Sideways Fighting Energy as an unlimited Base Set error."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-base-set/diglett-fight-symbol-error-47",
+              "evidence_label": "PriceCharting exact product: Diglett [Fight Symbol Error] #47."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "base3-15-zapdos-missing-holo-evolution-box",
+        "set_key": "base3",
+        "set_name": "Fossil",
+        "card_number": "15",
+        "card_name": "Zapdos",
+        "target_variant_key": "missing_holo_evolution_box_error",
+        "target_printed_identity_modifier": "recognized_error:missing_holo_evolution_box",
+        "target_finish_key": "holo",
+        "classification": "recognized_error_variant",
+        "evidence": [
+          {
+            "source_key": "elitefourum_wotc_error_guide",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+            "evidence_label": "WOTC corrected-errors guide identifies Missing holo in Evolution box Zapdos #15/62."
+          },
+          {
+            "source_key": "elitefourum_fossil_zapdos_guide",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/guide-to-understanding-fossil-zapdos-15-62-variants/30830",
+            "evidence_label": "Elite Fourum Fossil Zapdos variant guide documents the holo evolution box error on Zapdos #15/62 and explains the late corrected unlimited print."
+          },
+          {
+            "source_key": "pricecharting_corrected_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-fossil/zapdos-corrected-15",
+            "evidence_label": "PriceCharting exact corrected-product page says corrected Zapdos #15 has no “Evolution Box” error like the original printing."
+          }
+        ],
+        "target_parent_id": "e9c242ce-6ebb-40ac-b148-43f063c5f9c9",
+        "target_child_id": "a98439bd-c05b-4a9b-9d31-d2d351fe6281",
+        "base_parent_id": "ce6ac2d3-7342-43bc-bdb3-272ab3d5a287",
+        "base_parent_gv_id": "GV-PK-FO-15",
+        "base_child_finishes": [
+          "cosmos",
+          "holo"
+        ],
+        "evidence_urls": [
+          "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "https://www.elitefourum.com/t/guide-to-understanding-fossil-zapdos-15-62-variants/30830",
+          "https://www.pricecharting.com/game/pokemon-fossil/zapdos-corrected-15"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-05-RESIDUAL-SOURCE-READY-PARENT-INSERTS",
+          "source_candidate_key": "base3-15-zapdos-missing-holo-evolution-box",
+          "classification": "recognized_error_variant",
+          "variant_key": "missing_holo_evolution_box_error",
+          "printed_identity_modifier": "recognized_error:missing_holo_evolution_box",
+          "finish_key": "holo",
+          "evidence": [
+            {
+              "source_key": "elitefourum_wotc_error_guide",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+              "evidence_label": "WOTC corrected-errors guide identifies Missing holo in Evolution box Zapdos #15/62."
+            },
+            {
+              "source_key": "elitefourum_fossil_zapdos_guide",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/guide-to-understanding-fossil-zapdos-15-62-variants/30830",
+              "evidence_label": "Elite Fourum Fossil Zapdos variant guide documents the holo evolution box error on Zapdos #15/62 and explains the late corrected unlimited print."
+            },
+            {
+              "source_key": "pricecharting_corrected_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-fossil/zapdos-corrected-15",
+              "evidence_label": "PriceCharting exact corrected-product page says corrected Zapdos #15 has no “Evolution Box” error like the original printing."
+            }
+          ]
+        }
+      },
+      {
+        "source_candidate_key": "gym2-119-rockets-minefield-gym-corrected-text-lane",
+        "set_key": "gym2",
+        "set_name": "Gym Challenge",
+        "card_number": "119",
+        "card_name": "Rocket's Minefield Gym",
+        "target_variant_key": "corrected_text_variant",
+        "target_printed_identity_modifier": "text_variant:corrected_damage_counter_text",
+        "target_finish_key": "normal",
+        "classification": "recognized_correction_variant",
+        "evidence": [
+          {
+            "source_key": "elitefourum_wotc_error_guide",
+            "source_kind": "collector_reference",
+            "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+            "evidence_label": "WOTC corrected-errors guide identifies Rocket’s Minefield Gym corrected text as an English Gym Challenge corrected error family."
+          },
+          {
+            "source_key": "bulbapedia_error_cards",
+            "source_kind": "human_readable_checklist",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+            "evidence_label": "Bulbapedia states Rocket’s Minefield Gym was corrected very late in the unlimited print run and that corrected unlimited copies are rarer."
+          },
+          {
+            "source_key": "pricecharting_exact_product",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-gym-challenge/rocket%27s-minefield-gym-119",
+            "evidence_label": "PriceCharting Rocket’s Minefield Gym #119 page includes corrected-card sales and error sales as separate title evidence."
+          },
+          {
+            "source_key": "tcgone_wotc_erratas",
+            "source_kind": "collector_reference",
+            "source_url": "https://forum.tcgone.net/t/wotc-erratas-complete-list/9383",
+            "evidence_label": "TCG ONE WotC errata list notes scans of the corrected Rocket’s Minefield Gym version printed in later Gym Challenge packs."
+          }
+        ],
+        "target_parent_id": "391dad7b-2816-47b3-a86b-b51e369f06f4",
+        "target_child_id": "034ab016-1351-405f-b64f-a654160280f0",
+        "base_parent_id": "7bc1e6f2-449e-4269-9867-3cfb6411fc6d",
+        "base_parent_gv_id": "GV-PK-G2-119",
+        "base_child_finishes": [
+          "normal"
+        ],
+        "evidence_urls": [
+          "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+          "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+          "https://www.pricecharting.com/game/pokemon-gym-challenge/rocket%27s-minefield-gym-119",
+          "https://forum.tcgone.net/t/wotc-erratas-complete-list/9383"
+        ],
+        "evidence_payload": {
+          "source_package_id": "SPECIAL-VAR-05-RESIDUAL-SOURCE-READY-PARENT-INSERTS",
+          "source_candidate_key": "gym2-119-rockets-minefield-gym-corrected-text-lane",
+          "classification": "recognized_correction_variant",
+          "variant_key": "corrected_text_variant",
+          "printed_identity_modifier": "text_variant:corrected_damage_counter_text",
+          "finish_key": "normal",
+          "evidence": [
+            {
+              "source_key": "elitefourum_wotc_error_guide",
+              "source_kind": "collector_reference",
+              "source_url": "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
+              "evidence_label": "WOTC corrected-errors guide identifies Rocket’s Minefield Gym corrected text as an English Gym Challenge corrected error family."
+            },
+            {
+              "source_key": "bulbapedia_error_cards",
+              "source_kind": "human_readable_checklist",
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
+              "evidence_label": "Bulbapedia states Rocket’s Minefield Gym was corrected very late in the unlimited print run and that corrected unlimited copies are rarer."
+            },
+            {
+              "source_key": "pricecharting_exact_product",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-gym-challenge/rocket%27s-minefield-gym-119",
+              "evidence_label": "PriceCharting Rocket’s Minefield Gym #119 page includes corrected-card sales and error sales as separate title evidence."
+            },
+            {
+              "source_key": "tcgone_wotc_erratas",
+              "source_kind": "collector_reference",
+              "source_url": "https://forum.tcgone.net/t/wotc-erratas-complete-list/9383",
+              "evidence_label": "TCG ONE WotC errata list notes scans of the corrected Rocket’s Minefield Gym version printed in later Gym Challenge packs."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "execution": {
+    "dry_run_status": "residual_source_ready_parent_insert_completed_rolled_back_no_durable_change",
+    "guard": {
+      "target_count": 4,
+      "target_parent_count": 4,
+      "target_child_count": 4,
+      "missing_base_count": 0,
+      "inactive_finish_count": 0,
+      "source_unique_finish_count": 0,
+      "parent_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 4,
+      "identity_hash_collision_count": 0
+    },
+    "proof": {
+      "package_id": "SPECIAL-VAR-05-RESIDUAL-SOURCE-READY-PARENT-INSERTS",
+      "package_fingerprint": "d8868b21fb25b7834ad967dcd4659a8ff7ff750b4a516825eb2d6a4a0a2d96c2",
+      "target_rows": 4,
+      "inserted_parent_rows": 4,
+      "inserted_parent_identity_rows": 4,
+      "inserted_identity_rows": 4,
+      "inserted_child_rows": 4,
+      "forbidden_stamped_child_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 4,
+      "identity_inserts": 4,
+      "child_inserts": 4,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-17T15:33:01.722Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+          "set_code": "base1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Beedrill",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "190716dc-1a89-4bfe-86fd-fb147a39fe3d",
+          "set_code": "base1",
+          "number": "47",
+          "number_plain": "47",
+          "name": "Diglett",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "ce6ac2d3-7342-43bc-bdb3-272ab3d5a287",
+          "set_code": "base3",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Zapdos",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "7bc1e6f2-449e-4269-9867-3cfb6411fc6d",
+          "set_code": "gym2",
+          "number": "119",
+          "number_plain": "119",
+          "name": "Rocket's Minefield Gym",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "988b9c3133665d887ff1e7a434c68ca6432a593ea11d8a27d21b319fb030f215",
+      "counts": {
+        "base_parent": 4
+      }
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-17T15:33:02.644Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+          "set_code": "base1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Beedrill",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "190716dc-1a89-4bfe-86fd-fb147a39fe3d",
+          "set_code": "base1",
+          "number": "47",
+          "number_plain": "47",
+          "name": "Diglett",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "ce6ac2d3-7342-43bc-bdb3-272ab3d5a287",
+          "set_code": "base3",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Zapdos",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "7bc1e6f2-449e-4269-9867-3cfb6411fc6d",
+          "set_code": "gym2",
+          "number": "119",
+          "number_plain": "119",
+          "name": "Rocket's Minefield Gym",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "15d6dff1-3df8-4f52-89eb-651047e76f1f",
+          "set_code": "base1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Beedrill",
+          "variant_key": "d_fending_error",
+          "printed_identity_modifier": "recognized_error:d_fending_text",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "7107d289-4015-4ba0-b43c-cb46e4bdfc28",
+          "set_code": "base1",
+          "number": "47",
+          "number_plain": "47",
+          "name": "Diglett",
+          "variant_key": "sideways_fighting_energy_error",
+          "printed_identity_modifier": "recognized_error:sideways_fighting_energy",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "a98439bd-c05b-4a9b-9d31-d2d351fe6281",
+          "set_code": "base3",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Zapdos",
+          "variant_key": "missing_holo_evolution_box_error",
+          "printed_identity_modifier": "recognized_error:missing_holo_evolution_box",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "034ab016-1351-405f-b64f-a654160280f0",
+          "set_code": "gym2",
+          "number": "119",
+          "number_plain": "119",
+          "name": "Rocket's Minefield Gym",
+          "variant_key": "corrected_text_variant",
+          "printed_identity_modifier": "text_variant:corrected_damage_counter_text",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "a65d75ef-7a61-4a2f-bbfd-8b8b293cb2db",
+          "set_code": "base1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Beedrill",
+          "variant_key": "d_fending_error",
+          "printed_identity_modifier": "recognized_error:d_fending_text",
+          "finish_key": null,
+          "identity_key_hash": "582cdd8d7913aaa067defe3130fec1af9e0c60e53518ecece788a1b0d0d1bf94"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "5f5757ec-44ab-4052-aa10-e7937096ff10",
+          "set_code": "base1",
+          "number": "47",
+          "number_plain": "47",
+          "name": "Diglett",
+          "variant_key": "sideways_fighting_energy_error",
+          "printed_identity_modifier": "recognized_error:sideways_fighting_energy",
+          "finish_key": null,
+          "identity_key_hash": "ca94839b268d64d6d85f4e2c968d950782a604aa3e0414697248967c8dc7918a"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "b1324d07-e512-4546-8a30-27e92e01ec59",
+          "set_code": "base3",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Zapdos",
+          "variant_key": "missing_holo_evolution_box_error",
+          "printed_identity_modifier": "recognized_error:missing_holo_evolution_box",
+          "finish_key": null,
+          "identity_key_hash": "f042eef3da38fe8bd4541567efa8c431eec9e216d0751982f1394612a7f595dc"
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "b78c610e-d341-4272-be73-195c350927d4",
+          "set_code": "gym2",
+          "number": "119",
+          "number_plain": "119",
+          "name": "Rocket's Minefield Gym",
+          "variant_key": "corrected_text_variant",
+          "printed_identity_modifier": "text_variant:corrected_damage_counter_text",
+          "finish_key": null,
+          "identity_key_hash": "1e7c30d7114ffbf10faeaa6e3f386b363fd6cb2b027421f2a6953a72d8bb3138"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "72e51650-dbad-41ec-a5d1-a8fc9f5c7d71",
+          "set_code": "base1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Beedrill",
+          "variant_key": "d_fending_error",
+          "printed_identity_modifier": "recognized_error:d_fending_text",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "9d600dd3-f0aa-43f7-8fd3-0311c9e8403a",
+          "set_code": "base1",
+          "number": "47",
+          "number_plain": "47",
+          "name": "Diglett",
+          "variant_key": "sideways_fighting_energy_error",
+          "printed_identity_modifier": "recognized_error:sideways_fighting_energy",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "e9c242ce-6ebb-40ac-b148-43f063c5f9c9",
+          "set_code": "base3",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Zapdos",
+          "variant_key": "missing_holo_evolution_box_error",
+          "printed_identity_modifier": "recognized_error:missing_holo_evolution_box",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "391dad7b-2816-47b3-a86b-b51e369f06f4",
+          "set_code": "gym2",
+          "number": "119",
+          "number_plain": "119",
+          "name": "Rocket's Minefield Gym",
+          "variant_key": "corrected_text_variant",
+          "printed_identity_modifier": "text_variant:corrected_damage_counter_text",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "c34aaf4e4e69ff5d09efcfc8b77c6034a44fe0b84fd1eba33e939b2796e17242",
+      "counts": {
+        "base_parent": 4,
+        "target_child": 4,
+        "target_identity": 4,
+        "target_parent": 4
+      }
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-17T15:33:02.796Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+          "set_code": "base1",
+          "number": "17",
+          "number_plain": "17",
+          "name": "Beedrill",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "190716dc-1a89-4bfe-86fd-fb147a39fe3d",
+          "set_code": "base1",
+          "number": "47",
+          "number_plain": "47",
+          "name": "Diglett",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "ce6ac2d3-7342-43bc-bdb3-272ab3d5a287",
+          "set_code": "base3",
+          "number": "15",
+          "number_plain": "15",
+          "name": "Zapdos",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "row_id": "7bc1e6f2-449e-4269-9867-3cfb6411fc6d",
+          "set_code": "gym2",
+          "number": "119",
+          "number_plain": "119",
+          "name": "Rocket's Minefield Gym",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "988b9c3133665d887ff1e7a434c68ca6432a593ea11d8a27d21b319fb030f215",
+      "counts": {
+        "base_parent": 4
+      }
+    },
+    "rollback_verified": true,
+    "dry_run_proof_sha256": "96fc92ace302bacabb896a4f7a854d2c6a572cf95e2dc159062ba118cb3295ff",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real SPECIAL-VAR-05-RESIDUAL-SOURCE-READY-PARENT-INSERTS apply only. Fingerprint: d8868b21fb25b7834ad967dcd4659a8ff7ff750b4a516825eb2d6a4a0a2d96c2. SQL hash: 15922fd72f503afa5ffd0af086680222ae19c5422d07f38297a65d1951c0d32a. Scope: 4 residual source-ready special-case parent inserts, 4 active identity inserts, 4 child printing inserts; source_unique_finish_rows=0; sets base1=2, base3=1, gym2=1. Dry-run proof: 988b9c3133665d887ff1e7a434c68ca6432a593ea11d8a27d21b319fb030f215 == 988b9c3133665d887ff1e7a434c68ca6432a593ea11d8a27d21b319fb030f215. No global apply. No migrations. No deletes. No merges. No unsupported cleanup."
+}

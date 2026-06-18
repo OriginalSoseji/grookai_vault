@@ -35,6 +35,7 @@ import type { VariantFlags } from "@/lib/cards/variantPresentation";
 const SEARCH_LIMIT = 80;
 const TOKEN_SEARCH_LIMIT = 40;
 const SET_CARD_SEARCH_LIMIT = 30;
+const SMART_FILTER_DISCOVERY_LIMIT = 500;
 const MAX_SIGNIFICANT_TEXT_TOKENS = 4;
 const MAX_SET_CANDIDATES = 6;
 const GENERIC_TOKENS = new Set([
@@ -155,6 +156,10 @@ type CardPrintingImageLookupRow = {
   image_note?: string | null;
 };
 
+type CardPrintingSmartLookupRow = CardPrintingImageLookupRow & {
+  card_prints: CardPrintLookupRow | CardPrintLookupRow[] | null;
+};
+
 type CardPrintLookupRow = {
   id: string;
   gv_id: string | null;
@@ -212,6 +217,21 @@ type SortMode =
   | "number"
   | "value_high"
   | "value_low";
+
+type SmartFilterImageState = "exact" | "representative" | "missing" | "any";
+
+type SmartFilterDiscoveryOptions = {
+  sortMode: SortMode;
+  exactSetCode?: string;
+  exactReleaseYear?: number;
+  exactIllustrator?: string;
+  identityFilter?: IdentityFilterKey;
+  releaseYearMin?: number;
+  releaseYearMax?: number;
+  finishKeys?: string[];
+  stampLabels?: string[];
+  imageState?: SmartFilterImageState;
+};
 
 type PublicSetMetadata = {
   set_code: string;
@@ -2760,6 +2780,27 @@ async function fetchSetCodesByReleaseYear(year: number) {
   );
 }
 
+async function fetchSetCodesByReleaseYearRange(minYear?: number, maxYear?: number) {
+  const startYear = typeof minYear === "number" ? minYear : 1999;
+  const endYear = typeof maxYear === "number" ? maxYear : new Date().getFullYear() + 1;
+  const supabase = createServerComponentClient();
+  const { data, error } = await supabase
+    .from("sets")
+    .select("code")
+    .gte("release_date", `${startYear}-01-01`)
+    .lt("release_date", `${endYear + 1}-01-01`);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return uniqueValues(
+    ((data ?? []) as Array<{ code?: string | null }>)
+      .map((row) => row.code ?? "")
+      .filter(Boolean),
+  );
+}
+
 async function fetchCardRowsByReleaseYear(year: number) {
   const supabase = createServerComponentClient();
   const setCodes = await fetchSetCodesByReleaseYear(year);
@@ -2780,6 +2821,336 @@ async function fetchCardRowsByReleaseYear(year: number) {
   }
 
   return (data ?? []) as CardPrintLookupRow[];
+}
+
+async function fetchCardRowsByReleaseYearRange(minYear?: number, maxYear?: number) {
+  const supabase = createServerComponentClient();
+  const setCodes = await fetchSetCodesByReleaseYearRange(minYear, maxYear);
+  if (setCodes.length === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const selectClause =
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
+  const { data, error } = await supabase
+    .from("card_prints")
+    .select(selectClause)
+    .in("set_code", setCodes)
+    .limit(300);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return (data ?? []) as CardPrintLookupRow[];
+}
+
+async function fetchCardRowsByIds(cardPrintIds: string[]) {
+  const ids = uniqueValues(cardPrintIds.map((id) => id.trim()).filter(Boolean));
+  if (ids.length === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const supabase = createServerComponentClient();
+  const selectClause =
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
+  const rowsById = new Map<string, CardPrintLookupRow>();
+
+  for (const idChunk of chunkArray(ids, 200)) {
+    const { data, error } = await supabase
+      .from("card_prints")
+      .select(selectClause)
+      .in("id", idChunk);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    for (const row of (data ?? []) as CardPrintLookupRow[]) {
+      rowsById.set(row.id, row);
+    }
+  }
+
+  return [...rowsById.values()];
+}
+
+function chunkArray<T>(values: T[], size: number) {
+  const chunks: T[][] = [];
+  for (let index = 0; index < values.length; index += size) {
+    chunks.push(values.slice(index, index + size));
+  }
+  return chunks;
+}
+
+function getSmartStampSearchTokens(stampLabels: string[]) {
+  return uniqueValues(
+    stampLabels.flatMap((label) =>
+      normalizeTextForMatch(label)
+        .split(" ")
+        .filter(
+          (token) =>
+            token.length >= 3 &&
+            token !== "stamp" &&
+            token !== "stamped" &&
+            token !== "workshop",
+        ),
+    ),
+  ).slice(0, 8);
+}
+
+function normalizeFinishKeys(finishKeys?: string[]) {
+  return uniqueValues(
+    (finishKeys ?? [])
+      .map((key) => key.trim().toLowerCase())
+      .filter(Boolean),
+  );
+}
+
+async function fetchCardRowsByStampLabels(stampLabels: string[]) {
+  const tokens = getSmartStampSearchTokens(stampLabels);
+  if (tokens.length === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const supabase = createServerComponentClient();
+  const selectClause =
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
+  const rowsById = new Map<string, CardPrintLookupRow>();
+
+  for (const tokenChunk of chunkArray(tokens, 3)) {
+    const orExpression = tokenChunk
+      .flatMap((token) => [
+        `variant_key.ilike.%${token}%`,
+        `printed_identity_modifier.ilike.%${token}%`,
+      ])
+      .join(",");
+    const { data, error } = await supabase
+      .from("card_prints")
+      .select(selectClause)
+      .or(orExpression)
+      .limit(250);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    for (const row of (data ?? []) as CardPrintLookupRow[]) {
+      rowsById.set(row.id, row);
+    }
+  }
+
+  return [...rowsById.values()];
+}
+
+async function fetchSmartDiscoverySeedParentRows(
+  options: SmartFilterDiscoveryOptions,
+) {
+  const exactSetCode = normalizeSetCode(options.exactSetCode);
+  const exactIllustrator = options.exactIllustrator?.trim();
+  const identityFilter = normalizeIdentityFilterKey(options.identityFilter);
+
+  if (exactSetCode) {
+    return fetchCardRowsBySetCode(exactSetCode);
+  }
+
+  if (typeof options.exactReleaseYear === "number") {
+    return fetchCardRowsByReleaseYear(options.exactReleaseYear);
+  }
+
+  if (
+    typeof options.releaseYearMin === "number" ||
+    typeof options.releaseYearMax === "number"
+  ) {
+    return fetchCardRowsByReleaseYearRange(
+      options.releaseYearMin,
+      options.releaseYearMax,
+    );
+  }
+
+  if (exactIllustrator) {
+    return fetchCardRowsByIllustrator(exactIllustrator);
+  }
+
+  if (isIdentityFilterActive(identityFilter)) {
+    return fetchCardRowsByIdentityFilter(identityFilter);
+  }
+
+  if ((options.stampLabels ?? []).length > 0) {
+    return fetchCardRowsByStampLabels(options.stampLabels ?? []);
+  }
+
+  return [] as CardPrintLookupRow[];
+}
+
+function getParentFromSmartChild(row: CardPrintingSmartLookupRow) {
+  return Array.isArray(row.card_prints) ? row.card_prints[0] : row.card_prints;
+}
+
+function mapSmartChildRowToCardPrintLookupRow(
+  row: CardPrintingSmartLookupRow,
+): CardPrintLookupRow | null {
+  const parent = getParentFromSmartChild(row);
+  if (!parent?.id || !parent.gv_id) {
+    return null;
+  }
+
+  const finishLabel = getCardPrintingFinishLabel({
+    finishKey: row.finish_key,
+  });
+
+  return {
+    ...parent,
+    image_url: row.image_url,
+    image_alt_url: row.image_alt_url,
+    image_source: row.image_source,
+    image_path: row.image_path,
+    image_status: row.image_status,
+    image_note: row.image_note,
+    search_object_type: "child_printing",
+    search_card_printing_id: row.id,
+    printing_gv_id: row.printing_gv_id ?? undefined,
+    selected_printing_gv_id: row.printing_gv_id ?? undefined,
+    finish_key: row.finish_key ?? undefined,
+    finish_label: finishLabel,
+    display_discriminator: finishLabel,
+    route_query: row.printing_gv_id ? `printing=${row.printing_gv_id}` : undefined,
+  };
+}
+
+function applySmartDiscoveryImageQueryFilter<
+  T extends {
+    eq: (column: string, value: string) => T;
+    in: (column: string, values: string[]) => T;
+    neq: (column: string, value: string) => T;
+  },
+>(request: T, imageState?: SmartFilterImageState) {
+  if (imageState === "exact") {
+    return request.eq("image_status", "exact");
+  }
+
+  if (imageState === "representative") {
+    return request.in("image_status", [
+      "representative_shared",
+      "representative_shared_collision",
+      "representative_shared_stamp",
+      "representative_missing_variant_visual",
+      "missing_variant_visual",
+    ]);
+  }
+
+  if (imageState === "missing") {
+    return request.neq("image_status", "exact");
+  }
+
+  return request;
+}
+
+async function fetchSmartDiscoveryChildRows(
+  options: SmartFilterDiscoveryOptions,
+  parentRows: CardPrintLookupRow[],
+) {
+  const supabase = createServerComponentClient();
+  const selectClause =
+    "id,card_print_id,printing_gv_id,finish_key,image_source,image_path,image_url,image_alt_url,image_status,image_note,card_prints(id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants)";
+  const finishKeys = normalizeFinishKeys(options.finishKeys);
+  const parentIds = uniqueValues(parentRows.map((row) => row.id).filter(Boolean));
+  const rowsByKey = new Map<string, CardPrintLookupRow>();
+
+  const runChildQuery = async (scopedParentIds?: string[]) => {
+    let request = supabase
+      .from("card_printings")
+      .select(selectClause)
+      .order("printing_gv_id", { ascending: true })
+      .limit(SMART_FILTER_DISCOVERY_LIMIT);
+
+    if (scopedParentIds && scopedParentIds.length > 0) {
+      request = request.in("card_print_id", scopedParentIds);
+    }
+
+    if (finishKeys.length > 0) {
+      request = request.in("finish_key", finishKeys);
+    }
+
+    request = applySmartDiscoveryImageQueryFilter(request, options.imageState);
+
+    const { data, error } = await request;
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    for (const childRow of (data ?? []) as CardPrintingSmartLookupRow[]) {
+      const mapped = mapSmartChildRowToCardPrintLookupRow(childRow);
+      if (!mapped) {
+        continue;
+      }
+      rowsByKey.set(mapped.printing_gv_id ?? mapped.search_card_printing_id ?? mapped.id, mapped);
+    }
+  };
+
+  if (parentIds.length > 0) {
+    for (const parentIdChunk of chunkArray(parentIds, 200)) {
+      await runChildQuery(parentIdChunk);
+    }
+  } else {
+    await runChildQuery();
+  }
+
+  return [...rowsByKey.values()].slice(0, SMART_FILTER_DISCOVERY_LIMIT);
+}
+
+export async function getExploreRowsForSmartFilterDiscovery(
+  options: SmartFilterDiscoveryOptions,
+): Promise<ExploreRow[]> {
+  const parentRows = await fetchSmartDiscoverySeedParentRows(options);
+  const childScopedRows = await fetchSmartDiscoveryChildRows(options, parentRows);
+  const exactRows = childScopedRows.length > 0 ? childScopedRows : parentRows;
+  const query = await buildResolverQuery(normalizeQuery(""));
+  const setMetadataByCode = await fetchPublicSetMetadata(
+    uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
+  );
+  const supabase = createServerComponentClient();
+  const pricingByCardId = await getPublicPricingByCardIds(
+    supabase,
+    exactRows.map((row) => row.id),
+  );
+  const rows = await buildExploreRows(
+    exactRows,
+    new Map<string, string>(),
+    setMetadataByCode,
+    pricingByCardId,
+  );
+
+  return sortRows(rows, query, options.sortMode).slice(0, SMART_FILTER_DISCOVERY_LIMIT);
+}
+
+export async function getExploreRowsForOwnedSmartFilterDiscovery(
+  ownedCardPrintIds: string[],
+  options: SmartFilterDiscoveryOptions,
+): Promise<ExploreRow[]> {
+  const parentRows = await fetchCardRowsByIds(ownedCardPrintIds);
+  const shouldUseChildScope =
+    normalizeFinishKeys(options.finishKeys).length > 0 ||
+    Boolean(options.imageState && options.imageState !== "any");
+  const exactRows = shouldUseChildScope
+    ? await fetchSmartDiscoveryChildRows(options, parentRows)
+    : parentRows;
+  const query = await buildResolverQuery(normalizeQuery(""));
+  const setMetadataByCode = await fetchPublicSetMetadata(
+    uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
+  );
+  const supabase = createServerComponentClient();
+  const pricingByCardId = await getPublicPricingByCardIds(
+    supabase,
+    exactRows.map((row) => row.id),
+  );
+  const rows = await buildExploreRows(
+    exactRows,
+    new Map<string, string>(),
+    setMetadataByCode,
+    pricingByCardId,
+  );
+
+  return sortRows(rows, query, options.sortMode).slice(0, SMART_FILTER_DISCOVERY_LIMIT);
 }
 
 async function fetchPublicSetMetadata(setCodes: string[]) {
@@ -2825,6 +3196,8 @@ export async function getExploreRowsPacketWithTiming(
   exactReleaseYear?: number,
   exactIllustrator?: string,
   identityFilter: IdentityFilterKey = "all",
+  releaseYearMin?: number,
+  releaseYearMax?: number,
 ): Promise<{ rows: ExploreRow[]; timing: ExploreRowsTiming }> {
   const totalStartMs = performance.now();
   const totalStartRemote = snapshotRemoteTiming();
@@ -2845,6 +3218,8 @@ export async function getExploreRowsPacketWithTiming(
     !query.normalized &&
     !exactSetCode &&
     !exactReleaseYear &&
+    !releaseYearMin &&
+    !releaseYearMax &&
     !exactIllustrator &&
     !isIdentityFilterActive(identityFilter)
   ) {
@@ -2932,6 +3307,10 @@ export async function getExploreRowsPacketWithTiming(
 
       if (exactReleaseYear) {
         return fetchCardRowsByReleaseYear(exactReleaseYear);
+      }
+
+      if (typeof releaseYearMin === "number" || typeof releaseYearMax === "number") {
+        return fetchCardRowsByReleaseYearRange(releaseYearMin, releaseYearMax);
       }
 
       if (isIdentityFilterActive(identityFilter)) {
@@ -3033,11 +3412,28 @@ export async function getExploreRowsPacketWithTiming(
   Object.assign(buildRowsStage, timedBuildRows.timing);
   const rows = timedBuildRows.value;
 
-  const timedReleaseYearFilter = await measureStage(() =>
-    typeof exactReleaseYear === "number"
-      ? rows.filter((row) => row.release_year === exactReleaseYear)
-      : rows,
-  );
+  const timedReleaseYearFilter = await measureStage(() => {
+    if (typeof exactReleaseYear === "number") {
+      return rows.filter((row) => row.release_year === exactReleaseYear);
+    }
+
+    if (typeof releaseYearMin === "number" || typeof releaseYearMax === "number") {
+      return rows.filter((row) => {
+        if (typeof row.release_year !== "number") {
+          return false;
+        }
+        if (typeof releaseYearMin === "number" && row.release_year < releaseYearMin) {
+          return false;
+        }
+        if (typeof releaseYearMax === "number" && row.release_year > releaseYearMax) {
+          return false;
+        }
+        return true;
+      });
+    }
+
+    return rows;
+  });
   Object.assign(releaseYearFilterStage, timedReleaseYearFilter.timing);
   const filteredRows = timedReleaseYearFilter.value;
 
@@ -3091,6 +3487,8 @@ export async function getExploreRowsWithTiming(
   exactSetCode: string,
   exactReleaseYear?: number,
   exactIllustrator?: string,
+  releaseYearMin?: number,
+  releaseYearMax?: number,
 ): Promise<{ rows: ExploreRow[]; timing: ExploreRowsTiming }> {
   return getExploreRowsPacketWithTiming(
     normalizeQuery(rawQuery),
@@ -3098,6 +3496,9 @@ export async function getExploreRowsWithTiming(
     exactSetCode,
     exactReleaseYear,
     exactIllustrator,
+    "all",
+    releaseYearMin,
+    releaseYearMax,
   );
 }
 
@@ -3107,6 +3508,8 @@ export async function getExploreRows(
   exactSetCode: string,
   exactReleaseYear?: number,
   exactIllustrator?: string,
+  releaseYearMin?: number,
+  releaseYearMax?: number,
 ): Promise<ExploreRow[]> {
   return (
     await getExploreRowsWithTiming(
@@ -3115,6 +3518,8 @@ export async function getExploreRows(
       exactSetCode,
       exactReleaseYear,
       exactIllustrator,
+      releaseYearMin,
+      releaseYearMax,
     )
   ).rows;
 }

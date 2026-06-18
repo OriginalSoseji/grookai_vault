@@ -1,0 +1,993 @@
+{
+  "version": "retailer_stamp_gap_audit_v1",
+  "generated_at": "2026-06-17T05:55:09.516Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "total_candidates": 19,
+  "by_variant_key": {
+    "build_a_bear_workshop_stamp": 10,
+    "toys_r_us_stamp": 9
+  },
+  "by_classification": {
+    "already_in_db": 14,
+    "master_index_legacy_stamped_finish_requires_active_finish": 2,
+    "needs_active_finish_route_from_bulbapedia": 3
+  },
+  "sources_used": [
+    "english_master_index_stamped_identity_readiness_v1",
+    "english_master_index_pkg17i4_pricecharting_stamp_label_readiness_v1",
+    "english_master_index_printings_v1",
+    "live_read_only_card_prints"
+  ],
+  "rows": [
+    {
+      "key": "bw10|14|squirtle|build_a_bear_workshop_stamp",
+      "source_bucket": "pricecharting_stamp_label_readiness",
+      "set_key": "bw10",
+      "set_name": "Plasma Blast",
+      "card_number": "14",
+      "card_name": "Squirtle",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "finish_key": null,
+      "status": "label_candidate_only_active_finish_required",
+      "sources": [],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-plasma-blast/squirtle-build-a-bear-14"
+      ],
+      "evidence_labels": [
+        "PriceCharting CSV exact product title candidate: Squirtle [Build A Bear] #14"
+      ],
+      "raw_snapshot_ref": "pricecharting_stamp_label:bw10:14:build_a_bear_workshop_stamp",
+      "source_buckets": [
+        "pricecharting_stamp_label_readiness"
+      ],
+      "master_index_rows": [],
+      "db_rows": [
+        {
+          "card_print_id": "dffcea63-9ac5-4027-8316-c471695d9e0e",
+          "gv_id": "GV-PK-BW10-14-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "set_code": "bw10",
+          "name": "Squirtle",
+          "number": "14",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "child_printings": [
+            {
+              "id": "f25bbb84-222c-4ad5-bcbd-4582a851fbd4",
+              "finish_key": "normal",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "bw11|17|charmander|build_a_bear_workshop_stamp",
+      "source_bucket": "pricecharting_stamp_label_readiness",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "card_number": "17",
+      "card_name": "Charmander",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "finish_key": null,
+      "status": "label_candidate_only_active_finish_required",
+      "sources": [],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-legendary-treasures/charmander-build-a-bear-17"
+      ],
+      "evidence_labels": [
+        "PriceCharting CSV exact product title candidate: Charmander [Build-a-Bear] #17"
+      ],
+      "raw_snapshot_ref": "pricecharting_stamp_label:bw11:17:build_a_bear_workshop_stamp",
+      "source_buckets": [
+        "pricecharting_stamp_label_readiness"
+      ],
+      "master_index_rows": [],
+      "db_rows": [
+        {
+          "card_print_id": "d4880277-c005-4d7a-a3b3-a72658ffd4a3",
+          "gv_id": "GV-PK-BW11-17-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "set_code": "bw11",
+          "name": "Charmander",
+          "number": "17",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "child_printings": [
+            {
+              "id": "38886807-33a0-434b-a386-93e9841d362f",
+              "finish_key": "normal",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "bw5|1|bulbasaur|build_a_bear_workshop_stamp",
+      "source_bucket": "stamped_identity_readiness",
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "1",
+      "card_name": "Bulbasaur",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "finish_key": null,
+      "status": "blocked_manual_review",
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Bulbasaur_(Dark_Explorers_1)",
+        "https://www.thepricedex.com/set/bw5/dark-explorers/price-list",
+        "https://www.pricecharting.com/game/pokemon-dark-explorers/bulbasaur-build-a-bear-1"
+      ],
+      "evidence_labels": [
+        "Bulbapedia card page release information stamp/logo variant",
+        "ThePriceDex preserved finish evidence from last promoted Master Index",
+        "bulbapedia_set_list preserved finish evidence from last promoted Master Index",
+        "PriceCharting CSV exact product title candidate: Bulbasaur [Build A Bear] #1"
+      ],
+      "raw_snapshot_ref": null,
+      "source_buckets": [
+        "stamped_identity_readiness",
+        "pricecharting_stamp_label_readiness"
+      ],
+      "statuses": [
+        "blocked_manual_review",
+        "label_candidate_only_active_finish_required"
+      ],
+      "raw_snapshot_refs": [
+        "pricecharting_stamp_label:bw5:1:build_a_bear_workshop_stamp"
+      ],
+      "master_index_rows": [],
+      "db_rows": [
+        {
+          "card_print_id": "d32fed29-e055-4fc9-b1f4-0854aab67ec3",
+          "gv_id": "GV-PK-BW5-1-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "set_code": "bw5",
+          "name": "Bulbasaur",
+          "number": "1",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "child_printings": [
+            {
+              "id": "c56c95bf-2394-4a21-a964-219b7e88aa4b",
+              "finish_key": "normal",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "sm1|28|psyduck|build_a_bear_workshop_stamp",
+      "source_bucket": "stamped_identity_readiness",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "28",
+      "card_name": "Psyduck",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "finish_key": null,
+      "status": "blocked_manual_review",
+      "sources": [
+        "pricecharting_csv_product",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-sun-and-moon/psyduck-build-a-bear-28",
+        "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+      ],
+      "evidence_labels": [
+        "ThePriceDex preserved finish evidence from last promoted Master Index",
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "PriceCharting CSV exact product title candidate: Psyduck [Build-A-Bear] #28"
+      ],
+      "raw_snapshot_ref": null,
+      "source_buckets": [
+        "stamped_identity_readiness",
+        "pricecharting_stamp_label_readiness"
+      ],
+      "statuses": [
+        "blocked_manual_review",
+        "label_candidate_only_active_finish_required"
+      ],
+      "raw_snapshot_refs": [
+        "pricecharting_stamp_label:sm1:28:build_a_bear_workshop_stamp"
+      ],
+      "master_index_rows": [
+        {
+          "status": "master_verified",
+          "finish_key": "stamped",
+          "source_count": 2,
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-sun-and-moon/psyduck-build-a-bear-28",
+            "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+          ]
+        }
+      ],
+      "db_rows": [
+        {
+          "card_print_id": "bc1d821c-4d8d-4a1e-920f-3c4bf2cf7623",
+          "gv_id": "GV-PK-SM1-28-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "set_code": "sm1",
+          "name": "Psyduck",
+          "number": "28",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "child_printings": [
+            {
+              "id": "8e37c0f4-50be-4bc1-ac29-d2b77d89841a",
+              "finish_key": "normal",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "sm1|90|snubbull|build_a_bear_workshop_stamp",
+      "source_bucket": "stamped_identity_readiness",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "90",
+      "card_name": "Snubbull",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "finish_key": null,
+      "status": "blocked_manual_review",
+      "sources": [
+        "pricecharting_variant_exact",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-promo/snubbull-build-a-bear-90",
+        "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+      ],
+      "evidence_labels": [
+        "PriceCharting: Snubbull Build-A-Bear #90 price guide includes 90/149 Build-A-Bear Workshop Promo Stamped",
+        "ThePriceDex preserved finish evidence from last promoted Master Index"
+      ],
+      "raw_snapshot_ref": null,
+      "source_buckets": [
+        "stamped_identity_readiness"
+      ],
+      "master_index_rows": [
+        {
+          "status": "master_verified",
+          "finish_key": "stamped",
+          "source_count": 2,
+          "sources": [
+            "pricecharting_variant_exact",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-promo/snubbull-build-a-bear-90",
+            "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+          ]
+        }
+      ],
+      "db_rows": [
+        {
+          "card_print_id": "f06be078-907c-42c3-8b33-2173333f06cd",
+          "gv_id": "GV-PK-SM1-90-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "set_code": "sm1",
+          "name": "Snubbull",
+          "number": "90",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "child_printings": [
+            {
+              "id": "35e8dc3a-d50a-4b28-bd95-dfcc0961b0c3",
+              "finish_key": "normal",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "sm4|71|jigglypuff|build_a_bear_workshop_stamp",
+      "source_bucket": "stamped_identity_readiness",
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "71",
+      "card_name": "Jigglypuff",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "finish_key": null,
+      "status": "blocked_manual_review",
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Jigglypuff_(Crimson_Invasion_71)",
+        "https://www.thepricedex.com/set/sm4/crimson-invasion/price-list",
+        "https://www.pricecharting.com/game/pokemon-crimson-invasion/jigglypuff-build-a-bear-71"
+      ],
+      "evidence_labels": [
+        "Bulbapedia card page release information stamp/logo variant",
+        "ThePriceDex preserved finish evidence from last promoted Master Index",
+        "bulbapedia_set_list preserved finish evidence from last promoted Master Index",
+        "PriceCharting CSV exact product title candidate: Jigglypuff [Build-A-Bear] #71"
+      ],
+      "raw_snapshot_ref": null,
+      "source_buckets": [
+        "stamped_identity_readiness",
+        "pricecharting_stamp_label_readiness"
+      ],
+      "statuses": [
+        "blocked_manual_review",
+        "label_candidate_only_active_finish_required"
+      ],
+      "raw_snapshot_refs": [
+        "pricecharting_stamp_label:sm4:71:build_a_bear_workshop_stamp"
+      ],
+      "master_index_rows": [],
+      "db_rows": [
+        {
+          "card_print_id": "736faf44-80c4-4d0d-925c-b2a6cec9d148",
+          "gv_id": "GV-PK-SM4-71-BUILD-A-BEAR-WORKSHOP-STAMP",
+          "set_code": "sm4",
+          "name": "Jigglypuff",
+          "number": "71",
+          "variant_key": "build_a_bear_workshop_stamp",
+          "printed_identity_modifier": "build_a_bear_workshop_stamp",
+          "child_printings": [
+            {
+              "id": "c55ca0b0-39e1-4b23-9b7d-fed1c4c31cd0",
+              "finish_key": "normal",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "xy2|80|snorlax|build_a_bear_workshop_stamp",
+      "source_bucket": "stamped_identity_readiness",
+      "set_key": "xy2",
+      "set_name": "Flashfire",
+      "card_number": "80",
+      "card_name": "Snorlax",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "finish_key": null,
+      "status": "blocked_manual_review",
+      "sources": [
+        "pricecharting_csv_product",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-flashfire/snorlax-build-a-bear-80",
+        "https://www.thepricedex.com/set/xy2/flashfire/price-list"
+      ],
+      "evidence_labels": [
+        "ThePriceDex preserved finish evidence from last promoted Master Index",
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "PriceCharting CSV exact product title candidate: Snorlax [Build-a-Bear] #80"
+      ],
+      "raw_snapshot_ref": null,
+      "source_buckets": [
+        "stamped_identity_readiness",
+        "pricecharting_stamp_label_readiness"
+      ],
+      "statuses": [
+        "blocked_manual_review",
+        "label_candidate_only_active_finish_required"
+      ],
+      "raw_snapshot_refs": [
+        "pricecharting_stamp_label:xy2:80:build_a_bear_workshop_stamp"
+      ],
+      "master_index_rows": [
+        {
+          "status": "master_verified",
+          "finish_key": "stamped",
+          "source_count": 2,
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-flashfire/snorlax-build-a-bear-80",
+            "https://www.thepricedex.com/set/xy2/flashfire/price-list"
+          ]
+        }
+      ],
+      "db_rows": [],
+      "classification": "master_index_legacy_stamped_finish_requires_active_finish"
+    },
+    {
+      "key": "xy5|20|vulpix|build_a_bear_workshop_stamp",
+      "source_bucket": "stamped_identity_readiness",
+      "set_key": "xy5",
+      "set_name": "Primal Clash",
+      "card_number": "20",
+      "card_name": "Vulpix",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "finish_key": null,
+      "status": "blocked_manual_review",
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Vulpix_(Primal_Clash_20)",
+        "https://www.thepricedex.com/set/xy5/primal-clash/price-list",
+        "https://www.pricecharting.com/game/pokemon-primal-clash/vulpix-build-a-bear-20"
+      ],
+      "evidence_labels": [
+        "Bulbapedia card page release information stamp/logo variant",
+        "ThePriceDex preserved finish evidence from last promoted Master Index",
+        "bulbapedia_set_list preserved finish evidence from last promoted Master Index",
+        "PriceCharting CSV exact product title candidate: Vulpix [Build-a-Bear] #20"
+      ],
+      "raw_snapshot_ref": null,
+      "source_buckets": [
+        "stamped_identity_readiness",
+        "pricecharting_stamp_label_readiness"
+      ],
+      "statuses": [
+        "blocked_manual_review",
+        "label_candidate_only_active_finish_required"
+      ],
+      "raw_snapshot_refs": [
+        "pricecharting_stamp_label:xy5:20:build_a_bear_workshop_stamp"
+      ],
+      "master_index_rows": [],
+      "db_rows": [],
+      "classification": "needs_active_finish_route_from_bulbapedia"
+    },
+    {
+      "key": "xy6|67|meowth|build_a_bear_workshop_stamp",
+      "source_bucket": "stamped_identity_readiness",
+      "set_key": "xy6",
+      "set_name": "Roaring Skies",
+      "card_number": "67",
+      "card_name": "Meowth",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "finish_key": null,
+      "status": "blocked_manual_review",
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Meowth_(Roaring_Skies_67)",
+        "https://www.thepricedex.com/set/xy6/roaring-skies/price-list",
+        "https://www.pricecharting.com/game/pokemon-roaring-skies/meowth-build-a-bear-67"
+      ],
+      "evidence_labels": [
+        "Bulbapedia card page release information stamp/logo variant",
+        "ThePriceDex preserved finish evidence from last promoted Master Index",
+        "bulbapedia_set_list preserved finish evidence from last promoted Master Index",
+        "PriceCharting CSV exact product title candidate: Meowth [Build-A-Bear] #67"
+      ],
+      "raw_snapshot_ref": null,
+      "source_buckets": [
+        "stamped_identity_readiness",
+        "pricecharting_stamp_label_readiness"
+      ],
+      "statuses": [
+        "blocked_manual_review",
+        "label_candidate_only_active_finish_required"
+      ],
+      "raw_snapshot_refs": [
+        "pricecharting_stamp_label:xy6:67:build_a_bear_workshop_stamp"
+      ],
+      "master_index_rows": [],
+      "db_rows": [],
+      "classification": "needs_active_finish_route_from_bulbapedia"
+    },
+    {
+      "key": "xy7|63|eevee|build_a_bear_workshop_stamp",
+      "source_bucket": "stamped_identity_readiness",
+      "set_key": "xy7",
+      "set_name": "Ancient Origins",
+      "card_number": "63",
+      "card_name": "Eevee",
+      "variant_key": "build_a_bear_workshop_stamp",
+      "stamp_label": "Build-A-Bear Workshop Stamp",
+      "finish_key": null,
+      "status": "blocked_manual_review",
+      "sources": [
+        "bulbapedia_card_page_release_info",
+        "bulbapedia_set_list",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Eevee_(Ancient_Origins_63)",
+        "https://www.thepricedex.com/set/xy7/ancient-origins/price-list"
+      ],
+      "evidence_labels": [
+        "Bulbapedia card page release information stamp/logo variant",
+        "ThePriceDex preserved finish evidence from last promoted Master Index",
+        "bulbapedia_set_list preserved finish evidence from last promoted Master Index"
+      ],
+      "raw_snapshot_ref": null,
+      "source_buckets": [
+        "stamped_identity_readiness"
+      ],
+      "master_index_rows": [],
+      "db_rows": [],
+      "classification": "needs_active_finish_route_from_bulbapedia"
+    },
+    {
+      "key": "g1|22|magikarp|toys_r_us_stamp",
+      "source_bucket": "stamped_identity_readiness",
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "22",
+      "card_name": "Magikarp",
+      "variant_key": "toys_r_us_stamp",
+      "stamp_label": "Toys R Us Stamp",
+      "finish_key": null,
+      "status": "blocked_manual_review",
+      "sources": [
+        "pricecharting_csv_product",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-generations/magikarp-toys-r-us-22",
+        "https://www.thepricedex.com/set/g1/generations/price-list"
+      ],
+      "evidence_labels": [
+        "ThePriceDex preserved finish evidence from last promoted Master Index",
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "PriceCharting CSV exact product title candidate: Magikarp [Toys R Us] #22"
+      ],
+      "raw_snapshot_ref": null,
+      "source_buckets": [
+        "stamped_identity_readiness",
+        "pricecharting_stamp_label_readiness"
+      ],
+      "statuses": [
+        "blocked_manual_review",
+        "label_candidate_only_active_finish_required"
+      ],
+      "raw_snapshot_refs": [
+        "pricecharting_stamp_label:g1:22:toys_r_us_stamp"
+      ],
+      "master_index_rows": [
+        {
+          "status": "master_verified",
+          "finish_key": "stamped",
+          "source_count": 2,
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-generations/magikarp-toys-r-us-22",
+            "https://www.thepricedex.com/set/g1/generations/price-list"
+          ]
+        }
+      ],
+      "db_rows": [
+        {
+          "card_print_id": "ffb8eac8-5aa2-4b8f-a3f2-bbc7014b5688",
+          "gv_id": "GV-PK-G1-22-TOYS-R-US-STAMP",
+          "set_code": "g1",
+          "name": "Magikarp",
+          "number": "22",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "child_printings": [
+            {
+              "id": "a4e21814-bb5c-4b3f-b3f9-b1b39d84e1f1",
+              "finish_key": "holo",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "g1|26|pikachu|toys_r_us_stamp",
+      "source_bucket": "pricecharting_stamp_label_readiness",
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "26",
+      "card_name": "Pikachu",
+      "variant_key": "toys_r_us_stamp",
+      "stamp_label": "Toys R Us Stamp",
+      "finish_key": null,
+      "status": "label_candidate_only_active_finish_required",
+      "sources": [],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-generations/pikachu-toys-r-us-26"
+      ],
+      "evidence_labels": [
+        "PriceCharting CSV exact product title candidate: Pikachu [Toys R Us] #26"
+      ],
+      "raw_snapshot_ref": "pricecharting_stamp_label:g1:26:toys_r_us_stamp",
+      "source_buckets": [
+        "pricecharting_stamp_label_readiness"
+      ],
+      "master_index_rows": [],
+      "db_rows": [
+        {
+          "card_print_id": "508ede96-3342-40a5-af9c-0c1ad5b4ddc7",
+          "gv_id": "GV-PK-G1-26-TOYS-R-US-STAMP",
+          "set_code": "g1",
+          "name": "Pikachu",
+          "number": "26",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "child_printings": [
+            {
+              "id": "30cae0f8-8eb3-47b1-b8f8-44287f9dbd9d",
+              "finish_key": "holo",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "g1|32|slowpoke|toys_r_us_stamp",
+      "source_bucket": "stamped_identity_readiness",
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "32",
+      "card_name": "Slowpoke",
+      "variant_key": "toys_r_us_stamp",
+      "stamp_label": "Toys R Us Stamp",
+      "finish_key": null,
+      "status": "blocked_manual_review",
+      "sources": [
+        "pricecharting_csv_product",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-generations/slowpoke-toys-r-us-32",
+        "https://www.thepricedex.com/set/g1/generations/price-list"
+      ],
+      "evidence_labels": [
+        "ThePriceDex preserved finish evidence from last promoted Master Index",
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "PriceCharting CSV exact product title candidate: Slowpoke [Toys R Us] #32"
+      ],
+      "raw_snapshot_ref": null,
+      "source_buckets": [
+        "stamped_identity_readiness",
+        "pricecharting_stamp_label_readiness"
+      ],
+      "statuses": [
+        "blocked_manual_review",
+        "label_candidate_only_active_finish_required"
+      ],
+      "raw_snapshot_refs": [
+        "pricecharting_stamp_label:g1:32:toys_r_us_stamp"
+      ],
+      "master_index_rows": [
+        {
+          "status": "master_verified",
+          "finish_key": "stamped",
+          "source_count": 2,
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-generations/slowpoke-toys-r-us-32",
+            "https://www.thepricedex.com/set/g1/generations/price-list"
+          ]
+        }
+      ],
+      "db_rows": [
+        {
+          "card_print_id": "31652c3f-d4b0-44c2-8f73-853cbe9084b4",
+          "gv_id": "GV-PK-G1-32-TOYS-R-US-STAMP",
+          "set_code": "g1",
+          "name": "Slowpoke",
+          "number": "32",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "child_printings": [
+            {
+              "id": "85c4d4cc-df38-4a85-960a-e1f9fe2ad12f",
+              "finish_key": "holo",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "g1|50|clefairy|toys_r_us_stamp",
+      "source_bucket": "pricecharting_stamp_label_readiness",
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "50",
+      "card_name": "Clefairy",
+      "variant_key": "toys_r_us_stamp",
+      "stamp_label": "Toys R Us Stamp",
+      "finish_key": null,
+      "status": "label_candidate_only_active_finish_required",
+      "sources": [],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-generations/clefairy-toys-r-us-50"
+      ],
+      "evidence_labels": [
+        "PriceCharting CSV exact product title candidate: Clefairy [Toys R Us] #50"
+      ],
+      "raw_snapshot_ref": "pricecharting_stamp_label:g1:50:toys_r_us_stamp",
+      "source_buckets": [
+        "pricecharting_stamp_label_readiness"
+      ],
+      "master_index_rows": [],
+      "db_rows": [
+        {
+          "card_print_id": "534f1a73-c9a6-4daf-b861-33fa6a76ba16",
+          "gv_id": "GV-PK-G1-50-TOYS-R-US-STAMP",
+          "set_code": "g1",
+          "name": "Clefairy",
+          "number": "50",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "child_printings": [
+            {
+              "id": "cf9b4299-5107-48b8-8a56-a191e94f2c89",
+              "finish_key": "holo",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "g1|53|meowth|toys_r_us_stamp",
+      "source_bucket": "pricecharting_stamp_label_readiness",
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "53",
+      "card_name": "Meowth",
+      "variant_key": "toys_r_us_stamp",
+      "stamp_label": "Toys R Us Stamp",
+      "finish_key": null,
+      "status": "label_candidate_only_active_finish_required",
+      "sources": [],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-generations/meowth-toys-r-us-53"
+      ],
+      "evidence_labels": [
+        "PriceCharting CSV exact product title candidate: Meowth [Toys R Us] #53"
+      ],
+      "raw_snapshot_ref": "pricecharting_stamp_label:g1:53:toys_r_us_stamp",
+      "source_buckets": [
+        "pricecharting_stamp_label_readiness"
+      ],
+      "master_index_rows": [],
+      "db_rows": [
+        {
+          "card_print_id": "e3a83183-e1fe-44cf-becb-ce23ef191792",
+          "gv_id": "GV-PK-G1-53-TOYS-R-US-STAMP",
+          "set_code": "g1",
+          "name": "Meowth",
+          "number": "53",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "child_printings": [
+            {
+              "id": "21191691-b75c-4d91-99be-adc68b8997c0",
+              "finish_key": "holo",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "g1|8|tangela|toys_r_us_stamp",
+      "source_bucket": "pricecharting_stamp_label_readiness",
+      "set_key": "g1",
+      "set_name": "Generations",
+      "card_number": "8",
+      "card_name": "Tangela",
+      "variant_key": "toys_r_us_stamp",
+      "stamp_label": "Toys R Us Stamp",
+      "finish_key": null,
+      "status": "label_candidate_only_active_finish_required",
+      "sources": [],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-generations/tangela-toys-r-us-8"
+      ],
+      "evidence_labels": [
+        "PriceCharting CSV exact product title candidate: Tangela [Toys R Us] #8"
+      ],
+      "raw_snapshot_ref": "pricecharting_stamp_label:g1:8:toys_r_us_stamp",
+      "source_buckets": [
+        "pricecharting_stamp_label_readiness"
+      ],
+      "master_index_rows": [],
+      "db_rows": [
+        {
+          "card_print_id": "a9a53cfc-3fbe-4c7c-ac75-3816d777954f",
+          "gv_id": "GV-PK-G1-8-TOYS-R-US-STAMP",
+          "set_code": "g1",
+          "name": "Tangela",
+          "number": "8",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "child_printings": [
+            {
+              "id": "2614e62b-0d51-4037-b876-aeef95b91ccc",
+              "finish_key": "holo",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "sm1|64|cosmog|toys_r_us_stamp",
+      "source_bucket": "pricecharting_stamp_label_readiness",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "64",
+      "card_name": "Cosmog",
+      "variant_key": "toys_r_us_stamp",
+      "stamp_label": "Toys R Us Stamp",
+      "finish_key": null,
+      "status": "label_candidate_only_active_finish_required",
+      "sources": [],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-sun-and-moon/cosmog-toys-r-us-promo-64"
+      ],
+      "evidence_labels": [
+        "PriceCharting CSV exact product title candidate: Cosmog [Toys R Us Promo] #64"
+      ],
+      "raw_snapshot_ref": "pricecharting_stamp_label:sm1:64:toys_r_us_stamp",
+      "source_buckets": [
+        "pricecharting_stamp_label_readiness"
+      ],
+      "master_index_rows": [],
+      "db_rows": [
+        {
+          "card_print_id": "1e961518-8c96-4cac-b658-8f8d7f86e9c1",
+          "gv_id": "GV-PK-SM1-64-TOYS-R-US-STAMP",
+          "set_code": "sm1",
+          "name": "Cosmog",
+          "number": "64",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "child_printings": [
+            {
+              "id": "707e1160-f18b-41f5-9a6b-37a54bb977ee",
+              "finish_key": "cosmos",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "sm3|110|stufful|toys_r_us_stamp",
+      "source_bucket": "pricecharting_stamp_label_readiness",
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "110",
+      "card_name": "Stufful",
+      "variant_key": "toys_r_us_stamp",
+      "stamp_label": "Toys R Us Stamp",
+      "finish_key": null,
+      "status": "label_candidate_only_active_finish_required",
+      "sources": [],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-burning-shadows/stufful-toys-r-us-110"
+      ],
+      "evidence_labels": [
+        "PriceCharting CSV exact product title candidate: Stufful [Toys R Us] #110"
+      ],
+      "raw_snapshot_ref": "pricecharting_stamp_label:sm3:110:toys_r_us_stamp",
+      "source_buckets": [
+        "pricecharting_stamp_label_readiness"
+      ],
+      "master_index_rows": [],
+      "db_rows": [
+        {
+          "card_print_id": "5ccd6f56-0bb1-46e3-9162-b15d87751197",
+          "gv_id": "GV-PK-SM3-110-TOYS-R-US-STAMP",
+          "set_code": "sm3",
+          "name": "Stufful",
+          "number": "110",
+          "variant_key": "toys_r_us_stamp",
+          "printed_identity_modifier": "toys_r_us_stamp",
+          "child_printings": [
+            {
+              "id": "bd433b47-ce67-4d55-82b8-45d42460837e",
+              "finish_key": "holo",
+              "printing_gv_id": null
+            }
+          ]
+        }
+      ],
+      "classification": "already_in_db"
+    },
+    {
+      "key": "xy12|41|electabuzz|toys_r_us_stamp",
+      "source_bucket": "stamped_identity_readiness",
+      "set_key": "xy12",
+      "set_name": "Evolutions",
+      "card_number": "41",
+      "card_name": "Electabuzz",
+      "variant_key": "toys_r_us_stamp",
+      "stamp_label": "Toys R Us Stamp",
+      "finish_key": null,
+      "status": "blocked_manual_review",
+      "sources": [
+        "pricecharting_csv_product",
+        "thepricedex_price_list"
+      ],
+      "evidence_urls": [
+        "https://www.pricecharting.com/game/pokemon-evolutions/electabuzz-toys-r-us-41",
+        "https://www.thepricedex.com/set/xy12/evolutions/price-list"
+      ],
+      "evidence_labels": [
+        "ThePriceDex preserved finish evidence from last promoted Master Index",
+        "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+        "PriceCharting CSV exact product title candidate: Electabuzz [Toys R Us] #41"
+      ],
+      "raw_snapshot_ref": null,
+      "source_buckets": [
+        "stamped_identity_readiness",
+        "pricecharting_stamp_label_readiness"
+      ],
+      "statuses": [
+        "blocked_manual_review",
+        "label_candidate_only_active_finish_required"
+      ],
+      "raw_snapshot_refs": [
+        "pricecharting_stamp_label:xy12:41:toys_r_us_stamp"
+      ],
+      "master_index_rows": [
+        {
+          "status": "master_verified",
+          "finish_key": "stamped",
+          "source_count": 2,
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-evolutions/electabuzz-toys-r-us-41",
+            "https://www.thepricedex.com/set/xy12/evolutions/price-list"
+          ]
+        }
+      ],
+      "db_rows": [],
+      "classification": "master_index_legacy_stamped_finish_requires_active_finish"
+    }
+  ],
+  "fingerprint_sha256": "8944e186ca750b320d2f7359224a58a61f2e04abedbc84e3cbe1d8027c8993d5"
+}
