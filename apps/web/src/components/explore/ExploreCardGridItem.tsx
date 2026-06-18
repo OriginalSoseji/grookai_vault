@@ -64,6 +64,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
         imagePresentation.compactBadgeLabel ? (
           <CardImageTruthBadge
             label={imagePresentation.compactBadgeLabel}
+            note={imagePresentation.detailNote}
             emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
           />
         ) : null

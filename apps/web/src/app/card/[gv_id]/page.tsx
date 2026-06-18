@@ -607,6 +607,7 @@ export default async function CardPage({
               <div className="mt-4 flex w-full flex-wrap justify-center gap-2">
                 <CardImageTruthBadge
                   label={resolvedCardImagePresentation.detailBadgeLabel ?? resolvedCardImagePresentation.compactBadgeLabel}
+                  note={resolvedCardImagePresentation.detailNote}
                   emphasis={
                     resolvedCardImagePresentation.isCollisionRepresentative ||
                     resolvedCardImagePresentation.isMissingVariantVisual ||

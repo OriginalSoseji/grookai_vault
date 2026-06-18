@@ -82,6 +82,7 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
               <div className="mt-1">
                 <CardImageTruthBadge
                   label={imagePresentation.compactBadgeLabel}
+                  note={imagePresentation.detailNote}
                   emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
                 />
               </div>
