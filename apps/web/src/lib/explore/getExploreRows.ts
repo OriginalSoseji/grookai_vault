@@ -2689,6 +2689,57 @@ async function fetchCardRowsBySetCode(setCode: string) {
   return (data ?? []) as CardPrintLookupRow[];
 }
 
+async function fetchCardRowsByStructuredTextQuery(query: ResolverQuery) {
+  const supabase = createServerComponentClient();
+  const selectClause =
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
+  const rowsById = new Map<string, CardPrintLookupRow>();
+
+  if (query.directGvId) {
+    const { data, error } = await supabase
+      .from("card_prints")
+      .select(selectClause)
+      .eq("gv_id", query.directGvId)
+      .limit(1);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    for (const row of (data ?? []) as CardPrintLookupRow[]) {
+      rowsById.set(row.id, row);
+    }
+  }
+
+  const tokens = query.significantTextTokens.length > 0
+    ? query.significantTextTokens
+    : query.textTokens.filter((token) => token.length >= 2 && !GENERIC_TOKENS.has(token));
+
+  if (tokens.length === 0) {
+    return [...rowsById.values()];
+  }
+
+  let request = supabase
+    .from("card_prints")
+    .select(selectClause)
+    .limit(500);
+
+  for (const token of tokens.slice(0, 3)) {
+    request = request.ilike("name", `%${token}%`);
+  }
+
+  const { data, error } = await request;
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  for (const row of (data ?? []) as CardPrintLookupRow[]) {
+    rowsById.set(row.id, row);
+  }
+
+  return [...rowsById.values()];
+}
+
 async function fetchCardRowsByIdentityFilter(filterKey: IdentityFilterKey) {
   const normalizedFilter = normalizeIdentityFilterKey(filterKey);
   if (normalizedFilter === "all") {
@@ -3302,6 +3353,83 @@ export async function getExploreRowsForSmartFilterDiscovery(
   );
 
   return sortRows(rows, query, options.sortMode).slice(0, SMART_FILTER_DISCOVERY_LIMIT);
+}
+
+export async function getExploreRowsForSmartStructuredTextSearch(
+  rawQuery: string,
+  options: SmartFilterDiscoveryOptions,
+): Promise<ExploreRow[]> {
+  const packet = normalizeQuery(rawQuery);
+  const query = await buildResolverQuery(packet);
+
+  if (!query.normalized) {
+    return getExploreRowsForSmartFilterDiscovery(options);
+  }
+
+  let parentRows = await fetchCardRowsByStructuredTextQuery(query);
+
+  const exactSetCode = normalizeSetCode(options.exactSetCode);
+  const identityFilter = normalizeIdentityFilterKey(options.identityFilter);
+  const exactIllustrator = options.exactIllustrator?.trim();
+  const expectedSetCodes = new Set(query.expectedSetCodes.map((code) => normalizeSetCode(code)));
+
+  if (expectedSetCodes.size > 0) {
+    parentRows = parentRows.filter((row) => expectedSetCodes.has(normalizeSetCode(row.set_code)));
+  }
+
+  if (exactSetCode) {
+    parentRows = parentRows.filter((row) => normalizeSetCode(row.set_code) === exactSetCode);
+  }
+
+  if (exactIllustrator) {
+    parentRows = parentRows.filter(
+      (row) => normalizeIllustrator(row.artist) === normalizeIllustrator(exactIllustrator),
+    );
+  }
+
+  if (isIdentityFilterActive(identityFilter)) {
+    parentRows = parentRows.filter((row) => matchesIdentityFilter(row, identityFilter));
+  }
+
+  const childScopedRows = await fetchSmartDiscoveryChildRows(options, parentRows);
+  if (childScopedRows.length === 0) {
+    return [];
+  }
+
+  const setMetadataByCode = await fetchPublicSetMetadata(
+    uniqueValues(childScopedRows.map((row) => row.set_code ?? "").filter(Boolean)),
+  );
+  const supabase = createServerComponentClient();
+  const pricingByCardId = await getPublicPricingByCardIds(
+    supabase,
+    childScopedRows.map((row) => row.id),
+  );
+  const rows = await buildExploreRows(
+    childScopedRows,
+    new Map<string, string>(),
+    setMetadataByCode,
+    pricingByCardId,
+  );
+  const releaseFilteredRows = rows.filter((row) => {
+    if (typeof options.exactReleaseYear === "number") {
+      return row.release_year === options.exactReleaseYear;
+    }
+    if (
+      typeof options.releaseYearMin === "number" &&
+      (typeof row.release_year !== "number" || row.release_year < options.releaseYearMin)
+    ) {
+      return false;
+    }
+    if (
+      typeof options.releaseYearMax === "number" &&
+      (typeof row.release_year !== "number" || row.release_year > options.releaseYearMax)
+    ) {
+      return false;
+    }
+    return true;
+  });
+
+  return sortRows(releaseFilteredRows, query, options.sortMode).slice(0, SMART_FILTER_DISCOVERY_LIMIT);
 }
 
 export async function getExploreRowsForOwnedSmartFilterDiscovery(

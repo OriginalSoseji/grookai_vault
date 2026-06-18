@@ -9,11 +9,13 @@ import {
 import {
   getExploreRowsForOwnedSmartFilterDiscovery,
   getExploreRowsForSmartFilterDiscovery,
+  getExploreRowsForSmartStructuredTextSearch,
 } from "@/lib/explore/getExploreRows";
 import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
 import { buildSmartSearchIntent, type SmartSearchIntent } from "@/lib/search/smartSearchIntent";
+import { resolveSmartSearchQuery } from "@/lib/search/resolveSmartSearchQuery";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import {
   getOwnedCardPrintIdsForUser,
@@ -185,9 +187,7 @@ function rowMatchesImageState(row: ExploreResultCard, imageState: SmartSearchInt
 function buildSmartFilterDiscoveryMeta(
   rows: ExploreResultCard[],
   smartSearchIntent: SmartSearchIntent,
-  residualQuery?: string,
 ): ResolverMeta {
-  const effectiveQuery = residualQuery || smartSearchIntent.residualQuery;
   return {
     resolverState: rows.length > 0 ? "WEAK_MATCH" : "NO_MATCH",
     topScore: null,
@@ -195,8 +195,8 @@ function buildSmartFilterDiscoveryMeta(
     autoResolved: false,
     intentSummary: {
       expectedSetCodes: [],
-      nameTokens: effectiveQuery
-        ? effectiveQuery.split(/\s+/).filter(Boolean)
+      nameTokens: smartSearchIntent.residualQuery
+        ? smartSearchIntent.residualQuery.split(/\s+/).filter(Boolean)
         : [],
     },
     structuredEvidenceFlags: {
@@ -246,7 +246,7 @@ async function applySmartSearchPostFilters(
 export async function GET(request: NextRequest) {
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
   const smartSearchIntent = buildSmartSearchIntent(rawQuery);
-  const query = smartSearchIntent.residualQuery || rawQuery.trim();
+  const query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
   const exactReleaseYear = parseReleaseYear(request.nextUrl.searchParams.get("year"));
   const explicitYearMin = parseReleaseYearBound(request.nextUrl.searchParams.get("year_min"));
@@ -286,18 +286,9 @@ export async function GET(request: NextRequest) {
   const hasSmartImageIntent = Boolean(effectiveSmartSearchIntent.imageState && effectiveSmartSearchIntent.imageState !== "any");
   const hasSmartOwnershipIntent = Boolean(effectiveSmartSearchIntent.ownedState && effectiveSmartSearchIntent.ownedState !== "any");
   const hasSmartStampIntent = effectiveSmartSearchIntent.stampLabels.length > 0;
-  const hasTextualCatalogFilter =
+  const shouldUseStructuredTextExpansion =
     Boolean(query) &&
-    (
-      Boolean(exactSetCode) ||
-      typeof exactReleaseYear === "number" ||
-      typeof exactIllustrator === "string" ||
-      isIdentityFilterActive(identityFilter) ||
-      hasSmartYearRange ||
-      hasSmartFinishIntent ||
-      hasSmartImageIntent ||
-      hasSmartStampIntent
-    );
+    (hasSmartFinishIntent || hasSmartImageIntent || hasSmartStampIntent);
   const hasCatalogDiscoveryScope =
     Boolean(exactSetCode) ||
     typeof exactReleaseYear === "number" ||
@@ -308,7 +299,7 @@ export async function GET(request: NextRequest) {
     hasSmartImageIntent ||
     hasSmartStampIntent;
   const shouldUseSmartFilterDiscovery =
-    (!query || hasTextualCatalogFilter) &&
+    !query &&
     hasCatalogDiscoveryScope &&
     effectiveSmartSearchIntent.ownedState !== "owned";
 
@@ -335,11 +326,10 @@ export async function GET(request: NextRequest) {
       !effectiveSmartSearchIntent.ownedState &&
       !isIdentityFilterActive(identityFilter);
     const [resolved, provisionalResults] = await Promise.all([
-      effectiveSmartSearchIntent.ownedState === "owned" && userId && hasCatalogDiscoveryScope
+      !query && effectiveSmartSearchIntent.ownedState === "owned" && userId
         ? getOwnedCardPrintIdsForUser(userId).then((ownedCardPrintIds) =>
             getExploreRowsForOwnedSmartFilterDiscovery(ownedCardPrintIds, {
               sortMode,
-              textQuery: query,
               exactSetCode,
               exactReleaseYear,
               exactIllustrator,
@@ -352,12 +342,11 @@ export async function GET(request: NextRequest) {
             }),
           ).then((rows) => ({
             rows,
-            meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent, query),
+            meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
           }))
         : shouldUseSmartFilterDiscovery
           ? getExploreRowsForSmartFilterDiscovery({
             sortMode,
-            textQuery: query,
             exactSetCode,
             exactReleaseYear,
             exactIllustrator,
@@ -369,18 +358,34 @@ export async function GET(request: NextRequest) {
             imageState: effectiveSmartSearchIntent.imageState,
           }).then((rows) => ({
             rows,
-            meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent, query),
+            meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
           }))
-          : resolveQueryWithMeta(query, {
-            mode: "ranked",
-            sortMode,
-            exactSetCode,
-            exactReleaseYear,
-            exactIllustrator,
-            identityFilter,
-            releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
-            releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
-          }),
+          : shouldUseStructuredTextExpansion
+            ? getExploreRowsForSmartStructuredTextSearch(query, {
+                sortMode,
+                exactSetCode,
+                exactReleaseYear,
+                exactIllustrator,
+                identityFilter,
+                releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
+                releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
+                finishKeys: effectiveSmartSearchIntent.finishKeys,
+                stampLabels: effectiveSmartSearchIntent.stampLabels,
+                imageState: effectiveSmartSearchIntent.imageState,
+              }).then((rows) => ({
+                rows,
+                meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
+              }))
+            : resolveQueryWithMeta(query, {
+                mode: "ranked",
+                sortMode,
+                exactSetCode,
+                exactReleaseYear,
+                exactIllustrator,
+                identityFilter,
+                releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
+                releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
+              }),
       includeProvisional
         ? getPublicProvisionalCards({
             query: rawQuery,
@@ -441,14 +446,6 @@ export async function GET(request: NextRequest) {
       throw new Error("SECURITY: GV-ID found in provisional search results");
     }
 
-    const responseMeta =
-      hasCatalogDiscoveryScope || hasSmartOwnershipIntent
-        ? {
-            ...resolved.meta,
-            candidateCount: smartFilteredCanonicalResults.length,
-          }
-        : resolved.meta;
-
     return NextResponse.json(
       {
         ok: true,
@@ -457,7 +454,7 @@ export async function GET(request: NextRequest) {
         rows: smartFilteredCanonicalResults,
         canonical: smartFilteredCanonicalResults,
         provisional: provisionalResultsForResponse,
-        meta: responseMeta,
+        meta: resolved.meta,
         source: "web_ranked_resolver_v2",
       },
       {

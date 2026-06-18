@@ -13,6 +13,7 @@ import {
   resolveDisplayIdentitySubtitleForContext,
 } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
+import { getSecondaryBadgeLabels } from "@/components/explore/dedupeBadgeLabels";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 import { getSearchContextBadgeTone } from "@/components/explore/searchContextPresentation";
 
@@ -32,10 +33,6 @@ function getDiagnosticId(card: ExploreResultCard) {
   return card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`;
 }
 
-function normalizeBadgeLabel(label?: string | null) {
-  return (label ?? "").trim().toLowerCase();
-}
-
 export default function ExploreCardDetailsRow({ card, href, canViewPricing, signInHref, matchReason }: ExploreCardDetailsRowProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = card.set_name ?? "Unknown set";
@@ -47,12 +44,10 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
   const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
   const primaryFinishLabel = getPrimaryFinishLabel(card);
-  const hiddenBadgeLabels = new Set(
-    [primaryFinishLabel, searchDiscriminator].map(normalizeBadgeLabel).filter(Boolean),
-  );
-  const visibleVariantLabels = variantLabels.filter(
-    (label) => !hiddenBadgeLabels.has(normalizeBadgeLabel(label)),
-  );
+  const secondaryVariantLabels = getSecondaryBadgeLabels(variantLabels, [
+    primaryFinishLabel,
+    searchDiscriminator ?? undefined,
+  ]);
 
   return (
     <tr className="border-b border-slate-100 last:border-b-0 dark:border-slate-800/80">
@@ -87,6 +82,7 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
               <div className="mt-1">
                 <CardImageTruthBadge
                   label={imagePresentation.compactBadgeLabel}
+                  note={imagePresentation.detailNote}
                   emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
                 />
               </div>
@@ -98,12 +94,12 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
       <td className="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{card.number ? `#${card.number}` : "—"}</td>
       <td className="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{card.rarity ?? "—"}</td>
       <td className="px-4 py-3">
-        {primaryFinishLabel || visibleVariantLabels.length > 0 || searchDiscriminator ? (
+        {primaryFinishLabel || variantLabels.length > 0 || searchDiscriminator ? (
           <div className="flex flex-wrap gap-1.5">
             {primaryFinishLabel ? (
               <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
             ) : null}
-            {visibleVariantLabels.map((label) => (
+            {secondaryVariantLabels.map((label) => (
               <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
             ))}
             {searchDiscriminator ? (

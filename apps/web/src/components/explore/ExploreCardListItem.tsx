@@ -13,6 +13,7 @@ import {
   resolveDisplayIdentitySubtitleForContext,
 } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
+import { getSecondaryBadgeLabels } from "@/components/explore/dedupeBadgeLabels";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 import { getSearchContextBadgeTone } from "@/components/explore/searchContextPresentation";
 
@@ -32,10 +33,6 @@ function getDiagnosticId(card: ExploreResultCard) {
   return card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`;
 }
 
-function normalizeBadgeLabel(label?: string | null) {
-  return (label ?? "").trim().toLowerCase();
-}
-
 export default function ExploreCardListItem({ card, href, canViewPricing, signInHref, matchReason }: ExploreCardListItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = [card.set_name, card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ") || "—";
@@ -47,12 +44,10 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
   const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
   const primaryFinishLabel = getPrimaryFinishLabel(card);
-  const hiddenBadgeLabels = new Set(
-    [primaryFinishLabel, searchDiscriminator].map(normalizeBadgeLabel).filter(Boolean),
-  );
-  const visibleVariantLabels = variantLabels.filter(
-    (label) => !hiddenBadgeLabels.has(normalizeBadgeLabel(label)),
-  );
+  const secondaryVariantLabels = getSecondaryBadgeLabels(variantLabels, [
+    primaryFinishLabel,
+    searchDiscriminator ?? undefined,
+  ]);
 
   return (
     <li className="gv-visual-card px-4 py-4">
@@ -80,15 +75,16 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
               {imagePresentation.compactBadgeLabel ? (
                 <CardImageTruthBadge
                   label={imagePresentation.compactBadgeLabel}
+                  note={imagePresentation.detailNote}
                   emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
                 />
               ) : null}
-              {primaryFinishLabel || visibleVariantLabels.length > 0 || searchDiscriminator ? (
+              {primaryFinishLabel || variantLabels.length > 0 || searchDiscriminator ? (
                 <div className="flex flex-wrap gap-1.5">
                   {primaryFinishLabel ? (
                     <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
                   ) : null}
-                  {visibleVariantLabels.map((label) => (
+                  {secondaryVariantLabels.map((label) => (
                     <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
                   ))}
                   {searchDiscriminator ? (

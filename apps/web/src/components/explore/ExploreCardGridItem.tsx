@@ -15,6 +15,7 @@ import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 import { getSearchContextBadgeTone } from "@/components/explore/searchContextPresentation";
+import { getSecondaryBadgeLabels } from "@/components/explore/dedupeBadgeLabels";
 
 type ExploreCardGridItemProps = {
   card: ExploreResultCard;
@@ -32,10 +33,6 @@ function getDiagnosticId(card: ExploreResultCard) {
   return card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`;
 }
 
-function normalizeBadgeLabel(label?: string | null) {
-  return (label ?? "").trim().toLowerCase();
-}
-
 export default function ExploreCardGridItem({ card, href, mode, canViewPricing, matchReason }: ExploreCardGridItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = card.set_name ?? "Unknown set";
@@ -49,12 +46,10 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
   const isLarge = mode === "thumb-lg";
   const density = isLarge ? "large" : "default";
   const primaryFinishLabel = getPrimaryFinishLabel(card);
-  const hiddenBadgeLabels = new Set(
-    [primaryFinishLabel, searchDiscriminator].map(normalizeBadgeLabel).filter(Boolean),
-  );
-  const visibleVariantLabels = variantLabels.filter(
-    (label) => !hiddenBadgeLabels.has(normalizeBadgeLabel(label)),
-  );
+  const secondaryVariantLabels = getSecondaryBadgeLabels(variantLabels, [
+    primaryFinishLabel,
+    searchDiscriminator ?? undefined,
+  ]);
   const metaLine = [card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ") || "—";
 
   return (
@@ -69,6 +64,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
         imagePresentation.compactBadgeLabel ? (
           <CardImageTruthBadge
             label={imagePresentation.compactBadgeLabel}
+            note={imagePresentation.detailNote}
             emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
           />
         ) : null
@@ -92,7 +88,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
           {primaryFinishLabel ? (
             <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
           ) : null}
-          {visibleVariantLabels.map((label) => (
+          {secondaryVariantLabels.map((label) => (
             <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
           ))}
           {searchDiscriminator ? (
@@ -109,7 +105,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
       footer={
         <details className="group/details">
           <summary className="cursor-pointer list-none text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400 transition hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300">
-            Card identity
+            Identity proof
           </summary>
           <div className="mt-1.5 space-y-1 text-[11px] leading-4 text-slate-500 dark:text-slate-400">
             <p className="truncate">{getDiagnosticId(card)}</p>
