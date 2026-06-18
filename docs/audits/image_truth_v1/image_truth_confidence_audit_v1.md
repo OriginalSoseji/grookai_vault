@@ -1,6 +1,6 @@
 # Image Truth Confidence Audit V1
 
-Generated: 2026-06-18T19:07:24.431Z
+Generated: 2026-06-18T19:18:38.368Z
 
 Status: audit only. No DB writes. No migrations. No image promotion.
 
@@ -10,8 +10,8 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 
 - english physical child printings: 37646
 - english physical exact-required rows: 14527
-- english physical display-covered rows: 37642
-- english physical missing-display rows: 4
+- english physical display-covered rows: 37646
+- english physical missing-display rows: 0
 - english physical missing-variant-visual rows: 14431
 - db_writes_performed: false
 - migrations_created: false
@@ -22,8 +22,7 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 | --- | --- |
 | exact | 22739 |
 | missing_variant_visual | 14431 |
-| representative | 472 |
-| missing | 4 |
+| representative | 476 |
 
 ## English Physical Exact-Required Confidence Counts
 
@@ -31,8 +30,7 @@ Contract: IMAGE_CONFIDENCE_CONTRACT_V1
 | --- | --- |
 | missing_variant_visual | 14431 |
 | exact | 55 |
-| representative | 37 |
-| missing | 4 |
+| representative | 41 |
 
 ## Interpretation
 
@@ -42,12 +40,7 @@ This gives Grookai high display coverage without falsely claiming exact variant 
 
 ## First Missing Display Rows
 
-| set | number | card | finish | reason |
-| --- | --- | --- | --- | --- |
-| mep | 022 | Charcadet | holo | no_safe_display_image_available |
-| mep | 031 | N's Zekrom | holo | no_safe_display_image_available |
-| mep | 070 | Tyrunt | holo | no_safe_display_image_available |
-| mep | 80 | Fennekin | holo | no_safe_display_image_available |
+_None._
 
 ## First Missing Variant Visual Rows
 

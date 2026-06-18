@@ -1,6 +1,6 @@
 # Image Truth Audit V1
 
-Generated: 2026-06-18T19:07:24.431Z
+Generated: 2026-06-18T19:18:38.368Z
 
 Status: audit only. No DB writes. No migrations.
 
@@ -10,15 +10,15 @@ Status: audit only. No DB writes. No migrations.
 - child image storage columns present: true
 - exact child image required: 16541
 - finish visual review needed: 10708
-- exact-required rows missing exact child image: 16449
-- finish-review rows missing exact child image: 10518
-- critical/high image risk rows: 16449
-- image apply-addressable missing exact rows: 14435
+- exact-required rows missing exact child image: 16445
+- finish-review rows missing exact child image: 10514
+- critical/high image risk rows: 16445
+- image apply-addressable missing exact rows: 14431
 - image identity-blocked missing exact rows: 205
 - image non-physical blocked missing exact rows: 1809
 - image other-scope missing exact rows: 0
-- english physical display-covered rows: 37642
-- english physical missing-display rows: 4
+- english physical display-covered rows: 37646
+- english physical missing-display rows: 0
 - english physical missing-variant-visual rows: 14431
 - db_writes_performed: false
 - migrations_created: false
@@ -32,8 +32,7 @@ All scopes:
 | exact | 22739 |
 | missing_variant_visual | 14431 |
 | blocked | 6036 |
-| representative | 472 |
-| missing | 4 |
+| representative | 476 |
 
 English physical only:
 
@@ -41,8 +40,7 @@ English physical only:
 | --- | --- |
 | exact | 22739 |
 | missing_variant_visual | 14431 |
-| representative | 472 |
-| missing | 4 |
+| representative | 476 |
 
 ## Image Coverage Counts
 
@@ -50,17 +48,17 @@ English physical only:
 | --- | --- |
 | using_parent_exact_image | 42751 |
 | using_parent_representative_image | 462 |
-| exact_child_image_present | 384 |
-| missing_display_image | 85 |
+| exact_child_image_present | 388 |
+| missing_display_image | 81 |
 
 ## Risk Counts
 
 | risk | rows |
 | --- | --- |
-| low | 27179 |
+| low | 27183 |
 | high | 16418 |
 | medium | 54 |
-| critical | 31 |
+| critical | 27 |
 
 ## Risk By Finish
 
@@ -69,7 +67,7 @@ English physical only:
 | reverse | 15384 |
 | cosmos | 324 |
 | pokeball | 230 |
-| holo | 216 |
+| holo | 212 |
 | normal | 150 |
 | cracked_ice | 122 |
 | masterball | 67 |
@@ -136,9 +134,9 @@ English physical only:
 | critical | unknown | 97 | Kangaskhan | reverse | missing_display_image | visually_distinct_finish, non_normal_finish, no_display_image_available |
 | critical | unknown | 98 | Blissey ex | reverse | missing_display_image | visually_distinct_finish, non_normal_finish, no_display_image_available |
 | critical | unknown | 99 | Marill | reverse | missing_display_image | visually_distinct_finish, non_normal_finish, no_display_image_available |
-| critical | mep | 022 | Charcadet | holo | missing_display_image | holo_finish_review_debt, visual_identity_modifier_or_stamp, no_display_image_available |
-| critical | mep | 031 | N's Zekrom | holo | missing_display_image | holo_finish_review_debt, visual_identity_modifier_or_stamp, no_display_image_available |
-| critical | mep | 070 | Tyrunt | holo | missing_display_image | holo_finish_review_debt, visual_identity_modifier_or_stamp, no_display_image_available |
+| high | sv03.5 | 025 | Pikachu | reverse | using_parent_exact_image | visually_distinct_finish, non_normal_finish, child_printing_falls_back_to_parent_exact_image, owned_child_printing_reference |
+| high | sv8pt5 | 002 | Exeggutor | masterball | using_parent_exact_image | visually_distinct_finish, non_normal_finish, child_printing_falls_back_to_parent_exact_image, owned_child_printing_reference |
+| high | sv8pt5 | 002 | Exeggutor | pokeball | using_parent_exact_image | visually_distinct_finish, non_normal_finish, child_printing_falls_back_to_parent_exact_image, owned_child_printing_reference |
 
 ## Interpretation
 

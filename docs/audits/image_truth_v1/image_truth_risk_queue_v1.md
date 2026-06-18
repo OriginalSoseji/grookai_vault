@@ -1,14 +1,14 @@
 # Image Truth Risk Queue V1
 
-Generated: 2026-06-18T19:07:24.431Z
+Generated: 2026-06-18T19:18:38.368Z
 
 Status: audit only. No DB writes. No migrations.
 
 Queue definition: child printings that require exact visual proof but currently render without an exact child-level image.
 
 Rows in JSON queue: 1000
-Full missing exact rows: 16449
-Apply-addressable missing exact rows: 14435
+Full missing exact rows: 16445
+Apply-addressable missing exact rows: 14431
 Identity-blocked missing exact rows: 205
 Non-physical blocked missing exact rows: 1809
 Other-scope missing exact rows: 0
@@ -42,10 +42,6 @@ Other-scope missing exact rows: 0
 | critical | unknown | unresolved_set | blocked | 97 | Kangaskhan | reverse | GV-TCGP-P-A-97-RH | missing_display_image |
 | critical | unknown | unresolved_set | blocked | 98 | Blissey ex | reverse | GV-TCGP-P-A-98-RH | missing_display_image |
 | critical | unknown | unresolved_set | blocked | 99 | Marill | reverse | GV-TCGP-P-A-99-RH | missing_display_image |
-| critical | mep | english_physical | missing | 022 | Charcadet | holo | GV-PK-MEP-022-POKEMON-CENTER-STAMP-HOLO | missing_display_image |
-| critical | mep | english_physical | missing | 031 | N's Zekrom | holo | GV-PK-MEP-031-POKEMON-CENTER-STAMP-HOLO | missing_display_image |
-| critical | mep | english_physical | missing | 070 | Tyrunt | holo | GV-PK-MEP-070-POKEMON-CENTER-STAMP-HOLO | missing_display_image |
-| critical | mep | english_physical | missing | 80 | Fennekin | holo | GV-PK-MEP-080-POKEMON-CENTER-STAMP-HOLO | missing_display_image |
 | high | sv03.5 | english_physical | missing_variant_visual | 025 | Pikachu | reverse | GV-PK-MEW-025-RH | using_parent_exact_image |
 | high | sv8pt5 | english_physical | missing_variant_visual | 002 | Exeggutor | masterball | GV-PK-PRE-002-MB | using_parent_exact_image |
 | high | sv8pt5 | english_physical | missing_variant_visual | 002 | Exeggutor | pokeball | GV-PK-PRE-002-PB | using_parent_exact_image |
@@ -115,3 +111,7 @@ Other-scope missing exact rows: 0
 | high | unknown | unresolved_set | blocked | 36 | Palossand | reverse | GV-TCGP-A3A-36-RH | using_parent_exact_image |
 | high | unknown | unresolved_set | blocked | 37 | Alolan Meowth | reverse | GV-TCGP-A3A-37-RH | using_parent_exact_image |
 | high | unknown | unresolved_set | blocked | 37 | Cresselia ex | reverse | GV-TCGP-P-A-37-RH | using_parent_exact_image |
+| high | unknown | unresolved_set | blocked | 38 | Alolan Persian | reverse | GV-TCGP-A3A-38-RH | using_parent_exact_image |
+| high | unknown | unresolved_set | blocked | 38 | Misdreavus | reverse | GV-TCGP-P-A-38-RH | using_parent_exact_image |
+| high | unknown | unresolved_set | blocked | 39 | Sandile | reverse | GV-TCGP-A3A-39-RH | using_parent_exact_image |
+| high | unknown | unresolved_set | blocked | 39 | Skarmory | reverse | GV-TCGP-P-A-39-RH | using_parent_exact_image |
