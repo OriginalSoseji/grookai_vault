@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PrintingChip from "@/components/cards/PrintingChip";
 import { findPrintingByReference, isPrintingReferenceMatch } from "@/lib/cards/printingSelection";
 import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
@@ -105,8 +106,23 @@ export default function PrintingSelector({
   const selectedUsesBaseImage =
     showImageFallbackNotice &&
     (selectedPrinting.is_display_fallback || (!selectedPrinting.display_image_url && !selectedPrinting.image_url));
-  const selectedNeedsImageNotice = selectedUsesRepresentativeImage || selectedUsesBaseImage;
+  const selectedImageIsExact = selectedImagePresentation.displayImageKind === "exact";
+  const selectedNeedsImageNotice =
+    showImageFallbackNotice &&
+    (selectedUsesRepresentativeImage || selectedUsesBaseImage || selectedImagePresentation.isBlocked || !selectedImageIsExact);
   const imageSuggestionHref = selectedNeedsImageNotice ? getImageSuggestionHref?.(selectedPrinting) ?? null : null;
+  const selectedImageStatusLabel = selectedUsesBaseImage
+    ? "Base Image"
+    : selectedImagePresentation.detailBadgeLabel ??
+      (selectedImageIsExact ? "Exact Image" : "Image Pending");
+  const selectedImageStatusNote = selectedUsesBaseImage
+    ? selectedPrinting.is_display_fallback
+      ? "No finish-specific versions are cataloged for this card yet."
+      : "Correct printing. The selected version does not have a reviewed image yet."
+    : selectedImagePresentation.detailNote ??
+      (selectedImageIsExact
+        ? "This image is attached to the selected printing."
+        : "Correct printing. Exact variant image is pending.");
 
   return (
     <section className={`gv-action-panel space-y-4 ${compact ? "p-4" : "p-5"}`}>
@@ -160,24 +176,44 @@ export default function PrintingSelector({
             {selectedOwnershipLabel}
           </span>
         </div>
+        {showImageFallbackNotice ? (
+          <div className="mt-3 rounded-[14px] border border-slate-200/80 bg-white/76 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] dark:border-slate-700 dark:bg-slate-900/72">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+              <div className="min-w-0">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                  Image status
+                </p>
+                <p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">
+                  {selectedImageStatusNote}
+                </p>
+              </div>
+              {selectedImageIsExact && !selectedUsesBaseImage ? (
+                <span className="inline-flex w-fit rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-800 shadow-sm dark:border-emerald-400/35 dark:bg-emerald-400/12 dark:text-emerald-100">
+                  {selectedImageStatusLabel}
+                </span>
+              ) : (
+                <CardImageTruthBadge
+                  label={selectedImageStatusLabel}
+                  note={selectedImageStatusNote}
+                  emphasis={selectedNeedsImageNotice ? "strong" : "default"}
+                  className="w-fit"
+                />
+              )}
+            </div>
+          </div>
+        ) : null}
         {selectedNeedsImageNotice ? (
-          <div className="mt-3 rounded-[12px] border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-950">
+          <div className="mt-3 rounded-[12px] border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-950 dark:border-amber-400/35 dark:bg-amber-400/12 dark:text-amber-100">
             <p className="font-medium">
               {selectedImagePresentation.detailBadgeLabel ??
                 (selectedUsesRepresentativeImage ? "Representative image" : "Using base image")}
             </p>
             <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
-              <span>
-                {selectedUsesRepresentativeImage
-                  ? selectedImagePresentation.detailNote
-                  : selectedPrinting.is_display_fallback
-                  ? "No finish-specific versions are cataloged for this card yet."
-                  : "This selected version does not have a reviewed image yet."}
-              </span>
+              <span>{selectedImageStatusNote}</span>
               {imageSuggestionHref ? (
                 <Link
                   href={imageSuggestionHref}
-                  className="inline-flex rounded-full border border-amber-300 bg-amber-100 px-2.5 py-1 font-semibold text-amber-950 transition hover:border-amber-400 hover:bg-amber-200"
+                  className="inline-flex rounded-full border border-amber-300 bg-amber-100 px-2.5 py-1 font-semibold text-amber-950 transition hover:border-amber-400 hover:bg-amber-200 dark:border-amber-300/40 dark:bg-amber-300/15 dark:text-amber-100 dark:hover:bg-amber-300/25"
                 >
                   Suggest image
                 </Link>
@@ -185,7 +221,7 @@ export default function PrintingSelector({
                 <button
                   type="button"
                   disabled
-                  className="inline-flex cursor-not-allowed rounded-full border border-amber-300 bg-amber-100 px-2.5 py-1 font-semibold text-amber-900 opacity-70"
+                  className="inline-flex cursor-not-allowed rounded-full border border-amber-300 bg-amber-100 px-2.5 py-1 font-semibold text-amber-900 opacity-70 dark:border-amber-300/40 dark:bg-amber-300/15 dark:text-amber-100"
                   aria-disabled="true"
                 >
                   Suggest image
@@ -195,7 +231,7 @@ export default function PrintingSelector({
                 <Link
                   key={`${link.href}-${link.label}`}
                   href={link.href}
-                  className="inline-flex rounded-full border border-amber-300 bg-white px-2.5 py-1 font-semibold text-amber-950 transition hover:border-amber-400 hover:bg-amber-100"
+                  className="inline-flex rounded-full border border-amber-300 bg-white px-2.5 py-1 font-semibold text-amber-950 transition hover:border-amber-400 hover:bg-amber-100 dark:border-amber-300/40 dark:bg-slate-950/40 dark:text-amber-100 dark:hover:bg-amber-300/15"
                 >
                   {link.label}
                 </Link>
