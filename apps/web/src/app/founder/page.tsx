@@ -787,10 +787,16 @@ export default async function FounderPage() {
           <div className="space-y-1">
             <h2 className="text-xl font-semibold tracking-tight text-slate-950">Founder Tools</h2>
             <p className="text-sm text-slate-600">
-              Warehouse review stays in the decision lane. Staging stays in the execution lane.
+              Warehouse review stays in the decision lane. Staging stays in the execution lane. Entitlements govern premium, vendor, and founder access.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
+            <Link
+              href="/founder/entitlements"
+              className="rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
+            >
+              User Entitlements
+            </Link>
             <Link
               href="/founder/warehouse"
               className="rounded-full border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
