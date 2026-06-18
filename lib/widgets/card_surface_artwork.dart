@@ -18,6 +18,8 @@ class CardSurfaceArtwork extends StatelessWidget {
     this.showShadow = true,
     this.filterQuality = FilterQuality.low,
     this.onTapToZoom,
+    this.imageTruthLabel,
+    this.imageTruthStrong = false,
     super.key,
   });
 
@@ -33,6 +35,8 @@ class CardSurfaceArtwork extends StatelessWidget {
   final bool showShadow;
   final FilterQuality filterQuality;
   final VoidCallback? onTapToZoom;
+  final String? imageTruthLabel;
+  final bool imageTruthStrong;
 
   bool get _hasImage => (imageUrl ?? '').trim().isNotEmpty;
 
@@ -111,6 +115,19 @@ class CardSurfaceArtwork extends StatelessWidget {
                 ),
               ),
             ),
+          if ((imageTruthLabel ?? '').trim().isNotEmpty)
+            Positioned(
+              left: 6,
+              top: 6,
+              right: 6,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: _ImageTruthChip(
+                  label: imageTruthLabel!.trim(),
+                  strong: imageTruthStrong,
+                ),
+              ),
+            ),
         ],
       ),
     );
@@ -183,6 +200,56 @@ class CardSurfaceArtwork extends StatelessWidget {
       return constraints.maxWidth / _kCardSurfaceArtworkAspectRatio;
     }
     return null;
+  }
+}
+
+class _ImageTruthChip extends StatelessWidget {
+  const _ImageTruthChip({required this.label, required this.strong});
+
+  final String label;
+  final bool strong;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final background = strong
+        ? colorScheme.tertiaryContainer.withValues(alpha: 0.94)
+        : colorScheme.surface.withValues(alpha: 0.92);
+    final foreground = strong
+        ? colorScheme.onTertiaryContainer
+        : colorScheme.onSurface.withValues(alpha: 0.74);
+    final border = strong
+        ? colorScheme.tertiary.withValues(alpha: 0.24)
+        : colorScheme.outline.withValues(alpha: 0.10);
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: background,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: border),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.shadow.withValues(alpha: 0.08),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
+        child: Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            color: foreground,
+            fontSize: 9.5,
+            fontWeight: FontWeight.w900,
+            letterSpacing: 0.2,
+          ),
+        ),
+      ),
+    );
   }
 }
 
