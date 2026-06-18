@@ -1,0 +1,1481 @@
+{
+  "package_id": "POKEMON-CENTER-STAMP-GAP-AUDIT-V1",
+  "generated_at": "2026-06-18T16:38:07.790Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "raw_pricecharting_csv_committed": false,
+  "source_tls_note": "PriceCharting CSV acquisition used curl --ssl-no-revoke due local Windows TLS chain behavior; no insecure behavior is used by runtime code.",
+  "source_counts": {
+    "tcgcsv_tcgplayer_product": 25,
+    "pricecharting_csv_promo_exact": 29,
+    "verified_master_index_publishable": 5,
+    "curated_exact_evidence": 3
+  },
+  "pricecharting_rows_scanned": 88511,
+  "summary": {
+    "by_status": {
+      "existing_complete": 29
+    },
+    "by_set": {
+      "svp": 19,
+      "mep": 6,
+      "basep": 2,
+      "sv01": 1,
+      "sv03.5": 1
+    },
+    "by_finish": {
+      "holo": 25,
+      "normal": 2,
+      "reverse": 2
+    }
+  },
+  "fingerprint_sha256": "17ddba21911dfe864ddfa523ab89c66b2420f2a0e9d10fab1f31d62b4c8d2c98",
+  "rows": [
+    {
+      "key": "basep:051:rapidash:pokemon_center_ny_stamp",
+      "set_key": "basep",
+      "set_name": "Pokemon Promo",
+      "card_number": "051",
+      "card_name": "Rapidash",
+      "variant_key": "pokemon_center_ny_stamp",
+      "printed_identity_modifier": "pokemon_center_ny_stamp",
+      "child_finish_key": "normal",
+      "evidence": [
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/rapidash-pokemon-center-ny-51",
+          "evidence_label": "PriceCharting CSV exact product 7418434: Rapidash [Pokemon Center NY] #51 (Pokemon Promo).",
+          "product_id": "7418434",
+          "tcg_id": "244347",
+          "release_date": "2002-11-01"
+        },
+        {
+          "source_key": "verified_master_index_publishable",
+          "source_kind": "collector_reference",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Rapidash_(Wizards_Promo_51)",
+          "evidence_label": "Verified Master Index publishable stamped lane: Rapidash #51.",
+          "product_id": null,
+          "tcg_id": null,
+          "release_date": null,
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Rapidash_(Wizards_Promo_51)",
+            "https://www.thepricedex.com/set/basep/wizards-black-star-promos/price-list"
+          ]
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "verified_master_index_publishable"
+      ],
+      "base_parent_id": "fa309889-7388-4486-98fc-536ecbaad80d",
+      "base_parent_gv_id": "GV-PK-PR-51",
+      "base_finishes": [
+        "normal"
+      ],
+      "existing_variant_parent_id": "a2327720-fcc1-4a23-991f-460a435a0dfb",
+      "existing_variant_gv_id": "GV-PK-BASEP-51-POKEMON-CENTER-NY-STAMP",
+      "existing_variant_finishes": [
+        "normal"
+      ]
+    },
+    {
+      "key": "basep:052:ho oh:pokemon_center_ny_stamp",
+      "set_key": "basep",
+      "set_name": "Pokemon Promo",
+      "card_number": "052",
+      "card_name": "Ho-oh",
+      "variant_key": "pokemon_center_ny_stamp",
+      "printed_identity_modifier": "pokemon_center_ny_stamp",
+      "child_finish_key": "normal",
+      "evidence": [
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/ho-oh-pokemon-center-ny-52",
+          "evidence_label": "PriceCharting CSV exact product 5830380: Ho-oh [Pokemon Center NY] #52 (Pokemon Promo).",
+          "product_id": "5830380",
+          "tcg_id": "244348",
+          "release_date": "2002-11-01"
+        },
+        {
+          "source_key": "verified_master_index_publishable",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/ho-oh-pokemon-center-ny-52",
+          "evidence_label": "Verified Master Index publishable stamped lane: Ho-oh #52.",
+          "product_id": null,
+          "tcg_id": null,
+          "release_date": null,
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-promo/ho-oh-pokemon-center-ny-52",
+            "https://www.thepricedex.com/set/basep/wizards-black-star-promos/price-list"
+          ]
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "verified_master_index_publishable"
+      ],
+      "base_parent_id": "6332dedf-2e09-4c75-a8e8-8143da141080",
+      "base_parent_gv_id": "GV-PK-PR-52",
+      "base_finishes": [
+        "normal"
+      ],
+      "existing_variant_parent_id": "0a143f53-06f8-45de-9fe3-18cea4bca092",
+      "existing_variant_gv_id": "GV-PK-BASEP-52-POKEMON-CENTER-NY-STAMP",
+      "existing_variant_finishes": [
+        "normal"
+      ]
+    },
+    {
+      "key": "mep:009:alakazam:pokemon_center_stamp",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "009",
+      "card_name": "Alakazam",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/656261/pokemon-me-mega-evolution-promo-alakazam-009-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Alakazam - 009 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 656261,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/alakazam-pokemon-center-9",
+          "evidence_label": "PriceCharting CSV exact product 10721114: Alakazam [Pokemon Center] #9 (Pokemon Promo).",
+          "product_id": "10721114",
+          "tcg_id": null,
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "26726d70-a78d-4210-9ccc-d79abd215099",
+      "base_parent_gv_id": "GV-PK-MEP-009",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "be61d9c3-61dd-4ac6-876b-f68049ea3a77",
+      "existing_variant_gv_id": "GV-PK-MEP-009-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "mep:010:riolu:pokemon_center_stamp",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "010",
+      "card_name": "Riolu",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/656262/pokemon-me-mega-evolution-promo-riolu-010-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Riolu - 010 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 656262,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/riolu-pokemon-center-10",
+          "evidence_label": "PriceCharting CSV exact product 10714957: Riolu [Pokemon Center] #10 (Pokemon Promo).",
+          "product_id": "10714957",
+          "tcg_id": null,
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+      "base_parent_gv_id": "GV-PK-MEP-010",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "150b8246-3378-452a-8d18-f8315516c207",
+      "existing_variant_gv_id": "GV-PK-MEP-010-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "mep:022:charcadet:pokemon_center_stamp",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "022",
+      "card_name": "Charcadet",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/665053/pokemon-me-mega-evolution-promo-charcadet-022-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Charcadet - 022 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 665053,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/charcadet-pokemon-center-22",
+          "evidence_label": "PriceCharting CSV exact product 11215705: Charcadet [Pokemon Center] #22 (Pokemon Promo).",
+          "product_id": "11215705",
+          "tcg_id": "€600",
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "5e67b43d-3a75-43ef-a771-91b7d4d55b20",
+      "base_parent_gv_id": "GV-PK-MEP-022",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "01eb8829-7bef-40f8-a24b-4b5a2458adeb",
+      "existing_variant_gv_id": "GV-PK-MEP-022-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "mep:031:n s zekrom:pokemon_center_stamp",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "031",
+      "card_name": "N's Zekrom",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/680481/pokemon-me-mega-evolution-promo-ns-zekrom-031-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: N's Zekrom - 031 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 680481,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/n%27s-zekrom-pokemon-center-31",
+          "evidence_label": "PriceCharting CSV exact product 12093520: N's Zekrom [Pokemon Center] #31 (Pokemon Promo).",
+          "product_id": "12093520",
+          "tcg_id": "680481",
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "c9891896-f045-4351-9c01-661c5416f156",
+      "base_parent_gv_id": "GV-PK-MEP-031",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "fcbe0c37-4939-49b0-964d-d16d251225bd",
+      "existing_variant_gv_id": "GV-PK-MEP-031-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "mep:070:tyrunt:pokemon_center_stamp",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "070",
+      "card_name": "Tyrunt",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/685563/pokemon-me-mega-evolution-promo-tyrunt-070-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Tyrunt - 070 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 685563,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/tyrunt-pokemon-center-70",
+          "evidence_label": "PriceCharting CSV exact product 12387732: Tyrunt [Pokemon Center] #70 (Pokemon Promo).",
+          "product_id": "12387732",
+          "tcg_id": "685563",
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "563a0b4e-5f74-4e5c-a0fc-95095a475d0d",
+      "base_parent_gv_id": "GV-PK-MEP-070",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "1ea8e35c-754d-4e8c-a4b3-c881711f095e",
+      "existing_variant_gv_id": "GV-PK-MEP-070-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "mep:080:fennekin:pokemon_center_stamp",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "080",
+      "card_name": "Fennekin",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/694695/pokemon-me-mega-evolution-promo-fennekin-080-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Fennekin - 080 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 694695,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/fennekin-pokemon-center-80",
+          "evidence_label": "PriceCharting CSV exact product 13071480: Fennekin [Pokemon Center] #80 (Pokemon Promo).",
+          "product_id": "13071480",
+          "tcg_id": "694695",
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "af929a84-3070-4ea4-a06f-0ea765eb37d4",
+      "base_parent_gv_id": "GV-PK-MEP-80",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "a71a3419-80dc-4997-9997-1eb9d669c64a",
+      "existing_variant_gv_id": "GV-PK-MEP-080-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "sv01:155:lechonk:pokemon_center_stamp",
+      "set_key": "sv01",
+      "set_name": "Pokemon Scarlet & Violet",
+      "card_number": "155",
+      "card_name": "Lechonk",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "reverse",
+      "evidence": [
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-%26-violet/lechonk-pokemon-center-155",
+          "evidence_label": "PriceCharting CSV exact product 4954121: Lechonk [Pokemon Center] #155 (Pokemon Scarlet & Violet).",
+          "product_id": "4954121",
+          "tcg_id": null,
+          "release_date": "2023-03-31"
+        },
+        {
+          "source_key": "official_pokemon_center_product",
+          "source_kind": "official_gallery",
+          "source_url": "https://www.pokemoncenter.com/product/158-85487/lechonk-promo-card",
+          "evidence_label": "Official Pokemon Center product page identifies the Lechonk promo as a special foil card with the Pokemon Center logo.",
+          "product_id": null,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "tcgplayer_product_page",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/485260/pokemon-miscellaneous-cards-and-products-lechonk-pokemon-center-exclusive",
+          "evidence_label": "TCGplayer product page identifies Lechonk (Pokemon Center Exclusive) as the foil Pokemon Center stamped release.",
+          "product_id": null,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "collector_retail_checklist",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://store.401games.ca/products/lechonk-pokemon-center-155-198-common-reverse-holo",
+          "evidence_label": "401 Games exact product page labels Lechonk [Pokemon Center] 155/198 as Common Reverse Holo.",
+          "product_id": null,
+          "tcg_id": null,
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 4,
+      "source_families": [
+        "collector_retail_checklist",
+        "official_pokemon_center_product",
+        "pricecharting_csv_promo_exact",
+        "tcgplayer_product_page"
+      ],
+      "base_parent_id": "4d8445c1-8760-40a3-8c3b-cf211ab5ec4e",
+      "base_parent_gv_id": "GV-PK-SVI-155",
+      "base_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "existing_variant_parent_id": "908807d5-dabe-456f-b226-033d3cd2f4bd",
+      "existing_variant_gv_id": "GV-PK-SV01-155-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "reverse"
+      ]
+    },
+    {
+      "key": "sv03.5:007:squirtle:pokemon_center_stamp",
+      "set_key": "sv03.5",
+      "set_name": "Pokemon Scarlet & Violet 151",
+      "card_number": "007",
+      "card_name": "Squirtle",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "reverse",
+      "evidence": [
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-%26-violet-151/squirtle-pokemon-center-7",
+          "evidence_label": "PriceCharting CSV exact product 5874858: Squirtle [Pokemon Center] #7 (Pokemon Scarlet & Violet 151).",
+          "product_id": "5874858",
+          "tcg_id": "520796",
+          "release_date": null
+        },
+        {
+          "source_key": "verified_master_index_publishable",
+          "source_kind": "collector_reference",
+          "source_url": "https://pokescope.app/card/sv3pt5-7/",
+          "evidence_label": "Verified Master Index publishable stamped lane: Squirtle #7.",
+          "product_id": null,
+          "tcg_id": null,
+          "release_date": null,
+          "evidence_urls": [
+            "https://pokescope.app/card/sv3pt5-7/",
+            "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+          ]
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "verified_master_index_publishable"
+      ],
+      "base_parent_id": "7ce3c2bd-8980-4b5c-8270-9914a30c2206",
+      "base_parent_gv_id": "GV-PK-MEW-007",
+      "base_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "existing_variant_parent_id": "40f953a9-d1df-4414-9d53-ccc5493daad5",
+      "existing_variant_gv_id": "GV-PK-SV03-5-007-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "reverse"
+      ]
+    },
+    {
+      "key": "svp:013:miraidon:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "013",
+      "card_name": "Miraidon",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/490730/pokemon-sv-scarlet-and-violet-promo-cards-miraidon-013-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Miraidon - 013 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 490730,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/miraidon-pokemon-center-13",
+          "evidence_label": "PriceCharting CSV exact product 5834279: Miraidon [Pokemon Center] #13 (Pokemon Promo).",
+          "product_id": "5834279",
+          "tcg_id": null,
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "38573c4d-7323-4025-a2c9-9090be30a9ef",
+      "base_parent_gv_id": "GV-PK-PR-SV-013",
+      "base_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "existing_variant_parent_id": "44cc8bdb-3047-430e-9dd1-f47ad41ce556",
+      "existing_variant_gv_id": "GV-PK-SVP-013-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:014:koraidon:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "014",
+      "card_name": "Koraidon",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/490725/pokemon-sv-scarlet-and-violet-promo-cards-koraidon-014-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Koraidon - 014 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 490725,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/koraidon-pokemon-center-14",
+          "evidence_label": "PriceCharting CSV exact product 5927152: Koraidon [Pokemon Center] #14 (Pokemon Promo).",
+          "product_id": "5927152",
+          "tcg_id": "490725",
+          "release_date": "2023-03-31"
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "021b1475-367f-4cc3-bf50-43b578331619",
+      "base_parent_gv_id": "GV-PK-PR-SV-014",
+      "base_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "existing_variant_parent_id": "bccbd96f-9b70-41ed-82cd-2ef51556b18e",
+      "existing_variant_gv_id": "GV-PK-SVP-014-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:027:pikachu:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "027",
+      "card_name": "Pikachu",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/500264/pokemon-sv-scarlet-and-violet-promo-cards-pikachu-027-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Pikachu - 027 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 500264,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/pikachu-pokemon-center-stamp-27",
+          "evidence_label": "PriceCharting CSV exact product 5305606: Pikachu [Pokemon Center Stamp] #27 (Pokemon Promo).",
+          "product_id": "5305606",
+          "tcg_id": "500264",
+          "release_date": "2023-06-09"
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "4659591e-e289-4844-b52d-603711c7573e",
+      "base_parent_gv_id": "GV-PK-PR-SV-027",
+      "base_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "existing_variant_parent_id": "01142147-e360-4b64-be4b-4079af211a7c",
+      "existing_variant_gv_id": "GV-PK-SVP-027-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:044:charmander:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "044",
+      "card_name": "Charmander",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/512036/pokemon-sv-scarlet-and-violet-promo-cards-charmander-044-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Charmander - 044 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 512036,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/charmander-pokemon-center-44",
+          "evidence_label": "PriceCharting CSV exact product 5632018: Charmander [Pokemon Center] #44 (Pokemon Promo).",
+          "product_id": "5632018",
+          "tcg_id": "512036",
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "03aaa133-3265-4a6c-94e9-887178032b3d",
+      "base_parent_gv_id": "GV-PK-PR-SV-044",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "bfc4d6bc-5489-4d3b-b37c-861f73156bae",
+      "existing_variant_gv_id": "GV-PK-SVP-044-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:051:snorlax:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "051",
+      "card_name": "Snorlax",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/517270/pokemon-sv-scarlet-and-violet-promo-cards-snorlax-051-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Snorlax - 051 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 517270,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/snorlax-pokemon-center-51",
+          "evidence_label": "PriceCharting CSV exact product 5830751: Snorlax [Pokemon Center] #51 (Pokemon Promo).",
+          "product_id": "5830751",
+          "tcg_id": "517270",
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "c7171ec8-743d-453d-bc8b-47517986916f",
+      "base_parent_gv_id": "GV-PK-PR-SV-051",
+      "base_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "existing_variant_parent_id": "f605056d-5521-4dcf-a6e2-176b6d2ca7b5",
+      "existing_variant_gv_id": "GV-PK-SVP-051-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:065:scream tail:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "065",
+      "card_name": "Scream Tail",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/526655/pokemon-sv-scarlet-and-violet-promo-cards-scream-tail-065-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Scream Tail - 065 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 526655,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/scream-tail-pokemon-center-65",
+          "evidence_label": "PriceCharting CSV exact product 6142220: Scream Tail [Pokemon Center] #65 (Pokemon Promo).",
+          "product_id": "6142220",
+          "tcg_id": null,
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "31c0d2f5-0dd4-44bb-9799-736da0975705",
+      "base_parent_gv_id": "GV-PK-PR-SV-065",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "ca06fc8f-ae36-492f-979b-3bae50bdb467",
+      "existing_variant_gv_id": "GV-PK-SVP-065-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:066:iron bundle:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "066",
+      "card_name": "Iron Bundle",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/526657/pokemon-sv-scarlet-and-violet-promo-cards-iron-bundle-066-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Iron Bundle - 066 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 526657,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/iron-bundle-pokemon-center-66",
+          "evidence_label": "PriceCharting CSV exact product 6142221: Iron Bundle [Pokemon Center] #66 (Pokemon Promo).",
+          "product_id": "6142221",
+          "tcg_id": "526657",
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "0a750797-c557-46fb-828d-fc5ef125dd2d",
+      "base_parent_gv_id": "GV-PK-PR-SV-066",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "3678b8e1-0eb0-476e-87d1-6b2028308b03",
+      "existing_variant_gv_id": "GV-PK-SVP-066-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:075:mimikyu:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "075",
+      "card_name": "Mimikyu",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/535953/pokemon-sv-scarlet-and-violet-promo-cards-mimikyu-075-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Mimikyu - 075 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 535953,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/mimikyu-pokemon-center-75",
+          "evidence_label": "PriceCharting CSV exact product 6314889: Mimikyu [Pokemon Center] #75 (Pokemon Promo).",
+          "product_id": "6314889",
+          "tcg_id": "535953",
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "95bf7fda-0385-4bd0-ab55-26375f189b88",
+      "base_parent_gv_id": "GV-PK-PR-SV-075",
+      "base_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "existing_variant_parent_id": "70aa18b2-7f82-42a2-980b-a59a37a24d87",
+      "existing_variant_gv_id": "GV-PK-SVP-075-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:097:flutter mane:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "097",
+      "card_name": "Flutter Mane",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/543947/pokemon-sv-scarlet-and-violet-promo-cards-flutter-mane-097-pokemon-center",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Flutter Mane - 097 (Pokemon Center) / Holofoil.",
+          "product_id": 543947,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/flutter-mane-pokemon-center-97",
+          "evidence_label": "PriceCharting CSV exact product 6530689: Flutter Mane [Pokemon Center] #97 (Pokemon Promo).",
+          "product_id": "6530689",
+          "tcg_id": null,
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "bdce87a2-f2a9-45aa-aa7d-eddd5add43c3",
+      "base_parent_gv_id": "GV-PK-PR-SV-097",
+      "base_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "existing_variant_parent_id": "6b485dee-1694-4c30-b51f-cd04239a2c73",
+      "existing_variant_gv_id": "GV-PK-SVP-097-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:098:iron thorns:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "098",
+      "card_name": "Iron Thorns",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/543949/pokemon-sv-scarlet-and-violet-promo-cards-iron-thorns-098-pokemon-center",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Iron Thorns - 098 (Pokemon Center) / Holofoil.",
+          "product_id": 543949,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/iron-thorns-pokemon-center-98",
+          "evidence_label": "PriceCharting CSV exact product 6530691: Iron Thorns [Pokemon Center] #98 (Pokemon Promo).",
+          "product_id": "6530691",
+          "tcg_id": null,
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "9cb2307f-d80d-442b-9738-e9c7e3949e9a",
+      "base_parent_gv_id": "GV-PK-PR-SV-098",
+      "base_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "existing_variant_parent_id": "6c9510f4-4fbb-4dba-91ef-dbf3fb60b120",
+      "existing_variant_gv_id": "GV-PK-SVP-098-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:123:teal mask ogerpon:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "123",
+      "card_name": "Teal Mask Ogerpon",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/552786/pokemon-sv-scarlet-and-violet-promo-cards-teal-mask-ogerpon-123-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Teal Mask Ogerpon - 123 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 552786,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/teal-mask-ogerpon-pokemon-center-123",
+          "evidence_label": "PriceCharting CSV exact product 6776241: Teal Mask Ogerpon [Pokemon Center] #123 (Pokemon Promo).",
+          "product_id": "6776241",
+          "tcg_id": "552786",
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "8c5090b2-6c55-4ec7-989e-c8116dfb624f",
+      "base_parent_gv_id": "GV-PK-PR-SV-123",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "1fd93d00-a702-4d45-977e-d19f9ca8ecb0",
+      "existing_variant_gv_id": "GV-PK-SVP-123-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:129:pecharunt:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "129",
+      "card_name": "Pecharunt",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/573720/pokemon-sv-scarlet-and-violet-promo-cards-pecharunt-129-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Pecharunt - 129 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 573720,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/pecharunt-pokemon-center-129",
+          "evidence_label": "PriceCharting CSV exact product 7306121: Pecharunt [Pokemon Center] #129 (Pokemon Promo).",
+          "product_id": "7306121",
+          "tcg_id": null,
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "5f56ede9-1191-47ed-b80d-9faa7fe95b80",
+      "base_parent_gv_id": "GV-PK-PR-SV-129",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "b57142a9-e139-45e1-9c95-5e1880684ebb",
+      "existing_variant_gv_id": "GV-PK-SVP-129-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:141:noctowl:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "141",
+      "card_name": "Noctowl",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/578812/pokemon-sv-scarlet-and-violet-promo-cards-noctowl-141-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Noctowl - 141 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 578812,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/noctowl-pokemon-center-141",
+          "evidence_label": "PriceCharting CSV exact product 7446041: Noctowl [Pokemon Center] #141 (Pokemon Promo).",
+          "product_id": "7446041",
+          "tcg_id": null,
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "96836e86-29f0-4654-9de6-997dbde091eb",
+      "base_parent_gv_id": "GV-PK-PR-SV-141",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "7c9f6487-13de-434a-a48e-e8e172e50d3d",
+      "existing_variant_gv_id": "GV-PK-SVP-141-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:159:magneton:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "159",
+      "card_name": "Magneton",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/594468/pokemon-sv-scarlet-and-violet-promo-cards-magneton-159-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Magneton - 159 (Pokémon Center Exclusive) / Holofoil.",
+          "product_id": 594468,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/magneton-pokemon-center-159",
+          "evidence_label": "PriceCharting CSV exact product 7808101: Magneton [Pokemon Center] #159 (Pokemon Promo).",
+          "product_id": "7808101",
+          "tcg_id": "594468",
+          "release_date": "2024-11-08"
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "247da32e-2f69-4ab9-8e9b-2beacbac44b9",
+      "base_parent_gv_id": "GV-PK-PR-SV-159",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "00f3d76b-c863-4d95-8feb-2a610e81e65a",
+      "existing_variant_gv_id": "GV-PK-SVP-159-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:173:eevee:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "173",
+      "card_name": "Eevee",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/610757/pokemon-sv-scarlet-and-violet-promo-cards-eevee-173-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Eevee - 173 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 610757,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/eevee-pokemon-center-173",
+          "evidence_label": "PriceCharting CSV exact product 8330103: Eevee [Pokemon Center] #173 (Pokemon Promo).",
+          "product_id": "8330103",
+          "tcg_id": "610757",
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "a36f8d8a-353f-4cca-ba89-912eb7f10c3a",
+      "base_parent_gv_id": "GV-PK-PR-SV-173",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "cffe987c-a680-4f7e-b1cf-96c89bc9e229",
+      "existing_variant_gv_id": "GV-PK-SVP-173-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:189:n s zorua:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "189",
+      "card_name": "N's Zorua",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/625182/pokemon-sv-scarlet-and-violet-promo-cards-ns-zorua-189-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: N's Zorua - 189 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 625182,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/n%27s-zorua-pokemon-center-189",
+          "evidence_label": "PriceCharting CSV exact product 9020984: N's Zorua [Pokemon Center] #189 (Pokemon Promo).",
+          "product_id": "9020984",
+          "tcg_id": "625182",
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "e84ae163-8b5e-4285-b425-06a64535e206",
+      "base_parent_gv_id": "GV-PK-PR-SV-189",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "d617ece6-9a24-4567-85c1-949440573090",
+      "existing_variant_gv_id": "GV-PK-SVP-189-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:203:team rocket s wobbuffet:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "203",
+      "card_name": "Team Rocket's Wobbuffet",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/635468/pokemon-sv-scarlet-and-violet-promo-cards-team-rockets-wobbuffet-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Team Rocket's Wobbuffet (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 635468,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/team-rocket%27s-wobbuffet-pokemon-center-203",
+          "evidence_label": "PriceCharting CSV exact product 9773096: Team Rocket's Wobbuffet [Pokemon Center] #203 (Pokemon Promo).",
+          "product_id": "9773096",
+          "tcg_id": null,
+          "release_date": null
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 2,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product"
+      ],
+      "base_parent_id": "3b139ba4-08be-48ba-869c-e7ab3d494976",
+      "base_parent_gv_id": "GV-PK-PR-SV-203",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "48e5879b-83d0-42b1-b54d-5782724d3b4a",
+      "existing_variant_gv_id": "GV-PK-SVP-203-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:209:thundurus:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "209",
+      "card_name": "Thundurus",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/644834/pokemon-sv-scarlet-and-violet-promo-cards-thundurus-209-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Thundurus - 209 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 644834,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/thundurus-pokemon-center-209",
+          "evidence_label": "PriceCharting CSV exact product 10045592: Thundurus [Pokemon Center] #209 (Pokemon Promo).",
+          "product_id": "10045592",
+          "tcg_id": "644834",
+          "release_date": null
+        },
+        {
+          "source_key": "verified_master_index_publishable",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/thundurus-pokemon-center-209",
+          "evidence_label": "Verified Master Index publishable stamped lane: Thundurus #209.",
+          "product_id": null,
+          "tcg_id": null,
+          "release_date": null,
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-promo/thundurus-pokemon-center-209",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ]
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 3,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product",
+        "verified_master_index_publishable"
+      ],
+      "base_parent_id": "86fb8bac-8805-4d35-9bc8-3c42d356078b",
+      "base_parent_gv_id": "GV-PK-PR-SV-209",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "3f39b20a-ca2f-4f01-92b7-c39b7781cb6e",
+      "existing_variant_gv_id": "GV-PK-SVP-209-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    },
+    {
+      "key": "svp:210:tornadus:pokemon_center_stamp",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "card_number": "210",
+      "card_name": "Tornadus",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "child_finish_key": "holo",
+      "evidence": [
+        {
+          "source_key": "tcgcsv_tcgplayer_product",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.tcgplayer.com/product/644836/pokemon-sv-scarlet-and-violet-promo-cards-tornadus-210-pokemon-center-exclusive",
+          "evidence_label": "TCGCSV/TCGplayer exact product: Tornadus - 210 (Pokemon Center Exclusive) / Holofoil.",
+          "product_id": 644836,
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "pricecharting_csv_promo_exact",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/tornadus-pokemon-center-210",
+          "evidence_label": "PriceCharting CSV exact product 10045594: Tornadus [Pokemon Center] #210 (Pokemon Promo).",
+          "product_id": "10045594",
+          "tcg_id": null,
+          "release_date": null
+        },
+        {
+          "source_key": "verified_master_index_publishable",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/tornadus-pokemon-center-210",
+          "evidence_label": "Verified Master Index publishable stamped lane: Tornadus #210.",
+          "product_id": null,
+          "tcg_id": null,
+          "release_date": null,
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-promo/tornadus-pokemon-center-210",
+            "https://www.thepricedex.com/set/svp/scarlet-and-violet-black-star-promos/price-list"
+          ]
+        }
+      ],
+      "status": "existing_complete",
+      "reason": "variant parent and target child finish already exist",
+      "source_count": 3,
+      "source_families": [
+        "pricecharting_csv_promo_exact",
+        "tcgcsv_tcgplayer_product",
+        "verified_master_index_publishable"
+      ],
+      "base_parent_id": "ca8e4ef9-4c79-4e36-bf69-9c50cf6709bc",
+      "base_parent_gv_id": "GV-PK-PR-SV-210",
+      "base_finishes": [
+        "holo"
+      ],
+      "existing_variant_parent_id": "50ffbf35-57bb-4e10-9b2f-b19fc4c2d876",
+      "existing_variant_gv_id": "GV-PK-SVP-210-POKEMON-CENTER-STAMP",
+      "existing_variant_finishes": [
+        "holo"
+      ]
+    }
+  ],
+  "output_files": {
+    "json": "docs/audits/verified_master_set_index_v1/english_master_index_v1/pokemon_center_stamp_gap_v1/pokemon_center_stamp_gap_audit_v1.json",
+    "md": "docs/audits/verified_master_set_index_v1/english_master_index_v1/pokemon_center_stamp_gap_v1/pokemon_center_stamp_gap_audit_v1.md"
+  }
+}

@@ -1,0 +1,348 @@
+{
+  "package_id": "POKEMON-CENTER-STAMP-02-LECHONK-PARENT-CHILD-INSERT",
+  "generated_at": "2026-06-18T16:37:37.766Z",
+  "source_audit": "docs/audits/verified_master_set_index_v1/english_master_index_v1/pokemon_center_stamp_gap_v1/pokemon_center_stamp_gap_audit_v1.json",
+  "package_fingerprint_sha256": "d346ccde63540e0f28eee7c96e38463cdff1b30874d9baf09992cfad9818b7e3",
+  "sql_hash_sha256": "92acbcbf49b5671eca5a4226f39ddeffcab820e48846b269c3406e33c2165eef",
+  "pass": true,
+  "db_writes_performed": true,
+  "durable_db_writes_performed": true,
+  "transaction_writes_rolled_back": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "global_apply_performed": false,
+  "scope": {
+    "source_gap_fingerprint_sha256": "671271e3c668cbfc18b291e7fda7d2a3c673bf2fb19910df94728d794d11728c",
+    "target_count": 1,
+    "parent_insert_count": 1,
+    "child_only_insert_count": 0,
+    "by_set": {
+      "sv01": 1
+    },
+    "by_finish": {
+      "reverse": 1
+    },
+    "targets": [
+      {
+        "source_key": "sv01:155:lechonk:pokemon_center_stamp",
+        "operation": "parent_identity_child_insert",
+        "set_key": "sv01",
+        "card_number": "155",
+        "card_name": "Lechonk",
+        "base_parent_id": "4d8445c1-8760-40a3-8c3b-cf211ab5ec4e",
+        "target_parent_id": "908807d5-dabe-456f-b226-033d3cd2f4bd",
+        "target_child_id": "66248a3b-2cf6-4784-adca-316a35df0ecb",
+        "target_variant_key": "pokemon_center_stamp",
+        "target_printed_identity_modifier": "pokemon_center_stamp",
+        "target_finish_key": "reverse",
+        "target_gv_id": "GV-PK-SV01-155-POKEMON-CENTER-STAMP",
+        "target_printing_gv_id": "GV-PK-SV01-155-POKEMON-CENTER-STAMP-RH",
+        "evidence": [
+          {
+            "source_key": "pricecharting_csv_promo_exact",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-%26-violet/lechonk-pokemon-center-155",
+            "evidence_label": "PriceCharting CSV exact product 4954121: Lechonk [Pokemon Center] #155 (Pokemon Scarlet & Violet).",
+            "product_id": "4954121",
+            "tcg_id": null,
+            "release_date": "2023-03-31"
+          },
+          {
+            "source_key": "official_pokemon_center_product",
+            "source_kind": "official_gallery",
+            "source_url": "https://www.pokemoncenter.com/product/158-85487/lechonk-promo-card",
+            "evidence_label": "Official Pokemon Center product page identifies the Lechonk promo as a special foil card with the Pokemon Center logo.",
+            "product_id": null,
+            "tcg_id": null,
+            "release_date": null
+          },
+          {
+            "source_key": "tcgplayer_product_page",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://www.tcgplayer.com/product/485260/pokemon-miscellaneous-cards-and-products-lechonk-pokemon-center-exclusive",
+            "evidence_label": "TCGplayer product page identifies Lechonk (Pokemon Center Exclusive) as the foil Pokemon Center stamped release.",
+            "product_id": null,
+            "tcg_id": null,
+            "release_date": null
+          },
+          {
+            "source_key": "collector_retail_checklist",
+            "source_kind": "marketplace_checklist",
+            "source_url": "https://store.401games.ca/products/lechonk-pokemon-center-155-198-common-reverse-holo",
+            "evidence_label": "401 Games exact product page labels Lechonk [Pokemon Center] 155/198 as Common Reverse Holo.",
+            "product_id": null,
+            "tcg_id": null,
+            "release_date": null
+          }
+        ],
+        "source_families": [
+          "collector_retail_checklist",
+          "official_pokemon_center_product",
+          "pricecharting_csv_promo_exact",
+          "tcgplayer_product_page"
+        ],
+        "evidence_payload": {
+          "source_package_id": "POKEMON-CENTER-STAMP-02-LECHONK-PARENT-CHILD-INSERT",
+          "source_gap_fingerprint_sha256": "671271e3c668cbfc18b291e7fda7d2a3c673bf2fb19910df94728d794d11728c",
+          "source_status": "ready_parent_and_child_missing",
+          "selected_base_parent_id": "4d8445c1-8760-40a3-8c3b-cf211ab5ec4e",
+          "stamped_variant_key": "pokemon_center_stamp",
+          "stamp_label": "Pokemon Center Stamp",
+          "active_child_finish_key": "reverse",
+          "source_families": [
+            "collector_retail_checklist",
+            "official_pokemon_center_product",
+            "pricecharting_csv_promo_exact",
+            "tcgplayer_product_page"
+          ],
+          "evidence": [
+            {
+              "source_key": "pricecharting_csv_promo_exact",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-%26-violet/lechonk-pokemon-center-155",
+              "evidence_label": "PriceCharting CSV exact product 4954121: Lechonk [Pokemon Center] #155 (Pokemon Scarlet & Violet).",
+              "product_id": "4954121",
+              "tcg_id": null,
+              "release_date": "2023-03-31"
+            },
+            {
+              "source_key": "official_pokemon_center_product",
+              "source_kind": "official_gallery",
+              "source_url": "https://www.pokemoncenter.com/product/158-85487/lechonk-promo-card",
+              "evidence_label": "Official Pokemon Center product page identifies the Lechonk promo as a special foil card with the Pokemon Center logo.",
+              "product_id": null,
+              "tcg_id": null,
+              "release_date": null
+            },
+            {
+              "source_key": "tcgplayer_product_page",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://www.tcgplayer.com/product/485260/pokemon-miscellaneous-cards-and-products-lechonk-pokemon-center-exclusive",
+              "evidence_label": "TCGplayer product page identifies Lechonk (Pokemon Center Exclusive) as the foil Pokemon Center stamped release.",
+              "product_id": null,
+              "tcg_id": null,
+              "release_date": null
+            },
+            {
+              "source_key": "collector_retail_checklist",
+              "source_kind": "marketplace_checklist",
+              "source_url": "https://store.401games.ca/products/lechonk-pokemon-center-155-198-common-reverse-holo",
+              "evidence_label": "401 Games exact product page labels Lechonk [Pokemon Center] 155/198 as Common Reverse Holo.",
+              "product_id": null,
+              "tcg_id": null,
+              "release_date": null
+            }
+          ]
+        }
+      }
+    ],
+    "blocked_rows_remaining": []
+  },
+  "execution": {
+    "dry_run_status": "pokemon_center_stamp_parent_child_insert_committed",
+    "guard": {
+      "target_count": 1,
+      "parent_insert_target_count": 1,
+      "child_only_target_count": 0,
+      "target_parent_count": 1,
+      "target_child_count": 1,
+      "missing_base_count": 0,
+      "base_identity_mismatch_count": 0,
+      "inactive_finish_count": 0,
+      "forbidden_stamped_finish_targets": 0,
+      "parent_insert_collision_count": 0,
+      "child_collision_count": 0,
+      "identity_target_collision_count": 0,
+      "ready_identity_projection_count": 1,
+      "identity_hash_collision_count": 0,
+      "child_only_parent_exists_count": 0
+    },
+    "proof": {
+      "package_id": "POKEMON-CENTER-STAMP-02-LECHONK-PARENT-CHILD-INSERT",
+      "package_fingerprint": "d346ccde63540e0f28eee7c96e38463cdff1b30874d9baf09992cfad9818b7e3",
+      "target_rows": 1,
+      "inserted_parent_rows": 1,
+      "inserted_parent_modifier_rows": 1,
+      "inserted_identity_rows": 1,
+      "inserted_child_rows": 1,
+      "matching_child_finish_rows": 1,
+      "forbidden_stamped_child_rows": 0
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 1,
+      "identity_inserts": 1,
+      "child_inserts": 1,
+      "deletes": 0,
+      "merges": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-06-18T16:37:36.734Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "4d8445c1-8760-40a3-8c3b-cf211ab5ec4e",
+          "set_code": "sv01",
+          "number": "155",
+          "number_plain": "155",
+          "name": "Lechonk",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-SVI-155",
+          "finish_key": null,
+          "printing_gv_id": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "base_parent": 1
+      },
+      "hash_sha256": "5884549db0704bdbd45eb9a3be33f07b23804f084f111b613a7f5d3e85c4683c"
+    },
+    "in_transaction_snapshot": {
+      "captured_at": "2026-06-18T16:37:37.604Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "4d8445c1-8760-40a3-8c3b-cf211ab5ec4e",
+          "set_code": "sv01",
+          "number": "155",
+          "number_plain": "155",
+          "name": "Lechonk",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-SVI-155",
+          "finish_key": null,
+          "printing_gv_id": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "66248a3b-2cf6-4784-adca-316a35df0ecb",
+          "set_code": "sv01",
+          "number": "155",
+          "number_plain": "155",
+          "name": "Lechonk",
+          "variant_key": "pokemon_center_stamp",
+          "printed_identity_modifier": "pokemon_center_stamp",
+          "gv_id": "GV-PK-SV01-155-POKEMON-CENTER-STAMP",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-SV01-155-POKEMON-CENTER-STAMP-RH",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "f8c03dd5-511d-4488-aac1-636ba0a74015",
+          "set_code": "sv01",
+          "number": "155",
+          "number_plain": "155",
+          "name": "Lechonk",
+          "variant_key": "pokemon_center_stamp",
+          "printed_identity_modifier": "pokemon_center_stamp",
+          "gv_id": "GV-PK-SV01-155-POKEMON-CENTER-STAMP",
+          "finish_key": null,
+          "printing_gv_id": null,
+          "identity_key_hash": "969a948e6c0e26cb3d758f9147bbfbe3efc6cc039c34f96076cb4dbc89891ffd"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "908807d5-dabe-456f-b226-033d3cd2f4bd",
+          "set_code": "sv01",
+          "number": "155",
+          "number_plain": "155",
+          "name": "Lechonk",
+          "variant_key": "pokemon_center_stamp",
+          "printed_identity_modifier": "pokemon_center_stamp",
+          "gv_id": "GV-PK-SV01-155-POKEMON-CENTER-STAMP",
+          "finish_key": null,
+          "printing_gv_id": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "base_parent": 1,
+        "target_child": 1,
+        "target_identity": 1,
+        "target_parent": 1
+      },
+      "hash_sha256": "df0b14a7cd1a18ac6a55f7f19d2a140e32c56aff0d874ccb5f6926844288f880"
+    },
+    "after_rollback_snapshot": {
+      "captured_at": "2026-06-18T16:37:37.765Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "row_id": "4d8445c1-8760-40a3-8c3b-cf211ab5ec4e",
+          "set_code": "sv01",
+          "number": "155",
+          "number_plain": "155",
+          "name": "Lechonk",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "gv_id": "GV-PK-SVI-155",
+          "finish_key": null,
+          "printing_gv_id": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "row_id": "66248a3b-2cf6-4784-adca-316a35df0ecb",
+          "set_code": "sv01",
+          "number": "155",
+          "number_plain": "155",
+          "name": "Lechonk",
+          "variant_key": "pokemon_center_stamp",
+          "printed_identity_modifier": "pokemon_center_stamp",
+          "gv_id": "GV-PK-SV01-155-POKEMON-CENTER-STAMP",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-SV01-155-POKEMON-CENTER-STAMP-RH",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "row_id": "f8c03dd5-511d-4488-aac1-636ba0a74015",
+          "set_code": "sv01",
+          "number": "155",
+          "number_plain": "155",
+          "name": "Lechonk",
+          "variant_key": "pokemon_center_stamp",
+          "printed_identity_modifier": "pokemon_center_stamp",
+          "gv_id": "GV-PK-SV01-155-POKEMON-CENTER-STAMP",
+          "finish_key": null,
+          "printing_gv_id": null,
+          "identity_key_hash": "969a948e6c0e26cb3d758f9147bbfbe3efc6cc039c34f96076cb4dbc89891ffd"
+        },
+        {
+          "row_type": "target_parent",
+          "row_id": "908807d5-dabe-456f-b226-033d3cd2f4bd",
+          "set_code": "sv01",
+          "number": "155",
+          "number_plain": "155",
+          "name": "Lechonk",
+          "variant_key": "pokemon_center_stamp",
+          "printed_identity_modifier": "pokemon_center_stamp",
+          "gv_id": "GV-PK-SV01-155-POKEMON-CENTER-STAMP",
+          "finish_key": null,
+          "printing_gv_id": null,
+          "identity_key_hash": null
+        }
+      ],
+      "counts": {
+        "base_parent": 1,
+        "target_child": 1,
+        "target_identity": 1,
+        "target_parent": 1
+      },
+      "hash_sha256": "df0b14a7cd1a18ac6a55f7f19d2a140e32c56aff0d874ccb5f6926844288f880"
+    },
+    "rollback_verified": null,
+    "durable_write_verified": true,
+    "dry_run_proof_sha256": "799e3c823401a1121fda142b3b1c930c84113d324b9ff85f805001b38c3f115b",
+    "stop_findings": []
+  },
+  "recommended_real_apply_approval_text": "Approve real POKEMON-CENTER-STAMP-02-LECHONK-PARENT-CHILD-INSERT apply only. Fingerprint: d346ccde63540e0f28eee7c96e38463cdff1b30874d9baf09992cfad9818b7e3. SQL hash: 92acbcbf49b5671eca5a4226f39ddeffcab820e48846b269c3406e33c2165eef. Scope: 1 Pokemon Center stamped parent inserts, 1 identity inserts, 1 child printing inserts, child-only existing-parent inserts=0; finishes reverse=1. Dry-run proof: 5884549db0704bdbd45eb9a3be33f07b23804f084f111b613a7f5d3e85c4683c == df0b14a7cd1a18ac6a55f7f19d2a140e32c56aff0d874ccb5f6926844288f880. No global apply. No migrations. No deletes. No merges. No unsupported cleanup.",
+  "output_files": {
+    "json": "docs/audits/verified_master_set_index_v1/english_master_index_v1/pokemon_center_stamp_gap_v1/pokemon_center_stamp_parent_insert_guarded_dry_run_v1.json",
+    "md": "docs/audits/verified_master_set_index_v1/english_master_index_v1/pokemon_center_stamp_gap_v1/pokemon_center_stamp_parent_insert_guarded_dry_run_v1.md"
+  }
+}
