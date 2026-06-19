@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 
 type MobileBottomNavProps = {
   wallHref: string | null;
+  dexEnabled: boolean;
 };
 
-type MobileNavKey = "search" | "feed" | "scan" | "wall" | "vault";
+type MobileNavKey = "search" | "feed" | "scan" | "dex" | "wall" | "vault";
 
 type MobileNavItem = {
   key: MobileNavKey;
@@ -21,8 +22,6 @@ function isSearchPath(pathname: string) {
     pathname.startsWith("/explore/") ||
     pathname === "/sets" ||
     pathname.startsWith("/sets/") ||
-    pathname === "/dex" ||
-    pathname.startsWith("/dex/") ||
     pathname === "/card" ||
     pathname.startsWith("/card/") ||
     pathname === "/compare" ||
@@ -33,6 +32,10 @@ function isSearchPath(pathname: string) {
 }
 
 function getActiveMobileNavKey(pathname: string): MobileNavKey | null {
+  if (pathname === "/dex" || pathname.startsWith("/dex/")) {
+    return "dex";
+  }
+
   if (isSearchPath(pathname)) {
     return "search";
   }
@@ -100,6 +103,16 @@ function NavIcon({ name, active }: { name: MobileNavKey; active: boolean }) {
           <path d="M9.5 16.25h5" />
         </svg>
       );
+    case "dex":
+      return (
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="8.25" />
+          <path d="M3.75 12h16.5" />
+          <path d="M12 3.75c2.3 2.14 3.45 4.9 3.45 8.25S14.3 18.1 12 20.25" />
+          <path d="M12 3.75C9.7 5.89 8.55 8.65 8.55 12S9.7 18.1 12 20.25" />
+          <circle cx="12" cy="12" r="1.65" fill="currentColor" stroke="none" />
+        </svg>
+      );
     case "wall":
       return (
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -162,7 +175,7 @@ function MobileBottomNavLink({
   );
 }
 
-export function MobileBottomNav({ wallHref }: MobileBottomNavProps) {
+export function MobileBottomNav({ wallHref, dexEnabled }: MobileBottomNavProps) {
   const pathname = usePathname();
   const activeKey = getActiveMobileNavKey(pathname);
   const currentWallHref =
@@ -172,6 +185,7 @@ export function MobileBottomNav({ wallHref }: MobileBottomNavProps) {
     { key: "search", label: "Search", href: "/explore" },
     { key: "feed", label: "Feed", href: "/network" },
     { key: "scan", label: "Scan", href: "/vault/import" },
+    ...(dexEnabled ? [{ key: "dex" as const, label: "Dex", href: "/dex" }] : []),
     { key: "wall", label: "Wall", href: currentWallHref },
     { key: "vault", label: "Vault", href: "/vault" },
   ];

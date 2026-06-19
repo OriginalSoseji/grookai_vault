@@ -33,6 +33,7 @@ function ChromeFallback({ dexEnabled }: { dexEnabled: boolean }) {
   const mobileNavItems = [
     { href: "/explore", label: "Search" },
     { href: "/network", label: "Feed" },
+    ...(dexEnabled ? [{ href: "/dex", label: "Dex" }] : []),
     { href: "/wall", label: "Wall" },
     { href: "/vault", label: "Vault" },
     { href: "/account", label: "Profile" },
