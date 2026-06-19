@@ -687,6 +687,12 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   border-radius: 28px;
 }
 
+.gv-dex-sprite-frame-card {
+  width: 7.1rem;
+  height: 7.1rem;
+  border-radius: 32px;
+}
+
 .gv-dex-sprite-image {
   width: auto;
   height: auto;
@@ -695,6 +701,12 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   transform: scale(1.08);
+}
+
+.gv-dex-sprite-frame-card .gv-dex-sprite-image {
+  max-width: 88%;
+  max-height: 88%;
+  transform: scale(1.2);
 }
 
 .gv-dex-sprite-fallback {
@@ -730,9 +742,57 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
     inset 0 1px 0 rgba(255, 255, 255, 0.86);
 }
 
+.gv-dex-completion-metric {
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.58);
+  padding: 1rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.gv-dex-stat-card {
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 20px;
+  background: rgba(248, 250, 252, 0.72);
+  padding: 0.9rem 0.65rem;
+  text-align: center;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.gv-dex-stat-card p {
+  color: var(--gv-text-primary);
+  font-size: clamp(1.2rem, 5vw, 1.75rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.gv-dex-stat-card span {
+  display: block;
+  margin-top: 0.38rem;
+  color: var(--gv-text-tertiary);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.gv-dex-progress-track {
+  height: 0.82rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(226, 232, 240, 0.78);
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.gv-dex-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: #10b981;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.28);
+}
+
 .gv-dex-number {
   display: inline-flex;
-  min-width: 5.4rem;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--gv-border-hairline);
@@ -1304,6 +1364,23 @@ html.gv-dark .gv-dex-species-card:hover {
     inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
+html.gv-dark .gv-dex-completion-metric {
+  border-color: rgba(226, 232, 240, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+html.gv-dark .gv-dex-stat-card {
+  border-color: rgba(226, 232, 240, 0.08);
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+html.gv-dark .gv-dex-progress-track {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.42);
+}
+
 html.gv-dark .gv-dex-number {
   border-color: rgba(226, 232, 240, 0.08);
   background: rgba(255, 255, 255, 0.055);
@@ -1552,13 +1629,14 @@ html.gv-dark .gv-card-identity-wash {
     border-radius: 24px;
   }
 
-  .gv-dex-species-card {
-    grid-template-columns: 4rem minmax(0, 1fr);
-    border-radius: 26px;
+  .gv-dex-sprite-frame-card {
+    width: 6.8rem;
+    height: 6.8rem;
+    border-radius: 30px;
   }
 
-  .gv-dex-species-card > .space-y-2:last-child {
-    grid-column: 1 / -1;
+  .gv-dex-species-card {
+    border-radius: 30px;
   }
 
   .gv-card-detail-image-shell {

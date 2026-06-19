@@ -73,11 +73,17 @@ function PokemonSprite({
 }: {
   dexNumber: number;
   name: string;
-  size?: "default" | "hero";
+  size?: "default" | "hero" | "card";
 }) {
   const spriteUrl = getPokemonSpriteUrl(dexNumber);
-  const frameClassName = size === "hero" ? "gv-dex-sprite-frame gv-dex-sprite-frame-hero" : "gv-dex-sprite-frame";
-  const imageSize = size === "hero" ? 96 : 72;
+  const frameClassName = [
+    "gv-dex-sprite-frame",
+    size === "hero" ? "gv-dex-sprite-frame-hero" : "",
+    size === "card" ? "gv-dex-sprite-frame-card" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+  const imageSize = size === "hero" ? 96 : size === "card" ? 124 : 72;
 
   return (
     <div className={frameClassName} aria-hidden={!spriteUrl}>
@@ -254,48 +260,69 @@ export default async function GrookaiDexPage({
             const percent = clampPercent(row.completionPercent);
             const status = completionLabel(percent, row.ownedPrintCount, row.totalPrintCount);
             const typeLabel = row.types.length > 0 ? row.types.slice(0, 2).join(" / ") : "Pokemon";
+            const missingPrintCount = Math.max(row.totalPrintCount - row.ownedPrintCount, 0);
             return (
               <Link
                 key={row.speciesId}
                 href={`/dex/${row.slug}`}
-                className="gv-dex-species-card group grid gap-5 px-5 py-5 sm:grid-cols-[5.5rem_7.4rem_minmax(0,1fr)_minmax(180px,260px)] sm:items-center sm:px-6"
+                className="gv-dex-species-card group block px-5 py-5 sm:px-6 sm:py-6"
               >
-                <PokemonSprite dexNumber={row.nationalDexNumber} name={row.displayName} />
+                <div className="flex min-w-0 items-start gap-4 sm:gap-5 lg:items-center">
+                  <PokemonSprite dexNumber={row.nationalDexNumber} name={row.displayName} size="card" />
 
-                <div className="flex items-center justify-between gap-3 sm:block">
-                  <span className="gv-dex-number">
-                    #{row.nationalDexNumber.toString().padStart(4, "0")}
-                  </span>
-                  <span className={`inline-flex rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] sm:hidden ${completionClassName(status)}`}>
-                    {status}
-                  </span>
-                </div>
-
-                <div className="min-w-0 space-y-2">
-                  <div className="flex min-w-0 items-center gap-2">
-                    <h2 className="truncate text-2xl font-black tracking-tight text-slate-950 dark:text-slate-50">
+                  <div className="min-w-0 flex-1 space-y-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="gv-dex-number">
+                        #{row.nationalDexNumber.toString().padStart(4, "0")}
+                      </span>
+                      <span className="gv-metadata-pill">{typeLabel}</span>
+                      {row.generation ? <span className="gv-metadata-pill">Gen {row.generation}</span> : null}
+                    </div>
+                    <h2 className="break-words text-[clamp(2.1rem,9vw,3.6rem)] font-black leading-[0.96] tracking-tight text-slate-950 dark:text-slate-50">
                       {row.displayName}
                     </h2>
-                    <span className={`hidden rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] sm:inline-flex ${completionClassName(status)}`}>
-                      {status}
-                    </span>
-                  </div>
-                  <p className="text-sm font-semibold text-slate-500 dark:text-slate-400">
-                    {row.ownedPrintCount} of {row.totalPrintCount} mapped printings in your vault
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="gv-metadata-pill">{typeLabel}</span>
-                    {row.generation ? <span className="gv-metadata-pill">Gen {row.generation}</span> : null}
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Completion</span>
-                    <span className="text-sm font-extrabold text-slate-800 dark:text-slate-100">{percent}%</span>
+                <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(240px,320px)] lg:items-end">
+                  <div className="gv-dex-completion-metric">
+                    <p className="gv-eyebrow">Printings collected</p>
+                    <p className="mt-2 text-[clamp(1.9rem,8vw,3rem)] font-black leading-none tracking-tight text-slate-950 dark:text-slate-50">
+                      {row.ownedPrintCount} / {row.totalPrintCount}
+                    </p>
+                    <p className="mt-2 text-sm font-semibold text-slate-500 dark:text-slate-400">
+                      Every known mapped printing for this Pokemon.
+                    </p>
                   </div>
-                  <div className="h-2.5 overflow-hidden rounded-full bg-slate-100 dark:bg-white/[0.08]">
-                    <div className="h-full rounded-full bg-emerald-500 transition-all group-hover:bg-emerald-400" style={{ width: `${percent}%` }} />
+
+                  <div className="grid grid-cols-3 gap-2.5">
+                    <div className="gv-dex-stat-card">
+                      <p>{row.totalPrintCount}</p>
+                      <span>Known</span>
+                    </div>
+                    <div className="gv-dex-stat-card">
+                      <p>{row.ownedPrintCount}</p>
+                      <span>Owned</span>
+                    </div>
+                    <div className="gv-dex-stat-card">
+                      <p>{missingPrintCount}</p>
+                      <span>Missing</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-5 space-y-2.5">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Completion</span>
+                      <span className={`inline-flex rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] ${completionClassName(status)}`}>
+                        {status}
+                      </span>
+                    </div>
+                    <span className="text-base font-black text-slate-800 dark:text-slate-100">{percent}%</span>
+                  </div>
+                  <div className="gv-dex-progress-track">
+                    <div className="gv-dex-progress-fill transition-all group-hover:bg-emerald-400" style={{ width: `${percent}%` }} />
                   </div>
                 </div>
               </Link>
