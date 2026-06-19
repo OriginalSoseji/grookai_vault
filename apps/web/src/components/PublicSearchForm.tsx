@@ -71,11 +71,11 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
 
   if (variant === "hero") {
     return (
-      <form action="/search" method="get" onSubmit={handleSubmit} className="max-w-2xl">
+      <form action="/search" method="get" onSubmit={handleSubmit} className="w-full max-w-2xl">
         {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
         {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
         {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
-        <SearchToolbar surface="pill" className="flex items-center gap-3">
+        <SearchToolbar surface="pill" className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <SearchToolbarInput
             tone="bare"
             type="search"
@@ -87,7 +87,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
             inputClassName="px-3 text-base"
             aria-label="Search cards"
           />
-          <SearchToolbarButton type="submit" tone="primary" size="hero">
+          <SearchToolbarButton type="submit" tone="primary" size="hero" className="w-full sm:w-auto">
             Search
           </SearchToolbarButton>
         </SearchToolbar>

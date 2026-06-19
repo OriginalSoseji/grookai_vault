@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import PublicCardImage from "@/components/PublicCardImage";
 import PublicSearchForm from "@/components/PublicSearchForm";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
+import { VARIANT_FAMILY_DISCOVERY_COPY } from "@/lib/cards/variantFamilyDiscoveryCopy";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 
@@ -40,6 +41,60 @@ type FeaturedCard = {
   display_name: string;
   image_url?: string;
 };
+
+const DISCOVERY_SEARCHES = [
+  {
+    label: "WB Kids Stamp",
+    href: "/explore?q=WB%20Kids%20Stamp",
+    description: "Find the promo stamp states and recognized WB Kids variants.",
+  },
+  {
+    label: "Pikachu reverse holo 2022-2024",
+    href: "/explore?q=Pikachu&year_min=2022&year_max=2024&finish=reverse",
+    description: "Search by Pokemon, finish, and year range in one collector query.",
+  },
+  {
+    label: "Build-A-Bear stamped cards",
+    href: "/explore?q=Build-A-Bear%20stamped%20cards",
+    description: "Retailer distribution stamps modeled as distinct identities.",
+  },
+  {
+    label: "Gengar cameos",
+    href: "/explore?q=Gengar%20cameo",
+    description: "Search artwork appearances beyond the main card name.",
+  },
+] as const;
+
+const FEATURED_FAMILY_KEYS = [
+  "pokemon_center_stamp",
+  "jungle_no_symbol_error",
+  "base_pikachu_print_run",
+  "build_a_bear_workshop_stamp",
+] as const;
+
+const COLLECTOR_PATHWAYS = [
+  {
+    eyebrow: "Search",
+    title: "Ask in collector language",
+    body: "Search understands stamps, finishes, years, ownership, artists, and exact versions instead of forcing database syntax.",
+    href: "/explore",
+    cta: "Search the catalog",
+  },
+  {
+    eyebrow: "Dex",
+    title: "Track character completion",
+    body: "Dex connects Pokemon species to your Vault progress so completion is about the character, not just one set.",
+    href: "/dex",
+    cta: "Open Dex",
+  },
+  {
+    eyebrow: "Vault",
+    title: "Turn ownership into context",
+    body: "Vault is the collection layer. It shows what you own and becomes the basis for gaps, missing variants, and collector goals.",
+    href: "/vault",
+    cta: "Open Vault",
+  },
+] as const;
 
 function createServerSupabase() {
   return createPublicServerClient(300);
@@ -129,10 +184,15 @@ export default async function HomePage() {
             />
             <p className="gv-eyebrow">Grookai Vault</p>
             <h1 className="gv-display-title mx-auto max-w-4xl">
-              Collect with purpose.
+              <span className="sm:hidden">
+                Collect with
+                <br />
+                purpose.
+              </span>
+              <span className="hidden sm:inline">Collect with purpose.</span>
             </h1>
             <p className="gv-body-copy mx-auto max-w-2xl">
-              Show your collection, connect with collectors, and act when it matters.
+              Search cards, variants, stamps, cameos, Pokemon, sets, and your own collection through one collector intelligence layer.
             </p>
           </div>
 
@@ -189,6 +249,85 @@ export default async function HomePage() {
             </Link>
           </div>
         </div>
+      </section>
+
+      <section className="space-y-5">
+        <div className="mx-auto max-w-3xl space-y-2 text-center">
+          <p className="gv-eyebrow">Collector intelligence</p>
+          <h2 className="gv-section-title">Start with the relationship, not the row.</h2>
+          <p className="gv-body-copy text-sm">
+            Grookai understands card identity, special variants, stamp families, Pokemon completion, image truth, and vault ownership as connected collector facts.
+          </p>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2">
+          {DISCOVERY_SEARCHES.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="gv-premium-surface group px-5 py-5 transition hover:-translate-y-0.5 hover:border-slate-300 dark:hover:border-slate-600"
+            >
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Try searching</p>
+              <h3 className="mt-2 text-xl font-black tracking-tight text-slate-950 dark:text-slate-50">{item.label}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{item.description}</p>
+              <span className="mt-4 inline-flex text-sm font-bold text-sky-600 transition group-hover:text-sky-700 dark:text-sky-300">
+                Open results
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="space-y-5">
+        <div className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
+          <div className="space-y-2">
+            <p className="gv-eyebrow">Variant families</p>
+            <h2 className="gv-section-title">Special cards are first-class identities.</h2>
+          </div>
+          <Link href="/explore?identity=stamped" className="gv-secondary-button self-start px-4 py-2 text-sm md:self-auto">
+            Browse stamped lanes
+          </Link>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {FEATURED_FAMILY_KEYS.map((familyKey) => {
+            const family = VARIANT_FAMILY_DISCOVERY_COPY[familyKey];
+            return (
+              <Link
+                key={family.family_key}
+                href={`/explore?q=${encodeURIComponent(family.family_label)}`}
+                className="group rounded-[28px] border border-slate-200/70 bg-white/78 p-5 shadow-[0_30px_80px_-62px_rgba(15,23,42,0.52)] transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-white dark:border-white/[0.08] dark:bg-white/[0.04] dark:hover:border-white/[0.14] dark:hover:bg-white/[0.06]"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="rounded-full bg-slate-950 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white dark:bg-white dark:text-slate-950">
+                      {family.variant_category.replace(/_/g, " ")}
+                    </span>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-emerald-600 dark:text-emerald-300">
+                      {family.confidence}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-black tracking-tight text-slate-950 dark:text-slate-50">{family.family_label}</h3>
+                    <p className="mt-2 line-clamp-4 text-sm leading-6 text-slate-600 dark:text-slate-300">{family.why_collectors_care}</p>
+                  </div>
+                  <p className="text-sm font-bold text-sky-600 transition group-hover:text-sky-700 dark:text-sky-300">View family results</p>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="grid gap-5 lg:grid-cols-3">
+        {COLLECTOR_PATHWAYS.map((item) => (
+          <Link key={item.eyebrow} href={item.href} className="gv-premium-surface group px-6 py-7">
+            <p className="gv-eyebrow">{item.eyebrow}</p>
+            <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-950 dark:text-slate-50">{item.title}</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{item.body}</p>
+            <span className="mt-5 inline-flex text-sm font-bold text-sky-600 transition group-hover:text-sky-700 dark:text-sky-300">
+              {item.cta}
+            </span>
+          </Link>
+        ))}
       </section>
 
       <section className="grid gap-5 md:grid-cols-2">

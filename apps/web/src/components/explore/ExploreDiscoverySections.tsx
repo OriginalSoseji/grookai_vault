@@ -18,6 +18,7 @@ import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalT
 import type { RecentlyConfirmedCanonicalCard } from "@/lib/provisional/getRecentlyConfirmedCanonicalCards";
 import type { PublicSetSummary } from "@/lib/publicSets.shared";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
+import { VARIANT_FAMILY_DISCOVERY_COPY } from "@/lib/cards/variantFamilyDiscoveryCopy";
 
 const POPULAR_POKEMON = [
   "Pikachu",
@@ -28,6 +29,15 @@ const POPULAR_POKEMON = [
   "Gengar",
   "Rayquaza",
   "Gardevoir",
+] as const;
+
+const FEATURED_VARIANT_FAMILY_KEYS = [
+  "pokemon_center_stamp",
+  "wb_kids_stamp",
+  "jungle_no_symbol_error",
+  "base_pikachu_print_run",
+  "build_a_bear_workshop_stamp",
+  "pokemon_together_stamp",
 ] as const;
 
 type ExploreDiscoverySectionsProps = {
@@ -301,6 +311,32 @@ export default function ExploreDiscoverySections({
             ))}
           </div>
         </section>
+
+        <section className="space-y-2.5">
+          <MobileFeedSectionHeader
+            eyebrow="Special identities"
+            title="Variant families"
+            description="Stamps, errors, and print-run identities that Grookai treats as real collector lanes."
+          />
+          <div className="space-y-2">
+            {FEATURED_VARIANT_FAMILY_KEYS.slice(0, 4).map((familyKey) => {
+              const family = VARIANT_FAMILY_DISCOVERY_COPY[familyKey];
+              return (
+                <Link
+                  key={family.family_key}
+                  href={buildExploreQueryHref(family.family_label, compareCards, currentView)}
+                  className="block rounded-[1.15rem] border border-slate-200 bg-white px-4 py-3 shadow-sm transition hover:border-slate-300 hover:bg-slate-50"
+                >
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                    {family.variant_category.replace(/_/g, " ")}
+                  </p>
+                  <h3 className="mt-1 text-[15px] font-semibold tracking-tight text-slate-950">{family.family_label}</h3>
+                  <p className="mt-1 line-clamp-2 text-[12px] leading-5 text-slate-600">{family.why_collectors_care}</p>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
       </div>
 
       <div className="hidden space-y-10 md:block md:space-y-12">
@@ -387,6 +423,53 @@ export default function ExploreDiscoverySections({
                 {pokemon}
               </Link>
             ))}
+          </div>
+        </section>
+
+        <section className="space-y-5">
+          <div className="flex items-end justify-between gap-4">
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Special identity families</p>
+              <div className="space-y-1">
+                <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Search the collector graph</h2>
+                <p className="max-w-2xl text-sm leading-6 text-slate-600">
+                  Stamps, errors, and print-run variants are modeled as searchable identities when evidence supports the exact lane.
+                </p>
+              </div>
+            </div>
+            <Link
+              href={buildPathWithCompareCards("/explore", "identity=stamped", compareCards)}
+              className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950"
+            >
+              Stamped lanes
+            </Link>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {FEATURED_VARIANT_FAMILY_KEYS.map((familyKey) => {
+              const family = VARIANT_FAMILY_DISCOVERY_COPY[familyKey];
+              return (
+                <Link
+                  key={family.family_key}
+                  href={buildExploreQueryHref(family.family_label, compareCards, currentView)}
+                  className="group rounded-[22px] border border-slate-200 bg-white px-5 py-5 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                        {family.variant_category.replace(/_/g, " ")}
+                      </p>
+                      <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-emerald-700">
+                        {family.confidence}
+                      </span>
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-semibold tracking-tight text-slate-950">{family.family_label}</h3>
+                      <p className="line-clamp-3 text-sm leading-6 text-slate-600">{family.why_collectors_care}</p>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </section>
 

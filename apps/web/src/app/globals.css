@@ -848,6 +848,9 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 
 .gv-showcase-hero {
   position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
   border-radius: 28px;
   background:
