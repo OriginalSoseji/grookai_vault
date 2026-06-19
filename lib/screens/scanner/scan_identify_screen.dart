@@ -7,6 +7,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../models/ownership_state.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../services/vault/vault_card_service.dart';
+import '../../utils/display_image_contract.dart';
 import '../../widgets/ownership/ownership_signal.dart';
 
 class ScanIdentifyScreen extends StatefulWidget {
@@ -282,7 +283,7 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
         final confidence = (cand['confidence'] ?? '').toString();
         final name = (cand['name'] ?? 'Card').toString();
         final setName = (cand['set'] ?? '').toString();
-        final imageUrl = (cand['image_url'] ?? '').toString();
+        final imageUrl = normalizeDisplayImageUrl(cand['image_url']) ?? '';
         final ownershipState = _ownershipStateForCandidate(cand);
 
         return Card(

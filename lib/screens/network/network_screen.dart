@@ -13,6 +13,7 @@ import '../../services/diagnostics/app_boot_timing.dart';
 import '../../services/network/network_stream_service.dart';
 import '../../services/provisional/provisional_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
+import '../../utils/display_image_contract.dart';
 import '../../widgets/app_shell_metrics.dart';
 import '../../widgets/contact_owner_button.dart';
 import '../../widgets/network/network_interaction_card.dart';
@@ -671,7 +672,7 @@ NetworkStreamRow? _networkStreamRowFromCache(Map<String, dynamic> json) {
     gradeValue: json['gradeValue'] as String?,
     gradeLabel: json['gradeLabel'] as String?,
     createdAt: json['createdAt'] as String?,
-    imageUrl: json['imageUrl'] as String?,
+    imageUrl: normalizeDisplayImageUrl(json['imageUrl']),
     inPlayCopies: copies,
     listingCount: json['listingCount'] is int
         ? json['listingCount'] as int

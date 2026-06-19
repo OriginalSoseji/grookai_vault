@@ -145,17 +145,32 @@ class CardPrint {
           ? set['identity_model']?.toString()
           : json['set_identity_model']?.toString(),
       rarity: json['rarity']?.toString(),
-      imageUrl: json['image_url']?.toString(),
-      imageAltUrl: json['image_alt_url']?.toString(),
-      representativeImageUrl: json['representative_image_url']?.toString(),
-      imageStatus: json['image_status']?.toString(),
-      imageNote: json['image_note']?.toString(),
-      imageSource: json['image_source']?.toString(),
-      displayImageUrl: resolveDisplayImageUrl(
-        displayImageUrl: json['display_image_url'],
-        imageUrl: json['image_best'],
+      imageUrl: _jsonText(json, 'image_url', 'imageUrl'),
+      imageAltUrl: _jsonText(json, 'image_alt_url', 'imageAltUrl'),
+      representativeImageUrl: _jsonText(
+        json,
+        'representative_image_url',
+        'representativeImageUrl',
       ),
-      displayImageKind: json['display_image_kind']?.toString(),
+      imageStatus: _jsonText(json, 'image_status', 'imageStatus'),
+      imageNote: _jsonText(json, 'image_note', 'imageNote'),
+      imageSource: _jsonText(json, 'image_source', 'imageSource'),
+      displayImageUrl: resolveDisplayImageUrl(
+        displayImageUrl: json['display_image_url'] ?? json['displayImageUrl'],
+        imageUrl:
+            json['image_best'] ??
+            json['imageBest'] ??
+            json['image_url'] ??
+            json['imageUrl'],
+        imageAltUrl: json['image_alt_url'] ?? json['imageAltUrl'],
+        representativeImageUrl:
+            json['representative_image_url'] ?? json['representativeImageUrl'],
+      ),
+      displayImageKind: _jsonText(
+        json,
+        'display_image_kind',
+        'displayImageKind',
+      ),
       externalIds: externalIds,
       searchObjectType: json['search_object_type']?.toString(),
       searchCardPrintingId: json['search_card_printing_id']?.toString(),
@@ -167,6 +182,12 @@ class CardPrint {
       routeQuery: json['route_query']?.toString(),
     );
   }
+}
+
+String? _jsonText(Map<String, dynamic> json, String snakeKey, String camelKey) {
+  final value = json[snakeKey] ?? json[camelKey];
+  final normalized = (value ?? '').toString().trim();
+  return normalized.isEmpty ? null : normalized;
 }
 
 enum ResolverSearchState { strongMatch, ambiguousMatch, weakMatch, noMatch }

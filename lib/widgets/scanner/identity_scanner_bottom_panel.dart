@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import '../../utils/display_image_contract.dart';
+
 class IdentityScannerBottomPanel extends StatelessWidget {
   final String eyebrow;
   final String title;
@@ -29,7 +31,8 @@ class IdentityScannerBottomPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final hasImage = imageUrl != null && imageUrl!.trim().isNotEmpty;
+    final normalizedImageUrl = normalizeDisplayImageUrl(imageUrl);
+    final hasImage = normalizedImageUrl != null;
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(28),
@@ -56,7 +59,7 @@ class IdentityScannerBottomPanel extends StatelessWidget {
                 if (hasImage)
                   Padding(
                     padding: const EdgeInsets.only(right: 14),
-                    child: _ScannerThumbnail(imageUrl: imageUrl!),
+                    child: _ScannerThumbnail(imageUrl: normalizedImageUrl),
                   ),
                 Expanded(
                   child: Column(

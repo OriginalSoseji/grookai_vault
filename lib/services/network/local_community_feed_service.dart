@@ -1,5 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../utils/display_image_contract.dart';
+
 const bool kLocalCommunityFeedV1Enabled = bool.fromEnvironment(
   'LOCAL_COMMUNITY_FEED_V1_ENABLED',
   defaultValue: false,
@@ -108,7 +110,7 @@ class LocalCommunityFeedRow {
       setName: _text(json['set_name']),
       cardNumber: _text(json['card_number']),
       intent: _text(json['intent']),
-      imageUrl: _httpUrl(json['image_url']),
+      imageUrl: resolveDisplayImageUrlFromRow(json),
       displayImageKind: _text(json['display_image_kind']),
       localityLabel: _text(json['locality_label']),
       distanceBucket: _text(json['distance_bucket']),
@@ -151,16 +153,6 @@ class LocalCommunityFeedService {
 }
 
 String _text(dynamic value) => (value ?? '').toString().trim();
-
-String? _httpUrl(dynamic value) {
-  final normalized = _text(value);
-  if (normalized.isEmpty) return null;
-  final uri = Uri.tryParse(normalized);
-  if (uri == null || (uri.scheme != 'http' && uri.scheme != 'https')) {
-    return null;
-  }
-  return normalized;
-}
 
 DateTime? _date(dynamic value) {
   final normalized = _text(value);

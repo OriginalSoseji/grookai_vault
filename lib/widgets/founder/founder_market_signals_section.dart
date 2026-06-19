@@ -4,6 +4,7 @@ import '../../screens/founder/founder_card_signal_detail_screen.dart';
 import '../../screens/founder/founder_set_signal_detail_screen.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/network/founder_insight_service.dart';
+import '../../utils/display_image_contract.dart';
 
 class FounderMarketSignalsSection extends StatelessWidget {
   const FounderMarketSignalsSection({super.key, required this.bundle});
@@ -374,6 +375,7 @@ class _CardArtwork extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final imageUrl = normalizeDisplayImageUrl(url);
 
     return Container(
       width: 52,
@@ -383,14 +385,14 @@ class _CardArtwork extends StatelessWidget {
         color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.46),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: (url ?? '').isEmpty
+      child: imageUrl == null
           ? Icon(
               Icons.image_not_supported_outlined,
               color: colorScheme.onSurface.withValues(alpha: 0.42),
               size: 20,
             )
           : Image.network(
-              url!,
+              imageUrl,
               fit: BoxFit.cover,
               cacheWidth: 160,
               errorBuilder: (context, error, stackTrace) => Icon(

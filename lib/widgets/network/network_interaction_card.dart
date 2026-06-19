@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/display_image_contract.dart';
+
 enum NetworkInteractionCardLayout { feed, compactFeed, grid }
 
 class NetworkInteractionCard extends StatelessWidget {
@@ -194,7 +196,8 @@ class _NetworkPosterArtwork extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hasImage = (imageUrl ?? '').trim().isNotEmpty;
+    final resolvedImageUrl = normalizeDisplayImageUrl(imageUrl);
+    final hasImage = (resolvedImageUrl ?? '').isNotEmpty;
     if (!hasImage) {
       return _NetworkPosterFallback(label: label);
     }
@@ -214,7 +217,7 @@ class _NetworkPosterArtwork extends StatelessWidget {
         return DecoratedBox(
           decoration: const BoxDecoration(color: Colors.black),
           child: Image.network(
-            imageUrl!,
+            resolvedImageUrl!,
             fit: BoxFit.cover,
             alignment: Alignment.center,
             cacheWidth: cacheWidth,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/grookai_dex/grookai_dex_service.dart';
+import '../../utils/pokemon_sprite_url.dart';
 import 'grookai_dex_species_screen.dart';
 
 class GrookaiDexScreen extends StatefulWidget {
@@ -68,8 +69,11 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
   }
 
   List<GrookaiDexSpeciesSummary> _filteredSpecies() {
-    final species = _speciesPage?.species ?? const <GrookaiDexSpeciesSummary>[];
+    final speciesPage = _speciesPage;
     final query = _searchController.text.trim().toLowerCase();
+    final species = query.isEmpty
+        ? speciesPage?.species ?? const <GrookaiDexSpeciesSummary>[]
+        : speciesPage?.allSpecies ?? const <GrookaiDexSpeciesSummary>[];
     if (query.isEmpty) {
       return species;
     }
@@ -99,22 +103,41 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
     final colorScheme = theme.colorScheme;
     final speciesPage = _speciesPage;
     final filteredSpecies = _filteredSpecies();
+    final query = _searchController.text.trim();
+    final isSearching = query.isNotEmpty;
+    final metricSpecies =
+        speciesPage?.allSpecies ?? const <GrookaiDexSpeciesSummary>[];
     final ownedStartedCount =
-        speciesPage?.species.where((row) => row.ownedPrintCount > 0).length ??
-        0;
-    final openCount =
-        speciesPage?.species
-            .where(
-              (row) =>
-                  row.totalPrintCount > 0 &&
-                  row.ownedPrintCount < row.totalPrintCount,
-            )
-            .length ??
-        0;
+        metricSpecies.where((row) => row.ownedPrintCount > 0).length;
+    final completeCount = metricSpecies
+        .where(
+          (row) =>
+              row.totalPrintCount > 0 &&
+              row.ownedPrintCount >= row.totalPrintCount,
+        )
+        .length;
+    final pageTotalPrints = metricSpecies.fold<int>(
+      0,
+      (sum, row) => sum + row.totalPrintCount,
+    );
+    final pageOwnedPrints = metricSpecies.fold<int>(
+      0,
+      (sum, row) => sum + row.ownedPrintCount,
+    );
+    final pageCompletionPercent = pageTotalPrints <= 0
+        ? 0
+        : ((pageOwnedPrints / pageTotalPrints) * 100).round().clamp(0, 100);
+    final incompleteCount = metricSpecies
+        .where(
+          (row) =>
+              row.totalPrintCount > 0 &&
+              row.ownedPrintCount < row.totalPrintCount,
+        )
+        .length;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Grookai Dex'),
+        title: const Text('Dex'),
         actions: [
           IconButton(
             tooltip: 'Reload',
@@ -129,60 +152,90 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
             children: [
-              _DexSurfaceCard(
+              _DexHeroCard(
                 emphasize: true,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
                       children: [
-                        DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: colorScheme.primaryContainer.withValues(
-                              alpha: 0.72,
-                            ),
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Icon(
-                              Icons.catching_pokemon_rounded,
-                              color: colorScheme.onPrimaryContainer,
-                            ),
-                          ),
-                        ),
-                        const Spacer(),
-                        Text(
-                          'Page $_page',
-                          style: theme.textTheme.labelLarge?.copyWith(
-                            color: colorScheme.onSurface.withValues(
-                              alpha: 0.58,
-                            ),
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
+                        _DexPill(label: 'Grookai Dex', strong: true),
+                        _DexPill(label: 'Vault-aware'),
                       ],
                     ),
                     const SizedBox(height: 18),
                     Text(
-                      'Pokemon Progress',
-                      style: theme.textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: -0.4,
+                      'Character completion, not just a checklist.',
+                      style: theme.textTheme.headlineMedium?.copyWith(
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: -0.9,
+                        height: 0.98,
                       ),
                     ),
-                    const SizedBox(height: 14),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Search a Pokemon and see every mapped card print, what your vault owns, and the gaps still left for that character.',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.64),
+                        fontWeight: FontWeight.w600,
+                        height: 1.35,
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '$pageCompletionPercent%',
+                                style: theme.textTheme.displaySmall?.copyWith(
+                                  fontWeight: FontWeight.w900,
+                                  letterSpacing: -1.2,
+                                ),
+                              ),
+                              Text(
+                                '$pageOwnedPrints / $pageTotalPrints printings collected',
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                  color: colorScheme.onSurface.withValues(
+                                    alpha: 0.58,
+                                  ),
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        _DexPill(label: isSearching ? 'Search' : 'Page $_page'),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(999),
+                      child: LinearProgressIndicator(
+                        minHeight: 8,
+                        value: pageCompletionPercent / 100,
+                        backgroundColor: colorScheme.surfaceContainerHighest
+                            .withValues(alpha: 0.62),
+                      ),
+                    ),
+                    const SizedBox(height: 18),
                     Row(
                       children: [
                         _DexMetric(
-                          label: 'Shown',
-                          value: '${speciesPage?.species.length ?? 0}',
+                          label: 'Species',
+                          value: '${metricSpecies.length}',
                         ),
                         _DexMetric(
                           label: 'Started',
                           value: '$ownedStartedCount',
                         ),
-                        _DexMetric(label: 'Open', value: '$openCount'),
+                        _DexMetric(label: 'Complete', value: '$completeCount'),
+                        _DexMetric(label: 'Missing', value: '$incompleteCount'),
                       ],
                     ),
                   ],
@@ -192,7 +245,7 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
               TextField(
                 controller: _searchController,
                 decoration: const InputDecoration(
-                  hintText: 'Search this page',
+                  hintText: 'Search all Pokemon',
                   prefixIcon: Icon(Icons.search_rounded),
                 ),
                 onChanged: (_) => setState(() {}),
@@ -216,42 +269,57 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                   child: _DexEmptyState(
                     icon: Icons.search_off_rounded,
                     title: 'No Pokemon found',
-                    body: 'No species matched this page.',
+                    body: 'No species matched the full Dex.',
                   ),
                 )
               else ...[
+                if (isSearching) ...[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(2, 0, 2, 10),
+                    child: Text(
+                      '${filteredSpecies.length} result${filteredSpecies.length == 1 ? '' : 's'} across the full Dex',
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.58),
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ],
                 for (final species in filteredSpecies)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
-                    child: _DexSpeciesTile(
+                    child: _DexSpeciesCard(
                       species: species,
                       onTap: () => _openSpecies(species),
                     ),
                   ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: _page <= 1 || _loading
-                            ? null
-                            : () => _load(page: _page - 1),
-                        icon: const Icon(Icons.chevron_left_rounded),
-                        label: const Text('Previous'),
+                if (!isSearching) ...[
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: _page <= 1 || _loading
+                              ? null
+                              : () => _load(page: _page - 1),
+                          icon: const Icon(Icons.chevron_left_rounded),
+                          label: const Text('Previous'),
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: FilledButton.icon(
-                        onPressed: speciesPage?.hasNextPage == true && !_loading
-                            ? () => _load(page: _page + 1)
-                            : null,
-                        icon: const Icon(Icons.chevron_right_rounded),
-                        label: const Text('Next'),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: FilledButton.icon(
+                          onPressed:
+                              speciesPage?.hasNextPage == true && !_loading
+                              ? () => _load(page: _page + 1)
+                              : null,
+                          icon: const Icon(Icons.chevron_right_rounded),
+                          label: const Text('Next'),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ],
               ],
             ],
           ),
@@ -261,8 +329,8 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
   }
 }
 
-class _DexSpeciesTile extends StatelessWidget {
-  const _DexSpeciesTile({required this.species, required this.onTap});
+class _DexSpeciesCard extends StatelessWidget {
+  const _DexSpeciesCard({required this.species, required this.onTap});
 
   final GrookaiDexSpeciesSummary species;
   final VoidCallback onTap;
@@ -272,82 +340,273 @@ class _DexSpeciesTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final percent = species.completionPercent;
+    final knownCount = species.totalPrintCount;
+    final ownedCount = species.ownedPrintCount;
+    final missingCount = (knownCount - ownedCount).clamp(0, knownCount);
+    final typeLabel = species.types.isEmpty
+        ? 'Pokemon'
+        : species.types.take(2).join(' / ');
 
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(28),
         onTap: onTap,
         child: Ink(
           decoration: BoxDecoration(
-            color: colorScheme.surface.withValues(alpha: 0.82),
-            borderRadius: BorderRadius.circular(18),
+            color: colorScheme.surface.withValues(alpha: 0.88),
+            borderRadius: BorderRadius.circular(28),
             border: Border.all(
-              color: colorScheme.outline.withValues(alpha: 0.10),
+              color: colorScheme.outline.withValues(alpha: 0.08),
             ),
+            boxShadow: [
+              BoxShadow(
+                color: colorScheme.shadow.withValues(alpha: 0.06),
+                blurRadius: 24,
+                offset: const Offset(0, 12),
+              ),
+            ],
           ),
-          padding: const EdgeInsets.all(14),
-          child: Row(
+          padding: const EdgeInsets.all(18),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: 56,
-                child: Text(
-                  '#${species.nationalDexNumber.toString().padLeft(4, '0')}',
-                  style: theme.textTheme.labelMedium?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: 0.50),
-                    fontWeight: FontWeight.w800,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _PokemonSpriteFrame(
+                    nationalDexNumber: species.nationalDexNumber,
+                    label: species.displayName,
+                    size: 88,
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                species.displayName,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: theme.textTheme.headlineSmall?.copyWith(
+                                  fontWeight: FontWeight.w900,
+                                  letterSpacing: -0.7,
+                                  height: 1.02,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            _DexNumberPill(number: species.nationalDexNumber),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        _DexPill(label: typeLabel),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 18),
+              Text(
+                '$ownedCount / $knownCount printings collected',
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: -0.35,
+                  height: 1.05,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: _DexInlineStat(label: 'Known', value: '$knownCount'),
+                  ),
+                  Expanded(
+                    child: _DexInlineStat(label: 'Owned', value: '$ownedCount'),
+                  ),
+                  Expanded(
+                    child: _DexInlineStat(
+                      label: 'Missing',
+                      value: '$missingCount',
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Completion',
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.54),
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 1.4,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    '$percent%',
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      color: percent == 100 ? Colors.green.shade700 : null,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(999),
+                child: LinearProgressIndicator(
+                  minHeight: 9,
+                  value: knownCount <= 0 ? 0 : ownedCount / knownCount,
+                  backgroundColor: colorScheme.surfaceContainerHighest
+                      .withValues(alpha: 0.70),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PokemonSpriteFrame extends StatelessWidget {
+  const _PokemonSpriteFrame({
+    required this.nationalDexNumber,
+    required this.label,
+    this.size = 82,
+  });
+
+  final int nationalDexNumber;
+  final String label;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final url = pokemonSpriteUrl(nationalDexNumber);
+
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHigh.withValues(alpha: 0.74),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.primary.withValues(alpha: 0.07),
+            blurRadius: 24,
+            offset: const Offset(0, 10),
+          ),
+        ],
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: url == null
+          ? Icon(
+              Icons.catching_pokemon_rounded,
+              color: colorScheme.onSurface.withValues(alpha: 0.36),
+            )
+          : Padding(
+              padding: const EdgeInsets.all(8),
+              child: Image.network(
+                url,
+                fit: BoxFit.contain,
+                filterQuality: FilterQuality.none,
+                errorBuilder: (context, error, stackTrace) => Center(
+                  child: Text(
+                    label.isEmpty ? '?' : label.substring(0, 1),
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                 ),
               ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      species.displayName,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                    const SizedBox(height: 7),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(999),
-                      child: LinearProgressIndicator(
-                        minHeight: 6,
-                        value: species.totalPrintCount <= 0
-                            ? 0
-                            : species.ownedPrintCount / species.totalPrintCount,
-                        backgroundColor: colorScheme.surfaceContainerHighest
-                            .withValues(alpha: 0.72),
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      '${species.ownedPrintCount}/${species.totalPrintCount} prints',
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: colorScheme.onSurface.withValues(alpha: 0.62),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 12),
-              Text(
-                '$percent%',
-                style: theme.textTheme.titleSmall?.copyWith(
-                  color: percent == 100 ? Colors.green.shade700 : null,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-              const SizedBox(width: 4),
-              Icon(
-                Icons.chevron_right_rounded,
-                color: colorScheme.onSurface.withValues(alpha: 0.42),
-              ),
-            ],
+            ),
+    );
+  }
+}
+
+class _DexNumberPill extends StatelessWidget {
+  const _DexNumberPill({required this.number});
+
+  final int number;
+
+  @override
+  Widget build(BuildContext context) {
+    return _DexPill(label: '#${number.toString().padLeft(4, '0')}');
+  }
+}
+
+class _DexInlineStat extends StatelessWidget {
+  const _DexInlineStat({required this.label, required this.value});
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          value,
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w900,
+            letterSpacing: -0.2,
+          ),
+        ),
+        const SizedBox(height: 2),
+        Text(
+          label,
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.50),
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _DexPill extends StatelessWidget {
+  const _DexPill({required this.label, this.strong = false});
+
+  final String label;
+  final bool strong;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: strong
+            ? colorScheme.primaryContainer.withValues(alpha: 0.58)
+            : colorScheme.surfaceContainerHighest.withValues(alpha: 0.64),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(
+          color: strong
+              ? colorScheme.primary.withValues(alpha: 0.16)
+              : colorScheme.outline.withValues(alpha: 0.08),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+        child: Text(
+          label,
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            color: strong
+                ? colorScheme.onPrimaryContainer
+                : colorScheme.onSurface.withValues(alpha: 0.68),
+            fontWeight: FontWeight.w900,
+            letterSpacing: 1.1,
           ),
         ),
       ),
@@ -389,8 +648,8 @@ class _DexMetric extends StatelessWidget {
   }
 }
 
-class _DexSurfaceCard extends StatelessWidget {
-  const _DexSurfaceCard({required this.child, this.emphasize = false});
+class _DexHeroCard extends StatelessWidget {
+  const _DexHeroCard({required this.child, this.emphasize = false});
 
   final Widget child;
   final bool emphasize;
@@ -400,13 +659,45 @@ class _DexSurfaceCard extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return Container(
       decoration: BoxDecoration(
-        color: emphasize
-            ? colorScheme.primaryContainer.withValues(alpha: 0.16)
-            : colorScheme.surface.withValues(alpha: 0.82),
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(
-          color: colorScheme.outline.withValues(alpha: emphasize ? 0.13 : 0.09),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            colorScheme.primaryContainer.withValues(
+              alpha: emphasize ? 0.22 : 0.12,
+            ),
+            colorScheme.surface.withValues(alpha: 0.90),
+          ],
         ),
+        borderRadius: BorderRadius.circular(30),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.shadow.withValues(alpha: 0.07),
+            blurRadius: 30,
+            offset: const Offset(0, 16),
+          ),
+        ],
+      ),
+      padding: const EdgeInsets.all(20),
+      child: child,
+    );
+  }
+}
+
+class _DexSurfaceCard extends StatelessWidget {
+  const _DexSurfaceCard({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Container(
+      decoration: BoxDecoration(
+        color: colorScheme.surface.withValues(alpha: 0.82),
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.09)),
       ),
       padding: const EdgeInsets.all(16),
       child: child,

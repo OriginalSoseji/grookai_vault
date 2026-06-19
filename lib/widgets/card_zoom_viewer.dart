@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../utils/display_image_contract.dart';
+
 class CardZoomGalleryItem {
   const CardZoomGalleryItem({required this.label, this.imageUrl});
 
   final String label;
   final String? imageUrl;
 
-  String get resolvedImageUrl => (imageUrl ?? '').trim();
+  String get resolvedImageUrl => normalizeDisplayImageUrl(imageUrl) ?? '';
 }
 
 Future<void> showCardImageZoom(

@@ -8,6 +8,7 @@ import '../../services/identity/image_presentation.dart';
 import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
+import '../../utils/display_image_contract.dart';
 import '../../widgets/card_surface_price.dart';
 import '../public_collector/public_collector_screen.dart';
 import 'slab_upgrade_screen.dart';
@@ -1488,7 +1489,7 @@ class _CardThumb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final normalized = imageUrl?.trim() ?? '';
+    final normalized = normalizeDisplayImageUrl(imageUrl) ?? '';
     final cardHeight = size * 1.395;
 
     return DecoratedBox(
