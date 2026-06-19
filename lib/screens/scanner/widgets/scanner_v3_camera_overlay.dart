@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../services/scanner_v3/convergence_state_v1.dart';
 import '../../../services/scanner_v4/scanner_live_behavior_v1.dart';
 import '../../../services/scanner_v4/scanner_v4_diagnostic_test_runner_v1.dart';
+import '../../../utils/display_image_contract.dart';
 import 'scanner_actions_bar.dart';
 import 'scanner_confidence_rail.dart';
 import 'scanner_debug_panel.dart';
@@ -1016,7 +1017,7 @@ class _ScanMemoryImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageUrl = entry.imageUrl?.trim() ?? '';
+    final imageUrl = normalizeDisplayImageUrl(entry.imageUrl) ?? '';
     if (imageUrl.isEmpty) return _fallback(context);
     return Image.network(
       imageUrl,

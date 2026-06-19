@@ -11,7 +11,24 @@ String? normalizeDisplayImageUrl(dynamic value) {
     return null;
   }
 
-  return normalized;
+  return _nativeSafeCardImageUrl(parsed, normalized);
+}
+
+String _nativeSafeCardImageUrl(Uri parsed, String originalUrl) {
+  if (!_needsGrookaiImageProxy(parsed)) {
+    return originalUrl;
+  }
+
+  return Uri.https('grookaivault.com', '/_next/image', {
+    'url': originalUrl,
+    'w': '828',
+    'q': '85',
+  }).toString();
+}
+
+bool _needsGrookaiImageProxy(Uri parsed) {
+  final host = parsed.host.toLowerCase();
+  return host == 'assets.tcgdex.net' || host == 'images.pokemontcg.io';
 }
 
 String? resolveDisplayImageUrl({

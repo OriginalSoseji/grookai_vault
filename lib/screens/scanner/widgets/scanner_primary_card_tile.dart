@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/display_image_contract.dart';
+
 class ScannerPrimaryCardTile extends StatelessWidget {
   const ScannerPrimaryCardTile({
     super.key,
@@ -170,7 +172,7 @@ class _CardThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final url = imageUrl?.trim() ?? '';
+    final url = normalizeDisplayImageUrl(imageUrl) ?? '';
     if (url.isEmpty) return _fallback();
     return Image.network(
       url,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../utils/display_image_contract.dart';
 import 'card_zoom_viewer.dart';
 
 const double _kCardSurfaceArtworkAspectRatio = 0.69;
@@ -38,7 +39,8 @@ class CardSurfaceArtwork extends StatelessWidget {
   final String? imageTruthLabel;
   final bool imageTruthStrong;
 
-  bool get _hasImage => (imageUrl ?? '').trim().isNotEmpty;
+  String? get _resolvedImageUrl => normalizeDisplayImageUrl(imageUrl);
+  bool get _hasImage => (_resolvedImageUrl ?? '').isNotEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,7 @@ class CardSurfaceArtwork extends StatelessWidget {
                   padding: padding,
                   child: _hasImage
                       ? Image.network(
-                          imageUrl!,
+                          _resolvedImageUrl!,
                           fit: BoxFit.contain,
                           alignment: Alignment.center,
                           cacheWidth: cacheWidth,
@@ -141,7 +143,11 @@ class CardSurfaceArtwork extends StatelessWidget {
       child: InkWell(
         onTap:
             onTapToZoom ??
-            () => showCardImageZoom(context, label: label, imageUrl: imageUrl),
+            () => showCardImageZoom(
+              context,
+              label: label,
+              imageUrl: _resolvedImageUrl,
+            ),
         borderRadius: BorderRadius.circular(borderRadius),
         child: child,
       ),

@@ -2,6 +2,11 @@ part of 'main.dart';
 
 const double _kVaultGridTileChildAspectRatio = 0.45;
 
+String? _vaultDisplayImageUrl(Map<String, dynamic> row) {
+  return normalizeDisplayImageUrl(row['photo_url']) ??
+      resolveDisplayImageUrlFromRow(row);
+}
+
 class _VaultItemTile extends StatelessWidget {
   final Map<String, dynamic> row;
   final CardSurfacePricingData? pricing;
@@ -44,7 +49,7 @@ class _VaultItemTile extends StatelessWidget {
     final gvId = (row['gv_id'] ?? '').toString();
     final cardPrintId = (row['card_id'] ?? '').toString();
     final number = (row['number'] ?? '').toString();
-    final imgUrl = (row['photo_url'] ?? row['image_url']).toString();
+    final imgUrl = _vaultDisplayImageUrl(row);
 
     final subtitleParts = <String>[];
     if (set.isNotEmpty) {
@@ -435,7 +440,7 @@ class _VaultGridTile extends StatelessWidget {
 class _VaultGridArtwork extends StatelessWidget {
   const _VaultGridArtwork({required this.imageUrl, required this.name});
 
-  final String imageUrl;
+  final String? imageUrl;
   final String name;
 
   @override
@@ -594,7 +599,7 @@ class VaultPageState extends State<VaultPage> {
         conditionLabel: (row['condition_label'] ?? 'NM').toString(),
         fallbackName: (row['name'] ?? '').toString(),
         fallbackSetName: (row['set_name'] ?? '').toString(),
-        fallbackImageUrl: (row['photo_url'] ?? row['image_url'])?.toString(),
+        fallbackImageUrl: _vaultDisplayImageUrl(row),
       );
     } else {
       await VaultCardService.archiveOneVaultItem(
@@ -1019,7 +1024,7 @@ class VaultPageState extends State<VaultPage> {
           final setName = ((row['set_name'] ?? row['set_code']) ?? '')
               .toString()
               .trim();
-          final imageUrl = (row['photo_url'] ?? row['image_url']).toString();
+          final imageUrl = _vaultDisplayImageUrl(row);
           final pricing = _pricingByCardPrintId[cardPrintId];
 
           return SizedBox(
@@ -1121,7 +1126,7 @@ class VaultPageState extends State<VaultPage> {
           name: (row['name'] ?? '').toString(),
           setName: (row['set_name'] ?? '').toString(),
           number: (row['number'] ?? '').toString(),
-          imageUrl: (row['photo_url'] ?? row['image_url']).toString(),
+          imageUrl: _vaultDisplayImageUrl(row),
           condition: (row['condition_label'] ?? '').toString(),
         ),
       ),

@@ -1208,7 +1208,7 @@ class NetworkStreamService {
         variantKey: identity?.variantKey,
         printedIdentityModifier: identity?.printedIdentityModifier,
         setIdentityModel: identity?.setIdentityModel,
-        imageUrl: row.imageUrl ?? identity?.displayImageUrl,
+        imageUrl: _preferredImageUrl(row.imageUrl, identity?.displayImageUrl),
         inPlayCopies:
             copiesByGroup[_groupKey(row.ownerUserId, row.cardPrintId)] ??
             const <NetworkStreamCopy>[],
@@ -1328,7 +1328,7 @@ class NetworkStreamService {
         cardRow: cardRow,
         pricingRow: pricingRow,
         sourceType: NetworkStreamSourceType.dbHighEnd,
-        sourceLabel: 'High-end canonical DB',
+        sourceLabel: '',
       );
       if (discoveryRow != null) {
         rows.add(discoveryRow);
@@ -1505,6 +1505,11 @@ class NetworkStreamService {
 
   static String? _displayImageUrl(Map<String, dynamic>? row) {
     return resolveDisplayImageUrlFromRow(row);
+  }
+
+  static String? _preferredImageUrl(String? rowImageUrl, String? fallbackUrl) {
+    return normalizeDisplayImageUrl(rowImageUrl) ??
+        normalizeDisplayImageUrl(fallbackUrl);
   }
 
   static Map<String, dynamic>? _recordFrom(dynamic value) {

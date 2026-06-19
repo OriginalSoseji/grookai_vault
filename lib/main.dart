@@ -53,6 +53,7 @@ import 'services/identity/display_identity.dart';
 import 'services/identity/canon_image_url_service.dart';
 import 'services/identity/image_presentation.dart';
 import 'services/identity/identity_search.dart';
+import 'utils/display_image_contract.dart';
 import 'widgets/card_surface_artwork.dart';
 import 'widgets/card_surface_price.dart';
 import 'widgets/card_view_mode.dart';

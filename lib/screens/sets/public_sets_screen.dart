@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/public/public_sets_service.dart';
+import '../../utils/display_image_contract.dart';
 import 'public_set_detail_screen.dart';
 
 class PublicSetsScreen extends StatefulWidget {
@@ -335,7 +336,7 @@ class _SetDiscoveryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final heroImageUrl = setInfo.heroImageUrl;
+    final heroImageUrl = normalizeDisplayImageUrl(setInfo.heroImageUrl);
     final infoParts = <String>[
       if (setInfo.releaseYear != null) '${setInfo.releaseYear}',
       if (setInfo.printedTotal != null) '${setInfo.printedTotal} cards',

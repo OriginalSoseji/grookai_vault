@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../services/identity/display_identity.dart';
 import '../../services/network/founder_insight_service.dart';
+import '../../utils/display_image_contract.dart';
 
 class FounderCardSignalDetailScreen extends StatefulWidget {
   const FounderCardSignalDetailScreen({super.key, required this.previewRow});
@@ -303,6 +304,7 @@ class _FounderCardHero extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final normalizedImageUrl = normalizeDisplayImageUrl(imageUrl);
 
     return Container(
       padding: const EdgeInsets.all(14),
@@ -324,13 +326,13 @@ class _FounderCardHero extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(14),
             ),
-            child: (imageUrl ?? '').isEmpty
+            child: normalizedImageUrl == null
                 ? Icon(
                     Icons.image_not_supported_outlined,
                     color: colorScheme.onSurface.withValues(alpha: 0.38),
                   )
                 : Image.network(
-                    imageUrl!,
+                    normalizedImageUrl,
                     fit: BoxFit.cover,
                     cacheWidth: 260,
                     errorBuilder: (context, error, stackTrace) => Icon(
