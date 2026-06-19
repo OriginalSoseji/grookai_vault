@@ -27,11 +27,11 @@ enum _ExploreHeaderAction { dex, sets, compare }
 
 enum _ShellDestination {
   // BOTTOM_NAV_LUXURY_PASS_V1
-  // Primary app navigation is behavior-first: Search, Feed, Scan, Wall, Vault.
+  // Primary app navigation is behavior-first: Search, Feed, Scan, Dex, Wall, Vault.
   search(navIndex: 0, stackIndex: 0, title: 'Search'),
   feed(navIndex: 1, stackIndex: 1, title: 'Feed'),
-  wall(navIndex: 3, stackIndex: 2, title: 'My Wall'),
-  vault(navIndex: 4, stackIndex: 3, title: 'Vault');
+  wall(navIndex: 4, stackIndex: 2, title: 'My Wall'),
+  vault(navIndex: 5, stackIndex: 3, title: 'Vault');
 
   const _ShellDestination({
     required this.navIndex,
@@ -49,9 +49,9 @@ enum _ShellDestination {
         return _ShellDestination.search;
       case 1:
         return _ShellDestination.feed;
-      case 3:
-        return _ShellDestination.wall;
       case 4:
+        return _ShellDestination.wall;
+      case 5:
         return _ShellDestination.vault;
       default:
         return _ShellDestination.feed;
@@ -808,6 +808,10 @@ class _AppShellState extends State<AppShell> {
                             _startScanFlow();
                             return;
                           }
+                          if (index == 3) {
+                            unawaited(_openDex());
+                            return;
+                          }
                           _selectDestination(
                             _ShellDestination.fromNavIndex(index),
                           );
@@ -827,6 +831,11 @@ class _AppShellState extends State<AppShell> {
                             icon: Icon(Icons.center_focus_strong_outlined),
                             selectedIcon: Icon(Icons.center_focus_strong_rounded),
                             label: 'Scan',
+                          ),
+                          NavigationDestination(
+                            icon: Icon(Icons.catching_pokemon_outlined),
+                            selectedIcon: Icon(Icons.catching_pokemon_rounded),
+                            label: 'Dex',
                           ),
                           NavigationDestination(
                             icon: Icon(Icons.person_outline_rounded),
