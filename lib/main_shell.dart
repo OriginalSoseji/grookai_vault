@@ -653,6 +653,7 @@ class _AppShellState extends State<AppShell> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
+    final isDesktopShell = MediaQuery.sizeOf(context).width >= 900;
     final bottomSafeInset = MediaQuery.viewPaddingOf(context).bottom;
     final shellChildren = List<Widget>.generate(
       _ShellDestination.values.length,
@@ -660,6 +661,10 @@ class _AppShellState extends State<AppShell> {
       growable: false,
     );
     final navRadius = BorderRadius.circular(22);
+    final shellBody = IndexedStack(
+      index: _destination.stackIndex,
+      children: shellChildren,
+    );
 
     return Scaffold(
       key: _scaffoldKey,
@@ -691,120 +696,345 @@ class _AppShellState extends State<AppShell> {
         ),
         actions: _buildAppBarActions(),
       ),
-      body: IndexedStack(
-        index: _destination.stackIndex,
-        children: shellChildren,
-      ),
+      body: isDesktopShell
+          ? Row(
+              children: [
+                _GrookaiDesktopRail(
+                  currentDestination: _destination,
+                  onOpenSearch: () => _selectDestination(_ShellDestination.search),
+                  onOpenFeed: () => _selectDestination(_ShellDestination.feed),
+                  onOpenWall: () => _selectDestination(_ShellDestination.wall),
+                  onOpenVault: () => _selectDestination(_ShellDestination.vault),
+                  onOpenScan: _startScanFlow,
+                  onOpenDex: () => unawaited(_openDex()),
+                  onOpenSets: () => unawaited(_openSets()),
+                  onOpenCompare: () => unawaited(_openCompare()),
+                  onOpenMessages: () => unawaited(_openMessages()),
+                  onOpenAccount: () => unawaited(_openAccountHub()),
+                  onOpenMenu: () => _scaffoldKey.currentState?.openEndDrawer(),
+                ),
+                VerticalDivider(
+                  width: 1,
+                  thickness: 1,
+                  color: colorScheme.outline.withValues(alpha: 0.08),
+                ),
+                Expanded(child: shellBody),
+              ],
+            )
+          : shellBody,
       // BOTTOM_NAV_CORRECTION_V1
       // Compact dock geometry and safe-area handling so the bottom nav feels
       // anchored, not oversized.
-      bottomNavigationBar: SafeArea(
-        top: false,
-        minimum: EdgeInsets.fromLTRB(10, 4, 10, bottomSafeInset > 0 ? 2 : 6),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 2),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: colorScheme.surface.withValues(
-                alpha: isDark ? 0.985 : 0.975,
+      bottomNavigationBar: isDesktopShell
+          ? null
+          : SafeArea(
+              top: false,
+              minimum: EdgeInsets.fromLTRB(
+                10,
+                4,
+                10,
+                bottomSafeInset > 0 ? 2 : 6,
               ),
-              borderRadius: navRadius,
-              border: Border.all(
-                color: colorScheme.outline.withValues(
-                  alpha: isDark ? 0.12 : 0.07,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 2),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: colorScheme.surface.withValues(
+                      alpha: isDark ? 0.985 : 0.975,
+                    ),
+                    borderRadius: navRadius,
+                    border: Border.all(
+                      color: colorScheme.outline.withValues(
+                        alpha: isDark ? 0.12 : 0.07,
+                      ),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: colorScheme.shadow.withValues(
+                          alpha: isDark ? 0.12 : 0.05,
+                        ),
+                        blurRadius: isDark ? 16 : 12,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: navRadius,
+                    child: NavigationBarTheme(
+                      data: NavigationBarTheme.of(context).copyWith(
+                        backgroundColor: Colors.transparent,
+                        indicatorColor: colorScheme.onSurface.withValues(
+                          alpha: isDark ? 0.09 : 0.045,
+                        ),
+                        height: kShellBottomNavHeight,
+                        labelBehavior:
+                            NavigationDestinationLabelBehavior.onlyShowSelected,
+                        iconTheme: WidgetStateProperty.resolveWith((states) {
+                          if (states.contains(WidgetState.selected)) {
+                            return IconThemeData(
+                              color: colorScheme.primary,
+                              size: 20,
+                            );
+                          }
+                          return IconThemeData(
+                            color: colorScheme.onSurface.withValues(alpha: 0.54),
+                            size: 19,
+                          );
+                        }),
+                        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+                          final baseStyle = theme.textTheme.labelSmall;
+                          if (states.contains(WidgetState.selected)) {
+                            return baseStyle?.copyWith(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 10.4,
+                              letterSpacing: 0.08,
+                            );
+                          }
+                          return baseStyle?.copyWith(
+                            color: colorScheme.onSurface.withValues(alpha: 0.56),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 10.1,
+                            letterSpacing: 0.08,
+                          );
+                        }),
+                      ),
+                      child: NavigationBar(
+                        elevation: 0,
+                        labelPadding: const EdgeInsets.only(top: 1),
+                        selectedIndex: _destination.navIndex,
+                        onDestinationSelected: (index) {
+                          if (index == 2) {
+                            _startScanFlow();
+                            return;
+                          }
+                          _selectDestination(
+                            _ShellDestination.fromNavIndex(index),
+                          );
+                        },
+                        destinations: const [
+                          NavigationDestination(
+                            icon: Icon(Icons.search_rounded),
+                            selectedIcon: Icon(Icons.search_rounded),
+                            label: 'Search',
+                          ),
+                          NavigationDestination(
+                            icon: Icon(Icons.dynamic_feed_outlined),
+                            selectedIcon: Icon(Icons.dynamic_feed_rounded),
+                            label: 'Feed',
+                          ),
+                          NavigationDestination(
+                            icon: Icon(Icons.center_focus_strong_outlined),
+                            selectedIcon: Icon(Icons.center_focus_strong_rounded),
+                            label: 'Scan',
+                          ),
+                          NavigationDestination(
+                            icon: Icon(Icons.person_outline_rounded),
+                            selectedIcon: Icon(Icons.person_rounded),
+                            label: 'Wall',
+                          ),
+                          NavigationDestination(
+                            icon: Icon(Icons.inventory_2_outlined),
+                            selectedIcon: Icon(Icons.inventory_2_rounded),
+                            label: 'Vault',
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: colorScheme.shadow.withValues(
-                    alpha: isDark ? 0.12 : 0.05,
+            ),
+    );
+  }
+}
+
+class _GrookaiDesktopRail extends StatelessWidget {
+  const _GrookaiDesktopRail({
+    required this.currentDestination,
+    required this.onOpenSearch,
+    required this.onOpenFeed,
+    required this.onOpenWall,
+    required this.onOpenVault,
+    required this.onOpenScan,
+    required this.onOpenDex,
+    required this.onOpenSets,
+    required this.onOpenCompare,
+    required this.onOpenMessages,
+    required this.onOpenAccount,
+    required this.onOpenMenu,
+  });
+
+  final _ShellDestination currentDestination;
+  final VoidCallback onOpenSearch;
+  final VoidCallback onOpenFeed;
+  final VoidCallback onOpenWall;
+  final VoidCallback onOpenVault;
+  final VoidCallback onOpenScan;
+  final VoidCallback onOpenDex;
+  final VoidCallback onOpenSets;
+  final VoidCallback onOpenCompare;
+  final VoidCallback onOpenMessages;
+  final VoidCallback onOpenAccount;
+  final VoidCallback onOpenMenu;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return SafeArea(
+      right: false,
+      child: Container(
+        width: 216,
+        padding: const EdgeInsets.fromLTRB(14, 14, 14, 16),
+        color: colorScheme.surface.withValues(alpha: 0.985),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 4, 10, 14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Grookai',
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
-                  blurRadius: isDark ? 16 : 12,
-                  offset: const Offset(0, 4),
+                  const SizedBox(height: 3),
+                  Text(
+                    'Collector OS',
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.55),
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.8,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            _GrookaiRailTile(
+              icon: Icons.search_rounded,
+              label: 'Search',
+              selected: currentDestination == _ShellDestination.search,
+              onTap: onOpenSearch,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.dynamic_feed_rounded,
+              label: 'Feed',
+              selected: currentDestination == _ShellDestination.feed,
+              onTap: onOpenFeed,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.center_focus_strong_rounded,
+              label: 'Scan',
+              onTap: onOpenScan,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.person_rounded,
+              label: 'Wall',
+              selected: currentDestination == _ShellDestination.wall,
+              onTap: onOpenWall,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.inventory_2_rounded,
+              label: 'Vault',
+              selected: currentDestination == _ShellDestination.vault,
+              onTap: onOpenVault,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Divider(height: 1),
+            ),
+            _GrookaiRailTile(
+              icon: Icons.catching_pokemon_rounded,
+              label: 'Dex',
+              onTap: onOpenDex,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.style_rounded,
+              label: 'Sets',
+              onTap: onOpenSets,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.compare_arrows_rounded,
+              label: 'Compare',
+              onTap: onOpenCompare,
+            ),
+            const Spacer(),
+            _GrookaiRailTile(
+              icon: Icons.mail_rounded,
+              label: 'Messages',
+              onTap: onOpenMessages,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.account_circle_rounded,
+              label: 'Account',
+              onTap: onOpenAccount,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.menu_rounded,
+              label: 'All tools',
+              onTap: onOpenMenu,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _GrookaiRailTile extends StatelessWidget {
+  const _GrookaiRailTile({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    this.selected = false,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+  final bool selected;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final foreground = selected
+        ? colorScheme.primary
+        : colorScheme.onSurface.withValues(alpha: 0.76);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: Material(
+        color: selected
+            ? colorScheme.primary.withValues(alpha: 0.09)
+            : Colors.transparent,
+        borderRadius: BorderRadius.circular(18),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(18),
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            child: Row(
+              children: [
+                Icon(icon, color: foreground, size: 21),
+                const SizedBox(width: 11),
+                Expanded(
+                  child: Text(
+                    label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: foreground,
+                      fontWeight: selected ? FontWeight.w900 : FontWeight.w700,
+                    ),
+                  ),
                 ),
               ],
-            ),
-            child: ClipRRect(
-              borderRadius: navRadius,
-              child: NavigationBarTheme(
-                data: NavigationBarTheme.of(context).copyWith(
-                  backgroundColor: Colors.transparent,
-                  indicatorColor: colorScheme.onSurface.withValues(
-                    alpha: isDark ? 0.09 : 0.045,
-                  ),
-                  height: kShellBottomNavHeight,
-                  labelBehavior:
-                      NavigationDestinationLabelBehavior.onlyShowSelected,
-                  iconTheme: WidgetStateProperty.resolveWith((states) {
-                    if (states.contains(WidgetState.selected)) {
-                      return IconThemeData(
-                        color: colorScheme.primary,
-                        size: 20,
-                      );
-                    }
-                    return IconThemeData(
-                      color: colorScheme.onSurface.withValues(alpha: 0.54),
-                      size: 19,
-                    );
-                  }),
-                  labelTextStyle: WidgetStateProperty.resolveWith((states) {
-                    final baseStyle = theme.textTheme.labelSmall;
-                    if (states.contains(WidgetState.selected)) {
-                      return baseStyle?.copyWith(
-                        color: colorScheme.primary,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 10.4,
-                        letterSpacing: 0.08,
-                      );
-                    }
-                    return baseStyle?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.56),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 10.1,
-                      letterSpacing: 0.08,
-                    );
-                  }),
-                ),
-                child: NavigationBar(
-                  elevation: 0,
-                  labelPadding: const EdgeInsets.only(top: 1),
-                  selectedIndex: _destination.navIndex,
-                  onDestinationSelected: (index) {
-                    if (index == 2) {
-                      _startScanFlow();
-                      return;
-                    }
-                    _selectDestination(_ShellDestination.fromNavIndex(index));
-                  },
-                  destinations: const [
-                    NavigationDestination(
-                      icon: Icon(Icons.search_rounded),
-                      selectedIcon: Icon(Icons.search_rounded),
-                      label: 'Search',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(Icons.dynamic_feed_outlined),
-                      selectedIcon: Icon(Icons.dynamic_feed_rounded),
-                      label: 'Feed',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(Icons.center_focus_strong_outlined),
-                      selectedIcon: Icon(Icons.center_focus_strong_rounded),
-                      label: 'Scan',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(Icons.person_outline_rounded),
-                      selectedIcon: Icon(Icons.person_rounded),
-                      label: 'Wall',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(Icons.inventory_2_outlined),
-                      selectedIcon: Icon(Icons.inventory_2_rounded),
-                      label: 'Vault',
-                    ),
-                  ],
-                ),
-              ),
             ),
           ),
         ),
