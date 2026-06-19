@@ -111,6 +111,9 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
             )
             .length ??
         0;
+    final heroSpecies =
+        speciesPage?.species.take(3).toList(growable: false) ??
+        const <GrookaiDexSpeciesSummary>[];
 
     return Scaffold(
       appBar: AppBar(
@@ -136,21 +139,27 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                   children: [
                     Row(
                       children: [
-                        DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: colorScheme.primaryContainer.withValues(
-                              alpha: 0.72,
+                        if (heroSpecies.isEmpty)
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: colorScheme.primaryContainer.withValues(
+                                alpha: 0.72,
+                              ),
+                              borderRadius: BorderRadius.circular(14),
                             ),
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Icon(
-                              Icons.catching_pokemon_rounded,
-                              color: colorScheme.onPrimaryContainer,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Icon(
+                                Icons.catching_pokemon_rounded,
+                                color: colorScheme.onPrimaryContainer,
+                              ),
                             ),
-                          ),
-                        ),
+                          )
+                        else
+                          for (final species in heroSpecies) ...[
+                            _DexSprite(species: species, size: 58),
+                            const SizedBox(width: 8),
+                          ],
                         const Spacer(),
                         Text(
                           'Page $_page',
@@ -289,6 +298,8 @@ class _DexSpeciesTile extends StatelessWidget {
           padding: const EdgeInsets.all(14),
           child: Row(
             children: [
+              _DexSprite(species: species),
+              const SizedBox(width: 12),
               SizedBox(
                 width: 56,
                 child: Text(
@@ -350,6 +361,72 @@ class _DexSpeciesTile extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _DexSprite extends StatelessWidget {
+  const _DexSprite({required this.species, this.size = 52});
+
+  final GrookaiDexSpeciesSummary species;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final spriteUrl = species.spriteUrl;
+
+    return Semantics(
+      image: true,
+      label: '${species.displayName} Pokedex sprite',
+      child: Container(
+        width: size,
+        height: size,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(size >= 58 ? 18 : 16),
+          color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.58),
+          border: Border.all(
+            color: colorScheme.outline.withValues(alpha: 0.10),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: colorScheme.shadow.withValues(alpha: 0.08),
+              blurRadius: 22,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: spriteUrl == null
+            ? _DexSpriteFallback(species: species)
+            : Image.network(
+                spriteUrl,
+                width: size * 0.78,
+                height: size * 0.78,
+                fit: BoxFit.contain,
+                filterQuality: FilterQuality.none,
+                errorBuilder: (_, __, ___) =>
+                    _DexSpriteFallback(species: species),
+              ),
+      ),
+    );
+  }
+}
+
+class _DexSpriteFallback extends StatelessWidget {
+  const _DexSpriteFallback({required this.species});
+
+  final GrookaiDexSpeciesSummary species;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      species.displayName.isEmpty ? '?' : species.displayName[0].toUpperCase(),
+      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+        fontWeight: FontWeight.w900,
+        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.58),
       ),
     );
   }

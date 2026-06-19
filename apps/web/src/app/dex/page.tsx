@@ -1,7 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { isGrookaiDexEnabled } from "@/lib/grookaiDex/featureFlag";
 import { getGrookaiDexSpeciesPage } from "@/lib/grookaiDex/getGrookaiDexSpecies";
+import { getPokemonSpriteUrl } from "@/lib/grookaiDex/pokemonSprite";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -64,6 +66,37 @@ function completionClassName(status: string) {
   return "bg-slate-100 text-slate-600 dark:bg-white/[0.07] dark:text-slate-300";
 }
 
+function PokemonSprite({
+  dexNumber,
+  name,
+  size = "default",
+}: {
+  dexNumber: number;
+  name: string;
+  size?: "default" | "hero";
+}) {
+  const spriteUrl = getPokemonSpriteUrl(dexNumber);
+  const frameClassName = size === "hero" ? "gv-dex-sprite-frame gv-dex-sprite-frame-hero" : "gv-dex-sprite-frame";
+  const imageSize = size === "hero" ? 96 : 72;
+
+  return (
+    <div className={frameClassName} aria-hidden={!spriteUrl}>
+      {spriteUrl ? (
+        <Image
+          src={spriteUrl}
+          alt={`${name} Pokedex sprite`}
+          width={imageSize}
+          height={imageSize}
+          className="gv-dex-sprite-image"
+          unoptimized
+        />
+      ) : (
+        <span className="gv-dex-sprite-fallback">{name.slice(0, 1).toUpperCase()}</span>
+      )}
+    </div>
+  );
+}
+
 export default async function GrookaiDexPage({
   searchParams,
 }: {
@@ -95,24 +128,31 @@ export default async function GrookaiDexPage({
   const endRow = Math.min(speciesPage.totalSpeciesCount, startRow + species.length - 1);
 
   return (
-    <main className="gv-page-shell gv-mobile-safe-content">
-      <div className="gv-page-container gv-page-rhythm">
+    <div className="gv-page-rhythm">
         <header className="gv-dex-hero px-5 py-7 sm:px-8 sm:py-9 lg:px-10">
-          <div className="relative z-[1] grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,430px)] lg:items-end">
-            <div className="space-y-5">
+          <div className="relative z-[1] grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,430px)] lg:items-end">
+            <div className="min-w-0 space-y-5">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="gv-discovery-eyebrow">Grookai Dex</span>
                 <span className="gv-discovery-pill">Vault-aware</span>
               </div>
               <div className="space-y-2">
-                <h1 className="gv-display-title max-w-3xl text-[clamp(3rem,8vw,6.5rem)]">
-                  Character completion, not just a checklist.
+                <h1 className="gv-display-title max-w-full text-[clamp(2.3rem,10vw,6.5rem)] sm:max-w-3xl sm:text-[clamp(3rem,8vw,6.5rem)]">
+                  <span className="sm:hidden">
+                    Character
+                    <br />
+                    completion,
+                    <br />
+                    not just
+                    <br />a checklist.
+                  </span>
+                  <span className="hidden sm:inline">Character completion, not just a checklist.</span>
                 </h1>
-                <p className="gv-body-copy max-w-2xl text-[1.08rem]">
+                <p className="gv-body-copy max-w-full text-[1.08rem] sm:max-w-2xl">
                   Search a Pokemon and see every mapped card print, what your vault already owns, and the exact gaps still left for that character.
                 </p>
               </div>
-              <form action="/dex" className="gv-dex-search flex max-w-2xl flex-col gap-2 rounded-[26px] p-2 sm:flex-row">
+              <form action="/dex" className="gv-dex-search flex max-w-full flex-col gap-2 rounded-[26px] p-2 sm:max-w-2xl sm:flex-row">
                 <label htmlFor="dex-character-search" className="sr-only">
                   Search Pokemon character
                 </label>
@@ -144,7 +184,17 @@ export default async function GrookaiDexPage({
               </div>
             </div>
 
-            <div className="gv-dex-progress-panel p-5 sm:p-6">
+            <div className="gv-dex-progress-panel min-w-0 p-5 sm:p-6">
+              <div className="mb-5 flex items-center gap-3">
+                {species.slice(0, 3).map((row) => (
+                  <PokemonSprite
+                    key={`hero-${row.speciesId}`}
+                    dexNumber={row.nationalDexNumber}
+                    name={row.displayName}
+                    size="hero"
+                  />
+                ))}
+              </div>
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="gv-eyebrow">Current view</p>
@@ -208,8 +258,10 @@ export default async function GrookaiDexPage({
               <Link
                 key={row.speciesId}
                 href={`/dex/${row.slug}`}
-                className="gv-dex-species-card group grid gap-5 px-5 py-5 sm:grid-cols-[7.4rem_minmax(0,1fr)_minmax(180px,260px)] sm:items-center sm:px-6"
+                className="gv-dex-species-card group grid gap-5 px-5 py-5 sm:grid-cols-[5.5rem_7.4rem_minmax(0,1fr)_minmax(180px,260px)] sm:items-center sm:px-6"
               >
+                <PokemonSprite dexNumber={row.nationalDexNumber} name={row.displayName} />
+
                 <div className="flex items-center justify-between gap-3 sm:block">
                   <span className="gv-dex-number">
                     #{row.nationalDexNumber.toString().padStart(4, "0")}
@@ -278,7 +330,6 @@ export default async function GrookaiDexPage({
           Next
         </Link>
         </nav>
-      </div>
-    </main>
+    </div>
   );
 }

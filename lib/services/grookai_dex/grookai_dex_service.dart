@@ -23,6 +23,9 @@ class GrookaiDexSpeciesSummary {
   final int ownedPrintCount;
   final int ownedCopyCount;
 
+  String? get spriteUrl =>
+      GrookaiDexService.spriteUrlForNationalDexNumber(nationalDexNumber);
+
   int get completionPercent => totalPrintCount <= 0
       ? 0
       : ((ownedPrintCount / totalPrintCount) * 100).round().clamp(0, 100);
@@ -139,6 +142,15 @@ class GrookaiDexSpeciesDetail {
 
 class GrookaiDexService {
   static const int defaultPageSize = 100;
+  static const String _spriteBaseUrl =
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
+
+  static String? spriteUrlForNationalDexNumber(int nationalDexNumber) {
+    if (nationalDexNumber <= 0) {
+      return null;
+    }
+    return '$_spriteBaseUrl/$nationalDexNumber.png';
+  }
 
   static Future<GrookaiDexSpeciesPage> fetchSpeciesPage({
     required SupabaseClient client,

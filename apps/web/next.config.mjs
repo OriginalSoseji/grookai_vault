@@ -133,6 +133,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.pokemontcg.io",
       },
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+        pathname: "/PokeAPI/sprites/master/sprites/pokemon/**",
+      },
       ...(supabaseHost
         ? [
             {
